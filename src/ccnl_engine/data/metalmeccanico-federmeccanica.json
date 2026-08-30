@@ -234,7 +234,7 @@
       "APPRENDISTATO: la percentuale dell'80% è un'approssimazione. Il CCNL Federmeccanica prevede percentuali differenziate per periodo di apprendistato (es. 80% nei primi 12 mesi, 85% nei successivi). Verificare l'Art. sull'apprendistato professionalizzante nel CCNL 2025-2028.",
       "DIVISORE ORARIO: 173 ore/mese (40 h/settimana × 52/12 = 173,33 arrotondato a 173, standard Federmeccanica).",
       "MENSILITÀ: 13 (tredicesima). La quattordicesima non è prevista dal CCNL Federmeccanica. Il premio di risultato/variabile aziendale non è modellato (layer 3).",
-      "INPS: le aliquote del settore industria (employer_tiers in 2026-industria.json) sono stime che richiedono verifica su circolare INPS 2026."
+      "INPS: le aliquote datore in 2026-industria.json sono calcolate per componenti verificati (IVS 23.81% + DS 1.61% + CUAF 2.48% + CIGO D.Lgs.148/2015 + FIS/CIGS Circ.INPS 5/2025). Totali risultanti: ≤15 dip = 30.13%, 16-50 dip = 30.20%, >50 dip = 30.50%. Non include INAIL. La quota CIGS dipendente (0.30% per >15 dip) non è ancora modellata in employee_rate."
     ]
   }
 }
