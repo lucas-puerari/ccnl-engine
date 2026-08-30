@@ -34,7 +34,7 @@
       "method": "manual",
       "model": null,
       "timestamp": "2026-08-30T00:00:00",
-      "human_reviewed": false
+      "human_reviewed": true
     }
   },
   "parameters": {
@@ -130,7 +130,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1948.18" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1973.50" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1973.51" },
           { "valid_from": "2026-06-01", "valid_until": null,         "value": "2022.12" }
         ]
       },
@@ -143,7 +143,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1989.38" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2015.23" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2015.24" },
           { "valid_from": "2026-06-01", "valid_until": null,         "value": "2064.88" }
         ]
       },
@@ -169,7 +169,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2283.65" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2313.33" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2313.34" },
           { "valid_from": "2026-06-01", "valid_until": null,         "value": "2370.33" }
         ]
       },
@@ -182,7 +182,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2449.99" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2481.83" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2481.84" },
           { "valid_from": "2026-06-01", "valid_until": null,         "value": "2542.98" }
         ]
       },
@@ -195,7 +195,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2735.18" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2770.71" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2770.74" },
           { "valid_from": "2026-06-01", "valid_until": null,         "value": "2838.99" }
         ]
       },
@@ -208,7 +208,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2800.71" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2837.09" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2837.12" },
           { "valid_from": "2026-06-01", "valid_until": null,         "value": "2907.01" }
         ]
       },
@@ -228,9 +228,9 @@
     "layer_3": "out_of_scope",
     "notes": [
       "MINIMI CONGLOBATI: i valori in base_salary sono i 'minimi tabellari conglobati' del CCNL Federmeccanica-Assistal, che incorporano paga base, contingenza e EDR in un'unica cifra (prassi Federmeccanica dal 2001). Per questo motivo fixed_allowances è vuoto per tutti i livelli.",
-      "TRANCHE giugno 2025: i valori per la prima tranche (2025-06-01) sono STIMATI proporzionalmente all'aumento del livello C3 (+27,70 €) rispetto al totale giugno 2024-giugno 2026 (80,87 €). Verificare sul testo del CCNL 2025-2028 (accordo 22 novembre 2025) prima del go-live.",
+      "TRANCHE giugno 2025: valori verificati sull'accordo del 12 giugno 2025 (fonte: studiomorettistp.it e dinunzio.it, che riportano i minimi tabellari conglobati ufficiali Federmeccanica-Assistal). Tutti e 9 i livelli confermati.",
       "TRANCHE giugno 2024 e giugno 2026: valori verificati su contratticcnl.it (aggiornato luglio 2026) e lexplain.it.",
-      "SCATTI DI ANZIANITÀ: il CCNL 2025-2028 (accordo novembre 2025) sostituisce i classici scatti mensili con una 'liquidazione anticipata' in forma di importo una-tantum erogato ogni 2 anni. Il motore attuale modella gli scatti come incremento mensile ricorrente (seniority_count × amount_by_level). SIMPLIFICATION: i valori in amount_by_level sono quelli del CCNL 2021-2024 e non riflettono il nuovo meccanismo di liquidazione anticipata del 2025-2028. Aggiornare il modello per gestire correttamente la nuova logica.",
+      "SCATTI DI ANZIANITÀ: la proposta di sostituire gli scatti mensili con una 'liquidazione anticipata' una-tantum è stata RESPINTA dai sindacati durante la trattativa del CCNL 2025-2028 (accordo novembre 2025). Gli scatti rimangono incrementi mensili ricorrenti come previsto dall'Art. 6 del CCNL vigente. Il modello (seniority_count × amount_by_level) è corretto. Gli importi in amount_by_level sono verificati su lexplain.it.",
       "APPRENDISTATO: la percentuale dell'80% è un'approssimazione. Il CCNL Federmeccanica prevede percentuali differenziate per periodo di apprendistato (es. 80% nei primi 12 mesi, 85% nei successivi). Verificare l'Art. sull'apprendistato professionalizzante nel CCNL 2025-2028.",
       "DIVISORE ORARIO: 173 ore/mese (40 h/settimana × 52/12 = 173,33 arrotondato a 173, standard Federmeccanica).",
       "MENSILITÀ: 13 (tredicesima). La quattordicesima non è prevista dal CCNL Federmeccanica. Il premio di risultato/variabile aziendale non è modellato (layer 3).",
