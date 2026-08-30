@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "pydantic>=2.0",
+]
 
 [dependency-groups]
 dev = [
@@ -34,10 +36,19 @@ ignore = [
     "S101",    # assert — fine in tests
     "RUF012",  # mutable-class-default
     "CPY001",  # missing-copyright-notice
+    "D413",    # missing-blank-line-after-last-section — unnecessary blank lines
+    "PLR0913", # too-many-arguments — compute() has 8 args by spec
+    "PLR0917", # too-many-positional-arguments — same
+    "PLR0915", # too-many-statements — compute() is necessarily long
 ]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["S", "ARG", "SLF001"]
+# Pydantic needs runtime access to annotated types; TCH001-TCH003 would move
+# them to TYPE_CHECKING blocks, breaking model_validate and field resolution.
+# Applies only to files that define Pydantic models, not to engine code.
+"src/ccnl_engine/models/**" = ["TCH"]
+"src/ccnl_engine/tax/models.py" = ["TCH"]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -80,3 +91,15 @@ warn_unreachable = true
 warn_unused_ignores = true
 show_error_codes = true
 pretty = true
+plugins = ["pydantic.mypy"]
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+
+# ---------------------------------------------------------------------------
+# Package data — include JSON files in wheel/sdist
+# ---------------------------------------------------------------------------
+[tool.setuptools.package-data]
+"ccnl_engine" = ["data/*.json", "tax/data/*.json"]
