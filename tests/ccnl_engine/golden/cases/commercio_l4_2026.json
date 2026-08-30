@@ -1,0 +1,44 @@
+{
+  "_description": "Golden case: CCNL Commercio-Confcommercio, Level 4, 2026-09-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Nov-2025 tranche: base=1257.46, contingenza=524.22, EDR=2.07.",
+    "Fifth tranche (Nov-2026) not yet in effect on 2026-09-01.",
+    "INPS rates: employee 9.19%, employer 28.98% (commerce, ≤50 employees).",
+    "Art. 13 TUIR deduction: piecewise-linear at gross_income=24972.50.",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "commercio-confcommercio.json",
+    "year": 2026,
+    "level_code": "4",
+    "as_of": "2026-09-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "commercio-confcommercio",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "1257.46",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "526.29",
+    "gross_monthly": "1783.75",
+    "gross_annual": "24972.50",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2294.97",
+    "inps_employer_annual": "7237.03",
+    "tfr_annual": "1849.81",
+    "taxable_income": "22677.53",
+    "irpef_gross": "5215.83",
+    "work_income_deduction": "894.85",
+    "irpef_net": "4320.98",
+    "net_annual": "18356.55",
+    "net_monthly": "1311.18",
+    "employer_cost_annual": "34059.34"
+  }
+}

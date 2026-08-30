@@ -1,0 +1,678 @@
+{
+  "schema_version": "0.2",
+  "ccnl": {
+    "id": "commercio-confcommercio",
+    "name": "CCNL Terziario, Distribuzione e Servizi (Confcommercio)",
+    "cnel_code": "H011",
+    "sector": "terziario",
+    "signatories": [
+      "Confcommercio",
+      "Filcams-CGIL",
+      "Fisascat-CISL",
+      "Uiltucs-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
+        "type": "text",
+        "agreement_date": "2024-03-22"
+      },
+      {
+        "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+        "type": "table",
+        "agreement_date": null
+      },
+      {
+        "url": "https://www.ascom.bo.it",
+        "type": "table",
+        "agreement_date": null
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-08-30T00:00:00",
+      "human_reviewed": false
+    }
+  },
+  "parameters": {
+    "hourly_divisor": 168,
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-04-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 10,
+      "amount_by_level": {
+        "Q": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "25.46"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "24.84"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "22.83"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "21.95"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "20.66"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "20.30"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "19.73"
+            }
+          ]
+        },
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "19.47"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "Q",
+      "order": 8,
+      "description": "Quadro",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "2070.22"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "2122.31"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "2183.08"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "2243.85"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "2313.29"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (frozen Nov 1993)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "540.37"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "EDR — Elemento Distinto della Retribuzione",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
+            ]
+          }
+        },
+        {
+          "code": "ind_funzione",
+          "description": "Indennità di funzione Quadro",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-04-01",
+                "valid_until": null,
+                "value": "260.76"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "order": 7,
+      "description": "1° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "1864.89"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "1911.81"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "1966.55"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "2021.29"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "2083.84"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (frozen Nov 1993)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "537.52"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "EDR — Elemento Distinto della Retribuzione",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "order": 6,
+      "description": "2° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "1613.12"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "1653.71"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "1701.06"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "1748.41"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1802.52"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (frozen Nov 1993)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "532.54"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "EDR — Elemento Distinto della Retribuzione",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "order": 5,
+      "description": "3° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "1378.78"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "1413.47"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "1453.94"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "1494.41"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1540.66"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (frozen Nov 1993)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "527.90"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "EDR — Elemento Distinto della Retribuzione",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "order": 4,
+      "description": "4° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "1192.46"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "1222.46"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "1257.46"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "1292.46"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1332.46"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (frozen Nov 1993)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "524.22"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "EDR — Elemento Distinto della Retribuzione",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "order": 3,
+      "description": "5° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "1077.35"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "1104.45"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "1136.07"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "1167.69"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1203.83"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (frozen Nov 1993)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "521.94"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "EDR — Elemento Distinto della Retribuzione",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "6",
+      "order": 2,
+      "description": "6° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "967.22"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "991.55"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "1019.94"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "1048.33"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1080.78"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (frozen Nov 1993)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "519.76"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "EDR — Elemento Distinto della Retribuzione",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "7",
+      "order": 1,
+      "description": "7° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "828.08"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "848.91"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "873.22"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "897.53"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "925.31"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (frozen Nov 1993)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "517.51"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "EDR — Elemento Distinto della Retribuzione",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1993-11-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
+            ]
+          }
+        },
+        {
+          "code": "ind_funzione",
+          "description": "Indennità di funzione 7° livello",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-04-01",
+                "valid_until": null,
+                "value": "5.16"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "apprenticeship": {
+    "type": "percentage",
+    "destination_level": "4",
+    "periods": [
+      {
+        "months_from": 0,
+        "months_until": null,
+        "percentage": "0.80"
+      }
+    ]
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "Salary tables: five tranches from rinnovo 22 March 2024 (effective 2024-04-01) through February 2027 per lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027. Source corroborated by ascom.bo.it for Nov 2025 values.",
+      "Seniority increments (scatti di anzianita): values from affarifinanza.it and bustaia.it; confidence medium — verify against CCNL Art. 187 before production use.",
+      "Contingenza: frozen since November 1993 per Art. 1 L. 438/1992; values from ascom.bo.it.",
+      "EDR: EUR 2.07 for all levels, unchanged since 1990s protocol.",
+      "Indennita di funzione: Quadro EUR 260.76, 7 livello EUR 5.16 per ascom.bo.it.",
+      "Apprenticeship: CCNL Commercio Art. 42 apprenticeship mechanism (percentage vs under-classification) not confirmed from primary source. Placeholder uses type=percentage, destination_level=4, 80% for all months. MUST be verified before production use. Layer 2 marked partial.",
+      "INPS assumptions: see tax/data/2026.json notes (<=50 employees, CUAF intera).",
+      "CNEL code H011 confirmed by Il Sole 24 Ore / INPS UNIEMENS reference."
+    ]
+  }
+}
