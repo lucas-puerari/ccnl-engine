@@ -5,6 +5,7 @@
     "name": "CCNL Terziario, Distribuzione e Servizi (Confcommercio)",
     "cnel_code": "H011",
     "sector": "terziario",
+    "tax_sector": "terziario",
     "signatories": [
       "Confcommercio",
       "Filcams-CGIL",

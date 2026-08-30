@@ -1,16 +1,17 @@
 """Tests for ccnl_engine.tax.models.
 
 Covers every branch in YearRules validators and tests that the canonical
-2026.json data file loads correctly.
+2026-terziario.json data file loads correctly via load_year_rules.
 """
 
-import importlib.resources
 from decimal import Decimal
 from typing import Any
 
 import pytest
 from pydantic import ValidationError
 
+from ccnl_engine.data import load_year_rules
+from ccnl_engine.models.ccnl import TaxSector
 from ccnl_engine.tax.models import (
     DeductionBreakpoint,
     InpsRates,
@@ -263,16 +264,11 @@ class TestYearRulesDeductionBreakpoints:
 
 
 class TestYearRules2026Json:
-    """Validates that the canonical 2026.json data file loads correctly."""
+    """Validates that the 2026-terziario.json data file loads via load_year_rules."""
 
     def test_2026_json_loads(self) -> None:
-        """2026.json must deserialise into a valid YearRules with correct values."""
-        raw = (
-            importlib.resources.files("ccnl_engine.tax.data")
-            .joinpath("2026.json")
-            .read_text(encoding="utf-8")
-        )
-        yr = YearRules.model_validate_json(raw)
+        """load_year_rules(2026, terziario, 50) must return correct YearRules."""
+        yr = load_year_rules(2026, TaxSector.TERZIARIO, 50)
         assert yr.year == 2026
         assert len(yr.irpef_brackets) == 3
         assert yr.irpef_brackets[0].rate == Decimal("0.23")

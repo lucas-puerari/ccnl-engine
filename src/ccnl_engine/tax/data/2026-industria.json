@@ -1,0 +1,32 @@
+{
+  "year": 2026,
+  "sector": "industria",
+  "irpef_brackets": [
+    { "up_to": "28000.00", "rate": "0.23" },
+    { "up_to": "50000.00", "rate": "0.33" },
+    { "up_to": null,       "rate": "0.43" }
+  ],
+  "work_deduction_breakpoints": [
+    { "income_up_to": "8500.00",  "deduction": "1955.00" },
+    { "income_up_to": "28000.00", "deduction": "700.00"  },
+    { "income_up_to": "50000.00", "deduction": "0.00"    },
+    { "income_up_to": null,       "deduction": "0.00"    }
+  ],
+  "fixed_term_additional_rate": "0.014",
+  "inps": {
+    "employee_rate": "0.0919",
+    "employer_tiers": [
+      { "max_employees": 15,   "rate": "0.3010" },
+      { "max_employees": 50,   "rate": "0.3080" },
+      { "max_employees": null, "rate": "0.3140" }
+    ],
+    "ceiling": null
+  },
+  "tfr": { "accrual_divisor": "13.5" },
+  "notes": [
+    "IRPEF brackets and work_deduction_breakpoints: identical to terziario — these are statutory and sector-agnostic.",
+    "INPS rates: industria manifatturiera (Federmeccanica-Assistal). VERIFICATION REQUIRED: the employer_tiers values are approximate estimates pending verification against the INPS circular for 2026. Reference: INPS Circolare n. 1/2026 (or equivalent) — Table of contribution rates for industry sector. employee_rate 9.19% applies to firms <=15 employees; for >15 employees the employee side adds a CIGS quota of 0.30% (total 9.49%) — not yet modelled in employee_rate (SIMPLIFICATION). employer tiers: <=15 dip approx 30.10%, <=50 dip approx 30.80%, >50 dip approx 31.40%. Includes IVS, CUAF, FIS/CIGS contributions but excludes INAIL (sector-variable, not modelled).",
+    "fixed_term_additional_rate: NASpI addizionale base rate 1.4% (employer-only) per Art. 2 co. 28 L. 92/2012. Same as terziario.",
+    "SIMPLIFICATION: employee_rate is held flat at 9.19% across all size tiers. The +0.30% CIGS employee contribution for firms >15 employees is not modelled. Update to employer_tiers when the INPS 2026 circular is available."
+  ]
+}

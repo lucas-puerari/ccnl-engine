@@ -1,0 +1,48 @@
+{
+  "_description": "Golden case: CCNL Metalmeccanico Federmeccanica-Assistal, Level C3, 2026-09-01, permanent, full-time, no seniority, 50 employees.",
+  "_notes": [
+    "base_monthly is the minimo conglobato (includes contingenza + EDR) from the June 2026 tranche: 2211.43 €.",
+    "allowances_monthly is 0.00 because all fixed elements are embedded in the conglobato.",
+    "INPS rates: industria sector, <=50 employees (2026-industria.json, second tier). employee 9.19%, employer 30.80% (APPROXIMATE — verify on INPS circular 2026).",
+    "additional_months: 13 (tredicesima only, no quattordicesima).",
+    "Art. 13 TUIR deduction: piecewise-linear at gross_income=28748.59.",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION).",
+    "Seniority: 0 increments — seniority_monthly is 0.00."
+  ],
+  "inputs": {
+    "ccnl_file": "metalmeccanico-federmeccanica.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "C3",
+    "as_of": "2026-09-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "metalmeccanico-federmeccanica",
+    "level_code": "C3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "2211.43",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "gross_monthly": "2211.43",
+    "gross_annual": "28748.59",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2642.00",
+    "inps_employer_annual": "8854.57",
+    "tfr_annual": "2129.53",
+    "taxable_income": "26106.59",
+    "irpef_gross": "6004.52",
+    "work_income_deduction": "676.18",
+    "irpef_net": "5328.34",
+    "net_annual": "20778.25",
+    "net_monthly": "1598.33",
+    "employer_cost_annual": "39732.69"
+  }
+}

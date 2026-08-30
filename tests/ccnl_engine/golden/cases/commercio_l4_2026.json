@@ -10,6 +10,8 @@
   "inputs": {
     "ccnl_file": "commercio-confcommercio.json",
     "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
     "level_code": "4",
     "as_of": "2026-09-01",
     "employment_type": "permanent",

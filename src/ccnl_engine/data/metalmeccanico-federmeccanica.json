@@ -1,0 +1,240 @@
+{
+  "schema_version": "0.2",
+  "ccnl": {
+    "id": "metalmeccanico-federmeccanica",
+    "name": "CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)",
+    "cnel_code": "C011",
+    "sector": "metalmeccanico",
+    "tax_sector": "industria",
+    "signatories": [
+      "Federmeccanica",
+      "Assistal",
+      "FIM-CISL",
+      "FIOM-CGIL",
+      "UILM-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
+        "type": "table",
+        "agreement_date": "2025-11-22"
+      },
+      {
+        "url": "https://www.lexplain.it/tabelle-retributive-metalmeccanici-industria/",
+        "type": "table",
+        "agreement_date": null
+      },
+      {
+        "url": "https://www.lexplain.it/scatti-di-anzianita-contratto-metalmeccanici-industria/",
+        "type": "table",
+        "agreement_date": null
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-08-30T00:00:00",
+      "human_reviewed": false
+    }
+  },
+  "parameters": {
+    "hourly_divisor": 173,
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2021-06-01", "valid_until": null, "value": "13" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "D1": {
+          "periods": [
+            { "valid_from": "2021-06-01", "valid_until": null, "value": "21.59" }
+          ]
+        },
+        "D2": {
+          "periods": [
+            { "valid_from": "2021-06-01", "valid_until": null, "value": "25.05" }
+          ]
+        },
+        "C1": {
+          "periods": [
+            { "valid_from": "2021-06-01", "valid_until": null, "value": "25.05" }
+          ]
+        },
+        "C2": {
+          "periods": [
+            { "valid_from": "2021-06-01", "valid_until": null, "value": "26.75" }
+          ]
+        },
+        "C3": {
+          "periods": [
+            { "valid_from": "2021-06-01", "valid_until": null, "value": "29.64" }
+          ]
+        },
+        "B1": {
+          "periods": [
+            { "valid_from": "2021-06-01", "valid_until": null, "value": "32.43" }
+          ]
+        },
+        "B2": {
+          "periods": [
+            { "valid_from": "2021-06-01", "valid_until": null, "value": "36.41" }
+          ]
+        },
+        "B3": {
+          "periods": [
+            { "valid_from": "2021-06-01", "valid_until": null, "value": "40.96" }
+          ]
+        },
+        "A1": {
+          "periods": [
+            { "valid_from": "2021-06-01", "valid_until": null, "value": "40.96" }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "D1",
+      "order": 1,
+      "description": "1° livello — mansioni ausiliarie, operazioni semplici e ripetitive",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1719.67" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1742.03" },
+          { "valid_from": "2026-06-01", "valid_until": null,         "value": "1784.94" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D2",
+      "order": 2,
+      "description": "2° livello — operazioni standardizzate, mansioni di concetto semplici",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1906.99" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1931.78" },
+          { "valid_from": "2026-06-01", "valid_until": null,         "value": "1979.37" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C1",
+      "order": 3,
+      "description": "3° livello — operaio qualificato, impiegato d'ordine",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1948.18" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1973.50" },
+          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2022.12" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C2",
+      "order": 4,
+      "description": "4° livello — operaio specializzato di 1ª categoria, impiegato di concetto",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1989.38" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2015.23" },
+          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2064.88" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C3",
+      "order": 5,
+      "description": "5° livello — operaio specializzato di 2ª categoria, impiegato di concetto evoluto (livello di riferimento CCNL)",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2130.56" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2158.26" },
+          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2211.43" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "B1",
+      "order": 6,
+      "description": "5° livello Super — operaio altamente specializzato, tecnico",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2283.65" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2313.33" },
+          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2370.33" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "B2",
+      "order": 7,
+      "description": "6° livello — tecnico specializzato, capo reparto, impiegato tecnico",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2449.99" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2481.83" },
+          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2542.98" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "B3",
+      "order": 8,
+      "description": "7° livello — alta professionalità tecnica o gestionale",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2735.18" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2770.71" },
+          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2838.99" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A1",
+      "order": 9,
+      "description": "8° livello — quadro, massima professionalità",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2800.71" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2837.09" },
+          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2907.01" }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": {
+    "type": "percentage",
+    "destination_level": "C3",
+    "periods": [
+      { "months_from": 0, "months_until": null, "percentage": "0.80" }
+    ]
+  },
+  "coverage": {
+    "layer_1": "partial",
+    "layer_2": "out_of_scope",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "MINIMI CONGLOBATI: i valori in base_salary sono i 'minimi tabellari conglobati' del CCNL Federmeccanica-Assistal, che incorporano paga base, contingenza e EDR in un'unica cifra (prassi Federmeccanica dal 2001). Per questo motivo fixed_allowances è vuoto per tutti i livelli.",
+      "TRANCHE giugno 2025: i valori per la prima tranche (2025-06-01) sono STIMATI proporzionalmente all'aumento del livello C3 (+27,70 €) rispetto al totale giugno 2024-giugno 2026 (80,87 €). Verificare sul testo del CCNL 2025-2028 (accordo 22 novembre 2025) prima del go-live.",
+      "TRANCHE giugno 2024 e giugno 2026: valori verificati su contratticcnl.it (aggiornato luglio 2026) e lexplain.it.",
+      "SCATTI DI ANZIANITÀ: il CCNL 2025-2028 (accordo novembre 2025) sostituisce i classici scatti mensili con una 'liquidazione anticipata' in forma di importo una-tantum erogato ogni 2 anni. Il motore attuale modella gli scatti come incremento mensile ricorrente (seniority_count × amount_by_level). SIMPLIFICATION: i valori in amount_by_level sono quelli del CCNL 2021-2024 e non riflettono il nuovo meccanismo di liquidazione anticipata del 2025-2028. Aggiornare il modello per gestire correttamente la nuova logica.",
+      "APPRENDISTATO: la percentuale dell'80% è un'approssimazione. Il CCNL Federmeccanica prevede percentuali differenziate per periodo di apprendistato (es. 80% nei primi 12 mesi, 85% nei successivi). Verificare l'Art. sull'apprendistato professionalizzante nel CCNL 2025-2028.",
+      "DIVISORE ORARIO: 173 ore/mese (40 h/settimana × 52/12 = 173,33 arrotondato a 173, standard Federmeccanica).",
+      "MENSILITÀ: 13 (tredicesima). La quattordicesima non è prevista dal CCNL Federmeccanica. Il premio di risultato/variabile aziendale non è modellato (layer 3).",
+      "INPS: le aliquote del settore industria (employer_tiers in 2026-industria.json) sono stime che richiedono verifica su circolare INPS 2026."
+    ]
+  }
+}

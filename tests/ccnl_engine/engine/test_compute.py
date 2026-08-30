@@ -47,6 +47,7 @@ _META = {
     "name": "Test CCNL",
     "cnel_code": "X001",
     "sector": "test",
+    "tax_sector": "terziario",
     "signatories": ["A", "B"],
     "sources": [{"url": "https://example.com", "type": "ccnl"}],
     "extraction": {
