@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Run ruff, mypy, and pytest on staged Python files before committing.
+set -euo pipefail
+
+STAGED=$(git diff --cached --name-only --diff-filter=ACM | grep '\.py$' || true)
+[ -z "$STAGED" ] && exit 0
+
+echo "ruff check..."
+uv run ruff check $STAGED
+
+echo "ruff format --check..."
+uv run ruff format --check $STAGED
+
+echo "mypy..."
+uv run mypy $STAGED
+
+echo "Lint passed."
+
+echo "pytest (coverage 100%)..."
+uv run pytest
+
+echo "Tests passed."

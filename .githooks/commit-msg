@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Enforce conventional commits: single-line, no co-author trailer.
+# Format: <type>(<scope>): <description>
+# type: feat | fix | docs | style | refactor | perf | test | chore | ci | build | revert
+
+MSG_FILE="$1"
+MSG=$(cat "$MSG_FILE")
+FIRST_LINE=$(echo "$MSG" | head -n 1 | sed 's/[[:space:]]*$//')
+
+# 1. Reject multi-line commits
+LINE_COUNT=$(echo "$MSG" | grep -c '^')
+if [ "$LINE_COUNT" -gt 1 ]; then
+  echo "❌  Commit rejected: message must be a single line."
+  exit 1
+fi
+
+# 2. Reject Co-authored-by trailer
+if echo "$MSG" | grep -qi '^Co-authored-by:'; then
+  echo "❌  Commit rejected: remove the 'Co-authored-by' trailer."
+  exit 1
+fi
+
+# 3. Enforce conventional commit format
+PATTERN='^(feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert)(\([^)]+\))?!?: .{1,100}$'
+if ! echo "$FIRST_LINE" | grep -qE "$PATTERN"; then
+  echo "❌  Commit rejected: invalid format."
+  echo ""
+  echo "    Expected:  <type>(<scope>): <description>"
+  echo "    Types:     feat fix docs style refactor perf test chore ci build revert"
+  echo "    Example:   feat(api): add telemetry endpoint"
+  echo ""
+  echo "    Got: $FIRST_LINE"
+  exit 1
+fi
+
+exit 0

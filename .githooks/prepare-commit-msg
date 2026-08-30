@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Strip Co-Authored-By trailers injected by tools (e.g. Claude Code).
+MSG_FILE="$1"
+sed -i '' '/^Co-[Aa]uthored-[Bb]y:/d' "$MSG_FILE"
+exit 0
