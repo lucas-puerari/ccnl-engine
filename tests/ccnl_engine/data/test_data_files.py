@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 
 from ccnl_engine.data.loaders import _resolve_employer_tier, load_ccnl, load_year_rules
+from ccnl_engine.models.apprenticeship import ApprenticeshipUnderClassification
 from ccnl_engine.models.ccnl import CCNL, TaxSector
 from ccnl_engine.tax.models import YearRules, _InpsEmployerTier
 
@@ -162,6 +163,93 @@ class TestLoadMetalmeccanico:
     def test_metalmeccanico_no_fixed_allowances(self) -> None:
         """All levels have empty fixed_allowances (minimi conglobati)."""
         ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
+        for level in ccnl.levels:
+            assert level.fixed_allowances == [], (
+                f"Level {level.code} should have no fixed_allowances "
+                "(base_salary is already the minimo conglobato)"
+            )
+
+
+# ---------------------------------------------------------------------------
+# CCNL Metalmeccanico Confapi (Piccola Industria)
+# ---------------------------------------------------------------------------
+
+
+class TestLoadMetalmeccanicoConfapi:
+    """Unit tests for the bundled Metalmeccanico Confapi (PMI) data file."""
+
+    def test_confapi_loads(self) -> None:
+        """File parses, id and cnel_code are correct."""
+        ccnl = load_ccnl("metalmeccanico-confapi.json")
+        assert isinstance(ccnl, CCNL)
+        assert ccnl.ccnl.id == "metalmeccanico-confapi"
+        assert ccnl.ccnl.cnel_code == "C018"
+
+    def test_confapi_has_nine_levels(self) -> None:
+        """Contract must have exactly 9 levels (1-9)."""
+        ccnl = load_ccnl("metalmeccanico-confapi.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
+
+    def test_confapi_level5_salary_june_2026(self) -> None:
+        """Level 5 base salary from 2026-06-01 onward must be 2245.87 €."""
+        ccnl = load_ccnl("metalmeccanico-confapi.json")
+        l5 = next(lv for lv in ccnl.levels if lv.code == "5")
+        assert l5.base_salary.value_at(date(2026, 6, 1)) == Decimal("2245.87")
+
+    def test_confapi_level5_salary_june_2025(self) -> None:
+        """Level 5 base salary from 2025-06-01 must be 2173.76 €."""
+        ccnl = load_ccnl("metalmeccanico-confapi.json")
+        l5 = next(lv for lv in ccnl.levels if lv.code == "5")
+        assert l5.base_salary.value_at(date(2025, 6, 1)) == Decimal("2173.76")
+
+    def test_confapi_level5_salary_september_2025(self) -> None:
+        """Level 5 base salary from 2025-09-01 must be 2195.86 €."""
+        ccnl = load_ccnl("metalmeccanico-confapi.json")
+        l5 = next(lv for lv in ccnl.levels if lv.code == "5")
+        assert l5.base_salary.value_at(date(2025, 9, 1)) == Decimal("2195.86")
+
+    def test_confapi_level1_salary_september_2025(self) -> None:
+        """Level 1 base salary from 2025-09-01 must be 1603.40 €."""
+        ccnl = load_ccnl("metalmeccanico-confapi.json")
+        l1 = next(lv for lv in ccnl.levels if lv.code == "1")
+        assert l1.base_salary.value_at(date(2025, 9, 1)) == Decimal("1603.40")
+
+    def test_confapi_apprenticeship_under_classification(self) -> None:
+        """Apprenticeship uses under-classification (Art. 10 CCNL), not percentage."""
+        ccnl = load_ccnl("metalmeccanico-confapi.json")
+        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
+        assert ccnl.apprenticeship.destination_level == "5"
+        periods = ccnl.apprenticeship.periods
+        assert len(periods) == 3
+        assert periods[0].pay_level_code == "3"
+        assert periods[1].pay_level_code == "4"
+        assert periods[2].pay_level_code == "5"
+
+    def test_confapi_level9_highest_level1_lowest(self) -> None:
+        """Level 9 must have the highest order; level 1 the lowest."""
+        ccnl = load_ccnl("metalmeccanico-confapi.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "1"
+        assert by_order[-1].code == "9"
+
+    def test_confapi_seniority_cadence(self) -> None:
+        """Seniority increments are biennial (24 months), max 5 (Art. 41)."""
+        ccnl = load_ccnl("metalmeccanico-confapi.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_confapi_thirteen_months(self) -> None:
+        """Contract has 13 monthly salaries per year (no quattordicesima)."""
+        ccnl = load_ccnl("metalmeccanico-confapi.json")
+        value = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert value == Decimal(13)
+
+    def test_confapi_no_fixed_allowances(self) -> None:
+        """All levels have empty fixed_allowances (minimi conglobati)."""
+        ccnl = load_ccnl("metalmeccanico-confapi.json")
         for level in ccnl.levels:
             assert level.fixed_allowances == [], (
                 f"Level {level.code} should have no fixed_allowances "

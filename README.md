@@ -33,6 +33,7 @@ print(result.employer_cost_annual) # → Decimal('...')
 |---|---|:---:|:---:|:---:|
 | Commercio — Confcommercio | Terziario | ✅ | ✅ | — |
 | Metalmeccanico — Federmeccanica/Assistal | Industria | ✅ | ✅ | — |
+| Metalmeccanico PMI — Unionmeccanica-Confapi | Industria | ✅ | ✅ | — |
 
 **Layer 1** — base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months.  
 **Layer 2** — part-time, fixed-term (NASpI *addizionale*), apprenticeship (percentage or under-classification).  
