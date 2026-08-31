@@ -10,7 +10,7 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.data import load_year_rules
+from ccnl_engine.data.loaders import load_year_rules
 from ccnl_engine.models.ccnl import TaxSector
 from ccnl_engine.tax.models import (
     DeductionBreakpoint,

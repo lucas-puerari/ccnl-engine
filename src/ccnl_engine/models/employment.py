@@ -1,10 +1,4 @@
-"""Employment contract type models.
-
-Each concrete type is a discriminated union member identified by its ``type``
-field. Use :data:`Employment` as the annotation wherever a contract type is
-expected; pydantic will deserialize the correct variant based on the
-``"type"`` key in the input data.
-"""
+"""Employment contract type models."""
 
 from typing import Annotated, Literal
 
@@ -18,23 +12,13 @@ class Permanent(BaseModel):
 
 
 class FixedTerm(BaseModel):
-    """Fixed-term contract (*contratto a tempo determinato*).
-
-    Fixed-term contracts attract an additional INPS contribution
-    (contributo addizionale NASpI) on top of the standard employer rate.
-    """
+    """Fixed-term contract; attracts NASpI addizionale on employer INPS."""
 
     type: Literal["fixed_term"]
 
 
 class Apprentice(BaseModel):
-    """Apprenticeship contract (*contratto di apprendistato*).
-
-    Attributes:
-        months_elapsed: Number of months completed since the hire date.
-            Used to look up the applicable salary percentage or under-
-            classification level from the CCNL apprenticeship table.
-    """
+    """Apprenticeship contract; salary is derived from CCNL apprenticeship rules."""
 
     type: Literal["apprentice"]
     months_elapsed: int

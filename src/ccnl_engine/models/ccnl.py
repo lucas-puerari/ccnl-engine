@@ -1,9 +1,4 @@
-"""CCNL domain models.
-
-The root model is :class:`CCNL`. All monetary values are
-:class:`~ccnl_engine.models.validity.TimeSeries` objects; no bare
-:class:`~decimal.Decimal` scalars appear at the CCNL level.
-"""
+"""CCNL domain models."""
 
 from datetime import date
 from decimal import Decimal
@@ -17,16 +12,7 @@ from ccnl_engine.models.validity import TimeSeries
 
 
 class TaxSector(StrEnum):
-    """INPS sector classification used to select the correct contribution rates.
-
-    Each value maps to a ``tax/data/<year>-<value>.json`` file.  Add new
-    values only when a corresponding data file is also added.
-
-    Attributes:
-        TERZIARIO: Commerce, distribution, services (Confcommercio, Confesercenti…).
-        INDUSTRIA: Manufacturing / industry (Federmeccanica, Confindustria…).
-        ARTIGIANATO: Craft trades (Confartigianato, CNA…).
-    """
+    """INPS sector classification used to select the contribution-rate file."""
 
     TERZIARIO = "terziario"
     INDUSTRIA = "industria"
@@ -34,13 +20,7 @@ class TaxSector(StrEnum):
 
 
 class Allowance(BaseModel):
-    """A named fixed monthly allowance attached to a CCNL level.
-
-    Attributes:
-        code: Machine-readable identifier (e.g. ``"contingenza"``).
-        description: Human-readable name.
-        monthly: Monthly amount as a :class:`TimeSeries`.
-    """
+    """A named fixed monthly allowance attached to a CCNL level."""
 
     code: str
     description: str
@@ -48,14 +28,7 @@ class Allowance(BaseModel):
 
 
 class SeniorityIncrements(BaseModel):
-    """Seniority increment (*scatti di anzianità*) rules for a CCNL.
-
-    Attributes:
-        cadence_months: Number of months between increments (e.g. ``36``).
-        maximum_count: Maximum number of increments an employee can accrue.
-        amount_by_level: Map from level code to the monthly increment amount
-            for that level, as a :class:`TimeSeries`.
-    """
+    """Seniority increment (*scatti di anzianità*) rules for a CCNL."""
 
     cadence_months: int
     maximum_count: int
@@ -63,15 +36,7 @@ class SeniorityIncrements(BaseModel):
 
 
 class Parameters(BaseModel):
-    """Contract-wide parameters.
-
-    Attributes:
-        hourly_divisor: Divisor used to compute the hourly rate from the
-            monthly salary (e.g. ``168`` for 40 h/week contracts).
-        additional_months: Number of monthly salaries paid per year as a
-            :class:`TimeSeries` (typically ``14`` for Commercio).
-        seniority_increments: Seniority increment rules.
-    """
+    """Contract-wide parameters."""
 
     hourly_divisor: int
     additional_months: TimeSeries
@@ -79,21 +44,7 @@ class Parameters(BaseModel):
 
 
 class Level(BaseModel):
-    """A single classification level (*livello di inquadramento*).
-
-    Attributes:
-        code: Short identifier matching keys in
-            :attr:`SeniorityIncrements.amount_by_level`
-            (e.g. ``"4"``).
-        order: Strict total ordering across levels — ``1`` is the lowest
-            salary, ascending. Used by the cross-field validator to verify
-            that salaries are non-decreasing by order at every date.
-        description: Human-readable description.
-        base_salary: Monthly base salary (*paga base tabellare*) as a
-            :class:`TimeSeries`.
-        fixed_allowances: Fixed monthly allowances attached to this level
-            (e.g. contingenza, EDR, indennità funzione).
-    """
+    """A single classification level (*livello di inquadramento*)."""
 
     code: str
     order: int
@@ -103,7 +54,6 @@ class Level(BaseModel):
 
     @model_validator(mode="after")
     def _check_salary_non_decreasing(self) -> Self:
-        """Validate that base_salary values do not decrease over time."""
         periods = self.base_salary.periods
         for i in range(len(periods) - 1):
             if periods[i + 1].value < periods[i].value:
@@ -117,15 +67,7 @@ class Level(BaseModel):
 
 
 class Coverage(BaseModel):
-    """Declares what is and is not implemented for a CCNL data file.
-
-    Attributes:
-        layer_1: Base salary and seniority computation status.
-        layer_2: Employment type variations (part-time, fixed-term,
-            apprenticeship) status.
-        layer_3: Overtime, premiums, leave, sick pay status.
-        notes: Free-text notes, especially for out-of-scope items.
-    """
+    """Declares implementation status for a CCNL data file."""
 
     layer_1: Literal["implemented", "partial", "out_of_scope"]
     layer_2: Literal["implemented", "partial", "out_of_scope"]
@@ -151,21 +93,7 @@ class CCNLExtraction(BaseModel):
 
 
 class CCNLMeta(BaseModel):
-    """Identifying metadata for a CCNL.
-
-    Attributes:
-        id: Stable machine-readable identifier (e.g.
-            ``"commercio-confcommercio"``).
-        name: Full name of the contract.
-        cnel_code: CNEL archive code (e.g. ``"H011"``).
-        sector: Broad human-readable sector description (e.g.
-            ``"terziario"``).
-        tax_sector: INPS sector used to select the correct contribution-rate
-            file (see :class:`TaxSector`).
-        signatories: Employer and union associations that signed the CCNL.
-        sources: Primary source references used to build the data file.
-        extraction: Provenance metadata for the data file.
-    """
+    """Identifying metadata for a CCNL."""
 
     id: str
     name: str
@@ -178,19 +106,7 @@ class CCNLMeta(BaseModel):
 
 
 class CCNL(BaseModel):
-    """Root model for a CCNL data file.
-
-    Cross-field invariants enforced at construction:
-
-    1. Level ``order`` values are unique.
-    2. Level ``code`` values are unique.
-    3. Every key in
-       :attr:`Parameters.seniority_increments.amount_by_level`
-       corresponds to an existing level code.
-    4. At every date where any level's base salary changes, the salary
-       values are non-decreasing in level order (i.e., higher-order levels
-       earn at least as much as lower-order levels).
-    """
+    """Root model for a CCNL data file."""
 
     schema_version: str
     ccnl: CCNLMeta
@@ -204,16 +120,11 @@ class CCNL(BaseModel):
 
     @model_validator(mode="after")
     def _validate_cross_fields(self) -> Self:
-        """Validate cross-model invariants."""
         self._assert_unique_orders()
         self._assert_unique_codes()
         self._assert_seniority_level_codes()
         self._assert_salary_order_non_decreasing()
         return self
-
-    # ------------------------------------------------------------------
-    # Private helpers (called only from _validate_cross_fields)
-    # ------------------------------------------------------------------
 
     def _assert_unique_orders(self) -> None:
         orders = [lv.order for lv in self.levels]
@@ -238,16 +149,10 @@ class CCNL(BaseModel):
                 raise ValueError(msg)
 
     def _assert_salary_order_non_decreasing(self) -> None:
-        """Verify salary non-decreasing by order at every transition date."""
         if len(self.levels) < 2:
             return
         sorted_levels = sorted(self.levels, key=lambda lv: lv.order)
-        # Collect the union of all valid_from dates across all levels
-        all_dates: set[date] = set()
-        for lv in sorted_levels:
-            for period in lv.base_salary.periods:
-                all_dates.add(period.valid_from)
-        # At each date, verify salary non-decreasing by ascending order
+        all_dates = _collect_transition_dates(sorted_levels)
         for check_date in sorted(all_dates):
             prev_value: Decimal | None = None
             prev_code: str = ""
@@ -255,7 +160,6 @@ class CCNL(BaseModel):
                 try:
                     value = lv.base_salary.value_at(check_date)
                 except ValueError:
-                    # Level series hasn't started yet at check_date; skip
                     continue
                 if prev_value is not None and value < prev_value:
                     msg = (
@@ -266,3 +170,11 @@ class CCNL(BaseModel):
                     raise ValueError(msg)
                 prev_value = value
                 prev_code = lv.code
+
+
+def _collect_transition_dates(levels: list[Level]) -> set[date]:
+    all_dates: set[date] = set()
+    for lv in levels:
+        for period in lv.base_salary.periods:
+            all_dates.add(period.valid_from)
+    return all_dates

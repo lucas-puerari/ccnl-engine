@@ -39,7 +39,6 @@ ignore = [
     "D413",    # missing-blank-line-after-last-section — unnecessary blank lines
     "PLR0913", # too-many-arguments — compute() has 8 args by spec
     "PLR0917", # too-many-positional-arguments — same
-    "PLR0915", # too-many-statements — compute() is necessarily long
 ]
 
 [tool.ruff.lint.per-file-ignores]
