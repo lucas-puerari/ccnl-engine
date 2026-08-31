@@ -1,0 +1,276 @@
+{
+  "schema_version": "0.2",
+  "ccnl": {
+    "id": "turismo-confcommercio",
+    "name": "CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)",
+    "cnel_code": "H052",
+    "sector": "turismo",
+    "tax_sector": "terziario",
+    "signatories": [
+      "Federalberghi",
+      "FIPE-Confcommercio",
+      "Federviaggio",
+      "FILCAMS-CGIL",
+      "FISASCAT-CISL",
+      "UILTuCS"
+    ],
+    "sources": [
+      {
+        "url": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/",
+        "type": "table",
+        "agreement_date": "2024-06-05"
+      },
+      {
+        "url": "https://www.lexplain.it/scatti-di-anzianita-ccnl-turismo-ristorazione-e-pubblici-esercizi/",
+        "type": "table",
+        "agreement_date": null
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-08-31T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": 172,
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2024-07-01", "valid_until": null, "value": "14" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 48,
+      "maximum_count": 6,
+      "amount_by_level": {
+        "QA": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "40.80" }
+          ]
+        },
+        "QB": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "39.25" }
+          ]
+        },
+        "1": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "37.70" }
+          ]
+        },
+        "2": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "36.15" }
+          ]
+        },
+        "3": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "34.86" }
+          ]
+        },
+        "4": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "33.05" }
+          ]
+        },
+        "5": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "32.54" }
+          ]
+        },
+        "6S": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "31.25" }
+          ]
+        },
+        "6": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "30.99" }
+          ]
+        },
+        "7": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "30.47" }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "7",
+      "order": 1,
+      "description": "7° livello — addetto a mansioni generiche, operazioni di pulizia e supporto",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1350.12" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1383.45" },
+          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1412.60" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1441.76" },
+          { "valid_from": "2027-11-01", "valid_until": null,         "value": "1458.42" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6",
+      "order": 2,
+      "description": "6° livello — operatore di base (lavapiatti, facchino, commis)",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1440.78" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1476.34" },
+          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1507.45" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1538.57" },
+          { "valid_from": "2027-11-01", "valid_until": null,         "value": "1556.35" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6S",
+      "order": 3,
+      "description": "6° livello super — operatore qualificato (cameriere ai piani, addetto bar base)",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1461.49" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1497.57" },
+          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1529.13" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1560.69" },
+          { "valid_from": "2027-11-01", "valid_until": null,         "value": "1578.72" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 4,
+      "description": "5° livello — operatore specializzato (cameriere, cuoco, addetto ricevimento)",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1519.93" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1557.44" },
+          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1590.27" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1623.09" },
+          { "valid_from": "2027-11-01", "valid_until": null,         "value": "1641.85" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 5,
+      "description": "4° livello — tecnico di processo / capo turno / receptionist",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1620.69" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1660.69" },
+          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1695.69" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1730.69" },
+          { "valid_from": "2027-11-01", "valid_until": null,         "value": "1750.69" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 6,
+      "description": "3° livello — tecnico senior / capo partita / front-office senior",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1717.55" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1759.94" },
+          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1797.04" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1834.13" },
+          { "valid_from": "2027-11-01", "valid_until": null,         "value": "1855.32" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 7,
+      "description": "2° livello — funzione direttiva junior / chef de rang / vice-direttore",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1821.13" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1866.07" },
+          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1905.40" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1944.73" },
+          { "valid_from": "2027-11-01", "valid_until": null,         "value": "1967.20" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1",
+      "order": 8,
+      "description": "1° livello — funzione direttiva / maître / capo ricevimento",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1992.50" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "2041.68" },
+          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "2084.71" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "2127.73" },
+          { "valid_from": "2027-11-01", "valid_until": null,         "value": "2152.32" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "QB",
+      "order": 9,
+      "description": "Quadro B — quadro di alta professionalità gestionale",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "2138.57" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "2191.35" },
+          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "2237.53" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "2283.72" },
+          { "valid_from": "2027-11-01", "valid_until": null,         "value": "2310.11" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "QA",
+      "order": 10,
+      "description": "Quadro A — quadro di massima responsabilità direzionale",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "2309.93" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "2366.94" },
+          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "2416.82" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "2466.71" },
+          { "valid_from": "2027-11-01", "valid_until": null,         "value": "2495.22" }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": {
+    "type": "under_classification",
+    "destination_level": "3",
+    "periods": [
+      { "months_from": 0,  "months_until": 18, "pay_level_code": "5" },
+      { "months_from": 18, "months_until": null, "pay_level_code": "4" }
+    ]
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "SUBSETTORE: tabelle salariali dal rinnovo alberghi/turismo firmato il 5 giugno 2024 (CCNL H052 parte speciale alberghi). Il CCNL H052 comprende anche il subsettore pubblici esercizi/FIPE (rinnovo marzo 2025, tabelle leggermente diverse) non modellato in questo file.",
+      "MINIMI CONGLOBATI: i valori in base_salary sono i minimi tabellari conglobati mensili (paga base + contingenza inclusi), come pubblicati da lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027. fixed_allowances è vuoto per tutti i livelli. Verifica: livello 7 novembre 2027 = 1458.42 / 172 = 8.48 €/ora (coincide con tabella oraria pubblicata).",
+      "INDENNITÀ DI FUNZIONE QA/QB: alcune fonti (pubblici esercizi) mostrano un'indennità di funzione separata (QA=75€, QB=70€). Per il subsettore alberghi i valori nella tabella conglobata sembrano già includere questa componente. Se verifiche su buste paga reali mostrano uno scostamento, aggiungere fixed_allowances QA=75€ e QB=70€.",
+      "TRANCHE: luglio 2024, giugno 2025, maggio 2026, aprile 2027, novembre 2027. Nessuna tranche previgente modellata (limite inferiore: 2024-07-01).",
+      "SCATTI DI ANZIANITÀ: 6 scatti quadriennali (ogni 48 mesi). Importi da lexplain.it/scatti-di-anzianita-ccnl-turismo-ristorazione-e-pubblici-esercizi. Gli scatti sono erogati per 14 mensilità (incluse 13a e 14a) — la componente del gross_annual è già catturata dal moltiplicatore additional_months=14 nel motore.",
+      "APPRENDISTATO: tipo under_classification per livelli di destinazione 2°–6° (Art. CCNL apprendistato professionalizzante). Il JSON modella il percorso standard con destination_level=3° (36 mesi totali). Periodo 1 (0-18 mesi): 5° livello (2 livelli sotto 3°). Periodo 2 (18+ mesi): 4° livello (1 livello sotto 3°). La suddivisione 18+18 è derivata da fonti secondarie — verificare Art. CCNL per i mesi esatti. Il 6° livello è un caso speciale (rimane al 7° per entrambi i periodi, durata 24 mesi) — non modellato nel JSON base.",
+      "MENSILITÀ: 14 (tredicesima a giugno, quattordicesima a dicembre). Confermato da CCNL e dalla nota 'importi erogati per 14 mensilità' per gli scatti.",
+      "DIVISORE ORARIO: 172 ore/mese (40 h/settimana × 52/12). Verificato per retrocomputo: 1458.42 / 172 = 8.478 ≈ 8.48 €/ora (livello 7, novembre 2027 — coincide con tabella oraria lexplain).",
+      "INPS: utilizza 2026-terziario.json (stesso tax_sector di commercio-confcommercio)."
+    ]
+  }
+}

@@ -365,3 +365,91 @@ class TestLoadChimicaFederchimica:
         """Hourly divisor must be 175 (chimico-farmaceutico standard)."""
         ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
         assert ccnl.parameters.hourly_divisor == 175
+
+
+# ---------------------------------------------------------------------------
+# CCNL Turismo — Confcommercio (H052)
+# ---------------------------------------------------------------------------
+
+
+class TestLoadTurismoConfcommercio:
+    """Structural and data-integrity tests for turismo-confcommercio.json."""
+
+    def test_turismo_loads(self) -> None:
+        """File must parse without errors; id and CNEL code must match."""
+        ccnl = load_ccnl("turismo-confcommercio.json")
+        assert ccnl.ccnl.id == "turismo-confcommercio"
+        assert ccnl.ccnl.cnel_code == "H052"
+
+    def test_turismo_has_ten_levels(self) -> None:
+        """CCNL Turismo defines exactly 10 classification levels."""
+        ccnl = load_ccnl("turismo-confcommercio.json")
+        assert len(ccnl.levels) == 10
+        assert {lv.code for lv in ccnl.levels} == {
+            "QA",
+            "QB",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6S",
+            "6",
+            "7",
+        }
+
+    def test_turismo_level3_salary_july_2024(self) -> None:
+        """Level 3 base salary from 2024-07-01 must be 1717.55 (first tranche)."""
+        ccnl = load_ccnl("turismo-confcommercio.json")
+        l3 = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert l3.base_salary.value_at(date(2024, 7, 1)) == Decimal("1717.55")
+
+    def test_turismo_level3_salary_june_2025(self) -> None:
+        """Level 3 base salary from 2025-06-01 must be 1759.94 (second tranche)."""
+        ccnl = load_ccnl("turismo-confcommercio.json")
+        l3 = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert l3.base_salary.value_at(date(2025, 6, 1)) == Decimal("1759.94")
+
+    def test_turismo_level_ordering(self) -> None:
+        """QA must have the highest order; level 7 the lowest."""
+        ccnl = load_ccnl("turismo-confcommercio.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "7"
+        assert by_order[-1].code == "QA"
+
+    def test_turismo_seniority_cadence(self) -> None:
+        """Scatti are quadriennali (48 months), maximum 6."""
+        ccnl = load_ccnl("turismo-confcommercio.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 48
+        assert si.maximum_count == 6
+
+    def test_turismo_fourteen_months(self) -> None:
+        """Contract has 14 monthly salaries per year (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("turismo-confcommercio.json")
+        value = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert value == Decimal(14)
+
+    def test_turismo_no_fixed_allowances(self) -> None:
+        """All levels have no fixed_allowances (minimum conglobated in base_salary)."""
+        ccnl = load_ccnl("turismo-confcommercio.json")
+        for level in ccnl.levels:
+            assert level.fixed_allowances == [], (
+                f"Level {level.code} should have no fixed_allowances"
+            )
+
+    def test_turismo_apprenticeship_under_classification(self) -> None:
+        """Apprenticeship uses under-classification model, destination level 3."""
+        ccnl = load_ccnl("turismo-confcommercio.json")
+        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
+        assert ccnl.apprenticeship.destination_level == "3"
+        periods = ccnl.apprenticeship.periods
+        assert len(periods) == 2
+        assert periods[0].pay_level_code == "5"
+        assert periods[1].pay_level_code == "4"
+        assert periods[1].months_until is None
+
+    def test_turismo_hourly_divisor(self) -> None:
+        """Hourly divisor must be 172 (40 h/week standard for turismo)."""
+        ccnl = load_ccnl("turismo-confcommercio.json")
+        assert ccnl.parameters.hourly_divisor == 172
