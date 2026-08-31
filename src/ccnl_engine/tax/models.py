@@ -2,12 +2,28 @@
 
 These models hold the Italian statutory rates and breakpoints needed to compute
 IRPEF (personal income tax), INPS (social security) contributions, and TFR
-(severance pay accrual). Values are loaded from ``tax/data/<year>.json``; see
-:func:`ccnl_engine.data.load_year_rules`.
+(severance pay accrual). Values are loaded from
+``tax/data/<year>-<sector>.json``; see :func:`ccnl_engine.data.load_year_rules`.
+
+Public surface
+--------------
+- :class:`InpsRates` — resolved (flat) INPS contribution rates.
+- :class:`YearRules` — all statutory parameters for a fiscal year, resolved for
+  a specific sector and employer size.
+
+Internal (prefixed ``_``)
+--------------------------
+- :class:`_InpsEmployerTier` — a single employer-rate tier keyed by headcount.
+- :class:`_InpsRawRates` — raw INPS block from the JSON file (before tier
+  resolution).
+- :class:`_YearRulesRaw` — full deserialization model for a tax data file; used
+  only by :func:`ccnl_engine.data.load_year_rules`.
 
 All monetary values use :class:`decimal.Decimal`; rates are expressed as
 fractions (e.g. ``Decimal("0.23")`` for 23 %).
 """
+
+from __future__ import annotations
 
 from decimal import Decimal
 from typing import Self
@@ -48,7 +64,11 @@ class DeductionBreakpoint(BaseModel):
 
 
 class InpsRates(BaseModel):
-    """INPS contribution rates for a given sector/size assumption.
+    """Resolved (flat) INPS contribution rates for a sector and employer size.
+
+    Produced by :func:`ccnl_engine.data.load_year_rules` after resolving the
+    employer-tier table from the raw JSON file.  This is what :func:`compute`
+    sees — a single scalar per rate, no tier logic.
 
     Attributes:
         employee_rate: Employee-side contribution rate (fraction).
@@ -62,6 +82,74 @@ class InpsRates(BaseModel):
     employee_rate: Decimal
     employer_rate: Decimal
     ceiling: Decimal | None
+
+
+# ---------------------------------------------------------------------------
+# Internal raw models — used only by ccnl_engine.data.load_year_rules
+# ---------------------------------------------------------------------------
+
+
+class _InpsEmployerTier(BaseModel):
+    """A single employer-rate tier keyed by maximum headcount.
+
+    Tiers must be stored in ascending order of ``max_employees`` in the JSON
+    file, with exactly one entry having ``max_employees=None`` (open upper
+    bound) as the last element.
+
+    Attributes:
+        max_employees: Upper bound (inclusive) on the number of employees for
+            this tier. ``None`` means "no upper bound" (open tier).
+        rate: Employer contribution rate (fraction) for this tier.
+    """
+
+    max_employees: int | None
+    rate: Decimal
+
+
+class _InpsRawRates(BaseModel):
+    """Raw INPS block from the tax JSON file, before tier resolution.
+
+    Attributes:
+        employee_rate: Employee-side contribution rate (fraction). May also
+            vary by size in some sectors; if so a future version will add
+            ``employee_tiers`` following the same pattern.
+        employer_tiers: Employer-rate tiers, sorted ascending by
+            ``max_employees``, last entry open (``max_employees=None``).
+        ceiling: Annual contributory ceiling in euros. ``None`` if uncapped.
+    """
+
+    employee_rate: Decimal
+    employer_tiers: list[_InpsEmployerTier]
+    ceiling: Decimal | None
+
+
+class _YearRulesRaw(BaseModel):
+    """Full deserialization model for a ``tax/data/<year>-<sector>.json`` file.
+
+    This is an internal model used exclusively by
+    :func:`ccnl_engine.data.load_year_rules` to parse the JSON and resolve
+    tier-based rates into a flat :class:`YearRules`.  It is not exported from
+    the package.
+
+    Attributes:
+        year: Four-digit fiscal year.
+        sector: INPS sector this file covers, matches :class:`TaxSector`.
+        irpef_brackets: Same structure as :attr:`YearRules.irpef_brackets`.
+        work_deduction_breakpoints: Same as in :class:`YearRules`.
+        fixed_term_additional_rate: NASpI addizionale base rate.
+        inps: Raw INPS block with employer tiers.
+        tfr: TFR accrual rules.
+        notes: Free-text notes (assumptions, simplifications).
+    """
+
+    year: int
+    sector: str  # validated against TaxSector at load time
+    irpef_brackets: list[IrpefBracket]
+    work_deduction_breakpoints: list[DeductionBreakpoint]
+    fixed_term_additional_rate: Decimal
+    inps: _InpsRawRates
+    tfr: TfrRules
+    notes: list[str] = []
 
 
 class TfrRules(BaseModel):

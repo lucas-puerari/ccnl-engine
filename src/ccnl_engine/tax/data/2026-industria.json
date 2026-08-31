@@ -1,0 +1,32 @@
+{
+  "year": 2026,
+  "sector": "industria",
+  "irpef_brackets": [
+    { "up_to": "28000.00", "rate": "0.23" },
+    { "up_to": "50000.00", "rate": "0.33" },
+    { "up_to": null,       "rate": "0.43" }
+  ],
+  "work_deduction_breakpoints": [
+    { "income_up_to": "8500.00",  "deduction": "1955.00" },
+    { "income_up_to": "28000.00", "deduction": "700.00"  },
+    { "income_up_to": "50000.00", "deduction": "0.00"    },
+    { "income_up_to": null,       "deduction": "0.00"    }
+  ],
+  "fixed_term_additional_rate": "0.014",
+  "inps": {
+    "employee_rate": "0.0919",
+    "employer_tiers": [
+      { "max_employees": 15,   "rate": "0.3013" },
+      { "max_employees": 50,   "rate": "0.3020" },
+      { "max_employees": null, "rate": "0.3050" }
+    ],
+    "ceiling": null
+  },
+  "tfr": { "accrual_divisor": "13.5" },
+  "notes": [
+    "IRPEF brackets and work_deduction_breakpoints: identical to terziario — these are statutory and sector-agnostic.",
+    "INPS datore — componenti verificati per industria manifatturiera/metalmeccanica 2026: IVS 23.81% (Circ. INPS 6/2026) + DS/NASpI 1.61% + CUAF 2.48% + CIGO 1.70% (≤50 dip) o 2.00% (>50 dip, D.Lgs. 148/2015 art. 5, Circ. INPS 1/2026) + FIS 0.533% datore (6-15 dip, 2/3 di 0.80%, Circ. INPS 5/2025) oppure CIGS 0.60% datore (>15 dip, 2/3 di 0.90%). Totale per fascia: ≤15 dip = 30.13%; 16-50 dip = 30.20%; >50 dip = 30.50%. Non include INAIL (settore-variabile, non modellato).",
+    "INPS dipendente — employee_rate 9.19% (IVS). SIMPLIFICATION: per aziende >15 dip si aggiunge 0.30% CIGS lavoratore (totale 9.49%), non ancora modellato in employee_rate. L'impatto sul netto è inferiore a 7 EUR/mese per il livello C3.",
+    "fixed_term_additional_rate: NASpI addizionale 1.4% (solo datore) per Art. 2 co. 28 L. 92/2012. Identico al terziario."
+  ]
+}

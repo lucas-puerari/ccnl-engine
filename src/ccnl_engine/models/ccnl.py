@@ -7,12 +7,30 @@ The root model is :class:`CCNL`. All monetary values are
 
 from datetime import date
 from decimal import Decimal
+from enum import StrEnum
 from typing import Annotated, Literal, Self
 
 from pydantic import BaseModel, Field, model_validator
 
 from ccnl_engine.models.apprenticeship import Apprenticeship
 from ccnl_engine.models.validity import TimeSeries
+
+
+class TaxSector(StrEnum):
+    """INPS sector classification used to select the correct contribution rates.
+
+    Each value maps to a ``tax/data/<year>-<value>.json`` file.  Add new
+    values only when a corresponding data file is also added.
+
+    Attributes:
+        TERZIARIO: Commerce, distribution, services (Confcommercio, Confesercenti…).
+        INDUSTRIA: Manufacturing / industry (Federmeccanica, Confindustria…).
+        ARTIGIANATO: Craft trades (Confartigianato, CNA…).
+    """
+
+    TERZIARIO = "terziario"
+    INDUSTRIA = "industria"
+    ARTIGIANATO = "artigianato"
 
 
 class Allowance(BaseModel):
@@ -140,7 +158,10 @@ class CCNLMeta(BaseModel):
             ``"commercio-confcommercio"``).
         name: Full name of the contract.
         cnel_code: CNEL archive code (e.g. ``"H011"``).
-        sector: Broad sector (e.g. ``"terziario"``).
+        sector: Broad human-readable sector description (e.g.
+            ``"terziario"``).
+        tax_sector: INPS sector used to select the correct contribution-rate
+            file (see :class:`TaxSector`).
         signatories: Employer and union associations that signed the CCNL.
         sources: Primary source references used to build the data file.
         extraction: Provenance metadata for the data file.
@@ -150,6 +171,7 @@ class CCNLMeta(BaseModel):
     name: str
     cnel_code: str
     sector: str
+    tax_sector: TaxSector
     signatories: list[str]
     sources: list[CCNLSource]
     extraction: CCNLExtraction
