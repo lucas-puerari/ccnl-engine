@@ -16,19 +16,19 @@
     ],
     "sources": [
       {
-        "url": "https://leggeinchiaro.it/ccnl-chimici-industria-tabelle-retributive-2026/",
+        "url": "https://www.lexplain.it/tabelle-retributive-chimici-farmaceutici-industria/",
         "type": "table",
-        "agreement_date": "2026-07-01"
-      },
-      {
-        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=105",
-        "type": "table",
-        "agreement_date": "2026-07-01"
+        "agreement_date": "2025-06-01"
       },
       {
         "url": "https://leggeinchiaro.it/ccnl-farmaceutico-farmindustria-tabelle-retributive/",
         "type": "table",
         "agreement_date": "2025-12-01"
+      },
+      {
+        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=105",
+        "type": "table",
+        "agreement_date": "2026-07-01"
       }
     ],
     "extraction": {
@@ -58,6 +58,7 @@
       "description": "F — mansioni semplici di tipo esecutivo e di servizio",
       "base_salary": {
         "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1697.46" },
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "1781.46" },
           { "valid_from": "2026-07-01", "valid_until": null,         "value": "1821.46" }
         ]
@@ -70,6 +71,7 @@
       "description": "E — operatore generico, 4° grado",
       "base_salary": {
         "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1780.04" },
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "1864.04" },
           { "valid_from": "2026-07-01", "valid_until": null,         "value": "1905.04" }
         ]
@@ -82,6 +84,7 @@
       "description": "E — operatore specializzato generico, 3° grado",
       "base_salary": {
         "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1829.29" },
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "1913.29" },
           { "valid_from": "2026-07-01", "valid_until": null,         "value": "1954.29" }
         ]
@@ -94,6 +97,7 @@
       "description": "E — operatore di produzione base, 2° grado",
       "base_salary": {
         "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1901.14" },
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "1985.14" },
           { "valid_from": "2026-07-01", "valid_until": null,         "value": "2026.14" }
         ]
@@ -106,6 +110,7 @@
       "description": "E — operatore GMP di produzione, 1° grado",
       "base_salary": {
         "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "2014.28" },
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2098.28" },
           { "valid_from": "2026-07-01", "valid_until": null,         "value": "2139.28" }
         ]
@@ -118,6 +123,7 @@
       "description": "D — impiegato / operaio polivalente, 3° grado",
       "base_salary": {
         "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "2112.76" },
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2205.76" },
           { "valid_from": "2026-07-01", "valid_until": null,         "value": "2250.76" }
         ]
@@ -130,6 +136,7 @@
       "description": "D — operatore di distribuzione, ispettore QA, 2° grado",
       "base_salary": {
         "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "2173.77" },
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2266.77" },
           { "valid_from": "2026-07-01", "valid_until": null,         "value": "2311.77" }
         ]
@@ -142,6 +149,7 @@
       "description": "D — caposquadra, operatore polivalente senior, 1° grado",
       "base_salary": {
         "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "2282.26" },
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2375.26" },
           { "valid_from": "2026-07-01", "valid_until": null,         "value": "2420.26" }
         ]
@@ -154,6 +162,7 @@
       "description": "C — impiegato specialista, addetto QC, contabile senior, 2° grado",
       "base_salary": {
         "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "2350.86" },
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2450.86" },
           { "valid_from": "2026-07-01", "valid_until": null,         "value": "2498.86" }
         ]
@@ -166,6 +175,7 @@
       "description": "C — capoturno, coordinatore amministrativo, tecnico specialista, 1° grado",
       "base_salary": {
         "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "2449.65" },
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2549.65" },
           { "valid_from": "2026-07-01", "valid_until": null,         "value": "2597.65" }
         ]
@@ -178,6 +188,7 @@
       "description": "B — ricercatore, responsabile manutenzione, programmatore senior, 2° grado",
       "base_salary": {
         "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "2669.61" },
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2789.61" },
           { "valid_from": "2026-07-01", "valid_until": null,         "value": "2849.61" }
         ]
@@ -190,6 +201,7 @@
       "description": "B — ISF, product manager, responsabile sicurezza, 1° grado",
       "base_salary": {
         "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "2774.98" },
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2894.98" },
           { "valid_from": "2026-07-01", "valid_until": null,         "value": "2954.98" }
         ]
@@ -202,6 +214,7 @@
       "description": "A (Quadri) — coordinatore d'area, responsabile di reparto, 3° grado",
       "base_salary": {
         "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "3000.22" },
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "3130.22" },
           { "valid_from": "2026-07-01", "valid_until": null,         "value": "3193.22" }
         ]
@@ -214,6 +227,7 @@
       "description": "A (Quadri) — responsabile di laboratorio, esperto sistemi complessi, 2° grado",
       "base_salary": {
         "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "3068.59" },
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "3198.59" },
           { "valid_from": "2026-07-01", "valid_until": null,         "value": "3261.59" }
         ]
@@ -226,6 +240,7 @@
       "description": "A (Quadri) — manager QA/HSE/IT, scienziato senior, responsabile di stabilimento, 1° grado",
       "base_salary": {
         "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "3335.48" },
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "3465.48" },
           { "valid_from": "2026-07-01", "valid_until": null,         "value": "3528.48" }
         ]
@@ -246,16 +261,17 @@
     "layer_2": "out_of_scope",
     "layer_3": "out_of_scope",
     "notes": [
-      "TEM CONGLOBATO: i valori in base_salary rappresentano il Trattamento Economico Minimo (TEM) totale = base minimo + EAR/EDR (Elemento Aggiuntivo della Retribuzione: A=190€, B=100€, C-F=0) + IPO (Integrazione di Posizione Organizzativa, variabile per livello). La struttura a componenti separate non è modellata; fixed_allowances è vuoto. Fonte TEM luglio 2026: kitech.it (CNEL B011). Fonte base minimo dic-2025: leggeinchiaro.it.",
-      "TEM DIC-2025: calcolato come TEM_lug2026 − (base_lug2026 − base_dic2025) per livello. EAR e IPO sono fissi tra le due tranches (verificato: differenze per categoria A=63, B=60, C=48, D=45, E=41, F=40 corrispondono esattamente agli aumenti base dic→lug).",
-      "TRANCHES MODELLATE: dic-2025 (CCNL 2025-2028, accordo 15/04/2025, 2ª tranche) e lug-2026 (3ª tranche). Tranches pre-dic-2025 non modellate: i valori TEM per-livello per lug-2025 e precedenti richiedono verifica primaria Federchimica per i livelli B, C, E (la base D1 giu-2025=1887.03 e A1=2518.52 e F=1697.46 sono confermate).",
-      "TRANCHES FUTURE NON MODELLATE: lug-2027 (+86 a D1) e giu-2028 (+16/27 a D1, fonti discordanti).",
+      "TEM CONGLOBATO: i valori in base_salary rappresentano il Trattamento Economico Minimo (TEM) totale = base minimo + EAR/EDR (Elemento Aggiuntivo della Retribuzione: A=190€, B=100€, C-F=0) + IPO (Integrazione di Posizione Organizzativa, variabile per livello). La struttura a componenti separate non è modellata; fixed_allowances è vuoto. Fonte TEM luglio 2026: kitech.it (CNEL B011). Fonte base dicembre 2025: leggeinchiaro.it.",
+      "TRANCHE GIUGNO 2025: base minimo per tutte le categorie verificato da lexplain.it ('tabelle-retributive-chimici-farmaceutici-industria'): A=2518.52, B=2324.22, C=2069.25, D=1915.03, E=1731.87, F=1697.46. TEM calcolato aggiungendo IPO e EAR fissi (stessi valori del luglio 2026, kitech.it). La tranche intermedia del luglio 2025 (prima tranche CCNL 2025-2028, accordo 15/04/2025) non è modellata: il TEM mostrato per il periodo giu-2025/dic-2025 riflette i valori di giugno 2025, con conseguente sottostima tra lug-2025 e nov-2025.",
+      "TRANCHE DICEMBRE 2025: base minimo verificato da leggeinchiaro.it per tutte le categorie (A=2648.52, B=2444.22, C=2169.25, D=2008.03, E=1815.87, F=1781.46). TEM calcolato con IPO e EAR fissi.",
+      "TRANCHE LUGLIO 2026: TEM direttamente da kitech.it (CNEL B011) per tutti i 15 livelli. La discrepanza vs leggeinchiaro.it (e.g. A1: 3338.48 vs 3528.48) è spiegata dall'EAR (190€ per categoria A) che kitech include e leggeinchiaro esclude.",
+      "IPO E EAR FISSI TRA TRANCHES: verificato — le differenze di TEM tra dic-2025 e lug-2026 corrispondono esattamente alle differenze di base per categoria (A=+130, B=+120, C=+100, D=+93, E=+84, F=+84), confermando che IPO e EAR non variano tra queste tranches.",
+      "TRANCHES FUTURE NON MODELLATE: lug-2027 e giu-2028 (totale CCNL 2025-2028: +294€ a D1).",
       "SCATTI DI ANZIANITÀ: aboliti dal 1° gennaio 2010 per accordo tra le parti ('A decorrere dal 1° gennaio 2010 sono abrogati'). Gli importi maturati fino al 2009 sono stati cristallizzati come superminimo non assorbibile. maximum_count=0 e amount_by_level={} per tutti i livelli.",
-      "APPRENDISTATO: modello under-classification. Il CCNL prevede inquadramento alla categoria immediatamente inferiore alla destinazione nel primo periodo, poi alla destinazione. Il JSON modella il caso standard con D1 come livello di destinazione (E1 nel primo periodo, 0-18 mesi; D1 dal 18° mese). La durata esatta del primo periodo non è stata verificata sul testo contrattuale primario Federchimica — potrebbe differire per livelli diversi da D1.",
-      "LIVELLI: 15 livelli (A1, A2, A3, B1, B2, C1, C2, D1, D2, D3, E1, E2, E3, E4, F). Categorie A e B sono quadri/direttivi. I gradi IPO all'interno di ogni categoria differenziano il TEM pur avendo la stessa base minimo.",
+      "APPRENDISTATO: modello under-classification. Il CCNL prevede inquadramento alla categoria immediatamente inferiore alla destinazione nel primo periodo, poi alla destinazione. Il JSON modella il caso standard con D1 come livello di destinazione (E1 nel primo periodo, 0-18 mesi; D1 dal 18° mese). La durata esatta del primo periodo non è stata verificata sul testo contrattuale primario Federchimica.",
       "DIVISORE ORARIO: 175 h/mese (settore chimico-farmaceutico). Il divisore 173 si applica solo al sotto-settore ceramica e abrasivi.",
       "MENSILITÀ: 13 (sola tredicesima). La quattordicesima è prevista solo nei sotto-settori lubrificanti/GPL, ceramica/abrasivi e coibentazione.",
-      "INPS: utilizza 2026-industria.json (settore industria standard). Il codice CNEL è B011 (non C004 come ipotizzato inizialmente)."
+      "INPS: utilizza 2026-industria.json (settore industria standard). Il codice CNEL è B011."
     ]
   }
 }
