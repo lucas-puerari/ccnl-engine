@@ -75,16 +75,3 @@ make setup
 
 Activates local git hooks (conventional commits, single-line messages).
 
-### Commit format
-
-```
-<type>(<scope>): <description>
-```
-
-Types: `feat` `fix` `docs` `style` `refactor` `perf` `test` `chore` `ci` `build` `revert`
-
-```
-feat(commercio): add 2027 salary tables
-fix(irpef): correct deduction interpolation at boundary
-refactor: decompose compute() into private helpers
-```
