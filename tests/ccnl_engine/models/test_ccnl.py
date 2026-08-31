@@ -22,6 +22,7 @@ _BASE: dict[str, Any] = {
         "name": "Test CCNL",
         "cnel_code": "T001",
         "sector": "test",
+        "tax_sector": "terziario",
         "signatories": ["TestOrg"],
         "sources": [{"url": "http://example.com", "type": "table"}],
         "extraction": {

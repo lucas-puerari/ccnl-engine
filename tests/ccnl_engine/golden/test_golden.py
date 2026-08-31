@@ -22,6 +22,7 @@ import pytest
 
 from ccnl_engine.data import load_ccnl, load_year_rules
 from ccnl_engine.engine.compute import compute
+from ccnl_engine.models.ccnl import TaxSector
 from ccnl_engine.models.employment import Apprentice, FixedTerm, Permanent
 
 _CASES_DIR = Path(__file__).parent / "cases"
@@ -47,7 +48,11 @@ def test_golden(case_file: Path) -> None:
     expected = case["expected"]
 
     ccnl = load_ccnl(inputs["ccnl_file"])
-    rules = load_year_rules(inputs["year"])
+    rules = load_year_rules(
+        inputs["year"],
+        TaxSector(inputs["tax_sector"]),
+        int(inputs["num_employees"]),
+    )
     employment = _build_employment(inputs)
     as_of = date.fromisoformat(inputs["as_of"])
 
