@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Enforce branch naming convention before push.
+BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null)
+
+# main is always allowed
+[ "$BRANCH" = "main" ] && exit 0
+
+PATTERN='^(feature|fix|chore|ci|docs|refactor|perf|test|revert)/.+'
+if ! echo "$BRANCH" | grep -qE "$PATTERN"; then
+  echo "❌  Push rejected: branch '$BRANCH' does not follow naming convention."
+  echo "    Allowed prefixes: feature/ fix/ chore/ ci/ docs/ refactor/ perf/ test/ revert/"
+  echo "    Rename with: git branch -m $BRANCH <correct-prefix>/<name>"
+  exit 1
+fi
+
+exit 0

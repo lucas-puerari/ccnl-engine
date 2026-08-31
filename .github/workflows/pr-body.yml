@@ -1,0 +1,19 @@
+name: PR body check
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  check-pr-body:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for AI tool attribution in PR body
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          if echo "$PR_BODY" | grep -qiE 'claude[[:space:]]code|claude\.ai|co-authored-by.*claude|anthropic'; then
+            echo "❌ PR body must not reference AI tooling (Claude Code, claude.ai, Anthropic)."
+            exit 1
+          fi

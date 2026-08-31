@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Strip Co-Authored-By trailers injected by tools (e.g. Claude Code).
+# Strip trailers injected by AI tools.
 MSG_FILE="$1"
 sed -i '' '/^Co-[Aa]uthored-[Bb]y:/d' "$MSG_FILE"
+sed -i '' '/^Claude-Session:/d' "$MSG_FILE"
 exit 0
