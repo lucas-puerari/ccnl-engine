@@ -1,8 +1,4 @@
-"""Tests for CCNL data loaders and bundled data files.
-
-Validates that every JSON in ``ccnl_engine/data/`` parses correctly and that
-the load_ccnl / load_year_rules helpers work end-to-end.
-"""
+"""Tests for CCNL data loaders and bundled data files."""
 
 from datetime import date
 from decimal import Decimal
@@ -10,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from ccnl_engine.data import _resolve_employer_tier, load_ccnl, load_year_rules
+from ccnl_engine.data.loaders import _resolve_employer_tier, load_ccnl, load_year_rules
 from ccnl_engine.models.ccnl import CCNL, TaxSector
 from ccnl_engine.tax.models import YearRules, _InpsEmployerTier
 
