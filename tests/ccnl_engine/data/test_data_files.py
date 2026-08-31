@@ -303,11 +303,17 @@ class TestLoadChimicaFederchimica:
         d1 = next(lv for lv in ccnl.levels if lv.code == "D1")
         assert d1.base_salary.value_at(date(2026, 7, 1)) == Decimal("2420.26")
 
-    def test_chimica_d1_tem_december_2025(self) -> None:
-        """D1 TEM from 2025-12-01 must be 2375.26."""
+    def test_chimica_d1_tem_july_2025(self) -> None:
+        """D1 TEM from 2025-07-01 must be 2340.26 (first tranche CCNL 2025-2028)."""
         ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
         d1 = next(lv for lv in ccnl.levels if lv.code == "D1")
-        assert d1.base_salary.value_at(date(2025, 12, 1)) == Decimal("2375.26")
+        assert d1.base_salary.value_at(date(2025, 7, 1)) == Decimal("2340.26")
+
+    def test_chimica_d1_tem_december_2025(self) -> None:
+        """D1 TEM from 2025-12-01 must be 2360.26 (Min=2008.03 + IPO=352.23)."""
+        ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
+        d1 = next(lv for lv in ccnl.levels if lv.code == "D1")
+        assert d1.base_salary.value_at(date(2025, 12, 1)) == Decimal("2360.26")
 
     def test_chimica_a1_highest_f_lowest(self) -> None:
         """A1 must have the highest order; F the lowest."""
