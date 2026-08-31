@@ -8,6 +8,7 @@ import pytest
 
 from ccnl_engine.data.loaders import _resolve_employer_tier, load_ccnl, load_year_rules
 from ccnl_engine.models.apprenticeship import (
+    ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
 )
 from ccnl_engine.models.ccnl import CCNL, TaxSector
@@ -438,16 +439,17 @@ class TestLoadTurismoConfcommercio:
                 f"Level {level.code} should have no fixed_allowances"
             )
 
-    def test_turismo_apprenticeship_under_classification(self) -> None:
-        """Apprenticeship uses under-classification model, destination level 3."""
+    def test_turismo_apprenticeship_percentage(self) -> None:
+        """Apprenticeship uses percentage model: 80/85/90% per anno (rinnovo 2024)."""
         ccnl = load_ccnl("turismo-confcommercio.json")
-        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
-        assert ccnl.apprenticeship.destination_level == "3"
+        assert isinstance(ccnl.apprenticeship, ApprenticeshipPercentage)
+        assert ccnl.apprenticeship.destination_level == "5"
         periods = ccnl.apprenticeship.periods
-        assert len(periods) == 2
-        assert periods[0].pay_level_code == "5"
-        assert periods[1].pay_level_code == "4"
-        assert periods[1].months_until is None
+        assert len(periods) == 3
+        assert periods[0].percentage == Decimal("0.80")
+        assert periods[1].percentage == Decimal("0.85")
+        assert periods[2].percentage == Decimal("0.90")
+        assert periods[2].months_until is None
 
     def test_turismo_hourly_divisor(self) -> None:
         """Hourly divisor must be 172 (40 h/week standard for turismo)."""

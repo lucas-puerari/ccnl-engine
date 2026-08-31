@@ -250,11 +250,12 @@
     }
   ],
   "apprenticeship": {
-    "type": "under_classification",
-    "destination_level": "3",
+    "type": "percentage",
+    "destination_level": "5",
     "periods": [
-      { "months_from": 0,  "months_until": 18, "pay_level_code": "5" },
-      { "months_from": 18, "months_until": null, "pay_level_code": "4" }
+      { "months_from": 0,  "months_until": 12, "percentage": "0.80" },
+      { "months_from": 12, "months_until": 24, "percentage": "0.85" },
+      { "months_from": 24, "months_until": null, "percentage": "0.90" }
     ]
   },
   "coverage": {
@@ -267,7 +268,7 @@
       "INDENNITÀ DI FUNZIONE QA/QB: alcune fonti (pubblici esercizi) mostrano un'indennità di funzione separata (QA=75€, QB=70€). Per il subsettore alberghi i valori nella tabella conglobata sembrano già includere questa componente. Se verifiche su buste paga reali mostrano uno scostamento, aggiungere fixed_allowances QA=75€ e QB=70€.",
       "TRANCHE: luglio 2024, giugno 2025, maggio 2026, aprile 2027, novembre 2027. Nessuna tranche previgente modellata (limite inferiore: 2024-07-01).",
       "SCATTI DI ANZIANITÀ: 6 scatti quadriennali (ogni 48 mesi). Importi da lexplain.it/scatti-di-anzianita-ccnl-turismo-ristorazione-e-pubblici-esercizi. Gli scatti sono erogati per 14 mensilità (incluse 13a e 14a) — la componente del gross_annual è già catturata dal moltiplicatore additional_months=14 nel motore.",
-      "APPRENDISTATO: tipo under_classification per livelli di destinazione 2°–6° (Art. CCNL apprendistato professionalizzante). Il JSON modella il percorso standard con destination_level=3° (36 mesi totali). Periodo 1 (0-18 mesi): 5° livello (2 livelli sotto 3°). Periodo 2 (18+ mesi): 4° livello (1 livello sotto 3°). La suddivisione 18+18 è derivata da fonti secondarie — verificare Art. CCNL per i mesi esatti. Il 6° livello è un caso speciale (rimane al 7° per entrambi i periodi, durata 24 mesi) — non modellato nel JSON base.",
+      "APPRENDISTATO: tipo percentage (rinnovo 2024). Retribuzione: 80% per i primi 12 mesi, 85% mesi 13-24, 90% mesi 25-36 (fonte: albergoatenericcione.it, confermato da ricerche sul rinnovo 2024). Durata: 36 mesi per livelli 2°-5° e 6S; 24 mesi per 6°. Il JSON modella il caso standard con destination_level=5° (cameriere/cuoco, 36 mesi). L'under-classification (2 livelli sotto / 1 livello sotto) si riferiva al CCNL previgente prima del rinnovo 2024.",
       "MENSILITÀ: 14 (tredicesima a giugno, quattordicesima a dicembre). Confermato da CCNL e dalla nota 'importi erogati per 14 mensilità' per gli scatti.",
       "DIVISORE ORARIO: 172 ore/mese (40 h/settimana × 52/12). Verificato per retrocomputo: 1458.42 / 172 = 8.478 ≈ 8.48 €/ora (livello 7, novembre 2027 — coincide con tabella oraria lexplain).",
       "INPS: utilizza 2026-terziario.json (stesso tax_sector di commercio-confcommercio)."
