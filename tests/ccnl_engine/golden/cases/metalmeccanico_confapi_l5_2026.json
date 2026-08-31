@@ -1,0 +1,48 @@
+{
+  "_description": "Golden case: CCNL Metalmeccanico PMI Unionmeccanica-Confapi, Level 5, 2026-09-01, permanent, full-time, no seniority, 50 employees.",
+  "_notes": [
+    "base_monthly is the minimo conglobato (includes contingenza=0 + terzo elemento=0) from the June 2026 tranche: 2245.87 €.",
+    "allowances_monthly is 0.00 because all fixed elements are embedded in the conglobato.",
+    "INPS rates: industria sector, 16-50 employees (2026-industria.json, second tier). employee 9.19%, employer 30.20%.",
+    "additional_months: 13 (tredicesima only, no quattordicesima).",
+    "Art. 13 TUIR deduction: piecewise-linear at gross_income=29196.31.",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION).",
+    "Seniority: 0 increments — seniority_monthly is 0.00."
+  ],
+  "inputs": {
+    "ccnl_file": "metalmeccanico-confapi.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "5",
+    "as_of": "2026-09-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "metalmeccanico-confapi",
+    "level_code": "5",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "2245.87",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "gross_monthly": "2245.87",
+    "gross_annual": "29196.31",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2683.14",
+    "inps_employer_annual": "8817.29",
+    "tfr_annual": "2162.69",
+    "taxable_income": "26513.17",
+    "irpef_gross": "6098.03",
+    "work_income_deduction": "661.94",
+    "irpef_net": "5436.09",
+    "net_annual": "21077.08",
+    "net_monthly": "1621.31",
+    "employer_cost_annual": "40176.29"
+  }
+}
