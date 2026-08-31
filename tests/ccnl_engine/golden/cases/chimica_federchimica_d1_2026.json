@@ -1,0 +1,47 @@
+{
+  "_description": "Golden case: CCNL Industria Chimica-Farmaceutica Federchimica (B011), Level D1, 2026-07-01, permanent, full-time, no seniority, 50 employees.",
+  "_notes": [
+    "base_monthly is the TEM (Trattamento Economico Minimo) conglobato: base minimo (2053.03) + IPO (367.23) = 2420.26. EAR=0 for D category.",
+    "Scatti di anzianita abolished from 1 Jan 2010 (CCNL art.); seniority_monthly is 0.00 regardless of seniority_count.",
+    "INPS rates: industria sector, 16-50 employees (2026-industria.json, second tier). employee 9.19%, employer 30.20%.",
+    "additional_months: 13 (tredicesima only, no quattordicesima).",
+    "Art. 13 TUIR deduction: piecewise-linear at gross_income=31463.38.",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "chimica-farmaceutica-federchimica.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "D1",
+    "as_of": "2026-07-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "chimica-farmaceutica-federchimica",
+    "level_code": "D1",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "2420.26",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "gross_monthly": "2420.26",
+    "gross_annual": "31463.38",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2891.48",
+    "inps_employer_annual": "9501.94",
+    "tfr_annual": "2330.62",
+    "taxable_income": "28571.90",
+    "irpef_gross": "6628.73",
+    "work_income_deduction": "589.80",
+    "irpef_net": "6038.93",
+    "net_annual": "22532.97",
+    "net_monthly": "1733.31",
+    "employer_cost_annual": "43295.94"
+  }
+}

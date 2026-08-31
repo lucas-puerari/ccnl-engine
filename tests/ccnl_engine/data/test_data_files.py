@@ -7,7 +7,9 @@ from pathlib import Path
 import pytest
 
 from ccnl_engine.data.loaders import _resolve_employer_tier, load_ccnl, load_year_rules
-from ccnl_engine.models.apprenticeship import ApprenticeshipUnderClassification
+from ccnl_engine.models.apprenticeship import (
+    ApprenticeshipUnderClassification,
+)
 from ccnl_engine.models.ccnl import CCNL, TaxSector
 from ccnl_engine.tax.models import YearRules, _InpsEmployerTier
 
@@ -255,3 +257,105 @@ class TestLoadMetalmeccanicoConfapi:
                 f"Level {level.code} should have no fixed_allowances "
                 "(base_salary is already the minimo conglobato)"
             )
+
+
+# ---------------------------------------------------------------------------
+# CCNL Industria Chimica-Farmaceutica (Federchimica)
+# ---------------------------------------------------------------------------
+
+
+class TestLoadChimicaFederchimica:
+    """Unit tests for the bundled Chimica-Farmaceutica data file."""
+
+    def test_chimica_loads(self) -> None:
+        """File parses, id and cnel_code are correct."""
+        ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
+        assert isinstance(ccnl, CCNL)
+        assert ccnl.ccnl.id == "chimica-farmaceutica-federchimica"
+        assert ccnl.ccnl.cnel_code == "B011"
+
+    def test_chimica_has_fifteen_levels(self) -> None:
+        """Contract must have exactly 15 classification levels."""
+        ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
+        assert len(ccnl.levels) == 15
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {
+            "A1",
+            "A2",
+            "A3",
+            "B1",
+            "B2",
+            "C1",
+            "C2",
+            "D1",
+            "D2",
+            "D3",
+            "E1",
+            "E2",
+            "E3",
+            "E4",
+            "F",
+        }
+
+    def test_chimica_d1_tem_july_2026(self) -> None:
+        """D1 TEM from 2026-07-01 onward must be 2420.26 (base + IPO)."""
+        ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
+        d1 = next(lv for lv in ccnl.levels if lv.code == "D1")
+        assert d1.base_salary.value_at(date(2026, 7, 1)) == Decimal("2420.26")
+
+    def test_chimica_d1_tem_december_2025(self) -> None:
+        """D1 TEM from 2025-12-01 must be 2375.26."""
+        ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
+        d1 = next(lv for lv in ccnl.levels if lv.code == "D1")
+        assert d1.base_salary.value_at(date(2025, 12, 1)) == Decimal("2375.26")
+
+    def test_chimica_a1_highest_f_lowest(self) -> None:
+        """A1 must have the highest order; F the lowest."""
+        ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "F"
+        assert by_order[-1].code == "A1"
+
+    def test_chimica_a1_tem_july_2026(self) -> None:
+        """A1 TEM from 2026-07-01 must be 3528.48 (base + EAR 190 + IPO 626.96)."""
+        ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
+        a1 = next(lv for lv in ccnl.levels if lv.code == "A1")
+        assert a1.base_salary.value_at(date(2026, 7, 1)) == Decimal("3528.48")
+
+    def test_chimica_no_seniority_increments(self) -> None:
+        """Scatti di anzianita are abolished: maximum_count=0, amount_by_level empty."""
+        ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.maximum_count == 0
+        assert si.amount_by_level == {}
+
+    def test_chimica_apprenticeship_under_classification(self) -> None:
+        """Apprenticeship uses under-classification model, destination D1."""
+        ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
+        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
+        assert ccnl.apprenticeship.destination_level == "D1"
+        periods = ccnl.apprenticeship.periods
+        assert len(periods) == 2
+        assert periods[0].pay_level_code == "E1"
+        assert periods[1].pay_level_code == "D1"
+        assert periods[1].months_until is None
+
+    def test_chimica_thirteen_months(self) -> None:
+        """Contract has 13 monthly salaries per year (tredicesima only)."""
+        ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
+        value = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert value == Decimal(13)
+
+    def test_chimica_no_fixed_allowances(self) -> None:
+        """All levels have empty fixed_allowances (TEM modelled as base_salary)."""
+        ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
+        for level in ccnl.levels:
+            assert level.fixed_allowances == [], (
+                f"Level {level.code} should have no fixed_allowances "
+                "(TEM is already embedded in base_salary)"
+            )
+
+    def test_chimica_hourly_divisor(self) -> None:
+        """Hourly divisor must be 175 (chimico-farmaceutico standard)."""
+        ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
+        assert ccnl.parameters.hourly_divisor == 175
