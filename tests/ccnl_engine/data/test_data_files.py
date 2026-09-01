@@ -1080,3 +1080,81 @@ class TestLoadAlimentariFederalimentare:
         )
         assert result.apprenticeship_under_level_code == "4"
         assert result.apprenticeship_pct is None
+
+
+class TestLoadDmoFederdistribuzione:
+    """Tests for CCNL DMO Federdistribuzione (H008) data file."""
+
+    def test_dmo_federdistribuzione_loads(self) -> None:
+        """Loads dmo-federdistribuzione and verifies id and CNEL code H008."""
+        ccnl = load_ccnl("dmo-federdistribuzione.json")
+        assert ccnl.ccnl.id == "dmo-federdistribuzione"
+        assert ccnl.ccnl.cnel_code == "H008"
+
+    def test_dmo_federdistribuzione_has_8_levels(self) -> None:
+        """Eight levels: VII, VI, V, IV, III, II, I, Q."""
+        ccnl = load_ccnl("dmo-federdistribuzione.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 8
+        assert codes == {
+            "VII",
+            "VI",
+            "V",
+            "IV",
+            "III",
+            "II",
+            "I",
+            "Q",
+        }
+
+    def test_dmo_federdistribuzione_level_iv_salary_tranche1(self) -> None:
+        """Level IV paga base at tranche 1 (2023-04-01): 1122.46 EUR."""
+        ccnl = load_ccnl("dmo-federdistribuzione.json")
+        level = next(lv for lv in ccnl.levels if lv.code == "IV")
+        assert level.base_salary.value_at(date(2023, 4, 1)) == Decimal("1122.46")
+
+    def test_dmo_federdistribuzione_level_iv_salary_tranche2(self) -> None:
+        """Level IV paga base at tranche 2 (2024-04-01): 1192.46 EUR."""
+        ccnl = load_ccnl("dmo-federdistribuzione.json")
+        level = next(lv for lv in ccnl.levels if lv.code == "IV")
+        assert level.base_salary.value_at(date(2024, 4, 1)) == Decimal("1192.46")
+
+    def test_dmo_federdistribuzione_level_ordering(self) -> None:
+        """VII must be lowest (order 1), Q must be highest."""
+        ccnl = load_ccnl("dmo-federdistribuzione.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "VII"
+        assert by_order[-1].code == "Q"
+
+    def test_dmo_federdistribuzione_additional_months(self) -> None:
+        """14 additional months (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("dmo-federdistribuzione.json")
+        am = ccnl.parameters.additional_months
+        assert am.value_at(date(2026, 1, 1)) == Decimal(14)
+
+    def test_dmo_federdistribuzione_hourly_divisor(self) -> None:
+        """Hourly divisor must be 168 (40h/week, Art. 194)."""
+        ccnl = load_ccnl("dmo-federdistribuzione.json")
+        assert ccnl.parameters.hourly_divisor == 168
+
+    def test_dmo_federdistribuzione_fixed_allowances_split(self) -> None:
+        """Split model: all levels have contingenza and terzo_elemento_nazionale."""
+        ccnl = load_ccnl("dmo-federdistribuzione.json")
+        for lv in ccnl.levels:
+            codes = {fa.code for fa in lv.fixed_allowances}
+            assert "contingenza" in codes, f"level {lv.code} missing contingenza"
+            assert "terzo_elemento_nazionale" in codes, (
+                f"level {lv.code} missing terzo_elemento_nazionale"
+            )
+
+    def test_dmo_federdistribuzione_tax_sector(self) -> None:
+        """CCNL must declare tax_sector TERZIARIO."""
+        ccnl = load_ccnl("dmo-federdistribuzione.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+
+    def test_dmo_federdistribuzione_seniority_cadence(self) -> None:
+        """Seniority: triennale cadence (36 months), maximum 10 scatti."""
+        ccnl = load_ccnl("dmo-federdistribuzione.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 10
