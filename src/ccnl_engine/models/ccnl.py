@@ -18,6 +18,7 @@ class TaxSector(StrEnum):
     INDUSTRIA = "industria"
     EDILIZIA = "edilizia"
     CREDITO = "credito"
+    ARTIGIANATO = "artigianato"
 
 
 class Allowance(BaseModel):

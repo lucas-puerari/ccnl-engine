@@ -1158,3 +1158,70 @@ class TestLoadDmoFederdistribuzione:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 10
+
+
+class TestLoadMetalmeccanicoArtigianato:
+    """Tests for CCNL Metalmeccanica Artigianato (Confartigianato/CNA, C030)."""
+
+    def test_metalmeccanico_artigianato_loads(self) -> None:
+        """File loads and has correct id and CNEL code."""
+        ccnl = load_ccnl("metalmeccanico-artigianato.json")
+        assert ccnl.ccnl.id == "metalmeccanico-artigianato"
+        assert ccnl.ccnl.cnel_code == "C030"
+
+    def test_metalmeccanico_artigianato_has_8_levels(self) -> None:
+        """Contract has exactly 8 levels with expected codes."""
+        ccnl = load_ccnl("metalmeccanico-artigianato.json")
+        assert len(ccnl.levels) == 8
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1Q", "1", "2", "2bis", "3", "4", "5", "6"}
+
+    def test_metalmeccanico_artigianato_level4_salary_first_tranche(self) -> None:
+        """Level 4° salary at first tranche date (2022-01-01)."""
+        ccnl = load_ccnl("metalmeccanico-artigianato.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        val = lv.base_salary.value_at(date(2022, 1, 1))
+        assert val == Decimal("1416.41")
+
+    def test_metalmeccanico_artigianato_level4_salary_2026(self) -> None:
+        """Level 4° salary at March 2026 tranche (kitech-confirmed)."""
+        ccnl = load_ccnl("metalmeccanico-artigianato.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        val = lv.base_salary.value_at(date(2026, 3, 1))
+        assert val == Decimal("1656.98")
+
+    def test_metalmeccanico_artigianato_level_ordering(self) -> None:
+        """1Q has highest order; 6 has lowest order."""
+        ccnl = load_ccnl("metalmeccanico-artigianato.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "6"
+        assert by_order[-1].code == "1Q"
+
+    def test_metalmeccanico_artigianato_additional_months(self) -> None:
+        """Additional months is 13 (tredicesima only)."""
+        ccnl = load_ccnl("metalmeccanico-artigianato.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(13)
+
+    def test_metalmeccanico_artigianato_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (Art. 28 CCNL 17.12.2021)."""
+        ccnl = load_ccnl("metalmeccanico-artigianato.json")
+        assert ccnl.parameters.hourly_divisor == 173
+
+    def test_metalmeccanico_artigianato_no_fixed_allowances(self) -> None:
+        """Conglobated model: all levels have empty fixed_allowances."""
+        ccnl = load_ccnl("metalmeccanico-artigianato.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_metalmeccanico_artigianato_tax_sector(self) -> None:
+        """CCNL must declare tax_sector ARTIGIANATO."""
+        ccnl = load_ccnl("metalmeccanico-artigianato.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.ARTIGIANATO
+
+    def test_metalmeccanico_artigianato_seniority_cadence(self) -> None:
+        """Seniority: biennale cadence (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("metalmeccanico-artigianato.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
