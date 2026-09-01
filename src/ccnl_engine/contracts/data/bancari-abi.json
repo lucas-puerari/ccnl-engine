@@ -1,0 +1,243 @@
+{
+  "schema_version": "0.2",
+  "ccnl": {
+    "id": "bancari-abi",
+    "name": "CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)",
+    "cnel_code": "J241",
+    "sector": "credito",
+    "tax_sector": "credito",
+    "signatories": [
+      "ABI",
+      "FABI",
+      "FIRST-CISL",
+      "FISAC-CGIL",
+      "UILCA",
+      "UNISIN"
+    ],
+    "sources": [
+      {
+        "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
+        "type": "text",
+        "agreement_date": "2023-11-23"
+      },
+      {
+        "url": "https://www.ccnlbancari.it/",
+        "type": "table",
+        "agreement_date": null
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-01",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": 160,
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2023-11-23", "valid_until": null, "value": "13" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 8,
+      "amount_by_level": {
+        "QD4": {
+          "periods": [
+            { "valid_from": "2023-11-23", "valid_until": null, "value": "95.31" }
+          ]
+        },
+        "QD3": {
+          "periods": [
+            { "valid_from": "2023-11-23", "valid_until": null, "value": "95.31" }
+          ]
+        },
+        "QD2": {
+          "periods": [
+            { "valid_from": "2023-11-23", "valid_until": null, "value": "41.55" }
+          ]
+        },
+        "QD1": {
+          "periods": [
+            { "valid_from": "2023-11-23", "valid_until": null, "value": "41.55" }
+          ]
+        },
+        "3A4": {
+          "periods": [
+            { "valid_from": "2023-11-23", "valid_until": null, "value": "41.55" }
+          ]
+        },
+        "3A3": {
+          "periods": [
+            { "valid_from": "2023-11-23", "valid_until": null, "value": "41.55" }
+          ]
+        },
+        "3A2": {
+          "periods": [
+            { "valid_from": "2023-11-23", "valid_until": null, "value": "41.55" }
+          ]
+        },
+        "3A1": {
+          "periods": [
+            { "valid_from": "2023-11-23", "valid_until": null, "value": "41.55" }
+          ]
+        },
+        "1e2A": {
+          "periods": [
+            { "valid_from": "2023-11-23", "valid_until": null, "value": "29.07" }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "QD4",
+      "order": 9,
+      "description": "Quadri Direttivi - 4° livello",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "4911.48" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-06-01", "value": "5045.85" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-03-01", "value": "5113.03" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "5160.06" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "QD3",
+      "order": 8,
+      "description": "Quadri Direttivi - 3° livello",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "4180.89" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-06-01", "value": "4297.64" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-03-01", "value": "4356.02" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "4396.88" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "QD2",
+      "order": 7,
+      "description": "Quadri Direttivi - 2° livello",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "3760.45" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-06-01", "value": "3871.28" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-03-01", "value": "3926.69" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "3965.48" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "QD1",
+      "order": 6,
+      "description": "Quadri Direttivi - 1° livello",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "3547.80" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-06-01", "value": "3653.43" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-03-01", "value": "3706.24" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "3743.21" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3A4",
+      "order": 5,
+      "description": "3ª Area professionale - 4° livello",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "3156.90" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-06-01", "value": "3256.90" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-03-01", "value": "3306.90" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "3341.90" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3A3",
+      "order": 4,
+      "description": "3ª Area professionale - 3° livello",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "2899.88" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-06-01", "value": "2986.15" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-03-01", "value": "3029.29" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "3059.49" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3A2",
+      "order": 3,
+      "description": "3ª Area professionale - 2° livello",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "2739.63" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-06-01", "value": "2821.13" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-03-01", "value": "2861.88" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "2890.41" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3A1",
+      "order": 2,
+      "description": "3ª Area professionale - 1° livello",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "2599.29" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-06-01", "value": "2676.62" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-03-01", "value": "2715.28" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "2742.34" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1e2A",
+      "order": 1,
+      "description": "1ª e 2ª Area professionale (Area Unificata)",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "2350.10" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-06-01", "value": "2420.02" },
+          { "valid_from": "2025-06-01", "valid_until": "2026-03-01", "value": "2454.98" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "2479.45" }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": {
+    "type": "under_classification",
+    "destination_level": "3A3",
+    "periods": [
+      { "months_from": 0,  "months_until": 18, "pay_level_code": "3A2" },
+      { "months_from": 18, "months_until": null, "pay_level_code": "3A3" }
+    ]
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "SIMPLIFICATION hourly_divisor=160: orario ordinario 37h/settimana (da luglio 2024); divisore effettivo 160. Nel primo periodo retributivo (dic 2023 - giu 2024) era vigente l'orario di 37,5h/sett (divisore 162). Il motore non supporta divisore variabile nel tempo; si usa 160 per tutti i periodi. Impatto: calcoli part-time/orari nel periodo dic-2023/giu-2024 sovrastimati di circa 1,25%.",
+      "SIMPLIFICATION seniority cadence=36: il primo scatto matura dopo 48 mesi, i successivi ogni 36. Il motore supporta un solo cadence_months; si usa 36 per tutti gli scatti. Effetto: il primo scatto viene anticipato di circa 12 mesi rispetto al testo contrattuale. maximum_count=8 per tutti i livelli (i QD3/QD4 hanno max 7 scatti per contratto; si usa 8 — SIMPLIFICATION).",
+      "SIMPLIFICATION apprenticeship destination_level=3A3: l'art. 35 CCNL bancari (rinnovo 23-11-2023) indica la 3ª area professionale come destinazione tipica senza specificare il livello esatto. Si modella destination_level=3A3 come livello rappresentativo di area. Area Unificata (1ª e 2ª area) esclusa dall'apprendistato: non ha livello inferiore disponibile nel contratto.",
+      "SIMPLIFICATION INPS employer_rate=26.76% flat: fonte proxy kitech.it (Credito e Assicurazioni 2026). Struttura piatta confermata dall'assenza di pagine separate per fasce dimensionali sul sito kitech (industria ha pagine distinte per tier). Il Fondo di solidarietà del credito (bilaterale, sostituisce FIS/CIGO/CIGS) è presumibilmente già incluso nell'aliquota aggregata. Verificare contro circolare INPS annuale.",
+      "Apprenticeship source: https://www.ccnlbancari.it/ Art. 35, post-rinnovo 2023-11-23."
+    ]
+  }
+}
