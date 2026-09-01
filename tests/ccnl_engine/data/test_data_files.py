@@ -528,3 +528,97 @@ class TestLoadEdiliziaAnce:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+# ---------------------------------------------------------------------------
+# CCNL Cooperative Sociali — T151
+# ---------------------------------------------------------------------------
+
+
+class TestLoadCooperativeSociali:
+    """Unit tests for CCNL Cooperative Sociali (T151) data file."""
+
+    def test_cooperative_sociali_loads(self) -> None:
+        """File loads as valid CCNL with correct id and CNEL code T151."""
+        ccnl = load_ccnl("cooperative-sociali.json")
+        assert isinstance(ccnl, CCNL)
+        assert ccnl.ccnl.id == "cooperative-sociali"
+        assert ccnl.ccnl.cnel_code == "T151"
+
+    def test_cooperative_sociali_has_16_levels(self) -> None:
+        """Contract must contain exactly 16 levels (13 base + 3 Quadro)."""
+        ccnl = load_ccnl("cooperative-sociali.json")
+        assert len(ccnl.levels) == 16
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {
+            "A1",
+            "A2",
+            "B",
+            "C1",
+            "C2",
+            "C3",
+            "D1",
+            "D2",
+            "D3",
+            "E1",
+            "E2",
+            "E2Q",
+            "F1",
+            "F1Q",
+            "F2",
+            "F2Q",
+        }
+
+    def test_cooperative_sociali_level_d2_salary_feb2024(self) -> None:
+        """D2 conglobated minimum at first tranche (Feb 2024) must be 1660.99."""
+        ccnl = load_ccnl("cooperative-sociali.json")
+        d2 = next(lv for lv in ccnl.levels if lv.code == "D2")
+        assert d2.base_salary.value_at(date(2024, 2, 1)) == Decimal("1660.99")
+
+    def test_cooperative_sociali_level_d2_salary_oct2024(self) -> None:
+        """D2 conglobated minimum at second tranche (Oct 2024) must be 1694.41."""
+        ccnl = load_ccnl("cooperative-sociali.json")
+        d2 = next(lv for lv in ccnl.levels if lv.code == "D2")
+        assert d2.base_salary.value_at(date(2024, 10, 1)) == Decimal("1694.41")
+
+    def test_cooperative_sociali_level_ordering(self) -> None:
+        """F2Q must have the highest order; A1 the lowest."""
+        ccnl = load_ccnl("cooperative-sociali.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "A1"
+        assert by_order[-1].code == "F2Q"
+
+    def test_cooperative_sociali_additional_months(self) -> None:
+        """13 months before 2025, 13.5 from January 2025 (quattordicesima)."""
+        ccnl = load_ccnl("cooperative-sociali.json")
+        am = ccnl.parameters.additional_months
+        assert am.value_at(date(2024, 6, 1)) == Decimal(13)
+        assert am.value_at(date(2025, 1, 1)) == Decimal("13.5")
+
+    def test_cooperative_sociali_hourly_divisor(self) -> None:
+        """Hourly divisor must be 165 (38 h/week, art. 75 CCNL)."""
+        ccnl = load_ccnl("cooperative-sociali.json")
+        assert ccnl.parameters.hourly_divisor == 165
+
+    def test_cooperative_sociali_q_levels_funzione_allowance(self) -> None:
+        """E2Q/F1Q/F2Q must carry exactly one IDF fixed allowance each."""
+        ccnl = load_ccnl("cooperative-sociali.json")
+        expected = {"E2Q": "77.47", "F1Q": "154.94", "F2Q": "232.41"}
+        for code, amount in expected.items():
+            lv = next(lvl for lvl in ccnl.levels if lvl.code == code)
+            assert len(lv.fixed_allowances) == 1
+            assert lv.fixed_allowances[0].code == "IDF"
+            val = lv.fixed_allowances[0].monthly.value_at(date(2026, 1, 1))
+            assert val == Decimal(amount)
+
+    def test_cooperative_sociali_tax_sector(self) -> None:
+        """CCNL must declare tax_sector TERZIARIO."""
+        ccnl = load_ccnl("cooperative-sociali.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+
+    def test_cooperative_sociali_seniority_cadence(self) -> None:
+        """Seniority increments: biennale (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("cooperative-sociali.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
