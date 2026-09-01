@@ -1455,3 +1455,89 @@ class TestLoadCartaCartoneAssocarta:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadTelecomunicazioniAsstel:
+    """Tests for CCNL Telecomunicazioni — Asstel (K411)."""
+
+    def test_telecomunicazioni_asstel_loads(self) -> None:
+        """Contract id == 'telecomunicazioni-asstel', cnel_code == 'K411'."""
+        ccnl = load_ccnl("telecomunicazioni-asstel.json")
+        assert ccnl.ccnl.id == "telecomunicazioni-asstel"
+        assert ccnl.ccnl.cnel_code == "K411"
+
+    def test_telecomunicazioni_asstel_has_9_levels(self) -> None:
+        """9 livelli: A1, A2, B1, B2, C1, C2, C3, C4, D1."""
+        ccnl = load_ccnl("telecomunicazioni-asstel.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 9
+        assert codes == {"A1", "A2", "B1", "B2", "C1", "C2", "C3", "C4", "D1"}
+
+    def test_telecomunicazioni_asstel_levelc1_salary_tranche1(self) -> None:
+        """C1 TEM at Tranche 1 (2026-01-01): 1988.73 EUR."""
+        ccnl = load_ccnl("telecomunicazioni-asstel.json")
+        level = next(lv for lv in ccnl.levels if lv.code == "C1")
+        assert level.base_salary.value_at(date(2026, 1, 1)) == Decimal("1988.73")
+
+    def test_telecomunicazioni_asstel_levelc1_salary_tranche2(self) -> None:
+        """C1 TEM at Tranche 2 (2026-12-01): 2038.73 EUR."""
+        ccnl = load_ccnl("telecomunicazioni-asstel.json")
+        level = next(lv for lv in ccnl.levels if lv.code == "C1")
+        assert level.base_salary.value_at(date(2026, 12, 1)) == Decimal("2038.73")
+
+    def test_telecomunicazioni_asstel_level_ordering(self) -> None:
+        """A1 is the lowest-order level; D1 is the highest-order level."""
+        ccnl = load_ccnl("telecomunicazioni-asstel.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "A1"
+        assert by_order[-1].code == "D1"
+
+    def test_telecomunicazioni_asstel_additional_months(self) -> None:
+        """13 additional months (tredicesima only, Art. 42 CCNL TLC)."""
+        ccnl = load_ccnl("telecomunicazioni-asstel.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(13)
+
+    def test_telecomunicazioni_asstel_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (40h/week, Art. 40 CCNL TLC)."""
+        ccnl = load_ccnl("telecomunicazioni-asstel.json")
+        assert ccnl.parameters.hourly_divisor == 173
+
+    def test_telecomunicazioni_asstel_c4_d1_fixed_allowances(self) -> None:
+        """C4 has ERS=59.39; D1 has IND_FUN=98.13; others have none."""
+        ccnl = load_ccnl("telecomunicazioni-asstel.json")
+        c4 = next(lv for lv in ccnl.levels if lv.code == "C4")
+        d1 = next(lv for lv in ccnl.levels if lv.code == "D1")
+        assert len(c4.fixed_allowances) == 1
+        assert c4.fixed_allowances[0].code == "ERS"
+        assert c4.fixed_allowances[0].monthly.value_at(date(2026, 1, 1)) == Decimal(
+            "59.39"
+        )
+        assert len(d1.fixed_allowances) == 1
+        assert d1.fixed_allowances[0].code == "IND_FUN"
+        assert d1.fixed_allowances[0].monthly.value_at(date(2026, 1, 1)) == Decimal(
+            "98.13"
+        )
+        for lv in ccnl.levels:
+            if lv.code not in {"C4", "D1"}:
+                assert lv.fixed_allowances == []
+
+    def test_telecomunicazioni_asstel_tax_sector(self) -> None:
+        """CCNL must declare tax_sector INDUSTRIA (Asstel/Confindustria)."""
+        ccnl = load_ccnl("telecomunicazioni-asstel.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+
+    def test_telecomunicazioni_asstel_seniority_cadence(self) -> None:
+        """Seniority: biennale cadence (24 months), maximum 7 scatti."""
+        ccnl = load_ccnl("telecomunicazioni-asstel.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 7
+
+    def test_telecomunicazioni_asstel_apprenticeship_under_classification(
+        self,
+    ) -> None:
+        """Apprenticeship is under_classification, destination_level C1."""
+        ccnl = load_ccnl("telecomunicazioni-asstel.json")
+        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
+        assert ccnl.apprenticeship.destination_level == "C1"
