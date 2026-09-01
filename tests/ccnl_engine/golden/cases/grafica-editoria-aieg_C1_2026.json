@@ -1,0 +1,47 @@
+{
+  "_description": "Golden case: CCNL Grafica e Editoria Industria, Level C1, 2026-07-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "July 2026 tranche: C1 total = 2002.49 EUR (lexplain.it, tabelle retributive grafici editoriali).",
+    "Split model underlying (paga base + contingenza + EDR), total modelled as base_salary. allowances_monthly=0.",
+    "Additional months: 13 (tredicesima only, CCNL G011).",
+    "INPS: 2026-industria.json (Confindustria/CIGO; >50 employees tier: 30.20% datore).",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "grafica-editoria-aieg.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "C1",
+    "as_of": "2026-07-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "grafica-editoria-aieg",
+    "level_code": "C1",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "2002.49",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "gross_monthly": "2002.49",
+    "gross_annual": "26032.37",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2392.37",
+    "inps_employer_annual": "7861.78",
+    "tfr_annual": "1928.32",
+    "taxable_income": "23640.00",
+    "irpef_gross": "5437.20",
+    "work_income_deduction": "826.63",
+    "irpef_net": "4610.57",
+    "net_annual": "19029.43",
+    "net_monthly": "1463.80",
+    "employer_cost_annual": "35822.47"
+  }
+}
