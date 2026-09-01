@@ -51,6 +51,12 @@ def compute(
     additional_months = ccnl.parameters.additional_months.value_at(as_of)
 
     if isinstance(employment, Apprentice):
+        if ccnl.apprenticeship is None:
+            msg = (
+                f"CCNL '{ccnl.ccnl.id}' has no apprenticeship rules modelled "
+                f"(coverage.layer_2 is partial). Cannot compute Apprentice salary."
+            )
+            raise ValueError(msg)
         gross_annual, apprenticeship_pct, apprenticeship_under_level_code = (
             _compute_apprentice_annual(
                 employment,

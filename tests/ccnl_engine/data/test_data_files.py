@@ -7,11 +7,13 @@ from pathlib import Path
 import pytest
 
 from ccnl_engine.contracts.loaders import load_ccnl
+from ccnl_engine.engine.compute import compute
 from ccnl_engine.models.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
 )
 from ccnl_engine.models.ccnl import CCNL, TaxSector
+from ccnl_engine.models.employment import Apprentice
 from ccnl_engine.tax.loaders import _resolve_employer_tier, load_year_rules
 from ccnl_engine.tax.models import YearRules, _InpsEmployerTier
 
@@ -909,3 +911,80 @@ class TestLoadBancariAbi:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 8
+
+
+class TestLoadTessileSmi:
+    """Tests for CCNL Tessile Abbigliamento Moda SMI (D014)."""
+
+    def test_tessile_smi_loads(self) -> None:
+        """Contract id == 'tessile-smi', CNEL code == 'D014'."""
+        ccnl = load_ccnl("tessile-smi.json")
+        assert ccnl.ccnl.id == "tessile-smi"
+        assert ccnl.ccnl.cnel_code == "D014"
+
+    def test_tessile_smi_has_10_levels(self) -> None:
+        """10 livelli: 1, 2, 2S, 3, 3S, 4, 5, 6, 7, 8."""
+        ccnl = load_ccnl("tessile-smi.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 10
+        assert codes == {"1", "2", "2S", "3", "3S", "4", "5", "6", "7", "8"}
+
+    def test_tessile_smi_level4_salary_tranche1(self) -> None:
+        """Level 4 pre-Dec 2024 ERN: 1786.95 EUR (lexplain.it)."""
+        ccnl = load_ccnl("tessile-smi.json")
+        level = next(lv for lv in ccnl.levels if lv.code == "4")
+        val = level.base_salary.value_at(date(2025, 6, 1))
+        assert val == Decimal("1786.95")
+
+    def test_tessile_smi_level4_salary_tranche2(self) -> None:
+        """Level 4 Jan 2026 ERN: 1938.95 EUR (kitech.it)."""
+        ccnl = load_ccnl("tessile-smi.json")
+        level = next(lv for lv in ccnl.levels if lv.code == "4")
+        val = level.base_salary.value_at(date(2026, 1, 1))
+        assert val == Decimal("1938.95")
+
+    def test_tessile_smi_level_ordering(self) -> None:
+        """Level 1 must be lowest (order 1), level 8 must be highest."""
+        ccnl = load_ccnl("tessile-smi.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "1"
+        assert by_order[-1].code == "8"
+
+    def test_tessile_smi_additional_months(self) -> None:
+        """13 additional months (tredicesima only)."""
+        ccnl = load_ccnl("tessile-smi.json")
+        am = ccnl.parameters.additional_months
+        assert am.value_at(date(2026, 1, 1)) == Decimal(13)
+
+    def test_tessile_smi_hourly_divisor(self) -> None:
+        """Hourly divisor must be 173 (40h/week standard)."""
+        ccnl = load_ccnl("tessile-smi.json")
+        assert ccnl.parameters.hourly_divisor == 173
+
+    def test_tessile_smi_level8_has_fixed_allowance(self) -> None:
+        """Level 8 has exactly one fixed allowance: Indennita funzione 51.65."""
+        ccnl = load_ccnl("tessile-smi.json")
+        level8 = next(lv for lv in ccnl.levels if lv.code == "8")
+        assert len(level8.fixed_allowances) == 1
+        fa = level8.fixed_allowances[0]
+        assert fa.code == "IND_FUN"
+        assert fa.monthly.value_at(date(2026, 1, 1)) == Decimal("51.65")
+
+    def test_tessile_smi_tax_sector(self) -> None:
+        """CCNL must declare tax_sector INDUSTRIA."""
+        ccnl = load_ccnl("tessile-smi.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+
+    def test_tessile_smi_seniority_cadence(self) -> None:
+        """Seniority: biennale cadence (24 months), maximum 4 scatti."""
+        ccnl = load_ccnl("tessile-smi.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 4
+
+    def test_tessile_smi_apprentice_raises(self) -> None:
+        """Apprentice compute on null-apprenticeship CCNL raises ValueError."""
+        ccnl = load_ccnl("tessile-smi.json")
+        rules = load_year_rules(2026, TaxSector.INDUSTRIA, num_employees=50)
+        with pytest.raises(ValueError, match="no apprenticeship rules"):
+            compute(ccnl, "4", date(2026, 1, 1), rules, Apprentice(months_elapsed=12))

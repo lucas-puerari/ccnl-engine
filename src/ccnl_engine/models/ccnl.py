@@ -114,9 +114,15 @@ class CCNL(BaseModel):
     parameters: Parameters
     levels: list[Level]
     apprenticeship: Annotated[
-        Apprenticeship,
-        Field(description="Apprenticeship rules for this CCNL."),
-    ]
+        Apprenticeship | None,
+        Field(
+            default=None,
+            description=(
+                "Apprenticeship rules for this CCNL. "
+                "None when not modelled (out of scope or data unavailable)."
+            ),
+        ),
+    ] = None
     coverage: Coverage
 
     @model_validator(mode="after")
