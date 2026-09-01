@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
-# Enforce branch naming convention before push.
+# Enforce branch naming convention before push, and block direct pushes to main.
 BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null)
 
-# main is always allowed
-[ "$BRANCH" = "main" ] && exit 0
+# Block direct pushes to main
+if [ "$BRANCH" = "main" ]; then
+  echo "❌  Push rejected: direct push to 'main' is not allowed."
+  echo "    Open a branch and merge via PR instead."
+  exit 1
+fi
 
 PATTERN='^(feature|fix|chore|ci|docs|refactor|perf|test|revert)/.+'
 if ! echo "$BRANCH" | grep -qE "$PATTERN"; then
