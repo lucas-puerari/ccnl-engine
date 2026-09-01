@@ -14,14 +14,15 @@ compute(ccnl, level, date, rules, employment) → ComputationResult
 
 ```python
 from datetime import date
-from ccnl_engine.data.loaders import load_ccnl, load_year_rules
+from ccnl_engine.contracts.loaders import load_ccnl
+from ccnl_engine.tax.loaders import load_year_rules
 from ccnl_engine.engine.compute import compute
 from ccnl_engine.models.ccnl import TaxSector
 from ccnl_engine.models.employment import Permanent
 
 ccnl  = load_ccnl("commercio-confcommercio.json")
 rules = load_year_rules(2026, TaxSector.TERZIARIO, num_employees=50)
-result = compute(ccnl, "4", date(2026, 9, 1), rules, Permanent(type="permanent"))
+result = compute(ccnl, "4", date(2026, 9, 1), rules, Permanent())
 
 print(result.net_annual)           # → Decimal('...')
 print(result.employer_cost_annual) # → Decimal('...')

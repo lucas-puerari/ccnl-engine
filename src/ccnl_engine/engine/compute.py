@@ -67,6 +67,11 @@ def compute(
         apprenticeship_pct = None
         apprenticeship_under_level_code = None
 
+    # When negotiated_ral is set, gross_annual deviates from the CCNL chain.
+    # Sync gross_monthly so that gross_monthly * additional_months ≈ gross_annual.
+    if negotiated_ral is not None:
+        gross_monthly = money(gross_annual / additional_months)
+
     is_fixed_term = isinstance(employment, FixedTerm)
     inps_employee_annual = _contrib.inps_employee(gross_annual, rules)
     inps_employer_annual = _contrib.inps_employer(
