@@ -139,16 +139,16 @@ Never work directly on `main`. Never push directly to `main`.
   The loader rejects JSON that references an unknown sector.
 
 **Tax data file** (`src/ccnl_engine/tax/data/{year}-{sector}.json`):
-- File already exists → reuse it (check `load_year_rules` in `src/ccnl_engine/data/loaders.py`).
+- File already exists → reuse it (check `load_year_rules` in `src/ccnl_engine/tax/loaders.py`).
 - Does not exist → create it by copying the nearest existing tax file and replacing values.
   Branch coverage on a new `TaxSector` value requires both (a) the enum value and (b) the CCNL
-  JSON file in `data/` — ship both in the same commit or coverage will fail.
+  JSON file in `contracts/data/` — ship both in the same commit or coverage will fail.
 
 ---
 
 ## Step 5 — Write the CCNL JSON
 
-File: `src/ccnl_engine/data/{id}.json`
+File: `src/ccnl_engine/contracts/data/{id}.json`
 
 Pydantic validators enforce these invariants at load time (violations = immediate error):
 - `valid_from` on the first period = exact CCNL renewal date
@@ -165,7 +165,7 @@ Pydantic validators enforce these invariants at load time (violations = immediat
 
 Validate immediately after writing:
 ```bash
-uv run python -c "from ccnl_engine.data.loaders import load_ccnl; load_ccnl('{id}.json')"
+uv run python -c "from ccnl_engine.contracts.loaders import load_ccnl; load_ccnl('{id}.json')"
 ```
 Fix all Pydantic errors before continuing. Do not proceed with broken JSON.
 
@@ -177,7 +177,8 @@ Fix all Pydantic errors before continuing. Do not proceed with broken JSON.
 
 ```python
 from datetime import date
-from ccnl_engine.data.loaders import load_ccnl, load_year_rules
+from ccnl_engine.contracts.loaders import load_ccnl
+from ccnl_engine.tax.loaders import load_year_rules
 from ccnl_engine.engine.compute import compute
 from ccnl_engine.models.ccnl import TaxSector
 from ccnl_engine.models.employment import Permanent

@@ -10,7 +10,7 @@ from typing import Any
 
 import pytest
 
-from ccnl_engine.data.loaders import load_ccnl
+from ccnl_engine.contracts.loaders import load_ccnl
 from ccnl_engine.engine.compute import compute
 from ccnl_engine.models.ccnl import TaxSector
 from ccnl_engine.models.employment import Apprentice, FixedTerm, Permanent

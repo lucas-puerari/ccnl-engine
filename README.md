@@ -14,7 +14,8 @@ compute(ccnl, level, date, rules, employment) → ComputationResult
 
 ```python
 from datetime import date
-from ccnl_engine.data.loaders import load_ccnl, load_year_rules
+from ccnl_engine.contracts.loaders import load_ccnl
+from ccnl_engine.tax.loaders import load_year_rules
 from ccnl_engine.engine.compute import compute
 from ccnl_engine.models.ccnl import TaxSector
 from ccnl_engine.models.employment import Permanent

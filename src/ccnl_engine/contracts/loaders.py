@@ -1,4 +1,4 @@
-"""CCNL data file loaders."""
+"""CCNL contract data file loaders."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from ccnl_engine.models.ccnl import CCNL
 def load_ccnl(filename: str) -> CCNL:
     """Load and validate a CCNL data file from the package bundle."""
     raw = (
-        importlib.resources.files("ccnl_engine.data")
+        importlib.resources.files("ccnl_engine.contracts.data")
         .joinpath(filename)
         .read_text(encoding="utf-8")
     )

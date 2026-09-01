@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from ccnl_engine.data.loaders import load_ccnl
+from ccnl_engine.contracts.loaders import load_ccnl
 from ccnl_engine.models.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
@@ -16,10 +16,16 @@ from ccnl_engine.tax.loaders import _resolve_employer_tier, load_year_rules
 from ccnl_engine.tax.models import YearRules, _InpsEmployerTier
 
 # ---------------------------------------------------------------------------
-# Parametrised: every JSON in src/ccnl_engine/data/ must validate
+# Parametrised: every JSON in src/ccnl_engine/contracts/data/ must validate
 # ---------------------------------------------------------------------------
 
-_DATA_DIR = Path(__file__).parent.parent.parent.parent / "src" / "ccnl_engine" / "data"
+_DATA_DIR = (
+    Path(__file__).parent.parent.parent.parent
+    / "src"
+    / "ccnl_engine"
+    / "contracts"
+    / "data"
+)
 _JSON_FILES = sorted(_DATA_DIR.glob("*.json"))
 
 

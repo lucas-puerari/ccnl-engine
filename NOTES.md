@@ -20,8 +20,9 @@ and only needed an `__init__.py`.
 
 `YearRules` and related tax models live in `src/ccnl_engine/tax/models.py` (prompt is
 silent on this). Tax data (`tax/data/2026.json`) is co-located with the tax models.
-The loader (`load_year_rules`) lives in `src/ccnl_engine/data/__init__.py` alongside
-`load_ccnl`, since both are data-loading concerns.
+The loader (`load_year_rules`) lives in `src/ccnl_engine/tax/loaders.py`.
+The CCNL contract loader (`load_ccnl`) lives in `src/ccnl_engine/contracts/loaders.py`.
+CCNL JSON files are in `src/ccnl_engine/contracts/data/`.
 
 ## Golden test equality
 
