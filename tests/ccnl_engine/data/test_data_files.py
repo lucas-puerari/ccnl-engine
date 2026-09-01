@@ -754,3 +754,76 @@ class TestLoadMultiserviziAnip:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 8
+
+
+class TestLoadStudiProfessionaliConfprofessioni:
+    """Tests for CCNL Studi Professionali — Confprofessioni (H442)."""
+
+    def test_studi_professionali_confprofessioni_loads(self) -> None:
+        """CCNL must load with correct id and CNEL code."""
+        ccnl = load_ccnl("studi-professionali-confprofessioni.json")
+        assert ccnl.ccnl.id == "studi-professionali-confprofessioni"
+        assert ccnl.ccnl.cnel_code == "H442"
+
+    def test_studi_professionali_confprofessioni_has_8_levels(self) -> None:
+        """CCNL must have exactly 8 levels: 5, 4, 4S, 3, 3S, 2, 1, Q."""
+        ccnl = load_ccnl("studi-professionali-confprofessioni.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 8
+        assert codes == {"5", "4", "4S", "3", "3S", "2", "1", "Q"}
+
+    def test_studi_professionali_confprofessioni_level4_salary_tranche1(
+        self,
+    ) -> None:
+        """Level 4 minimo tabellare at tranche 1 (2024-03-01): 1511.28."""
+        ccnl = load_ccnl("studi-professionali-confprofessioni.json")
+        level = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert level.base_salary.value_at(date(2024, 3, 1)) == Decimal("1511.28")
+
+    def test_studi_professionali_confprofessioni_level4_salary_tranche3(
+        self,
+    ) -> None:
+        """Level 4 minimo tabellare at tranche 3 (2025-10-01): 1595.42."""
+        ccnl = load_ccnl("studi-professionali-confprofessioni.json")
+        level = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert level.base_salary.value_at(date(2026, 1, 1)) == Decimal("1595.42")
+
+    def test_studi_professionali_confprofessioni_level_ordering(self) -> None:
+        """Level 5 must be lowest (order 1), Q must be highest."""
+        ccnl = load_ccnl("studi-professionali-confprofessioni.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "5"
+        assert by_order[-1].code == "Q"
+
+    def test_studi_professionali_confprofessioni_additional_months(self) -> None:
+        """14 additional months (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("studi-professionali-confprofessioni.json")
+        am = ccnl.parameters.additional_months
+        assert am.value_at(date(2026, 10, 1)) == Decimal(14)
+
+    def test_studi_professionali_confprofessioni_hourly_divisor(self) -> None:
+        """Hourly divisor must be 170 per Art. 45 and Art. 137 CCNL."""
+        ccnl = load_ccnl("studi-professionali-confprofessioni.json")
+        assert ccnl.parameters.hourly_divisor == 170
+
+    def test_studi_professionali_confprofessioni_no_fixed_allowances(
+        self,
+    ) -> None:
+        """Conglobated model: all levels must have no fixed allowances."""
+        ccnl = load_ccnl("studi-professionali-confprofessioni.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == [], f"level {lv.code} has allowances"
+
+    def test_studi_professionali_confprofessioni_tax_sector(self) -> None:
+        """CCNL must declare tax_sector TERZIARIO (CNEL H-prefix contract)."""
+        ccnl = load_ccnl("studi-professionali-confprofessioni.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+
+    def test_studi_professionali_confprofessioni_seniority_cadence(
+        self,
+    ) -> None:
+        """Seniority: triennale cadence (36 months), maximum 8 scatti."""
+        ccnl = load_ccnl("studi-professionali-confprofessioni.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 8
