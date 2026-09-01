@@ -545,10 +545,10 @@ class TestLoadCooperativeSociali:
         assert ccnl.ccnl.id == "cooperative-sociali"
         assert ccnl.ccnl.cnel_code == "T151"
 
-    def test_cooperative_sociali_has_13_levels(self) -> None:
-        """Contract must contain exactly 13 classification levels."""
+    def test_cooperative_sociali_has_16_levels(self) -> None:
+        """Contract must contain exactly 16 levels (13 base + 3 Quadro)."""
         ccnl = load_ccnl("cooperative-sociali.json")
-        assert len(ccnl.levels) == 13
+        assert len(ccnl.levels) == 16
         codes = {lv.code for lv in ccnl.levels}
         assert codes == {
             "A1",
@@ -562,8 +562,11 @@ class TestLoadCooperativeSociali:
             "D3",
             "E1",
             "E2",
+            "E2Q",
             "F1",
+            "F1Q",
             "F2",
+            "F2Q",
         }
 
     def test_cooperative_sociali_level_d2_salary_feb2024(self) -> None:
@@ -579,11 +582,11 @@ class TestLoadCooperativeSociali:
         assert d2.base_salary.value_at(date(2024, 10, 1)) == Decimal("1694.41")
 
     def test_cooperative_sociali_level_ordering(self) -> None:
-        """F2 must have the highest order; A1 the lowest."""
+        """F2Q must have the highest order; A1 the lowest."""
         ccnl = load_ccnl("cooperative-sociali.json")
         by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
         assert by_order[0].code == "A1"
-        assert by_order[-1].code == "F2"
+        assert by_order[-1].code == "F2Q"
 
     def test_cooperative_sociali_additional_months(self) -> None:
         """13 months before 2025, 13.5 from January 2025 (quattordicesima)."""
@@ -597,13 +600,16 @@ class TestLoadCooperativeSociali:
         ccnl = load_ccnl("cooperative-sociali.json")
         assert ccnl.parameters.hourly_divisor == 165
 
-    def test_cooperative_sociali_no_fixed_allowances(self) -> None:
-        """All levels have empty fixed_allowances (conglobated salary model)."""
+    def test_cooperative_sociali_q_levels_funzione_allowance(self) -> None:
+        """E2Q/F1Q/F2Q must carry exactly one IDF fixed allowance each."""
         ccnl = load_ccnl("cooperative-sociali.json")
-        for level in ccnl.levels:
-            assert level.fixed_allowances == [], (
-                f"Level {level.code} should have no fixed_allowances"
-            )
+        expected = {"E2Q": "77.47", "F1Q": "154.94", "F2Q": "232.41"}
+        for code, amount in expected.items():
+            lv = next(lvl for lvl in ccnl.levels if lvl.code == code)
+            assert len(lv.fixed_allowances) == 1
+            assert lv.fixed_allowances[0].code == "IDF"
+            val = lv.fixed_allowances[0].monthly.value_at(date(2026, 1, 1))
+            assert val == Decimal(amount)
 
     def test_cooperative_sociali_tax_sector(self) -> None:
         """CCNL must declare tax_sector TERZIARIO."""
