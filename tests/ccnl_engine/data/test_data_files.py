@@ -1225,3 +1225,72 @@ class TestLoadMetalmeccanicoArtigianato:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadGommaPlasticaFederazioneGommaPlastica:
+    """Tests for CCNL Gomma e Plastica Industria (Federazione Gomma Plastica, B371)."""
+
+    def test_gomma_plastica_loads(self) -> None:
+        """File loads and has correct id and CNEL code."""
+        ccnl = load_ccnl("gomma-plastica-federazione-gomma-plastica.json")
+        assert ccnl.ccnl.id == "gomma-plastica-federazione-gomma-plastica"
+        assert ccnl.ccnl.cnel_code == "B371"
+
+    def test_gomma_plastica_has_10_levels(self) -> None:
+        """Contract has exactly 10 levels with expected codes."""
+        ccnl = load_ccnl("gomma-plastica-federazione-gomma-plastica.json")
+        assert len(ccnl.levels) == 10
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"Q", "A", "B", "C", "D", "E", "F", "G", "H", "I"}
+
+    def test_gomma_plastica_level_f_salary_first_tranche(self) -> None:
+        """Level F salary at first tranche date 2023-01-01 (lexplain.it)."""
+        ccnl = load_ccnl("gomma-plastica-federazione-gomma-plastica.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "F")
+        val = lv.base_salary.value_at(date(2023, 1, 1))
+        assert val == Decimal("1869.12")
+
+    def test_gomma_plastica_level_f_salary_2026(self) -> None:
+        """Level F salary at 2026-01-01 tranche (kitech.it confirmed)."""
+        ccnl = load_ccnl("gomma-plastica-federazione-gomma-plastica.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "F")
+        val = lv.base_salary.value_at(date(2026, 1, 1))
+        assert val == Decimal("2021.12")
+
+    def test_gomma_plastica_level_ordering(self) -> None:
+        """I has lowest order (1); Q has highest order (10)."""
+        ccnl = load_ccnl("gomma-plastica-federazione-gomma-plastica.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "I"
+        assert by_order[-1].code == "Q"
+
+    def test_gomma_plastica_additional_months(self) -> None:
+        """Additional months is 13 (tredicesima only)."""
+        ccnl = load_ccnl("gomma-plastica-federazione-gomma-plastica.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(13)
+
+    def test_gomma_plastica_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (40h/week standard)."""
+        ccnl = load_ccnl("gomma-plastica-federazione-gomma-plastica.json")
+        assert ccnl.parameters.hourly_divisor == 173
+
+    def test_gomma_plastica_q_has_funzione_allowance(self) -> None:
+        """Level Q has exactly one fixed allowance of 50 EUR/month."""
+        ccnl = load_ccnl("gomma-plastica-federazione-gomma-plastica.json")
+        q = next(lv for lv in ccnl.levels if lv.code == "Q")
+        assert len(q.fixed_allowances) == 1
+        val = q.fixed_allowances[0].monthly.value_at(date(2026, 1, 1))
+        assert val == Decimal("50.00")
+
+    def test_gomma_plastica_tax_sector(self) -> None:
+        """CCNL must declare tax_sector INDUSTRIA."""
+        ccnl = load_ccnl("gomma-plastica-federazione-gomma-plastica.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+
+    def test_gomma_plastica_seniority_cadence(self) -> None:
+        """Seniority: biennale cadence (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("gomma-plastica-federazione-gomma-plastica.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
