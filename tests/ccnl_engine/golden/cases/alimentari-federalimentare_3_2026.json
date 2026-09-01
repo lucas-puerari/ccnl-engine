@@ -1,0 +1,47 @@
+{
+  "_description": "Golden case: CCNL Alimentari Industria Federalimentare, Level 3, 2026-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "4th tranche (2026-01-01): TEM 1566.16 EUR (sindacato.it, tabelle retributive Federalimentare 2026).",
+    "Split salary: base=1566.16, contingenza=522.32, EDR=10.33, IAR=85.41 → gross_monthly=2184.22.",
+    "Additional months: 14 (tredicesima + quattordicesima, FLAI Veneto confermato).",
+    "INPS employer rate 30.20% (16-50 employees tier, 2026-industria.json).",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "alimentari-federalimentare.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "3",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "alimentari-federalimentare",
+    "level_code": "3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "1566.16",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "618.06",
+    "gross_monthly": "2184.22",
+    "gross_annual": "30579.08",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2810.22",
+    "inps_employer_annual": "9234.88",
+    "tfr_annual": "2265.12",
+    "taxable_income": "27768.86",
+    "irpef_gross": "6386.84",
+    "work_income_deduction": "617.94",
+    "irpef_net": "5768.90",
+    "net_annual": "21999.96",
+    "net_monthly": "1571.43",
+    "employer_cost_annual": "42079.08"
+  }
+}

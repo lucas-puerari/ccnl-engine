@@ -44,6 +44,7 @@ print(result.employer_cost_annual) # → Decimal('...')
 | Studi e Attività Professionali — Confprofessioni | Terziario | ✅ | ✅ | — |
 | Credito — ABI | Credito | ✅ | ✅ | — |
 | Tessile Abbigliamento Moda — SMI | Industria | ✅ | ⚠️ | — |
+| Alimentari Industria — Federalimentare | Industria | ✅ | ⚠️ | — |
 
 **Layer 1** — base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months.  
 **Layer 2** — part-time, fixed-term (NASpI *addizionale*), apprenticeship (percentage or under-classification).  
