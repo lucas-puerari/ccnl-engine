@@ -1,0 +1,57 @@
+{
+  "year": 2026,
+  "sector": "artigianato",
+  "irpef_brackets": [
+    {
+      "up_to": "28000.00",
+      "rate": "0.23"
+    },
+    {
+      "up_to": "50000.00",
+      "rate": "0.33"
+    },
+    {
+      "up_to": null,
+      "rate": "0.43"
+    }
+  ],
+  "work_deduction_breakpoints": [
+    {
+      "income_up_to": "8500.00",
+      "deduction": "1955.00"
+    },
+    {
+      "income_up_to": "28000.00",
+      "deduction": "700.00"
+    },
+    {
+      "income_up_to": "50000.00",
+      "deduction": "0.00"
+    },
+    {
+      "income_up_to": null,
+      "deduction": "0.00"
+    }
+  ],
+  "fixed_term_additional_rate": "0.014",
+  "inps": {
+    "employee_rate": "0.0919",
+    "employer_tiers": [
+      {
+        "max_employees": null,
+        "rate": "0.2693"
+      }
+    ],
+    "ceiling": null
+  },
+  "tfr": {
+    "accrual_divisor": "13.5"
+  },
+  "notes": [
+    "IRPEF brackets and work_deduction_breakpoints: statutory, sector-agnostic.",
+    "INPS datore — SIMPLIFICATION: aliquota 26.93% da kitech.it (dati proxy per artigianato non-edile 2024; circolare INPS specifica non recuperata). Componenti stimati: IVS 23.81% + NASpI 1.61% + CUAF 0.68% + malattia operai ~0.83% = ~26.93%. Nessun CIGO/CIGS per il settore artigiano (art. 3 D.Lgs. 148/2015). FSBA (0.45% datore + 0.15% dipendente) escluso: contributo bilaterale, non INPS. Nessuna fascia per numero dipendenti.",
+    "SIMPLIFICATION: aliquota unica 26.93% modella operai. Impiegati/quadri hanno aliquota inferiore (~24.71% kitech) lungo un asse categoria-lavoratore non rappresentabile nello schema employer_tiers. Il costo datoriale per impiegati/quadri risulta sovrastimato di ~2.2pp.",
+    "INPS dipendente — employee_rate 9.19% (IVS + NASpI). Nessuna addizionale CIGS per dipendente (settore artigianato non ha CIGS).",
+    "fixed_term_additional_rate: NASpI addizionale 1.4% (solo datore) per Art. 2 co. 28 L. 92/2012."
+  ]
+}

@@ -46,6 +46,7 @@ print(result.employer_cost_annual) # → Decimal('...')
 | Tessile Abbigliamento Moda — SMI | Industria | ✅ | ⚠️ | — |
 | Alimentari Industria — Federalimentare | Industria | ✅ | ⚠️ | — |
 | Distribuzione Moderna Organizzata — Federdistribuzione | Terziario | ✅ | ✅ | — |
+| Metalmeccanica e Installazione Impianti — Artigianato | Artigianato | ✅ | ⚠️ | — |
 
 **Layer 1** — base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months.  
 **Layer 2** — part-time, fixed-term (NASpI *addizionale*), apprenticeship (percentage or under-classification).  
