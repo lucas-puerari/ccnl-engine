@@ -118,7 +118,20 @@ Copy them unchanged from any existing tax file. Do not re-research.
 
 ---
 
-## Step 3 — Check if engine modifications are needed
+## Step 3 — Set up the branch
+
+```bash
+git checkout main
+git pull
+git checkout -b feature/{id}-{datoriale}
+```
+
+The CI validates branch naming — use the pattern above, no deviations.
+Never work directly on `main`.
+
+---
+
+## Step 5 — Check if engine modifications are needed
 
 **TaxSector enum** (`src/ccnl_engine/models/ccnl.py`):
 - `tax_sector` already in `TaxSector` → no change needed.
@@ -133,7 +146,7 @@ Copy them unchanged from any existing tax file. Do not re-research.
 
 ---
 
-## Step 4 — Write the CCNL JSON
+## Step 6 — Write the CCNL JSON
 
 File: `src/ccnl_engine/data/{id}.json`
 
@@ -158,7 +171,7 @@ Fix all Pydantic errors before continuing. Do not proceed with broken JSON.
 
 ---
 
-## Step 5 — Compute the golden case with the engine
+## Step 7 — Compute the golden case with the engine
 
 **Never compute expected values by hand.** Run the engine and capture the output:
 
@@ -181,7 +194,7 @@ Save to `tests/ccnl_engine/golden/cases/{id}_{level}_{year}.json`.
 
 ---
 
-## Step 6 — Write unit tests
+## Step 8 — Write unit tests
 
 Append class `TestLoad{CamelCaseName}` at the bottom of
 `tests/ccnl_engine/data/test_data_files.py`.
@@ -216,7 +229,7 @@ docstrings too — count before saving.
 
 ---
 
-## Step 7 — Update README.md
+## Step 9 — Update README.md
 
 Add one row to the coverage matrix table:
 ```
@@ -225,7 +238,7 @@ Add one row to the coverage matrix table:
 
 ---
 
-## Step 8 — Final checks
+## Step 10 — Final checks
 
 All three must pass before committing:
 
@@ -241,7 +254,7 @@ parametrized `test_file_validates` test never executes that enum branch.
 
 ---
 
-## Step 9 — Commit and PR
+## Step 11 — Commit and PR
 
 **Commit message**: single line only. The git hook rejects multi-line messages.
 ```
