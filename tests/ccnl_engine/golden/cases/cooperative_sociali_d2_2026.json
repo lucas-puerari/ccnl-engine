@@ -1,0 +1,46 @@
+{
+  "_description": "Golden case: CCNL Cooperative Sociali T151, Level D2, 2026-01-01, permanent, full-time, no seniority, 50 employees.",
+  "_notes": [
+    "base_monthly is the conglobated minimum at third tranche (2025-10-01): D2 = 1727.83. Divisore 165, 38h/week.",
+    "additional_months = 13.5 from 2025-01-01 (tredicesima + quattordicesima 50%). gross_annual = 1727.83 × 13.5 = 23325.71.",
+    "INPS: terziario sector, 50 employees (2026-terziario.json). employee 9.19%, employer (second tier applicable).",
+    "Livelli Q (E2Q, F1Q, F2Q) not modelled — SIMPLIFICATION (indennità di funzione excluded).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "cooperative-sociali.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "D2",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "cooperative-sociali",
+    "level_code": "D2",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "1727.83",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "gross_monthly": "1727.83",
+    "gross_annual": "23325.71",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2143.63",
+    "inps_employer_annual": "6759.79",
+    "tfr_annual": "1727.83",
+    "taxable_income": "21182.08",
+    "irpef_gross": "4871.88",
+    "work_income_deduction": "1000.83",
+    "irpef_net": "3871.05",
+    "net_annual": "17311.03",
+    "net_monthly": "1282.30",
+    "employer_cost_annual": "31813.33"
+  }
+}
