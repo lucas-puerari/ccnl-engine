@@ -71,16 +71,3 @@ Each limitation is documented in the relevant data file's `coverage.notes` field
 ## Disclaimer
 
 This library is not legal or tax advice. Figures are computed from publicly available CCNL tables and statutory rates as of the dates indicated in the data files. Always verify results against official sources or a qualified payroll professional.
-
----
-
-## Development
-
-### Setup
-
-```bash
-make setup
-```
-
-Activates local git hooks (conventional commits, single-line messages).
-
