@@ -118,6 +118,23 @@ Copy them unchanged from any existing tax file. Do not re-research.
 
 ---
 
+## Advisor checkpoint — end of research
+
+Call `advisor()` now, before writing any file.
+
+Provide a summary of what you found:
+- Contract name, CNEL code, headcount and source
+- Salary model: conglobated or split, and the back-calculation result (3 levels)
+- `hourly_divisor` derived value and verification levels used
+- `additional_months`, seniority cadence and maximum count
+- Apprenticeship type, the source URL and the renewal date it applies to
+- INPS rates source and whether a bilateral fund substitutes part of the employer rate
+- Any ambiguity or SIMPLIFICATION you intend to document
+
+Do not proceed to Step 3 until the advisor has confirmed the research is sound.
+
+---
+
 ## Step 3 — Set up the branch
 
 ```bash
@@ -252,6 +269,20 @@ uv run mypy src/ tests/         # zero errors, strict mode
 If pytest reports < 100% coverage, identify the uncovered branch before committing.
 Most common cause: new `TaxSector` enum value has no JSON file in `data/` yet — the
 parametrized `test_file_validates` test never executes that enum branch.
+
+---
+
+## Advisor checkpoint — end of implementation
+
+Call `advisor()` now, before committing.
+
+Provide:
+- All three check results (pytest coverage %, ruff output, mypy output)
+- The 10 test method names and what each verifies
+- Any SIMPLIFICATION you included and why it is acceptable
+- Any deviation from the standard JSON schema or engine model
+
+Do not proceed to Step 10 until the advisor has confirmed the implementation is ready to ship.
 
 ---
 
