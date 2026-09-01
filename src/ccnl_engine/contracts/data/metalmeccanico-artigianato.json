@@ -1,0 +1,641 @@
+{
+  "schema_version": "0.2",
+  "ccnl": {
+    "id": "metalmeccanico-artigianato",
+    "name": "CCNL Metalmeccanica e Installazione di Impianti — Artigianato",
+    "cnel_code": "C030",
+    "sector": "metalmeccanico",
+    "tax_sector": "artigianato",
+    "signatories": [
+      "Confartigianato Imprese",
+      "CNA",
+      "Casartigiani",
+      "CLAAI",
+      "FIM-CISL",
+      "FIOM-CGIL",
+      "UILM-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
+        "type": "agreement",
+        "agreement_date": "2021-12-17"
+      },
+      {
+        "url": "https://www.kitech.it/tabelle-retributive-metalmeccanici-artigianato/",
+        "type": "table",
+        "agreement_date": "2024-11-19"
+      },
+      {
+        "url": "https://www.eblart.it/scheda-ccnl-artigianato-metalmeccanici/",
+        "type": "table",
+        "agreement_date": null
+      },
+      {
+        "url": "https://www.direzionelavoro.it/ccnl-metalmeccanici-artigianato-tabelle-retributive/",
+        "type": "table",
+        "agreement_date": null
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-01T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": 173,
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2022-01-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "1Q": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "32.94"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "32.94"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "29.08"
+            }
+          ]
+        },
+        "2bis": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "26.13"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "24.29"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "21.72"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "20.24"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "18.40"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "6",
+      "order": 1,
+      "description": "6° livello — operazioni elementari senza autonomia",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1300.89"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1323.85"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1341.83"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1387.75"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1430.00"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "1475.92"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "1498.88"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "1521.84"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "1540.21"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 2,
+      "description": "5° livello — lavorazioni semplici con minima autonomia esecutiva",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1364.20"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1388.28"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1407.13"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1455.29"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1499.59"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "1547.75"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "1571.83"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "1595.91"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "1615.17"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 3,
+      "description": "4° livello — mansioni operative qualificate, autonomia esecutiva parziale",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1416.41"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1441.41"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1460.98"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1510.98"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1556.98"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "1606.98"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "1631.98"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "1656.98"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "1676.98"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 4,
+      "description": "3° livello — lavorazioni qualificate con autonomia operativa",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1502.77"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1529.29"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1550.06"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1603.11"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1651.91"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "1704.96"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "1731.48"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "1758.00"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "1779.22"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2bis",
+      "order": 5,
+      "description": "2° livello bis — lavorazioni specializzate, autonomia operativa elevata",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1562.81"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1590.39"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1611.99"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1667.16"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1717.91"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "1773.08"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "1800.66"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "1828.24"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "1850.31"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 6,
+      "description": "2° livello — lavorazioni di concetto o alta specializzazione tecnica",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1655.09"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1684.30"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1707.17"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1765.60"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1819.35"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "1877.78"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "1906.99"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "1936.20"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "1959.57"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1",
+      "order": 7,
+      "description": "1° livello — impiegati di concetto con funzioni direttive",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1778.79"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1810.19"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1834.76"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1897.55"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1955.32"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "2018.11"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "2049.51"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "2080.91"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "2106.03"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1Q",
+      "order": 8,
+      "description": "1°Q livello — quadri: funzioni direttive di elevata responsabilità",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1778.79"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1810.19"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1834.76"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1897.55"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1955.32"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "2018.11"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "2049.51"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "2080.91"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "2106.03"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": {
+    "type": "percentage",
+    "destination_level": "3",
+    "periods": [
+      {
+        "months_from": 0,
+        "months_until": 12,
+        "percentage": "0.70"
+      },
+      {
+        "months_from": 12,
+        "months_until": 18,
+        "percentage": "0.75"
+      },
+      {
+        "months_from": 18,
+        "months_until": 24,
+        "percentage": "0.78"
+      },
+      {
+        "months_from": 24,
+        "months_until": 30,
+        "percentage": "0.80"
+      },
+      {
+        "months_from": 30,
+        "months_until": 36,
+        "percentage": "0.85"
+      },
+      {
+        "months_from": 36,
+        "months_until": 42,
+        "percentage": "0.88"
+      },
+      {
+        "months_from": 42,
+        "months_until": 48,
+        "percentage": "0.92"
+      },
+      {
+        "months_from": 48,
+        "months_until": null,
+        "percentage": "1.00"
+      }
+    ]
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "MINIMI CONGLOBATI: i valori in base_salary sono minimi tabellari conglobati, incorporando paga base, contingenza e EDR in un'unica cifra. La conglobazione è confermata come vigente dal 16.06.2011 (fonte: EBNA CCNL 17.12.2021, Art. 28 e tabelle allegate). fixed_allowances è vuoto per tutti i livelli.",
+      "TRANCHE 2022: tre tranches CCNL 17.12.2021 (01.01.2022, 01.05.2022, 01.12.2022). Incrementi per livello verificati su EBNA/Direzionelavoro.it. Valori 01.12.2022 confermati da fonte primaria EBNA.",
+      "TRANCHE AFAC: Accordo Fondo Anticipazione Contrattuale 21.12.2023, due tranches (01.12.2023, 01.04.2024). Valori 01.04.2024 cross-verificati con kitech.it su tutti gli 8 livelli.",
+      "TRANCHE RINNOVO 2024: accordo 19.11.2024, quattro tranches (01.12.2024, 01.07.2025, 01.03.2026, 01.11.2026). Valori 01.03.2026 verificati da kitech.it su tutti gli 8 livelli. SIMPLIFICATION: valori 01.12.2024, 01.07.2025 e 01.11.2026 per livelli diversi dal 4° sono derivati per proporzione usando il livello 4° come riferimento (incr. 50, 25, 25, 20 €) e i rapporti inter-livello confermati dal confronto AFAC/kitech. Il testo ufficiale del rinnovo 2024 non è stato recuperato integralmente.",
+      "DIVISORE ORARIO: 173 ore/mese (40h/settimana, Art. 28 CCNL 17.12.2021). La verifica aritmetica mensile/oraria non ha prodotto risultati interi puliti sui valori disponibili; la conferma si basa sul testo del CCNL primario.",
+      "SCATTI DI ANZIANITÀ: biennali (24 mesi), massimo 5 scatti. Importi per livello da tabella EBLART/Direzionelavoro.it (tab. 7.1). La data di decorrenza degli importi (01.01.2022) è assunta coincidente con la prima tranche salariale; la fonte primaria non riporta una data di vigenza separata per gli scatti.",
+      "APPRENDISTATO: tipo percentage, 10 semestri (60 mesi max). Progressione operai confermata da fonte EBLART (Art. relativo all'apprendistato professionalizzante): 70% (sem. I-II), 75% (III), 78% (IV), 80% (V), 85% (VI), 88% (VII), 92% (VIII), 100% (IX-X). Dalla riforma del 2015, il livello 6° non è utilizzabile come livello di destinazione. destination_level '3' è il livello medio-basso tipico di destinazione.",
+      "INPS: SIMPLIFICATION — aliquota datoriale unica 26.93% (fonte proxy kitech.it; circolare INPS specifica per artigianato 2026 non recuperata). Componenti stimati: IVS 23.81% + NASpI 1.61% + CUAF 0.68% + malattia operai ~0.83% = ~26.93%. L'aliquota modella gli operai. SIMPLIFICATION: impiegati e quadri hanno aliquota effettiva ~24.71% (fonte: kitech.it, categoria impiegati), non modellabile nell'attuale schema employer_tiers (asse categorie lavoratore assente); il costo datoriale calcolato per livelli impiegatizi è sovrastimato di ~2.2pp. Nessun CIGO/CIGS (D.Lgs. 148/2015 art. 3, settore artigiano escluso). FSBA (0.45% datore + 0.15% dipendente) è contributo bilaterale, non INPS: escluso dal file fiscale.",
+      "MENSILITÀ: 13 (tredicesima). Non è prevista la quattordicesima dal CCNL Artigianato Metalmeccanico."
+    ]
+  }
+}

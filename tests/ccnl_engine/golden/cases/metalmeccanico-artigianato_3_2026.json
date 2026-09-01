@@ -1,0 +1,47 @@
+{
+  "_description": "Golden case: CCNL Metalmeccanica Artigianato, Level 3°, 2026-03-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "March 2026 tranche: 1758.00 EUR (kitech.it, tabelle retributive artigianato metalmeccanico 2024-renewal).",
+    "Conglobated salary: no separate contingenza or EDR. allowances_monthly=0.",
+    "Additional months: 13 (tredicesima only, Art. mensilità CCNL 17.12.2021).",
+    "INPS employer rate 26.93% flat (kitech.it proxy, artigianato non-edile; no CIGO/CIGS).",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "metalmeccanico-artigianato.json",
+    "year": 2026,
+    "tax_sector": "artigianato",
+    "num_employees": 50,
+    "level_code": "3",
+    "as_of": "2026-03-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "metalmeccanico-artigianato",
+    "level_code": "3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "1758.00",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "gross_monthly": "1758.00",
+    "gross_annual": "22854.00",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2100.28",
+    "inps_employer_annual": "6154.58",
+    "tfr_annual": "1692.89",
+    "taxable_income": "20753.72",
+    "irpef_gross": "4773.36",
+    "work_income_deduction": "1031.19",
+    "irpef_net": "3742.17",
+    "net_annual": "17011.55",
+    "net_monthly": "1308.58",
+    "employer_cost_annual": "30701.47"
+  }
+}
