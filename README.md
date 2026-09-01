@@ -49,6 +49,7 @@ print(result.employer_cost_annual) # → Decimal('...')
 | Metalmeccanica e Installazione Impianti — Artigianato | Artigianato | ✅ | ⚠️ | — |
 | Gomma e Plastica Industria — Federazione Gomma Plastica | Industria | ✅ | ⚠️ | — |
 | Grafica e Editoria — AIEG-Acigraf | Industria | ✅ | — | — |
+| Carta e Cartone — Assocarta | Industria | ✅ | ⚠️ | — |
 
 **Layer 1** — base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months.  
 **Layer 2** — part-time, fixed-term (NASpI *addizionale*), apprenticeship (percentage or under-classification).  
