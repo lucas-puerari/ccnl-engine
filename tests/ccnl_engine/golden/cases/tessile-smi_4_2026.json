@@ -1,0 +1,46 @@
+{
+  "_description": "Golden case: CCNL Tessile Abbigliamento Moda SMI, Level 4, 2026-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Second tranche (2026-01-01): conglobated monthly 1938.95 EUR (Jan 2026 confirmed table, kitech.it).",
+    "No Dec 2024 tranche modelled (per-level amounts not available in public sources — see coverage.notes).",
+    "INPS employer rate 30.20% (16-50 employees tier, 2026-industria.json).",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "tessile-smi.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "4",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "tessile-smi",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "1938.95",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "gross_monthly": "1938.95",
+    "gross_annual": "25206.35",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2316.46",
+    "inps_employer_annual": "7612.32",
+    "tfr_annual": "1867.14",
+    "taxable_income": "22889.89",
+    "irpef_gross": "5264.67",
+    "work_income_deduction": "879.80",
+    "irpef_net": "4384.87",
+    "net_annual": "18505.02",
+    "net_monthly": "1423.46",
+    "employer_cost_annual": "34685.81"
+  }
+}
