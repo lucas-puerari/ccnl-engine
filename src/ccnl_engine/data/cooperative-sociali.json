@@ -1,0 +1,253 @@
+{
+  "schema_version": "0.2",
+  "ccnl": {
+    "id": "cooperative-sociali",
+    "name": "CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)",
+    "cnel_code": "T151",
+    "sector": "servizi socio-assistenziali",
+    "tax_sector": "terziario",
+    "signatories": [
+      "Confcooperative-Federsolidarietà",
+      "Legacoop Sociali",
+      "AGCI-Solidarietà",
+      "FP-CGIL",
+      "CISL-FPS",
+      "UIL-FPL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/",
+        "type": "table",
+        "agreement_date": "2024-01-26"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-01T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": 165,
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2024-02-01", "valid_until": "2025-01-01", "value": "13" },
+        { "valid_from": "2025-01-01", "valid_until": null, "value": "13.5" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "A1": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "11.62" }] },
+        "A2": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "13.43" }] },
+        "B":  { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "16.27" }] },
+        "C1": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "18.59" }] },
+        "C2": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "19.63" }] },
+        "C3": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "20.66" }] },
+        "D1": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "20.66" }] },
+        "D2": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "23.24" }] },
+        "D3": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "26.86" }] },
+        "E1": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "26.86" }] },
+        "E2": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "31.50" }] },
+        "F1": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "39.51" }] },
+        "F2": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "46.48" }] }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "A1",
+      "order": 1,
+      "description": "Livello A1 — operatore generico di primo inserimento",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1307.25" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1333.57" },
+          { "valid_from": "2025-10-01", "valid_until": null, "value": "1359.88" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A2",
+      "order": 2,
+      "description": "Livello A2 — operatore ausiliario semplice",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1319.37" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1345.95" },
+          { "valid_from": "2025-10-01", "valid_until": null, "value": "1372.53" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "B",
+      "order": 3,
+      "description": "Livello B — operatore ausiliario qualificato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1380.99" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1408.88" },
+          { "valid_from": "2025-10-01", "valid_until": null, "value": "1436.78" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C1",
+      "order": 4,
+      "description": "Livello C1 — operatore di assistenza base (OSS)",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1485.21" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1515.21" },
+          { "valid_from": "2025-10-01", "valid_until": null, "value": "1545.21" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C2",
+      "order": 5,
+      "description": "Livello C2 — operatore di assistenza qualificato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1529.48" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1560.27" },
+          { "valid_from": "2025-10-01", "valid_until": null, "value": "1591.06" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C3",
+      "order": 6,
+      "description": "Livello C3 — operatore specializzato di assistenza",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1574.40" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1605.98" },
+          { "valid_from": "2025-10-01", "valid_until": null, "value": "1637.56" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D1",
+      "order": 7,
+      "description": "Livello D1 — tecnico di primo livello",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1574.40" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1605.98" },
+          { "valid_from": "2025-10-01", "valid_until": null, "value": "1637.56" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D2",
+      "order": 8,
+      "description": "Livello D2 — tecnico qualificato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1660.99" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1694.41" },
+          { "valid_from": "2025-10-01", "valid_until": null, "value": "1727.83" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D3",
+      "order": 9,
+      "description": "Livello D3 — tecnico senior",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1768.11" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1803.63" },
+          { "valid_from": "2025-10-01", "valid_until": null, "value": "1839.16" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "E1",
+      "order": 10,
+      "description": "Livello E1 — responsabile di primo livello / coordinatore",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1768.11" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1803.63" },
+          { "valid_from": "2025-10-01", "valid_until": null, "value": "1839.16" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "E2",
+      "order": 11,
+      "description": "Livello E2 — responsabile senior / direttore di servizio",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1908.55" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1946.97" },
+          { "valid_from": "2025-10-01", "valid_until": null, "value": "1985.39" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "F1",
+      "order": 12,
+      "description": "Livello F1 — direttore di area / funzione direttiva avanzata",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "2107.81" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "2150.18" },
+          { "valid_from": "2025-10-01", "valid_until": null, "value": "2192.55" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "F2",
+      "order": 13,
+      "description": "Livello F2 — direttore generale / funzione di massima responsabilità",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "2407.26" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "2455.68" },
+          { "valid_from": "2025-10-01", "valid_until": null, "value": "2504.10" }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": {
+    "type": "percentage",
+    "destination_level": "C1",
+    "periods": [
+      { "months_from": 0,  "months_until": 18, "percentage": "0.85" },
+      { "months_from": 18, "months_until": null, "percentage": "0.90" }
+    ]
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "MINIMI CONGLOBATI: i valori in base_salary sono i minimi tabellari conglobati mensili (paga base + contingenza + EDR inclusi), come pubblicati da lexplain.it. Divisore orario 165 (art. 75 CCNL, 38 ore settimanali). Verifica back-calculation: A1 ottobre 2025 = 1359.88 / 165 = 8.24 €/ora; C1 = 1545.21 / 165 = 9.37 €/ora; F2 = 2504.10 / 165 = 15.17 €/ora — coincidono con le tariffe orarie pubblicate da lexplain.it.",
+      "SIMPLIFICATION — LIVELLI QUADRO: il CCNL prevede un'indennità di funzione per i lavoratori inquadrati come Quadri nei livelli E2, F1, F2 (rispettivamente 77.47€, 154.94€, 232.41€/mese). Tali importi non sono modellati perché i Quadri sono una minoranza del settore e i livelli E2Q/F1Q/F2Q non costituiscono inquadramenti separati nel CCNL bensì lo stesso livello con indennità aggiuntiva. Chi necessita del calcolo per lavoratori Quadri deve aggiungere manualmente l'indennità.",
+      "MENSILITÀ AGGIUNTIVE: 13 fino al 31 dicembre 2024 (solo tredicesima). Dal 1° gennaio 2025: 13.5 (tredicesima + quattordicesima pari al 50% di una mensilità, erogata in giugno, introdotta dal rinnovo 26 gennaio 2024).",
+      "TRANCHE: febbraio 2024 (prima), ottobre 2024 (seconda), ottobre 2025 (terza e ultima). Rinnovo firmato il 26 gennaio 2024. Nessuna tabella previgente ante-febbraio 2024 modellata.",
+      "LIVELLI CON STESSA RETRIBUZIONE: C3 e D1 hanno identico minimo tabellare a ogni tranche (C3 ha ordine 6, D1 ha ordine 7, valido perché il motore consente salari uguali tra livelli contigui). Stesso caso per D3 (ordine 9) e E1 (ordine 10).",
+      "SCATTI DI ANZIANITÀ: biennali (ogni 24 mesi), massimo 5 scatti. Importi fissi per livello dalla tabella scatti del CCNL (fonte: ccnlcooperative.it, art. 80). C3 e D1 hanno lo stesso importo (20.66€); D3 e E1 hanno lo stesso importo (26.86€).",
+      "APPRENDISTATO: tipo percentage, livello di destinazione C1. Percentuali: 85% per i primi 18 mesi, 90% dal 19° mese. Durata massima 36 mesi (rinnovo 26 gennaio 2024).",
+      "SIMPLIFICATION — INPS: utilizza 2026-terziario.json (stesso tax_sector del CCNL Commercio Confcommercio). Il settore cooperative sociali non dispone di aliquota datoriale INPS distinta verificata da circolare primaria; le cooperative sociali di tipo B possono applicare agevolazioni ex L. 381/1991 non modellate in questo file."
+    ]
+  }
+}
