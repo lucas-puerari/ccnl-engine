@@ -988,3 +988,95 @@ class TestLoadTessileSmi:
         rules = load_year_rules(2026, TaxSector.INDUSTRIA, num_employees=50)
         with pytest.raises(ValueError, match="no apprenticeship rules"):
             compute(ccnl, "4", date(2026, 1, 1), rules, Apprentice(months_elapsed=12))
+
+
+class TestLoadAlimentariFederalimentare:
+    """Tests for CCNL Alimentari Industria — Federalimentare (E012)."""
+
+    def test_alimentari_federalimentare_loads(self) -> None:
+        """CCNL id == 'alimentari-federalimentare', cnel_code == 'E012'."""
+        ccnl = load_ccnl("alimentari-federalimentare.json")
+        assert ccnl.ccnl.id == "alimentari-federalimentare"
+        assert ccnl.ccnl.cnel_code == "E012"
+
+    def test_alimentari_federalimentare_has_8_levels(self) -> None:
+        """8 levels: 6, 5, 4, 3, 3A, 2, 1, 1S."""
+        ccnl = load_ccnl("alimentari-federalimentare.json")
+        assert len(ccnl.levels) == 8
+        assert {lv.code for lv in ccnl.levels} == {
+            "1S",
+            "1",
+            "2",
+            "3A",
+            "3",
+            "4",
+            "5",
+            "6",
+        }
+
+    def test_alimentari_federalimentare_level3_salary_tranche1(self) -> None:
+        """Level 3 TEM at tranche 1 (2023-12-01): 1419.08 EUR."""
+        ccnl = load_ccnl("alimentari-federalimentare.json")
+        level = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert level.base_salary.value_at(date(2023, 12, 1)) == Decimal("1419.08")
+
+    def test_alimentari_federalimentare_level3_salary_tranche4(self) -> None:
+        """Level 3 TEM at tranche 4 (2026-01-01): 1566.16 EUR."""
+        ccnl = load_ccnl("alimentari-federalimentare.json")
+        level = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert level.base_salary.value_at(date(2026, 1, 1)) == Decimal("1566.16")
+
+    def test_alimentari_federalimentare_level_ordering(self) -> None:
+        """Level 6 (order 1) is lowest; level 1S (order 8) is highest."""
+        ccnl = load_ccnl("alimentari-federalimentare.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "6"
+        assert by_order[-1].code == "1S"
+
+    def test_alimentari_federalimentare_additional_months(self) -> None:
+        """14 additional months (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("alimentari-federalimentare.json")
+        am = ccnl.parameters.additional_months
+        assert am.value_at(date(2026, 1, 1)) == Decimal(14)
+
+    def test_alimentari_federalimentare_hourly_divisor(self) -> None:
+        """Hourly divisor must be 173 (40h/week standard industria)."""
+        ccnl = load_ccnl("alimentari-federalimentare.json")
+        assert ccnl.parameters.hourly_divisor == 173
+
+    def test_alimentari_federalimentare_split_allowances(self) -> None:
+        """Split model: every level has CONT, EDR, IAR allowances."""
+        ccnl = load_ccnl("alimentari-federalimentare.json")
+        for lv in ccnl.levels:
+            codes = {a.code for a in lv.fixed_allowances}
+            assert codes == {"CONT", "EDR", "IAR"}, (
+                f"level {lv.code} allowances: {codes}"
+            )
+
+    def test_alimentari_federalimentare_tax_sector(self) -> None:
+        """CCNL must declare tax_sector INDUSTRIA."""
+        ccnl = load_ccnl("alimentari-federalimentare.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+
+    def test_alimentari_federalimentare_seniority_cadence(self) -> None:
+        """Seniority: biennale cadence (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("alimentari-federalimentare.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_alimentari_federalimentare_apprenticeship_type(self) -> None:
+        """Apprenticeship is under_classification, destination_level 3A."""
+        ccnl = load_ccnl("alimentari-federalimentare.json")
+        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
+        assert ccnl.apprenticeship.destination_level == "3A"
+
+    def test_alimentari_federalimentare_apprentice_under_classification(self) -> None:
+        """Apprentice 5 months elapsed → under level 4 (period 0-9 months)."""
+        ccnl = load_ccnl("alimentari-federalimentare.json")
+        rules = load_year_rules(2026, TaxSector.INDUSTRIA, num_employees=50)
+        result = compute(
+            ccnl, "3A", date(2026, 1, 1), rules, Apprentice(months_elapsed=5)
+        )
+        assert result.apprenticeship_under_level_code == "4"
+        assert result.apprenticeship_pct is None
