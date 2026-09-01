@@ -1,0 +1,48 @@
+{
+  "_description": "Golden case: CCNL Edilizia ANCE (F012), Level 3 (operaio specializzato), 2026-03-01, permanent, full-time, no seniority, 50 employees.",
+  "_notes": [
+    "base_monthly is the conglobated minimum (paga base + contingenza + EDR): 1982.05 from the March 2026 tranche (second tranche of the 2025-2028 renewal, effective 2026-03-01).",
+    "Seniority (scatti) absent at seniority_count=0. Cadence is 24 months (biennale), max 5 scatti. L3 scatto amount: 8.99 EUR.",
+    "additional_months: 13 (gratifica natalizia only; 14a not provided in edilizia industry CCNL). gross_annual = 1982.05 * 13 = 25766.65.",
+    "INPS rates: edilizia sector, 50 employees (2026-edilizia.json). employee 9.19%, employer 29.06% (16-50 tier).",
+    "SIMPLIFICATION: Cassa Edile contributions (~18.5% datoriale for operai) NOT included in employer_cost_annual.",
+    "SIMPLIFICATION: TFR calculated with standard formula (25766.65 / 13.5 = 1908.64); in practice operai TFR flows to Cassa Edile.",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "edilizia-ance.json",
+    "year": 2026,
+    "tax_sector": "edilizia",
+    "num_employees": 50,
+    "level_code": "3",
+    "as_of": "2026-03-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "edilizia-ance",
+    "level_code": "3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "1982.05",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "gross_monthly": "1982.05",
+    "gross_annual": "25766.65",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2367.96",
+    "inps_employer_annual": "7487.79",
+    "tfr_annual": "1908.64",
+    "taxable_income": "23398.69",
+    "irpef_gross": "5381.70",
+    "work_income_deduction": "843.74",
+    "irpef_net": "4537.96",
+    "net_annual": "18860.73",
+    "net_monthly": "1450.83",
+    "employer_cost_annual": "35163.08"
+  }
+}
