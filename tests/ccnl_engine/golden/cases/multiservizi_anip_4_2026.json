@@ -1,0 +1,49 @@
+{
+  "_description": "Golden case: CCNL Multiservizi K511, Level 4, 2026-05-01, permanent, full-time, no seniority, 50 employees.",
+  "_notes": [
+    "base_monthly: paga base at May 2026 tranche (2nd tranche of 2025-2028 renewal): level 4 = 1003.10.",
+    "allowances_monthly: contingenza 517.50 + EDR 10.33 = 527.83.",
+    "gross_monthly: 1003.10 + 527.83 = 1530.93.",
+    "additional_months: 14. gross_annual = 1530.93 * 14 = 21433.02.",
+    "INPS: terziario sector, 50 employees (2026-terziario.json). Employee 9.19%, employer 28.98%.",
+    "Split salary model: contingenza (517.50) and EDR (10.33) as frozen fixed_allowances.",
+    "Source: oristanoservizi.it PDF (2021-2024); redigo.info accordo integrativo Aug 2025 (2025-2028).",
+    "kitech.it confirms May 2026 level 4 minimo = 1003.10."
+  ],
+  "inputs": {
+    "ccnl_file": "multiservizi-anip.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "4",
+    "as_of": "2026-05-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "multiservizi-anip",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "1003.10",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "527.83",
+    "gross_monthly": "1530.93",
+    "gross_annual": "21433.02",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "1969.69",
+    "inps_employer_annual": "6211.29",
+    "tfr_annual": "1587.63",
+    "taxable_income": "19463.33",
+    "irpef_gross": "4476.57",
+    "work_income_deduction": "1122.64",
+    "irpef_net": "3353.93",
+    "net_annual": "16109.40",
+    "net_monthly": "1150.67",
+    "employer_cost_annual": "29231.94"
+  }
+}
