@@ -1,0 +1,47 @@
+{
+  "_description": "Golden case: CCNL Carta e Cartone Industria, Level C1, 2026-04-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "2026-04-01 tranche: C1 total = 1960.11 EUR (kitech.it; rinnovo 10/02/2026, CNEL G022).",
+    "Conglobated model (new rinnovo): single base_salary per level; fixed_allowances=[]. allowances_monthly=0.",
+    "Additional months: 13 (tredicesima only, CCNL Carta Industria).",
+    "INPS: 2026-industria.json (Confindustria/CIGO; >50 employees tier: 30.20% datore).",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "carta-cartone-assocarta.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "C1",
+    "as_of": "2026-04-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "carta-cartone-assocarta",
+    "level_code": "C1",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "1960.11",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "gross_monthly": "1960.11",
+    "gross_annual": "25481.43",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2341.74",
+    "inps_employer_annual": "7695.39",
+    "tfr_annual": "1887.51",
+    "taxable_income": "23139.69",
+    "irpef_gross": "5322.13",
+    "work_income_deduction": "862.09",
+    "irpef_net": "4460.04",
+    "net_annual": "18679.65",
+    "net_monthly": "1436.90",
+    "employer_cost_annual": "35064.33"
+  }
+}

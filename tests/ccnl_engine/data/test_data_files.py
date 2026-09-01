@@ -1374,3 +1374,84 @@ class TestLoadGraficaEditoriaAieg:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadCartaCartoneAssocarta:
+    """Tests for CCNL Carta e Cartone Industria (Assocarta, CNEL G022)."""
+
+    def test_carta_cartone_assocarta_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("carta-cartone-assocarta.json")
+        assert ccnl.ccnl.id == "carta-cartone-assocarta"
+        assert ccnl.ccnl.cnel_code == "G022"
+
+    def test_carta_cartone_assocarta_has_13_levels(self) -> None:
+        """Contract has exactly 13 levels with correct codes."""
+        ccnl = load_ccnl("carta-cartone-assocarta.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 13
+        assert codes == {
+            "Q",
+            "AS",
+            "A",
+            "B1",
+            "B2S",
+            "B2",
+            "C1S",
+            "C1",
+            "C2",
+            "C3",
+            "D1",
+            "D2",
+            "E",
+        }
+
+    def test_carta_cartone_assocarta_level_c1_salary_2024(self) -> None:
+        """Level C1 total at 2024-07-01 equals 1855.11 EUR."""
+        ccnl = load_ccnl("carta-cartone-assocarta.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C1")
+        val = lv.base_salary.value_at(date(2024, 7, 1))
+        assert val == Decimal("1855.11")
+
+    def test_carta_cartone_assocarta_level_c1_salary_2026(self) -> None:
+        """Level C1 conglobated total at 2026-04-01 equals 1960.11 EUR."""
+        ccnl = load_ccnl("carta-cartone-assocarta.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C1")
+        val = lv.base_salary.value_at(date(2026, 4, 1))
+        assert val == Decimal("1960.11")
+
+    def test_carta_cartone_assocarta_level_ordering(self) -> None:
+        """Q is the highest-order level; E is the lowest-order level."""
+        ccnl = load_ccnl("carta-cartone-assocarta.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "E"
+        assert by_order[-1].code == "Q"
+
+    def test_carta_cartone_assocarta_additional_months(self) -> None:
+        """Additional months is 13 (tredicesima only)."""
+        ccnl = load_ccnl("carta-cartone-assocarta.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 4, 1))
+        assert val == Decimal(13)
+
+    def test_carta_cartone_assocarta_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (40h/week convention)."""
+        ccnl = load_ccnl("carta-cartone-assocarta.json")
+        assert ccnl.parameters.hourly_divisor == 173
+
+    def test_carta_cartone_assocarta_no_fixed_allowances(self) -> None:
+        """All levels have empty fixed_allowances (conglobated model)."""
+        ccnl = load_ccnl("carta-cartone-assocarta.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_carta_cartone_assocarta_tax_sector(self) -> None:
+        """CCNL must declare tax_sector INDUSTRIA."""
+        ccnl = load_ccnl("carta-cartone-assocarta.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+
+    def test_carta_cartone_assocarta_seniority_cadence(self) -> None:
+        """Seniority: biennale cadence (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("carta-cartone-assocarta.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
