@@ -1,11 +1,10 @@
-"""CCNL data file loaders."""
+"""Tax year rules loader."""
 
 from __future__ import annotations
 
 import importlib.resources
 from typing import TYPE_CHECKING
 
-from ccnl_engine.models.ccnl import CCNL, TaxSector
 from ccnl_engine.tax.models import (
     InpsRates,
     YearRules,
@@ -16,15 +15,7 @@ from ccnl_engine.tax.models import (
 if TYPE_CHECKING:
     from decimal import Decimal
 
-
-def load_ccnl(filename: str) -> CCNL:
-    """Load and validate a CCNL data file from the package bundle."""
-    raw = (
-        importlib.resources.files("ccnl_engine.data")
-        .joinpath(filename)
-        .read_text(encoding="utf-8")
-    )
-    return CCNL.model_validate_json(raw)
+    from ccnl_engine.models.ccnl import TaxSector
 
 
 def load_year_rules(

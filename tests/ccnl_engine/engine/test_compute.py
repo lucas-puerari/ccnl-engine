@@ -164,8 +164,8 @@ def _make_rules() -> YearRules:
 _CCNL = _make_ccnl()
 _CCNL_UC = _make_ccnl(app_type="under_classification")
 _RULES = _make_rules()
-_PERMANENT = Permanent(type="permanent")
-_FIXED_TERM = FixedTerm(type="fixed_term")
+_PERMANENT = Permanent()
+_FIXED_TERM = FixedTerm()
 
 
 # ---------------------------------------------------------------------------
@@ -254,11 +254,13 @@ class TestComputePermanent:
         assert r.gross_annual == _D("6000.00")
 
     def test_negotiated_ral(self) -> None:
-        """negotiated_ral overrides the CCNL-derived gross_annual."""
+        """negotiated_ral overrides gross_annual; gross_monthly stays consistent."""
         ral = _D("20000.00")
         r = compute(_CCNL, "4", _DATE, _RULES, _PERMANENT, negotiated_ral=ral)
 
         assert r.gross_annual == ral
+        # gross_monthly must equal gross_annual / additional_months (12)
+        assert r.gross_monthly == _D("1666.67")
 
     def test_level_without_seniority_entry(self) -> None:
         """Level '3' has no seniority in amount_by_level — seniority stays zero."""
@@ -317,7 +319,7 @@ class TestComputeApprenticePercentage:
 
     def test_basic(self) -> None:
         """Apprentice salary = destination-level salary * pct (0.80)."""
-        apprentice = Apprentice(type="apprentice", months_elapsed=0)
+        apprentice = Apprentice(months_elapsed=0)
         r = compute(_CCNL, "4", _DATE, _RULES, apprentice)
 
         # base_gross = 1000 * 12 = 12000; gross_annual = money(12000 * 0.80)
@@ -328,11 +330,13 @@ class TestComputeApprenticePercentage:
 
     def test_negotiated_ral(self) -> None:
         """negotiated_ral is applied as base before percentage multiplication."""
-        apprentice = Apprentice(type="apprentice", months_elapsed=0)
+        apprentice = Apprentice(months_elapsed=0)
         ral = _D("20000.00")
         r = compute(_CCNL, "4", _DATE, _RULES, apprentice, negotiated_ral=ral)
 
         assert r.gross_annual == _D("16000.00")
+        # gross_monthly must equal gross_annual (16000) / additional_months (12)
+        assert r.gross_monthly == _D("1333.33")
 
 
 # ---------------------------------------------------------------------------
@@ -345,7 +349,7 @@ class TestComputeApprenticeUnderClassification:
 
     def test_basic(self) -> None:
         """Apprentice paid at level '3' (800/month * 12 = 9600 annual)."""
-        apprentice = Apprentice(type="apprentice", months_elapsed=0)
+        apprentice = Apprentice(months_elapsed=0)
         r = compute(_CCNL_UC, "4", _DATE, _RULES, apprentice)
 
         assert r.apprenticeship_under_level_code == "3"
@@ -354,11 +358,13 @@ class TestComputeApprenticeUnderClassification:
 
     def test_negotiated_ral(self) -> None:
         """negotiated_ral overrides the under-classification pay computation."""
-        apprentice = Apprentice(type="apprentice", months_elapsed=0)
+        apprentice = Apprentice(months_elapsed=0)
         ral = _D("20000.00")
         r = compute(_CCNL_UC, "4", _DATE, _RULES, apprentice, negotiated_ral=ral)
 
         assert r.gross_annual == ral
+        # gross_monthly must equal gross_annual / additional_months (12)
+        assert r.gross_monthly == _D("1666.67")
 
 
 # ---------------------------------------------------------------------------

@@ -10,10 +10,11 @@ from typing import Any
 
 import pytest
 
-from ccnl_engine.data.loaders import load_ccnl, load_year_rules
+from ccnl_engine.contracts.loaders import load_ccnl
 from ccnl_engine.engine.compute import compute
 from ccnl_engine.models.ccnl import TaxSector
 from ccnl_engine.models.employment import Apprentice, FixedTerm, Permanent
+from ccnl_engine.tax.loaders import load_year_rules
 
 _CASES_DIR = Path(__file__).parent / "cases"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
@@ -23,11 +24,11 @@ def _build_employment(inputs: dict[str, Any]) -> Permanent | FixedTerm | Apprent
     """Construct an Employment model from the golden case inputs dict."""
     emp_type = inputs["employment_type"]
     if emp_type == "permanent":
-        return Permanent(type="permanent")
+        return Permanent()
     if emp_type == "fixed_term":
-        return FixedTerm(type="fixed_term")
+        return FixedTerm()
     months = inputs["months_elapsed"]
-    return Apprentice(type="apprentice", months_elapsed=months)
+    return Apprentice(months_elapsed=months)
 
 
 class TestGolden:

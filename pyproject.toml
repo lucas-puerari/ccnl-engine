@@ -101,4 +101,4 @@ warn_required_dynamic_aliases = true
 # Package data — include JSON files in wheel/sdist
 # ---------------------------------------------------------------------------
 [tool.setuptools.package-data]
-"ccnl_engine" = ["data/*.json", "tax/data/*.json"]
+"ccnl_engine" = ["contracts/data/*.json", "tax/data/*.json"]

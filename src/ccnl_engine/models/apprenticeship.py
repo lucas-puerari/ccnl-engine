@@ -76,7 +76,7 @@ def _validate_period_sequence(
 class ApprenticeshipPercentage(BaseModel):
     """Percentage-based apprenticeship rule."""
 
-    type: Literal["percentage"]
+    type: Literal["percentage"] = "percentage"
     destination_level: str
     periods: list[ApprenticeshipPeriod]
 
@@ -89,7 +89,7 @@ class ApprenticeshipPercentage(BaseModel):
 class ApprenticeshipUnderClassification(BaseModel):
     """Under-classification apprenticeship rule."""
 
-    type: Literal["under_classification"]
+    type: Literal["under_classification"] = "under_classification"
     destination_level: str
     periods: list[UnderClassificationPeriod]
 
