@@ -44,3 +44,8 @@ class TestApprentice:
         """Missing months_elapsed must raise ValidationError."""
         with pytest.raises(ValidationError):
             _ta.validate_python({"type": "apprentice"})
+
+    def test_negative_months_elapsed_raises(self) -> None:
+        """Negative months_elapsed must raise ValidationError (Field ge=0)."""
+        with pytest.raises(ValidationError):
+            _ta.validate_python({"type": "apprentice", "months_elapsed": -1})

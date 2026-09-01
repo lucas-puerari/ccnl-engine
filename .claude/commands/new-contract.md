@@ -184,7 +184,7 @@ from ccnl_engine.models.employment import Permanent
 
 ccnl  = load_ccnl("{id}.json")
 rules = load_year_rules({year}, TaxSector.{SECTOR}, num_employees=50)
-result = compute(ccnl, "{level}", date({year}, {mm}, 1), rules, Permanent(type="permanent"))
+result = compute(ccnl, "{level}", date({year}, {mm}, 1), rules, Permanent())
 ```
 
 Choose: mid-range level, no seniority (`seniority_count=0`), permanent, 50 employees,
