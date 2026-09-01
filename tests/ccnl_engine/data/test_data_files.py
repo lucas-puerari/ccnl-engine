@@ -834,3 +834,78 @@ class TestLoadStudiProfessionaliConfprofessioni:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 8
+
+
+class TestLoadBancariAbi:
+    """Tests for CCNL Bancari ABI (J241) data file."""
+
+    def test_bancari_abi_loads(self) -> None:
+        """Loads bancari-abi and verifies id and CNEL code J241."""
+        ccnl = load_ccnl("bancari-abi.json")
+        assert ccnl.ccnl.id == "bancari-abi"
+        assert ccnl.ccnl.cnel_code == "J241"
+
+    def test_bancari_abi_has_9_levels(self) -> None:
+        """Nine levels: QD4, QD3, QD2, QD1, 3A4, 3A3, 3A2, 3A1, 1e2A."""
+        ccnl = load_ccnl("bancari-abi.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 9
+        assert codes == {
+            "QD4",
+            "QD3",
+            "QD2",
+            "QD1",
+            "3A4",
+            "3A3",
+            "3A2",
+            "3A1",
+            "1e2A",
+        }
+
+    def test_bancari_abi_level_3a3_salary_tranche1(self) -> None:
+        """Level 3A3 conglobato at tranche 1 (2023-12-01): 2899.88."""
+        ccnl = load_ccnl("bancari-abi.json")
+        level = next(lv for lv in ccnl.levels if lv.code == "3A3")
+        assert level.base_salary.value_at(date(2023, 12, 1)) == Decimal("2899.88")
+
+    def test_bancari_abi_level_3a3_salary_tranche2(self) -> None:
+        """Level 3A3 conglobato at tranche 2 (2024-09-01): 2986.15."""
+        ccnl = load_ccnl("bancari-abi.json")
+        level = next(lv for lv in ccnl.levels if lv.code == "3A3")
+        assert level.base_salary.value_at(date(2024, 9, 1)) == Decimal("2986.15")
+
+    def test_bancari_abi_level_ordering(self) -> None:
+        """1e2A must be lowest (order 1), QD4 must be highest."""
+        ccnl = load_ccnl("bancari-abi.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "1e2A"
+        assert by_order[-1].code == "QD4"
+
+    def test_bancari_abi_additional_months(self) -> None:
+        """13 additional months (tredicesima only)."""
+        ccnl = load_ccnl("bancari-abi.json")
+        am = ccnl.parameters.additional_months
+        assert am.value_at(date(2026, 1, 1)) == Decimal(13)
+
+    def test_bancari_abi_hourly_divisor(self) -> None:
+        """Hourly divisor must be 160 (37h/week from July 2024)."""
+        ccnl = load_ccnl("bancari-abi.json")
+        assert ccnl.parameters.hourly_divisor == 160
+
+    def test_bancari_abi_no_fixed_allowances(self) -> None:
+        """Conglobated model: all levels must have no fixed allowances."""
+        ccnl = load_ccnl("bancari-abi.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == [], f"level {lv.code} has allowances"
+
+    def test_bancari_abi_tax_sector(self) -> None:
+        """CCNL must declare tax_sector CREDITO (ABI banking sector)."""
+        ccnl = load_ccnl("bancari-abi.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.CREDITO
+
+    def test_bancari_abi_seniority_cadence(self) -> None:
+        """Seniority: triennale cadence (36 months), maximum 8 scatti."""
+        ccnl = load_ccnl("bancari-abi.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 8

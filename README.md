@@ -42,6 +42,7 @@ print(result.employer_cost_annual) # → Decimal('...')
 | Logistica, Trasporto Merci e Spedizione — Confetra | Industria | ✅ | ✅ | — |
 | Servizi di Pulizia e Multiservizi — ANIP-Confindustria | Terziario | ✅ | ✅ | — |
 | Studi e Attività Professionali — Confprofessioni | Terziario | ✅ | ✅ | — |
+| Credito — ABI | Credito | ✅ | ✅ | — |
 
 **Layer 1** — base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months.  
 **Layer 2** — part-time, fixed-term (NASpI *addizionale*), apprenticeship (percentage or under-classification).  
