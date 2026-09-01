@@ -1,0 +1,47 @@
+{
+  "_description": "Golden case: CCNL Gomma e Plastica Industria, Level E, 2026-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "01.01.2026 tranche: level E = 2074.83 EUR (kitech.it, tabelle retributive gomma plastica 2026).",
+    "Conglobated TEM: single base_salary per level; fixed_allowances=[] for E. allowances_monthly=0.",
+    "Additional months: 13 (tredicesima only, CCNL Gomma e Plastica Industria).",
+    "INPS: 2026-industria.json (Confindustria/CIGO; >50 employees tier: 30.20% datore).",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "gomma-plastica-federazione-gomma-plastica.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "E",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "gomma-plastica-federazione-gomma-plastica",
+    "level_code": "E",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "2074.83",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "gross_monthly": "2074.83",
+    "gross_annual": "26972.79",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2478.80",
+    "inps_employer_annual": "8145.78",
+    "tfr_annual": "1997.98",
+    "taxable_income": "24493.99",
+    "irpef_gross": "5633.62",
+    "work_income_deduction": "766.11",
+    "irpef_net": "4867.51",
+    "net_annual": "19626.48",
+    "net_monthly": "1509.73",
+    "employer_cost_annual": "37116.55"
+  }
+}
