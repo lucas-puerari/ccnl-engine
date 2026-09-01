@@ -1,0 +1,47 @@
+{
+  "_description": "Golden case: CCNL Turismo Confcommercio (H052), Level 3, 2026-05-01, permanent, full-time, no seniority, 50 employees.",
+  "_notes": [
+    "base_monthly is the conglobated minimum (paga base + contingenza included): 1797.04 from the May 2026 tranche (third tranche of the 2024-2027 renewal, effective 2026-05-01).",
+    "Seniority (scatti) abolished at seniority_count=0. Cadence is 48 months (quadriennale), max 6 scatti.",
+    "additional_months: 14 (tredicesima + quattordicesima). gross_annual = 1797.04 * 14 = 25158.56.",
+    "INPS rates: terziario sector, 50 employees (2026-terziario.json). employee 9.19%, employer 28.99% approx.",
+    "Art. 13 TUIR deduction: piecewise-linear at gross_income=25158.56.",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "turismo-confcommercio.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "3",
+    "as_of": "2026-05-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "turismo-confcommercio",
+    "level_code": "3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "1797.04",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "gross_monthly": "1797.04",
+    "gross_annual": "25158.56",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2312.07",
+    "inps_employer_annual": "7290.95",
+    "tfr_annual": "1863.60",
+    "taxable_income": "22846.49",
+    "irpef_gross": "5254.69",
+    "work_income_deduction": "882.87",
+    "irpef_net": "4371.82",
+    "net_annual": "18474.67",
+    "net_monthly": "1319.62",
+    "employer_cost_annual": "34313.11"
+  }
+}
