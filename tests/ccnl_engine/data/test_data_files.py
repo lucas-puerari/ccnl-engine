@@ -455,3 +455,76 @@ class TestLoadTurismoConfcommercio:
         """Hourly divisor must be 172 (40 h/week standard for turismo)."""
         ccnl = load_ccnl("turismo-confcommercio.json")
         assert ccnl.parameters.hourly_divisor == 172
+
+
+# ---------------------------------------------------------------------------
+# CCNL Edilizia — ANCE (F012)
+# ---------------------------------------------------------------------------
+
+
+class TestLoadEdiliziaAnce:
+    """Structural and data-integrity tests for edilizia-ance.json."""
+
+    def test_edilizia_loads(self) -> None:
+        """load_ccnl loads the edilizia JSON and returns the expected identifiers."""
+        ccnl = load_ccnl("edilizia-ance.json")
+        assert isinstance(ccnl, CCNL)
+        assert ccnl.ccnl.id == "edilizia-ance"
+        assert ccnl.ccnl.cnel_code == "F012"
+
+    def test_edilizia_has_seven_levels(self) -> None:
+        """Edilizia ANCE CCNL must contain exactly 7 classification levels."""
+        ccnl = load_ccnl("edilizia-ance.json")
+        assert len(ccnl.levels) == 7
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3", "4", "5", "6", "7"}
+
+    def test_edilizia_level3_salary_feb_2025(self) -> None:
+        """Level 3 conglobated minimum on 2025-02-01 must be EUR 1917.05."""
+        ccnl = load_ccnl("edilizia-ance.json")
+        lv3 = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv3.base_salary.value_at(date(2025, 2, 1)) == Decimal("1917.05")
+
+    def test_edilizia_level3_salary_march_2026(self) -> None:
+        """Level 3 conglobated minimum on 2026-03-01 must be EUR 1982.05."""
+        ccnl = load_ccnl("edilizia-ance.json")
+        lv3 = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv3.base_salary.value_at(date(2026, 3, 1)) == Decimal("1982.05")
+
+    def test_edilizia_level_ordering(self) -> None:
+        """Level 7 must have the highest order; level 1 the lowest."""
+        ccnl = load_ccnl("edilizia-ance.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "1"
+        assert by_order[-1].code == "7"
+
+    def test_edilizia_thirteen_months(self) -> None:
+        """Contract must have 13 monthly salaries per year (gratifica natalizia)."""
+        ccnl = load_ccnl("edilizia-ance.json")
+        value = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert value == Decimal(13)
+
+    def test_edilizia_hourly_divisor(self) -> None:
+        """Hourly divisor must be 173 (40 h/week, verified from official tariff)."""
+        ccnl = load_ccnl("edilizia-ance.json")
+        assert ccnl.parameters.hourly_divisor == 173
+
+    def test_edilizia_no_fixed_allowances(self) -> None:
+        """All levels have no fixed_allowances (minimum conglobated in base_salary)."""
+        ccnl = load_ccnl("edilizia-ance.json")
+        for level in ccnl.levels:
+            assert level.fixed_allowances == [], (
+                f"Level {level.code} should have no fixed_allowances"
+            )
+
+    def test_edilizia_tax_sector(self) -> None:
+        """CCNL must declare tax_sector EDILIZIA."""
+        ccnl = load_ccnl("edilizia-ance.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.EDILIZIA
+
+    def test_edilizia_seniority_cadence(self) -> None:
+        """Seniority increments must be biennale (24 months), max 5 scatti."""
+        ccnl = load_ccnl("edilizia-ance.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
