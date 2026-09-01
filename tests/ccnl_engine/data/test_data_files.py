@@ -687,3 +687,70 @@ class TestLoadLogisticaTrasportoConfetra:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadMultiserviziAnip:
+    """Tests for CCNL Multiservizi K511 (ANIP-Confindustria) data file."""
+
+    def test_multiservizi_anip_loads(self) -> None:
+        """File must load and carry the correct id and CNEL code."""
+        ccnl = load_ccnl("multiservizi-anip.json")
+        assert ccnl.ccnl.id == "multiservizi-anip"
+        assert ccnl.ccnl.cnel_code == "K511"
+
+    def test_multiservizi_anip_has_10_levels(self) -> None:
+        """Must have exactly 10 levels including par sub-levels."""
+        ccnl = load_ccnl("multiservizi-anip.json")
+        assert len(ccnl.levels) == 10
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "2par115", "3", "4par125", "4", "5", "6", "7", "Q"}
+
+    def test_multiservizi_anip_level4_salary_tranche1(self) -> None:
+        """Level 4 paga base at first tranche (July 2021) = 821.08."""
+        ccnl = load_ccnl("multiservizi-anip.json")
+        lvl = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lvl.base_salary.value_at(date(2021, 7, 1)) == Decimal("821.08")
+
+    def test_multiservizi_anip_level4_salary_tranche2(self) -> None:
+        """Level 4 paga base at May 2026 tranche (2025-2028 renewal) = 1003.10."""
+        ccnl = load_ccnl("multiservizi-anip.json")
+        lvl = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lvl.base_salary.value_at(date(2026, 5, 1)) == Decimal("1003.10")
+
+    def test_multiservizi_anip_level_ordering(self) -> None:
+        """Level 1 must be lowest order; Q must be highest order."""
+        ccnl = load_ccnl("multiservizi-anip.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "1"
+        assert by_order[-1].code == "Q"
+
+    def test_multiservizi_anip_additional_months(self) -> None:
+        """14 additional months (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("multiservizi-anip.json")
+        am = ccnl.parameters.additional_months
+        assert am.value_at(date(2026, 5, 1)) == Decimal(14)
+
+    def test_multiservizi_anip_hourly_divisor(self) -> None:
+        """Hourly divisor must be 173 per CCNL text."""
+        ccnl = load_ccnl("multiservizi-anip.json")
+        assert ccnl.parameters.hourly_divisor == 173
+
+    def test_multiservizi_anip_split_model_allowances(self) -> None:
+        """Split model: every level must have contingenza and EDR allowances."""
+        ccnl = load_ccnl("multiservizi-anip.json")
+        for lv in ccnl.levels:
+            codes = {a.code for a in lv.fixed_allowances}
+            assert "contingenza" in codes, f"level {lv.code} missing contingenza"
+            assert "edr" in codes, f"level {lv.code} missing edr"
+
+    def test_multiservizi_anip_tax_sector(self) -> None:
+        """CCNL must declare tax_sector TERZIARIO (CNEL K-prefix contract)."""
+        ccnl = load_ccnl("multiservizi-anip.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+
+    def test_multiservizi_anip_seniority_cadence(self) -> None:
+        """Seniority: biennale cadence (24 months), maximum 8 scatti."""
+        ccnl = load_ccnl("multiservizi-anip.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 8
