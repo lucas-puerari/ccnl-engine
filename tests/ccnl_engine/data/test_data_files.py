@@ -1294,3 +1294,83 @@ class TestLoadGommaPlasticaFederazioneGommaPlastica:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadGraficaEditoriaAieg:
+    """Tests for CCNL Grafica e Editoria Industria (AIEG-Acigraf, G011)."""
+
+    def test_grafica_editoria_aieg_loads(self) -> None:
+        """File loads and has correct id and CNEL code."""
+        ccnl = load_ccnl("grafica-editoria-aieg.json")
+        assert ccnl.ccnl.id == "grafica-editoria-aieg"
+        assert ccnl.ccnl.cnel_code == "G011"
+
+    def test_grafica_editoria_aieg_has_12_levels(self) -> None:
+        """Grafici sector has exactly 12 levels with expected codes."""
+        ccnl = load_ccnl("grafica-editoria-aieg.json")
+        assert len(ccnl.levels) == 12
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {
+            "Q",
+            "AS",
+            "A",
+            "B1S",
+            "B1",
+            "B2",
+            "B3",
+            "C1",
+            "C2",
+            "D1",
+            "D2",
+            "E",
+        }
+
+    def test_grafica_editoria_aieg_level_c1_salary_first_tranche(self) -> None:
+        """Level C1 salary at first tranche date 2024-03-01 (lexplain.it)."""
+        ccnl = load_ccnl("grafica-editoria-aieg.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C1")
+        val = lv.base_salary.value_at(date(2024, 3, 1))
+        assert val == Decimal("1852.88")
+
+    def test_grafica_editoria_aieg_level_c1_salary_jul2026(self) -> None:
+        """Level C1 salary at July 2026 tranche (kitech.it confirmed)."""
+        ccnl = load_ccnl("grafica-editoria-aieg.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C1")
+        val = lv.base_salary.value_at(date(2026, 7, 1))
+        assert val == Decimal("2002.49")
+
+    def test_grafica_editoria_aieg_level_ordering(self) -> None:
+        """E has lowest order (1); Q has highest order (12)."""
+        ccnl = load_ccnl("grafica-editoria-aieg.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "E"
+        assert by_order[-1].code == "Q"
+
+    def test_grafica_editoria_aieg_additional_months(self) -> None:
+        """Additional months is 13 (tredicesima only)."""
+        ccnl = load_ccnl("grafica-editoria-aieg.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 7, 1))
+        assert val == Decimal(13)
+
+    def test_grafica_editoria_aieg_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (40h/week standard assumption)."""
+        ccnl = load_ccnl("grafica-editoria-aieg.json")
+        assert ccnl.parameters.hourly_divisor == 173
+
+    def test_grafica_editoria_aieg_no_fixed_allowances(self) -> None:
+        """All levels have empty fixed_allowances (total modelled as base_salary)."""
+        ccnl = load_ccnl("grafica-editoria-aieg.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_grafica_editoria_aieg_tax_sector(self) -> None:
+        """CCNL must declare tax_sector INDUSTRIA."""
+        ccnl = load_ccnl("grafica-editoria-aieg.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+
+    def test_grafica_editoria_aieg_seniority_cadence(self) -> None:
+        """Seniority: biennale cadence (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("grafica-editoria-aieg.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
