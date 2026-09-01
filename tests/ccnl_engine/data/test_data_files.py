@@ -622,3 +622,68 @@ class TestLoadCooperativeSociali:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadLogisticaTrasportoConfetra:
+    """Tests for CCNL Logistica, Trasporto Merci e Spedizione (I100)."""
+
+    def test_logistica_trasporto_confetra_loads(self) -> None:
+        """CCNL id must be logistica-trasporto-confetra, CNEL code I100."""
+        ccnl = load_ccnl("logistica-trasporto-confetra.json")
+        assert ccnl.ccnl.id == "logistica-trasporto-confetra"
+        assert ccnl.ccnl.cnel_code == "I100"
+
+    def test_logistica_trasporto_confetra_has_9_levels(self) -> None:
+        """Contract must have exactly 9 levels (6J excluded, abolished Dec 2025)."""
+        ccnl = load_ccnl("logistica-trasporto-confetra.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"Q", "1", "2", "3S", "3", "4", "4J", "5", "6"}
+
+    def test_logistica_trasporto_confetra_level_3s_salary_jan2025(self) -> None:
+        """3S conglobated minimum at first tranche (Jan 2025) must be 2070.37."""
+        ccnl = load_ccnl("logistica-trasporto-confetra.json")
+        lv = next(lvl for lvl in ccnl.levels if lvl.code == "3S")
+        assert lv.base_salary.value_at(date(2025, 1, 1)) == Decimal("2070.37")
+
+    def test_logistica_trasporto_confetra_level_3s_salary_jan2026(self) -> None:
+        """3S conglobated minimum at second tranche (Jan 2026) must be 2160.37."""
+        ccnl = load_ccnl("logistica-trasporto-confetra.json")
+        lv = next(lvl for lvl in ccnl.levels if lvl.code == "3S")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("2160.37")
+
+    def test_logistica_trasporto_confetra_level_ordering(self) -> None:
+        """Quadro must have the highest order; 6° livello the lowest."""
+        ccnl = load_ccnl("logistica-trasporto-confetra.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "6"
+        assert by_order[-1].code == "Q"
+
+    def test_logistica_trasporto_confetra_additional_months(self) -> None:
+        """14 additional months (tredicesima Art. 18 + quattordicesima Art. 19)."""
+        ccnl = load_ccnl("logistica-trasporto-confetra.json")
+        am = ccnl.parameters.additional_months
+        assert am.value_at(date(2026, 1, 1)) == Decimal(14)
+
+    def test_logistica_trasporto_confetra_hourly_divisor(self) -> None:
+        """Hourly divisor must be 168 (Art. 61 co.3 testo unico Sept 2025)."""
+        ccnl = load_ccnl("logistica-trasporto-confetra.json")
+        assert ccnl.parameters.hourly_divisor == 168
+
+    def test_logistica_trasporto_confetra_no_fixed_allowances(self) -> None:
+        """All levels must have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("logistica-trasporto-confetra.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_logistica_trasporto_confetra_tax_sector(self) -> None:
+        """CCNL must declare tax_sector INDUSTRIA."""
+        ccnl = load_ccnl("logistica-trasporto-confetra.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+
+    def test_logistica_trasporto_confetra_seniority_cadence(self) -> None:
+        """Seniority increments: biennale (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("logistica-trasporto-confetra.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
