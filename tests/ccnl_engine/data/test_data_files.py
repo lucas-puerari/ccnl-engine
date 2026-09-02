@@ -3229,3 +3229,100 @@ class TestLoadCeramicaIndustriaConfindustria:
         assert len(track.destination_levels) == 12
         assert track.periods[0].percentage == Decimal("0.95")
         assert track.periods[0].months_until is None
+
+
+class TestLoadOrafiArgentieriIndustriaFederorafi:
+    """Tests for CCNL Orafi e Argentieri Industria (Federorafi, C021)."""
+
+    def test_orafi_argentieri_industria_federorafi_loads(self) -> None:
+        """Contract loads with correct id and CNEL code C021."""
+        ccnl = load_ccnl("orafi-argentieri-industria-federorafi.json")
+        assert ccnl.ccnl.id == "orafi-argentieri-industria-federorafi"
+        assert ccnl.ccnl.cnel_code == "C021"
+
+    def test_orafi_argentieri_industria_federorafi_has_8_levels(self) -> None:
+        """Contract has 8 levels: 2 3 4 5 5S 6 7 7Q."""
+        ccnl = load_ccnl("orafi-argentieri-industria-federorafi.json")
+        assert len(ccnl.levels) == 8
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"2", "3", "4", "5", "5S", "6", "7", "7Q"}
+
+    def test_orafi_argentieri_industria_federorafi_level5_salary_jun2022(
+        self,
+    ) -> None:
+        """Level 5 base salary at Jun 2022 tranche is 1670.37 EUR/month."""
+        ccnl = load_ccnl("orafi-argentieri-industria-federorafi.json")
+        by_code = {lv.code: lv for lv in ccnl.levels}
+        val = by_code["5"].base_salary.value_at(date(2022, 6, 1))
+        assert val == Decimal("1670.37")
+
+    def test_orafi_argentieri_industria_federorafi_level5_salary_dec2024(
+        self,
+    ) -> None:
+        """Level 5 base salary at Dec 2024 tranche is 1744.37 EUR/month."""
+        ccnl = load_ccnl("orafi-argentieri-industria-federorafi.json")
+        by_code = {lv.code: lv for lv in ccnl.levels}
+        val = by_code["5"].base_salary.value_at(date(2024, 12, 1))
+        assert val == Decimal("1744.37")
+
+    def test_orafi_argentieri_industria_federorafi_level_ordering(
+        self,
+    ) -> None:
+        """Level 7Q has highest order (8); level 2 has order 1 (lowest)."""
+        ccnl = load_ccnl("orafi-argentieri-industria-federorafi.json")
+        by_code = {lv.code: lv for lv in ccnl.levels}
+        assert by_code["7Q"].order == 8
+        assert by_code["2"].order == 1
+
+    def test_orafi_argentieri_industria_federorafi_additional_months(
+        self,
+    ) -> None:
+        """Contract has 13 additional months (tredicesima only)."""
+        ccnl = load_ccnl("orafi-argentieri-industria-federorafi.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 6, 1))
+        assert val == Decimal(13)
+
+    def test_orafi_argentieri_industria_federorafi_hourly_divisor(
+        self,
+    ) -> None:
+        """Hourly divisor is 173."""
+        ccnl = load_ccnl("orafi-argentieri-industria-federorafi.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 6, 1))
+        assert val == Decimal(173)
+
+    def test_orafi_argentieri_industria_federorafi_no_fixed_allowances_l5(
+        self,
+    ) -> None:
+        """Levels 2-6 have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("orafi-argentieri-industria-federorafi.json")
+        by_code = {lv.code: lv for lv in ccnl.levels}
+        for code in ("2", "3", "4", "5", "5S", "6"):
+            assert by_code[code].fixed_allowances == []
+
+    def test_orafi_argentieri_industria_federorafi_tax_sector(self) -> None:
+        """Contract declares INDUSTRIA tax sector."""
+        ccnl = load_ccnl("orafi-argentieri-industria-federorafi.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+
+    def test_orafi_argentieri_industria_federorafi_seniority_cadence(
+        self,
+    ) -> None:
+        """Seniority: biennale (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("orafi-argentieri-industria-federorafi.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_orafi_argentieri_industria_federorafi_apprenticeship_track(
+        self,
+    ) -> None:
+        """Single percentage track: 85%/90%/95% over 36 months, all 8 levels."""
+        ccnl = load_ccnl("orafi-argentieri-industria-federorafi.json")
+        assert len(ccnl.apprenticeship) == 1
+        track = ccnl.apprenticeship[0]
+        assert isinstance(track, ApprenticeshipPercentage)
+        assert len(track.destination_levels) == 8
+        assert track.periods[0].percentage == Decimal("0.85")
+        assert track.periods[1].percentage == Decimal("0.90")
+        assert track.periods[2].percentage == Decimal("0.95")
+        assert track.periods[2].months_until is None
