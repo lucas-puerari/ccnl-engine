@@ -36,7 +36,7 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
       "INFO: SALARY MODEL: unified TOTALE as base_salary. Each level's TOTALE = Tabellare conglobato (contingenza+EDR absorbed, per Art. 32 + conglobamento clause) + Indennità Speciale per Panificazione (Art. 33, fixed per level since Aug 1995) + ERR (0.44 EUR/month, fixed). Ind.Speciale confirmed from Art. 33 table in UILA CCNL PDF: A1S=94.77, A1=88.06, A2=82.63, A3=75.92, A4=72.05, B1=92.19, B2=76.44, B3S=74.87, B3=72.56, B4=68.69. ERR=0.44. All folded into base_salary; fixed_allowances=[] for all levels. Cross-verified: artser.it tabellare A2 Apr 2024 = 1705.54; 1705.54 + 82.63 + 0.44 = 1788.61 exact match across all 4 tranches (diff constant 83.07 EUR). Art. 31 confirms hourly divisor 173.",
@@ -49,9 +49,9 @@
       "SIMPLIFICATION: ERR: Elemento Retributivo Residuo (0.44 EUR/month) is a national fixed element, identical for all levels. Folded into TOTALE; the rounding impact on any level is less than 0.01 EUR/month.",
       "SIMPLIFICATION: IND.FUNZIONE A1S: Indennita di Funzione 36.15 EUR/month for level A1S introduced from April 2026 (Art. 33 quater, CCNL 2024). Included in the Apr 2026 TOTALE value (2248.73) as confirmed by lavoro-economia.it. Not modeled as a separate fixed_allowance.",
       "SIMPLIFICATION: ERT (VENETO): Elemento Retributivo Territoriale Veneto (ERT, expired 31.12.2025) was a territorial supplement specific to Veneto. Not modeled at national level.",
-      "MISSING: APPRENTICESHIP 2° Gruppo (addetti panificio → destination A3/A4, 36 months) and administrative staff: the percentage tables were not retrieved; only the 1° Gruppo (panificatori → A1) track is modelled.",
       "INFO: PRE-APRIL-2024: periods before 2024-04-01 are outside the modelled window (2018-2022 CCNL values not included).",
-      "INFO: INPS: reuses 2026-artigianato.json (ARTIGIANATO sector, existing file)."
+      "INFO: INPS: reuses 2026-artigianato.json (ARTIGIANATO sector, existing file).",
+      "INFO: APPRENTICESHIP gruppi A2, A3, B1, B2, B3S, B4 added from formazione-apprendistato.com panificazione table (medium-high confidence: secondary aggregator + IPSOA 2024 news confirm 2024 rinnovo structure). Semiannual progressions as per Art. 58 + Allegato apprendistato. Gruppo 1° (dest=A1, primary source UILA PDF) unchanged."
     ]
   },
   "parameters": {
@@ -281,6 +281,79 @@
         { "months_from": 24, "months_until": 36, "percentage": "0.84" },
         { "months_from": 36, "months_until": 48, "percentage": "0.90" },
         { "months_from": 48, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_a2_panificatori",
+      "destination_levels": ["A2"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.75" },
+        { "months_from": 24, "months_until": 36, "percentage": "0.85" },
+        { "months_from": 36, "months_until": 42, "percentage": "0.90" },
+        { "months_from": 42, "months_until": 54, "percentage": "0.95" },
+        { "months_from": 54, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_a3_panificatori",
+      "destination_levels": ["A3"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
+        { "months_from": 12, "months_until": 18, "percentage": "0.75" },
+        { "months_from": 18, "months_until": 24, "percentage": "0.80" },
+        { "months_from": 24, "months_until": 30, "percentage": "0.85" },
+        { "months_from": 30, "months_until": 36, "percentage": "0.90" },
+        { "months_from": 36, "months_until": 48, "percentage": "0.95" },
+        { "months_from": 48, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_b1_addetti",
+      "destination_levels": ["B1"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.75" },
+        { "months_from": 24, "months_until": 36, "percentage": "0.84" },
+        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_b2_addetti",
+      "destination_levels": ["B2"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.75" },
+        { "months_from": 24, "months_until": 36, "percentage": "0.88" },
+        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_b3s_addetti",
+      "destination_levels": ["B3S"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.75" },
+        { "months_from": 24, "months_until": 36, "percentage": "0.88" },
+        { "months_from": 36, "months_until": 42, "percentage": "0.93" },
+        { "months_from": 42, "months_until": 54, "percentage": "0.95" },
+        { "months_from": 54, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_b4_addetti",
+      "destination_levels": ["B3"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
+        { "months_from": 12, "months_until": 18, "percentage": "0.75" },
+        { "months_from": 18, "months_until": 36, "percentage": "0.95" },
+        { "months_from": 36, "months_until": null, "percentage": "1.00" }
       ]
     }
   ]

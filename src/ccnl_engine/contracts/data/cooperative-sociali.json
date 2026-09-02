@@ -30,7 +30,7 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
       "INFO: MINIMI CONGLOBATI: i valori in base_salary sono i minimi tabellari conglobati mensili (paga base + contingenza + EDR inclusi), come pubblicati da lexplain.it. Divisore orario 165 (art. 75 CCNL, 38 ore settimanali). Verifica back-calculation: A1 ottobre 2025 = 1359.88 / 165 = 8.24 €/ora; C1 = 1545.21 / 165 = 9.37 €/ora; F2 = 2504.10 / 165 = 15.17 €/ora — coincidono con le tariffe orarie pubblicate da lexplain.it.",
@@ -39,9 +39,8 @@
       "INFO: TRANCHE: febbraio 2024 (prima), ottobre 2024 (seconda), ottobre 2025 (terza e ultima). Rinnovo firmato il 26 gennaio 2024. Nessuna tabella previgente ante-febbraio 2024 modellata.",
       "INFO: LIVELLI CON STESSA BASE: C3 e D1 hanno identico minimo a ogni tranche (ordini 6/7). D3 e E1 identici (ordini 9/10). I livelli Q (E2Q/F1Q/F2Q) hanno la stessa base del livello non-Q ma ordine successivo: il motore consente salari uguali tra livelli contigui.",
       "INFO: SCATTI DI ANZIANITÀ: biennali (ogni 24 mesi), massimo 5 scatti. Importi fissi per livello dalla tabella scatti del CCNL (fonte: ccnlcooperative.it, art. 80). C3 e D1 hanno lo stesso importo (20.66€); D3 e E1 hanno lo stesso importo (26.86€).",
-      "INFO: APPRENDISTATO percentage: 85% per i primi 18 mesi, 90% dal 19° al 36° mese, durata massima 36 mesi (rinnovo 26 gennaio 2024); track 'professionalizzante' con destinazione C1.",
-      "MISSING: APPRENDISTATO: l'elenco dei livelli di destinazione ammessi e le eventuali durate ridotte per livello non sono stati reperiti; solo la destinazione C1 (OSS) è modellata.",
-      "SIMPLIFICATION: INPS: utilizza 2026-terziario.json (stesso tax_sector del CCNL Commercio Confcommercio). Il settore cooperative sociali non dispone di aliquota datoriale INPS distinta verificata da circolare primaria; le cooperative sociali di tipo B possono applicare agevolazioni ex L. 381/1991 non modellate in questo file."
+      "SIMPLIFICATION: INPS: utilizza 2026-terziario.json (stesso tax_sector del CCNL Commercio Confcommercio). Il settore cooperative sociali non dispone di aliquota datoriale INPS distinta verificata da circolare primaria; le cooperative sociali di tipo B possono applicare agevolazioni ex L. 381/1991 non modellate in questo file.",
+      "INFO: APPRENTICESHIP (professionalizzante) per Art. 28 rinnovo 05/03/2024: 3 duration tracks by category: category A (dest=A2) 18m [0-9m=85%,9-18m=90%]; category B/C (dest=B,C1,C2,C3) 24m [0-12m=85%,12-24m=90%]; category D/E (dest=D1,D2,D3,E1,E2) 36m [0-18m=85%,18-36m=90%]. A1 and F/Q levels not eligible. Special: OSS in socio-sanitario reduced to 18m. Source: Art. 28 ccnlcooperative.it (testo unico 2025, alta confidenza)."
     ]
   },
   "parameters": {
@@ -389,8 +388,28 @@
   "apprenticeship": [
     {
       "type": "percentage",
-      "name": "professionalizzante",
-      "destination_levels": ["C1"],
+      "name": "professionalizzante_18m",
+      "destination_levels": ["A2"],
+      "periods": [
+        { "months_from": 0, "months_until": 9, "percentage": "0.85" },
+        { "months_from": 9, "months_until": 18, "percentage": "0.90" },
+        { "months_from": 18, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_24m",
+      "destination_levels": ["B", "C1", "C2", "C3"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.85" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.90" },
+        { "months_from": 24, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_36m",
+      "destination_levels": ["D1", "D2", "D3", "E1", "E2"],
       "periods": [
         { "months_from": 0, "months_until": 18, "percentage": "0.85" },
         { "months_from": 18, "months_until": 36, "percentage": "0.90" },

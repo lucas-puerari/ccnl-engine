@@ -28,16 +28,16 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
       "SIMPLIFICATION: Salary model is conglobated (minimi retributivi include paga base, contingenza, and EDR). Modeled as base_salary with fixed_allowances: [] for all levels except level 8.",
       "SIMPLIFICATION: Level 8 indennità di funzione per quadri (EUR 41.31/month per sourced table) is not modeled because it applies only to supervisory employees (quadri), not all level-8 workers. Base salary for level 8 reflects the contractual minimum (EUR 2,509.13 at Aug 2026), excluding the function allowance.",
       "SIMPLIFICATION: Level 1 receives a special wage correction from 1 January 2025 (EUR 1,502.46, up from EUR 1,315.70 at Aug 2024), separate from the standard tranche dates of Aug 2024, Aug 2025, Aug 2026. Modeled as a four-period TimeSeries for level 1 only.",
-      "SIMPLIFICATION: Apprenticeship (apprendistato professionalizzante) is not modeled. The CCNL uses a percentage model (three thirds at 80/90/100% of the destination level) but period durations vary by destination level (36 months split 10/10/16 for levels 8-6, 36 months split differently for lower levels). This complexity exceeds the engine's apprenticeship model.",
       "SIMPLIFICATION: Seniority cadence is triennale (36 months) for all levels; maximum 5 scatti. Scatto amounts derived from businessonline.it article (2025) cross-checked with kitech.it current table.",
       "INFO: Workers covered: approximately 75,000 (Assocalzaturifici member companies). Agreement signed 2024-07-17; valid 2024-01-01 to 2026-12-31.",
-      "INFO: INPS rates from 2026-industria.json (same sector as metalmeccanico). IRPEF 2026 brackets applied (L. 199/2025)."
+      "INFO: INPS rates from 2026-industria.json (same sector as metalmeccanico). IRPEF 2026 brackets applied (L. 199/2025).",
+      "INFO: APPRENTICESHIP (professionalizzante): 80/90/100% in three periods. Total duration 36 months per Art. apprendistato. Period splits by level group: L6-L8=10/10/16m, L3-L5=11/11/14m, L2-L2S=12/12/12m. L1 not eligible as destination. Source: CCNL 2024-07-17 Assocalzaturifici (D121), circolare apprendistato; businessonline.it article 2024; kitech.it scheda D121."
     ]
   },
   "parameters": {
@@ -241,5 +241,36 @@
       "fixed_allowances": []
     }
   ],
-  "apprenticeship": []
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "prof_L6_L8",
+      "destination_levels": ["6", "7", "8"],
+      "periods": [
+        { "months_from": 0, "months_until": 10, "percentage": "0.80" },
+        { "months_from": 10, "months_until": 20, "percentage": "0.90" },
+        { "months_from": 20, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "prof_L3_L5",
+      "destination_levels": ["3", "3S", "4", "5"],
+      "periods": [
+        { "months_from": 0, "months_until": 11, "percentage": "0.80" },
+        { "months_from": 11, "months_until": 22, "percentage": "0.90" },
+        { "months_from": 22, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "prof_L2",
+      "destination_levels": ["2", "2S"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.80" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.90" },
+        { "months_from": 24, "months_until": null, "percentage": "1.00" }
+      ]
+    }
+  ]
 }

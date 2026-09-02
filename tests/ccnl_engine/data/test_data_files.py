@@ -175,6 +175,26 @@ class TestLoadMetalmeccanico:
                 "(base_salary is already the minimo conglobato)"
             )
 
+    def test_metalmeccanico_federmeccanica_apprenticeship_tracks(self) -> None:
+        """Three percentage tracks (85/90/95/100%) at 36, 30, 24 months."""
+        ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
+        assert len(ccnl.apprenticeship) == 3
+        by_name = {t.name: t for t in ccnl.apprenticeship}
+        # All eligible levels in 36m and 30m tracks
+        elig = {"D2", "C1", "C2", "C3", "B1", "B2", "B3"}
+        assert set(by_name["professionalizzante_36"].destination_levels) == elig
+        assert set(by_name["professionalizzante_30"].destination_levels) == elig
+        # 24m track is D2-only
+        assert by_name["professionalizzante_24"].destination_levels == ["D2"]
+        # All tracks have 85/90/95/100% progression
+        for track in ccnl.apprenticeship:
+            pcts = [p.percentage for p in track.periods]  # type: ignore[union-attr]
+            assert pcts[0] == Decimal("0.85")
+            assert pcts[1] == Decimal("0.90")
+            assert pcts[2] == Decimal("0.95")
+            assert pcts[3] == Decimal("1.00")
+            assert track.periods[-1].months_until is None
+
 
 # ---------------------------------------------------------------------------
 # CCNL Metalmeccanico Confapi (Piccola Industria)
@@ -346,15 +366,30 @@ class TestLoadChimicaFederchimica:
         assert si.amount_by_level == {}
 
     def test_chimica_apprenticeship_under_classification(self) -> None:
-        """Apprenticeship uses under-classification model, destination D1."""
+        """Single UC track covers E3-B1 (10 dest); 2 below → 1 below."""
         ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
-        assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
-        assert ccnl.apprenticeship[0].destination_levels == ["D1"]
-        periods = ccnl.apprenticeship[0].periods
-        assert len(periods) == 2
-        assert periods[0].levels_below == 3  # E1 is three orders below D1
-        assert periods[1].levels_below == 0
-        assert periods[1].months_until is None
+        assert len(ccnl.apprenticeship) == 1
+        track = ccnl.apprenticeship[0]
+        assert isinstance(track, ApprenticeshipUnderClassification)
+        assert track.name == "professionalizzante"
+        eligible = {
+            "E3",
+            "E2",
+            "E1",
+            "D3",
+            "D2",
+            "D1",
+            "C2",
+            "C1",
+            "B2",
+            "B1",
+        }
+        assert set(track.destination_levels) == eligible
+        assert len(track.periods) == 2
+        assert track.periods[0].levels_below == 2
+        assert track.periods[0].months_until == 18
+        assert track.periods[1].levels_below == 1
+        assert track.periods[1].months_until is None
 
     def test_chimica_thirteen_months(self) -> None:
         """Contract has 13 monthly salaries per year (tredicesima only)."""
@@ -637,6 +672,26 @@ class TestLoadCooperativeSociali:
         assert si.cadence_months == 24
         assert si.maximum_count == 5
 
+    def test_cooperative_sociali_apprenticeship_three_tracks(self) -> None:
+        """Three tracks by category duration: 18m (A2), 24m (B/C), 36m (D/E)."""
+        ccnl = load_ccnl("cooperative-sociali.json")
+        assert len(ccnl.apprenticeship) == 3
+        by_name = {t.name: t for t in ccnl.apprenticeship}
+        # 18m track: A2 only, split at 9m
+        t18 = by_name["professionalizzante_18m"]
+        assert t18.destination_levels == ["A2"]
+        assert t18.periods[0].months_until == 9
+        assert t18.periods[0].percentage == Decimal("0.85")  # type: ignore[union-attr]
+        # 24m track: B, C1, C2, C3
+        t24 = by_name["professionalizzante_24m"]
+        assert set(t24.destination_levels) == {"B", "C1", "C2", "C3"}
+        assert t24.periods[0].months_until == 12
+        # 36m track: D and E levels
+        t36 = by_name["professionalizzante_36m"]
+        assert set(t36.destination_levels) == {"D1", "D2", "D3", "E1", "E2"}
+        assert t36.periods[0].months_until == 18
+        assert t36.periods[-1].months_until is None
+
 
 class TestLoadLogisticaTrasportoConfetra:
     """Tests for CCNL Logistica, Trasporto Merci e Spedizione (I100)."""
@@ -701,6 +756,28 @@ class TestLoadLogisticaTrasportoConfetra:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+    def test_logistica_trasporto_confetra_apprenticeship_all_levels(self) -> None:
+        """Single track covers levels 1-6, 3S, 4J at 75/85/100%."""
+        ccnl = load_ccnl("logistica-trasporto-confetra.json")
+        assert len(ccnl.apprenticeship) == 1
+        track = ccnl.apprenticeship[0]
+        assert track.name == "standard"
+        assert set(track.destination_levels) == {
+            "1",
+            "2",
+            "3",
+            "3S",
+            "4",
+            "4J",
+            "5",
+            "6",
+        }
+        pcts = [p.percentage for p in track.periods]  # type: ignore[union-attr]
+        assert pcts[0] == Decimal("0.75")
+        assert pcts[1] == Decimal("0.85")
+        assert pcts[2] == Decimal("1.00")
+        assert track.periods[-1].months_until is None
 
 
 class TestLoadMultiserviziAnip:
@@ -1016,12 +1093,31 @@ class TestLoadTessileSmi:
         assert si.cadence_months == 24
         assert si.maximum_count == 4
 
-    def test_tessile_smi_apprentice_raises(self) -> None:
-        """Apprentice compute on null-apprenticeship CCNL raises ValueError."""
+    def test_tessile_smi_apprenticeship_tracks(self) -> None:
+        """7 UC apprenticeship tracks; prof_L6_L8 covers levels 6, 7, 8."""
         ccnl = load_ccnl("tessile-smi.json")
-        rules = load_year_rules(2026, TaxSector.INDUSTRIA, num_employees=50)
-        with pytest.raises(ValueError, match="no apprenticeship track"):
-            compute(ccnl, "4", date(2026, 1, 1), rules, Apprentice(months_elapsed=12))
+        assert len(ccnl.apprenticeship) == 7
+        by_name = {t.name: t for t in ccnl.apprenticeship}
+        assert set(by_name["prof_L6_L8"].destination_levels) == {"6", "7", "8"}
+        # prof_L6_L8: 0-15m 2 below, 15-30m 1 below, 30m+ at destination
+        t = by_name["prof_L6_L8"]
+        assert t.periods[0].months_until == 15
+        assert t.periods[0].levels_below == 2  # type: ignore[union-attr]
+        assert t.periods[1].months_until == 30
+        assert t.periods[1].levels_below == 1  # type: ignore[union-attr]
+        assert t.periods[2].months_until is None
+        assert t.periods[2].levels_below == 0  # type: ignore[union-attr]
+        # prof_L2: 0-12m 1 below, 12m+ at destination
+        t2 = by_name["prof_L2"]
+        assert t2.destination_levels == ["2"]
+        assert t2.periods[0].levels_below == 1  # type: ignore[union-attr]
+        assert t2.periods[1].months_until is None
+
+    def test_tessile_smi_level4_salary_jan2027(self) -> None:
+        """Level 4 base salary from Jan 2027: EUR 1986.95."""
+        ccnl = load_ccnl("tessile-smi.json")
+        lv4 = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv4.base_salary.value_at(date(2027, 1, 1)) == Decimal("1986.95")
 
 
 class TestLoadAlimentariFederalimentare:
@@ -1201,6 +1297,24 @@ class TestLoadDmoFederdistribuzione:
         assert si.cadence_months == 36
         assert si.maximum_count == 10
 
+    def test_dmo_federdistribuzione_apprenticeship_tracks(self) -> None:
+        """Two UC tracks: standard_II_V (dest II-V, 18/18m) and standard_VI (12/12m)."""
+        ccnl = load_ccnl("dmo-federdistribuzione.json")
+        assert len(ccnl.apprenticeship) == 2
+        by_name = {t.name: t for t in ccnl.apprenticeship}
+        t_ii_v = by_name["standard_II_V"]
+        assert set(t_ii_v.destination_levels) == {"II", "III", "IV", "V"}
+        assert t_ii_v.periods[0].levels_below == 2  # type: ignore[union-attr]
+        assert t_ii_v.periods[0].months_until == 18
+        assert t_ii_v.periods[1].levels_below == 1  # type: ignore[union-attr]
+        assert t_ii_v.periods[1].months_until is None
+        t_vi = by_name["standard_VI"]
+        assert t_vi.destination_levels == ["VI"]
+        assert t_vi.periods[0].levels_below == 1  # type: ignore[union-attr]
+        assert t_vi.periods[0].months_until == 12
+        assert t_vi.periods[1].levels_below == 0  # type: ignore[union-attr]
+        assert t_vi.periods[1].months_until is None
+
 
 class TestLoadMetalmeccanicoArtigianato:
     """Tests for CCNL Metalmeccanica Artigianato (Confartigianato/CNA, C030)."""
@@ -1267,6 +1381,22 @@ class TestLoadMetalmeccanicoArtigianato:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+    def test_metalmeccanico_artigianato_apprenticeship_impiegati(self) -> None:
+        """Impiegati track: dest=[2,1], 3 years, 70/77/87/100%."""
+        ccnl = load_ccnl("metalmeccanico-artigianato.json")
+        by_name = {t.name: t for t in ccnl.apprenticeship}
+        assert "impiegati" in by_name
+        t = by_name["impiegati"]
+        assert set(t.destination_levels) == {"2", "1"}
+        pcts = [p.percentage for p in t.periods]  # type: ignore[union-attr]
+        assert pcts == [
+            Decimal("0.70"),
+            Decimal("0.77"),
+            Decimal("0.87"),
+            Decimal("1.00"),
+        ]
+        assert t.periods[-1].months_until is None
 
 
 class TestLoadGommaPlasticaFederazioneGommaPlastica:
@@ -1866,7 +1996,35 @@ class TestLoadGasAcquaUtilitalia:
         """Level 4 minimo at Sep 2024 tranche: EUR 2204.68."""
         ccnl = load_ccnl("gas-acqua-utilitalia.json")
         lv = next(lx for lx in ccnl.levels if lx.code == "4")
-        assert lv.base_salary.periods[2].value == Decimal("2204.68")
+        assert lv.base_salary.value_at(date(2024, 9, 1)) == Decimal("2204.68")
+
+    def test_gas_acqua_utilitalia_jul2025_tranche(self) -> None:
+        """Level 1 at Jul 2025 tranche (parametric, 90:60 ratio)."""
+        ccnl = load_ccnl("gas-acqua-utilitalia.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "1")
+        assert lv.base_salary.value_at(date(2025, 7, 1)) == Decimal("1740.34")
+
+    def test_gas_acqua_utilitalia_q_ind_fun_months_per_year(self) -> None:
+        """Q indennita di funzione is paid 12 months per year (Art. 2.1)."""
+        ccnl = load_ccnl("gas-acqua-utilitalia.json")
+        lv_q = next(lx for lx in ccnl.levels if lx.code == "Q")
+        ind_fun = next(fa for fa in lv_q.fixed_allowances if fa.code == "IND_FUN")
+        assert ind_fun.months_per_year == 12
+
+    def test_gas_acqua_utilitalia_apprenticeship_tracks(self) -> None:
+        """Three per-duration tracks: professionalizzante_24/30/36."""
+        ccnl = load_ccnl("gas-acqua-utilitalia.json")
+        assert len(ccnl.apprenticeship) == 3
+        names = {t.name for t in ccnl.apprenticeship}
+        assert names == {
+            "professionalizzante_24",
+            "professionalizzante_30",
+            "professionalizzante_36",
+        }
+        t24 = ccnl.apprenticeship_track_named("professionalizzante_24")
+        assert set(t24.destination_levels) == {"7", "8"}
+        t36 = ccnl.apprenticeship_track_named("professionalizzante_36")
+        assert t36.destination_levels == ["3"]
 
     def test_gas_acqua_utilitalia_level_ordering(self) -> None:
         """Level Q has highest order; level 1 has lowest order."""
@@ -2039,6 +2197,25 @@ class TestLoadAcconciaturaesteticaConfartigianato:
         assert si.cadence_months == 24
         assert si.maximum_count == 5
 
+    def test_acconciatura_estetica_confartigianato_gruppo3_apprenticeship(
+        self,
+    ) -> None:
+        """Gruppo 3 track: dest=['2'], 6 semestri, 70/70/70/78/85/85."""
+        ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
+        track = next(t for t in ccnl.apprenticeship if t.name == "gruppo_3")
+        assert track.destination_levels == ["2"]
+        assert len(track.periods) == 6
+        pcts = [p.percentage for p in track.periods]  # type: ignore[union-attr]
+        assert pcts == [
+            Decimal("0.70"),
+            Decimal("0.70"),
+            Decimal("0.70"),
+            Decimal("0.78"),
+            Decimal("0.85"),
+            Decimal("0.85"),
+        ]
+        assert track.periods[-1].months_until is None
+
 
 class TestLoadPanificazioneArtigianatoConfartigianato:
     """Tests for CCNL Panificazione Artigianato (E015)."""
@@ -2108,6 +2285,27 @@ class TestLoadPanificazioneArtigianatoConfartigianato:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+    def test_panificazione_artigianato_confartigianato_apprenticeship_tracks(
+        self,
+    ) -> None:
+        """7 tracks total: gruppo_1 (existing) + 6 new (A2, A3, B1, B2, B3S, B3)."""
+        ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
+        assert len(ccnl.apprenticeship) == 7
+        by_name = {t.name: t for t in ccnl.apprenticeship}
+        # Existing gruppo 1 unchanged
+        assert by_name["gruppo_1_panificatori"].destination_levels == ["A1"]
+        # Gruppo A2: 54m, 6 periods
+        t_a2 = by_name["gruppo_a2_panificatori"]
+        assert t_a2.destination_levels == ["A2"]
+        assert len(t_a2.periods) == 6
+        assert t_a2.periods[0].percentage == Decimal("0.70")  # type: ignore[union-attr]
+        assert t_a2.periods[-1].months_until is None
+        # Gruppo B1: 36m, 4 periods (70/75/84/100)
+        t_b1 = by_name["gruppo_b1_addetti"]
+        assert t_b1.destination_levels == ["B1"]
+        pcts_b1 = [p.percentage for p in t_b1.periods]  # type: ignore[union-attr]
+        assert pcts_b1[2] == Decimal("0.84")
 
 
 class TestLoadAutoferrotranvieriInternavigatori:
@@ -2452,3 +2650,23 @@ class TestLoadCalzaturieroAssocalzaturifici:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 5
+
+    def test_calzaturiero_assocalzaturifici_apprenticeship_tracks(self) -> None:
+        """Three percentage tracks: L6-8, L3-5, L2 groups at 80/90/100%."""
+        ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
+        assert len(ccnl.apprenticeship) == 3
+        by_name = {t.name: t for t in ccnl.apprenticeship}
+        assert set(by_name["prof_L6_L8"].destination_levels) == {"6", "7", "8"}
+        assert set(by_name["prof_L3_L5"].destination_levels) == {"3", "3S", "4", "5"}
+        assert set(by_name["prof_L2"].destination_levels) == {"2", "2S"}
+        # All tracks: 80/90/100% over three periods
+        for track in ccnl.apprenticeship:
+            pcts = [p.percentage for p in track.periods]  # type: ignore[union-attr]
+            assert pcts[0] == Decimal("0.80")
+            assert pcts[1] == Decimal("0.90")
+            assert pcts[2] == Decimal("1.00")
+            assert track.periods[-1].months_until is None
+        # Period split for L6-8: 10/10/open
+        t68 = by_name["prof_L6_L8"]
+        assert t68.periods[0].months_until == 10
+        assert t68.periods[1].months_until == 20

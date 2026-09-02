@@ -28,16 +28,16 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
       "INFO: tranche Dic 2024 (01/12/2024): valori per livello derivati proporzionalmente dall'incremento +95 EUR al 4° livello (rinnovo 2024 SMI, fonte filctemcgil.it). Rationale: incremento Dec-2024 = 95/152 = 5/8 dell'incremento totale Nov-2024→Jan-2026; verifica per chiusura esatta su tutti i livelli con valori Jan-2026 di kitech.it.",
-      "MISSING: tranche Gen 2027: il CCNL prevede un ulteriore incremento TEM di +48 EUR al 4° livello con decorrenza 01/01/2027. Gli importi per livello non sono disponibili in fonti pubbliche. Il motore riporta i valori Gen 2026 dal 01/01/2026 in poi. Impatto: sottostima di circa 48 EUR/mese al 4° livello dal 01/01/2027.",
-      "MISSING: apprenticeship: le percentuali retributive degli apprendisti (per periodo e livello) non sono state trovate in fonti pubbliche accessibili per il rinnovo 2024. Il CCNL prevede durata 36 mesi (15+15+6 mesi per livelli 4-8; 12+18+6 per livelli 2-3S), confermato da olympus.uniurb.it. Layer 2 marcato 'partial'.",
       "INFO: Livello 8 indennità funzione: il totale ERN pubblicato su lexplain.it (2.316,33) include l'indennità funzione (51,65 EUR). base_salary = ERN - 51,65 = 2.264,68 (pre-Dic 2024) e 2.457,72 (Gen 2026). Fonte kitech.it riporta separatamente minimo e totale per il Liv.8. Verifica: aumento combinato (Dic2024+Gen2026) al Liv.8 = 193,04 EUR, proporzionale atteso = 126,74% × 152,24 = 193,12 EUR (delta < 0,1 EUR). Interpretazione confermata.",
       "INFO: VV.PP. (Viaggiatori e Piazzisti): non modellati. Categoria speciale con tariffe proprie (1ª cat.: 1.932,91/1.932,91 pre-Dic 2024; 2ª cat.: 1.823,07); esclusi per complessità.",
       "SIMPLIFICATION: Scatti anzianità: importi da lexplain.it (articolo sugli scatti CCNL tessile). Non è stato possibile verificare se gli importi siano stati aggiornati con il rinnovo 2024 o se risalgano al contratto precedente. SIMPLIFICATION: si usano gli importi disponibili come stima per entrambi i periodi.",
-      "INFO: Fonte tabelle pre-Dic 2024: lexplain.it, recuperata settembre 2026. Fonte tabelle Gen 2026: kitech.it, recuperata settembre 2026. Fonte TEM e decorrenze: comunicato stampa SMI (sistemamodaitalia.com), novembre 2024."
+      "INFO: Fonte tabelle pre-Dic 2024: lexplain.it, recuperata settembre 2026. Fonte tabelle Gen 2026: kitech.it, recuperata settembre 2026. Fonte TEM e decorrenze: comunicato stampa SMI (sistemamodaitalia.com), novembre 2024.",
+      "INFO: APPRENTICESHIP: sotto-inquadramento. Group A (L4-L8) 36m total: 0-15m = 2 full levels below dest, 15-30m = 1 full level below, 30-36m+ = dest. Note: 'full level' skips S-variants, so levels_below in order arithmetic: L6-L8 → 2/1, L5 → 3/1, L4 → 4/2. Group B (L3/3S) 36m: 0-12m at L1, 12-30m at L2, 30m+ at dest. Group B (L2/2S) 36m: 0-12m at L1, then dest. L1 excluded as destination. Source: CCNL SMI (CNEL D014) + Gruppo24ORE scheda Oct 2023 + MySolution sintesi 2017. SIMPLIFICATION: MySolution notes 3S second period uses L2 pay (not L3).",
+      "INFO: JANUARY 2027 TRANCHE: +60.96 at L8 basis, proportional to parametri. Values from rinnovo 11/11/2024 (Chapter VI column 'da gennaio 2027'). Source: studiobergonzini.it ipotesi 11/11/2024 PDF."
     ]
   },
   "parameters": {
@@ -117,7 +117,8 @@
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "1289.04" },
           { "valid_from": "2024-12-01", "valid_until": "2026-01-01", "value": "1401.94" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "1469.68" }
+          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1469.68" },
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "1560.00" }
         ]
       },
       "fixed_allowances": []
@@ -130,7 +131,8 @@
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "1621.70" },
           { "valid_from": "2024-12-01", "valid_until": "2026-01-01", "value": "1708.15" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "1760.02" }
+          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1760.02" },
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "1803.70" }
         ]
       },
       "fixed_allowances": []
@@ -143,7 +145,8 @@
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "1657.81" },
           { "valid_from": "2024-12-01", "valid_until": "2026-01-01", "value": "1746.16" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "1799.17" }
+          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1799.17" },
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "1843.81" }
         ]
       },
       "fixed_allowances": []
@@ -156,7 +159,8 @@
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "1707.25" },
           { "valid_from": "2024-12-01", "valid_until": "2026-01-01", "value": "1798.45" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "1853.17" }
+          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1853.17" },
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "1899.25" }
         ]
       },
       "fixed_allowances": []
@@ -169,7 +173,8 @@
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "1745.98" },
           { "valid_from": "2024-12-01", "valid_until": "2026-01-01", "value": "1839.08" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "1894.94" }
+          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1894.94" },
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "1941.98" }
         ]
       },
       "fixed_allowances": []
@@ -182,7 +187,8 @@
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "1786.95" },
           { "valid_from": "2024-12-01", "valid_until": "2026-01-01", "value": "1881.95" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "1938.95" }
+          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1938.95" },
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "1986.95" }
         ]
       },
       "fixed_allowances": []
@@ -195,7 +201,8 @@
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "1878.36" },
           { "valid_from": "2024-12-01", "valid_until": "2026-01-01", "value": "1978.11" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "2037.96" }
+          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2037.96" },
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "2088.36" }
         ]
       },
       "fixed_allowances": []
@@ -208,7 +215,8 @@
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "2005.13" },
           { "valid_from": "2024-12-01", "valid_until": "2026-01-01", "value": "2111.53" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "2175.37" }
+          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2175.37" },
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "2229.13" }
         ]
       },
       "fixed_allowances": []
@@ -221,7 +229,8 @@
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "2136.10" },
           { "valid_from": "2024-12-01", "valid_until": "2026-01-01", "value": "2250.10" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "2318.50" }
+          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2318.50" },
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "2376.10" }
         ]
       },
       "fixed_allowances": []
@@ -234,7 +243,8 @@
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "2264.68" },
           { "valid_from": "2024-12-01", "valid_until": "2026-01-01", "value": "2385.33" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "2457.72" }
+          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2457.72" },
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "2518.68" }
         ]
       },
       "fixed_allowances": [
@@ -250,5 +260,74 @@
       ]
     }
   ],
-  "apprenticeship": []
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "prof_L6_L8",
+      "destination_levels": ["6", "7", "8"],
+      "periods": [
+        { "months_from": 0, "months_until": 15, "levels_below": 2 },
+        { "months_from": 15, "months_until": 30, "levels_below": 1 },
+        { "months_from": 30, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "prof_L5",
+      "destination_levels": ["5"],
+      "periods": [
+        { "months_from": 0, "months_until": 15, "levels_below": 3 },
+        { "months_from": 15, "months_until": 30, "levels_below": 1 },
+        { "months_from": 30, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "prof_L4",
+      "destination_levels": ["4"],
+      "periods": [
+        { "months_from": 0, "months_until": 15, "levels_below": 4 },
+        { "months_from": 15, "months_until": 30, "levels_below": 2 },
+        { "months_from": 30, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "prof_L3S",
+      "destination_levels": ["3S"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 4 },
+        { "months_from": 12, "months_until": 30, "levels_below": 3 },
+        { "months_from": 30, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "prof_L3",
+      "destination_levels": ["3"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 3 },
+        { "months_from": 12, "months_until": 30, "levels_below": 2 },
+        { "months_from": 30, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "prof_L2S",
+      "destination_levels": ["2S"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 2 },
+        { "months_from": 12, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "prof_L2",
+      "destination_levels": ["2"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 1 },
+        { "months_from": 12, "months_until": null, "levels_below": 0 }
+      ]
+    }
+  ]
 }

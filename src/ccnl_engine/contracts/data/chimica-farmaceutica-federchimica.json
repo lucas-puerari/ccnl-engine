@@ -28,7 +28,7 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
       "INFO: TEM CONGLOBATO: i valori in base_salary rappresentano il Trattamento Economico Minimo (TEM) totale = base minimo (Min) + IPO (Integrazione di Posizione Organizzativa, per livello) + EAR (Elemento Aggiuntivo della Retribuzione: A=190€, B=100€, C-F=0, fisso lungo tutto il contratto) + EDR (Elemento Distinto della Retribuzione, aggiunto dal 01/07/2027, per livello). fixed_allowances è vuoto per tutti i livelli.",
@@ -38,11 +38,10 @@
       "INFO: IPO VARIABILE PER TRANCHE: l'IPO non è fisso tra le tranches ma riceve incrementi propri (tabella pagina 1 del PDF, colonne IPO per scadenza). I valori TEM sono calcolati sommando Min, IPO e EAR (e EDR dal 01/07/2027) per ciascuna tranche.",
       "INFO: TRANCHES PRE-GIUGNO 2025 (CCNL 2022-2025, 5 tranches luglio 2022 - giugno 2025) sono fuori dalla finestra modellata: il PDF Federchimica riporta solo la colonna 'Previgente' come baseline.",
       "INFO: SCATTI DI ANZIANITÀ aboliti dal 1° gennaio 2010; gli importi maturati fino al 2009 sono cristallizzati come superminimo individuale non assorbibile, da passare a compute() come ad_personam_monthly. maximum_count=0 e amount_by_level={}.",
-      "SIMPLIFICATION: APPRENDISTATO under-classification (Art. 3 CCNL): modellato il percorso con destinazione D1 (E1 per i primi 18 mesi, poi D1), track 'destinazione_D1'.",
-      "MISSING: APPRENDISTATO per le altre categorie di destinazione (E, C, B) e le relative durate: regola di sottoinquadramento per categoria non reperita nel testo consultato; non modellate.",
       "INFO: DIVISORE ORARIO: 175 h/mese (settore chimico-farmaceutico). Il divisore 173 si applica solo al sotto-settore ceramica e abrasivi.",
       "INFO: MENSILITÀ: 13 (sola tredicesima). La quattordicesima è prevista solo nei sotto-settori lubrificanti/GPL, ceramica/abrasivi e coibentazione.",
-      "INFO: INPS: utilizza 2026-industria.json (settore industria standard). Codice CNEL: B011."
+      "INFO: INPS: utilizza 2026-industria.json (settore industria standard). Codice CNEL: B011.",
+      "INFO: APPRENTICESHIP (sotto-inquadramento, Art. 3 CCNL): single track 'professionalizzante' covers all eligible destinations E3–B1 (10 levels). Rule: 0–18m = 2 levels below dest; 18m+ = 1 level below dest (two equal periods, total 36m typical). Excluded: F (Art. 3 explicit), E4 (2-below not resolvable), A3/A2/A1 (management tier, not standard apprenticeship). Prior track 'destinazione_D1' had levels_below=3 (error); corrected to 2. Source: Art. 3 CCNL Federchimica (lavoro-economia.it B011); informatori.it sintesi apprendistato B011."
     ]
   },
   "parameters": {
@@ -310,11 +309,11 @@
   "apprenticeship": [
     {
       "type": "under_classification",
-      "name": "destinazione_D1",
-      "destination_levels": ["D1"],
+      "name": "professionalizzante",
+      "destination_levels": ["E3", "E2", "E1", "D3", "D2", "D1", "C2", "C1", "B2", "B1"],
       "periods": [
-        { "months_from": 0, "months_until": 18, "levels_below": 3 },
-        { "months_from": 18, "months_until": null, "levels_below": 0 }
+        { "months_from": 0, "months_until": 18, "levels_below": 2 },
+        { "months_from": 18, "months_until": null, "levels_below": 1 }
       ]
     }
   ]

@@ -34,16 +34,14 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
       "INFO: SALARY MODEL: conglobated contingenza ('minimi tabellari integrati') with EDR 10.33 shown separately. Confirmed from scheda riassuntiva PDF (CCNL 30/09/2022, sosvavsrl.it), section heading 'Minimi tabellari integrati'. EDR is a fixed statutory element (frozen since 1997, Accordo interconfederale) shown as a distinct line in all salary tables; modelled as fixed_allowance for each level.",
-      "SIMPLIFICATION: SALARY TRANCHES: 3 tranches from primary source (CCNL 30/09/2022 PDF): 01/10/2022, 01/10/2023, 01/09/2024 — all 9 levels confirmed. Fourth tranche 01/07/2026 from 2025-2027 renewal (signed 08/05/2025): L1-L4 confirmed from ilccnl.it (L1=1782.14, L2=1980.76, L3=2191.09, L4=2342.01, derived as ilccnl 'total' minus EDR 10.33, consistent with parametro ratios). L5-Q at 01/07/2026 derived from L1=1782.14 via parametro scaling (par: L5=139.96, L6=153.69, L7=167.50, L8=181.29, Q=200.74). SIMPLIFICATION: (a) 01/07/2025 tranche from 2025-2027 renewal not modelled — per-level amounts not independently confirmed at all 9 levels; (b) future tranches 01/07/2027 (+60) and 01/10/2027 (+50) not modelled; the 01/07/2026 period is open-ended.",
       "INFO: HOURLY DIVISOR: 167. Stated explicitly in §4.3 of the PDF scheda riassuntiva: 'Coefficiente orario: 167'. Corresponds to 38h 30min contractual week (§4.4). Back-calculation: L1(2024-09-01)=1677.64/167=10.05 EUR/h.",
       "INFO: ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima). Stated in §4.1: 'Mensilità: 14'. Tredicesima confirmed §5.3, quattordicesima confirmed §5.4.",
       "SIMPLIFICATION: SENIORITY: abolished from 31/12/2015 (§5.5 of CCNL PDF). Frozen as 'elemento ad personam non riassorbibile' at the individual amount accrued by each worker as at 31/12/2015. No new increments can be earned by any worker hired after 2015. Modelled as maximum_count=0 (all amounts 0.00) — no seniority is added for new hires. SIMPLIFICATION: the frozen elemento ad personam for pre-2016 hires is individual and not computable from level alone; it is not modelled.",
       "INFO: LEVEL Q ALLOWANCE: Indennità di funzione 51.65 EUR/month (12 mensilità) per §2.1 of the CCNL PDF. Shown separately from minimo and EDR in all salary tables.",
-      "SIMPLIFICATION: APPRENTICESHIP: professionalizzante, percentage type. From 01/01/2023: 80% (months 0-12), 85% (months 12-24), 90% (months 24+). Source: CCNL PDF §8.1. SIMPLIFICATION: duration varies by destination level (levels 7-8: 24m; levels 4-6: 30m; level 3: 36m; level 2: 30m). Modelled as 3 periods for destination_level='3' (longest tier, 36 months); levels with shorter durations would reach 90% earlier than modelled.",
       "SIMPLIFICATION: INPS: reuses 2026-industria.json. Gas and water utilities (aziende private del settore gas-acqua) are classified under 'attività industriali' for INPS contribution purposes. Employer associations Utilitalia and Proxigas are Confindustria-aligned. SIMPLIFICATION: exact INPS circular for this sector not verified; 2026-industria.json rates used as proxy.",
       "INFO: COVERAGE: CCNL covers approximately 50,000 workers in about 600 private gas and water distribution companies (source: filctemcgil.it, 2025 renewal announcement). CNEL code K321."
     ]
@@ -120,7 +118,8 @@
         "periods": [
           { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "1564.77" },
           { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "1614.24" },
-          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "1677.64" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "1677.64" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1740.34" },
           { "valid_from": "2026-07-01", "valid_until": null, "value": "1782.14" }
         ]
       },
@@ -144,7 +143,8 @@
         "periods": [
           { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "1739.16" },
           { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "1794.14" },
-          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "1864.61" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "1864.61" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1934.30" },
           { "valid_from": "2026-07-01", "valid_until": null, "value": "1980.76" }
         ]
       },
@@ -168,7 +168,8 @@
         "periods": [
           { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "1923.84" },
           { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "1984.66" },
-          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "2062.61" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2062.61" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2139.70" },
           { "valid_from": "2026-07-01", "valid_until": null, "value": "2191.09" }
         ]
       },
@@ -192,7 +193,8 @@
         "periods": [
           { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "2056.35" },
           { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "2121.36" },
-          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "2204.68" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2204.68" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2287.08" },
           { "valid_from": "2026-07-01", "valid_until": null, "value": "2342.01" }
         ]
       },
@@ -216,7 +218,8 @@
         "periods": [
           { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "2189.97" },
           { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "2259.20" },
-          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "2347.94" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2347.94" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2435.74" },
           { "valid_from": "2026-07-01", "valid_until": null, "value": "2494.28" }
         ]
       },
@@ -240,7 +243,8 @@
         "periods": [
           { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "2404.92" },
           { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "2480.95" },
-          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "2578.39" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2578.39" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2674.74" },
           { "valid_from": "2026-07-01", "valid_until": null, "value": "2738.97" }
         ]
       },
@@ -264,7 +268,8 @@
         "periods": [
           { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "2620.93" },
           { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "2703.79" },
-          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "2809.99" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2809.99" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2915.04" },
           { "valid_from": "2026-07-01", "valid_until": null, "value": "2985.08" }
         ]
       },
@@ -288,7 +293,8 @@
         "periods": [
           { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "2836.69" },
           { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "2926.37" },
-          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "3041.31" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "3041.31" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "3155.03" },
           { "valid_from": "2026-07-01", "valid_until": null, "value": "3230.84" }
         ]
       },
@@ -312,7 +318,8 @@
         "periods": [
           { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "3141.16" },
           { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "3240.46" },
-          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "3367.73" },
+          { "valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "3367.73" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "3493.57" },
           { "valid_from": "2026-07-01", "valid_until": null, "value": "3577.47" }
         ]
       },
@@ -333,7 +340,8 @@
             "periods": [
               { "valid_from": "2022-10-01", "valid_until": null, "value": "51.65" }
             ]
-          }
+          },
+          "months_per_year": 12
         }
       ]
     }
@@ -341,12 +349,35 @@
   "apprenticeship": [
     {
       "type": "percentage",
-      "name": "standard",
+      "name": "professionalizzante_24",
+      "destination_levels": ["7", "8"],
+      "periods": [
+        { "months_from": 0, "months_until": 8, "percentage": "0.80" },
+        { "months_from": 8, "months_until": 16, "percentage": "0.85" },
+        { "months_from": 16, "months_until": 24, "percentage": "0.90" },
+        { "months_from": 24, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_30",
+      "destination_levels": ["2", "4", "5", "6"],
+      "periods": [
+        { "months_from": 0, "months_until": 10, "percentage": "0.80" },
+        { "months_from": 10, "months_until": 20, "percentage": "0.85" },
+        { "months_from": 20, "months_until": 30, "percentage": "0.90" },
+        { "months_from": 30, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_36",
       "destination_levels": ["3"],
       "periods": [
         { "months_from": 0, "months_until": 12, "percentage": "0.80" },
         { "months_from": 12, "months_until": 24, "percentage": "0.85" },
-        { "months_from": 24, "months_until": null, "percentage": "0.90" }
+        { "months_from": 24, "months_until": 36, "percentage": "0.90" },
+        { "months_from": 36, "months_until": null, "percentage": "1.00" }
       ]
     }
   ]

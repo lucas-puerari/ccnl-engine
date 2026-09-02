@@ -42,7 +42,7 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
       "INFO: PERSONALE: tabelle per personale non viaggiante (impiegati e operai sedentari). Il CCNL include anche personale viaggiante (autisti adibiti a trasporto internazionale) con tabelle e regole distinte — non modellato in questo file.",
@@ -52,11 +52,11 @@
       "INFO: ICE: l'Indennità di Copertura Economica (ICE) era un elemento provvisorio vigente fino al 31.12.2024. Cessa dal 1.1.2025 con l'entrata in vigore del rinnovo. I valori in base_salary non includono ICE (elemento cessato). Il testo unico cita aumenti netti di €230 al 3S rispetto alla retribuzione previgente comprensiva di ICE — la differenza con la somma algebrica delle tranche (€290 da base senza ICE) corrisponde al valore ICE preesistente del livello.",
       "INFO: MENSILITÀ: 14 (tredicesima Art. 18 + quattordicesima Art. 19 testo unico settembre 2025).",
       "INFO: SCATTI DI ANZIANITÀ: biennali (cadenza 24 mesi), max 5 bienni. Importi da Art. 17 testo unico settembre 2025. Personale non viaggiante.",
-      "INFO: APPRENDISTATO: tipo percentage da TABELLA A testo unico settembre 2025. 75% anno 1, 85% anno 2, 100% anno 3. destination_level='3' (scelta modellistica — livello più comune per il contratto di apprendistato nel settore). Durata massima 36 mesi per i livelli modellati.",
       "INFO: LIVELLO 6° JUNIOR: abolito dal 31.12.2025 (rinnovo del 6.12.2024, circ008-2025 Confetra). Tutti i lavoratori inquadrati al 6J promossi automaticamente al 6°. Non modellato in questo file.",
       "INFO: EPA: Elemento Professionale d'Area, componente introdotta con il rinnovo del 6.12.2024. Inclusa nei valori base_salary a decorrere dal 1.1.2025. Non è separata perché costituisce parte integrante della retribuzione minima (incide su tutti gli istituti contrattuali e legali) — vedi circ283-2024 Confetra.",
       "INFO: EDR: l'EDR di € 10,33 mensili (accordo 26 gen 2001) è conglobato nei minimi tabellari dal 1.1.2001 (Art. 61 nota). Ulteriori EDR successivi (accordo 2011, accordo 2021) sono NON incidenti su istituti — non modellati in base_salary; rappresentano voce separata in busta paga al di fuori del motore.",
-      "INFO: INPS: utilizza 2026-industria.json (TaxSector.INDUSTRIA). File già presente — nessuna modifica al tax file."
+      "INFO: INPS: utilizza 2026-industria.json (TaxSector.INDUSTRIA). File già presente — nessuna modifica al tax file.",
+      "INFO: APPRENDISTATO: tipo percentage da TABELLA A testo unico settembre 2025. 75% anno 1 (m1-12), 85% anno 2 (m13-24), 100% da m25. Livelli ammessi: 1, 2, 3, 3S, 4, 4J, 5, 6 (livello Q escluso). Durata massima 36 mesi. Source: Art. 106 + TABELLA A testo unico 09/2025 (contrattotrasporti.it)."
     ]
   },
   "parameters": {
@@ -254,7 +254,7 @@
     {
       "type": "percentage",
       "name": "standard",
-      "destination_levels": ["3"],
+      "destination_levels": ["1", "2", "3", "3S", "4", "4J", "5", "6"],
       "periods": [
         { "months_from": 0, "months_until": 12, "percentage": "0.75" },
         { "months_from": 12, "months_until": 24, "percentage": "0.85" },
