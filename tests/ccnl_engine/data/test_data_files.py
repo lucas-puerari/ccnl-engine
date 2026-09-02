@@ -1844,3 +1844,68 @@ class TestLoadGasAcquaUtilitalia:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 0
+
+
+class TestLoadUnebaUneba:
+    """CCNL Istituzioni Socio-Assistenziali UNEBA (T141) data-layer tests."""
+
+    def test_uneba_uneba_loads(self) -> None:
+        """Loads with id='uneba-uneba' and CNEL code T141."""
+        ccnl = load_ccnl("uneba-uneba.json")
+        assert ccnl.ccnl.id == "uneba-uneba"
+        assert ccnl.ccnl.cnel_code == "T141"
+
+    def test_uneba_uneba_has_11_levels(self) -> None:
+        """Contract has exactly 11 levels: Q, 1, 2, 3S, 3, 4S, 4, 5S, 5, 6S, 6."""
+        ccnl = load_ccnl("uneba-uneba.json")
+        assert len(ccnl.levels) == 11
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"Q", "1", "2", "3S", "3", "4S", "4", "5S", "5", "6S", "6"}
+
+    def test_uneba_uneba_level_4s_salary_tranche1(self) -> None:
+        """Level 4S (OSS) minimo at Oct 2024 tranche: EUR 1467.86."""
+        ccnl = load_ccnl("uneba-uneba.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "4S")
+        assert lv.base_salary.periods[0].value == Decimal("1467.86")
+
+    def test_uneba_uneba_level_4s_salary_tranche2(self) -> None:
+        """Level 4S (OSS) minimo at Jul 2025 tranche: EUR 1517.86."""
+        ccnl = load_ccnl("uneba-uneba.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "4S")
+        assert lv.base_salary.periods[1].value == Decimal("1517.86")
+
+    def test_uneba_uneba_level_ordering(self) -> None:
+        """Level Q has highest order; level 6 has lowest order."""
+        ccnl = load_ccnl("uneba-uneba.json")
+        by_order = sorted(ccnl.levels, key=lambda lx: lx.order)
+        assert by_order[0].code == "6"
+        assert by_order[-1].code == "Q"
+
+    def test_uneba_uneba_additional_months(self) -> None:
+        """Additional months: 14 (tredicesima + quattordicesima, Art. 46)."""
+        ccnl = load_ccnl("uneba-uneba.json")
+        assert ccnl.parameters.additional_months.periods[0].value == Decimal(14)
+
+    def test_uneba_uneba_hourly_divisor(self) -> None:
+        """Hourly divisor: 164 (38-hour week, Art. 50)."""
+        ccnl = load_ccnl("uneba-uneba.json")
+        assert ccnl.parameters.hourly_divisor == 164
+
+    def test_uneba_uneba_level_q_ind_fun_allowance(self) -> None:
+        """Level Q carries IND_FUN allowance EUR 100.00/month (Art. 43)."""
+        ccnl = load_ccnl("uneba-uneba.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "Q")
+        ind_fun = next(fa for fa in lv.fixed_allowances if fa.code == "IND_FUN")
+        assert ind_fun.monthly.periods[0].value == Decimal("100.00")
+
+    def test_uneba_uneba_tax_sector(self) -> None:
+        """Contract declares TERZIARIO tax sector."""
+        ccnl = load_ccnl("uneba-uneba.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+
+    def test_uneba_uneba_seniority_cadence(self) -> None:
+        """Seniority: triennial (36 months), maximum 10 scatti (Art. 48)."""
+        ccnl = load_ccnl("uneba-uneba.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 10
