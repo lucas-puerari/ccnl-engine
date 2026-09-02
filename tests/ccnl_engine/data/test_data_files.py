@@ -2912,3 +2912,104 @@ class TestLoadTessileModaArtigianatoConfartigianato:
         assert set(g2.destination_levels) == {"3"}
         g3 = by_name["gruppo_3_abb"]
         assert set(g3.destination_levels) == {"2"}
+
+
+class TestLoadLegnoLapideiArtigianatoConfartigianato:
+    """Tests for CCNL Area Legno-Lapidei Artigianato (CNEL F060)."""
+
+    def test_legno_lapidei_artigianato_confartigianato_loads(self) -> None:
+        """Contract loads with correct id and CNEL code F060."""
+        ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato.json")
+        assert ccnl.ccnl.id == "legno-lapidei-artigianato-confartigianato"
+        assert ccnl.ccnl.cnel_code == "F060"
+
+    def test_legno_lapidei_artigianato_confartigianato_has_8_levels(self) -> None:
+        """Contract has exactly 8 levels: F, E, D, C, CS, B, A, AS."""
+        ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato.json")
+        assert len(ccnl.levels) == 8
+        assert {lv.code for lv in ccnl.levels} == {
+            "F",
+            "E",
+            "D",
+            "C",
+            "CS",
+            "B",
+            "A",
+            "AS",
+        }
+
+    def test_legno_lapidei_artigianato_confartigianato_level_d_salary_mar2024(
+        self,
+    ) -> None:
+        """Level D base salary at Mar 2024 tranche = 1549.71 EUR."""
+        ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato.json")
+        lv = ccnl.level_by_code("D")
+        assert lv.base_salary.value_at(date(2024, 3, 1)) == Decimal("1549.71")
+
+    def test_legno_lapidei_artigianato_confartigianato_level_d_salary_jan2026(
+        self,
+    ) -> None:
+        """Level D base salary at Jan 2026 tranche = 1639.71 EUR."""
+        ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato.json")
+        lv = ccnl.level_by_code("D")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1639.71")
+
+    def test_legno_lapidei_artigianato_confartigianato_level_ordering(self) -> None:
+        """Level AS has highest order; level F has lowest order."""
+        ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "F"
+        assert by_order[-1].code == "AS"
+
+    def test_legno_lapidei_artigianato_confartigianato_additional_months(
+        self,
+    ) -> None:
+        """Additional months: 13 (tredicesima only, no quattordicesima)."""
+        ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato.json")
+        assert ccnl.parameters.additional_months.periods[0].value == Decimal(13)
+
+    def test_legno_lapidei_artigianato_confartigianato_hourly_divisor(
+        self,
+    ) -> None:
+        """Hourly divisor: 174 (per contract clause, 40h/week)."""
+        ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato.json")
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(174)
+
+    def test_legno_lapidei_artigianato_confartigianato_no_fixed_allowances(
+        self,
+    ) -> None:
+        """All levels have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_legno_lapidei_artigianato_confartigianato_tax_sector(self) -> None:
+        """Contract declares ARTIGIANATO tax sector."""
+        ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.ARTIGIANATO
+
+    def test_legno_lapidei_artigianato_confartigianato_seniority_cadence(
+        self,
+    ) -> None:
+        """Seniority: biennale (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_legno_lapidei_artigianato_confartigianato_apprenticeship_tracks(
+        self,
+    ) -> None:
+        """Three percentage tracks per CCNL: gruppi 1, 2, 3."""
+        ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato.json")
+        assert len(ccnl.apprenticeship) == 3
+        by_name = {t.name: t for t in ccnl.apprenticeship}
+        g1 = by_name["gruppo_1_legno"]
+        assert set(g1.destination_levels) == {"AS", "A", "B"}
+        assert g1.periods[0].percentage == Decimal("0.70")  # type: ignore[union-attr]
+        assert g1.periods[-1].percentage == Decimal("1.00")  # type: ignore[union-attr]
+        assert g1.periods[-1].months_until is None
+        g2 = by_name["gruppo_2_legno"]
+        assert set(g2.destination_levels) == {"CS", "C", "D"}
+        g3 = by_name["gruppo_3_legno"]
+        assert set(g3.destination_levels) == {"E"}
