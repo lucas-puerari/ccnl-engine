@@ -2043,3 +2043,82 @@ class TestLoadPanificazioneArtigianatoConfartigianato:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadAutoferrotranvieriInternavigatori:
+    """Tests for CCNL Autoferrotranvieri e Internavigatori (I022)."""
+
+    def test_autoferrotranvieri_internavigatori_loads(self) -> None:
+        """Contract id is autoferrotranvieri-internavigatori, CNEL code I022."""
+        ccnl = load_ccnl("autoferrotranvieri-internavigatori.json")
+        assert ccnl.ccnl.id == "autoferrotranvieri-internavigatori"
+        assert ccnl.ccnl.cnel_code == "I022"
+
+    def test_autoferrotranvieri_internavigatori_has_33_levels(self) -> None:
+        """Contract has exactly 33 levels (parametri 100 to 250)."""
+        ccnl = load_ccnl("autoferrotranvieri-internavigatori.json")
+        assert len(ccnl.levels) == 33
+        codes = {lv.code for lv in ccnl.levels}
+        assert "100" in codes
+        assert "175" in codes
+        assert "250" in codes
+
+    def test_autoferrotranvieri_internavigatori_level175_salary_tranche1(
+        self,
+    ) -> None:
+        """Par.175 TOTALE at Dec 2024 (period 1): EUR 1805.57."""
+        ccnl = load_ccnl("autoferrotranvieri-internavigatori.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "175")
+        assert lv.base_salary.periods[0].value == Decimal("1805.57")
+
+    def test_autoferrotranvieri_internavigatori_level175_salary_tranche2(
+        self,
+    ) -> None:
+        """Par.175 TOTALE at Mar 2025 (+60 EUR tabellare): EUR 1865.57."""
+        ccnl = load_ccnl("autoferrotranvieri-internavigatori.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "175")
+        assert lv.base_salary.periods[1].value == Decimal("1865.57")
+
+    def test_autoferrotranvieri_internavigatori_level_ordering(self) -> None:
+        """Par.100 has lowest order; par.250 has highest order."""
+        ccnl = load_ccnl("autoferrotranvieri-internavigatori.json")
+        by_order = sorted(ccnl.levels, key=lambda lx: lx.order)
+        assert by_order[0].code == "100"
+        assert by_order[-1].code == "250"
+
+    def test_autoferrotranvieri_internavigatori_additional_months(self) -> None:
+        """Additional months: 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("autoferrotranvieri-internavigatori.json")
+        assert ccnl.parameters.additional_months.periods[0].value == Decimal(14)
+
+    def test_autoferrotranvieri_internavigatori_hourly_divisor(self) -> None:
+        """Hourly divisor: 195 (CCNL Art. 15 formula, 39h/week / 6 days)."""
+        ccnl = load_ccnl("autoferrotranvieri-internavigatori.json")
+        assert ccnl.parameters.hourly_divisor == 195
+
+    def test_autoferrotranvieri_internavigatori_edr_allowance(self) -> None:
+        """Each level has one fixed_allowance (edr_2024); par.175 = 40.00."""
+        ccnl = load_ccnl("autoferrotranvieri-internavigatori.json")
+        for lv in ccnl.levels:
+            assert len(lv.fixed_allowances) == 1
+            assert lv.fixed_allowances[0].code == "edr_2024"
+        lv175 = next(lx for lx in ccnl.levels if lx.code == "175")
+        edr = lv175.fixed_allowances[0].monthly
+        active = next(
+            p
+            for p in edr.periods
+            if p.valid_until is not None and p.valid_from.year == 2025
+        )
+        assert active.value == Decimal("40.00")
+
+    def test_autoferrotranvieri_internavigatori_tax_sector(self) -> None:
+        """Contract declares TERZIARIO tax sector."""
+        ccnl = load_ccnl("autoferrotranvieri-internavigatori.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+
+    def test_autoferrotranvieri_internavigatori_seniority_cadence(self) -> None:
+        """Seniority: biennale (24 months), maximum 6 scatti."""
+        ccnl = load_ccnl("autoferrotranvieri-internavigatori.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 6
