@@ -3414,3 +3414,82 @@ class TestLoadPelliCuoioIndustriaAssopellettieri:
         dest_levels = {t.name: t.destination_levels for t in ccnl.apprenticeship}
         assert dest_levels["dest_6"] == ["6"]
         assert dest_levels["dest_2"] == ["2"]
+
+
+class TestLoadPubbliciEserciziRistorazioneFipeAngem:
+    """CCNL Pubblici Esercizi, Ristorazione Collettiva e Turismo (FIPE/ANGEM, H05Y)."""
+
+    def test_pubblici_esercizi_fipe_angem_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("pubblici-esercizi-fipe-angem.json")
+        assert ccnl.ccnl.id == "pubblici-esercizi-fipe-angem"
+        assert ccnl.ccnl.cnel_code == "H05Y"
+
+    def test_pubblici_esercizi_fipe_angem_has_10_levels(self) -> None:
+        """Contract has exactly 10 levels: 1, 2, 3, 4, 5, 6, 6s, 7, Qa, Qb."""
+        ccnl = load_ccnl("pubblici-esercizi-fipe-angem.json")
+        assert len(ccnl.levels) == 10
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3", "4", "5", "6", "6s", "7", "Qa", "Qb"}
+
+    def test_pubblici_esercizi_fipe_angem_level4_salary_tranche1(self) -> None:
+        """Level 4 first tranche (Jun 2024): 1612.69 EUR/month."""
+        ccnl = load_ccnl("pubblici-esercizi-fipe-angem.json")
+        lv = ccnl.level_by_code("4")
+        assert lv.base_salary.value_at(date(2024, 6, 1)) == Decimal("1612.69")
+
+    def test_pubblici_esercizi_fipe_angem_level4_salary_tranche2(self) -> None:
+        """Level 4 second tranche (Jun 2026): 1692.69 EUR/month."""
+        ccnl = load_ccnl("pubblici-esercizi-fipe-angem.json")
+        lv = ccnl.level_by_code("4")
+        assert lv.base_salary.value_at(date(2026, 6, 1)) == Decimal("1692.69")
+
+    def test_pubblici_esercizi_fipe_angem_level_ordering(self) -> None:
+        """Qa is highest-order level; 7 is lowest-order level."""
+        ccnl = load_ccnl("pubblici-esercizi-fipe-angem.json")
+        orders = {lv.code: lv.order for lv in ccnl.levels}
+        assert orders["Qa"] == max(orders.values())
+        assert orders["7"] == min(orders.values())
+
+    def test_pubblici_esercizi_fipe_angem_additional_months(self) -> None:
+        """Additional months: 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("pubblici-esercizi-fipe-angem.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            14
+        )
+
+    def test_pubblici_esercizi_fipe_angem_hourly_divisor(self) -> None:
+        """Hourly divisor: 172 (Art. 160 CCNL FIPE/ANGEM 2024)."""
+        ccnl = load_ccnl("pubblici-esercizi-fipe-angem.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(172)
+
+    def test_pubblici_esercizi_fipe_angem_quadri_fixed_allowances(self) -> None:
+        """Qa has IDF_A=75, Qb has IDF_B=70; all other levels have no allowances."""
+        ccnl = load_ccnl("pubblici-esercizi-fipe-angem.json")
+        qa = ccnl.level_by_code("Qa")
+        qb = ccnl.level_by_code("Qb")
+        assert len(qa.fixed_allowances) == 1
+        assert qa.fixed_allowances[0].code == "IDF_A"
+        assert qa.fixed_allowances[0].monthly.value_at(date(2026, 1, 1)) == Decimal(
+            "75.00"
+        )
+        assert len(qb.fixed_allowances) == 1
+        assert qb.fixed_allowances[0].code == "IDF_B"
+        assert qb.fixed_allowances[0].monthly.value_at(date(2026, 1, 1)) == Decimal(
+            "70.00"
+        )
+        for lv in ccnl.levels:
+            if lv.code not in {"Qa", "Qb"}:
+                assert lv.fixed_allowances == []
+
+    def test_pubblici_esercizi_fipe_angem_tax_sector(self) -> None:
+        """Contract declares TERZIARIO tax sector."""
+        ccnl = load_ccnl("pubblici-esercizi-fipe-angem.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+
+    def test_pubblici_esercizi_fipe_angem_seniority_cadence(self) -> None:
+        """Seniority: quadriennale (48 months), maximum 6 scatti."""
+        ccnl = load_ccnl("pubblici-esercizi-fipe-angem.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 48
+        assert si.maximum_count == 6

@@ -1,0 +1,53 @@
+{
+  "_description": "Golden case: CCNL Pubblici Esercizi FIPE/ANGEM (H05Y), Level 4, 2026-06-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "giu-26 tranche (FIPE Tabelle retributive 2024, fipe.it): livello 4 = 1692.69 EUR/month.",
+    "Conglobated model: paga base (1167.75) + contingenza (524.94) = 1692.69. Art. 154 indennita di funzione only for Qa/Qb.",
+    "Additional months: 14 (tredicesima Art. 183 + quattordicesima Art. 184). Source: CCNL text fipe.it.",
+    "Hourly divisor: 172 (Art. 160 CCNL). Verify: 1692.69 / 172 = 9.84 EUR/hr.",
+    "INPS employer rate from 2026-terziario.json (terziario sector, <=50 employees, 28.98%).",
+    "Seniority: 0.00 — seniority_count=0, quadriennale cadence (48m), max 6 scatti.",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "pubblici-esercizi-fipe-angem.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "4",
+    "as_of": "2026-06-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "pubblici-esercizi-fipe-angem",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1692.69",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1692.69",
+    "gross_annual": "23697.66",
+    "hourly_rate": "9.84",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2177.81",
+    "inps_employer_annual": "6867.58",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1755.38",
+    "taxable_income": "21519.85",
+    "irpef_gross": "4949.57",
+    "work_income_deduction": "976.89",
+    "irpef_net": "3972.68",
+    "net_annual": "17547.17",
+    "net_monthly": "1253.37",
+    "employer_cost_annual": "32320.62"
+  }
+}
