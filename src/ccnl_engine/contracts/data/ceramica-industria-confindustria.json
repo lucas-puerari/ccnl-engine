@@ -1,0 +1,331 @@
+{
+  "schema_version": "0.3",
+  "ccnl": {
+    "id": "ceramica-industria-confindustria",
+    "name": "CCNL Ceramica Industria (Confindustria-Assopiastrelle)",
+    "cnel_code": "B122",
+    "sector": "ceramica",
+    "tax_sector": "industria",
+    "signatories": [
+      "Confindustria Ceramica",
+      "FILCTEM-CGIL",
+      "FEMCA-CISL",
+      "UILTEC-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+        "type": "table",
+        "agreement_date": "2024-07-22"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-02T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: SALARY MODEL: minimo tabellare conglobato (paga base unica che assorbe contingenza e EDR) + IPO (Indennità di Posizione Organizzativa) separata come fixed_allowance per i livelli che la percepiscono. Fonte: tabelle ufficiali FILCTEM-CGIL (PDF firmato 22/07/2024, sub-settore PIASTRELLE). I MATERIALI REFRATTARI hanno tabelle identiche alle PIASTRELLE.",
+      "INFO: HOURLY_DIVISOR: 173 ore/mese (40h settimane × 52/12 = 173,33 arrotondato). Verificato su lavoro-economia.it per il CCNL B122.",
+      "SIMPLIFICATION: SENIORITY: 5 scatti biennali (cadenza 24 mesi, massimo 5). Importi da kitech.it (B122, livelli primari). Importi B2, C2, C3, D2, D3, E2 assunti uguali a B1, C1, D1, E1 rispettivamente (stesso minimo tabellare, pratica standard CCNL ceramica); non confermati da fonte primaria.",
+      "SIMPLIFICATION: APPRENDISTATO: percentuale 95% su destinazione (base + IPO). Percentuale da fonti aggregatorie pre-rinnovo 2024; il rinnovo 22/07/2024 non risulta aver modificato la struttura dell'apprendistato secondo le stesse fonti. Il PDF principale del CCNL è scansionato e non estraibile. Durata massima legale (D.Lgs 81/2015 Art. 44).",
+      "SIMPLIFICATION: SCATTO APPRENDISTATO: apprentice_amount=null. Nessuna conferma da fonte primaria accessibile per B122 industria. Il valore €6 da gen 2025 è confermato solo per il CCNL Ceramica Artigianato (V751), non per B122.",
+      "INFO: SUB-SETTORI: il CCNL B122 copre Piastrelle (porcellana e gres), Materiali Refrattari, Ceramica Sanitaria e Stoviglieria, Ceramiche artistiche e tradizionali. Questo file modella il sub-settore PIASTRELLE (e REFRATTARI, che ha tabelle identiche). Ceramica Sanitaria ha struttura retributiva differente (IPO significativamente più alta) e non è modellata qui."
+    ]
+  },
+  "levels": [
+    {
+      "code": "F",
+      "order": 1,
+      "description": "Livello F — lavoratori con mansioni di primo ingresso e operazioni elementari",
+      "fixed_allowances": [],
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "1564.40"},
+          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1591.61"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "1625.62"},
+          {"valid_from": "2027-06-01", "valid_until": null, "value": "1666.45"}
+        ]
+      }
+    },
+    {
+      "code": "E2",
+      "order": 2,
+      "description": "Livello E2 — lavoratori con compiti esecutivi, mansioni operative standardizzate",
+      "fixed_allowances": [],
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "1671.19"},
+          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1701.12"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "1738.53"},
+          {"valid_from": "2027-06-01", "valid_until": null, "value": "1783.43"}
+        ]
+      }
+    },
+    {
+      "code": "E1",
+      "order": 3,
+      "description": "Livello E1 — lavoratori con compiti esecutivi e IPO di posizione (art. CCNL IPO)",
+      "fixed_allowances": [
+        {
+          "code": "IPO",
+          "description": "Indennità di Posizione Organizzativa (art. CCNL B122, Tab. PIASTRELLE)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "76.37"},
+              {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "79.64"},
+              {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "83.73"},
+              {"valid_from": "2027-06-01", "valid_until": null, "value": "88.62"}
+            ]
+          }
+        }
+      ],
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "1671.19"},
+          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1701.12"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "1738.53"},
+          {"valid_from": "2027-06-01", "valid_until": null, "value": "1783.43"}
+        ]
+      }
+    },
+    {
+      "code": "D3",
+      "order": 4,
+      "description": "Livello D3 — lavoratori con funzioni operative di media complessità, senza IPO",
+      "fixed_allowances": [],
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "1839.71"},
+          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1875.08"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "1919.29"},
+          {"valid_from": "2027-06-01", "valid_until": null, "value": "1972.36"}
+        ]
+      }
+    },
+    {
+      "code": "D2",
+      "order": 5,
+      "description": "Livello D2 — lavoratori con funzioni operative di media complessità e IPO ridotta",
+      "fixed_allowances": [
+        {
+          "code": "IPO",
+          "description": "Indennità di Posizione Organizzativa (art. CCNL B122, Tab. PIASTRELLE)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "57.95"},
+              {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "60.13"},
+              {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "62.86"},
+              {"valid_from": "2027-06-01", "valid_until": null, "value": "66.12"}
+            ]
+          }
+        }
+      ],
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "1839.71"},
+          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1875.08"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "1919.29"},
+          {"valid_from": "2027-06-01", "valid_until": null, "value": "1972.36"}
+        ]
+      }
+    },
+    {
+      "code": "D1",
+      "order": 6,
+      "description": "Livello D1 — lavoratori con funzioni operative di media complessità e IPO piena",
+      "fixed_allowances": [
+        {
+          "code": "IPO",
+          "description": "Indennità di Posizione Organizzativa (art. CCNL B122, Tab. PIASTRELLE)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "150.04"},
+              {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "154.67"},
+              {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "160.46"},
+              {"valid_from": "2027-06-01", "valid_until": null, "value": "167.39"}
+            ]
+          }
+        }
+      ],
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "1839.71"},
+          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1875.08"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "1919.29"},
+          {"valid_from": "2027-06-01", "valid_until": null, "value": "1972.36"}
+        ]
+      }
+    },
+    {
+      "code": "C3",
+      "order": 7,
+      "description": "Livello C3 — lavoratori con responsabilità tecnica o gestionale di base, senza IPO",
+      "fixed_allowances": [],
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2041.69"},
+          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2082.50"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "2133.51"},
+          {"valid_from": "2027-06-01", "valid_until": null, "value": "2194.75"}
+        ]
+      }
+    },
+    {
+      "code": "C2",
+      "order": 8,
+      "description": "Livello C2 — lavoratori con responsabilità tecnica o gestionale di base e IPO ridotta",
+      "fixed_allowances": [
+        {
+          "code": "IPO",
+          "description": "Indennità di Posizione Organizzativa (art. CCNL B122, Tab. PIASTRELLE)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "65.82"},
+              {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "67.18"},
+              {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "68.88"},
+              {"valid_from": "2027-06-01", "valid_until": null, "value": "70.93"}
+            ]
+          }
+        }
+      ],
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2041.69"},
+          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2082.50"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "2133.51"},
+          {"valid_from": "2027-06-01", "valid_until": null, "value": "2194.75"}
+        ]
+      }
+    },
+    {
+      "code": "C1",
+      "order": 9,
+      "description": "Livello C1 — lavoratori con responsabilità tecnica o gestionale di base e IPO piena",
+      "fixed_allowances": [
+        {
+          "code": "IPO",
+          "description": "Indennità di Posizione Organizzativa (art. CCNL B122, Tab. PIASTRELLE)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "116.89"},
+              {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "119.62"},
+              {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "123.03"},
+              {"valid_from": "2027-06-01", "valid_until": null, "value": "127.10"}
+            ]
+          }
+        }
+      ],
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2041.69"},
+          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2082.50"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "2133.51"},
+          {"valid_from": "2027-06-01", "valid_until": null, "value": "2194.75"}
+        ]
+      }
+    },
+    {
+      "code": "B2",
+      "order": 10,
+      "description": "Livello B2 — lavoratori con elevata professionalità o specializzazione, senza IPO",
+      "fixed_allowances": [],
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2341.71"},
+          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2387.97"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "2445.80"},
+          {"valid_from": "2027-06-01", "valid_until": null, "value": "2515.17"}
+        ]
+      }
+    },
+    {
+      "code": "B1",
+      "order": 11,
+      "description": "Livello B1 — lavoratori con elevata professionalità o specializzazione e IPO piena",
+      "fixed_allowances": [
+        {
+          "code": "IPO",
+          "description": "Indennità di Posizione Organizzativa (art. CCNL B122, Tab. PIASTRELLE)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "138.35"},
+              {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "141.07"},
+              {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "144.47"},
+              {"valid_from": "2027-06-01", "valid_until": null, "value": "148.56"}
+            ]
+          }
+        }
+      ],
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2341.71"},
+          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2387.97"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "2445.80"},
+          {"valid_from": "2027-06-01", "valid_until": null, "value": "2515.17"}
+        ]
+      }
+    },
+    {
+      "code": "A",
+      "order": 12,
+      "description": "Livello A — quadri e lavoratori con massima autonomia e responsabilità direttiva",
+      "fixed_allowances": [],
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2600.08"},
+          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2651.78"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "2716.41"},
+          {"valid_from": "2027-06-01", "valid_until": null, "value": "2793.96"}
+        ]
+      }
+    }
+  ],
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {"valid_from": "2024-09-01", "valid_until": null, "value": "173"}
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {"valid_from": "2024-09-01", "valid_until": null, "value": "13"}
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "A":  {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "19.63"}]},
+        "B1": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "17.56"}]},
+        "B2": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "17.56"}]},
+        "C1": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "12.91"}]},
+        "C2": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "12.91"}]},
+        "C3": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "12.91"}]},
+        "D1": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "12.14"}]},
+        "D2": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "12.14"}]},
+        "D3": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "12.14"}]},
+        "E1": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "8.78"}]},
+        "E2": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "8.78"}]},
+        "F":  {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "7.75"}]}
+      }
+    },
+    "employer_funds": []
+  },
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "qualificazione_professionale",
+      "destination_levels": ["A", "B1", "B2", "C1", "C2", "C3", "D1", "D2", "D3", "E1", "E2", "F"],
+      "periods": [
+        {"months_from": 0, "months_until": null, "percentage": "0.95"}
+      ]
+    }
+  ]
+}
