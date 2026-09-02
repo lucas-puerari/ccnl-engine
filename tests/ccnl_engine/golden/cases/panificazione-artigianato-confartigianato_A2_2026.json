@@ -1,0 +1,48 @@
+{
+  "_description": "Golden case: CCNL Panificazione Artigianato (E015), Level A2, 2026-09-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Apr 2026 tranche: TOTALE base_salary level A2 = 1926.61 EUR/month.",
+    "TOTALE model: Tabellare conglobato + Ind.Speciale art.33 ter (82.63) + ERR (0.44) folded in.",
+    "Additional months: 13 (tredicesima only; Ind.Speciale replaced quattordicesima in 1995).",
+    "INPS employer rate from 2026-artigianato.json (artigianato sector, 16-50 employees tier).",
+    "Seniority: 0.00 — seniority_count=0, biennale cadence, max 5 scatti (valid from 2025-01-01).",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "panificazione-artigianato-confartigianato.json",
+    "year": 2026,
+    "tax_sector": "artigianato",
+    "num_employees": 50,
+    "level_code": "A2",
+    "as_of": "2026-09-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "panificazione-artigianato-confartigianato",
+    "level_code": "A2",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "1926.61",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "gross_monthly": "1926.61",
+    "gross_annual": "25045.93",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2301.72",
+    "inps_employer_annual": "6744.87",
+    "tfr_annual": "1855.25",
+    "taxable_income": "22744.21",
+    "irpef_gross": "5231.17",
+    "work_income_deduction": "890.12",
+    "irpef_net": "4341.05",
+    "net_annual": "18403.16",
+    "net_monthly": "1415.63",
+    "employer_cost_annual": "33646.05"
+  }
+}

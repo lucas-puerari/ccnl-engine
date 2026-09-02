@@ -1973,3 +1973,73 @@ class TestLoadAcconciaturaesteticaConfartigianato:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadPanificazioneArtigianatoConfartigianato:
+    """Tests for CCNL Panificazione Artigianato (E015)."""
+
+    def test_panificazione_artigianato_confartigianato_loads(self) -> None:
+        """Loads with id='panificazione-artigianato-confartigianato', code E015."""
+        ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
+        assert ccnl.ccnl.id == "panificazione-artigianato-confartigianato"
+        assert ccnl.ccnl.cnel_code == "E015"
+
+    def test_panificazione_artigianato_confartigianato_has_10_levels(self) -> None:
+        """Contract has exactly 10 levels: B4 A4 B3 B3S A3 B2 A2 A1 B1 A1S."""
+        ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
+        assert len(ccnl.levels) == 10
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"B4", "A4", "B3", "B3S", "A3", "B2", "A2", "A1", "B1", "A1S"}
+
+    def test_panificazione_artigianato_confartigianato_level_a2_salary_tranche1(
+        self,
+    ) -> None:
+        """Level A2 TOTALE at Apr 2024 tranche: EUR 1788.61."""
+        ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "A2")
+        assert lv.base_salary.periods[0].value == Decimal("1788.61")
+
+    def test_panificazione_artigianato_confartigianato_level_a2_salary_tranche2(
+        self,
+    ) -> None:
+        """Level A2 TOTALE at Jan 2025 tranche: EUR 1828.61."""
+        ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "A2")
+        assert lv.base_salary.periods[1].value == Decimal("1828.61")
+
+    def test_panificazione_artigianato_confartigianato_level_ordering(self) -> None:
+        """Level A1S has highest order; level B4 has lowest order."""
+        ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
+        by_order = sorted(ccnl.levels, key=lambda lx: lx.order)
+        assert by_order[0].code == "B4"
+        assert by_order[-1].code == "A1S"
+
+    def test_panificazione_artigianato_confartigianato_additional_months(self) -> None:
+        """Additional months: 13 (tredicesima only; Art. 33 ter replaced 14th)."""
+        ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
+        assert ccnl.parameters.additional_months.periods[0].value == Decimal(13)
+
+    def test_panificazione_artigianato_confartigianato_hourly_divisor(self) -> None:
+        """Hourly divisor: 173 (40-hour work week)."""
+        ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
+        assert ccnl.parameters.hourly_divisor == 173
+
+    def test_panificazione_artigianato_confartigianato_no_fixed_allowances(
+        self,
+    ) -> None:
+        """All levels have empty fixed_allowances (unified TOTALE model)."""
+        ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_panificazione_artigianato_confartigianato_tax_sector(self) -> None:
+        """Contract declares ARTIGIANATO tax sector."""
+        ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.ARTIGIANATO
+
+    def test_panificazione_artigianato_confartigianato_seniority_cadence(self) -> None:
+        """Seniority: biennale (24 months), maximum 5 scatti (Art. 34-bis)."""
+        ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
