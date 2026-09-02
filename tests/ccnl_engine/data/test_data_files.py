@@ -1778,3 +1778,69 @@ class TestLoadEdiliziaArtigianatoCna:
         assert ccnl.apprenticeship.destination_level == "4"
         assert len(ccnl.apprenticeship.periods) == 6
         assert ccnl.apprenticeship.periods[0].percentage == Decimal("0.74")
+
+
+class TestLoadGasAcquaUtilitalia:
+    """Tests for CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida (K321)."""
+
+    def test_gas_acqua_utilitalia_loads(self) -> None:
+        """Contract loads with id='gas-acqua-utilitalia' and CNEL K321."""
+        ccnl = load_ccnl("gas-acqua-utilitalia.json")
+        assert ccnl.ccnl.id == "gas-acqua-utilitalia"
+        assert ccnl.ccnl.cnel_code == "K321"
+
+    def test_gas_acqua_utilitalia_has_9_levels(self) -> None:
+        """Contract has exactly 9 levels: 1-8 plus Q."""
+        ccnl = load_ccnl("gas-acqua-utilitalia.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3", "4", "5", "6", "7", "8", "Q"}
+
+    def test_gas_acqua_utilitalia_level4_salary_tranche1(self) -> None:
+        """Level 4 minimo at Oct 2022 tranche: EUR 2056.35."""
+        ccnl = load_ccnl("gas-acqua-utilitalia.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "4")
+        assert lv.base_salary.periods[0].value == Decimal("2056.35")
+
+    def test_gas_acqua_utilitalia_level4_salary_tranche2(self) -> None:
+        """Level 4 minimo at Sep 2024 tranche: EUR 2204.68."""
+        ccnl = load_ccnl("gas-acqua-utilitalia.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "4")
+        assert lv.base_salary.periods[2].value == Decimal("2204.68")
+
+    def test_gas_acqua_utilitalia_level_ordering(self) -> None:
+        """Level Q has highest order; level 1 has lowest order."""
+        ccnl = load_ccnl("gas-acqua-utilitalia.json")
+        by_order = sorted(ccnl.levels, key=lambda lx: lx.order)
+        assert by_order[0].code == "1"
+        assert by_order[-1].code == "Q"
+
+    def test_gas_acqua_utilitalia_additional_months(self) -> None:
+        """Additional months: 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("gas-acqua-utilitalia.json")
+        assert ccnl.parameters.additional_months.periods[0].value == Decimal(14)
+
+    def test_gas_acqua_utilitalia_hourly_divisor(self) -> None:
+        """Hourly divisor: 167 (38h 30min contractual week, CCNL §4.3)."""
+        ccnl = load_ccnl("gas-acqua-utilitalia.json")
+        assert ccnl.parameters.hourly_divisor == 167
+
+    def test_gas_acqua_utilitalia_edr_allowance(self) -> None:
+        """All levels carry EDR 10.33 fixed allowance (separate from minimo)."""
+        ccnl = load_ccnl("gas-acqua-utilitalia.json")
+        for lv in ccnl.levels:
+            edr = next((fa for fa in lv.fixed_allowances if fa.code == "EDR"), None)
+            assert edr is not None
+            assert edr.monthly.periods[0].value == Decimal("10.33")
+
+    def test_gas_acqua_utilitalia_tax_sector(self) -> None:
+        """Contract declares INDUSTRIA tax sector."""
+        ccnl = load_ccnl("gas-acqua-utilitalia.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+
+    def test_gas_acqua_utilitalia_seniority_cadence(self) -> None:
+        """Seniority abolished 2015: cadence 24 months, maximum_count 0."""
+        ccnl = load_ccnl("gas-acqua-utilitalia.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 0

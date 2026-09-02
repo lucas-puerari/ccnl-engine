@@ -30,30 +30,31 @@ print(result.employer_cost_annual) # → Decimal('...')
 
 ## CCNL coverage
 
-| CCNL | Sector | Layer 1 | Layer 2 | Layer 3 |
-|---|---|:---:|:---:|:---:|
-| Commercio — Confcommercio | Terziario | ✅ | ✅ | — |
-| Metalmeccanico — Federmeccanica/Assistal | Industria | ✅ | ✅ | — |
-| Metalmeccanico PMI — Unionmeccanica-Confapi | Industria | ✅ | ✅ | — |
-| Chimica-Farmaceutica — Federchimica/Farmindustria/Assistal | Industria | ✅ | ✅ | — |
-| Turismo — Confcommercio | Terziario | ✅ | ✅ | — |
-| Edilizia — ANCE | Edilizia | ✅ | ✅ | — |
-| Cooperative Sociali — Confcooperative/Legacoop/AGCI | Terziario | ✅ | ✅ | — |
-| Logistica, Trasporto Merci e Spedizione — Confetra | Industria | ✅ | ✅ | — |
-| Servizi di Pulizia e Multiservizi — ANIP-Confindustria | Terziario | ✅ | ✅ | — |
-| Studi e Attività Professionali — Confprofessioni | Terziario | ✅ | ✅ | — |
-| Credito — ABI | Credito | ✅ | ✅ | — |
-| Tessile Abbigliamento Moda — SMI | Industria | ✅ | ⚠️ | — |
-| Alimentari Industria — Federalimentare | Industria | ✅ | ⚠️ | — |
-| Distribuzione Moderna Organizzata — Federdistribuzione | Terziario | ✅ | ✅ | — |
-| Metalmeccanica e Installazione Impianti — Artigianato | Artigianato | ✅ | ⚠️ | — |
-| Gomma e Plastica Industria — Federazione Gomma Plastica | Industria | ✅ | ⚠️ | — |
-| Grafica e Editoria — AIEG-Acigraf | Industria | ✅ | — | — |
-| Carta e Cartone — Assocarta | Industria | ✅ | ⚠️ | — |
-| Telecomunicazioni — Asstel | Industria | ✅ | ✅ | — |
-| Vigilanza Privata — ASSIV/ANIVP/UNIV (GPG) | Terziario | ✅ | ✅ | — |
-| Legno e Arredamento — Federlegno-Arredo | Industria | ✅ | ✅ | — |
-| Edilizia e Affini — CNA/Confartigianato/Casartigiani | Artigianato | ✅ | ✅ | — |
+| # | CCNL | Sector | Layer 1 | Layer 2 | Layer 3 |
+|---|---|---|:---:|:---:|:---:|
+| 1 | Commercio — Confcommercio | Terziario | ✅ | ✅ | — |
+| 2 | Metalmeccanico — Federmeccanica/Assistal | Industria | ✅ | ✅ | — |
+| 3 | Metalmeccanico PMI — Unionmeccanica-Confapi | Industria | ✅ | ✅ | — |
+| 4 | Chimica-Farmaceutica — Federchimica/Farmindustria/Assistal | Industria | ✅ | ✅ | — |
+| 5 | Turismo — Confcommercio | Terziario | ✅ | ✅ | — |
+| 6 | Edilizia — ANCE | Edilizia | ✅ | ✅ | — |
+| 7 | Cooperative Sociali — Confcooperative/Legacoop/AGCI | Terziario | ✅ | ✅ | — |
+| 8 | Logistica, Trasporto Merci e Spedizione — Confetra | Industria | ✅ | ✅ | — |
+| 9 | Servizi di Pulizia e Multiservizi — ANIP-Confindustria | Terziario | ✅ | ✅ | — |
+| 10 | Studi e Attività Professionali — Confprofessioni | Terziario | ✅ | ✅ | — |
+| 11 | Credito — ABI | Credito | ✅ | ✅ | — |
+| 12 | Tessile Abbigliamento Moda — SMI | Industria | ✅ | ⚠️ | — |
+| 13 | Alimentari Industria — Federalimentare | Industria | ✅ | ⚠️ | — |
+| 14 | Distribuzione Moderna Organizzata — Federdistribuzione | Terziario | ✅ | ✅ | — |
+| 15 | Metalmeccanica e Installazione Impianti — Artigianato | Artigianato | ✅ | ⚠️ | — |
+| 16 | Gomma e Plastica Industria — Federazione Gomma Plastica | Industria | ✅ | ⚠️ | — |
+| 17 | Grafica e Editoria — AIEG-Acigraf | Industria | ✅ | — | — |
+| 18 | Carta e Cartone — Assocarta | Industria | ✅ | ⚠️ | — |
+| 19 | Telecomunicazioni — Asstel | Industria | ✅ | ✅ | — |
+| 20 | Vigilanza Privata — ASSIV/ANIVP/UNIV (GPG) | Terziario | ✅ | ✅ | — |
+| 21 | Legno e Arredamento — Federlegno-Arredo | Industria | ✅ | ✅ | — |
+| 22 | Edilizia e Affini — CNA/Confartigianato/Casartigiani | Artigianato | ✅ | ✅ | — |
+| 23 | Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas | Industria | ✅ | ✅ | — |
 
 **Layer 1** — base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months.  
 **Layer 2** — part-time, fixed-term (NASpI *addizionale*), apprenticeship (percentage or under-classification).  

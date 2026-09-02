@@ -1,0 +1,48 @@
+{
+  "_description": "Golden case: CCNL Gas e Acqua Utilitalia (K321), Level 4, 2026-09-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Jul 2026 tranche: minimo tabellare integrato 2342.01 + EDR 10.33 = gross_monthly 2352.34.",
+    "Conglobated model: contingenza absorbed into minimo; EDR 10.33 shown as fixed_allowance.",
+    "Additional months: 14 (tredicesima + quattordicesima, CCNL §4.1).",
+    "INPS employer rate from 2026-industria.json (industria sector, 16-50 employees tier).",
+    "Seniority: 0.00 — abolished from 31/12/2015 (§5.5), max_count=0.",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "gas-acqua-utilitalia.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "4",
+    "as_of": "2026-09-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "gas-acqua-utilitalia",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "2342.01",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "10.33",
+    "gross_monthly": "2352.34",
+    "gross_annual": "32932.76",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "3026.52",
+    "inps_employer_annual": "9945.69",
+    "tfr_annual": "2439.46",
+    "taxable_income": "29906.24",
+    "irpef_gross": "7069.06",
+    "work_income_deduction": "543.05",
+    "irpef_net": "6526.01",
+    "net_annual": "23380.23",
+    "net_monthly": "1670.02",
+    "employer_cost_annual": "45317.91"
+  }
+}
