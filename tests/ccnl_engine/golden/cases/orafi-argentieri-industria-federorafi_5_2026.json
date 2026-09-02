@@ -1,0 +1,53 @@
+{
+  "_description": "Golden case: CCNL Orafi e Argentieri Industria (C021), Level 5, 2026-06-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Jun 2025 tranche (SIMPLIFICATION: from kitech.it): livello 5 = 1928.22 EUR/month.",
+    "Conglobated model: contingenza absorbed into minimo tabellare.",
+    "Additional months: 13 (tredicesima only). Source: CCNL 2021 PDF Allegato 9.",
+    "Hourly divisor: 173. Three primary sources confirm (CCNL 2021 Allegato 9; CCNL 2017 Art. congedi; back-calculation).",
+    "INPS employer rate from 2026-industria.json (industria sector, <=50 employees, 30.20%).",
+    "Seniority: 0.00 — seniority_count=0, biennale cadence (24m), max 5 scatti.",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "orafi-argentieri-industria-federorafi.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "5",
+    "as_of": "2026-06-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "orafi-argentieri-industria-federorafi",
+    "level_code": "5",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1928.22",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1928.22",
+    "gross_annual": "25066.86",
+    "hourly_rate": "11.15",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2378.85",
+    "inps_employer_annual": "7570.19",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1856.80",
+    "taxable_income": "22688.01",
+    "irpef_gross": "5218.24",
+    "work_income_deduction": "888.77",
+    "irpef_net": "4329.47",
+    "net_annual": "18358.54",
+    "net_monthly": "1412.20",
+    "employer_cost_annual": "34493.85"
+  }
+}

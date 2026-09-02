@@ -1,0 +1,254 @@
+{
+  "schema_version": "0.3",
+  "ccnl": {
+    "id": "orafi-argentieri-industria-federorafi",
+    "name": "CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)",
+    "cnel_code": "C021",
+    "sector": "industria",
+    "tax_sector": "industria",
+    "signatories": ["Federorafi", "Fim-Cisl", "Fiom-Cgil", "Uilm-Uil"],
+    "sources": [
+      {
+        "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
+        "type": "text",
+        "agreement_date": "2021-12-23"
+      },
+      {
+        "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
+        "type": "text",
+        "agreement_date": "2017-05-18"
+      },
+      {
+        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=51",
+        "type": "table",
+        "agreement_date": null
+      }
+    ],
+    "extraction": { "method": "manual", "model": null, "timestamp": "2026-09-02", "human_reviewed": true }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: SALARY MODEL: conglobated (minimo tabellare comprensivo di contingenza e EDR). Fonte: CCNL 2021 PDF (UILM, firmato 23/12/2021), tabelle retributive pp. 4-5. Tre tranches da fonte primaria (giu 2022, giu 2023, dic 2024); quarta tranche (giu 2025) da kitech.it (secondaria).",
+      "INFO: LIVELLO 1a ELIMINATO dal 1° giugno 2022. Art. 4 del rinnovo 2021: i lavoratori in 1a vengono inquadrati in 2a. Il livello minimo attivo post-giugno 2022 è il 2° livello (ex 2a, €1363.86/mese). Fonte: CCNL 2021 PDF Art. 4.",
+      "INFO: HOURLY DIVISOR 173: confermato da tre fonti primarie indipendenti — (1) CCNL 2021 PDF Allegato 9 apprendistato ('divisore 173'); (2) CCNL 2017 PDF Art. congedi parentali ('un centosettantreesimo 1/173'); (3) back-calculation sulle tabelle 7a: 2083.89 / 173 = 12.05 EUR/h.",
+      "INFO: ADDITIONAL MONTHS: 13 (tredicesima). Fonte: CCNL 2021 PDF, Allegato 9 Art. 7 che rimanda alle norme del CCNL sulla tredicesima.",
+      "INFO: SCATTI DI ANZIANITÀ: fonte primaria — CCNL 2017 PDF (ipotesi di accordo 18/05/2017), Disciplina Generale Sezione Terza 'Aumenti Periodici di Anzianità', 'Valori mensili in vigore dal 1° gennaio 2002'. Confermati: cadenza biennale (24 mesi), massimo 5 bienni per categoria. Il rinnovo 2021 non ha modificato gli importi degli scatti (non menzionati nelle clausole economiche del rinnovo). Scatto Livello Superiore (5S) = 32.43 EUR confermato dalla fonte primaria — valore 13.43 su aggregatori secondari è errato. Scatto 7Q=40.96 assunto uguale a 7a (nessuna distinzione esplicita in fonte primaria).",
+      "INFO: APPRENDISTATO: percentuale a tre periodi (85%/90%/95%), durata standard 36 mesi. Fonte primaria: CCNL 2021 PDF Allegato 9 'Apprendistato professionalizzante'. Art. 4 Allegato 9: 85% (1°-12° mese), 90% (13°-24° mese), 95% (25°-36° mese). Divisore 173 confermato nello stesso Allegato. I 36 mesi sono indicati come durata massima; contratti individuali più brevi proporzionerebbero le fasce — modellati come track fisso standard (36 mesi interi).",
+      "INFO: ULTRA-ACTIVITY: il rinnovo 2026 (firmato 10/02/2026) ha effetti economici dal 01/10/2026. Il contratto 2021 governa economicamente fino al 30/09/2026. Gli scatti 2002 (da CCNL 2017 PDF) rimangono operativi per tutto il periodo modellato poiché né il rinnovo 2021 né il rinnovo 2026 li ha modificati.",
+      "SIMPLIFICATION: TRANCHE GIUGNO 2025 da kitech.it (fonte secondaria, codice categoria 51). Incremento del 10.54% coerente su tutti i livelli con il meccanismo IPCA+TEM. Valori: 2=1574.39, 3=1734.59, 4=1804.87, 5=1928.22, 5S=2058.07, 6=2212.40, 7=2405.58, 7Q=2405.58.",
+      "SIMPLIFICATION: INDENNITÀ DI FUNZIONE livelli 7 e 7Q da kitech.it (fonte secondaria). Livello 7: 59.39 EUR/mese ('ind_funzione'); livello 7Q: 114.00 EUR/mese ('ind_funzione_quadri'). Non rinvenuta fonte primaria accessibile per questi importi.",
+      "SIMPLIFICATION: MINIMO 7Q uguale a 7a per tutte le tranches (CCNL non pubblica tabella distinta per 7Q, che è il livello quadri con gestione retributiva individuale).",
+      "INFO: INPS: aliquote settore industria da 2026-industria.json (file preesistente riutilizzato). Dipendente 9.19%; datore: ≤15 dip 30.13%, 16-50 dip 30.20%, >50 dip 30.50%.",
+      "INFO: COMETA: fondo pensione complementare (Art. 44 CCNL 2021 PDF). Datore 2.00% (da dic 2024), dipendente 1.20%. Non modellato nel motore (Layer 3, fuori scope)."
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2022-06-01", "valid_until": null, "value": "173" }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2022-06-01", "valid_until": null, "value": "13" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "2": {
+          "periods": [
+            { "valid_from": "2022-06-01", "valid_until": null, "value": "21.59" }
+          ]
+        },
+        "3": {
+          "periods": [
+            { "valid_from": "2022-06-01", "valid_until": null, "value": "25.05" }
+          ]
+        },
+        "4": {
+          "periods": [
+            { "valid_from": "2022-06-01", "valid_until": null, "value": "26.75" }
+          ]
+        },
+        "5": {
+          "periods": [
+            { "valid_from": "2022-06-01", "valid_until": null, "value": "29.64" }
+          ]
+        },
+        "5S": {
+          "periods": [
+            { "valid_from": "2022-06-01", "valid_until": null, "value": "32.43" }
+          ]
+        },
+        "6": {
+          "periods": [
+            { "valid_from": "2022-06-01", "valid_until": null, "value": "36.41" }
+          ]
+        },
+        "7": {
+          "periods": [
+            { "valid_from": "2022-06-01", "valid_until": null, "value": "40.96" }
+          ]
+        },
+        "7Q": {
+          "periods": [
+            { "valid_from": "2022-06-01", "valid_until": null, "value": "40.96" }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "2",
+      "order": 1,
+      "description": "2° livello — operai comuni e impiegati d'ordine",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1363.86" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "1385.91" },
+          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "1424.29" },
+          { "valid_from": "2025-06-01", "valid_until": null, "value": "1574.39" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 2,
+      "description": "3° livello — operai qualificati e impiegati",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1502.64" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "1526.93" },
+          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "1569.21" },
+          { "valid_from": "2025-06-01", "valid_until": null, "value": "1734.59" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 3,
+      "description": "4° livello — operai specializzati e impiegati qualificati",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1563.52" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "1588.79" },
+          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "1632.78" },
+          { "valid_from": "2025-06-01", "valid_until": null, "value": "1804.87" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 4,
+      "description": "5° livello — operai altamente specializzati e impiegati di concetto",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1670.37" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "1697.37" },
+          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "1744.37" },
+          { "valid_from": "2025-06-01", "valid_until": null, "value": "1928.22" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5S",
+      "order": 5,
+      "description": "5° livello Superiore — lavoratori con autonomia esecutiva qualificata",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1782.85" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "1811.67" },
+          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "1861.84" },
+          { "valid_from": "2025-06-01", "valid_until": null, "value": "2058.07" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6",
+      "order": 6,
+      "description": "6° livello — impiegati con funzioni direttive o tecnici specializzati",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1916.55" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "1947.53" },
+          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "2001.46" },
+          { "valid_from": "2025-06-01", "valid_until": null, "value": "2212.40" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "7",
+      "order": 7,
+      "description": "7° livello — quadri con funzioni direttive di rilievo",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "2083.89" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "2117.57" },
+          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "2176.21" },
+          { "valid_from": "2025-06-01", "valid_until": null, "value": "2405.58" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "ind_funzione",
+          "description": "Indennità di funzione 7° livello (fonte: kitech.it — SIMPLIFICATION)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2022-06-01", "valid_until": null, "value": "59.39" }
+            ]
+          }
+        }
+      ],
+      "category": "quadro"
+    },
+    {
+      "code": "7Q",
+      "order": 8,
+      "description": "7° livello Q — quadri apicali",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "2083.89" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "2117.57" },
+          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "2176.21" },
+          { "valid_from": "2025-06-01", "valid_until": null, "value": "2405.58" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "ind_funzione_quadri",
+          "description": "Indennità di funzione quadri 7Q (fonte: kitech.it — SIMPLIFICATION)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2022-06-01", "valid_until": null, "value": "114.00" }
+            ]
+          }
+        }
+      ],
+      "category": "quadro"
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante_standard",
+      "destination_levels": ["2", "3", "4", "5", "5S", "6", "7", "7Q"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.85" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.90" },
+        { "months_from": 24, "months_until": null, "percentage": "0.95" }
+      ]
+    }
+  ]
+}
