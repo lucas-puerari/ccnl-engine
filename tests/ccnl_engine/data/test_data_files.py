@@ -2822,3 +2822,93 @@ class TestLoadCalzaturieroAssocalzaturifici:
         assert a.periods[-1].months_until is None
         assert a.periods[0].months_until == 12
         assert a.periods[1].months_until == 24
+
+
+class TestLoadTessileModaArtigianatoConfartigianato:
+    """Tests for CCNL Tessile-Moda Artigianato Confartigianato (V751)."""
+
+    def test_tessile_moda_artigianato_confartigianato_loads(self) -> None:
+        """Contract loads with correct id and CNEL code V751."""
+        ccnl = load_ccnl("tessile-moda-artigianato-confartigianato.json")
+        assert ccnl.ccnl.id == "tessile-moda-artigianato-confartigianato"
+        assert ccnl.ccnl.cnel_code == "V751"
+
+    def test_tessile_moda_artigianato_confartigianato_has_7_levels(self) -> None:
+        """Contract has exactly 7 levels: 1, 2, 3, 4, 5, 6, 6S."""
+        ccnl = load_ccnl("tessile-moda-artigianato-confartigianato.json")
+        assert len(ccnl.levels) == 7
+        assert {lv.code for lv in ccnl.levels} == {"1", "2", "3", "4", "5", "6", "6S"}
+
+    def test_tessile_moda_artigianato_confartigianato_level4_salary_jul2024(
+        self,
+    ) -> None:
+        """Level 4 base salary at Jul 2024 tranche is 1524.87 EUR."""
+        ccnl = load_ccnl("tessile-moda-artigianato-confartigianato.json")
+        lv = ccnl.level_by_code("4")
+        assert lv.base_salary.value_at(date(2024, 7, 1)) == Decimal("1524.87")
+
+    def test_tessile_moda_artigianato_confartigianato_level4_salary_jan2025(
+        self,
+    ) -> None:
+        """Level 4 base salary at Jan 2025 tranche is 1566.69 EUR."""
+        ccnl = load_ccnl("tessile-moda-artigianato-confartigianato.json")
+        lv = ccnl.level_by_code("4")
+        assert lv.base_salary.value_at(date(2025, 1, 1)) == Decimal("1566.69")
+
+    def test_tessile_moda_artigianato_confartigianato_level_ordering(self) -> None:
+        """Level 6S has the highest order; level 1 has the lowest."""
+        ccnl = load_ccnl("tessile-moda-artigianato-confartigianato.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "1"
+        assert by_order[-1].code == "6S"
+
+    def test_tessile_moda_artigianato_confartigianato_additional_months(
+        self,
+    ) -> None:
+        """Additional months: 13 (tredicesima only)."""
+        ccnl = load_ccnl("tessile-moda-artigianato-confartigianato.json")
+        assert ccnl.parameters.additional_months.periods[0].value == Decimal(13)
+
+    def test_tessile_moda_artigianato_confartigianato_hourly_divisor(self) -> None:
+        """Hourly divisor: 173 (40h/week, Art. 9)."""
+        ccnl = load_ccnl("tessile-moda-artigianato-confartigianato.json")
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
+
+    def test_tessile_moda_artigianato_confartigianato_no_fixed_allowances(
+        self,
+    ) -> None:
+        """All levels have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("tessile-moda-artigianato-confartigianato.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_tessile_moda_artigianato_confartigianato_tax_sector(self) -> None:
+        """Contract declares ARTIGIANATO tax sector."""
+        ccnl = load_ccnl("tessile-moda-artigianato-confartigianato.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.ARTIGIANATO
+
+    def test_tessile_moda_artigianato_confartigianato_seniority_cadence(
+        self,
+    ) -> None:
+        """Seniority: biennale (24 months), maximum 4 scatti."""
+        ccnl = load_ccnl("tessile-moda-artigianato-confartigianato.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 4
+
+    def test_tessile_moda_artigianato_confartigianato_apprenticeship_tracks(
+        self,
+    ) -> None:
+        """Three percentage tracks per Art. 68: gruppi 1, 2, 3."""
+        ccnl = load_ccnl("tessile-moda-artigianato-confartigianato.json")
+        assert len(ccnl.apprenticeship) == 3
+        by_name = {t.name: t for t in ccnl.apprenticeship}
+        g1 = by_name["gruppo_1_abb"]
+        assert set(g1.destination_levels) == {"4", "5", "6", "6S"}
+        assert g1.periods[0].percentage == Decimal("0.70")  # type: ignore[union-attr]
+        assert g1.periods[-1].percentage == Decimal("1.00")  # type: ignore[union-attr]
+        assert g1.periods[-1].months_until is None
+        g2 = by_name["gruppo_2_abb"]
+        assert set(g2.destination_levels) == {"3"}
+        g3 = by_name["gruppo_3_abb"]
+        assert set(g3.destination_levels) == {"2"}

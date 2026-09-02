@@ -1,0 +1,281 @@
+{
+  "schema_version": "0.3",
+  "ccnl": {
+    "id": "tessile-moda-artigianato-confartigianato",
+    "name": "CCNL Area Tessile-Moda e Chimica-Ceramica — Artigianato",
+    "cnel_code": "V751",
+    "sector": "tessile moda chimica ceramica artigianato",
+    "tax_sector": "artigianato",
+    "agreement_date": "2024-07-16",
+    "signatories": [
+      "CNA Federmoda",
+      "CNA Produzione",
+      "CNA Artistico e Tradizionale",
+      "CNA Servizi alla Comunità",
+      "Confartigianato Moda",
+      "Confartigianato Chimica",
+      "Confartigianato Ceramica",
+      "Casartigiani",
+      "CLAAI",
+      "Filctem CGIL",
+      "Femca CISL",
+      "Uiltec UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato",
+        "type": "table",
+        "agreement_date": "2024-07-16",
+        "notes": "SOURCE: kitech.it cited as accessible URL proxy; primary source is FEMCA CISL Bergamo salary sheet (local PDF, 4 tranches Jul 2024–Oct 2026) against which all values were verified."
+      },
+      {
+        "url": "https://www.eber.org",
+        "type": "official_codification",
+        "agreement_date": null,
+        "notes": "SOURCE: EBER Allegato 2 'Sintesi codifica contratti INPS e CNEL' — CNEL code V751, INPS code 003. Cross-validated: acconciatura H515 matches repo."
+      },
+      {
+        "url": "https://olympus.uniurb.it",
+        "type": "renewal_summary",
+        "agreement_date": "2024-07-16",
+        "notes": "SOURCE: Rinnovo signed 16 luglio 2024. Confirms Art. 68 Section 7 retribution 'Omissis' (unchanged from 2017 base). Apprentice seniority raised to 6.00 from 2025-01-01 for hires after 17 Jul 2024."
+      },
+      {
+        "url": "https://www.cna.it",
+        "type": "official_contract",
+        "agreement_date": "2017-12-14",
+        "notes": "SOURCE: CNA PDF base CCNL 2017-12-14 — Art. 67 seniority amounts (per-level), Art. 68 apprenticeship percentages (3 gruppi, unchanged in 2024 rinnovo). Signatories from signature page."
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-02T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: SALARY MODEL: conglobated (minimi tabellari conglobati). Back-calculation: L3 Jan 2025 = 1502.03/173 = 8.68 EUR/h; L4 Jan 2025 = 1566.69/173 = 9.05 EUR/h; L6 Jan 2025 = 1849.57/173 = 10.69 EUR/h — consistent divisor 173 across levels confirms conglobated model.",
+      "INFO: CNEL CODE: V751 confirmed from EBER (Ente Bilaterale Emilia-Romagna) 'Allegato 2 — Sintesi codifica contratti INPS e CNEL', INPS code 003. D025 found on lavoro-economia.it refers to the older separate 'Area Tessile-Moda' pre-unification entry; V751 covers the current unified area contract (tessile+chimica+ceramica).",
+      "INFO: TRANCHE DATES: four tranches — 2024-07-01 (retroactive from renewal 16 Jul 2024), 2025-01-01, 2025-10-01, 2026-10-01. Source: FEMCA CISL Bergamo salary sheet, cross-checked kitech.it.",
+      "INFO: HOURLY DIVISOR: 173, derived from 40-hour work week (Art. 9 CCNL tessile-moda artigianato). Formula: 40 h/week × 52/12 = 173.33 rounded to 173 per contract.",
+      "INFO: ADDITIONAL MONTHS: 13 (tredicesima only). Source: ilccnl.it / CNA PDF art. mensilità aggiuntive.",
+      "INFO: SENIORITY: biennale (every 24 months), maximum 4 scatti. Per-level amounts from Art. 67 CNA PDF 2017 (primary source): 6S=15.49, 6=12.91, 5=10.85, 4=9.30, 3=8.26, 2=7.75, 1=7.23 EUR. Unchanged in 2024 rinnovo.",
+      "INFO: APPRENTICE SENIORITY: raised from 5.16 to 6.00 EUR by 2024 rinnovo (Art. 25), effective 2025-01-01 for new hires after 17 Jul 2024. Modelled as uniform 6.00 from 2025-01-01 (pre-Jul-2024 hires staying at 5.16 not separately tracked — minor simplification for new engagements).",
+      "INFO: APPRENTICESHIP: 3 gruppi (Art. 68 CNA PDF 2017, Section 7 retribution marked 'Omissis' in 2024 rinnovo = unchanged). Gruppo 1 (destination levels 4-6S, max 54 months), Gruppo 2 (destination level 3, max 42 months), Gruppo 3 (destination level 2, max 24 months). Level 1 has no apprenticeship track.",
+      "SIMPLIFICATION: Level 6S indennità di funzione (EUR 20.66) assumed fixed across all four tranches. Confirmed at Oct 2025 tranche from kitech.it; pre-2025 tranches extrapolated as same fixed amount. If amount changed between tranches, all 6S salaries before Oct 2025 may differ slightly.",
+      "SIMPLIFICATION: Only tessile-abbigliamento sub-sector modelled. Chimica-ceramica sub-sectors (different salary tables) are not modelled. CNEL code V751 covers all three sub-sectors.",
+      "SIMPLIFICATION: APPRENTICE SENIORITY treated as uniform 6.00 EUR from 2025-01-01 regardless of hire date. Strictly, only workers hired after 17 Jul 2024 get 6.00 from Jan 2025; workers hired before that date remain at 5.16. For new hires this model is correct.",
+      "SIMPLIFICATION: LEVEL CATEGORY: all levels left null (no primary-source text confirming operaio/impiegato split). The 2026-artigianato.json tier applies the impiegato rate (0.2471) for category='impiegato'/'quadro' vs. default 0.2693. Employer cost for higher levels (5, 6, 6S) may be slightly overestimated until categories are confirmed from primary CCNL text.",
+      "INFO: INPS: reuses 2026-artigianato.json (ARTIGIANATO sector)."
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2024-07-01", "valid_until": null, "value": "173" }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2024-07-01", "valid_until": null, "value": "13" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 4,
+      "amount_by_level": {
+        "1": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "7.23" }
+          ]
+        },
+        "2": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "7.75" }
+          ]
+        },
+        "3": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "8.26" }
+          ]
+        },
+        "4": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "9.30" }
+          ]
+        },
+        "5": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "10.85" }
+          ]
+        },
+        "6": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "12.91" }
+          ]
+        },
+        "6S": {
+          "periods": [
+            { "valid_from": "2024-07-01", "valid_until": null, "value": "15.49" }
+          ]
+        }
+      },
+      "apprentice_amount": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-01-01", "value": "5.16" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "6.00" }
+        ]
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "1",
+      "order": 1,
+      "description": "Livello 1 — operatore di base",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-01-01", "value": "1323.50" },
+          { "valid_from": "2025-01-01", "valid_until": "2025-10-01", "value": "1359.87" },
+          { "valid_from": "2025-10-01", "valid_until": "2026-10-01", "value": "1404.41" },
+          { "valid_from": "2026-10-01", "valid_until": null, "value": "1454.41" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "2",
+      "order": 2,
+      "description": "Livello 2 — operatore qualificato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-01-01", "value": "1399.62" },
+          { "valid_from": "2025-01-01", "valid_until": "2025-10-01", "value": "1438.17" },
+          { "valid_from": "2025-10-01", "valid_until": "2026-10-01", "value": "1485.39" },
+          { "valid_from": "2026-10-01", "valid_until": null, "value": "1538.39" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "3",
+      "order": 3,
+      "description": "Livello 3 — operatore specializzato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-01-01", "value": "1462.03" },
+          { "valid_from": "2025-01-01", "valid_until": "2025-10-01", "value": "1502.03" },
+          { "valid_from": "2025-10-01", "valid_until": "2026-10-01", "value": "1551.03" },
+          { "valid_from": "2026-10-01", "valid_until": null, "value": "1606.03" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "4",
+      "order": 4,
+      "description": "Livello 4 — operatore altamente qualificato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-01-01", "value": "1524.87" },
+          { "valid_from": "2025-01-01", "valid_until": "2025-10-01", "value": "1566.69" },
+          { "valid_from": "2025-10-01", "valid_until": "2026-10-01", "value": "1617.92" },
+          { "valid_from": "2026-10-01", "valid_until": null, "value": "1675.42" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "5",
+      "order": 5,
+      "description": "Livello 5 — operatore specialista / impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-01-01", "value": "1649.93" },
+          { "valid_from": "2025-01-01", "valid_until": "2025-10-01", "value": "1695.38" },
+          { "valid_from": "2025-10-01", "valid_until": "2026-10-01", "value": "1751.06" },
+          { "valid_from": "2026-10-01", "valid_until": null, "value": "1813.50" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "6",
+      "order": 6,
+      "description": "Livello 6 — tecnico/impiegato di concetto",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-01-01", "value": "1800.12" },
+          { "valid_from": "2025-01-01", "valid_until": "2025-10-01", "value": "1849.57" },
+          { "valid_from": "2025-10-01", "valid_until": "2026-10-01", "value": "1910.15" },
+          { "valid_from": "2026-10-01", "valid_until": null, "value": "1978.15" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "6S",
+      "order": 7,
+      "description": "Livello 6S — quadro / direttore tecnico (incl. indennità funzione 20.66 EUR)",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-07-01", "valid_until": "2025-01-01", "value": "1943.25" },
+          { "valid_from": "2025-01-01", "valid_until": "2025-10-01", "value": "1995.98" },
+          { "valid_from": "2025-10-01", "valid_until": "2026-10-01", "value": "2060.57" },
+          { "valid_from": "2026-10-01", "valid_until": null, "value": "2133.07" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "gruppo_1_abb",
+      "destination_levels": ["4", "5", "6", "6S"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.75" },
+        { "months_from": 24, "months_until": 36, "percentage": "0.85" },
+        { "months_from": 36, "months_until": 42, "percentage": "0.88" },
+        { "months_from": 42, "months_until": 54, "percentage": "0.93" },
+        { "months_from": 54, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_2_abb",
+      "destination_levels": ["3"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.75" },
+        { "months_from": 24, "months_until": 36, "percentage": "0.91" },
+        { "months_from": 36, "months_until": 42, "percentage": "0.96" },
+        { "months_from": 42, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_3_abb",
+      "destination_levels": ["2"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
+        { "months_from": 12, "months_until": 18, "percentage": "0.75" },
+        { "months_from": 18, "months_until": 24, "percentage": "0.96" },
+        { "months_from": 24, "months_until": null, "percentage": "1.00" }
+      ]
+    }
+  ]
+}
