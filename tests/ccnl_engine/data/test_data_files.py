@@ -175,6 +175,19 @@ class TestLoadMetalmeccanico:
                 "(base_salary is already the minimo conglobato)"
             )
 
+    def test_metalmeccanico_federmeccanica_pre_2024_salary(self) -> None:
+        """Base salary available from Jun 2021 (all 4 pre-2025 tranches present).
+
+        D1 values from lexplain.it (cross-verified: Jun 2024 = 1719.67 matches
+        the known value exactly): Jun-2021=1488.89, Jun-2022=1509.07, Jun-2023=1608.67.
+        """
+        ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
+        d1 = next(lv for lv in ccnl.levels if lv.code == "D1")
+        assert d1.base_salary.value_at(date(2021, 6, 1)) == Decimal("1488.89")
+        assert d1.base_salary.value_at(date(2022, 6, 1)) == Decimal("1509.07")
+        assert d1.base_salary.value_at(date(2023, 6, 1)) == Decimal("1608.67")
+        assert d1.base_salary.value_at(date(2024, 6, 1)) == Decimal("1719.67")
+
     def test_metalmeccanico_federmeccanica_apprenticeship_tracks(self) -> None:
         """Three percentage tracks (85/90/95/100%) at 36, 30, 24 months."""
         ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
@@ -577,6 +590,31 @@ class TestLoadEdiliziaAnce:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+    def test_edilizia_apprenticeship_standard_percentage(self) -> None:
+        """Apprenticeship: 1 track, levels 2-7, percentage 72/72/78/78/85/90/100%.
+
+        Since CNCE n.660/2019 the CCNL abolished under-classification and uses
+        percentage-based pay on the destination level for all levels 2-7 over 36 months
+        (6 semesters at 72/72/78/78/85/90%, then 100%). Level 1 is not eligible.
+        """
+        ccnl = load_ccnl("edilizia-ance.json")
+        assert len(ccnl.apprenticeship) == 1
+        track = ccnl.apprenticeship[0]
+        assert isinstance(track, ApprenticeshipPercentage)
+        assert track.name == "standard"
+        assert set(track.destination_levels) == {"2", "3", "4", "5", "6", "7"}
+        pcts = [p.percentage for p in track.periods]
+        assert pcts[:6] == [
+            Decimal("0.72"),
+            Decimal("0.72"),
+            Decimal("0.78"),
+            Decimal("0.78"),
+            Decimal("0.85"),
+            Decimal("0.90"),
+        ]
+        assert pcts[-1] == Decimal("1.00")
+        assert track.periods[-1].months_until is None
 
 
 # ---------------------------------------------------------------------------
@@ -1467,6 +1505,20 @@ class TestLoadGommaPlasticaFederazioneGommaPlastica:
         assert si.cadence_months == 24
         assert si.maximum_count == 5
 
+    def test_gomma_plastica_seniority_amounts_pre_2026(self) -> None:
+        """Seniority amounts are the same before and after the 2026 rinnovo.
+
+        The December 2025 rinnovo left Art.23 (scatti) untouched, so the amounts
+        at 01.01.2023 equal those at 01.01.2026. Level F amount confirmed 13.94 EUR.
+        """
+        ccnl = load_ccnl("gomma-plastica-federazione-gomma-plastica.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.amount_by_level is not None
+        f_amount_2023 = si.amount_by_level["F"].value_at(date(2023, 1, 1))
+        f_amount_2026 = si.amount_by_level["F"].value_at(date(2026, 1, 1))
+        assert f_amount_2023 == f_amount_2026
+        assert f_amount_2023 == Decimal("13.94")
+
 
 class TestLoadGraficaEditoriaAieg:
     """Tests for CCNL Grafica e Editoria Industria (AIEG-Acigraf, G011)."""
@@ -1968,6 +2020,38 @@ class TestLoadEdiliziaArtigianatoCna:
         assert len(ccnl.apprenticeship[0].periods) == 7
         assert ccnl.apprenticeship[0].periods[0].percentage == Decimal("0.74")
         assert ccnl.apprenticeship[0].periods[-1].percentage == Decimal("1.00")
+
+    def test_edilizia_artigianato_cna_specialistico_tracks(self) -> None:
+        """Apprenticeship specialistico tracks (Allegato D, verbale 05/09/2023, Art.9).
+
+        Track 1Sp (54m, livelli 4-5): 78/80/86/91/96/96/100%.
+        Track 2Sp (45m, livelli 3-4): 78/80/86/91/96/100% (last period 3m, SIMPLIF.).
+        Track 3Sp (42m, livello 3):   78/80/86/91/100%.
+        """
+        ccnl = load_ccnl("edilizia-artigianato-cna.json")
+        assert len(ccnl.apprenticeship) == 5  # 2 standard + 3 specialistico
+        by_name = {t.name: t for t in ccnl.apprenticeship}
+
+        sp1 = by_name["specialistico_1sp"]
+        assert set(sp1.destination_levels) == {"4", "5"}
+        assert isinstance(sp1, ApprenticeshipPercentage)
+        assert len(sp1.periods) == 7  # 6 active + open 100%
+        assert sp1.periods[0].percentage == Decimal("0.78")
+        assert sp1.periods[4].percentage == Decimal("0.96")
+        assert sp1.periods[5].months_until == 54
+        assert sp1.periods[-1].months_until is None
+
+        sp2 = by_name["specialistico_2sp"]
+        assert set(sp2.destination_levels) == {"3", "4"}
+        assert isinstance(sp2, ApprenticeshipPercentage)
+        assert sp2.periods[-2].months_until == 45  # last active period ends at 45m
+
+        sp3 = by_name["specialistico_3sp"]
+        assert sp3.destination_levels == ["3"]
+        assert isinstance(sp3, ApprenticeshipPercentage)
+        assert len(sp3.periods) == 5  # 4 active + open 100%
+        assert sp3.periods[3].percentage == Decimal("0.91")
+        assert sp3.periods[3].months_until == 42
 
 
 class TestLoadGasAcquaUtilitalia:
