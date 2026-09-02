@@ -53,6 +53,7 @@ print(result.employer_cost_annual) # → Decimal('...')
 | Telecomunicazioni — Asstel | Industria | ✅ | ✅ | — |
 | Vigilanza Privata — ASSIV/ANIVP/UNIV (GPG) | Terziario | ✅ | ✅ | — |
 | Legno e Arredamento — Federlegno-Arredo | Industria | ✅ | ✅ | — |
+| Edilizia e Affini — CNA/Confartigianato/Casartigiani | Artigianato | ✅ | ✅ | — |
 
 **Layer 1** — base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months.  
 **Layer 2** — part-time, fixed-term (NASpI *addizionale*), apprenticeship (percentage or under-classification).  
