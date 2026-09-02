@@ -2283,3 +2283,69 @@ class TestLoadElettricoElettricita:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadCalzaturieroAssocalzaturifici:
+    """Tests for CCNL Calzaturiero Industria (D121)."""
+
+    def test_calzaturiero_assocalzaturifici_loads(self) -> None:
+        """CCNL loads with correct id and CNEL code D121."""
+        ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
+        assert ccnl.ccnl.id == "calzaturiero-assocalzaturifici"
+        assert ccnl.ccnl.cnel_code == "D121"
+
+    def test_calzaturiero_assocalzaturifici_has_10_levels(self) -> None:
+        """Contract has exactly 10 classification levels."""
+        ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
+        assert len(ccnl.levels) == 10
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "2S", "3", "3S", "4", "5", "6", "7", "8"}
+
+    def test_calzaturiero_assocalzaturifici_level4_salary_aug2024(self) -> None:
+        """Level 4 base salary at Aug 2024 tranche: 1879.50 EUR."""
+        ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv.base_salary.periods[0].value == Decimal("1879.50")
+        assert str(lv.base_salary.periods[0].valid_from) == "2024-08-01"
+
+    def test_calzaturiero_assocalzaturifici_level4_salary_aug2026(self) -> None:
+        """Level 4 base salary at Aug 2026 tranche: 1980.50 EUR."""
+        ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv.base_salary.periods[-1].value == Decimal("1980.50")
+        assert lv.base_salary.periods[-1].valid_until is None
+
+    def test_calzaturiero_assocalzaturifici_level_ordering(self) -> None:
+        """Level 8 has the highest order; level 1 has the lowest."""
+        ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "1"
+        assert by_order[-1].code == "8"
+
+    def test_calzaturiero_assocalzaturifici_additional_months(self) -> None:
+        """Additional months: 13 (tredicesima only)."""
+        ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
+        assert ccnl.parameters.additional_months.periods[0].value == Decimal(13)
+
+    def test_calzaturiero_assocalzaturifici_hourly_divisor(self) -> None:
+        """Hourly divisor: 169 (kitech.it, daily divisor 26)."""
+        ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
+        assert ccnl.parameters.hourly_divisor == 169
+
+    def test_calzaturiero_assocalzaturifici_no_fixed_allowances(self) -> None:
+        """All levels have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_calzaturiero_assocalzaturifici_tax_sector(self) -> None:
+        """Contract declares INDUSTRIA tax sector."""
+        ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+
+    def test_calzaturiero_assocalzaturifici_seniority_cadence(self) -> None:
+        """Seniority: triennale (36 months), maximum 5 scatti."""
+        ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 5
