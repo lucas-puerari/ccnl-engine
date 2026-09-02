@@ -52,3 +52,14 @@ Direct pushes to `main` are blocked by the pre-push hook. All changes go through
 ## Adding a new CCNL
 
 Follow the `/new-contract` skill — it codifies the full research, implementation, test, and PR workflow.
+
+
+## Git history normalization (one-time)
+
+In September 2026, a `git filter-repo` pass rewrote 15 early commits to:
+- Add `(#N)` trailer to all commits that had a corresponding PR but lacked the reference
+- Fix scope slugs (`metalmeccanico` → `metalmeccanico-federmeccanica`, `turismo` → `turismo-confcommercio`, etc.)
+- Align CCNL names and codes with the standardized PR titles set in PR #38
+- Add `payroll engine` suffix where missing
+
+Commits before PR #1 (`091533f`, `3587bc4`, `d99fc29`) predate the PR workflow and intentionally have no `(#N)` trailer.
