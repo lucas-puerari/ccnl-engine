@@ -3013,3 +3013,116 @@ class TestLoadLegnoLapideiArtigianatoConfartigianato:
         assert set(g2.destination_levels) == {"CS", "C", "D"}
         g3 = by_name["gruppo_3_legno"]
         assert set(g3.destination_levels) == {"E"}
+
+
+# ---------------------------------------------------------------------------
+# CCNL Area Comunicazione — Artigianato (G016)
+# ---------------------------------------------------------------------------
+
+
+class TestLoadComunicazioneArtigianatoConfartigianato:
+    """Tests for CCNL Area Comunicazione Artigianato (CNEL G016)."""
+
+    def test_comunicazione_artigianato_confartigianato_loads(self) -> None:
+        """Contract loads with correct id and CNEL code G016."""
+        ccnl = load_ccnl("comunicazione-artigianato-confartigianato.json")
+        assert ccnl.ccnl.id == "comunicazione-artigianato-confartigianato"
+        assert ccnl.ccnl.cnel_code == "G016"
+
+    def test_comunicazione_artigianato_confartigianato_has_8_levels(self) -> None:
+        """Contract has exactly 8 levels with the correct codes."""
+        ccnl = load_ccnl("comunicazione-artigianato-confartigianato.json")
+        assert len(ccnl.levels) == 8
+        assert {lv.code for lv in ccnl.levels} == {
+            "1A",
+            "1B",
+            "2",
+            "3",
+            "4",
+            "5bis",
+            "5",
+            "6",
+        }
+
+    def test_comunicazione_artigianato_confartigianato_level4_salary_dec2024(
+        self,
+    ) -> None:
+        """Level 4 base salary at Dec 2024 tranche is 1718.56 EUR."""
+        ccnl = load_ccnl("comunicazione-artigianato-confartigianato.json")
+        lv = next(lvl for lvl in ccnl.levels if lvl.code == "4")
+        val = lv.base_salary.value_at(date(2024, 12, 1))
+        assert val == Decimal("1718.56")
+
+    def test_comunicazione_artigianato_confartigianato_level4_salary_mar2026(
+        self,
+    ) -> None:
+        """Level 4 base salary at Mar 2026 tranche is 1808.56 EUR."""
+        ccnl = load_ccnl("comunicazione-artigianato-confartigianato.json")
+        lv = next(lvl for lvl in ccnl.levels if lvl.code == "4")
+        val = lv.base_salary.value_at(date(2026, 3, 1))
+        assert val == Decimal("1808.56")
+
+    def test_comunicazione_artigianato_confartigianato_level_ordering(self) -> None:
+        """Level 1A has highest order, level 6 has lowest order."""
+        ccnl = load_ccnl("comunicazione-artigianato-confartigianato.json")
+        by_code = {lv.code: lv for lv in ccnl.levels}
+        assert by_code["1A"].order > by_code["1B"].order
+        assert by_code["6"].order == 1
+        assert by_code["1A"].order == 8
+
+    def test_comunicazione_artigianato_confartigianato_additional_months(
+        self,
+    ) -> None:
+        """Contract has 13 additional months (tredicesima only)."""
+        ccnl = load_ccnl("comunicazione-artigianato-confartigianato.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(13)
+
+    def test_comunicazione_artigianato_confartigianato_hourly_divisor(self) -> None:
+        """Hourly divisor is 173."""
+        ccnl = load_ccnl("comunicazione-artigianato-confartigianato.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal(173)
+
+    def test_comunicazione_artigianato_confartigianato_allowances_structure(
+        self,
+    ) -> None:
+        """Level 1A has 1 function allowance; all other levels have none."""
+        ccnl = load_ccnl("comunicazione-artigianato-confartigianato.json")
+        for lv in ccnl.levels:
+            if lv.code == "1A":
+                assert len(lv.fixed_allowances) == 1
+                assert lv.fixed_allowances[0].code == "indennita_funzione"
+            else:
+                assert lv.fixed_allowances == []
+
+    def test_comunicazione_artigianato_confartigianato_tax_sector(self) -> None:
+        """Contract declares ARTIGIANATO tax sector."""
+        ccnl = load_ccnl("comunicazione-artigianato-confartigianato.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.ARTIGIANATO
+
+    def test_comunicazione_artigianato_confartigianato_seniority_cadence(
+        self,
+    ) -> None:
+        """Seniority: biennale (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("comunicazione-artigianato-confartigianato.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_comunicazione_artigianato_confartigianato_apprenticeship_tracks(
+        self,
+    ) -> None:
+        """Two percentage tracks: operai_tecnici (5y) and amministrativi (3y)."""
+        ccnl = load_ccnl("comunicazione-artigianato-confartigianato.json")
+        assert len(ccnl.apprenticeship) == 2
+        by_name = {t.name: t for t in ccnl.apprenticeship}
+        ot = by_name["operai_tecnici"]
+        assert isinstance(ot, ApprenticeshipPercentage)
+        assert ot.periods[0].percentage == Decimal("0.70")
+        assert ot.periods[-1].percentage == Decimal("1.00")
+        assert ot.periods[-1].months_until is None
+        adm = by_name["amministrativi"]
+        assert isinstance(adm, ApprenticeshipPercentage)
+        assert adm.periods[0].percentage == Decimal("0.70")
+        assert adm.periods[-1].percentage == Decimal("0.90")
