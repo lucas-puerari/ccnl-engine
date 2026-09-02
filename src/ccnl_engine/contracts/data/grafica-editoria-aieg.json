@@ -1,18 +1,12 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "grafica-editoria-aieg",
     "name": "CCNL Grafica e Editoria Industria (AIEG-Acigraf)",
     "cnel_code": "G011",
     "sector": "grafica-editoria",
     "tax_sector": "industria",
-    "signatories": [
-      "AIEG",
-      "Acigraf",
-      "SLC-CGIL",
-      "Fistel-CISL",
-      "Uilcom-UIL"
-    ],
+    "signatories": ["AIEG", "Acigraf", "SLC-CGIL", "Fistel-CISL", "Uilcom-UIL"],
     "sources": [
       {
         "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/",
@@ -32,8 +26,28 @@
       "human_reviewed": true
     }
   },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "out_of_scope",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: SALARY MODEL: the CCNL Grafica e Editoria Industria (G011) uses a split model with separate paga base (TEM), contingenza (frozen since 1992 per Prot. 31/07/1992), and EDR (10.33 EUR, all levels). The base_salary values in this file are the TOTAL (paga base + contingenza + EDR) per level and tranche, sourced from the official lexplain.it table (all 5 tranches) and kitech.it (July 2026 breakdown). Modeling the total as base_salary produces the same gross_monthly as the split representation. fixed_allowances is empty for all levels (no additional fixed components).",
+      "INFO: CONGLOBATED CHECK: inter-level increase ratios are stable across all 5 tranches (e.g., Q/E = 1.937, C1/E = 1.357 at all dates), confirming a single parametric coefficient system. Contingenza is frozen per level (E=512.87, Q=539.99); EDR=10.33 uniform. Total values from lexplain cross-check with kitech July 2026 breakdown to within ±0.03 EUR (rounding difference).",
+      "SIMPLIFICATION: HOURLY DIVISOR: 173. SIMPLIFICATION: no official hourly rate table recovered for G011. The value 173 is derived from 40h/week standard (40×52/12=173.33→173). The CCNL uses divisore convenzionale 26 for daily calculations; the hourly divisor is inferred from the weekly-hours convention. If the actual contractual hours differ (e.g., 37.5h/week→163), divisore must be corrected.",
+      "INFO: TRANCHE DATES: 01.03.2024, 01.09.2024, 01.05.2025, 01.10.2025, 01.07.2026. Values from rinnovo 20.12.2024 (retroactive application). Fonte: lexplain.it (5 tranches, all 12 Grafici levels) and kitech.it (componenti breakdown July 2026).",
+      "SIMPLIFICATION: SENIORITY: 5 scatti biennali (24 months), valid from kitech.it July 2026. SIMPLIFICATION: pre-July 2026 scatto amounts not modelled (prior rinnovo values not recovered). The engine uses July 2026 amounts for all periods — impact negligible for current-date calculations.",
+      "INFO: SECTOR SCOPE: modella solo il settore GRAFICI (12 livelli: E, D2, D1, C2, C1, B3, B2, B1, B1S, A, AS, Q). Il settore EDITORI (9 livelli: 8°-0°/Q) con tabelle retributive leggermente diverse NON è modellato. Coverage marcata come layer_1=implemented solo per Grafici.",
+      "INFO: ADDITIONAL MONTHS: 13 (tredicesima only). Confermato da fonte secondaria (lavoro-economia.it / contratticcnl.it). La quattordicesima non è prevista dal CCNL G011 Grafici.",
+      "INFO: APPRENTICESHIP: non modellato (dati non recuperati per il testo contrattuale specifico). Layer 2 marcato out_of_scope.",
+      "INFO: INPS: riutilizza 2026-industria.json (Confindustria). AIEG/Acigraf aderiscono a Confindustria; CIGO applicabile per il settore industria grafica (D.Lgs. 148/2015)."
+    ]
+  },
   "parameters": {
-    "hourly_divisor": 173,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2024-03-01", "valid_until": null, "value": "173" }
+      ]
+    },
     "additional_months": {
       "periods": [
         { "valid_from": "2024-03-01", "valid_until": null, "value": "13" }
@@ -117,7 +131,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "1383.20" },
           { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "1400.85" },
           { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1430.26" },
-          { "valid_from": "2026-07-01", "valid_until": null,         "value": "1460.85" }
+          { "valid_from": "2026-07-01", "valid_until": null, "value": "1460.85" }
         ]
       },
       "fixed_allowances": []
@@ -132,7 +146,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "1505.82" },
           { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "1526.11" },
           { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1559.93" },
-          { "valid_from": "2026-07-01", "valid_until": null,         "value": "1595.11" }
+          { "valid_from": "2026-07-01", "valid_until": null, "value": "1595.11" }
         ]
       },
       "fixed_allowances": []
@@ -147,7 +161,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "1604.60" },
           { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "1626.84" },
           { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1663.90" },
-          { "valid_from": "2026-07-01", "valid_until": null,         "value": "1702.44" }
+          { "valid_from": "2026-07-01", "valid_until": null, "value": "1702.44" }
         ]
       },
       "fixed_allowances": []
@@ -162,7 +176,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "1719.44" },
           { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "1743.97" },
           { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1784.85" },
-          { "valid_from": "2026-07-01", "valid_until": null,         "value": "1827.37" }
+          { "valid_from": "2026-07-01", "valid_until": null, "value": "1827.37" }
         ]
       },
       "fixed_allowances": []
@@ -177,7 +191,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "1880.58" },
           { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "1908.29" },
           { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1954.47" },
-          { "valid_from": "2026-07-01", "valid_until": null,         "value": "2002.49" }
+          { "valid_from": "2026-07-01", "valid_until": null, "value": "2002.49" }
         ]
       },
       "fixed_allowances": []
@@ -192,7 +206,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "1994.85" },
           { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "2024.85" },
           { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2074.85" },
-          { "valid_from": "2026-07-01", "valid_until": null,         "value": "2126.85" }
+          { "valid_from": "2026-07-01", "valid_until": null, "value": "2126.85" }
         ]
       },
       "fixed_allowances": []
@@ -207,7 +221,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "2109.95" },
           { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "2142.24" },
           { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2196.06" },
-          { "valid_from": "2026-07-01", "valid_until": null,         "value": "2252.04" }
+          { "valid_from": "2026-07-01", "valid_until": null, "value": "2252.04" }
         ]
       },
       "fixed_allowances": []
@@ -222,7 +236,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "2218.92" },
           { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "2253.51" },
           { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2311.16" },
-          { "valid_from": "2026-07-01", "valid_until": null,         "value": "2371.11" }
+          { "valid_from": "2026-07-01", "valid_until": null, "value": "2371.11" }
         ]
       },
       "fixed_allowances": []
@@ -237,7 +251,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "2269.34" },
           { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "2304.81" },
           { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2363.93" },
-          { "valid_from": "2026-07-01", "valid_until": null,         "value": "2425.41" }
+          { "valid_from": "2026-07-01", "valid_until": null, "value": "2425.41" }
         ]
       },
       "fixed_allowances": []
@@ -252,7 +266,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "2341.38" },
           { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "2378.43" },
           { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2440.20" },
-          { "valid_from": "2026-07-01", "valid_until": null,         "value": "2504.43" }
+          { "valid_from": "2026-07-01", "valid_until": null, "value": "2504.43" }
         ]
       },
       "fixed_allowances": []
@@ -267,7 +281,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "2678.68" },
           { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "2722.44" },
           { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2795.38" },
-          { "valid_from": "2026-07-01", "valid_until": null,         "value": "2871.24" }
+          { "valid_from": "2026-07-01", "valid_until": null, "value": "2871.24" }
         ]
       },
       "fixed_allowances": []
@@ -282,27 +296,11 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "2688.76" },
           { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "2732.71" },
           { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2805.94" },
-          { "valid_from": "2026-07-01", "valid_until": null,         "value": "2882.11" }
+          { "valid_from": "2026-07-01", "valid_until": null, "value": "2882.11" }
         ]
       },
       "fixed_allowances": []
     }
   ],
-  "apprenticeship": null,
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "out_of_scope",
-    "layer_3": "out_of_scope",
-    "notes": [
-      "SALARY MODEL: the CCNL Grafica e Editoria Industria (G011) uses a split model with separate paga base (TEM), contingenza (frozen since 1992 per Prot. 31/07/1992), and EDR (10.33 EUR, all levels). The base_salary values in this file are the TOTAL (paga base + contingenza + EDR) per level and tranche, sourced from the official lexplain.it table (all 5 tranches) and kitech.it (July 2026 breakdown). Modeling the total as base_salary produces the same gross_monthly as the split representation. fixed_allowances is empty for all levels (no additional fixed components).",
-      "CONGLOBATED CHECK: inter-level increase ratios are stable across all 5 tranches (e.g., Q/E = 1.937, C1/E = 1.357 at all dates), confirming a single parametric coefficient system. Contingenza is frozen per level (E=512.87, Q=539.99); EDR=10.33 uniform. Total values from lexplain cross-check with kitech July 2026 breakdown to within ±0.03 EUR (rounding difference).",
-      "HOURLY DIVISOR: 173. SIMPLIFICATION: no official hourly rate table recovered for G011. The value 173 is derived from 40h/week standard (40×52/12=173.33→173). The CCNL uses divisore convenzionale 26 for daily calculations; the hourly divisor is inferred from the weekly-hours convention. If the actual contractual hours differ (e.g., 37.5h/week→163), divisore must be corrected.",
-      "TRANCHE DATES: 01.03.2024, 01.09.2024, 01.05.2025, 01.10.2025, 01.07.2026. Values from rinnovo 20.12.2024 (retroactive application). Fonte: lexplain.it (5 tranches, all 12 Grafici levels) and kitech.it (componenti breakdown July 2026).",
-      "SENIORITY: 5 scatti biennali (24 months), valid from kitech.it July 2026. SIMPLIFICATION: pre-July 2026 scatto amounts not modelled (prior rinnovo values not recovered). The engine uses July 2026 amounts for all periods — impact negligible for current-date calculations.",
-      "SECTOR SCOPE: modella solo il settore GRAFICI (12 livelli: E, D2, D1, C2, C1, B3, B2, B1, B1S, A, AS, Q). Il settore EDITORI (9 livelli: 8°-0°/Q) con tabelle retributive leggermente diverse NON è modellato. Coverage marcata come layer_1=implemented solo per Grafici.",
-      "ADDITIONAL MONTHS: 13 (tredicesima only). Confermato da fonte secondaria (lavoro-economia.it / contratticcnl.it). La quattordicesima non è prevista dal CCNL G011 Grafici.",
-      "APPRENTICESHIP: non modellato (dati non recuperati per il testo contrattuale specifico). Layer 2 marcato out_of_scope.",
-      "INPS: riutilizza 2026-industria.json (Confindustria). AIEG/Acigraf aderiscono a Confindustria; CIGO applicabile per il settore industria grafica (D.Lgs. 148/2015)."
-    ]
-  }
+  "apprenticeship": []
 }

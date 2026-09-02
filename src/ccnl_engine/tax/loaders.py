@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import importlib.resources
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Protocol
 
 from ccnl_engine.tax.models import (
+    ApprenticeRates,
     InpsRates,
     YearRules,
-    _InpsEmployerTier,
+    _ApprenticeRawRates,
     _YearRulesRaw,
 )
 
@@ -18,12 +19,17 @@ if TYPE_CHECKING:
     from ccnl_engine.models.ccnl import TaxSector
 
 
+class _Tier(Protocol):
+    max_employees: int | None
+    rate: Decimal
+
+
 def load_year_rules(
     year: int,
     sector: TaxSector,
     num_employees: int,
 ) -> YearRules:
-    """Load and validate tax year rules, resolving employer INPS rate by headcount."""
+    """Load and validate tax year rules, resolving INPS rates by headcount."""
     filename = f"{year}-{sector.value}.json"
     raw_text = (
         importlib.resources.files("ccnl_engine.tax.data")
@@ -31,35 +37,55 @@ def load_year_rules(
         .read_text(encoding="utf-8")
     )
     raw = _YearRulesRaw.model_validate_json(raw_text)
-    employer_rate = _resolve_employer_tier(raw.inps.employer_tiers, num_employees)
+    employer_tier = _resolve_tier(raw.inps.employer_tiers, num_employees, "employer")
+    employee_tier = _resolve_tier(raw.inps.employee_tiers, num_employees, "employee")
     return YearRules(
         year=raw.year,
         irpef_brackets=raw.irpef_brackets,
         work_deduction_breakpoints=raw.work_deduction_breakpoints,
         fixed_term_additional_rate=raw.fixed_term_additional_rate,
         inps=InpsRates(
-            employee_rate=raw.inps.employee_rate,
-            employer_rate=employer_rate,
+            employee_rate=employee_tier.rate,
+            employer_rate=employer_tier.rate,
             ceiling=raw.inps.ceiling,
+            employer_rate_by_category=employer_tier.rate_by_category,
         ),
+        apprentice=_resolve_apprentice(raw.apprentice, num_employees),
         tfr=raw.tfr,
         notes=raw.notes,
     )
 
 
-def _resolve_employer_tier(
-    tiers: list[_InpsEmployerTier],
-    num_employees: int,
-) -> Decimal:
+def _resolve_tier[T: _Tier](tiers: list[T], num_employees: int, side: str) -> T:
     sorted_tiers = sorted(
         tiers,
         key=lambda t: (t.max_employees is None, t.max_employees or 0),
     )
     for tier in sorted_tiers:
         if tier.max_employees is None or num_employees <= tier.max_employees:
-            return tier.rate
+            return tier
     msg = (
-        f"No employer-rate tier covers {num_employees} employees. "
+        f"No {side}-rate tier covers {num_employees} employees. "
         "Check that the tax data file has an open tier (max_employees: null)."
     )
     raise ValueError(msg)
+
+
+def _resolve_apprentice(
+    raw: _ApprenticeRawRates, num_employees: int
+) -> ApprenticeRates:
+    small_firm = num_employees <= raw.small_firm_max_employees
+    return ApprenticeRates(
+        employee_rate=raw.employee_rate,
+        employer_rate_months_0_11=(
+            raw.small_firm_employer_rate_months_0_11
+            if small_firm
+            else raw.employer_rate
+        ),
+        employer_rate_months_12_23=(
+            raw.small_firm_employer_rate_months_12_23
+            if small_firm
+            else raw.employer_rate
+        ),
+        employer_rate_after=raw.employer_rate,
+    )

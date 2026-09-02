@@ -1,17 +1,12 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "alimentari-federalimentare",
     "name": "CCNL per i lavoratori dell'industria alimentare (Federalimentare)",
     "cnel_code": "E012",
     "sector": "industria",
     "tax_sector": "industria",
-    "signatories": [
-      "Federalimentare",
-      "FLAI-CGIL",
-      "FAI-CISL",
-      "UILA-UIL"
-    ],
+    "signatories": ["Federalimentare", "FLAI-CGIL", "FAI-CISL", "UILA-UIL"],
     "sources": [
       {
         "url": "https://flaiveneto.it/rinnovato-il-ccnl-industria-alimentare/",
@@ -39,15 +34,28 @@
         "agreement_date": null
       }
     ],
-    "extraction": {
-      "method": "manual",
-      "model": null,
-      "timestamp": "2026-09-01",
-      "human_reviewed": true
-    }
+    "extraction": { "method": "manual", "model": null, "timestamp": "2026-09-01", "human_reviewed": true }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: SALARY MODEL: split (paga base/TEM + contingenza + EDR + IAR come allowance separate). TEM varia per livello e tranche; contingenza congelata dal 31/07/1992 (Prot. Governo-parti sociali); EDR fisso 10,33 EUR per tutti i livelli (Accordo 31/07/1992). IAR (Incremento Aggiuntivo della Retribuzione) rimane componente separata del TEC — non assorbita nel TEM (confermato FLAI Veneto: 'il CCNL rinnova e ridetermina il TEC come somma di TEM e IAR'). Fonte TEM: sindacato.it (tabelle retributive 2024). Fonte IAR: flaiveneto.it.",
+      "SIMPLIFICATION: IAR tranche September 2027: the CCNL sets +11 EUR at level 4; per-level amounts are derived by scaling +11 with the level's IAR ratio to level 4 (the IAR is parametric), rounded to the cent. Official per-level tables were not published at extraction time.",
+      "SOURCE: SENIORITY: cadenza biennale (24 mesi), massimo 5 scatti. Importi post-rinnovo 2024 da FLAI Veneto (rinnovo 01/03/2024). valid_from 2023-12-01 assunto uguale alla prima tranche TEM; le fonti non confermano esplicitamente la decorrenza degli scatti (alternativa: 2024-03-01, data firma).",
+      "INFO: CONTINGENZA: importi da lexplain.it e kitech.it — confermati da due fonti indipendenti. Valori identici ai contratti previgenti (congelati dal 1993). 1S=545,72, 1=538,70, 2=530,51, 3A=525,83, 3=522,32, 4=519,99, 5=517,65, 6=515,31.",
+      "INFO: INDENNITA' DI FUNZIONE 1S: 100 EUR/mese per i lavoratori 1S qualificati Quadri (L. 190/1985), modellata come allowance con role 'quadro' (compute(..., roles={'quadro'})).",
+      "SIMPLIFICATION: APPRENDISTATO under_classification (Art. 21 CCNL, rinnovo 01/03/2024; struttura periodi da afi-ipl.org): percorso 36 mesi per destinazioni 4, 3, 3A, 2, 1 (0-10 mesi due livelli sotto, 10-22 un livello sotto, poi destinazione); percorso 24 mesi per destinazione 5 (0-10 mesi al 6°, poi 5°). Il 6° livello e l'1S non sono destinazioni di apprendistato. I confini 10/22 mesi sono quelli riportati dalla fonte; il testo contrattuale parla di 'primo/secondo/terzo periodo'.",
+      "INFO: ADDITIONAL MONTHS: 14 mensilità (tredicesima + quattordicesima). Fonte: FLAI Veneto, confermato da lexplain.it."
+    ]
   },
   "parameters": {
-    "hourly_divisor": 173,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2023-12-01", "valid_until": null, "value": "173" }
+      ]
+    },
     "additional_months": {
       "periods": [
         { "valid_from": "2023-12-01", "valid_until": null, "value": "14" }
@@ -111,7 +119,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "1117.15" },
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1160.94" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1204.74" },
-          { "valid_from": "2027-01-01", "valid_until": null,         "value": "1233.20" }
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "1233.20" }
         ]
       },
       "fixed_allowances": [
@@ -138,7 +146,8 @@
           "description": "Incremento Aggiuntivo della Retribuzione (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "65.70" }
+              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "65.70" },
+              { "valid_from": "2027-09-01", "valid_until": null, "value": "74.87" }
             ]
           }
         }
@@ -154,7 +163,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "1228.86" },
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1277.04" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1325.21" },
-          { "valid_from": "2027-01-01", "valid_until": null,         "value": "1356.52" }
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "1356.52" }
         ]
       },
       "fixed_allowances": [
@@ -181,7 +190,8 @@
           "description": "Incremento Aggiuntivo della Retribuzione (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "72.27" }
+              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "72.27" },
+              { "valid_from": "2027-09-01", "valid_until": null, "value": "82.35" }
             ]
           }
         }
@@ -197,7 +207,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "1340.55" },
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1393.10" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1445.65" },
-          { "valid_from": "2027-01-01", "valid_until": null,         "value": "1479.82" }
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "1479.82" }
         ]
       },
       "fixed_allowances": [
@@ -224,7 +234,8 @@
           "description": "Incremento Aggiuntivo della Retribuzione (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "78.84" }
+              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "78.84" },
+              { "valid_from": "2027-09-01", "valid_until": null, "value": "89.84" }
             ]
           }
         }
@@ -240,7 +251,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "1452.29" },
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1509.22" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1566.16" },
-          { "valid_from": "2027-01-01", "valid_until": null,         "value": "1603.17" }
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "1603.17" }
         ]
       },
       "fixed_allowances": [
@@ -267,7 +278,8 @@
           "description": "Incremento Aggiuntivo della Retribuzione (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "85.41" }
+              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "85.41" },
+              { "valid_from": "2027-09-01", "valid_until": null, "value": "97.33" }
             ]
           }
         }
@@ -283,7 +295,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "1619.83" },
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1683.34" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1746.84" },
-          { "valid_from": "2027-01-01", "valid_until": null,         "value": "1788.12" }
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "1788.12" }
         ]
       },
       "fixed_allowances": [
@@ -310,7 +322,8 @@
           "description": "Incremento Aggiuntivo della Retribuzione (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "95.26" }
+              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "95.26" },
+              { "valid_from": "2027-09-01", "valid_until": null, "value": "108.55" }
             ]
           }
         }
@@ -326,7 +339,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "1843.27" },
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1915.53" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1987.80" },
-          { "valid_from": "2027-01-01", "valid_until": null,         "value": "2034.77" }
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "2034.77" }
         ]
       },
       "fixed_allowances": [
@@ -353,7 +366,8 @@
           "description": "Incremento Aggiuntivo della Retribuzione (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "108.40" }
+              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "108.40" },
+              { "valid_from": "2027-09-01", "valid_until": null, "value": "123.52" }
             ]
           }
         }
@@ -369,7 +383,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2234.22" },
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2321.81" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2409.40" },
-          { "valid_from": "2027-01-01", "valid_until": null,         "value": "2466.34" }
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "2466.34" }
         ]
       },
       "fixed_allowances": [
@@ -396,7 +410,8 @@
           "description": "Incremento Aggiuntivo della Retribuzione (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "131.39" }
+              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "131.39" },
+              { "valid_from": "2027-09-01", "valid_until": null, "value": "149.72" }
             ]
           }
         }
@@ -412,7 +427,7 @@
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2569.39" },
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2670.12" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2770.85" },
-          { "valid_from": "2027-01-01", "valid_until": null,         "value": "2836.32" }
+          { "valid_from": "2027-01-01", "valid_until": null, "value": "2836.32" }
         ]
       },
       "fixed_allowances": [
@@ -439,34 +454,44 @@
           "description": "Incremento Aggiuntivo della Retribuzione (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "151.11" }
+              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "151.11" },
+              { "valid_from": "2027-09-01", "valid_until": null, "value": "172.19" }
             ]
           }
+        },
+        {
+          "code": "ind_funzione_quadro",
+          "description": "Indennità di funzione Quadri (L. 190/1985) per i lavoratori 1S con qualifica di Quadro",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-12-01", "valid_until": null, "value": "100.00" }
+            ]
+          },
+          "role": "quadro"
         }
-      ]
+      ],
+      "category": "quadro"
     }
   ],
-  "apprenticeship": {
-    "type": "under_classification",
-    "destination_level": "3A",
-    "periods": [
-      { "months_from": 0,  "months_until": 10, "pay_level_code": "4" },
-      { "months_from": 10, "months_until": 22, "pay_level_code": "3" },
-      { "months_from": 22, "months_until": null, "pay_level_code": "3A" }
-    ]
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "partial",
-    "layer_3": "out_of_scope",
-    "notes": [
-      "SALARY MODEL: split (paga base/TEM + contingenza + EDR + IAR come allowance separate). TEM varia per livello e tranche; contingenza congelata dal 31/07/1992 (Prot. Governo-parti sociali); EDR fisso 10,33 EUR per tutti i livelli (Accordo 31/07/1992). IAR (Incremento Aggiuntivo della Retribuzione) rimane componente separata del TEC — non assorbita nel TEM (confermato FLAI Veneto: 'il CCNL rinnova e ridetermina il TEC come somma di TEM e IAR'). Fonte TEM: sindacato.it (tabelle retributive 2024). Fonte IAR: flaiveneto.it.",
-      "IAR TRANCHE SET 2027: il CCNL prevede un incremento dell'IAR di +11 EUR al 4° livello con decorrenza settembre 2027. Gli importi per livello della tranche settembre 2027 non sono disponibili in fonti pubbliche accessibili. Il motore usa gli importi IAR 2023-2027 per tutto il periodo dal 01/12/2023 in poi. Impatto: sottostima dell'IAR da settembre 2027 (entità dipende dalla riparametrazione per livello).",
-      "SENIORITY: cadenza biennale (24 mesi), massimo 5 scatti. Importi post-rinnovo 2024 da FLAI Veneto / fonti sindacali (rinnovo 01/03/2024). Fonte: flaiveneto.it. SIMPLIFICATION: valid_from '2023-12-01' assunto uguale alla prima tranche TEM (ipotesi retroattività rinnovo estesa agli scatti); le fonti disponibili non confermano esplicitamente questa decorrenza per gli importi degli scatti — alternativa conservativa sarebbe '2024-03-01' (data firma rinnovo).",
-      "CONTINGENZA: importi da lexplain.it e kitech.it — confermati da due fonti indipendenti. Valori identici ai contratti previgenti (congelati dal 1993). 1S=545,72, 1=538,70, 2=530,51, 3A=525,83, 3=522,32, 4=519,99, 5=517,65, 6=515,31.",
-      "INDENNITA' DI FUNZIONE 1S: i lavoratori 1S qualificati come Quadri ai sensi della L. 190/1985 percepiscono un'indennità di funzione di 100 EUR/mese aggiuntiva. Non modellata come livello separato: il livello 1S rappresenta la categoria contrattuale; la qualifica Quadro è una fattispecie individuale esterna al CCNL puro. Documentata in coverage.notes.",
-      "APPRENDISTATO: tipo under_classification (Art. 21 CCNL, rinnovo 01/03/2024). Il CCNL non designa alcun livello di destinazione come 'standard' o 'tipico' — a differenza di altri CCNL under_classification (metalmeccanico, edilizia, multiservizi). Il JSON modella destination_level='3A' come riferimento centrale (4° di 8 livelli contrattuali). Scelta arbitraria di riferimento; nessuna fonte primaria identifica il 3A come standard. Fonte struttura periodi: afi-ipl.org. Percorso 3A (36 mesi): 0-9 mesi → liv. 4 (2 livelli sotto), 10-21 mesi → liv. 3 (1 livello sotto), 22+ mesi → liv. 3A (destinazione). Percorsi non modellati: dest. 1 (36 mesi: 0-9 → 2, 10-21 → 1S, 22+ → 1); dest. 2 (36 mesi: 0-9 → 3A, 10-21 → 2, 22+ → 2... verifica necessaria per 1S); dest. 3 (36 mesi: 0-9 → 4, 10-21 → 3A, 22+ → 3); dest. 4 (36 mesi: 0-9 → 5, 10-21 → 4, 22+ → 4... verifica necessaria); dest. 5 (24 mesi: 0-9 → 6, 10+ → 5). Aggiornare periods per contratti individuali con diverso livello di destinazione. Layer 2 marcato 'partial'.",
-      "ADDITIONAL MONTHS: 14 mensilità (tredicesima + quattordicesima). Fonte: FLAI Veneto, confermato da lexplain.it."
-    ]
-  }
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_36",
+      "destination_levels": ["4", "3", "3A", "2", "1"],
+      "periods": [
+        { "months_from": 0, "months_until": 10, "levels_below": 2 },
+        { "months_from": 10, "months_until": 22, "levels_below": 1 },
+        { "months_from": 22, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_24",
+      "destination_levels": ["5"],
+      "periods": [
+        { "months_from": 0, "months_until": 10, "levels_below": 1 },
+        { "months_from": 10, "months_until": null, "levels_below": 0 }
+      ]
+    }
+  ]
 }

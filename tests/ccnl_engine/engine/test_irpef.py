@@ -10,12 +10,13 @@ from typing import Any
 
 from ccnl_engine.engine.irpef import irpef_gross, work_income_deduction
 from ccnl_engine.tax.models import YearRules
+from tests.conftest import make_year_rules
 
 # ---------------------------------------------------------------------------
 # Fixture helpers
 # ---------------------------------------------------------------------------
 
-_THREE_BRACKETS = [
+_THREE_BRACKETS: list[dict[str, Any]] = [
     {"up_to": "28000.00", "rate": "0.23"},
     {"up_to": "50000.00", "rate": "0.33"},
     {"up_to": None, "rate": "0.43"},
@@ -31,20 +32,7 @@ _STANDARD_DEDUCTIONS = [
 
 def _rules(deductions: list[dict[str, Any]] | None = None) -> YearRules:
     """Minimal YearRules with the 2026 IRPEF brackets and configurable deductions."""
-    return YearRules.model_validate(
-        {
-            "year": 2026,
-            "irpef_brackets": _THREE_BRACKETS,
-            "work_deduction_breakpoints": deductions or _STANDARD_DEDUCTIONS,
-            "fixed_term_additional_rate": "0.014",
-            "inps": {
-                "employee_rate": "0.0919",
-                "employer_rate": "0.2898",
-                "ceiling": None,
-            },
-            "tfr": {"accrual_divisor": "13.5"},
-        }
-    )
+    return make_year_rules(brackets=_THREE_BRACKETS, deductions=deductions)
 
 
 # ---------------------------------------------------------------------------

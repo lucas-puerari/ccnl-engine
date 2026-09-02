@@ -1,18 +1,12 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "metalmeccanico-federmeccanica",
     "name": "CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)",
     "cnel_code": "C011",
     "sector": "metalmeccanico",
     "tax_sector": "industria",
-    "signatories": [
-      "Federmeccanica",
-      "Assistal",
-      "FIM-CISL",
-      "FIOM-CGIL",
-      "UILM-UIL"
-    ],
+    "signatories": ["Federmeccanica", "Assistal", "FIM-CISL", "FIOM-CGIL", "UILM-UIL"],
     "sources": [
       {
         "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
@@ -37,8 +31,27 @@
       "human_reviewed": true
     }
   },
+  "coverage": {
+    "layer_1": "partial",
+    "layer_2": "implemented",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: MINIMI CONGLOBATI: i valori in base_salary sono i 'minimi tabellari conglobati' del CCNL Federmeccanica-Assistal, che incorporano paga base, contingenza e EDR in un'unica cifra (prassi Federmeccanica dal 2001). Per questo motivo fixed_allowances è vuoto per tutti i livelli.",
+      "INFO: TRANCHE giugno 2025: valori verificati sull'accordo del 12 giugno 2025 (fonte: studiomorettistp.it e dinunzio.it, che riportano i minimi tabellari conglobati ufficiali Federmeccanica-Assistal). Tutti e 9 i livelli confermati.",
+      "INFO: TRANCHE giugno 2024 e giugno 2026: valori verificati su contratticcnl.it (aggiornato luglio 2026) e lexplain.it.",
+      "INFO: SCATTI DI ANZIANITÀ: la proposta di sostituire gli scatti mensili con una 'liquidazione anticipata' una-tantum è stata RESPINTA dai sindacati durante la trattativa del CCNL 2025-2028 (accordo novembre 2025). Gli scatti rimangono incrementi mensili ricorrenti come previsto dall'Art. 6 del CCNL vigente. Il modello (seniority_count × amount_by_level) è corretto. Gli importi in amount_by_level sono verificati su lexplain.it.",
+      "INFO: APPRENTICESHIP: professionalizzante (accordo integrativo 20/04/2021). Eligible levels: D2, C1, C2, C3, B1, B2, B3 (D1 and A1 excluded). Pay: 85% (first third), 90% (second third), 95% (third third), then classified at destination. Three duration tracks: 36m (standard), 30m (diploma EQF 4-7 consistent with profession), 24m (D2 serial repetitive production only). Source: accordo 20/04/2021 Federmeccanica art. 'Apprendistato professionalizzante', reproduced in MySolution circolare Marini 13/05/2021.",
+      "INFO: DIVISORE ORARIO: 173 ore/mese (40 h/settimana × 52/12 = 173,33 arrotondato a 173, standard Federmeccanica).",
+      "INFO: MENSILITÀ: 13 (tredicesima). La quattordicesima non è prevista dal CCNL Federmeccanica. Il premio di risultato/variabile aziendale non è modellato (layer 3).",
+      "INFO: INPS: le aliquote datore in 2026-industria.json sono calcolate per componenti verificati (IVS 23.81% + DS 1.61% + CUAF 2.48% + CIGO D.Lgs.148/2015 + FIS/CIGS Circ.INPS 5/2025). Totali risultanti: ≤15 dip = 30.13%, 16-50 dip = 30.20%, >50 dip = 30.50%. Non include INAIL. La quota CIGS dipendente (0.30% per >15 dip) non è ancora modellata in employee_rate."
+    ]
+  },
   "parameters": {
-    "hourly_divisor": 173,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2024-06-01", "valid_until": null, "value": "173" }
+      ]
+    },
     "additional_months": {
       "periods": [
         { "valid_from": "2021-06-01", "valid_until": null, "value": "13" }
@@ -105,7 +118,7 @@
         "periods": [
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1719.67" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1742.03" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "1784.94" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "1784.94" }
         ]
       },
       "fixed_allowances": []
@@ -118,7 +131,7 @@
         "periods": [
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1906.99" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1931.78" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "1979.37" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "1979.37" }
         ]
       },
       "fixed_allowances": []
@@ -131,7 +144,7 @@
         "periods": [
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1948.18" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1973.51" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2022.12" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2022.12" }
         ]
       },
       "fixed_allowances": []
@@ -144,7 +157,7 @@
         "periods": [
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1989.38" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2015.24" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2064.88" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2064.88" }
         ]
       },
       "fixed_allowances": []
@@ -157,7 +170,7 @@
         "periods": [
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2130.56" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2158.26" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2211.43" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2211.43" }
         ]
       },
       "fixed_allowances": []
@@ -170,7 +183,7 @@
         "periods": [
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2283.65" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2313.34" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2370.33" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2370.33" }
         ]
       },
       "fixed_allowances": []
@@ -183,7 +196,7 @@
         "periods": [
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2449.99" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2481.84" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2542.98" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2542.98" }
         ]
       },
       "fixed_allowances": []
@@ -196,7 +209,7 @@
         "periods": [
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2735.18" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2770.74" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2838.99" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2838.99" }
         ]
       },
       "fixed_allowances": []
@@ -209,32 +222,45 @@
         "periods": [
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2800.71" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2837.12" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2907.01" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2907.01" }
         ]
       },
       "fixed_allowances": []
     }
   ],
-  "apprenticeship": {
-    "type": "percentage",
-    "destination_level": "C3",
-    "periods": [
-      { "months_from": 0, "months_until": null, "percentage": "0.80" }
-    ]
-  },
-  "coverage": {
-    "layer_1": "partial",
-    "layer_2": "partial",
-    "layer_3": "out_of_scope",
-    "notes": [
-      "MINIMI CONGLOBATI: i valori in base_salary sono i 'minimi tabellari conglobati' del CCNL Federmeccanica-Assistal, che incorporano paga base, contingenza e EDR in un'unica cifra (prassi Federmeccanica dal 2001). Per questo motivo fixed_allowances è vuoto per tutti i livelli.",
-      "TRANCHE giugno 2025: valori verificati sull'accordo del 12 giugno 2025 (fonte: studiomorettistp.it e dinunzio.it, che riportano i minimi tabellari conglobati ufficiali Federmeccanica-Assistal). Tutti e 9 i livelli confermati.",
-      "TRANCHE giugno 2024 e giugno 2026: valori verificati su contratticcnl.it (aggiornato luglio 2026) e lexplain.it.",
-      "SCATTI DI ANZIANITÀ: la proposta di sostituire gli scatti mensili con una 'liquidazione anticipata' una-tantum è stata RESPINTA dai sindacati durante la trattativa del CCNL 2025-2028 (accordo novembre 2025). Gli scatti rimangono incrementi mensili ricorrenti come previsto dall'Art. 6 del CCNL vigente. Il modello (seniority_count × amount_by_level) è corretto. Gli importi in amount_by_level sono verificati su lexplain.it.",
-      "APPRENDISTATO: la percentuale dell'80% è un'approssimazione. Il CCNL Federmeccanica prevede percentuali differenziate per periodo di apprendistato (es. 80% nei primi 12 mesi, 85% nei successivi). Verificare l'Art. sull'apprendistato professionalizzante nel CCNL 2025-2028.",
-      "DIVISORE ORARIO: 173 ore/mese (40 h/settimana × 52/12 = 173,33 arrotondato a 173, standard Federmeccanica).",
-      "MENSILITÀ: 13 (tredicesima). La quattordicesima non è prevista dal CCNL Federmeccanica. Il premio di risultato/variabile aziendale non è modellato (layer 3).",
-      "INPS: le aliquote datore in 2026-industria.json sono calcolate per componenti verificati (IVS 23.81% + DS 1.61% + CUAF 2.48% + CIGO D.Lgs.148/2015 + FIS/CIGS Circ.INPS 5/2025). Totali risultanti: ≤15 dip = 30.13%, 16-50 dip = 30.20%, >50 dip = 30.50%. Non include INAIL. La quota CIGS dipendente (0.30% per >15 dip) non è ancora modellata in employee_rate."
-    ]
-  }
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante_36",
+      "destination_levels": ["D2", "C1", "C2", "C3", "B1", "B2", "B3"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.85" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.90" },
+        { "months_from": 24, "months_until": 36, "percentage": "0.95" },
+        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_30",
+      "destination_levels": ["D2", "C1", "C2", "C3", "B1", "B2", "B3"],
+      "periods": [
+        { "months_from": 0, "months_until": 10, "percentage": "0.85" },
+        { "months_from": 10, "months_until": 20, "percentage": "0.90" },
+        { "months_from": 20, "months_until": 30, "percentage": "0.95" },
+        { "months_from": 30, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_24",
+      "destination_levels": ["D2"],
+      "periods": [
+        { "months_from": 0, "months_until": 8, "percentage": "0.85" },
+        { "months_from": 8, "months_until": 16, "percentage": "0.90" },
+        { "months_from": 16, "months_until": 24, "percentage": "0.95" },
+        { "months_from": 24, "months_until": null, "percentage": "1.00" }
+      ]
+    }
+  ]
 }

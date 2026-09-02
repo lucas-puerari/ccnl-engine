@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "logistica-trasporto-confetra",
     "name": "CCNL Logistica, Trasporto Merci e Spedizione (Confetra)",
@@ -40,8 +40,31 @@
       "human_reviewed": true
     }
   },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: PERSONALE: tabelle per personale non viaggiante (impiegati e operai sedentari). Il CCNL include anche personale viaggiante (autisti adibiti a trasporto internazionale) con tabelle e regole distinte — non modellato in questo file.",
+      "INFO: MINIMI CONGLOBATI: i valori in base_salary sono la retribuzione mensile minima conglobata (minimo tabellare + contingenza ex Art. 61 nota + EPA). Verifica primaria: Art. 61 del testo unico settembre 2025 — 'A decorrere dall'1.1.2001 l'indennità di contingenza è stata conglobata nei minimi tabellari unitamente all'EDR di euro 10,33 mensili'. fixed_allowances è vuoto per tutti i livelli.",
+      "INFO: DIVISORE ORARIO: 168 ore/mese. Fonte primaria: Art. 61 co.3 testo unico settembre 2025 — 'La retribuzione oraria si ottiene dividendo la retribuzione mensile per 168'.",
+      "INFO: TRANCHE: quattro tranche al 1.1.2025 (+120 per 3S), 1.1.2026 (+90 per 3S), 1.1.2027 (+40 per 3S), 1.6.2027 (+40 per 3S). Fonte: contrattotrasporti.it/art-106-tabelle-retributive (Art. 106 testo unico) e circ283-2024 Confetra (tranche gennaio 2025).",
+      "INFO: ICE: l'Indennità di Copertura Economica (ICE) era un elemento provvisorio vigente fino al 31.12.2024. Cessa dal 1.1.2025 con l'entrata in vigore del rinnovo. I valori in base_salary non includono ICE (elemento cessato). Il testo unico cita aumenti netti di €230 al 3S rispetto alla retribuzione previgente comprensiva di ICE — la differenza con la somma algebrica delle tranche (€290 da base senza ICE) corrisponde al valore ICE preesistente del livello.",
+      "INFO: MENSILITÀ: 14 (tredicesima Art. 18 + quattordicesima Art. 19 testo unico settembre 2025).",
+      "INFO: SCATTI DI ANZIANITÀ: biennali (cadenza 24 mesi), max 5 bienni. Importi da Art. 17 testo unico settembre 2025. Personale non viaggiante.",
+      "INFO: LIVELLO 6° JUNIOR: abolito dal 31.12.2025 (rinnovo del 6.12.2024, circ008-2025 Confetra). Tutti i lavoratori inquadrati al 6J promossi automaticamente al 6°. Non modellato in questo file.",
+      "INFO: EPA: Elemento Professionale d'Area, componente introdotta con il rinnovo del 6.12.2024. Inclusa nei valori base_salary a decorrere dal 1.1.2025. Non è separata perché costituisce parte integrante della retribuzione minima (incide su tutti gli istituti contrattuali e legali) — vedi circ283-2024 Confetra.",
+      "INFO: EDR: l'EDR di € 10,33 mensili (accordo 26 gen 2001) è conglobato nei minimi tabellari dal 1.1.2001 (Art. 61 nota). Ulteriori EDR successivi (accordo 2011, accordo 2021) sono NON incidenti su istituti — non modellati in base_salary; rappresentano voce separata in busta paga al di fuori del motore.",
+      "INFO: INPS: utilizza 2026-industria.json (TaxSector.INDUSTRIA). File già presente — nessuna modifica al tax file.",
+      "INFO: APPRENDISTATO: tipo percentage da TABELLA A testo unico settembre 2025. 75% anno 1 (m1-12), 85% anno 2 (m13-24), 100% da m25. Livelli ammessi: 1, 2, 3, 3S, 4, 4J, 5, 6 (livello Q escluso). Durata massima 36 mesi. Source: Art. 106 + TABELLA A testo unico 09/2025 (contrattotrasporti.it)."
+    ]
+  },
   "parameters": {
-    "hourly_divisor": 168,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2025-01-01", "valid_until": null, "value": "168" }
+      ]
+    },
     "additional_months": {
       "periods": [
         { "valid_from": "2025-01-01", "valid_until": null, "value": "14" }
@@ -109,7 +132,7 @@
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1703.66" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1776.99" },
           { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "1810.02" },
-          { "valid_from": "2027-06-01", "valid_until": null,         "value": "1841.61" }
+          { "valid_from": "2027-06-01", "valid_until": null, "value": "1841.61" }
         ]
       },
       "fixed_allowances": []
@@ -123,7 +146,7 @@
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1823.09" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1902.19" },
           { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "1937.34" },
-          { "valid_from": "2027-06-01", "valid_until": null,         "value": "1971.13" }
+          { "valid_from": "2027-06-01", "valid_until": null, "value": "1971.13" }
         ]
       },
       "fixed_allowances": []
@@ -137,7 +160,7 @@
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1865.28" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1946.40" },
           { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "1982.46" },
-          { "valid_from": "2027-06-01", "valid_until": null,         "value": "2018.13" }
+          { "valid_from": "2027-06-01", "valid_until": null, "value": "2018.13" }
         ]
       },
       "fixed_allowances": []
@@ -151,7 +174,7 @@
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1912.81" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1995.98" },
           { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "2032.95" },
-          { "valid_from": "2027-06-01", "valid_until": null,         "value": "2069.62" }
+          { "valid_from": "2027-06-01", "valid_until": null, "value": "2069.62" }
         ]
       },
       "fixed_allowances": []
@@ -165,7 +188,7 @@
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2016.54" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2104.31" },
           { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "2143.10" },
-          { "valid_from": "2027-06-01", "valid_until": null,         "value": "2182.80" }
+          { "valid_from": "2027-06-01", "valid_until": null, "value": "2182.80" }
         ]
       },
       "fixed_allowances": []
@@ -179,7 +202,7 @@
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2070.37" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2160.37" },
           { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "2200.37" },
-          { "valid_from": "2027-06-01", "valid_until": null,         "value": "2240.37" }
+          { "valid_from": "2027-06-01", "valid_until": null, "value": "2240.37" }
         ]
       },
       "fixed_allowances": []
@@ -193,7 +216,7 @@
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2202.62" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2302.16" },
           { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "2346.40" },
-          { "valid_from": "2027-06-01", "valid_until": null,         "value": "2382.07" }
+          { "valid_from": "2027-06-01", "valid_until": null, "value": "2382.07" }
         ]
       },
       "fixed_allowances": []
@@ -207,7 +230,7 @@
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2396.85" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2505.25" },
           { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "2553.43" },
-          { "valid_from": "2027-06-01", "valid_until": null,         "value": "2589.10" }
+          { "valid_from": "2027-06-01", "valid_until": null, "value": "2589.10" }
         ]
       },
       "fixed_allowances": []
@@ -221,38 +244,22 @@
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2541.13" },
           { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2656.34" },
           { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "2707.55" },
-          { "valid_from": "2027-06-01", "valid_until": null,         "value": "2754.22" }
+          { "valid_from": "2027-06-01", "valid_until": null, "value": "2754.22" }
         ]
       },
       "fixed_allowances": []
     }
   ],
-  "apprenticeship": {
-    "type": "percentage",
-    "destination_level": "3",
-    "periods": [
-      { "months_from": 0,  "months_until": 12, "percentage": "0.75" },
-      { "months_from": 12, "months_until": 24, "percentage": "0.85" },
-      { "months_from": 24, "months_until": null, "percentage": "1.00" }
-    ]
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "partial",
-    "layer_3": "out_of_scope",
-    "notes": [
-      "PERSONALE: tabelle per personale non viaggiante (impiegati e operai sedentari). Il CCNL include anche personale viaggiante (autisti adibiti a trasporto internazionale) con tabelle e regole distinte — non modellato in questo file.",
-      "MINIMI CONGLOBATI: i valori in base_salary sono la retribuzione mensile minima conglobata (minimo tabellare + contingenza ex Art. 61 nota + EPA). Verifica primaria: Art. 61 del testo unico settembre 2025 — 'A decorrere dall'1.1.2001 l'indennità di contingenza è stata conglobata nei minimi tabellari unitamente all'EDR di euro 10,33 mensili'. fixed_allowances è vuoto per tutti i livelli.",
-      "DIVISORE ORARIO: 168 ore/mese. Fonte primaria: Art. 61 co.3 testo unico settembre 2025 — 'La retribuzione oraria si ottiene dividendo la retribuzione mensile per 168'.",
-      "TRANCHE: quattro tranche al 1.1.2025 (+120 per 3S), 1.1.2026 (+90 per 3S), 1.1.2027 (+40 per 3S), 1.6.2027 (+40 per 3S). Fonte: contrattotrasporti.it/art-106-tabelle-retributive (Art. 106 testo unico) e circ283-2024 Confetra (tranche gennaio 2025).",
-      "ICE: l'Indennità di Copertura Economica (ICE) era un elemento provvisorio vigente fino al 31.12.2024. Cessa dal 1.1.2025 con l'entrata in vigore del rinnovo. I valori in base_salary non includono ICE (elemento cessato). Il testo unico cita aumenti netti di €230 al 3S rispetto alla retribuzione previgente comprensiva di ICE — la differenza con la somma algebrica delle tranche (€290 da base senza ICE) corrisponde al valore ICE preesistente del livello.",
-      "MENSILITÀ: 14 (tredicesima Art. 18 + quattordicesima Art. 19 testo unico settembre 2025).",
-      "SCATTI DI ANZIANITÀ: biennali (cadenza 24 mesi), max 5 bienni. Importi da Art. 17 testo unico settembre 2025. Personale non viaggiante.",
-      "APPRENDISTATO: tipo percentage da TABELLA A testo unico settembre 2025. 75% anno 1, 85% anno 2, 100% anno 3. destination_level='3' (scelta modellistica — livello più comune per il contratto di apprendistato nel settore). Durata massima 36 mesi per i livelli modellati.",
-      "LIVELLO 6° JUNIOR: abolito dal 31.12.2025 (rinnovo del 6.12.2024, circ008-2025 Confetra). Tutti i lavoratori inquadrati al 6J promossi automaticamente al 6°. Non modellato in questo file.",
-      "EPA: Elemento Professionale d'Area, componente introdotta con il rinnovo del 6.12.2024. Inclusa nei valori base_salary a decorrere dal 1.1.2025. Non è separata perché costituisce parte integrante della retribuzione minima (incide su tutti gli istituti contrattuali e legali) — vedi circ283-2024 Confetra.",
-      "EDR: l'EDR di € 10,33 mensili (accordo 26 gen 2001) è conglobato nei minimi tabellari dal 1.1.2001 (Art. 61 nota). Ulteriori EDR successivi (accordo 2011, accordo 2021) sono NON incidenti su istituti — non modellati in base_salary; rappresentano voce separata in busta paga al di fuori del motore.",
-      "INPS: utilizza 2026-industria.json (TaxSector.INDUSTRIA). File già presente — nessuna modifica al tax file."
-    ]
-  }
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "standard",
+      "destination_levels": ["1", "2", "3", "3S", "4", "4J", "5", "6"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.75" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.85" },
+        { "months_from": 24, "months_until": null, "percentage": "1.00" }
+      ]
+    }
+  ]
 }

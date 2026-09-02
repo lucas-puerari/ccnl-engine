@@ -1,17 +1,12 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "legno-arredamento-federlegno",
     "name": "CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)",
     "cnel_code": "F051",
     "sector": "industria",
     "tax_sector": "industria",
-    "signatories": [
-      "Federlegno-Arredo",
-      "Feneal-Uil",
-      "Filca-Cisl",
-      "Fillea-Cgil"
-    ],
+    "signatories": ["Federlegno-Arredo", "Feneal-Uil", "Filca-Cisl", "Fillea-Cgil"],
     "sources": [
       {
         "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf",
@@ -29,22 +24,34 @@
         "agreement_date": null
       }
     ],
-    "extraction": {
-      "method": "manual",
-      "model": null,
-      "timestamp": "2026-09-02",
-      "human_reviewed": true
-    }
+    "extraction": { "method": "manual", "model": null, "timestamp": "2026-09-02", "human_reviewed": true }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: SALARY MODEL: split (paga base + contingenza + EDR). Paga base varia per tranche (Jul 2023, Jan 2024, Jan 2025). Contingenza congelata dal 31/07/1992 (valori da CNEL F051 PDF). EDR fisso 10,33 EUR per tutti i livelli (Accordo 31/07/1992). Fonte tabelle: CNEL F051 PDF (rinnovo 20/06/2023); tranche Jan 2024 confermata da lexplain.it; tranche Jan 2025 derivata dalla differenza tra totale da dottrinalavoro.it e contingenza+EDR.",
+      "SOURCE: HOURLY DIVISOR 174 (40h x 52 / 12 = 173.33, rounded up as used by the sector): no published hourly table in accessible primary sources; independent secondary sources converge on 174 (previdenza-professionisti.it). Daily coefficient 26 confirmed by the CNEL F051 PDF.",
+      "INFO: ADDITIONAL MONTHS: 13 mensilità (tredicesima). Fonte: CNEL F051 PDF, campo 'Numero mensilità: 13'.",
+      "SOURCE: SENIORITY: cadenza biennale (24 mesi), massimo 5 scatti; importi da previdenza-professionisti.it (2025, invariati dal 2009). AS2 (9,66) e AC1 (10,76) hanno scatti diversi pur condividendo la paga base. valid_from 2023-07-01 assunto pari alla prima tranche; il rinnovo 2023 non ha modificato gli scatti.",
+      "INFO: CONTINGENZA: 12 bande salariali per 16 codici di livello. I livelli AE4 e AS1 condividono la stessa paga base e contingenza (banda 4). I livelli AC1 e AS2 condividono la stessa paga base e contingenza (banda 5); AS2 ha scatto diverso da AC1. I livelli AC2, AC3 e AS4 condividono la stessa paga base e contingenza (banda 7). Tutti i valori di contingenza da CNEL F051 PDF.",
+      "SIMPLIFICATION: APPRENDISTATO under_classification (CCNL Legno, rinnovo 20/06/2023, CNEL F051 PDF): 1° periodo (0-12 mesi) due bande salariali sotto la destinazione; 2° periodo (12-24) una banda sotto; 3° periodo (24-36) una banda sotto con retribuzione intermedia fra livello di appartenenza e destinazione (midpoint_to_destination sul minimo tabellare); poi destinazione. Le bande sono AE1 | AE2 | AE3 | AE4-AS1 | AC1-AS2 | AS3 | AC2-AC3-AS4 | AC4 | AC5 | AD1 | AD2 | AD3; i track raggruppano le destinazioni con gli stessi offset di ordine. Destinazioni modellate: da AE3 ad AC4; AE1/AE2 (nessuna banda due gradini sotto), AC5 (quadri) e area direttiva escluse.",
+      "INFO: INDENNITA' DI FUNZIONE AD3: 25,82 EUR/mese non inclusa nel minimo tabellare, modellata come fixed_allowance del livello AD3.",
+      "INFO: INPS: aliquote settore industria da 2026-industria.json (file preesistente riutilizzato). Dipendente 9,19%; datore: ≤15 dip 30,13%, 16-50 dip 30,20%, >50 dip 30,50%. Nessun fondo bilaterale sostitutivo per CCNL Legno Industria (Fondimpresa per formazione, non incide sulle aliquote INPS).",
+      "SIMPLIFICATION: DESCRIZIONI LIVELLI: le descrizioni testuali dei livelli (es. 'Area Esecutiva — 1° livello') sono placeholder generati dall'engine basati sui codici area (AE/AS/AC/AD) e non corrispondono ai testi contrattuali ufficiali degli articoli di classificazione del CCNL. Il testo estratto dal PDF CNEL F051 non includeva le denominazioni ufficiali delle categorie per ciascun codice livello.",
+      "SIMPLIFICATION: ORDINAMENTO INTRA-BANDA: per i livelli che condividono la stessa paga base (AE4/AS1, AC1/AS2, AC2/AC3/AS4), l'ordine relativo è assegnato arbitrariamente (ordine crescente all'interno del gruppo) per soddisfare il vincolo del motore di unicità dell'ordine. Il CCNL non definisce una gerarchia interna tra livelli della stessa banda salariale. Funzionalmente ininfluente — il validatore richiede solo salary non decrescente per ordine crescente."
+    ]
   },
   "parameters": {
-    "hourly_divisor": 174,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2023-07-01", "valid_until": null, "value": "174" }
+      ]
+    },
     "additional_months": {
       "periods": [
-        {
-          "valid_from": "2023-07-01",
-          "valid_until": null,
-          "value": "13"
-        }
+        { "valid_from": "2023-07-01", "valid_until": null, "value": "13" }
       ]
     },
     "seniority_increments": {
@@ -53,146 +60,82 @@
       "amount_by_level": {
         "AE1": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "7.95"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "7.95" }
           ]
         },
         "AE2": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "8.53"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "8.53" }
           ]
         },
         "AE3": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "8.80"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "8.80" }
           ]
         },
         "AE4": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "9.09"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "9.09" }
           ]
         },
         "AS1": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "9.09"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "9.09" }
           ]
         },
         "AC1": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "10.76"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "10.76" }
           ]
         },
         "AS2": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "9.66"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "9.66" }
           ]
         },
         "AS3": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "10.22"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "10.22" }
           ]
         },
         "AC2": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "10.79"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "10.79" }
           ]
         },
         "AC3": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "10.79"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "10.79" }
           ]
         },
         "AS4": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "10.79"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "10.79" }
           ]
         },
         "AC4": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "11.92"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "11.92" }
           ]
         },
         "AC5": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "13.07"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "13.07" }
           ]
         },
         "AD1": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "13.92"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "13.92" }
           ]
         },
         "AD2": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "14.77"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "14.77" }
           ]
         },
         "AD3": {
           "periods": [
-            {
-              "valid_from": "2023-07-01",
-              "valid_until": null,
-              "value": "14.77"
-            }
+            { "valid_from": "2023-07-01", "valid_until": null, "value": "14.77" }
           ]
         }
       }
@@ -205,21 +148,9 @@
       "description": "Area Esecutiva — 1° livello (operai comuni)",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "1113.43"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "1211.36"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "1230.69"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1113.43" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1211.36" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "1230.69" }
         ]
       },
       "fixed_allowances": [
@@ -228,11 +159,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "512.16"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "512.16" }
             ]
           }
         },
@@ -241,15 +168,12 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "AE2",
@@ -257,21 +181,9 @@
       "description": "Area Esecutiva — 2° livello (operai qualificati)",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "1323.47"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "1434.04"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "1455.87"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1323.47" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1434.04" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "1455.87" }
         ]
       },
       "fixed_allowances": [
@@ -280,11 +192,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "514.79"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "514.79" }
             ]
           }
         },
@@ -293,15 +201,12 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "AE3",
@@ -309,21 +214,9 @@
       "description": "Area Esecutiva — 3° livello (operai specializzati)",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "1406.48"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "1522.11"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "1544.94"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1406.48" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1522.11" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "1544.94" }
         ]
       },
       "fixed_allowances": [
@@ -332,11 +225,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "516.53"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "516.53" }
             ]
           }
         },
@@ -345,15 +234,12 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "AE4",
@@ -361,21 +247,9 @@
       "description": "Area Esecutiva — 4° livello (operai altamente specializzati)",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "1489.49"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "1610.13"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "1633.95"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1489.49" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1610.13" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "1633.95" }
         ]
       },
       "fixed_allowances": [
@@ -384,11 +258,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "517.76"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "517.76" }
             ]
           }
         },
@@ -397,15 +267,12 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "AS1",
@@ -413,21 +280,9 @@
       "description": "Area Specialistica — 1° livello",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "1489.49"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "1610.13"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "1633.95"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1489.49" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1610.13" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "1633.95" }
         ]
       },
       "fixed_allowances": [
@@ -436,11 +291,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "517.76"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "517.76" }
             ]
           }
         },
@@ -449,11 +300,7 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -465,21 +312,9 @@
       "description": "Area Competenza — 1° livello",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "1556.03"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "1680.74"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "1705.36"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1556.03" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1680.74" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "1705.36" }
         ]
       },
       "fixed_allowances": [
@@ -488,11 +323,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "518.45"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "518.45" }
             ]
           }
         },
@@ -501,11 +332,7 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -517,21 +344,9 @@
       "description": "Area Specialistica — 2° livello",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "1556.03"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "1680.74"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "1705.36"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1556.03" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1680.74" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "1705.36" }
         ]
       },
       "fixed_allowances": [
@@ -540,11 +355,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "518.45"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "518.45" }
             ]
           }
         },
@@ -553,11 +364,7 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -569,21 +376,9 @@
       "description": "Area Specialistica — 3° livello",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "1639.62"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "1769.52"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "1795.17"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1639.62" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1769.52" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "1795.17" }
         ]
       },
       "fixed_allowances": [
@@ -592,11 +387,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "521.02"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "521.02" }
             ]
           }
         },
@@ -605,11 +396,7 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -621,21 +408,9 @@
       "description": "Area Competenza — 2° livello",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "1722.08"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "1857.02"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "1883.66"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1722.08" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1857.02" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "1883.66" }
         ]
       },
       "fixed_allowances": [
@@ -644,11 +419,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "522.41"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "522.41" }
             ]
           }
         },
@@ -657,11 +428,7 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -673,21 +440,9 @@
       "description": "Area Competenza — 3° livello",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "1722.08"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "1857.02"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "1883.66"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1722.08" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1857.02" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "1883.66" }
         ]
       },
       "fixed_allowances": [
@@ -696,11 +451,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "522.41"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "522.41" }
             ]
           }
         },
@@ -709,11 +460,7 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -725,21 +472,9 @@
       "description": "Area Specialistica — 4° livello",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "1722.08"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "1857.02"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "1883.66"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1722.08" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1857.02" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "1883.66" }
         ]
       },
       "fixed_allowances": [
@@ -748,11 +483,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "522.41"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "522.41" }
             ]
           }
         },
@@ -761,11 +492,7 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -777,21 +504,9 @@
       "description": "Area Competenza — 4° livello",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "1888.07"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "2033.18"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "2061.83"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1888.07" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "2033.18" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "2061.83" }
         ]
       },
       "fixed_allowances": [
@@ -800,11 +515,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "525.22"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "525.22" }
             ]
           }
         },
@@ -813,11 +524,7 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -829,21 +536,9 @@
       "description": "Area Competenza — 5° livello (quadri)",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "2054.02"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "2209.28"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "2239.93"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "2054.02" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "2209.28" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "2239.93" }
         ]
       },
       "fixed_allowances": [
@@ -852,11 +547,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "527.94"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "527.94" }
             ]
           }
         },
@@ -865,15 +556,12 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     },
     {
       "code": "AD1",
@@ -881,21 +569,9 @@
       "description": "Area Direttiva — 1° livello",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "2164.70"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "2326.75"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "2358.74"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "2164.70" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "2326.75" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "2358.74" }
         ]
       },
       "fixed_allowances": [
@@ -904,11 +580,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "529.75"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "529.75" }
             ]
           }
         },
@@ -917,15 +589,12 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     },
     {
       "code": "AD2",
@@ -933,21 +602,9 @@
       "description": "Area Direttiva — 2° livello",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "2275.98"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "2444.87"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "2478.22"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "2275.98" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "2444.87" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "2478.22" }
         ]
       },
       "fixed_allowances": [
@@ -956,11 +613,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "531.91"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "531.91" }
             ]
           }
         },
@@ -969,15 +622,12 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     },
     {
       "code": "AD3",
@@ -985,21 +635,9 @@
       "description": "Area Direttiva — 3° livello (dirigenti apicali)",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2023-07-01",
-            "valid_until": "2024-01-01",
-            "value": "2330.21"
-          },
-          {
-            "valid_from": "2024-01-01",
-            "valid_until": "2025-01-01",
-            "value": "2502.30"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": null,
-            "value": "2536.28"
-          }
+          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "2330.21" },
+          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "2502.30" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "2536.28" }
         ]
       },
       "fixed_allowances": [
@@ -1008,11 +646,7 @@
           "description": "Indennità di contingenza (congelata dal 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "531.91"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "531.91" }
             ]
           }
         },
@@ -1021,48 +655,119 @@
           "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2023-07-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+            ]
+          }
+        },
+        {
+          "code": "ind_funzione_AD3",
+          "description": "Indennità di funzione AD3, 25,82 EUR/mese, non inclusa nel minimo tabellare",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "25.82" }
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     }
   ],
-  "apprenticeship": {
-    "type": "under_classification",
-    "destination_level": "AS3",
-    "periods": [
-      {
-        "months_from": 0,
-        "months_until": 12,
-        "pay_level_code": "AE4"
-      },
-      {
-        "months_from": 12,
-        "months_until": null,
-        "pay_level_code": "AC1"
-      }
-    ]
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "partial",
-    "layer_3": "out_of_scope",
-    "notes": [
-      "SALARY MODEL: split (paga base + contingenza + EDR). Paga base varia per tranche (Jul 2023, Jan 2024, Jan 2025). Contingenza congelata dal 31/07/1992 (valori da CNEL F051 PDF). EDR fisso 10,33 EUR per tutti i livelli (Accordo 31/07/1992). Fonte tabelle: CNEL F051 PDF (rinnovo 20/06/2023); tranche Jan 2024 confermata da lexplain.it; tranche Jan 2025 derivata dalla differenza tra totale da dottrinalavoro.it e contingenza+EDR.",
-      "HOURLY DIVISOR 174: valore 174 coerente con settimana lavorativa 40h (40 x 52 / 12 = 173,33 → 174). Nessuna tabella oraria pubblicata trovata in fonti primarie accessibili. SIMPLIFICATION: divisore derivato; convergenza di fonti secondarie indipendenti su 174 (previdenza-professionisti.it, regime industria manifatturiera). Coefficiente giornaliero 26 confermato da CNEL F051 PDF.",
-      "ADDITIONAL MONTHS: 13 mensilità (tredicesima). Fonte: CNEL F051 PDF, campo 'Numero mensilità: 13'.",
-      "SENIORITY: cadenza biennale (24 mesi), massimo 5 scatti. Importi per livello da previdenza-professionisti.it (dati 2025, invariati dal 2009 — nessuna modifica nel rinnovo 2023 trovata). AS2 (9,66 EUR) ha scatto diverso da AC1 (10,76 EUR) pur condividendo la stessa paga base — entrambi modellati per preservare il dato reale. SIMPLIFICATION: valid_from '2023-07-01' assunto corrispondente alla prima tranche salariale; il rinnovo 2023 non ha modificato gli importi degli scatti.",
-      "CONTINGENZA: 12 bande salariali per 16 codici di livello. I livelli AE4 e AS1 condividono la stessa paga base e contingenza (banda 4). I livelli AC1 e AS2 condividono la stessa paga base e contingenza (banda 5); AS2 ha scatto diverso da AC1. I livelli AC2, AC3 e AS4 condividono la stessa paga base e contingenza (banda 7). Tutti i valori di contingenza da CNEL F051 PDF.",
-      "APPRENDISTATO: tipo under_classification (CCNL Legno, rinnovo 20/06/2023). Percorsi: 1° periodo (0-12 mesi): 2 livelli-banda sotto il livello di destinazione; 2° periodo (12-24 mesi): 1 livello-banda sotto; 3° periodo (24-36 mesi): 1 livello-banda sotto con retribuzione intermedia tra livello appartenenza e destinazione. SIMPLIFICATION: il 3° periodo (mesi 24-36) modellato allo stesso livello del 2° periodo (AC1 per destination AS3) invece del valore intermedio tra AC1 e AS3 — sottostima la retribuzione degli apprendisti nel 3° periodo. destination_level='AS3' è un livello rappresentativo; il percorso reale dipende dal livello di destinazione individuale. Fonte: CNEL F051 PDF, clausola apprendistato professionalizzante.",
-      "INDENNITA' DI FUNZIONE AD3: i lavoratori AD3 percepiscono un'indennità di funzione di 25,82 EUR/mese non inclusa nel minimo tabellare. Non modellata — è una voce individuale esterna alla tabella salariale contrattuale.",
-      "INPS: aliquote settore industria da 2026-industria.json (file preesistente riutilizzato). Dipendente 9,19%; datore: ≤15 dip 30,13%, 16-50 dip 30,20%, >50 dip 30,50%. Nessun fondo bilaterale sostitutivo per CCNL Legno Industria (Fondimpresa per formazione, non incide sulle aliquote INPS).",
-      "SIMPLIFICATION - DESCRIZIONI LIVELLI: le descrizioni testuali dei livelli (es. 'Area Esecutiva — 1° livello') sono placeholder generati dall'engine basati sui codici area (AE/AS/AC/AD) e non corrispondono ai testi contrattuali ufficiali degli articoli di classificazione del CCNL. Il testo estratto dal PDF CNEL F051 non includeva le denominazioni ufficiali delle categorie per ciascun codice livello.",
-      "SIMPLIFICATION - ORDINAMENTO INTRA-BANDA: per i livelli che condividono la stessa paga base (AE4/AS1, AC1/AS2, AC2/AC3/AS4), l'ordine relativo è assegnato arbitrariamente (ordine crescente all'interno del gruppo) per soddisfare il vincolo del motore di unicità dell'ordine. Il CCNL non definisce una gerarchia interna tra livelli della stessa banda salariale. Funzionalmente ininfluente — il validatore richiede solo salary non decrescente per ordine crescente."
-    ]
-  }
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_1",
+      "destination_levels": ["AE3", "AE4"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 2 },
+        { "months_from": 12, "months_until": 24, "levels_below": 1 },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "levels_below": 1,
+          "midpoint_to_destination": true
+        },
+        { "months_from": 36, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_2",
+      "destination_levels": ["AS1", "AC1"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 3 },
+        { "months_from": 12, "months_until": 24, "levels_below": 2 },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "levels_below": 2,
+          "midpoint_to_destination": true
+        },
+        { "months_from": 36, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_3",
+      "destination_levels": ["AS2", "AC4"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 4 },
+        { "months_from": 12, "months_until": 24, "levels_below": 3 },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "levels_below": 3,
+          "midpoint_to_destination": true
+        },
+        { "months_from": 36, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_4",
+      "destination_levels": ["AS3", "AC3"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 4 },
+        { "months_from": 12, "months_until": 24, "levels_below": 2 },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "levels_below": 2,
+          "midpoint_to_destination": true
+        },
+        { "months_from": 36, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_5",
+      "destination_levels": ["AC2"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 3 },
+        { "months_from": 12, "months_until": 24, "levels_below": 1 },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "levels_below": 1,
+          "midpoint_to_destination": true
+        },
+        { "months_from": 36, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_6",
+      "destination_levels": ["AS4"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 5 },
+        { "months_from": 12, "months_until": 24, "levels_below": 3 },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "levels_below": 3,
+          "midpoint_to_destination": true
+        },
+        { "months_from": 36, "months_until": null, "levels_below": 0 }
+      ]
+    }
+  ]
 }

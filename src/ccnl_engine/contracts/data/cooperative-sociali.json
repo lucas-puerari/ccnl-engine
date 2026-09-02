@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "cooperative-sociali",
     "name": "CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)",
@@ -28,8 +28,27 @@
       "human_reviewed": true
     }
   },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: MINIMI CONGLOBATI: i valori in base_salary sono i minimi tabellari conglobati mensili (paga base + contingenza + EDR inclusi), come pubblicati da lexplain.it. Divisore orario 165 (art. 75 CCNL, 38 ore settimanali). Verifica back-calculation: A1 ottobre 2025 = 1359.88 / 165 = 8.24 €/ora; C1 = 1545.21 / 165 = 9.37 €/ora; F2 = 2504.10 / 165 = 15.17 €/ora — coincidono con le tariffe orarie pubblicate da lexplain.it.",
+      "INFO: LIVELLI QUADRO: i livelli E2Q, F1Q, F2Q sono modellati come livelli separati con fixed_allowances (indennità di funzione 77.47€, 154.94€, 232.41€/mese rispettivamente). La base_salary è identica al livello non-Q corrispondente; l'indennità è fissa e invariata tra le tranche. Gli scatti di anzianità per i livelli Q hanno lo stesso importo del livello base corrispondente.",
+      "INFO: MENSILITÀ AGGIUNTIVE: 13 fino al 31 dicembre 2024 (solo tredicesima). Dal 1° gennaio 2025: 13.5 (tredicesima + quattordicesima pari al 50% di una mensilità, erogata in giugno, introdotta dal rinnovo 26 gennaio 2024).",
+      "INFO: TRANCHE: febbraio 2024 (prima), ottobre 2024 (seconda), ottobre 2025 (terza e ultima). Rinnovo firmato il 26 gennaio 2024. Nessuna tabella previgente ante-febbraio 2024 modellata.",
+      "INFO: LIVELLI CON STESSA BASE: C3 e D1 hanno identico minimo a ogni tranche (ordini 6/7). D3 e E1 identici (ordini 9/10). I livelli Q (E2Q/F1Q/F2Q) hanno la stessa base del livello non-Q ma ordine successivo: il motore consente salari uguali tra livelli contigui.",
+      "INFO: SCATTI DI ANZIANITÀ: biennali (ogni 24 mesi), massimo 5 scatti. Importi fissi per livello dalla tabella scatti del CCNL (fonte: ccnlcooperative.it, art. 80). C3 e D1 hanno lo stesso importo (20.66€); D3 e E1 hanno lo stesso importo (26.86€).",
+      "SIMPLIFICATION: INPS: utilizza 2026-terziario.json (stesso tax_sector del CCNL Commercio Confcommercio). Il settore cooperative sociali non dispone di aliquota datoriale INPS distinta verificata da circolare primaria; le cooperative sociali di tipo B possono applicare agevolazioni ex L. 381/1991 non modellate in questo file.",
+      "INFO: APPRENTICESHIP (professionalizzante) per Art. 28 rinnovo 05/03/2024: 3 duration tracks by category: category A (dest=A2) 18m [0-9m=85%,9-18m=90%]; category B/C (dest=B,C1,C2,C3) 24m [0-12m=85%,12-24m=90%]; category D/E (dest=D1,D2,D3,E1,E2) 36m [0-18m=85%,18-36m=90%]. A1 and F/Q levels not eligible. Special: OSS in socio-sanitario reduced to 18m. Source: Art. 28 ccnlcooperative.it (testo unico 2025, alta confidenza)."
+    ]
+  },
   "parameters": {
-    "hourly_divisor": 165,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2024-02-01", "valid_until": null, "value": "165" }
+      ]
+    },
     "additional_months": {
       "periods": [
         { "valid_from": "2024-02-01", "valid_until": "2025-01-01", "value": "13" },
@@ -40,22 +59,86 @@
       "cadence_months": 24,
       "maximum_count": 5,
       "amount_by_level": {
-        "A1": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "11.62" }] },
-        "A2": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "13.43" }] },
-        "B":  { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "16.27" }] },
-        "C1": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "18.59" }] },
-        "C2": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "19.63" }] },
-        "C3": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "20.66" }] },
-        "D1": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "20.66" }] },
-        "D2": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "23.24" }] },
-        "D3": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "26.86" }] },
-        "E1": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "26.86" }] },
-        "E2":  { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "31.50" }] },
-        "E2Q": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "31.50" }] },
-        "F1":  { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "39.51" }] },
-        "F1Q": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "39.51" }] },
-        "F2":  { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "46.48" }] },
-        "F2Q": { "periods": [{ "valid_from": "2024-02-01", "valid_until": null, "value": "46.48" }] }
+        "A1": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "11.62" }
+          ]
+        },
+        "A2": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "13.43" }
+          ]
+        },
+        "B": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "16.27" }
+          ]
+        },
+        "C1": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "18.59" }
+          ]
+        },
+        "C2": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "19.63" }
+          ]
+        },
+        "C3": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "20.66" }
+          ]
+        },
+        "D1": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "20.66" }
+          ]
+        },
+        "D2": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "23.24" }
+          ]
+        },
+        "D3": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "26.86" }
+          ]
+        },
+        "E1": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "26.86" }
+          ]
+        },
+        "E2": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "31.50" }
+          ]
+        },
+        "E2Q": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "31.50" }
+          ]
+        },
+        "F1": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "39.51" }
+          ]
+        },
+        "F1Q": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "39.51" }
+          ]
+        },
+        "F2": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "46.48" }
+          ]
+        },
+        "F2Q": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "46.48" }
+          ]
+        }
       }
     }
   },
@@ -224,7 +307,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     },
     {
       "code": "F1",
@@ -260,7 +344,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     },
     {
       "code": "F2",
@@ -296,30 +381,40 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     }
   ],
-  "apprenticeship": {
-    "type": "percentage",
-    "destination_level": "C1",
-    "periods": [
-      { "months_from": 0,  "months_until": 18, "percentage": "0.85" },
-      { "months_from": 18, "months_until": null, "percentage": "0.90" }
-    ]
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "partial",
-    "layer_3": "out_of_scope",
-    "notes": [
-      "MINIMI CONGLOBATI: i valori in base_salary sono i minimi tabellari conglobati mensili (paga base + contingenza + EDR inclusi), come pubblicati da lexplain.it. Divisore orario 165 (art. 75 CCNL, 38 ore settimanali). Verifica back-calculation: A1 ottobre 2025 = 1359.88 / 165 = 8.24 €/ora; C1 = 1545.21 / 165 = 9.37 €/ora; F2 = 2504.10 / 165 = 15.17 €/ora — coincidono con le tariffe orarie pubblicate da lexplain.it.",
-      "LIVELLI QUADRO: i livelli E2Q, F1Q, F2Q sono modellati come livelli separati con fixed_allowances (indennità di funzione 77.47€, 154.94€, 232.41€/mese rispettivamente). La base_salary è identica al livello non-Q corrispondente; l'indennità è fissa e invariata tra le tranche. Gli scatti di anzianità per i livelli Q hanno lo stesso importo del livello base corrispondente.",
-      "MENSILITÀ AGGIUNTIVE: 13 fino al 31 dicembre 2024 (solo tredicesima). Dal 1° gennaio 2025: 13.5 (tredicesima + quattordicesima pari al 50% di una mensilità, erogata in giugno, introdotta dal rinnovo 26 gennaio 2024).",
-      "TRANCHE: febbraio 2024 (prima), ottobre 2024 (seconda), ottobre 2025 (terza e ultima). Rinnovo firmato il 26 gennaio 2024. Nessuna tabella previgente ante-febbraio 2024 modellata.",
-      "LIVELLI CON STESSA BASE: C3 e D1 hanno identico minimo a ogni tranche (ordini 6/7). D3 e E1 identici (ordini 9/10). I livelli Q (E2Q/F1Q/F2Q) hanno la stessa base del livello non-Q ma ordine successivo: il motore consente salari uguali tra livelli contigui.",
-      "SCATTI DI ANZIANITÀ: biennali (ogni 24 mesi), massimo 5 scatti. Importi fissi per livello dalla tabella scatti del CCNL (fonte: ccnlcooperative.it, art. 80). C3 e D1 hanno lo stesso importo (20.66€); D3 e E1 hanno lo stesso importo (26.86€).",
-      "APPRENDISTATO: tipo percentage, livello di destinazione C1. Percentuali: 85% per i primi 18 mesi, 90% dal 19° mese. Durata massima 36 mesi (rinnovo 26 gennaio 2024).",
-      "SIMPLIFICATION — INPS: utilizza 2026-terziario.json (stesso tax_sector del CCNL Commercio Confcommercio). Il settore cooperative sociali non dispone di aliquota datoriale INPS distinta verificata da circolare primaria; le cooperative sociali di tipo B possono applicare agevolazioni ex L. 381/1991 non modellate in questo file."
-    ]
-  }
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante_18m",
+      "destination_levels": ["A2"],
+      "periods": [
+        { "months_from": 0, "months_until": 9, "percentage": "0.85" },
+        { "months_from": 9, "months_until": 18, "percentage": "0.90" },
+        { "months_from": 18, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_24m",
+      "destination_levels": ["B", "C1", "C2", "C3"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.85" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.90" },
+        { "months_from": 24, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_36m",
+      "destination_levels": ["D1", "D2", "D3", "E1", "E2"],
+      "periods": [
+        { "months_from": 0, "months_until": 18, "percentage": "0.85" },
+        { "months_from": 18, "months_until": 36, "percentage": "0.90" },
+        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+      ]
+    }
+  ]
 }

@@ -20,48 +20,48 @@ from ccnl_engine.engine.compute import compute
 from ccnl_engine.models.ccnl import TaxSector
 from ccnl_engine.models.employment import Permanent
 
-ccnl  = load_ccnl("commercio-confcommercio.json")
+ccnl = load_ccnl("commercio-confcommercio.json")
 rules = load_year_rules(2026, TaxSector.TERZIARIO, num_employees=50)
 result = compute(ccnl, "4", date(2026, 9, 1), rules, Permanent())
 
-print(result.net_annual)           # → Decimal('...')
-print(result.employer_cost_annual) # → Decimal('...')
+print(result.net_annual)  # → Decimal('...')
+print(result.employer_cost_annual)  # → Decimal('...')
 ```
 
 ## CCNL coverage
 
 | # | CCNL | Sector | Layer 1 | Layer 2 | Layer 3 |
 |---|---|---|:---:|:---:|:---:|
-| 1 | Commercio — Confcommercio | Terziario | ✅ | ⚠️ | — |
-| 2 | Metalmeccanico — Federmeccanica/Assistal | Industria | ⚠️ | ⚠️ | — |
-| 3 | Metalmeccanico PMI — Unionmeccanica-Confapi | Industria | ⚠️ | ⚠️ | — |
-| 4 | Chimica-Farmaceutica — Federchimica/Farmindustria/Assistal | Industria | ⚠️ | ⚠️ | — |
-| 5 | Turismo — Confcommercio | Terziario | ✅ | ⚠️ | — |
+| 1 | Commercio — Confcommercio | Terziario | ✅ | ✅ | — |
+| 2 | Metalmeccanico — Federmeccanica/Assistal | Industria | ⚠️ | ✅ | — |
+| 3 | Metalmeccanico PMI — Unionmeccanica-Confapi | Industria | ✅ | ✅ | — |
+| 4 | Chimica-Farmaceutica — Federchimica/Farmindustria/Assistal | Industria | ✅ | ✅ | — |
+| 5 | Turismo — Confcommercio | Terziario | ✅ | ✅ | — |
 | 6 | Edilizia — ANCE | Edilizia | ✅ | ⚠️ | — |
-| 7 | Cooperative Sociali — Confcooperative/Legacoop/AGCI | Terziario | ✅ | ⚠️ | — |
-| 8 | Logistica, Trasporto Merci e Spedizione — Confetra | Industria | ✅ | ⚠️ | — |
+| 7 | Cooperative Sociali — Confcooperative/Legacoop/AGCI | Terziario | ✅ | ✅ | — |
+| 8 | Logistica, Trasporto Merci e Spedizione — Confetra | Industria | ✅ | ✅ | — |
 | 9 | Servizi di Pulizia e Multiservizi — ANIP-Confindustria | Terziario | ✅ | ✅ | — |
-| 10 | Studi e Attività Professionali — Confprofessioni | Terziario | ✅ | ⚠️ | — |
+| 10 | Studi e Attività Professionali — Confprofessioni | Terziario | ✅ | ✅ | — |
 | 11 | Credito — ABI | Credito | ✅ | ✅ | — |
-| 12 | Tessile Abbigliamento Moda — SMI | Industria | ✅ | ⚠️ | — |
-| 13 | Alimentari Industria — Federalimentare | Industria | ✅ | ⚠️ | — |
-| 14 | Distribuzione Moderna Organizzata — Federdistribuzione | Terziario | ✅ | ⚠️ | — |
-| 15 | Metalmeccanica e Installazione Impianti — Artigianato | Artigianato | ✅ | ⚠️ | — |
-| 16 | Gomma e Plastica Industria — Federazione Gomma Plastica | Industria | ✅ | ⚠️ | — |
+| 12 | Tessile Abbigliamento Moda — SMI | Industria | ✅ | ✅ | — |
+| 13 | Alimentari Industria — Federalimentare | Industria | ✅ | ✅ | — |
+| 14 | Distribuzione Moderna Organizzata — Federdistribuzione | Terziario | ✅ | ✅ | — |
+| 15 | Metalmeccanica e Installazione Impianti — Artigianato | Artigianato | ✅ | ✅ | — |
+| 16 | Gomma e Plastica Industria — Federazione Gomma Plastica | Industria | ⚠️ | ✅ | — |
 | 17 | Grafica e Editoria — AIEG-Acigraf | Industria | ✅ | — | — |
-| 18 | Carta e Cartone — Assocarta | Industria | ✅ | ⚠️ | — |
-| 19 | Telecomunicazioni — Asstel | Industria | ✅ | ⚠️ | — |
-| 20 | Vigilanza Privata — ASSIV/ANIVP/UNIV (GPG) | Terziario | ✅ | ⚠️ | — |
-| 21 | Legno e Arredamento — Federlegno-Arredo | Industria | ✅ | ⚠️ | — |
+| 18 | Carta e Cartone — Assocarta | Industria | ✅ | ✅ | — |
+| 19 | Telecomunicazioni — Asstel | Industria | ✅ | ✅ | — |
+| 20 | Vigilanza Privata — ASSIV/ANIVP/UNIV (GPG) | Terziario | ✅ | ✅ | — |
+| 21 | Legno e Arredamento — Federlegno-Arredo | Industria | ✅ | ✅ | — |
 | 22 | Edilizia e Affini — CNA/Confartigianato/Casartigiani | Artigianato | ✅ | ⚠️ | — |
-| 23 | Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas | Industria | ✅ | ⚠️ | — |
-| 24 | Istituzioni Socio-Assistenziali — UNEBA | Terziario | ✅ | ⚠️ | — |
-| 25 | Acconciatura ed Estetica — Confartigianato/CNA | Artigianato | ✅ | ⚠️ | — |
-| 26 | Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA) | Artigianato | ✅ | ⚠️ | — |
+| 23 | Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas | Industria | ✅ | ✅ | — |
+| 24 | Istituzioni Socio-Assistenziali — UNEBA | Terziario | ✅ | ✅ | — |
+| 25 | Acconciatura ed Estetica — Confartigianato/CNA | Artigianato | ✅ | ✅ | — |
+| 26 | Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA) | Artigianato | ✅ | ✅ | — |
 | 27 | Autoferrotranvieri e Internavigatori (Mobilita/TPL) — AGENS/ASSTRA/ANAV | Terziario | ✅ | ✅ | — |
-| 28 | Credito Cooperativo (BCC/CRA) — Federcasse | Credito | ✅ | ⚠️ | — |
-| 29 | Elettrico (produzione/distribuzione energia) — Elettricita Futura | Industria | ✅ | ✅ | — |
-| 30 | Calzaturiero (industria delle calzature) — Assocalzaturifici | Industria | ✅ | ⚠️ | — |
+| 28 | Credito Cooperativo (BCC/CRA) — Federcasse | Credito | ✅ | ✅ | — |
+| 29 | Elettrico (produzione/distribuzione energia) — Elettricita Futura | Industria | ✅ | — | — |
+| 30 | Calzaturiero (industria delle calzature) — Assocalzaturifici | Industria | ✅ | ✅ | — |
 
 **Layer 1** — base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months.  
 **Layer 2** — part-time, fixed-term (NASpI *addizionale*), apprenticeship (percentage or under-classification).  
