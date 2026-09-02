@@ -56,6 +56,7 @@ print(result.employer_cost_annual) # → Decimal('...')
 | 22 | Edilizia e Affini — CNA/Confartigianato/Casartigiani | Artigianato | ✅ | ✅ | — |
 | 23 | Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas | Industria | ✅ | ✅ | — |
 | 24 | Istituzioni Socio-Assistenziali — UNEBA | Terziario | ✅ | ✅ | — |
+| 25 | Acconciatura ed Estetica — Confartigianato/CNA | Artigianato | ✅ | ✅ | — |
 
 **Layer 1** — base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months.  
 **Layer 2** — part-time, fixed-term (NASpI *addizionale*), apprenticeship (percentage or under-classification).  
