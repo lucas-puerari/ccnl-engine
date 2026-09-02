@@ -32,7 +32,7 @@
     }
   },
   "coverage": {
-    "layer_1": "partial",
+    "layer_1": "implemented",
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
@@ -43,7 +43,8 @@
       "INFO: APPRENTICESHIP: professionalizzante (accordo integrativo 20/04/2021). Eligible levels: D2, C1, C2, C3, B1, B2, B3 (D1 and A1 excluded). Pay: 85% (first third), 90% (second third), 95% (third third), then classified at destination. Three duration tracks: 36m (standard), 30m (diploma EQF 4-7 consistent with profession), 24m (D2 serial repetitive production only). Source: accordo 20/04/2021 Federmeccanica art. 'Apprendistato professionalizzante', reproduced in MySolution circolare Marini 13/05/2021.",
       "INFO: DIVISORE ORARIO: 173 ore/mese (40 h/settimana × 52/12 = 173,33 arrotondato a 173, standard Federmeccanica).",
       "INFO: MENSILITÀ: 13 (tredicesima). La quattordicesima non è prevista dal CCNL Federmeccanica. Il premio di risultato/variabile aziendale non è modellato (layer 3).",
-      "INFO: INPS: le aliquote datore in 2026-industria.json sono calcolate per componenti verificati (IVS 23.81% + DS 1.61% + CUAF 2.48% + CIGO D.Lgs.148/2015 + FIS/CIGS Circ.INPS 5/2025). Totali risultanti: ≤15 dip = 30.13%, 16-50 dip = 30.20%, >50 dip = 30.50%. Non include INAIL. La quota CIGS dipendente (0.30% per >15 dip) non è ancora modellata in employee_rate."
+      "INFO: INPS: le aliquote datore in 2026-industria.json sono calcolate per componenti verificati (IVS 23.81% + DS 1.61% + CUAF 2.48% + CIGO D.Lgs.148/2015 + FIS/CIGS Circ.INPS 5/2025). Totali risultanti: ≤15 dip = 30.13%, 16-50 dip = 30.20%, >50 dip = 30.50%. Non include INAIL. La quota CIGS dipendente (0.30% per >15 dip) non è ancora modellata in employee_rate.",
+      "INFO: TRANCHE giu 2021, giu 2022, giu 2023: valori recuperati da lexplain.it (tabelle retributive metalmeccanici industria; fonte secondaria aggregatrice). Cross-check: D1 giu-2024=1719.67 conferma allineamento esatto con dati già presenti. Quattro tranche annuali (giu 2021-2024) basate su meccanismo IPCA dal CCNL 05/02/2021."
     ]
   },
   "parameters": {
@@ -116,6 +117,9 @@
       "description": "1° livello — mansioni ausiliarie, operazioni semplici e ripetitive",
       "base_salary": {
         "periods": [
+          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1488.89" },
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1509.07" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1608.67" },
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1719.67" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1742.03" },
           { "valid_from": "2026-06-01", "valid_until": null, "value": "1784.94" }
@@ -129,6 +133,9 @@
       "description": "2° livello — operazioni standardizzate, mansioni di concetto semplici",
       "base_salary": {
         "periods": [
+          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1651.07" },
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1673.45" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1783.90" },
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1906.99" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1931.78" },
           { "valid_from": "2026-06-01", "valid_until": null, "value": "1979.37" }
@@ -142,6 +149,9 @@
       "description": "3° livello — operaio qualificato, impiegato d'ordine",
       "base_salary": {
         "periods": [
+          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1686.74" },
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1709.60" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1822.43" },
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1948.18" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1973.51" },
           { "valid_from": "2026-06-01", "valid_until": null, "value": "2022.12" }
@@ -155,6 +165,9 @@
       "description": "4° livello — operaio specializzato di 1ª categoria, impiegato di concetto",
       "base_salary": {
         "periods": [
+          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1722.41" },
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1745.75" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1860.97" },
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1989.38" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2015.24" },
           { "valid_from": "2026-06-01", "valid_until": null, "value": "2064.88" }
@@ -168,6 +181,9 @@
       "description": "5° livello — operaio specializzato di 2ª categoria, impiegato di concetto evoluto (livello di riferimento CCNL)",
       "base_salary": {
         "periods": [
+          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1844.64" },
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1869.64" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1993.04" },
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2130.56" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2158.26" },
           { "valid_from": "2026-06-01", "valid_until": null, "value": "2211.43" }
@@ -181,6 +197,9 @@
       "description": "5° livello Super — operaio altamente specializzato, tecnico",
       "base_salary": {
         "periods": [
+          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1977.19" },
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "2003.99" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "2136.25" },
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2283.65" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2313.34" },
           { "valid_from": "2026-06-01", "valid_until": null, "value": "2370.33" }
@@ -194,6 +213,9 @@
       "description": "6° livello — tecnico specializzato, capo reparto, impiegato tecnico",
       "base_salary": {
         "periods": [
+          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "2121.20" },
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "2149.95" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "2291.85" },
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2449.99" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2481.84" },
           { "valid_from": "2026-06-01", "valid_until": null, "value": "2542.98" }
@@ -207,6 +229,9 @@
       "description": "7° livello — alta professionalità tecnica o gestionale",
       "base_salary": {
         "periods": [
+          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "2368.12" },
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "2400.22" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "2558.63" },
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2735.18" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2770.74" },
           { "valid_from": "2026-06-01", "valid_until": null, "value": "2838.99" }
@@ -220,6 +245,9 @@
       "description": "8° livello — quadro, massima professionalità",
       "base_salary": {
         "periods": [
+          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "2424.86" },
+          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "2457.72" },
+          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "2619.93" },
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2800.71" },
           { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2837.12" },
           { "valid_from": "2026-06-01", "valid_until": null, "value": "2907.01" }

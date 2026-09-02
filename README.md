@@ -33,11 +33,11 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | # | CCNL | Sector | Layer 1 | Layer 2 | Layer 3 |
 |---|---|---|:---:|:---:|:---:|
 | 1 | Commercio — Confcommercio | Terziario | ✅ | ✅ | — |
-| 2 | Metalmeccanico — Federmeccanica/Assistal | Industria | ⚠️ | ✅ | — |
+| 2 | Metalmeccanico — Federmeccanica/Assistal | Industria | ✅ | ✅ | — |
 | 3 | Metalmeccanico PMI — Unionmeccanica-Confapi | Industria | ✅ | ✅ | — |
 | 4 | Chimica-Farmaceutica — Federchimica/Farmindustria/Assistal | Industria | ✅ | ✅ | — |
 | 5 | Turismo — Confcommercio | Terziario | ✅ | ✅ | — |
-| 6 | Edilizia — ANCE | Edilizia | ✅ | ⚠️ | — |
+| 6 | Edilizia — ANCE | Edilizia | ✅ | ✅ | — |
 | 7 | Cooperative Sociali — Confcooperative/Legacoop/AGCI | Terziario | ✅ | ✅ | — |
 | 8 | Logistica, Trasporto Merci e Spedizione — Confetra | Industria | ✅ | ✅ | — |
 | 9 | Servizi di Pulizia e Multiservizi — ANIP-Confindustria | Terziario | ✅ | ✅ | — |
@@ -47,13 +47,13 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 13 | Alimentari Industria — Federalimentare | Industria | ✅ | ✅ | — |
 | 14 | Distribuzione Moderna Organizzata — Federdistribuzione | Terziario | ✅ | ✅ | — |
 | 15 | Metalmeccanica e Installazione Impianti — Artigianato | Artigianato | ✅ | ✅ | — |
-| 16 | Gomma e Plastica Industria — Federazione Gomma Plastica | Industria | ⚠️ | ✅ | — |
+| 16 | Gomma e Plastica Industria — Federazione Gomma Plastica | Industria | ✅ | ✅ | — |
 | 17 | Grafica e Editoria — AIEG-Acigraf | Industria | ✅ | — | — |
 | 18 | Carta e Cartone — Assocarta | Industria | ✅ | ✅ | — |
 | 19 | Telecomunicazioni — Asstel | Industria | ✅ | ✅ | — |
 | 20 | Vigilanza Privata — ASSIV/ANIVP/UNIV (GPG) | Terziario | ✅ | ✅ | — |
 | 21 | Legno e Arredamento — Federlegno-Arredo | Industria | ✅ | ✅ | — |
-| 22 | Edilizia e Affini — CNA/Confartigianato/Casartigiani | Artigianato | ✅ | ⚠️ | — |
+| 22 | Edilizia e Affini — CNA/Confartigianato/Casartigiani | Artigianato | ✅ | ✅ | — |
 | 23 | Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas | Industria | ✅ | ✅ | — |
 | 24 | Istituzioni Socio-Assistenziali — UNEBA | Terziario | ✅ | ✅ | — |
 | 25 | Acconciatura ed Estetica — Confartigianato/CNA | Artigianato | ✅ | ✅ | — |

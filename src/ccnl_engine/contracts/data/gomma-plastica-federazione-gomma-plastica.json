@@ -32,7 +32,7 @@
     }
   },
   "coverage": {
-    "layer_1": "partial",
+    "layer_1": "implemented",
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
@@ -41,7 +41,7 @@
       "SOURCE: HOURLY DIVISOR 173 derived from the standard formula (40h/week x 52 / 12 = 173.33 rounded to 173); secondary sources (contratticcnl.it, fiscoetasse.com) confirm the 40h week but the contractual clause was not retrieved directly.",
       "SIMPLIFICATION: TRANCHE DATES 01.01.2023, 01.01.2024, 01.04.2025, 01.01.2026 from lexplain.it and kitech.it. Future tranches 01.04.2027, 01.04.2028, 01.12.2028 from the rinnovo 10.12.2025 (fiscoetasse.com, paserio.it): F +60, +60, +15; other levels derived parametrically via the stable coefficients (possible ±0.01 EUR rounding differences).",
       "SOURCE: Q LEVEL INDENNITA' DI FUNZIONE 50.00 EUR/month (quadri ex L. 190/1985), cross-verified at April 2025 (lexplain.it total 2473.68 vs contratticcnl.it TEM 2423.68). valid_from set to 2023-01-01 for consistency with the first modelled tranche; not verified whether the amount was already 50 EUR in 2023.",
-      "MISSING: SENIORITY amounts for 2023-2025: only the 01.01.2026 amounts (kitech.it, post-rinnovo 2025) are available and are applied to the whole window. Cadence 24 months, maximum 5 scatti.",
+      "INFO: SENIORITY amounts unchanged across 01.01.2023, 01.01.2024, 01.04.2025, 01.01.2026: the January 2023 rinnovo and December 2025 rinnovo both addressed only TEM (minimi tabellari) and left Art.23 (scatti di anzianità) untouched. Amounts at kitech.it/lavoro-economia.it apply from at least 01.01.2023 onward. Source: rinnovo 10.12.2025 full text (filctemcgil.it); rinnovo Jan 2023 summary (terzomillennio.uil.it); no source reports scatti change in either rinnovo.",
       "SIMPLIFICATION: APPRENTICESHIP under_classification (art. apprendistato professionalizzante CCNL Gomma e Plastica; rule from contratticcnl.it: the apprentice cannot be classified more than two levels below the destination). Track 'professionalizzante' for destinations G, F, E, D, C, B: 0-12 months two levels below, 12-24 one level below, then destination. The 12/12 boundaries are an approximation (no public monthly table). H (only one level below exists), I, A and Q are not modelled as destinations.",
       "INFO: INPS: riutilizza 2026-industria.json (Confindustria/CIGO). La Federazione Gomma Plastica aderisce a Confindustria; CIGO applicabile ai sensi del D.Lgs. 148/2015.",
       "INFO: ADDITIONAL MONTHS: 13 (tredicesima). La quattordicesima non è prevista dal CCNL Gomma e Plastica Industria."
@@ -64,52 +64,52 @@
       "amount_by_level": {
         "Q": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "20.14" }
+            { "valid_from": "2023-01-01", "valid_until": null, "value": "20.14" }
           ]
         },
         "A": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "18.59" }
+            { "valid_from": "2023-01-01", "valid_until": null, "value": "18.59" }
           ]
         },
         "B": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "16.53" }
+            { "valid_from": "2023-01-01", "valid_until": null, "value": "16.53" }
           ]
         },
         "C": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "16.53" }
+            { "valid_from": "2023-01-01", "valid_until": null, "value": "16.53" }
           ]
         },
         "D": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "16.53" }
+            { "valid_from": "2023-01-01", "valid_until": null, "value": "16.53" }
           ]
         },
         "E": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "13.94" }
+            { "valid_from": "2023-01-01", "valid_until": null, "value": "13.94" }
           ]
         },
         "F": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "13.94" }
+            { "valid_from": "2023-01-01", "valid_until": null, "value": "13.94" }
           ]
         },
         "G": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "13.43" }
+            { "valid_from": "2023-01-01", "valid_until": null, "value": "13.43" }
           ]
         },
         "H": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "11.88" }
+            { "valid_from": "2023-01-01", "valid_until": null, "value": "11.88" }
           ]
         },
         "I": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "10.33" }
+            { "valid_from": "2023-01-01", "valid_until": null, "value": "10.33" }
           ]
         }
       }

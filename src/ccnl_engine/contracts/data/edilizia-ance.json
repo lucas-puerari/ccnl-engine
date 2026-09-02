@@ -41,7 +41,7 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
       "INFO: RINNOVO: CCNL firmato il 21 febbraio 2025, vigenza 1/2/2025-30/6/2028. Tre tranche di aumento: 1a da 1/2/2025, 2a da 1/3/2026, 3a da 1/3/2027.",
@@ -51,8 +51,8 @@
       "SIMPLIFICATION: SCATTI OPERAI: per gli operai (livelli 1-4), il CCNL ANCE prevede APE (Anzianità Professionale Edile) tramite Cassa Edile al posto degli scatti classici. Il motore modella gli importi tabellari degli scatti per tutti i livelli (L1-L2: 8.22€, L3: 8.99€, L4: 9.62€ biennali) come approssimazione; il meccanismo APE reale è gestito dalla Cassa Edile e non è modellato.",
       "SIMPLIFICATION: EVR: l'Elemento Variabile della Retribuzione (EVR) è un premio variabile provinciale/aziendale. Non è modellato (varia per provincia e anno).",
       "INFO: ADDITIONAL_MONTHS: 13 mensilità (gratifica natalizia). La 14a mensilità non è prevista nel CCNL edilizia industria. Per gli operai la gratifica natalizia è erogata tramite Cassa Edile — il motore la include nel gross_annual tramite il moltiplicatore × 13 come approssimazione.",
-      "INFO: APPRENDISTATO: tipo under_classification. Il JSON modella il caso standard (destinazione livello 3, operaio specializzato): livello 2 per i primi 24 mesi, livello 3 dal mese 25. La durata effettiva varia per livello di destinazione (24-60 mesi) — consultare CCNL art. apprendistato per durate specifiche. Fonte: ANCE Brescia guida apprendistato (2019, struttura invariata nel rinnovo 2025).",
-      "INFO: INPS: utilizza 2026-edilizia.json con aliquote proxy (kitech.it). Employee 9.19%, employer tiers 28.46%/29.06%/29.50%. Cassa Edile (~18.5%) è separata — non inclusa."
+      "INFO: INPS: utilizza 2026-edilizia.json con aliquote proxy (kitech.it). Employee 9.19%, employer tiers 28.46%/29.06%/29.50%. Cassa Edile (~18.5%) è separata — non inclusa.",
+      "INFO: APPRENDISTATO (Art. 92 CCNL, come riformato da CNCE n.660 del 04/04/2019): tipo percentage, regime unico per tutti i livelli 2-7 (livello 1 escluso). 6 semestri = 36 mesi: 72%/72%/78%/78%/85%/90% poi 100%. Il vecchio sistema di sotto-inquadramento è stato esplicitamente abolito dal 01/04/2019. Figure artigiane/artistiche: 48 mesi (8 semestri, sem 7-8 al 90%); non modellato separatamente (nessun codice-livello specifico disponibile). Struttura confermata invariata nel rinnovo 21/02/2025. Fonte: CNCE comunicazione n.660/2019 (cassaedilevarese.it); cassaedilesavona.com Art.92; BibLus/ANCE dossier."
     ]
   },
   "parameters": {
@@ -203,12 +203,17 @@
   ],
   "apprenticeship": [
     {
-      "type": "under_classification",
+      "type": "percentage",
       "name": "standard",
-      "destination_levels": ["3"],
+      "destination_levels": ["2", "3", "4", "5", "6", "7"],
       "periods": [
-        { "months_from": 0, "months_until": 24, "levels_below": 1 },
-        { "months_from": 24, "months_until": null, "levels_below": 0 }
+        { "months_from": 0, "months_until": 6, "percentage": "0.72" },
+        { "months_from": 6, "months_until": 12, "percentage": "0.72" },
+        { "months_from": 12, "months_until": 18, "percentage": "0.78" },
+        { "months_from": 18, "months_until": 24, "percentage": "0.78" },
+        { "months_from": 24, "months_until": 30, "percentage": "0.85" },
+        { "months_from": 30, "months_until": 36, "percentage": "0.90" },
+        { "months_from": 36, "months_until": null, "percentage": "1.00" }
       ]
     }
   ]
