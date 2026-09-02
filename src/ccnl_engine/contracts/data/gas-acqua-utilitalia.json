@@ -1,0 +1,318 @@
+{
+  "schema_version": "0.2",
+  "ccnl": {
+    "id": "gas-acqua-utilitalia",
+    "name": "CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas",
+    "cnel_code": "K321",
+    "sector": "gas e acqua",
+    "tax_sector": "industria",
+    "signatories": [
+      "Utilitalia",
+      "Proxigas",
+      "Anfida",
+      "Assogas",
+      "FILCTEM-CGIL",
+      "FEMCA-CISL",
+      "UILTEC-UIL"
+    ],
+    "agreement_date": "2025-05-08",
+    "sources": [
+      {
+        "url": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
+        "type": "contract",
+        "agreement_date": "2022-09-30"
+      },
+      {
+        "url": "https://ilccnl.it/contratto/ccnl/gas-e-acqua---aziende-private-dal-010102",
+        "type": "tabelle_retributive",
+        "agreement_date": "2025-05-08"
+      },
+      {
+        "url": "https://www.filctemcgil.it/index.php/notiziario/news/gas-acqua",
+        "type": "renewal_summary",
+        "agreement_date": "2025-05-08"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-02T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": 167,
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2022-10-01", "valid_until": null, "value": "14" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 0,
+      "amount_by_level": {
+        "1": { "periods": [{ "valid_from": "2022-10-01", "valid_until": null, "value": "0.00" }] },
+        "2": { "periods": [{ "valid_from": "2022-10-01", "valid_until": null, "value": "0.00" }] },
+        "3": { "periods": [{ "valid_from": "2022-10-01", "valid_until": null, "value": "0.00" }] },
+        "4": { "periods": [{ "valid_from": "2022-10-01", "valid_until": null, "value": "0.00" }] },
+        "5": { "periods": [{ "valid_from": "2022-10-01", "valid_until": null, "value": "0.00" }] },
+        "6": { "periods": [{ "valid_from": "2022-10-01", "valid_until": null, "value": "0.00" }] },
+        "7": { "periods": [{ "valid_from": "2022-10-01", "valid_until": null, "value": "0.00" }] },
+        "8": { "periods": [{ "valid_from": "2022-10-01", "valid_until": null, "value": "0.00" }] },
+        "Q": { "periods": [{ "valid_from": "2022-10-01", "valid_until": null, "value": "0.00" }] }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "1",
+      "order": 1,
+      "description": "Level 1 — par. 100 — unskilled, non-autonomous, routine operations",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "1564.77" },
+          { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "1614.24" },
+          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "1677.64" },
+          { "valid_from": "2026-07-01", "valid_until": null,         "value": "1782.14" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "order": 2,
+      "description": "Level 2 — par. 111.15 — semi-skilled, partial autonomy",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "1739.16" },
+          { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "1794.14" },
+          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "1864.61" },
+          { "valid_from": "2026-07-01", "valid_until": null,         "value": "1980.76" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "order": 3,
+      "description": "Level 3 — par. 122.95 — skilled operative, autonomous in standard tasks",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "1923.84" },
+          { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "1984.66" },
+          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "2062.61" },
+          { "valid_from": "2026-07-01", "valid_until": null,         "value": "2191.09" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "order": 4,
+      "description": "Level 4 — par. 131.42 — specialist, complex tasks requiring expertise",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "2056.35" },
+          { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "2121.36" },
+          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "2204.68" },
+          { "valid_from": "2026-07-01", "valid_until": null,         "value": "2342.01" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "order": 5,
+      "description": "Level 5 — par. 139.96 — highly skilled, broad autonomy",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "2189.97" },
+          { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "2259.20" },
+          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "2347.94" },
+          { "valid_from": "2026-07-01", "valid_until": null,         "value": "2494.28" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "6",
+      "order": 6,
+      "description": "Level 6 — par. 153.69 — senior specialist, technical-organisational roles",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "2404.92" },
+          { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "2480.95" },
+          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "2578.39" },
+          { "valid_from": "2026-07-01", "valid_until": null,         "value": "2738.97" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "7",
+      "order": 7,
+      "description": "Level 7 — par. 167.50 — expert, advanced coordination",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "2620.93" },
+          { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "2703.79" },
+          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "2809.99" },
+          { "valid_from": "2026-07-01", "valid_until": null,         "value": "2985.08" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "8",
+      "order": 8,
+      "description": "Level 8 — par. 181.29 — senior expert, broad managerial-technical responsibility",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "2836.69" },
+          { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "2926.37" },
+          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "3041.31" },
+          { "valid_from": "2026-07-01", "valid_until": null,         "value": "3230.84" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "Q",
+      "order": 9,
+      "description": "Level Q (Quadri) — par. 200.74 — managerial, highest responsibility",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-10-01", "valid_until": "2023-10-01", "value": "3141.16" },
+          { "valid_from": "2023-10-01", "valid_until": "2024-09-01", "value": "3240.46" },
+          { "valid_from": "2024-09-01", "valid_until": "2026-07-01", "value": "3367.73" },
+          { "valid_from": "2026-07-01", "valid_until": null,         "value": "3577.47" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
+            ]
+          }
+        },
+        {
+          "code": "IND_FUN",
+          "description": "Indennità di funzione Quadri (Art. 2.1 CCNL 30/09/2022)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2022-10-01", "valid_until": null, "value": "51.65" }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "apprenticeship": {
+    "type": "percentage",
+    "destination_level": "3",
+    "periods": [
+      { "months_from": 0,  "months_until": 12, "percentage": "0.80" },
+      { "months_from": 12, "months_until": 24, "percentage": "0.85" },
+      { "months_from": 24, "months_until": null, "percentage": "0.90" }
+    ]
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "SALARY MODEL: conglobated contingenza ('minimi tabellari integrati') with EDR 10.33 shown separately. Confirmed from scheda riassuntiva PDF (CCNL 30/09/2022, sosvavsrl.it), section heading 'Minimi tabellari integrati'. EDR is a fixed statutory element (frozen since 1997, Accordo interconfederale) shown as a distinct line in all salary tables; modelled as fixed_allowance for each level.",
+      "SALARY TRANCHES: 3 tranches from primary source (CCNL 30/09/2022 PDF): 01/10/2022, 01/10/2023, 01/09/2024 — all 9 levels confirmed. Fourth tranche 01/07/2026 from 2025-2027 renewal (signed 08/05/2025): L1-L4 confirmed from ilccnl.it (L1=1782.14, L2=1980.76, L3=2191.09, L4=2342.01, derived as ilccnl 'total' minus EDR 10.33, consistent with parametro ratios). L5-Q at 01/07/2026 derived from L1=1782.14 via parametro scaling (par: L5=139.96, L6=153.69, L7=167.50, L8=181.29, Q=200.74). SIMPLIFICATION: (a) 01/07/2025 tranche from 2025-2027 renewal not modelled — per-level amounts not independently confirmed at all 9 levels; (b) future tranches 01/07/2027 (+60) and 01/10/2027 (+50) not modelled; the 01/07/2026 period is open-ended.",
+      "HOURLY DIVISOR: 167. Stated explicitly in §4.3 of the PDF scheda riassuntiva: 'Coefficiente orario: 167'. Corresponds to 38h 30min contractual week (§4.4). Back-calculation: L1(2024-09-01)=1677.64/167=10.05 EUR/h.",
+      "ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima). Stated in §4.1: 'Mensilità: 14'. Tredicesima confirmed §5.3, quattordicesima confirmed §5.4.",
+      "SENIORITY: abolished from 31/12/2015 (§5.5 of CCNL PDF). Frozen as 'elemento ad personam non riassorbibile' at the individual amount accrued by each worker as at 31/12/2015. No new increments can be earned by any worker hired after 2015. Modelled as maximum_count=0 (all amounts 0.00) — no seniority is added for new hires. SIMPLIFICATION: the frozen elemento ad personam for pre-2016 hires is individual and not computable from level alone; it is not modelled.",
+      "LEVEL Q ALLOWANCE: Indennità di funzione 51.65 EUR/month (12 mensilità) per §2.1 of the CCNL PDF. Shown separately from minimo and EDR in all salary tables.",
+      "APPRENTICESHIP: professionalizzante, percentage type. From 01/01/2023: 80% (months 0-12), 85% (months 12-24), 90% (months 24+). Source: CCNL PDF §8.1. SIMPLIFICATION: duration varies by destination level (levels 7-8: 24m; levels 4-6: 30m; level 3: 36m; level 2: 30m). Modelled as 3 periods for destination_level='3' (longest tier, 36 months); levels with shorter durations would reach 90% earlier than modelled.",
+      "INPS: reuses 2026-industria.json. Gas and water utilities (aziende private del settore gas-acqua) are classified under 'attività industriali' for INPS contribution purposes. Employer associations Utilitalia and Proxigas are Confindustria-aligned. SIMPLIFICATION: exact INPS circular for this sector not verified; 2026-industria.json rates used as proxy.",
+      "COVERAGE: CCNL covers approximately 50,000 workers in about 600 private gas and water distribution companies (source: filctemcgil.it, 2025 renewal announcement). CNEL code K321."
+    ]
+  }
+}
