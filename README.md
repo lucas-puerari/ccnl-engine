@@ -58,6 +58,7 @@ print(result.employer_cost_annual) # → Decimal('...')
 | 24 | Istituzioni Socio-Assistenziali — UNEBA | Terziario | ✅ | ✅ | — |
 | 25 | Acconciatura ed Estetica — Confartigianato/CNA | Artigianato | ✅ | ✅ | — |
 | 26 | Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA) | Artigianato | ✅ | ✅ | — |
+| 27 | Autoferrotranvieri e Internavigatori (Mobilita/TPL) — AGENS/ASSTRA/ANAV | Terziario | ✅ | ✅ | — |
 
 **Layer 1** — base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months.  
 **Layer 2** — part-time, fixed-term (NASpI *addizionale*), apprenticeship (percentage or under-classification).  
