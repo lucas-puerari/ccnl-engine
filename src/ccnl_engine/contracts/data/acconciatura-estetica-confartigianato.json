@@ -1,0 +1,150 @@
+{
+  "schema_version": "0.2",
+  "ccnl": {
+    "id": "acconciatura-estetica-confartigianato",
+    "name": "CCNL Acconciatura ed Estetica — Confartigianato/CNA",
+    "cnel_code": "H515",
+    "sector": "acconciatura ed estetica",
+    "tax_sector": "artigianato",
+    "signatories": [
+      "Confartigianato Benessere-Acconciatori",
+      "CNA Unione Benessere e Sanità",
+      "Casartigiani",
+      "CLAAI",
+      "FILCAMS-CGIL",
+      "FISASCAT-CISL",
+      "UILTUCS-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
+        "type": "official_contract",
+        "agreement_date": "2024-05-20"
+      },
+      {
+        "url": "https://www.studiomion.it/tabelle-retributive/tabelle-retributive-acconciatura-estetica/",
+        "type": "table",
+        "agreement_date": "2024-05-20"
+      },
+      {
+        "url": "https://www.ilccnl.it/contratto/acconciatura-estetica/",
+        "type": "table",
+        "agreement_date": null
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-02T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": 173,
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2024-05-01", "valid_until": null, "value": "13" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "4": { "periods": [{ "valid_from": "2024-05-01", "valid_until": null, "value": "7.23" }] },
+        "3": { "periods": [{ "valid_from": "2024-05-01", "valid_until": null, "value": "7.75" }] },
+        "2": { "periods": [{ "valid_from": "2024-05-01", "valid_until": null, "value": "8.26" }] },
+        "1": { "periods": [{ "valid_from": "2024-05-01", "valid_until": null, "value": "9.30" }] }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "4",
+      "order": 1,
+      "description": "Livello 4 — operatore ausiliario / apprendista base",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-05-01", "valid_until": "2025-01-01", "value": "1300.19" },
+          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1347.33" },
+          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1387.87" },
+          { "valid_from": "2026-10-01", "valid_until": null,         "value": "1406.73" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 2,
+      "description": "Livello 3 — operatore qualificato (acconciatore/estetista)",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-05-01", "valid_until": "2025-01-01", "value": "1379.00" },
+          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1429.00" },
+          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1472.00" },
+          { "valid_from": "2026-10-01", "valid_until": null,         "value": "1492.00" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 3,
+      "description": "Livello 2 — operatore specializzato / responsabile tecnico",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-05-01", "valid_until": "2025-01-01", "value": "1454.58" },
+          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1507.32" },
+          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1552.68" },
+          { "valid_from": "2026-10-01", "valid_until": null,         "value": "1573.78" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1",
+      "order": 4,
+      "description": "Livello 1 — titolare tecnico / responsabile senior",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-05-01", "valid_until": "2025-01-01", "value": "1592.29" },
+          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1650.02" },
+          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1699.67" },
+          { "valid_from": "2026-10-01", "valid_until": null,         "value": "1722.76" }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": {
+    "type": "percentage",
+    "destination_level": "3",
+    "periods": [
+      { "months_from": 0,  "months_until": 18, "percentage": "0.70" },
+      { "months_from": 18, "months_until": 24, "percentage": "0.78" },
+      { "months_from": 24, "months_until": 36, "percentage": "0.85" },
+      { "months_from": 36, "months_until": 48, "percentage": "0.90" },
+      { "months_from": 48, "months_until": 54, "percentage": "0.95" },
+      { "months_from": 54, "months_until": null, "percentage": "1.00" }
+    ]
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "SALARY MODEL: conglobated (minimi tabellari conglobati — contingenza and EDR fully absorbed). Back-calculation: May 2024 L3=1379.00/173=7.97 EUR/h; L2=1454.58/173=8.41 EUR/h; L1=1592.29/173=9.20 EUR/h — consistent divisor confirms conglobated model (lexplain.it + ilccnl.it).",
+      "TRANCHE DATES: four tranches — 2024-05-01 (retroactive, renewal signed 20 May 2024), 2025-01-01, 2026-01-01, 2026-10-01. Source: studiomion.it salary tables; cross-checked ilccnl.it for Jan 2026 values.",
+      "HOURLY DIVISOR: 173, derived from 40-hour work week (Art. 12 CCNL). Formula: 40 h/week × 52/12 = 173.33, rounded to 173 per contract usage. Confirmed: 1379.00/7.97=173.0 (L3 May 2024).",
+      "ADDITIONAL MONTHS: 13 (tredicesima only). Source: ilccnl.it Art. 40; informaimpresa.it ('tredici mensilità' explicitly stated as basis for Responsabile Tecnico allowance calculation).",
+      "SENIORITY: biennale (every 24 months), maximum 5 scatti. Per-level amounts: L1=9.30, L2=8.26, L3=7.75, L4=7.23 EUR/scatto. Source: ilccnl.it (current database), cross-checked CISL 2013 PDF (amounts unchanged by 2024 renewal, which only introduced a 6 EUR apprentice-specific scatto).",
+      "APPRENTICESHIP: Gruppo 1 modelled (acconciatori, estetisti, tricologi, tatuatori → destination level 3, max 5 years). Primary source: confartigianato Marca Trevigiana official PDF (ccnl-benessere-app.prof-fino-30.9.24.pdf) for pre-Oct-2024 table. Post-Oct-2024 update (filcams.cgil.it + fisascat.it): first-year percentages raised to 70% minimum. Pre-Oct-2024 Gruppo 1 months 1-12=65%, 13-18=70%; post-Oct-2024 months 1-12 raised to 70%, making months 1-18 uniformly 70%. Engine models post-Oct-2024 table: 0-18mo=70%, 18-24mo=78%, 24-36mo=85%, 36-48mo=90%, 48-54mo=95%, 54+mo=100%.",
+      "SIMPLIFICATION — APPRENTICESHIP GRUPPO 2: Gruppo 2 (manicure/pedicure → level 3, max 18 months: 70%/80%/100%) not modelled. Engine supports one destination_level per contract; Gruppo 1 covers dominant worker category (hairdressers/aestheticians).",
+      "SIMPLIFICATION — APPRENTICESHIP GRUPPO 3: Gruppo 3 (administrative staff → level 2, max 36 months: 70%/70%/78%/85%) not modelled. Different destination level (2 vs 3) and shorter duration than Gruppo 1.",
+      "SIMPLIFICATION — APPRENTICESHIP DURATION (TAB.3): 6-month reduction for post-secondary qualification holders (Gruppo 1: 54 months max instead of 60) not modelled. Engine uses the standard 60-month table.",
+      "SIMPLIFICATION — APPRENTICE SENIORITY: apprentice-specific seniority increment (6 EUR/scatto, introduced by Art. 25 of 2024 renewal from Oct 2024) not modelled. Engine has no apprentice-specific seniority mechanism.",
+      "SIMPLIFICATION — RESPONSABILE TECNICO ALLOWANCE: monthly indemnity of 100 EUR × 13 mensilità for workers designated as Responsabile Tecnico (level 1 or 2, per employer designation) not modelled. Applies only to a subset of level-1/2 workers, not universally.",
+      "SIMPLIFICATION — PRE-MAY-2024 SALARY: periods before 2024-05-01 not modelled. The 2022 CCNL renewal values (final tranche from 2023-02-01: L3=1309.00, L2=1380.74, L1=1511.46, L4=1234.19) are not included. Engine starts at the 2024 renewal's first retroactive tranche.",
+      "INPS: reuses 2026-artigianato.json (ARTIGIANATO sector)."
+    ]
+  }
+}

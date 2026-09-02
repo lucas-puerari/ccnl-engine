@@ -1,0 +1,48 @@
+{
+  "_description": "Golden case: CCNL Acconciatura ed Estetica Confartigianato (H515), Level 3, 2026-09-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Jan 2026 tranche: minimo tabellare conglobato level 3 = 1472.00 EUR/month.",
+    "Conglobated model: contingenza and EDR fully absorbed into minimo.",
+    "Additional months: 13 (tredicesima only, Art. 40).",
+    "INPS employer rate from 2026-artigianato.json (artigianato sector, 16-50 employees tier).",
+    "Seniority: 0.00 — seniority_count=0, biennale cadence, max 5 scatti.",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "acconciatura-estetica-confartigianato.json",
+    "year": 2026,
+    "tax_sector": "artigianato",
+    "num_employees": 50,
+    "level_code": "3",
+    "as_of": "2026-09-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "acconciatura-estetica-confartigianato",
+    "level_code": "3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "1472.00",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "gross_monthly": "1472.00",
+    "gross_annual": "19136.00",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "1758.60",
+    "inps_employer_annual": "5153.32",
+    "tfr_annual": "1417.48",
+    "taxable_income": "17377.40",
+    "irpef_gross": "3996.80",
+    "work_income_deduction": "1270.48",
+    "irpef_net": "2726.32",
+    "net_annual": "14651.08",
+    "net_monthly": "1127.01",
+    "employer_cost_annual": "25706.80"
+  }
+}
