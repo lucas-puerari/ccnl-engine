@@ -1,0 +1,49 @@
+{
+  "_description": "Golden case: CCNL Elettrico Elettricita Futura (K051), level A1, 2026-04-01, permanent, no seniority.",
+  "_notes": [
+    "Apr 2026 tranche: base_salary A1 = 2851.16 EUR/month (kitech.it, primary source).",
+    "Salary model: split. base_salary + EDR allowance 10.33 EUR/month (frozen since 1988).",
+    "gross_monthly = 2851.16 + 10.33 = 2861.49.",
+    "Additional months: 14 (tredicesima + quattordicesima). gross_annual = 2861.49 * 14 = 40060.86.",
+    "Hourly divisor: 173 (contract formula: 40h x 52 / 12 = 173.33, rounded to 173).",
+    "Seniority: 0.00 — seniority_count=0, biennale (24 months), max 5 scatti.",
+    "INPS employer rate from 2026-industria.json (industria sector, 50 employees tier).",
+    "IRPEF 2026 brackets applied (L. 199/2025). No addizionali modelled."
+  ],
+  "inputs": {
+    "ccnl_file": "elettrico-elettricita-futura.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "A1",
+    "as_of": "2026-04-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "elettrico-elettricita-futura",
+    "level_code": "A1",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "base_monthly": "2851.16",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "10.33",
+    "gross_monthly": "2861.49",
+    "gross_annual": "40060.86",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "3681.59",
+    "inps_employer_annual": "12098.38",
+    "tfr_annual": "2967.47",
+    "taxable_income": "36379.27",
+    "irpef_gross": "9205.16",
+    "work_income_deduction": "316.25",
+    "irpef_net": "8888.91",
+    "net_annual": "27490.36",
+    "net_monthly": "1963.60",
+    "employer_cost_annual": "55126.71"
+  }
+}
