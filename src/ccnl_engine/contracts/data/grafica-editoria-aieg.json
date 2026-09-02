@@ -28,7 +28,7 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "out_of_scope",
+    "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
       "INFO: SALARY MODEL: the CCNL Grafica e Editoria Industria (G011) uses a split model with separate paga base (TEM), contingenza (frozen since 1992 per Prot. 31/07/1992), and EDR (10.33 EUR, all levels). The base_salary values in this file are the TOTAL (paga base + contingenza + EDR) per level and tranche, sourced from the official lexplain.it table (all 5 tranches) and kitech.it (July 2026 breakdown). Modeling the total as base_salary produces the same gross_monthly as the split representation. fixed_allowances is empty for all levels (no additional fixed components).",
@@ -38,8 +38,8 @@
       "SIMPLIFICATION: SENIORITY: 5 scatti biennali (24 months), valid from kitech.it July 2026. SIMPLIFICATION: pre-July 2026 scatto amounts not modelled (prior rinnovo values not recovered). The engine uses July 2026 amounts for all periods — impact negligible for current-date calculations.",
       "INFO: SECTOR SCOPE: modella solo il settore GRAFICI (12 livelli: E, D2, D1, C2, C1, B3, B2, B1, B1S, A, AS, Q). Il settore EDITORI (9 livelli: 8°-0°/Q) con tabelle retributive leggermente diverse NON è modellato. Coverage marcata come layer_1=implemented solo per Grafici.",
       "INFO: ADDITIONAL MONTHS: 13 (tredicesima only). Confermato da fonte secondaria (lavoro-economia.it / contratticcnl.it). La quattordicesima non è prevista dal CCNL G011 Grafici.",
-      "INFO: APPRENTICESHIP: non modellato (dati non recuperati per il testo contrattuale specifico). Layer 2 marcato out_of_scope.",
-      "INFO: INPS: riutilizza 2026-industria.json (Confindustria). AIEG/Acigraf aderiscono a Confindustria; CIGO applicabile per il settore industria grafica (D.Lgs. 148/2015)."
+      "INFO: INPS: riutilizza 2026-industria.json (Confindustria). AIEG/Acigraf aderiscono a Confindustria; CIGO applicabile per il settore industria grafica (D.Lgs. 148/2015).",
+      "INFO: APPRENTICESHIP (Art. 26e, Tipologia 2, CCNL 19/01/2021, pag.42; confermato in vigore nel rinnovo 20.12.2024): traccia 'triennale' (gruppi C,B,A,Q → livelli C2,C1,B3,B2,B1,B1S,A,AS,Q): 36 mesi / 6 semestri, 70/75/80/85/90/95% poi 100%. Traccia 'biennale' (gruppo D → livelli D2,D1): 24 mesi / 6 quadrimestri (4 mesi ciascuno), 70/75/80/85/90/95% poi 100%. Livello E non citato come destinazione nell'apprendistato. Settore EDITORI non modellato in questo JSON. Fonte: fistelcisl.it PDF CCNL grafici-editoriali.pdf (pag. 41-42)."
     ]
   },
   "parameters": {
@@ -302,5 +302,34 @@
       "fixed_allowances": []
     }
   ],
-  "apprenticeship": []
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "triennale",
+      "destination_levels": ["C2", "C1", "B3", "B2", "B1", "B1S", "A", "AS", "Q"],
+      "periods": [
+        { "months_from": 0, "months_until": 6, "percentage": "0.70" },
+        { "months_from": 6, "months_until": 12, "percentage": "0.75" },
+        { "months_from": 12, "months_until": 18, "percentage": "0.80" },
+        { "months_from": 18, "months_until": 24, "percentage": "0.85" },
+        { "months_from": 24, "months_until": 30, "percentage": "0.90" },
+        { "months_from": 30, "months_until": 36, "percentage": "0.95" },
+        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "biennale",
+      "destination_levels": ["D2", "D1"],
+      "periods": [
+        { "months_from": 0, "months_until": 4, "percentage": "0.70" },
+        { "months_from": 4, "months_until": 8, "percentage": "0.75" },
+        { "months_from": 8, "months_until": 12, "percentage": "0.80" },
+        { "months_from": 12, "months_until": 16, "percentage": "0.85" },
+        { "months_from": 16, "months_until": 20, "percentage": "0.90" },
+        { "months_from": 20, "months_until": 24, "percentage": "0.95" },
+        { "months_from": 24, "months_until": null, "percentage": "1.00" }
+      ]
+    }
+  ]
 }

@@ -1599,6 +1599,47 @@ class TestLoadGraficaEditoriaAieg:
         assert si.cadence_months == 24
         assert si.maximum_count == 5
 
+    def test_grafica_editoria_aieg_apprenticeship_tracks(self) -> None:
+        """Two apprenticeship tracks per CCNL 19/01/2021 Art.26e (pag.42).
+
+        Triennale (36m, gruppi C/B/A/Q): 6 semestri 70/75/80/85/90/95/100%.
+        Biennale (24m, gruppo D): 6 quadrimestri (4m) 70/75/80/85/90/95/100%.
+        Level E is not eligible (not cited in CCNL apprenticeship provisions).
+        """
+        ccnl = load_ccnl("grafica-editoria-aieg.json")
+        assert len(ccnl.apprenticeship) == 2
+        by_name = {t.name: t for t in ccnl.apprenticeship}
+
+        tri = by_name["triennale"]
+        assert isinstance(tri, ApprenticeshipPercentage)
+        assert set(tri.destination_levels) == {
+            "C2",
+            "C1",
+            "B3",
+            "B2",
+            "B1",
+            "B1S",
+            "A",
+            "AS",
+            "Q",
+        }
+        assert len(tri.periods) == 7  # 6 semestri + open 100%
+        assert tri.periods[0].months_until == 6
+        assert tri.periods[0].percentage == Decimal("0.70")
+        assert tri.periods[5].months_until == 36
+        assert tri.periods[5].percentage == Decimal("0.95")
+        assert tri.periods[-1].months_until is None
+
+        bi = by_name["biennale"]
+        assert isinstance(bi, ApprenticeshipPercentage)
+        assert set(bi.destination_levels) == {"D2", "D1"}
+        assert len(bi.periods) == 7  # 6 quadrimestri (4m) + open 100%
+        assert bi.periods[0].months_until == 4
+        assert bi.periods[0].percentage == Decimal("0.70")
+        assert bi.periods[5].months_until == 24
+        assert bi.periods[5].percentage == Decimal("0.95")
+        assert bi.periods[-1].months_until is None
+
 
 class TestLoadCartaCartoneAssocarta:
     """Tests for CCNL Carta e Cartone Industria (Assocarta, CNEL G022)."""
