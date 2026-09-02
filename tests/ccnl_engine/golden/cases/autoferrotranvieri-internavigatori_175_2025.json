@@ -1,0 +1,48 @@
+{
+  "_description": "Golden case: CCNL Autoferrotranvieri e Internavigatori (I022), par.175, 2025-06-01, permanent, no seniority.",
+  "_notes": [
+    "Mar 2025 tranche: TOTALE base_salary par.175 = 1865.57 EUR/month (+60 EUR tabellare).",
+    "EDR 2024 active (Mar 2025 - Apr 2026): 40.00 EUR/month; gross_monthly = 1865.57 + 40.00 = 1905.57.",
+    "Additional months: 14 (tredicesima + quattordicesima). gross_annual = 1905.57 * 14 = 26677.98.",
+    "INPS employer rate from 2026-terziario.json (terziario sector, 50 employees tier).",
+    "Seniority: 0.00 — seniority_count=0, biennale (24 months), max 6 scatti.",
+    "SIMPLIFICATION: EDR included in TFR base by engine (engine-level limitation).",
+    "IRPEF 2026 brackets applied (L. 199/2025). No addizionali modelled."
+  ],
+  "inputs": {
+    "ccnl_file": "autoferrotranvieri-internavigatori.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "175",
+    "as_of": "2025-06-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "autoferrotranvieri-internavigatori",
+    "level_code": "175",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2025,
+    "base_monthly": "1865.57",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "40.00",
+    "gross_monthly": "1905.57",
+    "gross_annual": "26677.98",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2451.71",
+    "inps_employer_annual": "7731.28",
+    "tfr_annual": "1976.15",
+    "taxable_income": "24226.27",
+    "irpef_gross": "5572.04",
+    "work_income_deduction": "785.08",
+    "irpef_net": "4786.96",
+    "net_annual": "19439.31",
+    "net_monthly": "1388.52",
+    "employer_cost_annual": "36385.41"
+  }
+}
