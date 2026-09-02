@@ -1613,3 +1613,94 @@ class TestLoadVigilanzaPrivataAssiv:
         assert isinstance(ccnl.apprenticeship, ApprenticeshipPercentage)
         assert ccnl.apprenticeship.destination_level == "4"
         assert ccnl.apprenticeship.periods[0].percentage == Decimal("1.00")
+
+
+class TestLoadLegnoArredamentoFederlegno:
+    """CCNL Legno e Arredamento Industria (Federlegno-Arredo, CNEL F051)."""
+
+    def test_legno_arredamento_federlegno_loads(self) -> None:
+        """Contract loads with id='legno-arredamento-federlegno', code F051."""
+        ccnl = load_ccnl("legno-arredamento-federlegno.json")
+        assert ccnl.ccnl.id == "legno-arredamento-federlegno"
+        assert ccnl.ccnl.cnel_code == "F051"
+
+    def test_legno_arredamento_federlegno_has_16_levels(self) -> None:
+        """16 level codes across 12 salary bands (AE, AS, AC, AD areas)."""
+        ccnl = load_ccnl("legno-arredamento-federlegno.json")
+        assert len(ccnl.levels) == 16
+        codes = {lv.code for lv in ccnl.levels}
+        expected = {
+            "AE1",
+            "AE2",
+            "AE3",
+            "AE4",
+            "AS1",
+            "AS2",
+            "AS3",
+            "AS4",
+            "AC1",
+            "AC2",
+            "AC3",
+            "AC4",
+            "AC5",
+            "AD1",
+            "AD2",
+            "AD3",
+        }
+        assert codes == expected
+
+    def test_legno_arredamento_federlegno_level_ac4_salary_tranche1(self) -> None:
+        """AC4 paga base at 2023-07-01 (1st tranche) = 1888.07 EUR."""
+        ccnl = load_ccnl("legno-arredamento-federlegno.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "AC4")
+        assert lv.base_salary.value_at(date(2023, 7, 1)) == Decimal("1888.07")
+
+    def test_legno_arredamento_federlegno_level_ac4_salary_tranche3(self) -> None:
+        """AC4 paga base at 2025-01-01 (3rd tranche) = 2061.83 EUR."""
+        ccnl = load_ccnl("legno-arredamento-federlegno.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "AC4")
+        assert lv.base_salary.value_at(date(2025, 1, 1)) == Decimal("2061.83")
+
+    def test_legno_arredamento_federlegno_level_ordering(self) -> None:
+        """AE1 is lowest-order level; AD3 is highest-order level."""
+        ccnl = load_ccnl("legno-arredamento-federlegno.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "AE1"
+        assert by_order[-1].code == "AD3"
+
+    def test_legno_arredamento_federlegno_additional_months(self) -> None:
+        """13 mensilita (tredicesima only, CNEL F051 PDF)."""
+        ccnl = load_ccnl("legno-arredamento-federlegno.json")
+        val = ccnl.parameters.additional_months.value_at(date(2025, 1, 1))
+        assert val == Decimal(13)
+
+    def test_legno_arredamento_federlegno_hourly_divisor(self) -> None:
+        """Hourly divisor 174 (40h/week: 40 x 52 / 12 ≈ 173.33 → 174)."""
+        ccnl = load_ccnl("legno-arredamento-federlegno.json")
+        assert ccnl.parameters.hourly_divisor == 174
+
+    def test_legno_arredamento_federlegno_fixed_allowances_split(self) -> None:
+        """All levels carry CONT and EDR allowances (split salary model)."""
+        ccnl = load_ccnl("legno-arredamento-federlegno.json")
+        for lv in ccnl.levels:
+            codes = {fa.code for fa in lv.fixed_allowances}
+            assert "CONT" in codes
+            assert "EDR" in codes
+
+    def test_legno_arredamento_federlegno_tax_sector(self) -> None:
+        """Contract declares INDUSTRIA tax sector."""
+        ccnl = load_ccnl("legno-arredamento-federlegno.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+
+    def test_legno_arredamento_federlegno_seniority_cadence(self) -> None:
+        """Seniority: biennale cadence (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("legno-arredamento-federlegno.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_legno_arredamento_federlegno_apprenticeship_under(self) -> None:
+        """Apprenticeship: under_classification, destination AS3."""
+        ccnl = load_ccnl("legno-arredamento-federlegno.json")
+        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
+        assert ccnl.apprenticeship.destination_level == "AS3"
