@@ -1541,3 +1541,75 @@ class TestLoadTelecomunicazioniAsstel:
         ccnl = load_ccnl("telecomunicazioni-asstel.json")
         assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
         assert ccnl.apprenticeship.destination_level == "C1"
+
+
+class TestLoadVigilanzaPrivataAssiv:
+    """Unit tests for CCNL Vigilanza Privata ASSIV (HV40, GPG section)."""
+
+    def test_vigilanza_privata_assiv_loads(self) -> None:
+        """Contract loads with correct id and CNEL code HV40."""
+        ccnl = load_ccnl("vigilanza-privata-assiv.json")
+        assert ccnl.ccnl.id == "vigilanza-privata-assiv"
+        assert ccnl.ccnl.cnel_code == "HV40"
+
+    def test_vigilanza_privata_assiv_has_7_levels(self) -> None:
+        """GPG section has exactly 7 levels: Q, 1, 2, 3, 4, 5, 6."""
+        ccnl = load_ccnl("vigilanza-privata-assiv.json")
+        assert len(ccnl.levels) == 7
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"Q", "1", "2", "3", "4", "5", "6"}
+
+    def test_vigilanza_privata_assiv_level4_salary_tranche1(self) -> None:
+        """4th level salary at 01/06/2023 (1st tranche) = 1328.88 EUR."""
+        ccnl = load_ccnl("vigilanza-privata-assiv.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv.base_salary.value_at(date(2023, 6, 1)) == Decimal("1328.88")
+
+    def test_vigilanza_privata_assiv_level4_salary_tranche5(self) -> None:
+        """4th level salary at 01/04/2026 (5th tranche) = 1468.88 EUR."""
+        ccnl = load_ccnl("vigilanza-privata-assiv.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv.base_salary.value_at(date(2026, 4, 1)) == Decimal("1468.88")
+
+    def test_vigilanza_privata_assiv_level_ordering(self) -> None:
+        """Level 6 is the lowest-order level; Q is the highest-order level."""
+        ccnl = load_ccnl("vigilanza-privata-assiv.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "6"
+        assert by_order[-1].code == "Q"
+
+    def test_vigilanza_privata_assiv_additional_months(self) -> None:
+        """14 additional months (tredicesima + quattordicesima, Art. 117)."""
+        ccnl = load_ccnl("vigilanza-privata-assiv.json")
+        val = ccnl.parameters.additional_months.value_at(date(2023, 6, 1))
+        assert val == Decimal(14)
+
+    def test_vigilanza_privata_assiv_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (40h/week, Art. 115 base CCNL 2013)."""
+        ccnl = load_ccnl("vigilanza-privata-assiv.json")
+        assert ccnl.parameters.hourly_divisor == 173
+
+    def test_vigilanza_privata_assiv_no_fixed_allowances(self) -> None:
+        """All GPG levels have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("vigilanza-privata-assiv.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_vigilanza_privata_assiv_tax_sector(self) -> None:
+        """Contract declares TERZIARIO tax sector (non-Confindustria)."""
+        ccnl = load_ccnl("vigilanza-privata-assiv.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+
+    def test_vigilanza_privata_assiv_seniority_cadence(self) -> None:
+        """Seniority: triennale cadence (36 months), maximum 6 scatti."""
+        ccnl = load_ccnl("vigilanza-privata-assiv.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 6
+
+    def test_vigilanza_privata_assiv_apprenticeship_percentage(self) -> None:
+        """Apprenticeship: percentage type, 100%, destination level 4."""
+        ccnl = load_ccnl("vigilanza-privata-assiv.json")
+        assert isinstance(ccnl.apprenticeship, ApprenticeshipPercentage)
+        assert ccnl.apprenticeship.destination_level == "4"
+        assert ccnl.apprenticeship.periods[0].percentage == Decimal("1.00")
