@@ -52,6 +52,7 @@ print(result.employer_cost_annual) # → Decimal('...')
 | Carta e Cartone — Assocarta | Industria | ✅ | ⚠️ | — |
 | Telecomunicazioni — Asstel | Industria | ✅ | ✅ | — |
 | Vigilanza Privata — ASSIV/ANIVP/UNIV (GPG) | Terziario | ✅ | ✅ | — |
+| Legno e Arredamento — Federlegno-Arredo | Industria | ✅ | ✅ | — |
 
 **Layer 1** — base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months.  
 **Layer 2** — part-time, fixed-term (NASpI *addizionale*), apprenticeship (percentage or under-classification).  
