@@ -1,0 +1,461 @@
+{
+  "schema_version": "0.2",
+  "ccnl": {
+    "id": "bcc-credito-cooperativo",
+    "name": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+    "cnel_code": "J271",
+    "sector": "credito",
+    "tax_sector": "credito",
+    "signatories": [
+      "Federcasse",
+      "FABI",
+      "FIRST-CISL",
+      "FISAC-CGIL",
+      "UGL Credito",
+      "UILCA"
+    ],
+    "sources": [
+      {
+        "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
+        "type": "ccnl_text",
+        "agreement_date": "2024-07-09"
+      },
+      {
+        "url": "https://www.kitech.it/tabelle-retributive/banche-credito-cooperativo/",
+        "type": "table",
+        "agreement_date": "2024-07-09"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-02",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "SIMPLIFICATION: Salary model is conglobated (stipendio per Art. 112 replaces paga base + scala mobile + EDR + other components). Modeled as base_salary with fixed_allowances: [].",
+      "SIMPLIFICATION: First period valid_from set to 2024-09-01 (first tranche date per Allegato A). Pre-tranche salaries from the previous CCNL are out of scope.",
+      "SIMPLIFICATION: Seniority cadence is triennale (36 months) for all levels. Art. 113 specifies 4 years for the first scatto at hire — this is not modeled; all scatti computed at 36-month cadence.",
+      "SIMPLIFICATION: maximum_count set to 12 (QD maximum per Art. 101). Aree Professionali have maximum 8 scatti per Art. 113; callers should not supply seniority_count > 8 for AP levels.",
+      "SIMPLIFICATION: Apprenticeship modeled for destination 3AP-1° (lowest 3AP level) per Art. 30. Months 0-18 at 2AP-2° (immediately below), months 18+ at 3AP-1° (destination). Derogation for Art. 3 comma 3 workers not modeled.",
+      "SIMPLIFICATION: Hourly divisor is 160 for both periods (37.5h/week pre-July 2025, 37h/week from July 2025 per Art. 118). Formula: 37.5 x 52 / 12 = 162.5 → 160; 37 x 52 / 12 = 160.33 → 160 (arrotondamento a 5 per difetto per Art. 114).",
+      "Workers covered: approximately 36,000 (Federcasse / Banche di Credito Cooperativo, Casse Rurali ed Artigiane). Agreement signed 2024-07-09; valid until 2025-12-31 per Art. 9.",
+      "INPS rates from 2026-credito.json (same sector as bancari-abi). IRPEF 2026 brackets applied (L. 199/2025)."
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": 160,
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-09-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 12,
+      "amount_by_level": {
+        "QD4": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "95.31"
+            }
+          ]
+        },
+        "QD3": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "95.31"
+            }
+          ]
+        },
+        "QD2": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "QD1": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "3AP4": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "3AP3": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "3AP2": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "3AP1": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "2AP2": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "35.57"
+            }
+          ]
+        },
+        "2AP1": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "29.07"
+            }
+          ]
+        },
+        "1AP": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "20.12"
+            }
+          ]
+        }
+      }
+    },
+    "apprenticeship": {
+      "type": "under_classification",
+      "destination_level": "3AP1",
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "pay_level_code": "2AP2"
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "pay_level_code": "3AP1"
+        }
+      ]
+    }
+  },
+  "levels": [
+    {
+      "code": "QD4",
+      "order": 11,
+      "description": "Quadri Direttivi - 4° livello retributivo",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "4978.66"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "5059.28"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "5160.06"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "QD3",
+      "order": 10,
+      "description": "Quadri Direttivi - 3° livello retributivo",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "4239.27"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "4309.32"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "4396.88"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "QD2",
+      "order": 9,
+      "description": "Quadri Direttivi - 2° livello retributivo",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "3815.86"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "3882.36"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "3965.48"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "QD1",
+      "order": 8,
+      "description": "Quadri Direttivi - 1° livello retributivo",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "3600.61"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "3663.99"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "3743.21"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3AP4",
+      "order": 7,
+      "description": "3ª Area Professionale - 4° livello retributivo",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "3206.90"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "3266.90"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "3341.90"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3AP3",
+      "order": 6,
+      "description": "3ª Area Professionale - 3° livello retributivo",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2943.02"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2994.78"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "3059.49"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3AP2",
+      "order": 5,
+      "description": "3ª Area Professionale - 2° livello retributivo",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2780.38"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2829.28"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2890.41"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3AP1",
+      "order": 4,
+      "description": "3ª Area Professionale - 1° livello retributivo",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2637.95"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2684.35"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2742.35"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2AP2",
+      "order": 3,
+      "description": "2ª Area Professionale - 2° livello retributivo",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2474.19"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2517.71"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2572.10"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2AP1",
+      "order": 2,
+      "description": "2ª Area Professionale - 1° livello retributivo",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2315.18"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2355.90"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2406.80"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1AP",
+      "order": 1,
+      "description": "1ª Area Professionale - livello unico",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2156.20"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2194.12"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2241.53"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ]
+}

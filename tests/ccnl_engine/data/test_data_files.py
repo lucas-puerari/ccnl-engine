@@ -2122,3 +2122,81 @@ class TestLoadAutoferrotranvieriInternavigatori:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 6
+
+
+class TestLoadBccCreditoCooperativo:
+    """Tests for CCNL BCC Credito Cooperativo (J271)."""
+
+    def test_bcc_credito_cooperativo_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("bcc-credito-cooperativo.json")
+        assert ccnl.ccnl.id == "bcc-credito-cooperativo"
+        assert ccnl.ccnl.cnel_code == "J271"
+
+    def test_bcc_credito_cooperativo_has_11_levels(self) -> None:
+        """Contract has exactly 11 levels across QD and Aree Professionali."""
+        ccnl = load_ccnl("bcc-credito-cooperativo.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 11
+        assert codes == {
+            "QD4",
+            "QD3",
+            "QD2",
+            "QD1",
+            "3AP4",
+            "3AP3",
+            "3AP2",
+            "3AP1",
+            "2AP2",
+            "2AP1",
+            "1AP",
+        }
+
+    def test_bcc_credito_cooperativo_level_3ap4_salary_tranche1(self) -> None:
+        """3AP4 base salary at first tranche (2024-09-01): 3206.90."""
+        ccnl = load_ccnl("bcc-credito-cooperativo.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "3AP4")
+        p = next(x for x in lv.base_salary.periods if x.valid_from == date(2024, 9, 1))
+        assert p.value == Decimal("3206.90")
+
+    def test_bcc_credito_cooperativo_level_3ap4_salary_tranche3(self) -> None:
+        """3AP4 base salary at third tranche (2026-01-01): 3341.90."""
+        ccnl = load_ccnl("bcc-credito-cooperativo.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "3AP4")
+        p = next(x for x in lv.base_salary.periods if x.valid_from == date(2026, 1, 1))
+        assert p.value == Decimal("3341.90")
+
+    def test_bcc_credito_cooperativo_level_ordering(self) -> None:
+        """QD4 is highest-order level; 1AP is lowest-order level."""
+        ccnl = load_ccnl("bcc-credito-cooperativo.json")
+        by_order = sorted(ccnl.levels, key=lambda lx: lx.order)
+        assert by_order[0].code == "1AP"
+        assert by_order[-1].code == "QD4"
+
+    def test_bcc_credito_cooperativo_additional_months(self) -> None:
+        """Additional months: 13 (tredicesima only per Art. 46)."""
+        ccnl = load_ccnl("bcc-credito-cooperativo.json")
+        assert ccnl.parameters.additional_months.periods[0].value == Decimal(13)
+
+    def test_bcc_credito_cooperativo_hourly_divisor(self) -> None:
+        """Hourly divisor: 160 (Art. 114 formula, arrotondamento a 5)."""
+        ccnl = load_ccnl("bcc-credito-cooperativo.json")
+        assert ccnl.parameters.hourly_divisor == 160
+
+    def test_bcc_credito_cooperativo_no_fixed_allowances(self) -> None:
+        """All levels have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("bcc-credito-cooperativo.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_bcc_credito_cooperativo_tax_sector(self) -> None:
+        """Contract declares CREDITO tax sector."""
+        ccnl = load_ccnl("bcc-credito-cooperativo.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.CREDITO
+
+    def test_bcc_credito_cooperativo_seniority_cadence(self) -> None:
+        """Seniority: triennale (36 months), maximum 12 scatti (QD cap)."""
+        ccnl = load_ccnl("bcc-credito-cooperativo.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 12
