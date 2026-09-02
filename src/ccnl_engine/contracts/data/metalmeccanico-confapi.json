@@ -239,7 +239,7 @@
   },
   "coverage": {
     "layer_1": "partial",
-    "layer_2": "out_of_scope",
+    "layer_2": "partial",
     "layer_3": "out_of_scope",
     "notes": [
       "MINIMI CONGLOBATI: i valori in base_salary sono i 'minimi tabellari conglobati' Confapi PMI, che incorporano paga base, contingenza e terzo elemento in un'unica cifra (ilccnl.it mostra contingenza=0 e terzo elemento=0). fixed_allowances è vuoto per tutti i livelli.",

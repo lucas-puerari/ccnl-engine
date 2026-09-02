@@ -42,7 +42,7 @@
       "SIMPLIFICATION: First period valid_from set to 2024-09-01 (first tranche date per Allegato A). Pre-tranche salaries from the previous CCNL are out of scope.",
       "SIMPLIFICATION: Seniority cadence is triennale (36 months) for all levels. Art. 113 specifies 4 years for the first scatto at hire — this is not modeled; all scatti computed at 36-month cadence.",
       "SIMPLIFICATION: maximum_count set to 12 (QD maximum per Art. 101). Aree Professionali have maximum 8 scatti per Art. 113; callers should not supply seniority_count > 8 for AP levels.",
-      "SIMPLIFICATION: Apprenticeship modeled for destination 3AP-1° (lowest 3AP level) per Art. 30. Months 0-18 at 2AP-2° (immediately below), months 18+ at 3AP-1° (destination). Derogation for Art. 3 comma 3 workers not modeled.",
+      "SIMPLIFICATION: Apprenticeship modeled for destination 3AP-1° (lowest 3AP level, Art. 30). Under-classification: months 0-18 at 2AP-2° (immediately below 3AP-1°), months 18+ at 3AP-1° (destination). Derogation for Art. 3 comma 3 workers (higher destination level) not modeled.",
       "SIMPLIFICATION: Hourly divisor is 160 for both periods (37.5h/week pre-July 2025, 37h/week from July 2025 per Art. 118). Formula: 37.5 x 52 / 12 = 162.5 → 160; 37 x 52 / 12 = 160.33 → 160 (arrotondamento a 5 per difetto per Art. 114).",
       "Workers covered: approximately 36,000 (Federcasse / Banche di Credito Cooperativo, Casse Rurali ed Artigiane). Agreement signed 2024-07-09; valid until 2025-12-31 per Art. 9.",
       "INPS rates from 2026-credito.json (same sector as bancari-abi). IRPEF 2026 brackets applied (L. 199/2025)."
@@ -163,22 +163,6 @@
           ]
         }
       }
-    },
-    "apprenticeship": {
-      "type": "under_classification",
-      "destination_level": "3AP1",
-      "periods": [
-        {
-          "months_from": 0,
-          "months_until": 18,
-          "pay_level_code": "2AP2"
-        },
-        {
-          "months_from": 18,
-          "months_until": null,
-          "pay_level_code": "3AP1"
-        }
-      ]
     }
   },
   "levels": [
@@ -457,5 +441,21 @@
       },
       "fixed_allowances": []
     }
-  ]
+  ],
+  "apprenticeship": {
+    "type": "under_classification",
+    "destination_level": "3AP1",
+    "periods": [
+      {
+        "months_from": 0,
+        "months_until": 18,
+        "pay_level_code": "2AP2"
+      },
+      {
+        "months_from": 18,
+        "months_until": null,
+        "pay_level_code": "3AP1"
+      }
+    ]
+  }
 }
