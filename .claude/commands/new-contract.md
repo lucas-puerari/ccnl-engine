@@ -5,6 +5,33 @@ If a source cannot be found, stop and search further — never invent or borrow 
 
 ---
 
+## Step 0 — Merge all open PRs before starting
+
+Run:
+```bash
+gh pr list --state open
+```
+
+For each open PR found, merge it automatically:
+```bash
+gh pr merge {PR_NUMBER} --squash --auto
+```
+
+If `--auto` is not available (branch protection not configured), merge directly:
+```bash
+gh pr merge {PR_NUMBER} --squash
+```
+
+Wait for each merge to complete before proceeding to the next. After all PRs are merged, sync main:
+```bash
+git checkout main
+git pull
+```
+
+Only continue to Step 1 once `gh pr list --state open` returns no results and `main` is fully up to date.
+
+---
+
 ## Step 1 — Select the contract
 
 If no contract has been specified by the user, choose the one with the highest **worker headcount** not yet in the coverage matrix in `README.md`.
@@ -119,6 +146,11 @@ Copy them unchanged from any existing tax file. Do not re-research.
 ---
 
 ## Advisor checkpoint — end of research
+
+**Pre-condition before calling advisor**: review every parameter found so far.
+If any value was estimated, interpolated, assumed, or taken from an unverified source
+rather than a confirmed primary source, **do not call advisor yet** — resolve the
+ambiguity first. No trade-off on CCNL data is acceptable at this stage.
 
 Call `advisor()` now, before writing any file.
 
@@ -274,6 +306,11 @@ parametrized `test_file_validates` test never executes that enum branch.
 
 ## Advisor checkpoint — end of implementation
 
+**Pre-condition before calling advisor**: confirm that every value in the JSON file
+traces back to a primary source with no assumption or approximation that has not
+been explicitly marked as SIMPLIFICATION. No trade-off on CCNL data is acceptable
+at this stage — if any parameter is uncertain, find the source first.
+
 Call `advisor()` now, before committing.
 
 Provide:
@@ -339,7 +376,10 @@ new TaxSector if any; key SIMPLIFICATIONs and their scope]
 
 - No value without a primary source.
 - No parameter copied from another contract without independent verification.
+- No trade-off on CCNL data: every parameter must be confirmed before calling advisor.
+  If a value cannot be verified, stop and search further — never approximate or assume.
 - No PR before `pytest` reaches 100% branch coverage.
 - Commit message: single line.
 - Never push directly to `main` — not even for tooling, skills, or documentation.
 - Do not open a PR with failing or skipped tests.
+- Do not start a new contract if any PR is still open — merge first, then begin.

@@ -1704,3 +1704,77 @@ class TestLoadLegnoArredamentoFederlegno:
         ccnl = load_ccnl("legno-arredamento-federlegno.json")
         assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
         assert ccnl.apprenticeship.destination_level == "AS3"
+
+
+class TestLoadEdiliziaArtigianatoCna:
+    """CCNL Edilizia Artigianato (CNA/Confartigianato/Casartigiani, F015)."""
+
+    def test_edilizia_artigianato_cna_loads(self) -> None:
+        """Contract loads and reports correct id and CNEL code."""
+        ccnl = load_ccnl("edilizia-artigianato-cna.json")
+        assert ccnl.ccnl.id == "edilizia-artigianato-cna"
+        assert ccnl.ccnl.cnel_code == "F015"
+
+    def test_edilizia_artigianato_cna_has_8_levels(self) -> None:
+        """Contract has exactly 8 levels: 1-7 plus 7Q."""
+        ccnl = load_ccnl("edilizia-artigianato-cna.json")
+        assert len(ccnl.levels) == 8
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3", "4", "5", "6", "7", "7Q"}
+
+    def test_edilizia_artigianato_cna_level4_salary_tranche1(self) -> None:
+        """Level 4 paga base at May 2025 tranche: EUR 1485.23."""
+        ccnl = load_ccnl("edilizia-artigianato-cna.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "4")
+        assert lv.base_salary.periods[0].value == Decimal("1485.23")
+
+    def test_edilizia_artigianato_cna_level4_salary_tranche2(self) -> None:
+        """Level 4 paga base at Jan 2026 tranche: EUR 1533.88."""
+        ccnl = load_ccnl("edilizia-artigianato-cna.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "4")
+        assert lv.base_salary.periods[1].value == Decimal("1533.88")
+
+    def test_edilizia_artigianato_cna_level_ordering(self) -> None:
+        """Level 7Q has higher order than level 1 (highest vs lowest)."""
+        ccnl = load_ccnl("edilizia-artigianato-cna.json")
+        by_order = sorted(ccnl.levels, key=lambda lx: lx.order)
+        assert by_order[0].code == "1"
+        assert by_order[-1].code == "7Q"
+
+    def test_edilizia_artigianato_cna_additional_months(self) -> None:
+        """Additional months: 13 (tredicesima only)."""
+        ccnl = load_ccnl("edilizia-artigianato-cna.json")
+        assert ccnl.parameters.additional_months.periods[0].value == Decimal(13)
+
+    def test_edilizia_artigianato_cna_hourly_divisor(self) -> None:
+        """Hourly divisor: 173 (edilizia 40h/week standard)."""
+        ccnl = load_ccnl("edilizia-artigianato-cna.json")
+        assert ccnl.parameters.hourly_divisor == 173
+
+    def test_edilizia_artigianato_cna_fixed_allowances_split(self) -> None:
+        """All levels carry CONT and EDR allowances (split salary model)."""
+        ccnl = load_ccnl("edilizia-artigianato-cna.json")
+        for lv in ccnl.levels:
+            codes = {fa.code for fa in lv.fixed_allowances}
+            assert "CONT" in codes
+            assert "EDR" in codes
+
+    def test_edilizia_artigianato_cna_tax_sector(self) -> None:
+        """Contract declares ARTIGIANATO tax sector."""
+        ccnl = load_ccnl("edilizia-artigianato-cna.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.ARTIGIANATO
+
+    def test_edilizia_artigianato_cna_seniority_cadence(self) -> None:
+        """Seniority: biennale cadence (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("edilizia-artigianato-cna.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_edilizia_artigianato_cna_apprenticeship_percentage(self) -> None:
+        """Apprenticeship: percentage type, destination level 4, 6 periods."""
+        ccnl = load_ccnl("edilizia-artigianato-cna.json")
+        assert isinstance(ccnl.apprenticeship, ApprenticeshipPercentage)
+        assert ccnl.apprenticeship.destination_level == "4"
+        assert len(ccnl.apprenticeship.periods) == 6
+        assert ccnl.apprenticeship.periods[0].percentage == Decimal("0.74")
