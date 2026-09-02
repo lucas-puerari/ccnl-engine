@@ -2200,3 +2200,86 @@ class TestLoadBccCreditoCooperativo:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 12
+
+
+class TestLoadElettricoElettricita:
+    """Tests for CCNL Elettrico Elettricita Futura (K051)."""
+
+    def test_elettrico_elettricita_futura_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("elettrico-elettricita-futura.json")
+        assert ccnl.ccnl.id == "elettrico-elettricita-futura"
+        assert ccnl.ccnl.cnel_code == "K051"
+
+    def test_elettrico_elettricita_futura_has_14_levels(self) -> None:
+        """Contract has exactly 14 levels from C1 to QS."""
+        ccnl = load_ccnl("elettrico-elettricita-futura.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 14
+        assert codes == {
+            "QS",
+            "Q",
+            "ASS",
+            "AS",
+            "A1S",
+            "A1",
+            "BSS",
+            "BS",
+            "B1S",
+            "B1",
+            "B2S",
+            "B2",
+            "CS",
+            "C1",
+        }
+
+    def test_elettrico_elettricita_futura_level_a1_salary_tranche1(self) -> None:
+        """A1 base salary at first tranche (2025-04-01): 2788.67."""
+        ccnl = load_ccnl("elettrico-elettricita-futura.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "A1")
+        p = next(x for x in lv.base_salary.periods if x.valid_from == date(2025, 4, 1))
+        assert p.value == Decimal("2788.67")
+
+    def test_elettrico_elettricita_futura_level_a1_salary_tranche2(self) -> None:
+        """A1 base salary at second tranche (2026-04-01): 2851.16."""
+        ccnl = load_ccnl("elettrico-elettricita-futura.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "A1")
+        p = next(x for x in lv.base_salary.periods if x.valid_from == date(2026, 4, 1))
+        assert p.value == Decimal("2851.16")
+
+    def test_elettrico_elettricita_futura_level_ordering(self) -> None:
+        """QS is highest-order level; C1 is lowest-order level."""
+        ccnl = load_ccnl("elettrico-elettricita-futura.json")
+        by_order = sorted(ccnl.levels, key=lambda lx: lx.order)
+        assert by_order[0].code == "C1"
+        assert by_order[-1].code == "QS"
+
+    def test_elettrico_elettricita_futura_additional_months(self) -> None:
+        """Additional months: 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("elettrico-elettricita-futura.json")
+        assert ccnl.parameters.additional_months.periods[0].value == Decimal(14)
+
+    def test_elettrico_elettricita_futura_hourly_divisor(self) -> None:
+        """Hourly divisor: 173 (40h/week statutory base, 40 x 52 / 12 = 173.33)."""
+        ccnl = load_ccnl("elettrico-elettricita-futura.json")
+        assert ccnl.parameters.hourly_divisor == 173
+
+    def test_elettrico_elettricita_futura_edr_allowance(self) -> None:
+        """Each level has one fixed_allowance (edr) at 10.33 EUR/month."""
+        ccnl = load_ccnl("elettrico-elettricita-futura.json")
+        for lv in ccnl.levels:
+            assert len(lv.fixed_allowances) == 1
+            assert lv.fixed_allowances[0].code == "edr"
+            assert lv.fixed_allowances[0].monthly.periods[0].value == Decimal("10.33")
+
+    def test_elettrico_elettricita_futura_tax_sector(self) -> None:
+        """Contract declares INDUSTRIA tax sector."""
+        ccnl = load_ccnl("elettrico-elettricita-futura.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+
+    def test_elettrico_elettricita_futura_seniority_cadence(self) -> None:
+        """Seniority: biennale (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("elettrico-elettricita-futura.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
