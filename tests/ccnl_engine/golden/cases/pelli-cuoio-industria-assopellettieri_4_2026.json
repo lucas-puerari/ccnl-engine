@@ -1,0 +1,53 @@
+{
+  "_description": "Golden case: CCNL Pelli e Cuoio Industria (D111), Level 4, 2026-06-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Dec 2025 tranche (CNEL PDF Art. 32, tabella PELLETTERIA): livello 4 = 2000.26 EUR/month.",
+    "Conglobated model: paga base + ex contingenza + E.d.r. in unica voce. Art. 32 CCNL.",
+    "Additional months: 13 (tredicesima only). Source: ANCL sintesi CCNL D111.",
+    "Hourly divisor: 173. Source: Art. 35 CCNL CNEL PDF.",
+    "INPS employer rate from 2026-industria.json (industria sector, <=50 employees, 30.20%).",
+    "Seniority: 0.00 — seniority_count=0, biennale cadence (24m), max 4 scatti.",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "pelli-cuoio-industria-assopellettieri.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "4",
+    "as_of": "2026-06-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "pelli-cuoio-industria-assopellettieri",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "2000.26",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2000.26",
+    "gross_annual": "26003.38",
+    "hourly_rate": "11.56",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2467.72",
+    "inps_employer_annual": "7853.02",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1926.18",
+    "taxable_income": "23535.66",
+    "irpef_gross": "5413.20",
+    "work_income_deduction": "828.50",
+    "irpef_net": "4584.70",
+    "net_annual": "18950.96",
+    "net_monthly": "1457.77",
+    "employer_cost_annual": "35782.58"
+  }
+}

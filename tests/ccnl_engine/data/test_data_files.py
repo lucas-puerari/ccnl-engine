@@ -3326,3 +3326,91 @@ class TestLoadOrafiArgentieriIndustriaFederorafi:
         assert track.periods[1].percentage == Decimal("0.90")
         assert track.periods[2].percentage == Decimal("0.95")
         assert track.periods[2].months_until is None
+
+
+class TestLoadPelliCuoioIndustriaAssopellettieri:
+    """Tests for CCNL Pelli e Cuoio Industria — Assopellettieri (D111)."""
+
+    def test_pelli_cuoio_industria_assopellettieri_loads(self) -> None:
+        """Contract loads with correct id and CNEL code D111."""
+        ccnl = load_ccnl("pelli-cuoio-industria-assopellettieri.json")
+        assert ccnl.ccnl.id == "pelli-cuoio-industria-assopellettieri"
+        assert ccnl.ccnl.cnel_code == "D111"
+
+    def test_pelli_cuoio_industria_assopellettieri_has_7_levels(self) -> None:
+        """Contract has exactly 7 levels: 1, 2, 3, 4, 4S, 5, 6."""
+        ccnl = load_ccnl("pelli-cuoio-industria-assopellettieri.json")
+        assert len(ccnl.levels) == 7
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3", "4", "4S", "5", "6"}
+
+    def test_pelli_cuoio_industria_assopellettieri_level4_salary_tranche1(
+        self,
+    ) -> None:
+        """Level 4 first tranche (Apr 2023): 1810.42 EUR/month."""
+        ccnl = load_ccnl("pelli-cuoio-industria-assopellettieri.json")
+        lv = ccnl.level_by_code("4")
+        assert lv.base_salary.value_at(date(2023, 6, 1)) == Decimal("1810.42")
+
+    def test_pelli_cuoio_industria_assopellettieri_level4_salary_tranche2(
+        self,
+    ) -> None:
+        """Level 4 second tranche (Dec 2023): 1873.70 EUR/month."""
+        ccnl = load_ccnl("pelli-cuoio-industria-assopellettieri.json")
+        lv = ccnl.level_by_code("4")
+        assert lv.base_salary.value_at(date(2024, 1, 1)) == Decimal("1873.70")
+
+    def test_pelli_cuoio_industria_assopellettieri_level_ordering(self) -> None:
+        """Level 6 is highest order; level 1 is lowest order."""
+        ccnl = load_ccnl("pelli-cuoio-industria-assopellettieri.json")
+        orders = {lv.code: lv.order for lv in ccnl.levels}
+        assert orders["6"] == max(orders.values())
+        assert orders["1"] == min(orders.values())
+
+    def test_pelli_cuoio_industria_assopellettieri_additional_months(
+        self,
+    ) -> None:
+        """Additional months: 13 (tredicesima only)."""
+        ccnl = load_ccnl("pelli-cuoio-industria-assopellettieri.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_pelli_cuoio_industria_assopellettieri_hourly_divisor(self) -> None:
+        """Hourly divisor: 173 (Art. 35 CCNL CNEL PDF)."""
+        ccnl = load_ccnl("pelli-cuoio-industria-assopellettieri.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(173)
+
+    def test_pelli_cuoio_industria_assopellettieri_no_fixed_allowances(
+        self,
+    ) -> None:
+        """Conglobated model: all levels have empty fixed_allowances."""
+        ccnl = load_ccnl("pelli-cuoio-industria-assopellettieri.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_pelli_cuoio_industria_assopellettieri_tax_sector(self) -> None:
+        """Contract declares INDUSTRIA tax sector."""
+        ccnl = load_ccnl("pelli-cuoio-industria-assopellettieri.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+
+    def test_pelli_cuoio_industria_assopellettieri_seniority_cadence(
+        self,
+    ) -> None:
+        """Seniority: biennale (24 months), maximum 4 scatti."""
+        ccnl = load_ccnl("pelli-cuoio-industria-assopellettieri.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 4
+
+    def test_pelli_cuoio_industria_assopellettieri_apprenticeship_tracks(
+        self,
+    ) -> None:
+        """6 under_classification tracks, one per destination level."""
+        ccnl = load_ccnl("pelli-cuoio-industria-assopellettieri.json")
+        assert len(ccnl.apprenticeship) == 6
+        for track in ccnl.apprenticeship:
+            assert isinstance(track, ApprenticeshipUnderClassification)
+        dest_levels = {t.name: t.destination_levels for t in ccnl.apprenticeship}
+        assert dest_levels["dest_6"] == ["6"]
+        assert dest_levels["dest_2"] == ["2"]
