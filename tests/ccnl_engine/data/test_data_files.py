@@ -2795,3 +2795,30 @@ class TestLoadCalzaturieroAssocalzaturifici:
         t68 = by_name["prof_L6_L8"]
         assert t68.periods[0].months_until == 10
         assert t68.periods[1].months_until == 20
+
+    def test_elettrico_elettricita_futura_apprenticeship_tracks(self) -> None:
+        """Three percentage tracks per Art. 15: C (36m), B (36m), A+BSS (24m)."""
+        ccnl = load_ccnl("elettrico-elettricita-futura.json")
+        assert len(ccnl.apprenticeship) == 3
+        by_name = {t.name: t for t in ccnl.apprenticeship}
+        # Gruppo C: dest=CS, 36m, 86/90/96/100%
+        c = by_name["gruppo_c"]
+        assert set(c.destination_levels) == {"CS"}
+        pcts_c = [p.percentage for p in c.periods]  # type: ignore[union-attr]
+        exp_36 = [Decimal("0.86"), Decimal("0.90"), Decimal("0.96"), Decimal("1.00")]
+        assert pcts_c == exp_36
+        assert c.periods[-1].months_until is None
+        assert c.periods[0].months_until == 12
+        # Gruppo B: dest=B1, 36m, 86/90/96/100%
+        b = by_name["gruppo_b"]
+        assert set(b.destination_levels) == {"B1"}
+        pcts_b = [p.percentage for p in b.periods]  # type: ignore[union-attr]
+        assert pcts_b == exp_36
+        # Gruppo A+BSS: dest=A1+BSS, 24m, 86/96/100%
+        a = by_name["gruppo_a_bss"]
+        assert set(a.destination_levels) == {"A1", "BSS"}
+        pcts_a = [p.percentage for p in a.periods]  # type: ignore[union-attr]
+        assert pcts_a == [Decimal("0.86"), Decimal("0.96"), Decimal("1.00")]
+        assert a.periods[-1].months_until is None
+        assert a.periods[0].months_until == 12
+        assert a.periods[1].months_until == 24

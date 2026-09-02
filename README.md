@@ -48,7 +48,7 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 14 | Distribuzione Moderna Organizzata — Federdistribuzione | Terziario | ✅ | ✅ | — |
 | 15 | Metalmeccanica e Installazione Impianti — Artigianato | Artigianato | ✅ | ✅ | — |
 | 16 | Gomma e Plastica Industria — Federazione Gomma Plastica | Industria | ✅ | ✅ | — |
-| 17 | Grafica e Editoria — AIEG-Acigraf | Industria | ✅ | — | — |
+| 17 | Grafica e Editoria — AIEG-Acigraf | Industria | ✅ | ✅ | — |
 | 18 | Carta e Cartone — Assocarta | Industria | ✅ | ✅ | — |
 | 19 | Telecomunicazioni — Asstel | Industria | ✅ | ✅ | — |
 | 20 | Vigilanza Privata — ASSIV/ANIVP/UNIV (GPG) | Terziario | ✅ | ✅ | — |
@@ -60,7 +60,7 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 26 | Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA) | Artigianato | ✅ | ✅ | — |
 | 27 | Autoferrotranvieri e Internavigatori (Mobilita/TPL) — AGENS/ASSTRA/ANAV | Terziario | ✅ | ✅ | — |
 | 28 | Credito Cooperativo (BCC/CRA) — Federcasse | Credito | ✅ | ✅ | — |
-| 29 | Elettrico (produzione/distribuzione energia) — Elettricita Futura | Industria | ✅ | — | — |
+| 29 | Elettrico (produzione/distribuzione energia) — Elettricita Futura | Industria | ✅ | ✅ | — |
 | 30 | Calzaturiero (industria delle calzature) — Assocalzaturifici | Industria | ✅ | ✅ | — |
 
 **Layer 1** — base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months.  
