@@ -64,6 +64,7 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 30 | Calzaturiero (industria delle calzature) — Assocalzaturifici | Industria | ✅ | ✅ | — |
 | 31 | Area Tessile-Moda e Chimica-Ceramica — Artigianato (Confartigianato/CNA) | Artigianato | ✅ | ✅ | — |
 | 32 | Area Legno-Lapidei — Artigianato (Confartigianato/CNA) | Artigianato | ✅ | ✅ | — |
+| 33 | Area Comunicazione — Artigianato (Confartigianato/CNA) | Artigianato | ✅ | ✅ | — |
 
 **Layer 1** — base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months.  
 **Layer 2** — part-time, fixed-term (NASpI *addizionale*), apprenticeship (percentage or under-classification).  
