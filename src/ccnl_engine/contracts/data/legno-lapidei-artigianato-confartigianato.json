@@ -1,0 +1,302 @@
+{
+  "schema_version": "0.3",
+  "ccnl": {
+    "id": "legno-lapidei-artigianato-confartigianato",
+    "name": "CCNL Area Legno-Lapidei — Artigianato",
+    "cnel_code": "F060",
+    "sector": "legno arredamento lapidei artigianato",
+    "tax_sector": "artigianato",
+    "agreement_date": "2024-03-05",
+    "signatories": [
+      "CNA Produzione",
+      "CNA Costruzioni",
+      "Confartigianato Legno e Arredo",
+      "Confartigianato Marmisti",
+      "Casartigiani",
+      "CLAAI",
+      "Feneal-UIL",
+      "Filca-CISL",
+      "Fillea-CGIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
+        "type": "official_contract",
+        "agreement_date": "2022-09-01",
+        "notes": "SOURCE: Direzionelavoro.it — Base CCNL 2022. Tables: salary base values by level (Sep 2022), hourly divisor 174, seniority amounts pre-Jan-2025, apprenticeship percentages (3 gruppi), mensilita=13, conglobated model confirmed ('Contingenza: conglobata nei minimi retributivi')."
+      },
+      {
+        "url": "https://www.studiodalmaschio.it/rinnovo-ccnl-legno-lapidei-artigianato-2024",
+        "type": "renewal_summary",
+        "agreement_date": "2024-03-05",
+        "notes": "SOURCE: StudioDalmaschio.it — 2024 rinnovo summary (signed 5 marzo 2024). Agreement date, salary increases per tranche (Mar 2024, Jan 2025, Jan 2026, Oct 2026), new seniority amounts from Jan 2025 per level, new apprentice seniority EUR 8.00 from Jan 2025, signatories confirmed."
+      },
+      {
+        "url": "https://www.kitech.it/ccnl/legno-arredo-artigianato",
+        "type": "table",
+        "agreement_date": "2024-03-05",
+        "notes": "SOURCE: Kitech.it — CNEL code F060 confirmed. Jan 2026 salary table cross-validated: AS=2230.81, A=2079.31, B=1900.65, CS=1818.04, C=1734.61, D=1639.71, E=1552.82, F=1458.99. All 8 levels match computed values exactly."
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-02T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: SALARY MODEL: conglobated (minimi tabellari conglobati). Confirmed by primary source ('Contingenza: conglobata nei minimi retributivi'). Back-calculation at Jan 2025: AS=2176.39/174=12.508 EUR/h, D=1599.71/174=9.194 EUR/h, F=1423.40/174=8.180 EUR/h — all consistent with hourly divisor 174, confirming conglobated model.",
+      "INFO: CNEL CODE: F060 confirmed from kitech.it page text ('Area Legno Lapidei (CNEL: F060)') and from direzionelavoro.it PDF URL slug.",
+      "INFO: TRANCHE DATES: four tranches — 2024-03-01 (retroactive from renewal 5 Mar 2024), 2025-01-01, 2026-01-01, 2026-10-01. Source: studiodalmaschio.it rinnovo summary, cross-validated Jan 2026 values against kitech.it.",
+      "INFO: HOURLY DIVISOR: 174. Source: primary CCNL text ('Coefficiente orario = 174'). Derived: 40h/week x 52/12 = 173.33, rounded to 174 per contract clause.",
+      "INFO: ADDITIONAL MONTHS: 13 (tredicesima only). No quattordicesima in this CCNL. Source: direzionelavoro.it base CCNL PDF (mensilita aggiuntive clause).",
+      "INFO: SENIORITY: biennale (every 24 months), maximum 5 scatti. Per-level amounts pre-Jan-2025 from 2022 base CCNL: AS=15.494, A=13.944, B=11.879, CS=11.181, C=10.329, D=9.296, E=8.522, F=none. From Jan 2025 (2024 rinnovo): AS=20.49, A=18.94, B=16.88, CS=16.18, C=15.33, D=14.30, E=13.52, F=none. Level F: transitional level (max 12 months), no seniority applies.",
+      "INFO: APPRENTICE SENIORITY: EUR 8.00 from Jan 2025. New clause introduced by 2024 rinnovo. Source: studiodalmaschio.it rinnovo summary.",
+      "INFO: LEVEL F: transitional insertion level, maximum duration 12 months. No seniority and no apprenticeship track apply. Workers in F are re-levelled to E or higher after the transitional period.",
+      "INFO: APPRENTICESHIP: 3 gruppi from base CCNL 2022 (unchanged in 2024 rinnovo). Gruppo 1 (dest AS, A, B — operai 5 years = 60m), Gruppo 2 (dest CS, C, D — operai 5 years = 60m), Gruppo 3 (dest E — operai 2.5 years = 30m). Level F has no apprenticeship track.",
+      "SIMPLIFICATION: Only Legno/Arredamento/Mobili sub-sector salary tables modelled. Lapidei (stone/marble) sub-sector uses different salary tables and is not modelled. CNEL code F060 covers both sub-sectors. Workers in Lapidei should verify against the specific Lapidei tables.",
+      "SIMPLIFICATION: Apprenticeship tables use operai duration tracks (5 years for gruppi 1-2, 2.5 years for gruppo 3). Impiegati and impiegati amministrativi have shorter 3-year apprenticeship durations with the same percentages — not separately modelled. For impiegato apprenticeships the operai duration overstates the period.",
+      "SIMPLIFICATION: LEVEL CATEGORY: all levels left null. Primary source text shows multiple levels map to both operai and impiegati (e.g. level B = 'Impiegati di concetto - Operai specializzati provetti') — this is a genuine one-to-many mapping that the schema cannot represent as a single category value, not a data gap. 2026-artigianato.json applies rate 0.2693 (default/operaio) for null category; impiegato rate 0.2471 not applied to impiegato-eligible levels.",
+      "INFO: INPS: reuses 2026-artigianato.json (ARTIGIANATO sector)."
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2024-03-01", "valid_until": null, "value": "174" }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2024-03-01", "valid_until": null, "value": "13" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "AS": {
+          "periods": [
+            { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "15.494" },
+            { "valid_from": "2025-01-01", "valid_until": null, "value": "20.49" }
+          ]
+        },
+        "A": {
+          "periods": [
+            { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "13.944" },
+            { "valid_from": "2025-01-01", "valid_until": null, "value": "18.94" }
+          ]
+        },
+        "B": {
+          "periods": [
+            { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "11.879" },
+            { "valid_from": "2025-01-01", "valid_until": null, "value": "16.88" }
+          ]
+        },
+        "CS": {
+          "periods": [
+            { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "11.181" },
+            { "valid_from": "2025-01-01", "valid_until": null, "value": "16.18" }
+          ]
+        },
+        "C": {
+          "periods": [
+            { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "10.329" },
+            { "valid_from": "2025-01-01", "valid_until": null, "value": "15.33" }
+          ]
+        },
+        "D": {
+          "periods": [
+            { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "9.296" },
+            { "valid_from": "2025-01-01", "valid_until": null, "value": "14.30" }
+          ]
+        },
+        "E": {
+          "periods": [
+            { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "8.522" },
+            { "valid_from": "2025-01-01", "valid_until": null, "value": "13.52" }
+          ]
+        },
+        "F": {
+          "periods": [
+            { "valid_from": "2024-03-01", "valid_until": null, "value": "0.00" }
+          ]
+        }
+      },
+      "apprentice_amount": {
+        "periods": [
+          { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "0.00" },
+          { "valid_from": "2025-01-01", "valid_until": null, "value": "8.00" }
+        ]
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "F",
+      "order": 1,
+      "description": "Livello F — inserimento (transitorio, max 12 mesi)",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "1378.91" },
+          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1423.40" },
+          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1458.99" },
+          { "valid_from": "2026-10-01", "valid_until": null, "value": "1490.13" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "E",
+      "order": 2,
+      "description": "Livello E — operaio comune / impiegato d'ordine",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "1467.59" },
+          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1514.94" },
+          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1552.82" },
+          { "valid_from": "2026-10-01", "valid_until": null, "value": "1585.97" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "D",
+      "order": 3,
+      "description": "Livello D — operaio qualificato / impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "1549.71" },
+          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1599.71" },
+          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1639.71" },
+          { "valid_from": "2026-10-01", "valid_until": null, "value": "1674.71" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "C",
+      "order": 4,
+      "description": "Livello C — operaio specializzato / impiegato di concetto",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "1639.40" },
+          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1692.29" },
+          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1734.61" },
+          { "valid_from": "2026-10-01", "valid_until": null, "value": "1771.64" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "CS",
+      "order": 5,
+      "description": "Livello CS — operaio specializzato provetto / impiegato di concetto senior",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "1718.25" },
+          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1773.69" },
+          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1818.04" },
+          { "valid_from": "2026-10-01", "valid_until": null, "value": "1856.85" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "B",
+      "order": 6,
+      "description": "Livello B — impiegati di concetto / operai specializzati provetti",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "1796.32" },
+          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1854.28" },
+          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1900.65" },
+          { "valid_from": "2026-10-01", "valid_until": null, "value": "1941.22" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "A",
+      "order": 7,
+      "description": "Livello A — impiegato direttivo / tecnico altamente specializzato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "1965.19" },
+          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2028.59" },
+          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "2079.31" },
+          { "valid_from": "2026-10-01", "valid_until": null, "value": "2123.69" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "AS",
+      "order": 8,
+      "description": "Livello AS — quadro / dirigente tecnico (livello massimo)",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "2108.37" },
+          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2176.39" },
+          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "2230.81" },
+          { "valid_from": "2026-10-01", "valid_until": null, "value": "2278.43" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "gruppo_1_legno",
+      "destination_levels": ["AS", "A", "B"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.73" },
+        { "months_from": 24, "months_until": 36, "percentage": "0.80" },
+        { "months_from": 36, "months_until": 48, "percentage": "0.85" },
+        { "months_from": 48, "months_until": 60, "percentage": "0.90" },
+        { "months_from": 60, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_2_legno",
+      "destination_levels": ["CS", "C", "D"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.75" },
+        { "months_from": 24, "months_until": 36, "percentage": "0.88" },
+        { "months_from": 36, "months_until": 48, "percentage": "0.90" },
+        { "months_from": 48, "months_until": 60, "percentage": "0.95" },
+        { "months_from": 60, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_3_legno",
+      "destination_levels": ["E"],
+      "periods": [
+        { "months_from": 0, "months_until": 6, "percentage": "0.70" },
+        { "months_from": 6, "months_until": 12, "percentage": "0.75" },
+        { "months_from": 12, "months_until": 18, "percentage": "0.80" },
+        { "months_from": 18, "months_until": 24, "percentage": "0.90" },
+        { "months_from": 24, "months_until": 30, "percentage": "0.95" },
+        { "months_from": 30, "months_until": null, "percentage": "1.00" }
+      ]
+    }
+  ]
+}
