@@ -1909,3 +1909,67 @@ class TestLoadUnebaUneba:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 10
+
+
+class TestLoadAcconciaturaesteticaConfartigianato:
+    """Unit tests for CCNL Acconciatura ed Estetica Confartigianato (H515)."""
+
+    def test_acconciatura_estetica_confartigianato_loads(self) -> None:
+        """Loads with id='acconciatura-estetica-confartigianato', code H515."""
+        ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
+        assert ccnl.ccnl.id == "acconciatura-estetica-confartigianato"
+        assert ccnl.ccnl.cnel_code == "H515"
+
+    def test_acconciatura_estetica_confartigianato_has_4_levels(self) -> None:
+        """Contract has exactly 4 levels: 1, 2, 3, 4."""
+        ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
+        assert len(ccnl.levels) == 4
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3", "4"}
+
+    def test_acconciatura_estetica_confartigianato_level3_salary_tranche1(self) -> None:
+        """Level 3 minimo at May 2024 tranche: EUR 1379.00."""
+        ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "3")
+        assert lv.base_salary.periods[0].value == Decimal("1379.00")
+
+    def test_acconciatura_estetica_confartigianato_level3_salary_tranche2(self) -> None:
+        """Level 3 minimo at Jan 2025 tranche: EUR 1429.00."""
+        ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
+        lv = next(lx for lx in ccnl.levels if lx.code == "3")
+        assert lv.base_salary.periods[1].value == Decimal("1429.00")
+
+    def test_acconciatura_estetica_confartigianato_level_ordering(self) -> None:
+        """Level 1 has highest order; level 4 has lowest order."""
+        ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
+        by_order = sorted(ccnl.levels, key=lambda lx: lx.order)
+        assert by_order[0].code == "4"
+        assert by_order[-1].code == "1"
+
+    def test_acconciatura_estetica_confartigianato_additional_months(self) -> None:
+        """Additional months: 13 (tredicesima only, Art. 40)."""
+        ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
+        assert ccnl.parameters.additional_months.periods[0].value == Decimal(13)
+
+    def test_acconciatura_estetica_confartigianato_hourly_divisor(self) -> None:
+        """Hourly divisor: 173 (40-hour week, Art. 12)."""
+        ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
+        assert ccnl.parameters.hourly_divisor == 173
+
+    def test_acconciatura_estetica_confartigianato_no_fixed_allowances(self) -> None:
+        """All levels have empty fixed_allowances (conglobated salary model)."""
+        ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_acconciatura_estetica_confartigianato_tax_sector(self) -> None:
+        """Contract declares ARTIGIANATO tax sector."""
+        ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.ARTIGIANATO
+
+    def test_acconciatura_estetica_confartigianato_seniority_cadence(self) -> None:
+        """Seniority: biennale (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
