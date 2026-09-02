@@ -11,13 +11,15 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.models.ccnl import TaxSector
-from ccnl_engine.tax.loaders import load_year_rules
+from ccnl_engine.tax.loaders import _resolve_tier, load_year_rules
 from ccnl_engine.tax.models import (
+    ApprenticeRates,
     DeductionBreakpoint,
     InpsRates,
     IrpefBracket,
     TfrRules,
     YearRules,
+    _InpsEmployeeTier,
 )
 
 # ---------------------------------------------------------------------------
@@ -43,6 +45,13 @@ _VALID_INPS: dict[str, Any] = {
     "ceiling": None,
 }
 
+_VALID_APPRENTICE: dict[str, Any] = {
+    "employee_rate": "0.0584",
+    "employer_rate_months_0_11": "0.0311",
+    "employer_rate_months_12_23": "0.0461",
+    "employer_rate_after": "0.1161",
+}
+
 
 def _year_rules(overrides: dict[str, Any] | None = None) -> dict[str, Any]:
     """Return a minimal valid YearRules dict, with optional field overrides."""
@@ -52,6 +61,7 @@ def _year_rules(overrides: dict[str, Any] | None = None) -> dict[str, Any]:
         "work_deduction_breakpoints": _VALID_DEDUCTIONS,
         "fixed_term_additional_rate": "0.014",
         "inps": _VALID_INPS,
+        "apprentice": _VALID_APPRENTICE,
         "tfr": {"accrual_divisor": "13.5"},
     }
     if overrides:
@@ -122,6 +132,36 @@ class TestInpsRates:
             ceiling=Decimal(105014),
         )
         assert r.ceiling == Decimal(105014)
+
+    def test_employer_rate_for_category(self) -> None:
+        """Category override applies only to listed categories."""
+        r = InpsRates(
+            employee_rate=Decimal("0.0919"),
+            employer_rate=Decimal("0.2693"),
+            ceiling=None,
+            employer_rate_by_category={"impiegato": Decimal("0.2471")},
+        )
+        assert r.employer_rate_for(None) == Decimal("0.2693")
+        assert r.employer_rate_for("operaio") == Decimal("0.2693")
+        assert r.employer_rate_for("impiegato") == Decimal("0.2471")
+
+
+# ---------------------------------------------------------------------------
+# ApprenticeRates
+# ---------------------------------------------------------------------------
+
+
+class TestApprenticeRates:
+    """Unit tests for ApprenticeRates.employer_rate_at()."""
+
+    def test_rate_steps(self) -> None:
+        """Employer rate steps at month 12 and month 24."""
+        r = ApprenticeRates.model_validate(_VALID_APPRENTICE)
+        assert r.employer_rate_at(0) == Decimal("0.0311")
+        assert r.employer_rate_at(11) == Decimal("0.0311")
+        assert r.employer_rate_at(12) == Decimal("0.0461")
+        assert r.employer_rate_at(23) == Decimal("0.0461")
+        assert r.employer_rate_at(24) == Decimal("0.1161")
 
 
 # ---------------------------------------------------------------------------
@@ -279,6 +319,35 @@ class TestYearRules2026Json:
         assert yr.inps.ceiling is None
         assert yr.fixed_term_additional_rate == Decimal("0.014")
         assert yr.tfr.accrual_divisor == Decimal("13.5")
+        assert yr.apprentice.employer_rate_after == Decimal("0.1161")
+        assert yr.apprentice.employer_rate_months_0_11 == Decimal("0.1161")
+
+    def test_employee_tier_above_threshold(self) -> None:
+        """Terziario above 50 employees adds the 0.30% CIGS employee share."""
+        yr = load_year_rules(2026, TaxSector.TERZIARIO, 51)
+        assert yr.inps.employee_rate == Decimal("0.0949")
+        assert yr.inps.employer_rate == Decimal("0.3028")
+
+    def test_small_firm_apprentice_rates(self) -> None:
+        """Firms with at most 9 employees get the reduced apprentice rates."""
+        yr = load_year_rules(2026, TaxSector.TERZIARIO, 9)
+        assert yr.apprentice.employer_rate_months_0_11 == Decimal("0.0311")
+        assert yr.apprentice.employer_rate_months_12_23 == Decimal("0.0461")
+        assert yr.apprentice.employer_rate_after == Decimal("0.1161")
+
+    def test_artigianato_category_rates(self) -> None:
+        """Artigianato carries a lower employer rate for impiegati and quadri."""
+        yr = load_year_rules(2026, TaxSector.ARTIGIANATO, 10)
+        assert yr.inps.employer_rate_by_category == {
+            "impiegato": Decimal("0.2471"),
+            "quadro": Decimal("0.2471"),
+        }
+
+    def test_no_open_tier_raises(self) -> None:
+        """_resolve_tier raises ValueError when no tier covers the headcount."""
+        tiers = [_InpsEmployeeTier(max_employees=10, rate=Decimal("0.09"))]
+        with pytest.raises(ValueError, match="No employee-rate tier"):
+            _resolve_tier(tiers, 100, "employee")
 
     def test_tfr_rules(self) -> None:
         """TfrRules accrual_divisor is parsed as Decimal."""

@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "elettrico-elettricita-futura",
     "name": "CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)",
@@ -29,16 +29,11 @@
         "agreement_date": "2025-02-11"
       }
     ],
-    "extraction": {
-      "method": "manual",
-      "model": null,
-      "timestamp": "2026-09-02",
-      "human_reviewed": true
-    }
+    "extraction": { "method": "manual", "model": null, "timestamp": "2026-09-02", "human_reviewed": true }
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "implemented",
+    "layer_2": "out_of_scope",
     "layer_3": "out_of_scope",
     "notes": [
       "SIMPLIFICATION: Salary model is split. base_salary = paga base (time-series, 4 tranches from 2025-02-11 renewal). fixed_allowances = EDR (Elemento Distinto della Retribuzione) frozen at EUR 10.33/month since 1988, same for all levels.",
@@ -47,19 +42,19 @@
       "SIMPLIFICATION: Apprenticeship not modelled (not applicable to the electricity production/distribution workforce; contract does not include apprenticeship provisions).",
       "SIMPLIFICATION: April 2027 base salary values derived from April 2026 (kitech.it primary source) plus the same increment as April 2025 to April 2026. October 2027 values verified against contratticcnl.it (all 14 levels match).",
       "SIMPLIFICATION: contratticcnl.it shows data alignment errors for BSS, BS, B1 in the April 2026 and April 2027 columns. kitech.it April 2026 values used as authoritative for all 14 levels.",
-      "Workers covered: approximately 63,000 in 687 companies (Enel SpA, Terna SpA, GSE, Sogin, Energia Libera and affiliated). Agreement signed 2025-02-11; valid until 2027-12-31.",
-      "INPS rates from 2026-industria.json (industria sector, 50 employees tier). IRPEF 2026 brackets applied (L. 199/2025)."
+      "INFO: Workers covered: approximately 63,000 in 687 companies (Enel SpA, Terna SpA, GSE, Sogin, Energia Libera and affiliated). Agreement signed 2025-02-11; valid until 2027-12-31.",
+      "INFO: INPS rates from 2026-industria.json (industria sector, 50 employees tier). IRPEF 2026 brackets applied (L. 199/2025)."
     ]
   },
   "parameters": {
-    "hourly_divisor": 173,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2025-04-01", "valid_until": null, "value": "173" }
+      ]
+    },
     "additional_months": {
       "periods": [
-        {
-          "valid_from": "2025-04-01",
-          "valid_until": null,
-          "value": "14"
-        }
+        { "valid_from": "2025-04-01", "valid_until": null, "value": "14" }
       ]
     },
     "seniority_increments": {
@@ -68,133 +63,76 @@
       "amount_by_level": {
         "QS": {
           "periods": [
-            {
-              "valid_from": "2025-04-01",
-              "valid_until": null,
-              "value": "49.01"
-            }
+            { "valid_from": "2025-04-01", "valid_until": null, "value": "49.01" }
           ]
         },
         "Q": {
           "periods": [
-            {
-              "valid_from": "2025-04-01",
-              "valid_until": null,
-              "value": "46.33"
-            }
+            { "valid_from": "2025-04-01", "valid_until": null, "value": "46.33" }
           ]
         },
         "ASS": {
           "periods": [
-            {
-              "valid_from": "2025-04-01",
-              "valid_until": null,
-              "value": "43.07"
-            }
+            { "valid_from": "2025-04-01", "valid_until": null, "value": "43.07" }
           ]
         },
         "AS": {
           "periods": [
-            {
-              "valid_from": "2025-04-01",
-              "valid_until": null,
-              "value": "39.82"
-            }
+            { "valid_from": "2025-04-01", "valid_until": null, "value": "39.82" }
           ]
         },
         "A1S": {
           "periods": [
-            {
-              "valid_from": "2025-04-01",
-              "valid_until": null,
-              "value": "37.86"
-            }
+            { "valid_from": "2025-04-01", "valid_until": null, "value": "37.86" }
           ]
         },
         "A1": {
           "periods": [
-            {
-              "valid_from": "2025-04-01",
-              "valid_until": null,
-              "value": "35.74"
-            }
+            { "valid_from": "2025-04-01", "valid_until": null, "value": "35.74" }
           ]
         },
         "BSS": {
           "periods": [
-            {
-              "valid_from": "2025-04-01",
-              "valid_until": null,
-              "value": "33.72"
-            }
+            { "valid_from": "2025-04-01", "valid_until": null, "value": "33.72" }
           ]
         },
         "BS": {
           "periods": [
-            {
-              "valid_from": "2025-04-01",
-              "valid_until": null,
-              "value": "31.97"
-            }
+            { "valid_from": "2025-04-01", "valid_until": null, "value": "31.97" }
           ]
         },
         "B1S": {
           "periods": [
-            {
-              "valid_from": "2025-04-01",
-              "valid_until": null,
-              "value": "30.16"
-            }
+            { "valid_from": "2025-04-01", "valid_until": null, "value": "30.16" }
           ]
         },
         "B1": {
           "periods": [
-            {
-              "valid_from": "2025-04-01",
-              "valid_until": null,
-              "value": "28.46"
-            }
+            { "valid_from": "2025-04-01", "valid_until": null, "value": "28.46" }
           ]
         },
         "B2S": {
           "periods": [
-            {
-              "valid_from": "2025-04-01",
-              "valid_until": null,
-              "value": "26.13"
-            }
+            { "valid_from": "2025-04-01", "valid_until": null, "value": "26.13" }
           ]
         },
         "B2": {
           "periods": [
-            {
-              "valid_from": "2025-04-01",
-              "valid_until": null,
-              "value": "23.81"
-            }
+            { "valid_from": "2025-04-01", "valid_until": null, "value": "23.81" }
           ]
         },
         "CS": {
           "periods": [
-            {
-              "valid_from": "2025-04-01",
-              "valid_until": null,
-              "value": "20.30"
-            }
+            { "valid_from": "2025-04-01", "valid_until": null, "value": "20.30" }
           ]
         },
         "C1": {
           "periods": [
-            {
-              "valid_from": "2025-04-01",
-              "valid_until": null,
-              "value": "17.66"
-            }
+            { "valid_from": "2025-04-01", "valid_until": null, "value": "17.66" }
           ]
         }
       }
-    },
-    "apprenticeship": null
+    }
   },
   "levels": [
     {
@@ -203,26 +141,10 @@
       "description": "Quadro Superiore",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2025-04-01",
-            "valid_until": "2026-04-01",
-            "value": "4115.33"
-          },
-          {
-            "valid_from": "2026-04-01",
-            "valid_until": "2027-04-01",
-            "value": "4207.56"
-          },
-          {
-            "valid_from": "2027-04-01",
-            "valid_until": "2027-10-01",
-            "value": "4299.79"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "4399.12"
-          }
+          { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "4115.33" },
+          { "valid_from": "2026-04-01", "valid_until": "2027-04-01", "value": "4207.56" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-10-01", "value": "4299.79" },
+          { "valid_from": "2027-10-01", "valid_until": null, "value": "4399.12" }
         ]
       },
       "fixed_allowances": [
@@ -231,11 +153,7 @@
           "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2025-04-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -247,26 +165,10 @@
       "description": "Quadro",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2025-04-01",
-            "valid_until": "2026-04-01",
-            "value": "3692.95"
-          },
-          {
-            "valid_from": "2026-04-01",
-            "valid_until": "2027-04-01",
-            "value": "3775.71"
-          },
-          {
-            "valid_from": "2027-04-01",
-            "valid_until": "2027-10-01",
-            "value": "3858.47"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "3947.60"
-          }
+          { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "3692.95" },
+          { "valid_from": "2026-04-01", "valid_until": "2027-04-01", "value": "3775.71" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-10-01", "value": "3858.47" },
+          { "valid_from": "2027-10-01", "valid_until": null, "value": "3947.60" }
         ]
       },
       "fixed_allowances": [
@@ -275,11 +177,7 @@
           "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2025-04-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -291,26 +189,10 @@
       "description": "Area Specialistica Superiore Superiore",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2025-04-01",
-            "valid_until": "2026-04-01",
-            "value": "3259.62"
-          },
-          {
-            "valid_from": "2026-04-01",
-            "valid_until": "2027-04-01",
-            "value": "3332.68"
-          },
-          {
-            "valid_from": "2027-04-01",
-            "valid_until": "2027-10-01",
-            "value": "3405.74"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "3484.42"
-          }
+          { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "3259.62" },
+          { "valid_from": "2026-04-01", "valid_until": "2027-04-01", "value": "3332.68" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-10-01", "value": "3405.74" },
+          { "valid_from": "2027-10-01", "valid_until": null, "value": "3484.42" }
         ]
       },
       "fixed_allowances": [
@@ -319,11 +201,7 @@
           "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2025-04-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -335,26 +213,10 @@
       "description": "Area Specialistica Superiore",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2025-04-01",
-            "valid_until": "2026-04-01",
-            "value": "3050.90"
-          },
-          {
-            "valid_from": "2026-04-01",
-            "valid_until": "2027-04-01",
-            "value": "3119.27"
-          },
-          {
-            "valid_from": "2027-04-01",
-            "valid_until": "2027-10-01",
-            "value": "3187.64"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "3261.27"
-          }
+          { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "3050.90" },
+          { "valid_from": "2026-04-01", "valid_until": "2027-04-01", "value": "3119.27" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-10-01", "value": "3187.64" },
+          { "valid_from": "2027-10-01", "valid_until": null, "value": "3261.27" }
         ]
       },
       "fixed_allowances": [
@@ -363,11 +225,7 @@
           "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2025-04-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -379,26 +237,10 @@
       "description": "Area 1 Superiore",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2025-04-01",
-            "valid_until": "2026-04-01",
-            "value": "2922.60"
-          },
-          {
-            "valid_from": "2026-04-01",
-            "valid_until": "2027-04-01",
-            "value": "2988.10"
-          },
-          {
-            "valid_from": "2027-04-01",
-            "valid_until": "2027-10-01",
-            "value": "3053.60"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "3124.14"
-          }
+          { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "2922.60" },
+          { "valid_from": "2026-04-01", "valid_until": "2027-04-01", "value": "2988.10" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-10-01", "value": "3053.60" },
+          { "valid_from": "2027-10-01", "valid_until": null, "value": "3124.14" }
         ]
       },
       "fixed_allowances": [
@@ -407,11 +249,7 @@
           "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2025-04-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -423,26 +261,10 @@
       "description": "Area 1",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2025-04-01",
-            "valid_until": "2026-04-01",
-            "value": "2788.67"
-          },
-          {
-            "valid_from": "2026-04-01",
-            "valid_until": "2027-04-01",
-            "value": "2851.16"
-          },
-          {
-            "valid_from": "2027-04-01",
-            "valid_until": "2027-10-01",
-            "value": "2913.65"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "2980.96"
-          }
+          { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "2788.67" },
+          { "valid_from": "2026-04-01", "valid_until": "2027-04-01", "value": "2851.16" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-10-01", "value": "2913.65" },
+          { "valid_from": "2027-10-01", "valid_until": null, "value": "2980.96" }
         ]
       },
       "fixed_allowances": [
@@ -451,11 +273,7 @@
           "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2025-04-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -467,26 +285,10 @@
       "description": "Area B Superiore Superiore",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2025-04-01",
-            "valid_until": "2026-04-01",
-            "value": "2655.60"
-          },
-          {
-            "valid_from": "2026-04-01",
-            "valid_until": "2027-04-01",
-            "value": "2715.11"
-          },
-          {
-            "valid_from": "2027-04-01",
-            "valid_until": "2027-10-01",
-            "value": "2774.62"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "2838.72"
-          }
+          { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "2655.60" },
+          { "valid_from": "2026-04-01", "valid_until": "2027-04-01", "value": "2715.11" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-10-01", "value": "2774.62" },
+          { "valid_from": "2027-10-01", "valid_until": null, "value": "2838.72" }
         ]
       },
       "fixed_allowances": [
@@ -495,11 +297,7 @@
           "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2025-04-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -511,26 +309,10 @@
       "description": "Area B Superiore",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2025-04-01",
-            "valid_until": "2026-04-01",
-            "value": "2542.40"
-          },
-          {
-            "valid_from": "2026-04-01",
-            "valid_until": "2027-04-01",
-            "value": "2599.38"
-          },
-          {
-            "valid_from": "2027-04-01",
-            "valid_until": "2027-10-01",
-            "value": "2656.36"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "2717.73"
-          }
+          { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "2542.40" },
+          { "valid_from": "2026-04-01", "valid_until": "2027-04-01", "value": "2599.38" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-10-01", "value": "2656.36" },
+          { "valid_from": "2027-10-01", "valid_until": null, "value": "2717.73" }
         ]
       },
       "fixed_allowances": [
@@ -539,11 +321,7 @@
           "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2025-04-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -555,26 +333,10 @@
       "description": "Area B1 Superiore",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2025-04-01",
-            "valid_until": "2026-04-01",
-            "value": "2422.59"
-          },
-          {
-            "valid_from": "2026-04-01",
-            "valid_until": "2027-04-01",
-            "value": "2476.88"
-          },
-          {
-            "valid_from": "2027-04-01",
-            "valid_until": "2027-10-01",
-            "value": "2531.17"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "2589.64"
-          }
+          { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "2422.59" },
+          { "valid_from": "2026-04-01", "valid_until": "2027-04-01", "value": "2476.88" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-10-01", "value": "2531.17" },
+          { "valid_from": "2027-10-01", "valid_until": null, "value": "2589.64" }
         ]
       },
       "fixed_allowances": [
@@ -583,11 +345,7 @@
           "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2025-04-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -599,26 +357,10 @@
       "description": "Area B1",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2025-04-01",
-            "valid_until": "2026-04-01",
-            "value": "2313.78"
-          },
-          {
-            "valid_from": "2026-04-01",
-            "valid_until": "2027-04-01",
-            "value": "2365.63"
-          },
-          {
-            "valid_from": "2027-04-01",
-            "valid_until": "2027-10-01",
-            "value": "2417.48"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "2473.33"
-          }
+          { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "2313.78" },
+          { "valid_from": "2026-04-01", "valid_until": "2027-04-01", "value": "2365.63" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-10-01", "value": "2417.48" },
+          { "valid_from": "2027-10-01", "valid_until": null, "value": "2473.33" }
         ]
       },
       "fixed_allowances": [
@@ -627,11 +369,7 @@
           "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2025-04-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -643,26 +381,10 @@
       "description": "Area B2 Superiore",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2025-04-01",
-            "valid_until": "2026-04-01",
-            "value": "2160.86"
-          },
-          {
-            "valid_from": "2026-04-01",
-            "valid_until": "2027-04-01",
-            "value": "2209.28"
-          },
-          {
-            "valid_from": "2027-04-01",
-            "valid_until": "2027-10-01",
-            "value": "2257.70"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "2309.87"
-          }
+          { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "2160.86" },
+          { "valid_from": "2026-04-01", "valid_until": "2027-04-01", "value": "2209.28" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-10-01", "value": "2257.70" },
+          { "valid_from": "2027-10-01", "valid_until": null, "value": "2309.87" }
         ]
       },
       "fixed_allowances": [
@@ -671,11 +393,7 @@
           "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2025-04-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -687,26 +405,10 @@
       "description": "Area B2",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2025-04-01",
-            "valid_until": "2026-04-01",
-            "value": "2010.61"
-          },
-          {
-            "valid_from": "2026-04-01",
-            "valid_until": "2027-04-01",
-            "value": "2055.67"
-          },
-          {
-            "valid_from": "2027-04-01",
-            "valid_until": "2027-10-01",
-            "value": "2100.73"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "2149.26"
-          }
+          { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "2010.61" },
+          { "valid_from": "2026-04-01", "valid_until": "2027-04-01", "value": "2055.67" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-10-01", "value": "2100.73" },
+          { "valid_from": "2027-10-01", "valid_until": null, "value": "2149.26" }
         ]
       },
       "fixed_allowances": [
@@ -715,11 +417,7 @@
           "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2025-04-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -731,26 +429,10 @@
       "description": "Area C Superiore",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2025-04-01",
-            "valid_until": "2026-04-01",
-            "value": "1782.73"
-          },
-          {
-            "valid_from": "2026-04-01",
-            "valid_until": "2027-04-01",
-            "value": "1822.69"
-          },
-          {
-            "valid_from": "2027-04-01",
-            "valid_until": "2027-10-01",
-            "value": "1862.65"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "1905.68"
-          }
+          { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "1782.73" },
+          { "valid_from": "2026-04-01", "valid_until": "2027-04-01", "value": "1822.69" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-10-01", "value": "1862.65" },
+          { "valid_from": "2027-10-01", "valid_until": null, "value": "1905.68" }
         ]
       },
       "fixed_allowances": [
@@ -759,11 +441,7 @@
           "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2025-04-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
@@ -775,26 +453,10 @@
       "description": "Area C1",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2025-04-01",
-            "valid_until": "2026-04-01",
-            "value": "1613.45"
-          },
-          {
-            "valid_from": "2026-04-01",
-            "valid_until": "2027-04-01",
-            "value": "1649.61"
-          },
-          {
-            "valid_from": "2027-04-01",
-            "valid_until": "2027-10-01",
-            "value": "1685.77"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "1724.71"
-          }
+          { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "1613.45" },
+          { "valid_from": "2026-04-01", "valid_until": "2027-04-01", "value": "1649.61" },
+          { "valid_from": "2027-04-01", "valid_until": "2027-10-01", "value": "1685.77" },
+          { "valid_from": "2027-10-01", "valid_until": null, "value": "1724.71" }
         ]
       },
       "fixed_allowances": [
@@ -803,15 +465,12 @@
           "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
-              {
-                "valid_from": "2025-04-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
+              { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
             ]
           }
         }
       ]
     }
-  ]
+  ],
+  "apprenticeship": []
 }

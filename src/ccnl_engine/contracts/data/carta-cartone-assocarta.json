@@ -1,19 +1,12 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "carta-cartone-assocarta",
     "name": "CCNL Carta e Cartone — Aziende Industriali (Assocarta)",
     "cnel_code": "G022",
     "sector": "carta-cartone",
     "tax_sector": "industria",
-    "signatories": [
-      "Assocarta",
-      "Assografici",
-      "SLC-CGIL",
-      "Fistel-CISL",
-      "Uilcom-UIL",
-      "UGL-carta e stampa"
-    ],
+    "signatories": ["Assocarta", "Assografici", "SLC-CGIL", "Fistel-CISL", "Uilcom-UIL", "UGL-carta e stampa"],
     "agreement_date": "2026-02-10",
     "sources": [
       {
@@ -44,8 +37,27 @@
       "human_reviewed": true
     }
   },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: SALARY MODEL: two tranches modelled — 2024-07-01 (last tranche of CCNL 28/07/2021, source: lexplain.it) and 2026-04-01 (first tranche of rinnovo 10/02/2026, source: kitech.it). The 2024 tranche total = paga base + EMC (Elemento di Modernizzazione Contrattuale, EUR 20.00 at C1, parametrised). The 2026 rinnovo is conglobated: EMC absorbed into the new paga base. Both periods are modelled as base_salary totals; fixed_allowances=[] for all levels. The +125 EUR increase on C1 paga base (rinnovo) minus the EMC (EUR 20 abolished) = net +105 EUR on C1 total (1855.11 → 1960.11).",
+      "INFO: FUTURE TRANCHES: the 2026-02-10 rinnovo schedules three further increases on C1 (+45 EUR from 01.01.2027, +45 EUR from 01.01.2028, +60 EUR from 01.09.2028; total +275 EUR across all four tranches). Official per-level tables for those dates have not been published as of extraction date. They will be added once primary-source tables become available.",
+      "INFO: CONGLOBATED CHECK: 2024 values confirmed via lexplain.it (paga base + EMC columns explicit). 2026 values from kitech.it; rinnovo zetaservice PDF confirms Q (2882.91) and C1 (1960.11) at 2026-04-01, consistent with kitech. Level ordering is strictly monotone at both tranche dates.",
+      "INFO: HOURLY DIVISOR: 173 (40h/week, Art. Orario di Lavoro CCNL 28/07/2021; confirmed ilccnl.it).",
+      "INFO: ADDITIONAL MONTHS: 13 (tredicesima only). Source: CCNL 28/07/2021 Art. Tredicesima mensilità. Quattordicesima not provided.",
+      "INFO: SENIORITY: biennale (24 months), max 5 scatti. Per-level amounts from CCNL 28/07/2021 Art. Aumenti periodici di anzianità (pisacaneboxes.com PDF, verified). Amounts unchanged in rinnovo 10/02/2026.",
+      "SIMPLIFICATION: APPRENTICESHIP: professionalizzante, percentage type. destination_level='C1' is a modeling choice (central reference level for the triennale progression, which covers 8 of 13 levels). SIMPLIFICATION: triennale model (36 months, 6 semesters at 70%-95%) used for all levels. Per the 2021 CCNL, D-category destination levels use biennale duration (24 months, 6 quadrimestri of 4 months) with identical percentages. Source: CCNL 28/07/2021 Art. Apprendistato professionalizzante (pisacaneboxes.com PDF).",
+      "INFO: INPS: reuses 2026-industria.json (Confindustria/CIGO). Assocarta is a Confindustria federation; CIGO applicable per D.Lgs. 148/2015."
+    ]
+  },
   "parameters": {
-    "hourly_divisor": 173,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2024-07-01", "valid_until": null, "value": "173" }
+      ]
+    },
     "additional_months": {
       "periods": [
         { "valid_from": "2024-07-01", "valid_until": null, "value": "13" }
@@ -131,7 +143,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2026-04-01", "value": "1387.97" },
-          { "valid_from": "2026-04-01", "valid_until": null,         "value": "1456.61" }
+          { "valid_from": "2026-04-01", "valid_until": null, "value": "1456.61" }
         ]
       },
       "fixed_allowances": []
@@ -143,7 +155,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2026-04-01", "value": "1484.89" },
-          { "valid_from": "2026-04-01", "valid_until": null,         "value": "1561.08" }
+          { "valid_from": "2026-04-01", "valid_until": null, "value": "1561.08" }
         ]
       },
       "fixed_allowances": []
@@ -155,7 +167,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2026-04-01", "value": "1573.21" },
-          { "valid_from": "2026-04-01", "valid_until": null,         "value": "1656.25" }
+          { "valid_from": "2026-04-01", "valid_until": null, "value": "1656.25" }
         ]
       },
       "fixed_allowances": []
@@ -167,7 +179,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2026-04-01", "value": "1643.58" },
-          { "valid_from": "2026-04-01", "valid_until": null,         "value": "1732.11" }
+          { "valid_from": "2026-04-01", "valid_until": null, "value": "1732.11" }
         ]
       },
       "fixed_allowances": []
@@ -179,7 +191,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2026-04-01", "value": "1731.54" },
-          { "valid_from": "2026-04-01", "valid_until": null,         "value": "1826.94" }
+          { "valid_from": "2026-04-01", "valid_until": null, "value": "1826.94" }
         ]
       },
       "fixed_allowances": []
@@ -191,7 +203,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2026-04-01", "value": "1855.11" },
-          { "valid_from": "2026-04-01", "valid_until": null,         "value": "1960.11" }
+          { "valid_from": "2026-04-01", "valid_until": null, "value": "1960.11" }
         ]
       },
       "fixed_allowances": []
@@ -203,7 +215,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2026-04-01", "value": "1924.38" },
-          { "valid_from": "2026-04-01", "valid_until": null,         "value": "2034.87" }
+          { "valid_from": "2026-04-01", "valid_until": null, "value": "2034.87" }
         ]
       },
       "fixed_allowances": []
@@ -215,7 +227,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2026-04-01", "value": "2040.47" },
-          { "valid_from": "2026-04-01", "valid_until": null,         "value": "2159.89" }
+          { "valid_from": "2026-04-01", "valid_until": null, "value": "2159.89" }
         ]
       },
       "fixed_allowances": []
@@ -227,7 +239,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2026-04-01", "value": "2109.74" },
-          { "valid_from": "2026-04-01", "valid_until": null,         "value": "2234.61" }
+          { "valid_from": "2026-04-01", "valid_until": null, "value": "2234.61" }
         ]
       },
       "fixed_allowances": []
@@ -239,7 +251,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2026-04-01", "value": "2163.48" },
-          { "valid_from": "2026-04-01", "valid_until": null,         "value": "2292.49" }
+          { "valid_from": "2026-04-01", "valid_until": null, "value": "2292.49" }
         ]
       },
       "fixed_allowances": []
@@ -251,7 +263,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2026-04-01", "value": "2376.30" },
-          { "valid_from": "2026-04-01", "valid_until": null,         "value": "2521.80" }
+          { "valid_from": "2026-04-01", "valid_until": null, "value": "2521.80" }
         ]
       },
       "fixed_allowances": []
@@ -263,7 +275,7 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2026-04-01", "value": "2702.66" },
-          { "valid_from": "2026-04-01", "valid_until": null,         "value": "2873.55" }
+          { "valid_from": "2026-04-01", "valid_until": null, "value": "2873.55" }
         ]
       },
       "fixed_allowances": []
@@ -275,37 +287,25 @@
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2026-04-01", "value": "2711.34" },
-          { "valid_from": "2026-04-01", "valid_until": null,         "value": "2882.91" }
+          { "valid_from": "2026-04-01", "valid_until": null, "value": "2882.91" }
         ]
       },
       "fixed_allowances": []
     }
   ],
-  "apprenticeship": {
-    "type": "percentage",
-    "destination_level": "C1",
-    "periods": [
-      { "months_from": 0,  "months_until": 6,    "percentage": "0.70" },
-      { "months_from": 6,  "months_until": 12,   "percentage": "0.75" },
-      { "months_from": 12, "months_until": 18,   "percentage": "0.80" },
-      { "months_from": 18, "months_until": 24,   "percentage": "0.85" },
-      { "months_from": 24, "months_until": 30,   "percentage": "0.90" },
-      { "months_from": 30, "months_until": null,  "percentage": "0.95" }
-    ]
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "partial",
-    "layer_3": "out_of_scope",
-    "notes": [
-      "SALARY MODEL: two tranches modelled — 2024-07-01 (last tranche of CCNL 28/07/2021, source: lexplain.it) and 2026-04-01 (first tranche of rinnovo 10/02/2026, source: kitech.it). The 2024 tranche total = paga base + EMC (Elemento di Modernizzazione Contrattuale, EUR 20.00 at C1, parametrised). The 2026 rinnovo is conglobated: EMC absorbed into the new paga base. Both periods are modelled as base_salary totals; fixed_allowances=[] for all levels. The +125 EUR increase on C1 paga base (rinnovo) minus the EMC (EUR 20 abolished) = net +105 EUR on C1 total (1855.11 → 1960.11).",
-      "FUTURE TRANCHES: the 2026-02-10 rinnovo schedules three further increases on C1 (+45 EUR from 01.01.2027, +45 EUR from 01.01.2028, +60 EUR from 01.09.2028; total +275 EUR across all four tranches). Official per-level tables for those dates have not been published as of extraction date. They will be added once primary-source tables become available.",
-      "CONGLOBATED CHECK: 2024 values confirmed via lexplain.it (paga base + EMC columns explicit). 2026 values from kitech.it; rinnovo zetaservice PDF confirms Q (2882.91) and C1 (1960.11) at 2026-04-01, consistent with kitech. Level ordering is strictly monotone at both tranche dates.",
-      "HOURLY DIVISOR: 173 (40h/week, Art. Orario di Lavoro CCNL 28/07/2021; confirmed ilccnl.it).",
-      "ADDITIONAL MONTHS: 13 (tredicesima only). Source: CCNL 28/07/2021 Art. Tredicesima mensilità. Quattordicesima not provided.",
-      "SENIORITY: biennale (24 months), max 5 scatti. Per-level amounts from CCNL 28/07/2021 Art. Aumenti periodici di anzianità (pisacaneboxes.com PDF, verified). Amounts unchanged in rinnovo 10/02/2026.",
-      "APPRENTICESHIP: professionalizzante, percentage type. destination_level='C1' is a modeling choice (central reference level for the triennale progression, which covers 8 of 13 levels). SIMPLIFICATION: triennale model (36 months, 6 semesters at 70%-95%) used for all levels. Per the 2021 CCNL, D-category destination levels use biennale duration (24 months, 6 quadrimestri of 4 months) with identical percentages. Source: CCNL 28/07/2021 Art. Apprendistato professionalizzante (pisacaneboxes.com PDF).",
-      "INPS: reuses 2026-industria.json (Confindustria/CIGO). Assocarta is a Confindustria federation; CIGO applicable per D.Lgs. 148/2015."
-    ]
-  }
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "standard",
+      "destination_levels": ["C1"],
+      "periods": [
+        { "months_from": 0, "months_until": 6, "percentage": "0.70" },
+        { "months_from": 6, "months_until": 12, "percentage": "0.75" },
+        { "months_from": 12, "months_until": 18, "percentage": "0.80" },
+        { "months_from": 18, "months_until": 24, "percentage": "0.85" },
+        { "months_from": 24, "months_until": 30, "percentage": "0.90" },
+        { "months_from": 30, "months_until": null, "percentage": "0.95" }
+      ]
+    }
+  ]
 }

@@ -1,19 +1,12 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "chimica-farmaceutica-federchimica",
     "name": "CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)",
     "cnel_code": "B011",
     "sector": "chimica",
     "tax_sector": "industria",
-    "signatories": [
-      "Federchimica",
-      "Farmindustria",
-      "Assistal",
-      "FILCTEM-CGIL",
-      "FEMCA-CISL",
-      "UILTEC-UIL"
-    ],
+    "signatories": ["Federchimica", "Farmindustria", "Assistal", "FILCTEM-CGIL", "FEMCA-CISL", "UILTEC-UIL"],
     "sources": [
       {
         "url": "https://informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf",
@@ -33,8 +26,30 @@
       "human_reviewed": true
     }
   },
+  "coverage": {
+    "layer_1": "partial",
+    "layer_2": "partial",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: TEM CONGLOBATO: i valori in base_salary rappresentano il Trattamento Economico Minimo (TEM) totale = base minimo (Min) + IPO (Integrazione di Posizione Organizzativa, per livello) + EAR (Elemento Aggiuntivo della Retribuzione: A=190€, B=100€, C-F=0, fisso lungo tutto il contratto) + EDR (Elemento Distinto della Retribuzione, aggiunto dal 01/07/2027, per livello). fixed_allowances è vuoto per tutti i livelli.",
+      "INFO: FONTE PRIMARIA: tabelle TEM dalla fonte primaria Federchimica/Farmindustria (CCNL 2025-2028, firmato 15/04/2025): informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf. Il PDF contiene le tabelle degli incrementi (Min e IPO per tranche) e i valori assoluti TEM a ciascuna scadenza per tutti i 15 livelli.",
+      "INFO: TRANCHES MODELLATE: (1) Previgente (fine CCNL 2022-2025, valid_from 2025-06-01): Min+IPO+EAR dal PDF pagina 2 colonna 'Previgente'. (2) 1/7/2025: prima tranche CCNL 2025-2028. (3) 1/12/2025: seconda tranche. (4) 1/7/2026: terza tranche — verificata indipendentemente su kitech.it (CNEL B011), concordanza esatta. (5) 1/7/2027: quarta tranche + EDR (per livello, pagina 4 PDF). (6) 1/6/2028: quinta e ultima tranche.",
+      "INFO: EDR: dal 01/07/2027 si aggiunge l'Elemento Distinto della Retribuzione (EDR), importi mensili per livello: A1=39, A2=34, A3=33, B1=32, B2=30, C1=28, C2=27, D1=26, D2=25, D3=24, E1=22, E2=20, E3=19, E4=19, F=18. Il TEM modellato include già l'EDR nei periodi dal 01/07/2027.",
+      "INFO: IPO VARIABILE PER TRANCHE: l'IPO non è fisso tra le tranches ma riceve incrementi propri (tabella pagina 1 del PDF, colonne IPO per scadenza). I valori TEM sono calcolati sommando Min, IPO e EAR (e EDR dal 01/07/2027) per ciascuna tranche.",
+      "INFO: TRANCHES PRE-GIUGNO 2025: non modellate. Il CCNL 2022-2025 prevedeva 5 tranches tra luglio 2022 e giugno 2025. La fonte PDF mostra solo i valori 'Previgente' (post-ultimo aumento 2022-2025) come baseline, senza le tranches intermedie.",
+      "INFO: SCATTI DI ANZIANITÀ: aboliti dal 1° gennaio 2010 per accordo tra le parti. Gli importi maturati fino al 2009 sono stati cristallizzati come superminimo non assorbibile. maximum_count=0 e amount_by_level={} per tutti i livelli.",
+      "INFO: APPRENDISTATO: modello under-classification (Art. 3 CCNL). Il JSON modella il caso standard con D1 come livello di destinazione (E1 nel primo periodo 0-18 mesi, D1 dal 18° mese). La durata esatta e il livello di destinazione variano per il singolo contratto di apprendistato.",
+      "INFO: DIVISORE ORARIO: 175 h/mese (settore chimico-farmaceutico). Il divisore 173 si applica solo al sotto-settore ceramica e abrasivi.",
+      "INFO: MENSILITÀ: 13 (sola tredicesima). La quattordicesima è prevista solo nei sotto-settori lubrificanti/GPL, ceramica/abrasivi e coibentazione.",
+      "INFO: INPS: utilizza 2026-industria.json (settore industria standard). Codice CNEL: B011."
+    ]
+  },
   "parameters": {
-    "hourly_divisor": 175,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2025-06-01", "valid_until": null, "value": "175" }
+      ]
+    },
     "additional_months": {
       "periods": [
         { "valid_from": "2022-06-13", "valid_until": null, "value": "13" }
@@ -58,7 +73,7 @@
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "1781.46" },
           { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1821.46" },
           { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "1879.46" },
-          { "valid_from": "2028-06-01", "valid_until": null,         "value": "1891.46" }
+          { "valid_from": "2028-06-01", "valid_until": null, "value": "1891.46" }
         ]
       },
       "fixed_allowances": []
@@ -74,7 +89,7 @@
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "1863.04" },
           { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1905.04" },
           { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "1966.04" },
-          { "valid_from": "2028-06-01", "valid_until": null,         "value": "1978.04" }
+          { "valid_from": "2028-06-01", "valid_until": null, "value": "1978.04" }
         ]
       },
       "fixed_allowances": []
@@ -90,7 +105,7 @@
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "1911.29" },
           { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1954.29" },
           { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2016.29" },
-          { "valid_from": "2028-06-01", "valid_until": null,         "value": "2029.29" }
+          { "valid_from": "2028-06-01", "valid_until": null, "value": "2029.29" }
         ]
       },
       "fixed_allowances": []
@@ -106,7 +121,7 @@
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "1981.14" },
           { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2026.14" },
           { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2091.14" },
-          { "valid_from": "2028-06-01", "valid_until": null,         "value": "2105.14" }
+          { "valid_from": "2028-06-01", "valid_until": null, "value": "2105.14" }
         ]
       },
       "fixed_allowances": []
@@ -122,7 +137,7 @@
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2088.28" },
           { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2139.28" },
           { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2212.28" },
-          { "valid_from": "2028-06-01", "valid_until": null,         "value": "2226.28" }
+          { "valid_from": "2028-06-01", "valid_until": null, "value": "2226.28" }
         ]
       },
       "fixed_allowances": []
@@ -138,7 +153,7 @@
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2196.76" },
           { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2250.76" },
           { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2327.76" },
-          { "valid_from": "2028-06-01", "valid_until": null,         "value": "2342.76" }
+          { "valid_from": "2028-06-01", "valid_until": null, "value": "2342.76" }
         ]
       },
       "fixed_allowances": []
@@ -154,7 +169,7 @@
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2254.77" },
           { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2311.77" },
           { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2393.77" },
-          { "valid_from": "2028-06-01", "valid_until": null,         "value": "2409.77" }
+          { "valid_from": "2028-06-01", "valid_until": null, "value": "2409.77" }
         ]
       },
       "fixed_allowances": []
@@ -170,7 +185,7 @@
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2360.26" },
           { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2420.26" },
           { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2506.26" },
-          { "valid_from": "2028-06-01", "valid_until": null,         "value": "2522.26" }
+          { "valid_from": "2028-06-01", "valid_until": null, "value": "2522.26" }
         ]
       },
       "fixed_allowances": []
@@ -186,7 +201,7 @@
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2437.86" },
           { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2498.86" },
           { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2586.86" },
-          { "valid_from": "2028-06-01", "valid_until": null,         "value": "2603.86" }
+          { "valid_from": "2028-06-01", "valid_until": null, "value": "2603.86" }
         ]
       },
       "fixed_allowances": []
@@ -202,7 +217,7 @@
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2532.65" },
           { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2597.65" },
           { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2690.65" },
-          { "valid_from": "2028-06-01", "valid_until": null,         "value": "2708.65" }
+          { "valid_from": "2028-06-01", "valid_until": null, "value": "2708.65" }
         ]
       },
       "fixed_allowances": []
@@ -218,7 +233,7 @@
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2780.61" },
           { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2849.61" },
           { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2948.61" },
-          { "valid_from": "2028-06-01", "valid_until": null,         "value": "2968.61" }
+          { "valid_from": "2028-06-01", "valid_until": null, "value": "2968.61" }
         ]
       },
       "fixed_allowances": []
@@ -234,7 +249,7 @@
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2881.98" },
           { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2954.98" },
           { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "3058.98" },
-          { "valid_from": "2028-06-01", "valid_until": null,         "value": "3080.98" }
+          { "valid_from": "2028-06-01", "valid_until": null, "value": "3080.98" }
         ]
       },
       "fixed_allowances": []
@@ -250,7 +265,7 @@
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "3117.22" },
           { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "3193.22" },
           { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "3302.22" },
-          { "valid_from": "2028-06-01", "valid_until": null,         "value": "3325.22" }
+          { "valid_from": "2028-06-01", "valid_until": null, "value": "3325.22" }
         ]
       },
       "fixed_allowances": []
@@ -266,7 +281,7 @@
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "3183.59" },
           { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "3261.59" },
           { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "3373.59" },
-          { "valid_from": "2028-06-01", "valid_until": null,         "value": "3396.59" }
+          { "valid_from": "2028-06-01", "valid_until": null, "value": "3396.59" }
         ]
       },
       "fixed_allowances": []
@@ -282,36 +297,21 @@
           { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "3438.48" },
           { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "3528.48" },
           { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "3657.48" },
-          { "valid_from": "2028-06-01", "valid_until": null,         "value": "3682.48" }
+          { "valid_from": "2028-06-01", "valid_until": null, "value": "3682.48" }
         ]
       },
       "fixed_allowances": []
     }
   ],
-  "apprenticeship": {
-    "type": "under_classification",
-    "destination_level": "D1",
-    "periods": [
-      { "months_from": 0,  "months_until": 18, "pay_level_code": "E1" },
-      { "months_from": 18, "months_until": null, "pay_level_code": "D1" }
-    ]
-  },
-  "coverage": {
-    "layer_1": "partial",
-    "layer_2": "partial",
-    "layer_3": "out_of_scope",
-    "notes": [
-      "TEM CONGLOBATO: i valori in base_salary rappresentano il Trattamento Economico Minimo (TEM) totale = base minimo (Min) + IPO (Integrazione di Posizione Organizzativa, per livello) + EAR (Elemento Aggiuntivo della Retribuzione: A=190€, B=100€, C-F=0, fisso lungo tutto il contratto) + EDR (Elemento Distinto della Retribuzione, aggiunto dal 01/07/2027, per livello). fixed_allowances è vuoto per tutti i livelli.",
-      "FONTE PRIMARIA: tabelle TEM dalla fonte primaria Federchimica/Farmindustria (CCNL 2025-2028, firmato 15/04/2025): informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf. Il PDF contiene le tabelle degli incrementi (Min e IPO per tranche) e i valori assoluti TEM a ciascuna scadenza per tutti i 15 livelli.",
-      "TRANCHES MODELLATE: (1) Previgente (fine CCNL 2022-2025, valid_from 2025-06-01): Min+IPO+EAR dal PDF pagina 2 colonna 'Previgente'. (2) 1/7/2025: prima tranche CCNL 2025-2028. (3) 1/12/2025: seconda tranche. (4) 1/7/2026: terza tranche — verificata indipendentemente su kitech.it (CNEL B011), concordanza esatta. (5) 1/7/2027: quarta tranche + EDR (per livello, pagina 4 PDF). (6) 1/6/2028: quinta e ultima tranche.",
-      "EDR: dal 01/07/2027 si aggiunge l'Elemento Distinto della Retribuzione (EDR), importi mensili per livello: A1=39, A2=34, A3=33, B1=32, B2=30, C1=28, C2=27, D1=26, D2=25, D3=24, E1=22, E2=20, E3=19, E4=19, F=18. Il TEM modellato include già l'EDR nei periodi dal 01/07/2027.",
-      "IPO VARIABILE PER TRANCHE: l'IPO non è fisso tra le tranches ma riceve incrementi propri (tabella pagina 1 del PDF, colonne IPO per scadenza). I valori TEM sono calcolati sommando Min, IPO e EAR (e EDR dal 01/07/2027) per ciascuna tranche.",
-      "TRANCHES PRE-GIUGNO 2025: non modellate. Il CCNL 2022-2025 prevedeva 5 tranches tra luglio 2022 e giugno 2025. La fonte PDF mostra solo i valori 'Previgente' (post-ultimo aumento 2022-2025) come baseline, senza le tranches intermedie.",
-      "SCATTI DI ANZIANITÀ: aboliti dal 1° gennaio 2010 per accordo tra le parti. Gli importi maturati fino al 2009 sono stati cristallizzati come superminimo non assorbibile. maximum_count=0 e amount_by_level={} per tutti i livelli.",
-      "APPRENDISTATO: modello under-classification (Art. 3 CCNL). Il JSON modella il caso standard con D1 come livello di destinazione (E1 nel primo periodo 0-18 mesi, D1 dal 18° mese). La durata esatta e il livello di destinazione variano per il singolo contratto di apprendistato.",
-      "DIVISORE ORARIO: 175 h/mese (settore chimico-farmaceutico). Il divisore 173 si applica solo al sotto-settore ceramica e abrasivi.",
-      "MENSILITÀ: 13 (sola tredicesima). La quattordicesima è prevista solo nei sotto-settori lubrificanti/GPL, ceramica/abrasivi e coibentazione.",
-      "INPS: utilizza 2026-industria.json (settore industria standard). Codice CNEL: B011."
-    ]
-  }
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "standard",
+      "destination_levels": ["D1"],
+      "periods": [
+        { "months_from": 0, "months_until": 18, "levels_below": 3 },
+        { "months_from": 18, "months_until": null, "levels_below": 0 }
+      ]
+    }
+  ]
 }

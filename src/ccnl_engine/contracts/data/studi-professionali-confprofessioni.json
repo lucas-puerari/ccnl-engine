@@ -1,17 +1,12 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "studi-professionali-confprofessioni",
     "name": "CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)",
     "cnel_code": "H442",
     "sector": "terziario",
     "tax_sector": "terziario",
-    "signatories": [
-      "Confprofessioni",
-      "Filcams-CGIL",
-      "Fisascat-CISL",
-      "Uiltucs-UIL"
-    ],
+    "signatories": ["Confprofessioni", "Filcams-CGIL", "Fisascat-CISL", "Uiltucs-UIL"],
     "sources": [
       {
         "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
@@ -31,15 +26,31 @@
       "human_reviewed": true
     }
   },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: MINIMI CONGLOBATI: la retribuzione minima tabellare include contingenza (fino al 1/05/1992) ed EDR (Accordo Interconfederale 31/07/1992), conglobati per effetto del CCNL 10/12/1992 e riconfermati da Art. 138 CCNL 2024. fixed_allowances vuoto per tutti i livelli.",
+      "INFO: DIVISORE ORARIO: 170. Fonte primaria: Art. 45 e Art. 137 CCNL 2024 ('divisore convenzionale orario fissato in 170').",
+      "INFO: TRANCHE: quattro tranche — 1/03/2024, 1/10/2024, 1/10/2025, 1/12/2026. Fonte: Art. 139-140 e tabelle retributive CCNL 2024 (confprofessioni.eu, versione completa aprile 2026).",
+      "INFO: MENSILITA': 14 (tredicesima Art. 142 + quattordicesima Art. 143 CCNL 2024).",
+      "INFO: SCATTI DI ANZIANITA': triennali (cadenza 36 mesi), max 8 scatti. Importi cifra fissa da Art. 134 CCNL 2024 vigenti dal 1/10/2011: Q=30, 1=26, 2=23, 3S=22, 3=22, 4S=20, 4=20, 5=20.",
+      "SIMPLIFICATION: ENAC (Elemento Nazionale Allineamento Contrattuale): SIMPLIFICATION — omesso. Previsto dall'Art. 141 CCNL 2024 per livelli 1 (42.35), 2 (102.53) e 3S (110.40), ma applicabile esclusivamente ai lavoratori gia' inquadrati nel CCNL Confedertecnica alla data del 1/07/2004 (per gli assunti dal 1/07/2004 si applicano i minimi tabellari senza ENAC, come esplicitato nella nota alla tabella retributiva). La quasi totalita' dei lavoratori attuali rientra nella categoria 'nuovi assunti'.",
+      "INFO: APPRENDISTATO: tipo percentage da Allegato B Tabella 3 CCNL 2024 (confprofessioni.eu versione completa aprile 2026). 70% mesi 1-12, 85% mesi 13-24, 93% dal mese 25. destination_level='4' (scelta modellistica — il livello IV e' il piu' comune per l'apprendistato professionalizzante). Apprendistato professionalizzante non ammesso per livello V (Art. 30B).",
+      "INFO: INPS: utilizza 2026-terziario.json (TaxSector.TERZIARIO). File gia' presente — nessuna modifica al tax file.",
+      "INFO: CNEL code H442: confermato dall'archivio CNEL 'Studi Professionali — Confprofessioni'. Lavoratori coperti: 317.554 (UNIEMENS 2022)."
+    ]
+  },
   "parameters": {
-    "hourly_divisor": 170,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2024-03-01", "valid_until": null, "value": "170" }
+      ]
+    },
     "additional_months": {
       "periods": [
-        {
-          "valid_from": "2024-02-16",
-          "valid_until": null,
-          "value": "14"
-        }
+        { "valid_from": "2024-02-16", "valid_until": null, "value": "14" }
       ]
     },
     "seniority_increments": {
@@ -48,74 +59,42 @@
       "amount_by_level": {
         "Q": {
           "periods": [
-            {
-              "valid_from": "2024-02-16",
-              "valid_until": null,
-              "value": "30"
-            }
+            { "valid_from": "2024-02-16", "valid_until": null, "value": "30" }
           ]
         },
         "1": {
           "periods": [
-            {
-              "valid_from": "2024-02-16",
-              "valid_until": null,
-              "value": "26"
-            }
+            { "valid_from": "2024-02-16", "valid_until": null, "value": "26" }
           ]
         },
         "2": {
           "periods": [
-            {
-              "valid_from": "2024-02-16",
-              "valid_until": null,
-              "value": "23"
-            }
+            { "valid_from": "2024-02-16", "valid_until": null, "value": "23" }
           ]
         },
         "3S": {
           "periods": [
-            {
-              "valid_from": "2024-02-16",
-              "valid_until": null,
-              "value": "22"
-            }
+            { "valid_from": "2024-02-16", "valid_until": null, "value": "22" }
           ]
         },
         "3": {
           "periods": [
-            {
-              "valid_from": "2024-02-16",
-              "valid_until": null,
-              "value": "22"
-            }
+            { "valid_from": "2024-02-16", "valid_until": null, "value": "22" }
           ]
         },
         "4S": {
           "periods": [
-            {
-              "valid_from": "2024-02-16",
-              "valid_until": null,
-              "value": "20"
-            }
+            { "valid_from": "2024-02-16", "valid_until": null, "value": "20" }
           ]
         },
         "4": {
           "periods": [
-            {
-              "valid_from": "2024-02-16",
-              "valid_until": null,
-              "value": "20"
-            }
+            { "valid_from": "2024-02-16", "valid_until": null, "value": "20" }
           ]
         },
         "5": {
           "periods": [
-            {
-              "valid_from": "2024-02-16",
-              "valid_until": null,
-              "value": "20"
-            }
+            { "valid_from": "2024-02-16", "valid_until": null, "value": "20" }
           ]
         }
       }
@@ -128,26 +107,10 @@
       "description": "5° Livello",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-03-01",
-            "valid_until": "2024-10-01",
-            "value": "1406.48"
-          },
-          {
-            "valid_from": "2024-10-01",
-            "valid_until": "2025-10-01",
-            "value": "1445.63"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-12-01",
-            "value": "1484.78"
-          },
-          {
-            "valid_from": "2026-12-01",
-            "valid_until": null,
-            "value": "1502.19"
-          }
+          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "1406.48" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1445.63" },
+          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "1484.78" },
+          { "valid_from": "2026-12-01", "valid_until": null, "value": "1502.19" }
         ]
       },
       "fixed_allowances": []
@@ -158,26 +121,10 @@
       "description": "4° Livello",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-03-01",
-            "valid_until": "2024-10-01",
-            "value": "1511.28"
-          },
-          {
-            "valid_from": "2024-10-01",
-            "valid_until": "2025-10-01",
-            "value": "1553.35"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-12-01",
-            "value": "1595.42"
-          },
-          {
-            "valid_from": "2026-12-01",
-            "valid_until": null,
-            "value": "1614.12"
-          }
+          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "1511.28" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1553.35" },
+          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "1595.42" },
+          { "valid_from": "2026-12-01", "valid_until": null, "value": "1614.12" }
         ]
       },
       "fixed_allowances": []
@@ -188,26 +135,10 @@
       "description": "4° Livello Super",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-03-01",
-            "valid_until": "2024-10-01",
-            "value": "1567.44"
-          },
-          {
-            "valid_from": "2024-10-01",
-            "valid_until": "2025-10-01",
-            "value": "1611.07"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-12-01",
-            "value": "1654.70"
-          },
-          {
-            "valid_from": "2026-12-01",
-            "valid_until": null,
-            "value": "1674.10"
-          }
+          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "1567.44" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1611.07" },
+          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "1654.70" },
+          { "valid_from": "2026-12-01", "valid_until": null, "value": "1674.10" }
         ]
       },
       "fixed_allowances": []
@@ -218,26 +149,10 @@
       "description": "3° Livello",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-03-01",
-            "valid_until": "2024-10-01",
-            "value": "1616.37"
-          },
-          {
-            "valid_from": "2024-10-01",
-            "valid_until": "2025-10-01",
-            "value": "1661.37"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-12-01",
-            "value": "1706.37"
-          },
-          {
-            "valid_from": "2026-12-01",
-            "valid_until": null,
-            "value": "1726.37"
-          }
+          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "1616.37" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1661.37" },
+          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "1706.37" },
+          { "valid_from": "2026-12-01", "valid_until": null, "value": "1726.37" }
         ]
       },
       "fixed_allowances": []
@@ -248,26 +163,10 @@
       "description": "3° Livello Super",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-03-01",
-            "valid_until": "2024-10-01",
-            "value": "1631.19"
-          },
-          {
-            "valid_from": "2024-10-01",
-            "valid_until": "2025-10-01",
-            "value": "1676.60"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-12-01",
-            "value": "1722.01"
-          },
-          {
-            "valid_from": "2026-12-01",
-            "valid_until": null,
-            "value": "1742.20"
-          }
+          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "1631.19" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1676.60" },
+          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "1722.01" },
+          { "valid_from": "2026-12-01", "valid_until": null, "value": "1742.20" }
         ]
       },
       "fixed_allowances": []
@@ -278,26 +177,10 @@
       "description": "2° Livello",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-03-01",
-            "valid_until": "2024-10-01",
-            "value": "1758.60"
-          },
-          {
-            "valid_from": "2024-10-01",
-            "valid_until": "2025-10-01",
-            "value": "1807.55"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-12-01",
-            "value": "1856.50"
-          },
-          {
-            "valid_from": "2026-12-01",
-            "valid_until": null,
-            "value": "1878.26"
-          }
+          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "1758.60" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1807.55" },
+          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "1856.50" },
+          { "valid_from": "2026-12-01", "valid_until": null, "value": "1878.26" }
         ]
       },
       "fixed_allowances": []
@@ -308,26 +191,10 @@
       "description": "1° Livello",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-03-01",
-            "valid_until": "2024-10-01",
-            "value": "2018.99"
-          },
-          {
-            "valid_from": "2024-10-01",
-            "valid_until": "2025-10-01",
-            "value": "2075.19"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-12-01",
-            "value": "2131.39"
-          },
-          {
-            "valid_from": "2026-12-01",
-            "valid_until": null,
-            "value": "2156.38"
-          }
+          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "2018.99" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "2075.19" },
+          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "2131.39" },
+          { "valid_from": "2026-12-01", "valid_until": null, "value": "2156.38" }
         ]
       },
       "fixed_allowances": []
@@ -338,66 +205,25 @@
       "description": "Quadri",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-03-01",
-            "valid_until": "2024-10-01",
-            "value": "2281.51"
-          },
-          {
-            "valid_from": "2024-10-01",
-            "valid_until": "2025-10-01",
-            "value": "2345.02"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-12-01",
-            "value": "2408.53"
-          },
-          {
-            "valid_from": "2026-12-01",
-            "valid_until": null,
-            "value": "2436.76"
-          }
+          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "2281.51" },
+          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "2345.02" },
+          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "2408.53" },
+          { "valid_from": "2026-12-01", "valid_until": null, "value": "2436.76" }
         ]
       },
       "fixed_allowances": []
     }
   ],
-  "apprenticeship": {
-    "type": "percentage",
-    "destination_level": "4",
-    "periods": [
-      {
-        "months_from": 0,
-        "months_until": 12,
-        "percentage": "0.70"
-      },
-      {
-        "months_from": 12,
-        "months_until": 24,
-        "percentage": "0.85"
-      },
-      {
-        "months_from": 24,
-        "months_until": null,
-        "percentage": "0.93"
-      }
-    ]
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "partial",
-    "layer_3": "out_of_scope",
-    "notes": [
-      "MINIMI CONGLOBATI: la retribuzione minima tabellare include contingenza (fino al 1/05/1992) ed EDR (Accordo Interconfederale 31/07/1992), conglobati per effetto del CCNL 10/12/1992 e riconfermati da Art. 138 CCNL 2024. fixed_allowances vuoto per tutti i livelli.",
-      "DIVISORE ORARIO: 170. Fonte primaria: Art. 45 e Art. 137 CCNL 2024 ('divisore convenzionale orario fissato in 170').",
-      "TRANCHE: quattro tranche — 1/03/2024, 1/10/2024, 1/10/2025, 1/12/2026. Fonte: Art. 139-140 e tabelle retributive CCNL 2024 (confprofessioni.eu, versione completa aprile 2026).",
-      "MENSILITA': 14 (tredicesima Art. 142 + quattordicesima Art. 143 CCNL 2024).",
-      "SCATTI DI ANZIANITA': triennali (cadenza 36 mesi), max 8 scatti. Importi cifra fissa da Art. 134 CCNL 2024 vigenti dal 1/10/2011: Q=30, 1=26, 2=23, 3S=22, 3=22, 4S=20, 4=20, 5=20.",
-      "ENAC (Elemento Nazionale Allineamento Contrattuale): SIMPLIFICATION — omesso. Previsto dall'Art. 141 CCNL 2024 per livelli 1 (42.35), 2 (102.53) e 3S (110.40), ma applicabile esclusivamente ai lavoratori gia' inquadrati nel CCNL Confedertecnica alla data del 1/07/2004 (per gli assunti dal 1/07/2004 si applicano i minimi tabellari senza ENAC, come esplicitato nella nota alla tabella retributiva). La quasi totalita' dei lavoratori attuali rientra nella categoria 'nuovi assunti'.",
-      "APPRENDISTATO: tipo percentage da Allegato B Tabella 3 CCNL 2024 (confprofessioni.eu versione completa aprile 2026). 70% mesi 1-12, 85% mesi 13-24, 93% dal mese 25. destination_level='4' (scelta modellistica — il livello IV e' il piu' comune per l'apprendistato professionalizzante). Apprendistato professionalizzante non ammesso per livello V (Art. 30B).",
-      "INPS: utilizza 2026-terziario.json (TaxSector.TERZIARIO). File gia' presente — nessuna modifica al tax file.",
-      "CNEL code H442: confermato dall'archivio CNEL 'Studi Professionali — Confprofessioni'. Lavoratori coperti: 317.554 (UNIEMENS 2022)."
-    ]
-  }
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "standard",
+      "destination_levels": ["4"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.85" },
+        { "months_from": 24, "months_until": null, "percentage": "0.93" }
+      ]
+    }
+  ]
 }

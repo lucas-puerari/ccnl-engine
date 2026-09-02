@@ -35,14 +35,24 @@
   ],
   "fixed_term_additional_rate": "0.014",
   "inps": {
-    "employee_rate": "0.0919",
+    "employee_tiers": [
+      { "max_employees": null, "rate": "0.0919" }
+    ],
     "employer_tiers": [
       {
         "max_employees": null,
-        "rate": "0.2693"
+        "rate": "0.2693",
+        "rate_by_category": { "impiegato": "0.2471", "quadro": "0.2471" }
       }
     ],
     "ceiling": null
+  },
+  "apprentice": {
+    "employee_rate": "0.0584",
+    "employer_rate": "0.1161",
+    "small_firm_max_employees": 9,
+    "small_firm_employer_rate_months_0_11": "0.0311",
+    "small_firm_employer_rate_months_12_23": "0.0461"
   },
   "tfr": {
     "accrual_divisor": "13.5"
@@ -50,8 +60,9 @@
   "notes": [
     "IRPEF brackets and work_deduction_breakpoints: statutory, sector-agnostic.",
     "INPS datore — SIMPLIFICATION: aliquota 26.93% da kitech.it (dati proxy per artigianato non-edile 2024; circolare INPS specifica non recuperata). Componenti stimati: IVS 23.81% + NASpI 1.61% + CUAF 0.68% + malattia operai ~0.83% = ~26.93%. Nessun CIGO/CIGS per il settore artigiano (art. 3 D.Lgs. 148/2015). FSBA (0.45% datore + 0.15% dipendente) escluso: contributo bilaterale, non INPS. Nessuna fascia per numero dipendenti.",
-    "SIMPLIFICATION: aliquota unica 26.93% modella operai. Impiegati/quadri hanno aliquota inferiore (~24.71% kitech) lungo un asse categoria-lavoratore non rappresentabile nello schema employer_tiers. Il costo datoriale per impiegati/quadri risulta sovrastimato di ~2.2pp.",
-    "INPS dipendente — employee_rate 9.19% (IVS + NASpI). Nessuna addizionale CIGS per dipendente (settore artigianato non ha CIGS).",
-    "fixed_term_additional_rate: NASpI addizionale 1.4% (solo datore) per Art. 2 co. 28 L. 92/2012."
+    "INPS dipendente — employee_tiers: 9.19% (IVS + NASpI) flat. Nessuna addizionale CIGS per dipendente (settore artigianato non ha CIGS).",
+    "fixed_term_additional_rate: NASpI addizionale 1.4% (solo datore) per Art. 2 co. 28 L. 92/2012.",
+    "INPS datore per categoria — rate_by_category: impiegati e quadri 24.71% (kitech.it, stessa fonte proxy dell'aliquota operai 26.93%); operai e livelli senza categoria usano 26.93%.",
+    "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled."
   ]
 }

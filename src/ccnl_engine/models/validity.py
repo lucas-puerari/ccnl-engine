@@ -4,11 +4,13 @@ from datetime import date
 from decimal import Decimal
 from typing import Self
 
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, ConfigDict, model_validator
 
 
 class ValidityPeriod(BaseModel):
     """A single time-bounded value within a TimeSeries."""
+
+    model_config = ConfigDict(extra="forbid")
 
     valid_from: date
     valid_until: date | None
@@ -27,6 +29,8 @@ class ValidityPeriod(BaseModel):
 
 class TimeSeries(BaseModel):
     """Ordered, contiguous, open-ended sequence of ValidityPeriod objects."""
+
+    model_config = ConfigDict(extra="forbid")
 
     periods: list[ValidityPeriod]
 

@@ -1,17 +1,12 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "dmo-federdistribuzione",
     "name": "Distribuzione Moderna Organizzata — Federdistribuzione",
     "cnel_code": "H008",
     "sector": "terziario",
     "tax_sector": "terziario",
-    "signatories": [
-      "Federdistribuzione",
-      "Filcams-CGIL",
-      "Fisascat-CISL",
-      "Uiltucs-UIL"
-    ],
+    "signatories": ["Federdistribuzione", "Filcams-CGIL", "Fisascat-CISL", "Uiltucs-UIL"],
     "sources": [
       {
         "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf",
@@ -26,8 +21,28 @@
       "human_reviewed": true
     }
   },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: Salary tables: 6 tranches from 01/04/2023 through 01/02/2027 per Allegato 11, Testo Unico CCNL DMO 29/09/2025 (Federdistribuzione). 47/48 cells verified arithmetic; L4 01/04/2023 PDF OCR reads '1112.46' but total (1646.68) and contingenza (524.22) prove 1122.46 — consistent with pre-acconto 1092.46 + 30 EUR acconto (Dec 2022 Protocol).",
+      "INFO: Split model confirmed: total / 168 at L1 = 14.905, L4 = 10.605, L7 = 8.309 — all non-integer. Source: Art. 194 (divisore 168 for 40h/week), Allegato 11.",
+      "INFO: Contingenza: frozen values from Allegato 11 column. EDR (lire 20,000 = 10.33 EUR) conglobated into contingenza on 01/01/1995 per Art. 190 — no separate EDR allowance modelled.",
+      "SIMPLIFICATION: Terzo elemento nazionale (Art. 199): EUR 2.07/month (lire 4,000) for workers in provinces without provincial terzi elementi (Art. 198, frozen since 1973). Modelled as 'edr' fixed allowance for all workers. # SIMPLIFICATION: some provinces have higher provincial elements (second-level bargaining, out of scope).",
+      "INFO: Indennità di funzione Quadri (Art. 113): EUR 260.76/month for 14 months (cumulative increments: 51.65+77.47+51.65+70.00+10.00=260.77; 0.01 rounding from lire). Allegato 11 shows 260.76.",
+      "INFO: Indennità di funzione 7° livello: EUR 5.16/month (lire 10,000) in 'altri elementi' column of Allegato 11 for Level VII. Same element and amount as Commercio Confcommercio 'ind_funzione' for livello 7.",
+      "INFO: Seniority: 10 scatti triennali (Art. 188), amounts from Testo Unico Art. 188 table. valid_from set to 2024-04-23 (renewal date).",
+      "SIMPLIFICATION: Apprenticeship: under-classification per Art. 46 + Art. 57. Representative destination Level IV (36 months): 0–18 months at Level VI, 18–36 months at Level V. Art. 55 restricts apprenticeship to levels II–VI only. # SIMPLIFICATION: Level VI destination (24 months, 2 levels below = VIII which does not exist) is unmodelled. Levels I, Q, and VII are excluded from apprenticeship per Art. 55.",
+      "INFO: Additional months: 14 (tredicesima Art. 204 + quattordicesima Art. 205)."
+    ]
+  },
   "parameters": {
-    "hourly_divisor": 168,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2023-04-01", "valid_until": null, "value": "168" }
+      ]
+    },
     "additional_months": {
       "periods": [
         { "valid_from": "2023-04-01", "valid_until": null, "value": "14" }
@@ -37,14 +52,46 @@
       "cadence_months": 36,
       "maximum_count": 10,
       "amount_by_level": {
-        "Q":   { "periods": [{ "valid_from": "2024-04-23", "valid_until": null, "value": "25.46" }] },
-        "I":   { "periods": [{ "valid_from": "2024-04-23", "valid_until": null, "value": "24.84" }] },
-        "II":  { "periods": [{ "valid_from": "2024-04-23", "valid_until": null, "value": "22.83" }] },
-        "III": { "periods": [{ "valid_from": "2024-04-23", "valid_until": null, "value": "21.95" }] },
-        "IV":  { "periods": [{ "valid_from": "2024-04-23", "valid_until": null, "value": "20.66" }] },
-        "V":   { "periods": [{ "valid_from": "2024-04-23", "valid_until": null, "value": "20.30" }] },
-        "VI":  { "periods": [{ "valid_from": "2024-04-23", "valid_until": null, "value": "19.73" }] },
-        "VII": { "periods": [{ "valid_from": "2024-04-23", "valid_until": null, "value": "19.47" }] }
+        "Q": {
+          "periods": [
+            { "valid_from": "2024-04-23", "valid_until": null, "value": "25.46" }
+          ]
+        },
+        "I": {
+          "periods": [
+            { "valid_from": "2024-04-23", "valid_until": null, "value": "24.84" }
+          ]
+        },
+        "II": {
+          "periods": [
+            { "valid_from": "2024-04-23", "valid_until": null, "value": "22.83" }
+          ]
+        },
+        "III": {
+          "periods": [
+            { "valid_from": "2024-04-23", "valid_until": null, "value": "21.95" }
+          ]
+        },
+        "IV": {
+          "periods": [
+            { "valid_from": "2024-04-23", "valid_until": null, "value": "20.66" }
+          ]
+        },
+        "V": {
+          "periods": [
+            { "valid_from": "2024-04-23", "valid_until": null, "value": "20.30" }
+          ]
+        },
+        "VI": {
+          "periods": [
+            { "valid_from": "2024-04-23", "valid_until": null, "value": "19.73" }
+          ]
+        },
+        "VII": {
+          "periods": [
+            { "valid_from": "2024-04-23", "valid_until": null, "value": "19.47" }
+          ]
+        }
       }
     }
   },
@@ -60,24 +107,36 @@
           { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "848.91" },
           { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "873.22" },
           { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "897.53" },
-          { "valid_from": "2027-02-01", "valid_until": null,         "value": "925.31" }
+          { "valid_from": "2027-02-01", "valid_until": null, "value": "925.31" }
         ]
       },
       "fixed_allowances": [
         {
           "code": "contingenza",
           "description": "Indennità di contingenza (frozen)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "517.51" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "517.51" }
+            ]
+          }
         },
         {
           "code": "terzo_elemento_nazionale",
           "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+            ]
+          }
         },
         {
           "code": "ind_funzione",
           "description": "Indennità di funzione 7° livello",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "5.16" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "5.16" }
+            ]
+          }
         }
       ]
     },
@@ -92,19 +151,27 @@
           { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "991.55" },
           { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1019.94" },
           { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "1048.33" },
-          { "valid_from": "2027-02-01", "valid_until": null,         "value": "1080.77" }
+          { "valid_from": "2027-02-01", "valid_until": null, "value": "1080.77" }
         ]
       },
       "fixed_allowances": [
         {
           "code": "contingenza",
           "description": "Indennità di contingenza (frozen)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "519.76" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "519.76" }
+            ]
+          }
         },
         {
           "code": "terzo_elemento_nazionale",
           "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+            ]
+          }
         }
       ]
     },
@@ -119,19 +186,27 @@
           { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "1104.45" },
           { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1136.07" },
           { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "1167.69" },
-          { "valid_from": "2027-02-01", "valid_until": null,         "value": "1203.83" }
+          { "valid_from": "2027-02-01", "valid_until": null, "value": "1203.83" }
         ]
       },
       "fixed_allowances": [
         {
           "code": "contingenza",
           "description": "Indennità di contingenza (frozen)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "521.94" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "521.94" }
+            ]
+          }
         },
         {
           "code": "terzo_elemento_nazionale",
           "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+            ]
+          }
         }
       ]
     },
@@ -146,19 +221,27 @@
           { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "1222.46" },
           { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1257.46" },
           { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "1292.46" },
-          { "valid_from": "2027-02-01", "valid_until": null,         "value": "1332.46" }
+          { "valid_from": "2027-02-01", "valid_until": null, "value": "1332.46" }
         ]
       },
       "fixed_allowances": [
         {
           "code": "contingenza",
           "description": "Indennità di contingenza (frozen)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "524.22" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "524.22" }
+            ]
+          }
         },
         {
           "code": "terzo_elemento_nazionale",
           "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+            ]
+          }
         }
       ]
     },
@@ -173,19 +256,27 @@
           { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "1413.47" },
           { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1453.94" },
           { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "1494.41" },
-          { "valid_from": "2027-02-01", "valid_until": null,         "value": "1540.66" }
+          { "valid_from": "2027-02-01", "valid_until": null, "value": "1540.66" }
         ]
       },
       "fixed_allowances": [
         {
           "code": "contingenza",
           "description": "Indennità di contingenza (frozen)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "527.90" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "527.90" }
+            ]
+          }
         },
         {
           "code": "terzo_elemento_nazionale",
           "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+            ]
+          }
         }
       ]
     },
@@ -200,19 +291,27 @@
           { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "1653.69" },
           { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1701.04" },
           { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "1748.39" },
-          { "valid_from": "2027-02-01", "valid_until": null,         "value": "1802.50" }
+          { "valid_from": "2027-02-01", "valid_until": null, "value": "1802.50" }
         ]
       },
       "fixed_allowances": [
         {
           "code": "contingenza",
           "description": "Indennità di contingenza (frozen)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "532.54" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "532.54" }
+            ]
+          }
         },
         {
           "code": "terzo_elemento_nazionale",
           "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+            ]
+          }
         }
       ]
     },
@@ -227,19 +326,27 @@
           { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "1911.80" },
           { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1966.54" },
           { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "2021.28" },
-          { "valid_from": "2027-02-01", "valid_until": null,         "value": "2083.84" }
+          { "valid_from": "2027-02-01", "valid_until": null, "value": "2083.84" }
         ]
       },
       "fixed_allowances": [
         {
           "code": "contingenza",
           "description": "Indennità di contingenza (frozen)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "537.52" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "537.52" }
+            ]
+          }
         },
         {
           "code": "terzo_elemento_nazionale",
           "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+            ]
+          }
         }
       ]
     },
@@ -254,50 +361,49 @@
           { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "2122.33" },
           { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "2183.09" },
           { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "2243.85" },
-          { "valid_from": "2027-02-01", "valid_until": null,         "value": "2313.29" }
+          { "valid_from": "2027-02-01", "valid_until": null, "value": "2313.29" }
         ]
       },
       "fixed_allowances": [
         {
           "code": "contingenza",
           "description": "Indennità di contingenza (frozen)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "540.37" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "540.37" }
+            ]
+          }
         },
         {
           "code": "terzo_elemento_nazionale",
           "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+            ]
+          }
         },
         {
           "code": "ind_funzione",
           "description": "Indennità di funzione Quadri (Art. 113)",
-          "monthly": { "periods": [{ "valid_from": "2023-04-01", "valid_until": null, "value": "260.76" }] }
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-04-01", "valid_until": null, "value": "260.76" }
+            ]
+          }
         }
       ]
     }
   ],
-  "apprenticeship": {
-    "type": "under_classification",
-    "destination_level": "IV",
-    "periods": [
-      { "months_from": 0,  "months_until": 18, "pay_level_code": "VI" },
-      { "months_from": 18, "months_until": null, "pay_level_code": "V" }
-    ]
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "partial",
-    "layer_3": "out_of_scope",
-    "notes": [
-      "Salary tables: 6 tranches from 01/04/2023 through 01/02/2027 per Allegato 11, Testo Unico CCNL DMO 29/09/2025 (Federdistribuzione). 47/48 cells verified arithmetic; L4 01/04/2023 PDF OCR reads '1112.46' but total (1646.68) and contingenza (524.22) prove 1122.46 — consistent with pre-acconto 1092.46 + 30 EUR acconto (Dec 2022 Protocol).",
-      "Split model confirmed: total / 168 at L1 = 14.905, L4 = 10.605, L7 = 8.309 — all non-integer. Source: Art. 194 (divisore 168 for 40h/week), Allegato 11.",
-      "Contingenza: frozen values from Allegato 11 column. EDR (lire 20,000 = 10.33 EUR) conglobated into contingenza on 01/01/1995 per Art. 190 — no separate EDR allowance modelled.",
-      "Terzo elemento nazionale (Art. 199): EUR 2.07/month (lire 4,000) for workers in provinces without provincial terzi elementi (Art. 198, frozen since 1973). Modelled as 'edr' fixed allowance for all workers. # SIMPLIFICATION: some provinces have higher provincial elements (second-level bargaining, out of scope).",
-      "Indennità di funzione Quadri (Art. 113): EUR 260.76/month for 14 months (cumulative increments: 51.65+77.47+51.65+70.00+10.00=260.77; 0.01 rounding from lire). Allegato 11 shows 260.76.",
-      "Indennità di funzione 7° livello: EUR 5.16/month (lire 10,000) in 'altri elementi' column of Allegato 11 for Level VII. Same element and amount as Commercio Confcommercio 'ind_funzione' for livello 7.",
-      "Seniority: 10 scatti triennali (Art. 188), amounts from Testo Unico Art. 188 table. valid_from set to 2024-04-23 (renewal date).",
-      "Apprenticeship: under-classification per Art. 46 + Art. 57. Representative destination Level IV (36 months): 0–18 months at Level VI, 18–36 months at Level V. Art. 55 restricts apprenticeship to levels II–VI only. # SIMPLIFICATION: Level VI destination (24 months, 2 levels below = VIII which does not exist) is unmodelled. Levels I, Q, and VII are excluded from apprenticeship per Art. 55.",
-      "Additional months: 14 (tredicesima Art. 204 + quattordicesima Art. 205)."
-    ]
-  }
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "standard",
+      "destination_levels": ["IV"],
+      "periods": [
+        { "months_from": 0, "months_until": 18, "levels_below": 2 },
+        { "months_from": 18, "months_until": null, "levels_below": 1 }
+      ]
+    }
+  ]
 }

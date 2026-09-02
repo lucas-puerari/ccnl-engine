@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "turismo-confcommercio",
     "name": "CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)",
@@ -33,8 +33,28 @@
       "human_reviewed": true
     }
   },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: SUBSETTORE: tabelle salariali dal rinnovo alberghi/turismo firmato il 5 giugno 2024 (CCNL H052 parte speciale alberghi). Il CCNL H052 comprende anche il subsettore pubblici esercizi/FIPE (rinnovo marzo 2025, tabelle leggermente diverse) non modellato in questo file.",
+      "INFO: MINIMI CONGLOBATI: i valori in base_salary sono i minimi tabellari conglobati mensili (paga base + contingenza inclusi), come pubblicati da lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027. fixed_allowances è vuoto per tutti i livelli. Verifica: livello 7 novembre 2027 = 1458.42 / 172 = 8.48 €/ora (coincide con tabella oraria pubblicata).",
+      "INFO: INDENNITÀ DI FUNZIONE QA/QB: alcune fonti (pubblici esercizi) mostrano un'indennità di funzione separata (QA=75€, QB=70€). Per il subsettore alberghi i valori nella tabella conglobata sembrano già includere questa componente. Se verifiche su buste paga reali mostrano uno scostamento, aggiungere fixed_allowances QA=75€ e QB=70€.",
+      "INFO: TRANCHE: luglio 2024, giugno 2025, maggio 2026, aprile 2027, novembre 2027. Nessuna tranche previgente modellata (limite inferiore: 2024-07-01).",
+      "INFO: SCATTI DI ANZIANITÀ: 6 scatti quadriennali (ogni 48 mesi). Importi da lexplain.it/scatti-di-anzianita-ccnl-turismo-ristorazione-e-pubblici-esercizi. Gli scatti sono erogati per 14 mensilità (incluse 13a e 14a) — la componente del gross_annual è già catturata dal moltiplicatore additional_months=14 nel motore.",
+      "INFO: APPRENDISTATO: tipo percentage (rinnovo 2024). Retribuzione: 80% per i primi 12 mesi, 85% mesi 13-24, 90% mesi 25-36 (fonte: albergoatenericcione.it, confermato da ricerche sul rinnovo 2024). Durata: 36 mesi per livelli 2°-5° e 6S; 24 mesi per 6°. Il JSON modella il caso standard con destination_level=5° (cameriere/cuoco, 36 mesi). L'under-classification (2 livelli sotto / 1 livello sotto) si riferiva al CCNL previgente prima del rinnovo 2024.",
+      "INFO: MENSILITÀ: 14 (tredicesima a giugno, quattordicesima a dicembre). Confermato da CCNL e dalla nota 'importi erogati per 14 mensilità' per gli scatti.",
+      "INFO: DIVISORE ORARIO: 172 ore/mese (40 h/settimana × 52/12). Verificato per retrocomputo: 1458.42 / 172 = 8.478 ≈ 8.48 €/ora (livello 7, novembre 2027 — coincide con tabella oraria lexplain).",
+      "INFO: INPS: utilizza 2026-terziario.json (stesso tax_sector di commercio-confcommercio)."
+    ]
+  },
   "parameters": {
-    "hourly_divisor": 172,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2024-07-01", "valid_until": null, "value": "172" }
+      ]
+    },
     "additional_months": {
       "periods": [
         { "valid_from": "2024-07-01", "valid_until": null, "value": "14" }
@@ -108,7 +128,7 @@
           { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1383.45" },
           { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1412.60" },
           { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1441.76" },
-          { "valid_from": "2027-11-01", "valid_until": null,         "value": "1458.42" }
+          { "valid_from": "2027-11-01", "valid_until": null, "value": "1458.42" }
         ]
       },
       "fixed_allowances": []
@@ -123,7 +143,7 @@
           { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1476.34" },
           { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1507.45" },
           { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1538.57" },
-          { "valid_from": "2027-11-01", "valid_until": null,         "value": "1556.35" }
+          { "valid_from": "2027-11-01", "valid_until": null, "value": "1556.35" }
         ]
       },
       "fixed_allowances": []
@@ -138,7 +158,7 @@
           { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1497.57" },
           { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1529.13" },
           { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1560.69" },
-          { "valid_from": "2027-11-01", "valid_until": null,         "value": "1578.72" }
+          { "valid_from": "2027-11-01", "valid_until": null, "value": "1578.72" }
         ]
       },
       "fixed_allowances": []
@@ -153,7 +173,7 @@
           { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1557.44" },
           { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1590.27" },
           { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1623.09" },
-          { "valid_from": "2027-11-01", "valid_until": null,         "value": "1641.85" }
+          { "valid_from": "2027-11-01", "valid_until": null, "value": "1641.85" }
         ]
       },
       "fixed_allowances": []
@@ -168,7 +188,7 @@
           { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1660.69" },
           { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1695.69" },
           { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1730.69" },
-          { "valid_from": "2027-11-01", "valid_until": null,         "value": "1750.69" }
+          { "valid_from": "2027-11-01", "valid_until": null, "value": "1750.69" }
         ]
       },
       "fixed_allowances": []
@@ -183,7 +203,7 @@
           { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1759.94" },
           { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1797.04" },
           { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1834.13" },
-          { "valid_from": "2027-11-01", "valid_until": null,         "value": "1855.32" }
+          { "valid_from": "2027-11-01", "valid_until": null, "value": "1855.32" }
         ]
       },
       "fixed_allowances": []
@@ -198,7 +218,7 @@
           { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1866.07" },
           { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1905.40" },
           { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1944.73" },
-          { "valid_from": "2027-11-01", "valid_until": null,         "value": "1967.20" }
+          { "valid_from": "2027-11-01", "valid_until": null, "value": "1967.20" }
         ]
       },
       "fixed_allowances": []
@@ -213,7 +233,7 @@
           { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "2041.68" },
           { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "2084.71" },
           { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "2127.73" },
-          { "valid_from": "2027-11-01", "valid_until": null,         "value": "2152.32" }
+          { "valid_from": "2027-11-01", "valid_until": null, "value": "2152.32" }
         ]
       },
       "fixed_allowances": []
@@ -228,7 +248,7 @@
           { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "2191.35" },
           { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "2237.53" },
           { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "2283.72" },
-          { "valid_from": "2027-11-01", "valid_until": null,         "value": "2310.11" }
+          { "valid_from": "2027-11-01", "valid_until": null, "value": "2310.11" }
         ]
       },
       "fixed_allowances": []
@@ -243,35 +263,22 @@
           { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "2366.94" },
           { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "2416.82" },
           { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "2466.71" },
-          { "valid_from": "2027-11-01", "valid_until": null,         "value": "2495.22" }
+          { "valid_from": "2027-11-01", "valid_until": null, "value": "2495.22" }
         ]
       },
       "fixed_allowances": []
     }
   ],
-  "apprenticeship": {
-    "type": "percentage",
-    "destination_level": "5",
-    "periods": [
-      { "months_from": 0,  "months_until": 12, "percentage": "0.80" },
-      { "months_from": 12, "months_until": 24, "percentage": "0.85" },
-      { "months_from": 24, "months_until": null, "percentage": "0.90" }
-    ]
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "partial",
-    "layer_3": "out_of_scope",
-    "notes": [
-      "SUBSETTORE: tabelle salariali dal rinnovo alberghi/turismo firmato il 5 giugno 2024 (CCNL H052 parte speciale alberghi). Il CCNL H052 comprende anche il subsettore pubblici esercizi/FIPE (rinnovo marzo 2025, tabelle leggermente diverse) non modellato in questo file.",
-      "MINIMI CONGLOBATI: i valori in base_salary sono i minimi tabellari conglobati mensili (paga base + contingenza inclusi), come pubblicati da lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027. fixed_allowances è vuoto per tutti i livelli. Verifica: livello 7 novembre 2027 = 1458.42 / 172 = 8.48 €/ora (coincide con tabella oraria pubblicata).",
-      "INDENNITÀ DI FUNZIONE QA/QB: alcune fonti (pubblici esercizi) mostrano un'indennità di funzione separata (QA=75€, QB=70€). Per il subsettore alberghi i valori nella tabella conglobata sembrano già includere questa componente. Se verifiche su buste paga reali mostrano uno scostamento, aggiungere fixed_allowances QA=75€ e QB=70€.",
-      "TRANCHE: luglio 2024, giugno 2025, maggio 2026, aprile 2027, novembre 2027. Nessuna tranche previgente modellata (limite inferiore: 2024-07-01).",
-      "SCATTI DI ANZIANITÀ: 6 scatti quadriennali (ogni 48 mesi). Importi da lexplain.it/scatti-di-anzianita-ccnl-turismo-ristorazione-e-pubblici-esercizi. Gli scatti sono erogati per 14 mensilità (incluse 13a e 14a) — la componente del gross_annual è già catturata dal moltiplicatore additional_months=14 nel motore.",
-      "APPRENDISTATO: tipo percentage (rinnovo 2024). Retribuzione: 80% per i primi 12 mesi, 85% mesi 13-24, 90% mesi 25-36 (fonte: albergoatenericcione.it, confermato da ricerche sul rinnovo 2024). Durata: 36 mesi per livelli 2°-5° e 6S; 24 mesi per 6°. Il JSON modella il caso standard con destination_level=5° (cameriere/cuoco, 36 mesi). L'under-classification (2 livelli sotto / 1 livello sotto) si riferiva al CCNL previgente prima del rinnovo 2024.",
-      "MENSILITÀ: 14 (tredicesima a giugno, quattordicesima a dicembre). Confermato da CCNL e dalla nota 'importi erogati per 14 mensilità' per gli scatti.",
-      "DIVISORE ORARIO: 172 ore/mese (40 h/settimana × 52/12). Verificato per retrocomputo: 1458.42 / 172 = 8.478 ≈ 8.48 €/ora (livello 7, novembre 2027 — coincide con tabella oraria lexplain).",
-      "INPS: utilizza 2026-terziario.json (stesso tax_sector di commercio-confcommercio)."
-    ]
-  }
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "standard",
+      "destination_levels": ["5"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.80" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.85" },
+        { "months_from": 24, "months_until": null, "percentage": "0.90" }
+      ]
+    }
+  ]
 }

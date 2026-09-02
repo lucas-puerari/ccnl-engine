@@ -1,17 +1,12 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "metalmeccanico-confapi",
     "name": "CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)",
     "cnel_code": "C018",
     "sector": "metalmeccanico",
     "tax_sector": "industria",
-    "signatories": [
-      "Unionmeccanica-Confapi",
-      "FIM-CISL",
-      "FIOM-CGIL",
-      "UILM-UIL"
-    ],
+    "signatories": ["Unionmeccanica-Confapi", "FIM-CISL", "FIOM-CGIL", "UILM-UIL"],
     "sources": [
       {
         "url": "https://www.studiotuscano.it/news/nuovi-minimi-retributivi-per-il-ccnl-metalmeccanica-piccola-industria-confapi",
@@ -41,8 +36,28 @@
       "human_reviewed": true
     }
   },
+  "coverage": {
+    "layer_1": "partial",
+    "layer_2": "partial",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: MINIMI CONGLOBATI: i valori in base_salary sono i 'minimi tabellari conglobati' Confapi PMI, che incorporano paga base, contingenza e terzo elemento in un'unica cifra (ilccnl.it mostra contingenza=0 e terzo elemento=0). fixed_allowances è vuoto per tutti i livelli.",
+      "INFO: TRANCHE MODELLATE: giugno 2024 (fonte: studiotuscano.it — tabelle Confapi giugno 2024), giugno 2025 (fonte: studiomorettistp.it — verbale FIM-CISL 19/06/2025), settembre 2025 (derivata per riparametrazione, v. nota sotto), giugno 2026 (fonte: leggeinchiaro.it, tabelle Unionmeccanica).",
+      "INFO: TRANCHE SETTEMBRE 2025 — RIPARAMETRAZIONE: l'accordo del 24 luglio 2025 prevede +22,10 € al 5° livello dal 1° settembre 2025. I valori per gli altri livelli sono calcolati con la formula deterministica prevista dal CCNL ('riparametrazione degli altri livelli contrattuali'): aumento_livello = round(22,10 × (minimo_livello_giu25 / 2173,76), 2). La stessa formula è verificata sulle tranches di giugno 2025 (risultati concordanti al centesimo con il verbale FIM-CISL). Verificare la tabella ufficiale da Unionmeccanica o FIM-CISL per conferma; possibile scostamento di ±0,01 € su alcuni livelli per arrotondamento.",
+      "INFO: TRANCHE PRE-GIUGNO 2024 NON MODELLATE: il CCNL è in vigore dal 26 maggio 2021. Tranches 2021-2024 non modellate.",
+      "INFO: SCATTI DI ANZIANITÀ: importi verificati su Art. 41 del testo consolidato CCNL 26/05/2021 (fonte: www.htdi.it/CCNL%20Consolidato%20del%2026-05-2021.pdf). Tabella completa: 1a=18,49 2a=21,59 3a=25,05 4a=26,75 5a=29,64 6a=32,43 7a=36,41 8a=40,95 9a=45,96 (in vigore dal 1° gennaio 2001). Cadenza 24 mesi, massimo 5 scatti.",
+      "INFO: APPRENDISTATO: modello under-classification da Art. 10 testo consolidato CCNL 26/05/2021. Inquadramento di ingresso inferiore di 2 livelli rispetto al livello di destinazione (1° periodo, 0-12 mesi), poi inferiore di 1 livello (2° periodo, 12-24 mesi), poi paga del livello di destinazione (3° periodo, 24+ mesi). Il JSON modella il caso standard con livello di destinazione 5° (contratto 36 mesi). Il livello di destinazione può variare da 3° a 9°: aggiornare pay_level_code di conseguenza per contratti individuali con diverso livello di arrivo.",
+      "INFO: DIVISORE ORARIO: 173 ore/mese (40 h/settimana × 52/12, standard industria — confermato da Art. 10 CCNL per calcolo retribuzione oraria apprendisti).",
+      "INFO: MENSILITÀ: 13 (tredicesima). La quattordicesima non è prevista dal CCNL Confapi PMI.",
+      "INFO: INPS: utilizza 2026-industria.json. Aliquote industria standard; verificare se Confapi PMI prevede contribuzioni differenziate rispetto a Federmeccanica per CIG/FIS."
+    ]
+  },
   "parameters": {
-    "hourly_divisor": 173,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2024-06-01", "valid_until": null, "value": "173" }
+      ]
+    },
     "additional_months": {
       "periods": [
         { "valid_from": "2021-06-01", "valid_until": null, "value": "13" }
@@ -110,7 +125,7 @@
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1566.89" },
           { "valid_from": "2025-06-01", "valid_until": "2025-09-01", "value": "1587.26" },
           { "valid_from": "2025-09-01", "valid_until": "2026-06-01", "value": "1603.40" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "1639.96" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "1639.96" }
         ]
       },
       "fixed_allowances": []
@@ -124,7 +139,7 @@
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1730.47" },
           { "valid_from": "2025-06-01", "valid_until": "2025-09-01", "value": "1752.96" },
           { "valid_from": "2025-09-01", "valid_until": "2026-06-01", "value": "1770.78" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "1811.11" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "1811.11" }
         ]
       },
       "fixed_allowances": []
@@ -138,7 +153,7 @@
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1920.00" },
           { "valid_from": "2025-06-01", "valid_until": "2025-09-01", "value": "1944.96" },
           { "valid_from": "2025-09-01", "valid_until": "2026-06-01", "value": "1964.73" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2009.48" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2009.48" }
         ]
       },
       "fixed_allowances": []
@@ -152,7 +167,7 @@
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2003.23" },
           { "valid_from": "2025-06-01", "valid_until": "2025-09-01", "value": "2029.28" },
           { "valid_from": "2025-09-01", "valid_until": "2026-06-01", "value": "2049.91" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2096.58" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2096.58" }
         ]
       },
       "fixed_allowances": []
@@ -166,7 +181,7 @@
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2145.87" },
           { "valid_from": "2025-06-01", "valid_until": "2025-09-01", "value": "2173.76" },
           { "valid_from": "2025-09-01", "valid_until": "2026-06-01", "value": "2195.86" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2245.87" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2245.87" }
         ]
       },
       "fixed_allowances": []
@@ -180,7 +195,7 @@
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2300.75" },
           { "valid_from": "2025-06-01", "valid_until": "2025-09-01", "value": "2330.66" },
           { "valid_from": "2025-09-01", "valid_until": "2026-06-01", "value": "2354.35" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2407.97" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2407.97" }
         ]
       },
       "fixed_allowances": []
@@ -194,7 +209,7 @@
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2468.33" },
           { "valid_from": "2025-06-01", "valid_until": "2025-09-01", "value": "2500.42" },
           { "valid_from": "2025-09-01", "valid_until": "2026-06-01", "value": "2525.84" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2583.36" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2583.36" }
         ]
       },
       "fixed_allowances": []
@@ -208,7 +223,7 @@
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2684.27" },
           { "valid_from": "2025-06-01", "valid_until": "2025-09-01", "value": "2719.17" },
           { "valid_from": "2025-09-01", "valid_until": "2026-06-01", "value": "2746.82" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "2809.37" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2809.37" }
         ]
       },
       "fixed_allowances": []
@@ -222,35 +237,22 @@
           { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2985.18" },
           { "valid_from": "2025-06-01", "valid_until": "2025-09-01", "value": "3023.98" },
           { "valid_from": "2025-09-01", "valid_until": "2026-06-01", "value": "3054.72" },
-          { "valid_from": "2026-06-01", "valid_until": null,         "value": "3124.30" }
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "3124.30" }
         ]
       },
       "fixed_allowances": []
     }
   ],
-  "apprenticeship": {
-    "type": "under_classification",
-    "destination_level": "5",
-    "periods": [
-      { "months_from": 0,  "months_until": 12, "pay_level_code": "3" },
-      { "months_from": 12, "months_until": 24, "pay_level_code": "4" },
-      { "months_from": 24, "months_until": null, "pay_level_code": "5" }
-    ]
-  },
-  "coverage": {
-    "layer_1": "partial",
-    "layer_2": "partial",
-    "layer_3": "out_of_scope",
-    "notes": [
-      "MINIMI CONGLOBATI: i valori in base_salary sono i 'minimi tabellari conglobati' Confapi PMI, che incorporano paga base, contingenza e terzo elemento in un'unica cifra (ilccnl.it mostra contingenza=0 e terzo elemento=0). fixed_allowances è vuoto per tutti i livelli.",
-      "TRANCHE MODELLATE: giugno 2024 (fonte: studiotuscano.it — tabelle Confapi giugno 2024), giugno 2025 (fonte: studiomorettistp.it — verbale FIM-CISL 19/06/2025), settembre 2025 (derivata per riparametrazione, v. nota sotto), giugno 2026 (fonte: leggeinchiaro.it, tabelle Unionmeccanica).",
-      "TRANCHE SETTEMBRE 2025 — RIPARAMETRAZIONE: l'accordo del 24 luglio 2025 prevede +22,10 € al 5° livello dal 1° settembre 2025. I valori per gli altri livelli sono calcolati con la formula deterministica prevista dal CCNL ('riparametrazione degli altri livelli contrattuali'): aumento_livello = round(22,10 × (minimo_livello_giu25 / 2173,76), 2). La stessa formula è verificata sulle tranches di giugno 2025 (risultati concordanti al centesimo con il verbale FIM-CISL). Verificare la tabella ufficiale da Unionmeccanica o FIM-CISL per conferma; possibile scostamento di ±0,01 € su alcuni livelli per arrotondamento.",
-      "TRANCHE PRE-GIUGNO 2024 NON MODELLATE: il CCNL è in vigore dal 26 maggio 2021. Tranches 2021-2024 non modellate.",
-      "SCATTI DI ANZIANITÀ: importi verificati su Art. 41 del testo consolidato CCNL 26/05/2021 (fonte: www.htdi.it/CCNL%20Consolidato%20del%2026-05-2021.pdf). Tabella completa: 1a=18,49 2a=21,59 3a=25,05 4a=26,75 5a=29,64 6a=32,43 7a=36,41 8a=40,95 9a=45,96 (in vigore dal 1° gennaio 2001). Cadenza 24 mesi, massimo 5 scatti.",
-      "APPRENDISTATO: modello under-classification da Art. 10 testo consolidato CCNL 26/05/2021. Inquadramento di ingresso inferiore di 2 livelli rispetto al livello di destinazione (1° periodo, 0-12 mesi), poi inferiore di 1 livello (2° periodo, 12-24 mesi), poi paga del livello di destinazione (3° periodo, 24+ mesi). Il JSON modella il caso standard con livello di destinazione 5° (contratto 36 mesi). Il livello di destinazione può variare da 3° a 9°: aggiornare pay_level_code di conseguenza per contratti individuali con diverso livello di arrivo.",
-      "DIVISORE ORARIO: 173 ore/mese (40 h/settimana × 52/12, standard industria — confermato da Art. 10 CCNL per calcolo retribuzione oraria apprendisti).",
-      "MENSILITÀ: 13 (tredicesima). La quattordicesima non è prevista dal CCNL Confapi PMI.",
-      "INPS: utilizza 2026-industria.json. Aliquote industria standard; verificare se Confapi PMI prevede contribuzioni differenziate rispetto a Federmeccanica per CIG/FIS."
-    ]
-  }
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "standard",
+      "destination_levels": ["5"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 2 },
+        { "months_from": 12, "months_until": 24, "levels_below": 1 },
+        { "months_from": 24, "months_until": null, "levels_below": 0 }
+      ]
+    }
+  ]
 }

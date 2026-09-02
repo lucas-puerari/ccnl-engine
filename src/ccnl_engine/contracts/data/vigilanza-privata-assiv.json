@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "vigilanza-privata-assiv",
     "name": "CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)",
@@ -47,8 +47,29 @@
       "human_reviewed": true
     }
   },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "SIMPLIFICATION: SCOPE: GPG section only (Guardie Particolari Giurate, livelli Q e 1-6). Servizi Fiduciari/Sicurezza section (livelli A-E, 9 tranches starting 01/08/2022) is out of scope. SIMPLIFICATION: the full contract covers both sections; only the GPG section is modelled here.",
+      "INFO: CNEL CODE: HV40 confirmed from primary source: univigilanza.it (UNIV is a signatory employer association), article titled 'Codice Alfanumerico Unico dei CCNL' — 'L'attuale codice di riferimento per il settore vigilanza privata è il HV40.'",
+      "INFO: SALARY MODEL: conglobated (paga base tabellare conglobata). Sources: (1) 2024 integrative accord salary table header reads 'Paga Conglobata' explicitly; (2) Art. 112 base CCNL 2013: 'stipendio o salario unico nazionale (paga base tabellare conglobata).' Back-calculation: 4° livello 01/06/2023 = 1328.88 / 173 = 7.68 EUR/h; 1° livello = 1772.60 / 173 = 10.25 EUR/h; Q = 2049.03 / 173 = 11.84 EUR/h. Non-integer results confirm conglobated total (not an integer-multiple hourly rate), consistent with historical accumulation of contingenza increments. fixed_allowances=[] for all levels.",
+      "INFO: SALARY TRANCHES: 6 tranches modelled (01/06/2023 → 01/12/2026) from the 2024 integrative accord 'Tabelle Retributive' (PDF, 2 pages). A prior 01/03/2016 historical column is also present but predates current renewal scope and is not modelled. Source: 2024 integrative accord signed by all 9 signatories.",
+      "INFO: LEVEL ORDERING: CCNL numbering is counter-intuitive — level '6' is the entry level (lowest salary) and 'Q' (Quadro) is the highest. order=1 corresponds to level 6 (lowest), order=7 to level Q (highest). Salary strictly monotone across all 6 tranches: verified.",
+      "INFO: HOURLY DIVISOR: 173. Source: Art. 115 base CCNL 2013 — 'dividendo convenzionalmente la retribuzione stessa per 173.' Consistent with 40h/week standard (Art. 71, base CCNL 2013).",
+      "INFO: ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima). Source: Art. 117 base CCNL 2013. Confirmed applicable to part-time workers too (Art. 64, base CCNL 2013).",
+      "SIMPLIFICATION: SENIORITY: triennale (36 months), max 6 scatti. Per-level amounts from Art. 111 base CCNL 2013 (primary source), effective 01/02/2013: Q=31.30, 1°=26.12, 2°=23.83, 3°=22.46, 4°=21.13, 5°=20.52, 6°=19.66 EUR. SIMPLIFICATION: the 2023 renewal accord (30/05/2023, 3 pages) covers only salary tranches and una tantum; no seniority amount update found. The 2024 integrative accord covers salary tables only. 2013 amounts assumed current. The 2023 accord also states 'il periodo di permanenza nei Livelli VI e V dal 1 giugno 2023 passa dagli attuali 24 mesi a 18 mesi' — this refers to inter-level permanence for classificatory progression, NOT seniority cadence.",
+      "INFO: APPRENTICESHIP: professionalizzante, percentage type, 100% for all periods. Primary source: CCNL 21/11/2024 Art. 86 (olympus.uniurb.it entry 33337) — exact text: 'L'Apprendista ha diritto per tutta la durata del periodo di apprendistato all'inquadramento e alla corrispondente retribuzione del livello finale di collocazione.' No wage reduction or percentage stated. Max duration 36 months (Art. 82). This supersedes the prior 2013 CCNL allegato 'Riordino della disciplina del rapporto di apprendistato' (per TU 167/2011, not obtainable from any public source). destination_level='4' (IV livello GPG is the reference level in the 2023 accord).",
+      "SIMPLIFICATION: INPS: reuses 2026-terziario.json. SIMPLIFICATION: tax_sector='terziario' is a modelling choice. Supporting facts: ASSIV/ANIVP/UNIV are not Confindustria members; private security companies do not access CIGO; the sector uses Ebivip (Ente Bilaterale Vigilanza Privata) for bilateral welfare, not INPS integration schemes. TERZIARIO is the standard classification for non-Confindustria services sector employers in INPS circular IVS rates. Counterargument: some aspects of the sector (24/7 operations, shift work) could suggest INDUSTRIA classification. At ≤50 employees, delta = 28.98% (TERZIARIO) vs 30.20% (INDUSTRIA), difference ~1.22pp employer contribution rate."
+    ]
+  },
   "parameters": {
-    "hourly_divisor": 173,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2023-06-01", "valid_until": null, "value": "173" }
+      ]
+    },
     "additional_months": {
       "periods": [
         { "valid_from": "2023-06-01", "valid_until": null, "value": "14" }
@@ -108,7 +129,7 @@
           { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1218.44" },
           { "valid_from": "2025-12-01", "valid_until": "2026-04-01", "value": "1246.73" },
           { "valid_from": "2026-04-01", "valid_until": "2026-12-01", "value": "1293.87" },
-          { "valid_from": "2026-12-01", "valid_until": null,         "value": "1350.44" }
+          { "valid_from": "2026-12-01", "valid_until": null, "value": "1350.44" }
         ]
       },
       "fixed_allowances": []
@@ -124,7 +145,7 @@
           { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1318.44" },
           { "valid_from": "2025-12-01", "valid_until": "2026-04-01", "value": "1346.73" },
           { "valid_from": "2026-04-01", "valid_until": "2026-12-01", "value": "1393.87" },
-          { "valid_from": "2026-12-01", "valid_until": null,         "value": "1450.44" }
+          { "valid_from": "2026-12-01", "valid_until": null, "value": "1450.44" }
         ]
       },
       "fixed_allowances": []
@@ -140,7 +161,7 @@
           { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1388.88" },
           { "valid_from": "2025-12-01", "valid_until": "2026-04-01", "value": "1418.88" },
           { "valid_from": "2026-04-01", "valid_until": "2026-12-01", "value": "1468.88" },
-          { "valid_from": "2026-12-01", "valid_until": null,         "value": "1528.88" }
+          { "valid_from": "2026-12-01", "valid_until": null, "value": "1528.88" }
         ]
       },
       "fixed_allowances": []
@@ -156,7 +177,7 @@
           { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1555.31" },
           { "valid_from": "2025-12-01", "valid_until": "2026-04-01", "value": "1591.31" },
           { "valid_from": "2026-04-01", "valid_until": "2026-12-01", "value": "1651.31" },
-          { "valid_from": "2026-12-01", "valid_until": null,         "value": "1723.31" }
+          { "valid_from": "2026-12-01", "valid_until": null, "value": "1723.31" }
         ]
       },
       "fixed_allowances": []
@@ -172,7 +193,7 @@
           { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1746.09" },
           { "valid_from": "2025-12-01", "valid_until": "2026-04-01", "value": "1788.95" },
           { "valid_from": "2026-04-01", "valid_until": "2026-12-01", "value": "1860.38" },
-          { "valid_from": "2026-12-01", "valid_until": null,         "value": "1946.09" }
+          { "valid_from": "2026-12-01", "valid_until": null, "value": "1946.09" }
         ]
       },
       "fixed_allowances": []
@@ -188,7 +209,7 @@
           { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1866.89" },
           { "valid_from": "2025-12-01", "valid_until": "2026-04-01", "value": "1914.03" },
           { "valid_from": "2026-04-01", "valid_until": "2026-12-01", "value": "1992.60" },
-          { "valid_from": "2026-12-01", "valid_until": null,         "value": "2086.89" }
+          { "valid_from": "2026-12-01", "valid_until": null, "value": "2086.89" }
         ]
       },
       "fixed_allowances": []
@@ -204,34 +225,20 @@
           { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "2164.74" },
           { "valid_from": "2025-12-01", "valid_until": "2026-04-01", "value": "2222.60" },
           { "valid_from": "2026-04-01", "valid_until": "2026-12-01", "value": "2319.03" },
-          { "valid_from": "2026-12-01", "valid_until": null,         "value": "2434.74" }
+          { "valid_from": "2026-12-01", "valid_until": null, "value": "2434.74" }
         ]
       },
       "fixed_allowances": []
     }
   ],
-  "apprenticeship": {
-    "type": "percentage",
-    "destination_level": "4",
-    "periods": [
-      { "months_from": 0,  "months_until": null, "percentage": "1.00" }
-    ]
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "partial",
-    "layer_3": "out_of_scope",
-    "notes": [
-      "SCOPE: GPG section only (Guardie Particolari Giurate, livelli Q e 1-6). Servizi Fiduciari/Sicurezza section (livelli A-E, 9 tranches starting 01/08/2022) is out of scope. SIMPLIFICATION: the full contract covers both sections; only the GPG section is modelled here.",
-      "CNEL CODE: HV40 confirmed from primary source: univigilanza.it (UNIV is a signatory employer association), article titled 'Codice Alfanumerico Unico dei CCNL' — 'L'attuale codice di riferimento per il settore vigilanza privata è il HV40.'",
-      "SALARY MODEL: conglobated (paga base tabellare conglobata). Sources: (1) 2024 integrative accord salary table header reads 'Paga Conglobata' explicitly; (2) Art. 112 base CCNL 2013: 'stipendio o salario unico nazionale (paga base tabellare conglobata).' Back-calculation: 4° livello 01/06/2023 = 1328.88 / 173 = 7.68 EUR/h; 1° livello = 1772.60 / 173 = 10.25 EUR/h; Q = 2049.03 / 173 = 11.84 EUR/h. Non-integer results confirm conglobated total (not an integer-multiple hourly rate), consistent with historical accumulation of contingenza increments. fixed_allowances=[] for all levels.",
-      "SALARY TRANCHES: 6 tranches modelled (01/06/2023 → 01/12/2026) from the 2024 integrative accord 'Tabelle Retributive' (PDF, 2 pages). A prior 01/03/2016 historical column is also present but predates current renewal scope and is not modelled. Source: 2024 integrative accord signed by all 9 signatories.",
-      "LEVEL ORDERING: CCNL numbering is counter-intuitive — level '6' is the entry level (lowest salary) and 'Q' (Quadro) is the highest. order=1 corresponds to level 6 (lowest), order=7 to level Q (highest). Salary strictly monotone across all 6 tranches: verified.",
-      "HOURLY DIVISOR: 173. Source: Art. 115 base CCNL 2013 — 'dividendo convenzionalmente la retribuzione stessa per 173.' Consistent with 40h/week standard (Art. 71, base CCNL 2013).",
-      "ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima). Source: Art. 117 base CCNL 2013. Confirmed applicable to part-time workers too (Art. 64, base CCNL 2013).",
-      "SENIORITY: triennale (36 months), max 6 scatti. Per-level amounts from Art. 111 base CCNL 2013 (primary source), effective 01/02/2013: Q=31.30, 1°=26.12, 2°=23.83, 3°=22.46, 4°=21.13, 5°=20.52, 6°=19.66 EUR. SIMPLIFICATION: the 2023 renewal accord (30/05/2023, 3 pages) covers only salary tranches and una tantum; no seniority amount update found. The 2024 integrative accord covers salary tables only. 2013 amounts assumed current. The 2023 accord also states 'il periodo di permanenza nei Livelli VI e V dal 1 giugno 2023 passa dagli attuali 24 mesi a 18 mesi' — this refers to inter-level permanence for classificatory progression, NOT seniority cadence.",
-      "APPRENTICESHIP: professionalizzante, percentage type, 100% for all periods. Primary source: CCNL 21/11/2024 Art. 86 (olympus.uniurb.it entry 33337) — exact text: 'L'Apprendista ha diritto per tutta la durata del periodo di apprendistato all'inquadramento e alla corrispondente retribuzione del livello finale di collocazione.' No wage reduction or percentage stated. Max duration 36 months (Art. 82). This supersedes the prior 2013 CCNL allegato 'Riordino della disciplina del rapporto di apprendistato' (per TU 167/2011, not obtainable from any public source). destination_level='4' (IV livello GPG is the reference level in the 2023 accord).",
-      "INPS: reuses 2026-terziario.json. SIMPLIFICATION: tax_sector='terziario' is a modelling choice. Supporting facts: ASSIV/ANIVP/UNIV are not Confindustria members; private security companies do not access CIGO; the sector uses Ebivip (Ente Bilaterale Vigilanza Privata) for bilateral welfare, not INPS integration schemes. TERZIARIO is the standard classification for non-Confindustria services sector employers in INPS circular IVS rates. Counterargument: some aspects of the sector (24/7 operations, shift work) could suggest INDUSTRIA classification. At ≤50 employees, delta = 28.98% (TERZIARIO) vs 30.20% (INDUSTRIA), difference ~1.22pp employer contribution rate."
-    ]
-  }
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "standard",
+      "destination_levels": ["4"],
+      "periods": [
+        { "months_from": 0, "months_until": null, "percentage": "1.00" }
+      ]
+    }
+  ]
 }

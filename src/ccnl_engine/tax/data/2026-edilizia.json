@@ -14,7 +14,10 @@
   ],
   "fixed_term_additional_rate": "0.014",
   "inps": {
-    "employee_rate": "0.0919",
+    "employee_tiers": [
+      { "max_employees": 15,   "rate": "0.0919" },
+      { "max_employees": null, "rate": "0.0949" }
+    ],
     "employer_tiers": [
       { "max_employees": 15,   "rate": "0.2846" },
       { "max_employees": 50,   "rate": "0.2906" },
@@ -22,12 +25,20 @@
     ],
     "ceiling": null
   },
+  "apprentice": {
+    "employee_rate": "0.0584",
+    "employer_rate": "0.1161",
+    "small_firm_max_employees": 9,
+    "small_firm_employer_rate_months_0_11": "0.0311",
+    "small_firm_employer_rate_months_12_23": "0.0461"
+  },
   "tfr": { "accrual_divisor": "13.5" },
   "notes": [
     "IRPEF brackets and work_deduction_breakpoints: statutory, identical to other sectors.",
     "SIMPLIFICATION: Cassa Edile contributions (~18.5% of gross for operai — ferie 8.5%, gratifica natalizia 10%) are NOT included in employer_tiers. The employer_cost_annual computed by the engine understates the real cost for operai. Impiegati are less affected as Cassa Edile covers mainly operai items.",
-    "INPS dipendente — employee_rate 9.19% (IVS + NASpI). SIMPLIFICATION: edilizia may include CIGO addizionale (~0.30% lavoratore) not yet modelled here.",
     "INPS datore — rates from kitech.it (p=5_152, p=5_154, data 1998 structure). Proxy values: ≤15 dip 28.46%; 16-50 dip 29.06%; >50 dip 29.50% (estimated). Verify against INPS annual circular for 2026 exact values.",
-    "fixed_term_additional_rate: NASpI addizionale 1.4% (datore only, Art. 2 co. 28 L. 92/2012). Identical to other sectors."
+    "fixed_term_additional_rate: NASpI addizionale 1.4% (datore only, Art. 2 co. 28 L. 92/2012). Identical to other sectors.",
+    "INPS dipendente — employee_tiers: 9.19% (IVS + NASpI) up to 15 employees; 9.49% above 15 (0.30% CIGS employee share, D.Lgs. 148/2015 art. 23).",
+    "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled."
   ]
 }

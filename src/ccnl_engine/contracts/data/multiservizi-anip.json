@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "multiservizi-anip",
     "name": "CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)",
@@ -45,8 +45,29 @@
       "human_reviewed": true
     }
   },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: Salary model: SPLIT. Paga base (minimo tabellare) is a time series; contingenza and EDR are frozen fixed_allowances. Source: oristanoservizi.it/CCNL-Multiservizi-scadenza-2024.pdf (2021-2024 contract, 5 tranches) and accordo integrativo 6 Aug 2025 (2025-2028 contract, 8 tranches) via redigo.info.",
+      "INFO: hourly_divisor: 173 — confirmed per CCNL text: 'I divisori per ottenere la quota oraria e giornaliera sono, rispettivamente, 173 e 26'. Cross-checked: level Q July 2021 total 1953.62/11.29hr = 173 (hourly rate from table). Source: oristanoservizi.it PDF.",
+      "INFO: additional_months: 14 (tredicesima + quattordicesima). Source: CCNL text — 'Tredicesima: entro il 20 dicembre; Quattordicesima: entro il 15 luglio'. Both in misura di una mensilità della retribuzione globale mensile.",
+      "SIMPLIFICATION: Seniority — impiegati (levels 5, 6, 7, Q): biennale scatti at 6.25% of (minimo tabellare + contingenza al 1 agosto 1983, pari a EUR 279.60), maximum 8 scatti. Amounts modelled as 2-period TimeSeries (July 2021 baseline, July 2025 after renewal). SIMPLIFICATION: amounts should update at every tranche; modelled at 2 reference dates only.",
+      "SIMPLIFICATION: Seniority — operai (levels 1, 2, 2par115, 3, 4par125, 4): 'anzianità forfettaria di settore' — a single fixed monthly amount (not progressive scatti) effective from the 5th year of sector seniority. Amounts set per CCNL text (June 2011 increase after E.d.a.r. cessation). The engine models these as per-biennio scatti with cadence=24 and max=8 using the forfettary amount as the unit, which overcounts for workers with more than 1 scatto. SIMPLIFICATION: model a single forfettary increment; the real mechanism is a one-time step at year 4, not progressive. Source: oristanoservizi.it PDF (section 'Anzianità forfettaria di settore — Operai').",
+      "INFO: Contingenza par levels: the CCNL text notes that contingenza values for 4par125 and 2par115 are not explicitly stated; by industry convention they match the values for levels 4 and 2 respectively. Source: note in oristanoservizi.it PDF.",
+      "INFO: Apprenticeship: under_classification model with destination level '5', duration 30 months (per CCNL: '30 mesi per i livelli 4° e 5°'). First 15 months (prima metà): 2 integer classification levels below destination = level '3'. Second 15 months (seconda metà): 1 level below = level '4'. Source: ccnlportatili.it — 'inquadrato due livelli sotto quello di destinazione finale, per la prima metà del periodo e ad un livello inferiore per la seconda metà'. Exception (apprentices destined for level II stay at level I for full duration) not modelled as it applies to a minority case. Renewal date governs: 2021-07-09 (Filcams-CGIL, Fisascat-CISL, Uiltrasporti-UIL confirmed 2021).",
+      "INFO: July 2025 values: the 2021-2024 CCNL included a 5th salary tranche effective July 2025 (e.g. +10 EUR on level 2). This was superseded by the 2025-2028 renewal (signed 13 June 2025, definitive tables per accordo integrativo 6 August 2025, effective retroactively from 1 July 2025 per Art. 73). The JSON models post-renewal July 2025 values (819.21 for level 2) directly. Workers received the higher new-contract amount; the old 5th tranche value (779.21) was never separately operative.",
+      "SIMPLIFICATION: INPS rates: terziario sector — reusing 2026-terziario.json (9.19% employee, tiered employer). SIMPLIFICATION: some sources indicate pulizie sector has a small FISE bilateral contribution; specific INPS circular for this sector was not verified. Use kitech.it proxy rates as label.",
+      "INFO: Workers covered: ~403,000 per INPS-UNIEMENS 2025 data; largest uncovered CCNL at time of implementation."
+    ]
+  },
   "parameters": {
-    "hourly_divisor": 173,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2021-07-01", "valid_until": null, "value": "173" }
+      ]
+    },
     "additional_months": {
       "periods": [
         { "valid_from": "2021-07-01", "valid_until": null, "value": "14" }
@@ -131,7 +152,7 @@
           { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "861.66" },
           { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "884.59" },
           { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "902.94" },
-          { "valid_from": "2029-03-01", "valid_until": null,         "value": "912.12" }
+          { "valid_from": "2029-03-01", "valid_until": null, "value": "912.12" }
         ]
       },
       "fixed_allowances": [
@@ -172,7 +193,7 @@
           { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "939.21" },
           { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "964.21" },
           { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "984.21" },
-          { "valid_from": "2029-03-01", "valid_until": null,         "value": "994.21" }
+          { "valid_from": "2029-03-01", "valid_until": null, "value": "994.21" }
         ]
       },
       "fixed_allowances": [
@@ -213,7 +234,7 @@
           { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "990.91" },
           { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1017.28" },
           { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1038.38" },
-          { "valid_from": "2029-03-01", "valid_until": null,         "value": "1048.93" }
+          { "valid_from": "2029-03-01", "valid_until": null, "value": "1048.93" }
         ]
       },
       "fixed_allowances": [
@@ -254,7 +275,7 @@
           { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "1016.76" },
           { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1043.83" },
           { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1065.48" },
-          { "valid_from": "2029-03-01", "valid_until": null,         "value": "1076.30" }
+          { "valid_from": "2029-03-01", "valid_until": null, "value": "1076.30" }
         ]
       },
       "fixed_allowances": [
@@ -295,7 +316,7 @@
           { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "1077.08" },
           { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1105.75" },
           { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1128.68" },
-          { "valid_from": "2029-03-01", "valid_until": null,         "value": "1140.15" }
+          { "valid_from": "2029-03-01", "valid_until": null, "value": "1140.15" }
         ]
       },
       "fixed_allowances": [
@@ -336,7 +357,7 @@
           { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "1102.92" },
           { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1132.28" },
           { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1155.76" },
-          { "valid_from": "2029-03-01", "valid_until": null,         "value": "1167.51" }
+          { "valid_from": "2029-03-01", "valid_until": null, "value": "1167.51" }
         ]
       },
       "fixed_allowances": [
@@ -377,7 +398,7 @@
           { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "1206.31" },
           { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1238.42" },
           { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1264.11" },
-          { "valid_from": "2029-03-01", "valid_until": null,         "value": "1276.96" }
+          { "valid_from": "2029-03-01", "valid_until": null, "value": "1276.96" }
         ]
       },
       "fixed_allowances": [
@@ -418,7 +439,7 @@
           { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "1499.27" },
           { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1539.18" },
           { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1571.11" },
-          { "valid_from": "2029-03-01", "valid_until": null,         "value": "1587.07" }
+          { "valid_from": "2029-03-01", "valid_until": null, "value": "1587.07" }
         ]
       },
       "fixed_allowances": [
@@ -459,7 +480,7 @@
           { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "1731.93" },
           { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1778.03" },
           { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1814.91" },
-          { "valid_from": "2029-03-01", "valid_until": null,         "value": "1833.35" }
+          { "valid_from": "2029-03-01", "valid_until": null, "value": "1833.35" }
         ]
       },
       "fixed_allowances": [
@@ -500,7 +521,7 @@
           { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "1895.63" },
           { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1946.09" },
           { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1986.46" },
-          { "valid_from": "2029-03-01", "valid_until": null,         "value": "2006.64" }
+          { "valid_from": "2029-03-01", "valid_until": null, "value": "2006.64" }
         ]
       },
       "fixed_allowances": [
@@ -534,30 +555,16 @@
       ]
     }
   ],
-  "apprenticeship": {
-    "type": "under_classification",
-    "destination_level": "5",
-    "periods": [
-      { "months_from": 0,  "months_until": 15, "pay_level_code": "3" },
-      { "months_from": 15, "months_until": 30, "pay_level_code": "4" },
-      { "months_from": 30, "months_until": null, "pay_level_code": "5" }
-    ]
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
-    "layer_3": "out_of_scope",
-    "notes": [
-      "Salary model: SPLIT. Paga base (minimo tabellare) is a time series; contingenza and EDR are frozen fixed_allowances. Source: oristanoservizi.it/CCNL-Multiservizi-scadenza-2024.pdf (2021-2024 contract, 5 tranches) and accordo integrativo 6 Aug 2025 (2025-2028 contract, 8 tranches) via redigo.info.",
-      "hourly_divisor: 173 — confirmed per CCNL text: 'I divisori per ottenere la quota oraria e giornaliera sono, rispettivamente, 173 e 26'. Cross-checked: level Q July 2021 total 1953.62/11.29hr = 173 (hourly rate from table). Source: oristanoservizi.it PDF.",
-      "additional_months: 14 (tredicesima + quattordicesima). Source: CCNL text — 'Tredicesima: entro il 20 dicembre; Quattordicesima: entro il 15 luglio'. Both in misura di una mensilità della retribuzione globale mensile.",
-      "Seniority — impiegati (levels 5, 6, 7, Q): biennale scatti at 6.25% of (minimo tabellare + contingenza al 1 agosto 1983, pari a EUR 279.60), maximum 8 scatti. Amounts modelled as 2-period TimeSeries (July 2021 baseline, July 2025 after renewal). SIMPLIFICATION: amounts should update at every tranche; modelled at 2 reference dates only.",
-      "Seniority — operai (levels 1, 2, 2par115, 3, 4par125, 4): 'anzianità forfettaria di settore' — a single fixed monthly amount (not progressive scatti) effective from the 5th year of sector seniority. Amounts set per CCNL text (June 2011 increase after E.d.a.r. cessation). The engine models these as per-biennio scatti with cadence=24 and max=8 using the forfettary amount as the unit, which overcounts for workers with more than 1 scatto. SIMPLIFICATION: model a single forfettary increment; the real mechanism is a one-time step at year 4, not progressive. Source: oristanoservizi.it PDF (section 'Anzianità forfettaria di settore — Operai').",
-      "Contingenza par levels: the CCNL text notes that contingenza values for 4par125 and 2par115 are not explicitly stated; by industry convention they match the values for levels 4 and 2 respectively. Source: note in oristanoservizi.it PDF.",
-      "Apprenticeship: under_classification model with destination level '5', duration 30 months (per CCNL: '30 mesi per i livelli 4° e 5°'). First 15 months (prima metà): 2 integer classification levels below destination = level '3'. Second 15 months (seconda metà): 1 level below = level '4'. Source: ccnlportatili.it — 'inquadrato due livelli sotto quello di destinazione finale, per la prima metà del periodo e ad un livello inferiore per la seconda metà'. Exception (apprentices destined for level II stay at level I for full duration) not modelled as it applies to a minority case. Renewal date governs: 2021-07-09 (Filcams-CGIL, Fisascat-CISL, Uiltrasporti-UIL confirmed 2021).",
-      "July 2025 values: the 2021-2024 CCNL included a 5th salary tranche effective July 2025 (e.g. +10 EUR on level 2). This was superseded by the 2025-2028 renewal (signed 13 June 2025, definitive tables per accordo integrativo 6 August 2025, effective retroactively from 1 July 2025 per Art. 73). The JSON models post-renewal July 2025 values (819.21 for level 2) directly. Workers received the higher new-contract amount; the old 5th tranche value (779.21) was never separately operative.",
-      "INPS rates: terziario sector — reusing 2026-terziario.json (9.19% employee, tiered employer). SIMPLIFICATION: some sources indicate pulizie sector has a small FISE bilateral contribution; specific INPS circular for this sector was not verified. Use kitech.it proxy rates as label.",
-      "Workers covered: ~403,000 per INPS-UNIEMENS 2025 data; largest uncovered CCNL at time of implementation."
-    ]
-  }
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "standard",
+      "destination_levels": ["5"],
+      "periods": [
+        { "months_from": 0, "months_until": 15, "levels_below": 3 },
+        { "months_from": 15, "months_until": 30, "levels_below": 1 },
+        { "months_from": 30, "months_until": null, "levels_below": 0 }
+      ]
+    }
+  ]
 }

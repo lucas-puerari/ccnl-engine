@@ -2,28 +2,60 @@
 
 from __future__ import annotations
 
+from dataclasses import dataclass, replace
 from decimal import Decimal
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Protocol
 
 from ccnl_engine.engine import contributions as _contrib
 from ccnl_engine.engine import irpef as _irpef
 from ccnl_engine.engine.result import ComputationResult
 from ccnl_engine.engine.rounding import money
-from ccnl_engine.models.apprenticeship import (
-    ApprenticeshipPercentage,
-    ApprenticeshipUnderClassification,
-)
-from ccnl_engine.models.employment import Apprentice, FixedTerm
+from ccnl_engine.models.apprenticeship import ApprenticeshipPercentage
+from ccnl_engine.models.employment import Apprentice
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
     from datetime import date
 
-    from ccnl_engine.models.ccnl import CCNL, Level
+    from ccnl_engine.models.ccnl import CCNL, Allowance, Level, SeniorityIncrements
     from ccnl_engine.models.employment import Employment
     from ccnl_engine.tax.models import YearRules
 
 _ONE = Decimal(1)
 _ZERO = Decimal(0)
+_TWO = Decimal(2)
+
+
+class _MonthPeriod(Protocol):
+    months_from: int
+    months_until: int | None
+
+
+@dataclass(frozen=True)
+class _Chain:
+    """Full-time monthly pay components of one level on one date."""
+
+    base: Decimal
+    seniority: Decimal
+    allowances: tuple[tuple[Allowance, Decimal], ...]
+
+    def scaled(self, factor: Decimal) -> _Chain:
+        return _Chain(
+            base=money(self.base * factor),
+            seniority=money(self.seniority * factor),
+            allowances=tuple((a, money(v * factor)) for a, v in self.allowances),
+        )
+
+    @property
+    def allowances_total(self) -> Decimal:
+        return money(sum((v for _, v in self.allowances), _ZERO))
+
+
+@dataclass(frozen=True)
+class _Annual:
+    gross: Decimal
+    excluded_from_contributions: Decimal
+    excluded_from_tfr: Decimal
 
 
 def compute(
@@ -33,57 +65,73 @@ def compute(
     rules: YearRules,
     employment: Employment,
     part_time_pct: Decimal = _ONE,
-    seniority_count: int = 0,
+    seniority_count: int | None = None,
+    seniority_months: int | None = None,
     negotiated_ral: Decimal | None = None,
+    roles: frozenset[str] = frozenset(),
+    ad_personam_monthly: Decimal = _ZERO,
 ) -> ComputationResult:
-    """Compute gross-to-net salary and employer cost for a given scenario."""
+    """Compute gross-to-net salary and employer cost for a given scenario.
+
+    ``seniority_count`` and ``seniority_months`` are mutually exclusive; when
+    neither is given no seniority increment applies. ``roles`` selects the
+    role-restricted allowances the worker is entitled to. ``ad_personam_monthly``
+    is an individual frozen element (e.g. pre-abolition seniority) added to
+    gross as given, not scaled by ``part_time_pct``.
+    """
     if not (_ZERO < part_time_pct <= _ONE):
         msg = f"part_time_pct must be in (0, 1], got {part_time_pct}"
         raise ValueError(msg)
-    if seniority_count < 0:
-        msg = f"seniority_count must be >= 0, got {seniority_count}"
+    if ad_personam_monthly < _ZERO:
+        msg = f"ad_personam_monthly must be >= 0, got {ad_personam_monthly}"
         raise ValueError(msg)
 
-    level = _resolve_level(ccnl, level_code)
-    base_monthly, seniority_monthly, allowances_monthly, gross_monthly = (
-        _build_salary_chain(level, ccnl, seniority_count, part_time_pct, as_of)
+    level = ccnl.level_by_code(level_code)
+    count = _resolve_seniority_count(
+        ccnl.parameters.seniority_increments,
+        level_code,
+        seniority_count,
+        seniority_months,
     )
     additional_months = ccnl.parameters.additional_months.value_at(as_of)
 
+    factor = part_time_pct
+    apprenticeship_pct: Decimal | None = None
+    under_level_code: str | None = None
     if isinstance(employment, Apprentice):
-        if ccnl.apprenticeship is None:
-            msg = (
-                f"CCNL '{ccnl.ccnl.id}' has no apprenticeship rules modelled "
-                f"(coverage.layer_2 is partial). Cannot compute Apprentice salary."
-            )
-            raise ValueError(msg)
-        gross_annual, apprenticeship_pct, apprenticeship_under_level_code = (
-            _compute_apprentice_annual(
-                employment,
-                ccnl,
-                gross_monthly,
-                additional_months,
-                negotiated_ral,
-                part_time_pct,
-                as_of,
-            )
+        chain_ft, apprenticeship_pct, under_level_code = _apprentice_chain(
+            ccnl, level, employment, count, roles, as_of
         )
+        if apprenticeship_pct is not None:
+            factor = factor * apprenticeship_pct
     else:
-        gross_annual = negotiated_ral or money(gross_monthly * additional_months)
-        apprenticeship_pct = None
-        apprenticeship_under_level_code = None
+        chain_ft = _level_chain(ccnl, level, count, roles, as_of, apprentice=False)
 
-    # When negotiated_ral is set, gross_annual deviates from the CCNL chain.
-    # Sync gross_monthly so that gross_monthly * additional_months ≈ gross_annual.
+    chain = chain_ft.scaled(factor)
+    ad_personam = money(ad_personam_monthly)
+    gross_monthly = money(
+        chain.base + chain.seniority + chain.allowances_total + ad_personam
+    )
+    annual = _annualise(chain, ad_personam, additional_months)
+    gross_annual = annual.gross
+
     if negotiated_ral is not None:
+        # The negotiated RAL replaces the CCNL chain. For percentage apprentices
+        # it is the destination-level RAL, so the percentage still applies.
+        gross_annual = money(negotiated_ral * (apprenticeship_pct or _ONE))
         gross_monthly = money(gross_annual / additional_months)
 
-    is_fixed_term = isinstance(employment, FixedTerm)
-    inps_employee_annual = _contrib.inps_employee(gross_annual, rules)
-    inps_employer_annual = _contrib.inps_employer(
-        gross_annual, rules, fixed_term=is_fixed_term
+    contribution_base = money(gross_annual - annual.excluded_from_contributions)
+    tfr_base = money(gross_annual - annual.excluded_from_tfr)
+    rates = _contrib.resolve_rates(rules, employment, level.category)
+    inps_employee_annual = _contrib.inps_contribution(
+        contribution_base, rates.employee_rate, rules
     )
-    tfr_annual = _contrib.tfr(gross_annual, rules)
+    inps_employer_annual = _contrib.inps_contribution(
+        contribution_base, rates.employer_rate, rules
+    )
+    employer_funds_annual = _employer_funds(ccnl, level, contribution_base, as_of)
+    tfr_annual = _contrib.tfr(tfr_base, rules)
 
     # SIMPLIFICATION: no addizionali regionali/comunali; no detrazioni per
     # carichi di famiglia; no sterilization mechanism for incomes > EUR 200k
@@ -95,7 +143,10 @@ def compute(
 
     net_annual = money(gross_annual - inps_employee_annual - irpef_net)
     net_monthly = money(net_annual / additional_months)
-    employer_cost_annual = money(gross_annual + inps_employer_annual + tfr_annual)
+    employer_cost_annual = money(
+        gross_annual + inps_employer_annual + employer_funds_annual + tfr_annual
+    )
+    hourly_divisor = ccnl.parameters.hourly_divisor.value_at(as_of)
 
     return ComputationResult(
         ccnl_id=ccnl.ccnl.id,
@@ -104,15 +155,19 @@ def compute(
         part_time_pct=part_time_pct,
         as_of=as_of,
         year=as_of.year,
-        base_monthly=base_monthly,
-        seniority_monthly=seniority_monthly,
-        allowances_monthly=allowances_monthly,
+        seniority_count=count,
+        base_monthly=chain.base,
+        seniority_monthly=chain.seniority,
+        allowances_monthly=chain.allowances_total,
+        ad_personam_monthly=ad_personam,
         gross_monthly=gross_monthly,
         gross_annual=gross_annual,
+        hourly_rate=money(gross_monthly / hourly_divisor),
         apprenticeship_pct=apprenticeship_pct,
-        apprenticeship_under_level_code=apprenticeship_under_level_code,
+        apprenticeship_under_level_code=under_level_code,
         inps_employee_annual=inps_employee_annual,
         inps_employer_annual=inps_employer_annual,
+        employer_funds_annual=employer_funds_annual,
         tfr_annual=tfr_annual,
         taxable_income=taxable_income,
         irpef_gross=irpef_gross_val,
@@ -124,86 +179,145 @@ def compute(
     )
 
 
-def _resolve_level(ccnl: CCNL, level_code: str) -> Level:
-    try:
-        return next(lv for lv in ccnl.levels if lv.code == level_code)
-    except StopIteration:
-        msg = f"level_code {level_code!r} not found in CCNL {ccnl.ccnl.id!r}"
-        raise KeyError(msg) from None
+def _resolve_seniority_count(
+    rules: SeniorityIncrements,
+    level_code: str,
+    seniority_count: int | None,
+    seniority_months: int | None,
+) -> int:
+    """Resolve the seniority increment count from either explicit input."""
+    if seniority_count is not None and seniority_months is not None:
+        msg = "seniority_count and seniority_months are mutually exclusive"
+        raise ValueError(msg)
+    maximum = rules.maximum_for(level_code)
+    if seniority_months is not None:
+        if seniority_months < 0:
+            msg = f"seniority_months must be >= 0, got {seniority_months}"
+            raise ValueError(msg)
+        first = rules.first_cadence_months or rules.cadence_months
+        if seniority_months < first:
+            return 0
+        count = 1 + (seniority_months - first) // rules.cadence_months
+        return min(count, maximum)
+    count = seniority_count or 0
+    if count < 0:
+        msg = f"seniority_count must be >= 0, got {count}"
+        raise ValueError(msg)
+    if count > maximum:
+        msg = (
+            f"seniority_count {count} exceeds the maximum of {maximum} "
+            f"for level {level_code!r}"
+        )
+        raise ValueError(msg)
+    return count
 
 
-def _build_salary_chain(
+def _level_chain(
+    ccnl: CCNL,
     level: Level,
-    ccnl: CCNL,
-    seniority_count: int,
-    part_time_pct: Decimal,
+    count: int,
+    roles: frozenset[str],
     as_of: date,
-) -> tuple[Decimal, Decimal, Decimal, Decimal]:
-    base_monthly_ft = level.base_salary.value_at(as_of)
-    seniority_increment = _ZERO
-    amount_by_level = ccnl.parameters.seniority_increments.amount_by_level
-    if level.code in amount_by_level:
-        seniority_increment = amount_by_level[level.code].value_at(as_of)
-    seniority_monthly = money(seniority_increment * seniority_count)
-    allowances_monthly = money(
-        sum(
-            (a.monthly.value_at(as_of) for a in level.fixed_allowances),
-            _ZERO,
+    *,
+    apprentice: bool,
+) -> _Chain:
+    rules = ccnl.parameters.seniority_increments
+    # SIMPLIFICATION: apprentices accrue only the CCNL apprentice-specific
+    # increment (if any); the level increments start after qualification.
+    if apprentice:
+        amount = (
+            rules.apprentice_amount.value_at(as_of)
+            if rules.apprentice_amount is not None
+            else _ZERO
         )
+    elif level.code in rules.amount_by_level:
+        amount = rules.amount_by_level[level.code].value_at(as_of)
+    else:
+        amount = _ZERO
+    allowances = tuple(
+        (a, a.monthly.value_at(as_of))
+        for a in level.fixed_allowances
+        if a.role is None or a.role in roles
     )
-    gross_monthly_ft = money(base_monthly_ft + seniority_monthly + allowances_monthly)
-    gross_monthly = money(gross_monthly_ft * part_time_pct)
-    return base_monthly_ft, seniority_monthly, allowances_monthly, gross_monthly
+    return _Chain(
+        base=level.base_salary.value_at(as_of),
+        seniority=money(amount * count),
+        allowances=allowances,
+    )
 
 
-def _compute_apprentice_annual(
+def _apprentice_chain(
+    ccnl: CCNL,
+    level: Level,
     employment: Apprentice,
-    ccnl: CCNL,
-    gross_monthly: Decimal,
-    additional_months: Decimal,
-    negotiated_ral: Decimal | None,
-    part_time_pct: Decimal,
+    count: int,
+    roles: frozenset[str],
     as_of: date,
-) -> tuple[Decimal, Decimal | None, str | None]:
-    app = ccnl.apprenticeship
-    if isinstance(app, ApprenticeshipPercentage):
-        pct = _find_apprenticeship_percentage(app, employment.months_elapsed)
-        base_gross = negotiated_ral or money(gross_monthly * additional_months)
-        return money(base_gross * pct), pct, None
-    assert isinstance(app, ApprenticeshipUnderClassification)
-    pay_code = _find_under_classification_code(app, employment.months_elapsed)
-    pay_level = next(lv for lv in ccnl.levels if lv.code == pay_code)
-    pay_base = pay_level.base_salary.value_at(as_of)
-    pay_allowances = money(
-        sum(
-            (a.monthly.value_at(as_of) for a in pay_level.fixed_allowances),
-            _ZERO,
+) -> tuple[_Chain, Decimal | None, str | None]:
+    track = ccnl.apprenticeship_track_for(level.code)
+    if track is None:
+        eligible = sorted(c for t in ccnl.apprenticeship for c in t.destination_levels)
+        msg = (
+            f"CCNL '{ccnl.ccnl.id}' has no apprenticeship track for destination "
+            f"level {level.code!r} (coverage.layer_2 is {ccnl.coverage.layer_2}; "
+            f"eligible destination levels: {eligible})"
         )
+        raise ValueError(msg)
+    period_index = _find_period_index(track.periods, employment.months_elapsed)
+    if isinstance(track, ApprenticeshipPercentage):
+        chain = _level_chain(ccnl, level, count, roles, as_of, apprentice=True)
+        return chain, track.periods[period_index].percentage, None
+    period = track.periods[period_index]
+    pay_level = ccnl.level_by_order(level.order - period.levels_below)
+    chain = _level_chain(ccnl, pay_level, count, roles, as_of, apprentice=True)
+    if period.midpoint_to_destination:
+        # SIMPLIFICATION: the midpoint applies to the base salary only;
+        # allowances are those of the pay level.
+        dest_base = level.base_salary.value_at(as_of)
+        chain = replace(chain, base=money((chain.base + dest_base) / _TWO))
+    return chain, None, pay_level.code
+
+
+def _find_period_index(periods: Sequence[_MonthPeriod], months_elapsed: int) -> int:
+    for i, period in enumerate(periods):
+        if period.months_from <= months_elapsed and (
+            period.months_until is None or months_elapsed < period.months_until
+        ):
+            return i
+    msg = f"no apprenticeship period covers months_elapsed={months_elapsed}"
+    raise ValueError(msg)
+
+
+def _annualise(
+    chain: _Chain, ad_personam: Decimal, additional_months: Decimal
+) -> _Annual:
+    gross = (chain.base + chain.seniority + ad_personam) * additional_months
+    excluded_contrib = _ZERO
+    excluded_tfr = _ZERO
+    for allowance, monthly in chain.allowances:
+        months = (
+            Decimal(allowance.months_per_year)
+            if allowance.months_per_year is not None
+            else additional_months
+        )
+        annual = money(monthly * months)
+        gross += annual
+        if not allowance.contribution_relevant:
+            excluded_contrib += annual
+        if not allowance.tfr_relevant:
+            excluded_tfr += annual
+    return _Annual(
+        gross=money(gross),
+        excluded_from_contributions=excluded_contrib,
+        excluded_from_tfr=excluded_tfr,
     )
-    pay_gross_monthly = money(money(pay_base + pay_allowances) * part_time_pct)
-    gross_annual = negotiated_ral or money(pay_gross_monthly * additional_months)
-    return gross_annual, None, pay_code
 
 
-def _find_apprenticeship_percentage(
-    app: ApprenticeshipPercentage, months_elapsed: int
+def _employer_funds(
+    ccnl: CCNL, level: Level, contribution_base: Decimal, as_of: date
 ) -> Decimal:
-    for period in app.periods:
-        if period.months_from <= months_elapsed and (
-            period.months_until is None or months_elapsed < period.months_until
-        ):
-            return period.percentage
-    msg = f"no apprenticeship period covers months_elapsed={months_elapsed}"
-    raise ValueError(msg)
-
-
-def _find_under_classification_code(
-    app: ApprenticeshipUnderClassification, months_elapsed: int
-) -> str:
-    for period in app.periods:
-        if period.months_from <= months_elapsed and (
-            period.months_until is None or months_elapsed < period.months_until
-        ):
-            return period.pay_level_code
-    msg = f"no apprenticeship period covers months_elapsed={months_elapsed}"
-    raise ValueError(msg)
+    total = _ZERO
+    for fund in ccnl.parameters.employer_funds:
+        if fund.applies_to(level.category):
+            total += money(contribution_base * fund.rate.value_at(as_of))
+    return money(total)

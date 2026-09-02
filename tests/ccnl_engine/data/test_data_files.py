@@ -14,8 +14,8 @@ from ccnl_engine.models.apprenticeship import (
 )
 from ccnl_engine.models.ccnl import CCNL, TaxSector
 from ccnl_engine.models.employment import Apprentice
-from ccnl_engine.tax.loaders import _resolve_employer_tier, load_year_rules
-from ccnl_engine.tax.models import YearRules, _InpsEmployerTier
+from ccnl_engine.tax.loaders import load_year_rules
+from ccnl_engine.tax.models import YearRules
 
 # ---------------------------------------------------------------------------
 # Parametrised: every JSON in src/ccnl_engine/contracts/data/ must validate
@@ -116,12 +116,6 @@ class TestLoadYearRules:
         """A year with no data file must raise FileNotFoundError."""
         with pytest.raises(FileNotFoundError):
             load_year_rules(1900, TaxSector.TERZIARIO, 50)
-
-    def test_no_open_tier_raises(self) -> None:
-        """_resolve_employer_tier raises ValueError when no tier is open."""
-        tiers = [_InpsEmployerTier(max_employees=10, rate=Decimal("0.30"))]
-        with pytest.raises(ValueError, match="No employer-rate tier"):
-            _resolve_employer_tier(tiers, 100)
 
 
 # ---------------------------------------------------------------------------
@@ -231,13 +225,13 @@ class TestLoadMetalmeccanicoConfapi:
     def test_confapi_apprenticeship_under_classification(self) -> None:
         """Apprenticeship uses under-classification (Art. 10 CCNL), not percentage."""
         ccnl = load_ccnl("metalmeccanico-confapi.json")
-        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
-        assert ccnl.apprenticeship.destination_level == "5"
-        periods = ccnl.apprenticeship.periods
+        assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
+        assert ccnl.apprenticeship[0].destination_levels == ["5"]
+        periods = ccnl.apprenticeship[0].periods
         assert len(periods) == 3
-        assert periods[0].pay_level_code == "3"
-        assert periods[1].pay_level_code == "4"
-        assert periods[2].pay_level_code == "5"
+        assert periods[0].levels_below == 2
+        assert periods[1].levels_below == 1
+        assert periods[2].levels_below == 0
 
     def test_confapi_level9_highest_level1_lowest(self) -> None:
         """Level 9 must have the highest order; level 1 the lowest."""
@@ -348,12 +342,12 @@ class TestLoadChimicaFederchimica:
     def test_chimica_apprenticeship_under_classification(self) -> None:
         """Apprenticeship uses under-classification model, destination D1."""
         ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
-        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
-        assert ccnl.apprenticeship.destination_level == "D1"
-        periods = ccnl.apprenticeship.periods
+        assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
+        assert ccnl.apprenticeship[0].destination_levels == ["D1"]
+        periods = ccnl.apprenticeship[0].periods
         assert len(periods) == 2
-        assert periods[0].pay_level_code == "E1"
-        assert periods[1].pay_level_code == "D1"
+        assert periods[0].levels_below == 3  # E1 is three orders below D1
+        assert periods[1].levels_below == 0
         assert periods[1].months_until is None
 
     def test_chimica_thirteen_months(self) -> None:
@@ -374,7 +368,7 @@ class TestLoadChimicaFederchimica:
     def test_chimica_hourly_divisor(self) -> None:
         """Hourly divisor must be 175 (chimico-farmaceutico standard)."""
         ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
-        assert ccnl.parameters.hourly_divisor == 175
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(175)
 
 
 # ---------------------------------------------------------------------------
@@ -451,9 +445,9 @@ class TestLoadTurismoConfcommercio:
     def test_turismo_apprenticeship_percentage(self) -> None:
         """Apprenticeship uses percentage model: 80/85/90% per anno (rinnovo 2024)."""
         ccnl = load_ccnl("turismo-confcommercio.json")
-        assert isinstance(ccnl.apprenticeship, ApprenticeshipPercentage)
-        assert ccnl.apprenticeship.destination_level == "5"
-        periods = ccnl.apprenticeship.periods
+        assert isinstance(ccnl.apprenticeship[0], ApprenticeshipPercentage)
+        assert ccnl.apprenticeship[0].destination_levels == ["5"]
+        periods = ccnl.apprenticeship[0].periods
         assert len(periods) == 3
         assert periods[0].percentage == Decimal("0.80")
         assert periods[1].percentage == Decimal("0.85")
@@ -463,7 +457,7 @@ class TestLoadTurismoConfcommercio:
     def test_turismo_hourly_divisor(self) -> None:
         """Hourly divisor must be 172 (40 h/week standard for turismo)."""
         ccnl = load_ccnl("turismo-confcommercio.json")
-        assert ccnl.parameters.hourly_divisor == 172
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(172)
 
 
 # ---------------------------------------------------------------------------
@@ -516,7 +510,7 @@ class TestLoadEdiliziaAnce:
     def test_edilizia_hourly_divisor(self) -> None:
         """Hourly divisor must be 173 (40 h/week, verified from official tariff)."""
         ccnl = load_ccnl("edilizia-ance.json")
-        assert ccnl.parameters.hourly_divisor == 173
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_edilizia_no_fixed_allowances(self) -> None:
         """All levels have no fixed_allowances (minimum conglobated in base_salary)."""
@@ -607,7 +601,7 @@ class TestLoadCooperativeSociali:
     def test_cooperative_sociali_hourly_divisor(self) -> None:
         """Hourly divisor must be 165 (38 h/week, art. 75 CCNL)."""
         ccnl = load_ccnl("cooperative-sociali.json")
-        assert ccnl.parameters.hourly_divisor == 165
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(165)
 
     def test_cooperative_sociali_q_levels_funzione_allowance(self) -> None:
         """E2Q/F1Q/F2Q must carry exactly one IDF fixed allowance each."""
@@ -677,7 +671,7 @@ class TestLoadLogisticaTrasportoConfetra:
     def test_logistica_trasporto_confetra_hourly_divisor(self) -> None:
         """Hourly divisor must be 168 (Art. 61 co.3 testo unico Sept 2025)."""
         ccnl = load_ccnl("logistica-trasporto-confetra.json")
-        assert ccnl.parameters.hourly_divisor == 168
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(168)
 
     def test_logistica_trasporto_confetra_no_fixed_allowances(self) -> None:
         """All levels must have no fixed allowances (conglobated model)."""
@@ -742,7 +736,7 @@ class TestLoadMultiserviziAnip:
     def test_multiservizi_anip_hourly_divisor(self) -> None:
         """Hourly divisor must be 173 per CCNL text."""
         ccnl = load_ccnl("multiservizi-anip.json")
-        assert ccnl.parameters.hourly_divisor == 173
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_multiservizi_anip_split_model_allowances(self) -> None:
         """Split model: every level must have contingenza and EDR allowances."""
@@ -813,7 +807,7 @@ class TestLoadStudiProfessionaliConfprofessioni:
     def test_studi_professionali_confprofessioni_hourly_divisor(self) -> None:
         """Hourly divisor must be 170 per Art. 45 and Art. 137 CCNL."""
         ccnl = load_ccnl("studi-professionali-confprofessioni.json")
-        assert ccnl.parameters.hourly_divisor == 170
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(170)
 
     def test_studi_professionali_confprofessioni_no_fixed_allowances(
         self,
@@ -892,7 +886,7 @@ class TestLoadBancariAbi:
     def test_bancari_abi_hourly_divisor(self) -> None:
         """Hourly divisor must be 160 (37h/week from July 2024)."""
         ccnl = load_ccnl("bancari-abi.json")
-        assert ccnl.parameters.hourly_divisor == 160
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(160)
 
     def test_bancari_abi_no_fixed_allowances(self) -> None:
         """Conglobated model: all levels must have no fixed allowances."""
@@ -980,7 +974,7 @@ class TestLoadTessileSmi:
     def test_tessile_smi_hourly_divisor(self) -> None:
         """Hourly divisor must be 173 (40h/week standard)."""
         ccnl = load_ccnl("tessile-smi.json")
-        assert ccnl.parameters.hourly_divisor == 173
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_tessile_smi_level8_has_fixed_allowance(self) -> None:
         """Level 8 has exactly one fixed allowance: Indennita funzione 51.65."""
@@ -1007,7 +1001,7 @@ class TestLoadTessileSmi:
         """Apprentice compute on null-apprenticeship CCNL raises ValueError."""
         ccnl = load_ccnl("tessile-smi.json")
         rules = load_year_rules(2026, TaxSector.INDUSTRIA, num_employees=50)
-        with pytest.raises(ValueError, match="no apprenticeship rules"):
+        with pytest.raises(ValueError, match="no apprenticeship track"):
             compute(ccnl, "4", date(2026, 1, 1), rules, Apprentice(months_elapsed=12))
 
 
@@ -1063,7 +1057,7 @@ class TestLoadAlimentariFederalimentare:
     def test_alimentari_federalimentare_hourly_divisor(self) -> None:
         """Hourly divisor must be 173 (40h/week standard industria)."""
         ccnl = load_ccnl("alimentari-federalimentare.json")
-        assert ccnl.parameters.hourly_divisor == 173
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_alimentari_federalimentare_split_allowances(self) -> None:
         """Split model: every level has CONT, EDR, IAR allowances."""
@@ -1089,8 +1083,8 @@ class TestLoadAlimentariFederalimentare:
     def test_alimentari_federalimentare_apprenticeship_type(self) -> None:
         """Apprenticeship is under_classification, destination_level 3A."""
         ccnl = load_ccnl("alimentari-federalimentare.json")
-        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
-        assert ccnl.apprenticeship.destination_level == "3A"
+        assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
+        assert ccnl.apprenticeship[0].destination_levels == ["3A"]
 
     def test_alimentari_federalimentare_apprentice_under_classification(self) -> None:
         """Apprentice 5 months elapsed → under level 4 (period 0-9 months)."""
@@ -1156,7 +1150,7 @@ class TestLoadDmoFederdistribuzione:
     def test_dmo_federdistribuzione_hourly_divisor(self) -> None:
         """Hourly divisor must be 168 (40h/week, Art. 194)."""
         ccnl = load_ccnl("dmo-federdistribuzione.json")
-        assert ccnl.parameters.hourly_divisor == 168
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(168)
 
     def test_dmo_federdistribuzione_fixed_allowances_split(self) -> None:
         """Split model: all levels have contingenza and terzo_elemento_nazionale."""
@@ -1227,7 +1221,7 @@ class TestLoadMetalmeccanicoArtigianato:
     def test_metalmeccanico_artigianato_hourly_divisor(self) -> None:
         """Hourly divisor is 173 (Art. 28 CCNL 17.12.2021)."""
         ccnl = load_ccnl("metalmeccanico-artigianato.json")
-        assert ccnl.parameters.hourly_divisor == 173
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_metalmeccanico_artigianato_no_fixed_allowances(self) -> None:
         """Conglobated model: all levels have empty fixed_allowances."""
@@ -1294,7 +1288,7 @@ class TestLoadGommaPlasticaFederazioneGommaPlastica:
     def test_gomma_plastica_hourly_divisor(self) -> None:
         """Hourly divisor is 173 (40h/week standard)."""
         ccnl = load_ccnl("gomma-plastica-federazione-gomma-plastica.json")
-        assert ccnl.parameters.hourly_divisor == 173
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_gomma_plastica_q_has_funzione_allowance(self) -> None:
         """Level Q has exactly one fixed allowance of 50 EUR/month."""
@@ -1376,7 +1370,7 @@ class TestLoadGraficaEditoriaAieg:
     def test_grafica_editoria_aieg_hourly_divisor(self) -> None:
         """Hourly divisor is 173 (40h/week standard assumption)."""
         ccnl = load_ccnl("grafica-editoria-aieg.json")
-        assert ccnl.parameters.hourly_divisor == 173
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_grafica_editoria_aieg_no_fixed_allowances(self) -> None:
         """All levels have empty fixed_allowances (total modelled as base_salary)."""
@@ -1457,7 +1451,7 @@ class TestLoadCartaCartoneAssocarta:
     def test_carta_cartone_assocarta_hourly_divisor(self) -> None:
         """Hourly divisor is 173 (40h/week convention)."""
         ccnl = load_ccnl("carta-cartone-assocarta.json")
-        assert ccnl.parameters.hourly_divisor == 173
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_carta_cartone_assocarta_no_fixed_allowances(self) -> None:
         """All levels have empty fixed_allowances (conglobated model)."""
@@ -1522,7 +1516,7 @@ class TestLoadTelecomunicazioniAsstel:
     def test_telecomunicazioni_asstel_hourly_divisor(self) -> None:
         """Hourly divisor is 173 (40h/week, Art. 40 CCNL TLC)."""
         ccnl = load_ccnl("telecomunicazioni-asstel.json")
-        assert ccnl.parameters.hourly_divisor == 173
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_telecomunicazioni_asstel_c4_d1_fixed_allowances(self) -> None:
         """C4 has ERS=59.39; D1 has IND_FUN=98.13; others have none."""
@@ -1560,8 +1554,8 @@ class TestLoadTelecomunicazioniAsstel:
     ) -> None:
         """Apprenticeship is under_classification, destination_level C1."""
         ccnl = load_ccnl("telecomunicazioni-asstel.json")
-        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
-        assert ccnl.apprenticeship.destination_level == "C1"
+        assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
+        assert ccnl.apprenticeship[0].destination_levels == ["C1"]
 
 
 class TestLoadVigilanzaPrivataAssiv:
@@ -1608,7 +1602,7 @@ class TestLoadVigilanzaPrivataAssiv:
     def test_vigilanza_privata_assiv_hourly_divisor(self) -> None:
         """Hourly divisor is 173 (40h/week, Art. 115 base CCNL 2013)."""
         ccnl = load_ccnl("vigilanza-privata-assiv.json")
-        assert ccnl.parameters.hourly_divisor == 173
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_vigilanza_privata_assiv_no_fixed_allowances(self) -> None:
         """All GPG levels have no fixed allowances (conglobated model)."""
@@ -1631,9 +1625,9 @@ class TestLoadVigilanzaPrivataAssiv:
     def test_vigilanza_privata_assiv_apprenticeship_percentage(self) -> None:
         """Apprenticeship: percentage type, 100%, destination level 4."""
         ccnl = load_ccnl("vigilanza-privata-assiv.json")
-        assert isinstance(ccnl.apprenticeship, ApprenticeshipPercentage)
-        assert ccnl.apprenticeship.destination_level == "4"
-        assert ccnl.apprenticeship.periods[0].percentage == Decimal("1.00")
+        assert isinstance(ccnl.apprenticeship[0], ApprenticeshipPercentage)
+        assert ccnl.apprenticeship[0].destination_levels == ["4"]
+        assert ccnl.apprenticeship[0].periods[0].percentage == Decimal("1.00")
 
 
 class TestLoadLegnoArredamentoFederlegno:
@@ -1698,7 +1692,7 @@ class TestLoadLegnoArredamentoFederlegno:
     def test_legno_arredamento_federlegno_hourly_divisor(self) -> None:
         """Hourly divisor 174 (40h/week: 40 x 52 / 12 ≈ 173.33 → 174)."""
         ccnl = load_ccnl("legno-arredamento-federlegno.json")
-        assert ccnl.parameters.hourly_divisor == 174
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(174)
 
     def test_legno_arredamento_federlegno_fixed_allowances_split(self) -> None:
         """All levels carry CONT and EDR allowances (split salary model)."""
@@ -1723,8 +1717,8 @@ class TestLoadLegnoArredamentoFederlegno:
     def test_legno_arredamento_federlegno_apprenticeship_under(self) -> None:
         """Apprenticeship: under_classification, destination AS3."""
         ccnl = load_ccnl("legno-arredamento-federlegno.json")
-        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
-        assert ccnl.apprenticeship.destination_level == "AS3"
+        assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
+        assert ccnl.apprenticeship[0].destination_levels == ["AS3"]
 
 
 class TestLoadEdiliziaArtigianatoCna:
@@ -1770,7 +1764,7 @@ class TestLoadEdiliziaArtigianatoCna:
     def test_edilizia_artigianato_cna_hourly_divisor(self) -> None:
         """Hourly divisor: 173 (edilizia 40h/week standard)."""
         ccnl = load_ccnl("edilizia-artigianato-cna.json")
-        assert ccnl.parameters.hourly_divisor == 173
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_edilizia_artigianato_cna_fixed_allowances_split(self) -> None:
         """All levels carry CONT and EDR allowances (split salary model)."""
@@ -1795,10 +1789,10 @@ class TestLoadEdiliziaArtigianatoCna:
     def test_edilizia_artigianato_cna_apprenticeship_percentage(self) -> None:
         """Apprenticeship: percentage type, destination level 4, 6 periods."""
         ccnl = load_ccnl("edilizia-artigianato-cna.json")
-        assert isinstance(ccnl.apprenticeship, ApprenticeshipPercentage)
-        assert ccnl.apprenticeship.destination_level == "4"
-        assert len(ccnl.apprenticeship.periods) == 6
-        assert ccnl.apprenticeship.periods[0].percentage == Decimal("0.74")
+        assert isinstance(ccnl.apprenticeship[0], ApprenticeshipPercentage)
+        assert ccnl.apprenticeship[0].destination_levels == ["4"]
+        assert len(ccnl.apprenticeship[0].periods) == 6
+        assert ccnl.apprenticeship[0].periods[0].percentage == Decimal("0.74")
 
 
 class TestLoadGasAcquaUtilitalia:
@@ -1844,7 +1838,7 @@ class TestLoadGasAcquaUtilitalia:
     def test_gas_acqua_utilitalia_hourly_divisor(self) -> None:
         """Hourly divisor: 167 (38h 30min contractual week, CCNL §4.3)."""
         ccnl = load_ccnl("gas-acqua-utilitalia.json")
-        assert ccnl.parameters.hourly_divisor == 167
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(167)
 
     def test_gas_acqua_utilitalia_edr_allowance(self) -> None:
         """All levels carry EDR 10.33 fixed allowance (separate from minimo)."""
@@ -1910,7 +1904,7 @@ class TestLoadUnebaUneba:
     def test_uneba_uneba_hourly_divisor(self) -> None:
         """Hourly divisor: 164 (38-hour week, Art. 50)."""
         ccnl = load_ccnl("uneba-uneba.json")
-        assert ccnl.parameters.hourly_divisor == 164
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(164)
 
     def test_uneba_uneba_level_q_ind_fun_allowance(self) -> None:
         """Level Q carries IND_FUN allowance EUR 100.00/month (Art. 43)."""
@@ -1975,7 +1969,7 @@ class TestLoadAcconciaturaesteticaConfartigianato:
     def test_acconciatura_estetica_confartigianato_hourly_divisor(self) -> None:
         """Hourly divisor: 173 (40-hour week, Art. 12)."""
         ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
-        assert ccnl.parameters.hourly_divisor == 173
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_acconciatura_estetica_confartigianato_no_fixed_allowances(self) -> None:
         """All levels have empty fixed_allowances (conglobated salary model)."""
@@ -2043,7 +2037,7 @@ class TestLoadPanificazioneArtigianatoConfartigianato:
     def test_panificazione_artigianato_confartigianato_hourly_divisor(self) -> None:
         """Hourly divisor: 173 (40-hour work week)."""
         ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
-        assert ccnl.parameters.hourly_divisor == 173
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_panificazione_artigianato_confartigianato_no_fixed_allowances(
         self,
@@ -2115,7 +2109,7 @@ class TestLoadAutoferrotranvieriInternavigatori:
     def test_autoferrotranvieri_internavigatori_hourly_divisor(self) -> None:
         """Hourly divisor: 195 (CCNL Art. 15 formula, 39h/week / 6 days)."""
         ccnl = load_ccnl("autoferrotranvieri-internavigatori.json")
-        assert ccnl.parameters.hourly_divisor == 195
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(195)
 
     def test_autoferrotranvieri_internavigatori_edr_allowance(self) -> None:
         """Each level has one fixed_allowance (edr_2024); par.175 = 40.00."""
@@ -2202,7 +2196,7 @@ class TestLoadBccCreditoCooperativo:
     def test_bcc_credito_cooperativo_hourly_divisor(self) -> None:
         """Hourly divisor: 160 (Art. 114 formula, arrotondamento a 5)."""
         ccnl = load_ccnl("bcc-credito-cooperativo.json")
-        assert ccnl.parameters.hourly_divisor == 160
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(160)
 
     def test_bcc_credito_cooperativo_no_fixed_allowances(self) -> None:
         """All levels have no fixed allowances (conglobated model)."""
@@ -2225,22 +2219,22 @@ class TestLoadBccCreditoCooperativo:
     def test_bcc_credito_cooperativo_apprenticeship_type(self) -> None:
         """Apprenticeship is under_classification, destination 3AP1 (Art. 30)."""
         ccnl = load_ccnl("bcc-credito-cooperativo.json")
-        assert ccnl.apprenticeship is not None
-        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
-        assert ccnl.apprenticeship.destination_level == "3AP1"
+        assert ccnl.apprenticeship
+        assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
+        assert ccnl.apprenticeship[0].destination_levels == ["3AP1"]
 
     def test_bcc_credito_cooperativo_apprenticeship_periods(self) -> None:
         """Months 0-18 at 2AP-2° pay level, months 18+ at destination 3AP1."""
         ccnl = load_ccnl("bcc-credito-cooperativo.json")
-        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
-        periods = ccnl.apprenticeship.periods
+        assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
+        periods = ccnl.apprenticeship[0].periods
         assert len(periods) == 2
         assert periods[0].months_from == 0
         assert periods[0].months_until == 18
-        assert periods[0].pay_level_code == "2AP2"
+        assert periods[0].levels_below == 1
         assert periods[1].months_from == 18
         assert periods[1].months_until is None
-        assert periods[1].pay_level_code == "3AP1"
+        assert periods[1].levels_below == 0
 
     def test_bcc_credito_cooperativo_apprentice_compute(self) -> None:
         """Apprentice 12 months elapsed → salary at 2AP2 level."""
@@ -2314,7 +2308,7 @@ class TestLoadElettricoElettricita:
     def test_elettrico_elettricita_futura_hourly_divisor(self) -> None:
         """Hourly divisor: 173 (40h/week statutory base, 40 x 52 / 12 = 173.33)."""
         ccnl = load_ccnl("elettrico-elettricita-futura.json")
-        assert ccnl.parameters.hourly_divisor == 173
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_elettrico_elettricita_futura_edr_allowance(self) -> None:
         """Each level has one fixed_allowance (edr) at 10.33 EUR/month."""
@@ -2382,7 +2376,7 @@ class TestLoadCalzaturieroAssocalzaturifici:
     def test_calzaturiero_assocalzaturifici_hourly_divisor(self) -> None:
         """Hourly divisor: 169 (kitech.it, daily divisor 26)."""
         ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
-        assert ccnl.parameters.hourly_divisor == 169
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(169)
 
     def test_calzaturiero_assocalzaturifici_no_fixed_allowances(self) -> None:
         """All levels have no fixed allowances (conglobated model)."""

@@ -5,11 +5,16 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import Self
 
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+
+_APPRENTICE_SMALL_FIRM_STEP_1 = 12
+_APPRENTICE_SMALL_FIRM_STEP_2 = 24
 
 
 class IrpefBracket(BaseModel):
     """A single IRPEF marginal tax bracket (Art. 11 TUIR)."""
+
+    model_config = ConfigDict(extra="forbid")
 
     up_to: Decimal | None
     rate: Decimal
@@ -18,20 +23,71 @@ class IrpefBracket(BaseModel):
 class DeductionBreakpoint(BaseModel):
     """A single breakpoint in the Art. 13 TUIR work-income deduction schedule."""
 
+    model_config = ConfigDict(extra="forbid")
+
     income_up_to: Decimal | None
     deduction: Decimal
 
 
 class InpsRates(BaseModel):
-    """Resolved (flat) INPS contribution rates for a sector and employer size."""
+    """Resolved (flat) INPS contribution rates for a sector and employer size.
+
+    ``employer_rate_by_category`` overrides ``employer_rate`` for levels whose
+    ``category`` matches (e.g. lower rates for *impiegati* in artigianato).
+    """
+
+    model_config = ConfigDict(extra="forbid")
 
     employee_rate: Decimal
     employer_rate: Decimal
     ceiling: Decimal | None
+    employer_rate_by_category: dict[str, Decimal] = {}
+
+    def employer_rate_for(self, category: str | None) -> Decimal:
+        """Return the employer rate applicable to a worker category."""
+        if category is None:
+            return self.employer_rate
+        return self.employer_rate_by_category.get(category, self.employer_rate)
+
+
+class ApprenticeRates(BaseModel):
+    """Resolved contribution rates for apprentices (L. 296/2006 art. 1 c. 773).
+
+    Employer rates are already resolved for the employer's headcount: firms
+    with at most ``small_firm_max_employees`` pay the reduced rates in the
+    first two years, all others pay ``employer_rate_after`` throughout.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    employee_rate: Decimal
+    employer_rate_months_0_11: Decimal
+    employer_rate_months_12_23: Decimal
+    employer_rate_after: Decimal
+
+    def employer_rate_at(self, months_elapsed: int) -> Decimal:
+        """Return the employer rate in force at ``months_elapsed``."""
+        if months_elapsed < _APPRENTICE_SMALL_FIRM_STEP_1:
+            return self.employer_rate_months_0_11
+        if months_elapsed < _APPRENTICE_SMALL_FIRM_STEP_2:
+            return self.employer_rate_months_12_23
+        return self.employer_rate_after
 
 
 class _InpsEmployerTier(BaseModel):
     """A single employer-rate tier keyed by maximum headcount."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    max_employees: int | None
+    rate: Decimal
+    rate_by_category: dict[str, Decimal] = {}
+
+
+class _InpsEmployeeTier(BaseModel):
+    """A single employee-rate tier keyed by maximum headcount."""
+
+    model_config = ConfigDict(extra="forbid")
 
     max_employees: int | None
     rate: Decimal
@@ -40,13 +96,37 @@ class _InpsEmployerTier(BaseModel):
 class _InpsRawRates(BaseModel):
     """Raw INPS block from the tax JSON file, before tier resolution."""
 
-    employee_rate: Decimal
+    model_config = ConfigDict(extra="forbid")
+
+    employee_tiers: list[_InpsEmployeeTier]
     employer_tiers: list[_InpsEmployerTier]
     ceiling: Decimal | None
 
 
+class _ApprenticeRawRates(BaseModel):
+    """Raw apprentice block from the tax JSON file, before headcount resolution."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    employee_rate: Decimal
+    employer_rate: Decimal
+    small_firm_max_employees: int = Field(ge=0)
+    small_firm_employer_rate_months_0_11: Decimal
+    small_firm_employer_rate_months_12_23: Decimal
+
+
+class TfrRules(BaseModel):
+    """TFR (severance pay) accrual rules (Art. 2120 c.c.)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    accrual_divisor: Decimal
+
+
 class _YearRulesRaw(BaseModel):
     """Full deserialization model for a tax/data/<year>-<sector>.json file."""
+
+    model_config = ConfigDict(extra="forbid")
 
     year: int
     sector: str  # validated against TaxSector at load time
@@ -54,24 +134,22 @@ class _YearRulesRaw(BaseModel):
     work_deduction_breakpoints: list[DeductionBreakpoint]
     fixed_term_additional_rate: Decimal
     inps: _InpsRawRates
+    apprentice: _ApprenticeRawRates
     tfr: TfrRules
     notes: list[str] = []
 
 
-class TfrRules(BaseModel):
-    """TFR (severance pay) accrual rules (Art. 2120 c.c.)."""
-
-    accrual_divisor: Decimal
-
-
 class YearRules(BaseModel):
     """All statutory tax and contribution parameters for a single fiscal year."""
+
+    model_config = ConfigDict(extra="forbid")
 
     year: int
     irpef_brackets: list[IrpefBracket]
     work_deduction_breakpoints: list[DeductionBreakpoint]
     fixed_term_additional_rate: Decimal
     inps: InpsRates
+    apprentice: ApprenticeRates
     tfr: TfrRules
     notes: list[str] = []
 

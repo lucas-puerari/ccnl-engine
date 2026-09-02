@@ -1,17 +1,12 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "ccnl": {
     "id": "calzaturiero-assocalzaturifici",
     "name": "CCNL per i lavoratori addetti all'industria delle calzature",
     "cnel_code": "D121",
     "sector": "industria",
     "tax_sector": "industria",
-    "signatories": [
-      "Assocalzaturifici",
-      "FILCTEM-CGIL",
-      "FEMCA-CISL",
-      "UILTEC-UIL"
-    ],
+    "signatories": ["Assocalzaturifici", "FILCTEM-CGIL", "FEMCA-CISL", "UILTEC-UIL"],
     "sources": [
       {
         "url": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
@@ -29,12 +24,7 @@
         "agreement_date": "2024-07-17"
       }
     ],
-    "extraction": {
-      "method": "manual",
-      "model": null,
-      "timestamp": "2026-09-02",
-      "human_reviewed": true
-    }
+    "extraction": { "method": "manual", "model": null, "timestamp": "2026-09-02", "human_reviewed": true }
   },
   "coverage": {
     "layer_1": "implemented",
@@ -46,19 +36,19 @@
       "SIMPLIFICATION: Level 1 receives a special wage correction from 1 January 2025 (EUR 1,502.46, up from EUR 1,315.70 at Aug 2024), separate from the standard tranche dates of Aug 2024, Aug 2025, Aug 2026. Modeled as a four-period TimeSeries for level 1 only.",
       "SIMPLIFICATION: Apprenticeship (apprendistato professionalizzante) is not modeled. The CCNL uses a percentage model (three thirds at 80/90/100% of the destination level) but period durations vary by destination level (36 months split 10/10/16 for levels 8-6, 36 months split differently for lower levels). This complexity exceeds the engine's apprenticeship model.",
       "SIMPLIFICATION: Seniority cadence is triennale (36 months) for all levels; maximum 5 scatti. Scatto amounts derived from businessonline.it article (2025) cross-checked with kitech.it current table.",
-      "Workers covered: approximately 75,000 (Assocalzaturifici member companies). Agreement signed 2024-07-17; valid 2024-01-01 to 2026-12-31.",
-      "INPS rates from 2026-industria.json (same sector as metalmeccanico). IRPEF 2026 brackets applied (L. 199/2025)."
+      "INFO: Workers covered: approximately 75,000 (Assocalzaturifici member companies). Agreement signed 2024-07-17; valid 2024-01-01 to 2026-12-31.",
+      "INFO: INPS rates from 2026-industria.json (same sector as metalmeccanico). IRPEF 2026 brackets applied (L. 199/2025)."
     ]
   },
   "parameters": {
-    "hourly_divisor": 169,
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2024-08-01", "valid_until": null, "value": "169" }
+      ]
+    },
     "additional_months": {
       "periods": [
-        {
-          "valid_from": "2024-08-01",
-          "valid_until": null,
-          "value": "13"
-        }
+        { "valid_from": "2024-08-01", "valid_until": null, "value": "13" }
       ]
     },
     "seniority_increments": {
@@ -67,97 +57,56 @@
       "amount_by_level": {
         "8": {
           "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "12.24"
-            }
+            { "valid_from": "2024-08-01", "valid_until": null, "value": "12.24" }
           ]
         },
         "7": {
           "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "12.01"
-            }
+            { "valid_from": "2024-08-01", "valid_until": null, "value": "12.01" }
           ]
         },
         "6": {
           "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "9.94"
-            }
+            { "valid_from": "2024-08-01", "valid_until": null, "value": "9.94" }
           ]
         },
         "5": {
           "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "9.19"
-            }
+            { "valid_from": "2024-08-01", "valid_until": null, "value": "9.19" }
           ]
         },
         "4": {
           "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "8.47"
-            }
+            { "valid_from": "2024-08-01", "valid_until": null, "value": "8.47" }
           ]
         },
         "3S": {
           "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "7.98"
-            }
+            { "valid_from": "2024-08-01", "valid_until": null, "value": "7.98" }
           ]
         },
         "3": {
           "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "7.98"
-            }
+            { "valid_from": "2024-08-01", "valid_until": null, "value": "7.98" }
           ]
         },
         "2S": {
           "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "7.41"
-            }
+            { "valid_from": "2024-08-01", "valid_until": null, "value": "7.41" }
           ]
         },
         "2": {
           "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "7.41"
-            }
+            { "valid_from": "2024-08-01", "valid_until": null, "value": "7.41" }
           ]
         },
         "1": {
           "periods": [
-            {
-              "valid_from": "2024-08-01",
-              "valid_until": null,
-              "value": "6.89"
-            }
+            { "valid_from": "2024-08-01", "valid_until": null, "value": "6.89" }
           ]
         }
       }
-    },
-    "apprenticeship": null
+    }
   },
   "levels": [
     {
@@ -166,26 +115,10 @@
       "description": "1° livello - Lavoratori di primo inserimento",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-08-01",
-            "valid_until": "2025-01-01",
-            "value": "1315.70"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": "2025-08-01",
-            "value": "1502.46"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": "2026-08-01",
-            "value": "1530.00"
-          },
-          {
-            "valid_from": "2026-08-01",
-            "valid_until": null,
-            "value": "1557.00"
-          }
+          { "valid_from": "2024-08-01", "valid_until": "2025-01-01", "value": "1315.70" },
+          { "valid_from": "2025-01-01", "valid_until": "2025-08-01", "value": "1502.46" },
+          { "valid_from": "2025-08-01", "valid_until": "2026-08-01", "value": "1530.00" },
+          { "valid_from": "2026-08-01", "valid_until": null, "value": "1557.00" }
         ]
       },
       "fixed_allowances": []
@@ -196,21 +129,9 @@
       "description": "2° livello - Lavoratori qualificati",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-08-01",
-            "valid_until": "2025-08-01",
-            "value": "1705.50"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": "2026-08-01",
-            "value": "1751.40"
-          },
-          {
-            "valid_from": "2026-08-01",
-            "valid_until": null,
-            "value": "1796.40"
-          }
+          { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "1705.50" },
+          { "valid_from": "2025-08-01", "valid_until": "2026-08-01", "value": "1751.40" },
+          { "valid_from": "2026-08-01", "valid_until": null, "value": "1796.40" }
         ]
       },
       "fixed_allowances": []
@@ -221,21 +142,9 @@
       "description": "2° livello Super - Lavoratori qualificati con mansioni superiori",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-08-01",
-            "valid_until": "2025-08-01",
-            "value": "1740.80"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": "2026-08-01",
-            "value": "1787.21"
-          },
-          {
-            "valid_from": "2026-08-01",
-            "valid_until": null,
-            "value": "1832.71"
-          }
+          { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "1740.80" },
+          { "valid_from": "2025-08-01", "valid_until": "2026-08-01", "value": "1787.21" },
+          { "valid_from": "2026-08-01", "valid_until": null, "value": "1832.71" }
         ]
       },
       "fixed_allowances": []
@@ -246,21 +155,9 @@
       "description": "3° livello - Lavoratori specializzati",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-08-01",
-            "valid_until": "2025-08-01",
-            "value": "1795.50"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": "2026-08-01",
-            "value": "1843.95"
-          },
-          {
-            "valid_from": "2026-08-01",
-            "valid_until": null,
-            "value": "1891.45"
-          }
+          { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "1795.50" },
+          { "valid_from": "2025-08-01", "valid_until": "2026-08-01", "value": "1843.95" },
+          { "valid_from": "2026-08-01", "valid_until": null, "value": "1891.45" }
         ]
       },
       "fixed_allowances": []
@@ -271,21 +168,9 @@
       "description": "3° livello Super - Lavoratori specializzati con mansioni superiori",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-08-01",
-            "valid_until": "2025-08-01",
-            "value": "1835.10"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": "2026-08-01",
-            "value": "1884.57"
-          },
-          {
-            "valid_from": "2026-08-01",
-            "valid_until": null,
-            "value": "1933.07"
-          }
+          { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "1835.10" },
+          { "valid_from": "2025-08-01", "valid_until": "2026-08-01", "value": "1884.57" },
+          { "valid_from": "2026-08-01", "valid_until": null, "value": "1933.07" }
         ]
       },
       "fixed_allowances": []
@@ -296,21 +181,9 @@
       "description": "4° livello - Lavoratori con mansioni intermedie",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-08-01",
-            "valid_until": "2025-08-01",
-            "value": "1879.50"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": "2026-08-01",
-            "value": "1930.50"
-          },
-          {
-            "valid_from": "2026-08-01",
-            "valid_until": null,
-            "value": "1980.50"
-          }
+          { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "1879.50" },
+          { "valid_from": "2025-08-01", "valid_until": "2026-08-01", "value": "1930.50" },
+          { "valid_from": "2026-08-01", "valid_until": null, "value": "1980.50" }
         ]
       },
       "fixed_allowances": []
@@ -321,21 +194,9 @@
       "description": "5° livello - Lavoratori con mansioni di coordinamento",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-08-01",
-            "valid_until": "2025-08-01",
-            "value": "1950.40"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": "2026-08-01",
-            "value": "2002.93"
-          },
-          {
-            "valid_from": "2026-08-01",
-            "valid_until": null,
-            "value": "2054.43"
-          }
+          { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "1950.40" },
+          { "valid_from": "2025-08-01", "valid_until": "2026-08-01", "value": "2002.93" },
+          { "valid_from": "2026-08-01", "valid_until": null, "value": "2054.43" }
         ]
       },
       "fixed_allowances": []
@@ -346,21 +207,9 @@
       "description": "6° livello - Lavoratori con elevata specializzazione",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-08-01",
-            "valid_until": "2025-08-01",
-            "value": "2053.70"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": "2026-08-01",
-            "value": "2109.29"
-          },
-          {
-            "valid_from": "2026-08-01",
-            "valid_until": null,
-            "value": "2163.79"
-          }
+          { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "2053.70" },
+          { "valid_from": "2025-08-01", "valid_until": "2026-08-01", "value": "2109.29" },
+          { "valid_from": "2026-08-01", "valid_until": null, "value": "2163.79" }
         ]
       },
       "fixed_allowances": []
@@ -371,21 +220,9 @@
       "description": "7° livello - Lavoratori con funzioni direttive",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-08-01",
-            "valid_until": "2025-08-01",
-            "value": "2234.50"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": "2026-08-01",
-            "value": "2295.70"
-          },
-          {
-            "valid_from": "2026-08-01",
-            "valid_until": null,
-            "value": "2355.70"
-          }
+          { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "2234.50" },
+          { "valid_from": "2025-08-01", "valid_until": "2026-08-01", "value": "2295.70" },
+          { "valid_from": "2026-08-01", "valid_until": null, "value": "2355.70" }
         ]
       },
       "fixed_allowances": []
@@ -396,24 +233,13 @@
       "description": "8° livello - Quadri e lavoratori con funzioni di alta responsabilita",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2024-08-01",
-            "valid_until": "2025-08-01",
-            "value": "2384.90"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": "2026-08-01",
-            "value": "2447.63"
-          },
-          {
-            "valid_from": "2026-08-01",
-            "valid_until": null,
-            "value": "2509.13"
-          }
+          { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "2384.90" },
+          { "valid_from": "2025-08-01", "valid_until": "2026-08-01", "value": "2447.63" },
+          { "valid_from": "2026-08-01", "valid_until": null, "value": "2509.13" }
         ]
       },
       "fixed_allowances": []
     }
-  ]
+  ],
+  "apprenticeship": []
 }
