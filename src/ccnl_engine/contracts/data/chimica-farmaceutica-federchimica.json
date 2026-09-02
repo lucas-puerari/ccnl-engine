@@ -298,7 +298,7 @@
   },
   "coverage": {
     "layer_1": "partial",
-    "layer_2": "out_of_scope",
+    "layer_2": "partial",
     "layer_3": "out_of_scope",
     "notes": [
       "TEM CONGLOBATO: i valori in base_salary rappresentano il Trattamento Economico Minimo (TEM) totale = base minimo (Min) + IPO (Integrazione di Posizione Organizzativa, per livello) + EAR (Elemento Aggiuntivo della Retribuzione: A=190€, B=100€, C-F=0, fisso lungo tutto il contratto) + EDR (Elemento Distinto della Retribuzione, aggiunto dal 01/07/2027, per livello). fixed_allowances è vuoto per tutti i livelli.",

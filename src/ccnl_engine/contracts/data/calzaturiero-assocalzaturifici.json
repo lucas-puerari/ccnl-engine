@@ -38,7 +38,7 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "implemented",
+    "layer_2": "partial",
     "layer_3": "out_of_scope",
     "notes": [
       "SIMPLIFICATION: Salary model is conglobated (minimi retributivi include paga base, contingenza, and EDR). Modeled as base_salary with fixed_allowances: [] for all levels except level 8.",

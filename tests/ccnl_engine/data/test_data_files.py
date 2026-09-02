@@ -930,18 +930,39 @@ class TestLoadTessileSmi:
         assert codes == {"1", "2", "2S", "3", "3S", "4", "5", "6", "7", "8"}
 
     def test_tessile_smi_level4_salary_tranche1(self) -> None:
-        """Level 4 pre-Dec 2024 ERN: 1786.95 EUR (lexplain.it)."""
+        """Level 4 Nov 2024 ERN (pre-Dec 2024): 1786.95 EUR (lexplain.it)."""
+        ccnl = load_ccnl("tessile-smi.json")
+        level = next(lv for lv in ccnl.levels if lv.code == "4")
+        val = level.base_salary.value_at(date(2024, 11, 15))
+        assert val == Decimal("1786.95")
+
+    def test_tessile_smi_level4_salary_tranche_dec2024(self) -> None:
+        """Level 4 Dec 2024 ERN: 1881.95 EUR (+95 tranche, proportionally derived)."""
         ccnl = load_ccnl("tessile-smi.json")
         level = next(lv for lv in ccnl.levels if lv.code == "4")
         val = level.base_salary.value_at(date(2025, 6, 1))
-        assert val == Decimal("1786.95")
+        assert val == Decimal("1881.95")
 
-    def test_tessile_smi_level4_salary_tranche2(self) -> None:
+    def test_tessile_smi_level4_salary_tranche_jan2026(self) -> None:
         """Level 4 Jan 2026 ERN: 1938.95 EUR (kitech.it)."""
         ccnl = load_ccnl("tessile-smi.json")
         level = next(lv for lv in ccnl.levels if lv.code == "4")
         val = level.base_salary.value_at(date(2026, 1, 1))
         assert val == Decimal("1938.95")
+
+    def test_tessile_smi_level1_salary_dec2024(self) -> None:
+        """Level 1 Dec 2024 ERN: 1401.94 EUR (proportionally derived from +95 at L4)."""
+        ccnl = load_ccnl("tessile-smi.json")
+        level = next(lv for lv in ccnl.levels if lv.code == "1")
+        val = level.base_salary.value_at(date(2025, 1, 1))
+        assert val == Decimal("1401.94")
+
+    def test_tessile_smi_level8_salary_dec2024(self) -> None:
+        """Level 8 Dec 2024 ERN: 2385.33 EUR (proportionally derived, +120.65)."""
+        ccnl = load_ccnl("tessile-smi.json")
+        level = next(lv for lv in ccnl.levels if lv.code == "8")
+        val = level.base_salary.value_at(date(2025, 1, 1))
+        assert val == Decimal("2385.33")
 
     def test_tessile_smi_level_ordering(self) -> None:
         """Level 1 must be lowest (order 1), level 8 must be highest."""
@@ -2200,6 +2221,37 @@ class TestLoadBccCreditoCooperativo:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 12
+
+    def test_bcc_credito_cooperativo_apprenticeship_type(self) -> None:
+        """Apprenticeship is under_classification, destination 3AP1 (Art. 30)."""
+        ccnl = load_ccnl("bcc-credito-cooperativo.json")
+        assert ccnl.apprenticeship is not None
+        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
+        assert ccnl.apprenticeship.destination_level == "3AP1"
+
+    def test_bcc_credito_cooperativo_apprenticeship_periods(self) -> None:
+        """Months 0-18 at 2AP-2° pay level, months 18+ at destination 3AP1."""
+        ccnl = load_ccnl("bcc-credito-cooperativo.json")
+        assert isinstance(ccnl.apprenticeship, ApprenticeshipUnderClassification)
+        periods = ccnl.apprenticeship.periods
+        assert len(periods) == 2
+        assert periods[0].months_from == 0
+        assert periods[0].months_until == 18
+        assert periods[0].pay_level_code == "2AP2"
+        assert periods[1].months_from == 18
+        assert periods[1].months_until is None
+        assert periods[1].pay_level_code == "3AP1"
+
+    def test_bcc_credito_cooperativo_apprentice_compute(self) -> None:
+        """Apprentice 12 months elapsed → salary at 2AP2 level."""
+        ccnl = load_ccnl("bcc-credito-cooperativo.json")
+        rules = load_year_rules(2026, ccnl.ccnl.tax_sector, num_employees=50)
+        result = compute(
+            ccnl, "3AP1", date(2026, 6, 1), rules, Apprentice(months_elapsed=12)
+        )
+        # At 12 months, pay level is 2AP2 (under-classification)
+        assert result.apprenticeship_under_level_code == "2AP2"
+        assert result.gross_monthly > 0
 
 
 class TestLoadElettricoElettricita:

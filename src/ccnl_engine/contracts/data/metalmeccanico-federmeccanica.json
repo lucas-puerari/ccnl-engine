@@ -224,7 +224,7 @@
   },
   "coverage": {
     "layer_1": "partial",
-    "layer_2": "out_of_scope",
+    "layer_2": "partial",
     "layer_3": "out_of_scope",
     "notes": [
       "MINIMI CONGLOBATI: i valori in base_salary sono i 'minimi tabellari conglobati' del CCNL Federmeccanica-Assistal, che incorporano paga base, contingenza e EDR in un'unica cifra (prassi Federmeccanica dal 2001). Per questo motivo fixed_allowances è vuoto per tutti i livelli.",
