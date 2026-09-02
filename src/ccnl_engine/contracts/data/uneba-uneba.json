@@ -1,0 +1,240 @@
+{
+  "schema_version": "0.2",
+  "ccnl": {
+    "id": "uneba-uneba",
+    "name": "CCNL Istituzioni Socio-Assistenziali — UNEBA",
+    "cnel_code": "T141",
+    "sector": "servizi socio-assistenziali",
+    "tax_sector": "terziario",
+    "signatories": [
+      "UNEBA",
+      "FP-CGIL",
+      "FISASCAT-CISL",
+      "UILTUCS-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+        "type": "official_contract",
+        "agreement_date": "2025-01-24"
+      },
+      {
+        "url": "https://olympus.uniurb.it/index.php?Itemid=139&catid=242&id=21943%3A2020uneba&option=com_content&view=article",
+        "type": "official_contract",
+        "agreement_date": "2020-01-20"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-02T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": 164,
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2024-10-01", "valid_until": null, "value": "14" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 10,
+      "amount_by_level": {
+        "Q":  { "periods": [{ "valid_from": "2024-10-01", "valid_until": null, "value": "34.09" }] },
+        "1":  { "periods": [{ "valid_from": "2024-10-01", "valid_until": null, "value": "32.54" }] },
+        "2":  { "periods": [{ "valid_from": "2024-10-01", "valid_until": null, "value": "30.99" }] },
+        "3S": { "periods": [{ "valid_from": "2024-10-01", "valid_until": null, "value": "29.95" }] },
+        "3":  { "periods": [{ "valid_from": "2024-10-01", "valid_until": null, "value": "28.92" }] },
+        "4S": { "periods": [{ "valid_from": "2024-10-01", "valid_until": null, "value": "28.41" }] },
+        "4":  { "periods": [{ "valid_from": "2024-10-01", "valid_until": null, "value": "27.89" }] },
+        "5S": { "periods": [{ "valid_from": "2024-10-01", "valid_until": null, "value": "27.37" }] },
+        "5":  { "periods": [{ "valid_from": "2024-10-01", "valid_until": null, "value": "26.86" }] },
+        "6S": { "periods": [{ "valid_from": "2024-10-01", "valid_until": null, "value": "26.34" }] },
+        "6":  { "periods": [{ "valid_from": "2024-10-01", "valid_until": null, "value": "25.82" }] }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "6",
+      "order": 1,
+      "description": "Livello 6 — operatore generico ausiliario",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1293.12" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1337.17" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "1359.20" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6S",
+      "order": 2,
+      "description": "Livello 6 Super — operatore ausiliario qualificato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1328.08" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1373.32" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "1395.94" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 3,
+      "description": "Livello 5 — operatore di assistenza di base",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1363.01" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1409.44" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "1432.66" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5S",
+      "order": 4,
+      "description": "Livello 5 Super — operatore di assistenza qualificato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1397.99" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1445.61" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "1469.42" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 5,
+      "description": "Livello 4 — operatore socio-assistenziale",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1421.27" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1469.69" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "1493.89" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4S",
+      "order": 6,
+      "description": "Livello 4 Super — operatore socio-sanitario (OSS)",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1467.86" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1517.86" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "1542.86" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 7,
+      "description": "Livello 3 — operatore tecnico specializzato / educatore",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1549.40" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1602.17" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "1628.56" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3S",
+      "order": 8,
+      "description": "Livello 3 Super — educatore professionale / tecnico qualificato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1607.64" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1662.40" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "1689.78" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 9,
+      "description": "Livello 2 — responsabile di servizio / coordinatore",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1735.81" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1794.93" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "1824.49" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1",
+      "order": 10,
+      "description": "Livello 1 — direttore / responsabile di struttura",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1840.65" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1903.35" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "1934.70" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "Q",
+      "order": 11,
+      "description": "Quadro — dirigente / responsabile apicale (con indennità di funzione)",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1957.15" },
+          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "2023.82" },
+          { "valid_from": "2026-03-01", "valid_until": null,         "value": "2057.15" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_FUN",
+          "description": "Indennità di funzione Quadro (Art. 43 CCNL 2025)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2024-10-01", "valid_until": null, "value": "100.00" }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "apprenticeship": {
+    "type": "percentage",
+    "destination_level": "4S",
+    "periods": [
+      { "months_from": 0, "months_until": 9,    "percentage": "0.85" },
+      { "months_from": 9, "months_until": null,  "percentage": "0.90" }
+    ]
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "SALARY MODEL: conglobated (minimi retributivi mensili conglobati per Art. 43 CCNL Jan 2025). All base_salary values are the conglobated tabular minimums; contingenza and EDR are fully absorbed. Back-calculation: Oct 2024 level 4S = 1467.86 / 164 = 8.95 EUR/h; level 2 = 1735.81 / 164 = 10.58 EUR/h; level Q = 1957.15 / 164 = 11.93 EUR/h — consistent across all levels, confirming divisor 164 and conglobated model.",
+      "TRANCHE DATES: three tranches — Oct 2024, Jul 2025, Mar 2026. Renewal signed 24 Jan 2025 (CCNL 2023-2025). Level 7 abolished from 01.02.2025 per Art. 80 of the renewal; not modelled.",
+      "HOURLY DIVISOR: 164, derived from Art. 50 (38-hour week). Formula: 38 h/week × 52/12 = 164.67, rounded to 164 per contract usage.",
+      "ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima). Quattordicesima confirmed by Art. 46 CCNL 2025 (erogata in luglio). Applies to all levels.",
+      "SENIORITY: triennial (every 36 months), maximum 10 scatti. Per-level amounts from Art. 48 table (CCNL 2025 signed PDF). Valid from first tranche date Oct 2024.",
+      "LEVEL Q — IND_FUN: fixed allowance EUR 100.00/month (Art. 43, 'indennità di funzioni pari a EUR 100,00 mensili lorde'). Paid over 14 mensilità, non-absorbable. Applied to all Q-level workers.",
+      "APPRENTICESHIP: OSS/4S rule (Art. 22 CCNL 2020, unchanged by 2025 renewal — apprenticeship article not listed among modified articles on p.3 of the signed renewal PDF). Primary source: olympus.uniurb.it (CCNL 20 Jan 2020). Destination level 4S (OSS), 18 months: 85% months 1-9, 90% months 10-18.",
+      "SIMPLIFICATION — APPRENTICESHIP: Art. 22 defines variable duration and percentages by destination level (levels 2/3S/3: 36 months; levels 4S/4: 24 months except OSS/4S at 18 months; levels 5S/5/6: 18 months) and a general 90/95/100% three-band rule for non-OSS categories. The engine supports one destination_level per contract; only the OSS/4S rule (most common in UNEBA, dominant worker category) is modelled. Professionals excluded from apprenticeship per Art. 22 (nurses, physiotherapists, psychologists, social workers) are not modelled.",
+      "TEP ABOLISHED: Art. 80 of the 2025 renewal abolishes the Trattamento Economico Progressivo (progressive 36-month phased salary for new hires). Not modelled as it is no longer in force from 01.02.2025.",
+      "ERMT: Elemento Retributivo Mensile Territoriale is a territorial supplement, not part of the national CCNL salary table. Not modelled at national level.",
+      "INPS: reuses 2026-terziario.json (TERZIARIO sector). No separate INPS circular rate published for UNEBA; rate is consistent with general terziario sector (same as Commercio and Cooperative Sociali)."
+    ]
+  }
+}
