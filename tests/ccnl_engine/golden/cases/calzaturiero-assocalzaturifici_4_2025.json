@@ -1,0 +1,48 @@
+{
+  "_description": "Golden case: CCNL Calzaturiero Industria (D121), level 4, 2025-08-01, permanent, no seniority.",
+  "_notes": [
+    "Aug 2025 tranche: base_salary level 4 = 1930.50 EUR/month (consulenza.it, primary source).",
+    "Salary model: conglobated (minimi retributivi include paga base, contingenza, EDR). fixed_allowances: [].",
+    "gross_monthly = 1930.50. gross_annual = 1930.50 * 13 = 25096.50 (tredicesima only).",
+    "Hourly divisor: 169 (kitech.it, 39h/week formula). Daily divisor: 26.",
+    "Seniority: 0.00 — seniority_count=0, triennale (36 months), max 5 scatti.",
+    "INPS employer rate from 2026-industria.json (industria sector, 50 employees tier).",
+    "IRPEF 2026 brackets applied (L. 199/2025). No addizionali modelled."
+  ],
+  "inputs": {
+    "ccnl_file": "calzaturiero-assocalzaturifici.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "4",
+    "as_of": "2025-08-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "calzaturiero-assocalzaturifici",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2025,
+    "base_monthly": "1930.50",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "gross_monthly": "1930.50",
+    "gross_annual": "25096.50",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2306.37",
+    "inps_employer_annual": "7579.14",
+    "tfr_annual": "1859.00",
+    "taxable_income": "22790.13",
+    "irpef_gross": "5241.73",
+    "work_income_deduction": "886.87",
+    "irpef_net": "4354.86",
+    "net_annual": "18435.27",
+    "net_monthly": "1418.10",
+    "employer_cost_annual": "34534.64"
+  }
+}
