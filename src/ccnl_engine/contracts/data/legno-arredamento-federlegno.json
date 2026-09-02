@@ -28,16 +28,16 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
       "INFO: SALARY MODEL: split (paga base + contingenza + EDR). Paga base varia per tranche (Jul 2023, Jan 2024, Jan 2025). Contingenza congelata dal 31/07/1992 (valori da CNEL F051 PDF). EDR fisso 10,33 EUR per tutti i livelli (Accordo 31/07/1992). Fonte tabelle: CNEL F051 PDF (rinnovo 20/06/2023); tranche Jan 2024 confermata da lexplain.it; tranche Jan 2025 derivata dalla differenza tra totale da dottrinalavoro.it e contingenza+EDR.",
-      "SIMPLIFICATION: HOURLY DIVISOR 174: valore 174 coerente con settimana lavorativa 40h (40 x 52 / 12 = 173,33 → 174). Nessuna tabella oraria pubblicata trovata in fonti primarie accessibili. SIMPLIFICATION: divisore derivato; convergenza di fonti secondarie indipendenti su 174 (previdenza-professionisti.it, regime industria manifatturiera). Coefficiente giornaliero 26 confermato da CNEL F051 PDF.",
+      "SOURCE: HOURLY DIVISOR 174 (40h x 52 / 12 = 173.33, rounded up as used by the sector): no published hourly table in accessible primary sources; independent secondary sources converge on 174 (previdenza-professionisti.it). Daily coefficient 26 confirmed by the CNEL F051 PDF.",
       "INFO: ADDITIONAL MONTHS: 13 mensilità (tredicesima). Fonte: CNEL F051 PDF, campo 'Numero mensilità: 13'.",
-      "SIMPLIFICATION: SENIORITY: cadenza biennale (24 mesi), massimo 5 scatti. Importi per livello da previdenza-professionisti.it (dati 2025, invariati dal 2009 — nessuna modifica nel rinnovo 2023 trovata). AS2 (9,66 EUR) ha scatto diverso da AC1 (10,76 EUR) pur condividendo la stessa paga base — entrambi modellati per preservare il dato reale. SIMPLIFICATION: valid_from '2023-07-01' assunto corrispondente alla prima tranche salariale; il rinnovo 2023 non ha modificato gli importi degli scatti.",
+      "SOURCE: SENIORITY: cadenza biennale (24 mesi), massimo 5 scatti; importi da previdenza-professionisti.it (2025, invariati dal 2009). AS2 (9,66) e AC1 (10,76) hanno scatti diversi pur condividendo la paga base. valid_from 2023-07-01 assunto pari alla prima tranche; il rinnovo 2023 non ha modificato gli scatti.",
       "INFO: CONTINGENZA: 12 bande salariali per 16 codici di livello. I livelli AE4 e AS1 condividono la stessa paga base e contingenza (banda 4). I livelli AC1 e AS2 condividono la stessa paga base e contingenza (banda 5); AS2 ha scatto diverso da AC1. I livelli AC2, AC3 e AS4 condividono la stessa paga base e contingenza (banda 7). Tutti i valori di contingenza da CNEL F051 PDF.",
-      "SIMPLIFICATION: APPRENDISTATO: tipo under_classification (CCNL Legno, rinnovo 20/06/2023). Percorsi: 1° periodo (0-12 mesi): 2 livelli-banda sotto il livello di destinazione; 2° periodo (12-24 mesi): 1 livello-banda sotto; 3° periodo (24-36 mesi): 1 livello-banda sotto con retribuzione intermedia tra livello appartenenza e destinazione. SIMPLIFICATION: il 3° periodo (mesi 24-36) modellato allo stesso livello del 2° periodo (AC1 per destination AS3) invece del valore intermedio tra AC1 e AS3 — sottostima la retribuzione degli apprendisti nel 3° periodo. destination_level='AS3' è un livello rappresentativo; il percorso reale dipende dal livello di destinazione individuale. Fonte: CNEL F051 PDF, clausola apprendistato professionalizzante.",
-      "INFO: INDENNITA' DI FUNZIONE AD3: i lavoratori AD3 percepiscono un'indennità di funzione di 25,82 EUR/mese non inclusa nel minimo tabellare. Non modellata — è una voce individuale esterna alla tabella salariale contrattuale.",
+      "SIMPLIFICATION: APPRENDISTATO under_classification (CCNL Legno, rinnovo 20/06/2023, CNEL F051 PDF): 1° periodo (0-12 mesi) due bande salariali sotto la destinazione; 2° periodo (12-24) una banda sotto; 3° periodo (24-36) una banda sotto con retribuzione intermedia fra livello di appartenenza e destinazione (midpoint_to_destination sul minimo tabellare); poi destinazione. Le bande sono AE1 | AE2 | AE3 | AE4-AS1 | AC1-AS2 | AS3 | AC2-AC3-AS4 | AC4 | AC5 | AD1 | AD2 | AD3; i track raggruppano le destinazioni con gli stessi offset di ordine. Destinazioni modellate: da AE3 ad AC4; AE1/AE2 (nessuna banda due gradini sotto), AC5 (quadri) e area direttiva escluse.",
+      "INFO: INDENNITA' DI FUNZIONE AD3: 25,82 EUR/mese non inclusa nel minimo tabellare, modellata come fixed_allowance del livello AD3.",
       "INFO: INPS: aliquote settore industria da 2026-industria.json (file preesistente riutilizzato). Dipendente 9,19%; datore: ≤15 dip 30,13%, 16-50 dip 30,20%, >50 dip 30,50%. Nessun fondo bilaterale sostitutivo per CCNL Legno Industria (Fondimpresa per formazione, non incide sulle aliquote INPS).",
       "SIMPLIFICATION: DESCRIZIONI LIVELLI: le descrizioni testuali dei livelli (es. 'Area Esecutiva — 1° livello') sono placeholder generati dall'engine basati sui codici area (AE/AS/AC/AD) e non corrispondono ai testi contrattuali ufficiali degli articoli di classificazione del CCNL. Il testo estratto dal PDF CNEL F051 non includeva le denominazioni ufficiali delle categorie per ciascun codice livello.",
       "SIMPLIFICATION: ORDINAMENTO INTRA-BANDA: per i livelli che condividono la stessa paga base (AE4/AS1, AC1/AS2, AC2/AC3/AS4), l'ordine relativo è assegnato arbitrariamente (ordine crescente all'interno del gruppo) per soddisfare il vincolo del motore di unicità dell'ordine. Il CCNL non definisce una gerarchia interna tra livelli della stessa banda salariale. Funzionalmente ininfluente — il validatore richiede solo salary non decrescente per ordine crescente."
@@ -172,7 +172,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "AE2",
@@ -204,7 +205,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "AE3",
@@ -236,7 +238,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "AE4",
@@ -268,7 +271,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "AS1",
@@ -556,7 +560,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     },
     {
       "code": "AD1",
@@ -588,7 +593,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     },
     {
       "code": "AD2",
@@ -620,7 +626,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     },
     {
       "code": "AD3",
@@ -651,18 +658,115 @@
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
             ]
           }
+        },
+        {
+          "code": "ind_funzione_AD3",
+          "description": "Indennità di funzione AD3, 25,82 EUR/mese, non inclusa nel minimo tabellare",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-07-01", "valid_until": null, "value": "25.82" }
+            ]
+          }
         }
-      ]
+      ],
+      "category": "quadro"
     }
   ],
   "apprenticeship": [
     {
       "type": "under_classification",
-      "name": "standard",
-      "destination_levels": ["AS3"],
+      "name": "professionalizzante_1",
+      "destination_levels": ["AE3", "AE4"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 2 },
+        { "months_from": 12, "months_until": 24, "levels_below": 1 },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "levels_below": 1,
+          "midpoint_to_destination": true
+        },
+        { "months_from": 36, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_2",
+      "destination_levels": ["AS1", "AC1"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 3 },
+        { "months_from": 12, "months_until": 24, "levels_below": 2 },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "levels_below": 2,
+          "midpoint_to_destination": true
+        },
+        { "months_from": 36, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_3",
+      "destination_levels": ["AS2", "AC4"],
       "periods": [
         { "months_from": 0, "months_until": 12, "levels_below": 4 },
-        { "months_from": 12, "months_until": null, "levels_below": 2 }
+        { "months_from": 12, "months_until": 24, "levels_below": 3 },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "levels_below": 3,
+          "midpoint_to_destination": true
+        },
+        { "months_from": 36, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_4",
+      "destination_levels": ["AS3", "AC3"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 4 },
+        { "months_from": 12, "months_until": 24, "levels_below": 2 },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "levels_below": 2,
+          "midpoint_to_destination": true
+        },
+        { "months_from": 36, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_5",
+      "destination_levels": ["AC2"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 3 },
+        { "months_from": 12, "months_until": 24, "levels_below": 1 },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "levels_below": 1,
+          "midpoint_to_destination": true
+        },
+        { "months_from": 36, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_6",
+      "destination_levels": ["AS4"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 5 },
+        { "months_from": 12, "months_until": 24, "levels_below": 3 },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "levels_below": 3,
+          "midpoint_to_destination": true
+        },
+        { "months_from": 36, "months_until": null, "levels_below": 0 }
       ]
     }
   ]

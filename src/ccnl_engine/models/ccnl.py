@@ -8,6 +8,7 @@ from typing import Literal, Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.models.apprenticeship import (
+    ApprenticeshipPercentage,
     ApprenticeshipTrack,
     ApprenticeshipUnderClassification,
 )
@@ -59,10 +60,12 @@ class SeniorityIncrements(BaseModel):
     """Seniority increment (*scatti di anzianità*) rules for a CCNL.
 
     ``first_cadence_months`` is the service required for the first increment
-    when it differs from ``cadence_months``. ``maximum_count_by_level``
-    overrides ``maximum_count`` for specific levels. ``apprentice_amount`` is
-    the increment (if any) accrued during an apprenticeship, replacing the
-    level amount.
+    when it differs from ``cadence_months``; ``first_cadence_months_by_level``
+    and ``maximum_count_by_level`` override the contract-wide values for
+    specific levels. ``apprentice_amount`` is the increment (if any) accrued
+    during an apprenticeship, replacing the level amount. Workers of an
+    ``excluded_categories`` category accrue no increment (e.g. operai edili,
+    who receive APE through the Cassa Edile instead).
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -71,20 +74,25 @@ class SeniorityIncrements(BaseModel):
     maximum_count: int = Field(ge=0)
     amount_by_level: dict[str, TimeSeries]
     first_cadence_months: int | None = Field(default=None, gt=0)
+    first_cadence_months_by_level: dict[str, int] = {}
     maximum_count_by_level: dict[str, int] = {}
     apprentice_amount: TimeSeries | None = None
+    excluded_categories: list[LevelCategory] = []
 
     @model_validator(mode="after")
     def _check_cadence(self) -> Self:
-        if (
-            self.first_cadence_months is not None
-            and self.first_cadence_months < self.cadence_months
-        ):
-            msg = (
-                f"first_cadence_months ({self.first_cadence_months}) must be "
-                f">= cadence_months ({self.cadence_months})"
-            )
-            raise ValueError(msg)
+        candidates = [("first_cadence_months", self.first_cadence_months)]
+        candidates += [
+            (f"first_cadence_months_by_level[{code!r}]", months)
+            for code, months in self.first_cadence_months_by_level.items()
+        ]
+        for name, months in candidates:
+            if months is not None and months < self.cadence_months:
+                msg = (
+                    f"{name} ({months}) must be >= cadence_months "
+                    f"({self.cadence_months})"
+                )
+                raise ValueError(msg)
         for code, count in self.maximum_count_by_level.items():
             if count < 0:
                 msg = f"maximum_count_by_level[{code!r}] must be >= 0, got {count}"
@@ -94,6 +102,12 @@ class SeniorityIncrements(BaseModel):
     def maximum_for(self, level_code: str) -> int:
         """Return the maximum increment count applicable to a level."""
         return self.maximum_count_by_level.get(level_code, self.maximum_count)
+
+    def first_cadence_for(self, level_code: str) -> int:
+        """Return the months of service required for the first increment."""
+        return self.first_cadence_months_by_level.get(
+            level_code, self.first_cadence_months or self.cadence_months
+        )
 
 
 class EmployerFund(BaseModel):
@@ -280,12 +294,17 @@ class CCNL(BaseModel):
         msg = f"no level with order {order} in CCNL {self.ccnl.id!r}"
         raise KeyError(msg)
 
-    def apprenticeship_track_for(self, level_code: str) -> ApprenticeshipTrack | None:
-        """Return the apprenticeship track whose destinations include a level."""
+    def apprenticeship_tracks_for(self, level_code: str) -> list[ApprenticeshipTrack]:
+        """Return every apprenticeship track whose destinations include a level."""
+        return [t for t in self.apprenticeship if level_code in t.destination_levels]
+
+    def apprenticeship_track_named(self, name: str) -> ApprenticeshipTrack:
+        """Return the apprenticeship track with the given name or raise ``KeyError``."""
         for track in self.apprenticeship:
-            if level_code in track.destination_levels:
+            if track.name == name:
                 return track
-        return None
+        msg = f"no apprenticeship track named {name!r} in CCNL {self.ccnl.id!r}"
+        raise KeyError(msg)
 
     def _assert_unique_orders(self) -> None:
         orders = [lv.order for lv in self.levels]
@@ -305,6 +324,7 @@ class CCNL(BaseModel):
         for field_name, mapping in (
             ("amount_by_level", si.amount_by_level),
             ("maximum_count_by_level", si.maximum_count_by_level),
+            ("first_cadence_months_by_level", si.first_cadence_months_by_level),
         ):
             for code in mapping:
                 if code not in existing:
@@ -338,16 +358,12 @@ class CCNL(BaseModel):
                 prev_code = lv.code
 
     def _assert_apprenticeship_tracks(self) -> None:
-        seen: dict[str, str] = {}
+        names = [track.name for track in self.apprenticeship]
+        if len(names) != len(set(names)):
+            msg = f"apprenticeship track names must be unique, got: {names}"
+            raise ValueError(msg)
         for track in self.apprenticeship:
             for code in track.destination_levels:
-                if code in seen:
-                    msg = (
-                        f"apprenticeship destination level {code!r} appears in "
-                        f"both track {seen[code]!r} and track {track.name!r}"
-                    )
-                    raise ValueError(msg)
-                seen[code] = track.name
                 try:
                     dest = self.level_by_code(code)
                 except KeyError:
@@ -358,6 +374,19 @@ class CCNL(BaseModel):
                     raise ValueError(msg) from None
                 if isinstance(track, ApprenticeshipUnderClassification):
                     self._assert_offsets_resolve(track, dest)
+            if (
+                isinstance(track, ApprenticeshipPercentage)
+                and track.reference_level is not None
+            ):
+                try:
+                    self.level_by_code(track.reference_level)
+                except KeyError:
+                    msg = (
+                        f"apprenticeship track {track.name!r} references "
+                        f"reference_level {track.reference_level!r} which does not "
+                        f"exist"
+                    )
+                    raise ValueError(msg) from None
 
     def _assert_offsets_resolve(
         self, track: ApprenticeshipUnderClassification, dest: Level

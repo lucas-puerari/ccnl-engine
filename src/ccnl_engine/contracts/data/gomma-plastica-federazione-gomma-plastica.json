@@ -32,17 +32,17 @@
     }
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_1": "partial",
+    "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
       "INFO: SALARY MODEL: conglobated (TEM — Trattamento Economico Minimo). All base_salary values incorporate paga base, contingenza, and EDR in a single figure. Evidence: the F/level coefficient ratio is stable to 4 decimal places across all 4 tranches (2023-2026), which is only possible in a fully parametric (conglobated) system. fixed_allowances is empty for all levels except Q.",
       "INFO: CONGLOBATED CHECK: coefficient ratios computed as level_value / F_value for all tranches. Q/F=1.2359, A/F=1.1636, B/F=1.0978, C/F=1.0834, D/F=1.0697, E/F=1.0266, G/F=0.9319, H/F=0.8887, I/F=0.7989 — identical across 01.01.2023, 01.01.2024, 01.04.2025, 01.01.2026. This confirms conglobated model.",
-      "SIMPLIFICATION: HOURLY DIVISOR: 173. SIMPLIFICATION: nessuna tabella oraria ufficiale B371 recuperata. Il valore 173 è derivato dalla formula standard (40h/settimana × 52 / 12 = 173,33 arrotondato a 173), applicata assumendo la settimana lavorativa di 40 ore standard per il settore industria gomma e plastica. Fonti secondarie (contratticcnl.it, fiscoetasse.com) indicano orario 40h/settimana per questo CCNL; la clausola contrattuale specifica non è stata recuperata direttamente. Se l'orario contrattuale effettivo differisce, il divisore deve essere corretto.",
-      "SIMPLIFICATION: TRANCHE DATES: 01.01.2023, 01.01.2024, 01.04.2025, 01.01.2026 from lexplain.it (confirmed) and kitech.it (2026 tranche). Future tranches 01.04.2027, 01.04.2028, 01.12.2028 from rinnovo 10.12.2025 (fiscoetasse.com, paserio.it): F +60, +60, +15. All other levels derived parametrically via stable coefficients. SIMPLIFICATION: derived values may differ ±0.01 EUR from official tables due to rounding.",
-      "SIMPLIFICATION: Q LEVEL INDENNITA' DI FUNZIONE: 50.00 EUR/month fixed allowance for livello Q (quadri ex L. 190/1985). Cross-verified at April 2025: lexplain.it shows Q total = 2473.68, contratticcnl.it shows Q pure TEM = 2423.68; difference = 50.00 EUR = indennità di funzione. Modelled as fixed_allowance; not part of base_salary TimeSeries. SIMPLIFICATION: il valid_from dell'allowance è impostato a 2023-01-01 per coerenza con la prima tranche TEM modellata. La conferma documentale riguarda il valore ad aprile 2025; non è stato verificato se l'importo di 50 EUR fosse già in vigore nel 2023 o se sia stato introdotto/modificato con un rinnovo precedente.",
-      "SIMPLIFICATION: SENIORITY: cadenza biennale (24 mesi), massimo 5 scatti. Importi 01.01.2026 da kitech.it (post-rinnovo 2025). SIMPLIFICATION: importi pre-2026 non modellati (dati non recuperati per le tranche 2023-2025). Il motore usa gli importi 2026 anche per periodi precedenti al 01.01.2026 — impatto trascurabile per calcoli su data corrente o futura.",
-      "SIMPLIFICATION: APPRENTICESHIP: tipo under_classification (art. apprendistato professionalizzante CCNL Gomma e Plastica). Regola: l'apprendista non può essere inquadrato per più di due livelli inferiori a quello spettante. Destination_level modellato su F (livello di riferimento CCNL). Percorso F (36 mesi): 0-11 mesi → H (2 livelli sotto), 12-23 mesi → G (1 livello sotto), 24+ mesi → F (destinazione). SIMPLIFICATION: i confini dei periodi (12/12/open) sono approssimati — il testo CCNL non specifica una tabella mensile pubblica per questo percorso. Fonte regola generale: contratticcnl.it. Layer 2 marcato partial.",
+      "SOURCE: HOURLY DIVISOR 173 derived from the standard formula (40h/week x 52 / 12 = 173.33 rounded to 173); secondary sources (contratticcnl.it, fiscoetasse.com) confirm the 40h week but the contractual clause was not retrieved directly.",
+      "SIMPLIFICATION: TRANCHE DATES 01.01.2023, 01.01.2024, 01.04.2025, 01.01.2026 from lexplain.it and kitech.it. Future tranches 01.04.2027, 01.04.2028, 01.12.2028 from the rinnovo 10.12.2025 (fiscoetasse.com, paserio.it): F +60, +60, +15; other levels derived parametrically via the stable coefficients (possible ±0.01 EUR rounding differences).",
+      "SOURCE: Q LEVEL INDENNITA' DI FUNZIONE 50.00 EUR/month (quadri ex L. 190/1985), cross-verified at April 2025 (lexplain.it total 2473.68 vs contratticcnl.it TEM 2423.68). valid_from set to 2023-01-01 for consistency with the first modelled tranche; not verified whether the amount was already 50 EUR in 2023.",
+      "MISSING: SENIORITY amounts for 2023-2025: only the 01.01.2026 amounts (kitech.it, post-rinnovo 2025) are available and are applied to the whole window. Cadence 24 months, maximum 5 scatti.",
+      "SIMPLIFICATION: APPRENTICESHIP under_classification (art. apprendistato professionalizzante CCNL Gomma e Plastica; rule from contratticcnl.it: the apprentice cannot be classified more than two levels below the destination). Track 'professionalizzante' for destinations G, F, E, D, C, B: 0-12 months two levels below, 12-24 one level below, then destination. The 12/12 boundaries are an approximation (no public monthly table). H (only one level below exists), I, A and Q are not modelled as destinations.",
       "INFO: INPS: riutilizza 2026-industria.json (Confindustria/CIGO). La Federazione Gomma Plastica aderisce a Confindustria; CIGO applicabile ai sensi del D.Lgs. 148/2015.",
       "INFO: ADDITIONAL MONTHS: 13 (tredicesima). La quattordicesima non è prevista dal CCNL Gomma e Plastica Industria."
     ]
@@ -267,7 +267,8 @@
           { "valid_from": "2028-12-01", "valid_until": null, "value": "2508.94" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "quadro"
     },
     {
       "code": "Q",
@@ -294,14 +295,15 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     }
   ],
   "apprenticeship": [
     {
       "type": "under_classification",
-      "name": "standard",
-      "destination_levels": ["F"],
+      "name": "professionalizzante",
+      "destination_levels": ["G", "F", "E", "D", "C", "B"],
       "periods": [
         { "months_from": 0, "months_until": 12, "levels_below": 2 },
         { "months_from": 12, "months_until": 24, "levels_below": 1 },

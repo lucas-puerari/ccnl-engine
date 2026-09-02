@@ -55,9 +55,9 @@
       "INFO: HOURLY DIVISOR: 195. Derived from CCNL Art. 15 (primary source, italpaghe.ilccnl.it): 'Gli importi orari si determinano dividendo la retribuzione giornaliera per l'orario medio giornaliero.' Daily = monthly/30; for 39h/week the CCNL Thaler 2022 summary specifies dividing by 6 to get daily hours: 39/6 = 6.5h/day; divisor = 30 * 6.5 = 195. Three independent sources (CCNL Art. 15, lexplain.it, Thaler 2022) confirm the formula. Note: lavoro-economia.it states 'divisore convenzionale 169' but this contradicts the CCNL primary text and two corroborating sources; not adopted.",
       "INFO: ADDITIONAL MONTHS: 14 (tredicesima in December + quattordicesima in June). Confirmed from CCNL Art. 40 (tredicesima) and Art. 41 (quattordicesima). Source: Thaler 2022 CCNL summary.",
       "INFO: SENIORITY: biennale (24 months), maximum 6 scatti. Per-level amounts (EUR/scatto) confirmed from Thaler 2022 CCNL summary table, all 33 parametri. Note: two pairs share the same scatto amount (par.158 = par.160 = 24.65; par.138 = par.139 = 21.06) — this is as published.",
-      "SIMPLIFICATION: EDR 2024: modelled as fixed_allowances per level, code='edr_2024'. Amount = 40 EUR at par.175, proportional to parametro. Active from 2025-03-01 to 2026-04-30 (14 months). Source: AGENS circular 20/03/2025 — 'elemento distinto della retribuzione, non assorbibile, di importo pari a 40 euro mensili per il parametro 175, proporzionalmente riparametrato per tutti gli altri livelli, per una durata di 14 mensilita.' Per AGENS circular, EDR is 'non computabile ai fini del TFR e della contribuzione al Fondo Priamo.' SIMPLIFICATION: the engine includes fixed_allowances in the TFR base (via gross_monthly * additional_months path). TFR is therefore overstated by ~EDR * 14 months during the active window. This is an existing engine-level simplification documented in compute.py.",
-      "INFO: APPRENTICESHIP: CCNL Art. 36-bis (apprendistato professionalizzante). No wage reduction — apprentice earns 100% of destination level from day one. destination_level='100' (entry parametro). Source: Art. 36-bis per AGENS circular 20/03/2025 reference to previgente CCNL provisions on apprendistato.",
-      "SIMPLIFICATION: INPS: reuses 2026-terziario.json. The Autoferrotranvieri sector (TPL) includes both public-owned (ex-gestione governativa) and private operators. INPS classification is TERZIARIO for private TPL companies (confirmed by ASSTRA/ANAV membership profile and INPS contribution circulars for the trasporti locali sector). SIMPLIFICATION: some publicly-owned TPL operators may have different INPS contribution schemes; this file models private-sector employers.",
+      "INFO: EDR 2024: fixed_allowances per level, code 'edr_2024', 40 EUR at par.175 proportional to the parametro, active 2025-03-01 to 2026-04-30 (14 months). Per AGENS circular 20/03/2025 it is 'non computabile ai fini del TFR e della contribuzione al Fondo Priamo': modelled with tfr_relevant=false (Fondo Priamo is a bilateral pension fund, not modelled).",
+      "INFO: APPRENTICESHIP: CCNL Art. 36-bis (apprendistato professionalizzante). No wage reduction: the apprentice earns 100% of the destination parametro from day one; the track therefore covers every parametro. Source: Art. 36-bis per AGENS circular 20/03/2025.",
+      "SIMPLIFICATION: INPS reuses 2026-terziario.json. The Autoferrotranvieri sector (TPL) includes both public-owned (ex-gestione governativa) and private operators. INPS classification is TERZIARIO for private TPL companies (confirmed by ASSTRA/ANAV membership profile and INPS contribution circulars for the trasporti locali sector). SIMPLIFICATION: some publicly-owned TPL operators may have different INPS contribution schemes; this file models private-sector employers.",
       "INFO: LEVELS: 33 parametri from 100 to 250. The CCNL classification assigns one or more job profiles per parametro; this file models one level per parametro as the economic unit. Descriptions are representative summaries; multiple job profiles exist at each parametro."
     ]
   },
@@ -266,7 +266,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "22.86" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -291,7 +292,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "25.14" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -316,7 +318,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "26.51" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -341,7 +344,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "27.66" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -366,7 +370,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "28.11" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -391,7 +396,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "29.49" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -416,7 +422,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "29.71" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -441,7 +448,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "30.86" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -466,7 +474,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "31.54" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -491,7 +500,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "31.77" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -516,7 +526,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "32.00" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -541,7 +552,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "32.69" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -566,7 +578,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "33.14" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -591,7 +604,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "34.51" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -616,7 +630,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "34.97" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -641,7 +656,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "35.20" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -666,7 +682,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "35.43" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -691,7 +708,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "36.11" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -716,7 +734,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "36.57" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -741,7 +760,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "37.71" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -766,7 +786,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "38.86" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -791,7 +812,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "40.00" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -816,7 +838,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "40.69" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -841,7 +864,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "41.14" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -866,7 +890,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "41.83" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -891,7 +916,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "42.97" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -916,7 +942,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "43.43" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -941,7 +968,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "44.11" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -966,7 +994,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "46.17" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -991,7 +1020,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "46.86" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -1016,7 +1046,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "48.00" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -1041,7 +1072,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "52.57" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     },
@@ -1066,7 +1098,8 @@
               { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "57.14" },
               { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
             ]
-          }
+          },
+          "tfr_relevant": false
         }
       ]
     }
@@ -1074,8 +1107,42 @@
   "apprenticeship": [
     {
       "type": "percentage",
-      "name": "standard",
-      "destination_levels": ["100"],
+      "name": "professionalizzante",
+      "destination_levels": [
+        "100",
+        "110",
+        "116",
+        "121",
+        "123",
+        "129",
+        "130",
+        "135",
+        "138",
+        "139",
+        "140",
+        "143",
+        "145",
+        "151",
+        "153",
+        "154",
+        "155",
+        "158",
+        "160",
+        "165",
+        "170",
+        "175",
+        "178",
+        "180",
+        "183",
+        "188",
+        "190",
+        "193",
+        "202",
+        "205",
+        "210",
+        "230",
+        "250"
+      ],
       "periods": [
         { "months_from": 0, "months_until": null, "percentage": "1.00" }
       ]

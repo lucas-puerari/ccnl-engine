@@ -39,7 +39,8 @@
       "INFO: TRANCHE: febbraio 2024 (prima), ottobre 2024 (seconda), ottobre 2025 (terza e ultima). Rinnovo firmato il 26 gennaio 2024. Nessuna tabella previgente ante-febbraio 2024 modellata.",
       "INFO: LIVELLI CON STESSA BASE: C3 e D1 hanno identico minimo a ogni tranche (ordini 6/7). D3 e E1 identici (ordini 9/10). I livelli Q (E2Q/F1Q/F2Q) hanno la stessa base del livello non-Q ma ordine successivo: il motore consente salari uguali tra livelli contigui.",
       "INFO: SCATTI DI ANZIANITÀ: biennali (ogni 24 mesi), massimo 5 scatti. Importi fissi per livello dalla tabella scatti del CCNL (fonte: ccnlcooperative.it, art. 80). C3 e D1 hanno lo stesso importo (20.66€); D3 e E1 hanno lo stesso importo (26.86€).",
-      "INFO: APPRENDISTATO: tipo percentage, livello di destinazione C1. Percentuali: 85% per i primi 18 mesi, 90% dal 19° mese. Durata massima 36 mesi (rinnovo 26 gennaio 2024).",
+      "INFO: APPRENDISTATO percentage: 85% per i primi 18 mesi, 90% dal 19° al 36° mese, durata massima 36 mesi (rinnovo 26 gennaio 2024); track 'professionalizzante' con destinazione C1.",
+      "MISSING: APPRENDISTATO: l'elenco dei livelli di destinazione ammessi e le eventuali durate ridotte per livello non sono stati reperiti; solo la destinazione C1 (OSS) è modellata.",
       "SIMPLIFICATION: INPS: utilizza 2026-terziario.json (stesso tax_sector del CCNL Commercio Confcommercio). Il settore cooperative sociali non dispone di aliquota datoriale INPS distinta verificata da circolare primaria; le cooperative sociali di tipo B possono applicare agevolazioni ex L. 381/1991 non modellate in questo file."
     ]
   },
@@ -307,7 +308,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     },
     {
       "code": "F1",
@@ -343,7 +345,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     },
     {
       "code": "F2",
@@ -379,17 +382,19 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     }
   ],
   "apprenticeship": [
     {
       "type": "percentage",
-      "name": "standard",
+      "name": "professionalizzante",
       "destination_levels": ["C1"],
       "periods": [
         { "months_from": 0, "months_until": 18, "percentage": "0.85" },
-        { "months_from": 18, "months_until": null, "percentage": "0.90" }
+        { "months_from": 18, "months_until": 36, "percentage": "0.90" },
+        { "months_from": 36, "months_until": null, "percentage": "1.00" }
       ]
     }
   ]

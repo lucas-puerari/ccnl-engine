@@ -49,25 +49,25 @@
       "INFO: HOURLY DIVISOR: 173, derived from 40-hour work week (Art. 12 CCNL). Formula: 40 h/week × 52/12 = 173.33, rounded to 173 per contract usage. Confirmed: 1379.00/7.97=173.0 (L3 May 2024).",
       "INFO: ADDITIONAL MONTHS: 13 (tredicesima only). Source: ilccnl.it Art. 40; informaimpresa.it ('tredici mensilità' explicitly stated as basis for Responsabile Tecnico allowance calculation).",
       "INFO: SENIORITY: biennale (every 24 months), maximum 5 scatti. Per-level amounts: L1=9.30, L2=8.26, L3=7.75, L4=7.23 EUR/scatto. Source: ilccnl.it (current database), cross-checked CISL 2013 PDF (amounts unchanged by 2024 renewal, which only introduced a 6 EUR apprentice-specific scatto).",
-      "INFO: APPRENTICESHIP: Gruppo 1 modelled (acconciatori, estetisti, tricologi, tatuatori → destination level 3, max 5 years). Primary source: confartigianato Marca Trevigiana official PDF (ccnl-benessere-app.prof-fino-30.9.24.pdf) for pre-Oct-2024 table. Post-Oct-2024 update (filcams.cgil.it + fisascat.it): first-year percentages raised to 70% minimum. Pre-Oct-2024 Gruppo 1 months 1-12=65%, 13-18=70%; post-Oct-2024 months 1-12 raised to 70%, making months 1-18 uniformly 70%. Engine models post-Oct-2024 table: 0-18mo=70%, 18-24mo=78%, 24-36mo=85%, 36-48mo=90%, 48-54mo=95%, 54+mo=100%.",
-      "SIMPLIFICATION: APPRENTICESHIP GRUPPO 2: Gruppo 2 (manicure/pedicure → level 3, max 18 months: 70%/80%/100%) not modelled. Engine supports one destination_level per contract; Gruppo 1 covers dominant worker category (hairdressers/aestheticians).",
-      "SIMPLIFICATION: APPRENTICESHIP GRUPPO 3: Gruppo 3 (administrative staff → level 2, max 36 months: 70%/70%/78%/85%) not modelled. Different destination level (2 vs 3) and shorter duration than Gruppo 1.",
-      "SIMPLIFICATION: APPRENTICESHIP DURATION (TAB.3): 6-month reduction for post-secondary qualification holders (Gruppo 1: 54 months max instead of 60) not modelled. Engine uses the standard 60-month table.",
-      "SIMPLIFICATION: APPRENTICE SENIORITY: apprentice-specific seniority increment (6 EUR/scatto, introduced by Art. 25 of 2024 renewal from Oct 2024) not modelled. Engine has no apprentice-specific seniority mechanism.",
-      "SIMPLIFICATION: RESPONSABILE TECNICO ALLOWANCE: monthly indemnity of 100 EUR × 13 mensilità for workers designated as Responsabile Tecnico (level 1 or 2, per employer designation) not modelled. Applies only to a subset of level-1/2 workers, not universally.",
-      "SIMPLIFICATION: PRE-MAY-2024 SALARY: periods before 2024-05-01 not modelled. The 2022 CCNL renewal values (final tranche from 2023-02-01: L3=1309.00, L2=1380.74, L1=1511.46, L4=1234.19) are not included. Engine starts at the 2024 renewal's first retroactive tranche.",
+      "INFO: APPRENTICESHIP Gruppo 1 (acconciatori, estetisti, tricologi, tatuatori → destination level 3, max 5 years), track 'gruppo_1'. Primary source: Confartigianato Marca Trevigiana PDF (ccnl-benessere-app.prof-fino-30.9.24.pdf) for the pre-Oct-2024 table; post-Oct-2024 update (filcams.cgil.it + fisascat.it) raised months 1-12 from 65% to 70%, making months 1-18 uniformly 70%. Modelled table: 0-18=70%, 18-24=78%, 24-36=85%, 36-48=90%, 48-54=95%, 54+=100%.",
+      "SIMPLIFICATION: APPRENTICESHIP Gruppo 2 (manicure/pedicure → level 3, max 18 months, 70%/80%/100%), track 'gruppo_2': the three percentages are mapped to 6-month periods (0-6, 6-12, 12-18). Select with Apprentice(track='gruppo_2'); without a track name level 3 is ambiguous.",
+      "MISSING: APPRENTICESHIP Gruppo 3 (administrative staff → level 2, max 36 months): the source lists four percentages (70/70/78/85) without period boundaries; not modelled until the semester table is sourced.",
+      "SIMPLIFICATION: APPRENTICESHIP DURATION (TAB.3): the 6-month reduction for post-secondary qualification holders (Gruppo 1: 54 months instead of 60) is not modelled; the standard 60-month table applies.",
+      "INFO: APPRENTICE SENIORITY: apprentice-specific scatto of 6 EUR (Art. 25 of the 2024 renewal, from 2024-10-01) modelled as seniority_increments.apprentice_amount.",
+      "INFO: RESPONSABILE TECNICO: 100 EUR x 13 mensilità for workers designated Responsabile Tecnico at level 1 or 2, modelled as a role-scoped allowance (role 'responsabile_tecnico').",
+      "INFO: PRE-MAY-2024 SALARY: the final tranche of the 2022 renewal (from 2023-02-01: L1=1511.46, L2=1380.74, L3=1309.00, L4=1234.19) is modelled; earlier periods are not.",
       "INFO: INPS: reuses 2026-artigianato.json (ARTIGIANATO sector)."
     ]
   },
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2024-05-01", "valid_until": null, "value": "173" }
+        { "valid_from": "2023-02-01", "valid_until": null, "value": "173" }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2024-05-01", "valid_until": null, "value": "13" }
+        { "valid_from": "2023-02-01", "valid_until": null, "value": "13" }
       ]
     },
     "seniority_increments": {
@@ -76,24 +76,29 @@
       "amount_by_level": {
         "4": {
           "periods": [
-            { "valid_from": "2024-05-01", "valid_until": null, "value": "7.23" }
+            { "valid_from": "2023-02-01", "valid_until": null, "value": "7.23" }
           ]
         },
         "3": {
           "periods": [
-            { "valid_from": "2024-05-01", "valid_until": null, "value": "7.75" }
+            { "valid_from": "2023-02-01", "valid_until": null, "value": "7.75" }
           ]
         },
         "2": {
           "periods": [
-            { "valid_from": "2024-05-01", "valid_until": null, "value": "8.26" }
+            { "valid_from": "2023-02-01", "valid_until": null, "value": "8.26" }
           ]
         },
         "1": {
           "periods": [
-            { "valid_from": "2024-05-01", "valid_until": null, "value": "9.30" }
+            { "valid_from": "2023-02-01", "valid_until": null, "value": "9.30" }
           ]
         }
+      },
+      "apprentice_amount": {
+        "periods": [
+          { "valid_from": "2024-10-01", "valid_until": null, "value": "6.00" }
+        ]
       }
     }
   },
@@ -104,13 +109,15 @@
       "description": "Livello 4 — operatore ausiliario / apprendista base",
       "base_salary": {
         "periods": [
+          { "valid_from": "2023-02-01", "valid_until": "2024-05-01", "value": "1234.19" },
           { "valid_from": "2024-05-01", "valid_until": "2025-01-01", "value": "1300.19" },
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1347.33" },
           { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1387.87" },
           { "valid_from": "2026-10-01", "valid_until": null, "value": "1406.73" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "operaio"
     },
     {
       "code": "3",
@@ -118,13 +125,15 @@
       "description": "Livello 3 — operatore qualificato (acconciatore/estetista)",
       "base_salary": {
         "periods": [
+          { "valid_from": "2023-02-01", "valid_until": "2024-05-01", "value": "1309.00" },
           { "valid_from": "2024-05-01", "valid_until": "2025-01-01", "value": "1379.00" },
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1429.00" },
           { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1472.00" },
           { "valid_from": "2026-10-01", "valid_until": null, "value": "1492.00" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "operaio"
     },
     {
       "code": "2",
@@ -132,13 +141,26 @@
       "description": "Livello 2 — operatore specializzato / responsabile tecnico",
       "base_salary": {
         "periods": [
+          { "valid_from": "2023-02-01", "valid_until": "2024-05-01", "value": "1380.74" },
           { "valid_from": "2024-05-01", "valid_until": "2025-01-01", "value": "1454.58" },
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1507.32" },
           { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1552.68" },
           { "valid_from": "2026-10-01", "valid_until": null, "value": "1573.78" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [
+        {
+          "code": "responsabile_tecnico",
+          "description": "Indennità Responsabile Tecnico (designazione datoriale), 100 EUR x 13 mensilità",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-02-01", "valid_until": null, "value": "100.00" }
+            ]
+          },
+          "role": "responsabile_tecnico"
+        }
+      ],
+      "category": "operaio"
     },
     {
       "code": "1",
@@ -146,19 +168,32 @@
       "description": "Livello 1 — titolare tecnico / responsabile senior",
       "base_salary": {
         "periods": [
+          { "valid_from": "2023-02-01", "valid_until": "2024-05-01", "value": "1511.46" },
           { "valid_from": "2024-05-01", "valid_until": "2025-01-01", "value": "1592.29" },
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1650.02" },
           { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1699.67" },
           { "valid_from": "2026-10-01", "valid_until": null, "value": "1722.76" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [
+        {
+          "code": "responsabile_tecnico",
+          "description": "Indennità Responsabile Tecnico (designazione datoriale), 100 EUR x 13 mensilità",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2023-02-01", "valid_until": null, "value": "100.00" }
+            ]
+          },
+          "role": "responsabile_tecnico"
+        }
+      ],
+      "category": "impiegato"
     }
   ],
   "apprenticeship": [
     {
       "type": "percentage",
-      "name": "standard",
+      "name": "gruppo_1",
       "destination_levels": ["3"],
       "periods": [
         { "months_from": 0, "months_until": 18, "percentage": "0.70" },
@@ -167,6 +202,16 @@
         { "months_from": 36, "months_until": 48, "percentage": "0.90" },
         { "months_from": 48, "months_until": 54, "percentage": "0.95" },
         { "months_from": 54, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_2",
+      "destination_levels": ["3"],
+      "periods": [
+        { "months_from": 0, "months_until": 6, "percentage": "0.70" },
+        { "months_from": 6, "months_until": 12, "percentage": "0.80" },
+        { "months_from": 12, "months_until": null, "percentage": "1.00" }
       ]
     }
   ]

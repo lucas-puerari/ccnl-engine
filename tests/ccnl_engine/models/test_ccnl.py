@@ -197,16 +197,47 @@ class TestCCNLSeniority:
                 maximum_count_by_level={"4": -1},
             )
 
-    def test_maximum_for(self) -> None:
-        """maximum_for falls back to maximum_count for unlisted levels."""
+    def test_per_level_lookups(self) -> None:
+        """maximum_for / first_cadence_for fall back to contract-wide values."""
         si = SeniorityIncrements(
-            cadence_months=36,
+            cadence_months=24,
             maximum_count=5,
             amount_by_level={},
             maximum_count_by_level={"4": 1},
+            first_cadence_months_by_level={"4": 48},
         )
         assert si.maximum_for("4") == 1
         assert si.maximum_for("3") == 5
+        assert si.first_cadence_for("4") == 48
+        assert si.first_cadence_for("3") == 24
+        si_first = SeniorityIncrements(
+            cadence_months=36,
+            maximum_count=5,
+            amount_by_level={},
+            first_cadence_months=48,
+        )
+        assert si_first.first_cadence_for("3") == 48
+
+    def test_first_cadence_by_level_below_cadence_raises(self) -> None:
+        """Per-level first cadence must also be >= cadence_months."""
+        with pytest.raises(
+            ValidationError, match=r"first_cadence_months_by_level\['4'\]"
+        ):
+            SeniorityIncrements(
+                cadence_months=36,
+                maximum_count=5,
+                amount_by_level={},
+                first_cadence_months_by_level={"4": 24},
+            )
+
+    def test_unknown_first_cadence_level_raises(self) -> None:
+        """first_cadence_months_by_level referencing a missing level must raise."""
+        data = make_ccnl_dict()
+        data["parameters"]["seniority_increments"]["first_cadence_months_by_level"] = {
+            "9": 48
+        }
+        with pytest.raises(ValidationError, match="first_cadence_months_by_level ref"):
+            _validate(data)
 
 
 # ---------------------------------------------------------------------------
@@ -226,12 +257,11 @@ class TestCCNLApprenticeshipTracks:
         ):
             _validate(data)
 
-    def test_destination_in_two_tracks_raises(self) -> None:
-        """The same destination level cannot appear in two tracks."""
+    def test_duplicate_track_name_raises(self) -> None:
+        """Track names must be unique."""
         data = make_ccnl_dict()
-        second = dict(data["apprenticeship"][0], name="other")
-        data["apprenticeship"].append(second)
-        with pytest.raises(ValidationError, match="appears in both track"):
+        data["apprenticeship"].append(dict(data["apprenticeship"][0]))
+        with pytest.raises(ValidationError, match="track names must be unique"):
             _validate(data)
 
     def test_unresolvable_offset_raises(self) -> None:
@@ -241,11 +271,21 @@ class TestCCNLApprenticeshipTracks:
         with pytest.raises(ValidationError, match="no level with order 1"):
             _validate(data)
 
-    def test_track_lookup(self) -> None:
-        """apprenticeship_track_for returns the track or None."""
+    def test_invalid_reference_level_raises(self) -> None:
+        """reference_level pointing to a non-existent level must raise at load time."""
+        data = make_ccnl_dict()
+        data["apprenticeship"][0]["reference_level"] = "NONEXISTENT"
+        with pytest.raises(ValidationError, match="reference_level 'NONEXISTENT'"):
+            _validate(data)
+
+    def test_track_lookups(self) -> None:
+        """apprenticeship_tracks_for / apprenticeship_track_named helpers."""
         ccnl = _validate(make_ccnl_dict())
-        assert ccnl.apprenticeship_track_for("4") is not None
-        assert ccnl.apprenticeship_track_for("3") is None
+        assert [t.name for t in ccnl.apprenticeship_tracks_for("4")] == ["standard"]
+        assert ccnl.apprenticeship_tracks_for("3") == []
+        assert ccnl.apprenticeship_track_named("standard").name == "standard"
+        with pytest.raises(KeyError, match="no apprenticeship track named 'x'"):
+            ccnl.apprenticeship_track_named("x")
 
 
 # ---------------------------------------------------------------------------

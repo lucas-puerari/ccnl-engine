@@ -17,7 +17,14 @@ if TYPE_CHECKING:
     from collections.abc import Sequence
     from datetime import date
 
-    from ccnl_engine.models.ccnl import CCNL, Allowance, Level, SeniorityIncrements
+    from ccnl_engine.models.apprenticeship import ApprenticeshipTrack
+    from ccnl_engine.models.ccnl import (
+        CCNL,
+        Allowance,
+        Level,
+        LevelCategory,
+        SeniorityIncrements,
+    )
     from ccnl_engine.models.employment import Employment
     from ccnl_engine.tax.models import YearRules
 
@@ -70,6 +77,7 @@ def compute(
     negotiated_ral: Decimal | None = None,
     roles: frozenset[str] = frozenset(),
     ad_personam_monthly: Decimal = _ZERO,
+    category: LevelCategory | None = None,
 ) -> ComputationResult:
     """Compute gross-to-net salary and employer cost for a given scenario.
 
@@ -77,7 +85,9 @@ def compute(
     neither is given no seniority increment applies. ``roles`` selects the
     role-restricted allowances the worker is entitled to. ``ad_personam_monthly``
     is an individual frozen element (e.g. pre-abolition seniority) added to
-    gross as given, not scaled by ``part_time_pct``.
+    gross as given, not scaled by ``part_time_pct``. ``category`` overrides the
+    level's worker category when a level hosts several categories (e.g.
+    operai and impiegati sharing level 3 in edilizia).
     """
     if not (_ZERO < part_time_pct <= _ONE):
         msg = f"part_time_pct must be in (0, 1], got {part_time_pct}"
@@ -87,12 +97,15 @@ def compute(
         raise ValueError(msg)
 
     level = ccnl.level_by_code(level_code)
+    worker_category = category if category is not None else level.category
     count = _resolve_seniority_count(
         ccnl.parameters.seniority_increments,
         level_code,
         seniority_count,
         seniority_months,
     )
+    if worker_category in ccnl.parameters.seniority_increments.excluded_categories:
+        count = 0
     additional_months = ccnl.parameters.additional_months.value_at(as_of)
 
     factor = part_time_pct
@@ -123,14 +136,16 @@ def compute(
 
     contribution_base = money(gross_annual - annual.excluded_from_contributions)
     tfr_base = money(gross_annual - annual.excluded_from_tfr)
-    rates = _contrib.resolve_rates(rules, employment, level.category)
+    rates = _contrib.resolve_rates(rules, employment, worker_category)
     inps_employee_annual = _contrib.inps_contribution(
         contribution_base, rates.employee_rate, rules
     )
     inps_employer_annual = _contrib.inps_contribution(
         contribution_base, rates.employer_rate, rules
     )
-    employer_funds_annual = _employer_funds(ccnl, level, contribution_base, as_of)
+    employer_funds_annual = _employer_funds(
+        ccnl, worker_category, contribution_base, as_of
+    )
     tfr_annual = _contrib.tfr(tfr_base, rules)
 
     # SIMPLIFICATION: no addizionali regionali/comunali; no detrazioni per
@@ -194,7 +209,7 @@ def _resolve_seniority_count(
         if seniority_months < 0:
             msg = f"seniority_months must be >= 0, got {seniority_months}"
             raise ValueError(msg)
-        first = rules.first_cadence_months or rules.cadence_months
+        first = rules.first_cadence_for(level_code)
         if seniority_months < first:
             return 0
         count = 1 + (seniority_months - first) // rules.cadence_months
@@ -254,18 +269,15 @@ def _apprentice_chain(
     roles: frozenset[str],
     as_of: date,
 ) -> tuple[_Chain, Decimal | None, str | None]:
-    track = ccnl.apprenticeship_track_for(level.code)
-    if track is None:
-        eligible = sorted(c for t in ccnl.apprenticeship for c in t.destination_levels)
-        msg = (
-            f"CCNL '{ccnl.ccnl.id}' has no apprenticeship track for destination "
-            f"level {level.code!r} (coverage.layer_2 is {ccnl.coverage.layer_2}; "
-            f"eligible destination levels: {eligible})"
-        )
-        raise ValueError(msg)
+    track = _select_track(ccnl, level, employment)
     period_index = _find_period_index(track.periods, employment.months_elapsed)
     if isinstance(track, ApprenticeshipPercentage):
-        chain = _level_chain(ccnl, level, count, roles, as_of, apprentice=True)
+        reference = (
+            ccnl.level_by_code(track.reference_level)
+            if track.reference_level is not None
+            else level
+        )
+        chain = _level_chain(ccnl, reference, count, roles, as_of, apprentice=True)
         return chain, track.periods[period_index].percentage, None
     period = track.periods[period_index]
     pay_level = ccnl.level_by_order(level.order - period.levels_below)
@@ -276,6 +288,39 @@ def _apprentice_chain(
         dest_base = level.base_salary.value_at(as_of)
         chain = replace(chain, base=money((chain.base + dest_base) / _TWO))
     return chain, None, pay_level.code
+
+
+def _select_track(
+    ccnl: CCNL, level: Level, employment: Apprentice
+) -> ApprenticeshipTrack:
+    if employment.track is not None:
+        track = ccnl.apprenticeship_track_named(employment.track)
+        if level.code not in track.destination_levels:
+            msg = (
+                f"apprenticeship track {track.name!r} does not cover destination "
+                f"level {level.code!r} (covers {track.destination_levels})"
+            )
+            raise ValueError(msg)
+        return track
+    candidates = ccnl.apprenticeship_tracks_for(level.code)
+    if len(candidates) == 1:
+        return candidates[0]
+    if not candidates:
+        eligible = sorted(
+            {c for t in ccnl.apprenticeship for c in t.destination_levels}
+        )
+        msg = (
+            f"CCNL '{ccnl.ccnl.id}' has no apprenticeship track for destination "
+            f"level {level.code!r} (coverage.layer_2 is {ccnl.coverage.layer_2}; "
+            f"eligible destination levels: {eligible})"
+        )
+        raise ValueError(msg)
+    names = [t.name for t in candidates]
+    msg = (
+        f"destination level {level.code!r} is covered by several apprenticeship "
+        f"tracks {names}; set Apprentice.track to choose one"
+    )
+    raise ValueError(msg)
 
 
 def _find_period_index(periods: Sequence[_MonthPeriod], months_elapsed: int) -> int:
@@ -314,10 +359,13 @@ def _annualise(
 
 
 def _employer_funds(
-    ccnl: CCNL, level: Level, contribution_base: Decimal, as_of: date
+    ccnl: CCNL,
+    category: LevelCategory | None,
+    contribution_base: Decimal,
+    as_of: date,
 ) -> Decimal:
     total = _ZERO
     for fund in ccnl.parameters.employer_funds:
-        if fund.applies_to(level.category):
+        if fund.applies_to(category):
             total += money(contribution_base * fund.rate.value_at(as_of))
     return money(total)

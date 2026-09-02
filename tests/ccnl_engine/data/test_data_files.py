@@ -223,11 +223,17 @@ class TestLoadMetalmeccanicoConfapi:
         assert l1.base_salary.value_at(date(2025, 9, 1)) == Decimal("1603.40")
 
     def test_confapi_apprenticeship_under_classification(self) -> None:
-        """Apprenticeship uses under-classification (Art. 10 CCNL), not percentage."""
+        """Apprenticeship uses under-classification (Art. 10 CCNL), not percentage.
+
+        Eligible destinations: levels 3-9 (categories 3a-9a). Levels 1 and 2
+        are not eligible (Art. 10, rinnovo 26/05/2021). Three equal-length
+        periods (12+12+12 for 36m): 2 levels below / 1 level below / destination pay.
+        """
         ccnl = load_ccnl("metalmeccanico-confapi.json")
-        assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
-        assert ccnl.apprenticeship[0].destination_levels == ["5"]
-        periods = ccnl.apprenticeship[0].periods
+        track = ccnl.apprenticeship[0]
+        assert isinstance(track, ApprenticeshipUnderClassification)
+        assert track.destination_levels == ["3", "4", "5", "6", "7", "8", "9"]
+        periods = track.periods
         assert len(periods) == 3
         assert periods[0].levels_below == 2
         assert periods[1].levels_below == 1
@@ -443,16 +449,21 @@ class TestLoadTurismoConfcommercio:
             )
 
     def test_turismo_apprenticeship_percentage(self) -> None:
-        """Apprenticeship uses percentage model: 80/85/90% per anno (rinnovo 2024)."""
+        """Apprenticeship uses percentage model: 80/85/90/100% (rinnovo 2024).
+
+        The 36-month track covers levels 5, 4, 3, 2, 6S (4 periods including
+        open-ended 100% at month 36+); the 24-month track covers level 6.
+        """
         ccnl = load_ccnl("turismo-confcommercio.json")
         assert isinstance(ccnl.apprenticeship[0], ApprenticeshipPercentage)
-        assert ccnl.apprenticeship[0].destination_levels == ["5"]
+        assert ccnl.apprenticeship[0].destination_levels == ["5", "4", "3", "2", "6S"]
         periods = ccnl.apprenticeship[0].periods
-        assert len(periods) == 3
+        assert len(periods) == 4
         assert periods[0].percentage == Decimal("0.80")
         assert periods[1].percentage == Decimal("0.85")
         assert periods[2].percentage == Decimal("0.90")
-        assert periods[2].months_until is None
+        assert periods[3].percentage == Decimal("1.00")
+        assert periods[3].months_until is None
 
     def test_turismo_hourly_divisor(self) -> None:
         """Hourly divisor must be 172 (40 h/week standard for turismo)."""
@@ -812,10 +823,15 @@ class TestLoadStudiProfessionaliConfprofessioni:
     def test_studi_professionali_confprofessioni_no_fixed_allowances(
         self,
     ) -> None:
-        """Conglobated model: all levels must have no fixed allowances."""
+        """Conglobated model: standard levels have no unconditional allowances.
+
+        Levels 1, 2, 3S carry the ENAC role-scoped allowance (role
+        'confedertecnica_pre_2004', Art. 141) which is excluded here.
+        """
         ccnl = load_ccnl("studi-professionali-confprofessioni.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == [], f"level {lv.code} has allowances"
+            unconditional = [a for a in lv.fixed_allowances if a.role is None]
+            assert unconditional == [], f"level {lv.code} has unconditional allowances"
 
     def test_studi_professionali_confprofessioni_tax_sector(self) -> None:
         """CCNL must declare tax_sector TERZIARIO (CNEL H-prefix contract)."""
@@ -884,9 +900,12 @@ class TestLoadBancariAbi:
         assert am.value_at(date(2026, 1, 1)) == Decimal(13)
 
     def test_bancari_abi_hourly_divisor(self) -> None:
-        """Hourly divisor must be 160 (37h/week from July 2024)."""
+        """Hourly divisor: 162 until 2024-07-01, then 160 (37h/week rinnovo 2024)."""
         ccnl = load_ccnl("bancari-abi.json")
-        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(160)
+        divisor = ccnl.parameters.hourly_divisor
+        assert len(divisor.periods) == 2
+        assert divisor.periods[0].value == Decimal(162)
+        assert divisor.periods[1].value == Decimal(160)
 
     def test_bancari_abi_no_fixed_allowances(self) -> None:
         """Conglobated model: all levels must have no fixed allowances."""
@@ -1060,12 +1079,16 @@ class TestLoadAlimentariFederalimentare:
         assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_alimentari_federalimentare_split_allowances(self) -> None:
-        """Split model: every level has CONT, EDR, IAR allowances."""
+        """Split model: every level has CONT, EDR, IAR allowances.
+
+        Level 1S (quadro) additionally carries ind_funzione_quadro; the base
+        three components must be present on all levels.
+        """
         ccnl = load_ccnl("alimentari-federalimentare.json")
         for lv in ccnl.levels:
             codes = {a.code for a in lv.fixed_allowances}
-            assert codes == {"CONT", "EDR", "IAR"}, (
-                f"level {lv.code} allowances: {codes}"
+            assert {"CONT", "EDR", "IAR"}.issubset(codes), (
+                f"level {lv.code} missing base allowances: {codes}"
             )
 
     def test_alimentari_federalimentare_tax_sector(self) -> None:
@@ -1081,10 +1104,14 @@ class TestLoadAlimentariFederalimentare:
         assert si.maximum_count == 5
 
     def test_alimentari_federalimentare_apprenticeship_type(self) -> None:
-        """Apprenticeship is under_classification, destination_level 3A."""
+        """Apprenticeship: two UC tracks (36-month covering 1-4/3A; 24-month for 5).
+
+        The 36-month track covers all levels where the full 3-period table
+        applies: destinations 4, 3, 3A, 2, 1.
+        """
         ccnl = load_ccnl("alimentari-federalimentare.json")
         assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
-        assert ccnl.apprenticeship[0].destination_levels == ["3A"]
+        assert ccnl.apprenticeship[0].destination_levels == ["4", "3", "3A", "2", "1"]
 
     def test_alimentari_federalimentare_apprentice_under_classification(self) -> None:
         """Apprentice 5 months elapsed → under level 4 (period 0-9 months)."""
@@ -1552,10 +1579,11 @@ class TestLoadTelecomunicazioniAsstel:
     def test_telecomunicazioni_asstel_apprenticeship_under_classification(
         self,
     ) -> None:
-        """Apprenticeship is under_classification, destination_level C1."""
+        """Apprenticeship: under_classification covering levels B1, B2, C1, C2, C3."""
         ccnl = load_ccnl("telecomunicazioni-asstel.json")
         assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
-        assert ccnl.apprenticeship[0].destination_levels == ["C1"]
+        expected = ["B1", "B2", "C1", "C2", "C3"]
+        assert ccnl.apprenticeship[0].destination_levels == expected
 
 
 class TestLoadVigilanzaPrivataAssiv:
@@ -1623,10 +1651,11 @@ class TestLoadVigilanzaPrivataAssiv:
         assert si.maximum_count == 6
 
     def test_vigilanza_privata_assiv_apprenticeship_percentage(self) -> None:
-        """Apprenticeship: percentage type, 100%, destination level 4."""
+        """Apprenticeship: percentage type, destination levels 6-1 (all GPG)."""
         ccnl = load_ccnl("vigilanza-privata-assiv.json")
         assert isinstance(ccnl.apprenticeship[0], ApprenticeshipPercentage)
-        assert ccnl.apprenticeship[0].destination_levels == ["4"]
+        expected = ["6", "5", "4", "3", "2", "1"]
+        assert ccnl.apprenticeship[0].destination_levels == expected
         assert ccnl.apprenticeship[0].periods[0].percentage == Decimal("1.00")
 
 
@@ -1715,10 +1744,20 @@ class TestLoadLegnoArredamentoFederlegno:
         assert si.maximum_count == 5
 
     def test_legno_arredamento_federlegno_apprenticeship_under(self) -> None:
-        """Apprenticeship: under_classification, destination AS3."""
+        """Apprenticeship: 6 under_classification tracks covering all areas.
+
+        Track 0 (professionalizzante_1) covers AE3 and AE4 (Esecutivo area).
+        Track 3 (professionalizzante_4) covers AS3 and AC3.
+        """
         ccnl = load_ccnl("legno-arredamento-federlegno.json")
-        assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
-        assert ccnl.apprenticeship[0].destination_levels == ["AS3"]
+        assert len(ccnl.apprenticeship) == 6
+        assert all(
+            isinstance(t, ApprenticeshipUnderClassification)
+            for t in ccnl.apprenticeship
+        )
+        assert ccnl.apprenticeship[0].destination_levels == ["AE3", "AE4"]
+        # Track 3 covers the Specializzato area including AS3
+        assert "AS3" in ccnl.apprenticeship[3].destination_levels
 
 
 class TestLoadEdiliziaArtigianatoCna:
@@ -1787,12 +1826,18 @@ class TestLoadEdiliziaArtigianatoCna:
         assert si.maximum_count == 5
 
     def test_edilizia_artigianato_cna_apprenticeship_percentage(self) -> None:
-        """Apprenticeship: percentage type, destination level 4, 6 periods."""
+        """Apprenticeship: Gruppo 4 track; 7 periods (6 semestri + open 100%).
+
+        Gruppo 4 track has 6 increasing-percentage semesters then an open-ended
+        destination period at 100%.  Two tracks exist: standard_gruppo_4 (dest 4)
+        and standard_gruppi_1_3 (dest 3, 4, 5).
+        """
         ccnl = load_ccnl("edilizia-artigianato-cna.json")
         assert isinstance(ccnl.apprenticeship[0], ApprenticeshipPercentage)
         assert ccnl.apprenticeship[0].destination_levels == ["4"]
-        assert len(ccnl.apprenticeship[0].periods) == 6
+        assert len(ccnl.apprenticeship[0].periods) == 7
         assert ccnl.apprenticeship[0].periods[0].percentage == Decimal("0.74")
+        assert ccnl.apprenticeship[0].periods[-1].percentage == Decimal("1.00")
 
 
 class TestLoadGasAcquaUtilitalia:
@@ -1946,13 +1991,13 @@ class TestLoadAcconciaturaesteticaConfartigianato:
         """Level 3 minimo at May 2024 tranche: EUR 1379.00."""
         ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
         lv = next(lx for lx in ccnl.levels if lx.code == "3")
-        assert lv.base_salary.periods[0].value == Decimal("1379.00")
+        assert lv.base_salary.value_at(date(2024, 5, 1)) == Decimal("1379.00")
 
     def test_acconciatura_estetica_confartigianato_level3_salary_tranche2(self) -> None:
         """Level 3 minimo at Jan 2025 tranche: EUR 1429.00."""
         ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
         lv = next(lx for lx in ccnl.levels if lx.code == "3")
-        assert lv.base_salary.periods[1].value == Decimal("1429.00")
+        assert lv.base_salary.value_at(date(2025, 1, 1)) == Decimal("1429.00")
 
     def test_acconciatura_estetica_confartigianato_level_ordering(self) -> None:
         """Level 1 has highest order; level 4 has lowest order."""
@@ -1972,10 +2017,15 @@ class TestLoadAcconciaturaesteticaConfartigianato:
         assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_acconciatura_estetica_confartigianato_no_fixed_allowances(self) -> None:
-        """All levels have empty fixed_allowances (conglobated salary model)."""
+        """All levels have no unconditional allowances (conglobated salary model).
+
+        Levels 1 and 2 carry the role-scoped Responsabile Tecnico allowance
+        (role='responsabile_tecnico'), which is excluded from this check.
+        """
         ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            unconditional = [a for a in lv.fixed_allowances if a.role is None]
+            assert unconditional == [], f"level {lv.code} has unconditional allowances"
 
     def test_acconciatura_estetica_confartigianato_tax_sector(self) -> None:
         """Contract declares ARTIGIANATO tax sector."""
@@ -2210,18 +2260,25 @@ class TestLoadBccCreditoCooperativo:
         assert ccnl.ccnl.tax_sector == TaxSector.CREDITO
 
     def test_bcc_credito_cooperativo_seniority_cadence(self) -> None:
-        """Seniority: triennale (36 months), maximum 12 scatti (QD cap)."""
+        """Seniority: triennale (36 months); global max 8 (AP area), QD* max 12."""
         ccnl = load_ccnl("bcc-credito-cooperativo.json")
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
-        assert si.maximum_count == 12
+        assert si.maximum_count == 8
+        for code in ("QD1", "QD2", "QD3", "QD4"):
+            assert si.maximum_count_by_level[code] == 12
 
     def test_bcc_credito_cooperativo_apprenticeship_type(self) -> None:
-        """Apprenticeship is under_classification, destination 3AP1 (Art. 30)."""
+        """Apprenticeship: under_classification track covers all 4 Terza Area levels."""
         ccnl = load_ccnl("bcc-credito-cooperativo.json")
         assert ccnl.apprenticeship
         assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
-        assert ccnl.apprenticeship[0].destination_levels == ["3AP1"]
+        assert ccnl.apprenticeship[0].destination_levels == [
+            "3AP1",
+            "3AP2",
+            "3AP3",
+            "3AP4",
+        ]
 
     def test_bcc_credito_cooperativo_apprenticeship_periods(self) -> None:
         """Months 0-18 at 2AP-2° pay level, months 18+ at destination 3AP1."""
@@ -2306,9 +2363,9 @@ class TestLoadElettricoElettricita:
         assert ccnl.parameters.additional_months.periods[0].value == Decimal(14)
 
     def test_elettrico_elettricita_futura_hourly_divisor(self) -> None:
-        """Hourly divisor: 173 (40h/week statutory base, 40 x 52 / 12 = 173.33)."""
+        """Hourly divisor: 173.33 (40h/week, 40 x 52 / 12 rounded to 2 dp)."""
         ccnl = load_ccnl("elettrico-elettricita-futura.json")
-        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
+        assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal("173.33")
 
     def test_elettrico_elettricita_futura_edr_allowance(self) -> None:
         """Each level has one fixed_allowance (edr) at 10.33 EUR/month."""

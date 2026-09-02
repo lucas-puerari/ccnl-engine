@@ -22,17 +22,18 @@
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
-      "SIMPLIFICATION: SIMPLIFICATION hourly_divisor=160: orario ordinario 37h/settimana (da luglio 2024); divisore effettivo 160. Nel primo periodo retributivo (dic 2023 - giu 2024) era vigente l'orario di 37,5h/sett (divisore 162). Il motore non supporta divisore variabile nel tempo; si usa 160 per tutti i periodi. Impatto: calcoli part-time/orari nel periodo dic-2023/giu-2024 sovrastimati di circa 1,25%.",
-      "SIMPLIFICATION: SIMPLIFICATION seniority cadence=36: il primo scatto matura dopo 48 mesi, i successivi ogni 36. Il motore supporta un solo cadence_months; si usa 36 per tutti gli scatti. Effetto: il primo scatto viene anticipato di circa 12 mesi rispetto al testo contrattuale. maximum_count=8 per tutti i livelli (i QD3/QD4 hanno max 7 scatti per contratto; si usa 8 — SIMPLIFICATION).",
-      "SIMPLIFICATION: SIMPLIFICATION apprenticeship destination_level=3A3: l'art. 35 CCNL bancari (rinnovo 23-11-2023) indica la 3ª area professionale come destinazione tipica senza specificare il livello esatto. Si modella destination_level=3A3 come livello rappresentativo di area. Area Unificata (1ª e 2ª area) esclusa dall'apprendistato: non ha livello inferiore disponibile nel contratto.",
-      "SIMPLIFICATION: SIMPLIFICATION INPS employer_rate=26.76% flat: fonte proxy kitech.it (Credito e Assicurazioni 2026). Struttura piatta confermata dall'assenza di pagine separate per fasce dimensionali sul sito kitech (industria ha pagine distinte per tier). Il Fondo di solidarietà del credito (bilaterale, sostituisce FIS/CIGO/CIGS) è presumibilmente già incluso nell'aliquota aggregata. Verificare contro circolare INPS annuale.",
-      "INFO: Apprenticeship source: https://www.ccnlbancari.it/ Art. 35, post-rinnovo 2023-11-23."
+      "INFO: Hourly divisor 162 for the 37.5h/week period (2023-11-23 to 2024-06-30) and 160 from 2024-07-01 (37h/week).",
+      "INFO: Seniority: first scatto after 48 months, then every 36 months; maximum 8 scatti for the Aree Professionali and 7 for QD3/QD4 (maximum_count_by_level).",
+      "SIMPLIFICATION: Apprenticeship (Art. 35, rinnovo 23-11-2023) targets the 3ª area professionale without naming the level; modelled for destination levels 3A2, 3A3 and 3A4 with 18 months one level below, then the destination level. 3A1 is excluded because the level below (Area Unificata 1ª e 2ª area) is not an apprenticeship classification.",
+      "SIMPLIFICATION: INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); the Fondo di solidarietà del credito (bilateral) is presumed included in the aggregate rate. Verify against the annual INPS circular.",
+      "SOURCE: Apprenticeship: https://www.ccnlbancari.it/ Art. 35, post-rinnovo 2023-11-23."
     ]
   },
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2023-11-23", "valid_until": null, "value": "160" }
+        { "valid_from": "2023-11-23", "valid_until": "2024-07-01", "value": "162" },
+        { "valid_from": "2024-07-01", "valid_until": null, "value": "160" }
       ]
     },
     "additional_months": {
@@ -89,7 +90,9 @@
             { "valid_from": "2023-11-23", "valid_until": null, "value": "29.07" }
           ]
         }
-      }
+      },
+      "first_cadence_months": 48,
+      "maximum_count_by_level": { "QD3": 7, "QD4": 7 }
     }
   },
   "levels": [
@@ -105,7 +108,8 @@
           { "valid_from": "2026-03-01", "valid_until": null, "value": "5160.06" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "quadro"
     },
     {
       "code": "QD3",
@@ -119,7 +123,8 @@
           { "valid_from": "2026-03-01", "valid_until": null, "value": "4396.88" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "quadro"
     },
     {
       "code": "QD2",
@@ -133,7 +138,8 @@
           { "valid_from": "2026-03-01", "valid_until": null, "value": "3965.48" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "quadro"
     },
     {
       "code": "QD1",
@@ -147,7 +153,8 @@
           { "valid_from": "2026-03-01", "valid_until": null, "value": "3743.21" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "quadro"
     },
     {
       "code": "3A4",
@@ -161,7 +168,8 @@
           { "valid_from": "2026-03-01", "valid_until": null, "value": "3341.90" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "impiegato"
     },
     {
       "code": "3A3",
@@ -175,7 +183,8 @@
           { "valid_from": "2026-03-01", "valid_until": null, "value": "3059.49" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "impiegato"
     },
     {
       "code": "3A2",
@@ -189,7 +198,8 @@
           { "valid_from": "2026-03-01", "valid_until": null, "value": "2890.41" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "impiegato"
     },
     {
       "code": "3A1",
@@ -203,7 +213,8 @@
           { "valid_from": "2026-03-01", "valid_until": null, "value": "2742.34" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "impiegato"
     },
     {
       "code": "1e2A",
@@ -217,14 +228,15 @@
           { "valid_from": "2026-03-01", "valid_until": null, "value": "2479.45" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "impiegato"
     }
   ],
   "apprenticeship": [
     {
       "type": "under_classification",
-      "name": "standard",
-      "destination_levels": ["3A3"],
+      "name": "terza_area",
+      "destination_levels": ["3A2", "3A3", "3A4"],
       "periods": [
         { "months_from": 0, "months_until": 18, "levels_below": 1 },
         { "months_from": 18, "months_until": null, "levels_below": 0 }

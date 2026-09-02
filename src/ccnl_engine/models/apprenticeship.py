@@ -106,7 +106,12 @@ def _validate_destination_levels(levels: Sequence[str]) -> None:
 
 
 class ApprenticeshipPercentage(BaseModel):
-    """Percentage-based apprenticeship track."""
+    """Percentage-based apprenticeship track.
+
+    ``reference_level`` is the level whose pay the percentages apply to when
+    it is not the destination level itself (e.g. CCNL Edilizia Artigianato
+    pays every group as a percentage of level 2 or 3).
+    """
 
     model_config = ConfigDict(extra="forbid")
 
@@ -114,6 +119,7 @@ class ApprenticeshipPercentage(BaseModel):
     name: str
     destination_levels: list[str]
     periods: list[ApprenticeshipPeriod]
+    reference_level: str | None = None
 
     @model_validator(mode="after")
     def _check(self) -> Self:

@@ -54,8 +54,8 @@
       "INFO: Level 7Q has the same paga base as level 7, plus a fixed indennita di funzione of EUR 140.00/month (F015 Art. on Quadri, L. 190/1985). Modelled at order 8 (above level 7 order 7).",
       "SIMPLIFICATION: Seniority increment cadence (24 months) and maximum count (5) taken from general CCNL Edilizia Artigianato provisions; F015-specific text not independently confirmed. Level 1 scatto = EUR 0.00 as published in kitech.it.",
       "SIMPLIFICATION: For operai in edilizia the Cassa Edile / EPR bilateral system provides additional accrual benefits (ferie, gratifica natalizia, anzianita) that are separate from INPS seniority increments. These are not modelled; only the tabular scatti di anzianita are implemented.",
-      "INFO: Apprenticeship: standard professionalizzante track (Article 7, Allegato D, renewal May 2025), Group 4 (36 months / 6 semesters), destination level 4, percentages 74/76/79/86/91/96% per semester. Source: ediltecnico.it citing F015 Allegato D.",
-      "SIMPLIFICATION: Apprenticeship models only the standard professionalizzante Group 4 track (level 4 destination, 36 months). Other tracks not modelled: standard professionalizzante Groups 1-3 (48 months, levels 3-5, 74/76/79/79/86/86/91/91%), specialistico tracks 1 Sp (54m, levels 4-5), 2 Sp (45m, levels 3-4), 3 Sp (42m, level 3) with percentage progressions 78/80/86/91/96%.",
+      "INFO: Apprenticeship standard professionalizzante Group 4 (Art. 7, Allegato D, renewal May 2025): 36 months / 6 semesters, destination level 4, 74/76/79/86/91/96% per semester, track 'standard_gruppo_4'. Source: ediltecnico.it citing F015 Allegato D.",
+      "MISSING: Apprenticeship specialistico tracks 1 Sp (54 months, levels 4-5), 2 Sp (45 months, levels 3-4) and 3 Sp (42 months, level 3) with progression 78/80/86/91/96%: period boundaries not sourced, not modelled. Standard professionalizzante Groups 1-3 (48 months / 8 semesters, levels 3-5, 74/76/79/79/86/86/91/91%) are modelled as track 'standard_gruppi_1_3'; level 4 is covered by two tracks, so Apprentice.track must be set for it.",
       "INFO: INPS contribution rates from 2026-artigianato.json (artigianato sector). No Cassa Edile contribution substitution modelled in the INPS rate; employer Cassa Edile contributions are additional and are out of scope.",
       "INFO: Layer 3 (overtime, Cassa Edile contributions, holiday/night premiums, accruals managed bilaterally) is out of scope."
     ]
@@ -150,7 +150,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "2",
@@ -183,7 +184,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "3",
@@ -216,7 +218,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "4",
@@ -249,7 +252,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "5",
@@ -282,7 +286,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "6",
@@ -348,7 +353,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "impiegato"
     },
     {
       "code": "7Q",
@@ -390,13 +396,14 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     }
   ],
   "apprenticeship": [
     {
       "type": "percentage",
-      "name": "standard",
+      "name": "standard_gruppo_4",
       "destination_levels": ["4"],
       "periods": [
         { "months_from": 0, "months_until": 6, "percentage": "0.74" },
@@ -404,7 +411,24 @@
         { "months_from": 12, "months_until": 18, "percentage": "0.79" },
         { "months_from": 18, "months_until": 24, "percentage": "0.86" },
         { "months_from": 24, "months_until": 30, "percentage": "0.91" },
-        { "months_from": 30, "months_until": null, "percentage": "0.96" }
+        { "months_from": 30, "months_until": 36, "percentage": "0.96" },
+        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "standard_gruppi_1_3",
+      "destination_levels": ["3", "4", "5"],
+      "periods": [
+        { "months_from": 0, "months_until": 6, "percentage": "0.74" },
+        { "months_from": 6, "months_until": 12, "percentage": "0.76" },
+        { "months_from": 12, "months_until": 18, "percentage": "0.79" },
+        { "months_from": 18, "months_until": 24, "percentage": "0.79" },
+        { "months_from": 24, "months_until": 30, "percentage": "0.86" },
+        { "months_from": 30, "months_until": 36, "percentage": "0.86" },
+        { "months_from": 36, "months_until": 42, "percentage": "0.91" },
+        { "months_from": 42, "months_until": 48, "percentage": "0.91" },
+        { "months_from": 48, "months_until": null, "percentage": "1.00" }
       ]
     }
   ]

@@ -53,10 +53,10 @@
       "INFO: Salary model: SPLIT. Paga base (minimo tabellare) is a time series; contingenza and EDR are frozen fixed_allowances. Source: oristanoservizi.it/CCNL-Multiservizi-scadenza-2024.pdf (2021-2024 contract, 5 tranches) and accordo integrativo 6 Aug 2025 (2025-2028 contract, 8 tranches) via redigo.info.",
       "INFO: hourly_divisor: 173 — confirmed per CCNL text: 'I divisori per ottenere la quota oraria e giornaliera sono, rispettivamente, 173 e 26'. Cross-checked: level Q July 2021 total 1953.62/11.29hr = 173 (hourly rate from table). Source: oristanoservizi.it PDF.",
       "INFO: additional_months: 14 (tredicesima + quattordicesima). Source: CCNL text — 'Tredicesima: entro il 20 dicembre; Quattordicesima: entro il 15 luglio'. Both in misura di una mensilità della retribuzione globale mensile.",
-      "SIMPLIFICATION: Seniority — impiegati (levels 5, 6, 7, Q): biennale scatti at 6.25% of (minimo tabellare + contingenza al 1 agosto 1983, pari a EUR 279.60), maximum 8 scatti. Amounts modelled as 2-period TimeSeries (July 2021 baseline, July 2025 after renewal). SIMPLIFICATION: amounts should update at every tranche; modelled at 2 reference dates only.",
-      "SIMPLIFICATION: Seniority — operai (levels 1, 2, 2par115, 3, 4par125, 4): 'anzianità forfettaria di settore' — a single fixed monthly amount (not progressive scatti) effective from the 5th year of sector seniority. Amounts set per CCNL text (June 2011 increase after E.d.a.r. cessation). The engine models these as per-biennio scatti with cadence=24 and max=8 using the forfettary amount as the unit, which overcounts for workers with more than 1 scatto. SIMPLIFICATION: model a single forfettary increment; the real mechanism is a one-time step at year 4, not progressive. Source: oristanoservizi.it PDF (section 'Anzianità forfettaria di settore — Operai').",
+      "INFO: Seniority — impiegati (levels 5, 6, 7, Q): biennale scatti equal to 6.25% of (minimo tabellare + contingenza al 1 agosto 1983, EUR 279.60), maximum 8; amounts are recomputed at every salary tranche (verified against the July 2021 and July 2025 published values).",
+      "INFO: Seniority — operai (levels 1, 2, 2par115, 3, 4par125, 4): 'anzianità forfettaria di settore', a single fixed monthly amount from the 5th year of sector seniority; modelled with first_cadence_months_by_level=48 and maximum_count_by_level=1. Amounts per CCNL text (June 2011 increase after E.d.a.r. cessation). Source: oristanoservizi.it PDF.",
       "INFO: Contingenza par levels: the CCNL text notes that contingenza values for 4par125 and 2par115 are not explicitly stated; by industry convention they match the values for levels 4 and 2 respectively. Source: note in oristanoservizi.it PDF.",
-      "INFO: Apprenticeship: under_classification model with destination level '5', duration 30 months (per CCNL: '30 mesi per i livelli 4° e 5°'). First 15 months (prima metà): 2 integer classification levels below destination = level '3'. Second 15 months (seconda metà): 1 level below = level '4'. Source: ccnlportatili.it — 'inquadrato due livelli sotto quello di destinazione finale, per la prima metà del periodo e ad un livello inferiore per la seconda metà'. Exception (apprentices destined for level II stay at level I for full duration) not modelled as it applies to a minority case. Renewal date governs: 2021-07-09 (Filcams-CGIL, Fisascat-CISL, Uiltrasporti-UIL confirmed 2021).",
+      "SIMPLIFICATION: Apprenticeship: under-classification, 30 months for destination levels 4 and 5 (CCNL: '30 mesi per i livelli 4° e 5°'): first half two classification levels below the destination, second half one level below (the parametric sub-levels 2par115 and 4par125 are skipped, hence levels_below 3/1 for destination 5 and 4/2 for destination 4). Destination level 2 (apprentice stays at level 1 for the whole period) and other destinations are not modelled: durations not sourced. Source: ccnlportatili.it.",
       "INFO: July 2025 values: the 2021-2024 CCNL included a 5th salary tranche effective July 2025 (e.g. +10 EUR on level 2). This was superseded by the 2025-2028 renewal (signed 13 June 2025, definitive tables per accordo integrativo 6 August 2025, effective retroactively from 1 July 2025 per Art. 73). The JSON models post-renewal July 2025 values (819.21 for level 2) directly. Workers received the higher new-contract amount; the old 5th tranche value (779.21) was never separately operative.",
       "SIMPLIFICATION: INPS rates: terziario sector — reusing 2026-terziario.json (9.19% employee, tiered employer). SIMPLIFICATION: some sources indicate pulizie sector has a small FISE bilateral contribution; specific INPS circular for this sector was not verified. Use kitech.it proxy rates as label.",
       "INFO: Workers covered: ~403,000 per INPS-UNIEMENS 2025 data; largest uncovered CCNL at time of implementation."
@@ -109,29 +109,71 @@
         },
         "5": {
           "periods": [
-            { "valid_from": "2021-07-01", "valid_until": "2025-07-01", "value": "73.60" },
-            { "valid_from": "2025-07-01", "valid_until": null, "value": "83.24" }
+            { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "73.60" },
+            { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "75.21" },
+            { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "77.62" },
+            { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "79.22" },
+            { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "83.24" },
+            { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "86.05" },
+            { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "88.86" },
+            { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "91.26" },
+            { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "92.87" },
+            { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "94.88" },
+            { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "96.48" },
+            { "valid_from": "2029-03-01", "valid_until": null, "value": "97.29" }
           ]
         },
         "6": {
           "periods": [
-            { "valid_from": "2021-07-01", "valid_until": "2025-07-01", "value": "87.23" },
-            { "valid_from": "2025-07-01", "valid_until": null, "value": "99.21" }
+            { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "87.23" },
+            { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "89.23" },
+            { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "92.22" },
+            { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "94.22" },
+            { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "99.21" },
+            { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "102.70" },
+            { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "106.19" },
+            { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "109.18" },
+            { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "111.18" },
+            { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "113.67" },
+            { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "115.67" },
+            { "valid_from": "2029-03-01", "valid_until": null, "value": "116.67" }
           ]
         },
         "7": {
           "periods": [
-            { "valid_from": "2021-07-01", "valid_until": "2025-07-01", "value": "98.06" },
-            { "valid_from": "2025-07-01", "valid_until": null, "value": "111.89" }
+            { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "98.06" },
+            { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "100.37" },
+            { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "103.82" },
+            { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "106.13" },
+            { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "111.89" },
+            { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "115.92" },
+            { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "119.96" },
+            { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "123.42" },
+            { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "125.72" },
+            { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "128.60" },
+            { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "130.91" },
+            { "valid_from": "2029-03-01", "valid_until": null, "value": "132.06" }
           ]
         },
         "Q": {
           "periods": [
-            { "valid_from": "2021-07-01", "valid_until": "2025-07-01", "value": "105.68" },
-            { "valid_from": "2025-07-01", "valid_until": null, "value": "120.81" }
+            { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "105.68" },
+            { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "108.20" },
+            { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "111.98" },
+            { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "114.51" },
+            { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "120.81" },
+            { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "125.23" },
+            { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "129.64" },
+            { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "133.43" },
+            { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "135.95" },
+            { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "139.11" },
+            { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "141.63" },
+            { "valid_from": "2029-03-01", "valid_until": null, "value": "142.89" }
           ]
         }
-      }
+      },
+      "first_cadence_months_by_level": { "1": 48, "2": 48, "2par115": 48, "3": 48, "4par125": 48, "4": 48 },
+      "maximum_count_by_level": { "1": 1, "2": 1, "2par115": 1, "3": 1, "4par125": 1, "4": 1 }
     }
   },
   "levels": [
@@ -174,7 +216,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "2",
@@ -215,7 +258,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "2par115",
@@ -256,7 +300,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "3",
@@ -297,7 +342,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "4par125",
@@ -338,7 +384,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "4",
@@ -379,7 +426,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "operaio"
     },
     {
       "code": "5",
@@ -420,7 +468,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "impiegato"
     },
     {
       "code": "6",
@@ -461,7 +510,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "impiegato"
     },
     {
       "code": "7",
@@ -502,7 +552,8 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "impiegato"
     },
     {
       "code": "Q",
@@ -552,17 +603,28 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     }
   ],
   "apprenticeship": [
     {
       "type": "under_classification",
-      "name": "standard",
+      "name": "destinazione_5",
       "destination_levels": ["5"],
       "periods": [
         { "months_from": 0, "months_until": 15, "levels_below": 3 },
         { "months_from": 15, "months_until": 30, "levels_below": 1 },
+        { "months_from": 30, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "destinazione_4",
+      "destination_levels": ["4"],
+      "periods": [
+        { "months_from": 0, "months_until": 15, "levels_below": 4 },
+        { "months_from": 15, "months_until": 30, "levels_below": 2 },
         { "months_from": 30, "months_until": null, "levels_below": 0 }
       ]
     }

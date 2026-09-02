@@ -28,7 +28,7 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
       "INFO: SALARY MODEL: conglobated (minimi retributivi mensili conglobati per Art. 43 CCNL Jan 2025). All base_salary values are the conglobated tabular minimums; contingenza and EDR are fully absorbed. Back-calculation: Oct 2024 level 4S = 1467.86 / 164 = 8.95 EUR/h; level 2 = 1735.81 / 164 = 10.58 EUR/h; level Q = 1957.15 / 164 = 11.93 EUR/h — consistent across all levels, confirming divisor 164 and conglobated model.",
@@ -37,8 +37,8 @@
       "INFO: ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima). Quattordicesima confirmed by Art. 46 CCNL 2025 (erogata in luglio). Applies to all levels.",
       "INFO: SENIORITY: triennial (every 36 months), maximum 10 scatti. Per-level amounts from Art. 48 table (CCNL 2025 signed PDF). Valid from first tranche date Oct 2024.",
       "INFO: LEVEL Q — IND_FUN: fixed allowance EUR 100.00/month (Art. 43, 'indennità di funzioni pari a EUR 100,00 mensili lorde'). Paid over 14 mensilità, non-absorbable. Applied to all Q-level workers.",
-      "INFO: APPRENTICESHIP: OSS/4S rule (Art. 22 CCNL 2020, unchanged by 2025 renewal — apprenticeship article not listed among modified articles on p.3 of the signed renewal PDF). Primary source: olympus.uniurb.it (CCNL 20 Jan 2020). Destination level 4S (OSS), 18 months: 85% months 1-9, 90% months 10-18.",
-      "SIMPLIFICATION: APPRENTICESHIP: Art. 22 defines variable duration and percentages by destination level (levels 2/3S/3: 36 months; levels 4S/4: 24 months except OSS/4S at 18 months; levels 5S/5/6: 18 months) and a general 90/95/100% three-band rule for non-OSS categories. The engine supports one destination_level per contract; only the OSS/4S rule (most common in UNEBA, dominant worker category) is modelled. Professionals excluded from apprenticeship per Art. 22 (nurses, physiotherapists, psychologists, social workers) are not modelled.",
+      "INFO: APPRENTICESHIP OSS/4S rule (Art. 22 CCNL 2020, unchanged by the 2025 renewal; primary source olympus.uniurb.it): destination 4S (OSS), 18 months, 85% months 1-9 and 90% months 10-18, track 'oss_4S'. Select it with Apprentice(track='oss_4S'): level 4S is also covered by the generic 24-month track.",
+      "SIMPLIFICATION: APPRENTICESHIP generic rule (Art. 22): 90/95/100% in three bands over the destination-level duration: 36 months for 2, 3S, 3 (track 'standard_36'), 24 months for 4S and 4 (track 'standard_24'), 18 months for 5S, 5, 6 (track 'standard_18'). The three bands are assumed of equal length. 6S is not listed in Art. 22 and is not a destination; professionals excluded from apprenticeship (nurses, physiotherapists, psychologists, social workers) and levels 1/Q are not modelled.",
       "INFO: TEP ABOLISHED: Art. 80 of the 2025 renewal abolishes the Trattamento Economico Progressivo (progressive 36-month phased salary for new hires). Not modelled as it is no longer in force from 01.02.2025.",
       "INFO: ERMT: Elemento Retributivo Mensile Territoriale is a territorial supplement, not part of the national CCNL salary table. Not modelled at national level.",
       "INFO: INPS: reuses 2026-terziario.json (TERZIARIO sector). No separate INPS circular rate published for UNEBA; rate is consistent with general terziario sector (same as Commercio and Cooperative Sociali)."
@@ -269,17 +269,49 @@
             ]
           }
         }
-      ]
+      ],
+      "category": "quadro"
     }
   ],
   "apprenticeship": [
     {
       "type": "percentage",
-      "name": "standard",
+      "name": "oss_4S",
       "destination_levels": ["4S"],
       "periods": [
         { "months_from": 0, "months_until": 9, "percentage": "0.85" },
-        { "months_from": 9, "months_until": null, "percentage": "0.90" }
+        { "months_from": 9, "months_until": 18, "percentage": "0.90" },
+        { "months_from": 18, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "standard_36",
+      "destination_levels": ["3", "3S", "2"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.90" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.95" },
+        { "months_from": 24, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "standard_24",
+      "destination_levels": ["4", "4S"],
+      "periods": [
+        { "months_from": 0, "months_until": 8, "percentage": "0.90" },
+        { "months_from": 8, "months_until": 16, "percentage": "0.95" },
+        { "months_from": 16, "months_until": null, "percentage": "1.00" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "standard_18",
+      "destination_levels": ["6", "5", "5S"],
+      "periods": [
+        { "months_from": 0, "months_until": 6, "percentage": "0.90" },
+        { "months_from": 6, "months_until": 12, "percentage": "0.95" },
+        { "months_from": 12, "months_until": null, "percentage": "1.00" }
       ]
     }
   ]

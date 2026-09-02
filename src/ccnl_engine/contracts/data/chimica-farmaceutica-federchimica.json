@@ -27,7 +27,7 @@
     }
   },
   "coverage": {
-    "layer_1": "partial",
+    "layer_1": "implemented",
     "layer_2": "partial",
     "layer_3": "out_of_scope",
     "notes": [
@@ -36,9 +36,10 @@
       "INFO: TRANCHES MODELLATE: (1) Previgente (fine CCNL 2022-2025, valid_from 2025-06-01): Min+IPO+EAR dal PDF pagina 2 colonna 'Previgente'. (2) 1/7/2025: prima tranche CCNL 2025-2028. (3) 1/12/2025: seconda tranche. (4) 1/7/2026: terza tranche — verificata indipendentemente su kitech.it (CNEL B011), concordanza esatta. (5) 1/7/2027: quarta tranche + EDR (per livello, pagina 4 PDF). (6) 1/6/2028: quinta e ultima tranche.",
       "INFO: EDR: dal 01/07/2027 si aggiunge l'Elemento Distinto della Retribuzione (EDR), importi mensili per livello: A1=39, A2=34, A3=33, B1=32, B2=30, C1=28, C2=27, D1=26, D2=25, D3=24, E1=22, E2=20, E3=19, E4=19, F=18. Il TEM modellato include già l'EDR nei periodi dal 01/07/2027.",
       "INFO: IPO VARIABILE PER TRANCHE: l'IPO non è fisso tra le tranches ma riceve incrementi propri (tabella pagina 1 del PDF, colonne IPO per scadenza). I valori TEM sono calcolati sommando Min, IPO e EAR (e EDR dal 01/07/2027) per ciascuna tranche.",
-      "INFO: TRANCHES PRE-GIUGNO 2025: non modellate. Il CCNL 2022-2025 prevedeva 5 tranches tra luglio 2022 e giugno 2025. La fonte PDF mostra solo i valori 'Previgente' (post-ultimo aumento 2022-2025) come baseline, senza le tranches intermedie.",
-      "INFO: SCATTI DI ANZIANITÀ: aboliti dal 1° gennaio 2010 per accordo tra le parti. Gli importi maturati fino al 2009 sono stati cristallizzati come superminimo non assorbibile. maximum_count=0 e amount_by_level={} per tutti i livelli.",
-      "INFO: APPRENDISTATO: modello under-classification (Art. 3 CCNL). Il JSON modella il caso standard con D1 come livello di destinazione (E1 nel primo periodo 0-18 mesi, D1 dal 18° mese). La durata esatta e il livello di destinazione variano per il singolo contratto di apprendistato.",
+      "INFO: TRANCHES PRE-GIUGNO 2025 (CCNL 2022-2025, 5 tranches luglio 2022 - giugno 2025) sono fuori dalla finestra modellata: il PDF Federchimica riporta solo la colonna 'Previgente' come baseline.",
+      "INFO: SCATTI DI ANZIANITÀ aboliti dal 1° gennaio 2010; gli importi maturati fino al 2009 sono cristallizzati come superminimo individuale non assorbibile, da passare a compute() come ad_personam_monthly. maximum_count=0 e amount_by_level={}.",
+      "SIMPLIFICATION: APPRENDISTATO under-classification (Art. 3 CCNL): modellato il percorso con destinazione D1 (E1 per i primi 18 mesi, poi D1), track 'destinazione_D1'.",
+      "MISSING: APPRENDISTATO per le altre categorie di destinazione (E, C, B) e le relative durate: regola di sottoinquadramento per categoria non reperita nel testo consultato; non modellate.",
       "INFO: DIVISORE ORARIO: 175 h/mese (settore chimico-farmaceutico). Il divisore 173 si applica solo al sotto-settore ceramica e abrasivi.",
       "INFO: MENSILITÀ: 13 (sola tredicesima). La quattordicesima è prevista solo nei sotto-settori lubrificanti/GPL, ceramica/abrasivi e coibentazione.",
       "INFO: INPS: utilizza 2026-industria.json (settore industria standard). Codice CNEL: B011."
@@ -268,7 +269,8 @@
           { "valid_from": "2028-06-01", "valid_until": null, "value": "3325.22" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "quadro"
     },
     {
       "code": "A2",
@@ -284,7 +286,8 @@
           { "valid_from": "2028-06-01", "valid_until": null, "value": "3396.59" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "quadro"
     },
     {
       "code": "A1",
@@ -300,13 +303,14 @@
           { "valid_from": "2028-06-01", "valid_until": null, "value": "3682.48" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "quadro"
     }
   ],
   "apprenticeship": [
     {
       "type": "under_classification",
-      "name": "standard",
+      "name": "destinazione_D1",
       "destination_levels": ["D1"],
       "periods": [
         { "months_from": 0, "months_until": 18, "levels_below": 3 },

@@ -28,7 +28,7 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
       "INFO: MINIMI CONGLOBATI: la retribuzione minima tabellare include contingenza (fino al 1/05/1992) ed EDR (Accordo Interconfederale 31/07/1992), conglobati per effetto del CCNL 10/12/1992 e riconfermati da Art. 138 CCNL 2024. fixed_allowances vuoto per tutti i livelli.",
@@ -36,8 +36,8 @@
       "INFO: TRANCHE: quattro tranche — 1/03/2024, 1/10/2024, 1/10/2025, 1/12/2026. Fonte: Art. 139-140 e tabelle retributive CCNL 2024 (confprofessioni.eu, versione completa aprile 2026).",
       "INFO: MENSILITA': 14 (tredicesima Art. 142 + quattordicesima Art. 143 CCNL 2024).",
       "INFO: SCATTI DI ANZIANITA': triennali (cadenza 36 mesi), max 8 scatti. Importi cifra fissa da Art. 134 CCNL 2024 vigenti dal 1/10/2011: Q=30, 1=26, 2=23, 3S=22, 3=22, 4S=20, 4=20, 5=20.",
-      "SIMPLIFICATION: ENAC (Elemento Nazionale Allineamento Contrattuale): SIMPLIFICATION — omesso. Previsto dall'Art. 141 CCNL 2024 per livelli 1 (42.35), 2 (102.53) e 3S (110.40), ma applicabile esclusivamente ai lavoratori gia' inquadrati nel CCNL Confedertecnica alla data del 1/07/2004 (per gli assunti dal 1/07/2004 si applicano i minimi tabellari senza ENAC, come esplicitato nella nota alla tabella retributiva). La quasi totalita' dei lavoratori attuali rientra nella categoria 'nuovi assunti'.",
-      "INFO: APPRENDISTATO: tipo percentage da Allegato B Tabella 3 CCNL 2024 (confprofessioni.eu versione completa aprile 2026). 70% mesi 1-12, 85% mesi 13-24, 93% dal mese 25. destination_level='4' (scelta modellistica — il livello IV e' il piu' comune per l'apprendistato professionalizzante). Apprendistato professionalizzante non ammesso per livello V (Art. 30B).",
+      "INFO: ENAC (Art. 141 CCNL 2024): 42.35 (liv. 1), 102.53 (liv. 2), 110.40 (liv. 3S) EUR/mese, dovuto solo ai lavoratori già inquadrati nel CCNL Confedertecnica al 1/07/2004; modellato come allowance con role 'confedertecnica_pre_2004' (compute(..., roles={'confedertecnica_pre_2004'})).",
+      "SIMPLIFICATION: APPRENDISTATO percentage (Allegato B Tabella 3 CCNL 2024): 70% mesi 1-12, 85% mesi 13-24, 93% dal mese 25, applicato a tutte le destinazioni ammesse (4, 4S, 3, 3S, 2, 1); il V livello è escluso dall'apprendistato professionalizzante (Art. 30B) e i Quadri non sono destinazione. La stessa tabella percentuale è assunta per tutti i livelli di destinazione.",
       "INFO: INPS: utilizza 2026-terziario.json (TaxSector.TERZIARIO). File gia' presente — nessuna modifica al tax file.",
       "INFO: CNEL code H442: confermato dall'archivio CNEL 'Studi Professionali — Confprofessioni'. Lavoratori coperti: 317.554 (UNIEMENS 2022)."
     ]
@@ -169,7 +169,18 @@
           { "valid_from": "2026-12-01", "valid_until": null, "value": "1742.20" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [
+        {
+          "code": "enac",
+          "description": "ENAC - Elemento Nazionale Allineamento Contrattuale (Art. 141), solo lavoratori già inquadrati nel CCNL Confedertecnica al 1/07/2004",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2024-03-01", "valid_until": null, "value": "110.40" }
+            ]
+          },
+          "role": "confedertecnica_pre_2004"
+        }
+      ]
     },
     {
       "code": "2",
@@ -183,7 +194,18 @@
           { "valid_from": "2026-12-01", "valid_until": null, "value": "1878.26" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [
+        {
+          "code": "enac",
+          "description": "ENAC - Elemento Nazionale Allineamento Contrattuale (Art. 141), solo lavoratori già inquadrati nel CCNL Confedertecnica al 1/07/2004",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2024-03-01", "valid_until": null, "value": "102.53" }
+            ]
+          },
+          "role": "confedertecnica_pre_2004"
+        }
+      ]
     },
     {
       "code": "1",
@@ -197,7 +219,18 @@
           { "valid_from": "2026-12-01", "valid_until": null, "value": "2156.38" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [
+        {
+          "code": "enac",
+          "description": "ENAC - Elemento Nazionale Allineamento Contrattuale (Art. 141), solo lavoratori già inquadrati nel CCNL Confedertecnica al 1/07/2004",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2024-03-01", "valid_until": null, "value": "42.35" }
+            ]
+          },
+          "role": "confedertecnica_pre_2004"
+        }
+      ]
     },
     {
       "code": "Q",
@@ -211,14 +244,15 @@
           { "valid_from": "2026-12-01", "valid_until": null, "value": "2436.76" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "quadro"
     }
   ],
   "apprenticeship": [
     {
       "type": "percentage",
-      "name": "standard",
-      "destination_levels": ["4"],
+      "name": "professionalizzante",
+      "destination_levels": ["4", "4S", "3", "3S", "2", "1"],
       "periods": [
         { "months_from": 0, "months_until": 12, "percentage": "0.70" },
         { "months_from": 12, "months_until": 24, "percentage": "0.85" },

@@ -183,6 +183,34 @@ class TestComputePermanent:
         r = compute(ccnl, "4", _DATE, _RULES, _PERMANENT, seniority_months=months)
         assert r.seniority_count == expected
 
+    def test_seniority_first_cadence_by_level(self) -> None:
+        """Per-level first cadence (e.g. operai lump step at 48 months)."""
+        ccnl = _ccnl(
+            **{
+                "parameters.seniority_increments.first_cadence_months_by_level": {
+                    "4": 48
+                }
+            }
+        )
+        assert (
+            compute(
+                ccnl, "4", _DATE, _RULES, _PERMANENT, seniority_months=47
+            ).seniority_count
+            == 0
+        )
+        assert (
+            compute(
+                ccnl, "4", _DATE, _RULES, _PERMANENT, seniority_months=48
+            ).seniority_count
+            == 1
+        )
+        assert (
+            compute(
+                ccnl, "3", _DATE, _RULES, _PERMANENT, seniority_months=36
+            ).seniority_count
+            == 1
+        )
+
     def test_seniority_per_level_maximum(self) -> None:
         """maximum_count_by_level overrides maximum_count for that level."""
         ccnl = _ccnl(
@@ -193,6 +221,18 @@ class TestComputePermanent:
         assert r.seniority_monthly == _D("20.00")
         with pytest.raises(ValueError, match="exceeds the maximum of 1"):
             compute(ccnl, "4", _DATE, _RULES, _PERMANENT, seniority_count=2)
+
+    def test_excluded_category_zeroes_seniority(self) -> None:
+        """Workers with category in excluded_categories accrue no scatti."""
+        ccnl = _ccnl(
+            **{
+                "levels.2.category": "operaio",
+                "parameters.seniority_increments.excluded_categories": ["operaio"],
+            }
+        )
+        r = compute(ccnl, "4", _DATE, _RULES, _PERMANENT, seniority_months=120)
+        assert r.seniority_count == 0
+        assert r.seniority_monthly == _D("0.00")
 
     def test_part_time_scales_all_components(self) -> None:
         """part_time_pct=0.5 halves every component; components sum to gross."""
@@ -490,6 +530,39 @@ class TestComputeApprenticePercentage:
         ccnl = _ccnl("none")
         with pytest.raises(ValueError, match=r"coverage\.layer_2 is partial"):
             compute(ccnl, "4", _DATE, _RULES, Apprentice(months_elapsed=0))
+
+    def test_ambiguous_tracks_require_name(self) -> None:
+        """Two tracks on one level: the caller must name the track."""
+        second = copy.deepcopy(_CCNL.apprenticeship[0].model_dump())
+        second["name"] = "gruppo_2"
+        second["periods"][0]["percentage"] = "0.70"
+        data = make_ccnl_dict()
+        data["apprenticeship"].append(second)
+        ccnl = CCNL.model_validate(data)
+        with pytest.raises(ValueError, match=r"set Apprentice\.track"):
+            compute(ccnl, "4", _DATE, _RULES, Apprentice(months_elapsed=0))
+        r = compute(
+            ccnl, "4", _DATE, _RULES, Apprentice(months_elapsed=0, track="gruppo_2")
+        )
+        assert r.apprenticeship_pct == _D("0.70")
+
+    def test_named_track_not_covering_level_raises(self) -> None:
+        """A named track must cover the requested destination level."""
+        with pytest.raises(ValueError, match="does not cover destination level '3'"):
+            compute(
+                _CCNL,
+                "3",
+                _DATE,
+                _RULES,
+                Apprentice(months_elapsed=0, track="standard"),
+            )
+
+    def test_unknown_track_name_raises(self) -> None:
+        """An unknown track name raises KeyError."""
+        with pytest.raises(KeyError, match="no apprenticeship track named 'nope'"):
+            compute(
+                _CCNL, "4", _DATE, _RULES, Apprentice(months_elapsed=0, track="nope")
+            )
 
 
 # ---------------------------------------------------------------------------

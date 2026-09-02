@@ -26,12 +26,11 @@
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
-      "SIMPLIFICATION: Salary model is conglobated (stipendio per Art. 112 replaces paga base + scala mobile + EDR + other components). Modeled as base_salary with fixed_allowances: [].",
-      "SIMPLIFICATION: First period valid_from set to 2024-09-01 (first tranche date per Allegato A). Pre-tranche salaries from the previous CCNL are out of scope.",
-      "SIMPLIFICATION: Seniority cadence is triennale (36 months) for all levels. Art. 113 specifies 4 years for the first scatto at hire — this is not modeled; all scatti computed at 36-month cadence.",
-      "SIMPLIFICATION: maximum_count set to 12 (QD maximum per Art. 101). Aree Professionali have maximum 8 scatti per Art. 113; callers should not supply seniority_count > 8 for AP levels.",
-      "SIMPLIFICATION: Apprenticeship modeled for destination 3AP-1° (lowest 3AP level, Art. 30). Under-classification: months 0-18 at 2AP-2° (immediately below 3AP-1°), months 18+ at 3AP-1° (destination). Derogation for Art. 3 comma 3 workers (higher destination level) not modeled.",
-      "SIMPLIFICATION: Hourly divisor is 160 for both periods (37.5h/week pre-July 2025, 37h/week from July 2025 per Art. 118). Formula: 37.5 x 52 / 12 = 162.5 → 160; 37 x 52 / 12 = 160.33 → 160 (arrotondamento a 5 per difetto per Art. 114).",
+      "INFO: Salary model is conglobated (stipendio per Art. 112 replaces paga base + scala mobile + EDR + other components). Modelled as base_salary with fixed_allowances: [].",
+      "INFO: First period valid_from set to 2024-09-01 (first tranche date per Allegato A). Pre-tranche salaries belong to the previous CCNL and are not modelled.",
+      "INFO: Seniority (Art. 113): first scatto after 4 years (48 months), then every 36 months; maximum 8 scatti for the Aree Professionali and 12 for the Quadri Direttivi (Art. 101), via maximum_count_by_level.",
+      "SIMPLIFICATION: Apprenticeship (Art. 30) modelled for destination levels 3AP1-3AP4: months 0-18 one level below the destination, then the destination level. The Art. 3 comma 3 derogation (higher destination level) is assumed to follow the same 18-month rule.",
+      "INFO: Hourly divisor 160 in both periods per Art. 114 (rounding down to the nearest multiple of 5): 37.5h x 52 / 12 = 162.5 → 160 (pre-July 2025); 37h x 52 / 12 = 160.33 → 160 (from July 2025, Art. 118).",
       "INFO: Workers covered: approximately 36,000 (Federcasse / Banche di Credito Cooperativo, Casse Rurali ed Artigiane). Agreement signed 2024-07-09; valid until 2025-12-31 per Art. 9.",
       "INFO: INPS rates from 2026-credito.json (same sector as bancari-abi). IRPEF 2026 brackets applied (L. 199/2025)."
     ]
@@ -49,7 +48,7 @@
     },
     "seniority_increments": {
       "cadence_months": 36,
-      "maximum_count": 12,
+      "maximum_count": 8,
       "amount_by_level": {
         "QD4": {
           "periods": [
@@ -106,7 +105,9 @@
             { "valid_from": "2024-09-01", "valid_until": null, "value": "20.12" }
           ]
         }
-      }
+      },
+      "first_cadence_months": 48,
+      "maximum_count_by_level": { "QD1": 12, "QD2": 12, "QD3": 12, "QD4": 12 }
     }
   },
   "levels": [
@@ -121,7 +122,8 @@
           { "valid_from": "2026-01-01", "valid_until": null, "value": "5160.06" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "quadro"
     },
     {
       "code": "QD3",
@@ -134,7 +136,8 @@
           { "valid_from": "2026-01-01", "valid_until": null, "value": "4396.88" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "quadro"
     },
     {
       "code": "QD2",
@@ -147,7 +150,8 @@
           { "valid_from": "2026-01-01", "valid_until": null, "value": "3965.48" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "quadro"
     },
     {
       "code": "QD1",
@@ -160,7 +164,8 @@
           { "valid_from": "2026-01-01", "valid_until": null, "value": "3743.21" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "quadro"
     },
     {
       "code": "3AP4",
@@ -173,7 +178,8 @@
           { "valid_from": "2026-01-01", "valid_until": null, "value": "3341.90" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "impiegato"
     },
     {
       "code": "3AP3",
@@ -186,7 +192,8 @@
           { "valid_from": "2026-01-01", "valid_until": null, "value": "3059.49" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "impiegato"
     },
     {
       "code": "3AP2",
@@ -199,7 +206,8 @@
           { "valid_from": "2026-01-01", "valid_until": null, "value": "2890.41" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "impiegato"
     },
     {
       "code": "3AP1",
@@ -212,7 +220,8 @@
           { "valid_from": "2026-01-01", "valid_until": null, "value": "2742.35" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "impiegato"
     },
     {
       "code": "2AP2",
@@ -225,7 +234,8 @@
           { "valid_from": "2026-01-01", "valid_until": null, "value": "2572.10" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "impiegato"
     },
     {
       "code": "2AP1",
@@ -238,7 +248,8 @@
           { "valid_from": "2026-01-01", "valid_until": null, "value": "2406.80" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "impiegato"
     },
     {
       "code": "1AP",
@@ -251,14 +262,15 @@
           { "valid_from": "2026-01-01", "valid_until": null, "value": "2241.53" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "impiegato"
     }
   ],
   "apprenticeship": [
     {
       "type": "under_classification",
-      "name": "standard",
-      "destination_levels": ["3AP1"],
+      "name": "terza_area",
+      "destination_levels": ["3AP1", "3AP2", "3AP3", "3AP4"],
       "periods": [
         { "months_from": 0, "months_until": 18, "levels_below": 1 },
         { "months_from": 18, "months_until": null, "levels_below": 0 }

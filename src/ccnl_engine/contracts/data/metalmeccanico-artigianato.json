@@ -47,7 +47,8 @@
       "SIMPLIFICATION: TRANCHE RINNOVO 2024: accordo 19.11.2024, quattro tranches (01.12.2024, 01.07.2025, 01.03.2026, 01.11.2026). Valori 01.03.2026 verificati da kitech.it su tutti gli 8 livelli. SIMPLIFICATION: valori 01.12.2024, 01.07.2025 e 01.11.2026 per livelli diversi dal 4° sono derivati per proporzione usando il livello 4° come riferimento (incr. 50, 25, 25, 20 €) e i rapporti inter-livello confermati dal confronto AFAC/kitech. Il testo ufficiale del rinnovo 2024 non è stato recuperato integralmente.",
       "INFO: DIVISORE ORARIO: 173 ore/mese (40h/settimana, Art. 28 CCNL 17.12.2021). La verifica aritmetica mensile/oraria non ha prodotto risultati interi puliti sui valori disponibili; la conferma si basa sul testo del CCNL primario.",
       "INFO: SCATTI DI ANZIANITÀ: biennali (24 mesi), massimo 5 scatti. Importi per livello da tabella EBLART/Direzionelavoro.it (tab. 7.1). La data di decorrenza degli importi (01.01.2022) è assunta coincidente con la prima tranche salariale; la fonte primaria non riporta una data di vigenza separata per gli scatti.",
-      "INFO: APPRENDISTATO: tipo percentage, 10 semestri (60 mesi max). Progressione operai confermata da fonte EBLART (Art. relativo all'apprendistato professionalizzante): 70% (sem. I-II), 75% (III), 78% (IV), 80% (V), 85% (VI), 88% (VII), 92% (VIII), 100% (IX-X). Dalla riforma del 2015, il livello 6° non è utilizzabile come livello di destinazione. destination_level '3' è il livello medio-basso tipico di destinazione.",
+      "INFO: APPRENDISTATO percentage, 10 semestri (60 mesi max), progressione operai (fonte EBLART, art. apprendistato professionalizzante): 70% (sem. I-II), 75% (III), 78% (IV), 80% (V), 85% (VI), 88% (VII), 92% (VIII), 100% (IX-X); track 'operai' per le destinazioni 5, 4, 3, 2bis. Dalla riforma 2015 il 6° livello non è utilizzabile come destinazione.",
+      "MISSING: APPRENDISTATO impiegati (destinazioni 2, 1): la progressione percentuale specifica non è stata reperita; non modellata.",
       "SIMPLIFICATION: INPS: SIMPLIFICATION — aliquota datoriale unica 26.93% (fonte proxy kitech.it; circolare INPS specifica per artigianato 2026 non recuperata). Componenti stimati: IVS 23.81% + NASpI 1.61% + CUAF 0.68% + malattia operai ~0.83% = ~26.93%. L'aliquota modella gli operai. SIMPLIFICATION: impiegati e quadri hanno aliquota effettiva ~24.71% (fonte: kitech.it, categoria impiegati), non modellabile nell'attuale schema employer_tiers (asse categorie lavoratore assente); il costo datoriale calcolato per livelli impiegatizi è sovrastimato di ~2.2pp. Nessun CIGO/CIGS (D.Lgs. 148/2015 art. 3, settore artigiano escluso). FSBA (0.45% datore + 0.15% dipendente) è contributo bilaterale, non INPS: escluso dal file fiscale.",
       "INFO: MENSILITÀ: 13 (tredicesima). Non è prevista la quattordicesima dal CCNL Artigianato Metalmeccanico."
     ]
@@ -242,7 +243,8 @@
           { "valid_from": "2026-11-01", "valid_until": null, "value": "2106.03" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "impiegato"
     },
     {
       "code": "1Q",
@@ -261,14 +263,15 @@
           { "valid_from": "2026-11-01", "valid_until": null, "value": "2106.03" }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [],
+      "category": "quadro"
     }
   ],
   "apprenticeship": [
     {
       "type": "percentage",
-      "name": "standard",
-      "destination_levels": ["3"],
+      "name": "operai",
+      "destination_levels": ["5", "4", "3", "2bis"],
       "periods": [
         { "months_from": 0, "months_until": 12, "percentage": "0.70" },
         { "months_from": 12, "months_until": 18, "percentage": "0.75" },
