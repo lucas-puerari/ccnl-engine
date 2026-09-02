@@ -1,0 +1,53 @@
+{
+  "_description": "Golden case: CCNL Ceramica Industria (B122), Level C1, 2026-07-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Jul 2026 tranche: minimo tabellare C1 = 2133.51 EUR/month + IPO 123.03 EUR/month.",
+    "Conglobated model: contingenza absorbed into minimo tabellare; IPO as separate fixed_allowance.",
+    "Additional months: 13 (tredicesima only).",
+    "INPS employer rate from 2026-industria.json (industria sector, <=50 employees, 30.20%).",
+    "INPS employee rate: 9.49% (>15 employees).",
+    "Seniority: 0.00 — seniority_count=0, biennale cadence (24m), max 5 scatti.",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "ceramica-industria-confindustria.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "C1",
+    "as_of": "2026-07-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "ceramica-industria-confindustria",
+    "level_code": "C1",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "2133.51",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "123.03",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2256.54",
+    "gross_annual": "29335.02",
+    "hourly_rate": "13.04",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2783.89",
+    "inps_employer_annual": "8859.18",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "2172.96",
+    "taxable_income": "26551.13",
+    "irpef_gross": "6106.76",
+    "work_income_deduction": "657.52",
+    "irpef_net": "5449.24",
+    "net_annual": "21101.89",
+    "net_monthly": "1623.22",
+    "employer_cost_annual": "40367.16"
+  }
+}

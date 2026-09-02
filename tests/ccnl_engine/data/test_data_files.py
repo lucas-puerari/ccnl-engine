@@ -3126,3 +3126,106 @@ class TestLoadComunicazioneArtigianatoConfartigianato:
         assert isinstance(adm, ApprenticeshipPercentage)
         assert adm.periods[0].percentage == Decimal("0.70")
         assert adm.periods[-1].percentage == Decimal("0.90")
+
+
+class TestLoadCeramicaIndustriaConfindustria:
+    """Tests for CCNL Ceramica Industria (Confindustria-Assopiastrelle, B122)."""
+
+    def test_ceramica_industria_confindustria_loads(self) -> None:
+        """Contract loads with correct id and CNEL code B122."""
+        ccnl = load_ccnl("ceramica-industria-confindustria.json")
+        assert ccnl.ccnl.id == "ceramica-industria-confindustria"
+        assert ccnl.ccnl.cnel_code == "B122"
+
+    def test_ceramica_industria_confindustria_has_12_levels(self) -> None:
+        """Contract has 12 levels: A B1 B2 C1 C2 C3 D1 D2 D3 E1 E2 F."""
+        ccnl = load_ccnl("ceramica-industria-confindustria.json")
+        assert len(ccnl.levels) == 12
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {
+            "A",
+            "B1",
+            "B2",
+            "C1",
+            "C2",
+            "C3",
+            "D1",
+            "D2",
+            "D3",
+            "E1",
+            "E2",
+            "F",
+        }
+
+    def test_ceramica_industria_confindustria_level_a_salary_sep2024(
+        self,
+    ) -> None:
+        """Level A base salary at Sep 2024 tranche is 2600.08 EUR/month."""
+        ccnl = load_ccnl("ceramica-industria-confindustria.json")
+        by_code = {lv.code: lv for lv in ccnl.levels}
+        val = by_code["A"].base_salary.value_at(date(2024, 9, 1))
+        assert val == Decimal("2600.08")
+
+    def test_ceramica_industria_confindustria_level_a_salary_jul2026(
+        self,
+    ) -> None:
+        """Level A base salary at Jul 2026 tranche is 2716.41 EUR/month."""
+        ccnl = load_ccnl("ceramica-industria-confindustria.json")
+        by_code = {lv.code: lv for lv in ccnl.levels}
+        val = by_code["A"].base_salary.value_at(date(2026, 7, 1))
+        assert val == Decimal("2716.41")
+
+    def test_ceramica_industria_confindustria_level_ordering(self) -> None:
+        """Level A has highest order; level F has order 1 (lowest)."""
+        ccnl = load_ccnl("ceramica-industria-confindustria.json")
+        by_code = {lv.code: lv for lv in ccnl.levels}
+        assert by_code["A"].order == 12
+        assert by_code["F"].order == 1
+
+    def test_ceramica_industria_confindustria_additional_months(self) -> None:
+        """Contract has 13 additional months (tredicesima only)."""
+        ccnl = load_ccnl("ceramica-industria-confindustria.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 7, 1))
+        assert val == Decimal(13)
+
+    def test_ceramica_industria_confindustria_hourly_divisor(self) -> None:
+        """Hourly divisor is 173."""
+        ccnl = load_ccnl("ceramica-industria-confindustria.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 7, 1))
+        assert val == Decimal(173)
+
+    def test_ceramica_industria_confindustria_ipo_allowances(self) -> None:
+        """B1 C1 C2 D1 D2 E1 have IPO; A B2 C3 D3 E2 F have none."""
+        ccnl = load_ccnl("ceramica-industria-confindustria.json")
+        by_code = {lv.code: lv for lv in ccnl.levels}
+        levels_with_ipo = {"B1", "C1", "C2", "D1", "D2", "E1"}
+        for code, lv in by_code.items():
+            if code in levels_with_ipo:
+                assert len(lv.fixed_allowances) == 1
+                assert lv.fixed_allowances[0].code == "IPO"
+            else:
+                assert lv.fixed_allowances == []
+
+    def test_ceramica_industria_confindustria_tax_sector(self) -> None:
+        """Contract declares INDUSTRIA tax sector."""
+        ccnl = load_ccnl("ceramica-industria-confindustria.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+
+    def test_ceramica_industria_confindustria_seniority_cadence(self) -> None:
+        """Seniority: biennale (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("ceramica-industria-confindustria.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_ceramica_industria_confindustria_apprenticeship_track(
+        self,
+    ) -> None:
+        """Single percentage track at 95% covering all 12 levels."""
+        ccnl = load_ccnl("ceramica-industria-confindustria.json")
+        assert len(ccnl.apprenticeship) == 1
+        track = ccnl.apprenticeship[0]
+        assert isinstance(track, ApprenticeshipPercentage)
+        assert len(track.destination_levels) == 12
+        assert track.periods[0].percentage == Decimal("0.95")
+        assert track.periods[0].months_until is None
