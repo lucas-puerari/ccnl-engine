@@ -1,0 +1,248 @@
+{
+  "schema_version": "0.3",
+  "ccnl": {
+    "id": "pelli-cuoio-industria-assopellettieri",
+    "name": "CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)",
+    "cnel_code": "D111",
+    "sector": "industria",
+    "tax_sector": "industria",
+    "signatories": ["Assopellettieri", "Confindustria Moda", "Filctem-Cgil", "Femca-Cisl", "Uiltec-Uil"],
+    "sources": [
+      {
+        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+        "type": "text",
+        "agreement_date": "2023-05-26"
+      }
+    ],
+    "extraction": { "method": "manual", "model": null, "timestamp": "2026-09-03", "human_reviewed": true }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: SALARY MODEL: conglobato (retribuzione tabellare comprensiva di paga base, ex contingenza, E.d.r.). Art. 32 CCNL (CNEL PDF): 'Sono conglobati in un unica voce denominata Retribuzione tabellare i seguenti istituti: paga base, ex indennita di contingenza, E.d.r.' Tabella PELLETTERIA con 7 livelli e 4 tranches (apr 2023, dic 2023, dic 2024, dic 2025) da fonte primaria CNEL PDF Art. 32.",
+      "SIMPLIFICATION: LIVELLO 1: dall'accordo 22/12/2023 il livello 1 non e piu un livello di inquadramento per i lavoratori permanenti (passaggio automatico a livello 2 entro 31/12/2023). Il valore retributivo del livello 1 rimane definito in contratto per tutta la durata fino al 2025 (tabella Art. 32, CNEL PDF, fonte primaria confermata). Si assume che l'Art. 55 (apprendistato) non sia stato modificato dall'accordo del 22/12/2023: tale accordo non era accessibile dalle fonti pubbliche consultate (archivio CNEL, siti sindacali), quindi la continuita del livello 1 come riferimento retributivo per gli apprendisti con destinazione 2° e 3° livello e assunta ma non verificata sul testo dell'accordo integrativo.",
+      "INFO: HOURLY DIVISOR 173: Art. 35 CCNL (CNEL PDF): 'La retribuzione e oraria e si ottiene dividendo la retribuzione mensile per 173'.",
+      "INFO: ADDITIONAL MONTHS 13: tredicesima mensilita. Fonte: ANCL sintesi CCNL D111.",
+      "INFO: SCATTI DI ANZIANITA: Art. 54 CCNL (CNEL PDF). 'quattro aumenti biennali periodici di anzianita' — cadenza 24 mesi, massimo 4. Importi per livello da tabella Art. 54 CNEL PDF.",
+      "INFO: APPRENDISTATO: Art. 55 CCNL (CNEL PDF). Modello sotto-inquadramento (under_classification), durata massima 36 mesi. Sei track distinti (uno per livello di destinazione) con progressione retributiva specifica per ciascun livello, come da tabella Art. 55. Nota speciale livello 2: 'Gli apprendisti con destinazione finale al secondo saranno inquadrati al livello di destinazione finale con decorrenza dall'inizio del secondo periodo di apprendistato' (dal 11° mese in poi al livello 2).",
+      "INFO: INPS: aliquote settore industria da 2026-industria.json (file preesistente riutilizzato). Dipendente 9.19%; datore: <=15 dip 30.13%, 16-50 dip 30.20%, >50 dip 30.50%.",
+      "INFO: LIVELLO 6Q: non presente nella tabella CCNL del CNEL PDF (agosto 2023). Escluso dal modello."
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2023-04-01", "valid_until": null, "value": "173" }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2023-04-01", "valid_until": null, "value": "13" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 4,
+      "amount_by_level": {
+        "1": {
+          "periods": [
+            { "valid_from": "2023-04-01", "valid_until": null, "value": "6.71" }
+          ]
+        },
+        "2": {
+          "periods": [
+            { "valid_from": "2023-04-01", "valid_until": null, "value": "7.41" }
+          ]
+        },
+        "3": {
+          "periods": [
+            { "valid_from": "2023-04-01", "valid_until": null, "value": "7.95" }
+          ]
+        },
+        "4": {
+          "periods": [
+            { "valid_from": "2023-04-01", "valid_until": null, "value": "8.39" }
+          ]
+        },
+        "4S": {
+          "periods": [
+            { "valid_from": "2023-04-01", "valid_until": null, "value": "8.91" }
+          ]
+        },
+        "5": {
+          "periods": [
+            { "valid_from": "2023-04-01", "valid_until": null, "value": "9.68" }
+          ]
+        },
+        "6": {
+          "periods": [
+            { "valid_from": "2023-04-01", "valid_until": null, "value": "11.88" }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "1",
+      "order": 1,
+      "description": "1° livello — operai comuni (classificazione eliminata dal 31/12/2023; retribuzione tabellare mantenuta per riferimento apprendistato Art. 55)",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1277.56" },
+          { "valid_from": "2023-12-01", "valid_until": "2024-12-01", "value": "1311.66" },
+          { "valid_from": "2024-12-01", "valid_until": "2025-12-01", "value": "1345.76" },
+          { "valid_from": "2025-12-01", "valid_until": null, "value": "1379.86" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 2,
+      "description": "2° livello — operai qualificati",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1643.87" },
+          { "valid_from": "2023-12-01", "valid_until": "2024-12-01", "value": "1700.58" },
+          { "valid_from": "2024-12-01", "valid_until": "2025-12-01", "value": "1757.29" },
+          { "valid_from": "2025-12-01", "valid_until": null, "value": "1814.00" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 3,
+      "description": "3° livello — operai specializzati",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1731.70" },
+          { "valid_from": "2023-12-01", "valid_until": "2024-12-01", "value": "1791.70" },
+          { "valid_from": "2024-12-01", "valid_until": "2025-12-01", "value": "1851.70" },
+          { "valid_from": "2025-12-01", "valid_until": null, "value": "1911.70" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 4,
+      "description": "4° livello — operai altamente specializzati",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1810.42" },
+          { "valid_from": "2023-12-01", "valid_until": "2024-12-01", "value": "1873.70" },
+          { "valid_from": "2024-12-01", "valid_until": "2025-12-01", "value": "1936.98" },
+          { "valid_from": "2025-12-01", "valid_until": null, "value": "2000.26" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4S",
+      "order": 5,
+      "description": "4° livello Super — tecnici e impiegati di concetto con mansioni elevate",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1852.54" },
+          { "valid_from": "2023-12-01", "valid_until": "2024-12-01", "value": "1917.47" },
+          { "valid_from": "2024-12-01", "valid_until": "2025-12-01", "value": "1982.40" },
+          { "valid_from": "2025-12-01", "valid_until": null, "value": "2047.33" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 6,
+      "description": "5° livello — impiegati di concetto con funzioni direttive e tecnici specializzati",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1977.01" },
+          { "valid_from": "2023-12-01", "valid_until": "2024-12-01", "value": "2046.42" },
+          { "valid_from": "2024-12-01", "valid_until": "2025-12-01", "value": "2115.83" },
+          { "valid_from": "2025-12-01", "valid_until": null, "value": "2185.24" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6",
+      "order": 7,
+      "description": "6° livello — quadri apicali e dirigenti di settore",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "2184.12" },
+          { "valid_from": "2023-12-01", "valid_until": "2024-12-01", "value": "2260.15" },
+          { "valid_from": "2024-12-01", "valid_until": "2025-12-01", "value": "2336.18" },
+          { "valid_from": "2025-12-01", "valid_until": null, "value": "2412.21" }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "dest_6",
+      "destination_levels": ["6"],
+      "periods": [
+        { "months_from": 0, "months_until": 15, "levels_below": 2 },
+        { "months_from": 15, "months_until": 26, "levels_below": 1 },
+        { "months_from": 26, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "dest_5",
+      "destination_levels": ["5"],
+      "periods": [
+        { "months_from": 0, "months_until": 14, "levels_below": 2 },
+        { "months_from": 14, "months_until": 25, "levels_below": 1 },
+        { "months_from": 25, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "dest_4S",
+      "destination_levels": ["4S"],
+      "periods": [
+        { "months_from": 0, "months_until": 13, "levels_below": 2 },
+        { "months_from": 13, "months_until": 25, "levels_below": 1 },
+        { "months_from": 25, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "dest_4",
+      "destination_levels": ["4"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "levels_below": 2 },
+        { "months_from": 12, "months_until": 24, "levels_below": 1 },
+        { "months_from": 24, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "dest_3",
+      "destination_levels": ["3"],
+      "periods": [
+        { "months_from": 0, "months_until": 11, "levels_below": 2 },
+        { "months_from": 11, "months_until": 23, "levels_below": 1 },
+        { "months_from": 23, "months_until": null, "levels_below": 0 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "dest_2",
+      "destination_levels": ["2"],
+      "periods": [
+        { "months_from": 0, "months_until": 10, "levels_below": 1 },
+        { "months_from": 10, "months_until": null, "levels_below": 0 }
+      ]
+    }
+  ]
+}
