@@ -1,0 +1,118 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "dirigenza-sanitaria-area-sanita-aran",
+    "name": "CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Sanitari: psicologi, farmacisti, biologi, fisici, chimici)",
+    "cnel_code": "S225",
+    "sector": "Pubblica Amministrazione",
+    "tax_sector": "pubblica_amministrazione",
+    "signatories": [
+      "ARAN",
+      "ANAAO ASSOMED",
+      "FEDERAZIONE CIMO-FESMED",
+      "AAROI EMAC",
+      "FASSID",
+      "FVM",
+      "UIL FPL",
+      "FEDERAZIONE CISL MEDICI"
+    ],
+    "agreement_date": "2026-02-27",
+    "validity": {
+      "valid_from": "2022-01-01",
+      "valid_until": "2024-12-31"
+    },
+    "sources": [
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
+        "type": "ccnl_definitivo",
+        "agreement_date": "2026-02-27",
+        "notes": "CCNL Area Sanità 2022-2024 (27.02.2026). Art. 11 (tabellare: +230€/mese da 1/1/2024, valore 50.005,77€/anno per 13 mensilità). Art. 15 comma 3 (indennità specificità sanitaria rideterminata in 1.614,46€/anno per 13 mensilità dal 31/12/2024). Campo di applicazione: dirigenti sanitari non medici (psicologi, farmacisti, biologi, fisici, chimici, dirigenti professioni sanitarie)."
+      },
+      {
+        "url": "https://openssn.marcopingitore.it/ccnl-dirigenza-sanitaria-2022-2024/2026/02/28/9222/",
+        "type": "fonte_secondaria",
+        "agreement_date": "2026-02-28",
+        "notes": "Riepilogo economico del CCNL Area Sanità 2022-2024."
+      },
+      {
+        "url": "https://ilccnl.it/ccnl/dirigenti---dirigenza-medica-e-veterinaria/dirigenti---sanita-medici-e-veterinari-dal-010195",
+        "type": "fonte_secondaria",
+        "agreement_date": null,
+        "notes": "SIMPLIFICATION: codice CNEL S225 da fonte secondaria (ilccnl.it). Non riportato nel testo ufficiale ARAN."
+      }
+    ],
+    "extraction": {
+      "method": "manual_pdf_extraction",
+      "model": null,
+      "timestamp": "2026-09-03",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2019-12-19", "valid_until": null, "value": "165" }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2019-12-19", "valid_until": null, "value": "13" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 1,
+      "maximum_count": 0,
+      "amount_by_level": {}
+    }
+  },
+  "levels": [
+    {
+      "code": "DIRIGENTE",
+      "order": 1,
+      "description": "Dirigente sanitario SSN (psicologo, farmacista, biologo, fisico, chimico, dirigente professioni sanitarie)",
+      "category": "dirigente",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2019-12-19", "valid_until": "2024-01-01", "value": "3616.60" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "3846.60" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "specificita_sanitaria",
+          "description": "Indennità di specificità sanitaria (Art. 15 comma 3 CCNL 27.02.2026)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2019-12-19", "valid_until": "2024-12-31", "value": "104.34" },
+              { "valid_from": "2024-12-31", "valid_until": null,         "value": "124.19" }
+            ]
+          },
+          "role": null,
+          "months_per_year": 13,
+          "tfr_relevant": false,
+          "contribution_relevant": true
+        }
+      ]
+    }
+  ],
+  "apprenticeship": [],
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "out_of_scope",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "SOURCE: Stipendio tabellare da Art. 11 CCNL 27.02.2026: incremento +230€/mese da 1/1/2024, valore a regime 50.005,77€/anno per 13 mensilità = 3.846,60€/mese.",
+      "SOURCE: Indennità specificità sanitaria dal 31/12/2024: Art. 15 comma 3 CCNL 27.02.2026, rideterminata in 1.614,46€/anno per 13 mensilità = 124,19€/mese. Applicazione: dirigenti sanitari non medici.",
+      "SOURCE: Tredicesima mensilità: Art. 11 comma 1 ('per 13 mensilità').",
+      "SOURCE: Campo di applicazione: Art. 1 CCNL 27.02.2026. Questo file modella la componente non medico-veterinaria (psicologi, farmacisti, biologi, fisici, chimici, dirigenti professioni sanitarie).",
+      "INFO: Retribuzione di posizione (Art. 14): obbligatoria ma variabile per tipo incarico. Non modellata — out_of_scope.",
+      "INFO: No apprendistato — D.Lgs. 165/2001 e regime dirigenziale PA. Layer 2 out_of_scope.",
+      "INFO: Nessuno scatto automatico di anzianità. maximum_count=0.",
+      "SIMPLIFICATION: Hourly divisor 165 = 38h/settimana × 52/12 (approssimazione per dirigenza SSN, CCNL 23.1.2024 Art. 27).",
+      "SIMPLIFICATION: Pre-31/12/2024 specificità sanitaria (104,34€/mese) calcolata per differenza: 124,19 - 17,90 (incremento stimato dalla fonte secondaria openssn, GOAL-plan) = approssimazione; il valore esatto del CCNL 23.1.2024 Art. 66 non è verificato.",
+      "SIMPLIFICATION: Pre-2024 tabellare 3.616,60€/mese = back-calculation dal valore 2024 sottraendo +230€.",
+      "SIMPLIFICATION: CNEL S225 da fonte secondaria (ilccnl.it). Non riportato nel testo ARAN.",
+      "SIMPLIFICATION: Questo file e 'dirigenza-sanitaria-medico-veterinaria-aran.json' derivano dallo stesso CCNL Area Sanità 27.02.2026 (unico testo contrattuale). La distinzione in due file riflette le diverse indennità di specificità applicabili alle due popolazioni dirigenziali."
+    ]
+  }
+}

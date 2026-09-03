@@ -1,0 +1,52 @@
+{
+  "_description": "Golden case: CCNL Area Sanità 2022-2024 (S225) — Dirigenti Medici e Veterinari, Level DIRIGENTE, 2026-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Stipendio tabellare 2024: 3.846,60€/mese (50.005,77€/anno per 13 mensilità, Art. 11 CCNL 27.02.2026).",
+    "Indennità specificità medico-veterinaria dal 31/12/2024: 728,15€/mese (9.466,00€/anno per 13 mensilità, Art. 15 comma 1).",
+    "Specificità: tfr_relevant=false, contribution_relevant=true → TFR calcolato solo sul tabellare.",
+    "INPS CTPS ex-INPDAP: employee 8.80%, employer 24.20% (kitech.it proxy 2026, SIMPLIFICATION).",
+    "IRPEF 2026: 23% fino a 28.000€, 33% da 28.000 a 50.000€, 43% oltre 50.000€.",
+    "Work income deduction = 0.00 (reddito imponibile > soglia di phaseout).",
+    "Retribuzione di posizione non modellata (SIMPLIFICATION: variabile per incarico aziendale)."
+  ],
+  "inputs": {
+    "ccnl_file": "dirigenza-sanitaria-medico-veterinaria-aran.json",
+    "year": 2026,
+    "tax_sector": "pubblica_amministrazione",
+    "num_employees": 50,
+    "level_code": "DIRIGENTE",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "dirigenza-sanitaria-medico-veterinaria-aran",
+    "level_code": "DIRIGENTE",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "3846.60",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "728.15",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "4574.75",
+    "gross_annual": "59471.75",
+    "hourly_rate": "27.73",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "5233.51",
+    "inps_employer_annual": "14392.16",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "3704.13",
+    "taxable_income": "54238.24",
+    "irpef_gross": "15522.44",
+    "work_income_deduction": "0.00",
+    "irpef_net": "15522.44",
+    "net_annual": "38715.80",
+    "net_monthly": "2978.14",
+    "employer_cost_annual": "77568.04"
+  }
+}
