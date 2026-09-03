@@ -1,0 +1,134 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "funzioni-locali-aran",
+    "name": "CCNL Comparto Funzioni Locali 2022-2024 — ARAN",
+    "cnel_code": "S105",
+    "sector": "Pubblica Amministrazione",
+    "tax_sector": "pubblica_amministrazione",
+    "signatories": [
+      "ARAN",
+      "CISL FP",
+      "UIL FPL",
+      "CSA RAL"
+    ],
+    "agreement_date": "2026-02-23",
+    "validity": {
+      "valid_from": "2022-01-01",
+      "valid_until": "2024-12-31"
+    },
+    "sources": [
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+        "type": "testo_ccnl",
+        "agreement_date": "2026-02-23",
+        "notes": "CCNL Comparto Funzioni Locali triennio 2022-2024, firmato 23 febbraio 2026. Art. 56 (incrementi stipendi tabellari), Art. 60 (parziale conglobamento indennità di comparto), Tabella A (incrementi mensili per 13 mensilità), Tabella B (retribuzione tabellare annua per 12 mensilità + 13^). Orario settimanale 36h, divisore orario 156 da Art. 74 CCNL 16.11.2022. FP CGIL non firmatario."
+      },
+      {
+        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=396",
+        "type": "fonte_secondaria",
+        "agreement_date": null,
+        "notes": "SIMPLIFICATION: conferma codice CNEL S105 per CCNL Comparto Funzioni Locali (fonte secondaria lavoro-economia.it)."
+      }
+    ],
+    "extraction": {
+      "method": "manual_pdf_extraction",
+      "model": null,
+      "timestamp": "2026-09-03",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2022-11-16", "valid_until": null, "value": "156" }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2022-11-16", "valid_until": null, "value": "13" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 1,
+      "maximum_count": 0,
+      "amount_by_level": {}
+    }
+  },
+  "levels": [
+    {
+      "code": "OPERATORI",
+      "order": 1,
+      "description": "Operatori (ex Area A)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-11-16", "valid_until": "2024-01-01", "value": "1523.61" },
+          { "valid_from": "2024-01-01", "valid_until": "2027-01-01", "value": "1637.12" },
+          { "valid_from": "2027-01-01", "valid_until": null,         "value": "1646.09" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "OPERATORI_ESPERTI",
+      "order": 2,
+      "description": "Operatori Esperti (ex Area B)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-11-16", "valid_until": "2024-01-01", "value": "1586.21" },
+          { "valid_from": "2024-01-01", "valid_until": "2027-01-01", "value": "1704.38" },
+          { "valid_from": "2027-01-01", "valid_until": null,         "value": "1715.27" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "ISTRUTTORI",
+      "order": 3,
+      "description": "Istruttori (ex Area C)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-11-16", "valid_until": "2024-01-01", "value": "1782.74" },
+          { "valid_from": "2024-01-01", "valid_until": "2027-01-01", "value": "1915.55" },
+          { "valid_from": "2027-01-01", "valid_until": null,         "value": "1928.23" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "FUNZIONARI_EQ",
+      "order": 4,
+      "description": "Funzionari ed Elevata Qualificazione (ex Area D)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-11-16", "valid_until": "2024-01-01", "value": "1934.36" },
+          { "valid_from": "2024-01-01", "valid_until": "2027-01-01", "value": "2078.47" },
+          { "valid_from": "2027-01-01", "valid_until": null,         "value": "2092.84" }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": [],
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "out_of_scope",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "SOURCE: Salary tables from CCNL Comparto Funzioni Locali 2022-2024 (ARAN, 23.02.2026). Art. 56 Tabella A (monthly increments per 13 months) and Tabella B (annual amounts per 12 months + 13th). Monthly values = Tabella B / 12.",
+      "SOURCE: Tranche 1 (2022-11-16) values back-calculated from CCNL 16.11.2022 base by subtracting Tabella A col.1 increments from 2024-01-01 values. The 2022 and 2023 anticipation payments (Art. 56, alinea 1-2) are not modelled as separate tabellare periods.",
+      "SOURCE: Tranche 3 (2027-01-01) from parziale conglobamento indennità di comparto (Art. 60): Tabella B col.2 / 12. Effective from 1 January of the year following CCNL signature (2026 → 2027-01-01).",
+      "SOURCE: Hourly divisor 156 from Art. 74 CCNL 16.11.2022 (36h/week standard working time for comparto Funzioni Locali).",
+      "SOURCE: 13 mensilità confirmed by Art. 56 comma 1 terzo alinea ('per tredici mensilità') and Tabella A header.",
+      "SOURCE: No apprendistato — D.Lgs. 165/2001 framework excludes apprenticeship for pubblico impiego. Layer 2 out_of_scope.",
+      "INFO: Seniority via differenziali stipendiali (Art. 14 and Art. 78 CCNL 16.11.2022): selective procedure, not automatic — maximum_count=0.",
+      "SIMPLIFICATION: CNEL code S105 from secondary source (lavoro-economia.it). Not stated in official PDF.",
+      "SIMPLIFICATION: Pre-2024 base values derived by back-calculation; 2022-2023 anticipation payments (Art. 47-bis D.Lgs. 165/2001) not modelled as intermediate periods.",
+      "SIMPLIFICATION: Indennità di comparto post-conglobamento (Tabella C col.4) fully charged to Fondo risorse decentrate — not modelled as a fixed_allowance (varies by administration and is not a universal fixed amount)."
+    ]
+  }
+}
