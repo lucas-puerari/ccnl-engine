@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "grafica-editoria-aieg",
     "name": "CCNL Grafica e Editoria Industria (AIEG-Acigraf)",
     "cnel_code": "G011",

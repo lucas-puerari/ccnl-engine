@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "comunicazione-artigianato-confartigianato",
     "name": "CCNL Area Comunicazione — Artigianato",
     "cnel_code": "G016",

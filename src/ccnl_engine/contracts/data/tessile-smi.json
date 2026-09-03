@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "tessile-smi",
     "name": "CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)",
     "cnel_code": "D014",

@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "chimica-farmaceutica-federchimica",
     "name": "CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)",
     "cnel_code": "B011",

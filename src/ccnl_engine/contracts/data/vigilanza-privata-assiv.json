@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "vigilanza-privata-assiv",
     "name": "CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)",
     "cnel_code": "HV40",

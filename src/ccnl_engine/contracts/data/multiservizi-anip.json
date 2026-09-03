@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "multiservizi-anip",
     "name": "CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)",
     "cnel_code": "K511",

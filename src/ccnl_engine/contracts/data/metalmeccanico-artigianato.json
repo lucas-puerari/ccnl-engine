@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "metalmeccanico-artigianato",
     "name": "CCNL Metalmeccanica e Installazione di Impianti — Artigianato",
     "cnel_code": "C030",

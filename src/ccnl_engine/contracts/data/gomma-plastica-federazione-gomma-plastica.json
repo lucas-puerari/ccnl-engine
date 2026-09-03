@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "gomma-plastica-federazione-gomma-plastica",
     "name": "CCNL Gomma e Plastica Industria (Federazione Gomma Plastica)",
     "cnel_code": "B371",

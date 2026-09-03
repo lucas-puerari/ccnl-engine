@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "calzaturiero-assocalzaturifici",
     "name": "CCNL per i lavoratori addetti all'industria delle calzature",
     "cnel_code": "D121",

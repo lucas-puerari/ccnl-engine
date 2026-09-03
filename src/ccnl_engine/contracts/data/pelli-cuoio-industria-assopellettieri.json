@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "pelli-cuoio-industria-assopellettieri",
     "name": "CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)",
     "cnel_code": "D111",

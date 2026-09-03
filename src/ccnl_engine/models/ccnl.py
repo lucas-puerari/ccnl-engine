@@ -256,7 +256,7 @@ class CCNL(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     schema_version: str
-    ccnl: CCNLMeta
+    meta: CCNLMeta
     parameters: Parameters
     levels: list[Level]
     apprenticeship: list[ApprenticeshipTrack] = Field(
@@ -283,7 +283,7 @@ class CCNL(BaseModel):
         for lv in self.levels:
             if lv.code == level_code:
                 return lv
-        msg = f"level_code {level_code!r} not found in CCNL {self.ccnl.id!r}"
+        msg = f"level_code {level_code!r} not found in CCNL {self.meta.id!r}"
         raise KeyError(msg)
 
     def level_by_order(self, order: int) -> Level:
@@ -291,7 +291,7 @@ class CCNL(BaseModel):
         for lv in self.levels:
             if lv.order == order:
                 return lv
-        msg = f"no level with order {order} in CCNL {self.ccnl.id!r}"
+        msg = f"no level with order {order} in CCNL {self.meta.id!r}"
         raise KeyError(msg)
 
     def apprenticeship_tracks_for(self, level_code: str) -> list[ApprenticeshipTrack]:
@@ -303,7 +303,7 @@ class CCNL(BaseModel):
         for track in self.apprenticeship:
             if track.name == name:
                 return track
-        msg = f"no apprenticeship track named {name!r} in CCNL {self.ccnl.id!r}"
+        msg = f"no apprenticeship track named {name!r} in CCNL {self.meta.id!r}"
         raise KeyError(msg)
 
     def _assert_unique_orders(self) -> None:

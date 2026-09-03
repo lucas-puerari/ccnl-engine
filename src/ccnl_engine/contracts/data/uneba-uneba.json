@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "uneba-uneba",
     "name": "CCNL Istituzioni Socio-Assistenziali — UNEBA",
     "cnel_code": "T141",

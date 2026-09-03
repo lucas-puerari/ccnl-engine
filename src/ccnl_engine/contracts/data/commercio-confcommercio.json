@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "commercio-confcommercio",
     "name": "CCNL Terziario, Distribuzione e Servizi (Confcommercio)",
     "cnel_code": "H011",

@@ -111,7 +111,7 @@ def make_ccnl_dict(*, app_type: str = "percentage") -> dict[str, Any]:
         tracks = []
     return {
         "schema_version": "0.3",
-        "ccnl": {
+        "meta": {
             "id": "test",
             "name": "Test CCNL",
             "cnel_code": "X001",

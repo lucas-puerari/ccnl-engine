@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "metalmeccanico-federmeccanica",
     "name": "CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)",
     "cnel_code": "C011",

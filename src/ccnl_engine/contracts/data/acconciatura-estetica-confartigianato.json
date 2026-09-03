@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "acconciatura-estetica-confartigianato",
     "name": "CCNL Acconciatura ed Estetica — Confartigianato/CNA",
     "cnel_code": "H515",
