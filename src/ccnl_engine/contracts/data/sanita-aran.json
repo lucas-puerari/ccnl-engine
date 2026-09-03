@@ -1,0 +1,145 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "sanita-aran",
+    "name": "CCNL Comparto Sanità 2022-2024 — ARAN",
+    "cnel_code": "S205",
+    "sector": "Pubblica Amministrazione",
+    "tax_sector": "pubblica_amministrazione",
+    "signatories": [
+      "ARAN",
+      "CISL FP",
+      "UIL FPL",
+      "FIALS",
+      "NURSIND",
+      "NURSING UP"
+    ],
+    "agreement_date": "2025-10-27",
+    "validity": {
+      "valid_from": "2022-01-01",
+      "valid_until": "2024-12-31"
+    },
+    "sources": [
+      {
+        "url": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
+        "type": "ipotesi_ccnl",
+        "agreement_date": "2025-01-14",
+        "notes": "Ipotesi di CCNL Comparto Sanità 2022-2024. Art. 26 (orario 36h/sett.), Art. 57 (13ª mensilità), Art. 58 (incrementi tabellari dal 1.1.2024), Tabella 1a (incrementi mensili per 13 mensilità), Tabella 2a (retribuzione tabellare annua per 12 mensilità + 13^). Firma definitiva ottobre 2025."
+      },
+      {
+        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=400",
+        "type": "fonte_secondaria",
+        "agreement_date": null,
+        "notes": "SIMPLIFICATION: conferma codice CNEL S205 per CCNL Comparto Sanità (fonte secondaria lavoro-economia.it)."
+      }
+    ],
+    "extraction": {
+      "method": "manual_pdf_extraction",
+      "model": null,
+      "timestamp": "2026-09-03",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2022-11-02", "valid_until": null, "value": "156" }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2022-11-02", "valid_until": null, "value": "13" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 1,
+      "maximum_count": 0,
+      "amount_by_level": {}
+    }
+  },
+  "levels": [
+    {
+      "code": "SUPPORTO",
+      "order": 1,
+      "description": "Personale di supporto (ex area A/A1)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-11-02", "valid_until": "2024-01-01", "value": "1586.59" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1701.59" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "OPERATORI",
+      "order": 2,
+      "description": "Operatori (ex area B/B1)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-11-02", "valid_until": "2024-01-01", "value": "1675.45" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1795.45" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "ASSISTENTI",
+      "order": 3,
+      "description": "Assistenti (ex area C/C1)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-11-02", "valid_until": "2024-01-01", "value": "1786.48" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1913.48" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "PROFESSIONISTI",
+      "order": 4,
+      "description": "Professionisti della salute e funzionari (ex area D/DS)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-11-02", "valid_until": "2024-01-01", "value": "1941.58" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "2076.58" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "ELEVATA_QUALIFICAZIONE",
+      "order": 5,
+      "description": "Elevata qualificazione (ex area DS dirigenza)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-11-02", "valid_until": "2024-01-01", "value": "2692.31" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "2886.21" }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": [],
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "out_of_scope",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "SOURCE: Salary tables from Ipotesi CCNL Comparto Sanità 2022-2024 (ARAN, 14.01.2025, definitively signed October 2025). Art. 58 comma 1 (increments from 1.1.2024 per Tabella 1a), Art. 58 comma 2 (annual amounts from Tabella 2a). Monthly values = Tabella 2a / 12.",
+      "SOURCE: Tranche 1 (2022-11-02) values back-calculated from CCNL 2.11.2022 base by subtracting Tabella 1a increments. 2022-2023 anticipation payments (Art. 47-bis D.Lgs. 165/2001) not modelled as separate periods (SIMPLIFICATION).",
+      "SOURCE: Hourly divisor 156 from Art. 26 comma 1 (36h/week standard working time for comparto Sanità).",
+      "SOURCE: 13 mensilità from Art. 57 (Tredicesima mensilità) of this CCNL.",
+      "SOURCE: No apprendistato — D.Lgs. 165/2001 framework excludes apprenticeship for pubblico impiego. Layer 2 out_of_scope.",
+      "INFO: Seniority via DEP (Differenziali Economici di Professionalità) per Art. 60 Fondo incarichi: selective procedure, not automatic — maximum_count=0.",
+      "INFO: Indennità di specificità infermieristica (Art. 62, Tabella 3) not modelled as fixed_allowance — applies only to specific nursing profiles (infermieri, ostetriche), not universally to all area members.",
+      "SIMPLIFICATION: CNEL code S205 from secondary source (lavoro-economia.it). Not stated in official ipotesi PDF.",
+      "SIMPLIFICATION: Pre-2024 base values derived by back-calculation from CCNL 2.11.2022; 2022-2023 anticipation payments not modelled as intermediate periods.",
+      "SIMPLIFICATION: Agreement date 2025-10-27 (firma definitiva) per ARAN press release. The PDF used is the Ipotesi from 14.01.2025; salary tables are identical to the final signed version."
+    ]
+  }
+}

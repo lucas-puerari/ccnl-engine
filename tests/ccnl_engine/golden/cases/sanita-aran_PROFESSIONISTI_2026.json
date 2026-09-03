@@ -1,0 +1,53 @@
+{
+  "_description": "Golden case: CCNL Comparto Sanità 2022-2024 (S205), Level PROFESSIONISTI, 2026-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "2024-01-01 tranche: tabellare conglobato PROFESSIONISTI = 2076.58 EUR/month (Tabella 2a, Art. 58 CCNL 2022-2024).",
+    "Conglobated model: retribuzione tabellare includes all components (no separate contingenza since 1990s absorption).",
+    "Additional months: 13 (tredicesima only, Art. 57).",
+    "INPS CTPS ex-INPDAP: employee 8.80%, employer 24.20% (kitech.it proxy 2026, SIMPLIFICATION).",
+    "Seniority: 0.00 — maximum_count=0 (DEP non automatici, Art. 60).",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION).",
+    "Indennità specificità infermieristica not included (profile-specific, not universal)."
+  ],
+  "inputs": {
+    "ccnl_file": "sanita-aran.json",
+    "year": 2026,
+    "tax_sector": "pubblica_amministrazione",
+    "num_employees": 50,
+    "level_code": "PROFESSIONISTI",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "sanita-aran",
+    "level_code": "PROFESSIONISTI",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "2076.58",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2076.58",
+    "gross_annual": "26995.54",
+    "hourly_rate": "13.31",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2375.61",
+    "inps_employer_annual": "6532.92",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1999.67",
+    "taxable_income": "24619.93",
+    "irpef_gross": "5662.58",
+    "work_income_deduction": "764.65",
+    "irpef_net": "4897.93",
+    "net_annual": "19722.00",
+    "net_monthly": "1517.08",
+    "employer_cost_annual": "35528.13"
+  }
+}

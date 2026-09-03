@@ -92,6 +92,7 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 40 | Turismo — Federalberghi/Faita | Terziario | ~220k | ✅ | ✅ | — |
 | 41 | Funzioni Centrali 2022-2024 — ARAN (Ministeri, Agenzie, INPS, INAIL) | Pubblica Amministrazione | ~250k | ✅ | — | — |
 | 42 | Funzioni Locali 2022-2024 — ARAN (Comuni, Province, Regioni, Camere di Commercio) | Pubblica Amministrazione | ~400k | ✅ | — | — |
+| 43 | Comparto Sanità 2022-2024 — ARAN (SSN non-dirigenza) | Pubblica Amministrazione | ~580k | ✅ | — | — |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
