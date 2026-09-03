@@ -193,7 +193,6 @@ class Coverage(BaseModel):
 
     layer_1: CoverageStatus
     layer_2: CoverageStatus
-    layer_3: CoverageStatus
     notes: list[str]
 
     @model_validator(mode="after")
