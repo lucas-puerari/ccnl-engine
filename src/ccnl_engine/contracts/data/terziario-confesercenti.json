@@ -1,0 +1,250 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "terziario-confesercenti",
+    "name": "CCNL Terziario Distribuzione e Servizi — Confesercenti",
+    "cnel_code": "H012",
+    "sector": "Terziario distribuzione e servizi",
+    "tax_sector": "terziario",
+    "signatories": [
+      "Confesercenti",
+      "Filcams-CGIL",
+      "Fisascat-CISL",
+      "UILTuCS-UIL"
+    ],
+    "agreement_date": "2024-03-22",
+    "validity": {
+      "valid_from": "2023-04-01",
+      "valid_until": "2027-03-31"
+    },
+    "sources": [
+      {
+        "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+        "type": "testo_unico_ccnl",
+        "agreement_date": "2019-12-12",
+        "notes": "Testo unico 12 dicembre 2019. Art. 64 (durata apprendistato), Art. 53 (trattamento economico apprendisti), Art. 205 (importi scatti), Art. 211 (divisore orario 168), Arts. 220-221 (tredicesima e quattordicesima). Tabella I retributiva vigente da 01.01.2020."
+      },
+      {
+        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20260.pdf",
+        "type": "accordo_di_rinnovo",
+        "agreement_date": "2024-03-22",
+        "notes": "Accordo di rinnovo CNEL id 20260 (identificativoAccordo), validità 2023-04-01/2027-03-31. Art. 213 tabella aumenti retributivi mensili per 6 tranche: 01/04/2023, 01/04/2024, 01/03/2025, 01/11/2025, 01/11/2026, 01/02/2027. Importo forfettario aggiuntivo una-tantum 350 EUR al IV livello (175+175 in luglio 2024 e luglio 2025) NON modellato in base_salary."
+      }
+    ],
+    "extraction": {
+      "method": "manual_pdf_extraction",
+      "model": null,
+      "timestamp": "2026-09-03",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "1990-01-01", "valid_until": null, "value": "168" }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        { "valid_from": "1990-01-01", "valid_until": null, "value": "14" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 10,
+      "amount_by_level": {
+        "Q":   { "periods": [{ "valid_from": "1990-01-01", "valid_until": null, "value": "25.46" }] },
+        "I":   { "periods": [{ "valid_from": "1990-01-01", "valid_until": null, "value": "24.84" }] },
+        "II":  { "periods": [{ "valid_from": "1990-01-01", "valid_until": null, "value": "22.83" }] },
+        "III": { "periods": [{ "valid_from": "1990-01-01", "valid_until": null, "value": "21.95" }] },
+        "IV":  { "periods": [{ "valid_from": "1990-01-01", "valid_until": null, "value": "20.66" }] },
+        "V":   { "periods": [{ "valid_from": "1990-01-01", "valid_until": null, "value": "20.30" }] },
+        "VI":  { "periods": [{ "valid_from": "1990-01-01", "valid_until": null, "value": "19.73" }] },
+        "VII": { "periods": [{ "valid_from": "1990-01-01", "valid_until": null, "value": "19.47" }] }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "Q",
+      "order": 8,
+      "description": "Quadro",
+      "category": "quadro",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2020-01-01", "valid_until": "2023-04-01", "value": "2697.77" },
+          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "2749.86" },
+          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "2871.40" },
+          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "2923.49" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "2984.26" },
+          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "3045.03" },
+          { "valid_from": "2027-02-01", "valid_until": null,         "value": "3114.47" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "I",
+      "order": 7,
+      "description": "Primo livello",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2020-01-01", "valid_until": "2023-04-01", "value": "2246.01" },
+          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "2292.93" },
+          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "2402.41" },
+          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "2449.33" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "2504.07" },
+          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "2558.81" },
+          { "valid_from": "2027-02-01", "valid_until": null,         "value": "2621.36" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "II",
+      "order": 6,
+      "description": "Secondo livello",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2020-01-01", "valid_until": "2023-04-01", "value": "2010.38" },
+          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "2050.97" },
+          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "2145.67" },
+          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "2186.26" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "2233.61" },
+          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "2280.96" },
+          { "valid_from": "2027-02-01", "valid_until": null,         "value": "2335.07" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "III",
+      "order": 5,
+      "description": "Terzo livello",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2020-01-01", "valid_until": "2023-04-01", "value": "1791.05" },
+          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1825.74" },
+          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "1906.68" },
+          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "1941.37" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1981.84" },
+          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "2022.31" },
+          { "valid_from": "2027-02-01", "valid_until": null,         "value": "2068.56" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "IV",
+      "order": 4,
+      "description": "Quarto livello",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2020-01-01", "valid_until": "2023-04-01", "value": "1616.68" },
+          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1646.68" },
+          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "1716.68" },
+          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "1746.68" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1781.68" },
+          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "1816.68" },
+          { "valid_from": "2027-02-01", "valid_until": null,         "value": "1856.68" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "V",
+      "order": 3,
+      "description": "Quinto livello",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2020-01-01", "valid_until": "2023-04-01", "value": "1508.95" },
+          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1536.05" },
+          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "1599.29" },
+          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "1626.39" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1658.01" },
+          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "1689.63" },
+          { "valid_from": "2027-02-01", "valid_until": null,         "value": "1725.77" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "VI",
+      "order": 2,
+      "description": "Sesto livello",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2020-01-01", "valid_until": "2023-04-01", "value": "1405.87" },
+          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1430.20" },
+          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "1486.98" },
+          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "1511.31" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1539.70" },
+          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "1568.09" },
+          { "valid_from": "2027-02-01", "valid_until": null,         "value": "1600.54" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "VII",
+      "order": 1,
+      "description": "Settimo livello",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2020-01-01", "valid_until": "2023-04-01", "value": "1281.31" },
+          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1302.14" },
+          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "1350.75" },
+          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "1371.58" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1395.89" },
+          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "1420.20" },
+          { "valid_from": "2027-02-01", "valid_until": null,         "value": "1447.98" }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "standard",
+      "destination_levels": ["II", "III", "IV", "V"],
+      "periods": [
+        { "months_from": 0,  "months_until": 18, "levels_below": 2 },
+        { "months_from": 18, "months_until": null, "levels_below": 1 }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "sesto-livello",
+      "destination_levels": ["VI"],
+      "periods": [
+        { "months_from": 0,  "months_until": 12, "levels_below": 1 },
+        { "months_from": 12, "months_until": null, "levels_below": 1 }
+      ]
+    }
+  ],
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "SOURCE: Tabella retributiva base vigente dal 01.01.2020 (Tabella I, CCNL 12.12.2019, confesercenti.it PDF).",
+      "SOURCE: Aumenti tabellari 2024 rinnovo da Art. 213 (CNEL id 20260, 22.03.2024). Tranche: 01/04/2023, 01/04/2024, 01/03/2025, 01/11/2025, 01/11/2026, 01/02/2027.",
+      "SOURCE: Importi scatti anzianità da Art. 205 CCNL 2019 vigenti dal 01.01.1990 (triennali, max 10).",
+      "SOURCE: Divisore orario 168 da Art. 211 CCNL 2019 (40h/settimana).",
+      "SOURCE: 14 mensilità da Art. 220 (tredicesima) e Art. 221 (quattordicesima) CCNL 2019.",
+      "SOURCE: Apprendistato da Art. 53 (sotto-inquadramento) e Art. 64 (durate: II-V 36 mesi, VI 24 mesi) CCNL 2019.",
+      "SIMPLIFICATION: Importo forfettario una-tantum 350 EUR al IV livello (pagato 175+175 in luglio 2024/2025) non modellato in base_salary — non è aumento strutturale.",
+      "SIMPLIFICATION: Livello I non incluso come destinazione apprendistato: Art. 64 elenca solo II-VI.",
+      "SIMPLIFICATION: Track sesto-livello: Art. 53 eccezione — prima metà al VII livello per impossibilità di 2 livelli sotto VI; seconda metà 1 livello sotto VI = VII. Entrambe le metà al VII.",
+      "INFO: Apprendistato tipo b (professionalizzante). Durate: II=36m, III=36m, IV=36m, V=36m, VI=24m. Metà periodo = 18m (II-V) e 12m (VI)."
+    ]
+  }
+}

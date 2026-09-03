@@ -3501,8 +3501,8 @@ class TestLoadAgenzieDiViaggioFiavet:
     def test_agenzie_viaggio_fiavet_loads(self) -> None:
         """Contract loads with id and CNEL code H052."""
         ccnl = load_ccnl("agenzie-viaggio-fiavet.json")
-        assert ccnl.ccnl.id == "agenzie-viaggio-fiavet"
-        assert ccnl.ccnl.cnel_code == "H052"
+        assert ccnl.meta.id == "agenzie-viaggio-fiavet"
+        assert ccnl.meta.cnel_code == "H052"
 
     def test_agenzie_viaggio_fiavet_has_10_levels(self) -> None:
         """Contract has exactly 10 levels: QA QB 1 2 3 4 5 6S 6 7."""
@@ -3551,7 +3551,7 @@ class TestLoadAgenzieDiViaggioFiavet:
     def test_agenzie_viaggio_fiavet_tax_sector(self) -> None:
         """Contract declares TERZIARIO tax sector."""
         ccnl = load_ccnl("agenzie-viaggio-fiavet.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
 
     def test_agenzie_viaggio_fiavet_seniority_cadence(self) -> None:
         """Seniority: triennale (36 months), maximum 6 scatti."""
@@ -3559,3 +3559,69 @@ class TestLoadAgenzieDiViaggioFiavet:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 6
+
+
+class TestLoadTerziarioConfesercenti:
+    """Tests for CCNL Terziario Distribuzione e Servizi — Confesercenti (H012)."""
+
+    def test_terziario_confesercenti_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("terziario-confesercenti.json")
+        assert ccnl.meta.id == "terziario-confesercenti"
+        assert ccnl.meta.cnel_code == "H012"
+
+    def test_terziario_confesercenti_has_8_levels(self) -> None:
+        """Contract has exactly 8 levels: Q, I, II, III, IV, V, VI, VII."""
+        ccnl = load_ccnl("terziario-confesercenti.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 8
+        assert codes == {"Q", "I", "II", "III", "IV", "V", "VI", "VII"}
+
+    def test_terziario_confesercenti_level4_salary_tranche1(self) -> None:
+        """Level IV first tranche (Apr 2023): 1646.68 EUR/month."""
+        ccnl = load_ccnl("terziario-confesercenti.json")
+        lv = ccnl.level_by_code("IV")
+        assert lv.base_salary.value_at(date(2023, 4, 1)) == Decimal("1646.68")
+
+    def test_terziario_confesercenti_level4_salary_tranche5(self) -> None:
+        """Level IV fifth tranche (Nov 2026): 1816.68 EUR/month."""
+        ccnl = load_ccnl("terziario-confesercenti.json")
+        lv = ccnl.level_by_code("IV")
+        assert lv.base_salary.value_at(date(2026, 11, 1)) == Decimal("1816.68")
+
+    def test_terziario_confesercenti_level_ordering(self) -> None:
+        """Q is highest-order level; VII is lowest-order level."""
+        ccnl = load_ccnl("terziario-confesercenti.json")
+        orders = {lv.code: lv.order for lv in ccnl.levels}
+        assert orders["Q"] == max(orders.values())
+        assert orders["VII"] == min(orders.values())
+
+    def test_terziario_confesercenti_additional_months(self) -> None:
+        """Additional months: 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("terziario-confesercenti.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            14
+        )
+
+    def test_terziario_confesercenti_hourly_divisor(self) -> None:
+        """Hourly divisor: 168 (Art. 211 CCNL 2019, 40h/week)."""
+        ccnl = load_ccnl("terziario-confesercenti.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(168)
+
+    def test_terziario_confesercenti_no_fixed_allowances(self) -> None:
+        """Conglobated model: all levels have no fixed allowances."""
+        ccnl = load_ccnl("terziario-confesercenti.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_terziario_confesercenti_tax_sector(self) -> None:
+        """Contract declares TERZIARIO tax sector."""
+        ccnl = load_ccnl("terziario-confesercenti.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_terziario_confesercenti_seniority_cadence(self) -> None:
+        """Seniority: triennale (36 months), maximum 10 scatti."""
+        ccnl = load_ccnl("terziario-confesercenti.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 10
