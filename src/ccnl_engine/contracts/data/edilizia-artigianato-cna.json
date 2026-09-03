@@ -133,7 +133,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingenza — frozen since July 1992 Protocol",
           "monthly": {
             "periods": [
@@ -167,7 +167,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingenza — frozen since July 1992 Protocol",
           "monthly": {
             "periods": [
@@ -201,7 +201,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingenza — frozen since July 1992 Protocol",
           "monthly": {
             "periods": [
@@ -235,7 +235,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingenza — frozen since July 1992 Protocol",
           "monthly": {
             "periods": [
@@ -269,7 +269,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingenza — frozen since July 1992 Protocol",
           "monthly": {
             "periods": [
@@ -303,7 +303,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingenza — frozen since July 1992 Protocol",
           "monthly": {
             "periods": [
@@ -336,7 +336,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingenza — frozen since July 1992 Protocol",
           "monthly": {
             "periods": [
@@ -370,7 +370,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingenza — frozen since July 1992 Protocol",
           "monthly": {
             "periods": [

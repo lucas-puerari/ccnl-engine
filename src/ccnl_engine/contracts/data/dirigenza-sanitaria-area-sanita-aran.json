@@ -79,7 +79,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "specificita_sanitaria",
+          "code": "SPECIFICITA_SANITARIA",
           "description": "Indennità di specificità sanitaria (Art. 15 comma 3 CCNL 27.02.2026)",
           "monthly": {
             "periods": [

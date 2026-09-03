@@ -115,7 +115,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza_edr",
+          "code": "CONTINGENZA_EDR",
           "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
@@ -124,7 +124,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
@@ -133,7 +133,7 @@
           }
         },
         {
-          "code": "ind_funzione",
+          "code": "IND_FUNZIONE",
           "description": "Quadri function allowance (Art. 129), EUR 260.76 for 14 monthly payments",
           "monthly": {
             "periods": [
@@ -159,7 +159,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza_edr",
+          "code": "CONTINGENZA_EDR",
           "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
@@ -168,7 +168,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
@@ -193,7 +193,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza_edr",
+          "code": "CONTINGENZA_EDR",
           "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
@@ -202,7 +202,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
@@ -227,7 +227,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza_edr",
+          "code": "CONTINGENZA_EDR",
           "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
@@ -236,7 +236,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
@@ -261,7 +261,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza_edr",
+          "code": "CONTINGENZA_EDR",
           "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
@@ -270,7 +270,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
@@ -295,7 +295,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza_edr",
+          "code": "CONTINGENZA_EDR",
           "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
@@ -304,7 +304,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
@@ -329,7 +329,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza_edr",
+          "code": "CONTINGENZA_EDR",
           "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
@@ -338,7 +338,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
@@ -363,7 +363,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza_edr",
+          "code": "CONTINGENZA_EDR",
           "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
@@ -372,7 +372,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
@@ -381,7 +381,7 @@
           }
         },
         {
-          "code": "ind_funzione",
+          "code": "IND_FUNZIONE",
           "description": "Other elements (formerly ITL 10,000) for grade VII, EUR 5.16, 'Altri el.' column of the salary tables",
           "monthly": {
             "periods": [

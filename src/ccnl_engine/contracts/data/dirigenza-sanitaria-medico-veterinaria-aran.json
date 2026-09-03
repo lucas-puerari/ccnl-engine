@@ -79,7 +79,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "specificita_medico_veterinaria",
+          "code": "SPECIFICITA_MEDICO_VETERINARIA",
           "description": "Indennità di specificità medico-veterinaria (Art. 15 CCNL 27.02.2026)",
           "monthly": {
             "periods": [

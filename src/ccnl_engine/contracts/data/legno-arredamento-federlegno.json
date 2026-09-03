@@ -155,7 +155,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -188,7 +188,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -221,7 +221,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -254,7 +254,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -287,7 +287,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -319,7 +319,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -351,7 +351,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -383,7 +383,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -415,7 +415,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -447,7 +447,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -479,7 +479,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -511,7 +511,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -543,7 +543,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -576,7 +576,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -609,7 +609,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -642,7 +642,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
@@ -660,7 +660,7 @@
           }
         },
         {
-          "code": "ind_funzione_AD3",
+          "code": "IND_FUNZIONE_AD3",
           "description": "Management function allowance AD3, EUR 25.82/month, not included in the minimum pay table",
           "monthly": {
             "periods": [

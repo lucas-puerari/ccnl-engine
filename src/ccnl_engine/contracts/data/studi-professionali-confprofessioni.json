@@ -296,7 +296,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "enac",
+          "code": "ENAC",
           "description": "ENAC — National Contract Alignment Element (Art. 141 CCNL 2024), payable only to workers already classified under the Confedertecnica CCNL as of 01/07/2004",
           "monthly": {
             "periods": [
@@ -341,7 +341,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "enac",
+          "code": "ENAC",
           "description": "ENAC — National Contract Alignment Element (Art. 141 CCNL 2024), payable only to workers already classified under the Confedertecnica CCNL as of 01/07/2004",
           "monthly": {
             "periods": [
@@ -386,7 +386,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "enac",
+          "code": "ENAC",
           "description": "ENAC — National Contract Alignment Element (Art. 141 CCNL 2024), payable only to workers already classified under the Confedertecnica CCNL as of 01/07/2004",
           "monthly": {
             "periods": [

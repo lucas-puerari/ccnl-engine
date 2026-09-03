@@ -202,7 +202,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "ind_funzione",
+          "code": "IND_FUNZIONE",
           "description": "Function allowance level 7 (source: kitech.it — SIMPLIFICATION)",
           "monthly": {
             "periods": [
@@ -227,7 +227,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "ind_funzione_quadri",
+          "code": "IND_FUNZIONE_QUADRI",
           "description": "Function allowance quadri 7Q (source: kitech.it — SIMPLIFICATION)",
           "monthly": {
             "periods": [
