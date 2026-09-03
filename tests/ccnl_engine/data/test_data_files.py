@@ -4338,3 +4338,98 @@ class TestLoadIstruzioneRicercaAran:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 1
         assert si.maximum_count == 0
+
+
+class TestLoadSanitaPrivataAiopAris:
+    """Tests for CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)."""
+
+    def test_sanita_privata_aiop_aris_loads(self) -> None:
+        """Contract id and CNEL code match expected values."""
+        ccnl = load_ccnl("sanita-privata-aiop-aris.json")
+        assert ccnl.meta.id == "sanita-privata-aiop-aris"
+        assert ccnl.meta.cnel_code == "T011"
+
+    def test_sanita_privata_aiop_aris_has_28_levels(self) -> None:
+        """Contract has exactly 28 levels covering categories A to E."""
+        ccnl = load_ccnl("sanita-privata-aiop-aris.json")
+        assert len(ccnl.levels) == 28
+        assert {lv.code for lv in ccnl.levels} == {
+            "A",
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "B",
+            "B1",
+            "B2",
+            "B3",
+            "B4",
+            "C",
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+            "D",
+            "D1",
+            "D2",
+            "D3",
+            "D4",
+            "DS",
+            "DS1",
+            "DS2",
+            "DS3",
+            "DS4",
+            "E",
+            "E1",
+            "E2",
+        }
+
+    def test_sanita_privata_aiop_aris_level_a_salary(self) -> None:
+        """Level A salary at 2026-01-01: 1467.45 EUR/month (Tabella 1)."""
+        ccnl = load_ccnl("sanita-privata-aiop-aris.json")
+        lv = ccnl.level_by_code("A")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1467.45")
+
+    def test_sanita_privata_aiop_aris_level_e2_salary(self) -> None:
+        """Level E2 salary at 2026-01-01: 3554.39 EUR/month (Tabella 1)."""
+        ccnl = load_ccnl("sanita-privata-aiop-aris.json")
+        lv = ccnl.level_by_code("E2")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("3554.39")
+
+    def test_sanita_privata_aiop_aris_level_ordering(self) -> None:
+        """E2 has highest order (order 28); A has lowest (order 1)."""
+        ccnl = load_ccnl("sanita-privata-aiop-aris.json")
+        orders = {lv.code: lv.order for lv in ccnl.levels}
+        assert max(orders, key=lambda k: orders[k]) == "E2"
+        assert min(orders, key=lambda k: orders[k]) == "A"
+
+    def test_sanita_privata_aiop_aris_additional_months(self) -> None:
+        """Additional months: 13 (tredicesima only, Art. 50/66)."""
+        ccnl = load_ccnl("sanita-privata-aiop-aris.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_sanita_privata_aiop_aris_hourly_divisor(self) -> None:
+        """Hourly divisor: 156 (Art. 58: monthly/26/6 for 36h/week)."""
+        ccnl = load_ccnl("sanita-privata-aiop-aris.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(156)
+
+    def test_sanita_privata_aiop_aris_no_fixed_allowances(self) -> None:
+        """Conglobated tabellare (Art. 55): no fixed allowances."""
+        ccnl = load_ccnl("sanita-privata-aiop-aris.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_sanita_privata_aiop_aris_tax_sector(self) -> None:
+        """Contract declares TERZIARIO tax sector."""
+        ccnl = load_ccnl("sanita-privata-aiop-aris.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_sanita_privata_aiop_aris_seniority_cadence(self) -> None:
+        """Seniority frozen at 1993-12-31 per Art. 56; maximum_count=0."""
+        ccnl = load_ccnl("sanita-privata-aiop-aris.json")
+        si = ccnl.parameters.seniority_increments
+        # cadence_months is inert when maximum_count=0
+        assert si.cadence_months == 24
+        assert si.maximum_count == 0

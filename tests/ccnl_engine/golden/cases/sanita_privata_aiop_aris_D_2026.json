@@ -1,0 +1,52 @@
+{
+  "_description": "Golden case: CCNL Case di Cura Private AIOP/ARIS (T011), Level D, 2026-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Single salary tranche from 2020-07-01; CCNL in ultrattività. Level D = professionista sanitario.",
+    "Conglobated tabellare: EADR incorporated from 2020-07-01 per Art. 55.",
+    "Additional months: 13 (tredicesima only, Art. 50).",
+    "Seniority: 0 — retribuzione individuale di anzianità frozen at 1993-12-31 per Art. 56.",
+    "INPS: 2026-terziario.json, 50 employees tier.",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "sanita-privata-aiop-aris.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "D",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "sanita-privata-aiop-aris",
+    "level_code": "D",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1953.87",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1953.87",
+    "gross_annual": "25400.31",
+    "hourly_rate": "12.52",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2334.29",
+    "inps_employer_annual": "7361.01",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1881.50",
+    "taxable_income": "23066.02",
+    "irpef_gross": "5305.18",
+    "work_income_deduction": "867.31",
+    "irpef_net": "4437.87",
+    "net_annual": "18628.15",
+    "net_monthly": "1432.93",
+    "employer_cost_annual": "34642.82"
+  }
+}
