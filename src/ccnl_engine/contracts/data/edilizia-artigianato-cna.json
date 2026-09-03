@@ -388,7 +388,7 @@
           }
         },
         {
-          "code": "FUNC",
+          "code": "IND_FUN",
           "description": "Function allowance — fixed monthly supplement for Quadro designation (F015 Art. on Quadri)",
           "monthly": {
             "periods": [
