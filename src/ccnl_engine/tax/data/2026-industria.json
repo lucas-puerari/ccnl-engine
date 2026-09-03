@@ -64,7 +64,7 @@
         "ivs_rate": "0.2381"
       }
     ],
-    "ceiling": null
+    "ceiling": "122295.00"
   },
   "apprentice": {
     "employee_rate": "0.0584",
@@ -85,6 +85,7 @@
     "INPS employer — components verified for manufacturing/metalworking industry 2026: IVS 23.81% (Circ. INPS 6/2026) + DS/NASpI 1.61% + CUAF 2.48% + CIGO 1.70% (≤50 employees) or 2.00% (>50 employees, D.Lgs. 148/2015 art. 5, Circ. INPS 1/2026) + FIS 0.533% employer (6-15 employees, 2/3 of 0.80%, Circ. INPS 5/2025) or CIGS 0.60% employer (>15 employees, 2/3 of 0.90%). Total by tier: ≤15 employees = 30.13%; 16-50 employees = 30.20%; >50 employees = 30.50%. Does not include INAIL (sector-variable, not modelled).",
     "fixed_term_additional_rate: NASpI additional rate 1.4% (employer-only) per Art. 2 co. 28 L. 92/2012. Identical to terziario.",
     "INPS dipendente — employee_tiers: 9.19% (IVS) up to 15 employees; 9.49% above 15 (adds the 0.30% CIGS employee share, D.Lgs. 148/2015 art. 23).",
-    "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled."
+    "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
+    "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026, Art. 1 L. 335/1995 c. 18). Applies only when ivs_ceiling_applies=True (workers enrolled in INPS on or after 1 Jan 1996)."
   ]
 }

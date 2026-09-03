@@ -64,7 +64,7 @@
         "ivs_rate": "0.2381"
       }
     ],
-    "ceiling": null
+    "ceiling": "122295.00"
   },
   "apprentice": {
     "employee_rate": "0.0584",
@@ -86,6 +86,7 @@
     "INPS employer — rates from kitech.it (p=5_152, p=5_154, data 1998 structure). Proxy values: ≤15 employees 28.46%; 16-50 employees 29.06%; >50 employees 29.50% (estimated). Verify against INPS annual circular for 2026 exact values.",
     "fixed_term_additional_rate: NASpI additional rate 1.4% (employer-only, Art. 2 co. 28 L. 92/2012). Identical to other sectors.",
     "INPS employee — employee_tiers: 9.19% (IVS + NASpI) up to 15 employees; 9.49% above 15 (0.30% CIGS employee share, D.Lgs. 148/2015 art. 23).",
-    "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled."
+    "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
+    "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026, Art. 1 L. 335/1995 c. 18). Applies only when ivs_ceiling_applies=True (workers enrolled in INPS on or after 1 Jan 1996)."
   ]
 }

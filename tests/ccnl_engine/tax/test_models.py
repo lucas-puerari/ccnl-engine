@@ -365,7 +365,7 @@ class TestYearRules2026Json:
         assert yr.irpef_brackets[2].rate == Decimal("0.43")
         assert yr.inps.employee_rate == Decimal("0.0919")
         assert yr.inps.employer_rate == Decimal("0.2898")
-        assert yr.inps.ceiling is None
+        assert yr.inps.ceiling == Decimal("122295.00")
         assert yr.fixed_term_additional_rate == Decimal("0.014")
         assert yr.tfr.accrual_divisor == Decimal("13.5")
         assert yr.apprentice.employer_rate_after == Decimal("0.1161")
