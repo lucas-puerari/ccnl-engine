@@ -95,6 +95,7 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 43 | Comparto Sanità 2022-2024 — ARAN (SSN non-dirigenza) | Pubblica Amministrazione | ~580k | ✅ | — | — |
 | 44 | Area Sanità 2022-2024 — ARAN (Dirigenti Medici e Veterinari SSN) | Pubblica Amministrazione | ~100k | ✅ | — | — |
 | 45 | Area Sanità 2022-2024 — ARAN (Dirigenti Sanitari: psicologi, farmacisti, biologi) | Pubblica Amministrazione | ~37k | ✅ | — | — |
+| 46 | Area Dirigenza Funzioni Locali 2022-2024 — ARAN (Dirigenti enti locali, Segretari comunali) | Pubblica Amministrazione | ~13k | ✅ | — | — |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 

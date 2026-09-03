@@ -1,0 +1,51 @@
+{
+  "_description": "Golden case: CCNL Area Dirigenza Funzioni Locali 2022-2024 (S125), Level DIRIGENTE, 2026-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Stipendio tabellare 2024: 3.846,60€/mese (50.005,77€/anno per 13 mensilità arrotondato a 50.005,80 per effetto arrotondamento mensile).",
+    "Nessuna indennità fissa universale modellata; retribuzione di posizione variabile out_of_scope.",
+    "INPS CTPS ex-INPDAP: employee 8.80%, employer 24.20% (kitech.it proxy 2026, SIMPLIFICATION).",
+    "IRPEF 2026: 23% fino a 28.000€, 33% da 28.000 a 50.000€, 43% oltre 50.000€.",
+    "Work income deduction = 0.00 (reddito imponibile > 28.000€).",
+    "TFR = 50.005,80 / 13,5 = 3.704,13€."
+  ],
+  "inputs": {
+    "ccnl_file": "dirigenza-funzioni-locali-aran.json",
+    "year": 2026,
+    "tax_sector": "pubblica_amministrazione",
+    "num_employees": 50,
+    "level_code": "DIRIGENTE",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "dirigenza-funzioni-locali-aran",
+    "level_code": "DIRIGENTE",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "3846.60",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "3846.60",
+    "gross_annual": "50005.80",
+    "hourly_rate": "23.31",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "4400.51",
+    "inps_employer_annual": "12101.40",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "3704.13",
+    "taxable_income": "45605.29",
+    "irpef_gross": "12249.75",
+    "work_income_deduction": "0.00",
+    "irpef_net": "12249.75",
+    "net_annual": "33355.54",
+    "net_monthly": "2565.81",
+    "employer_cost_annual": "65811.33"
+  }
+}
