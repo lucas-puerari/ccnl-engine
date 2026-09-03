@@ -42,12 +42,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2024-06-01", "valid_until": null, "value": "172" }
+        {
+          "valid_from": "2024-06-01",
+          "valid_until": null,
+          "value": "172"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2024-06-01", "valid_until": null, "value": "14" }
+        {
+          "valid_from": "2024-06-01",
+          "valid_until": null,
+          "value": "14"
+        }
       ]
     },
     "seniority_increments": {
@@ -56,52 +64,92 @@
       "amount_by_level": {
         "QA": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "40.80" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "40.80"
+            }
           ]
         },
         "QB": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "39.25" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "39.25"
+            }
           ]
         },
         "1": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "37.70" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "37.70"
+            }
           ]
         },
         "2": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "36.15" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "36.15"
+            }
           ]
         },
         "3": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "34.86" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "34.86"
+            }
           ]
         },
         "4": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "33.05" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "33.05"
+            }
           ]
         },
         "5": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "32.54" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "32.54"
+            }
           ]
         },
         "6S": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "31.25" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "31.25"
+            }
           ]
         },
         "6": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "30.99" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "30.99"
+            }
           ]
         },
         "7": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "30.47" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "30.47"
+            }
           ]
         }
       }
@@ -115,12 +163,36 @@
       "category": "quadro",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "2210.16" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "2281.42" },
-          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "2338.43" },
-          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "2395.44" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "2438.20" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "2495.21" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "2210.16"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "2281.42"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "2338.43"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "2395.44"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "2438.20"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2495.21"
+          }
         ]
       },
       "fixed_allowances": []
@@ -132,12 +204,36 @@
       "category": "quadro",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "2046.20" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "2112.18" },
-          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "2164.96" },
-          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "2217.74" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "2257.33" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "2310.11" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "2046.20"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "2112.18"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "2164.96"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "2217.74"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "2257.33"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2310.11"
+          }
         ]
       },
       "fixed_allowances": []
@@ -149,12 +245,36 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1906.44" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1967.91" },
-          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "2017.09" },
-          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "2066.27" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "2103.15" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "2152.33" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1906.44"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1967.91"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "2017.09"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "2066.27"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "2103.15"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2152.33"
+          }
         ]
       },
       "fixed_allowances": []
@@ -166,12 +286,36 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1742.47" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1798.65" },
-          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "1843.60" },
-          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "1888.55" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1922.26" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "1967.21" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1742.47"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1798.65"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1843.60"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1888.55"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1922.26"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1967.21"
+          }
         ]
       },
       "fixed_allowances": []
@@ -183,12 +327,36 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1643.37" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1696.36" },
-          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "1738.75" },
-          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "1781.14" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1812.93" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "1855.32" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1643.37"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1696.36"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1738.75"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1781.14"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1812.93"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1855.32"
+          }
         ]
       },
       "fixed_allowances": []
@@ -200,12 +368,36 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1550.69" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1600.69" },
-          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "1640.69" },
-          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "1680.69" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1710.69" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "1750.69" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1550.69"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1600.69"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1640.69"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1680.69"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1710.69"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1750.69"
+          }
         ]
       },
       "fixed_allowances": []
@@ -217,12 +409,36 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1454.28" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1501.17" },
-          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "1538.68" },
-          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "1576.19" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1604.32" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "1641.83" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1454.28"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1501.17"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1538.68"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1576.19"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1604.32"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1641.83"
+          }
         ]
       },
       "fixed_allowances": []
@@ -234,12 +450,36 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1398.37" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1443.46" },
-          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "1479.53" },
-          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "1515.60" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1542.65" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "1578.72" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1398.37"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1443.46"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1479.53"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1515.60"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1542.65"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1578.72"
+          }
         ]
       },
       "fixed_allowances": []
@@ -251,12 +491,36 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1378.55" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1423.00" },
-          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "1458.56" },
-          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "1494.12" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1520.79" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "1556.35" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1378.55"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1423.00"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1458.56"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1494.12"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1520.79"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1556.35"
+          }
         ]
       },
       "fixed_allowances": []
@@ -268,12 +532,36 @@
       "category": "operaio",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1291.81" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1333.46" },
-          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "1366.78" },
-          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "1400.10" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1425.09" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "1458.41" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1291.81"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1333.46"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1366.78"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1400.10"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1425.09"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1458.41"
+          }
         ]
       },
       "fixed_allowances": []
@@ -283,19 +571,39 @@
     {
       "type": "percentage",
       "name": "standard",
-      "destination_levels": ["1", "2", "3", "4", "5", "6S", "6", "7"],
+      "destination_levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6S",
+        "6",
+        "7"
+      ],
       "reference_level": null,
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.80" },
-        { "months_from": 12, "months_until": 24, "percentage": "0.85" },
-        { "months_from": 24, "months_until": null, "percentage": "0.90" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.90"
+        }
       ]
     }
   ],
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "SOURCE: Salary tables 2024-2027 from CCNL renewal of 26 July 2024 (CNEL PDF). Six tranches: Jun-24, Jul-24, Sep-25, Sep-26, Jun-27, Dec-27.",
       "SOURCE: Hourly divisor 172 from Art. 146 CCNL base 2019 (CNEL PDF doc 20108). Same basis as the Confcommercio tourism sector.",

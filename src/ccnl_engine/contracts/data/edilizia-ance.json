@@ -42,7 +42,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: RENEWAL: CCNL signed on 21 February 2025, effective 1/2/2025-30/6/2028. Three pay increases: 1st from 1/2/2025, 2nd from 1/3/2026, 3rd from 1/3/2027.",
       "INFO: CONSOLIDATED MINIMUMS: the base_salary values are the monthly consolidated tabular minimums (base pay + contingency + EDR). Feb 2025 breakdown for reference: L1 = 1067.36 + 512.87 + 10.33; L2 = 1248.81 + 516.43 + 10.33; L3 = 1387.56 + 519.16 + 10.33; L4 = 1494.31 + 521.25 + 10.33; L5 = 1601.02 + 523.35 + 10.33; L6 = 1921.23 + 529.63 + 10.33; L7 = 2134.71 + 533.82 + 10.33. fixed_allowances is empty for all levels. Verification: L1 Feb 2025 = 1590.56 / 173 = EUR 9.19/h (matches the hourly rate on idealista.it).",
@@ -58,12 +57,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2025-02-01", "valid_until": null, "value": "173" }
+        {
+          "valid_from": "2025-02-01",
+          "valid_until": null,
+          "value": "173"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2025-02-01", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2025-02-01",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -72,37 +79,65 @@
       "amount_by_level": {
         "1": {
           "periods": [
-            { "valid_from": "2025-02-01", "valid_until": null, "value": "8.22" }
+            {
+              "valid_from": "2025-02-01",
+              "valid_until": null,
+              "value": "8.22"
+            }
           ]
         },
         "2": {
           "periods": [
-            { "valid_from": "2025-02-01", "valid_until": null, "value": "8.22" }
+            {
+              "valid_from": "2025-02-01",
+              "valid_until": null,
+              "value": "8.22"
+            }
           ]
         },
         "3": {
           "periods": [
-            { "valid_from": "2025-02-01", "valid_until": null, "value": "8.99" }
+            {
+              "valid_from": "2025-02-01",
+              "valid_until": null,
+              "value": "8.99"
+            }
           ]
         },
         "4": {
           "periods": [
-            { "valid_from": "2025-02-01", "valid_until": null, "value": "9.62" }
+            {
+              "valid_from": "2025-02-01",
+              "valid_until": null,
+              "value": "9.62"
+            }
           ]
         },
         "5": {
           "periods": [
-            { "valid_from": "2025-02-01", "valid_until": null, "value": "10.46" }
+            {
+              "valid_from": "2025-02-01",
+              "valid_until": null,
+              "value": "10.46"
+            }
           ]
         },
         "6": {
           "periods": [
-            { "valid_from": "2025-02-01", "valid_until": null, "value": "12.85" }
+            {
+              "valid_from": "2025-02-01",
+              "valid_until": null,
+              "value": "12.85"
+            }
           ]
         },
         "7": {
           "periods": [
-            { "valid_from": "2025-02-01", "valid_until": null, "value": "13.94" }
+            {
+              "valid_from": "2025-02-01",
+              "valid_until": null,
+              "value": "13.94"
+            }
           ]
         }
       }
@@ -115,9 +150,21 @@
       "description": "Common worker — general labourer, material handling",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-02-01", "valid_until": "2026-03-01", "value": "1590.56" },
-          { "valid_from": "2026-03-01", "valid_until": "2027-03-01", "value": "1640.56" },
-          { "valid_from": "2027-03-01", "valid_until": null, "value": "1690.56" }
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2026-03-01",
+            "value": "1590.56"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2027-03-01",
+            "value": "1640.56"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "1690.56"
+          }
         ]
       },
       "fixed_allowances": []
@@ -128,9 +175,21 @@
       "description": "Qualified worker — directed construction work, use of trade tools",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-02-01", "valid_until": "2026-03-01", "value": "1775.57" },
-          { "valid_from": "2026-03-01", "valid_until": "2027-03-01", "value": "1834.07" },
-          { "valid_from": "2027-03-01", "valid_until": null, "value": "1892.57" }
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2026-03-01",
+            "value": "1775.57"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2027-03-01",
+            "value": "1834.07"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "1892.57"
+          }
         ]
       },
       "fixed_allowances": []
@@ -141,9 +200,21 @@
       "description": "Specialised worker — bricklayer, carpenter, ironworker, tiler",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-02-01", "valid_until": "2026-03-01", "value": "1917.05" },
-          { "valid_from": "2026-03-01", "valid_until": "2027-03-01", "value": "1982.05" },
-          { "valid_from": "2027-03-01", "valid_until": null, "value": "2047.05" }
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2026-03-01",
+            "value": "1917.05"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2027-03-01",
+            "value": "1982.05"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "2047.05"
+          }
         ]
       },
       "fixed_allowances": []
@@ -154,9 +225,21 @@
       "description": "4th-category worker — gang leader / highly specialised worker",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-02-01", "valid_until": "2026-03-01", "value": "2025.89" },
-          { "valid_from": "2026-03-01", "valid_until": "2027-03-01", "value": "2095.89" },
-          { "valid_from": "2027-03-01", "valid_until": null, "value": "2165.89" }
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2026-03-01",
+            "value": "2025.89"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2027-03-01",
+            "value": "2095.89"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "2165.89"
+          }
         ]
       },
       "fixed_allowances": []
@@ -167,9 +250,21 @@
       "description": "Ordinary clerical employee — routine tasks, basic accounting",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-02-01", "valid_until": "2026-03-01", "value": "2134.70" },
-          { "valid_from": "2026-03-01", "valid_until": "2027-03-01", "value": "2209.70" },
-          { "valid_from": "2027-03-01", "valid_until": null, "value": "2284.70" }
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2026-03-01",
+            "value": "2134.70"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2027-03-01",
+            "value": "2209.70"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "2284.70"
+          }
         ]
       },
       "fixed_allowances": []
@@ -180,9 +275,21 @@
       "description": "Senior technical / administrative employee — surveyor, draughtsperson, chief accountant",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-02-01", "valid_until": "2026-03-01", "value": "2461.19" },
-          { "valid_from": "2026-03-01", "valid_until": "2027-03-01", "value": "2551.19" },
-          { "valid_from": "2027-03-01", "valid_until": null, "value": "2641.19" }
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2026-03-01",
+            "value": "2461.19"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2027-03-01",
+            "value": "2551.19"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "2641.19"
+          }
         ]
       },
       "fixed_allowances": []
@@ -193,9 +300,21 @@
       "description": "Quadro / 1st-category employee — managerial function, sector responsibility",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-02-01", "valid_until": "2026-03-01", "value": "2678.86" },
-          { "valid_from": "2026-03-01", "valid_until": "2027-03-01", "value": "2778.86" },
-          { "valid_from": "2027-03-01", "valid_until": null, "value": "2878.86" }
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2026-03-01",
+            "value": "2678.86"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2027-03-01",
+            "value": "2778.86"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "2878.86"
+          }
         ]
       },
       "fixed_allowances": []
@@ -205,15 +324,50 @@
     {
       "type": "percentage",
       "name": "standard",
-      "destination_levels": ["2", "3", "4", "5", "6", "7"],
+      "destination_levels": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 6, "percentage": "0.72" },
-        { "months_from": 6, "months_until": 12, "percentage": "0.72" },
-        { "months_from": 12, "months_until": 18, "percentage": "0.78" },
-        { "months_from": 18, "months_until": 24, "percentage": "0.78" },
-        { "months_from": 24, "months_until": 30, "percentage": "0.85" },
-        { "months_from": 30, "months_until": 36, "percentage": "0.90" },
-        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.72"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.72"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.78"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.78"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 30,
+          "months_until": 36,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     }
   ]

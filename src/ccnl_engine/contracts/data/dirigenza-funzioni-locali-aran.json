@@ -48,12 +48,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2020-12-17", "valid_until": null, "value": "165" }
+        {
+          "valid_from": "2020-12-17",
+          "valid_until": null,
+          "value": "165"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2020-12-17", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2020-12-17",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -70,8 +78,16 @@
       "category": "dirigente",
       "base_salary": {
         "periods": [
-          { "valid_from": "2020-12-17", "valid_until": "2024-01-01", "value": "3616.60" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "3846.60" }
+          {
+            "valid_from": "2020-12-17",
+            "valid_until": "2024-01-01",
+            "value": "3616.60"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "3846.60"
+          }
         ]
       },
       "fixed_allowances": []
@@ -81,7 +97,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "SOURCE: Stipendio tabellare da fonte secondaria (truenumbers.it, logospa.it): valore a regime dall'1.1.2024 = 50.005,77€/anno per 13 mensilità = 3.846,60€/mese. Incremento +230€/mese per dirigenti e segretari comunali fascia A e B.",
       "SOURCE: Tabellare pre-2024 (47.015,77€/anno = 3.616,60€/mese) back-calcolato: 50.005,77 - 230×13 = 47.015,77. Stesso valore base del CCNL Area Sanità e Area Funzioni Centrali (ARAN allinea tabellari tra aree dirigenziali).",

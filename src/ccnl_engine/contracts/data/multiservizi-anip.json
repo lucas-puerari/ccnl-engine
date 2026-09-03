@@ -48,7 +48,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: Salary model: SPLIT. Paga base (minimo tabellare) is a time series; contingenza and EDR are frozen fixed_allowances. Source: oristanoservizi.it/CCNL-Multiservizi-scadenza-2024.pdf (2021-2024 contract, 5 tranches) and accordo integrativo 6 Aug 2025 (2025-2028 contract, 8 tranches) via redigo.info.",
       "INFO: hourly_divisor: 173 — confirmed per CCNL text: 'I divisori per ottenere la quota oraria e giornaliera sono, rispettivamente, 173 e 26'. Cross-checked: level Q July 2021 total 1953.62/11.29hr = 173 (hourly rate from table). Source: oristanoservizi.it PDF.",
@@ -65,12 +64,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2021-07-01", "valid_until": null, "value": "173" }
+        {
+          "valid_from": "2021-07-01",
+          "valid_until": null,
+          "value": "173"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2021-07-01", "valid_until": null, "value": "14" }
+        {
+          "valid_from": "2021-07-01",
+          "valid_until": null,
+          "value": "14"
+        }
       ]
     },
     "seniority_increments": {
@@ -79,101 +86,331 @@
       "amount_by_level": {
         "1": {
           "periods": [
-            { "valid_from": "2021-07-01", "valid_until": null, "value": "51.02" }
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": null,
+              "value": "51.02"
+            }
           ]
         },
         "2": {
           "periods": [
-            { "valid_from": "2021-07-01", "valid_until": null, "value": "54.39" }
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": null,
+              "value": "54.39"
+            }
           ]
         },
         "2par115": {
           "periods": [
-            { "valid_from": "2021-07-01", "valid_until": null, "value": "55.50" }
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": null,
+              "value": "55.50"
+            }
           ]
         },
         "3": {
           "periods": [
-            { "valid_from": "2021-07-01", "valid_until": null, "value": "58.18" }
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": null,
+              "value": "58.18"
+            }
           ]
         },
         "4par125": {
           "periods": [
-            { "valid_from": "2021-07-01", "valid_until": null, "value": "62.59" }
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": null,
+              "value": "62.59"
+            }
           ]
         },
         "4": {
           "periods": [
-            { "valid_from": "2021-07-01", "valid_until": null, "value": "63.15" }
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": null,
+              "value": "63.15"
+            }
           ]
         },
         "5": {
           "periods": [
-            { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "73.60" },
-            { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "75.21" },
-            { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "77.62" },
-            { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "79.22" },
-            { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "83.24" },
-            { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "86.05" },
-            { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "88.86" },
-            { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "91.26" },
-            { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "92.87" },
-            { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "94.88" },
-            { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "96.48" },
-            { "valid_from": "2029-03-01", "valid_until": null, "value": "97.29" }
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": "2022-07-01",
+              "value": "73.60"
+            },
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": "2023-07-01",
+              "value": "75.21"
+            },
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": "2024-07-01",
+              "value": "77.62"
+            },
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": "2025-07-01",
+              "value": "79.22"
+            },
+            {
+              "valid_from": "2025-07-01",
+              "valid_until": "2026-05-01",
+              "value": "83.24"
+            },
+            {
+              "valid_from": "2026-05-01",
+              "valid_until": "2026-10-01",
+              "value": "86.05"
+            },
+            {
+              "valid_from": "2026-10-01",
+              "valid_until": "2027-05-01",
+              "value": "88.86"
+            },
+            {
+              "valid_from": "2027-05-01",
+              "valid_until": "2027-12-01",
+              "value": "91.26"
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": "2028-07-01",
+              "value": "92.87"
+            },
+            {
+              "valid_from": "2028-07-01",
+              "valid_until": "2028-10-01",
+              "value": "94.88"
+            },
+            {
+              "valid_from": "2028-10-01",
+              "valid_until": "2029-03-01",
+              "value": "96.48"
+            },
+            {
+              "valid_from": "2029-03-01",
+              "valid_until": null,
+              "value": "97.29"
+            }
           ]
         },
         "6": {
           "periods": [
-            { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "87.23" },
-            { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "89.23" },
-            { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "92.22" },
-            { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "94.22" },
-            { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "99.21" },
-            { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "102.70" },
-            { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "106.19" },
-            { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "109.18" },
-            { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "111.18" },
-            { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "113.67" },
-            { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "115.67" },
-            { "valid_from": "2029-03-01", "valid_until": null, "value": "116.67" }
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": "2022-07-01",
+              "value": "87.23"
+            },
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": "2023-07-01",
+              "value": "89.23"
+            },
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": "2024-07-01",
+              "value": "92.22"
+            },
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": "2025-07-01",
+              "value": "94.22"
+            },
+            {
+              "valid_from": "2025-07-01",
+              "valid_until": "2026-05-01",
+              "value": "99.21"
+            },
+            {
+              "valid_from": "2026-05-01",
+              "valid_until": "2026-10-01",
+              "value": "102.70"
+            },
+            {
+              "valid_from": "2026-10-01",
+              "valid_until": "2027-05-01",
+              "value": "106.19"
+            },
+            {
+              "valid_from": "2027-05-01",
+              "valid_until": "2027-12-01",
+              "value": "109.18"
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": "2028-07-01",
+              "value": "111.18"
+            },
+            {
+              "valid_from": "2028-07-01",
+              "valid_until": "2028-10-01",
+              "value": "113.67"
+            },
+            {
+              "valid_from": "2028-10-01",
+              "valid_until": "2029-03-01",
+              "value": "115.67"
+            },
+            {
+              "valid_from": "2029-03-01",
+              "valid_until": null,
+              "value": "116.67"
+            }
           ]
         },
         "7": {
           "periods": [
-            { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "98.06" },
-            { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "100.37" },
-            { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "103.82" },
-            { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "106.13" },
-            { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "111.89" },
-            { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "115.92" },
-            { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "119.96" },
-            { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "123.42" },
-            { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "125.72" },
-            { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "128.60" },
-            { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "130.91" },
-            { "valid_from": "2029-03-01", "valid_until": null, "value": "132.06" }
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": "2022-07-01",
+              "value": "98.06"
+            },
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": "2023-07-01",
+              "value": "100.37"
+            },
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": "2024-07-01",
+              "value": "103.82"
+            },
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": "2025-07-01",
+              "value": "106.13"
+            },
+            {
+              "valid_from": "2025-07-01",
+              "valid_until": "2026-05-01",
+              "value": "111.89"
+            },
+            {
+              "valid_from": "2026-05-01",
+              "valid_until": "2026-10-01",
+              "value": "115.92"
+            },
+            {
+              "valid_from": "2026-10-01",
+              "valid_until": "2027-05-01",
+              "value": "119.96"
+            },
+            {
+              "valid_from": "2027-05-01",
+              "valid_until": "2027-12-01",
+              "value": "123.42"
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": "2028-07-01",
+              "value": "125.72"
+            },
+            {
+              "valid_from": "2028-07-01",
+              "valid_until": "2028-10-01",
+              "value": "128.60"
+            },
+            {
+              "valid_from": "2028-10-01",
+              "valid_until": "2029-03-01",
+              "value": "130.91"
+            },
+            {
+              "valid_from": "2029-03-01",
+              "valid_until": null,
+              "value": "132.06"
+            }
           ]
         },
         "Q": {
           "periods": [
-            { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "105.68" },
-            { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "108.20" },
-            { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "111.98" },
-            { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "114.51" },
-            { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "120.81" },
-            { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "125.23" },
-            { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "129.64" },
-            { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "133.43" },
-            { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "135.95" },
-            { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "139.11" },
-            { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "141.63" },
-            { "valid_from": "2029-03-01", "valid_until": null, "value": "142.89" }
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": "2022-07-01",
+              "value": "105.68"
+            },
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": "2023-07-01",
+              "value": "108.20"
+            },
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": "2024-07-01",
+              "value": "111.98"
+            },
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": "2025-07-01",
+              "value": "114.51"
+            },
+            {
+              "valid_from": "2025-07-01",
+              "valid_until": "2026-05-01",
+              "value": "120.81"
+            },
+            {
+              "valid_from": "2026-05-01",
+              "valid_until": "2026-10-01",
+              "value": "125.23"
+            },
+            {
+              "valid_from": "2026-10-01",
+              "valid_until": "2027-05-01",
+              "value": "129.64"
+            },
+            {
+              "valid_from": "2027-05-01",
+              "valid_until": "2027-12-01",
+              "value": "133.43"
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": "2028-07-01",
+              "value": "135.95"
+            },
+            {
+              "valid_from": "2028-07-01",
+              "valid_until": "2028-10-01",
+              "value": "139.11"
+            },
+            {
+              "valid_from": "2028-10-01",
+              "valid_until": "2029-03-01",
+              "value": "141.63"
+            },
+            {
+              "valid_from": "2029-03-01",
+              "valid_until": null,
+              "value": "142.89"
+            }
           ]
         }
       },
-      "first_cadence_months_by_level": { "1": 48, "2": 48, "2par115": 48, "3": 48, "4par125": 48, "4": 48 },
-      "maximum_count_by_level": { "1": 1, "2": 1, "2par115": 1, "3": 1, "4par125": 1, "4": 1 }
+      "first_cadence_months_by_level": {
+        "1": 48,
+        "2": 48,
+        "2par115": 48,
+        "3": 48,
+        "4par125": 48,
+        "4": 48
+      },
+      "maximum_count_by_level": {
+        "1": 1,
+        "2": 1,
+        "2par115": 1,
+        "3": 1,
+        "4par125": 1,
+        "4": 1
+      }
     }
   },
   "levels": [
@@ -183,18 +420,66 @@
       "description": "General labourers",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "641.48" },
-          { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "659.83" },
-          { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "687.35" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "705.70" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "751.57" },
-          { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "783.68" },
-          { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "815.79" },
-          { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "843.31" },
-          { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "861.66" },
-          { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "884.59" },
-          { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "902.94" },
-          { "valid_from": "2029-03-01", "valid_until": null, "value": "912.12" }
+          {
+            "valid_from": "2021-07-01",
+            "valid_until": "2022-07-01",
+            "value": "641.48"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "659.83"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "687.35"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "705.70"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-05-01",
+            "value": "751.57"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-10-01",
+            "value": "783.68"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "815.79"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-12-01",
+            "value": "843.31"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-07-01",
+            "value": "861.66"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2028-10-01",
+            "value": "884.59"
+          },
+          {
+            "valid_from": "2028-10-01",
+            "valid_until": "2029-03-01",
+            "value": "902.94"
+          },
+          {
+            "valid_from": "2029-03-01",
+            "valid_until": null,
+            "value": "912.12"
+          }
         ]
       },
       "fixed_allowances": [
@@ -203,7 +488,11 @@
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "512.71" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "512.71"
+              }
             ]
           }
         },
@@ -212,7 +501,11 @@
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -225,18 +518,66 @@
       "description": "General workers / Clerical employees (first 18 months)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "699.21" },
-          { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "719.21" },
-          { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "749.21" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "769.21" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "819.21" },
-          { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "854.21" },
-          { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "889.21" },
-          { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "919.21" },
-          { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "939.21" },
-          { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "964.21" },
-          { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "984.21" },
-          { "valid_from": "2029-03-01", "valid_until": null, "value": "994.21" }
+          {
+            "valid_from": "2021-07-01",
+            "valid_until": "2022-07-01",
+            "value": "699.21"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "719.21"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "749.21"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "769.21"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-05-01",
+            "value": "819.21"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-10-01",
+            "value": "854.21"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "889.21"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-12-01",
+            "value": "919.21"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-07-01",
+            "value": "939.21"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2028-10-01",
+            "value": "964.21"
+          },
+          {
+            "valid_from": "2028-10-01",
+            "valid_until": "2029-03-01",
+            "value": "984.21"
+          },
+          {
+            "valid_from": "2029-03-01",
+            "valid_until": null,
+            "value": "994.21"
+          }
         ]
       },
       "fixed_allowances": [
@@ -245,7 +586,11 @@
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "513.96" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "513.96"
+              }
             ]
           }
         },
@@ -254,7 +599,11 @@
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -267,18 +616,66 @@
       "description": "Workers assigned to auxiliary activities in school/healthcare settings (par. 115)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "737.71" },
-          { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "758.81" },
-          { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "790.46" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "811.56" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "864.30" },
-          { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "901.23" },
-          { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "938.16" },
-          { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "969.81" },
-          { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "990.91" },
-          { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1017.28" },
-          { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1038.38" },
-          { "valid_from": "2029-03-01", "valid_until": null, "value": "1048.93" }
+          {
+            "valid_from": "2021-07-01",
+            "valid_until": "2022-07-01",
+            "value": "737.71"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "758.81"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "790.46"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "811.56"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-05-01",
+            "value": "864.30"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-10-01",
+            "value": "901.23"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "938.16"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-12-01",
+            "value": "969.81"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-07-01",
+            "value": "990.91"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2028-10-01",
+            "value": "1017.28"
+          },
+          {
+            "valid_from": "2028-10-01",
+            "valid_until": "2029-03-01",
+            "value": "1038.38"
+          },
+          {
+            "valid_from": "2029-03-01",
+            "valid_until": null,
+            "value": "1048.93"
+          }
         ]
       },
       "fixed_allowances": [
@@ -287,7 +684,11 @@
           "description": "Cost-of-living allowance (frozen; value assimilated to level 2 by contractual practice)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "513.96" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "513.96"
+              }
             ]
           }
         },
@@ -296,7 +697,11 @@
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -309,18 +714,66 @@
       "description": "Skilled workers / Clerical employees",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "756.94" },
-          { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "778.59" },
-          { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "811.07" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "832.72" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "886.85" },
-          { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "924.74" },
-          { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "962.63" },
-          { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "995.11" },
-          { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "1016.76" },
-          { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1043.83" },
-          { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1065.48" },
-          { "valid_from": "2029-03-01", "valid_until": null, "value": "1076.30" }
+          {
+            "valid_from": "2021-07-01",
+            "valid_until": "2022-07-01",
+            "value": "756.94"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "778.59"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "811.07"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "832.72"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-05-01",
+            "value": "886.85"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-10-01",
+            "value": "924.74"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "962.63"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-12-01",
+            "value": "995.11"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-07-01",
+            "value": "1016.76"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2028-10-01",
+            "value": "1043.83"
+          },
+          {
+            "valid_from": "2028-10-01",
+            "valid_until": "2029-03-01",
+            "value": "1065.48"
+          },
+          {
+            "valid_from": "2029-03-01",
+            "valid_until": null,
+            "value": "1076.30"
+          }
         ]
       },
       "fixed_allowances": [
@@ -329,7 +782,11 @@
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "515.42" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "515.42"
+              }
             ]
           }
         },
@@ -338,7 +795,11 @@
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -351,18 +812,66 @@
       "description": "Workers assigned to painting booths and lines employed as of 01/06/2001 (par. 125)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "801.85" },
-          { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "824.79" },
-          { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "859.19" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "882.13" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "939.46" },
-          { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "979.60" },
-          { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "1019.74" },
-          { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "1054.14" },
-          { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "1077.08" },
-          { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1105.75" },
-          { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1128.68" },
-          { "valid_from": "2029-03-01", "valid_until": null, "value": "1140.15" }
+          {
+            "valid_from": "2021-07-01",
+            "valid_until": "2022-07-01",
+            "value": "801.85"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "824.79"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "859.19"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "882.13"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-05-01",
+            "value": "939.46"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-10-01",
+            "value": "979.60"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "1019.74"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-12-01",
+            "value": "1054.14"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-07-01",
+            "value": "1077.08"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2028-10-01",
+            "value": "1105.75"
+          },
+          {
+            "valid_from": "2028-10-01",
+            "valid_until": "2029-03-01",
+            "value": "1128.68"
+          },
+          {
+            "valid_from": "2029-03-01",
+            "valid_until": null,
+            "value": "1140.15"
+          }
         ]
       },
       "fixed_allowances": [
@@ -371,7 +880,11 @@
           "description": "Cost-of-living allowance (frozen; value assimilated to level 4 by contractual practice)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "517.50" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "517.50"
+              }
             ]
           }
         },
@@ -380,7 +893,11 @@
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -393,18 +910,66 @@
       "description": "Specialist workers / Junior clerical employees",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "821.08" },
-          { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "844.57" },
-          { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "879.80" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "903.28" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "962.00" },
-          { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "1003.10" },
-          { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "1044.20" },
-          { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "1079.43" },
-          { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "1102.92" },
-          { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1132.28" },
-          { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1155.76" },
-          { "valid_from": "2029-03-01", "valid_until": null, "value": "1167.51" }
+          {
+            "valid_from": "2021-07-01",
+            "valid_until": "2022-07-01",
+            "value": "821.08"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "844.57"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "879.80"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "903.28"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-05-01",
+            "value": "962.00"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-10-01",
+            "value": "1003.10"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "1044.20"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-12-01",
+            "value": "1079.43"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-07-01",
+            "value": "1102.92"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2028-10-01",
+            "value": "1132.28"
+          },
+          {
+            "valid_from": "2028-10-01",
+            "valid_until": "2029-03-01",
+            "value": "1155.76"
+          },
+          {
+            "valid_from": "2029-03-01",
+            "valid_until": null,
+            "value": "1167.51"
+          }
         ]
       },
       "fixed_allowances": [
@@ -413,7 +978,11 @@
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "517.50" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "517.50"
+              }
             ]
           }
         },
@@ -422,7 +991,11 @@
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -435,18 +1008,66 @@
       "description": "Expert workers / White-collar employees",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "898.06" },
-          { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "923.74" },
-          { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "962.28" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "987.96" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "1052.19" },
-          { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "1097.14" },
-          { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "1142.09" },
-          { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "1180.63" },
-          { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "1206.31" },
-          { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1238.42" },
-          { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1264.11" },
-          { "valid_from": "2029-03-01", "valid_until": null, "value": "1276.96" }
+          {
+            "valid_from": "2021-07-01",
+            "valid_until": "2022-07-01",
+            "value": "898.06"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "923.74"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "962.28"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "987.96"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-05-01",
+            "value": "1052.19"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-10-01",
+            "value": "1097.14"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "1142.09"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-12-01",
+            "value": "1180.63"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-07-01",
+            "value": "1206.31"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2028-10-01",
+            "value": "1238.42"
+          },
+          {
+            "valid_from": "2028-10-01",
+            "valid_until": "2029-03-01",
+            "value": "1264.11"
+          },
+          {
+            "valid_from": "2029-03-01",
+            "valid_until": null,
+            "value": "1276.96"
+          }
         ]
       },
       "fixed_allowances": [
@@ -455,7 +1076,11 @@
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "518.53" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "518.53"
+              }
             ]
           }
         },
@@ -464,7 +1089,11 @@
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -477,18 +1106,66 @@
       "description": "Workers with specialist duties / Senior white-collar employees",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "1116.15" },
-          { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "1148.08" },
-          { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "1195.97" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "1227.90" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "1307.71" },
-          { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "1363.58" },
-          { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "1419.46" },
-          { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "1467.35" },
-          { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "1499.27" },
-          { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1539.18" },
-          { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1571.11" },
-          { "valid_from": "2029-03-01", "valid_until": null, "value": "1587.07" }
+          {
+            "valid_from": "2021-07-01",
+            "valid_until": "2022-07-01",
+            "value": "1116.15"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "1148.08"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "1195.97"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "1227.90"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-05-01",
+            "value": "1307.71"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-10-01",
+            "value": "1363.58"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "1419.46"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-12-01",
+            "value": "1467.35"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-07-01",
+            "value": "1499.27"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2028-10-01",
+            "value": "1539.18"
+          },
+          {
+            "valid_from": "2028-10-01",
+            "valid_until": "2029-03-01",
+            "value": "1571.11"
+          },
+          {
+            "valid_from": "2029-03-01",
+            "valid_until": null,
+            "value": "1587.07"
+          }
         ]
       },
       "fixed_allowances": [
@@ -497,7 +1174,11 @@
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "524.77" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "524.77"
+              }
             ]
           }
         },
@@ -506,7 +1187,11 @@
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -519,18 +1204,66 @@
       "description": "Employees with managerial functions",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "1289.36" },
-          { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "1326.24" },
-          { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "1381.56" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "1418.44" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "1510.64" },
-          { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "1575.18" },
-          { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "1639.72" },
-          { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "1695.05" },
-          { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "1731.93" },
-          { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1778.03" },
-          { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1814.91" },
-          { "valid_from": "2029-03-01", "valid_until": null, "value": "1833.35" }
+          {
+            "valid_from": "2021-07-01",
+            "valid_until": "2022-07-01",
+            "value": "1289.36"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "1326.24"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "1381.56"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "1418.44"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-05-01",
+            "value": "1510.64"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-10-01",
+            "value": "1575.18"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "1639.72"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-12-01",
+            "value": "1695.05"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-07-01",
+            "value": "1731.93"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2028-10-01",
+            "value": "1778.03"
+          },
+          {
+            "valid_from": "2028-10-01",
+            "valid_until": "2029-03-01",
+            "value": "1814.91"
+          },
+          {
+            "valid_from": "2029-03-01",
+            "valid_until": null,
+            "value": "1833.35"
+          }
         ]
       },
       "fixed_allowances": [
@@ -539,7 +1272,11 @@
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "532.06" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "532.06"
+              }
             ]
           }
         },
@@ -548,7 +1285,11 @@
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -561,18 +1302,66 @@
       "description": "Quadri with high-responsibility managerial duties",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "1411.23" },
-          { "valid_from": "2022-07-01", "valid_until": "2023-07-01", "value": "1451.60" },
-          { "valid_from": "2023-07-01", "valid_until": "2024-07-01", "value": "1512.15" },
-          { "valid_from": "2024-07-01", "valid_until": "2025-07-01", "value": "1552.52" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-05-01", "value": "1653.43" },
-          { "valid_from": "2026-05-01", "valid_until": "2026-10-01", "value": "1724.08" },
-          { "valid_from": "2026-10-01", "valid_until": "2027-05-01", "value": "1794.71" },
-          { "valid_from": "2027-05-01", "valid_until": "2027-12-01", "value": "1855.26" },
-          { "valid_from": "2027-12-01", "valid_until": "2028-07-01", "value": "1895.63" },
-          { "valid_from": "2028-07-01", "valid_until": "2028-10-01", "value": "1946.09" },
-          { "valid_from": "2028-10-01", "valid_until": "2029-03-01", "value": "1986.46" },
-          { "valid_from": "2029-03-01", "valid_until": null, "value": "2006.64" }
+          {
+            "valid_from": "2021-07-01",
+            "valid_until": "2022-07-01",
+            "value": "1411.23"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "1451.60"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "1512.15"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "1552.52"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-05-01",
+            "value": "1653.43"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-10-01",
+            "value": "1724.08"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "1794.71"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-12-01",
+            "value": "1855.26"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": "2028-07-01",
+            "value": "1895.63"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": "2028-10-01",
+            "value": "1946.09"
+          },
+          {
+            "valid_from": "2028-10-01",
+            "valid_until": "2029-03-01",
+            "value": "1986.46"
+          },
+          {
+            "valid_from": "2029-03-01",
+            "valid_until": null,
+            "value": "2006.64"
+          }
         ]
       },
       "fixed_allowances": [
@@ -581,7 +1370,11 @@
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "532.06" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "532.06"
+              }
             ]
           }
         },
@@ -590,7 +1383,11 @@
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         },
@@ -599,7 +1396,11 @@
           "description": "Quadro function allowance",
           "monthly": {
             "periods": [
-              { "valid_from": "2021-07-01", "valid_until": null, "value": "25.82" }
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "25.82"
+              }
             ]
           }
         }
@@ -611,21 +1412,49 @@
     {
       "type": "under_classification",
       "name": "destinazione_5",
-      "destination_levels": ["5"],
+      "destination_levels": [
+        "5"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 15, "levels_below": 3 },
-        { "months_from": 15, "months_until": 30, "levels_below": 1 },
-        { "months_from": 30, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 0,
+          "months_until": 15,
+          "levels_below": 3
+        },
+        {
+          "months_from": 15,
+          "months_until": 30,
+          "levels_below": 1
+        },
+        {
+          "months_from": 30,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     },
     {
       "type": "under_classification",
       "name": "destinazione_4",
-      "destination_levels": ["4"],
+      "destination_levels": [
+        "4"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 15, "levels_below": 4 },
-        { "months_from": 15, "months_until": 30, "levels_below": 2 },
-        { "months_from": 30, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 0,
+          "months_until": 15,
+          "levels_below": 4
+        },
+        {
+          "months_from": 15,
+          "months_until": 30,
+          "levels_below": 2
+        },
+        {
+          "months_from": 30,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     }
   ]

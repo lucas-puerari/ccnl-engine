@@ -43,12 +43,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2022-01-01", "valid_until": null, "value": "156" }
+        {
+          "valid_from": "2022-01-01",
+          "valid_until": null,
+          "value": "156"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2022-01-01", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2022-01-01",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -65,8 +73,16 @@
       "category": "operaio",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-01-01", "valid_until": "2024-01-01", "value": "1257.08" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1342.82" }
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2024-01-01",
+            "value": "1257.08"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1342.82"
+          }
         ]
       },
       "fixed_allowances": []
@@ -78,8 +94,16 @@
       "category": "operaio",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-01-01", "valid_until": "2024-01-01", "value": "1287.56" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1375.38" }
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2024-01-01",
+            "value": "1287.56"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1375.38"
+          }
         ]
       },
       "fixed_allowances": []
@@ -91,8 +115,16 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-01-01", "valid_until": "2024-01-01", "value": "1401.28" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1496.85" }
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2024-01-01",
+            "value": "1401.28"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1496.85"
+          }
         ]
       },
       "fixed_allowances": []
@@ -104,8 +136,16 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-01-01", "valid_until": "2024-01-01", "value": "1614.53" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1724.65" }
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2024-01-01",
+            "value": "1614.53"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1724.65"
+          }
         ]
       },
       "fixed_allowances": []
@@ -117,8 +157,16 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-01-01", "valid_until": "2024-01-01", "value": "1747.59" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1866.79" }
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2024-01-01",
+            "value": "1747.59"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1866.79"
+          }
         ]
       },
       "fixed_allowances": []
@@ -130,8 +178,16 @@
       "category": "quadro",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-01-01", "valid_until": "2024-01-01", "value": "1835.45" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1960.65" }
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2024-01-01",
+            "value": "1835.45"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1960.65"
+          }
         ]
       },
       "fixed_allowances": []
@@ -141,7 +197,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "SOURCE: Stipendio tabellare annuo da Tabella A2 CCNL 23/12/2025 allegato ufficiale (notiziedellascuola.it). Valori fascia 0-8 anni da 1/1/2024.",
       "SOURCE: Pre-2024: back-calcolato sottraendo incremento mensile (Tabella A1) × 13. Esempio COLLABORATORE: 17.456,64 - 85,74×13 = 16.342,02€/anno = 1.257,08€/mese.",

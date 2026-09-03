@@ -31,7 +31,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: CONSOLIDATED MINIMUMS: the base_salary values are the monthly consolidated tabular minimums (base pay + contingency + EDR included), as published by lexplain.it. Hourly divisor 165 (CCNL art. 75, 38-hour week). Back-calculation check: A1 October 2025 = 1359.88 / 165 = EUR 8.24/h; C1 = 1545.21 / 165 = EUR 9.37/h; F2 = 2504.10 / 165 = EUR 15.17/h — consistent with the hourly rates published by lexplain.it.",
       "INFO: QUADRO LEVELS: levels E2Q, F1Q, F2Q are modelled as separate levels with fixed_allowances (function allowance EUR 77.47, EUR 154.94, EUR 232.41/month respectively). The base_salary is identical to the corresponding non-Q level; the allowance is fixed and unchanged across tranches. Seniority increments for Q levels carry the same amount as the corresponding base level.",
@@ -46,13 +45,25 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2024-02-01", "valid_until": null, "value": "165" }
+        {
+          "valid_from": "2024-02-01",
+          "valid_until": null,
+          "value": "165"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2024-02-01", "valid_until": "2025-01-01", "value": "13" },
-        { "valid_from": "2025-01-01", "valid_until": null, "value": "13.5" }
+        {
+          "valid_from": "2024-02-01",
+          "valid_until": "2025-01-01",
+          "value": "13"
+        },
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "13.5"
+        }
       ]
     },
     "seniority_increments": {
@@ -61,82 +72,146 @@
       "amount_by_level": {
         "A1": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "11.62" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "11.62"
+            }
           ]
         },
         "A2": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "13.43" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "13.43"
+            }
           ]
         },
         "B": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "16.27" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "16.27"
+            }
           ]
         },
         "C1": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "18.59" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "18.59"
+            }
           ]
         },
         "C2": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "19.63" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "19.63"
+            }
           ]
         },
         "C3": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "20.66" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "20.66"
+            }
           ]
         },
         "D1": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "20.66" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "20.66"
+            }
           ]
         },
         "D2": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "23.24" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "23.24"
+            }
           ]
         },
         "D3": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "26.86" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "26.86"
+            }
           ]
         },
         "E1": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "26.86" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "26.86"
+            }
           ]
         },
         "E2": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "31.50" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "31.50"
+            }
           ]
         },
         "E2Q": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "31.50" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "31.50"
+            }
           ]
         },
         "F1": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "39.51" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "39.51"
+            }
           ]
         },
         "F1Q": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "39.51" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "39.51"
+            }
           ]
         },
         "F2": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "46.48" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "46.48"
+            }
           ]
         },
         "F2Q": {
           "periods": [
-            { "valid_from": "2024-02-01", "valid_until": null, "value": "46.48" }
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "46.48"
+            }
           ]
         }
       }
@@ -149,9 +224,21 @@
       "description": "Level A1 — generic entry-level worker",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1307.25" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1333.57" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "1359.88" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1307.25"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1333.57"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1359.88"
+          }
         ]
       },
       "fixed_allowances": []
@@ -162,9 +249,21 @@
       "description": "Level A2 — basic auxiliary worker",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1319.37" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1345.95" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "1372.53" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1319.37"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1345.95"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1372.53"
+          }
         ]
       },
       "fixed_allowances": []
@@ -175,9 +274,21 @@
       "description": "Level B — qualified auxiliary worker",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1380.99" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1408.88" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "1436.78" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1380.99"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1408.88"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1436.78"
+          }
         ]
       },
       "fixed_allowances": []
@@ -188,9 +299,21 @@
       "description": "Level C1 — basic care worker (OSS)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1485.21" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1515.21" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "1545.21" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1485.21"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1515.21"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1545.21"
+          }
         ]
       },
       "fixed_allowances": []
@@ -201,9 +324,21 @@
       "description": "Level C2 — qualified care worker",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1529.48" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1560.27" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "1591.06" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1529.48"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1560.27"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1591.06"
+          }
         ]
       },
       "fixed_allowances": []
@@ -214,9 +349,21 @@
       "description": "Level C3 — specialised care worker",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1574.40" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1605.98" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "1637.56" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1574.40"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1605.98"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1637.56"
+          }
         ]
       },
       "fixed_allowances": []
@@ -227,9 +374,21 @@
       "description": "Level D1 — junior technician",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1574.40" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1605.98" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "1637.56" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1574.40"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1605.98"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1637.56"
+          }
         ]
       },
       "fixed_allowances": []
@@ -240,9 +399,21 @@
       "description": "Level D2 — qualified technician",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1660.99" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1694.41" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "1727.83" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1660.99"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1694.41"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1727.83"
+          }
         ]
       },
       "fixed_allowances": []
@@ -253,9 +424,21 @@
       "description": "Level D3 — senior technician",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1768.11" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1803.63" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "1839.16" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1768.11"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1803.63"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1839.16"
+          }
         ]
       },
       "fixed_allowances": []
@@ -266,9 +449,21 @@
       "description": "Level E1 — junior manager / coordinator",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1768.11" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1803.63" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "1839.16" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1768.11"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1803.63"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1839.16"
+          }
         ]
       },
       "fixed_allowances": []
@@ -279,9 +474,21 @@
       "description": "Level E2 — senior manager / service director",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1908.55" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1946.97" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "1985.39" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1908.55"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1946.97"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1985.39"
+          }
         ]
       },
       "fixed_allowances": []
@@ -292,9 +499,21 @@
       "description": "Level E2Q — senior manager Quadro (with function allowance)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "1908.55" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1946.97" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "1985.39" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1908.55"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1946.97"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1985.39"
+          }
         ]
       },
       "fixed_allowances": [
@@ -303,7 +522,11 @@
           "description": "Quadro E2 function allowance",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-02-01", "valid_until": null, "value": "77.47" }
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "77.47"
+              }
             ]
           }
         }
@@ -316,9 +539,21 @@
       "description": "Level F1 — area director / senior managerial function",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "2107.81" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "2150.18" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "2192.55" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "2107.81"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "2150.18"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "2192.55"
+          }
         ]
       },
       "fixed_allowances": []
@@ -329,9 +564,21 @@
       "description": "Level F1Q — area director Quadro (with function allowance)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "2107.81" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "2150.18" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "2192.55" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "2107.81"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "2150.18"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "2192.55"
+          }
         ]
       },
       "fixed_allowances": [
@@ -340,7 +587,11 @@
           "description": "Quadro F1 function allowance",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-02-01", "valid_until": null, "value": "154.94" }
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "154.94"
+              }
             ]
           }
         }
@@ -353,9 +604,21 @@
       "description": "Level F2 — general director / highest responsibility function",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "2407.26" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "2455.68" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "2504.10" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "2407.26"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "2455.68"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "2504.10"
+          }
         ]
       },
       "fixed_allowances": []
@@ -366,9 +629,21 @@
       "description": "Level F2Q — general director Quadro (with function allowance)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-02-01", "valid_until": "2024-10-01", "value": "2407.26" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "2455.68" },
-          { "valid_from": "2025-10-01", "valid_until": null, "value": "2504.10" }
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "2407.26"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "2455.68"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "2504.10"
+          }
         ]
       },
       "fixed_allowances": [
@@ -377,7 +652,11 @@
           "description": "Quadro F2 function allowance",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-02-01", "valid_until": null, "value": "232.41" }
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "232.41"
+              }
             ]
           }
         }
@@ -389,31 +668,80 @@
     {
       "type": "percentage",
       "name": "professionalizzante_18m",
-      "destination_levels": ["A2"],
+      "destination_levels": [
+        "A2"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 9, "percentage": "0.85" },
-        { "months_from": 9, "months_until": 18, "percentage": "0.90" },
-        { "months_from": 18, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 9,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 9,
+          "months_until": 18,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "professionalizzante_24m",
-      "destination_levels": ["B", "C1", "C2", "C3"],
+      "destination_levels": [
+        "B",
+        "C1",
+        "C2",
+        "C3"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.85" },
-        { "months_from": 12, "months_until": 24, "percentage": "0.90" },
-        { "months_from": 24, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "professionalizzante_36m",
-      "destination_levels": ["D1", "D2", "D3", "E1", "E2"],
+      "destination_levels": [
+        "D1",
+        "D2",
+        "D3",
+        "E1",
+        "E2"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 18, "percentage": "0.85" },
-        { "months_from": 18, "months_until": 36, "percentage": "0.90" },
-        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 18,
+          "months_until": 36,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     }
   ]

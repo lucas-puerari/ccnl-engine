@@ -6,7 +6,12 @@
     "cnel_code": "C021",
     "sector": "industria",
     "tax_sector": "industria",
-    "signatories": ["Federorafi", "Fim-Cisl", "Fiom-Cgil", "Uilm-Uil"],
+    "signatories": [
+      "Federorafi",
+      "Fim-Cisl",
+      "Fiom-Cgil",
+      "Uilm-Uil"
+    ],
     "sources": [
       {
         "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
@@ -24,12 +29,16 @@
         "agreement_date": null
       }
     ],
-    "extraction": { "method": "manual", "model": null, "timestamp": "2026-09-02", "human_reviewed": true }
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-02",
+      "human_reviewed": true
+    }
   },
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: SALARY MODEL: conglobated (table minimum inclusive of contingenza and EDR). Source: CCNL 2021 PDF (UILM, signed 23/12/2021), pay tables pp. 4-5. Three tranches from primary source (Jun 2022, Jun 2023, Dec 2024); fourth tranche (Jun 2025) from kitech.it (secondary).",
       "INFO: LEVEL 1a REMOVED from 1 June 2022. Art. 4 of the 2021 renewal: workers at level 1a are reclassified to level 2a. The minimum active level post-June 2022 is level 2 (formerly 2a, €1363.86/month). Source: CCNL 2021 PDF Art. 4.",
@@ -48,12 +57,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2022-06-01", "valid_until": null, "value": "173" }
+        {
+          "valid_from": "2022-06-01",
+          "valid_until": null,
+          "value": "173"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2022-06-01", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2022-06-01",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -62,42 +79,74 @@
       "amount_by_level": {
         "2": {
           "periods": [
-            { "valid_from": "2022-06-01", "valid_until": null, "value": "21.59" }
+            {
+              "valid_from": "2022-06-01",
+              "valid_until": null,
+              "value": "21.59"
+            }
           ]
         },
         "3": {
           "periods": [
-            { "valid_from": "2022-06-01", "valid_until": null, "value": "25.05" }
+            {
+              "valid_from": "2022-06-01",
+              "valid_until": null,
+              "value": "25.05"
+            }
           ]
         },
         "4": {
           "periods": [
-            { "valid_from": "2022-06-01", "valid_until": null, "value": "26.75" }
+            {
+              "valid_from": "2022-06-01",
+              "valid_until": null,
+              "value": "26.75"
+            }
           ]
         },
         "5": {
           "periods": [
-            { "valid_from": "2022-06-01", "valid_until": null, "value": "29.64" }
+            {
+              "valid_from": "2022-06-01",
+              "valid_until": null,
+              "value": "29.64"
+            }
           ]
         },
         "5S": {
           "periods": [
-            { "valid_from": "2022-06-01", "valid_until": null, "value": "32.43" }
+            {
+              "valid_from": "2022-06-01",
+              "valid_until": null,
+              "value": "32.43"
+            }
           ]
         },
         "6": {
           "periods": [
-            { "valid_from": "2022-06-01", "valid_until": null, "value": "36.41" }
+            {
+              "valid_from": "2022-06-01",
+              "valid_until": null,
+              "value": "36.41"
+            }
           ]
         },
         "7": {
           "periods": [
-            { "valid_from": "2022-06-01", "valid_until": null, "value": "40.96" }
+            {
+              "valid_from": "2022-06-01",
+              "valid_until": null,
+              "value": "40.96"
+            }
           ]
         },
         "7Q": {
           "periods": [
-            { "valid_from": "2022-06-01", "valid_until": null, "value": "40.96" }
+            {
+              "valid_from": "2022-06-01",
+              "valid_until": null,
+              "value": "40.96"
+            }
           ]
         }
       }
@@ -110,10 +159,26 @@
       "description": "Level 2 — general workers and clerical employees",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1363.86" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "1385.91" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "1424.29" },
-          { "valid_from": "2025-06-01", "valid_until": null, "value": "1574.39" }
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "1363.86"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-12-01",
+            "value": "1385.91"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-06-01",
+            "value": "1424.29"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": null,
+            "value": "1574.39"
+          }
         ]
       },
       "fixed_allowances": []
@@ -124,10 +189,26 @@
       "description": "Level 3 — skilled workers and employees",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1502.64" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "1526.93" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "1569.21" },
-          { "valid_from": "2025-06-01", "valid_until": null, "value": "1734.59" }
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "1502.64"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-12-01",
+            "value": "1526.93"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-06-01",
+            "value": "1569.21"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": null,
+            "value": "1734.59"
+          }
         ]
       },
       "fixed_allowances": []
@@ -138,10 +219,26 @@
       "description": "Level 4 — specialist workers and qualified employees",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1563.52" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "1588.79" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "1632.78" },
-          { "valid_from": "2025-06-01", "valid_until": null, "value": "1804.87" }
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "1563.52"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-12-01",
+            "value": "1588.79"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-06-01",
+            "value": "1632.78"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": null,
+            "value": "1804.87"
+          }
         ]
       },
       "fixed_allowances": []
@@ -152,10 +249,26 @@
       "description": "Level 5 — highly specialised workers and white-collar employees",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1670.37" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "1697.37" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "1744.37" },
-          { "valid_from": "2025-06-01", "valid_until": null, "value": "1928.22" }
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "1670.37"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-12-01",
+            "value": "1697.37"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-06-01",
+            "value": "1744.37"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": null,
+            "value": "1928.22"
+          }
         ]
       },
       "fixed_allowances": []
@@ -166,10 +279,26 @@
       "description": "Level 5 Superior — workers with qualified executive autonomy",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1782.85" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "1811.67" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "1861.84" },
-          { "valid_from": "2025-06-01", "valid_until": null, "value": "2058.07" }
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "1782.85"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-12-01",
+            "value": "1811.67"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-06-01",
+            "value": "1861.84"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": null,
+            "value": "2058.07"
+          }
         ]
       },
       "fixed_allowances": []
@@ -180,10 +309,26 @@
       "description": "Level 6 — employees with managerial functions or specialist technicians",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1916.55" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "1947.53" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "2001.46" },
-          { "valid_from": "2025-06-01", "valid_until": null, "value": "2212.40" }
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "1916.55"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-12-01",
+            "value": "1947.53"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-06-01",
+            "value": "2001.46"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": null,
+            "value": "2212.40"
+          }
         ]
       },
       "fixed_allowances": []
@@ -194,10 +339,26 @@
       "description": "Level 7 — quadri with significant managerial functions",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "2083.89" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "2117.57" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "2176.21" },
-          { "valid_from": "2025-06-01", "valid_until": null, "value": "2405.58" }
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "2083.89"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-12-01",
+            "value": "2117.57"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-06-01",
+            "value": "2176.21"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": null,
+            "value": "2405.58"
+          }
         ]
       },
       "fixed_allowances": [
@@ -206,7 +367,11 @@
           "description": "Function allowance level 7 (source: kitech.it — SIMPLIFICATION)",
           "monthly": {
             "periods": [
-              { "valid_from": "2022-06-01", "valid_until": null, "value": "59.39" }
+              {
+                "valid_from": "2022-06-01",
+                "valid_until": null,
+                "value": "59.39"
+              }
             ]
           }
         }
@@ -219,10 +384,26 @@
       "description": "Level 7Q — top-level quadri",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "2083.89" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-12-01", "value": "2117.57" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-06-01", "value": "2176.21" },
-          { "valid_from": "2025-06-01", "valid_until": null, "value": "2405.58" }
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "2083.89"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-12-01",
+            "value": "2117.57"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-06-01",
+            "value": "2176.21"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": null,
+            "value": "2405.58"
+          }
         ]
       },
       "fixed_allowances": [
@@ -231,7 +412,11 @@
           "description": "Function allowance quadri 7Q (source: kitech.it — SIMPLIFICATION)",
           "monthly": {
             "periods": [
-              { "valid_from": "2022-06-01", "valid_until": null, "value": "114.00" }
+              {
+                "valid_from": "2022-06-01",
+                "valid_until": null,
+                "value": "114.00"
+              }
             ]
           }
         }
@@ -243,11 +428,32 @@
     {
       "type": "percentage",
       "name": "professionalizzante_standard",
-      "destination_levels": ["2", "3", "4", "5", "5S", "6", "7", "7Q"],
+      "destination_levels": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "5S",
+        "6",
+        "7",
+        "7Q"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.85" },
-        { "months_from": 12, "months_until": 24, "percentage": "0.90" },
-        { "months_from": 24, "months_until": null, "percentage": "0.95" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.95"
+        }
       ]
     }
   ]

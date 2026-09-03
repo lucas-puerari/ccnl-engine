@@ -6,7 +6,12 @@
     "cnel_code": "K411",
     "sector": "telecomunicazioni",
     "tax_sector": "industria",
-    "signatories": ["Assotelecomunicazioni-Asstel", "SLC-CGIL", "Fistel-CISL", "Uilcom-UIL"],
+    "signatories": [
+      "Assotelecomunicazioni-Asstel",
+      "SLC-CGIL",
+      "Fistel-CISL",
+      "Uilcom-UIL"
+    ],
     "agreement_date": "2025-11-11",
     "sources": [
       {
@@ -30,7 +35,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: SALARY MODEL: conglobated (TEM = minimo tabellare + ex-contingenza + EDR + Elemento Retributivo di Settore), confirmed by footnote in rinnovo PDF (11/11/2025), tabelle retributive p.99-100. Back-calculation: C1(01/01/2026)=1988.73/173=11.50 EUR/h; A1=1399.68/173=8.09 EUR/h; C3=2317.44/173=13.39 EUR/h — all consistent with divisor 173. base_salary = TEM; fixed_allowances=[] for levels A1-C3.",
       "INFO: FIXED ALLOWANCES: C4 (7° livello) carries Elemento Retributivo di Settore EUR 59.39/month separate from TEM (rinnovo PDF p.97). D1 (Quadri) carries Indennità di Funzione EUR 98.13/month inclusive of the 59.39 ERS (rinnovo PDF + CCNL 12/11/2020 sezione Quadri). Both use TEM parametro=228, identical base_salary. The validator checks base_salary only so the equal values are valid.",
@@ -46,12 +50,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2026-01-01", "valid_until": null, "value": "173" }
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "173"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2026-01-01", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -60,47 +72,83 @@
       "amount_by_level": {
         "A1": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "21.54" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "21.54"
+            }
           ]
         },
         "A2": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "21.54" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "21.54"
+            }
           ]
         },
         "B1": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "23.24" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "23.24"
+            }
           ]
         },
         "B2": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "24.38" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "24.38"
+            }
           ]
         },
         "C1": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "25.56" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "25.56"
+            }
           ]
         },
         "C2": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "25.56" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "25.56"
+            }
           ]
         },
         "C3": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "28.10" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "28.10"
+            }
           ]
         },
         "C4": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "30.73" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "30.73"
+            }
           ]
         },
         "D1": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "30.73" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "30.73"
+            }
           ]
         }
       }
@@ -113,10 +161,26 @@
       "description": "A1 — Grade 1, predominantly manual tasks requiring no professional knowledge",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "1399.68" },
-          { "valid_from": "2026-12-01", "valid_until": "2027-07-01", "value": "1429.80" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-12-01", "value": "1459.92" },
-          { "valid_from": "2028-12-01", "valid_until": null, "value": "1518.96" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-12-01",
+            "value": "1399.68"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": "2027-07-01",
+            "value": "1429.80"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-12-01",
+            "value": "1459.92"
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "1518.96"
+          }
         ]
       },
       "fixed_allowances": []
@@ -127,10 +191,26 @@
       "description": "A2 — Grade 2, basic professional knowledge",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "1560.50" },
-          { "valid_from": "2026-12-01", "valid_until": "2027-07-01", "value": "1596.04" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-12-01", "value": "1631.58" },
-          { "valid_from": "2028-12-01", "valid_until": null, "value": "1701.25" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-12-01",
+            "value": "1560.50"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": "2027-07-01",
+            "value": "1596.04"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-12-01",
+            "value": "1631.58"
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "1701.25"
+          }
         ]
       },
       "fixed_allowances": []
@@ -141,10 +221,26 @@
       "description": "B1 — Grade 3, theoretical and practical knowledge of medium complexity",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "1702.98" },
-          { "valid_from": "2026-12-01", "valid_until": "2027-07-01", "value": "1743.34" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-12-01", "value": "1783.70" },
-          { "valid_from": "2028-12-01", "valid_until": null, "value": "1862.81" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-12-01",
+            "value": "1702.98"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": "2027-07-01",
+            "value": "1743.34"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-12-01",
+            "value": "1783.70"
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "1862.81"
+          }
         ]
       },
       "fixed_allowances": []
@@ -155,10 +251,26 @@
       "description": "B2 — Grade 4, qualified specialist knowledge",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "1841.94" },
-          { "valid_from": "2026-12-01", "valid_until": "2027-07-01", "value": "1887.02" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-12-01", "value": "1932.10" },
-          { "valid_from": "2028-12-01", "valid_until": null, "value": "2020.45" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-12-01",
+            "value": "1841.94"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": "2027-07-01",
+            "value": "1887.02"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-12-01",
+            "value": "1932.10"
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "2020.45"
+          }
         ]
       },
       "fixed_allowances": []
@@ -169,10 +281,26 @@
       "description": "C1 — Grade 5, advanced professional and managerial capabilities with high-level knowledge",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "1988.73" },
-          { "valid_from": "2026-12-01", "valid_until": "2027-07-01", "value": "2038.73" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-12-01", "value": "2088.73" },
-          { "valid_from": "2028-12-01", "valid_until": null, "value": "2186.73" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-12-01",
+            "value": "1988.73"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": "2027-07-01",
+            "value": "2038.73"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-12-01",
+            "value": "2088.73"
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "2186.73"
+          }
         ]
       },
       "fixed_allowances": []
@@ -183,10 +311,26 @@
       "description": "C2 — Grade 5S, specialist profiles with a high degree of specialisation",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "2056.60" },
-          { "valid_from": "2026-12-01", "valid_until": "2027-07-01", "value": "2108.93" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-12-01", "value": "2161.26" },
-          { "valid_from": "2028-12-01", "valid_until": null, "value": "2263.82" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-12-01",
+            "value": "2056.60"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": "2027-07-01",
+            "value": "2108.93"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-12-01",
+            "value": "2161.26"
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "2263.82"
+          }
         ]
       },
       "fixed_allowances": []
@@ -197,10 +341,26 @@
       "description": "C3 — Grade 6, high and consolidated professional and managerial expertise",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "2317.44" },
-          { "valid_from": "2026-12-01", "valid_until": "2027-07-01", "value": "2378.51" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-12-01", "value": "2439.58" },
-          { "valid_from": "2028-12-01", "valid_until": null, "value": "2559.28" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-12-01",
+            "value": "2317.44"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": "2027-07-01",
+            "value": "2378.51"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-12-01",
+            "value": "2439.58"
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "2559.28"
+          }
         ]
       },
       "fixed_allowances": []
@@ -211,10 +371,26 @@
       "description": "C4 — Grade 7, managerial functions of high organisational complexity",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "2542.92" },
-          { "valid_from": "2026-12-01", "valid_until": "2027-07-01", "value": "2611.59" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-12-01", "value": "2680.26" },
-          { "valid_from": "2028-12-01", "valid_until": null, "value": "2814.86" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-12-01",
+            "value": "2542.92"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": "2027-07-01",
+            "value": "2611.59"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-12-01",
+            "value": "2680.26"
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "2814.86"
+          }
         ]
       },
       "fixed_allowances": [
@@ -223,7 +399,11 @@
           "description": "Sector Pay Element (Grade 7)",
           "monthly": {
             "periods": [
-              { "valid_from": "2026-01-01", "valid_until": null, "value": "59.39" }
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "59.39"
+              }
             ]
           }
         }
@@ -235,10 +415,26 @@
       "description": "D1 — Quadri, maximum managerial and professional responsibility",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "2542.92" },
-          { "valid_from": "2026-12-01", "valid_until": "2027-07-01", "value": "2611.59" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-12-01", "value": "2680.26" },
-          { "valid_from": "2028-12-01", "valid_until": null, "value": "2814.86" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-12-01",
+            "value": "2542.92"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": "2027-07-01",
+            "value": "2611.59"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-12-01",
+            "value": "2680.26"
+          },
+          {
+            "valid_from": "2028-12-01",
+            "valid_until": null,
+            "value": "2814.86"
+          }
         ]
       },
       "fixed_allowances": [
@@ -247,7 +443,11 @@
           "description": "Quadri Function Allowance (inclusive of ERS 59.39)",
           "monthly": {
             "periods": [
-              { "valid_from": "2026-01-01", "valid_until": null, "value": "98.13" }
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "98.13"
+              }
             ]
           }
         }
@@ -259,11 +459,29 @@
     {
       "type": "under_classification",
       "name": "professionalizzante",
-      "destination_levels": ["B1", "B2", "C1", "C2", "C3"],
+      "destination_levels": [
+        "B1",
+        "B2",
+        "C1",
+        "C2",
+        "C3"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 18, "levels_below": 2 },
-        { "months_from": 18, "months_until": 36, "levels_below": 1 },
-        { "months_from": 36, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": 36,
+          "levels_below": 1
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     }
   ]

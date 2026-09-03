@@ -6,7 +6,16 @@
     "cnel_code": "I022",
     "sector": "trasporti",
     "tax_sector": "terziario",
-    "signatories": ["AGENS", "ASSTRA", "ANAV", "FILT-CGIL", "FIT-CISL", "Uiltrasporti", "Faisa-Cisal", "UGL-FNA"],
+    "signatories": [
+      "AGENS",
+      "ASSTRA",
+      "ANAV",
+      "FILT-CGIL",
+      "FIT-CISL",
+      "Uiltrasporti",
+      "Faisa-Cisal",
+      "UGL-FNA"
+    ],
     "agreement_date": "2024-12-11",
     "sources": [
       {
@@ -45,7 +54,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: CNEL CODE: I022 confirmed from CNEL archivio contratti (www.cnel.it/Contratti-Collettivi) for the Autoferrotranvieri e Internavigatori sector.",
       "INFO: SIGNATORIES: employer side — AGENS (aziende ex gestione governativa), ASSTRA (aziende di trasporto pubblico locale), ANAV (autolinee e autoservizi). Union side — FILT-CGIL, FIT-CISL, Uiltrasporti, Faisa-Cisal, UGL-FNA. Confirmed from AGENS circular 20/03/2025.",
@@ -64,12 +72,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2024-12-11", "valid_until": null, "value": "195" }
+        {
+          "valid_from": "2024-12-11",
+          "valid_until": null,
+          "value": "195"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2024-12-11", "valid_until": null, "value": "14" }
+        {
+          "valid_from": "2024-12-11",
+          "valid_until": null,
+          "value": "14"
+        }
       ]
     },
     "seniority_increments": {
@@ -78,167 +94,299 @@
       "amount_by_level": {
         "100": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "15.33" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "15.33"
+            }
           ]
         },
         "110": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "16.93" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "16.93"
+            }
           ]
         },
         "116": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "17.78" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "17.78"
+            }
           ]
         },
         "121": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "18.54" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "18.54"
+            }
           ]
         },
         "123": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "19.10" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "19.10"
+            }
           ]
         },
         "129": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "19.77" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "19.77"
+            }
           ]
         },
         "130": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "19.92" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "19.92"
+            }
           ]
         },
         "135": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "20.69" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "20.69"
+            }
           ]
         },
         "138": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "21.06" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "21.06"
+            }
           ]
         },
         "139": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "21.06" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "21.06"
+            }
           ]
         },
         "140": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "21.46" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "21.46"
+            }
           ]
         },
         "143": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "21.92" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "21.92"
+            }
           ]
         },
         "145": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "22.22" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "22.22"
+            }
           ]
         },
         "151": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "23.14" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "23.14"
+            }
           ]
         },
         "153": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "23.45" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "23.45"
+            }
           ]
         },
         "154": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "23.60" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "23.60"
+            }
           ]
         },
         "155": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "23.75" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "23.75"
+            }
           ]
         },
         "158": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "24.65" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "24.65"
+            }
           ]
         },
         "160": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "24.65" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "24.65"
+            }
           ]
         },
         "165": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "25.29" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "25.29"
+            }
           ]
         },
         "170": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "26.05" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "26.05"
+            }
           ]
         },
         "175": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "26.85" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "26.85"
+            }
           ]
         },
         "178": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "27.28" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "27.28"
+            }
           ]
         },
         "180": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "27.59" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "27.59"
+            }
           ]
         },
         "183": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "27.83" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "27.83"
+            }
           ]
         },
         "188": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "28.81" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "28.81"
+            }
           ]
         },
         "190": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "29.12" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "29.12"
+            }
           ]
         },
         "193": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "29.58" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "29.58"
+            }
           ]
         },
         "202": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "30.96" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "30.96"
+            }
           ]
         },
         "205": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "31.42" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "31.42"
+            }
           ]
         },
         "210": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "32.18" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "32.18"
+            }
           ]
         },
         "230": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "35.25" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "35.25"
+            }
           ]
         },
         "250": {
           "periods": [
-            { "valid_from": "2024-12-11", "valid_until": null, "value": "38.31" }
+            {
+              "valid_from": "2024-12-11",
+              "valid_until": null,
+              "value": "38.31"
+            }
           ]
         }
       }
@@ -251,9 +399,21 @@
       "description": "Parameter 100 — auxiliary staff and entry-level apprentices",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1254.68" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1288.97" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1346.11" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1254.68"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1288.97"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1346.11"
+          }
         ]
       },
       "fixed_allowances": [
@@ -262,9 +422,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "22.86" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "22.86"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -277,9 +449,21 @@
       "description": "Parameter 110 — entry-level operators",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1329.44" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1367.15" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1430.01" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1329.44"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1367.15"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1430.01"
+          }
         ]
       },
       "fixed_allowances": [
@@ -288,9 +472,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "25.14" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "25.14"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -303,9 +499,21 @@
       "description": "Parameter 116 — qualified operators (entry)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1372.29" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1412.06" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1478.35" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1372.29"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1412.06"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1478.35"
+          }
         ]
       },
       "fixed_allowances": [
@@ -314,9 +522,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "26.51" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "26.51"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -329,9 +549,21 @@
       "description": "Parameter 121 — qualified operators",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1407.98" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1449.47" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1518.61" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1407.98"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1449.47"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1518.61"
+          }
         ]
       },
       "fixed_allowances": [
@@ -340,9 +572,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "27.66" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "27.66"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -355,9 +599,21 @@
       "description": "Parameter 123 — line agents (first year)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1424.89" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1467.06" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1537.35" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1424.89"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1467.06"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1537.35"
+          }
         ]
       },
       "fixed_allowances": [
@@ -366,9 +622,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "28.11" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "28.11"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -381,9 +649,21 @@
       "description": "Parameter 129 — line agents",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1467.72" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1511.95" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1585.66" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1467.72"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1511.95"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1585.66"
+          }
         ]
       },
       "fixed_allowances": [
@@ -392,9 +672,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "29.49" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "29.49"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -407,9 +699,21 @@
       "description": "Parameter 130 — qualified line agents",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1474.87" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1519.44" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1593.73" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1474.87"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1519.44"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1593.73"
+          }
         ]
       },
       "fixed_allowances": [
@@ -418,9 +722,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "29.71" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "29.71"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -433,9 +749,21 @@
       "description": "Parameter 135 — operations agents",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1510.56" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1556.85" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1633.99" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1510.56"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1556.85"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1633.99"
+          }
         ]
       },
       "fixed_allowances": [
@@ -444,9 +772,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "30.86" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "30.86"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -459,9 +799,21 @@
       "description": "Parameter 138 — specialist operators (I)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1535.37" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1582.68" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1661.54" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1535.37"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1582.68"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1661.54"
+          }
         ]
       },
       "fixed_allowances": [
@@ -470,9 +822,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "31.54" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "31.54"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -485,9 +849,21 @@
       "description": "Parameter 139 — specialist operators (II)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1542.51" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1590.17" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1669.60" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1542.51"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1590.17"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1669.60"
+          }
         ]
       },
       "fixed_allowances": [
@@ -496,9 +872,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "31.77" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "31.77"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -511,9 +899,21 @@
       "description": "Parameter 140 — specialist operations agents",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1549.65" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1597.65" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1677.65" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1549.65"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1597.65"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1677.65"
+          }
         ]
       },
       "fixed_allowances": [
@@ -522,9 +922,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "32.00" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "32.00"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -537,9 +949,21 @@
       "description": "Parameter 143 — senior agents",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1571.07" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1620.10" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1701.81" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1571.07"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1620.10"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1701.81"
+          }
         ]
       },
       "fixed_allowances": [
@@ -548,9 +972,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "32.69" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "32.69"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -563,9 +999,21 @@
       "description": "Parameter 145 — driving agents (entry)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1585.35" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1635.06" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1717.92" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1585.35"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1635.06"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1717.92"
+          }
         ]
       },
       "fixed_allowances": [
@@ -574,9 +1022,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "33.14" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "33.14"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -589,9 +1049,21 @@
       "description": "Parameter 151 — driving agents",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1628.19" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1679.96" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1766.25" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1628.19"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1679.96"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1766.25"
+          }
         ]
       },
       "fixed_allowances": [
@@ -600,9 +1072,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "34.51" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "34.51"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -615,9 +1099,21 @@
       "description": "Parameter 153 — qualified driving agents (I)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1642.47" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1694.93" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1782.36" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1642.47"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1694.93"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1782.36"
+          }
         ]
       },
       "fixed_allowances": [
@@ -626,9 +1122,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "34.97" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "34.97"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -641,9 +1149,21 @@
       "description": "Parameter 154 — qualified driving agents (II)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1649.60" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1702.40" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1790.40" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1649.60"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1702.40"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1790.40"
+          }
         ]
       },
       "fixed_allowances": [
@@ -652,9 +1172,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "35.20" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "35.20"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -667,9 +1199,21 @@
       "description": "Parameter 155 — qualified driving agents (III)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1656.73" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1709.87" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1798.44" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1656.73"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1709.87"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1798.44"
+          }
         ]
       },
       "fixed_allowances": [
@@ -678,9 +1222,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "35.43" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "35.43"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -693,9 +1249,21 @@
       "description": "Parameter 158 — senior operations agents",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1681.18" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1735.35" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1825.64" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1681.18"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1735.35"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1825.64"
+          }
         ]
       },
       "fixed_allowances": [
@@ -704,9 +1272,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "36.11" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "36.11"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -719,9 +1299,21 @@
       "description": "Parameter 160 — principal operations agents",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1695.46" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1750.32" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1841.75" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1695.46"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1750.32"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1841.75"
+          }
         ]
       },
       "fixed_allowances": [
@@ -730,9 +1322,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "36.57" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "36.57"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -745,9 +1349,21 @@
       "description": "Parameter 165 — agents with managerial functions",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1731.16" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1787.73" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1882.02" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1731.16"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1787.73"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1882.02"
+          }
         ]
       },
       "fixed_allowances": [
@@ -756,9 +1372,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "37.71" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "37.71"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -771,9 +1399,21 @@
       "description": "Parameter 170 — advanced driving agents",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1769.87" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1828.16" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1925.30" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1769.87"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1828.16"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1925.30"
+          }
         ]
       },
       "fixed_allowances": [
@@ -782,9 +1422,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "38.86" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "38.86"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -797,9 +1449,21 @@
       "description": "Parameter 175 — office clerks / qualified agents",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1805.57" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1865.57" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1965.57" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1805.57"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1865.57"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1965.57"
+          }
         ]
       },
       "fixed_allowances": [
@@ -808,9 +1472,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "40.00" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "40.00"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -823,9 +1499,21 @@
       "description": "Parameter 178 — senior clerks",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1826.98" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1888.01" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "1989.72" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1826.98"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1888.01"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1989.72"
+          }
         ]
       },
       "fixed_allowances": [
@@ -834,9 +1522,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "40.69" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "40.69"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -849,9 +1549,21 @@
       "description": "Parameter 180 — agents with coordination functions",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1841.27" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1902.98" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "2005.84" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1841.27"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1902.98"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "2005.84"
+          }
         ]
       },
       "fixed_allowances": [
@@ -860,9 +1572,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "41.14" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "41.14"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -875,9 +1599,21 @@
       "description": "Parameter 183 — coordinating agents",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1863.56" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1926.30" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "2030.87" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1863.56"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1926.30"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "2030.87"
+          }
         ]
       },
       "fixed_allowances": [
@@ -886,9 +1622,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "41.83" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "41.83"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -901,9 +1649,21 @@
       "description": "Parameter 188 — senior coordinators",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1899.29" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1963.75" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "2071.18" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1899.29"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1963.75"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "2071.18"
+          }
         ]
       },
       "fixed_allowances": [
@@ -912,9 +1672,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "42.97" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "42.97"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -927,9 +1699,21 @@
       "description": "Parameter 190 — principal coordinators",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1915.43" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "1980.57" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "2089.14" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1915.43"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "1980.57"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "2089.14"
+          }
         ]
       },
       "fixed_allowances": [
@@ -938,9 +1722,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "43.43" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "43.43"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -953,9 +1749,21 @@
       "description": "Parameter 193 — operations staff / station masters",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "1936.86" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "2003.03" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "2113.32" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "1936.86"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "2003.03"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "2113.32"
+          }
         ]
       },
       "fixed_allowances": [
@@ -964,9 +1772,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "44.11" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "44.11"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -979,9 +1799,21 @@
       "description": "Parameter 202 — operations supervisors",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "2005.12" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "2074.38" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "2189.81" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "2005.12"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "2074.38"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "2189.81"
+          }
         ]
       },
       "fixed_allowances": [
@@ -990,9 +1822,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "46.17" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "46.17"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -1005,9 +1849,21 @@
       "description": "Parameter 205 — senior supervisors",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "2026.53" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "2096.82" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "2213.96" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "2026.53"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "2096.82"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "2213.96"
+          }
         ]
       },
       "fixed_allowances": [
@@ -1016,9 +1872,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "46.86" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "46.86"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -1031,9 +1899,21 @@
       "description": "Parameter 210 — operations coordinators",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "2062.23" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "2134.23" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "2254.23" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "2062.23"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "2134.23"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "2254.23"
+          }
         ]
       },
       "fixed_allowances": [
@@ -1042,9 +1922,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "48.00" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "48.00"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -1057,9 +1949,21 @@
       "description": "Parameter 230 — officials / principal inspectors",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "2260.68" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "2339.54" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "2470.97" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "2260.68"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "2339.54"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "2470.97"
+          }
         ]
       },
       "fixed_allowances": [
@@ -1068,9 +1972,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "52.57" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "52.57"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -1083,9 +1999,21 @@
       "description": "Parameter 250 — senior officials / executive managers",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "2428.52" },
-          { "valid_from": "2025-03-01", "valid_until": "2026-08-01", "value": "2514.23" },
-          { "valid_from": "2026-08-01", "valid_until": null, "value": "2657.09" }
+          {
+            "valid_from": "2024-12-11",
+            "valid_until": "2025-03-01",
+            "value": "2428.52"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2026-08-01",
+            "value": "2514.23"
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "2657.09"
+          }
         ]
       },
       "fixed_allowances": [
@@ -1094,9 +2022,21 @@
           "description": "Elemento Distinto della Retribuzione 2024 — 40 EUR at par.175, pro-rated; paid for 14 months (March 2025 to April 2026 inclusive); not included in TFR or Fondo Priamo contributions per AGENS circular 20/03/2025",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-12-11", "valid_until": "2025-03-01", "value": "0.00" },
-              { "valid_from": "2025-03-01", "valid_until": "2026-05-01", "value": "57.14" },
-              { "valid_from": "2026-05-01", "valid_until": null, "value": "0.00" }
+              {
+                "valid_from": "2024-12-11",
+                "valid_until": "2025-03-01",
+                "value": "0.00"
+              },
+              {
+                "valid_from": "2025-03-01",
+                "valid_until": "2026-05-01",
+                "value": "57.14"
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
             ]
           },
           "tfr_relevant": false
@@ -1144,7 +2084,11 @@
         "250"
       ],
       "periods": [
-        { "months_from": 0, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     }
   ]

@@ -6,7 +6,14 @@
     "cnel_code": "J271",
     "sector": "credito",
     "tax_sector": "credito",
-    "signatories": ["Federcasse", "FABI", "FIRST-CISL", "FISAC-CGIL", "UGL Credito", "UILCA"],
+    "signatories": [
+      "Federcasse",
+      "FABI",
+      "FIRST-CISL",
+      "FISAC-CGIL",
+      "UGL Credito",
+      "UILCA"
+    ],
     "sources": [
       {
         "url": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
@@ -19,12 +26,16 @@
         "agreement_date": "2024-07-09"
       }
     ],
-    "extraction": { "method": "manual", "model": null, "timestamp": "2026-09-02", "human_reviewed": true }
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-02",
+      "human_reviewed": true
+    }
   },
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: Salary model is conglobated (stipendio per Art. 112 replaces paga base + scala mobile + EDR + other components). Modelled as base_salary with fixed_allowances: [].",
       "INFO: First period valid_from set to 2024-09-01 (first tranche date per Allegato A). Pre-tranche salaries belong to the previous CCNL and are not modelled.",
@@ -38,12 +49,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2024-09-01", "valid_until": null, "value": "160" }
+        {
+          "valid_from": "2024-09-01",
+          "valid_until": null,
+          "value": "160"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2024-09-01", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2024-09-01",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -52,62 +71,111 @@
       "amount_by_level": {
         "QD4": {
           "periods": [
-            { "valid_from": "2024-09-01", "valid_until": null, "value": "95.31" }
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "95.31"
+            }
           ]
         },
         "QD3": {
           "periods": [
-            { "valid_from": "2024-09-01", "valid_until": null, "value": "95.31" }
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "95.31"
+            }
           ]
         },
         "QD2": {
           "periods": [
-            { "valid_from": "2024-09-01", "valid_until": null, "value": "41.55" }
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
           ]
         },
         "QD1": {
           "periods": [
-            { "valid_from": "2024-09-01", "valid_until": null, "value": "41.55" }
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
           ]
         },
         "3AP4": {
           "periods": [
-            { "valid_from": "2024-09-01", "valid_until": null, "value": "41.55" }
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
           ]
         },
         "3AP3": {
           "periods": [
-            { "valid_from": "2024-09-01", "valid_until": null, "value": "41.55" }
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
           ]
         },
         "3AP2": {
           "periods": [
-            { "valid_from": "2024-09-01", "valid_until": null, "value": "41.55" }
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
           ]
         },
         "3AP1": {
           "periods": [
-            { "valid_from": "2024-09-01", "valid_until": null, "value": "41.55" }
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "41.55"
+            }
           ]
         },
         "2AP2": {
           "periods": [
-            { "valid_from": "2024-09-01", "valid_until": null, "value": "35.57" }
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "35.57"
+            }
           ]
         },
         "2AP1": {
           "periods": [
-            { "valid_from": "2024-09-01", "valid_until": null, "value": "29.07" }
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "29.07"
+            }
           ]
         },
         "1AP": {
           "periods": [
-            { "valid_from": "2024-09-01", "valid_until": null, "value": "20.12" }
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "20.12"
+            }
           ]
         }
       },
       "first_cadence_months": 48,
-      "maximum_count_by_level": { "QD1": 12, "QD2": 12, "QD3": 12, "QD4": 12 }
+      "maximum_count_by_level": {
+        "QD1": 12,
+        "QD2": 12,
+        "QD3": 12,
+        "QD4": 12
+      }
     }
   },
   "levels": [
@@ -117,9 +185,21 @@
       "description": "Executive Managers - 4th pay level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "4978.66" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "5059.28" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "5160.06" }
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "4978.66"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "5059.28"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "5160.06"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -131,9 +211,21 @@
       "description": "Executive Managers - 3rd pay level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "4239.27" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "4309.32" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "4396.88" }
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "4239.27"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "4309.32"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "4396.88"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -145,9 +237,21 @@
       "description": "Executive Managers - 2nd pay level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "3815.86" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "3882.36" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "3965.48" }
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "3815.86"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "3882.36"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "3965.48"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -159,9 +263,21 @@
       "description": "Executive Managers - 1st pay level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "3600.61" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "3663.99" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "3743.21" }
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "3600.61"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "3663.99"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "3743.21"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -173,9 +289,21 @@
       "description": "3rd Professional Area - 4th pay level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "3206.90" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "3266.90" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "3341.90" }
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "3206.90"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "3266.90"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "3341.90"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -187,9 +315,21 @@
       "description": "3rd Professional Area - 3rd pay level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2943.02" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2994.78" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "3059.49" }
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2943.02"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2994.78"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "3059.49"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -201,9 +341,21 @@
       "description": "3rd Professional Area - 2nd pay level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2780.38" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2829.28" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "2890.41" }
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2780.38"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2829.28"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2890.41"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -215,9 +367,21 @@
       "description": "3rd Professional Area - 1st pay level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2637.95" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2684.35" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "2742.35" }
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2637.95"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2684.35"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2742.35"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -229,9 +393,21 @@
       "description": "2nd Professional Area - 2nd pay level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2474.19" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2517.71" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "2572.10" }
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2474.19"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2517.71"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2572.10"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -243,9 +419,21 @@
       "description": "2nd Professional Area - 1st pay level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2315.18" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2355.90" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "2406.80" }
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2315.18"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2355.90"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2406.80"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -257,9 +445,21 @@
       "description": "1st Professional Area - single level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2156.20" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2194.12" },
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "2241.53" }
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2156.20"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2194.12"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2241.53"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -270,10 +470,23 @@
     {
       "type": "under_classification",
       "name": "terza_area",
-      "destination_levels": ["3AP1", "3AP2", "3AP3", "3AP4"],
+      "destination_levels": [
+        "3AP1",
+        "3AP2",
+        "3AP3",
+        "3AP4"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 18, "levels_below": 1 },
-        { "months_from": 18, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 1
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     }
   ]

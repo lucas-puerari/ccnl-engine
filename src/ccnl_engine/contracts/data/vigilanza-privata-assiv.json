@@ -50,7 +50,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: SCOPE: GPG section only (Guardie Particolari Giurate, livelli Q e 1-6). The Servizi Fiduciari/Sicurezza section (livelli A-E, 9 tranches from 01/08/2022) is a distinct salary table and would be a separate data file.",
       "INFO: CNEL CODE: HV40 confirmed from primary source: univigilanza.it (UNIV is a signatory employer association), article titled 'Codice Alfanumerico Unico dei CCNL' — 'L'attuale codice di riferimento per il settore vigilanza privata è il HV40.'",
@@ -67,12 +66,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2023-06-01", "valid_until": null, "value": "173" }
+        {
+          "valid_from": "2023-06-01",
+          "valid_until": null,
+          "value": "173"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2023-06-01", "valid_until": null, "value": "14" }
+        {
+          "valid_from": "2023-06-01",
+          "valid_until": null,
+          "value": "14"
+        }
       ]
     },
     "seniority_increments": {
@@ -81,37 +88,65 @@
       "amount_by_level": {
         "Q": {
           "periods": [
-            { "valid_from": "2023-06-01", "valid_until": null, "value": "31.30" }
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "31.30"
+            }
           ]
         },
         "1": {
           "periods": [
-            { "valid_from": "2023-06-01", "valid_until": null, "value": "26.12" }
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "26.12"
+            }
           ]
         },
         "2": {
           "periods": [
-            { "valid_from": "2023-06-01", "valid_until": null, "value": "23.83" }
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "23.83"
+            }
           ]
         },
         "3": {
           "periods": [
-            { "valid_from": "2023-06-01", "valid_until": null, "value": "22.46" }
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "22.46"
+            }
           ]
         },
         "4": {
           "periods": [
-            { "valid_from": "2023-06-01", "valid_until": null, "value": "21.13" }
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "21.13"
+            }
           ]
         },
         "5": {
           "periods": [
-            { "valid_from": "2023-06-01", "valid_until": null, "value": "20.52" }
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "20.52"
+            }
           ]
         },
         "6": {
           "periods": [
-            { "valid_from": "2023-06-01", "valid_until": null, "value": "19.66" }
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "19.66"
+            }
           ]
         }
       }
@@ -124,12 +159,36 @@
       "description": "GPG Grade 6 — security guard, basic duties",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1108.06" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1185.44" },
-          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1218.44" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-04-01", "value": "1246.73" },
-          { "valid_from": "2026-04-01", "valid_until": "2026-12-01", "value": "1293.87" },
-          { "valid_from": "2026-12-01", "valid_until": null, "value": "1350.44" }
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1108.06"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1185.44"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-12-01",
+            "value": "1218.44"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-04-01",
+            "value": "1246.73"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": "2026-12-01",
+            "value": "1293.87"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1350.44"
+          }
         ]
       },
       "fixed_allowances": []
@@ -140,12 +199,36 @@
       "description": "GPG Grade 5 — security guard with specific qualification",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1261.87" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1285.44" },
-          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1318.44" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-04-01", "value": "1346.73" },
-          { "valid_from": "2026-04-01", "valid_until": "2026-12-01", "value": "1393.87" },
-          { "valid_from": "2026-12-01", "valid_until": null, "value": "1450.44" }
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1261.87"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1285.44"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-12-01",
+            "value": "1318.44"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-04-01",
+            "value": "1346.73"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": "2026-12-01",
+            "value": "1393.87"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1450.44"
+          }
         ]
       },
       "fixed_allowances": []
@@ -156,12 +239,36 @@
       "description": "GPG Grade 4 — qualified security guard (contractual reference level)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1328.88" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1353.88" },
-          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1388.88" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-04-01", "value": "1418.88" },
-          { "valid_from": "2026-04-01", "valid_until": "2026-12-01", "value": "1468.88" },
-          { "valid_from": "2026-12-01", "valid_until": null, "value": "1528.88" }
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1328.88"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1353.88"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-12-01",
+            "value": "1388.88"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-04-01",
+            "value": "1418.88"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": "2026-12-01",
+            "value": "1468.88"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1528.88"
+          }
         ]
       },
       "fixed_allowances": []
@@ -172,12 +279,36 @@
       "description": "GPG Grade 3 — specialist security guard",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1483.31" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1513.31" },
-          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1555.31" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-04-01", "value": "1591.31" },
-          { "valid_from": "2026-04-01", "valid_until": "2026-12-01", "value": "1651.31" },
-          { "valid_from": "2026-12-01", "valid_until": null, "value": "1723.31" }
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1483.31"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1513.31"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-12-01",
+            "value": "1555.31"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-04-01",
+            "value": "1591.31"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": "2026-12-01",
+            "value": "1651.31"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1723.31"
+          }
         ]
       },
       "fixed_allowances": []
@@ -188,12 +319,36 @@
       "description": "GPG Grade 2 — highly specialist security guard",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1660.38" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1696.09" },
-          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1746.09" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-04-01", "value": "1788.95" },
-          { "valid_from": "2026-04-01", "valid_until": "2026-12-01", "value": "1860.38" },
-          { "valid_from": "2026-12-01", "valid_until": null, "value": "1946.09" }
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1660.38"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1696.09"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-12-01",
+            "value": "1746.09"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-04-01",
+            "value": "1788.95"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": "2026-12-01",
+            "value": "1860.38"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1946.09"
+          }
         ]
       },
       "fixed_allowances": []
@@ -204,12 +359,36 @@
       "description": "GPG Grade 1 — security guard with operational responsibilities",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1772.60" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1811.89" },
-          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "1866.89" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-04-01", "value": "1914.03" },
-          { "valid_from": "2026-04-01", "valid_until": "2026-12-01", "value": "1992.60" },
-          { "valid_from": "2026-12-01", "valid_until": null, "value": "2086.89" }
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1772.60"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1811.89"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-12-01",
+            "value": "1866.89"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-04-01",
+            "value": "1914.03"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": "2026-12-01",
+            "value": "1992.60"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "2086.89"
+          }
         ]
       },
       "fixed_allowances": []
@@ -220,12 +399,36 @@
       "description": "GPG Senior Manager (Quadro) — maximum operational and managerial responsibility",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "2049.03" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2097.24" },
-          { "valid_from": "2025-06-01", "valid_until": "2025-12-01", "value": "2164.74" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-04-01", "value": "2222.60" },
-          { "valid_from": "2026-04-01", "valid_until": "2026-12-01", "value": "2319.03" },
-          { "valid_from": "2026-12-01", "valid_until": null, "value": "2434.74" }
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "2049.03"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "2097.24"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-12-01",
+            "value": "2164.74"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-04-01",
+            "value": "2222.60"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": "2026-12-01",
+            "value": "2319.03"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "2434.74"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -236,9 +439,20 @@
     {
       "type": "percentage",
       "name": "professionalizzante",
-      "destination_levels": ["6", "5", "4", "3", "2", "1"],
+      "destination_levels": [
+        "6",
+        "5",
+        "4",
+        "3",
+        "2",
+        "1"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     }
   ]

@@ -49,12 +49,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2021-01-01", "valid_until": null, "value": "165" }
+        {
+          "valid_from": "2021-01-01",
+          "valid_until": null,
+          "value": "165"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2021-01-01", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2021-01-01",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -71,8 +79,16 @@
       "category": "dirigente",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-01-01", "valid_until": "2024-01-01", "value": "3616.59" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "3846.59" }
+          {
+            "valid_from": "2021-01-01",
+            "valid_until": "2024-01-01",
+            "value": "3616.59"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "3846.59"
+          }
         ]
       },
       "fixed_allowances": []
@@ -84,8 +100,16 @@
       "category": "dirigente",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-01-01", "valid_until": "2024-01-01", "value": "4623.30" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "4908.30" }
+          {
+            "valid_from": "2021-01-01",
+            "valid_until": "2024-01-01",
+            "value": "4623.30"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "4908.30"
+          }
         ]
       },
       "fixed_allowances": []
@@ -95,7 +119,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "SOURCE: Tabellare previgente da CCNL Area Dirigenza Istruzione e Ricerca 2019-2021 (firmato 7/8/2024). Seconda fascia: 47.015,73€/anno = 3.616,594...€/mese → 3.616,59€. Prima fascia: 60.102,87€/anno = 4.623,298...€/mese → 4.623,30€.",
       "SOURCE: Incremento CCNL 2022-2024 (firmato 6/8/2026): seconda fascia +230€/mese × 13 = 50.005,73€/anno = 3.846,594...€/mese → 3.846,59€. Prima fascia +285€/mese × 13 = 63.807,87€/anno = 4.908,298...€/mese → 4.908,30€.",

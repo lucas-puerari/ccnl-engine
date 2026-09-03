@@ -37,7 +37,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: SALARY MODEL: unified TOTALE as base_salary. Each level's TOTALE = Tabellare conglobato (contingenza+EDR absorbed, per Art. 32 + conglobamento clause) + Indennità Speciale per Panificazione (Art. 33, fixed per level since Aug 1995) + ERR (0.44 EUR/month, fixed). Ind.Speciale confirmed from Art. 33 table in UILA CCNL PDF: A1S=94.77, A1=88.06, A2=82.63, A3=75.92, A4=72.05, B1=92.19, B2=76.44, B3S=74.87, B3=72.56, B4=68.69. ERR=0.44. All folded into base_salary; fixed_allowances=[] for all levels. Cross-verified: artser.it tabellare A2 Apr 2024 = 1705.54; 1705.54 + 82.63 + 0.44 = 1788.61 exact match across all 4 tranches (diff constant 83.07 EUR). Art. 31 confirms hourly divisor 173.",
       "INFO: ADDITIONAL MONTHS: 13. Art. 33 (Ind.Speciale) replaced the quattordicesima from August 1995 ('viene a cessare, per tutti i lavoratori, la maturazione dei ratei relativi alla ex 14a mensilita'). Art. 36 (Gratifica natalizia) confirms only tredicesima remains. Source: UILA CCNL PDF Art. 33 and Art. 36.",
@@ -57,12 +56,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2024-04-01", "valid_until": null, "value": "173" }
+        {
+          "valid_from": "2024-04-01",
+          "valid_until": null,
+          "value": "173"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2024-04-01", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2024-04-01",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -71,58 +78,102 @@
       "amount_by_level": {
         "B4": {
           "periods": [
-            { "valid_from": "1996-01-01", "valid_until": null, "value": "14.46" }
+            {
+              "valid_from": "1996-01-01",
+              "valid_until": null,
+              "value": "14.46"
+            }
           ]
         },
         "A4": {
           "periods": [
-            { "valid_from": "1996-01-01", "valid_until": null, "value": "14.46" }
+            {
+              "valid_from": "1996-01-01",
+              "valid_until": null,
+              "value": "14.46"
+            }
           ]
         },
         "B3": {
           "periods": [
-            { "valid_from": "1996-01-01", "valid_until": null, "value": "16.01" }
+            {
+              "valid_from": "1996-01-01",
+              "valid_until": null,
+              "value": "16.01"
+            }
           ]
         },
         "B3S": {
           "periods": [
-            { "valid_from": "1996-01-01", "valid_until": null, "value": "17.64" }
+            {
+              "valid_from": "1996-01-01",
+              "valid_until": null,
+              "value": "17.64"
+            }
           ]
         },
         "A3": {
           "periods": [
-            { "valid_from": "1996-01-01", "valid_until": null, "value": "16.01" }
+            {
+              "valid_from": "1996-01-01",
+              "valid_until": null,
+              "value": "16.01"
+            }
           ]
         },
         "B2": {
           "periods": [
-            { "valid_from": "1996-01-01", "valid_until": null, "value": "19.11" }
+            {
+              "valid_from": "1996-01-01",
+              "valid_until": null,
+              "value": "19.11"
+            }
           ]
         },
         "A2": {
           "periods": [
-            { "valid_from": "1996-01-01", "valid_until": null, "value": "17.56" }
+            {
+              "valid_from": "1996-01-01",
+              "valid_until": null,
+              "value": "17.56"
+            }
           ]
         },
         "A1": {
           "periods": [
-            { "valid_from": "1996-01-01", "valid_until": null, "value": "19.11" }
+            {
+              "valid_from": "1996-01-01",
+              "valid_until": null,
+              "value": "19.11"
+            }
           ]
         },
         "B1": {
           "periods": [
-            { "valid_from": "1996-01-01", "valid_until": null, "value": "21.69" }
+            {
+              "valid_from": "1996-01-01",
+              "valid_until": null,
+              "value": "21.69"
+            }
           ]
         },
         "A1S": {
           "periods": [
-            { "valid_from": "1996-01-01", "valid_until": null, "value": "21.69" }
+            {
+              "valid_from": "1996-01-01",
+              "valid_until": null,
+              "value": "21.69"
+            }
           ]
         }
       },
       "apprentice_amount": {
         "periods": [
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "10.00" }
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "10.00"
+          }
         ]
       }
     }
@@ -134,10 +185,26 @@
       "description": "Level B4 — general worker and first-time hire",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1475.97" },
-          { "valid_from": "2025-01-01", "valid_until": "2025-11-01", "value": "1508.96" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-04-01", "value": "1554.33" },
-          { "valid_from": "2026-04-01", "valid_until": null, "value": "1589.80" }
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-01-01",
+            "value": "1475.97"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-11-01",
+            "value": "1508.96"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-04-01",
+            "value": "1554.33"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": null,
+            "value": "1589.80"
+          }
         ]
       },
       "fixed_allowances": []
@@ -148,10 +215,26 @@
       "description": "Level A4 — qualified support worker",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1552.14" },
-          { "valid_from": "2025-01-01", "valid_until": "2025-11-01", "value": "1586.84" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-04-01", "value": "1634.56" },
-          { "valid_from": "2026-04-01", "valid_until": null, "value": "1671.86" }
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-01-01",
+            "value": "1552.14"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-11-01",
+            "value": "1586.84"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-04-01",
+            "value": "1634.56"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": null,
+            "value": "1671.86"
+          }
         ]
       },
       "fixed_allowances": []
@@ -162,10 +245,26 @@
       "description": "Level B3 — specialist production operator",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1556.40" },
-          { "valid_from": "2025-01-01", "valid_until": "2025-11-01", "value": "1591.19" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-04-01", "value": "1639.03" },
-          { "valid_from": "2026-04-01", "valid_until": null, "value": "1676.43" }
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-01-01",
+            "value": "1556.40"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-11-01",
+            "value": "1591.19"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-04-01",
+            "value": "1639.03"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": null,
+            "value": "1676.43"
+          }
         ]
       },
       "fixed_allowances": []
@@ -176,10 +275,26 @@
       "description": "Level B3 Super — specialist operator with extended duties",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1608.72" },
-          { "valid_from": "2025-01-01", "valid_until": "2025-11-01", "value": "1644.68" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-04-01", "value": "1694.13" },
-          { "valid_from": "2026-04-01", "valid_until": null, "value": "1732.79" }
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-01-01",
+            "value": "1608.72"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-11-01",
+            "value": "1644.68"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-04-01",
+            "value": "1694.13"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": null,
+            "value": "1732.79"
+          }
         ]
       },
       "fixed_allowances": []
@@ -190,10 +305,26 @@
       "description": "Level A3 — qualified production technician",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1638.09" },
-          { "valid_from": "2025-01-01", "valid_until": "2025-11-01", "value": "1674.72" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-04-01", "value": "1725.08" },
-          { "valid_from": "2026-04-01", "valid_until": null, "value": "1764.45" }
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-01-01",
+            "value": "1638.09"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-11-01",
+            "value": "1674.72"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-04-01",
+            "value": "1725.08"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": null,
+            "value": "1764.45"
+          }
         ]
       },
       "fixed_allowances": []
@@ -204,10 +335,26 @@
       "description": "Level B2 — highly specialised operator",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1652.48" },
-          { "valid_from": "2025-01-01", "valid_until": "2025-11-01", "value": "1689.43" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-04-01", "value": "1740.24" },
-          { "valid_from": "2026-04-01", "valid_until": null, "value": "1779.96" }
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-01-01",
+            "value": "1652.48"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-11-01",
+            "value": "1689.43"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-04-01",
+            "value": "1740.24"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": null,
+            "value": "1779.96"
+          }
         ]
       },
       "fixed_allowances": []
@@ -218,10 +365,26 @@
       "description": "Level A2 — specialist technician / department head",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1788.61" },
-          { "valid_from": "2025-01-01", "valid_until": "2025-11-01", "value": "1828.61" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-04-01", "value": "1883.61" },
-          { "valid_from": "2026-04-01", "valid_until": null, "value": "1926.61" }
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-01-01",
+            "value": "1788.61"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-11-01",
+            "value": "1828.61"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-04-01",
+            "value": "1883.61"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": null,
+            "value": "1926.61"
+          }
         ]
       },
       "fixed_allowances": []
@@ -232,10 +395,26 @@
       "description": "Level A1 — production technical manager",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1909.58" },
-          { "valid_from": "2025-01-01", "valid_until": "2025-11-01", "value": "1952.29" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-04-01", "value": "2011.02" },
-          { "valid_from": "2026-04-01", "valid_until": null, "value": "2056.93" }
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-01-01",
+            "value": "1909.58"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-11-01",
+            "value": "1952.29"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-04-01",
+            "value": "2011.02"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": null,
+            "value": "2056.93"
+          }
         ]
       },
       "fixed_allowances": []
@@ -246,10 +425,26 @@
       "description": "Level B1 — senior operations manager",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "2010.49" },
-          { "valid_from": "2025-01-01", "valid_until": "2025-11-01", "value": "2055.47" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-04-01", "value": "2117.32" },
-          { "valid_from": "2026-04-01", "valid_until": null, "value": "2165.67" }
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-01-01",
+            "value": "2010.49"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-11-01",
+            "value": "2055.47"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-04-01",
+            "value": "2117.32"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": null,
+            "value": "2165.67"
+          }
         ]
       },
       "fixed_allowances": []
@@ -260,10 +455,26 @@
       "description": "Level A1 Super — senior executive quadro / top-level manager",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "2054.08" },
-          { "valid_from": "2025-01-01", "valid_until": "2025-11-01", "value": "2100.02" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-04-01", "value": "2163.19" },
-          { "valid_from": "2026-04-01", "valid_until": null, "value": "2248.73" }
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-01-01",
+            "value": "2054.08"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-11-01",
+            "value": "2100.02"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-04-01",
+            "value": "2163.19"
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": null,
+            "value": "2248.73"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -274,86 +485,244 @@
     {
       "type": "percentage",
       "name": "gruppo_1_panificatori",
-      "destination_levels": ["A1"],
+      "destination_levels": [
+        "A1"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
-        { "months_from": 12, "months_until": 24, "percentage": "0.75" },
-        { "months_from": 24, "months_until": 36, "percentage": "0.84" },
-        { "months_from": 36, "months_until": 48, "percentage": "0.90" },
-        { "months_from": 48, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.84"
+        },
+        {
+          "months_from": 36,
+          "months_until": 48,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 48,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "gruppo_a2_panificatori",
-      "destination_levels": ["A2"],
+      "destination_levels": [
+        "A2"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
-        { "months_from": 12, "months_until": 24, "percentage": "0.75" },
-        { "months_from": 24, "months_until": 36, "percentage": "0.85" },
-        { "months_from": 36, "months_until": 42, "percentage": "0.90" },
-        { "months_from": 42, "months_until": 54, "percentage": "0.95" },
-        { "months_from": 54, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 36,
+          "months_until": 42,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 42,
+          "months_until": 54,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 54,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "gruppo_a3_panificatori",
-      "destination_levels": ["A3"],
+      "destination_levels": [
+        "A3"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
-        { "months_from": 12, "months_until": 18, "percentage": "0.75" },
-        { "months_from": 18, "months_until": 24, "percentage": "0.80" },
-        { "months_from": 24, "months_until": 30, "percentage": "0.85" },
-        { "months_from": 30, "months_until": 36, "percentage": "0.90" },
-        { "months_from": 36, "months_until": 48, "percentage": "0.95" },
-        { "months_from": 48, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 30,
+          "months_until": 36,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 36,
+          "months_until": 48,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 48,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "gruppo_b1_addetti",
-      "destination_levels": ["B1"],
+      "destination_levels": [
+        "B1"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
-        { "months_from": 12, "months_until": 24, "percentage": "0.75" },
-        { "months_from": 24, "months_until": 36, "percentage": "0.84" },
-        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.84"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "gruppo_b2_addetti",
-      "destination_levels": ["B2"],
+      "destination_levels": [
+        "B2"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
-        { "months_from": 12, "months_until": 24, "percentage": "0.75" },
-        { "months_from": 24, "months_until": 36, "percentage": "0.88" },
-        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.88"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "gruppo_b3s_addetti",
-      "destination_levels": ["B3S"],
+      "destination_levels": [
+        "B3S"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
-        { "months_from": 12, "months_until": 24, "percentage": "0.75" },
-        { "months_from": 24, "months_until": 36, "percentage": "0.88" },
-        { "months_from": 36, "months_until": 42, "percentage": "0.93" },
-        { "months_from": 42, "months_until": 54, "percentage": "0.95" },
-        { "months_from": 54, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.88"
+        },
+        {
+          "months_from": 36,
+          "months_until": 42,
+          "percentage": "0.93"
+        },
+        {
+          "months_from": 42,
+          "months_until": 54,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 54,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "gruppo_b4_addetti",
-      "destination_levels": ["B3"],
+      "destination_levels": [
+        "B3"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
-        { "months_from": 12, "months_until": 18, "percentage": "0.75" },
-        { "months_from": 18, "months_until": 36, "percentage": "0.95" },
-        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 18,
+          "months_until": 36,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     }
   ]

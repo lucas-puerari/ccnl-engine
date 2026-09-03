@@ -51,12 +51,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2019-12-19", "valid_until": null, "value": "165" }
+        {
+          "valid_from": "2019-12-19",
+          "valid_until": null,
+          "value": "165"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2019-12-19", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2019-12-19",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -73,8 +81,16 @@
       "category": "dirigente",
       "base_salary": {
         "periods": [
-          { "valid_from": "2019-12-19", "valid_until": "2024-01-01", "value": "3616.60" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "3846.60" }
+          {
+            "valid_from": "2019-12-19",
+            "valid_until": "2024-01-01",
+            "value": "3616.60"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "3846.60"
+          }
         ]
       },
       "fixed_allowances": [
@@ -83,8 +99,16 @@
           "description": "Indennità di specificità sanitaria (Art. 15 comma 3 CCNL 27.02.2026)",
           "monthly": {
             "periods": [
-              { "valid_from": "2019-12-19", "valid_until": "2024-12-31", "value": "104.34" },
-              { "valid_from": "2024-12-31", "valid_until": null,         "value": "124.19" }
+              {
+                "valid_from": "2019-12-19",
+                "valid_until": "2024-12-31",
+                "value": "104.34"
+              },
+              {
+                "valid_from": "2024-12-31",
+                "valid_until": null,
+                "value": "124.19"
+              }
             ]
           },
           "role": null,
@@ -99,7 +123,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "SOURCE: Stipendio tabellare da Art. 11 CCNL 27.02.2026: incremento +230€/mese da 1/1/2024, valore a regime 50.005,77€/anno per 13 mensilità = 3.846,60€/mese.",
       "SOURCE: Indennità specificità sanitaria dal 31/12/2024: Art. 15 comma 3 CCNL 27.02.2026, rideterminata in 1.614,46€/anno per 13 mensilità = 124,19€/mese. Applicazione: dirigenti sanitari non medici.",
