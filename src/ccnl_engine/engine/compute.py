@@ -428,7 +428,7 @@ def _annualise(
             if allowance.months_per_year is not None
             else additional_months
         )
-        annual = money(monthly * months)
+        annual = monthly * months  # unrounded; rounding deferred to _Annual below
         gross += annual
         if not allowance.contribution_relevant:
             excluded_contrib += annual
@@ -436,8 +436,8 @@ def _annualise(
             excluded_tfr += annual
     return _Annual(
         gross=money(gross),
-        excluded_from_contributions=excluded_contrib,
-        excluded_from_tfr=excluded_tfr,
+        excluded_from_contributions=money(excluded_contrib),
+        excluded_from_tfr=money(excluded_tfr),
     )
 
 
