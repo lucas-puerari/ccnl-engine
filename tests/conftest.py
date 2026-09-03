@@ -51,18 +51,20 @@ def make_year_rules(
     inps: dict[str, Any] | None = None,
     apprentice: dict[str, Any] | None = None,
 ) -> YearRules:
-    """Build a YearRules instance for testing. Defaults to the 2026 terziario values."""
-    return YearRules.model_validate(
-        {
-            "year": 2026,
-            "irpef_brackets": brackets or IRPEF_BRACKETS_2026,
-            "work_deduction_breakpoints": deductions or WORK_DEDUCTIONS_2026,
-            "fixed_term_additional_rate": "0.014",
-            "inps": inps or INPS_RATES_TERZIARIO,
-            "apprentice": apprentice or APPRENTICE_RATES_LARGE_FIRM,
-            "tfr": {"accrual_divisor": "13.5"},
-        }
-    )
+    """Build a YearRules instance for testing. Defaults to the 2026 terziario values.
+
+    Returns:
+        A validated YearRules instance.
+    """
+    return YearRules.model_validate({
+        "year": 2026,
+        "irpef_brackets": brackets or IRPEF_BRACKETS_2026,
+        "work_deduction_breakpoints": deductions or WORK_DEDUCTIONS_2026,
+        "fixed_term_additional_rate": "0.014",
+        "inps": inps or INPS_RATES_TERZIARIO,
+        "apprentice": apprentice or APPRENTICE_RATES_LARGE_FIRM,
+        "tfr": {"accrual_divisor": "13.5"},
+    })
 
 
 def _series(value: str, valid_from: str = "2020-01-01") -> dict[str, Any]:
@@ -102,6 +104,9 @@ def make_ccnl_dict(*, app_type: str = "percentage") -> dict[str, Any]:
     """Return a minimal three-level CCNL dict (levels 2, 3, 4) as raw data.
 
     Level 4 has a seniority increment of 20.00; levels 2 and 3 have none.
+
+    Returns:
+        A dict suitable for passing to CCNL.model_validate().
     """
     if app_type == "percentage":
         tracks = [copy.deepcopy(TRACK_PERCENTAGE)]
@@ -151,17 +156,29 @@ def make_ccnl_dict(*, app_type: str = "percentage") -> dict[str, Any]:
 
 
 def make_minimal_ccnl(*, app_type: str = "percentage") -> CCNL:
-    """Build a minimal three-level CCNL with configurable apprenticeship type."""
+    """Build a minimal three-level CCNL with configurable apprenticeship type.
+
+    Returns:
+        A validated CCNL instance.
+    """
     return CCNL.model_validate(make_ccnl_dict(app_type=app_type))
 
 
 @pytest.fixture(scope="session")
 def minimal_ccnl() -> CCNL:
-    """Return a minimal percentage-apprenticeship CCNL for engine tests."""
+    """Return a minimal percentage-apprenticeship CCNL for engine tests.
+
+    Returns:
+        A minimal CCNL with percentage apprenticeship track.
+    """
     return make_minimal_ccnl()
 
 
 @pytest.fixture(scope="session")
 def standard_year_rules() -> YearRules:
-    """Return standard 2026 terziario YearRules for engine tests."""
+    """Return standard 2026 terziario YearRules for engine tests.
+
+    Returns:
+        The 2026 terziario YearRules instance.
+    """
     return make_year_rules()

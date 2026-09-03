@@ -24,25 +24,29 @@ dev = [
 [tool.ruff]
 target-version = "py312"
 line-length = 88
+preview = true
 
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
+    "RUF201",  # rule-codes-in-selectors
     "COM812",  # missing-trailing-comma
     "ISC001",  # single-line-implicit-string-concatenation
     "TRY003",  # raise-vanilla-args
     "FBT",     # boolean positional args
     "PLR2004", # magic-value-comparison
-    "S101",    # assert — fine in tests
+    "S101",    # assert
     "RUF012",  # mutable-class-default
     "CPY001",  # missing-copyright-notice
-    "D413",    # missing-blank-line-after-last-section — unnecessary blank lines
-    "PLR0913", # too-many-arguments — compute() has 8 args by spec
-    "PLR0917", # too-many-positional-arguments — same
+    "D413",    # missing-blank-line-after-last-section
+    "PLR0913", # too-many-arguments
+    "PLR0917", # too-many-positional-arguments
+    "PLR0914", # too-many-locals
+    "PLC2701", # import-private-name
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**" = ["S", "ARG", "SLF001"]
+"tests/**" = ["S", "ARG", "SLF001", "PLR6301"]  # PLR6301: pytest methods don't need self
 # Pydantic needs runtime access to annotated types; TCH001-TCH003 would move
 # them to TYPE_CHECKING blocks, breaking model_validate and field resolution.
 # Applies only to files that define Pydantic models, not to engine code.

@@ -21,7 +21,11 @@ _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
 
 
 def _build_employment(inputs: dict[str, Any]) -> Permanent | FixedTerm | Apprentice:
-    """Construct an Employment model from the golden case inputs dict."""
+    """Construct an Employment model from the golden case inputs dict.
+
+    Returns:
+        A Permanent, FixedTerm, or Apprentice instance based on employment_type.
+    """
     emp_type = inputs["employment_type"]
     if emp_type == "permanent":
         return Permanent()

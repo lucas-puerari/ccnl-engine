@@ -16,7 +16,11 @@ _ZERO = Decimal(0)
 
 
 def irpef_gross(taxable_income: Decimal, rules: YearRules) -> Decimal:
-    """Compute gross IRPEF on taxable_income using marginal brackets."""
+    """Compute gross IRPEF on taxable_income using marginal brackets.
+
+    Returns:
+        The gross IRPEF amount, rounded to two decimal places.
+    """
     if taxable_income <= _ZERO:
         return _ZERO
     tax = _ZERO
@@ -35,7 +39,11 @@ def irpef_gross(taxable_income: Decimal, rules: YearRules) -> Decimal:
 
 
 def work_income_deduction(gross_income: Decimal, rules: YearRules) -> Decimal:
-    """Compute the Art. 13 TUIR work-income deduction via piecewise interpolation."""
+    """Compute the Art. 13 TUIR work-income deduction via piecewise interpolation.
+
+    Returns:
+        The applicable deduction amount, rounded to two decimal places.
+    """
     if gross_income <= _ZERO:
         return _ZERO
     points = rules.work_deduction_breakpoints

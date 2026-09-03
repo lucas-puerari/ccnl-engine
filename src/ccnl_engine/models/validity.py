@@ -62,7 +62,14 @@ class TimeSeries(BaseModel):
         return self
 
     def value_at(self, day: date) -> Decimal:
-        """Return the value in effect on day."""
+        """Return the value in effect on day.
+
+        Returns:
+            The Decimal value in effect on the given date.
+
+        Raises:
+            ValueError: If the date precedes the start of the series.
+        """
         for period in self.periods:
             if period.valid_from <= day and (
                 period.valid_until is None or day < period.valid_until

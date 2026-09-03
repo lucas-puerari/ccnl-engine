@@ -54,7 +54,11 @@ _VALID_APPRENTICE: dict[str, Any] = {
 
 
 def _year_rules(overrides: dict[str, Any] | None = None) -> dict[str, Any]:
-    """Return a minimal valid YearRules dict, with optional field overrides."""
+    """Return a minimal valid YearRules dict, with optional field overrides.
+
+    Returns:
+        A dict suitable for passing to YearRules.model_validate().
+    """
     base: dict[str, Any] = {
         "year": 2026,
         "irpef_brackets": _VALID_BRACKETS,

@@ -29,10 +29,15 @@ def load_year_rules(
     sector: TaxSector,
     num_employees: int,
 ) -> YearRules:
-    """Load and validate tax year rules, resolving INPS rates by headcount."""
+    """Load and validate tax year rules, resolving INPS rates by headcount.
+
+    Returns:
+        The validated YearRules instance with rates resolved for num_employees.
+    """
     filename = f"{year}-{sector.value}.json"
     raw_text = (
-        importlib.resources.files("ccnl_engine.tax.data")
+        importlib.resources
+        .files("ccnl_engine.tax.data")
         .joinpath(filename)
         .read_text(encoding="utf-8")
     )
