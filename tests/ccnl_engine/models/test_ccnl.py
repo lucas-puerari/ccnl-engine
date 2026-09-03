@@ -312,8 +312,12 @@ class TestCoverage:
         data["coverage"]["layer_1"] = "partial"
         assert _validate(data).coverage.layer_1 == "partial"
 
-    def test_implemented_without_tracks_raises(self) -> None:
-        """layer_2 implemented requires at least one apprenticeship track."""
+    def test_implemented_without_tracks_allowed(self) -> None:
+        """layer_2 implemented is valid even with no apprenticeship tracks.
+
+        Some sectors (e.g. PA/ARAN) correctly have no apprenticeship tracks;
+        layer_2=implemented still models part-time and fixed-term correctly.
+        """
         data = make_ccnl_dict(app_type="none")
         data["coverage"] = {
             "layer_1": "implemented",
@@ -321,8 +325,8 @@ class TestCoverage:
             "layer_3": "out_of_scope",
             "notes": [],
         }
-        with pytest.raises(ValidationError, match="no apprenticeship track exists"):
-            _validate(data)
+        result = _validate(data)
+        assert result.coverage.layer_2 == "implemented"
 
     def test_out_of_scope_with_tracks_raises(self) -> None:
         """layer_2 out_of_scope is inconsistent with apprenticeship tracks."""

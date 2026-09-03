@@ -444,9 +444,6 @@ class CCNL(BaseModel):
     def _assert_coverage_consistency(self) -> None:
         has_tracks = bool(self.apprenticeship)
         status = self.coverage.layer_2
-        if status == "implemented" and not has_tracks:
-            msg = "coverage.layer_2 is 'implemented' but no apprenticeship track exists"
-            raise ValueError(msg)
         if status == "out_of_scope" and has_tracks:
             msg = "coverage.layer_2 is 'out_of_scope' but apprenticeship tracks exist"
             raise ValueError(msg)
