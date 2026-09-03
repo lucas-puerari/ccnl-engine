@@ -1,0 +1,103 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "dirigenza-funzioni-centrali-aran",
+    "name": "CCNL Area Dirigenza Funzioni Centrali 2022-2024 — ARAN",
+    "cnel_code": "S025",
+    "sector": "Pubblica Amministrazione",
+    "tax_sector": "pubblica_amministrazione",
+    "signatories": [
+      "ARAN",
+      "CISL FP",
+      "ANMI ASSOMED SIVEMP FPM",
+      "CIDA FC",
+      "FLEPAR",
+      "UIL PA",
+      "UNADIS",
+      "DIRSTAT FIALP UNSA"
+    ],
+    "agreement_date": "2025-10-28",
+    "validity": {
+      "valid_from": "2022-01-01",
+      "valid_until": "2024-12-31"
+    },
+    "sources": [
+      {
+        "url": "https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf",
+        "type": "fonte_primaria",
+        "agreement_date": "2025-10-28",
+        "notes": "Testo ufficiale CCNL Area Funzioni Centrali 2022-2024. Art. 23: stipendio tabellare dirigenti I fascia = 63.807,87€/anno da 1/1/2024 (prev. 60.102,87€). Art. 26: stipendio tabellare dirigenti II fascia = 50.005,77€/anno da 1/1/2024 (prev. 47.015,77€, CCNL 16/11/2023). Firma 28/10/2025 — firmatari: CISL FP, ANMI ASSOMED SIVEMP FPM, CIDA FC, FLEPAR, UIL PA, UNADIS, DIRSTAT FIALP UNSA. FP CGIL non ha firmato."
+      }
+    ],
+    "extraction": {
+      "method": "manual_pdf_extraction",
+      "model": null,
+      "timestamp": "2026-09-03",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2023-11-16", "valid_until": null, "value": "165" }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2023-11-16", "valid_until": null, "value": "13" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 1,
+      "maximum_count": 0,
+      "amount_by_level": {}
+    }
+  },
+  "levels": [
+    {
+      "code": "SECONDA_FASCIA",
+      "order": 1,
+      "description": "Dirigenti di seconda fascia (non generali): ministeri, agenzie fiscali, INPS, INAIL",
+      "category": "dirigente",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-11-16", "valid_until": "2024-01-01", "value": "3616.60" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "3846.60" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "PRIMA_FASCIA",
+      "order": 2,
+      "description": "Dirigenti di prima fascia (dirigenti generali): ministeri, agenzie",
+      "category": "dirigente",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2023-11-16", "valid_until": "2024-01-01", "value": "4623.30" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "4908.30" }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": [],
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "out_of_scope",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "SOURCE: Stipendio tabellare da testo ufficiale CCNL 28/10/2025 (Ministero del Lavoro, Art. 23 e Art. 26).",
+      "SOURCE: Prima fascia — Art. 23 comma 1: previgente 60.102,87€/anno (CCNL 16/11/2023); incremento +285€/mese × 13 = +3.705€/anno; nuovo valore 63.807,87€/anno = 4.908,30€/mese per 13 mensilità.",
+      "SOURCE: Seconda fascia — Art. 26 comma 1: previgente 47.015,77€/anno (CCNL 16/11/2023); incremento +230€/mese × 13 = +2.990€/anno; nuovo valore 50.005,77€/anno = 3.846,60€/mese per 13 mensilità.",
+      "SOURCE: Firma 28/10/2025. FP CGIL non ha firmato (indicato come 'non firmato' nel frontespizio). CGIL confederale non ha firmato.",
+      "INFO: Retribuzione di posizione parte fissa: prima fascia 42.598,20€/anno (Art. 23 c.5); seconda fascia 14.515,11€/anno (Art. 26 c.5). Variabile per incarico, non modellata (SIMPLIFICATION).",
+      "INFO: Nessuno scatto automatico di anzianità per i dirigenti. maximum_count=0.",
+      "INFO: No apprendistato — D.Lgs. 165/2001 e regime dirigenziale PA. Layer 2 out_of_scope.",
+      "SIMPLIFICATION: CNEL S025 stimato per analogia con la struttura codici ARAN (S005=comparto FC, S025=area dirigenza FC, S105=comparto FL, S125=area dirigenza FL, S205=comparto Sanità, S225=area dirigenza Sanità). Non verificato su fonti primarie CNEL.",
+      "SIMPLIFICATION: Hourly divisor 165 = 38h/settimana × 52/12 (stima per dirigenza PA). Orario effettivo dirigenti non fisso.",
+      "SIMPLIFICATION: Valore mensile prima fascia 4.623,30€ (60.102,87/13 = 4.623,299... arrotondato) e 4.908,30€ (63.807,87/13 = 4.908,298... arrotondato). Stesso metodo usato per seconda fascia.",
+      "SIMPLIFICATION: Un unico livello per fascia; in realtà i dirigenti generali di prima fascia possono avere retribuzioni di posizione molto diverse per ente."
+    ]
+  }
+}
