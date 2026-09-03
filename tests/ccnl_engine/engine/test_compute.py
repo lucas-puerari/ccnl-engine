@@ -7,7 +7,7 @@
 * seniority resolution from count or months, first cadence, per-level maximum
 * role-scoped allowances, months_per_year, TFR/contribution relevance flags
 * employer funds by category, ad personam element, hourly rate
-* negotiated_ral override paths
+* negotiated_ral / negotiated_destination_ral override paths
 * IRPEF net floored at zero
 """
 
@@ -118,6 +118,31 @@ class TestComputeValidation:
         """seniority_count above the level maximum must raise ValueError."""
         with pytest.raises(ValueError, match="exceeds the maximum of 10"):
             compute(_CCNL, "4", _DATE, _RULES, _PERMANENT, seniority_count=11)
+
+    def test_negotiated_destination_ral_on_non_apprentice_raises(self) -> None:
+        """negotiated_destination_ral with a non-Apprentice employment raises."""
+        with pytest.raises(ValueError, match="only valid for Apprentice"):
+            compute(
+                _CCNL,
+                "4",
+                _DATE,
+                _RULES,
+                _PERMANENT,
+                negotiated_destination_ral=_D("20000.00"),
+            )
+
+    def test_negotiated_ral_and_destination_ral_mutually_exclusive(self) -> None:
+        """Passing both negotiated_ral and negotiated_destination_ral raises."""
+        with pytest.raises(ValueError, match="mutually exclusive"):
+            compute(
+                _CCNL,
+                "4",
+                _DATE,
+                _RULES,
+                _PERMANENT,
+                negotiated_ral=_D("20000.00"),
+                negotiated_destination_ral=_D("20000.00"),
+            )
 
 
 # ---------------------------------------------------------------------------
@@ -502,14 +527,54 @@ class TestComputeApprenticePercentage:
         assert r.seniority_monthly == _D("9.60")  # 12 * 0.80
 
     def test_negotiated_ral(self) -> None:
-        """negotiated_ral is applied as base before percentage multiplication."""
+        """negotiated_ral is the actual apprentice salary; no further scaling."""
         ral = _D("20000.00")
         r = compute(
             _CCNL, "4", _DATE, _RULES, Apprentice(months_elapsed=0), negotiated_ral=ral
         )
 
-        assert r.gross_annual == _D("16000.00")
+        assert r.gross_annual == _D("20000.00")
+        assert r.gross_monthly == _D("1666.67")
+
+    def test_negotiated_destination_ral(self) -> None:
+        """negotiated_destination_ral * apprenticeship_pct yields the actual pay."""
+        ral = _D("20000.00")
+        r = compute(
+            _CCNL,
+            "4",
+            _DATE,
+            _RULES,
+            Apprentice(months_elapsed=0),
+            negotiated_destination_ral=ral,
+        )
+
+        assert r.gross_annual == _D("16000.00")  # 20000 * 0.80
         assert r.gross_monthly == _D("1333.33")
+
+    def test_negotiated_ral_and_destination_ral_mutually_exclusive(self) -> None:
+        """Passing both negotiated_ral and negotiated_destination_ral raises."""
+        with pytest.raises(ValueError, match="mutually exclusive"):
+            compute(
+                _CCNL,
+                "4",
+                _DATE,
+                _RULES,
+                Apprentice(months_elapsed=0),
+                negotiated_ral=_D("20000.00"),
+                negotiated_destination_ral=_D("20000.00"),
+            )
+
+    def test_negotiated_destination_ral_requires_percentage_track(self) -> None:
+        """negotiated_destination_ral on an under-classification track raises."""
+        with pytest.raises(ValueError, match="under-classification"):
+            compute(
+                _CCNL_UC,
+                "4",
+                _DATE,
+                _RULES,
+                Apprentice(months_elapsed=0),
+                negotiated_destination_ral=_D("20000.00"),
+            )
 
     def test_level_without_track_raises(self) -> None:
         """A destination level not covered by any track must raise ValueError."""
