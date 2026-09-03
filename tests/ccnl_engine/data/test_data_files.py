@@ -3833,3 +3833,75 @@ class TestLoadFunzioniLocaliAran:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 1
         assert si.maximum_count == 0
+
+
+class TestLoadSanitaAran:
+    """Tests for CCNL Comparto Sanità 2022-2024 (sanita-aran, CNEL S205)."""
+
+    def test_sanita_aran_loads(self) -> None:
+        """File loads successfully and has correct id and CNEL code."""
+        ccnl = load_ccnl("sanita-aran.json")
+        assert ccnl.meta.id == "sanita-aran"
+        assert ccnl.meta.cnel_code == "S205"
+
+    def test_sanita_aran_has_5_levels(self) -> None:
+        """Contract has exactly 5 areas."""
+        ccnl = load_ccnl("sanita-aran.json")
+        assert len(ccnl.levels) == 5
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {
+            "SUPPORTO",
+            "OPERATORI",
+            "ASSISTENTI",
+            "PROFESSIONISTI",
+            "ELEVATA_QUALIFICAZIONE",
+        }
+
+    def test_sanita_aran_professionisti_salary_tranche1(self) -> None:
+        """PROFESSIONISTI first tranche (2022-11-02): 1941.58 EUR/month."""
+        ccnl = load_ccnl("sanita-aran.json")
+        lv = ccnl.level_by_code("PROFESSIONISTI")
+        assert lv.base_salary.value_at(date(2022, 11, 2)) == Decimal("1941.58")
+
+    def test_sanita_aran_professionisti_salary_tranche2(self) -> None:
+        """PROFESSIONISTI second tranche (1/1/2024): 2076.58 EUR/month."""
+        ccnl = load_ccnl("sanita-aran.json")
+        lv = ccnl.level_by_code("PROFESSIONISTI")
+        assert lv.base_salary.value_at(date(2024, 1, 1)) == Decimal("2076.58")
+
+    def test_sanita_aran_level_ordering(self) -> None:
+        """ELEVATA_QUALIFICAZIONE is highest-order; SUPPORTO is lowest-order."""
+        ccnl = load_ccnl("sanita-aran.json")
+        orders = {lv.code: lv.order for lv in ccnl.levels}
+        assert orders["ELEVATA_QUALIFICAZIONE"] == max(orders.values())
+        assert orders["SUPPORTO"] == min(orders.values())
+
+    def test_sanita_aran_additional_months(self) -> None:
+        """Additional months: 13 (tredicesima only, Art. 57)."""
+        ccnl = load_ccnl("sanita-aran.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_sanita_aran_hourly_divisor(self) -> None:
+        """Hourly divisor: 156 (Art. 26 CCNL, 36h/week)."""
+        ccnl = load_ccnl("sanita-aran.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(156)
+
+    def test_sanita_aran_no_fixed_allowances(self) -> None:
+        """Conglobated model: all levels have no fixed allowances."""
+        ccnl = load_ccnl("sanita-aran.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_sanita_aran_tax_sector(self) -> None:
+        """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
+        ccnl = load_ccnl("sanita-aran.json")
+        assert ccnl.meta.tax_sector == TaxSector.PUBBLICA_AMMINISTRAZIONE
+
+    def test_sanita_aran_seniority_cadence(self) -> None:
+        """Seniority: maximum_count=0 (DEP non automatici, Art. 60)."""
+        ccnl = load_ccnl("sanita-aran.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 1
+        assert si.maximum_count == 0
