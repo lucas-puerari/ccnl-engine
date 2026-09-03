@@ -12,7 +12,7 @@
     { "income_up_to": "50000.00", "deduction": "0.00"    },
     { "income_up_to": null,       "deduction": "0.00"    }
   ],
-  "fixed_term_additional_rate": "0.014",
+  "fixed_term_additional_rate": "0.000",
   "inps": {
     "employee_tiers": [
       { "max_employees": null, "rate": "0.0880" }
@@ -34,7 +34,7 @@
     "IRPEF brackets: three-bracket structure per L. 199/2025 (Legge di Bilancio 2026); second bracket reduced from 35% to 33% effective 2026-01-01. Sterilization mechanism (Art. 1 co. 3-4 L. 199/2025) for redditi > 200,000 EUR is not modelled (SIMPLIFICATION).",
     "work_deduction_breakpoints: Art. 13 co. 1 TUIR, as modified by D.Lgs. 216/2023 and confirmed by L. 207/2024 (Legge di Bilancio 2025). Breakpoints represent the piecewise-linear deduction schedule: flat at EUR 1,955 for income <= 8,500; linear from 1,955 to 700 in the 8,500-28,000 range; linear from 700 to 0 in the 28,000-50,000 range; zero above 50,000. The EUR 65 additional deduction for redditi 25,000-35,000 (Art. 13 co. 1-bis TUIR) is not modelled (SIMPLIFICATION).",
     "SIMPLIFICATION: INPS rates for pubblici dipendenti (ex-INPDAP, CTPS): employee 8.80%, employer 24.20%. Source: kitech.it proxy (aliquote CTPS 2026). Verify against current INPS circular for exact rates; military/school/healthcare sub-funds may differ.",
-    "fixed_term_additional_rate: NASpI addizionale base rate 1.4% (employer-only) per Art. 2 co. 28 L. 92/2012. Application to PA fixed-term contracts is limited — use as conservative upper bound (SIMPLIFICATION).",
+    "fixed_term_additional_rate: 0.000 — Pubblica Amministrazione is explicitly excluded from the NASpI addizionale (lavoratori delle pubbliche amministrazioni are in the statutory exclusion list per INPS guidance; source: nexumstp.it citing INPS rules). PA fixed-term contracts do not attract the 1.4% addizionale that applies to private-sector employers.",
     "SIMPLIFICATION: apprentice block is a schema-required placeholder (same rates as employee/employer); apprendistato is not applicable to PA contracts under D.Lgs. 165/2001 and no CCNL track will reference these values."
   ]
 }

@@ -140,7 +140,7 @@
   "apprenticeship": [],
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "out_of_scope",
+    "layer_2": "partial",
     "layer_3": "out_of_scope",
     "notes": [
       "SOURCE: Stipendio tabellare annuo da Tabella A2 CCNL 23/12/2025 allegato ufficiale (notiziedellascuola.it). Valori fascia 0-8 anni da 1/1/2024.",
@@ -154,7 +154,7 @@
       "SOURCE: FUNZIONARIO_ED_ESPERTO — Tab A2 0-8: 25.488,37€/anno; incremento: 125,19€/mese.",
       "INFO: Platea ~1,2M: ~800k docenti (infanzia, primaria, secondaria I e II), ~230k ATA scuola, ~130k personale università e ricerca, ~80k AFAM (quifinanza.it).",
       "INFO: Indennità di funzione (IF) docenti: da ~200€ a ~313€/mese a seconda dell'ordine (da CCNL 23/12/2025). Non modellata come fixed_allowance per eterogeneità tra ordini (SIMPLIFICATION).",
-      "INFO: No apprendistato — D.Lgs. 165/2001. Layer 2 out_of_scope.",
+      "INFO: Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.",
       "INFO: Personale università, ricerca e AFAM: non modellato separatamente (trattamento retributivo distinto con sezioni specifiche nel CCNL). SIMPLIFICATION: unico JSON copre principalmente la scuola.",
       "SIMPLIFICATION: CNEL S305 confermato per comparto, include tutte le sezioni (scuola, università, ricerca, AFAM).",
       "SIMPLIFICATION: Hourly divisor 156 = 36h/settimana × 52/12. I docenti hanno orario cattedra (18h/settimana insegnamento), non direttamente comparabile. Il divisore si applica per l'hourly_rate indicativo.",
