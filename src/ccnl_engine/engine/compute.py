@@ -140,9 +140,13 @@ def compute(
         # it is the destination-level RAL, so the percentage still applies.
         gross_annual = money(negotiated_ral * (apprenticeship_pct or _ONE))
         gross_monthly = money(gross_annual / additional_months)
-
-    contribution_base = money(gross_annual - annual.excluded_from_contributions)
-    tfr_base = money(gross_annual - annual.excluded_from_tfr)
+        # The negotiated figure is already the full retribuzione annua lorda;
+        # CCNL-derived allowance exclusions don't apply to it.
+        contribution_base = gross_annual
+        tfr_base = gross_annual
+    else:
+        contribution_base = money(gross_annual - annual.excluded_from_contributions)
+        tfr_base = money(gross_annual - annual.excluded_from_tfr)
     rates = _contrib.resolve_rates(rules, employment, worker_category)
     inps_employee_annual = _contrib.inps_contribution(
         contribution_base, rates.employee_rate, rules
