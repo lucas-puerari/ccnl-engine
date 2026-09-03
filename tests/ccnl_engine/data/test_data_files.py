@@ -3625,3 +3625,69 @@ class TestLoadTerziarioConfesercenti:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 10
+
+
+class TestLoadTurismoFederalberghi:
+    """Tests for CCNL Turismo — Federalberghi/Faita (H052)."""
+
+    def test_turismo_federalberghi_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("turismo-federalberghi.json")
+        assert ccnl.meta.id == "turismo-federalberghi"
+        assert ccnl.meta.cnel_code == "H052"
+
+    def test_turismo_federalberghi_has_10_levels(self) -> None:
+        """Contract has exactly 10 levels: A, B, 1-6s, 6, 7."""
+        ccnl = load_ccnl("turismo-federalberghi.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 10
+        assert codes == {"A", "B", "1", "2", "3", "4", "5", "6s", "6", "7"}
+
+    def test_turismo_federalberghi_level4_salary_tranche1(self) -> None:
+        """Level 4 first tranche (lug 2024): 1620.69 EUR/month."""
+        ccnl = load_ccnl("turismo-federalberghi.json")
+        lv = ccnl.level_by_code("4")
+        assert lv.base_salary.value_at(date(2024, 7, 1)) == Decimal("1620.69")
+
+    def test_turismo_federalberghi_level4_salary_tranche3(self) -> None:
+        """Level 4 third tranche (mag 2026): 1695.69 EUR/month."""
+        ccnl = load_ccnl("turismo-federalberghi.json")
+        lv = ccnl.level_by_code("4")
+        assert lv.base_salary.value_at(date(2026, 5, 1)) == Decimal("1695.69")
+
+    def test_turismo_federalberghi_level_ordering(self) -> None:
+        """Level A is highest-order; level 7 is lowest-order."""
+        ccnl = load_ccnl("turismo-federalberghi.json")
+        orders = {lv.code: lv.order for lv in ccnl.levels}
+        assert orders["A"] == max(orders.values())
+        assert orders["7"] == min(orders.values())
+
+    def test_turismo_federalberghi_additional_months(self) -> None:
+        """Additional months: 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("turismo-federalberghi.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            14
+        )
+
+    def test_turismo_federalberghi_hourly_divisor(self) -> None:
+        """Hourly divisor: 172 (Art. 151 CCNL 2010, 40h/week)."""
+        ccnl = load_ccnl("turismo-federalberghi.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(172)
+
+    def test_turismo_federalberghi_no_fixed_allowances(self) -> None:
+        """Conglobated model: all levels have no fixed allowances."""
+        ccnl = load_ccnl("turismo-federalberghi.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_turismo_federalberghi_tax_sector(self) -> None:
+        """Contract declares TERZIARIO tax sector."""
+        ccnl = load_ccnl("turismo-federalberghi.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_turismo_federalberghi_seniority_cadence(self) -> None:
+        """Seniority: triennale (36 months), maximum 6 scatti."""
+        ccnl = load_ccnl("turismo-federalberghi.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 6

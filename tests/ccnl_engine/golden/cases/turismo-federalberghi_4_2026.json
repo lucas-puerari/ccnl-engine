@@ -1,0 +1,53 @@
+{
+  "_description": "Golden case: CCNL Turismo Federalberghi/Faita (H052), Level 4, 2026-05-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "mag-26 tranche: livello 4 = 1695.69 EUR/month (base 1550.69 + cumulative increases from rinnovo 2024).",
+    "Conglobated model: paga base + contingenza in unica voce (tabella rinnovo 2014 + aumenti 2024).",
+    "Additional months: 14 (tredicesima Art. 160 + quattordicesima Art. 161 rinnovo 2024).",
+    "Hourly divisor: 172 (Art. 151 CCNL 2010, 40h/week). Verify: 1695.69 / 172 = 9.86 EUR/hr.",
+    "INPS employer rate from 2026-terziario.json (terziario sector, <=50 employees).",
+    "Seniority: 0.00 — seniority_count=0, triennale cadence (36m), max 6 scatti.",
+    "IRPEF 2026 brackets from 2026-terziario.json.",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "turismo-federalberghi.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "4",
+    "as_of": "2026-05-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "turismo-federalberghi",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1695.69",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1695.69",
+    "gross_annual": "23739.66",
+    "hourly_rate": "9.86",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2181.67",
+    "inps_employer_annual": "6879.75",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1758.49",
+    "taxable_income": "21557.99",
+    "irpef_gross": "4958.34",
+    "work_income_deduction": "974.19",
+    "irpef_net": "3984.15",
+    "net_annual": "17573.84",
+    "net_monthly": "1255.27",
+    "employer_cost_annual": "32377.90"
+  }
+}

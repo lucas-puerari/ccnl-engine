@@ -89,6 +89,7 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 37 | Pubblici Esercizi, Ristorazione Collettiva e Turismo — FIPE/ANGEM | Terziario | ✅ | ✅ | — |
 | 38 | Agenzie di Viaggio e Turismo — Fiavet/Confcommercio | Terziario | ✅ | ✅ | — |
 | 39 | Terziario Distribuzione e Servizi — Confesercenti | Terziario | ✅ | ✅ | — |
+| 40 | Turismo — Federalberghi/Faita | Terziario | ✅ | ✅ | — |
 
 ## What is not modelled
 
