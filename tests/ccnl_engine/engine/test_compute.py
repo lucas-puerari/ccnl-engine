@@ -87,8 +87,8 @@ class TestComputeValidation:
             compute(_CCNL, "4", _DATE, _RULES, _PERMANENT, ad_personam_monthly=_D(-1))
 
     def test_unknown_level_code_raises(self) -> None:
-        """Unknown level_code must raise KeyError."""
-        with pytest.raises(KeyError, match="NOPE"):
+        """Unknown level_code must raise ValueError."""
+        with pytest.raises(ValueError, match="NOPE"):
             compute(_CCNL, "NOPE", _DATE, _RULES, _PERMANENT)
 
     def test_seniority_count_negative_raises(self) -> None:
@@ -549,8 +549,8 @@ class TestComputeApprenticePercentage:
             )
 
     def test_unknown_track_name_raises(self) -> None:
-        """An unknown track name raises KeyError."""
-        with pytest.raises(KeyError, match="no apprenticeship track named 'nope'"):
+        """An unknown track name raises ValueError."""
+        with pytest.raises(ValueError, match="no apprenticeship track named 'nope'"):
             compute(
                 _CCNL, "4", _DATE, _RULES, Apprentice(months_elapsed=0, track="nope")
             )

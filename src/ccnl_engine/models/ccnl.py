@@ -292,34 +292,34 @@ class CCNL(BaseModel):
         return self
 
     def level_by_code(self, level_code: str) -> Level:
-        """Return the level with the given code, or raise ``KeyError``.
+        """Return the level with the given code, or raise ``ValueError``.
 
         Returns:
             The Level matching the given code.
 
         Raises:
-            KeyError: If no level with the given code exists.
+            ValueError: If no level with the given code exists.
         """
         for lv in self.levels:
             if lv.code == level_code:
                 return lv
         msg = f"level_code {level_code!r} not found in CCNL {self.meta.id!r}"
-        raise KeyError(msg)
+        raise ValueError(msg)
 
     def level_by_order(self, order: int) -> Level:
-        """Return the level with the given order, or raise ``KeyError``.
+        """Return the level with the given order, or raise ``ValueError``.
 
         Returns:
             The Level matching the given order.
 
         Raises:
-            KeyError: If no level with the given order exists.
+            ValueError: If no level with the given order exists.
         """
         for lv in self.levels:
             if lv.order == order:
                 return lv
         msg = f"no level with order {order} in CCNL {self.meta.id!r}"
-        raise KeyError(msg)
+        raise ValueError(msg)
 
     def apprenticeship_tracks_for(self, level_code: str) -> list[ApprenticeshipTrack]:
         """Return every apprenticeship track whose destinations include a level.
@@ -330,19 +330,19 @@ class CCNL(BaseModel):
         return [t for t in self.apprenticeship if level_code in t.destination_levels]
 
     def apprenticeship_track_named(self, name: str) -> ApprenticeshipTrack:
-        """Return the apprenticeship track with the given name or raise ``KeyError``.
+        """Return the apprenticeship track with the given name or raise ``ValueError``.
 
         Returns:
             The ApprenticeshipTrack with the given name.
 
         Raises:
-            KeyError: If no track with the given name exists.
+            ValueError: If no track with the given name exists.
         """
         for track in self.apprenticeship:
             if track.name == name:
                 return track
         msg = f"no apprenticeship track named {name!r} in CCNL {self.meta.id!r}"
-        raise KeyError(msg)
+        raise ValueError(msg)
 
     def _assert_unique_orders(self) -> None:
         orders = [lv.order for lv in self.levels]
@@ -404,7 +404,7 @@ class CCNL(BaseModel):
             for code in track.destination_levels:
                 try:
                     dest = self.level_by_code(code)
-                except KeyError:
+                except ValueError:
                     msg = (
                         f"apprenticeship track {track.name!r} references "
                         f"destination level {code!r} which does not exist"
@@ -418,7 +418,7 @@ class CCNL(BaseModel):
             ):
                 try:
                     self.level_by_code(track.reference_level)
-                except KeyError:
+                except ValueError:
                     msg = (
                         f"apprenticeship track {track.name!r} references "
                         f"reference_level {track.reference_level!r} which does not "
@@ -433,7 +433,7 @@ class CCNL(BaseModel):
             target_order = dest.order - period.levels_below
             try:
                 self.level_by_order(target_order)
-            except KeyError:
+            except ValueError:
                 msg = (
                     f"apprenticeship track {track.name!r}: no level with "
                     f"order {target_order} ({period.levels_below} below "
