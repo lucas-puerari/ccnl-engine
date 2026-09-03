@@ -3905,3 +3905,163 @@ class TestLoadSanitaAran:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 1
         assert si.maximum_count == 0
+
+
+class TestLoadDirigenzaSanitariaMedicoVeterinariaAran:
+    """Tests for CCNL Area Sanità 2022-2024 — Dirigenti Medici e Vet (S225)."""
+
+    def test_dirigenza_sanitaria_medico_veterinaria_aran_loads(self) -> None:
+        """File loads and has correct id and CNEL code."""
+        ccnl = load_ccnl("dirigenza-sanitaria-medico-veterinaria-aran.json")
+        assert ccnl.meta.id == "dirigenza-sanitaria-medico-veterinaria-aran"
+        assert ccnl.meta.cnel_code == "S225"
+
+    def test_dirigenza_sanitaria_medico_veterinaria_aran_has_1_level(
+        self,
+    ) -> None:
+        """Contract has exactly 1 level (DIRIGENTE)."""
+        ccnl = load_ccnl("dirigenza-sanitaria-medico-veterinaria-aran.json")
+        assert len(ccnl.levels) == 1
+        assert {lv.code for lv in ccnl.levels} == {"DIRIGENTE"}
+
+    def test_dirigenza_sanitaria_medico_veterinaria_aran_salary_tranche1(
+        self,
+    ) -> None:
+        """DIRIGENTE first tranche (2019-12-19): 3616.60 EUR/month."""
+        ccnl = load_ccnl("dirigenza-sanitaria-medico-veterinaria-aran.json")
+        lv = ccnl.level_by_code("DIRIGENTE")
+        assert lv.base_salary.value_at(date(2019, 12, 19)) == Decimal("3616.60")
+
+    def test_dirigenza_sanitaria_medico_veterinaria_aran_salary_tranche2(
+        self,
+    ) -> None:
+        """DIRIGENTE second tranche (1/1/2024): 3846.60 EUR/month."""
+        ccnl = load_ccnl("dirigenza-sanitaria-medico-veterinaria-aran.json")
+        lv = ccnl.level_by_code("DIRIGENTE")
+        assert lv.base_salary.value_at(date(2024, 1, 1)) == Decimal("3846.60")
+
+    def test_dirigenza_sanitaria_medico_veterinaria_aran_level_ordering(
+        self,
+    ) -> None:
+        """DIRIGENTE is both highest-order and lowest-order (single level)."""
+        ccnl = load_ccnl("dirigenza-sanitaria-medico-veterinaria-aran.json")
+        orders = {lv.code: lv.order for lv in ccnl.levels}
+        assert orders["DIRIGENTE"] == max(orders.values())
+        assert orders["DIRIGENTE"] == min(orders.values())
+
+    def test_dirigenza_sanitaria_medico_veterinaria_aran_additional_months(
+        self,
+    ) -> None:
+        """Additional months: 13 (Art. 11 — 'per 13 mensilità')."""
+        ccnl = load_ccnl("dirigenza-sanitaria-medico-veterinaria-aran.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_dirigenza_sanitaria_medico_veterinaria_aran_hourly_divisor(
+        self,
+    ) -> None:
+        """Hourly divisor: 165 (38h/week approximation, SIMPLIFICATION)."""
+        ccnl = load_ccnl("dirigenza-sanitaria-medico-veterinaria-aran.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(165)
+
+    def test_dirigenza_sanitaria_medico_veterinaria_aran_specificita_allowance(
+        self,
+    ) -> None:
+        """DIRIGENTE has one fixed allowance: specificita_medico_veterinaria."""
+        ccnl = load_ccnl("dirigenza-sanitaria-medico-veterinaria-aran.json")
+        lv = ccnl.level_by_code("DIRIGENTE")
+        assert len(lv.fixed_allowances) == 1
+        assert lv.fixed_allowances[0].code == "specificita_medico_veterinaria"
+        assert lv.fixed_allowances[0].monthly.value_at(date(2026, 1, 1)) == Decimal(
+            "728.15"
+        )
+
+    def test_dirigenza_sanitaria_medico_veterinaria_aran_tax_sector(self) -> None:
+        """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
+        ccnl = load_ccnl("dirigenza-sanitaria-medico-veterinaria-aran.json")
+        assert ccnl.meta.tax_sector == TaxSector.PUBBLICA_AMMINISTRAZIONE
+
+    def test_dirigenza_sanitaria_medico_veterinaria_aran_seniority_cadence(
+        self,
+    ) -> None:
+        """Seniority: maximum_count=0 (no automatic scatti per dirigenza)."""
+        ccnl = load_ccnl("dirigenza-sanitaria-medico-veterinaria-aran.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 1
+        assert si.maximum_count == 0
+
+
+class TestLoadDirigenzaSanitariaAreaSanitaAran:
+    """Tests for CCNL Area Sanità 2022-2024 — Dirigenti Sanitari (S225)."""
+
+    def test_dirigenza_sanitaria_area_sanita_aran_loads(self) -> None:
+        """File loads and has correct id and CNEL code."""
+        ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran.json")
+        assert ccnl.meta.id == "dirigenza-sanitaria-area-sanita-aran"
+        assert ccnl.meta.cnel_code == "S225"
+
+    def test_dirigenza_sanitaria_area_sanita_aran_has_1_level(self) -> None:
+        """Contract has exactly 1 level (DIRIGENTE)."""
+        ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran.json")
+        assert len(ccnl.levels) == 1
+        assert {lv.code for lv in ccnl.levels} == {"DIRIGENTE"}
+
+    def test_dirigenza_sanitaria_area_sanita_aran_salary_tranche1(self) -> None:
+        """DIRIGENTE first tranche (2019-12-19): 3616.60 EUR/month."""
+        ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran.json")
+        lv = ccnl.level_by_code("DIRIGENTE")
+        assert lv.base_salary.value_at(date(2019, 12, 19)) == Decimal("3616.60")
+
+    def test_dirigenza_sanitaria_area_sanita_aran_salary_tranche2(self) -> None:
+        """DIRIGENTE second tranche (1/1/2024): 3846.60 EUR/month."""
+        ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran.json")
+        lv = ccnl.level_by_code("DIRIGENTE")
+        assert lv.base_salary.value_at(date(2024, 1, 1)) == Decimal("3846.60")
+
+    def test_dirigenza_sanitaria_area_sanita_aran_level_ordering(self) -> None:
+        """DIRIGENTE is both highest-order and lowest-order (single level)."""
+        ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran.json")
+        orders = {lv.code: lv.order for lv in ccnl.levels}
+        assert orders["DIRIGENTE"] == max(orders.values())
+        assert orders["DIRIGENTE"] == min(orders.values())
+
+    def test_dirigenza_sanitaria_area_sanita_aran_additional_months(
+        self,
+    ) -> None:
+        """Additional months: 13 (tredicesima only)."""
+        ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_dirigenza_sanitaria_area_sanita_aran_hourly_divisor(self) -> None:
+        """Hourly divisor: 165 (38h/week, SIMPLIFICATION)."""
+        ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(165)
+
+    def test_dirigenza_sanitaria_area_sanita_aran_specificita_allowance(
+        self,
+    ) -> None:
+        """DIRIGENTE has one fixed allowance: specificita_sanitaria (124.19)."""
+        ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran.json")
+        lv = ccnl.level_by_code("DIRIGENTE")
+        assert len(lv.fixed_allowances) == 1
+        assert lv.fixed_allowances[0].code == "specificita_sanitaria"
+        assert lv.fixed_allowances[0].monthly.value_at(date(2026, 1, 1)) == Decimal(
+            "124.19"
+        )
+
+    def test_dirigenza_sanitaria_area_sanita_aran_tax_sector(self) -> None:
+        """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
+        ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran.json")
+        assert ccnl.meta.tax_sector == TaxSector.PUBBLICA_AMMINISTRAZIONE
+
+    def test_dirigenza_sanitaria_area_sanita_aran_seniority_cadence(
+        self,
+    ) -> None:
+        """Seniority: maximum_count=0 (no automatic scatti per dirigenza)."""
+        ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 1
+        assert si.maximum_count == 0

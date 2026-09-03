@@ -1,0 +1,52 @@
+{
+  "_description": "Golden case: CCNL Area Sanità 2022-2024 (S225) — Dirigenti Sanitari, Level DIRIGENTE, 2026-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Stipendio tabellare 2024: 3.846,60€/mese (50.005,77€/anno per 13 mensilità, Art. 11 CCNL 27.02.2026).",
+    "Indennità specificità sanitaria dal 31/12/2024: 124,19€/mese (1.614,46€/anno per 13 mensilità, Art. 15 comma 3).",
+    "Specificità: tfr_relevant=false → TFR calcolato solo sul tabellare (3.704,13 = 50.005,80/13,5).",
+    "INPS CTPS ex-INPDAP: employee 8.80%, employer 24.20% (kitech.it proxy 2026, SIMPLIFICATION).",
+    "IRPEF 2026: 23% fino a 28.000€, 33% da 28.000 a 50.000€, 43% oltre 50.000€.",
+    "Work income deduction = 0.00 (reddito imponibile > 28.000€, soglia del modello 2026 PA).",
+    "Retribuzione di posizione non modellata (SIMPLIFICATION: variabile per incarico aziendale)."
+  ],
+  "inputs": {
+    "ccnl_file": "dirigenza-sanitaria-area-sanita-aran.json",
+    "year": 2026,
+    "tax_sector": "pubblica_amministrazione",
+    "num_employees": 50,
+    "level_code": "DIRIGENTE",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "dirigenza-sanitaria-area-sanita-aran",
+    "level_code": "DIRIGENTE",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "3846.60",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "124.19",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "3970.79",
+    "gross_annual": "51620.27",
+    "hourly_rate": "24.07",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "4542.58",
+    "inps_employer_annual": "12492.11",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "3704.13",
+    "taxable_income": "47077.69",
+    "irpef_gross": "12735.64",
+    "work_income_deduction": "0.00",
+    "irpef_net": "12735.64",
+    "net_annual": "34342.05",
+    "net_monthly": "2641.70",
+    "employer_cost_annual": "67816.51"
+  }
+}
