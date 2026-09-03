@@ -39,15 +39,15 @@ class _MonthPeriod(Protocol):
 
 
 @dataclass(frozen=True)
-class _Chain:
+class _MonthlyPayChain:
     """Full-time monthly pay components of one level on one date."""
 
     base: Decimal
     seniority: Decimal
     allowances: tuple[tuple[Allowance, Decimal], ...]
 
-    def scaled(self, factor: Decimal) -> _Chain:
-        return _Chain(
+    def scaled(self, factor: Decimal) -> _MonthlyPayChain:
+        return _MonthlyPayChain(
             base=money(self.base * factor),
             seniority=money(self.seniority * factor),
             allowances=tuple((a, money(v * factor)) for a, v in self.allowances),
@@ -59,7 +59,7 @@ class _Chain:
 
 
 @dataclass(frozen=True)
-class _Annual:
+class _AnnualisedPay:
     gross: Decimal
     excluded_from_contributions: Decimal
     excluded_from_tfr: Decimal
@@ -160,7 +160,7 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
             raise ValueError(msg)
     else:
         chain_ft = _level_chain(
-            ccnl, level, count, request.roles, request.as_of, apprentice=False
+            ccnl, level, count, request.roles, request.as_of, is_apprentice=False
         )
 
     chain = chain_ft.scaled(factor)
@@ -209,9 +209,9 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
     # carichi di famiglia; no sterilization mechanism for incomes > EUR 200k
     # (Art. 1 c. 3-4 L. 199/2025).
     taxable_income = money(gross_annual - inps_employee_annual)
-    irpef_gross_val = _irpef.irpef_gross(taxable_income, rules)
-    work_income_deduction_val = _irpef.work_income_deduction(gross_annual, rules)
-    irpef_net = money(max(_ZERO, irpef_gross_val - work_income_deduction_val))
+    irpef_gross = _irpef.irpef_gross(taxable_income, rules)
+    work_income_deduction = _irpef.work_income_deduction(gross_annual, rules)
+    irpef_net = money(max(_ZERO, irpef_gross - work_income_deduction))
 
     net_annual = money(gross_annual - inps_employee_annual - irpef_net)
     net_monthly = money(net_annual / additional_months)
@@ -242,8 +242,8 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
         employer_funds_annual=employer_funds_annual,
         tfr_annual=tfr_annual,
         taxable_income=taxable_income,
-        irpef_gross=irpef_gross_val,
-        work_income_deduction=work_income_deduction_val,
+        irpef_gross=irpef_gross,
+        work_income_deduction=work_income_deduction,
         irpef_net=irpef_net,
         net_annual=net_annual,
         net_monthly=net_monthly,
@@ -291,7 +291,7 @@ def _validate_negotiated_ral(
 
 
 def _resolve_seniority_count(
-    rules: SeniorityIncrements,
+    seniority_rules: SeniorityIncrements,
     level_code: str,
     seniority_count: int | None,
     seniority_months: int | None,
@@ -308,15 +308,15 @@ def _resolve_seniority_count(
     if seniority_count is not None and seniority_months is not None:
         msg = "seniority_count and seniority_months are mutually exclusive"
         raise ValueError(msg)
-    maximum = rules.maximum_for(level_code)
+    maximum = seniority_rules.maximum_for(level_code)
     if seniority_months is not None:
         if seniority_months < 0:
             msg = f"seniority_months must be >= 0, got {seniority_months}"
             raise ValueError(msg)
-        first = rules.first_cadence_for(level_code)
+        first = seniority_rules.first_cadence_for(level_code)
         if seniority_months < first:
             return 0
-        count = 1 + (seniority_months - first) // rules.cadence_months
+        count = 1 + (seniority_months - first) // seniority_rules.cadence_months
         return min(count, maximum)
     count = seniority_count or 0
     if count < 0:
@@ -338,19 +338,19 @@ def _level_chain(
     roles: frozenset[str],
     as_of: date,
     *,
-    apprentice: bool,
-) -> _Chain:
-    rules = ccnl.parameters.seniority_increments
+    is_apprentice: bool,
+) -> _MonthlyPayChain:
+    seniority_rules = ccnl.parameters.seniority_increments
     # SIMPLIFICATION: apprentices accrue only the CCNL apprentice-specific
     # increment (if any); the level increments start after qualification.
-    if apprentice:
+    if is_apprentice:
         amount = (
-            rules.apprentice_amount.value_at(as_of)
-            if rules.apprentice_amount is not None
+            seniority_rules.apprentice_amount.value_at(as_of)
+            if seniority_rules.apprentice_amount is not None
             else _ZERO
         )
-    elif level.code in rules.amount_by_level:
-        amount = rules.amount_by_level[level.code].value_at(as_of)
+    elif level.code in seniority_rules.amount_by_level:
+        amount = seniority_rules.amount_by_level[level.code].value_at(as_of)
     else:
         amount = _ZERO
     allowances = tuple(
@@ -358,7 +358,7 @@ def _level_chain(
         for a in level.fixed_allowances
         if a.role is None or a.role in roles
     )
-    return _Chain(
+    return _MonthlyPayChain(
         base=level.base_salary.value_at(as_of),
         seniority=money(amount * count),
         allowances=allowances,
@@ -372,7 +372,7 @@ def _apprentice_chain(
     count: int,
     roles: frozenset[str],
     as_of: date,
-) -> tuple[_Chain, Decimal | None, str | None]:
+) -> tuple[_MonthlyPayChain, Decimal | None, str | None]:
     track = _select_track(ccnl, level, employment)
     period_index = _find_period_index(track.periods, employment.months_elapsed)
     if isinstance(track, ApprenticeshipPercentage):
@@ -381,11 +381,11 @@ def _apprentice_chain(
             if track.reference_level is not None
             else level
         )
-        chain = _level_chain(ccnl, reference, count, roles, as_of, apprentice=True)
+        chain = _level_chain(ccnl, reference, count, roles, as_of, is_apprentice=True)
         return chain, track.periods[period_index].percentage, None
     period = track.periods[period_index]
     pay_level = ccnl.level_by_order(level.order - period.levels_below)
-    chain = _level_chain(ccnl, pay_level, count, roles, as_of, apprentice=True)
+    chain = _level_chain(ccnl, pay_level, count, roles, as_of, is_apprentice=True)
     if period.midpoint_to_destination:
         # SIMPLIFICATION: the midpoint applies to the base salary only;
         # allowances are those of the pay level.
@@ -438,8 +438,8 @@ def _find_period_index(periods: Sequence[_MonthPeriod], months_elapsed: int) -> 
 
 
 def _annualise(
-    chain: _Chain, ad_personam: Decimal, additional_months: Decimal
-) -> _Annual:
+    chain: _MonthlyPayChain, ad_personam: Decimal, additional_months: Decimal
+) -> _AnnualisedPay:
     gross = (chain.base + chain.seniority + ad_personam) * additional_months
     excluded_contrib = _ZERO
     excluded_tfr = _ZERO
@@ -449,13 +449,13 @@ def _annualise(
             if allowance.months_per_year is not None
             else additional_months
         )
-        annual = monthly * months  # unrounded; rounding deferred to _Annual below
+        annual = monthly * months  # unrounded; rounding deferred to _annualise below
         gross += annual
         if not allowance.contribution_relevant:
             excluded_contrib += annual
         if not allowance.tfr_relevant:
             excluded_tfr += annual
-    return _Annual(
+    return _AnnualisedPay(
         gross=money(gross),
         excluded_from_contributions=money(excluded_contrib),
         excluded_from_tfr=money(excluded_tfr),
