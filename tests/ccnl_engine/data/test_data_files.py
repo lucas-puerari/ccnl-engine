@@ -4198,3 +4198,71 @@ class TestLoadDirigenzaFunzioniCentraliAran:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 1
         assert si.maximum_count == 0
+
+
+class TestLoadDirigenzaIstruzioneRicercaAran:
+    """Tests for CCNL Area Dirigenza Istruzione e Ricerca 2022-2024 (S325)."""
+
+    def test_dirigenza_istruzione_ricerca_aran_loads(self) -> None:
+        """File loads and has correct id and CNEL code."""
+        ccnl = load_ccnl("dirigenza-istruzione-ricerca-aran.json")
+        assert ccnl.meta.id == "dirigenza-istruzione-ricerca-aran"
+        assert ccnl.meta.cnel_code == "S325"
+
+    def test_dirigenza_istruzione_ricerca_aran_has_2_levels(self) -> None:
+        """Contract has exactly 2 levels: PRIMA_FASCIA and SECONDA_FASCIA."""
+        ccnl = load_ccnl("dirigenza-istruzione-ricerca-aran.json")
+        assert len(ccnl.levels) == 2
+        assert {lv.code for lv in ccnl.levels} == {
+            "PRIMA_FASCIA",
+            "SECONDA_FASCIA",
+        }
+
+    def test_dirigenza_istruzione_ricerca_aran_salary_tranche1(self) -> None:
+        """SECONDA_FASCIA first tranche (2021-01-01): 3616.59 EUR/month."""
+        ccnl = load_ccnl("dirigenza-istruzione-ricerca-aran.json")
+        lv = ccnl.level_by_code("SECONDA_FASCIA")
+        assert lv.base_salary.value_at(date(2021, 1, 1)) == Decimal("3616.59")
+
+    def test_dirigenza_istruzione_ricerca_aran_salary_tranche2(self) -> None:
+        """PRIMA_FASCIA second tranche (1/1/2024): 4908.30 EUR/month."""
+        ccnl = load_ccnl("dirigenza-istruzione-ricerca-aran.json")
+        lv = ccnl.level_by_code("PRIMA_FASCIA")
+        assert lv.base_salary.value_at(date(2024, 1, 1)) == Decimal("4908.30")
+
+    def test_dirigenza_istruzione_ricerca_aran_level_ordering(self) -> None:
+        """PRIMA_FASCIA has highest order; SECONDA_FASCIA has lowest."""
+        ccnl = load_ccnl("dirigenza-istruzione-ricerca-aran.json")
+        orders = {lv.code: lv.order for lv in ccnl.levels}
+        assert max(orders, key=lambda k: orders[k]) == "PRIMA_FASCIA"
+        assert min(orders, key=lambda k: orders[k]) == "SECONDA_FASCIA"
+
+    def test_dirigenza_istruzione_ricerca_aran_additional_months(self) -> None:
+        """Additional months: 13 (tredicesima only)."""
+        ccnl = load_ccnl("dirigenza-istruzione-ricerca-aran.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_dirigenza_istruzione_ricerca_aran_hourly_divisor(self) -> None:
+        """Hourly divisor: 165 (38h/week, SIMPLIFICATION)."""
+        ccnl = load_ccnl("dirigenza-istruzione-ricerca-aran.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(165)
+
+    def test_dirigenza_istruzione_ricerca_aran_no_fixed_allowances(self) -> None:
+        """Conglobated model: no fixed allowances (posizione variabile)."""
+        ccnl = load_ccnl("dirigenza-istruzione-ricerca-aran.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_dirigenza_istruzione_ricerca_aran_tax_sector(self) -> None:
+        """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
+        ccnl = load_ccnl("dirigenza-istruzione-ricerca-aran.json")
+        assert ccnl.meta.tax_sector == TaxSector.PUBBLICA_AMMINISTRAZIONE
+
+    def test_dirigenza_istruzione_ricerca_aran_seniority_cadence(self) -> None:
+        """Seniority: maximum_count=0 (no automatic scatti)."""
+        ccnl = load_ccnl("dirigenza-istruzione-ricerca-aran.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 1
+        assert si.maximum_count == 0
