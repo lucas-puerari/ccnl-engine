@@ -418,11 +418,11 @@ class TestYearRules2026Json:
         assert yr.apprentice.employer_rate_after == Decimal("0.1161")
 
     def test_artigianato_category_rates(self) -> None:
-        """Artigianato: lower employer rate for impiegati/quadri (no malattia)."""
+        """Artigianato: lower employer rate for impiegati/quadri (kitech.it source)."""
         yr = load_year_rules(2026, TaxSector.ARTIGIANATO, 10)
         assert yr.inps.employer_rate_by_category == {
-            "impiegato": Decimal("0.2610"),
-            "quadro": Decimal("0.2610"),
+            "impiegato": Decimal("0.2471"),
+            "quadro": Decimal("0.2471"),
         }
 
     def test_no_open_tier_raises(self) -> None:
