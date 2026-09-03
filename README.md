@@ -30,6 +30,24 @@ print(result.employer_cost_annual)  # → Decimal('...')
 
 ## CCNL coverage
 
+*Layers legend*
+
+| Layer | Meaning |
+| ----- | ------- |
+| **Layer 1** | base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months. |
+| **Layer 2** | part-time, fixed-term (NASpI *addizionale*), apprenticeship (percentage or under-classification). |
+| **Layer 3** | overtime, night/holiday premiums, leave accruals, sick-pay integrations. Out of scope for now. |
+
+*Status legend*
+
+| Symbol | Meaning |
+|--------|---------|
+| ✅ | Implemented |
+| ⚠️ | Partial (documented simplifications or missing sub-tracks) |
+| — | Out of scope |
+
+*CCNL Matrix*
+
 | # | CCNL | Sector | Layer 1 | Layer 2 | Layer 3 |
 |---|---|---|:---:|:---:|:---:|
 | 1 | Commercio — Confcommercio | Terziario | ✅ | ✅ | — |
@@ -69,22 +87,6 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 35 | Orafi e Argentieri — Federorafi | Industria | ✅ | ✅ | — |
 | 36 | Pelli e Cuoio Industria — Assopellettieri | Industria | ✅ | ✅ | — |
 | 37 | Pubblici Esercizi, Ristorazione Collettiva e Turismo — FIPE/ANGEM | Terziario | ✅ | ✅ | — |
-
-**Layer 1** — base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months.  
-**Layer 2** — part-time, fixed-term (NASpI *addizionale*), apprenticeship (percentage or under-classification).  
-**Layer 3** — overtime, night/holiday premiums, leave accruals, sick-pay integrations. Out of scope for now.
-
-✅ implemented · ⚠️ partial (documented simplifications or missing sub-tracks) · — out of scope
-
-## Design principles
-
-- **Data and engine are strictly separated.** CCNL economic values live in JSON files under `data/`; the engine reads them and knows nothing about any specific contract.
-- **Every monetary value is a time series.** No bare decimals — every value is a `TimeSeries` with explicit `valid_from` / `valid_until` dates.
-- **`Decimal` everywhere, never `float`.** Monetary values are strings in JSON, loaded as `Decimal` in Python.
-- **Single rounding point.** `money()` in `rounding.py`, `ROUND_HALF_UP` to 2 decimal places — the only place rounding occurs.
-- **Source traceability.** Every value in a data file is traceable to a primary source (official CCNL tables, CNEL archive). No value from blogs or secondary sources.
-- **Coverage declared explicitly.** Each data file carries a `coverage` block declaring what is implemented, partial, or out of scope.
-- **Every simplification is documented.** `# SIMPLIFICATION:` comments mark every approximation vs. full Italian payroll law.
 
 ## What is not modelled
 
