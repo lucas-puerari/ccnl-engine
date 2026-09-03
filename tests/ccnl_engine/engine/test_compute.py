@@ -87,8 +87,8 @@ class TestComputeValidation:
             compute(_CCNL, "4", _DATE, _RULES, _PERMANENT, ad_personam_monthly=_D(-1))
 
     def test_unknown_level_code_raises(self) -> None:
-        """Unknown level_code must raise KeyError."""
-        with pytest.raises(KeyError, match="NOPE"):
+        """Unknown level_code must raise ValueError."""
+        with pytest.raises(ValueError, match="NOPE"):
             compute(_CCNL, "NOPE", _DATE, _RULES, _PERMANENT)
 
     def test_seniority_count_negative_raises(self) -> None:
@@ -363,6 +363,33 @@ class TestComputeAllowances:
         assert r.tfr_annual == base.tfr_annual
         assert r.taxable_income == r.gross_annual - r.inps_employee_annual
 
+    def test_negotiated_ral_ignores_contribution_exclusions(self) -> None:
+        """negotiated_ral must not have CCNL allowance exclusions subtracted from it.
+
+        A negotiated RAL is the total retribuzione annua lorda agreed between
+        employer and employee — it replaces the CCNL chain entirely. Subtracting
+        CCNL-derived non-contributory allowances from it would understate the
+        contribution base (they were never included in the negotiated figure).
+        """
+        ccnl = _ccnl(**{
+            "levels.2.fixed_allowances": [
+                _allowance(
+                    "edr", "100.00", contribution_relevant=False, tfr_relevant=False
+                )
+            ]
+        })
+        ral = _D("12000.00")
+        r_with_exclusion = compute(
+            ccnl, "4", _DATE, _RULES, _PERMANENT, negotiated_ral=ral
+        )
+        r_clean = compute(_CCNL, "4", _DATE, _RULES, _PERMANENT, negotiated_ral=ral)
+
+        assert r_with_exclusion.gross_annual == ral
+        # Contribution and TFR bases must be identical regardless of CCNL allowances.
+        assert r_with_exclusion.inps_employee_annual == r_clean.inps_employee_annual
+        assert r_with_exclusion.inps_employer_annual == r_clean.inps_employer_annual
+        assert r_with_exclusion.tfr_annual == r_clean.tfr_annual
+
 
 # ---------------------------------------------------------------------------
 # Employer funds and category rates
@@ -614,8 +641,8 @@ class TestComputeApprenticePercentage:
             )
 
     def test_unknown_track_name_raises(self) -> None:
-        """An unknown track name raises KeyError."""
-        with pytest.raises(KeyError, match="no apprenticeship track named 'nope'"):
+        """An unknown track name raises ValueError."""
+        with pytest.raises(ValueError, match="no apprenticeship track named 'nope'"):
             compute(
                 _CCNL, "4", _DATE, _RULES, Apprentice(months_elapsed=0, track="nope")
             )

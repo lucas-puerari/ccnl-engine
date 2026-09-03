@@ -162,8 +162,16 @@ def compute(
         additional_months,
     )
 
-    contribution_base = money(gross_annual - annual.excluded_from_contributions)
-    tfr_base = money(gross_annual - annual.excluded_from_tfr)
+    # The negotiated figure is the full RAL; CCNL exclusions don't apply to it.
+    ral_override = negotiated_ral is not None or negotiated_destination_ral is not None
+    contribution_base = (
+        gross_annual
+        if ral_override
+        else money(gross_annual - annual.excluded_from_contributions)
+    )
+    tfr_base = (
+        gross_annual if ral_override else money(gross_annual - annual.excluded_from_tfr)
+    )
     rates = _contrib.resolve_rates(rules, employment, worker_category)
     inps_employee_annual = _contrib.inps_contribution(
         contribution_base, rates.employee_rate, rules

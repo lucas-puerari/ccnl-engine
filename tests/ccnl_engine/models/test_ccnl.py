@@ -145,13 +145,13 @@ class TestCCNLLevels:
         assert len(_validate(data).levels) == 3
 
     def test_level_lookup_helpers(self) -> None:
-        """level_by_code / level_by_order return the level or raise KeyError."""
+        """level_by_code / level_by_order return the level or raise ValueError."""
         ccnl = _validate(make_ccnl_dict())
         assert ccnl.level_by_code("3").order == 3
         assert ccnl.level_by_order(2).code == "2"
-        with pytest.raises(KeyError, match="NOPE"):
+        with pytest.raises(ValueError, match="NOPE"):
             ccnl.level_by_code("NOPE")
-        with pytest.raises(KeyError, match="order 9"):
+        with pytest.raises(ValueError, match="order 9"):
             ccnl.level_by_order(9)
 
 
@@ -284,7 +284,7 @@ class TestCCNLApprenticeshipTracks:
         assert [t.name for t in ccnl.apprenticeship_tracks_for("4")] == ["standard"]
         assert ccnl.apprenticeship_tracks_for("3") == []
         assert ccnl.apprenticeship_track_named("standard").name == "standard"
-        with pytest.raises(KeyError, match="no apprenticeship track named 'x'"):
+        with pytest.raises(ValueError, match="no apprenticeship track named 'x'"):
             ccnl.apprenticeship_track_named("x")
 
 
