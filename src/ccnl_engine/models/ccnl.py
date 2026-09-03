@@ -345,16 +345,10 @@ class CCNL(BaseModel):
         raise KeyError(msg)
 
     def _assert_unique_orders(self) -> None:
-        orders = [lv.order for lv in self.levels]
-        if len(orders) != len(set(orders)):
-            msg = f"level order values must be unique, got: {orders}"
-            raise ValueError(msg)
+        _assert_unique("order", [lv.order for lv in self.levels])
 
     def _assert_unique_codes(self) -> None:
-        codes = [lv.code for lv in self.levels]
-        if len(codes) != len(set(codes)):
-            msg = f"level code values must be unique, got: {codes}"
-            raise ValueError(msg)
+        _assert_unique("code", [lv.code for lv in self.levels])
 
     def _assert_seniority_level_codes(self) -> None:
         existing = {lv.code for lv in self.levels}
@@ -447,6 +441,12 @@ class CCNL(BaseModel):
         if status == "out_of_scope" and has_tracks:
             msg = "coverage.layer_2 is 'out_of_scope' but apprenticeship tracks exist"
             raise ValueError(msg)
+
+
+def _assert_unique(field: str, values: list[object]) -> None:
+    if len(values) != len(set(values)):
+        msg = f"level {field} values must be unique, got: {values}"
+        raise ValueError(msg)
 
 
 def _collect_transition_dates(levels: list[Level]) -> set[date]:
