@@ -31,16 +31,16 @@
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
-      "INFO: TEM CONGLOBATO: i valori in base_salary rappresentano il Trattamento Economico Minimo (TEM) totale = base minimo (Min) + IPO (Integrazione di Posizione Organizzativa, per livello) + EAR (Elemento Aggiuntivo della Retribuzione: A=190€, B=100€, C-F=0, fisso lungo tutto il contratto) + EDR (Elemento Distinto della Retribuzione, aggiunto dal 01/07/2027, per livello). fixed_allowances è vuoto per tutti i livelli.",
-      "INFO: FONTE PRIMARIA: tabelle TEM dalla fonte primaria Federchimica/Farmindustria (CCNL 2025-2028, firmato 15/04/2025): informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf. Il PDF contiene le tabelle degli incrementi (Min e IPO per tranche) e i valori assoluti TEM a ciascuna scadenza per tutti i 15 livelli.",
-      "INFO: TRANCHES MODELLATE: (1) Previgente (fine CCNL 2022-2025, valid_from 2025-06-01): Min+IPO+EAR dal PDF pagina 2 colonna 'Previgente'. (2) 1/7/2025: prima tranche CCNL 2025-2028. (3) 1/12/2025: seconda tranche. (4) 1/7/2026: terza tranche — verificata indipendentemente su kitech.it (CNEL B011), concordanza esatta. (5) 1/7/2027: quarta tranche + EDR (per livello, pagina 4 PDF). (6) 1/6/2028: quinta e ultima tranche.",
-      "INFO: EDR: dal 01/07/2027 si aggiunge l'Elemento Distinto della Retribuzione (EDR), importi mensili per livello: A1=39, A2=34, A3=33, B1=32, B2=30, C1=28, C2=27, D1=26, D2=25, D3=24, E1=22, E2=20, E3=19, E4=19, F=18. Il TEM modellato include già l'EDR nei periodi dal 01/07/2027.",
-      "INFO: IPO VARIABILE PER TRANCHE: l'IPO non è fisso tra le tranches ma riceve incrementi propri (tabella pagina 1 del PDF, colonne IPO per scadenza). I valori TEM sono calcolati sommando Min, IPO e EAR (e EDR dal 01/07/2027) per ciascuna tranche.",
-      "INFO: TRANCHES PRE-GIUGNO 2025 (CCNL 2022-2025, 5 tranches luglio 2022 - giugno 2025) sono fuori dalla finestra modellata: il PDF Federchimica riporta solo la colonna 'Previgente' come baseline.",
-      "INFO: SCATTI DI ANZIANITÀ aboliti dal 1° gennaio 2010; gli importi maturati fino al 2009 sono cristallizzati come superminimo individuale non assorbibile, da passare a compute() come ad_personam_monthly. maximum_count=0 e amount_by_level={}.",
-      "INFO: DIVISORE ORARIO: 175 h/mese (settore chimico-farmaceutico). Il divisore 173 si applica solo al sotto-settore ceramica e abrasivi.",
-      "INFO: MENSILITÀ: 13 (sola tredicesima). La quattordicesima è prevista solo nei sotto-settori lubrificanti/GPL, ceramica/abrasivi e coibentazione.",
-      "INFO: INPS: utilizza 2026-industria.json (settore industria standard). Codice CNEL: B011.",
+      "INFO: CONSOLIDATED TEM: the base_salary values represent the total Minimum Economic Treatment (TEM) = base minimum (Min) + IPO (Organisational Position Integration, per level) + EAR (Additional Pay Element: A=EUR 190, B=EUR 100, C-F=0, fixed throughout the contract) + EDR (Distinct Pay Element, added from 01/07/2027, per level). fixed_allowances is empty for all levels.",
+      "INFO: PRIMARY SOURCE: TEM tables from the Federchimica/Farmindustria primary source (CCNL 2025-2028, signed 15/04/2025): informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf. The PDF contains the increment tables (Min and IPO per tranche) and the absolute TEM values at each due date for all 15 levels.",
+      "INFO: MODELLED TRANCHES: (1) Pre-existing (end of CCNL 2022-2025, valid_from 2025-06-01): Min+IPO+EAR from PDF page 2 column 'Previgente'. (2) 1/7/2025: first tranche CCNL 2025-2028. (3) 1/12/2025: second tranche. (4) 1/7/2026: third tranche — independently verified on kitech.it (CNEL B011), exact match. (5) 1/7/2027: fourth tranche + EDR (per level, PDF page 4). (6) 1/6/2028: fifth and final tranche.",
+      "INFO: EDR: from 01/07/2027 the Distinct Pay Element (EDR) is added, monthly amounts per level: A1=39, A2=34, A3=33, B1=32, B2=30, C1=28, C2=27, D1=26, D2=25, D3=24, E1=22, E2=20, E3=19, E4=19, F=18. The modelled TEM already includes EDR in the periods from 01/07/2027.",
+      "INFO: IPO VARIES BY TRANCHE: the IPO is not fixed across tranches but receives its own increments (table on PDF page 1, IPO columns per due date). TEM values are calculated by summing Min, IPO, and EAR (and EDR from 01/07/2027) for each tranche.",
+      "INFO: PRE-JUNE-2025 TRANCHES (CCNL 2022-2025, 5 tranches July 2022 - June 2025) are outside the modelled window: the Federchimica PDF reports only the 'Previgente' column as the baseline.",
+      "INFO: SENIORITY INCREMENTS abolished from 1 January 2010; amounts accrued up to 2009 are crystallised as a non-absorbable personal supplement, to be passed to compute() as ad_personam_monthly. maximum_count=0 and amount_by_level={}.",
+      "INFO: HOURLY DIVISOR: 175 h/month (chemical-pharmaceutical sector). The 173 divisor applies only to the ceramics and abrasives sub-sector.",
+      "INFO: ADDITIONAL MONTHS: 13 (thirteenth month only). The fourteenth month applies only to the lubricants/LPG, ceramics/abrasives, and insulation sub-sectors.",
+      "INFO: INPS: uses 2026-industria.json (standard industry sector). CNEL code: B011.",
       "INFO: APPRENTICESHIP (sotto-inquadramento, Art. 3 CCNL): single track 'professionalizzante' covers all eligible destinations E3–B1 (10 levels). Rule: 0–18m = 2 levels below dest; 18m+ = 1 level below dest (two equal periods, total 36m typical). Excluded: F (Art. 3 explicit), E4 (2-below not resolvable), A3/A2/A1 (management tier, not standard apprenticeship). Prior track 'destinazione_D1' had levels_below=3 (error); corrected to 2. Source: Art. 3 CCNL Federchimica (lavoro-economia.it B011); informatori.it sintesi apprendistato B011."
     ]
   },
@@ -65,7 +65,7 @@
     {
       "code": "F",
       "order": 1,
-      "description": "F — mansioni semplici di tipo esecutivo e di servizio",
+      "description": "F — simple executive and service duties",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "1698.46" },
@@ -81,7 +81,7 @@
     {
       "code": "E4",
       "order": 2,
-      "description": "E — operatore generico, 4° grado",
+      "description": "E — generic operator, 4th grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "1777.04" },
@@ -97,7 +97,7 @@
     {
       "code": "E3",
       "order": 3,
-      "description": "E — operatore specializzato generico, 3° grado",
+      "description": "E — generic specialised operator, 3rd grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "1822.29" },
@@ -113,7 +113,7 @@
     {
       "code": "E2",
       "order": 4,
-      "description": "E — operatore di produzione base, 2° grado",
+      "description": "E — basic production operator, 2nd grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "1887.14" },
@@ -129,7 +129,7 @@
     {
       "code": "E1",
       "order": 5,
-      "description": "E — operatore GMP di produzione, 1° grado",
+      "description": "E — GMP production operator, 1st grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "1985.28" },
@@ -145,7 +145,7 @@
     {
       "code": "D3",
       "order": 6,
-      "description": "D — impiegato / operaio polivalente, 3° grado",
+      "description": "D — clerical employee / multi-skilled worker, 3rd grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2086.76" },
@@ -161,7 +161,7 @@
     {
       "code": "D2",
       "order": 7,
-      "description": "D — operatore di distribuzione, ispettore QA, 2° grado",
+      "description": "D — distribution operator, QA inspector, 2nd grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2140.77" },
@@ -177,7 +177,7 @@
     {
       "code": "D1",
       "order": 8,
-      "description": "D — caposquadra, operatore polivalente senior, 1° grado",
+      "description": "D — team leader, senior multi-skilled operator, 1st grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2239.26" },
@@ -193,7 +193,7 @@
     {
       "code": "C2",
       "order": 9,
-      "description": "C — impiegato specialista, addetto QC, contabile senior, 2° grado",
+      "description": "C — specialist clerk, QC officer, senior accountant, 2nd grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2313.86" },
@@ -209,7 +209,7 @@
     {
       "code": "C1",
       "order": 10,
-      "description": "C — capoturno, coordinatore amministrativo, tecnico specialista, 1° grado",
+      "description": "C — shift supervisor, administrative coordinator, specialist technician, 1st grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2400.65" },
@@ -225,7 +225,7 @@
     {
       "code": "B2",
       "order": 11,
-      "description": "B — ricercatore, responsabile manutenzione, programmatore senior, 2° grado",
+      "description": "B — researcher, maintenance manager, senior programmer, 2nd grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2640.61" },
@@ -241,7 +241,7 @@
     {
       "code": "B1",
       "order": 12,
-      "description": "B — ISF, product manager, responsabile sicurezza, 1° grado",
+      "description": "B — ISF, product manager, safety officer, 1st grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2733.98" },
@@ -257,7 +257,7 @@
     {
       "code": "A3",
       "order": 13,
-      "description": "A (Quadri) — coordinatore d'area, responsabile di reparto, 3° grado",
+      "description": "A (Quadri) — area coordinator, department head, 3rd grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2961.22" },
@@ -274,7 +274,7 @@
     {
       "code": "A2",
       "order": 14,
-      "description": "A (Quadri) — responsabile di laboratorio, esperto sistemi complessi, 2° grado",
+      "description": "A (Quadri) — laboratory manager, complex systems expert, 2nd grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "3023.59" },
@@ -291,7 +291,7 @@
     {
       "code": "A1",
       "order": 15,
-      "description": "A (Quadri) — manager QA/HSE/IT, scienziato senior, responsabile di stabilimento, 1° grado",
+      "description": "A (Quadri) — QA/HSE/IT manager, senior scientist, plant manager, 1st grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "3258.48" },

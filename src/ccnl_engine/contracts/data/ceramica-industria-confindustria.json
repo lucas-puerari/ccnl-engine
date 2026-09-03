@@ -31,19 +31,19 @@
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
-      "INFO: SALARY MODEL: minimo tabellare conglobato (paga base unica che assorbe contingenza e EDR) + IPO (Indennità di Posizione Organizzativa) separata come fixed_allowance per i livelli che la percepiscono. Fonte: tabelle ufficiali FILCTEM-CGIL (PDF firmato 22/07/2024, sub-settore PIASTRELLE). I MATERIALI REFRATTARI hanno tabelle identiche alle PIASTRELLE.",
-      "INFO: HOURLY_DIVISOR: 173 ore/mese (40h settimane × 52/12 = 173,33 arrotondato). Verificato su lavoro-economia.it per il CCNL B122.",
-      "SIMPLIFICATION: SENIORITY: 5 scatti biennali (cadenza 24 mesi, massimo 5). Importi da kitech.it (B122, livelli primari). Importi B2, C2, C3, D2, D3, E2 assunti uguali a B1, C1, D1, E1 rispettivamente (stesso minimo tabellare, pratica standard CCNL ceramica); non confermati da fonte primaria.",
-      "SIMPLIFICATION: APPRENDISTATO: percentuale 95% su destinazione (base + IPO). Percentuale da fonti aggregatorie pre-rinnovo 2024; il rinnovo 22/07/2024 non risulta aver modificato la struttura dell'apprendistato secondo le stesse fonti. Il PDF principale del CCNL è scansionato e non estraibile. Durata massima legale (D.Lgs 81/2015 Art. 44).",
-      "SIMPLIFICATION: SCATTO APPRENDISTATO: apprentice_amount=null. Nessuna conferma da fonte primaria accessibile per B122 industria. Il valore €6 da gen 2025 è confermato solo per il CCNL Ceramica Artigianato (V751), non per B122.",
-      "INFO: SUB-SETTORI: il CCNL B122 copre Piastrelle (porcellana e gres), Materiali Refrattari, Ceramica Sanitaria e Stoviglieria, Ceramiche artistiche e tradizionali. Questo file modella il sub-settore PIASTRELLE (e REFRATTARI, che ha tabelle identiche). Ceramica Sanitaria ha struttura retributiva differente (IPO significativamente più alta) e non è modellata qui."
+      "INFO: SALARY MODEL: conglobated tabular minimum (single base pay absorbing contingency and EDR) + IPO (Organisational Position Allowance) as a separate fixed_allowance for the levels that receive it. Source: official FILCTEM-CGIL tables (PDF signed 22/07/2024, PIASTRELLE sub-sector). REFRACTORY MATERIALS has tables identical to PIASTRELLE.",
+      "INFO: HOURLY_DIVISOR: 173 hours/month (40h weeks × 52/12 = 173.33 rounded). Verified on lavoro-economia.it for CCNL B122.",
+      "SIMPLIFICATION: SENIORITY: 5 biennial increments (cadence 24 months, maximum 5). Amounts from kitech.it (B122, primary levels). Amounts for B2, C2, C3, D2, D3, E2 assumed equal to B1, C1, D1, E1 respectively (same tabular minimum, standard practice for CCNL ceramica); not confirmed from a primary source.",
+      "SIMPLIFICATION: APPRENTICESHIP: 95% percentage on destination (base + IPO). Percentage from pre-2024-renewal aggregator sources; the 22/07/2024 renewal does not appear to have changed the apprenticeship structure according to the same sources. The main CCNL PDF is scanned and cannot be extracted. Maximum legal duration (D.Lgs 81/2015 Art. 44).",
+      "SIMPLIFICATION: APPRENTICE INCREMENT: apprentice_amount=null. No confirmation from any accessible primary source for B122 industria. The EUR 6 value from Jan 2025 is confirmed only for CCNL Ceramica Artigianato (V751), not for B122.",
+      "INFO: SUB-SECTORS: CCNL B122 covers Tiles (porcelain and stoneware), Refractory Materials, Sanitary Ceramics and Tableware, and Artistic and Traditional Ceramics. This file models the PIASTRELLE sub-sector (and REFRATTARI, which has identical tables). Sanitary Ceramics has a different pay structure (significantly higher IPO) and is not modelled here."
     ]
   },
   "levels": [
     {
       "code": "F",
       "order": 1,
-      "description": "Livello F — lavoratori con mansioni di primo ingresso e operazioni elementari",
+      "description": "Level F — entry-level workers performing basic operations",
       "fixed_allowances": [],
       "base_salary": {
         "periods": [
@@ -57,7 +57,7 @@
     {
       "code": "E2",
       "order": 2,
-      "description": "Livello E2 — lavoratori con compiti esecutivi, mansioni operative standardizzate",
+      "description": "Level E2 — workers with executive duties, standardised operative tasks",
       "fixed_allowances": [],
       "base_salary": {
         "periods": [
@@ -71,11 +71,11 @@
     {
       "code": "E1",
       "order": 3,
-      "description": "Livello E1 — lavoratori con compiti esecutivi e IPO di posizione (art. CCNL IPO)",
+      "description": "Level E1 — workers with executive duties and position IPO allowance (CCNL IPO art.)",
       "fixed_allowances": [
         {
           "code": "IPO",
-          "description": "Indennità di Posizione Organizzativa (art. CCNL B122, Tab. PIASTRELLE)",
+          "description": "Organisational Position Allowance (CCNL B122 art., PIASTRELLE table)",
           "monthly": {
             "periods": [
               {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "76.37"},
@@ -98,7 +98,7 @@
     {
       "code": "D3",
       "order": 4,
-      "description": "Livello D3 — lavoratori con funzioni operative di media complessità, senza IPO",
+      "description": "Level D3 — workers with medium-complexity operative functions, without IPO",
       "fixed_allowances": [],
       "base_salary": {
         "periods": [
@@ -112,11 +112,11 @@
     {
       "code": "D2",
       "order": 5,
-      "description": "Livello D2 — lavoratori con funzioni operative di media complessità e IPO ridotta",
+      "description": "Level D2 — workers with medium-complexity operative functions and reduced IPO",
       "fixed_allowances": [
         {
           "code": "IPO",
-          "description": "Indennità di Posizione Organizzativa (art. CCNL B122, Tab. PIASTRELLE)",
+          "description": "Organisational Position Allowance (CCNL B122 art., PIASTRELLE table)",
           "monthly": {
             "periods": [
               {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "57.95"},
@@ -139,11 +139,11 @@
     {
       "code": "D1",
       "order": 6,
-      "description": "Livello D1 — lavoratori con funzioni operative di media complessità e IPO piena",
+      "description": "Level D1 — workers with medium-complexity operative functions and full IPO",
       "fixed_allowances": [
         {
           "code": "IPO",
-          "description": "Indennità di Posizione Organizzativa (art. CCNL B122, Tab. PIASTRELLE)",
+          "description": "Organisational Position Allowance (CCNL B122 art., PIASTRELLE table)",
           "monthly": {
             "periods": [
               {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "150.04"},
@@ -166,7 +166,7 @@
     {
       "code": "C3",
       "order": 7,
-      "description": "Livello C3 — lavoratori con responsabilità tecnica o gestionale di base, senza IPO",
+      "description": "Level C3 — workers with basic technical or managerial responsibility, without IPO",
       "fixed_allowances": [],
       "base_salary": {
         "periods": [
@@ -180,11 +180,11 @@
     {
       "code": "C2",
       "order": 8,
-      "description": "Livello C2 — lavoratori con responsabilità tecnica o gestionale di base e IPO ridotta",
+      "description": "Level C2 — workers with basic technical or managerial responsibility and reduced IPO",
       "fixed_allowances": [
         {
           "code": "IPO",
-          "description": "Indennità di Posizione Organizzativa (art. CCNL B122, Tab. PIASTRELLE)",
+          "description": "Organisational Position Allowance (CCNL B122 art., PIASTRELLE table)",
           "monthly": {
             "periods": [
               {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "65.82"},
@@ -207,11 +207,11 @@
     {
       "code": "C1",
       "order": 9,
-      "description": "Livello C1 — lavoratori con responsabilità tecnica o gestionale di base e IPO piena",
+      "description": "Level C1 — workers with basic technical or managerial responsibility and full IPO",
       "fixed_allowances": [
         {
           "code": "IPO",
-          "description": "Indennità di Posizione Organizzativa (art. CCNL B122, Tab. PIASTRELLE)",
+          "description": "Organisational Position Allowance (CCNL B122 art., PIASTRELLE table)",
           "monthly": {
             "periods": [
               {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "116.89"},
@@ -234,7 +234,7 @@
     {
       "code": "B2",
       "order": 10,
-      "description": "Livello B2 — lavoratori con elevata professionalità o specializzazione, senza IPO",
+      "description": "Level B2 — workers with high professional skill or specialisation, without IPO",
       "fixed_allowances": [],
       "base_salary": {
         "periods": [
@@ -248,11 +248,11 @@
     {
       "code": "B1",
       "order": 11,
-      "description": "Livello B1 — lavoratori con elevata professionalità o specializzazione e IPO piena",
+      "description": "Level B1 — workers with high professional skill or specialisation and full IPO",
       "fixed_allowances": [
         {
           "code": "IPO",
-          "description": "Indennità di Posizione Organizzativa (art. CCNL B122, Tab. PIASTRELLE)",
+          "description": "Organisational Position Allowance (CCNL B122 art., PIASTRELLE table)",
           "monthly": {
             "periods": [
               {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "138.35"},
@@ -275,7 +275,7 @@
     {
       "code": "A",
       "order": 12,
-      "description": "Livello A — quadri e lavoratori con massima autonomia e responsabilità direttiva",
+      "description": "Level A — quadri and workers with maximum autonomy and managerial responsibility",
       "fixed_allowances": [],
       "base_salary": {
         "periods": [

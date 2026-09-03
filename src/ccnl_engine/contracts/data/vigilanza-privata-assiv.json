@@ -121,7 +121,7 @@
     {
       "code": "6",
       "order": 1,
-      "description": "6° livello GPG — guardia giurata, mansioni di base",
+      "description": "GPG Grade 6 — security guard, basic duties",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1108.06" },
@@ -137,7 +137,7 @@
     {
       "code": "5",
       "order": 2,
-      "description": "5° livello GPG — guardia giurata con qualifica specifica",
+      "description": "GPG Grade 5 — security guard with specific qualification",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1261.87" },
@@ -153,7 +153,7 @@
     {
       "code": "4",
       "order": 3,
-      "description": "4° livello GPG — guardia giurata qualificata (livello di riferimento contrattuale)",
+      "description": "GPG Grade 4 — qualified security guard (contractual reference level)",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1328.88" },
@@ -169,7 +169,7 @@
     {
       "code": "3",
       "order": 4,
-      "description": "3° livello GPG — guardia giurata specializzata",
+      "description": "GPG Grade 3 — specialist security guard",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1483.31" },
@@ -185,7 +185,7 @@
     {
       "code": "2",
       "order": 5,
-      "description": "2° livello GPG — guardia giurata altamente specializzata",
+      "description": "GPG Grade 2 — highly specialist security guard",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1660.38" },
@@ -201,7 +201,7 @@
     {
       "code": "1",
       "order": 6,
-      "description": "1° livello GPG — guardia giurata con responsabilità operative",
+      "description": "GPG Grade 1 — security guard with operational responsibilities",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1772.60" },
@@ -217,7 +217,7 @@
     {
       "code": "Q",
       "order": 7,
-      "description": "Quadro GPG — massima responsabilità operativa e gestionale",
+      "description": "GPG Senior Manager (Quadro) — maximum operational and managerial responsibility",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "2049.03" },

@@ -131,7 +131,7 @@
     {
       "code": "B4",
       "order": 1,
-      "description": "Livello B4 — lavoratore generico e di primo inserimento",
+      "description": "Level B4 — general worker and first-time hire",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1475.97" },
@@ -145,7 +145,7 @@
     {
       "code": "A4",
       "order": 2,
-      "description": "Livello A4 — lavoratore qualificato di supporto",
+      "description": "Level A4 — qualified support worker",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1552.14" },
@@ -159,7 +159,7 @@
     {
       "code": "B3",
       "order": 3,
-      "description": "Livello B3 — operatore specializzato di produzione",
+      "description": "Level B3 — specialist production operator",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1556.40" },
@@ -173,7 +173,7 @@
     {
       "code": "B3S",
       "order": 4,
-      "description": "Livello B3 Super — operatore specializzato con mansioni ampliate",
+      "description": "Level B3 Super — specialist operator with extended duties",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1608.72" },
@@ -187,7 +187,7 @@
     {
       "code": "A3",
       "order": 5,
-      "description": "Livello A3 — tecnico qualificato di produzione",
+      "description": "Level A3 — qualified production technician",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1638.09" },
@@ -201,7 +201,7 @@
     {
       "code": "B2",
       "order": 6,
-      "description": "Livello B2 — operatore altamente specializzato",
+      "description": "Level B2 — highly specialised operator",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1652.48" },
@@ -215,7 +215,7 @@
     {
       "code": "A2",
       "order": 7,
-      "description": "Livello A2 — tecnico specializzato / responsabile di reparto",
+      "description": "Level A2 — specialist technician / department head",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1788.61" },
@@ -229,7 +229,7 @@
     {
       "code": "A1",
       "order": 8,
-      "description": "Livello A1 — responsabile tecnico di produzione",
+      "description": "Level A1 — production technical manager",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "1909.58" },
@@ -243,7 +243,7 @@
     {
       "code": "B1",
       "order": 9,
-      "description": "Livello B1 — responsabile gestionale senior",
+      "description": "Level B1 — senior operations manager",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "2010.49" },
@@ -257,7 +257,7 @@
     {
       "code": "A1S",
       "order": 10,
-      "description": "Livello A1 Super — quadro direttivo / responsabile apicale",
+      "description": "Level A1 Super — senior executive quadro / top-level manager",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-01-01", "value": "2054.08" },

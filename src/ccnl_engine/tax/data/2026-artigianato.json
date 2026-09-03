@@ -59,10 +59,10 @@
   },
   "notes": [
     "IRPEF brackets and work_deduction_breakpoints: statutory, sector-agnostic.",
-    "INPS datore — SIMPLIFICATION: aliquota 26.93% da kitech.it (dati proxy per artigianato non-edile 2024; circolare INPS specifica non recuperata). Componenti stimati: IVS 23.81% + NASpI 1.61% + CUAF 0.68% + malattia operai ~0.83% = ~26.93%. Nessun CIGO/CIGS per il settore artigiano (art. 3 D.Lgs. 148/2015). FSBA (0.45% datore + 0.15% dipendente) escluso: contributo bilaterale, non INPS. Nessuna fascia per numero dipendenti.",
-    "INPS dipendente — employee_tiers: 9.19% (IVS + NASpI) flat. Nessuna addizionale CIGS per dipendente (settore artigianato non ha CIGS).",
-    "fixed_term_additional_rate: NASpI addizionale 1.4% (solo datore) per Art. 2 co. 28 L. 92/2012.",
-    "INPS datore per categoria — rate_by_category: impiegati e quadri 24.71% (kitech.it, stessa fonte proxy dell'aliquota operai 26.93%); operai e livelli senza categoria usano 26.93%.",
+    "INPS employer — SIMPLIFICATION: rate 26.93% from kitech.it (proxy data for non-construction crafts sector 2024; specific INPS circular not retrieved). Estimated components: IVS 23.81% + NASpI 1.61% + CUAF 0.68% + sickness for operai ~0.83% = ~26.93%. No CIGO/CIGS for the crafts sector (art. 3 D.Lgs. 148/2015). FSBA (0.45% employer + 0.15% employee) excluded: bilateral fund contribution, not INPS. No size tier.",
+    "INPS employee — employee_tiers: 9.19% (IVS + NASpI) flat. No additional CIGS for employees (crafts sector has no CIGS).",
+    "fixed_term_additional_rate: NASpI additional rate 1.4% (employer-only) per Art. 2 co. 28 L. 92/2012.",
+    "INPS employer by category — rate_by_category: white-collar employees (impiegati) and middle managers (quadri) 24.71% (kitech.it, same proxy source as the operai rate 26.93%); operai and levels without a category use 26.93%.",
     "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled."
   ]
 }

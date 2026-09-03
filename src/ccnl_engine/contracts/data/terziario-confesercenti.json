@@ -68,7 +68,7 @@
     {
       "code": "Q",
       "order": 8,
-      "description": "Quadro",
+      "description": "Senior Manager (Quadro)",
       "category": "quadro",
       "base_salary": {
         "periods": [
@@ -86,7 +86,7 @@
     {
       "code": "I",
       "order": 7,
-      "description": "Primo livello",
+      "description": "First Level",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -104,7 +104,7 @@
     {
       "code": "II",
       "order": 6,
-      "description": "Secondo livello",
+      "description": "Second Level",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -122,7 +122,7 @@
     {
       "code": "III",
       "order": 5,
-      "description": "Terzo livello",
+      "description": "Third Level",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -140,7 +140,7 @@
     {
       "code": "IV",
       "order": 4,
-      "description": "Quarto livello",
+      "description": "Fourth Level",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -158,7 +158,7 @@
     {
       "code": "V",
       "order": 3,
-      "description": "Quinto livello",
+      "description": "Fifth Level",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -176,7 +176,7 @@
     {
       "code": "VI",
       "order": 2,
-      "description": "Sesto livello",
+      "description": "Sixth Level",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -194,7 +194,7 @@
     {
       "code": "VII",
       "order": 1,
-      "description": "Settimo livello",
+      "description": "Seventh Level",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -235,16 +235,16 @@
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
-      "SOURCE: Tabella retributiva base vigente dal 01.01.2020 (Tabella I, CCNL 12.12.2019, confesercenti.it PDF).",
-      "SOURCE: Aumenti tabellari 2024 rinnovo da Art. 213 (CNEL id 20260, 22.03.2024). Tranche: 01/04/2023, 01/04/2024, 01/03/2025, 01/11/2025, 01/11/2026, 01/02/2027.",
-      "SOURCE: Importi scatti anzianità da Art. 205 CCNL 2019 vigenti dal 01.01.1990 (triennali, max 10).",
-      "SOURCE: Divisore orario 168 da Art. 211 CCNL 2019 (40h/settimana).",
-      "SOURCE: 14 mensilità da Art. 220 (tredicesima) e Art. 221 (quattordicesima) CCNL 2019.",
-      "SOURCE: Apprendistato da Art. 53 (sotto-inquadramento) e Art. 64 (durate: II-V 36 mesi, VI 24 mesi) CCNL 2019.",
-      "SIMPLIFICATION: Importo forfettario una-tantum 350 EUR al IV livello (pagato 175+175 in luglio 2024/2025) non modellato in base_salary — non è aumento strutturale.",
-      "SIMPLIFICATION: Livello I non incluso come destinazione apprendistato: Art. 64 elenca solo II-VI.",
-      "SIMPLIFICATION: Track sesto-livello: Art. 53 eccezione — prima metà al VII livello per impossibilità di 2 livelli sotto VI; seconda metà 1 livello sotto VI = VII. Entrambe le metà al VII.",
-      "INFO: Apprendistato tipo b (professionalizzante). Durate: II=36m, III=36m, IV=36m, V=36m, VI=24m. Metà periodo = 18m (II-V) e 12m (VI)."
+      "SOURCE: Base salary table effective from 01.01.2020 (Table I, CCNL 12.12.2019, confesercenti.it PDF).",
+      "SOURCE: 2024 renewal salary increases from Art. 213 (CNEL id 20260, 22.03.2024). Tranches: 01/04/2023, 01/04/2024, 01/03/2025, 01/11/2025, 01/11/2026, 01/02/2027.",
+      "SOURCE: Seniority increment amounts from Art. 205 CCNL 2019, effective from 01.01.1990 (triennial, max 10).",
+      "SOURCE: Hourly divisor 168 from Art. 211 CCNL 2019 (40h/week).",
+      "SOURCE: 14 monthly payments from Art. 220 (thirteenth) and Art. 221 (fourteenth) CCNL 2019.",
+      "SOURCE: Apprenticeship from Art. 53 (under-classification) and Art. 64 (durations: II-V 36 months, VI 24 months) CCNL 2019.",
+      "SIMPLIFICATION: One-off lump sum of EUR 350 at grade IV (paid 175+175 in July 2024/2025) not modelled in base_salary — it is not a structural increase.",
+      "SIMPLIFICATION: Grade I not included as an apprenticeship destination: Art. 64 lists only II-VI.",
+      "SIMPLIFICATION: Track sesto-livello: Art. 53 exception — first half at grade VII since two levels below VI is not possible; second half 1 level below VI = VII. Both halves at grade VII.",
+      "INFO: Apprenticeship type b (professionalizzante). Durations: II=36m, III=36m, IV=36m, V=36m, VI=24m. Half-period = 18m (II-V) and 12m (VI)."
     ]
   }
 }

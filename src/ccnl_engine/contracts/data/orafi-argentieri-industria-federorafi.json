@@ -31,18 +31,18 @@
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
-      "INFO: SALARY MODEL: conglobated (minimo tabellare comprensivo di contingenza e EDR). Fonte: CCNL 2021 PDF (UILM, firmato 23/12/2021), tabelle retributive pp. 4-5. Tre tranches da fonte primaria (giu 2022, giu 2023, dic 2024); quarta tranche (giu 2025) da kitech.it (secondaria).",
-      "INFO: LIVELLO 1a ELIMINATO dal 1° giugno 2022. Art. 4 del rinnovo 2021: i lavoratori in 1a vengono inquadrati in 2a. Il livello minimo attivo post-giugno 2022 è il 2° livello (ex 2a, €1363.86/mese). Fonte: CCNL 2021 PDF Art. 4.",
-      "INFO: HOURLY DIVISOR 173: confermato da tre fonti primarie indipendenti — (1) CCNL 2021 PDF Allegato 9 apprendistato ('divisore 173'); (2) CCNL 2017 PDF Art. congedi parentali ('un centosettantreesimo 1/173'); (3) back-calculation sulle tabelle 7a: 2083.89 / 173 = 12.05 EUR/h.",
-      "INFO: ADDITIONAL MONTHS: 13 (tredicesima). Fonte: CCNL 2021 PDF, Allegato 9 Art. 7 che rimanda alle norme del CCNL sulla tredicesima.",
-      "INFO: SCATTI DI ANZIANITÀ: fonte primaria — CCNL 2017 PDF (ipotesi di accordo 18/05/2017), Disciplina Generale Sezione Terza 'Aumenti Periodici di Anzianità', 'Valori mensili in vigore dal 1° gennaio 2002'. Confermati: cadenza biennale (24 mesi), massimo 5 bienni per categoria. Il rinnovo 2021 non ha modificato gli importi degli scatti (non menzionati nelle clausole economiche del rinnovo). Scatto Livello Superiore (5S) = 32.43 EUR confermato dalla fonte primaria — valore 13.43 su aggregatori secondari è errato. Scatto 7Q=40.96 assunto uguale a 7a (nessuna distinzione esplicita in fonte primaria).",
-      "INFO: APPRENDISTATO: percentuale a tre periodi (85%/90%/95%), durata standard 36 mesi. Fonte primaria: CCNL 2021 PDF Allegato 9 'Apprendistato professionalizzante'. Art. 4 Allegato 9: 85% (1°-12° mese), 90% (13°-24° mese), 95% (25°-36° mese). Divisore 173 confermato nello stesso Allegato. I 36 mesi sono indicati come durata massima; contratti individuali più brevi proporzionerebbero le fasce — modellati come track fisso standard (36 mesi interi).",
-      "INFO: ULTRA-ACTIVITY: il rinnovo 2026 (firmato 10/02/2026) ha effetti economici dal 01/10/2026. Il contratto 2021 governa economicamente fino al 30/09/2026. Gli scatti 2002 (da CCNL 2017 PDF) rimangono operativi per tutto il periodo modellato poiché né il rinnovo 2021 né il rinnovo 2026 li ha modificati.",
-      "SIMPLIFICATION: TRANCHE GIUGNO 2025 da kitech.it (fonte secondaria, codice categoria 51). Incremento del 10.54% coerente su tutti i livelli con il meccanismo IPCA+TEM. Valori: 2=1574.39, 3=1734.59, 4=1804.87, 5=1928.22, 5S=2058.07, 6=2212.40, 7=2405.58, 7Q=2405.58.",
-      "SIMPLIFICATION: INDENNITÀ DI FUNZIONE livelli 7 e 7Q da kitech.it (fonte secondaria). Livello 7: 59.39 EUR/mese ('ind_funzione'); livello 7Q: 114.00 EUR/mese ('ind_funzione_quadri'). Non rinvenuta fonte primaria accessibile per questi importi.",
-      "SIMPLIFICATION: MINIMO 7Q uguale a 7a per tutte le tranches (CCNL non pubblica tabella distinta per 7Q, che è il livello quadri con gestione retributiva individuale).",
-      "INFO: INPS: aliquote settore industria da 2026-industria.json (file preesistente riutilizzato). Dipendente 9.19%; datore: ≤15 dip 30.13%, 16-50 dip 30.20%, >50 dip 30.50%.",
-      "INFO: COMETA: fondo pensione complementare (Art. 44 CCNL 2021 PDF). Datore 2.00% (da dic 2024), dipendente 1.20%. Non modellato nel motore (Layer 3, fuori scope)."
+      "INFO: SALARY MODEL: conglobated (table minimum inclusive of contingenza and EDR). Source: CCNL 2021 PDF (UILM, signed 23/12/2021), pay tables pp. 4-5. Three tranches from primary source (Jun 2022, Jun 2023, Dec 2024); fourth tranche (Jun 2025) from kitech.it (secondary).",
+      "INFO: LEVEL 1a REMOVED from 1 June 2022. Art. 4 of the 2021 renewal: workers at level 1a are reclassified to level 2a. The minimum active level post-June 2022 is level 2 (formerly 2a, €1363.86/month). Source: CCNL 2021 PDF Art. 4.",
+      "INFO: HOURLY DIVISOR 173: confirmed by three independent primary sources — (1) CCNL 2021 PDF Annex 9 apprenticeship ('divisore 173'); (2) CCNL 2017 PDF Art. parental leave ('un centosettantreesimo 1/173'); (3) back-calculation on level 7a tables: 2083.89 / 173 = 12.05 EUR/h.",
+      "INFO: ADDITIONAL MONTHS: 13 (tredicesima). Source: CCNL 2021 PDF, Annex 9 Art. 7 which refers to the CCNL provisions on the tredicesima.",
+      "INFO: SENIORITY INCREMENTS: primary source — CCNL 2017 PDF (draft agreement 18/05/2017), General Provisions Section Three 'Aumenti Periodici di Anzianità', 'Valori mensili in vigore dal 1° gennaio 2002'. Confirmed: biennial cadence (24 months), maximum 5 bienniums per category. The 2021 renewal did not modify the increment amounts (not mentioned in the renewal economic clauses). Level Superior (5S) increment = 32.43 EUR confirmed from primary source — value 13.43 on secondary aggregators is incorrect. 7Q increment = 40.96 assumed equal to 7a (no explicit distinction in primary source).",
+      "INFO: APPRENTICESHIP: three-period percentage (85%/90%/95%), standard duration 36 months. Primary source: CCNL 2021 PDF Annex 9 'Apprendistato professionalizzante'. Art. 4 Annex 9: 85% (months 1-12), 90% (months 13-24), 95% (months 25-36). Divisor 173 confirmed in the same Annex. The 36 months are stated as maximum duration; shorter individual contracts would pro-rate the bands — modelled as a fixed standard track (full 36 months).",
+      "INFO: ULTRA-ACTIVITY: the 2026 renewal (signed 10/02/2026) has economic effects from 01/10/2026. The 2021 contract governs economically until 30/09/2026. The 2002 increments (from CCNL 2017 PDF) remain operative throughout the modelled period as neither the 2021 nor the 2026 renewal modified them.",
+      "SIMPLIFICATION: JUNE 2025 TRANCHE from kitech.it (secondary source, category code 51). 10.54% increase consistent across all levels with the IPCA+TEM mechanism. Values: 2=1574.39, 3=1734.59, 4=1804.87, 5=1928.22, 5S=2058.07, 6=2212.40, 7=2405.58, 7Q=2405.58.",
+      "SIMPLIFICATION: FUNCTION ALLOWANCE levels 7 and 7Q from kitech.it (secondary source). Level 7: 59.39 EUR/month ('ind_funzione'); level 7Q: 114.00 EUR/month ('ind_funzione_quadri'). No accessible primary source found for these amounts.",
+      "SIMPLIFICATION: MINIMUM 7Q equals 7a for all tranches (the CCNL does not publish a separate table for 7Q, which is the quadri level with individual pay management).",
+      "INFO: INPS: industry sector rates from 2026-industria.json (existing file reused). Employee 9.19%; employer: ≤15 employees 30.13%, 16-50 employees 30.20%, >50 employees 30.50%.",
+      "INFO: COMETA: supplementary pension fund (Art. 44 CCNL 2021 PDF). Employer 2.00% (from Dec 2024), employee 1.20%. Not modelled in the engine (Layer 3, out of scope)."
     ]
   },
   "parameters": {
@@ -107,7 +107,7 @@
     {
       "code": "2",
       "order": 1,
-      "description": "2° livello — operai comuni e impiegati d'ordine",
+      "description": "Level 2 — general workers and clerical employees",
       "base_salary": {
         "periods": [
           { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1363.86" },
@@ -121,7 +121,7 @@
     {
       "code": "3",
       "order": 2,
-      "description": "3° livello — operai qualificati e impiegati",
+      "description": "Level 3 — skilled workers and employees",
       "base_salary": {
         "periods": [
           { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1502.64" },
@@ -135,7 +135,7 @@
     {
       "code": "4",
       "order": 3,
-      "description": "4° livello — operai specializzati e impiegati qualificati",
+      "description": "Level 4 — specialist workers and qualified employees",
       "base_salary": {
         "periods": [
           { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1563.52" },
@@ -149,7 +149,7 @@
     {
       "code": "5",
       "order": 4,
-      "description": "5° livello — operai altamente specializzati e impiegati di concetto",
+      "description": "Level 5 — highly specialised workers and white-collar employees",
       "base_salary": {
         "periods": [
           { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1670.37" },
@@ -163,7 +163,7 @@
     {
       "code": "5S",
       "order": 5,
-      "description": "5° livello Superiore — lavoratori con autonomia esecutiva qualificata",
+      "description": "Level 5 Superior — workers with qualified executive autonomy",
       "base_salary": {
         "periods": [
           { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1782.85" },
@@ -177,7 +177,7 @@
     {
       "code": "6",
       "order": 6,
-      "description": "6° livello — impiegati con funzioni direttive o tecnici specializzati",
+      "description": "Level 6 — employees with managerial functions or specialist technicians",
       "base_salary": {
         "periods": [
           { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1916.55" },
@@ -191,7 +191,7 @@
     {
       "code": "7",
       "order": 7,
-      "description": "7° livello — quadri con funzioni direttive di rilievo",
+      "description": "Level 7 — quadri with significant managerial functions",
       "base_salary": {
         "periods": [
           { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "2083.89" },
@@ -203,7 +203,7 @@
       "fixed_allowances": [
         {
           "code": "ind_funzione",
-          "description": "Indennità di funzione 7° livello (fonte: kitech.it — SIMPLIFICATION)",
+          "description": "Function allowance level 7 (source: kitech.it — SIMPLIFICATION)",
           "monthly": {
             "periods": [
               { "valid_from": "2022-06-01", "valid_until": null, "value": "59.39" }
@@ -216,7 +216,7 @@
     {
       "code": "7Q",
       "order": 8,
-      "description": "7° livello Q — quadri apicali",
+      "description": "Level 7Q — top-level quadri",
       "base_salary": {
         "periods": [
           { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "2083.89" },
@@ -228,7 +228,7 @@
       "fixed_allowances": [
         {
           "code": "ind_funzione_quadri",
-          "description": "Indennità di funzione quadri 7Q (fonte: kitech.it — SIMPLIFICATION)",
+          "description": "Function allowance quadri 7Q (source: kitech.it — SIMPLIFICATION)",
           "monthly": {
             "periods": [
               { "valid_from": "2022-06-01", "valid_until": null, "value": "114.00" }

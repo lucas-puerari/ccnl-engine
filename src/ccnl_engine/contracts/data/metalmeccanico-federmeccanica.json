@@ -36,15 +36,15 @@
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
-      "INFO: MINIMI CONGLOBATI: i valori in base_salary sono i 'minimi tabellari conglobati' del CCNL Federmeccanica-Assistal, che incorporano paga base, contingenza e EDR in un'unica cifra (prassi Federmeccanica dal 2001). Per questo motivo fixed_allowances è vuoto per tutti i livelli.",
-      "INFO: TRANCHE giugno 2025: valori verificati sull'accordo del 12 giugno 2025 (fonte: studiomorettistp.it e dinunzio.it, che riportano i minimi tabellari conglobati ufficiali Federmeccanica-Assistal). Tutti e 9 i livelli confermati.",
-      "INFO: TRANCHE giugno 2024 e giugno 2026: valori verificati su contratticcnl.it (aggiornato luglio 2026) e lexplain.it.",
-      "INFO: SCATTI DI ANZIANITÀ: la proposta di sostituire gli scatti mensili con una 'liquidazione anticipata' una-tantum è stata RESPINTA dai sindacati durante la trattativa del CCNL 2025-2028 (accordo novembre 2025). Gli scatti rimangono incrementi mensili ricorrenti come previsto dall'Art. 6 del CCNL vigente. Il modello (seniority_count × amount_by_level) è corretto. Gli importi in amount_by_level sono verificati su lexplain.it.",
+      "INFO: CONSOLIDATED MINIMUMS: the values in base_salary are the 'consolidated table minimums' of the CCNL Federmeccanica-Assistal, which incorporate base pay, contingenza, and EDR into a single figure (Federmeccanica practice since 2001). For this reason fixed_allowances is empty for all levels.",
+      "INFO: JUNE 2025 TRANCHE: values verified against the agreement of 12 June 2025 (source: studiomorettistp.it and dinunzio.it, which report the official Federmeccanica-Assistal consolidated table minimums). All 9 levels confirmed.",
+      "INFO: JUNE 2024 AND JUNE 2026 TRANCHES: values verified on contratticcnl.it (updated July 2026) and lexplain.it.",
+      "INFO: SENIORITY INCREMENTS: the proposal to replace monthly increments with a one-off 'early settlement' was REJECTED by the unions during the CCNL 2025-2028 negotiations (November 2025 agreement). Increments remain recurring monthly additions as provided by Art. 6 of the current CCNL. The model (seniority_count × amount_by_level) is correct. The amounts in amount_by_level are verified on lexplain.it.",
       "INFO: APPRENTICESHIP: professionalizzante (accordo integrativo 20/04/2021). Eligible levels: D2, C1, C2, C3, B1, B2, B3 (D1 and A1 excluded). Pay: 85% (first third), 90% (second third), 95% (third third), then classified at destination. Three duration tracks: 36m (standard), 30m (diploma EQF 4-7 consistent with profession), 24m (D2 serial repetitive production only). Source: accordo 20/04/2021 Federmeccanica art. 'Apprendistato professionalizzante', reproduced in MySolution circolare Marini 13/05/2021.",
-      "INFO: DIVISORE ORARIO: 173 ore/mese (40 h/settimana × 52/12 = 173,33 arrotondato a 173, standard Federmeccanica).",
-      "INFO: MENSILITÀ: 13 (tredicesima). La quattordicesima non è prevista dal CCNL Federmeccanica. Il premio di risultato/variabile aziendale non è modellato (layer 3).",
-      "INFO: INPS: le aliquote datore in 2026-industria.json sono calcolate per componenti verificati (IVS 23.81% + DS 1.61% + CUAF 2.48% + CIGO D.Lgs.148/2015 + FIS/CIGS Circ.INPS 5/2025). Totali risultanti: ≤15 dip = 30.13%, 16-50 dip = 30.20%, >50 dip = 30.50%. Non include INAIL. La quota CIGS dipendente (0.30% per >15 dip) non è ancora modellata in employee_rate.",
-      "INFO: TRANCHE giu 2021, giu 2022, giu 2023: valori recuperati da lexplain.it (tabelle retributive metalmeccanici industria; fonte secondaria aggregatrice). Cross-check: D1 giu-2024=1719.67 conferma allineamento esatto con dati già presenti. Quattro tranche annuali (giu 2021-2024) basate su meccanismo IPCA dal CCNL 05/02/2021."
+      "INFO: HOURLY DIVISOR: 173 hours/month (40 h/week × 52/12 = 173.33 rounded to 173, Federmeccanica standard).",
+      "INFO: MONTHLY PAYMENTS: 13 (thirteenth month). The fourteenth month is not provided for in the Federmeccanica CCNL. The performance bonus/variable company element is not modelled (layer 3).",
+      "INFO: INPS: the employer rates in 2026-industria.json are calculated for verified components (IVS 23.81% + DS 1.61% + CUAF 2.48% + CIGO D.Lgs.148/2015 + FIS/CIGS Circ.INPS 5/2025). Resulting totals: ≤15 employees = 30.13%, 16-50 employees = 30.20%, >50 employees = 30.50%. Does not include INAIL. The CIGS employee share (0.30% for >15 employees) is not yet modelled in employee_rate.",
+      "INFO: JUN 2021, JUN 2022, JUN 2023 TRANCHES: values retrieved from lexplain.it (metalworking industry pay tables; secondary aggregator source). Cross-check: D1 Jun-2024=1719.67 confirms exact alignment with data already present. Four annual tranches (Jun 2021-2024) based on the IPCA mechanism from the CCNL 05/02/2021."
     ]
   },
   "parameters": {
@@ -114,7 +114,7 @@
     {
       "code": "D1",
       "order": 1,
-      "description": "1° livello — mansioni ausiliarie, operazioni semplici e ripetitive",
+      "description": "Level 1 — auxiliary duties, simple and repetitive operations",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1488.89" },
@@ -130,7 +130,7 @@
     {
       "code": "D2",
       "order": 2,
-      "description": "2° livello — operazioni standardizzate, mansioni di concetto semplici",
+      "description": "Level 2 — standardised operations, simple white-collar duties",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1651.07" },
@@ -146,7 +146,7 @@
     {
       "code": "C1",
       "order": 3,
-      "description": "3° livello — operaio qualificato, impiegato d'ordine",
+      "description": "Level 3 — skilled worker, clerical employee",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1686.74" },
@@ -162,7 +162,7 @@
     {
       "code": "C2",
       "order": 4,
-      "description": "4° livello — operaio specializzato di 1ª categoria, impiegato di concetto",
+      "description": "Level 4 — specialist worker 1st category, white-collar employee",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1722.41" },
@@ -178,7 +178,7 @@
     {
       "code": "C3",
       "order": 5,
-      "description": "5° livello — operaio specializzato di 2ª categoria, impiegato di concetto evoluto (livello di riferimento CCNL)",
+      "description": "Level 5 — specialist worker 2nd category, senior white-collar employee (CCNL reference level)",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1844.64" },
@@ -194,7 +194,7 @@
     {
       "code": "B1",
       "order": 6,
-      "description": "5° livello Super — operaio altamente specializzato, tecnico",
+      "description": "Level 5 Super — highly specialised worker, technician",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1977.19" },
@@ -210,7 +210,7 @@
     {
       "code": "B2",
       "order": 7,
-      "description": "6° livello — tecnico specializzato, capo reparto, impiegato tecnico",
+      "description": "Level 6 — specialist technician, department head, technical employee",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "2121.20" },
@@ -226,7 +226,7 @@
     {
       "code": "B3",
       "order": 8,
-      "description": "7° livello — alta professionalità tecnica o gestionale",
+      "description": "Level 7 — high technical or managerial expertise",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "2368.12" },
@@ -242,7 +242,7 @@
     {
       "code": "A1",
       "order": 9,
-      "description": "8° livello — quadro, massima professionalità",
+      "description": "Level 8 — quadro, maximum professional grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "2424.86" },

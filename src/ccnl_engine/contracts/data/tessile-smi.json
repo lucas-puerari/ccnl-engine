@@ -31,11 +31,11 @@
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
-      "INFO: tranche Dic 2024 (01/12/2024): valori per livello derivati proporzionalmente dall'incremento +95 EUR al 4° livello (rinnovo 2024 SMI, fonte filctemcgil.it). Rationale: incremento Dec-2024 = 95/152 = 5/8 dell'incremento totale Nov-2024→Jan-2026; verifica per chiusura esatta su tutti i livelli con valori Jan-2026 di kitech.it.",
-      "INFO: Livello 8 indennità funzione: il totale ERN pubblicato su lexplain.it (2.316,33) include l'indennità funzione (51,65 EUR). base_salary = ERN - 51,65 = 2.264,68 (pre-Dic 2024) e 2.457,72 (Gen 2026). Fonte kitech.it riporta separatamente minimo e totale per il Liv.8. Verifica: aumento combinato (Dic2024+Gen2026) al Liv.8 = 193,04 EUR, proporzionale atteso = 126,74% × 152,24 = 193,12 EUR (delta < 0,1 EUR). Interpretazione confermata.",
-      "INFO: VV.PP. (Viaggiatori e Piazzisti): non modellati. Categoria speciale con tariffe proprie (1ª cat.: 1.932,91/1.932,91 pre-Dic 2024; 2ª cat.: 1.823,07); esclusi per complessità.",
-      "SIMPLIFICATION: Scatti anzianità: importi da lexplain.it (articolo sugli scatti CCNL tessile). Non è stato possibile verificare se gli importi siano stati aggiornati con il rinnovo 2024 o se risalgano al contratto precedente. SIMPLIFICATION: si usano gli importi disponibili come stima per entrambi i periodi.",
-      "INFO: Fonte tabelle pre-Dic 2024: lexplain.it, recuperata settembre 2026. Fonte tabelle Gen 2026: kitech.it, recuperata settembre 2026. Fonte TEM e decorrenze: comunicato stampa SMI (sistemamodaitalia.com), novembre 2024.",
+      "INFO: December 2024 tranche (01/12/2024): per-level values derived proportionally from the +EUR 95 increase at grade 4 (2024 SMI renewal, source filctemcgil.it). Rationale: Dec-2024 increment = 95/152 = 5/8 of the total increase Nov-2024→Jan-2026; verified by exact closure on all levels against Jan-2026 values from kitech.it.",
+      "INFO: Level 8 function allowance: the total ERN published on lexplain.it (2,316.33) includes the function allowance (EUR 51.65). base_salary = ERN - 51.65 = 2,264.68 (pre-Dec 2024) and 2,457.72 (Jan 2026). Source kitech.it reports minimum and total separately for Level 8. Verification: combined increase (Dec2024+Jan2026) at Level 8 = EUR 193.04, expected proportional = 126.74% × 152.24 = EUR 193.12 (delta < 0.1 EUR). Interpretation confirmed.",
+      "INFO: VV.PP. (Travelling and Area Salespeople): not modelled. Special category with their own rates (1st cat.: 1,932.91/1,932.91 pre-Dec 2024; 2nd cat.: 1,823.07); excluded due to complexity.",
+      "SIMPLIFICATION: Seniority increments: amounts from lexplain.it (article on CCNL tessile seniority increments). It was not possible to verify whether the amounts were updated with the 2024 renewal or whether they date from the previous contract. SIMPLIFICATION: the available amounts are used as an estimate for both periods.",
+      "INFO: Source for pre-Dec 2024 tables: lexplain.it, retrieved September 2026. Source for Jan 2026 tables: kitech.it, retrieved September 2026. Source for TEM and effective dates: SMI press release (sistemamodaitalia.com), November 2024.",
       "INFO: APPRENTICESHIP: sotto-inquadramento. Group A (L4-L8) 36m total: 0-15m = 2 full levels below dest, 15-30m = 1 full level below, 30-36m+ = dest. Note: 'full level' skips S-variants, so levels_below in order arithmetic: L6-L8 → 2/1, L5 → 3/1, L4 → 4/2. Group B (L3/3S) 36m: 0-12m at L1, 12-30m at L2, 30m+ at dest. Group B (L2/2S) 36m: 0-12m at L1, then dest. L1 excluded as destination. Source: CCNL SMI (CNEL D014) + Gruppo24ORE scheda Oct 2023 + MySolution sintesi 2017. SIMPLIFICATION: MySolution notes 3S second period uses L2 pay (not L3).",
       "INFO: JANUARY 2027 TRANCHE: +60.96 at L8 basis, proportional to parametri. Values from rinnovo 11/11/2024 (Chapter VI column 'da gennaio 2027'). Source: studiobergonzini.it ipotesi 11/11/2024 PDF."
     ]
@@ -112,7 +112,7 @@
     {
       "code": "1",
       "order": 1,
-      "description": "1° livello — operazioni elementari senza esperienza richiesta",
+      "description": "Grade 1 — elementary operations requiring no prior experience",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "1289.04" },
@@ -126,7 +126,7 @@
     {
       "code": "2",
       "order": 2,
-      "description": "2° livello — operai qualificati di base",
+      "description": "Grade 2 — basic qualified workers",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "1621.70" },
@@ -140,7 +140,7 @@
     {
       "code": "2S",
       "order": 3,
-      "description": "2° livello super — operai qualificati con autonomia esecutiva",
+      "description": "Grade 2 super — qualified workers with executive autonomy",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "1657.81" },
@@ -154,7 +154,7 @@
     {
       "code": "3",
       "order": 4,
-      "description": "3° livello — operai specializzati e impiegati d'ordine",
+      "description": "Grade 3 — specialist workers and routine clerical employees",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "1707.25" },
@@ -168,7 +168,7 @@
     {
       "code": "3S",
       "order": 5,
-      "description": "3° livello super — operai specializzati con autonomia e impiegati esecutivi",
+      "description": "Grade 3 super — specialist workers with autonomy and executive clerical employees",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "1745.98" },
@@ -182,7 +182,7 @@
     {
       "code": "4",
       "order": 6,
-      "description": "4° livello — operai altamente specializzati e impiegati di concetto",
+      "description": "Grade 4 — highly specialist workers and skilled clerical employees",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "1786.95" },
@@ -196,7 +196,7 @@
     {
       "code": "5",
       "order": 7,
-      "description": "5° livello — quadri intermedi e tecnici specializzati",
+      "description": "Grade 5 — junior managers and specialist technicians",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "1878.36" },
@@ -210,7 +210,7 @@
     {
       "code": "6",
       "order": 8,
-      "description": "6° livello — quadri e tecnici con responsabilità di area",
+      "description": "Grade 6 — managers and technicians with area responsibility",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "2005.13" },
@@ -224,7 +224,7 @@
     {
       "code": "7",
       "order": 9,
-      "description": "7° livello — quadri con responsabilità gestionale",
+      "description": "Grade 7 — managers with managerial responsibility",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "2136.10" },
@@ -238,7 +238,7 @@
     {
       "code": "8",
       "order": 10,
-      "description": "8° livello — capo reparto/supervisore con funzioni direttive",
+      "description": "Grade 8 — department head/supervisor with managerial functions",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-11-11", "valid_until": "2024-12-01", "value": "2264.68" },
@@ -250,7 +250,7 @@
       "fixed_allowances": [
         {
           "code": "IND_FUN",
-          "description": "Indennità funzione (8° livello)",
+          "description": "Function allowance (Grade 8)",
           "monthly": {
             "periods": [
               { "valid_from": "2024-11-11", "valid_until": null, "value": "51.65" }

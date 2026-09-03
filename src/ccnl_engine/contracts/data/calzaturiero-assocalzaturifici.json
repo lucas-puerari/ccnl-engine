@@ -112,7 +112,7 @@
     {
       "code": "1",
       "order": 1,
-      "description": "1° livello - Lavoratori di primo inserimento",
+      "description": "1st level - Entry-level workers",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-08-01", "valid_until": "2025-01-01", "value": "1315.70" },
@@ -126,7 +126,7 @@
     {
       "code": "2",
       "order": 2,
-      "description": "2° livello - Lavoratori qualificati",
+      "description": "2nd level - Qualified workers",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "1705.50" },
@@ -139,7 +139,7 @@
     {
       "code": "2S",
       "order": 3,
-      "description": "2° livello Super - Lavoratori qualificati con mansioni superiori",
+      "description": "2nd level Super - Qualified workers with higher-grade duties",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "1740.80" },
@@ -152,7 +152,7 @@
     {
       "code": "3",
       "order": 4,
-      "description": "3° livello - Lavoratori specializzati",
+      "description": "3rd level - Specialist workers",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "1795.50" },
@@ -165,7 +165,7 @@
     {
       "code": "3S",
       "order": 5,
-      "description": "3° livello Super - Lavoratori specializzati con mansioni superiori",
+      "description": "3rd level Super - Specialist workers with higher-grade duties",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "1835.10" },
@@ -178,7 +178,7 @@
     {
       "code": "4",
       "order": 6,
-      "description": "4° livello - Lavoratori con mansioni intermedie",
+      "description": "4th level - Workers with intermediate duties",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "1879.50" },
@@ -191,7 +191,7 @@
     {
       "code": "5",
       "order": 7,
-      "description": "5° livello - Lavoratori con mansioni di coordinamento",
+      "description": "5th level - Workers with coordination duties",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "1950.40" },
@@ -204,7 +204,7 @@
     {
       "code": "6",
       "order": 8,
-      "description": "6° livello - Lavoratori con elevata specializzazione",
+      "description": "6th level - Workers with high specialisation",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "2053.70" },
@@ -217,7 +217,7 @@
     {
       "code": "7",
       "order": 9,
-      "description": "7° livello - Lavoratori con funzioni direttive",
+      "description": "7th level - Workers with managerial functions",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "2234.50" },
@@ -230,7 +230,7 @@
     {
       "code": "8",
       "order": 10,
-      "description": "8° livello - Quadri e lavoratori con funzioni di alta responsabilita",
+      "description": "8th level - Managers and workers with high-responsibility functions",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-08-01", "valid_until": "2025-08-01", "value": "2384.90" },
