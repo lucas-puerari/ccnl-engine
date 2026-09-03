@@ -75,6 +75,7 @@ def compute(
     seniority_count: int | None = None,
     seniority_months: int | None = None,
     negotiated_ral: Decimal | None = None,
+    negotiated_destination_ral: Decimal | None = None,
     roles: frozenset[str] = frozenset(),
     ad_personam_monthly: Decimal = _ZERO,
     category: LevelCategory | None = None,
@@ -89,12 +90,22 @@ def compute(
     level's worker category when a level hosts several categories (e.g.
     operai and impiegati sharing level 3 in edilizia).
 
+    ``negotiated_ral`` replaces the CCNL-derived gross for any employment type
+    and is taken as-is (no further scaling).  ``negotiated_destination_ral``
+    is the destination-level RAL for percentage-based apprentices: the engine
+    applies ``apprenticeship_pct`` to it, producing the actual apprentice pay.
+    The two fields are mutually exclusive.
+
     Returns:
         ComputationResult with all gross, net, and cost figures.
 
     Raises:
         ValueError: If part_time_pct is not in (0, 1], ad_personam_monthly < 0,
-            or seniority arguments are invalid.
+            seniority arguments are invalid, negotiated_ral and
+            negotiated_destination_ral are both supplied,
+            negotiated_destination_ral is used with a non-Apprentice employment,
+            or negotiated_destination_ral is used with an under-classification
+            apprenticeship track.
     """
     if not (_ZERO < part_time_pct <= _ONE):
         msg = f"part_time_pct must be in (0, 1], got {part_time_pct}"
@@ -102,6 +113,7 @@ def compute(
     if ad_personam_monthly < _ZERO:
         msg = f"ad_personam_monthly must be >= 0, got {ad_personam_monthly}"
         raise ValueError(msg)
+    _validate_negotiated_ral(negotiated_ral, negotiated_destination_ral, employment)
 
     level = ccnl.level_by_code(level_code)
     worker_category = category if category is not None else level.category
@@ -124,6 +136,12 @@ def compute(
         )
         if apprenticeship_pct is not None:
             factor *= apprenticeship_pct
+        if negotiated_destination_ral is not None and apprenticeship_pct is None:
+            msg = (
+                "negotiated_destination_ral requires a percentage-based apprenticeship "
+                "track; the resolved track uses under-classification"
+            )
+            raise ValueError(msg)
     else:
         chain_ft = _level_chain(ccnl, level, count, roles, as_of, apprentice=False)
 
@@ -135,18 +153,25 @@ def compute(
     annual = _annualise(chain, ad_personam, additional_months)
     gross_annual = annual.gross
 
-    if negotiated_ral is not None:
-        # The negotiated RAL replaces the CCNL chain. For percentage apprentices
-        # it is the destination-level RAL, so the percentage still applies.
-        gross_annual = money(negotiated_ral * (apprenticeship_pct or _ONE))
-        gross_monthly = money(gross_annual / additional_months)
-        # The negotiated figure is already the full retribuzione annua lorda;
-        # CCNL-derived allowance exclusions don't apply to it.
-        contribution_base = gross_annual
-        tfr_base = gross_annual
-    else:
-        contribution_base = money(gross_annual - annual.excluded_from_contributions)
-        tfr_base = money(gross_annual - annual.excluded_from_tfr)
+    gross_annual, gross_monthly = _override_gross(
+        negotiated_ral,
+        negotiated_destination_ral,
+        apprenticeship_pct,
+        gross_annual,
+        gross_monthly,
+        additional_months,
+    )
+
+    # The negotiated figure is the full RAL; CCNL exclusions don't apply to it.
+    ral_override = negotiated_ral is not None or negotiated_destination_ral is not None
+    contribution_base = (
+        gross_annual
+        if ral_override
+        else money(gross_annual - annual.excluded_from_contributions)
+    )
+    tfr_base = (
+        gross_annual if ral_override else money(gross_annual - annual.excluded_from_tfr)
+    )
     rates = _contrib.resolve_rates(rules, employment, worker_category)
     inps_employee_annual = _contrib.inps_contribution(
         contribution_base, rates.employee_rate, rules
@@ -203,6 +228,45 @@ def compute(
         net_monthly=net_monthly,
         employer_cost_annual=employer_cost_annual,
     )
+
+
+def _override_gross(
+    negotiated_ral: Decimal | None,
+    negotiated_destination_ral: Decimal | None,
+    apprenticeship_pct: Decimal | None,
+    gross_annual: Decimal,
+    gross_monthly: Decimal,
+    additional_months: Decimal,
+) -> tuple[Decimal, Decimal]:
+    """Return (gross_annual, gross_monthly) after applying any negotiated-RAL override.
+
+    Returns:
+        Tuple of (gross_annual, gross_monthly). Unchanged when no override is given.
+    """
+    if negotiated_ral is not None:
+        # Actual agreed salary; taken as-is.
+        gross_annual = money(negotiated_ral)
+    elif negotiated_destination_ral is not None:
+        # Destination-level RAL; apprenticeship_pct is guaranteed non-None here.
+        gross_annual = money(negotiated_destination_ral * apprenticeship_pct)  # type: ignore[operator]
+    else:
+        return gross_annual, gross_monthly
+    return gross_annual, money(gross_annual / additional_months)
+
+
+def _validate_negotiated_ral(
+    negotiated_ral: Decimal | None,
+    negotiated_destination_ral: Decimal | None,
+    employment: Employment,
+) -> None:
+    if negotiated_ral is not None and negotiated_destination_ral is not None:
+        msg = "negotiated_ral and negotiated_destination_ral are mutually exclusive"
+        raise ValueError(msg)
+    if negotiated_destination_ral is not None and not isinstance(
+        employment, Apprentice
+    ):
+        msg = "negotiated_destination_ral is only valid for Apprentice employment"
+        raise ValueError(msg)
 
 
 def _resolve_seniority_count(
