@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 
 from ccnl_engine.contracts.loaders import load_ccnl
-from ccnl_engine.engine.compute import compute
+from ccnl_engine.engine.compute import ComputeRequest, compute
 from ccnl_engine.models.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
@@ -1252,7 +1252,13 @@ class TestLoadAlimentariFederalimentare:
         ccnl = load_ccnl("alimentari-federalimentare.json")
         rules = load_year_rules(2026, TaxSector.INDUSTRIA, num_employees=50)
         result = compute(
-            ccnl, "3A", date(2026, 1, 1), rules, Apprentice(months_elapsed=5)
+            ccnl,
+            rules,
+            ComputeRequest(
+                level_code="3A",
+                as_of=date(2026, 1, 1),
+                employment=Apprentice(months_elapsed=5),
+            ),
         )
         assert result.apprenticeship_under_level_code == "4"
         assert result.apprenticeship_pct is None
@@ -2621,7 +2627,13 @@ class TestLoadBccCreditoCooperativo:
         ccnl = load_ccnl("bcc-credito-cooperativo.json")
         rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
         result = compute(
-            ccnl, "3AP1", date(2026, 6, 1), rules, Apprentice(months_elapsed=12)
+            ccnl,
+            rules,
+            ComputeRequest(
+                level_code="3AP1",
+                as_of=date(2026, 6, 1),
+                employment=Apprentice(months_elapsed=12),
+            ),
         )
         # At 12 months, pay level is 2AP2 (under-classification)
         assert result.apprenticeship_under_level_code == "2AP2"
