@@ -1,0 +1,113 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "dirigenza-istruzione-ricerca-aran",
+    "name": "CCNL Area Dirigenza Istruzione e Ricerca 2022-2024 — ARAN",
+    "cnel_code": "S325",
+    "sector": "Pubblica Amministrazione",
+    "tax_sector": "pubblica_amministrazione",
+    "signatories": [
+      "ARAN",
+      "ANP",
+      "FLC CGIL",
+      "CISL FSUR",
+      "DIRIGENTI SCUOLA",
+      "UIL SCUOLA RUA"
+    ],
+    "agreement_date": "2026-08-06",
+    "validity": {
+      "valid_from": "2022-01-01",
+      "valid_until": "2024-12-31"
+    },
+    "sources": [
+      {
+        "url": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
+        "type": "fonte_secondaria",
+        "agreement_date": "2026-08-06",
+        "notes": "Tabelle retributive CCNL Area Dirigenza Istruzione e Ricerca 2022-2024. Seconda fascia: 47.015,73 → 50.005,73€/anno da 1/1/2024 (+230€/mese). Prima fascia: 60.102,87 → 63.807,87€/anno (+285€/mese). Firma definitiva 6 agosto 2026."
+      },
+      {
+        "url": "https://m.flcgil.it/contratti/documenti/istruzione-e-ricerca/ccnl-personale-area-dirigenza-istruzione-e-ricerca-2019-2021-del-7-agosto-2024.flc",
+        "type": "fonte_secondaria",
+        "agreement_date": "2024-08-07",
+        "notes": "CCNL Area Dirigenza Istruzione e Ricerca 2019-2021, firmato 7 agosto 2024. Stabilisce il tabellare previgente di 47.015,73€/anno per 13 mensilità. Retribuzione di posizione fissa 13.345,11€/anno. Incremento +230€/mese decorre da 1/1/2024 per il CCNL 2022-2024."
+      },
+      {
+        "url": "https://www.flcgil.it/scuola/dirigenti/dirigenti-scolastici-siglato-in-via-definitiva-ccnl-area-istruzione-e-ricerca-2022-2024.flc",
+        "type": "fonte_secondaria",
+        "agreement_date": "2026-08-06",
+        "notes": "Conferma firma definitiva 6 agosto 2026. Signatari: ANP, FLC CGIL, CISL FSUR, Dirigenti Scuola, UIL Scuola RUA. ANCODIS non ha firmato."
+      }
+    ],
+    "extraction": {
+      "method": "manual_pdf_extraction",
+      "model": null,
+      "timestamp": "2026-09-03",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2021-01-01", "valid_until": null, "value": "165" }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2021-01-01", "valid_until": null, "value": "13" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 1,
+      "maximum_count": 0,
+      "amount_by_level": {}
+    }
+  },
+  "levels": [
+    {
+      "code": "SECONDA_FASCIA",
+      "order": 1,
+      "description": "Dirigenti scolastici, direttori università e AFAM, dir. enti ricerca II fascia",
+      "category": "dirigente",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2021-01-01", "valid_until": "2024-01-01", "value": "3616.59" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "3846.59" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "PRIMA_FASCIA",
+      "order": 2,
+      "description": "Dirigenti di prima fascia: enti di ricerca (INFN, CNR, ecc.) e ASI",
+      "category": "dirigente",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2021-01-01", "valid_until": "2024-01-01", "value": "4623.30" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "4908.30" }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": [],
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "out_of_scope",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "SOURCE: Tabellare previgente da CCNL Area Dirigenza Istruzione e Ricerca 2019-2021 (firmato 7/8/2024). Seconda fascia: 47.015,73€/anno = 3.616,594...€/mese → 3.616,59€. Prima fascia: 60.102,87€/anno = 4.623,298...€/mese → 4.623,30€.",
+      "SOURCE: Incremento CCNL 2022-2024 (firmato 6/8/2026): seconda fascia +230€/mese × 13 = 50.005,73€/anno = 3.846,594...€/mese → 3.846,59€. Prima fascia +285€/mese × 13 = 63.807,87€/anno = 4.908,298...€/mese → 4.908,30€.",
+      "SOURCE: Signatari (6/8/2026): ANP, FLC CGIL, CISL FSUR, Dirigenti Scuola, UIL Scuola RUA. ANCODIS non ha firmato (flcgil.it).",
+      "SOURCE: Platea: ~7.550 dirigenti scolastici + ~360 direttori università/ricerca = ~7.910 totale (quifinanza.it).",
+      "INFO: Retribuzione di posizione parte fissa: seconda fascia 14.515,11€/anno (+1.170€/anno da 1/1/2024, era 13.345,11). Prima fascia 42.598,20€/anno. Variabile per incarico. Non modellata (SIMPLIFICATION).",
+      "INFO: Nessuno scatto automatico di anzianità per i dirigenti. maximum_count=0.",
+      "INFO: No apprendistato — D.Lgs. 165/2001 e regime dirigenziale PA. Layer 2 out_of_scope.",
+      "SIMPLIFICATION: CNEL S325 stimato per analogia (S305=comparto IR, S325=area dirigenza IR, seguendo S005/S025, S105/S125, S205/S225). Non verificato su fonti primarie CNEL.",
+      "SIMPLIFICATION: Hourly divisor 165 = 38h/settimana × 52/12 (stima per dirigenza PA).",
+      "SIMPLIFICATION: Period 1 valid_from=2021-01-01 corrisponde all'ultima tranche del CCNL 2019-2021 (+135€/mese da 1/1/2021). Il CCNL 2019-2021 è stato firmato retroattivamente il 7/8/2024.",
+      "SIMPLIFICATION: Seconda fascia include categorie eterogenee (dirigenti scolastici, direttori università e AOU, dirigenti II fascia enti ricerca). Modellate come unico livello per mancanza di tabellare differenziato nella fonte disponibile."
+    ]
+  }
+}

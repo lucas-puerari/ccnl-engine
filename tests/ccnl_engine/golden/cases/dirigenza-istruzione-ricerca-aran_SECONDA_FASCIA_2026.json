@@ -1,0 +1,52 @@
+{
+  "_description": "Golden case: CCNL Area Dirigenza Istruzione e Ricerca 2022-2024 (S325) — Dirigenti scolastici e II fascia, Level SECONDA_FASCIA, 2026-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Stipendio tabellare 2024: 3.846,59€/mese (50.005,73€/anno per 13 mensilità, 47015.73/13=3616.594→3616.59, +230€/mese).",
+    "Gross annual = 3846.59 × 13 = 50.005,67 (effetto arrotondamento mensile vs valore ufficiale 50.005,73).",
+    "Nessuna indennità fissa; retribuzione di posizione variabile out_of_scope.",
+    "INPS CTPS ex-INPDAP: employee 8.80%, employer 24.20% (kitech.it proxy 2026, SIMPLIFICATION).",
+    "IRPEF 2026: 23% fino a 28.000€, 33% da 28.000 a 50.000€, 43% oltre 50.000€.",
+    "Work income deduction = 0.00 (reddito imponibile > 28.000€).",
+    "TFR = 50.005,67 / 13,5 = 3.704,12€."
+  ],
+  "inputs": {
+    "ccnl_file": "dirigenza-istruzione-ricerca-aran.json",
+    "year": 2026,
+    "tax_sector": "pubblica_amministrazione",
+    "num_employees": 50,
+    "level_code": "SECONDA_FASCIA",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "dirigenza-istruzione-ricerca-aran",
+    "level_code": "SECONDA_FASCIA",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "3846.59",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "3846.59",
+    "gross_annual": "50005.67",
+    "hourly_rate": "23.31",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "4400.50",
+    "inps_employer_annual": "12101.37",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "3704.12",
+    "taxable_income": "45605.17",
+    "irpef_gross": "12249.71",
+    "work_income_deduction": "0.00",
+    "irpef_net": "12249.71",
+    "net_annual": "33355.46",
+    "net_monthly": "2565.80",
+    "employer_cost_annual": "65811.16"
+  }
+}
