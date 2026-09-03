@@ -127,14 +127,14 @@
   "apprenticeship": [],
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "out_of_scope",
+    "layer_2": "partial",
     "layer_3": "out_of_scope",
     "notes": [
       "SOURCE: Salary tables from Ipotesi CCNL Comparto Sanità 2022-2024 (ARAN, 14.01.2025, definitively signed October 2025). Art. 58 comma 1 (increments from 1.1.2024 per Tabella 1a), Art. 58 comma 2 (annual amounts from Tabella 2a). Monthly values = Tabella 2a / 12.",
       "SOURCE: Tranche 1 (2022-11-02) values back-calculated from CCNL 2.11.2022 base by subtracting Tabella 1a increments. 2022-2023 anticipation payments (Art. 47-bis D.Lgs. 165/2001) not modelled as separate periods (SIMPLIFICATION).",
       "SOURCE: Hourly divisor 156 from Art. 26 comma 1 (36h/week standard working time for comparto Sanità).",
       "SOURCE: 13 mensilità from Art. 57 (Tredicesima mensilità) of this CCNL.",
-      "SOURCE: No apprendistato — D.Lgs. 165/2001 framework excludes apprenticeship for pubblico impiego. Layer 2 out_of_scope.",
+      "INFO: Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.",
       "INFO: Seniority via DEP (Differenziali Economici di Professionalità) per Art. 60 Fondo incarichi: selective procedure, not automatic — maximum_count=0.",
       "INFO: Indennità di specificità infermieristica (Art. 62, Tabella 3) not modelled as fixed_allowance — applies only to specific nursing profiles (infermieri, ostetriche), not universally to all area members.",
       "SIMPLIFICATION: CNEL code S205 from secondary source (lavoro-economia.it). Not stated in official ipotesi PDF.",

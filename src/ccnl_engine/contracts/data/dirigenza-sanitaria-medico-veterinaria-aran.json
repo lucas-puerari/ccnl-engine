@@ -98,7 +98,7 @@
   "apprenticeship": [],
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "out_of_scope",
+    "layer_2": "partial",
     "layer_3": "out_of_scope",
     "notes": [
       "SOURCE: Stipendio tabellare da Art. 11 CCNL 27.02.2026: incremento +230€/mese da 1/1/2024, valore a regime 50.005,77€/anno per 13 mensilità = 3.846,60€/mese. Art. 11 riferisce Art. 61 comma 3 CCNL 23.1.2024 come base preesistente.",
@@ -109,7 +109,7 @@
       "INFO: Retribuzione di posizione (Art. 14): obbligatoria ma variabile per tipo incarico (UOC, UOSD, professionale, ecc.). Non modellata — parte fissa per incarico assegnato in sede aziendale; out_of_scope per il motore.",
       "INFO: Indennità per incarico di direzione di struttura complessa (Art. 16): 11.157€/anno per 13 mensilità. Non modellata come fixed_allowance — assegnata solo ai direttori di SC, non a tutti i dirigenti.",
       "INFO: Clausola di garanzia retribuzione di posizione (Art. 17): minima garantita per anzianità. Non modellata — variabile per anzianità e valutazione.",
-      "INFO: No apprendistato — D.Lgs. 165/2001 e regime dirigenziale PA escludono apprendistato. Layer 2 out_of_scope.",
+      "INFO: Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.",
       "INFO: Nessuno scatto automatico di anzianità per i dirigenti. Cadence=1 e maximum_count=0 riflettono l'assenza di progression automatica.",
       "SIMPLIFICATION: Hourly divisor 165 = 38h/settimana × 52/12, arrotondato. Art. 27 CCNL 23.1.2024 (Orario di lavoro dei dirigenti) non modificato dal CCNL 27.02.2026. Il divisore 165 è un'approssimazione — i dirigenti SSN non hanno un orario fisso misurabile.",
       "SIMPLIFICATION: Pre-31/12/2024 specificità medico-veterinaria (704,88€/mese) calcolata per differenza dal valore a regime 728,15€ sottraendo il presunto incremento 23,27€/mese × 13 = 302,51€/anno. L'importo pre-2024 è una stima basata sulle comunicazioni GOAL-plan (fonte secondaria); il valore esatto del CCNL 23.1.2024 Art. 65 non è verificato.",

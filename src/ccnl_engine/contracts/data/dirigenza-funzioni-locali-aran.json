@@ -80,7 +80,7 @@
   "apprenticeship": [],
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "out_of_scope",
+    "layer_2": "partial",
     "layer_3": "out_of_scope",
     "notes": [
       "SOURCE: Stipendio tabellare da fonte secondaria (truenumbers.it, logospa.it): valore a regime dall'1.1.2024 = 50.005,77€/anno per 13 mensilità = 3.846,60€/mese. Incremento +230€/mese per dirigenti e segretari comunali fascia A e B.",
@@ -89,7 +89,7 @@
       "SOURCE: Contratto applicato a ~13.000 dirigenti: 5.500 dirigenti RAL, 5.200 dirigenti PTA (enti locali sanitari), 2.300 segretari comunali e provinciali (truenumbers.it). Platea GOAL.md (~40k) era sovrastimata.",
       "INFO: Retribuzione di posizione: variabile per tipo incarico e ente, non modellata (SIMPLIFICATION). Totale mensile medio include posizione: +491€ RAL, +400€ segretari, +377€ PTA (include tabellare + posizione + altro).",
       "INFO: Segretari comunali e provinciali fascia C (neo-assunti): incremento tabellare +184€/mese (vs +230€ delle altre fasce), valore stimato 49.407,77€/anno = 3.800,60€/mese. Non modellati come livello separato per mancanza di fonte primaria verificata.",
-      "INFO: No apprendistato — D.Lgs. 165/2001 e regime dirigenziale PA. Layer 2 out_of_scope.",
+      "INFO: Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.",
       "INFO: Nessuno scatto automatico di anzianità per i dirigenti. maximum_count=0.",
       "SIMPLIFICATION: CNEL S125 da fonte secondaria (ilccnl.it). Non verificato su fonti primarie ARAN.",
       "SIMPLIFICATION: Hourly divisor 165 = 38h/settimana × 52/12 (stima per dirigenza PA). Orario effettivo dirigenti non fisso.",

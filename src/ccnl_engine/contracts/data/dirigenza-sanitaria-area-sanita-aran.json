@@ -98,7 +98,7 @@
   "apprenticeship": [],
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "out_of_scope",
+    "layer_2": "partial",
     "layer_3": "out_of_scope",
     "notes": [
       "SOURCE: Stipendio tabellare da Art. 11 CCNL 27.02.2026: incremento +230€/mese da 1/1/2024, valore a regime 50.005,77€/anno per 13 mensilità = 3.846,60€/mese.",
@@ -106,7 +106,7 @@
       "SOURCE: Tredicesima mensilità: Art. 11 comma 1 ('per 13 mensilità').",
       "SOURCE: Campo di applicazione: Art. 1 CCNL 27.02.2026. Questo file modella la componente non medico-veterinaria (psicologi, farmacisti, biologi, fisici, chimici, dirigenti professioni sanitarie).",
       "INFO: Retribuzione di posizione (Art. 14): obbligatoria ma variabile per tipo incarico. Non modellata — out_of_scope.",
-      "INFO: No apprendistato — D.Lgs. 165/2001 e regime dirigenziale PA. Layer 2 out_of_scope.",
+      "INFO: Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.",
       "INFO: Nessuno scatto automatico di anzianità. maximum_count=0.",
       "SIMPLIFICATION: Hourly divisor 165 = 38h/settimana × 52/12 (approssimazione per dirigenza SSN, CCNL 23.1.2024 Art. 27).",
       "SIMPLIFICATION: Pre-31/12/2024 specificità sanitaria (104,34€/mese) calcolata per differenza: 124,19 - 17,90 (incremento stimato dalla fonte secondaria openssn, GOAL-plan) = approssimazione; il valore esatto del CCNL 23.1.2024 Art. 66 non è verificato.",

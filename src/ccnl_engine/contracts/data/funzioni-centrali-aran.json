@@ -113,9 +113,10 @@
   "apprenticeship": [],
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "out_of_scope",
+    "layer_2": "partial",
     "layer_3": "out_of_scope",
     "notes": [
+      "INFO: Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.",
       "INFO: apprendistato assente dal CCNL vigente (fonte primaria: indice ARAN CCNL 2022-2024, Art. 1-38 senza capitolo apprendistato) e dal CCNL Ministeri 12/6/2003 richiamato dall'Art. 38 Conferme, che esclude espressamente gli apprendisti dall'ambito di applicazione (fonte secondaria: olympus.uniurb.it); quadro normativo PA D.Lgs. 165/2001 non prevede apprendistato ex D.Lgs. 81/2015.",
       "SIMPLIFICATION: codice CNEL S005 derivato da tre fonti secondarie convergenti (lavoro-economia.it, blia.it ID S005-209278, contratticcnl.it); sito CNEL non direttamente interrogabile via HTTP (JS-driven search).",
       "SIMPLIFICATION: aliquote INPS CTPS (ex-INPDAP) — dipendente 8,80%, datore 24,20% — da proxy kitech.it 2026; verificare circolare INPS annuale per valori esatti.",

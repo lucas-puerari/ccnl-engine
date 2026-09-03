@@ -84,7 +84,7 @@
   "apprenticeship": [],
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "out_of_scope",
+    "layer_2": "partial",
     "layer_3": "out_of_scope",
     "notes": [
       "SOURCE: Stipendio tabellare da testo ufficiale CCNL 28/10/2025 (Ministero del Lavoro, Art. 23 e Art. 26).",
@@ -93,7 +93,7 @@
       "SOURCE: Firma 28/10/2025. FP CGIL non ha firmato (indicato come 'non firmato' nel frontespizio). CGIL confederale non ha firmato.",
       "INFO: Retribuzione di posizione parte fissa: prima fascia 42.598,20€/anno (Art. 23 c.5); seconda fascia 14.515,11€/anno (Art. 26 c.5). Variabile per incarico, non modellata (SIMPLIFICATION).",
       "INFO: Nessuno scatto automatico di anzianità per i dirigenti. maximum_count=0.",
-      "INFO: No apprendistato — D.Lgs. 165/2001 e regime dirigenziale PA. Layer 2 out_of_scope.",
+      "INFO: Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.",
       "SIMPLIFICATION: CNEL S025 stimato per analogia con la struttura codici ARAN (S005=comparto FC, S025=area dirigenza FC, S105=comparto FL, S125=area dirigenza FL, S205=comparto Sanità, S225=area dirigenza Sanità). Non verificato su fonti primarie CNEL.",
       "SIMPLIFICATION: Hourly divisor 165 = 38h/settimana × 52/12 (stima per dirigenza PA). Orario effettivo dirigenti non fisso.",
       "SIMPLIFICATION: Valore mensile prima fascia 4.623,30€ (60.102,87/13 = 4.623,299... arrotondato) e 4.908,30€ (63.807,87/13 = 4.908,298... arrotondato). Stesso metodo usato per seconda fascia.",

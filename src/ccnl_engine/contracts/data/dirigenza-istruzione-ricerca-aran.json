@@ -94,7 +94,7 @@
   "apprenticeship": [],
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "out_of_scope",
+    "layer_2": "partial",
     "layer_3": "out_of_scope",
     "notes": [
       "SOURCE: Tabellare previgente da CCNL Area Dirigenza Istruzione e Ricerca 2019-2021 (firmato 7/8/2024). Seconda fascia: 47.015,73€/anno = 3.616,594...€/mese → 3.616,59€. Prima fascia: 60.102,87€/anno = 4.623,298...€/mese → 4.623,30€.",
@@ -103,7 +103,7 @@
       "SOURCE: Platea: ~7.550 dirigenti scolastici + ~360 direttori università/ricerca = ~7.910 totale (quifinanza.it).",
       "INFO: Retribuzione di posizione parte fissa: seconda fascia 14.515,11€/anno (+1.170€/anno da 1/1/2024, era 13.345,11). Prima fascia 42.598,20€/anno. Variabile per incarico. Non modellata (SIMPLIFICATION).",
       "INFO: Nessuno scatto automatico di anzianità per i dirigenti. maximum_count=0.",
-      "INFO: No apprendistato — D.Lgs. 165/2001 e regime dirigenziale PA. Layer 2 out_of_scope.",
+      "INFO: Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.",
       "SIMPLIFICATION: CNEL S325 stimato per analogia (S305=comparto IR, S325=area dirigenza IR, seguendo S005/S025, S105/S125, S205/S225). Non verificato su fonti primarie CNEL.",
       "SIMPLIFICATION: Hourly divisor 165 = 38h/settimana × 52/12 (stima per dirigenza PA).",
       "SIMPLIFICATION: Period 1 valid_from=2021-01-01 corrisponde all'ultima tranche del CCNL 2019-2021 (+135€/mese da 1/1/2021). Il CCNL 2019-2021 è stato firmato retroattivamente il 7/8/2024.",
