@@ -28,9 +28,13 @@ def _rules(ceiling: str | None = None) -> YearRules:
         },
         apprentice={
             "employee_rate": "0.0584",
+            "employee_ivs_rate": "0.0584",
             "employer_rate_months_0_11": "0.0311",
+            "employer_ivs_rate_months_0_11": "0.0150",
             "employer_rate_months_12_23": "0.0461",
+            "employer_ivs_rate_months_12_23": "0.0300",
             "employer_rate_after": "0.1161",
+            "employer_ivs_rate_after": "0.1000",
         },
     )
 

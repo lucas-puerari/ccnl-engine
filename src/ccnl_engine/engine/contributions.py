@@ -48,15 +48,15 @@ def resolve_rates(
         ContributionRates with employee and employer rates for the scenario.
     """
     if isinstance(employment, Apprentice):
-        # Apprentice rates are flat (no tier split); IVS rate equals total rate
-        # (the statutory reduced rates are fully pensionistic in nature).
         emp_rate = rules.apprentice.employee_rate
         er_rate = rules.apprentice.employer_rate_at(employment.months_elapsed)
         return ContributionRates(
             employee_rate=emp_rate,
-            employee_ivs_rate=emp_rate,
+            employee_ivs_rate=rules.apprentice.employee_ivs_rate,
             employer_rate=er_rate,
-            employer_ivs_rate=er_rate,
+            employer_ivs_rate=rules.apprentice.employer_ivs_rate_at(
+                employment.months_elapsed
+            ),
         )
     employer_rate = rules.inps.employer_rate_for(category)
     # NASpI addizionale is not IVS; keep ivs_rate unchanged.

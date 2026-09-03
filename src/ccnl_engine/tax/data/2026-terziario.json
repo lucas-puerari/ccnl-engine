@@ -2,36 +2,79 @@
   "year": 2026,
   "sector": "terziario",
   "irpef_brackets": [
-    { "up_to": "28000.00", "rate": "0.23" },
-    { "up_to": "50000.00", "rate": "0.33" },
-    { "up_to": null,       "rate": "0.43" }
+    {
+      "up_to": "28000.00",
+      "rate": "0.23"
+    },
+    {
+      "up_to": "50000.00",
+      "rate": "0.33"
+    },
+    {
+      "up_to": null,
+      "rate": "0.43"
+    }
   ],
   "work_deduction_breakpoints": [
-    { "income_up_to": "8500.00",  "deduction": "1955.00" },
-    { "income_up_to": "28000.00", "deduction": "700.00"  },
-    { "income_up_to": "50000.00", "deduction": "0.00"    },
-    { "income_up_to": null,       "deduction": "0.00"    }
+    {
+      "income_up_to": "8500.00",
+      "deduction": "1955.00"
+    },
+    {
+      "income_up_to": "28000.00",
+      "deduction": "700.00"
+    },
+    {
+      "income_up_to": "50000.00",
+      "deduction": "0.00"
+    },
+    {
+      "income_up_to": null,
+      "deduction": "0.00"
+    }
   ],
   "fixed_term_additional_rate": "0.014",
   "inps": {
     "employee_tiers": [
-      { "max_employees": 50,   "rate": "0.0919", "ivs_rate": "0.0919" },
-      { "max_employees": null, "rate": "0.0949", "ivs_rate": "0.0919" }
+      {
+        "max_employees": 50,
+        "rate": "0.0919",
+        "ivs_rate": "0.0919"
+      },
+      {
+        "max_employees": null,
+        "rate": "0.0949",
+        "ivs_rate": "0.0919"
+      }
     ],
     "employer_tiers": [
-      { "max_employees": 50,   "rate": "0.2898", "ivs_rate": "0.2381" },
-      { "max_employees": null, "rate": "0.3028", "ivs_rate": "0.2381" }
+      {
+        "max_employees": 50,
+        "rate": "0.2898",
+        "ivs_rate": "0.2381"
+      },
+      {
+        "max_employees": null,
+        "rate": "0.3028",
+        "ivs_rate": "0.2381"
+      }
     ],
     "ceiling": null
   },
   "apprentice": {
     "employee_rate": "0.0584",
+    "employee_ivs_rate": "0.0584",
     "employer_rate": "0.1161",
+    "employer_ivs_rate": "0.1000",
     "small_firm_max_employees": 9,
     "small_firm_employer_rate_months_0_11": "0.0311",
-    "small_firm_employer_rate_months_12_23": "0.0461"
+    "small_firm_employer_ivs_rate_months_0_11": "0.0150",
+    "small_firm_employer_rate_months_12_23": "0.0461",
+    "small_firm_employer_ivs_rate_months_12_23": "0.0300"
   },
-  "tfr": { "accrual_divisor": "13.5" },
+  "tfr": {
+    "accrual_divisor": "13.5"
+  },
   "notes": [
     "IRPEF brackets: three-bracket structure per L. 199/2025 (Legge di Bilancio 2026); second bracket reduced from 35% to 33% effective 2026-01-01. Sterilization of detrazioni for redditi > 200,000 EUR (Art. 1 co. 3-4 L. 199/2025) is out of scope for this engine (see separate fiscal library).",
     "work_deduction_breakpoints: Art. 13 co. 1 TUIR, as modified by D.Lgs. 216/2023 and confirmed by L. 207/2024 (Legge di Bilancio 2025). Breakpoints represent the piecewise-linear deduction schedule: flat at EUR 1,955 for income <= 8,500; linear from 1,955 to 700 in the 8,500-28,000 range; linear from 700 to 0 in the 28,000-50,000 range; zero above 50,000.",

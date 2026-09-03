@@ -68,14 +68,25 @@ class ApprenticeRates(BaseModel):
     Employer rates are already resolved for the employer's headcount: firms
     with at most ``small_firm_max_employees`` pay the reduced rates in the
     first two years, all others pay ``employer_rate_after`` throughout.
+
+    ``employee_ivs_rate`` and ``employer_ivs_rate_*`` carry the IVS-only
+    portions of the corresponding total rates.  For apprentice employees the
+    full rate is IVS (NASpI is employer-only for apprentice contracts).  For
+    employers the statutory IVS-only rate is 10 % for large firms and steps
+    up from 1.5 % / 3 % for small firms; NASpI (1.31 %) and CIGS (0.30 %)
+    are non-IVS and must not be capped.
     """
 
     model_config = ConfigDict(extra="forbid")
 
     employee_rate: Decimal
+    employee_ivs_rate: Decimal
     employer_rate_months_0_11: Decimal
+    employer_ivs_rate_months_0_11: Decimal
     employer_rate_months_12_23: Decimal
+    employer_ivs_rate_months_12_23: Decimal
     employer_rate_after: Decimal
+    employer_ivs_rate_after: Decimal
 
     def employer_rate_at(self, months_elapsed: int) -> Decimal:
         """Return the employer rate in force at ``months_elapsed``.
@@ -88,6 +99,18 @@ class ApprenticeRates(BaseModel):
         if months_elapsed < _APPRENTICE_SMALL_FIRM_STEP_2:
             return self.employer_rate_months_12_23
         return self.employer_rate_after
+
+    def employer_ivs_rate_at(self, months_elapsed: int) -> Decimal:
+        """Return the IVS-only employer rate in force at ``months_elapsed``.
+
+        Returns:
+            The IVS portion of the employer rate applicable at the given month.
+        """
+        if months_elapsed < _APPRENTICE_SMALL_FIRM_STEP_1:
+            return self.employer_ivs_rate_months_0_11
+        if months_elapsed < _APPRENTICE_SMALL_FIRM_STEP_2:
+            return self.employer_ivs_rate_months_12_23
+        return self.employer_ivs_rate_after
 
 
 class _InpsEmployerTier(BaseModel):
@@ -111,6 +134,13 @@ class _InpsEmployerTier(BaseModel):
         if self.ivs_rate > self.rate:
             msg = f"ivs_rate {self.ivs_rate} cannot exceed rate {self.rate}"
             raise ValueError(msg)
+        for cat, cat_rate in self.rate_by_category.items():
+            if cat_rate < self.ivs_rate:
+                msg = (
+                    f"rate_by_category[{cat!r}] = {cat_rate} is below "
+                    f"ivs_rate {self.ivs_rate}; non-IVS portion would be negative"
+                )
+                raise ValueError(msg)
         return self
 
 
@@ -153,10 +183,14 @@ class _ApprenticeRawRates(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     employee_rate: Decimal
+    employee_ivs_rate: Decimal
     employer_rate: Decimal
+    employer_ivs_rate: Decimal
     small_firm_max_employees: int = Field(ge=0)
     small_firm_employer_rate_months_0_11: Decimal
+    small_firm_employer_ivs_rate_months_0_11: Decimal
     small_firm_employer_rate_months_12_23: Decimal
+    small_firm_employer_ivs_rate_months_12_23: Decimal
 
 
 class TfrRules(BaseModel):

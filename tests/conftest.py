@@ -41,9 +41,13 @@ INPS_RATES_TERZIARIO: dict[str, Any] = {
 #: Apprentice rates for a large firm (L. 296/2006 art. 1 c. 773 + NASpI).
 APPRENTICE_RATES_LARGE_FIRM: dict[str, Any] = {
     "employee_rate": "0.0584",
+    "employee_ivs_rate": "0.0584",
     "employer_rate_months_0_11": "0.1161",
+    "employer_ivs_rate_months_0_11": "0.1000",
     "employer_rate_months_12_23": "0.1161",
+    "employer_ivs_rate_months_12_23": "0.1000",
     "employer_rate_after": "0.1161",
+    "employer_ivs_rate_after": "0.1000",
 }
 
 
