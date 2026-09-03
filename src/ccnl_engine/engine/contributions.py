@@ -35,6 +35,9 @@ def resolve_rates(
     Apprentices use the statutory reduced rates (L. 296/2006 art. 1 c. 773,
     headcount already resolved in ``rules.apprentice``). Fixed-term contracts
     add the NASpI *addizionale* to the employer rate (Art. 2 c. 28 L. 92/2012).
+
+    Returns:
+        ContributionRates with employee and employer rates for the scenario.
     """
     if isinstance(employment, Apprentice):
         return ContributionRates(
@@ -43,14 +46,18 @@ def resolve_rates(
         )
     employer_rate = rules.inps.employer_rate_for(category)
     if isinstance(employment, FixedTerm):
-        employer_rate = employer_rate + rules.fixed_term_additional_rate
+        employer_rate += rules.fixed_term_additional_rate
     return ContributionRates(
         employee_rate=rules.inps.employee_rate, employer_rate=employer_rate
     )
 
 
 def inps_contribution(base_annual: Decimal, rate: Decimal, rules: YearRules) -> Decimal:
-    """Compute an INPS contribution on the (ceiling-capped) annual base."""
+    """Compute an INPS contribution on the (ceiling-capped) annual base.
+
+    Returns:
+        The annual INPS contribution amount, rounded to two decimal places.
+    """
     capped = (
         min(base_annual, rules.inps.ceiling)
         if rules.inps.ceiling is not None
@@ -60,5 +67,9 @@ def inps_contribution(base_annual: Decimal, rate: Decimal, rules: YearRules) -> 
 
 
 def tfr(base_annual: Decimal, rules: YearRules) -> Decimal:
-    """Compute the annual TFR accrual (Art. 2120 c.c.)."""
+    """Compute the annual TFR accrual (Art. 2120 c.c.).
+
+    Returns:
+        The annual TFR accrual amount, rounded to two decimal places.
+    """
     return money(base_annual / rules.tfr.accrual_divisor)

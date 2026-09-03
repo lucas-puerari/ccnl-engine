@@ -22,7 +22,11 @@ def _period(
     valid_until: str | None,
     value: str = "100.00",
 ) -> ValidityPeriod:
-    """Build a ValidityPeriod from ISO-date strings."""
+    """Build a ValidityPeriod from ISO-date strings.
+
+    Returns:
+        A ValidityPeriod with the given date boundaries and value.
+    """
     return ValidityPeriod(
         valid_from=date.fromisoformat(valid_from),
         valid_until=date.fromisoformat(valid_until) if valid_until else None,
@@ -31,7 +35,11 @@ def _period(
 
 
 def _series(*periods: ValidityPeriod) -> TimeSeries:
-    """Build a TimeSeries from ValidityPeriod objects."""
+    """Build a TimeSeries from ValidityPeriod objects.
+
+    Returns:
+        A TimeSeries containing the given periods.
+    """
     return TimeSeries(periods=list(periods))
 
 

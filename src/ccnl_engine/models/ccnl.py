@@ -100,11 +100,19 @@ class SeniorityIncrements(BaseModel):
         return self
 
     def maximum_for(self, level_code: str) -> int:
-        """Return the maximum increment count applicable to a level."""
+        """Return the maximum increment count applicable to a level.
+
+        Returns:
+            The maximum seniority increment count for the given level.
+        """
         return self.maximum_count_by_level.get(level_code, self.maximum_count)
 
     def first_cadence_for(self, level_code: str) -> int:
-        """Return the months of service required for the first increment."""
+        """Return the months of service required for the first increment.
+
+        Returns:
+            The months of service required for the first seniority increment.
+        """
         return self.first_cadence_months_by_level.get(
             level_code, self.first_cadence_months or self.cadence_months
         )
@@ -125,7 +133,11 @@ class EmployerFund(BaseModel):
     applies_to_categories: list[LevelCategory] | None = None
 
     def applies_to(self, category: LevelCategory | None) -> bool:
-        """Return whether the fund applies to a level of the given category."""
+        """Return whether the fund applies to a level of the given category.
+
+        Returns:
+            True if the fund applies to the given category, False otherwise.
+        """
         if self.applies_to_categories is None:
             return True
         return category is not None and category in self.applies_to_categories
@@ -193,7 +205,7 @@ class Coverage(BaseModel):
                 )
                 raise ValueError(msg)
         has_missing = any(n.startswith(_MISSING_PREFIX) for n in self.notes)
-        if has_missing and "partial" not in (self.layer_1, self.layer_2):
+        if has_missing and "partial" not in {self.layer_1, self.layer_2}:
             msg = (
                 "coverage has MISSING: notes but neither layer_1 nor layer_2 "
                 "is 'partial'"
@@ -279,7 +291,14 @@ class CCNL(BaseModel):
         return self
 
     def level_by_code(self, level_code: str) -> Level:
-        """Return the level with the given code, or raise ``KeyError``."""
+        """Return the level with the given code, or raise ``KeyError``.
+
+        Returns:
+            The Level matching the given code.
+
+        Raises:
+            KeyError: If no level with the given code exists.
+        """
         for lv in self.levels:
             if lv.code == level_code:
                 return lv
@@ -287,7 +306,14 @@ class CCNL(BaseModel):
         raise KeyError(msg)
 
     def level_by_order(self, order: int) -> Level:
-        """Return the level with the given order, or raise ``KeyError``."""
+        """Return the level with the given order, or raise ``KeyError``.
+
+        Returns:
+            The Level matching the given order.
+
+        Raises:
+            KeyError: If no level with the given order exists.
+        """
         for lv in self.levels:
             if lv.order == order:
                 return lv
@@ -295,11 +321,22 @@ class CCNL(BaseModel):
         raise KeyError(msg)
 
     def apprenticeship_tracks_for(self, level_code: str) -> list[ApprenticeshipTrack]:
-        """Return every apprenticeship track whose destinations include a level."""
+        """Return every apprenticeship track whose destinations include a level.
+
+        Returns:
+            List of ApprenticeshipTrack objects that cover the given level code.
+        """
         return [t for t in self.apprenticeship if level_code in t.destination_levels]
 
     def apprenticeship_track_named(self, name: str) -> ApprenticeshipTrack:
-        """Return the apprenticeship track with the given name or raise ``KeyError``."""
+        """Return the apprenticeship track with the given name or raise ``KeyError``.
+
+        Returns:
+            The ApprenticeshipTrack with the given name.
+
+        Raises:
+            KeyError: If no track with the given name exists.
+        """
         for track in self.apprenticeship:
             if track.name == name:
                 return track
@@ -417,6 +454,5 @@ class CCNL(BaseModel):
 def _collect_transition_dates(levels: list[Level]) -> set[date]:
     all_dates: set[date] = set()
     for lv in levels:
-        for period in lv.base_salary.periods:
-            all_dates.add(period.valid_from)
+        all_dates.update(period.valid_from for period in lv.base_salary.periods)
     return all_dates

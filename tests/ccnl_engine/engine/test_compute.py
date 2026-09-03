@@ -34,7 +34,11 @@ _FIXED_TERM = FixedTerm()
 
 
 def _ccnl(app_type: str = "percentage", /, **mutations: object) -> CCNL:
-    """Build a CCNL from the shared dict, applying dotted-path mutations."""
+    """Build a CCNL from the shared dict, applying dotted-path mutations.
+
+    Returns:
+        A validated CCNL instance with the requested mutations applied.
+    """
     data = make_ccnl_dict(app_type=app_type)
     for path, value in mutations.items():
         node: Any = data
@@ -185,13 +189,9 @@ class TestComputePermanent:
 
     def test_seniority_first_cadence_by_level(self) -> None:
         """Per-level first cadence (e.g. operai lump step at 48 months)."""
-        ccnl = _ccnl(
-            **{
-                "parameters.seniority_increments.first_cadence_months_by_level": {
-                    "4": 48
-                }
-            }
-        )
+        ccnl = _ccnl(**{
+            "parameters.seniority_increments.first_cadence_months_by_level": {"4": 48}
+        })
         assert (
             compute(
                 ccnl, "4", _DATE, _RULES, _PERMANENT, seniority_months=47
@@ -213,9 +213,9 @@ class TestComputePermanent:
 
     def test_seniority_per_level_maximum(self) -> None:
         """maximum_count_by_level overrides maximum_count for that level."""
-        ccnl = _ccnl(
-            **{"parameters.seniority_increments.maximum_count_by_level": {"4": 1}}
-        )
+        ccnl = _ccnl(**{
+            "parameters.seniority_increments.maximum_count_by_level": {"4": 1}
+        })
         r = compute(ccnl, "4", _DATE, _RULES, _PERMANENT, seniority_months=360)
         assert r.seniority_count == 1
         assert r.seniority_monthly == _D("20.00")
@@ -224,12 +224,10 @@ class TestComputePermanent:
 
     def test_excluded_category_zeroes_seniority(self) -> None:
         """Workers with category in excluded_categories accrue no scatti."""
-        ccnl = _ccnl(
-            **{
-                "levels.2.category": "operaio",
-                "parameters.seniority_increments.excluded_categories": ["operaio"],
-            }
-        )
+        ccnl = _ccnl(**{
+            "levels.2.category": "operaio",
+            "parameters.seniority_increments.excluded_categories": ["operaio"],
+        })
         r = compute(ccnl, "4", _DATE, _RULES, _PERMANENT, seniority_months=120)
         assert r.seniority_count == 0
         assert r.seniority_monthly == _D("0.00")
@@ -295,14 +293,12 @@ class TestComputeAllowances:
 
     def test_role_filter(self) -> None:
         """Role-scoped allowances apply only when the role is passed."""
-        ccnl = _ccnl(
-            **{
-                "levels.2.fixed_allowances": [
-                    _allowance("edr", "10.00"),
-                    _allowance("quadro", "100.00", role="quadro"),
-                ]
-            }
-        )
+        ccnl = _ccnl(**{
+            "levels.2.fixed_allowances": [
+                _allowance("edr", "10.00"),
+                _allowance("quadro", "100.00", role="quadro"),
+            ]
+        })
         plain = compute(ccnl, "4", _DATE, _RULES, _PERMANENT)
         quadro = compute(
             ccnl, "4", _DATE, _RULES, _PERMANENT, roles=frozenset({"quadro"})
@@ -312,32 +308,28 @@ class TestComputeAllowances:
 
     def test_months_per_year(self) -> None:
         """An allowance paid 12 times contributes 12 x monthly to gross_annual."""
-        ccnl = _ccnl(
-            **{
-                "parameters.additional_months": _series("14"),
-                "levels.2.fixed_allowances": [
-                    _allowance("ind", "50.00", months_per_year=12)
-                ],
-            }
-        )
+        ccnl = _ccnl(**{
+            "parameters.additional_months": _series("14"),
+            "levels.2.fixed_allowances": [
+                _allowance("ind", "50.00", months_per_year=12)
+            ],
+        })
         r = compute(ccnl, "4", _DATE, _RULES, _PERMANENT)
         assert r.gross_monthly == _D("1050.00")
         assert r.gross_annual == _D("14600.00")  # 1000*14 + 50*12
 
     def test_relevance_flags(self) -> None:
         """Non-relevant allowances are excluded from the INPS and TFR bases."""
-        ccnl = _ccnl(
-            **{
-                "levels.2.fixed_allowances": [
-                    _allowance(
-                        "edr",
-                        "100.00",
-                        tfr_relevant=False,
-                        contribution_relevant=False,
-                    )
-                ]
-            }
-        )
+        ccnl = _ccnl(**{
+            "levels.2.fixed_allowances": [
+                _allowance(
+                    "edr",
+                    "100.00",
+                    tfr_relevant=False,
+                    contribution_relevant=False,
+                )
+            ]
+        })
         r = compute(ccnl, "4", _DATE, _RULES, _PERMANENT)
         base = compute(_CCNL, "4", _DATE, _RULES, _PERMANENT)
         assert r.gross_annual == _D("13200.00")
@@ -364,13 +356,11 @@ class TestComputeEmployerFunds:
 
     def test_fund_applies_to_category(self) -> None:
         """A fund restricted to operai applies only to operaio levels."""
-        ccnl = _ccnl(
-            **{
-                "parameters.employer_funds": [self._FUND],
-                "levels.2.category": "operaio",
-                "levels.1.category": "impiegato",
-            }
-        )
+        ccnl = _ccnl(**{
+            "parameters.employer_funds": [self._FUND],
+            "levels.2.category": "operaio",
+            "levels.1.category": "impiegato",
+        })
         operaio = compute(ccnl, "4", _DATE, _RULES, _PERMANENT)
         impiegato = compute(ccnl, "3", _DATE, _RULES, _PERMANENT)
         uncategorised = compute(ccnl, "2", _DATE, _RULES, _PERMANENT)
@@ -401,9 +391,10 @@ class TestComputeEmployerFunds:
                 "employer_rate_by_category": {"impiegato": "0.20"},
             }
         )
-        ccnl = _ccnl(
-            **{"levels.1.category": "impiegato", "levels.2.category": "operaio"}
-        )
+        ccnl = _ccnl(**{
+            "levels.1.category": "impiegato",
+            "levels.2.category": "operaio",
+        })
         impiegato = compute(ccnl, "3", _DATE, rules, _PERMANENT)
         operaio = compute(ccnl, "4", _DATE, rules, _PERMANENT)
         assert impiegato.inps_employer_annual == _D("1920.00")  # 9600 * 0.20
@@ -502,9 +493,9 @@ class TestComputeApprenticePercentage:
 
     def test_apprentice_amount(self) -> None:
         """apprentice_amount replaces the level increment for apprentices."""
-        ccnl = _ccnl(
-            **{"parameters.seniority_increments.apprentice_amount": _series("6.00")}
-        )
+        ccnl = _ccnl(**{
+            "parameters.seniority_increments.apprentice_amount": _series("6.00")
+        })
         r = compute(
             ccnl, "4", _DATE, _RULES, Apprentice(months_elapsed=0), seniority_count=2
         )

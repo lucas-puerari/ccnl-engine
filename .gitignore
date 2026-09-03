@@ -217,5 +217,6 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Claude Code
+# Project-specific files
 .claude/GOAL.md
+TODO.md

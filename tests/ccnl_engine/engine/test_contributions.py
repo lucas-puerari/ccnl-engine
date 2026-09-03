@@ -11,7 +11,11 @@ _D = Decimal
 
 
 def _rules(ceiling: str | None = None) -> YearRules:
-    """Build minimal YearRules with configurable INPS ceiling."""
+    """Build minimal YearRules with configurable INPS ceiling.
+
+    Returns:
+        A YearRules instance with the specified ceiling value.
+    """
     return make_year_rules(
         inps={
             "employee_rate": "0.0919",

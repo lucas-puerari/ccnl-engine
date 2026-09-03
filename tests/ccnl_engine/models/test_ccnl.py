@@ -342,21 +342,21 @@ class TestEmployerFundsAndAllowances:
 
     def test_applies_to(self) -> None:
         """Category restriction semantics."""
-        fund = EmployerFund.model_validate(
-            {
-                "code": "ce",
-                "description": "Cassa Edile",
-                "rate": _series("0.185"),
-                "applies_to_categories": ["operaio"],
-            }
-        )
+        fund = EmployerFund.model_validate({
+            "code": "ce",
+            "description": "Cassa Edile",
+            "rate": _series("0.185"),
+            "applies_to_categories": ["operaio"],
+        })
         assert fund.applies_to("operaio")
         assert not fund.applies_to("impiegato")
         assert not fund.applies_to(None)
         assert fund.rate.value_at(date(2026, 1, 1)) == Decimal("0.185")
-        open_fund = EmployerFund.model_validate(
-            {"code": "f", "description": "f", "rate": _series("0.01")}
-        )
+        open_fund = EmployerFund.model_validate({
+            "code": "f",
+            "description": "f",
+            "rate": _series("0.01"),
+        })
         assert open_fund.applies_to(None)
 
     def test_invalid_category_raises(self) -> None:

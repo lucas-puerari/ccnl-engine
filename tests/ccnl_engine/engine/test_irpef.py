@@ -31,7 +31,11 @@ _STANDARD_DEDUCTIONS = [
 
 
 def _rules(deductions: list[dict[str, Any]] | None = None) -> YearRules:
-    """Minimal YearRules with the 2026 IRPEF brackets and configurable deductions."""
+    """Minimal YearRules with the 2026 IRPEF brackets and configurable deductions.
+
+    Returns:
+        A YearRules instance with the specified deduction breakpoints.
+    """
     return make_year_rules(brackets=_THREE_BRACKETS, deductions=deductions)
 
 

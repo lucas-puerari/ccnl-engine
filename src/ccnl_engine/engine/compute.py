@@ -88,6 +88,13 @@ def compute(
     gross as given, not scaled by ``part_time_pct``. ``category`` overrides the
     level's worker category when a level hosts several categories (e.g.
     operai and impiegati sharing level 3 in edilizia).
+
+    Returns:
+        ComputationResult with all gross, net, and cost figures.
+
+    Raises:
+        ValueError: If part_time_pct is not in (0, 1], ad_personam_monthly < 0,
+            or seniority arguments are invalid.
     """
     if not (_ZERO < part_time_pct <= _ONE):
         msg = f"part_time_pct must be in (0, 1], got {part_time_pct}"
@@ -116,7 +123,7 @@ def compute(
             ccnl, level, employment, count, roles, as_of
         )
         if apprenticeship_pct is not None:
-            factor = factor * apprenticeship_pct
+            factor *= apprenticeship_pct
     else:
         chain_ft = _level_chain(ccnl, level, count, roles, as_of, apprentice=False)
 
@@ -200,7 +207,15 @@ def _resolve_seniority_count(
     seniority_count: int | None,
     seniority_months: int | None,
 ) -> int:
-    """Resolve the seniority increment count from either explicit input."""
+    """Resolve the seniority increment count from either explicit input.
+
+    Returns:
+        The resolved seniority increment count, clamped to the level maximum.
+
+    Raises:
+        ValueError: If both seniority_count and seniority_months are given,
+            or if either value is negative, or if seniority_count exceeds the maximum.
+    """
     if seniority_count is not None and seniority_months is not None:
         msg = "seniority_count and seniority_months are mutually exclusive"
         raise ValueError(msg)
@@ -306,9 +321,9 @@ def _select_track(
     if len(candidates) == 1:
         return candidates[0]
     if not candidates:
-        eligible = sorted(
-            {c for t in ccnl.apprenticeship for c in t.destination_levels}
-        )
+        eligible = sorted({
+            c for t in ccnl.apprenticeship for c in t.destination_levels
+        })
         msg = (
             f"CCNL '{ccnl.meta.id}' has no apprenticeship track for destination "
             f"level {level.code!r} (coverage.layer_2 is {ccnl.coverage.layer_2}; "

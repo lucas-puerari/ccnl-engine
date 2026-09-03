@@ -44,7 +44,11 @@ class InpsRates(BaseModel):
     employer_rate_by_category: dict[str, Decimal] = {}
 
     def employer_rate_for(self, category: str | None) -> Decimal:
-        """Return the employer rate applicable to a worker category."""
+        """Return the employer rate applicable to a worker category.
+
+        Returns:
+            The employer contribution rate for the given worker category.
+        """
         if category is None:
             return self.employer_rate
         return self.employer_rate_by_category.get(category, self.employer_rate)
@@ -66,7 +70,11 @@ class ApprenticeRates(BaseModel):
     employer_rate_after: Decimal
 
     def employer_rate_at(self, months_elapsed: int) -> Decimal:
-        """Return the employer rate in force at ``months_elapsed``."""
+        """Return the employer rate in force at ``months_elapsed``.
+
+        Returns:
+            The employer contribution rate applicable at the given month.
+        """
         if months_elapsed < _APPRENTICE_SMALL_FIRM_STEP_1:
             return self.employer_rate_months_0_11
         if months_elapsed < _APPRENTICE_SMALL_FIRM_STEP_2:
