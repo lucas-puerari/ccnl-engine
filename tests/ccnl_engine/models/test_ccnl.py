@@ -322,7 +322,6 @@ class TestCoverage:
         data["coverage"] = {
             "layer_1": "implemented",
             "layer_2": "implemented",
-            "layer_3": "out_of_scope",
             "notes": [],
         }
         result = _validate(data)
