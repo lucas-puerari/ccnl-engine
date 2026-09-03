@@ -48,48 +48,50 @@ print(result.employer_cost_annual)  # → Decimal('...')
 
 *CCNL Matrix*
 
-| # | CCNL | Sector | Layer 1 | Layer 2 | Layer 3 |
-|---|---|---|:---:|:---:|:---:|
-| 1 | Commercio — Confcommercio | Terziario | ✅ | ✅ | — |
-| 2 | Metalmeccanico — Federmeccanica/Assistal | Industria | ✅ | ✅ | — |
-| 3 | Metalmeccanico PMI — Unionmeccanica-Confapi | Industria | ✅ | ✅ | — |
-| 4 | Chimica-Farmaceutica — Federchimica/Farmindustria/Assistal | Industria | ✅ | ✅ | — |
-| 5 | Turismo — Confcommercio | Terziario | ✅ | ✅ | — |
-| 6 | Edilizia — ANCE | Edilizia | ✅ | ✅ | — |
-| 7 | Cooperative Sociali — Confcooperative/Legacoop/AGCI | Terziario | ✅ | ✅ | — |
-| 8 | Logistica, Trasporto Merci e Spedizione — Confetra | Industria | ✅ | ✅ | — |
-| 9 | Servizi di Pulizia e Multiservizi — ANIP-Confindustria | Terziario | ✅ | ✅ | — |
-| 10 | Studi e Attività Professionali — Confprofessioni | Terziario | ✅ | ✅ | — |
-| 11 | Credito — ABI | Credito | ✅ | ✅ | — |
-| 12 | Tessile Abbigliamento Moda — SMI | Industria | ✅ | ✅ | — |
-| 13 | Alimentari Industria — Federalimentare | Industria | ✅ | ✅ | — |
-| 14 | Distribuzione Moderna Organizzata — Federdistribuzione | Terziario | ✅ | ✅ | — |
-| 15 | Metalmeccanica e Installazione Impianti — Artigianato | Artigianato | ✅ | ✅ | — |
-| 16 | Gomma e Plastica Industria — Federazione Gomma Plastica | Industria | ✅ | ✅ | — |
-| 17 | Grafica e Editoria — AIEG-Acigraf | Industria | ✅ | ✅ | — |
-| 18 | Carta e Cartone — Assocarta | Industria | ✅ | ✅ | — |
-| 19 | Telecomunicazioni — Asstel | Industria | ✅ | ✅ | — |
-| 20 | Vigilanza Privata — ASSIV/ANIVP/UNIV (GPG) | Terziario | ✅ | ✅ | — |
-| 21 | Legno e Arredamento — Federlegno-Arredo | Industria | ✅ | ✅ | — |
-| 22 | Edilizia e Affini — CNA/Confartigianato/Casartigiani | Artigianato | ✅ | ✅ | — |
-| 23 | Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas | Industria | ✅ | ✅ | — |
-| 24 | Istituzioni Socio-Assistenziali — UNEBA | Terziario | ✅ | ✅ | — |
-| 25 | Acconciatura ed Estetica — Confartigianato/CNA | Artigianato | ✅ | ✅ | — |
-| 26 | Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA) | Artigianato | ✅ | ✅ | — |
-| 27 | Autoferrotranvieri e Internavigatori (Mobilita/TPL) — AGENS/ASSTRA/ANAV | Terziario | ✅ | ✅ | — |
-| 28 | Credito Cooperativo (BCC/CRA) — Federcasse | Credito | ✅ | ✅ | — |
-| 29 | Elettrico (produzione/distribuzione energia) — Elettricita Futura | Industria | ✅ | ✅ | — |
-| 30 | Calzaturiero (industria delle calzature) — Assocalzaturifici | Industria | ✅ | ✅ | — |
-| 31 | Area Tessile-Moda e Chimica-Ceramica — Artigianato (Confartigianato/CNA) | Artigianato | ✅ | ✅ | — |
-| 32 | Area Legno-Lapidei — Artigianato (Confartigianato/CNA) | Artigianato | ✅ | ✅ | — |
-| 33 | Area Comunicazione — Artigianato (Confartigianato/CNA) | Artigianato | ✅ | ✅ | — |
-| 34 | Ceramica Industria — Confindustria Ceramica (Assopiastrelle) | Industria | ✅ | ✅ | — |
-| 35 | Orafi e Argentieri — Federorafi | Industria | ✅ | ✅ | — |
-| 36 | Pelli e Cuoio Industria — Assopellettieri | Industria | ✅ | ✅ | — |
-| 37 | Pubblici Esercizi, Ristorazione Collettiva e Turismo — FIPE/ANGEM | Terziario | ✅ | ✅ | — |
-| 38 | Agenzie di Viaggio e Turismo — Fiavet/Confcommercio | Terziario | ✅ | ✅ | — |
-| 39 | Terziario Distribuzione e Servizi — Confesercenti | Terziario | ✅ | ✅ | — |
-| 40 | Turismo — Federalberghi/Faita | Terziario | ✅ | ✅ | — |
+| # | CCNL | Sector | Lavoratori (~)[^1] | Layer 1 | Layer 2 | Layer 3 |
+|---|---|---|---:|:---:|:---:|:---:|
+| 1 | Commercio — Confcommercio | Terziario | ~800k | ✅ | ✅ | — |
+| 2 | Metalmeccanico — Federmeccanica/Assistal | Industria | ~1,7M | ✅ | ✅ | — |
+| 3 | Metalmeccanico PMI — Unionmeccanica-Confapi | Industria | ~350k | ✅ | ✅ | — |
+| 4 | Chimica-Farmaceutica — Federchimica/Farmindustria/Assistal | Industria | ~210k | ✅ | ✅ | — |
+| 5 | Turismo — Confcommercio | Terziario | ~300k | ✅ | ✅ | — |
+| 6 | Edilizia — ANCE | Edilizia | ~550k | ✅ | ✅ | — |
+| 7 | Cooperative Sociali — Confcooperative/Legacoop/AGCI | Terziario | ~380k | ✅ | ✅ | — |
+| 8 | Logistica, Trasporto Merci e Spedizione — Confetra | Industria | ~430k | ✅ | ✅ | — |
+| 9 | Servizi di Pulizia e Multiservizi — ANIP-Confindustria | Terziario | ~580k | ✅ | ✅ | — |
+| 10 | Studi e Attività Professionali — Confprofessioni | Terziario | ~350k | ✅ | ✅ | — |
+| 11 | Credito — ABI | Credito | ~270k | ✅ | ✅ | — |
+| 12 | Tessile Abbigliamento Moda — SMI | Industria | ~160k | ✅ | ✅ | — |
+| 13 | Alimentari Industria — Federalimentare | Industria | ~145k | ✅ | ✅ | — |
+| 14 | Distribuzione Moderna Organizzata — Federdistribuzione | Terziario | ~460k | ✅ | ✅ | — |
+| 15 | Metalmeccanica e Installazione Impianti — Artigianato | Artigianato | ~350k | ✅ | ✅ | — |
+| 16 | Gomma e Plastica Industria — Federazione Gomma Plastica | Industria | ~90k | ✅ | ✅ | — |
+| 17 | Grafica e Editoria — AIEG-Acigraf | Industria | ~70k | ✅ | ✅ | — |
+| 18 | Carta e Cartone — Assocarta | Industria | ~35k | ✅ | ✅ | — |
+| 19 | Telecomunicazioni — Asstel | Industria | ~110k | ✅ | ✅ | — |
+| 20 | Vigilanza Privata — ASSIV/ANIVP/UNIV (GPG) | Terziario | ~85k | ✅ | ✅ | — |
+| 21 | Legno e Arredamento — Federlegno-Arredo | Industria | ~90k | ✅ | ✅ | — |
+| 22 | Edilizia e Affini — CNA/Confartigianato/Casartigiani | Artigianato | ~350k | ✅ | ✅ | — |
+| 23 | Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas | Industria | ~65k | ✅ | ✅ | — |
+| 24 | Istituzioni Socio-Assistenziali — UNEBA | Terziario | ~130k | ✅ | ✅ | — |
+| 25 | Acconciatura ed Estetica — Confartigianato/CNA | Artigianato | ~95k | ✅ | ✅ | — |
+| 26 | Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA) | Artigianato | ~90k | ✅ | ✅ | — |
+| 27 | Autoferrotranvieri e Internavigatori (Mobilita/TPL) — AGENS/ASSTRA/ANAV | Terziario | ~120k | ✅ | ✅ | — |
+| 28 | Credito Cooperativo (BCC/CRA) — Federcasse | Credito | ~33k | ✅ | ✅ | — |
+| 29 | Elettrico (produzione/distribuzione energia) — Elettricita Futura | Industria | ~60k | ✅ | ✅ | — |
+| 30 | Calzaturiero (industria delle calzature) — Assocalzaturifici | Industria | ~75k | ✅ | ✅ | — |
+| 31 | Area Tessile-Moda e Chimica-Ceramica — Artigianato (Confartigianato/CNA) | Artigianato | ~120k | ✅ | ✅ | — |
+| 32 | Area Legno-Lapidei — Artigianato (Confartigianato/CNA) | Artigianato | ~95k | ✅ | ✅ | — |
+| 33 | Area Comunicazione — Artigianato (Confartigianato/CNA) | Artigianato | ~60k | ✅ | ✅ | — |
+| 34 | Ceramica Industria — Confindustria Ceramica (Assopiastrelle) | Industria | ~23k | ✅ | ✅ | — |
+| 35 | Orafi e Argentieri — Federorafi | Industria | ~18k | ✅ | ✅ | — |
+| 36 | Pelli e Cuoio Industria — Assopellettieri | Industria | ~17k | ✅ | ✅ | — |
+| 37 | Pubblici Esercizi, Ristorazione Collettiva e Turismo — FIPE/ANGEM | Terziario | ~350k | ✅ | ✅ | — |
+| 38 | Agenzie di Viaggio e Turismo — Fiavet/Confcommercio | Terziario | ~25k | ✅ | ✅ | — |
+| 39 | Terziario Distribuzione e Servizi — Confesercenti | Terziario | ~230k | ✅ | ✅ | — |
+| 40 | Turismo — Federalberghi/Faita | Terziario | ~220k | ✅ | ✅ | — |
+
+[^1]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.
 
 ## What is not modelled
 
