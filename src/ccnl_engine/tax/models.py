@@ -88,6 +88,40 @@ class ApprenticeRates(BaseModel):
     employer_rate_after: Decimal
     employer_ivs_rate_after: Decimal
 
+    @model_validator(mode="after")
+    def _check_ivs_rates(self) -> Self:
+        pairs: list[tuple[str, Decimal, str, Decimal]] = [
+            (
+                "employee_ivs_rate",
+                self.employee_ivs_rate,
+                "employee_rate",
+                self.employee_rate,
+            ),
+            (
+                "employer_ivs_rate_months_0_11",
+                self.employer_ivs_rate_months_0_11,
+                "employer_rate_months_0_11",
+                self.employer_rate_months_0_11,
+            ),
+            (
+                "employer_ivs_rate_months_12_23",
+                self.employer_ivs_rate_months_12_23,
+                "employer_rate_months_12_23",
+                self.employer_rate_months_12_23,
+            ),
+            (
+                "employer_ivs_rate_after",
+                self.employer_ivs_rate_after,
+                "employer_rate_after",
+                self.employer_rate_after,
+            ),
+        ]
+        for ivs_name, ivs_val, total_name, total_val in pairs:
+            if ivs_val > total_val:
+                msg = f"{ivs_name} {ivs_val} cannot exceed {total_name} {total_val}"
+                raise ValueError(msg)
+        return self
+
     def employer_rate_at(self, months_elapsed: int) -> Decimal:
         """Return the employer rate in force at ``months_elapsed``.
 
@@ -191,6 +225,40 @@ class _ApprenticeRawRates(BaseModel):
     small_firm_employer_ivs_rate_months_0_11: Decimal
     small_firm_employer_rate_months_12_23: Decimal
     small_firm_employer_ivs_rate_months_12_23: Decimal
+
+    @model_validator(mode="after")
+    def _check_ivs_rates(self) -> Self:
+        pairs: list[tuple[str, Decimal, str, Decimal]] = [
+            (
+                "employee_ivs_rate",
+                self.employee_ivs_rate,
+                "employee_rate",
+                self.employee_rate,
+            ),
+            (
+                "employer_ivs_rate",
+                self.employer_ivs_rate,
+                "employer_rate",
+                self.employer_rate,
+            ),
+            (
+                "small_firm_employer_ivs_rate_months_0_11",
+                self.small_firm_employer_ivs_rate_months_0_11,
+                "small_firm_employer_rate_months_0_11",
+                self.small_firm_employer_rate_months_0_11,
+            ),
+            (
+                "small_firm_employer_ivs_rate_months_12_23",
+                self.small_firm_employer_ivs_rate_months_12_23,
+                "small_firm_employer_rate_months_12_23",
+                self.small_firm_employer_rate_months_12_23,
+            ),
+        ]
+        for ivs_name, ivs_val, total_name, total_val in pairs:
+            if ivs_val > total_val:
+                msg = f"{ivs_name} {ivs_val} cannot exceed {total_name} {total_val}"
+                raise ValueError(msg)
+        return self
 
 
 class TfrRules(BaseModel):

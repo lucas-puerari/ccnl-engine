@@ -48,8 +48,8 @@
         "rate": "0.2693",
         "ivs_rate": "0.2381",
         "rate_by_category": {
-          "impiegato": "0.2471",
-          "quadro": "0.2471"
+          "impiegato": "0.2610",
+          "quadro": "0.2610"
         }
       }
     ],
@@ -74,8 +74,9 @@
     "INPS employer — SIMPLIFICATION: rate 26.93% from kitech.it (proxy data for non-construction crafts sector 2024; specific INPS circular not retrieved). Estimated components: IVS 23.81% + NASpI 1.61% + CUAF 0.68% + sickness for operai ~0.83% = ~26.93%. No CIGO/CIGS for the crafts sector (art. 3 D.Lgs. 148/2015). FSBA (0.45% employer + 0.15% employee) excluded: bilateral fund contribution, not INPS. No size tier.",
     "INPS employee — employee_tiers: 9.19% (IVS + NASpI) flat. No additional CIGS for employees (crafts sector has no CIGS).",
     "fixed_term_additional_rate: NASpI additional rate 1.4% (employer-only) per Art. 2 co. 28 L. 92/2012.",
-    "INPS employer by category — rate_by_category: white-collar employees (impiegati) and middle managers (quadri) 24.71% (kitech.it, same proxy source as the operai rate 26.93%); operai and levels without a category use 26.93%.",
+    "INPS employer by category — rate_by_category: white-collar employees (impiegati) and middle managers (quadri) estimated at 26.10% = IVS 23.81% + NASpI 1.61% + CUAF 0.68% (no malattia contribution for impiegati in artigianato; no CIGS). The previous proxy value from kitech.it (24.71%) was arithmetically impossible: it fell below the mandatory IVS (23.81%) + NASpI (1.61%) floor of 25.42%. Operai use 26.93% (adds ~0.83% malattia). SIMPLIFICATION: not verified against an authoritative INPS circular; retrieve the official artigianato impiegati rate table to confirm.",
     "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
-    "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026, Art. 1 L. 335/1995 c. 18). Applies only when ivs_ceiling_applies=True (workers enrolled in INPS on or after 1 Jan 1996)."
+    "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026, Art. 1 L. 335/1995 c. 18). Applies only when ivs_ceiling_applies=True (workers enrolled in INPS on or after 1 Jan 1996).",
+    "IVS ceiling decomposition for impiegati/quadri: with total 26.10% and ivs_rate 23.81%, non-IVS = 2.29% (NASpI 1.61% + CUAF 0.68%), consistent with the components listed above. When ivs_ceiling_applies=True and RAL > massimale, the IVS portion is capped while the 2.29% non-IVS portion is applied to the full base."
   ]
 }

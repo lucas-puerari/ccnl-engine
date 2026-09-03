@@ -23,6 +23,7 @@ from ccnl_engine.tax.models import (
     IrpefBracket,
     TfrRules,
     YearRules,
+    _ApprenticeRawRates,
     _InpsEmployeeTier,
     _InpsEmployerTier,
 )
@@ -201,7 +202,7 @@ class TestInpsRates:
 
 
 class TestApprenticeRates:
-    """Unit tests for ApprenticeRates.employer_rate_at()."""
+    """Unit tests for ApprenticeRates.employer_rate_at() and ivs_rate validators."""
 
     def test_rate_steps(self) -> None:
         """Employer rate steps at month 12 and month 24."""
@@ -211,6 +212,38 @@ class TestApprenticeRates:
         assert r.employer_rate_at(12) == Decimal("0.0461")
         assert r.employer_rate_at(23) == Decimal("0.0461")
         assert r.employer_rate_at(24) == Decimal("0.1161")
+
+    def test_ivs_rate_exceeds_total_raises(self) -> None:
+        """Any ivs_rate above its paired total rate must raise ValidationError."""
+        with pytest.raises(ValidationError, match=r"ivs_rate.*cannot exceed"):
+            ApprenticeRates.model_validate({
+                **_VALID_APPRENTICE,
+                "employer_ivs_rate_after": "0.20",
+            })
+
+
+class TestApprenticeRawRates:
+    """ivs_rate validators on _ApprenticeRawRates (raw JSON model)."""
+
+    _VALID_RAW: dict[str, Any] = {
+        "employee_rate": "0.0584",
+        "employee_ivs_rate": "0.0584",
+        "employer_rate": "0.1161",
+        "employer_ivs_rate": "0.1000",
+        "small_firm_max_employees": 9,
+        "small_firm_employer_rate_months_0_11": "0.0311",
+        "small_firm_employer_ivs_rate_months_0_11": "0.0150",
+        "small_firm_employer_rate_months_12_23": "0.0461",
+        "small_firm_employer_ivs_rate_months_12_23": "0.0300",
+    }
+
+    def test_ivs_rate_exceeds_total_raises(self) -> None:
+        """employer_ivs_rate above employer_rate must raise ValidationError."""
+        with pytest.raises(ValidationError, match=r"ivs_rate.*cannot exceed"):
+            _ApprenticeRawRates.model_validate({
+                **self._VALID_RAW,
+                "employer_ivs_rate": "0.20",  # exceeds employer_rate 0.1161
+            })
 
 
 # ---------------------------------------------------------------------------
@@ -385,11 +418,11 @@ class TestYearRules2026Json:
         assert yr.apprentice.employer_rate_after == Decimal("0.1161")
 
     def test_artigianato_category_rates(self) -> None:
-        """Artigianato carries a lower employer rate for impiegati and quadri."""
+        """Artigianato: lower employer rate for impiegati/quadri (no malattia)."""
         yr = load_year_rules(2026, TaxSector.ARTIGIANATO, 10)
         assert yr.inps.employer_rate_by_category == {
-            "impiegato": Decimal("0.2471"),
-            "quadro": Decimal("0.2471"),
+            "impiegato": Decimal("0.2610"),
+            "quadro": Decimal("0.2610"),
         }
 
     def test_no_open_tier_raises(self) -> None:
