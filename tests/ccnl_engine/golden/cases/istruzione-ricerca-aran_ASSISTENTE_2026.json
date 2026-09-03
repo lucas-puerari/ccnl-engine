@@ -1,0 +1,51 @@
+{
+  "_description": "Golden case: CCNL Comparto Istruzione e Ricerca 2022-2024 (S305), Level ASSISTENTE (ATA), 2026-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Stipendio tabellare fascia 0-8 anni dal 1/1/2024: 1.496,85€/mese (19.459,12€/anno per 13 mensilità, Tabella A2 CCNL 23/12/2025).",
+    "Gross annual = 1496.85 × 13 = 19.459,05 (rounding delta vs ufficiale 19.459,12).",
+    "INPS CTPS ex-INPDAP: employee 8.80%, employer 24.20% (kitech.it proxy 2026, SIMPLIFICATION).",
+    "IRPEF 2026: 23% fino a 28.000€, 33% da 28.000 a 50.000€, 43% oltre 50.000€.",
+    "Detrazioni lavoro dipendente 2026: reddito 17.746,65 → detrazioni 1.249,69.",
+    "TFR = 19.459,05 / 13,5 = 1.441,41€."
+  ],
+  "inputs": {
+    "ccnl_file": "istruzione-ricerca-aran.json",
+    "year": 2026,
+    "tax_sector": "pubblica_amministrazione",
+    "num_employees": 50,
+    "level_code": "ASSISTENTE",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "istruzione-ricerca-aran",
+    "level_code": "ASSISTENTE",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1496.85",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1496.85",
+    "gross_annual": "19459.05",
+    "hourly_rate": "9.60",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "1712.40",
+    "inps_employer_annual": "4709.09",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1441.41",
+    "taxable_income": "17746.65",
+    "irpef_gross": "4081.73",
+    "work_income_deduction": "1249.69",
+    "irpef_net": "2832.04",
+    "net_annual": "14914.61",
+    "net_monthly": "1147.28",
+    "employer_cost_annual": "25609.55"
+  }
+}

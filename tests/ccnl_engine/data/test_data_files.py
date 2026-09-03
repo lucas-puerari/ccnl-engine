@@ -4266,3 +4266,75 @@ class TestLoadDirigenzaIstruzioneRicercaAran:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 1
         assert si.maximum_count == 0
+
+
+class TestLoadIstruzioneRicercaAran:
+    """Tests for CCNL Comparto Istruzione e Ricerca 2022-2024 (S305)."""
+
+    def test_istruzione_ricerca_aran_loads(self) -> None:
+        """File loads and has correct id and CNEL code."""
+        ccnl = load_ccnl("istruzione-ricerca-aran.json")
+        assert ccnl.meta.id == "istruzione-ricerca-aran"
+        assert ccnl.meta.cnel_code == "S305"
+
+    def test_istruzione_ricerca_aran_has_6_levels(self) -> None:
+        """Contract has exactly 6 levels (4 ATA + 2 docente groups)."""
+        ccnl = load_ccnl("istruzione-ricerca-aran.json")
+        assert len(ccnl.levels) == 6
+        assert {lv.code for lv in ccnl.levels} == {
+            "COLLABORATORE_SCOLASTICO",
+            "OPERATORE",
+            "ASSISTENTE",
+            "DOCENTE_INFANZIA_PRIMARIA",
+            "DOCENTE_SECONDARIA",
+            "FUNZIONARIO_ED_ESPERTO",
+        }
+
+    def test_istruzione_ricerca_aran_assistente_salary_tranche1(self) -> None:
+        """ASSISTENTE first tranche (2022-01-01): 1401.28 EUR/month."""
+        ccnl = load_ccnl("istruzione-ricerca-aran.json")
+        lv = ccnl.level_by_code("ASSISTENTE")
+        assert lv.base_salary.value_at(date(2022, 1, 1)) == Decimal("1401.28")
+
+    def test_istruzione_ricerca_aran_assistente_salary_tranche2(self) -> None:
+        """ASSISTENTE second tranche (1/1/2024): 1496.85 EUR/month."""
+        ccnl = load_ccnl("istruzione-ricerca-aran.json")
+        lv = ccnl.level_by_code("ASSISTENTE")
+        assert lv.base_salary.value_at(date(2024, 1, 1)) == Decimal("1496.85")
+
+    def test_istruzione_ricerca_aran_level_ordering(self) -> None:
+        """FUNZIONARIO_ED_ESPERTO has highest order; COLLABORATORE has lowest."""
+        ccnl = load_ccnl("istruzione-ricerca-aran.json")
+        orders = {lv.code: lv.order for lv in ccnl.levels}
+        assert max(orders, key=lambda k: orders[k]) == "FUNZIONARIO_ED_ESPERTO"
+        assert min(orders, key=lambda k: orders[k]) == "COLLABORATORE_SCOLASTICO"
+
+    def test_istruzione_ricerca_aran_additional_months(self) -> None:
+        """Additional months: 13 (tredicesima only)."""
+        ccnl = load_ccnl("istruzione-ricerca-aran.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_istruzione_ricerca_aran_hourly_divisor(self) -> None:
+        """Hourly divisor: 156 (36h/week standard, SIMPLIFICATION)."""
+        ccnl = load_ccnl("istruzione-ricerca-aran.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(156)
+
+    def test_istruzione_ricerca_aran_no_fixed_allowances(self) -> None:
+        """Conglobated tabellare: no fixed allowances modelled."""
+        ccnl = load_ccnl("istruzione-ricerca-aran.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_istruzione_ricerca_aran_tax_sector(self) -> None:
+        """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
+        ccnl = load_ccnl("istruzione-ricerca-aran.json")
+        assert ccnl.meta.tax_sector == TaxSector.PUBBLICA_AMMINISTRAZIONE
+
+    def test_istruzione_ricerca_aran_seniority_cadence(self) -> None:
+        """Seniority: maximum_count=0 (fasce not automatic scatti)."""
+        ccnl = load_ccnl("istruzione-ricerca-aran.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 1
+        assert si.maximum_count == 0
