@@ -43,12 +43,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2022-11-02", "valid_until": null, "value": "156" }
+        {
+          "valid_from": "2022-11-02",
+          "valid_until": null,
+          "value": "156"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2022-11-02", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2022-11-02",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -65,8 +73,16 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-11-02", "valid_until": "2024-01-01", "value": "1586.59" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1701.59" }
+          {
+            "valid_from": "2022-11-02",
+            "valid_until": "2024-01-01",
+            "value": "1586.59"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1701.59"
+          }
         ]
       },
       "fixed_allowances": []
@@ -78,8 +94,16 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-11-02", "valid_until": "2024-01-01", "value": "1675.45" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1795.45" }
+          {
+            "valid_from": "2022-11-02",
+            "valid_until": "2024-01-01",
+            "value": "1675.45"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1795.45"
+          }
         ]
       },
       "fixed_allowances": []
@@ -91,8 +115,16 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-11-02", "valid_until": "2024-01-01", "value": "1786.48" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1913.48" }
+          {
+            "valid_from": "2022-11-02",
+            "valid_until": "2024-01-01",
+            "value": "1786.48"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1913.48"
+          }
         ]
       },
       "fixed_allowances": []
@@ -104,8 +136,16 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-11-02", "valid_until": "2024-01-01", "value": "1941.58" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "2076.58" }
+          {
+            "valid_from": "2022-11-02",
+            "valid_until": "2024-01-01",
+            "value": "1941.58"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2076.58"
+          }
         ]
       },
       "fixed_allowances": []
@@ -117,8 +157,16 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-11-02", "valid_until": "2024-01-01", "value": "2692.31" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "2886.21" }
+          {
+            "valid_from": "2022-11-02",
+            "valid_until": "2024-01-01",
+            "value": "2692.31"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2886.21"
+          }
         ]
       },
       "fixed_allowances": []
@@ -128,7 +176,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "SOURCE: Salary tables from Ipotesi CCNL Comparto Sanità 2022-2024 (ARAN, 14.01.2025, definitively signed October 2025). Art. 58 comma 1 (increments from 1.1.2024 per Tabella 1a), Art. 58 comma 2 (annual amounts from Tabella 2a). Monthly values = Tabella 2a / 12.",
       "SOURCE: Tranche 1 (2022-11-02) values back-calculated from CCNL 2.11.2022 base by subtracting Tabella 1a increments. 2022-2023 anticipation payments (Art. 47-bis D.Lgs. 165/2001) not modelled as separate periods (SIMPLIFICATION).",

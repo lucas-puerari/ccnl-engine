@@ -6,7 +6,13 @@
     "cnel_code": "D111",
     "sector": "industria",
     "tax_sector": "industria",
-    "signatories": ["Assopellettieri", "Confindustria Moda", "Filctem-Cgil", "Femca-Cisl", "Uiltec-Uil"],
+    "signatories": [
+      "Assopellettieri",
+      "Confindustria Moda",
+      "Filctem-Cgil",
+      "Femca-Cisl",
+      "Uiltec-Uil"
+    ],
     "sources": [
       {
         "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
@@ -14,12 +20,16 @@
         "agreement_date": "2023-05-26"
       }
     ],
-    "extraction": { "method": "manual", "model": null, "timestamp": "2026-09-03", "human_reviewed": true }
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-03",
+      "human_reviewed": true
+    }
   },
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: SALARY MODEL: conglobato (table pay inclusive of base pay, former contingenza, E.d.r.). Art. 32 CCNL (CNEL PDF): 'Sono conglobati in un unica voce denominata Retribuzione tabellare i seguenti istituti: paga base, ex indennita di contingenza, E.d.r.' PELLETTERIA table with 7 levels and 4 tranches (Apr 2023, Dec 2023, Dec 2024, Dec 2025) from primary source CNEL PDF Art. 32.",
       "SIMPLIFICATION: LEVEL 1: from the agreement of 22/12/2023, level 1 is no longer a classification level for permanent workers (automatic reclassification to level 2 by 31/12/2023). The pay value for level 1 remains defined in the contract for the entire duration up to 2025 (table Art. 32, CNEL PDF, confirmed primary source). It is assumed that Art. 55 (apprenticeship) was not modified by the 22/12/2023 agreement: that agreement was not accessible from the public sources consulted (CNEL archive, union websites), so the continuity of level 1 as a pay reference for apprentices destined for level 2 and level 3 is assumed but not verified against the supplementary agreement text.",
@@ -34,12 +44,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2023-04-01", "valid_until": null, "value": "173" }
+        {
+          "valid_from": "2023-04-01",
+          "valid_until": null,
+          "value": "173"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2023-04-01", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2023-04-01",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -48,37 +66,65 @@
       "amount_by_level": {
         "1": {
           "periods": [
-            { "valid_from": "2023-04-01", "valid_until": null, "value": "6.71" }
+            {
+              "valid_from": "2023-04-01",
+              "valid_until": null,
+              "value": "6.71"
+            }
           ]
         },
         "2": {
           "periods": [
-            { "valid_from": "2023-04-01", "valid_until": null, "value": "7.41" }
+            {
+              "valid_from": "2023-04-01",
+              "valid_until": null,
+              "value": "7.41"
+            }
           ]
         },
         "3": {
           "periods": [
-            { "valid_from": "2023-04-01", "valid_until": null, "value": "7.95" }
+            {
+              "valid_from": "2023-04-01",
+              "valid_until": null,
+              "value": "7.95"
+            }
           ]
         },
         "4": {
           "periods": [
-            { "valid_from": "2023-04-01", "valid_until": null, "value": "8.39" }
+            {
+              "valid_from": "2023-04-01",
+              "valid_until": null,
+              "value": "8.39"
+            }
           ]
         },
         "4S": {
           "periods": [
-            { "valid_from": "2023-04-01", "valid_until": null, "value": "8.91" }
+            {
+              "valid_from": "2023-04-01",
+              "valid_until": null,
+              "value": "8.91"
+            }
           ]
         },
         "5": {
           "periods": [
-            { "valid_from": "2023-04-01", "valid_until": null, "value": "9.68" }
+            {
+              "valid_from": "2023-04-01",
+              "valid_until": null,
+              "value": "9.68"
+            }
           ]
         },
         "6": {
           "periods": [
-            { "valid_from": "2023-04-01", "valid_until": null, "value": "11.88" }
+            {
+              "valid_from": "2023-04-01",
+              "valid_until": null,
+              "value": "11.88"
+            }
           ]
         }
       }
@@ -91,10 +137,26 @@
       "description": "Level 1 — general workers (classification removed from 31/12/2023; table pay retained as apprenticeship reference Art. 55)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1277.56" },
-          { "valid_from": "2023-12-01", "valid_until": "2024-12-01", "value": "1311.66" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-12-01", "value": "1345.76" },
-          { "valid_from": "2025-12-01", "valid_until": null, "value": "1379.86" }
+          {
+            "valid_from": "2023-04-01",
+            "valid_until": "2023-12-01",
+            "value": "1277.56"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-12-01",
+            "value": "1311.66"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-12-01",
+            "value": "1345.76"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": null,
+            "value": "1379.86"
+          }
         ]
       },
       "fixed_allowances": []
@@ -105,10 +167,26 @@
       "description": "Level 2 — skilled workers",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1643.87" },
-          { "valid_from": "2023-12-01", "valid_until": "2024-12-01", "value": "1700.58" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-12-01", "value": "1757.29" },
-          { "valid_from": "2025-12-01", "valid_until": null, "value": "1814.00" }
+          {
+            "valid_from": "2023-04-01",
+            "valid_until": "2023-12-01",
+            "value": "1643.87"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-12-01",
+            "value": "1700.58"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-12-01",
+            "value": "1757.29"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": null,
+            "value": "1814.00"
+          }
         ]
       },
       "fixed_allowances": []
@@ -119,10 +197,26 @@
       "description": "Level 3 — specialist workers",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1731.70" },
-          { "valid_from": "2023-12-01", "valid_until": "2024-12-01", "value": "1791.70" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-12-01", "value": "1851.70" },
-          { "valid_from": "2025-12-01", "valid_until": null, "value": "1911.70" }
+          {
+            "valid_from": "2023-04-01",
+            "valid_until": "2023-12-01",
+            "value": "1731.70"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-12-01",
+            "value": "1791.70"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-12-01",
+            "value": "1851.70"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": null,
+            "value": "1911.70"
+          }
         ]
       },
       "fixed_allowances": []
@@ -133,10 +227,26 @@
       "description": "Level 4 — highly specialised workers",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1810.42" },
-          { "valid_from": "2023-12-01", "valid_until": "2024-12-01", "value": "1873.70" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-12-01", "value": "1936.98" },
-          { "valid_from": "2025-12-01", "valid_until": null, "value": "2000.26" }
+          {
+            "valid_from": "2023-04-01",
+            "valid_until": "2023-12-01",
+            "value": "1810.42"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-12-01",
+            "value": "1873.70"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-12-01",
+            "value": "1936.98"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": null,
+            "value": "2000.26"
+          }
         ]
       },
       "fixed_allowances": []
@@ -147,10 +257,26 @@
       "description": "Level 4 Super — technicians and white-collar employees with advanced duties",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1852.54" },
-          { "valid_from": "2023-12-01", "valid_until": "2024-12-01", "value": "1917.47" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-12-01", "value": "1982.40" },
-          { "valid_from": "2025-12-01", "valid_until": null, "value": "2047.33" }
+          {
+            "valid_from": "2023-04-01",
+            "valid_until": "2023-12-01",
+            "value": "1852.54"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-12-01",
+            "value": "1917.47"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-12-01",
+            "value": "1982.40"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": null,
+            "value": "2047.33"
+          }
         ]
       },
       "fixed_allowances": []
@@ -161,10 +287,26 @@
       "description": "Level 5 — white-collar employees with managerial functions and specialist technicians",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1977.01" },
-          { "valid_from": "2023-12-01", "valid_until": "2024-12-01", "value": "2046.42" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-12-01", "value": "2115.83" },
-          { "valid_from": "2025-12-01", "valid_until": null, "value": "2185.24" }
+          {
+            "valid_from": "2023-04-01",
+            "valid_until": "2023-12-01",
+            "value": "1977.01"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-12-01",
+            "value": "2046.42"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-12-01",
+            "value": "2115.83"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": null,
+            "value": "2185.24"
+          }
         ]
       },
       "fixed_allowances": []
@@ -175,10 +317,26 @@
       "description": "Level 6 — top-level quadri and sector executives",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "2184.12" },
-          { "valid_from": "2023-12-01", "valid_until": "2024-12-01", "value": "2260.15" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-12-01", "value": "2336.18" },
-          { "valid_from": "2025-12-01", "valid_until": null, "value": "2412.21" }
+          {
+            "valid_from": "2023-04-01",
+            "valid_until": "2023-12-01",
+            "value": "2184.12"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-12-01",
+            "value": "2260.15"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-12-01",
+            "value": "2336.18"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": null,
+            "value": "2412.21"
+          }
         ]
       },
       "fixed_allowances": []
@@ -188,60 +346,140 @@
     {
       "type": "under_classification",
       "name": "dest_6",
-      "destination_levels": ["6"],
+      "destination_levels": [
+        "6"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 15, "levels_below": 2 },
-        { "months_from": 15, "months_until": 26, "levels_below": 1 },
-        { "months_from": 26, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 0,
+          "months_until": 15,
+          "levels_below": 2
+        },
+        {
+          "months_from": 15,
+          "months_until": 26,
+          "levels_below": 1
+        },
+        {
+          "months_from": 26,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     },
     {
       "type": "under_classification",
       "name": "dest_5",
-      "destination_levels": ["5"],
+      "destination_levels": [
+        "5"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 14, "levels_below": 2 },
-        { "months_from": 14, "months_until": 25, "levels_below": 1 },
-        { "months_from": 25, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 0,
+          "months_until": 14,
+          "levels_below": 2
+        },
+        {
+          "months_from": 14,
+          "months_until": 25,
+          "levels_below": 1
+        },
+        {
+          "months_from": 25,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     },
     {
       "type": "under_classification",
       "name": "dest_4S",
-      "destination_levels": ["4S"],
+      "destination_levels": [
+        "4S"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 13, "levels_below": 2 },
-        { "months_from": 13, "months_until": 25, "levels_below": 1 },
-        { "months_from": 25, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 0,
+          "months_until": 13,
+          "levels_below": 2
+        },
+        {
+          "months_from": 13,
+          "months_until": 25,
+          "levels_below": 1
+        },
+        {
+          "months_from": 25,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     },
     {
       "type": "under_classification",
       "name": "dest_4",
-      "destination_levels": ["4"],
+      "destination_levels": [
+        "4"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "levels_below": 2 },
-        { "months_from": 12, "months_until": 24, "levels_below": 1 },
-        { "months_from": 24, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     },
     {
       "type": "under_classification",
       "name": "dest_3",
-      "destination_levels": ["3"],
+      "destination_levels": [
+        "3"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 11, "levels_below": 2 },
-        { "months_from": 11, "months_until": 23, "levels_below": 1 },
-        { "months_from": 23, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 0,
+          "months_until": 11,
+          "levels_below": 2
+        },
+        {
+          "months_from": 11,
+          "months_until": 23,
+          "levels_below": 1
+        },
+        {
+          "months_from": 23,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     },
     {
       "type": "under_classification",
       "name": "dest_2",
-      "destination_levels": ["2"],
+      "destination_levels": [
+        "2"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 10, "levels_below": 1 },
-        { "months_from": 10, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 0,
+          "months_until": 10,
+          "levels_below": 1
+        },
+        {
+          "months_from": 10,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     }
   ]

@@ -43,7 +43,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: STAFF: tables for non-travelling staff (clerical employees and sedentary workers). The CCNL also covers travelling staff (drivers engaged in international transport) with separate tables and rules — not modelled in this file.",
       "INFO: CONGLOBATED MINIMUMS: base_salary values are the conglobated monthly minimum pay (minimum pay table + contingenza per Art. 61 note + EPA). Primary check: Art. 61 of the consolidated text September 2025 — 'From 1.1.2001 the indennità di contingenza has been conglobated into the minimum pay tables together with the EDR of EUR 10.33 per month'. fixed_allowances is empty for all levels.",
@@ -62,12 +61,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2025-01-01", "valid_until": null, "value": "168" }
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "168"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2025-01-01", "valid_until": null, "value": "14" }
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "14"
+        }
       ]
     },
     "seniority_increments": {
@@ -76,47 +83,83 @@
       "amount_by_level": {
         "Q": {
           "periods": [
-            { "valid_from": "2025-01-01", "valid_until": null, "value": "30.99" }
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "30.99"
+            }
           ]
         },
         "1": {
           "periods": [
-            { "valid_from": "2025-01-01", "valid_until": null, "value": "29.44" }
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "29.44"
+            }
           ]
         },
         "2": {
           "periods": [
-            { "valid_from": "2025-01-01", "valid_until": null, "value": "26.86" }
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "26.86"
+            }
           ]
         },
         "3S": {
           "periods": [
-            { "valid_from": "2025-01-01", "valid_until": null, "value": "24.79" }
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "24.79"
+            }
           ]
         },
         "3": {
           "periods": [
-            { "valid_from": "2025-01-01", "valid_until": null, "value": "24.27" }
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "24.27"
+            }
           ]
         },
         "4": {
           "periods": [
-            { "valid_from": "2025-01-01", "valid_until": null, "value": "23.24" }
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "23.24"
+            }
           ]
         },
         "4J": {
           "periods": [
-            { "valid_from": "2025-01-01", "valid_until": null, "value": "22.34" }
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "22.34"
+            }
           ]
         },
         "5": {
           "periods": [
-            { "valid_from": "2025-01-01", "valid_until": null, "value": "22.21" }
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "22.21"
+            }
           ]
         },
         "6": {
           "periods": [
-            { "valid_from": "2025-01-01", "valid_until": null, "value": "20.66" }
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "20.66"
+            }
           ]
         }
       }
@@ -129,10 +172,26 @@
       "description": "Level 6 — worker assigned to generic operational support tasks",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1703.66" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1776.99" },
-          { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "1810.02" },
-          { "valid_from": "2027-06-01", "valid_until": null, "value": "1841.61" }
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1703.66"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1776.99"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1810.02"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1841.61"
+          }
         ]
       },
       "fixed_allowances": []
@@ -143,10 +202,26 @@
       "description": "Level 5 — qualified operator (cat. B driver, specialist warehouse worker)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1823.09" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1902.19" },
-          { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "1937.34" },
-          { "valid_from": "2027-06-01", "valid_until": null, "value": "1971.13" }
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1823.09"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1902.19"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1937.34"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1971.13"
+          }
         ]
       },
       "fixed_allowances": []
@@ -157,10 +232,26 @@
       "description": "Level 4 Junior — recently graded senior operator",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1865.28" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1946.40" },
-          { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "1982.46" },
-          { "valid_from": "2027-06-01", "valid_until": null, "value": "2018.13" }
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1865.28"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1946.40"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1982.46"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2018.13"
+          }
         ]
       },
       "fixed_allowances": []
@@ -171,10 +262,26 @@
       "description": "Level 4 — specialist operator (C/CE licence driver, CED operator)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1912.81" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1995.98" },
-          { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "2032.95" },
-          { "valid_from": "2027-06-01", "valid_until": null, "value": "2069.62" }
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1912.81"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1995.98"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "2032.95"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2069.62"
+          }
         ]
       },
       "fixed_allowances": []
@@ -185,10 +292,26 @@
       "description": "Level 3 — highly specialised operator / department coordinator",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2016.54" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2104.31" },
-          { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "2143.10" },
-          { "valid_from": "2027-06-01", "valid_until": null, "value": "2182.80" }
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2016.54"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2104.31"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "2143.10"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2182.80"
+          }
         ]
       },
       "fixed_allowances": []
@@ -199,10 +322,26 @@
       "description": "Level 3 Super — reference technical/operational expert or process manager",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2070.37" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2160.37" },
-          { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "2200.37" },
-          { "valid_from": "2027-06-01", "valid_until": null, "value": "2240.37" }
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2070.37"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2160.37"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "2200.37"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2240.37"
+          }
         ]
       },
       "fixed_allowances": []
@@ -213,10 +352,26 @@
       "description": "Level 2 — operational unit manager / junior management role",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2202.62" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2302.16" },
-          { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "2346.40" },
-          { "valid_from": "2027-06-01", "valid_until": null, "value": "2382.07" }
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2202.62"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2302.16"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "2346.40"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2382.07"
+          }
         ]
       },
       "fixed_allowances": []
@@ -227,10 +382,26 @@
       "description": "Level 1 — management role / area manager",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2396.85" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2505.25" },
-          { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "2553.43" },
-          { "valid_from": "2027-06-01", "valid_until": null, "value": "2589.10" }
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2396.85"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2505.25"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "2553.43"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2589.10"
+          }
         ]
       },
       "fixed_allowances": []
@@ -241,10 +412,26 @@
       "description": "Quadro — quadro with high directional and managerial expertise",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2541.13" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2656.34" },
-          { "valid_from": "2027-01-01", "valid_until": "2027-06-01", "value": "2707.55" },
-          { "valid_from": "2027-06-01", "valid_until": null, "value": "2754.22" }
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2541.13"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2656.34"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-06-01",
+            "value": "2707.55"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2754.22"
+          }
         ]
       },
       "fixed_allowances": []
@@ -254,11 +441,32 @@
     {
       "type": "percentage",
       "name": "standard",
-      "destination_levels": ["1", "2", "3", "3S", "4", "4J", "5", "6"],
+      "destination_levels": [
+        "1",
+        "2",
+        "3",
+        "3S",
+        "4",
+        "4J",
+        "5",
+        "6"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.75" },
-        { "months_from": 12, "months_until": 24, "percentage": "0.85" },
-        { "months_from": 24, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     }
   ]

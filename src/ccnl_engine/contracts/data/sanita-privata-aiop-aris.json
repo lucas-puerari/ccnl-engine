@@ -495,7 +495,12 @@
     {
       "type": "percentage",
       "name": "Apprendistato professionalizzante 36 mesi",
-      "destination_levels": ["A", "B", "C", "D"],
+      "destination_levels": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
       "periods": [
         {
           "months_from": 0,
@@ -513,7 +518,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: CCNL signed 2020-10-08; nominally covers 2016-2018 (Art. 4). Applied in ultrattività from 2019 onwards. Salary tables (Tabella 1) effective 2020-07-01 per Art. 51. No renewal signed as of 2026-09-03.",
       "INFO: Salary values are conglobated: EADR incorporated into tabellare from 2020-07-01 per Art. 55. Back-calculation: A 1467.45×13=19076.85 ✓; C4 2076.38×13=26992.94 ✓; DS4 2418.05×13=31434.65 ✓.",

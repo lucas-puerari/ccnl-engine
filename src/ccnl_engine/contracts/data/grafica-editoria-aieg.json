@@ -6,7 +6,13 @@
     "cnel_code": "G011",
     "sector": "grafica-editoria",
     "tax_sector": "industria",
-    "signatories": ["AIEG", "Acigraf", "SLC-CGIL", "Fistel-CISL", "Uilcom-UIL"],
+    "signatories": [
+      "AIEG",
+      "Acigraf",
+      "SLC-CGIL",
+      "Fistel-CISL",
+      "Uilcom-UIL"
+    ],
     "sources": [
       {
         "url": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/",
@@ -29,7 +35,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: SALARY MODEL: the CCNL Grafica e Editoria Industria (G011) uses a split model with separate paga base (TEM), contingenza (frozen since 1992 per Prot. 31/07/1992), and EDR (10.33 EUR, all levels). The base_salary values in this file are the TOTAL (paga base + contingenza + EDR) per level and tranche, sourced from the official lexplain.it table (all 5 tranches) and kitech.it (July 2026 breakdown). Modeling the total as base_salary produces the same gross_monthly as the split representation. fixed_allowances is empty for all levels (no additional fixed components).",
       "INFO: CONGLOBATED CHECK: inter-level increase ratios are stable across all 5 tranches (e.g., Q/E = 1.937, C1/E = 1.357 at all dates), confirming a single parametric coefficient system. Contingenza is frozen per level (E=512.87, Q=539.99); EDR=10.33 uniform. Total values from lexplain cross-check with kitech July 2026 breakdown to within ±0.03 EUR (rounding difference).",
@@ -45,12 +50,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2024-03-01", "valid_until": null, "value": "173" }
+        {
+          "valid_from": "2024-03-01",
+          "valid_until": null,
+          "value": "173"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2024-03-01", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2024-03-01",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -59,62 +72,110 @@
       "amount_by_level": {
         "Q": {
           "periods": [
-            { "valid_from": "2026-07-01", "valid_until": null, "value": "16.01" }
+            {
+              "valid_from": "2026-07-01",
+              "valid_until": null,
+              "value": "16.01"
+            }
           ]
         },
         "AS": {
           "periods": [
-            { "valid_from": "2026-07-01", "valid_until": null, "value": "16.01" }
+            {
+              "valid_from": "2026-07-01",
+              "valid_until": null,
+              "value": "16.01"
+            }
           ]
         },
         "A": {
           "periods": [
-            { "valid_from": "2026-07-01", "valid_until": null, "value": "16.01" }
+            {
+              "valid_from": "2026-07-01",
+              "valid_until": null,
+              "value": "16.01"
+            }
           ]
         },
         "B1S": {
           "periods": [
-            { "valid_from": "2026-07-01", "valid_until": null, "value": "14.46" }
+            {
+              "valid_from": "2026-07-01",
+              "valid_until": null,
+              "value": "14.46"
+            }
           ]
         },
         "B1": {
           "periods": [
-            { "valid_from": "2026-07-01", "valid_until": null, "value": "14.46" }
+            {
+              "valid_from": "2026-07-01",
+              "valid_until": null,
+              "value": "14.46"
+            }
           ]
         },
         "B2": {
           "periods": [
-            { "valid_from": "2026-07-01", "valid_until": null, "value": "13.94" }
+            {
+              "valid_from": "2026-07-01",
+              "valid_until": null,
+              "value": "13.94"
+            }
           ]
         },
         "B3": {
           "periods": [
-            { "valid_from": "2026-07-01", "valid_until": null, "value": "13.43" }
+            {
+              "valid_from": "2026-07-01",
+              "valid_until": null,
+              "value": "13.43"
+            }
           ]
         },
         "C1": {
           "periods": [
-            { "valid_from": "2026-07-01", "valid_until": null, "value": "12.91" }
+            {
+              "valid_from": "2026-07-01",
+              "valid_until": null,
+              "value": "12.91"
+            }
           ]
         },
         "C2": {
           "periods": [
-            { "valid_from": "2026-07-01", "valid_until": null, "value": "12.39" }
+            {
+              "valid_from": "2026-07-01",
+              "valid_until": null,
+              "value": "12.39"
+            }
           ]
         },
         "D1": {
           "periods": [
-            { "valid_from": "2026-07-01", "valid_until": null, "value": "11.88" }
+            {
+              "valid_from": "2026-07-01",
+              "valid_until": null,
+              "value": "11.88"
+            }
           ]
         },
         "D2": {
           "periods": [
-            { "valid_from": "2026-07-01", "valid_until": null, "value": "11.36" }
+            {
+              "valid_from": "2026-07-01",
+              "valid_until": null,
+              "value": "11.36"
+            }
           ]
         },
         "E": {
           "periods": [
-            { "valid_from": "2026-07-01", "valid_until": null, "value": "10.33" }
+            {
+              "valid_from": "2026-07-01",
+              "valid_until": null,
+              "value": "10.33"
+            }
           ]
         }
       }
@@ -127,11 +188,31 @@
       "description": "E — 1st category worker, simple and routine tasks",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "1365.55" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "1383.20" },
-          { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "1400.85" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1430.26" },
-          { "valid_from": "2026-07-01", "valid_until": null, "value": "1460.85" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-09-01",
+            "value": "1365.55"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-05-01",
+            "value": "1383.20"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "1400.85"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "1430.26"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "1460.85"
+          }
         ]
       },
       "fixed_allowances": []
@@ -142,11 +223,31 @@
       "description": "D2 — 2nd category worker, machine operator",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "1485.52" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "1505.82" },
-          { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "1526.11" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1559.93" },
-          { "valid_from": "2026-07-01", "valid_until": null, "value": "1595.11" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-09-01",
+            "value": "1485.52"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-05-01",
+            "value": "1505.82"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "1526.11"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "1559.93"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "1595.11"
+          }
         ]
       },
       "fixed_allowances": []
@@ -157,11 +258,31 @@
       "description": "D1 — upper 2nd category worker, qualified operator",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "1582.37" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "1604.60" },
-          { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "1626.84" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1663.90" },
-          { "valid_from": "2026-07-01", "valid_until": null, "value": "1702.44" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-09-01",
+            "value": "1582.37"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-05-01",
+            "value": "1604.60"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "1626.84"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "1663.90"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "1702.44"
+          }
         ]
       },
       "fixed_allowances": []
@@ -172,11 +293,31 @@
       "description": "C2 — 3rd category worker, general graphic technician",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "1694.91" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "1719.44" },
-          { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "1743.97" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1784.85" },
-          { "valid_from": "2026-07-01", "valid_until": null, "value": "1827.37" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-09-01",
+            "value": "1694.91"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-05-01",
+            "value": "1719.44"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "1743.97"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "1784.85"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "1827.37"
+          }
         ]
       },
       "fixed_allowances": []
@@ -187,11 +328,31 @@
       "description": "C1 — 3rd category worker, specialist graphic technician",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "1852.88" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "1880.58" },
-          { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "1908.29" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1954.47" },
-          { "valid_from": "2026-07-01", "valid_until": null, "value": "2002.49" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-09-01",
+            "value": "1852.88"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-05-01",
+            "value": "1880.58"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "1908.29"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "1954.47"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "2002.49"
+          }
         ]
       },
       "fixed_allowances": []
@@ -202,11 +363,31 @@
       "description": "B3 — 4th category worker, expert graphic technician",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "1964.85" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "1994.85" },
-          { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "2024.85" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2074.85" },
-          { "valid_from": "2026-07-01", "valid_until": null, "value": "2126.85" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-09-01",
+            "value": "1964.85"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-05-01",
+            "value": "1994.85"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "2024.85"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "2074.85"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "2126.85"
+          }
         ]
       },
       "fixed_allowances": []
@@ -217,11 +398,31 @@
       "description": "B2 — upper 4th category worker, complex equipment operator",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "2077.65" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "2109.95" },
-          { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "2142.24" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2196.06" },
-          { "valid_from": "2026-07-01", "valid_until": null, "value": "2252.04" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-09-01",
+            "value": "2077.65"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-05-01",
+            "value": "2109.95"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "2142.24"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "2196.06"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "2252.04"
+          }
         ]
       },
       "fixed_allowances": []
@@ -232,11 +433,31 @@
       "description": "B1 — 5th category worker, highly qualified technician",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "2184.33" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "2218.92" },
-          { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "2253.51" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2311.16" },
-          { "valid_from": "2026-07-01", "valid_until": null, "value": "2371.11" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-09-01",
+            "value": "2184.33"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-05-01",
+            "value": "2218.92"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "2253.51"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "2311.16"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "2371.11"
+          }
         ]
       },
       "fixed_allowances": []
@@ -247,11 +468,31 @@
       "description": "B1S — upper 5th category worker, technical department head",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "2233.87" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "2269.34" },
-          { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "2304.81" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2363.93" },
-          { "valid_from": "2026-07-01", "valid_until": null, "value": "2425.41" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-09-01",
+            "value": "2233.87"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-05-01",
+            "value": "2269.34"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "2304.81"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "2363.93"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "2425.41"
+          }
         ]
       },
       "fixed_allowances": []
@@ -262,11 +503,31 @@
       "description": "A — 6th category worker, production manager",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "2304.32" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "2341.38" },
-          { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "2378.43" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2440.20" },
-          { "valid_from": "2026-07-01", "valid_until": null, "value": "2504.43" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-09-01",
+            "value": "2304.32"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-05-01",
+            "value": "2341.38"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "2378.43"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "2440.20"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "2504.43"
+          }
         ]
       },
       "fixed_allowances": []
@@ -277,11 +538,31 @@
       "description": "AS — special grade, senior technical-editorial manager",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "2634.91" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "2678.68" },
-          { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "2722.44" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2795.38" },
-          { "valid_from": "2026-07-01", "valid_until": null, "value": "2871.24" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-09-01",
+            "value": "2634.91"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-05-01",
+            "value": "2678.68"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "2722.44"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "2795.38"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "2871.24"
+          }
         ]
       },
       "fixed_allowances": []
@@ -292,11 +573,31 @@
       "description": "Q — quadro, highest technical or managerial responsibility",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "2644.82" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-05-01", "value": "2688.76" },
-          { "valid_from": "2025-05-01", "valid_until": "2025-10-01", "value": "2732.71" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2805.94" },
-          { "valid_from": "2026-07-01", "valid_until": null, "value": "2882.11" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-09-01",
+            "value": "2644.82"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-05-01",
+            "value": "2688.76"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "2732.71"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "2805.94"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "2882.11"
+          }
         ]
       },
       "fixed_allowances": []
@@ -306,29 +607,98 @@
     {
       "type": "percentage",
       "name": "triennale",
-      "destination_levels": ["C2", "C1", "B3", "B2", "B1", "B1S", "A", "AS", "Q"],
+      "destination_levels": [
+        "C2",
+        "C1",
+        "B3",
+        "B2",
+        "B1",
+        "B1S",
+        "A",
+        "AS",
+        "Q"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 6, "percentage": "0.70" },
-        { "months_from": 6, "months_until": 12, "percentage": "0.75" },
-        { "months_from": 12, "months_until": 18, "percentage": "0.80" },
-        { "months_from": 18, "months_until": 24, "percentage": "0.85" },
-        { "months_from": 24, "months_until": 30, "percentage": "0.90" },
-        { "months_from": 30, "months_until": 36, "percentage": "0.95" },
-        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 30,
+          "months_until": 36,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "biennale",
-      "destination_levels": ["D2", "D1"],
+      "destination_levels": [
+        "D2",
+        "D1"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 4, "percentage": "0.70" },
-        { "months_from": 4, "months_until": 8, "percentage": "0.75" },
-        { "months_from": 8, "months_until": 12, "percentage": "0.80" },
-        { "months_from": 12, "months_until": 16, "percentage": "0.85" },
-        { "months_from": 16, "months_until": 20, "percentage": "0.90" },
-        { "months_from": 20, "months_until": 24, "percentage": "0.95" },
-        { "months_from": 24, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 4,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 4,
+          "months_until": 8,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 8,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 16,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 16,
+          "months_until": 20,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 20,
+          "months_until": 24,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     }
   ]

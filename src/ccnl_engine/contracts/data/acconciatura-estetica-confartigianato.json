@@ -42,7 +42,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: SALARY MODEL: conglobated (minimi tabellari conglobati — contingenza and EDR fully absorbed). Back-calculation: May 2024 L3=1379.00/173=7.97 EUR/h; L2=1454.58/173=8.41 EUR/h; L1=1592.29/173=9.20 EUR/h — consistent divisor confirms conglobated model (lexplain.it + ilccnl.it).",
       "INFO: TRANCHE DATES: four tranches — 2024-05-01 (retroactive, renewal signed 20 May 2024), 2025-01-01, 2026-01-01, 2026-10-01. Source: studiomion.it salary tables; cross-checked ilccnl.it for Jan 2026 values.",
@@ -62,12 +61,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2023-02-01", "valid_until": null, "value": "173" }
+        {
+          "valid_from": "2023-02-01",
+          "valid_until": null,
+          "value": "173"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2023-02-01", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2023-02-01",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -76,28 +83,48 @@
       "amount_by_level": {
         "4": {
           "periods": [
-            { "valid_from": "2023-02-01", "valid_until": null, "value": "7.23" }
+            {
+              "valid_from": "2023-02-01",
+              "valid_until": null,
+              "value": "7.23"
+            }
           ]
         },
         "3": {
           "periods": [
-            { "valid_from": "2023-02-01", "valid_until": null, "value": "7.75" }
+            {
+              "valid_from": "2023-02-01",
+              "valid_until": null,
+              "value": "7.75"
+            }
           ]
         },
         "2": {
           "periods": [
-            { "valid_from": "2023-02-01", "valid_until": null, "value": "8.26" }
+            {
+              "valid_from": "2023-02-01",
+              "valid_until": null,
+              "value": "8.26"
+            }
           ]
         },
         "1": {
           "periods": [
-            { "valid_from": "2023-02-01", "valid_until": null, "value": "9.30" }
+            {
+              "valid_from": "2023-02-01",
+              "valid_until": null,
+              "value": "9.30"
+            }
           ]
         }
       },
       "apprentice_amount": {
         "periods": [
-          { "valid_from": "2024-10-01", "valid_until": null, "value": "6.00" }
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": null,
+            "value": "6.00"
+          }
         ]
       }
     }
@@ -109,11 +136,31 @@
       "description": "Level 4 — auxiliary worker / entry-level apprentice",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-02-01", "valid_until": "2024-05-01", "value": "1234.19" },
-          { "valid_from": "2024-05-01", "valid_until": "2025-01-01", "value": "1300.19" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1347.33" },
-          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1387.87" },
-          { "valid_from": "2026-10-01", "valid_until": null, "value": "1406.73" }
+          {
+            "valid_from": "2023-02-01",
+            "valid_until": "2024-05-01",
+            "value": "1234.19"
+          },
+          {
+            "valid_from": "2024-05-01",
+            "valid_until": "2025-01-01",
+            "value": "1300.19"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1347.33"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1387.87"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1406.73"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -125,11 +172,31 @@
       "description": "Level 3 — qualified worker (hairdresser/beautician)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-02-01", "valid_until": "2024-05-01", "value": "1309.00" },
-          { "valid_from": "2024-05-01", "valid_until": "2025-01-01", "value": "1379.00" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1429.00" },
-          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1472.00" },
-          { "valid_from": "2026-10-01", "valid_until": null, "value": "1492.00" }
+          {
+            "valid_from": "2023-02-01",
+            "valid_until": "2024-05-01",
+            "value": "1309.00"
+          },
+          {
+            "valid_from": "2024-05-01",
+            "valid_until": "2025-01-01",
+            "value": "1379.00"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1429.00"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1472.00"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1492.00"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -141,11 +208,31 @@
       "description": "Level 2 — specialist worker / technical supervisor",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-02-01", "valid_until": "2024-05-01", "value": "1380.74" },
-          { "valid_from": "2024-05-01", "valid_until": "2025-01-01", "value": "1454.58" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1507.32" },
-          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1552.68" },
-          { "valid_from": "2026-10-01", "valid_until": null, "value": "1573.78" }
+          {
+            "valid_from": "2023-02-01",
+            "valid_until": "2024-05-01",
+            "value": "1380.74"
+          },
+          {
+            "valid_from": "2024-05-01",
+            "valid_until": "2025-01-01",
+            "value": "1454.58"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1507.32"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1552.68"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1573.78"
+          }
         ]
       },
       "fixed_allowances": [
@@ -154,7 +241,11 @@
           "description": "Technical Supervisor Allowance (employer designation), 100 EUR x 13 monthly payments",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-02-01", "valid_until": null, "value": "100.00" }
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": "100.00"
+              }
             ]
           },
           "role": "responsabile_tecnico"
@@ -168,11 +259,31 @@
       "description": "Level 1 — technical director / senior supervisor",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-02-01", "valid_until": "2024-05-01", "value": "1511.46" },
-          { "valid_from": "2024-05-01", "valid_until": "2025-01-01", "value": "1592.29" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1650.02" },
-          { "valid_from": "2026-01-01", "valid_until": "2026-10-01", "value": "1699.67" },
-          { "valid_from": "2026-10-01", "valid_until": null, "value": "1722.76" }
+          {
+            "valid_from": "2023-02-01",
+            "valid_until": "2024-05-01",
+            "value": "1511.46"
+          },
+          {
+            "valid_from": "2024-05-01",
+            "valid_until": "2025-01-01",
+            "value": "1592.29"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1650.02"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1699.67"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1722.76"
+          }
         ]
       },
       "fixed_allowances": [
@@ -181,7 +292,11 @@
           "description": "Technical Supervisor Allowance (employer designation), 100 EUR x 13 monthly payments",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-02-01", "valid_until": null, "value": "100.00" }
+              {
+                "valid_from": "2023-02-01",
+                "valid_until": null,
+                "value": "100.00"
+              }
             ]
           },
           "role": "responsabile_tecnico"
@@ -194,37 +309,103 @@
     {
       "type": "percentage",
       "name": "gruppo_1",
-      "destination_levels": ["3"],
+      "destination_levels": [
+        "3"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 18, "percentage": "0.70" },
-        { "months_from": 18, "months_until": 24, "percentage": "0.78" },
-        { "months_from": 24, "months_until": 36, "percentage": "0.85" },
-        { "months_from": 36, "months_until": 48, "percentage": "0.90" },
-        { "months_from": 48, "months_until": 54, "percentage": "0.95" },
-        { "months_from": 54, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.78"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 36,
+          "months_until": 48,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 48,
+          "months_until": 54,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 54,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "gruppo_2",
-      "destination_levels": ["3"],
+      "destination_levels": [
+        "3"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 6, "percentage": "0.70" },
-        { "months_from": 6, "months_until": 12, "percentage": "0.80" },
-        { "months_from": 12, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "gruppo_3",
-      "destination_levels": ["2"],
+      "destination_levels": [
+        "2"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 6, "percentage": "0.70" },
-        { "months_from": 6, "months_until": 12, "percentage": "0.70" },
-        { "months_from": 12, "months_until": 18, "percentage": "0.70" },
-        { "months_from": 18, "months_until": 24, "percentage": "0.78" },
-        { "months_from": 24, "months_until": 30, "percentage": "0.85" },
-        { "months_from": 30, "months_until": null, "percentage": "0.85" }
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.78"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 30,
+          "months_until": null,
+          "percentage": "0.85"
+        }
       ]
     }
   ]

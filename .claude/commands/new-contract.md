@@ -287,7 +287,7 @@ docstrings too — count before saving.
 
 Add one row to the coverage matrix table:
 ```
-| {CCNL Name} | {Sector} | ✅ | ✅ | — |
+| {CCNL Name} | {Sector} | ✅ | ✅ |
 ```
 
 ---

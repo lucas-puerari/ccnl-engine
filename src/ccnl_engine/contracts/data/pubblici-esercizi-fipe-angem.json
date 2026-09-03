@@ -37,7 +37,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: 2024 RENEWAL: CCNL signed 5 June 2024, validity 1 June 2024 – 31 December 2027 (CNEL H05Y, ~592,364 workers Uniemens 2022 / over 1 million according to FIPE). Pay table source: fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf.",
       "SIMPLIFICATION: SALARY MODEL: the contractual pay structure provides for a separate national base pay and contingenza. For engine purposes they are consolidated into base_salary (monthly total per tranche). The total values match the official FIPE pay tables (Tabelle retributive 2024, fipe.it). fixed_allowances models the function allowance for quadri: Qa=75 EUR and Qb=70 EUR, confirmed by lexplain.it (CCNL 2024-2027).",
@@ -53,12 +52,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2024-06-01", "valid_until": null, "value": "172" }
+        {
+          "valid_from": "2024-06-01",
+          "valid_until": null,
+          "value": "172"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2024-06-01", "valid_until": null, "value": "14" }
+        {
+          "valid_from": "2024-06-01",
+          "valid_until": null,
+          "value": "14"
+        }
       ]
     },
     "seniority_increments": {
@@ -67,52 +74,92 @@
       "amount_by_level": {
         "Qa": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "40.80" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "40.80"
+            }
           ]
         },
         "Qb": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "39.25" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "39.25"
+            }
           ]
         },
         "1": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "37.70" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "37.70"
+            }
           ]
         },
         "2": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "36.15" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "36.15"
+            }
           ]
         },
         "3": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "34.86" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "34.86"
+            }
           ]
         },
         "4": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "33.05" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "33.05"
+            }
           ]
         },
         "5": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "32.54" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "32.54"
+            }
           ]
         },
         "6s": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "31.25" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "31.25"
+            }
           ]
         },
         "6": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "30.99" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "30.99"
+            }
           ]
         },
         "7": {
           "periods": [
-            { "valid_from": "2024-06-01", "valid_until": null, "value": "30.47" }
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "30.47"
+            }
           ]
         }
       }
@@ -125,11 +172,31 @@
       "description": "Level 7 — general assistants, cleaning staff (simple manual tasks)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1330.48" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1360.34" },
-          { "valid_from": "2026-06-01", "valid_until": "2027-06-01", "value": "1390.20" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1412.59" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "1442.45" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1330.48"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "1360.34"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "1390.20"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1412.59"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1442.45"
+          }
         ]
       },
       "fixed_allowances": []
@@ -140,11 +207,31 @@
       "description": "Level 6 — staff with standard practical training and basic professional knowledge",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1425.05" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1458.31" },
-          { "valid_from": "2026-06-01", "valid_until": "2027-06-01", "value": "1491.57" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1516.52" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "1549.78" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1425.05"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "1458.31"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "1491.57"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1516.52"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1549.78"
+          }
         ]
       },
       "fixed_allowances": []
@@ -155,11 +242,31 @@
       "description": "Level 6 super — staff with adequate technical-practical skills (formerly qualified commis or experienced staff)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1446.72" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1480.77" },
-          { "valid_from": "2026-06-01", "valid_until": "2027-06-01", "value": "1514.83" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1540.37" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "1574.42" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1446.72"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "1480.77"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "1514.83"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1540.37"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1574.42"
+          }
         ]
       },
       "fixed_allowances": []
@@ -170,11 +277,31 @@
       "description": "Level 5 — staff with qualified technical-practical knowledge and skills",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1507.63" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1543.86" },
-          { "valid_from": "2026-06-01", "valid_until": "2027-06-01", "value": "1580.09" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1607.26" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "1643.50" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1507.63"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "1543.86"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "1580.09"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1607.26"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1643.50"
+          }
         ]
       },
       "fixed_allowances": []
@@ -185,11 +312,31 @@
       "description": "Level 4 — staff with executive autonomy (specialised technical-administrative duties)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1612.69" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1652.69" },
-          { "valid_from": "2026-06-01", "valid_until": "2027-06-01", "value": "1692.69" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1722.69" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "1762.69" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1612.69"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "1652.69"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "1692.69"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1722.69"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1762.69"
+          }
         ]
       },
       "fixed_allowances": []
@@ -200,11 +347,31 @@
       "description": "Level 3 — staff with specialist technical knowledge (conceptual work)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1713.55" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1757.14" },
-          { "valid_from": "2026-06-01", "valid_until": "2027-06-01", "value": "1800.73" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1833.42" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "1877.00" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1713.55"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "1757.14"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "1800.73"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1833.42"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1877.00"
+          }
         ]
       },
       "fixed_allowances": []
@@ -215,11 +382,31 @@
       "description": "Level 2 — staff with initiative and operational autonomy (coordination)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1821.48" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1868.92" },
-          { "valid_from": "2026-06-01", "valid_until": "2027-06-01", "value": "1916.35" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1951.92" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "1999.36" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1821.48"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "1868.92"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "1916.35"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1951.92"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1999.36"
+          }
         ]
       },
       "fixed_allowances": []
@@ -230,11 +417,31 @@
       "description": "Level 1 — staff with high professional content and operational autonomy",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2000.05" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2053.87" },
-          { "valid_from": "2026-06-01", "valid_until": "2027-06-01", "value": "2107.68" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "2148.04" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "2201.85" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "2000.05"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "2053.87"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "2107.68"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "2148.04"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2201.85"
+          }
         ]
       },
       "fixed_allowances": []
@@ -245,11 +452,31 @@
       "description": "Quadri B — managerial functions with continuous responsibility over a complex unit",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2152.82" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2212.22" },
-          { "valid_from": "2026-06-01", "valid_until": "2027-06-01", "value": "2271.61" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "2316.16" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "2375.56" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "2152.82"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "2212.22"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "2271.61"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "2316.16"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2375.56"
+          }
         ]
       },
       "fixed_allowances": [
@@ -258,7 +485,11 @@
           "description": "Function allowance Quadri B (Art. 154 CCNL)",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-06-01", "valid_until": null, "value": "70.00" }
+              {
+                "valid_from": "2024-06-01",
+                "valid_until": null,
+                "value": "70.00"
+              }
             ]
           }
         }
@@ -270,11 +501,31 @@
       "description": "Quadri A — managerial functions with a high level of management responsibility",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2331.41" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2397.19" },
-          { "valid_from": "2026-06-01", "valid_until": "2027-06-01", "value": "2462.96" },
-          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "2512.30" },
-          { "valid_from": "2027-12-01", "valid_until": null, "value": "2578.07" }
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "2331.41"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "2397.19"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "2462.96"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "2512.30"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2578.07"
+          }
         ]
       },
       "fixed_allowances": [
@@ -283,7 +534,11 @@
           "description": "Function allowance Quadri A (Art. 154 CCNL)",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-06-01", "valid_until": null, "value": "75.00" }
+              {
+                "valid_from": "2024-06-01",
+                "valid_until": null,
+                "value": "75.00"
+              }
             ]
           }
         }
@@ -294,12 +549,36 @@
     {
       "type": "percentage",
       "name": "professionalizzante",
-      "destination_levels": ["1", "2", "3", "4", "5", "6s", "6"],
+      "destination_levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6s",
+        "6"
+      ],
       "periods": [
-        { "months_from": 0,  "months_until": 12, "percentage": "0.80" },
-        { "months_from": 12, "months_until": 24, "percentage": "0.85" },
-        { "months_from": 24, "months_until": 36, "percentage": "0.90" },
-        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     }
   ]

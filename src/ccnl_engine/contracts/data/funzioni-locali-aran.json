@@ -41,12 +41,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2022-11-16", "valid_until": null, "value": "156" }
+        {
+          "valid_from": "2022-11-16",
+          "valid_until": null,
+          "value": "156"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2022-11-16", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2022-11-16",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -63,9 +71,21 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-11-16", "valid_until": "2024-01-01", "value": "1523.61" },
-          { "valid_from": "2024-01-01", "valid_until": "2027-01-01", "value": "1637.12" },
-          { "valid_from": "2027-01-01", "valid_until": null,         "value": "1646.09" }
+          {
+            "valid_from": "2022-11-16",
+            "valid_until": "2024-01-01",
+            "value": "1523.61"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1637.12"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1646.09"
+          }
         ]
       },
       "fixed_allowances": []
@@ -77,9 +97,21 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-11-16", "valid_until": "2024-01-01", "value": "1586.21" },
-          { "valid_from": "2024-01-01", "valid_until": "2027-01-01", "value": "1704.38" },
-          { "valid_from": "2027-01-01", "valid_until": null,         "value": "1715.27" }
+          {
+            "valid_from": "2022-11-16",
+            "valid_until": "2024-01-01",
+            "value": "1586.21"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1704.38"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1715.27"
+          }
         ]
       },
       "fixed_allowances": []
@@ -91,9 +123,21 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-11-16", "valid_until": "2024-01-01", "value": "1782.74" },
-          { "valid_from": "2024-01-01", "valid_until": "2027-01-01", "value": "1915.55" },
-          { "valid_from": "2027-01-01", "valid_until": null,         "value": "1928.23" }
+          {
+            "valid_from": "2022-11-16",
+            "valid_until": "2024-01-01",
+            "value": "1782.74"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1915.55"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1928.23"
+          }
         ]
       },
       "fixed_allowances": []
@@ -105,9 +149,21 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-11-16", "valid_until": "2024-01-01", "value": "1934.36" },
-          { "valid_from": "2024-01-01", "valid_until": "2027-01-01", "value": "2078.47" },
-          { "valid_from": "2027-01-01", "valid_until": null,         "value": "2092.84" }
+          {
+            "valid_from": "2022-11-16",
+            "valid_until": "2024-01-01",
+            "value": "1934.36"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2078.47"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2092.84"
+          }
         ]
       },
       "fixed_allowances": []
@@ -117,7 +173,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "SOURCE: Salary tables from CCNL Comparto Funzioni Locali 2022-2024 (ARAN, 23.02.2026). Art. 56 Tabella A (monthly increments per 13 months) and Tabella B (annual amounts per 12 months + 13th). Monthly values = Tabella B / 12.",
       "SOURCE: Tranche 1 (2022-11-16) values back-calculated from CCNL 16.11.2022 base by subtracting Tabella A col.1 increments from 2024-01-01 values. The 2022 and 2023 anticipation payments (Art. 56, alinea 1-2) are not modelled as separate tabellare periods.",

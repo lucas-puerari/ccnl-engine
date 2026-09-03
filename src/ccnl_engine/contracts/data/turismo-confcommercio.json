@@ -36,7 +36,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: SUB-SECTOR: salary tables from the hotels/tourism renewal signed on 5 June 2024 (CCNL H052 hotels special section). CCNL H052 also covers the public establishments/FIPE sub-sector (renewal March 2025, slightly different tables) not modelled in this file.",
       "INFO: CONGLOBATED MINIMUMS: the base_salary values are the monthly conglobated tabular minimums (basic pay + contingency included), as published by lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027. fixed_allowances is empty for all levels. Verification: level 7 November 2027 = 1458.42 / 172 = 8.48 EUR/h (matches published hourly table).",
@@ -52,12 +51,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2024-07-01", "valid_until": null, "value": "172" }
+        {
+          "valid_from": "2024-07-01",
+          "valid_until": null,
+          "value": "172"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2024-07-01", "valid_until": null, "value": "14" }
+        {
+          "valid_from": "2024-07-01",
+          "valid_until": null,
+          "value": "14"
+        }
       ]
     },
     "seniority_increments": {
@@ -66,52 +73,92 @@
       "amount_by_level": {
         "QA": {
           "periods": [
-            { "valid_from": "2024-07-01", "valid_until": null, "value": "40.80" }
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "40.80"
+            }
           ]
         },
         "QB": {
           "periods": [
-            { "valid_from": "2024-07-01", "valid_until": null, "value": "39.25" }
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "39.25"
+            }
           ]
         },
         "1": {
           "periods": [
-            { "valid_from": "2024-07-01", "valid_until": null, "value": "37.70" }
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "37.70"
+            }
           ]
         },
         "2": {
           "periods": [
-            { "valid_from": "2024-07-01", "valid_until": null, "value": "36.15" }
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "36.15"
+            }
           ]
         },
         "3": {
           "periods": [
-            { "valid_from": "2024-07-01", "valid_until": null, "value": "34.86" }
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "34.86"
+            }
           ]
         },
         "4": {
           "periods": [
-            { "valid_from": "2024-07-01", "valid_until": null, "value": "33.05" }
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "33.05"
+            }
           ]
         },
         "5": {
           "periods": [
-            { "valid_from": "2024-07-01", "valid_until": null, "value": "32.54" }
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "32.54"
+            }
           ]
         },
         "6S": {
           "periods": [
-            { "valid_from": "2024-07-01", "valid_until": null, "value": "31.25" }
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "31.25"
+            }
           ]
         },
         "6": {
           "periods": [
-            { "valid_from": "2024-07-01", "valid_until": null, "value": "30.99" }
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "30.99"
+            }
           ]
         },
         "7": {
           "periods": [
-            { "valid_from": "2024-07-01", "valid_until": null, "value": "30.47" }
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "30.47"
+            }
           ]
         }
       }
@@ -124,11 +171,31 @@
       "description": "Grade 7 — assigned to general tasks, cleaning and support operations",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1350.12" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1383.45" },
-          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1412.60" },
-          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1441.76" },
-          { "valid_from": "2027-11-01", "valid_until": null, "value": "1458.42" }
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1350.12"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1383.45"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1412.60"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "1441.76"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1458.42"
+          }
         ]
       },
       "fixed_allowances": []
@@ -139,11 +206,31 @@
       "description": "Grade 6 — basic operator (dishwasher, porter, commis)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1440.78" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1476.34" },
-          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1507.45" },
-          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1538.57" },
-          { "valid_from": "2027-11-01", "valid_until": null, "value": "1556.35" }
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1440.78"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1476.34"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1507.45"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "1538.57"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1556.35"
+          }
         ]
       },
       "fixed_allowances": []
@@ -154,11 +241,31 @@
       "description": "Grade 6 super — qualified operator (room attendant, basic bar staff)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1461.49" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1497.57" },
-          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1529.13" },
-          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1560.69" },
-          { "valid_from": "2027-11-01", "valid_until": null, "value": "1578.72" }
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1461.49"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1497.57"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1529.13"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "1560.69"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1578.72"
+          }
         ]
       },
       "fixed_allowances": []
@@ -169,11 +276,31 @@
       "description": "Grade 5 — specialist operator (waiter, cook, receptionist)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1519.93" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1557.44" },
-          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1590.27" },
-          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1623.09" },
-          { "valid_from": "2027-11-01", "valid_until": null, "value": "1641.85" }
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1519.93"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1557.44"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1590.27"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "1623.09"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1641.85"
+          }
         ]
       },
       "fixed_allowances": []
@@ -184,11 +311,31 @@
       "description": "Grade 4 — process technician / shift leader / receptionist",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1620.69" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1660.69" },
-          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1695.69" },
-          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1730.69" },
-          { "valid_from": "2027-11-01", "valid_until": null, "value": "1750.69" }
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1620.69"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1660.69"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1695.69"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "1730.69"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1750.69"
+          }
         ]
       },
       "fixed_allowances": []
@@ -199,11 +346,31 @@
       "description": "Grade 3 — senior technician / section chef / senior front-office",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1717.55" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1759.94" },
-          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1797.04" },
-          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1834.13" },
-          { "valid_from": "2027-11-01", "valid_until": null, "value": "1855.32" }
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1717.55"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1759.94"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1797.04"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "1834.13"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1855.32"
+          }
         ]
       },
       "fixed_allowances": []
@@ -214,11 +381,31 @@
       "description": "Grade 2 — junior management function / chef de rang / deputy manager",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1821.13" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "1866.07" },
-          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "1905.40" },
-          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "1944.73" },
-          { "valid_from": "2027-11-01", "valid_until": null, "value": "1967.20" }
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1821.13"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1866.07"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1905.40"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "1944.73"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1967.20"
+          }
         ]
       },
       "fixed_allowances": []
@@ -229,11 +416,31 @@
       "description": "Grade 1 — management function / maître / head receptionist",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1992.50" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "2041.68" },
-          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "2084.71" },
-          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "2127.73" },
-          { "valid_from": "2027-11-01", "valid_until": null, "value": "2152.32" }
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1992.50"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "2041.68"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "2084.71"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "2127.73"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "2152.32"
+          }
         ]
       },
       "fixed_allowances": []
@@ -244,11 +451,31 @@
       "description": "Grade QB — senior manager with high managerial professionalism",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "2138.57" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "2191.35" },
-          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "2237.53" },
-          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "2283.72" },
-          { "valid_from": "2027-11-01", "valid_until": null, "value": "2310.11" }
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "2138.57"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "2191.35"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "2237.53"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "2283.72"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "2310.11"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -260,11 +487,31 @@
       "description": "Grade QA — senior manager with maximum managerial responsibility",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "2309.93" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-05-01", "value": "2366.94" },
-          { "valid_from": "2026-05-01", "valid_until": "2027-04-01", "value": "2416.82" },
-          { "valid_from": "2027-04-01", "valid_until": "2027-11-01", "value": "2466.71" },
-          { "valid_from": "2027-11-01", "valid_until": null, "value": "2495.22" }
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "2309.93"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "2366.94"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "2416.82"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "2466.71"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "2495.22"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -275,22 +522,58 @@
     {
       "type": "percentage",
       "name": "professionalizzante_36",
-      "destination_levels": ["5", "4", "3", "2", "6S"],
+      "destination_levels": [
+        "5",
+        "4",
+        "3",
+        "2",
+        "6S"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.80" },
-        { "months_from": 12, "months_until": 24, "percentage": "0.85" },
-        { "months_from": 24, "months_until": 36, "percentage": "0.90" },
-        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "professionalizzante_24",
-      "destination_levels": ["6"],
+      "destination_levels": [
+        "6"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.80" },
-        { "months_from": 12, "months_until": 24, "percentage": "0.85" },
-        { "months_from": 24, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     }
   ]

@@ -6,7 +6,13 @@
     "cnel_code": "C011",
     "sector": "metalmeccanico",
     "tax_sector": "industria",
-    "signatories": ["Federmeccanica", "Assistal", "FIM-CISL", "FIOM-CGIL", "UILM-UIL"],
+    "signatories": [
+      "Federmeccanica",
+      "Assistal",
+      "FIM-CISL",
+      "FIOM-CGIL",
+      "UILM-UIL"
+    ],
     "sources": [
       {
         "url": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
@@ -34,7 +40,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: CONSOLIDATED MINIMUMS: the values in base_salary are the 'consolidated table minimums' of the CCNL Federmeccanica-Assistal, which incorporate base pay, contingenza, and EDR into a single figure (Federmeccanica practice since 2001). For this reason fixed_allowances is empty for all levels.",
       "INFO: JUNE 2025 TRANCHE: values verified against the agreement of 12 June 2025 (source: studiomorettistp.it and dinunzio.it, which report the official Federmeccanica-Assistal consolidated table minimums). All 9 levels confirmed.",
@@ -50,12 +55,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2024-06-01", "valid_until": null, "value": "173" }
+        {
+          "valid_from": "2024-06-01",
+          "valid_until": null,
+          "value": "173"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2021-06-01", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2021-06-01",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -64,47 +77,83 @@
       "amount_by_level": {
         "D1": {
           "periods": [
-            { "valid_from": "2021-06-01", "valid_until": null, "value": "21.59" }
+            {
+              "valid_from": "2021-06-01",
+              "valid_until": null,
+              "value": "21.59"
+            }
           ]
         },
         "D2": {
           "periods": [
-            { "valid_from": "2021-06-01", "valid_until": null, "value": "25.05" }
+            {
+              "valid_from": "2021-06-01",
+              "valid_until": null,
+              "value": "25.05"
+            }
           ]
         },
         "C1": {
           "periods": [
-            { "valid_from": "2021-06-01", "valid_until": null, "value": "25.05" }
+            {
+              "valid_from": "2021-06-01",
+              "valid_until": null,
+              "value": "25.05"
+            }
           ]
         },
         "C2": {
           "periods": [
-            { "valid_from": "2021-06-01", "valid_until": null, "value": "26.75" }
+            {
+              "valid_from": "2021-06-01",
+              "valid_until": null,
+              "value": "26.75"
+            }
           ]
         },
         "C3": {
           "periods": [
-            { "valid_from": "2021-06-01", "valid_until": null, "value": "29.64" }
+            {
+              "valid_from": "2021-06-01",
+              "valid_until": null,
+              "value": "29.64"
+            }
           ]
         },
         "B1": {
           "periods": [
-            { "valid_from": "2021-06-01", "valid_until": null, "value": "32.43" }
+            {
+              "valid_from": "2021-06-01",
+              "valid_until": null,
+              "value": "32.43"
+            }
           ]
         },
         "B2": {
           "periods": [
-            { "valid_from": "2021-06-01", "valid_until": null, "value": "36.41" }
+            {
+              "valid_from": "2021-06-01",
+              "valid_until": null,
+              "value": "36.41"
+            }
           ]
         },
         "B3": {
           "periods": [
-            { "valid_from": "2021-06-01", "valid_until": null, "value": "40.96" }
+            {
+              "valid_from": "2021-06-01",
+              "valid_until": null,
+              "value": "40.96"
+            }
           ]
         },
         "A1": {
           "periods": [
-            { "valid_from": "2021-06-01", "valid_until": null, "value": "40.96" }
+            {
+              "valid_from": "2021-06-01",
+              "valid_until": null,
+              "value": "40.96"
+            }
           ]
         }
       }
@@ -117,12 +166,36 @@
       "description": "Level 1 — auxiliary duties, simple and repetitive operations",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1488.89" },
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1509.07" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1608.67" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1719.67" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1742.03" },
-          { "valid_from": "2026-06-01", "valid_until": null, "value": "1784.94" }
+          {
+            "valid_from": "2021-06-01",
+            "valid_until": "2022-06-01",
+            "value": "1488.89"
+          },
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "1509.07"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1608.67"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1719.67"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "1742.03"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": null,
+            "value": "1784.94"
+          }
         ]
       },
       "fixed_allowances": []
@@ -133,12 +206,36 @@
       "description": "Level 2 — standardised operations, simple white-collar duties",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1651.07" },
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1673.45" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1783.90" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1906.99" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1931.78" },
-          { "valid_from": "2026-06-01", "valid_until": null, "value": "1979.37" }
+          {
+            "valid_from": "2021-06-01",
+            "valid_until": "2022-06-01",
+            "value": "1651.07"
+          },
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "1673.45"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1783.90"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1906.99"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "1931.78"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": null,
+            "value": "1979.37"
+          }
         ]
       },
       "fixed_allowances": []
@@ -149,12 +246,36 @@
       "description": "Level 3 — skilled worker, clerical employee",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1686.74" },
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1709.60" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1822.43" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1948.18" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "1973.51" },
-          { "valid_from": "2026-06-01", "valid_until": null, "value": "2022.12" }
+          {
+            "valid_from": "2021-06-01",
+            "valid_until": "2022-06-01",
+            "value": "1686.74"
+          },
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "1709.60"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1822.43"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1948.18"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "1973.51"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": null,
+            "value": "2022.12"
+          }
         ]
       },
       "fixed_allowances": []
@@ -165,12 +286,36 @@
       "description": "Level 4 — specialist worker 1st category, white-collar employee",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1722.41" },
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1745.75" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1860.97" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "1989.38" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2015.24" },
-          { "valid_from": "2026-06-01", "valid_until": null, "value": "2064.88" }
+          {
+            "valid_from": "2021-06-01",
+            "valid_until": "2022-06-01",
+            "value": "1722.41"
+          },
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "1745.75"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1860.97"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1989.38"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "2015.24"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": null,
+            "value": "2064.88"
+          }
         ]
       },
       "fixed_allowances": []
@@ -181,12 +326,36 @@
       "description": "Level 5 — specialist worker 2nd category, senior white-collar employee (CCNL reference level)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1844.64" },
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "1869.64" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "1993.04" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2130.56" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2158.26" },
-          { "valid_from": "2026-06-01", "valid_until": null, "value": "2211.43" }
+          {
+            "valid_from": "2021-06-01",
+            "valid_until": "2022-06-01",
+            "value": "1844.64"
+          },
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "1869.64"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1993.04"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "2130.56"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "2158.26"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": null,
+            "value": "2211.43"
+          }
         ]
       },
       "fixed_allowances": []
@@ -197,12 +366,36 @@
       "description": "Level 5 Super — highly specialised worker, technician",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "1977.19" },
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "2003.99" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "2136.25" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2283.65" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2313.34" },
-          { "valid_from": "2026-06-01", "valid_until": null, "value": "2370.33" }
+          {
+            "valid_from": "2021-06-01",
+            "valid_until": "2022-06-01",
+            "value": "1977.19"
+          },
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "2003.99"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "2136.25"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "2283.65"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "2313.34"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": null,
+            "value": "2370.33"
+          }
         ]
       },
       "fixed_allowances": []
@@ -213,12 +406,36 @@
       "description": "Level 6 — specialist technician, department head, technical employee",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "2121.20" },
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "2149.95" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "2291.85" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2449.99" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2481.84" },
-          { "valid_from": "2026-06-01", "valid_until": null, "value": "2542.98" }
+          {
+            "valid_from": "2021-06-01",
+            "valid_until": "2022-06-01",
+            "value": "2121.20"
+          },
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "2149.95"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "2291.85"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "2449.99"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "2481.84"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": null,
+            "value": "2542.98"
+          }
         ]
       },
       "fixed_allowances": []
@@ -229,12 +446,36 @@
       "description": "Level 7 — high technical or managerial expertise",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "2368.12" },
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "2400.22" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "2558.63" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2735.18" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2770.74" },
-          { "valid_from": "2026-06-01", "valid_until": null, "value": "2838.99" }
+          {
+            "valid_from": "2021-06-01",
+            "valid_until": "2022-06-01",
+            "value": "2368.12"
+          },
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "2400.22"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "2558.63"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "2735.18"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "2770.74"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": null,
+            "value": "2838.99"
+          }
         ]
       },
       "fixed_allowances": []
@@ -245,12 +486,36 @@
       "description": "Level 8 — quadro, maximum professional grade",
       "base_salary": {
         "periods": [
-          { "valid_from": "2021-06-01", "valid_until": "2022-06-01", "value": "2424.86" },
-          { "valid_from": "2022-06-01", "valid_until": "2023-06-01", "value": "2457.72" },
-          { "valid_from": "2023-06-01", "valid_until": "2024-06-01", "value": "2619.93" },
-          { "valid_from": "2024-06-01", "valid_until": "2025-06-01", "value": "2800.71" },
-          { "valid_from": "2025-06-01", "valid_until": "2026-06-01", "value": "2837.12" },
-          { "valid_from": "2026-06-01", "valid_until": null, "value": "2907.01" }
+          {
+            "valid_from": "2021-06-01",
+            "valid_until": "2022-06-01",
+            "value": "2424.86"
+          },
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": "2023-06-01",
+            "value": "2457.72"
+          },
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "2619.93"
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "2800.71"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "2837.12"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": null,
+            "value": "2907.01"
+          }
         ]
       },
       "fixed_allowances": []
@@ -260,34 +525,100 @@
     {
       "type": "percentage",
       "name": "professionalizzante_36",
-      "destination_levels": ["D2", "C1", "C2", "C3", "B1", "B2", "B3"],
+      "destination_levels": [
+        "D2",
+        "C1",
+        "C2",
+        "C3",
+        "B1",
+        "B2",
+        "B3"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.85" },
-        { "months_from": 12, "months_until": 24, "percentage": "0.90" },
-        { "months_from": 24, "months_until": 36, "percentage": "0.95" },
-        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "professionalizzante_30",
-      "destination_levels": ["D2", "C1", "C2", "C3", "B1", "B2", "B3"],
+      "destination_levels": [
+        "D2",
+        "C1",
+        "C2",
+        "C3",
+        "B1",
+        "B2",
+        "B3"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 10, "percentage": "0.85" },
-        { "months_from": 10, "months_until": 20, "percentage": "0.90" },
-        { "months_from": 20, "months_until": 30, "percentage": "0.95" },
-        { "months_from": 30, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 10,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 10,
+          "months_until": 20,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 20,
+          "months_until": 30,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 30,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "professionalizzante_24",
-      "destination_levels": ["D2"],
+      "destination_levels": [
+        "D2"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 8, "percentage": "0.85" },
-        { "months_from": 8, "months_until": 16, "percentage": "0.90" },
-        { "months_from": 16, "months_until": 24, "percentage": "0.95" },
-        { "months_from": 24, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 8,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 8,
+          "months_until": 16,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 16,
+          "months_until": 24,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     }
   ]

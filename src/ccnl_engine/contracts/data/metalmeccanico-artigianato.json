@@ -6,7 +6,15 @@
     "cnel_code": "C030",
     "sector": "metalmeccanico",
     "tax_sector": "artigianato",
-    "signatories": ["Confartigianato Imprese", "CNA", "Casartigiani", "CLAAI", "FIM-CISL", "FIOM-CGIL", "UILM-UIL"],
+    "signatories": [
+      "Confartigianato Imprese",
+      "CNA",
+      "Casartigiani",
+      "CLAAI",
+      "FIM-CISL",
+      "FIOM-CGIL",
+      "UILM-UIL"
+    ],
     "sources": [
       {
         "url": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
@@ -39,7 +47,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: CONGLOBATED MINIMUMS: base_salary values are conglobated minimum pay figures, incorporating base pay, contingenza and EDR in a single amount. Conglobation confirmed in force from 16.06.2011 (source: EBNA CCNL 17.12.2021, Art. 28 and attached tables). fixed_allowances is empty for all levels.",
       "INFO: 2022 TRANCHES: three tranches CCNL 17.12.2021 (01.01.2022, 01.05.2022, 01.12.2022). Per-level increments verified against EBNA/Direzionelavoro.it. Values at 01.12.2022 confirmed from EBNA primary source.",
@@ -56,12 +63,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2022-01-01", "valid_until": null, "value": "173" }
+        {
+          "valid_from": "2022-01-01",
+          "valid_until": null,
+          "value": "173"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2022-01-01", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2022-01-01",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -70,42 +85,74 @@
       "amount_by_level": {
         "1Q": {
           "periods": [
-            { "valid_from": "2022-01-01", "valid_until": null, "value": "32.94" }
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "32.94"
+            }
           ]
         },
         "1": {
           "periods": [
-            { "valid_from": "2022-01-01", "valid_until": null, "value": "32.94" }
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "32.94"
+            }
           ]
         },
         "2": {
           "periods": [
-            { "valid_from": "2022-01-01", "valid_until": null, "value": "29.08" }
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "29.08"
+            }
           ]
         },
         "2bis": {
           "periods": [
-            { "valid_from": "2022-01-01", "valid_until": null, "value": "26.13" }
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "26.13"
+            }
           ]
         },
         "3": {
           "periods": [
-            { "valid_from": "2022-01-01", "valid_until": null, "value": "24.29" }
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "24.29"
+            }
           ]
         },
         "4": {
           "periods": [
-            { "valid_from": "2022-01-01", "valid_until": null, "value": "21.72" }
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "21.72"
+            }
           ]
         },
         "5": {
           "periods": [
-            { "valid_from": "2022-01-01", "valid_until": null, "value": "20.24" }
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "20.24"
+            }
           ]
         },
         "6": {
           "periods": [
-            { "valid_from": "2022-01-01", "valid_until": null, "value": "18.40" }
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "18.40"
+            }
           ]
         }
       }
@@ -118,15 +165,51 @@
       "description": "Level 6 — elementary operations without autonomy",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-01-01", "valid_until": "2022-05-01", "value": "1300.89" },
-          { "valid_from": "2022-05-01", "valid_until": "2022-12-01", "value": "1323.85" },
-          { "valid_from": "2022-12-01", "valid_until": "2023-12-01", "value": "1341.83" },
-          { "valid_from": "2023-12-01", "valid_until": "2024-04-01", "value": "1387.75" },
-          { "valid_from": "2024-04-01", "valid_until": "2024-12-01", "value": "1430.00" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "1475.92" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1498.88" },
-          { "valid_from": "2026-03-01", "valid_until": "2026-11-01", "value": "1521.84" },
-          { "valid_from": "2026-11-01", "valid_until": null, "value": "1540.21" }
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1300.89"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1323.85"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1341.83"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1387.75"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1430.00"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "1475.92"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "1498.88"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "1521.84"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "1540.21"
+          }
         ]
       },
       "fixed_allowances": []
@@ -137,15 +220,51 @@
       "description": "Level 5 — simple tasks with minimal operative autonomy",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-01-01", "valid_until": "2022-05-01", "value": "1364.20" },
-          { "valid_from": "2022-05-01", "valid_until": "2022-12-01", "value": "1388.28" },
-          { "valid_from": "2022-12-01", "valid_until": "2023-12-01", "value": "1407.13" },
-          { "valid_from": "2023-12-01", "valid_until": "2024-04-01", "value": "1455.29" },
-          { "valid_from": "2024-04-01", "valid_until": "2024-12-01", "value": "1499.59" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "1547.75" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1571.83" },
-          { "valid_from": "2026-03-01", "valid_until": "2026-11-01", "value": "1595.91" },
-          { "valid_from": "2026-11-01", "valid_until": null, "value": "1615.17" }
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1364.20"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1388.28"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1407.13"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1455.29"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1499.59"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "1547.75"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "1571.83"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "1595.91"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "1615.17"
+          }
         ]
       },
       "fixed_allowances": []
@@ -156,15 +275,51 @@
       "description": "Level 4 — qualified operative tasks, partial operative autonomy",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-01-01", "valid_until": "2022-05-01", "value": "1416.41" },
-          { "valid_from": "2022-05-01", "valid_until": "2022-12-01", "value": "1441.41" },
-          { "valid_from": "2022-12-01", "valid_until": "2023-12-01", "value": "1460.98" },
-          { "valid_from": "2023-12-01", "valid_until": "2024-04-01", "value": "1510.98" },
-          { "valid_from": "2024-04-01", "valid_until": "2024-12-01", "value": "1556.98" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "1606.98" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1631.98" },
-          { "valid_from": "2026-03-01", "valid_until": "2026-11-01", "value": "1656.98" },
-          { "valid_from": "2026-11-01", "valid_until": null, "value": "1676.98" }
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1416.41"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1441.41"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1460.98"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1510.98"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1556.98"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "1606.98"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "1631.98"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "1656.98"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "1676.98"
+          }
         ]
       },
       "fixed_allowances": []
@@ -175,15 +330,51 @@
       "description": "Level 3 — qualified tasks with operative autonomy",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-01-01", "valid_until": "2022-05-01", "value": "1502.77" },
-          { "valid_from": "2022-05-01", "valid_until": "2022-12-01", "value": "1529.29" },
-          { "valid_from": "2022-12-01", "valid_until": "2023-12-01", "value": "1550.06" },
-          { "valid_from": "2023-12-01", "valid_until": "2024-04-01", "value": "1603.11" },
-          { "valid_from": "2024-04-01", "valid_until": "2024-12-01", "value": "1651.91" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "1704.96" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1731.48" },
-          { "valid_from": "2026-03-01", "valid_until": "2026-11-01", "value": "1758.00" },
-          { "valid_from": "2026-11-01", "valid_until": null, "value": "1779.22" }
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1502.77"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1529.29"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1550.06"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1603.11"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1651.91"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "1704.96"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "1731.48"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "1758.00"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "1779.22"
+          }
         ]
       },
       "fixed_allowances": []
@@ -194,15 +385,51 @@
       "description": "Level 2 bis — specialised tasks, high operative autonomy",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-01-01", "valid_until": "2022-05-01", "value": "1562.81" },
-          { "valid_from": "2022-05-01", "valid_until": "2022-12-01", "value": "1590.39" },
-          { "valid_from": "2022-12-01", "valid_until": "2023-12-01", "value": "1611.99" },
-          { "valid_from": "2023-12-01", "valid_until": "2024-04-01", "value": "1667.16" },
-          { "valid_from": "2024-04-01", "valid_until": "2024-12-01", "value": "1717.91" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "1773.08" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1800.66" },
-          { "valid_from": "2026-03-01", "valid_until": "2026-11-01", "value": "1828.24" },
-          { "valid_from": "2026-11-01", "valid_until": null, "value": "1850.31" }
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1562.81"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1590.39"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1611.99"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1667.16"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1717.91"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "1773.08"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "1800.66"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "1828.24"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "1850.31"
+          }
         ]
       },
       "fixed_allowances": []
@@ -213,15 +440,51 @@
       "description": "Level 2 — conceptual tasks or high technical specialisation",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-01-01", "valid_until": "2022-05-01", "value": "1655.09" },
-          { "valid_from": "2022-05-01", "valid_until": "2022-12-01", "value": "1684.30" },
-          { "valid_from": "2022-12-01", "valid_until": "2023-12-01", "value": "1707.17" },
-          { "valid_from": "2023-12-01", "valid_until": "2024-04-01", "value": "1765.60" },
-          { "valid_from": "2024-04-01", "valid_until": "2024-12-01", "value": "1819.35" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "1877.78" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "1906.99" },
-          { "valid_from": "2026-03-01", "valid_until": "2026-11-01", "value": "1936.20" },
-          { "valid_from": "2026-11-01", "valid_until": null, "value": "1959.57" }
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1655.09"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1684.30"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1707.17"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1765.60"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1819.35"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "1877.78"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "1906.99"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "1936.20"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "1959.57"
+          }
         ]
       },
       "fixed_allowances": []
@@ -232,15 +495,51 @@
       "description": "Level 1 — white-collar employees with managerial functions",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-01-01", "valid_until": "2022-05-01", "value": "1778.79" },
-          { "valid_from": "2022-05-01", "valid_until": "2022-12-01", "value": "1810.19" },
-          { "valid_from": "2022-12-01", "valid_until": "2023-12-01", "value": "1834.76" },
-          { "valid_from": "2023-12-01", "valid_until": "2024-04-01", "value": "1897.55" },
-          { "valid_from": "2024-04-01", "valid_until": "2024-12-01", "value": "1955.32" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "2018.11" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "2049.51" },
-          { "valid_from": "2026-03-01", "valid_until": "2026-11-01", "value": "2080.91" },
-          { "valid_from": "2026-11-01", "valid_until": null, "value": "2106.03" }
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1778.79"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1810.19"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1834.76"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1897.55"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1955.32"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "2018.11"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "2049.51"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "2080.91"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "2106.03"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -252,15 +551,51 @@
       "description": "Level 1Q — quadri: high-responsibility managerial functions",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-01-01", "valid_until": "2022-05-01", "value": "1778.79" },
-          { "valid_from": "2022-05-01", "valid_until": "2022-12-01", "value": "1810.19" },
-          { "valid_from": "2022-12-01", "valid_until": "2023-12-01", "value": "1834.76" },
-          { "valid_from": "2023-12-01", "valid_until": "2024-04-01", "value": "1897.55" },
-          { "valid_from": "2024-04-01", "valid_until": "2024-12-01", "value": "1955.32" },
-          { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "2018.11" },
-          { "valid_from": "2025-07-01", "valid_until": "2026-03-01", "value": "2049.51" },
-          { "valid_from": "2026-03-01", "valid_until": "2026-11-01", "value": "2080.91" },
-          { "valid_from": "2026-11-01", "valid_until": null, "value": "2106.03" }
+          {
+            "valid_from": "2022-01-01",
+            "valid_until": "2022-05-01",
+            "value": "1778.79"
+          },
+          {
+            "valid_from": "2022-05-01",
+            "valid_until": "2022-12-01",
+            "value": "1810.19"
+          },
+          {
+            "valid_from": "2022-12-01",
+            "valid_until": "2023-12-01",
+            "value": "1834.76"
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-04-01",
+            "value": "1897.55"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2024-12-01",
+            "value": "1955.32"
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2025-07-01",
+            "value": "2018.11"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-03-01",
+            "value": "2049.51"
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": "2026-11-01",
+            "value": "2080.91"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": null,
+            "value": "2106.03"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -271,27 +606,83 @@
     {
       "type": "percentage",
       "name": "operai",
-      "destination_levels": ["5", "4", "3", "2bis"],
+      "destination_levels": [
+        "5",
+        "4",
+        "3",
+        "2bis"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
-        { "months_from": 12, "months_until": 18, "percentage": "0.75" },
-        { "months_from": 18, "months_until": 24, "percentage": "0.78" },
-        { "months_from": 24, "months_until": 30, "percentage": "0.80" },
-        { "months_from": 30, "months_until": 36, "percentage": "0.85" },
-        { "months_from": 36, "months_until": 42, "percentage": "0.88" },
-        { "months_from": 42, "months_until": 48, "percentage": "0.92" },
-        { "months_from": 48, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.78"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 30,
+          "months_until": 36,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 36,
+          "months_until": 42,
+          "percentage": "0.88"
+        },
+        {
+          "months_from": 42,
+          "months_until": 48,
+          "percentage": "0.92"
+        },
+        {
+          "months_from": 48,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "impiegati",
-      "destination_levels": ["2", "1"],
+      "destination_levels": [
+        "2",
+        "1"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
-        { "months_from": 12, "months_until": 24, "percentage": "0.77" },
-        { "months_from": 24, "months_until": 36, "percentage": "0.87" },
-        { "months_from": 36, "months_until": null, "percentage": "1.00" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.77"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.87"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
       ]
     }
   ]

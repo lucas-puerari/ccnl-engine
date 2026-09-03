@@ -42,12 +42,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2022-05-09", "valid_until": null, "value": "156" }
+        {
+          "valid_from": "2022-05-09",
+          "valid_until": null,
+          "value": "156"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2022-05-09", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2022-05-09",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -64,8 +72,16 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-05-09", "valid_until": "2024-01-01", "value": "1532.57" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1653.97" }
+          {
+            "valid_from": "2022-05-09",
+            "valid_until": "2024-01-01",
+            "value": "1532.57"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1653.97"
+          }
         ]
       },
       "fixed_allowances": []
@@ -77,8 +93,16 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-05-09", "valid_until": "2024-01-01", "value": "1612.66" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1740.36" }
+          {
+            "valid_from": "2022-05-09",
+            "valid_until": "2024-01-01",
+            "value": "1612.66"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1740.36"
+          }
         ]
       },
       "fixed_allowances": []
@@ -90,8 +114,16 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-05-09", "valid_until": "2024-01-01", "value": "1958.49" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "2113.59" }
+          {
+            "valid_from": "2022-05-09",
+            "valid_until": "2024-01-01",
+            "value": "1958.49"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2113.59"
+          }
         ]
       },
       "fixed_allowances": []
@@ -103,8 +135,16 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          { "valid_from": "2022-05-09", "valid_until": "2024-01-01", "value": "2692.31" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "2886.21" }
+          {
+            "valid_from": "2022-05-09",
+            "valid_until": "2024-01-01",
+            "value": "2692.31"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2886.21"
+          }
         ]
       },
       "fixed_allowances": []
@@ -114,7 +154,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.",
       "INFO: apprendistato assente dal CCNL vigente (fonte primaria: indice ARAN CCNL 2022-2024, Art. 1-38 senza capitolo apprendistato) e dal CCNL Ministeri 12/6/2003 richiamato dall'Art. 38 Conferme, che esclude espressamente gli apprendisti dall'ambito di applicazione (fonte secondaria: olympus.uniurb.it); quadro normativo PA D.Lgs. 165/2001 non prevede apprendistato ex D.Lgs. 81/2015.",

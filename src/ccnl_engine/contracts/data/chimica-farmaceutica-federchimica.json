@@ -6,7 +6,14 @@
     "cnel_code": "B011",
     "sector": "chimica",
     "tax_sector": "industria",
-    "signatories": ["Federchimica", "Farmindustria", "Assistal", "FILCTEM-CGIL", "FEMCA-CISL", "UILTEC-UIL"],
+    "signatories": [
+      "Federchimica",
+      "Farmindustria",
+      "Assistal",
+      "FILCTEM-CGIL",
+      "FEMCA-CISL",
+      "UILTEC-UIL"
+    ],
     "sources": [
       {
         "url": "https://informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf",
@@ -29,7 +36,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: CONSOLIDATED TEM: the base_salary values represent the total Minimum Economic Treatment (TEM) = base minimum (Min) + IPO (Organisational Position Integration, per level) + EAR (Additional Pay Element: A=EUR 190, B=EUR 100, C-F=0, fixed throughout the contract) + EDR (Distinct Pay Element, added from 01/07/2027, per level). fixed_allowances is empty for all levels.",
       "INFO: PRIMARY SOURCE: TEM tables from the Federchimica/Farmindustria primary source (CCNL 2025-2028, signed 15/04/2025): informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf. The PDF contains the increment tables (Min and IPO per tranche) and the absolute TEM values at each due date for all 15 levels.",
@@ -47,12 +53,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2025-06-01", "valid_until": null, "value": "175" }
+        {
+          "valid_from": "2025-06-01",
+          "valid_until": null,
+          "value": "175"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2022-06-13", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2022-06-13",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -68,12 +82,36 @@
       "description": "F — simple executive and service duties",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "1698.46" },
-          { "valid_from": "2025-07-01", "valid_until": "2025-12-01", "value": "1767.46" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "1781.46" },
-          { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1821.46" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "1879.46" },
-          { "valid_from": "2028-06-01", "valid_until": null, "value": "1891.46" }
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-07-01",
+            "value": "1698.46"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "1767.46"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-07-01",
+            "value": "1781.46"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1821.46"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-06-01",
+            "value": "1879.46"
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "1891.46"
+          }
         ]
       },
       "fixed_allowances": []
@@ -84,12 +122,36 @@
       "description": "E — generic operator, 4th grade",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "1777.04" },
-          { "valid_from": "2025-07-01", "valid_until": "2025-12-01", "value": "1849.04" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "1863.04" },
-          { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1905.04" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "1966.04" },
-          { "valid_from": "2028-06-01", "valid_until": null, "value": "1978.04" }
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-07-01",
+            "value": "1777.04"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "1849.04"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-07-01",
+            "value": "1863.04"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1905.04"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-06-01",
+            "value": "1966.04"
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "1978.04"
+          }
         ]
       },
       "fixed_allowances": []
@@ -100,12 +162,36 @@
       "description": "E — generic specialised operator, 3rd grade",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "1822.29" },
-          { "valid_from": "2025-07-01", "valid_until": "2025-12-01", "value": "1897.29" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "1911.29" },
-          { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1954.29" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2016.29" },
-          { "valid_from": "2028-06-01", "valid_until": null, "value": "2029.29" }
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-07-01",
+            "value": "1822.29"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "1897.29"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-07-01",
+            "value": "1911.29"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1954.29"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-06-01",
+            "value": "2016.29"
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2029.29"
+          }
         ]
       },
       "fixed_allowances": []
@@ -116,12 +202,36 @@
       "description": "E — basic production operator, 2nd grade",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "1887.14" },
-          { "valid_from": "2025-07-01", "valid_until": "2025-12-01", "value": "1966.14" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "1981.14" },
-          { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2026.14" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2091.14" },
-          { "valid_from": "2028-06-01", "valid_until": null, "value": "2105.14" }
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-07-01",
+            "value": "1887.14"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "1966.14"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-07-01",
+            "value": "1981.14"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2026.14"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-06-01",
+            "value": "2091.14"
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2105.14"
+          }
         ]
       },
       "fixed_allowances": []
@@ -132,12 +242,36 @@
       "description": "E — GMP production operator, 1st grade",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "1985.28" },
-          { "valid_from": "2025-07-01", "valid_until": "2025-12-01", "value": "2071.28" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2088.28" },
-          { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2139.28" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2212.28" },
-          { "valid_from": "2028-06-01", "valid_until": null, "value": "2226.28" }
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-07-01",
+            "value": "1985.28"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2071.28"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-07-01",
+            "value": "2088.28"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2139.28"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-06-01",
+            "value": "2212.28"
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2226.28"
+          }
         ]
       },
       "fixed_allowances": []
@@ -148,12 +282,36 @@
       "description": "D — clerical employee / multi-skilled worker, 3rd grade",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2086.76" },
-          { "valid_from": "2025-07-01", "valid_until": "2025-12-01", "value": "2178.76" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2196.76" },
-          { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2250.76" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2327.76" },
-          { "valid_from": "2028-06-01", "valid_until": null, "value": "2342.76" }
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-07-01",
+            "value": "2086.76"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2178.76"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-07-01",
+            "value": "2196.76"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2250.76"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-06-01",
+            "value": "2327.76"
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2342.76"
+          }
         ]
       },
       "fixed_allowances": []
@@ -164,12 +322,36 @@
       "description": "D — distribution operator, QA inspector, 2nd grade",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2140.77" },
-          { "valid_from": "2025-07-01", "valid_until": "2025-12-01", "value": "2235.77" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2254.77" },
-          { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2311.77" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2393.77" },
-          { "valid_from": "2028-06-01", "valid_until": null, "value": "2409.77" }
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-07-01",
+            "value": "2140.77"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2235.77"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-07-01",
+            "value": "2254.77"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2311.77"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-06-01",
+            "value": "2393.77"
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2409.77"
+          }
         ]
       },
       "fixed_allowances": []
@@ -180,12 +362,36 @@
       "description": "D — team leader, senior multi-skilled operator, 1st grade",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2239.26" },
-          { "valid_from": "2025-07-01", "valid_until": "2025-12-01", "value": "2340.26" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2360.26" },
-          { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2420.26" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2506.26" },
-          { "valid_from": "2028-06-01", "valid_until": null, "value": "2522.26" }
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-07-01",
+            "value": "2239.26"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2340.26"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-07-01",
+            "value": "2360.26"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2420.26"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-06-01",
+            "value": "2506.26"
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2522.26"
+          }
         ]
       },
       "fixed_allowances": []
@@ -196,12 +402,36 @@
       "description": "C — specialist clerk, QC officer, senior accountant, 2nd grade",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2313.86" },
-          { "valid_from": "2025-07-01", "valid_until": "2025-12-01", "value": "2416.86" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2437.86" },
-          { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2498.86" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2586.86" },
-          { "valid_from": "2028-06-01", "valid_until": null, "value": "2603.86" }
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-07-01",
+            "value": "2313.86"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2416.86"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-07-01",
+            "value": "2437.86"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2498.86"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-06-01",
+            "value": "2586.86"
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2603.86"
+          }
         ]
       },
       "fixed_allowances": []
@@ -212,12 +442,36 @@
       "description": "C — shift supervisor, administrative coordinator, specialist technician, 1st grade",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2400.65" },
-          { "valid_from": "2025-07-01", "valid_until": "2025-12-01", "value": "2510.65" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2532.65" },
-          { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2597.65" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2690.65" },
-          { "valid_from": "2028-06-01", "valid_until": null, "value": "2708.65" }
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-07-01",
+            "value": "2400.65"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2510.65"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-07-01",
+            "value": "2532.65"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2597.65"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-06-01",
+            "value": "2690.65"
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2708.65"
+          }
         ]
       },
       "fixed_allowances": []
@@ -228,12 +482,36 @@
       "description": "B — researcher, maintenance manager, senior programmer, 2nd grade",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2640.61" },
-          { "valid_from": "2025-07-01", "valid_until": "2025-12-01", "value": "2757.61" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2780.61" },
-          { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2849.61" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "2948.61" },
-          { "valid_from": "2028-06-01", "valid_until": null, "value": "2968.61" }
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-07-01",
+            "value": "2640.61"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2757.61"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-07-01",
+            "value": "2780.61"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2849.61"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-06-01",
+            "value": "2948.61"
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2968.61"
+          }
         ]
       },
       "fixed_allowances": []
@@ -244,12 +522,36 @@
       "description": "B — ISF, product manager, safety officer, 1st grade",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2733.98" },
-          { "valid_from": "2025-07-01", "valid_until": "2025-12-01", "value": "2857.98" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "2881.98" },
-          { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2954.98" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "3058.98" },
-          { "valid_from": "2028-06-01", "valid_until": null, "value": "3080.98" }
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-07-01",
+            "value": "2733.98"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2857.98"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-07-01",
+            "value": "2881.98"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2954.98"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-06-01",
+            "value": "3058.98"
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "3080.98"
+          }
         ]
       },
       "fixed_allowances": []
@@ -260,12 +562,36 @@
       "description": "A (Quadri) — area coordinator, department head, 3rd grade",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "2961.22" },
-          { "valid_from": "2025-07-01", "valid_until": "2025-12-01", "value": "3092.22" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "3117.22" },
-          { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "3193.22" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "3302.22" },
-          { "valid_from": "2028-06-01", "valid_until": null, "value": "3325.22" }
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-07-01",
+            "value": "2961.22"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "3092.22"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-07-01",
+            "value": "3117.22"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3193.22"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-06-01",
+            "value": "3302.22"
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "3325.22"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -277,12 +603,36 @@
       "description": "A (Quadri) — laboratory manager, complex systems expert, 2nd grade",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "3023.59" },
-          { "valid_from": "2025-07-01", "valid_until": "2025-12-01", "value": "3157.59" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "3183.59" },
-          { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "3261.59" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "3373.59" },
-          { "valid_from": "2028-06-01", "valid_until": null, "value": "3396.59" }
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-07-01",
+            "value": "3023.59"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "3157.59"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-07-01",
+            "value": "3183.59"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3261.59"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-06-01",
+            "value": "3373.59"
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "3396.59"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -294,12 +644,36 @@
       "description": "A (Quadri) — QA/HSE/IT manager, senior scientist, plant manager, 1st grade",
       "base_salary": {
         "periods": [
-          { "valid_from": "2025-06-01", "valid_until": "2025-07-01", "value": "3258.48" },
-          { "valid_from": "2025-07-01", "valid_until": "2025-12-01", "value": "3408.48" },
-          { "valid_from": "2025-12-01", "valid_until": "2026-07-01", "value": "3438.48" },
-          { "valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "3528.48" },
-          { "valid_from": "2027-07-01", "valid_until": "2028-06-01", "value": "3657.48" },
-          { "valid_from": "2028-06-01", "valid_until": null, "value": "3682.48" }
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-07-01",
+            "value": "3258.48"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "3408.48"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-07-01",
+            "value": "3438.48"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3528.48"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-06-01",
+            "value": "3657.48"
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "3682.48"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -310,10 +684,29 @@
     {
       "type": "under_classification",
       "name": "professionalizzante",
-      "destination_levels": ["E3", "E2", "E1", "D3", "D2", "D1", "C2", "C1", "B2", "B1"],
+      "destination_levels": [
+        "E3",
+        "E2",
+        "E1",
+        "D3",
+        "D2",
+        "D1",
+        "C2",
+        "C1",
+        "B2",
+        "B1"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 18, "levels_below": 2 },
-        { "months_from": 18, "months_until": null, "levels_below": 1 }
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "levels_below": 1
+        }
       ]
     }
   ]

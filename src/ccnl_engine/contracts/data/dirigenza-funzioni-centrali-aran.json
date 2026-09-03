@@ -39,12 +39,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2023-11-16", "valid_until": null, "value": "165" }
+        {
+          "valid_from": "2023-11-16",
+          "valid_until": null,
+          "value": "165"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2023-11-16", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2023-11-16",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -61,8 +69,16 @@
       "category": "dirigente",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-11-16", "valid_until": "2024-01-01", "value": "3616.60" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "3846.60" }
+          {
+            "valid_from": "2023-11-16",
+            "valid_until": "2024-01-01",
+            "value": "3616.60"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "3846.60"
+          }
         ]
       },
       "fixed_allowances": []
@@ -74,8 +90,16 @@
       "category": "dirigente",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-11-16", "valid_until": "2024-01-01", "value": "4623.30" },
-          { "valid_from": "2024-01-01", "valid_until": null,         "value": "4908.30" }
+          {
+            "valid_from": "2023-11-16",
+            "valid_until": "2024-01-01",
+            "value": "4623.30"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "4908.30"
+          }
         ]
       },
       "fixed_allowances": []
@@ -85,7 +109,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "SOURCE: Stipendio tabellare da testo ufficiale CCNL 28/10/2025 (Ministero del Lavoro, Art. 23 e Art. 26).",
       "SOURCE: Prima fascia — Art. 23 comma 1: previgente 60.102,87€/anno (CCNL 16/11/2023); incremento +285€/mese × 13 = +3.705€/anno; nuovo valore 63.807,87€/anno = 4.908,30€/mese per 13 mensilità.",

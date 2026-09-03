@@ -6,7 +6,12 @@
     "cnel_code": "H008",
     "sector": "terziario",
     "tax_sector": "terziario",
-    "signatories": ["Federdistribuzione", "Filcams-CGIL", "Fisascat-CISL", "Uiltucs-UIL"],
+    "signatories": [
+      "Federdistribuzione",
+      "Filcams-CGIL",
+      "Fisascat-CISL",
+      "Uiltucs-UIL"
+    ],
     "sources": [
       {
         "url": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf",
@@ -24,7 +29,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: Salary tables: 6 tranches from 01/04/2023 through 01/02/2027 per Allegato 11, Testo Unico CCNL DMO 29/09/2025 (Federdistribuzione). 47/48 cells verified arithmetic; L4 01/04/2023 PDF OCR reads '1112.46' but total (1646.68) and contingenza (524.22) prove 1122.46 — consistent with pre-acconto 1092.46 + 30 EUR acconto (Dec 2022 Protocol).",
       "INFO: Split model confirmed: total / 168 at L1 = 14.905, L4 = 10.605, L7 = 8.309 — all non-integer. Source: Art. 194 (divisore 168 for 40h/week), Allegato 11.",
@@ -40,12 +44,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2023-04-01", "valid_until": null, "value": "168" }
+        {
+          "valid_from": "2023-04-01",
+          "valid_until": null,
+          "value": "168"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2023-04-01", "valid_until": null, "value": "14" }
+        {
+          "valid_from": "2023-04-01",
+          "valid_until": null,
+          "value": "14"
+        }
       ]
     },
     "seniority_increments": {
@@ -54,42 +66,74 @@
       "amount_by_level": {
         "Q": {
           "periods": [
-            { "valid_from": "2024-04-23", "valid_until": null, "value": "25.46" }
+            {
+              "valid_from": "2024-04-23",
+              "valid_until": null,
+              "value": "25.46"
+            }
           ]
         },
         "I": {
           "periods": [
-            { "valid_from": "2024-04-23", "valid_until": null, "value": "24.84" }
+            {
+              "valid_from": "2024-04-23",
+              "valid_until": null,
+              "value": "24.84"
+            }
           ]
         },
         "II": {
           "periods": [
-            { "valid_from": "2024-04-23", "valid_until": null, "value": "22.83" }
+            {
+              "valid_from": "2024-04-23",
+              "valid_until": null,
+              "value": "22.83"
+            }
           ]
         },
         "III": {
           "periods": [
-            { "valid_from": "2024-04-23", "valid_until": null, "value": "21.95" }
+            {
+              "valid_from": "2024-04-23",
+              "valid_until": null,
+              "value": "21.95"
+            }
           ]
         },
         "IV": {
           "periods": [
-            { "valid_from": "2024-04-23", "valid_until": null, "value": "20.66" }
+            {
+              "valid_from": "2024-04-23",
+              "valid_until": null,
+              "value": "20.66"
+            }
           ]
         },
         "V": {
           "periods": [
-            { "valid_from": "2024-04-23", "valid_until": null, "value": "20.30" }
+            {
+              "valid_from": "2024-04-23",
+              "valid_until": null,
+              "value": "20.30"
+            }
           ]
         },
         "VI": {
           "periods": [
-            { "valid_from": "2024-04-23", "valid_until": null, "value": "19.73" }
+            {
+              "valid_from": "2024-04-23",
+              "valid_until": null,
+              "value": "19.73"
+            }
           ]
         },
         "VII": {
           "periods": [
-            { "valid_from": "2024-04-23", "valid_until": null, "value": "19.47" }
+            {
+              "valid_from": "2024-04-23",
+              "valid_until": null,
+              "value": "19.47"
+            }
           ]
         }
       }
@@ -102,12 +146,36 @@
       "description": "Seventh level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "779.47" },
-          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "828.08" },
-          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "848.91" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "873.22" },
-          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "897.53" },
-          { "valid_from": "2027-02-01", "valid_until": null, "value": "925.31" }
+          {
+            "valid_from": "2023-04-01",
+            "valid_until": "2024-04-01",
+            "value": "779.47"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "828.08"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "848.91"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "873.22"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "897.53"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "925.31"
+          }
         ]
       },
       "fixed_allowances": [
@@ -116,7 +184,11 @@
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "517.51" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "517.51"
+              }
             ]
           }
         },
@@ -125,7 +197,11 @@
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
             ]
           }
         },
@@ -134,7 +210,11 @@
           "description": "Function allowance — 7th level",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "5.16" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "5.16"
+              }
             ]
           }
         }
@@ -146,12 +226,36 @@
       "description": "Sixth level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "910.44" },
-          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "967.22" },
-          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "991.55" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1019.94" },
-          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "1048.33" },
-          { "valid_from": "2027-02-01", "valid_until": null, "value": "1080.77" }
+          {
+            "valid_from": "2023-04-01",
+            "valid_until": "2024-04-01",
+            "value": "910.44"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "967.22"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "991.55"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "1019.94"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "1048.33"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1080.77"
+          }
         ]
       },
       "fixed_allowances": [
@@ -160,7 +264,11 @@
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "519.76" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "519.76"
+              }
             ]
           }
         },
@@ -169,7 +277,11 @@
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
             ]
           }
         }
@@ -181,12 +293,36 @@
       "description": "Fifth level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1014.11" },
-          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "1077.35" },
-          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "1104.45" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1136.07" },
-          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "1167.69" },
-          { "valid_from": "2027-02-01", "valid_until": null, "value": "1203.83" }
+          {
+            "valid_from": "2023-04-01",
+            "valid_until": "2024-04-01",
+            "value": "1014.11"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "1077.35"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "1104.45"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "1136.07"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "1167.69"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1203.83"
+          }
         ]
       },
       "fixed_allowances": [
@@ -195,7 +331,11 @@
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "521.94" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "521.94"
+              }
             ]
           }
         },
@@ -204,7 +344,11 @@
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
             ]
           }
         }
@@ -216,12 +360,36 @@
       "description": "Fourth level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1122.46" },
-          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "1192.46" },
-          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "1222.46" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1257.46" },
-          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "1292.46" },
-          { "valid_from": "2027-02-01", "valid_until": null, "value": "1332.46" }
+          {
+            "valid_from": "2023-04-01",
+            "valid_until": "2024-04-01",
+            "value": "1122.46"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "1192.46"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "1222.46"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "1257.46"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "1292.46"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1332.46"
+          }
         ]
       },
       "fixed_allowances": [
@@ -230,7 +398,11 @@
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "524.22" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "524.22"
+              }
             ]
           }
         },
@@ -239,7 +411,11 @@
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
             ]
           }
         }
@@ -251,12 +427,36 @@
       "description": "Third level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1297.84" },
-          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "1378.78" },
-          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "1413.47" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1453.94" },
-          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "1494.41" },
-          { "valid_from": "2027-02-01", "valid_until": null, "value": "1540.66" }
+          {
+            "valid_from": "2023-04-01",
+            "valid_until": "2024-04-01",
+            "value": "1297.84"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "1378.78"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "1413.47"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "1453.94"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "1494.41"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1540.66"
+          }
         ]
       },
       "fixed_allowances": [
@@ -265,7 +465,11 @@
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "527.90" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "527.90"
+              }
             ]
           }
         },
@@ -274,7 +478,11 @@
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
             ]
           }
         }
@@ -286,12 +494,36 @@
       "description": "Second level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1518.42" },
-          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "1613.11" },
-          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "1653.69" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1701.04" },
-          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "1748.39" },
-          { "valid_from": "2027-02-01", "valid_until": null, "value": "1802.50" }
+          {
+            "valid_from": "2023-04-01",
+            "valid_until": "2024-04-01",
+            "value": "1518.42"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "1613.11"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "1653.69"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "1701.04"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "1748.39"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1802.50"
+          }
         ]
       },
       "fixed_allowances": [
@@ -300,7 +532,11 @@
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "532.54" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "532.54"
+              }
             ]
           }
         },
@@ -309,7 +545,11 @@
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
             ]
           }
         }
@@ -321,12 +561,36 @@
       "description": "First level",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1755.41" },
-          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "1864.88" },
-          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "1911.80" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "1966.54" },
-          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "2021.28" },
-          { "valid_from": "2027-02-01", "valid_until": null, "value": "2083.84" }
+          {
+            "valid_from": "2023-04-01",
+            "valid_until": "2024-04-01",
+            "value": "1755.41"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "1864.88"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "1911.80"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "1966.54"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "2021.28"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "2083.84"
+          }
         ]
       },
       "fixed_allowances": [
@@ -335,7 +599,11 @@
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "537.52" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "537.52"
+              }
             ]
           }
         },
@@ -344,7 +612,11 @@
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
             ]
           }
         }
@@ -356,12 +628,36 @@
       "description": "Managers (Quadri)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1948.72" },
-          { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "2070.25" },
-          { "valid_from": "2025-03-01", "valid_until": "2025-11-01", "value": "2122.33" },
-          { "valid_from": "2025-11-01", "valid_until": "2026-11-01", "value": "2183.09" },
-          { "valid_from": "2026-11-01", "valid_until": "2027-02-01", "value": "2243.85" },
-          { "valid_from": "2027-02-01", "valid_until": null, "value": "2313.29" }
+          {
+            "valid_from": "2023-04-01",
+            "valid_until": "2024-04-01",
+            "value": "1948.72"
+          },
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "2070.25"
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "2122.33"
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "2183.09"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "2243.85"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "2313.29"
+          }
         ]
       },
       "fixed_allowances": [
@@ -370,7 +666,11 @@
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "540.37" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "540.37"
+              }
             ]
           }
         },
@@ -379,7 +679,11 @@
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
             ]
           }
         },
@@ -388,7 +692,11 @@
           "description": "Quadri function allowance (Art. 113)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-04-01", "valid_until": null, "value": "260.76" }
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "260.76"
+              }
             ]
           }
         }
@@ -399,19 +707,42 @@
     {
       "type": "under_classification",
       "name": "standard_II_V",
-      "destination_levels": ["II", "III", "IV", "V"],
+      "destination_levels": [
+        "II",
+        "III",
+        "IV",
+        "V"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 18, "levels_below": 2 },
-        { "months_from": 18, "months_until": null, "levels_below": 1 }
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "levels_below": 1
+        }
       ]
     },
     {
       "type": "under_classification",
       "name": "standard_VI",
-      "destination_levels": ["VI"],
+      "destination_levels": [
+        "VI"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "levels_below": 1 },
-        { "months_from": 12, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 1
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     }
   ]

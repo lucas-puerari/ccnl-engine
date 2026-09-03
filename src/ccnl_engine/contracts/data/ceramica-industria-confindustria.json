@@ -29,7 +29,6 @@
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: SALARY MODEL: conglobated tabular minimum (single base pay absorbing contingency and EDR) + IPO (Organisational Position Allowance) as a separate fixed_allowance for the levels that receive it. Source: official FILCTEM-CGIL tables (PDF signed 22/07/2024, PIASTRELLE sub-sector). REFRACTORY MATERIALS has tables identical to PIASTRELLE.",
       "INFO: HOURLY_DIVISOR: 173 hours/month (40h weeks × 52/12 = 173.33 rounded). Verified on lavoro-economia.it for CCNL B122.",
@@ -47,10 +46,26 @@
       "fixed_allowances": [],
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "1564.40"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1591.61"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "1625.62"},
-          {"valid_from": "2027-06-01", "valid_until": null, "value": "1666.45"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-07-01",
+            "value": "1564.40"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1591.61"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-06-01",
+            "value": "1625.62"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1666.45"
+          }
         ]
       }
     },
@@ -61,10 +76,26 @@
       "fixed_allowances": [],
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "1671.19"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1701.12"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "1738.53"},
-          {"valid_from": "2027-06-01", "valid_until": null, "value": "1783.43"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-07-01",
+            "value": "1671.19"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1701.12"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-06-01",
+            "value": "1738.53"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1783.43"
+          }
         ]
       }
     },
@@ -78,20 +109,52 @@
           "description": "Organisational Position Allowance (CCNL B122 art., PIASTRELLE table)",
           "monthly": {
             "periods": [
-              {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "76.37"},
-              {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "79.64"},
-              {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "83.73"},
-              {"valid_from": "2027-06-01", "valid_until": null, "value": "88.62"}
+              {
+                "valid_from": "2024-09-01",
+                "valid_until": "2025-07-01",
+                "value": "76.37"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "79.64"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-06-01",
+                "value": "83.73"
+              },
+              {
+                "valid_from": "2027-06-01",
+                "valid_until": null,
+                "value": "88.62"
+              }
             ]
           }
         }
       ],
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "1671.19"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1701.12"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "1738.53"},
-          {"valid_from": "2027-06-01", "valid_until": null, "value": "1783.43"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-07-01",
+            "value": "1671.19"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1701.12"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-06-01",
+            "value": "1738.53"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1783.43"
+          }
         ]
       }
     },
@@ -102,10 +165,26 @@
       "fixed_allowances": [],
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "1839.71"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1875.08"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "1919.29"},
-          {"valid_from": "2027-06-01", "valid_until": null, "value": "1972.36"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-07-01",
+            "value": "1839.71"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1875.08"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-06-01",
+            "value": "1919.29"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1972.36"
+          }
         ]
       }
     },
@@ -119,20 +198,52 @@
           "description": "Organisational Position Allowance (CCNL B122 art., PIASTRELLE table)",
           "monthly": {
             "periods": [
-              {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "57.95"},
-              {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "60.13"},
-              {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "62.86"},
-              {"valid_from": "2027-06-01", "valid_until": null, "value": "66.12"}
+              {
+                "valid_from": "2024-09-01",
+                "valid_until": "2025-07-01",
+                "value": "57.95"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "60.13"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-06-01",
+                "value": "62.86"
+              },
+              {
+                "valid_from": "2027-06-01",
+                "valid_until": null,
+                "value": "66.12"
+              }
             ]
           }
         }
       ],
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "1839.71"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1875.08"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "1919.29"},
-          {"valid_from": "2027-06-01", "valid_until": null, "value": "1972.36"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-07-01",
+            "value": "1839.71"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1875.08"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-06-01",
+            "value": "1919.29"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1972.36"
+          }
         ]
       }
     },
@@ -146,20 +257,52 @@
           "description": "Organisational Position Allowance (CCNL B122 art., PIASTRELLE table)",
           "monthly": {
             "periods": [
-              {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "150.04"},
-              {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "154.67"},
-              {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "160.46"},
-              {"valid_from": "2027-06-01", "valid_until": null, "value": "167.39"}
+              {
+                "valid_from": "2024-09-01",
+                "valid_until": "2025-07-01",
+                "value": "150.04"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "154.67"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-06-01",
+                "value": "160.46"
+              },
+              {
+                "valid_from": "2027-06-01",
+                "valid_until": null,
+                "value": "167.39"
+              }
             ]
           }
         }
       ],
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "1839.71"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1875.08"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "1919.29"},
-          {"valid_from": "2027-06-01", "valid_until": null, "value": "1972.36"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-07-01",
+            "value": "1839.71"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1875.08"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-06-01",
+            "value": "1919.29"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1972.36"
+          }
         ]
       }
     },
@@ -170,10 +313,26 @@
       "fixed_allowances": [],
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2041.69"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2082.50"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "2133.51"},
-          {"valid_from": "2027-06-01", "valid_until": null, "value": "2194.75"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-07-01",
+            "value": "2041.69"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "2082.50"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-06-01",
+            "value": "2133.51"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2194.75"
+          }
         ]
       }
     },
@@ -187,20 +346,52 @@
           "description": "Organisational Position Allowance (CCNL B122 art., PIASTRELLE table)",
           "monthly": {
             "periods": [
-              {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "65.82"},
-              {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "67.18"},
-              {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "68.88"},
-              {"valid_from": "2027-06-01", "valid_until": null, "value": "70.93"}
+              {
+                "valid_from": "2024-09-01",
+                "valid_until": "2025-07-01",
+                "value": "65.82"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "67.18"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-06-01",
+                "value": "68.88"
+              },
+              {
+                "valid_from": "2027-06-01",
+                "valid_until": null,
+                "value": "70.93"
+              }
             ]
           }
         }
       ],
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2041.69"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2082.50"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "2133.51"},
-          {"valid_from": "2027-06-01", "valid_until": null, "value": "2194.75"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-07-01",
+            "value": "2041.69"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "2082.50"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-06-01",
+            "value": "2133.51"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2194.75"
+          }
         ]
       }
     },
@@ -214,20 +405,52 @@
           "description": "Organisational Position Allowance (CCNL B122 art., PIASTRELLE table)",
           "monthly": {
             "periods": [
-              {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "116.89"},
-              {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "119.62"},
-              {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "123.03"},
-              {"valid_from": "2027-06-01", "valid_until": null, "value": "127.10"}
+              {
+                "valid_from": "2024-09-01",
+                "valid_until": "2025-07-01",
+                "value": "116.89"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "119.62"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-06-01",
+                "value": "123.03"
+              },
+              {
+                "valid_from": "2027-06-01",
+                "valid_until": null,
+                "value": "127.10"
+              }
             ]
           }
         }
       ],
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2041.69"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2082.50"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "2133.51"},
-          {"valid_from": "2027-06-01", "valid_until": null, "value": "2194.75"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-07-01",
+            "value": "2041.69"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "2082.50"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-06-01",
+            "value": "2133.51"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2194.75"
+          }
         ]
       }
     },
@@ -238,10 +461,26 @@
       "fixed_allowances": [],
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2341.71"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2387.97"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "2445.80"},
-          {"valid_from": "2027-06-01", "valid_until": null, "value": "2515.17"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-07-01",
+            "value": "2341.71"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "2387.97"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-06-01",
+            "value": "2445.80"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2515.17"
+          }
         ]
       }
     },
@@ -255,20 +494,52 @@
           "description": "Organisational Position Allowance (CCNL B122 art., PIASTRELLE table)",
           "monthly": {
             "periods": [
-              {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "138.35"},
-              {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "141.07"},
-              {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "144.47"},
-              {"valid_from": "2027-06-01", "valid_until": null, "value": "148.56"}
+              {
+                "valid_from": "2024-09-01",
+                "valid_until": "2025-07-01",
+                "value": "138.35"
+              },
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-07-01",
+                "value": "141.07"
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": "2027-06-01",
+                "value": "144.47"
+              },
+              {
+                "valid_from": "2027-06-01",
+                "valid_until": null,
+                "value": "148.56"
+              }
             ]
           }
         }
       ],
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2341.71"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2387.97"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "2445.80"},
-          {"valid_from": "2027-06-01", "valid_until": null, "value": "2515.17"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-07-01",
+            "value": "2341.71"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "2387.97"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-06-01",
+            "value": "2445.80"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2515.17"
+          }
         ]
       }
     },
@@ -279,10 +550,26 @@
       "fixed_allowances": [],
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-07-01", "value": "2600.08"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2651.78"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-06-01", "value": "2716.41"},
-          {"valid_from": "2027-06-01", "valid_until": null, "value": "2793.96"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-07-01",
+            "value": "2600.08"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "2651.78"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-06-01",
+            "value": "2716.41"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2793.96"
+          }
         ]
       }
     }
@@ -290,30 +577,134 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        {"valid_from": "2024-09-01", "valid_until": null, "value": "173"}
+        {
+          "valid_from": "2024-09-01",
+          "valid_until": null,
+          "value": "173"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        {"valid_from": "2024-09-01", "valid_until": null, "value": "13"}
+        {
+          "valid_from": "2024-09-01",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
       "cadence_months": 24,
       "maximum_count": 5,
       "amount_by_level": {
-        "A":  {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "19.63"}]},
-        "B1": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "17.56"}]},
-        "B2": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "17.56"}]},
-        "C1": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "12.91"}]},
-        "C2": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "12.91"}]},
-        "C3": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "12.91"}]},
-        "D1": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "12.14"}]},
-        "D2": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "12.14"}]},
-        "D3": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "12.14"}]},
-        "E1": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "8.78"}]},
-        "E2": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "8.78"}]},
-        "F":  {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "7.75"}]}
+        "A": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "19.63"
+            }
+          ]
+        },
+        "B1": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "17.56"
+            }
+          ]
+        },
+        "B2": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "17.56"
+            }
+          ]
+        },
+        "C1": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "12.91"
+            }
+          ]
+        },
+        "C2": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "12.91"
+            }
+          ]
+        },
+        "C3": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "12.91"
+            }
+          ]
+        },
+        "D1": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "12.14"
+            }
+          ]
+        },
+        "D2": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "12.14"
+            }
+          ]
+        },
+        "D3": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "12.14"
+            }
+          ]
+        },
+        "E1": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "8.78"
+            }
+          ]
+        },
+        "E2": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "8.78"
+            }
+          ]
+        },
+        "F": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "7.75"
+            }
+          ]
+        }
       }
     },
     "employer_funds": []
@@ -322,9 +713,26 @@
     {
       "type": "percentage",
       "name": "qualificazione_professionale",
-      "destination_levels": ["A", "B1", "B2", "C1", "C2", "C3", "D1", "D2", "D3", "E1", "E2", "F"],
+      "destination_levels": [
+        "A",
+        "B1",
+        "B2",
+        "C1",
+        "C2",
+        "C3",
+        "D1",
+        "D2",
+        "D3",
+        "E1",
+        "E2",
+        "F"
+      ],
       "periods": [
-        {"months_from": 0, "months_until": null, "percentage": "0.95"}
+        {
+          "months_from": 0,
+          "months_until": null,
+          "percentage": "0.95"
+        }
       ]
     }
   ]

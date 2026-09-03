@@ -6,7 +6,12 @@
     "cnel_code": "F051",
     "sector": "industria",
     "tax_sector": "industria",
-    "signatories": ["Federlegno-Arredo", "Feneal-Uil", "Filca-Cisl", "Fillea-Cgil"],
+    "signatories": [
+      "Federlegno-Arredo",
+      "Feneal-Uil",
+      "Filca-Cisl",
+      "Fillea-Cgil"
+    ],
     "sources": [
       {
         "url": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf",
@@ -24,12 +29,16 @@
         "agreement_date": null
       }
     ],
-    "extraction": { "method": "manual", "model": null, "timestamp": "2026-09-02", "human_reviewed": true }
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-02",
+      "human_reviewed": true
+    }
   },
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: SALARY MODEL: split (paga base + contingenza + EDR). Base pay varies by tranche (Jul 2023, Jan 2024, Jan 2025). Contingenza frozen from 31/07/1992 (values from CNEL F051 PDF). EDR fixed at EUR 10.33 for all levels (Agreement 31/07/1992). Table sources: CNEL F051 PDF (renewal 20/06/2023); Jan 2024 tranche confirmed by lexplain.it; Jan 2025 tranche derived from the difference between the total from dottrinalavoro.it and contingenza+EDR.",
       "SOURCE: HOURLY DIVISOR 174 (40h x 52 / 12 = 173.33, rounded up as used by the sector): no published hourly table in accessible primary sources; independent secondary sources converge on 174 (previdenza-professionisti.it). Daily coefficient 26 confirmed by the CNEL F051 PDF.",
@@ -46,12 +55,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2023-07-01", "valid_until": null, "value": "174" }
+        {
+          "valid_from": "2023-07-01",
+          "valid_until": null,
+          "value": "174"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2023-07-01", "valid_until": null, "value": "13" }
+        {
+          "valid_from": "2023-07-01",
+          "valid_until": null,
+          "value": "13"
+        }
       ]
     },
     "seniority_increments": {
@@ -60,82 +77,146 @@
       "amount_by_level": {
         "AE1": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "7.95" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "7.95"
+            }
           ]
         },
         "AE2": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "8.53" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "8.53"
+            }
           ]
         },
         "AE3": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "8.80" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "8.80"
+            }
           ]
         },
         "AE4": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "9.09" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "9.09"
+            }
           ]
         },
         "AS1": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "9.09" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "9.09"
+            }
           ]
         },
         "AC1": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "10.76" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "10.76"
+            }
           ]
         },
         "AS2": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "9.66" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "9.66"
+            }
           ]
         },
         "AS3": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "10.22" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "10.22"
+            }
           ]
         },
         "AC2": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "10.79" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "10.79"
+            }
           ]
         },
         "AC3": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "10.79" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "10.79"
+            }
           ]
         },
         "AS4": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "10.79" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "10.79"
+            }
           ]
         },
         "AC4": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "11.92" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "11.92"
+            }
           ]
         },
         "AC5": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "13.07" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "13.07"
+            }
           ]
         },
         "AD1": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "13.92" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "13.92"
+            }
           ]
         },
         "AD2": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "14.77" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "14.77"
+            }
           ]
         },
         "AD3": {
           "periods": [
-            { "valid_from": "2023-07-01", "valid_until": null, "value": "14.77" }
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": null,
+              "value": "14.77"
+            }
           ]
         }
       }
@@ -148,9 +229,21 @@
       "description": "Executive Area — Level 1 (general workers)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1113.43" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1211.36" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "1230.69" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1113.43"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1211.36"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "1230.69"
+          }
         ]
       },
       "fixed_allowances": [
@@ -159,7 +252,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "512.16" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "512.16"
+              }
             ]
           }
         },
@@ -168,7 +265,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -181,9 +282,21 @@
       "description": "Executive Area — Level 2 (qualified workers)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1323.47" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1434.04" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "1455.87" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1323.47"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1434.04"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "1455.87"
+          }
         ]
       },
       "fixed_allowances": [
@@ -192,7 +305,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "514.79" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "514.79"
+              }
             ]
           }
         },
@@ -201,7 +318,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -214,9 +335,21 @@
       "description": "Executive Area — Level 3 (skilled workers)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1406.48" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1522.11" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "1544.94" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1406.48"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1522.11"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "1544.94"
+          }
         ]
       },
       "fixed_allowances": [
@@ -225,7 +358,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "516.53" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "516.53"
+              }
             ]
           }
         },
@@ -234,7 +371,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -247,9 +388,21 @@
       "description": "Executive Area — Level 4 (highly skilled workers)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1489.49" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1610.13" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "1633.95" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1489.49"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1610.13"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "1633.95"
+          }
         ]
       },
       "fixed_allowances": [
@@ -258,7 +411,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "517.76" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "517.76"
+              }
             ]
           }
         },
@@ -267,7 +424,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -280,9 +441,21 @@
       "description": "Specialist Area — Level 1",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1489.49" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1610.13" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "1633.95" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1489.49"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1610.13"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "1633.95"
+          }
         ]
       },
       "fixed_allowances": [
@@ -291,7 +464,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "517.76" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "517.76"
+              }
             ]
           }
         },
@@ -300,7 +477,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -312,9 +493,21 @@
       "description": "Competency Area — Level 1",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1556.03" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1680.74" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "1705.36" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1556.03"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1680.74"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "1705.36"
+          }
         ]
       },
       "fixed_allowances": [
@@ -323,7 +516,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "518.45" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "518.45"
+              }
             ]
           }
         },
@@ -332,7 +529,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -344,9 +545,21 @@
       "description": "Specialist Area — Level 2",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1556.03" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1680.74" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "1705.36" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1556.03"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1680.74"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "1705.36"
+          }
         ]
       },
       "fixed_allowances": [
@@ -355,7 +568,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "518.45" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "518.45"
+              }
             ]
           }
         },
@@ -364,7 +581,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -376,9 +597,21 @@
       "description": "Specialist Area — Level 3",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1639.62" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1769.52" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "1795.17" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1639.62"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1769.52"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "1795.17"
+          }
         ]
       },
       "fixed_allowances": [
@@ -387,7 +620,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "521.02" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "521.02"
+              }
             ]
           }
         },
@@ -396,7 +633,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -408,9 +649,21 @@
       "description": "Competency Area — Level 2",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1722.08" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1857.02" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "1883.66" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1722.08"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1857.02"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "1883.66"
+          }
         ]
       },
       "fixed_allowances": [
@@ -419,7 +672,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "522.41" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "522.41"
+              }
             ]
           }
         },
@@ -428,7 +685,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -440,9 +701,21 @@
       "description": "Competency Area — Level 3",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1722.08" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1857.02" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "1883.66" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1722.08"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1857.02"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "1883.66"
+          }
         ]
       },
       "fixed_allowances": [
@@ -451,7 +724,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "522.41" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "522.41"
+              }
             ]
           }
         },
@@ -460,7 +737,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -472,9 +753,21 @@
       "description": "Specialist Area — Level 4",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1722.08" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "1857.02" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "1883.66" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1722.08"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1857.02"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "1883.66"
+          }
         ]
       },
       "fixed_allowances": [
@@ -483,7 +776,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "522.41" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "522.41"
+              }
             ]
           }
         },
@@ -492,7 +789,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -504,9 +805,21 @@
       "description": "Competency Area — Level 4",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1888.07" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "2033.18" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "2061.83" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1888.07"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "2033.18"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "2061.83"
+          }
         ]
       },
       "fixed_allowances": [
@@ -515,7 +828,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "525.22" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "525.22"
+              }
             ]
           }
         },
@@ -524,7 +841,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -536,9 +857,21 @@
       "description": "Competency Area — Level 5 (quadri)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "2054.02" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "2209.28" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "2239.93" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "2054.02"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "2209.28"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "2239.93"
+          }
         ]
       },
       "fixed_allowances": [
@@ -547,7 +880,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "527.94" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "527.94"
+              }
             ]
           }
         },
@@ -556,7 +893,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -569,9 +910,21 @@
       "description": "Management Area — Level 1",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "2164.70" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "2326.75" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "2358.74" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "2164.70"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "2326.75"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "2358.74"
+          }
         ]
       },
       "fixed_allowances": [
@@ -580,7 +933,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "529.75" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "529.75"
+              }
             ]
           }
         },
@@ -589,7 +946,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -602,9 +963,21 @@
       "description": "Management Area — Level 2",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "2275.98" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "2444.87" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "2478.22" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "2275.98"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "2444.87"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "2478.22"
+          }
         ]
       },
       "fixed_allowances": [
@@ -613,7 +986,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "531.91" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "531.91"
+              }
             ]
           }
         },
@@ -622,7 +999,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -635,9 +1016,21 @@
       "description": "Management Area — Level 3 (top management)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "2330.21" },
-          { "valid_from": "2024-01-01", "valid_until": "2025-01-01", "value": "2502.30" },
-          { "valid_from": "2025-01-01", "valid_until": null, "value": "2536.28" }
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-01-01",
+            "value": "2330.21"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "2502.30"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "2536.28"
+          }
         ]
       },
       "fixed_allowances": [
@@ -646,7 +1039,11 @@
           "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "531.91" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "531.91"
+              }
             ]
           }
         },
@@ -655,7 +1052,11 @@
           "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         },
@@ -664,7 +1065,11 @@
           "description": "Management function allowance AD3, EUR 25.82/month, not included in the minimum pay table",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-07-01", "valid_until": null, "value": "25.82" }
+              {
+                "valid_from": "2023-07-01",
+                "valid_until": null,
+                "value": "25.82"
+              }
             ]
           }
         }
@@ -676,97 +1081,185 @@
     {
       "type": "under_classification",
       "name": "professionalizzante_1",
-      "destination_levels": ["AE3", "AE4"],
+      "destination_levels": [
+        "AE3",
+        "AE4"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "levels_below": 2 },
-        { "months_from": 12, "months_until": 24, "levels_below": 1 },
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 1
+        },
         {
           "months_from": 24,
           "months_until": 36,
           "levels_below": 1,
           "midpoint_to_destination": true
         },
-        { "months_from": 36, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     },
     {
       "type": "under_classification",
       "name": "professionalizzante_2",
-      "destination_levels": ["AS1", "AC1"],
+      "destination_levels": [
+        "AS1",
+        "AC1"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "levels_below": 3 },
-        { "months_from": 12, "months_until": 24, "levels_below": 2 },
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 3
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 2
+        },
         {
           "months_from": 24,
           "months_until": 36,
           "levels_below": 2,
           "midpoint_to_destination": true
         },
-        { "months_from": 36, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     },
     {
       "type": "under_classification",
       "name": "professionalizzante_3",
-      "destination_levels": ["AS2", "AC4"],
+      "destination_levels": [
+        "AS2",
+        "AC4"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "levels_below": 4 },
-        { "months_from": 12, "months_until": 24, "levels_below": 3 },
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 4
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 3
+        },
         {
           "months_from": 24,
           "months_until": 36,
           "levels_below": 3,
           "midpoint_to_destination": true
         },
-        { "months_from": 36, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     },
     {
       "type": "under_classification",
       "name": "professionalizzante_4",
-      "destination_levels": ["AS3", "AC3"],
+      "destination_levels": [
+        "AS3",
+        "AC3"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "levels_below": 4 },
-        { "months_from": 12, "months_until": 24, "levels_below": 2 },
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 4
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 2
+        },
         {
           "months_from": 24,
           "months_until": 36,
           "levels_below": 2,
           "midpoint_to_destination": true
         },
-        { "months_from": 36, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     },
     {
       "type": "under_classification",
       "name": "professionalizzante_5",
-      "destination_levels": ["AC2"],
+      "destination_levels": [
+        "AC2"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "levels_below": 3 },
-        { "months_from": 12, "months_until": 24, "levels_below": 1 },
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 3
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 1
+        },
         {
           "months_from": 24,
           "months_until": 36,
           "levels_below": 1,
           "midpoint_to_destination": true
         },
-        { "months_from": 36, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     },
     {
       "type": "under_classification",
       "name": "professionalizzante_6",
-      "destination_levels": ["AS4"],
+      "destination_levels": [
+        "AS4"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "levels_below": 5 },
-        { "months_from": 12, "months_until": 24, "levels_below": 3 },
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 5
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 3
+        },
         {
           "months_from": 24,
           "months_until": 36,
           "levels_below": 3,
           "midpoint_to_destination": true
         },
-        { "months_from": 36, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     }
   ]

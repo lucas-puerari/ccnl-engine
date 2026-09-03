@@ -6,7 +6,12 @@
     "cnel_code": "E012",
     "sector": "industria",
     "tax_sector": "industria",
-    "signatories": ["Federalimentare", "FLAI-CGIL", "FAI-CISL", "UILA-UIL"],
+    "signatories": [
+      "Federalimentare",
+      "FLAI-CGIL",
+      "FAI-CISL",
+      "UILA-UIL"
+    ],
     "sources": [
       {
         "url": "https://flaiveneto.it/rinnovato-il-ccnl-industria-alimentare/",
@@ -34,12 +39,16 @@
         "agreement_date": null
       }
     ],
-    "extraction": { "method": "manual", "model": null, "timestamp": "2026-09-01", "human_reviewed": true }
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-01",
+      "human_reviewed": true
+    }
   },
   "coverage": {
     "layer_1": "implemented",
     "layer_2": "implemented",
-    "layer_3": "out_of_scope",
     "notes": [
       "INFO: SALARY MODEL: split (base pay/TEM + contingency allowance + EDR + IAR as separate allowances). TEM varies by level and tranche; contingency frozen from 31/07/1992 (Government-social partners Protocol); EDR fixed at 10.33 EUR for all levels (Agreement 31/07/1992). IAR (Additional Pay Increment) remains a separate component of the TEC — not absorbed into TEM (confirmed by FLAI Veneto: 'the CCNL renews and redefines the TEC as the sum of TEM and IAR'). TEM source: sindacato.it (2024 salary tables). IAR source: flaiveneto.it.",
       "SIMPLIFICATION: IAR tranche September 2027: the CCNL sets +11 EUR at level 4; per-level amounts are derived by scaling +11 with the level's IAR ratio to level 4 (the IAR is parametric), rounded to the cent. Official per-level tables were not published at extraction time.",
@@ -53,12 +62,20 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2023-12-01", "valid_until": null, "value": "173" }
+        {
+          "valid_from": "2023-12-01",
+          "valid_until": null,
+          "value": "173"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2023-12-01", "valid_until": null, "value": "14" }
+        {
+          "valid_from": "2023-12-01",
+          "valid_until": null,
+          "value": "14"
+        }
       ]
     },
     "seniority_increments": {
@@ -67,42 +84,74 @@
       "amount_by_level": {
         "1S": {
           "periods": [
-            { "valid_from": "2023-12-01", "valid_until": null, "value": "51.42" }
+            {
+              "valid_from": "2023-12-01",
+              "valid_until": null,
+              "value": "51.42"
+            }
           ]
         },
         "1": {
           "periods": [
-            { "valid_from": "2023-12-01", "valid_until": null, "value": "44.71" }
+            {
+              "valid_from": "2023-12-01",
+              "valid_until": null,
+              "value": "44.71"
+            }
           ]
         },
         "2": {
           "periods": [
-            { "valid_from": "2023-12-01", "valid_until": null, "value": "36.89" }
+            {
+              "valid_from": "2023-12-01",
+              "valid_until": null,
+              "value": "36.89"
+            }
           ]
         },
         "3A": {
           "periods": [
-            { "valid_from": "2023-12-01", "valid_until": null, "value": "32.42" }
+            {
+              "valid_from": "2023-12-01",
+              "valid_until": null,
+              "value": "32.42"
+            }
           ]
         },
         "3": {
           "periods": [
-            { "valid_from": "2023-12-01", "valid_until": null, "value": "29.06" }
+            {
+              "valid_from": "2023-12-01",
+              "valid_until": null,
+              "value": "29.06"
+            }
           ]
         },
         "4": {
           "periods": [
-            { "valid_from": "2023-12-01", "valid_until": null, "value": "26.83" }
+            {
+              "valid_from": "2023-12-01",
+              "valid_until": null,
+              "value": "26.83"
+            }
           ]
         },
         "5": {
           "periods": [
-            { "valid_from": "2023-12-01", "valid_until": null, "value": "24.59" }
+            {
+              "valid_from": "2023-12-01",
+              "valid_until": null,
+              "value": "24.59"
+            }
           ]
         },
         "6": {
           "periods": [
-            { "valid_from": "2023-12-01", "valid_until": null, "value": "22.35" }
+            {
+              "valid_from": "2023-12-01",
+              "valid_until": null,
+              "value": "22.35"
+            }
           ]
         }
       }
@@ -115,11 +164,31 @@
       "description": "6th level — entry-level workers, simple operations",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-12-01", "valid_until": "2024-09-01", "value": "1091.60" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "1117.15" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1160.94" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1204.74" },
-          { "valid_from": "2027-01-01", "valid_until": null, "value": "1233.20" }
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-09-01",
+            "value": "1091.60"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "1117.15"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1160.94"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1204.74"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1233.20"
+          }
         ]
       },
       "fixed_allowances": [
@@ -128,7 +197,11 @@
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "515.31" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "515.31"
+              }
             ]
           }
         },
@@ -137,7 +210,11 @@
           "description": "Distinct Pay Element (per Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         },
@@ -146,8 +223,16 @@
           "description": "Additional Pay Increment (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "65.70" },
-              { "valid_from": "2027-09-01", "valid_until": null, "value": "74.87" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-09-01",
+                "value": "65.70"
+              },
+              {
+                "valid_from": "2027-09-01",
+                "valid_until": null,
+                "value": "74.87"
+              }
             ]
           }
         }
@@ -159,11 +244,31 @@
       "description": "5th level — qualified workers with simple executive tasks",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-12-01", "valid_until": "2024-09-01", "value": "1200.76" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "1228.86" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1277.04" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1325.21" },
-          { "valid_from": "2027-01-01", "valid_until": null, "value": "1356.52" }
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-09-01",
+            "value": "1200.76"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "1228.86"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1277.04"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1325.21"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1356.52"
+          }
         ]
       },
       "fixed_allowances": [
@@ -172,7 +277,11 @@
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "517.65" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "517.65"
+              }
             ]
           }
         },
@@ -181,7 +290,11 @@
           "description": "Distinct Pay Element (per Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         },
@@ -190,8 +303,16 @@
           "description": "Additional Pay Increment (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "72.27" },
-              { "valid_from": "2027-09-01", "valid_until": null, "value": "82.35" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-09-01",
+                "value": "72.27"
+              },
+              {
+                "valid_from": "2027-09-01",
+                "valid_until": null,
+                "value": "82.35"
+              }
             ]
           }
         }
@@ -203,11 +324,31 @@
       "description": "4th level — qualified workers with specific tasks and limited responsibilities",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-12-01", "valid_until": "2024-09-01", "value": "1309.89" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "1340.55" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1393.10" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1445.65" },
-          { "valid_from": "2027-01-01", "valid_until": null, "value": "1479.82" }
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-09-01",
+            "value": "1309.89"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "1340.55"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1393.10"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1445.65"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1479.82"
+          }
         ]
       },
       "fixed_allowances": [
@@ -216,7 +357,11 @@
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "519.99" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "519.99"
+              }
             ]
           }
         },
@@ -225,7 +370,11 @@
           "description": "Distinct Pay Element (per Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         },
@@ -234,8 +383,16 @@
           "description": "Additional Pay Increment (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "78.84" },
-              { "valid_from": "2027-09-01", "valid_until": null, "value": "89.84" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-09-01",
+                "value": "78.84"
+              },
+              {
+                "valid_from": "2027-09-01",
+                "valid_until": null,
+                "value": "89.84"
+              }
             ]
           }
         }
@@ -247,11 +404,31 @@
       "description": "3rd level — specialist workers with operational autonomy",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-12-01", "valid_until": "2024-09-01", "value": "1419.08" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "1452.29" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1509.22" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1566.16" },
-          { "valid_from": "2027-01-01", "valid_until": null, "value": "1603.17" }
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-09-01",
+            "value": "1419.08"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "1452.29"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1509.22"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1566.16"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1603.17"
+          }
         ]
       },
       "fixed_allowances": [
@@ -260,7 +437,11 @@
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "522.32" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "522.32"
+              }
             ]
           }
         },
@@ -269,7 +450,11 @@
           "description": "Distinct Pay Element (per Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         },
@@ -278,8 +463,16 @@
           "description": "Additional Pay Increment (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "85.41" },
-              { "valid_from": "2027-09-01", "valid_until": null, "value": "97.33" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-09-01",
+                "value": "85.41"
+              },
+              {
+                "valid_from": "2027-09-01",
+                "valid_until": null,
+                "value": "97.33"
+              }
             ]
           }
         }
@@ -291,11 +484,31 @@
       "description": "3A level — specialist workers with significant operational responsibilities",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-12-01", "valid_until": "2024-09-01", "value": "1582.79" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "1619.83" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1683.34" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1746.84" },
-          { "valid_from": "2027-01-01", "valid_until": null, "value": "1788.12" }
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-09-01",
+            "value": "1582.79"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "1619.83"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1683.34"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1746.84"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1788.12"
+          }
         ]
       },
       "fixed_allowances": [
@@ -304,7 +517,11 @@
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "525.83" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "525.83"
+              }
             ]
           }
         },
@@ -313,7 +530,11 @@
           "description": "Distinct Pay Element (per Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         },
@@ -322,8 +543,16 @@
           "description": "Additional Pay Increment (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "95.26" },
-              { "valid_from": "2027-09-01", "valid_until": null, "value": "108.55" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-09-01",
+                "value": "95.26"
+              },
+              {
+                "valid_from": "2027-09-01",
+                "valid_until": null,
+                "value": "108.55"
+              }
             ]
           }
         }
@@ -335,11 +564,31 @@
       "description": "2nd level — intermediate managers and workers with coordination responsibilities",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-12-01", "valid_until": "2024-09-01", "value": "1801.12" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "1843.27" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1915.53" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "1987.80" },
-          { "valid_from": "2027-01-01", "valid_until": null, "value": "2034.77" }
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-09-01",
+            "value": "1801.12"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "1843.27"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1915.53"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1987.80"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2034.77"
+          }
         ]
       },
       "fixed_allowances": [
@@ -348,7 +597,11 @@
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "530.51" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "530.51"
+              }
             ]
           }
         },
@@ -357,7 +610,11 @@
           "description": "Distinct Pay Element (per Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         },
@@ -366,8 +623,16 @@
           "description": "Additional Pay Increment (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "108.40" },
-              { "valid_from": "2027-09-01", "valid_until": null, "value": "123.52" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-09-01",
+                "value": "108.40"
+              },
+              {
+                "valid_from": "2027-09-01",
+                "valid_until": null,
+                "value": "123.52"
+              }
             ]
           }
         }
@@ -379,11 +644,31 @@
       "description": "1st level — managers with significant managerial and directional responsibilities",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-12-01", "valid_until": "2024-09-01", "value": "2183.13" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2234.22" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2321.81" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2409.40" },
-          { "valid_from": "2027-01-01", "valid_until": null, "value": "2466.34" }
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-09-01",
+            "value": "2183.13"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2234.22"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2321.81"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2409.40"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2466.34"
+          }
         ]
       },
       "fixed_allowances": [
@@ -392,7 +677,11 @@
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "538.70" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "538.70"
+              }
             ]
           }
         },
@@ -401,7 +690,11 @@
           "description": "Distinct Pay Element (per Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         },
@@ -410,8 +703,16 @@
           "description": "Additional Pay Increment (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "131.39" },
-              { "valid_from": "2027-09-01", "valid_until": null, "value": "149.72" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-09-01",
+                "value": "131.39"
+              },
+              {
+                "valid_from": "2027-09-01",
+                "valid_until": null,
+                "value": "149.72"
+              }
             ]
           }
         }
@@ -423,11 +724,31 @@
       "description": "1S level — senior managers and executives (under L. 190/1985 for workers classified as Quadri)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2023-12-01", "valid_until": "2024-09-01", "value": "2510.63" },
-          { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2569.39" },
-          { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2670.12" },
-          { "valid_from": "2026-01-01", "valid_until": "2027-01-01", "value": "2770.85" },
-          { "valid_from": "2027-01-01", "valid_until": null, "value": "2836.32" }
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2024-09-01",
+            "value": "2510.63"
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-01-01",
+            "value": "2569.39"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2670.12"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2770.85"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2836.32"
+          }
         ]
       },
       "fixed_allowances": [
@@ -436,7 +757,11 @@
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "545.72" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "545.72"
+              }
             ]
           }
         },
@@ -445,7 +770,11 @@
           "description": "Distinct Pay Element (per Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "10.33" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         },
@@ -454,8 +783,16 @@
           "description": "Additional Pay Increment (CCNL 01/03/2024, Art. TEC)",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": "2027-09-01", "value": "151.11" },
-              { "valid_from": "2027-09-01", "valid_until": null, "value": "172.19" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2027-09-01",
+                "value": "151.11"
+              },
+              {
+                "valid_from": "2027-09-01",
+                "valid_until": null,
+                "value": "172.19"
+              }
             ]
           }
         },
@@ -464,7 +801,11 @@
           "description": "Managers' Function Allowance (L. 190/1985) for level-1S workers classified as Quadro",
           "monthly": {
             "periods": [
-              { "valid_from": "2023-12-01", "valid_until": null, "value": "100.00" }
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "100.00"
+              }
             ]
           },
           "role": "quadro"
@@ -477,20 +818,48 @@
     {
       "type": "under_classification",
       "name": "professionalizzante_36",
-      "destination_levels": ["4", "3", "3A", "2", "1"],
+      "destination_levels": [
+        "4",
+        "3",
+        "3A",
+        "2",
+        "1"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 10, "levels_below": 2 },
-        { "months_from": 10, "months_until": 22, "levels_below": 1 },
-        { "months_from": 22, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 0,
+          "months_until": 10,
+          "levels_below": 2
+        },
+        {
+          "months_from": 10,
+          "months_until": 22,
+          "levels_below": 1
+        },
+        {
+          "months_from": 22,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     },
     {
       "type": "under_classification",
       "name": "professionalizzante_24",
-      "destination_levels": ["5"],
+      "destination_levels": [
+        "5"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 10, "levels_below": 1 },
-        { "months_from": 10, "months_until": null, "levels_below": 0 }
+        {
+          "months_from": 0,
+          "months_until": 10,
+          "levels_below": 1
+        },
+        {
+          "months_from": 10,
+          "months_until": null,
+          "levels_below": 0
+        }
       ]
     }
   ]
