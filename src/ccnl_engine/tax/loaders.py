@@ -14,6 +14,7 @@ from ccnl_engine.tax.models import (
 )
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
     from decimal import Decimal
 
     from ccnl_engine.models.ccnl import TaxSector
@@ -62,6 +63,7 @@ def load_year_rules(
 
 
 def _resolve_tier[T: _Tier](tiers: list[T], num_employees: int, side: str) -> T:
+    _assert_tier_integrity(tiers, side)
     sorted_tiers = sorted(
         tiers,
         key=lambda t: (t.max_employees is None, t.max_employees or 0),
@@ -74,6 +76,36 @@ def _resolve_tier[T: _Tier](tiers: list[T], num_employees: int, side: str) -> T:
         "Check that the tax data file has an open tier (max_employees: null)."
     )
     raise ValueError(msg)
+
+
+def _assert_tier_integrity(tiers: Sequence[_Tier], side: str) -> None:
+    """Raise ValueError if the tier list has structural defects.
+
+    Checks (run on the unsorted input):
+    - At most one open tier (max_employees: null); multiple open tiers
+      would cause non-deterministic tier selection.
+    - No duplicate max_employees values among bounded tiers (would cause
+      silent mis-classification depending on sort stability).
+
+    Raises:
+        ValueError: if more than one open tier exists, or if any bounded
+            max_employees value appears more than once.
+    """
+    open_count = sum(1 for t in tiers if t.max_employees is None)
+    if open_count > 1:
+        msg = (
+            f"{side}-rate tiers: {open_count} open tiers "
+            "(max_employees: null) found; at most one is allowed."
+        )
+        raise ValueError(msg)
+    seen: set[int] = set()
+    for tier in tiers:
+        if tier.max_employees is None:
+            continue
+        if tier.max_employees in seen:
+            msg = f"{side}-rate tiers: duplicate max_employees={tier.max_employees}."
+            raise ValueError(msg)
+        seen.add(tier.max_employees)
 
 
 def _resolve_apprentice(

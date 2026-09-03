@@ -11,7 +11,11 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.models.ccnl import TaxSector
-from ccnl_engine.tax.loaders import _resolve_tier, load_year_rules
+from ccnl_engine.tax.loaders import (
+    _assert_tier_integrity,
+    _resolve_tier,
+    load_year_rules,
+)
 from ccnl_engine.tax.models import (
     ApprenticeRates,
     DeductionBreakpoint,
@@ -352,6 +356,25 @@ class TestYearRules2026Json:
         tiers = [_InpsEmployeeTier(max_employees=10, rate=Decimal("0.09"))]
         with pytest.raises(ValueError, match="No employee-rate tier"):
             _resolve_tier(tiers, 100, "employee")
+
+    def test_multiple_open_tiers_raises(self) -> None:
+        """_assert_tier_integrity raises when more than one open tier exists."""
+        tiers = [
+            _InpsEmployeeTier(max_employees=None, rate=Decimal("0.09")),
+            _InpsEmployeeTier(max_employees=None, rate=Decimal("0.10")),
+        ]
+        with pytest.raises(ValueError, match=r"2 open tiers"):
+            _assert_tier_integrity(tiers, "employee")
+
+    def test_duplicate_max_employees_raises(self) -> None:
+        """_assert_tier_integrity raises if max_employees values are duplicated."""
+        tiers = [
+            _InpsEmployeeTier(max_employees=15, rate=Decimal("0.09")),
+            _InpsEmployeeTier(max_employees=15, rate=Decimal("0.10")),
+            _InpsEmployeeTier(max_employees=None, rate=Decimal("0.11")),
+        ]
+        with pytest.raises(ValueError, match="duplicate max_employees=15"):
+            _assert_tier_integrity(tiers, "employee")
 
     def test_tfr_rules(self) -> None:
         """TfrRules accrual_divisor is parsed as Decimal."""
