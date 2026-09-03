@@ -1,0 +1,52 @@
+{
+  "_description": "Golden case: CCNL Area Funzioni Centrali 2022-2024 (S025) — Dirigenti I fascia, Level PRIMA_FASCIA, 2026-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Stipendio tabellare 2024: 4.908,30€/mese (63.807,87€/anno per 13 mensilità, Art. 23 CCNL 28/10/2025).",
+    "Gross annual = 4908.30 × 13 = 63.807,90 (effetto arrotondamento mensile vs valore annuo ufficiale 63.807,87).",
+    "Nessuna indennità fissa universale; retribuzione di posizione variabile per incarico (out_of_scope).",
+    "INPS CTPS ex-INPDAP: employee 8.80%, employer 24.20% (kitech.it proxy 2026, SIMPLIFICATION).",
+    "IRPEF 2026: 23% fino a 28.000€, 33% da 28.000 a 50.000€, 43% oltre 50.000€.",
+    "Work income deduction = 0.00 (reddito imponibile > 28.000€).",
+    "TFR = 63.807,90 / 13,5 = 4.726,51€."
+  ],
+  "inputs": {
+    "ccnl_file": "dirigenza-funzioni-centrali-aran.json",
+    "year": 2026,
+    "tax_sector": "pubblica_amministrazione",
+    "num_employees": 50,
+    "level_code": "PRIMA_FASCIA",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "dirigenza-funzioni-centrali-aran",
+    "level_code": "PRIMA_FASCIA",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "4908.30",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "4908.30",
+    "gross_annual": "63807.90",
+    "hourly_rate": "29.75",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "5615.10",
+    "inps_employer_annual": "15441.51",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "4726.51",
+    "taxable_income": "58192.80",
+    "irpef_gross": "17222.90",
+    "work_income_deduction": "0.00",
+    "irpef_net": "17222.90",
+    "net_annual": "40969.90",
+    "net_monthly": "3151.53",
+    "employer_cost_annual": "83975.92"
+  }
+}
