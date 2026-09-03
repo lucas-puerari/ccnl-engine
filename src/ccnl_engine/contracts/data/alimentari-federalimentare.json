@@ -124,7 +124,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
@@ -168,7 +168,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
@@ -212,7 +212,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
@@ -256,7 +256,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
@@ -300,7 +300,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
@@ -344,7 +344,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
@@ -388,7 +388,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
@@ -432,7 +432,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "CONT",
+          "code": "CONTINGENZA",
           "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
           "monthly": {
             "periods": [
@@ -460,7 +460,7 @@
           }
         },
         {
-          "code": "ind_funzione_quadro",
+          "code": "IND_FUNZIONE_QUADRO",
           "description": "Managers' Function Allowance (L. 190/1985) for level-1S workers classified as Quadro",
           "monthly": {
             "periods": [

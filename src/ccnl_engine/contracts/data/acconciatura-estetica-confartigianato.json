@@ -150,7 +150,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "responsabile_tecnico",
+          "code": "RESPONSABILE_TECNICO",
           "description": "Technical Supervisor Allowance (employer designation), 100 EUR x 13 monthly payments",
           "monthly": {
             "periods": [
@@ -177,7 +177,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "responsabile_tecnico",
+          "code": "RESPONSABILE_TECNICO",
           "description": "Technical Supervisor Allowance (employer designation), 100 EUR x 13 monthly payments",
           "monthly": {
             "periods": [

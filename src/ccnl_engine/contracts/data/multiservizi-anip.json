@@ -199,7 +199,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
@@ -208,7 +208,7 @@
           }
         },
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
@@ -241,7 +241,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
@@ -250,7 +250,7 @@
           }
         },
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
@@ -283,7 +283,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen; value assimilated to level 2 by contractual practice)",
           "monthly": {
             "periods": [
@@ -292,7 +292,7 @@
           }
         },
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
@@ -325,7 +325,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
@@ -334,7 +334,7 @@
           }
         },
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
@@ -367,7 +367,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen; value assimilated to level 4 by contractual practice)",
           "monthly": {
             "periods": [
@@ -376,7 +376,7 @@
           }
         },
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
@@ -409,7 +409,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
@@ -418,7 +418,7 @@
           }
         },
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
@@ -451,7 +451,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
@@ -460,7 +460,7 @@
           }
         },
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
@@ -493,7 +493,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
@@ -502,7 +502,7 @@
           }
         },
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
@@ -535,7 +535,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
@@ -544,7 +544,7 @@
           }
         },
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
@@ -577,7 +577,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
@@ -586,7 +586,7 @@
           }
         },
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
@@ -595,7 +595,7 @@
           }
         },
         {
-          "code": "ind_funzione",
+          "code": "IND_FUNZIONE",
           "description": "Quadro function allowance",
           "monthly": {
             "periods": [

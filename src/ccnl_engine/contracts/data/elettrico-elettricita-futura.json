@@ -149,7 +149,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
@@ -174,7 +174,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
@@ -199,7 +199,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
@@ -223,7 +223,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
@@ -247,7 +247,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
@@ -271,7 +271,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
@@ -295,7 +295,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
@@ -319,7 +319,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
@@ -343,7 +343,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
@@ -367,7 +367,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
@@ -391,7 +391,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
@@ -415,7 +415,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
@@ -439,7 +439,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
@@ -463,7 +463,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "edr",
+          "code": "EDR",
           "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [

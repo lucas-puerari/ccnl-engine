@@ -112,7 +112,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
@@ -121,7 +121,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
@@ -130,7 +130,7 @@
           }
         },
         {
-          "code": "ind_funzione",
+          "code": "IND_FUNZIONE",
           "description": "Function allowance — 7th level",
           "monthly": {
             "periods": [
@@ -156,7 +156,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
@@ -165,7 +165,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
@@ -191,7 +191,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
@@ -200,7 +200,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
@@ -226,7 +226,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
@@ -235,7 +235,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
@@ -261,7 +261,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
@@ -270,7 +270,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
@@ -296,7 +296,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
@@ -305,7 +305,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
@@ -331,7 +331,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
@@ -340,7 +340,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
@@ -366,7 +366,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "contingenza",
+          "code": "CONTINGENZA",
           "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
@@ -375,7 +375,7 @@
           }
         },
         {
-          "code": "terzo_elemento_nazionale",
+          "code": "TERZO_ELEMENTO_NAZIONALE",
           "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
@@ -384,7 +384,7 @@
           }
         },
         {
-          "code": "ind_funzione",
+          "code": "IND_FUNZIONE",
           "description": "Quadri function allowance (Art. 113)",
           "monthly": {
             "periods": [

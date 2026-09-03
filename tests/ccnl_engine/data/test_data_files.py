@@ -869,8 +869,8 @@ class TestLoadMultiserviziAnip:
         ccnl = load_ccnl("multiservizi-anip.json")
         for lv in ccnl.levels:
             codes = {a.code for a in lv.fixed_allowances}
-            assert "contingenza" in codes, f"level {lv.code} missing contingenza"
-            assert "edr" in codes, f"level {lv.code} missing edr"
+            assert "CONTINGENZA" in codes, f"level {lv.code} missing CONTINGENZA"
+            assert "EDR" in codes, f"level {lv.code} missing EDR"
 
     def test_multiservizi_anip_tax_sector(self) -> None:
         """CCNL must declare tax_sector TERZIARIO (CNEL K-prefix contract)."""
@@ -1221,7 +1221,7 @@ class TestLoadAlimentariFederalimentare:
         ccnl = load_ccnl("alimentari-federalimentare.json")
         for lv in ccnl.levels:
             codes = {a.code for a in lv.fixed_allowances}
-            assert {"CONT", "EDR", "IAR"}.issubset(codes), (
+            assert {"CONTINGENZA", "EDR", "IAR"}.issubset(codes), (
                 f"level {lv.code} missing base allowances: {codes}"
             )
 
@@ -1324,9 +1324,9 @@ class TestLoadDmoFederdistribuzione:
         ccnl = load_ccnl("dmo-federdistribuzione.json")
         for lv in ccnl.levels:
             codes = {fa.code for fa in lv.fixed_allowances}
-            assert "contingenza" in codes, f"level {lv.code} missing contingenza"
-            assert "terzo_elemento_nazionale" in codes, (
-                f"level {lv.code} missing terzo_elemento_nazionale"
+            assert "CONTINGENZA" in codes, f"level {lv.code} missing CONTINGENZA"
+            assert "TERZO_ELEMENTO_NAZIONALE" in codes, (
+                f"level {lv.code} missing TERZO_ELEMENTO_NAZIONALE"
             )
 
     def test_dmo_federdistribuzione_tax_sector(self) -> None:
@@ -1953,11 +1953,11 @@ class TestLoadLegnoArredamentoFederlegno:
         assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(174)
 
     def test_legno_arredamento_federlegno_fixed_allowances_split(self) -> None:
-        """All levels carry CONT and EDR allowances (split salary model)."""
+        """All levels carry CONTINGENZA and EDR allowances (split salary model)."""
         ccnl = load_ccnl("legno-arredamento-federlegno.json")
         for lv in ccnl.levels:
             codes = {fa.code for fa in lv.fixed_allowances}
-            assert "CONT" in codes
+            assert "CONTINGENZA" in codes
             assert "EDR" in codes
 
     def test_legno_arredamento_federlegno_tax_sector(self) -> None:
@@ -2035,11 +2035,11 @@ class TestLoadEdiliziaArtigianatoCna:
         assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(173)
 
     def test_edilizia_artigianato_cna_fixed_allowances_split(self) -> None:
-        """All levels carry CONT and EDR allowances (split salary model)."""
+        """All levels carry CONTINGENZA and EDR allowances (split salary model)."""
         ccnl = load_ccnl("edilizia-artigianato-cna.json")
         for lv in ccnl.levels:
             codes = {fa.code for fa in lv.fixed_allowances}
-            assert "CONT" in codes
+            assert "CONTINGENZA" in codes
             assert "EDR" in codes
 
     def test_edilizia_artigianato_cna_tax_sector(self) -> None:
@@ -2495,7 +2495,7 @@ class TestLoadAutoferrotranvieriInternavigatori:
         ccnl = load_ccnl("autoferrotranvieri-internavigatori.json")
         for lv in ccnl.levels:
             assert len(lv.fixed_allowances) == 1
-            assert lv.fixed_allowances[0].code == "edr_2024"
+            assert lv.fixed_allowances[0].code == "EDR_2024"
         lv175 = next(lx for lx in ccnl.levels if lx.code == "175")
         edr = lv175.fixed_allowances[0].monthly
         active = next(
@@ -2703,11 +2703,11 @@ class TestLoadElettricoElettricita:
         assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal("173.33")
 
     def test_elettrico_elettricita_futura_edr_allowance(self) -> None:
-        """Each level has one fixed_allowance (edr) at 10.33 EUR/month."""
+        """Each level has one fixed_allowance (EDR) at 10.33 EUR/month."""
         ccnl = load_ccnl("elettrico-elettricita-futura.json")
         for lv in ccnl.levels:
             assert len(lv.fixed_allowances) == 1
-            assert lv.fixed_allowances[0].code == "edr"
+            assert lv.fixed_allowances[0].code == "EDR"
             assert lv.fixed_allowances[0].monthly.periods[0].value == Decimal("10.33")
 
     def test_elettrico_elettricita_futura_tax_sector(self) -> None:
@@ -3104,7 +3104,7 @@ class TestLoadComunicazioneArtigianatoConfartigianato:
         for lv in ccnl.levels:
             if lv.code == "1A":
                 assert len(lv.fixed_allowances) == 1
-                assert lv.fixed_allowances[0].code == "indennita_funzione"
+                assert lv.fixed_allowances[0].code == "INDENNITA_FUNZIONE"
             else:
                 assert lv.fixed_allowances == []
 
@@ -3980,11 +3980,11 @@ class TestLoadDirigenzaSanitariaMedicoVeterinariaAran:
     def test_dirigenza_sanitaria_medico_veterinaria_aran_specificita_allowance(
         self,
     ) -> None:
-        """DIRIGENTE has one fixed allowance: specificita_medico_veterinaria."""
+        """DIRIGENTE has one fixed allowance: SPECIFICITA_MEDICO_VETERINARIA."""
         ccnl = load_ccnl("dirigenza-sanitaria-medico-veterinaria-aran.json")
         lv = ccnl.level_by_code("DIRIGENTE")
         assert len(lv.fixed_allowances) == 1
-        assert lv.fixed_allowances[0].code == "specificita_medico_veterinaria"
+        assert lv.fixed_allowances[0].code == "SPECIFICITA_MEDICO_VETERINARIA"
         assert lv.fixed_allowances[0].monthly.value_at(date(2026, 1, 1)) == Decimal(
             "728.15"
         )
@@ -4055,11 +4055,11 @@ class TestLoadDirigenzaSanitariaAreaSanitaAran:
     def test_dirigenza_sanitaria_area_sanita_aran_specificita_allowance(
         self,
     ) -> None:
-        """DIRIGENTE has one fixed allowance: specificita_sanitaria (124.19)."""
+        """DIRIGENTE has one fixed allowance: SPECIFICITA_SANITARIA (124.19)."""
         ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran.json")
         lv = ccnl.level_by_code("DIRIGENTE")
         assert len(lv.fixed_allowances) == 1
-        assert lv.fixed_allowances[0].code == "specificita_sanitaria"
+        assert lv.fixed_allowances[0].code == "SPECIFICITA_SANITARIA"
         assert lv.fixed_allowances[0].monthly.value_at(date(2026, 1, 1)) == Decimal(
             "124.19"
         )
