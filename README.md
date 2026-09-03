@@ -107,6 +107,8 @@ print(result.employer_cost_annual)  # → Decimal('...')
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
+The 50 contracts above cover approximately **12.5 million workers** (sum of per-CCNL estimates; some overlap possible where sector boundaries are not mutually exclusive). Italy has roughly **16 million employees** covered by some collective agreement (ISTAT/CNEL 2024, public and private sectors combined). This library therefore reaches an estimated **~75–80% of CCNL-covered workers**.
+
 ## What is not modelled
 
 - Addizionali regionali and addizionali comunali
