@@ -1,0 +1,310 @@
+{
+  "schema_version": "0.3",
+  "ccnl": {
+    "id": "agenzie-viaggio-fiavet",
+    "name": "CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio",
+    "cnel_code": "H052",
+    "sector": "Turismo (agenzie di viaggio)",
+    "tax_sector": "terziario",
+    "signatories": [
+      "Fiavet (Federazione Italiana Associazioni Imprese Viaggi e Turismo)",
+      "Federviaggio",
+      "Filcams-CGIL",
+      "Fisascat-CISL",
+      "Uiltucs-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
+        "type": "ccnl_pdf",
+        "agreement_date": "2019-07-11",
+        "notes": "Base CCNL 2019 — Art. 146 (hourly divisor 172), Art. 64 (apprendistato 80/85/90%), Art. 156 (scatti di anzianita triennali)"
+      },
+      {
+        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20108.pdf",
+        "type": "ccnl_pdf",
+        "agreement_date": "2024-07-26",
+        "notes": "Rinnovo 2024 — tabelle retributive tutti i livelli e tutte le tranche 2024-2027, Art. 157 tredicesima, Art. 158 quattordicesima"
+      }
+    ],
+    "extraction": {
+      "method": "pdf_text_extraction_plus_ocr",
+      "model": null,
+      "timestamp": "2026-09-03",
+      "human_reviewed": true
+    },
+    "agreement_date": "2024-07-26",
+    "validity": {
+      "valid_from": "2024-07-01",
+      "valid_until": "2027-12-31"
+    }
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2024-06-01", "valid_until": null, "value": "172" }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2024-06-01", "valid_until": null, "value": "14" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 6,
+      "amount_by_level": {
+        "QA": {
+          "periods": [
+            { "valid_from": "2024-06-01", "valid_until": null, "value": "40.80" }
+          ]
+        },
+        "QB": {
+          "periods": [
+            { "valid_from": "2024-06-01", "valid_until": null, "value": "39.25" }
+          ]
+        },
+        "1": {
+          "periods": [
+            { "valid_from": "2024-06-01", "valid_until": null, "value": "37.70" }
+          ]
+        },
+        "2": {
+          "periods": [
+            { "valid_from": "2024-06-01", "valid_until": null, "value": "36.15" }
+          ]
+        },
+        "3": {
+          "periods": [
+            { "valid_from": "2024-06-01", "valid_until": null, "value": "34.86" }
+          ]
+        },
+        "4": {
+          "periods": [
+            { "valid_from": "2024-06-01", "valid_until": null, "value": "33.05" }
+          ]
+        },
+        "5": {
+          "periods": [
+            { "valid_from": "2024-06-01", "valid_until": null, "value": "32.54" }
+          ]
+        },
+        "6S": {
+          "periods": [
+            { "valid_from": "2024-06-01", "valid_until": null, "value": "31.25" }
+          ]
+        },
+        "6": {
+          "periods": [
+            { "valid_from": "2024-06-01", "valid_until": null, "value": "30.99" }
+          ]
+        },
+        "7": {
+          "periods": [
+            { "valid_from": "2024-06-01", "valid_until": null, "value": "30.47" }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "QA",
+      "order": 10,
+      "description": "Quadro A — Funzione direttiva apicale",
+      "category": "quadro",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "2210.16" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "2281.42" },
+          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "2338.43" },
+          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "2395.44" },
+          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "2438.20" },
+          { "valid_from": "2027-12-01", "valid_until": null, "value": "2495.21" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "QB",
+      "order": 9,
+      "description": "Quadro B — Funzione direttiva",
+      "category": "quadro",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "2046.20" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "2112.18" },
+          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "2164.96" },
+          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "2217.74" },
+          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "2257.33" },
+          { "valid_from": "2027-12-01", "valid_until": null, "value": "2310.11" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1",
+      "order": 8,
+      "description": "Livello 1 — Impiegato di concetto con funzioni direttive",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1906.44" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1967.91" },
+          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "2017.09" },
+          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "2066.27" },
+          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "2103.15" },
+          { "valid_from": "2027-12-01", "valid_until": null, "value": "2152.33" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 7,
+      "description": "Livello 2 — Impiegato di concetto",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1742.47" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1798.65" },
+          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "1843.60" },
+          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "1888.55" },
+          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1922.26" },
+          { "valid_from": "2027-12-01", "valid_until": null, "value": "1967.21" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 6,
+      "description": "Livello 3 — Impiegato qualificato",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1643.37" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1696.36" },
+          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "1738.75" },
+          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "1781.14" },
+          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1812.93" },
+          { "valid_from": "2027-12-01", "valid_until": null, "value": "1855.32" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 5,
+      "description": "Livello 4 — Impiegato",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1550.69" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1600.69" },
+          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "1640.69" },
+          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "1680.69" },
+          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1710.69" },
+          { "valid_from": "2027-12-01", "valid_until": null, "value": "1750.69" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 4,
+      "description": "Livello 5 — Impiegato d'ordine qualificato",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1454.28" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1501.17" },
+          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "1538.68" },
+          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "1576.19" },
+          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1604.32" },
+          { "valid_from": "2027-12-01", "valid_until": null, "value": "1641.83" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6S",
+      "order": 3,
+      "description": "Livello 6S — Impiegato d'ordine super",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1398.37" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1443.46" },
+          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "1479.53" },
+          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "1515.60" },
+          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1542.65" },
+          { "valid_from": "2027-12-01", "valid_until": null, "value": "1578.72" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6",
+      "order": 2,
+      "description": "Livello 6 — Impiegato d'ordine",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1378.55" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1423.00" },
+          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "1458.56" },
+          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "1494.12" },
+          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1520.79" },
+          { "valid_from": "2027-12-01", "valid_until": null, "value": "1556.35" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "7",
+      "order": 1,
+      "description": "Livello 7 — Personale ausiliario",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-06-01", "valid_until": "2024-07-01", "value": "1291.81" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-09-01", "value": "1333.46" },
+          { "valid_from": "2025-09-01", "valid_until": "2026-09-01", "value": "1366.78" },
+          { "valid_from": "2026-09-01", "valid_until": "2027-06-01", "value": "1400.10" },
+          { "valid_from": "2027-06-01", "valid_until": "2027-12-01", "value": "1425.09" },
+          { "valid_from": "2027-12-01", "valid_until": null, "value": "1458.41" }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "standard",
+      "destination_levels": ["1", "2", "3", "4", "5", "6S", "6", "7"],
+      "reference_level": null,
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.80" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.85" },
+        { "months_from": 24, "months_until": null, "percentage": "0.90" }
+      ]
+    }
+  ],
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "SOURCE: Tabelle retributive 2024-2027 da rinnovo CCNL 26 luglio 2024 (CNEL PDF). Sei tranches: giu-24, lug-24, set-25, set-26, giu-27, dic-27.",
+      "SOURCE: Divisore orario 172 da Art. 146 CCNL base 2019 (CNEL PDF doc 20108). Stessa base del settore turismo Confcommercio.",
+      "SOURCE: Mensilita aggiuntive 14 da Art. 157 (tredicesima) e Art. 158 (quattordicesima) rinnovo 2024.",
+      "SOURCE: Scatti di anzianita triennali (Art. 156 CCNL 2019): cadenza 36 mesi, massimo 6 scatti. Importi per livello da tabella allegata al rinnovo 2024.",
+      "SOURCE: Apprendistato percentuale da Art. 64 CCNL 2019 (OCR pagine 32-33): primo anno 80%, secondo anno 85%, terzo anno 90%.",
+      "SOURCE: Codice CNEL H052 confermato da kitech.it CodiceCateg=81 (settore turismo Confcommercio, agenzie di viaggio incluse).",
+      "SIMPLIFICATION: Livelli QA e QB (Quadri) esclusi dal track apprendistato (apprendistato non applicabile ai Quadri per legge).",
+      "SIMPLIFICATION: Layer 3 (straordinari, notturni, festivita) fuori ambito."
+    ]
+  }
+}

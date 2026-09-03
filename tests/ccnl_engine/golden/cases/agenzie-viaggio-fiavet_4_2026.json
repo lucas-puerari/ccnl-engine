@@ -1,0 +1,53 @@
+{
+  "_description": "Golden case: CCNL Agenzie di Viaggio Fiavet (H052), Level 4, 2026-09-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "set-26 tranche (CCNL rinnovo 2024, CNEL PDF): livello 4 = 1680.69 EUR/month.",
+    "Conglobated model: paga base nazionale conglobata. Art. 146 CCNL 2019.",
+    "Additional months: 14 (tredicesima Art. 157 + quattordicesima Art. 158). Source: rinnovo 2024.",
+    "Hourly divisor: 172 (Art. 146 CCNL 2019). Verify: 1680.69 / 172 = 9.77 EUR/hr.",
+    "INPS employer rate from 2026-terziario.json (terziario sector, <=50 employees, 28.98%).",
+    "Seniority: 0.00 — seniority_count=0, triennale cadence (36m), max 6 scatti.",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "agenzie-viaggio-fiavet.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "4",
+    "as_of": "2026-09-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "agenzie-viaggio-fiavet",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1680.69",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1680.69",
+    "gross_annual": "23529.66",
+    "hourly_rate": "9.77",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2162.38",
+    "inps_employer_annual": "6818.90",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1742.94",
+    "taxable_income": "21367.28",
+    "irpef_gross": "4914.47",
+    "work_income_deduction": "987.71",
+    "irpef_net": "3926.76",
+    "net_annual": "17440.52",
+    "net_monthly": "1245.75",
+    "employer_cost_annual": "32091.50"
+  }
+}

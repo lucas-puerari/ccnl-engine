@@ -3493,3 +3493,69 @@ class TestLoadPubbliciEserciziRistorazioneFipeAngem:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 48
         assert si.maximum_count == 6
+
+
+class TestLoadAgenzieDiViaggioFiavet:
+    """CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio (H052)."""
+
+    def test_agenzie_viaggio_fiavet_loads(self) -> None:
+        """Contract loads with id and CNEL code H052."""
+        ccnl = load_ccnl("agenzie-viaggio-fiavet.json")
+        assert ccnl.ccnl.id == "agenzie-viaggio-fiavet"
+        assert ccnl.ccnl.cnel_code == "H052"
+
+    def test_agenzie_viaggio_fiavet_has_10_levels(self) -> None:
+        """Contract has exactly 10 levels: QA QB 1 2 3 4 5 6S 6 7."""
+        ccnl = load_ccnl("agenzie-viaggio-fiavet.json")
+        assert len(ccnl.levels) == 10
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"QA", "QB", "1", "2", "3", "4", "5", "6S", "6", "7"}
+
+    def test_agenzie_viaggio_fiavet_level4_salary_tranche1(self) -> None:
+        """Level 4 first tranche (Jun 2024): 1550.69 EUR/month."""
+        ccnl = load_ccnl("agenzie-viaggio-fiavet.json")
+        lv = ccnl.level_by_code("4")
+        assert lv.base_salary.value_at(date(2024, 6, 1)) == Decimal("1550.69")
+
+    def test_agenzie_viaggio_fiavet_level4_salary_tranche2(self) -> None:
+        """Level 4 second tranche (Sep 2026): 1680.69 EUR/month."""
+        ccnl = load_ccnl("agenzie-viaggio-fiavet.json")
+        lv = ccnl.level_by_code("4")
+        assert lv.base_salary.value_at(date(2026, 9, 1)) == Decimal("1680.69")
+
+    def test_agenzie_viaggio_fiavet_level_ordering(self) -> None:
+        """QA is highest-order level; 7 is lowest-order level."""
+        ccnl = load_ccnl("agenzie-viaggio-fiavet.json")
+        orders = {lv.code: lv.order for lv in ccnl.levels}
+        assert orders["QA"] == max(orders.values())
+        assert orders["7"] == min(orders.values())
+
+    def test_agenzie_viaggio_fiavet_additional_months(self) -> None:
+        """Additional months: 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("agenzie-viaggio-fiavet.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            14
+        )
+
+    def test_agenzie_viaggio_fiavet_hourly_divisor(self) -> None:
+        """Hourly divisor: 172 (Art. 146 CCNL Fiavet 2019)."""
+        ccnl = load_ccnl("agenzie-viaggio-fiavet.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(172)
+
+    def test_agenzie_viaggio_fiavet_no_fixed_allowances(self) -> None:
+        """Conglobated model: all levels have no fixed allowances."""
+        ccnl = load_ccnl("agenzie-viaggio-fiavet.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_agenzie_viaggio_fiavet_tax_sector(self) -> None:
+        """Contract declares TERZIARIO tax sector."""
+        ccnl = load_ccnl("agenzie-viaggio-fiavet.json")
+        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+
+    def test_agenzie_viaggio_fiavet_seniority_cadence(self) -> None:
+        """Seniority: triennale (36 months), maximum 6 scatti."""
+        ccnl = load_ccnl("agenzie-viaggio-fiavet.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 6

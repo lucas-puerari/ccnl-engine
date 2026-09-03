@@ -69,6 +69,7 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 35 | Orafi e Argentieri — Federorafi | Industria | ✅ | ✅ | — |
 | 36 | Pelli e Cuoio Industria — Assopellettieri | Industria | ✅ | ✅ | — |
 | 37 | Pubblici Esercizi, Ristorazione Collettiva e Turismo — FIPE/ANGEM | Terziario | ✅ | ✅ | — |
+| 38 | Agenzie di Viaggio e Turismo — Fiavet/Confcommercio | Terziario | ✅ | ✅ | — |
 
 **Layer 1** — base salary, seniority increments (*scatti di anzianità*), fixed allowances, additional months.  
 **Layer 2** — part-time, fixed-term (NASpI *addizionale*), apprenticeship (percentage or under-classification).  
