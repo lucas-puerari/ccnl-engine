@@ -257,7 +257,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "INDENNITA_FUNZIONE",
+          "code": "IND_FUN",
           "description": "Function allowance (level 1A only). Source: kitech.it Mar 2026. Amount assumed constant from Dec 2024.",
           "monthly": {
             "periods": [

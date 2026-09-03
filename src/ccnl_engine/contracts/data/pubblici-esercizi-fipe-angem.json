@@ -254,7 +254,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "IDF_B",
+          "code": "IND_FUN",
           "description": "Function allowance Quadri B (Art. 154 CCNL)",
           "monthly": {
             "periods": [
@@ -279,7 +279,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "IDF_A",
+          "code": "IND_FUN",
           "description": "Function allowance Quadri A (Art. 154 CCNL)",
           "monthly": {
             "periods": [

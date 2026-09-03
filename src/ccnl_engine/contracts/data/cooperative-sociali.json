@@ -299,7 +299,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "IDF",
+          "code": "IND_FUN",
           "description": "Quadro E2 function allowance",
           "monthly": {
             "periods": [
@@ -336,7 +336,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "IDF",
+          "code": "IND_FUN",
           "description": "Quadro F1 function allowance",
           "monthly": {
             "periods": [
@@ -373,7 +373,7 @@
       },
       "fixed_allowances": [
         {
-          "code": "IDF",
+          "code": "IND_FUN",
           "description": "Quadro F2 function allowance",
           "monthly": {
             "periods": [

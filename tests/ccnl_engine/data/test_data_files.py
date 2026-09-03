@@ -694,7 +694,7 @@ class TestLoadCooperativeSociali:
         for code, amount in expected.items():
             lv = next(lvl for lvl in ccnl.levels if lvl.code == code)
             assert len(lv.fixed_allowances) == 1
-            assert lv.fixed_allowances[0].code == "IDF"
+            assert lv.fixed_allowances[0].code == "IND_FUN"
             val = lv.fixed_allowances[0].monthly.value_at(date(2026, 1, 1))
             assert val == Decimal(amount)
 
@@ -3104,7 +3104,7 @@ class TestLoadComunicazioneArtigianatoConfartigianato:
         for lv in ccnl.levels:
             if lv.code == "1A":
                 assert len(lv.fixed_allowances) == 1
-                assert lv.fixed_allowances[0].code == "INDENNITA_FUNZIONE"
+                assert lv.fixed_allowances[0].code == "IND_FUN"
             else:
                 assert lv.fixed_allowances == []
 
@@ -3481,12 +3481,12 @@ class TestLoadPubbliciEserciziRistorazioneFipeAngem:
         qa = ccnl.level_by_code("Qa")
         qb = ccnl.level_by_code("Qb")
         assert len(qa.fixed_allowances) == 1
-        assert qa.fixed_allowances[0].code == "IDF_A"
+        assert qa.fixed_allowances[0].code == "IND_FUN"
         assert qa.fixed_allowances[0].monthly.value_at(date(2026, 1, 1)) == Decimal(
             "75.00"
         )
         assert len(qb.fixed_allowances) == 1
-        assert qb.fixed_allowances[0].code == "IDF_B"
+        assert qb.fixed_allowances[0].code == "IND_FUN"
         assert qb.fixed_allowances[0].monthly.value_at(date(2026, 1, 1)) == Decimal(
             "70.00"
         )
