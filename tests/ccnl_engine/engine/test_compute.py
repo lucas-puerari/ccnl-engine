@@ -338,6 +338,33 @@ class TestComputeAllowances:
         assert r.tfr_annual == base.tfr_annual
         assert r.taxable_income == r.gross_annual - r.inps_employee_annual
 
+    def test_negotiated_ral_ignores_contribution_exclusions(self) -> None:
+        """negotiated_ral must not have CCNL allowance exclusions subtracted from it.
+
+        A negotiated RAL is the total retribuzione annua lorda agreed between
+        employer and employee — it replaces the CCNL chain entirely. Subtracting
+        CCNL-derived non-contributory allowances from it would understate the
+        contribution base (they were never included in the negotiated figure).
+        """
+        ccnl = _ccnl(**{
+            "levels.2.fixed_allowances": [
+                _allowance(
+                    "edr", "100.00", contribution_relevant=False, tfr_relevant=False
+                )
+            ]
+        })
+        ral = _D("12000.00")
+        r_with_exclusion = compute(
+            ccnl, "4", _DATE, _RULES, _PERMANENT, negotiated_ral=ral
+        )
+        r_clean = compute(_CCNL, "4", _DATE, _RULES, _PERMANENT, negotiated_ral=ral)
+
+        assert r_with_exclusion.gross_annual == ral
+        # Contribution and TFR bases must be identical regardless of CCNL allowances.
+        assert r_with_exclusion.inps_employee_annual == r_clean.inps_employee_annual
+        assert r_with_exclusion.inps_employer_annual == r_clean.inps_employer_annual
+        assert r_with_exclusion.tfr_annual == r_clean.tfr_annual
+
 
 # ---------------------------------------------------------------------------
 # Employer funds and category rates
