@@ -1,0 +1,52 @@
+{
+  "_description": "Golden case: CCNL Comparto Funzioni Centrali 2022-2024 (S005), Level FUNZIONARI, 2026-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "2024-01-01 tranche: tabellare conglobato FUNZIONARI = 2113.59 EUR/month (Tabella 2, Art. 30 CCNL 2022-2024).",
+    "Conglobated model: retribuzione tabellare pa includes all components (no separate contingenza since 1990s absorption).",
+    "Additional months: 13 (tredicesima only).",
+    "INPS CTPS ex-INPDAP: employee 8.80%, employer 24.20% (kitech.it proxy 2026, SIMPLIFICATION).",
+    "Seniority: 0.00 — maximum_count=0 (differenziali non automatici, Art. 16).",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+  ],
+  "inputs": {
+    "ccnl_file": "funzioni-centrali-aran.json",
+    "year": 2026,
+    "tax_sector": "pubblica_amministrazione",
+    "num_employees": 50,
+    "level_code": "FUNZIONARI",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "funzioni-centrali-aran",
+    "level_code": "FUNZIONARI",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "2113.59",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2113.59",
+    "gross_annual": "27476.67",
+    "hourly_rate": "13.55",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2417.95",
+    "inps_employer_annual": "6649.35",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "2035.31",
+    "taxable_income": "25058.72",
+    "irpef_gross": "5763.51",
+    "work_income_deduction": "733.68",
+    "irpef_net": "5029.83",
+    "net_annual": "20028.89",
+    "net_monthly": "1540.68",
+    "employer_cost_annual": "36161.33"
+  }
+}

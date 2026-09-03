@@ -1,0 +1,128 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "funzioni-centrali-aran",
+    "name": "CCNL Comparto Funzioni Centrali — Triennio 2022-2024",
+    "cnel_code": "S005",
+    "sector": "Pubblica Amministrazione — Comparto Funzioni Centrali",
+    "tax_sector": "pubblica_amministrazione",
+    "agreement_date": "2025-01-27",
+    "validity": {
+      "valid_from": "2022-05-09",
+      "valid_until": null
+    },
+    "signatories": [
+      "ARAN",
+      "CISL FP",
+      "CISL",
+      "CONFSAL UNSA",
+      "CONFSAL",
+      "FLP",
+      "CGS",
+      "CONFINTESA FP",
+      "CONFINTESA",
+      "UIL PA",
+      "UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+        "type": "ccnl_pdf",
+        "agreement_date": "2025-01-27",
+        "notes": "Testo ufficiale CCNL Comparto Funzioni Centrali 2022-2024 firmato il 27/01/2025. UIL PA e UIL hanno aderito il 04/11/2025."
+      }
+    ],
+    "extraction": {
+      "method": "manual_pdf_extraction",
+      "model": null,
+      "timestamp": "2026-09-03",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2022-05-09", "valid_until": null, "value": "156" }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2022-05-09", "valid_until": null, "value": "13" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 1,
+      "maximum_count": 0,
+      "amount_by_level": {}
+    }
+  },
+  "levels": [
+    {
+      "code": "OPERATORI",
+      "order": 1,
+      "description": "Area Operatori",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-05-09", "valid_until": "2024-01-01", "value": "1532.57" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1653.97" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "ASSISTENTI",
+      "order": 2,
+      "description": "Area Assistenti",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-05-09", "valid_until": "2024-01-01", "value": "1612.66" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1740.36" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "FUNZIONARI",
+      "order": 3,
+      "description": "Area Funzionari ed Elevata Qualificazione — Funzionari",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-05-09", "valid_until": "2024-01-01", "value": "1958.49" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "2113.59" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "ELEVATE_PROFESSIONALITA",
+      "order": 4,
+      "description": "Area Elevate Professionalità",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-05-09", "valid_until": "2024-01-01", "value": "2692.31" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "2886.21" }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": [],
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "out_of_scope",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "INFO: apprendistato assente dal CCNL vigente (fonte primaria: indice ARAN CCNL 2022-2024, Art. 1-38 senza capitolo apprendistato) e dal CCNL Ministeri 12/6/2003 richiamato dall'Art. 38 Conferme, che esclude espressamente gli apprendisti dall'ambito di applicazione (fonte secondaria: olympus.uniurb.it); quadro normativo PA D.Lgs. 165/2001 non prevede apprendistato ex D.Lgs. 81/2015.",
+      "SIMPLIFICATION: codice CNEL S005 derivato da tre fonti secondarie convergenti (lavoro-economia.it, blia.it ID S005-209278, contratticcnl.it); sito CNEL non direttamente interrogabile via HTTP (JS-driven search).",
+      "SIMPLIFICATION: aliquote INPS CTPS (ex-INPDAP) — dipendente 8,80%, datore 24,20% — da proxy kitech.it 2026; verificare circolare INPS annuale per valori esatti.",
+      "INFO: retribuzione tabellare conglobata dal 1/1/2024 per 13 mensilità (Tabella 2, Art. 30 CCNL 2022-2024); tranche precedente dal 9/5/2022 derivata per sottrazione degli incrementi Tabella 1.",
+      "INFO: divisore orario 156 (settimana di 36h) — Art. 29 c.3 CCNL 2022-2024 fonte primaria. Verifica: OPERATORI 1653,97/156=10,60; ASSISTENTI 1740,36/156=11,16; FUNZIONARI 2113,59/156=13,55.",
+      "INFO: progressione economica non automatica — differenziali stipendiali assegnati per graduatoria (Art. 16 CCNL 2022-2024); seniority_increments.maximum_count=0.",
+      "INFO: sub-settori ENAC, ANSFISA, ANSV e AGID hanno tabelle retributive proprie (Tabelle 3-6 CCNL) non modellate — out_of_scope per implementazione standard."
+    ]
+  }
+}
