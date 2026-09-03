@@ -16,7 +16,7 @@ from tests.conftest import make_year_rules
 # Fixture helpers
 # ---------------------------------------------------------------------------
 
-_THREE_BRACKETS: list[dict[str, Any]] = [
+_IRPEF_BRACKETS_2026: list[dict[str, Any]] = [
     {"up_to": "28000.00", "rate": "0.23"},
     {"up_to": "50000.00", "rate": "0.33"},
     {"up_to": None, "rate": "0.43"},
@@ -36,7 +36,7 @@ def _rules(deductions: list[dict[str, Any]] | None = None) -> YearRules:
     Returns:
         A YearRules instance with the specified deduction breakpoints.
     """
-    return make_year_rules(brackets=_THREE_BRACKETS, deductions=deductions)
+    return make_year_rules(brackets=_IRPEF_BRACKETS_2026, deductions=deductions)
 
 
 # ---------------------------------------------------------------------------
