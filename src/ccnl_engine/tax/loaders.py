@@ -23,6 +23,7 @@ if TYPE_CHECKING:
 class _Tier(Protocol):
     max_employees: int | None
     rate: Decimal
+    ivs_rate: Decimal
 
 
 def load_year_rules(
@@ -52,7 +53,9 @@ def load_year_rules(
         fixed_term_additional_rate=raw.fixed_term_additional_rate,
         inps=InpsRates(
             employee_rate=employee_tier.rate,
+            employee_ivs_rate=employee_tier.ivs_rate,
             employer_rate=employer_tier.rate,
+            employer_ivs_rate=employer_tier.ivs_rate,
             ceiling=raw.inps.ceiling,
             employer_rate_by_category=employer_tier.rate_by_category,
         ),

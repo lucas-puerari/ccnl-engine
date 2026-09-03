@@ -15,10 +15,10 @@
   "fixed_term_additional_rate": "0.014",
   "inps": {
     "employee_tiers": [
-      { "max_employees": null, "rate": "0.0919" }
+      { "max_employees": null, "rate": "0.0919", "ivs_rate": "0.0919" }
     ],
     "employer_tiers": [
-      { "max_employees": null, "rate": "0.2676" }
+      { "max_employees": null, "rate": "0.2676", "ivs_rate": "0.2381" }
     ],
     "ceiling": null
   },

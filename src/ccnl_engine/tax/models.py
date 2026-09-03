@@ -34,12 +34,20 @@ class InpsRates(BaseModel):
 
     ``employer_rate_by_category`` overrides ``employer_rate`` for levels whose
     ``category`` matches (e.g. lower rates for *impiegati* in artigianato).
+
+    ``employee_ivs_rate`` and ``employer_ivs_rate`` are the IVS portions of
+    the respective total rates.  When ``ceiling`` is set and
+    ``ivs_ceiling_applies`` is passed to the contribution engine, only these
+    portions are capped at the massimale retributivo; the remainder is always
+    applied to the full base.
     """
 
     model_config = ConfigDict(extra="forbid")
 
     employee_rate: Decimal
+    employee_ivs_rate: Decimal
     employer_rate: Decimal
+    employer_ivs_rate: Decimal
     ceiling: Decimal | None
     employer_rate_by_category: dict[str, Decimal] = {}
 
@@ -83,22 +91,50 @@ class ApprenticeRates(BaseModel):
 
 
 class _InpsEmployerTier(BaseModel):
-    """A single employer-rate tier keyed by maximum headcount."""
+    """A single employer-rate tier keyed by maximum headcount.
+
+    ``ivs_rate`` is the IVS (Invalidità, Vecchiaia, Superstiti) portion of
+    ``rate``.  Only this portion is subject to the annual massimale retributivo
+    (Art. 1 c. 18 L. 335/1995); the remainder (NASpI, CUAF, CIG, etc.) is
+    always applied to the full contribution base.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
     max_employees: int | None
     rate: Decimal
+    ivs_rate: Decimal
     rate_by_category: dict[str, Decimal] = {}
+
+    @model_validator(mode="after")
+    def _check_ivs_rate(self) -> Self:
+        if self.ivs_rate > self.rate:
+            msg = f"ivs_rate {self.ivs_rate} cannot exceed rate {self.rate}"
+            raise ValueError(msg)
+        return self
 
 
 class _InpsEmployeeTier(BaseModel):
-    """A single employee-rate tier keyed by maximum headcount."""
+    """A single employee-rate tier keyed by maximum headcount.
+
+    ``ivs_rate`` is the IVS portion of ``rate`` (subject to the massimale).
+    For most private-sector employees this equals the full rate; the 0.30%
+    CIGS employee share (added above certain headcount thresholds) is *not*
+    IVS and must be excluded from ``ivs_rate``.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
     max_employees: int | None
     rate: Decimal
+    ivs_rate: Decimal
+
+    @model_validator(mode="after")
+    def _check_ivs_rate(self) -> Self:
+        if self.ivs_rate > self.rate:
+            msg = f"ivs_rate {self.ivs_rate} cannot exceed rate {self.rate}"
+            raise ValueError(msg)
+        return self
 
 
 class _InpsRawRates(BaseModel):

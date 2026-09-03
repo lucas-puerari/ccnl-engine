@@ -1,10 +1,13 @@
 """IRPEF (personal income tax) calculation.
 
-SIMPLIFICATION: only Art. 11 TUIR brackets and Art. 13 TUIR work-income
-deduction. Not modelled: addizionali regionali/comunali; detrazioni per
-carichi di famiglia (Art. 12); EUR 65 additional deduction (Art. 13
-co. 1-bis, D.Lgs. 216/2023); sterilization for redditi > 200 k (Art. 1
-co. 3-4 L. 199/2025); bonus/trattamento integrativo (Art. 1 D.L. 3/2020).
+Implements Art. 11 TUIR brackets and the Art. 13 co. 1 TUIR work-income
+deduction (piecewise-linear schedule as modified by D.Lgs. 216/2023 and
+confirmed by L. 207/2024).
+
+Not in scope for this engine (handled by a separate fiscal library):
+addizionali regionali/comunali; detrazioni per carichi di famiglia (Art. 12
+TUIR); bonus/trattamento integrativo (Art. 1 D.L. 3/2020); sterilization of
+detrazioni for redditi > EUR 200k (Art. 1 c. 3-4 L. 199/2025).
 """
 
 from decimal import Decimal

@@ -24,6 +24,7 @@ from ccnl_engine.tax.models import (
     TfrRules,
     YearRules,
     _InpsEmployeeTier,
+    _InpsEmployerTier,
 )
 
 # ---------------------------------------------------------------------------
@@ -45,7 +46,9 @@ _VALID_DEDUCTIONS: list[dict[str, Any]] = [
 
 _VALID_INPS: dict[str, Any] = {
     "employee_rate": "0.0919",
+    "employee_ivs_rate": "0.0919",
     "employer_rate": "0.2898",
+    "employer_ivs_rate": "0.2381",
     "ceiling": None,
 }
 
@@ -120,6 +123,24 @@ class TestDeductionBreakpoint:
 # ---------------------------------------------------------------------------
 
 
+class TestInpsTiers:
+    """Unit tests for _InpsEmployeeTier and _InpsEmployerTier ivs_rate validator."""
+
+    def test_employee_tier_ivs_rate_exceeds_rate_raises(self) -> None:
+        """ivs_rate > rate must raise ValidationError."""
+        with pytest.raises(ValidationError, match="ivs_rate"):
+            _InpsEmployeeTier(
+                max_employees=None, rate=Decimal("0.09"), ivs_rate=Decimal("0.10")
+            )
+
+    def test_employer_tier_ivs_rate_exceeds_rate_raises(self) -> None:
+        """ivs_rate > rate must raise ValidationError."""
+        with pytest.raises(ValidationError, match="ivs_rate"):
+            _InpsEmployerTier(
+                max_employees=None, rate=Decimal("0.28"), ivs_rate=Decimal("0.30")
+            )
+
+
 class TestInpsRates:
     """Unit tests for InpsRates construction."""
 
@@ -127,7 +148,9 @@ class TestInpsRates:
         """ceiling=None (no cap) is accepted."""
         r = InpsRates(
             employee_rate=Decimal("0.0919"),
+            employee_ivs_rate=Decimal("0.0919"),
             employer_rate=Decimal("0.2898"),
+            employer_ivs_rate=Decimal("0.2381"),
             ceiling=None,
         )
         assert r.ceiling is None
@@ -136,7 +159,9 @@ class TestInpsRates:
         """A finite ceiling is accepted."""
         r = InpsRates(
             employee_rate=Decimal("0.09"),
+            employee_ivs_rate=Decimal("0.09"),
             employer_rate=Decimal("0.28"),
+            employer_ivs_rate=Decimal("0.2381"),
             ceiling=Decimal(105014),
         )
         assert r.ceiling == Decimal(105014)
@@ -145,7 +170,9 @@ class TestInpsRates:
         """Category override applies only to listed categories."""
         r = InpsRates(
             employee_rate=Decimal("0.0919"),
+            employee_ivs_rate=Decimal("0.0919"),
             employer_rate=Decimal("0.2693"),
+            employer_ivs_rate=Decimal("0.2381"),
             ceiling=None,
             employer_rate_by_category={"impiegato": Decimal("0.2471")},
         )
@@ -353,15 +380,23 @@ class TestYearRules2026Json:
 
     def test_no_open_tier_raises(self) -> None:
         """_resolve_tier raises ValueError when no tier covers the headcount."""
-        tiers = [_InpsEmployeeTier(max_employees=10, rate=Decimal("0.09"))]
+        tiers = [
+            _InpsEmployeeTier(
+                max_employees=10, rate=Decimal("0.09"), ivs_rate=Decimal("0.09")
+            )
+        ]
         with pytest.raises(ValueError, match="No employee-rate tier"):
             _resolve_tier(tiers, 100, "employee")
 
     def test_multiple_open_tiers_raises(self) -> None:
         """_assert_tier_integrity raises when more than one open tier exists."""
         tiers = [
-            _InpsEmployeeTier(max_employees=None, rate=Decimal("0.09")),
-            _InpsEmployeeTier(max_employees=None, rate=Decimal("0.10")),
+            _InpsEmployeeTier(
+                max_employees=None, rate=Decimal("0.09"), ivs_rate=Decimal("0.09")
+            ),
+            _InpsEmployeeTier(
+                max_employees=None, rate=Decimal("0.10"), ivs_rate=Decimal("0.09")
+            ),
         ]
         with pytest.raises(ValueError, match=r"2 open tiers"):
             _assert_tier_integrity(tiers, "employee")
@@ -369,9 +404,15 @@ class TestYearRules2026Json:
     def test_duplicate_max_employees_raises(self) -> None:
         """_assert_tier_integrity raises if max_employees values are duplicated."""
         tiers = [
-            _InpsEmployeeTier(max_employees=15, rate=Decimal("0.09")),
-            _InpsEmployeeTier(max_employees=15, rate=Decimal("0.10")),
-            _InpsEmployeeTier(max_employees=None, rate=Decimal("0.11")),
+            _InpsEmployeeTier(
+                max_employees=15, rate=Decimal("0.09"), ivs_rate=Decimal("0.09")
+            ),
+            _InpsEmployeeTier(
+                max_employees=15, rate=Decimal("0.10"), ivs_rate=Decimal("0.09")
+            ),
+            _InpsEmployeeTier(
+                max_employees=None, rate=Decimal("0.11"), ivs_rate=Decimal("0.09")
+            ),
         ]
         with pytest.raises(ValueError, match="duplicate max_employees=15"):
             _assert_tier_integrity(tiers, "employee")

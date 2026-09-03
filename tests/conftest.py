@@ -32,7 +32,9 @@ WORK_DEDUCTIONS_2026: list[dict[str, Any]] = [
 #: INPS rates for terziario sector (no ceiling, simplified).
 INPS_RATES_TERZIARIO: dict[str, Any] = {
     "employee_rate": "0.0919",
+    "employee_ivs_rate": "0.0919",
     "employer_rate": "0.2898",
+    "employer_ivs_rate": "0.2381",
     "ceiling": None,
 }
 

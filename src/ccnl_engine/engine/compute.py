@@ -95,6 +95,7 @@ class ComputeRequest:
     roles: frozenset[str] = frozenset()
     ad_personam_monthly: Decimal = _ZERO
     category: LevelCategory | None = None
+    ivs_ceiling_applies: bool = False
 
 
 def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> ComputationResult:
@@ -195,19 +196,28 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
     )
     rates = _contrib.resolve_rates(rules, request.employment, worker_category)
     inps_employee_annual = _contrib.inps_contribution(
-        contribution_base, rates.employee_rate, rules
+        contribution_base,
+        rates.employee_rate,
+        rates.employee_ivs_rate,
+        rules,
+        ivs_ceiling_applies=request.ivs_ceiling_applies,
     )
     inps_employer_annual = _contrib.inps_contribution(
-        contribution_base, rates.employer_rate, rules
+        contribution_base,
+        rates.employer_rate,
+        rates.employer_ivs_rate,
+        rules,
+        ivs_ceiling_applies=request.ivs_ceiling_applies,
     )
     employer_funds_annual = _employer_funds(
         ccnl, worker_category, contribution_base, request.as_of
     )
     tfr_annual = _contrib.tfr(tfr_base, rules)
 
-    # SIMPLIFICATION: no addizionali regionali/comunali; no detrazioni per
-    # carichi di famiglia; no sterilization mechanism for incomes > EUR 200k
-    # (Art. 1 c. 3-4 L. 199/2025).
+    # Not modelled (scope of a separate fiscal library): addizionali
+    # regionali/comunali; detrazioni per carichi di famiglia (Art. 12 TUIR);
+    # trattamento integrativo (Art. 1 D.L. 3/2020); sterilization of
+    # detrazioni for redditi > EUR 200k (Art. 1 c. 3-4 L. 199/2025).
     taxable_income = money(gross_annual - inps_employee_annual)
     irpef_gross = _irpef.irpef_gross(taxable_income, rules)
     work_income_deduction = _irpef.work_income_deduction(gross_annual, rules)

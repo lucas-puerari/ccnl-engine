@@ -439,7 +439,9 @@ class TestComputeEmployerFunds:
         rules = make_year_rules(
             inps={
                 "employee_rate": "0.0919",
+                "employee_ivs_rate": "0.0919",
                 "employer_rate": "0.30",
+                "employer_ivs_rate": "0.2381",
                 "ceiling": None,
                 "employer_rate_by_category": {"impiegato": "0.20"},
             }
