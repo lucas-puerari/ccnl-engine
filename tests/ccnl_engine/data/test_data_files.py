@@ -3691,3 +3691,74 @@ class TestLoadTurismoFederalberghi:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 6
+
+
+class TestLoadFunzioniCentraliAran:
+    """Tests for CCNL Comparto Funzioni Centrali 2022-2024 (S005)."""
+
+    def test_funzioni_centrali_aran_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("funzioni-centrali-aran.json")
+        assert ccnl.meta.id == "funzioni-centrali-aran"
+        assert ccnl.meta.cnel_code == "S005"
+
+    def test_funzioni_centrali_aran_has_4_levels(self) -> None:
+        """Contract has exactly 4 levels: OPERATORI, ASSISTENTI, FUNZIONARI, ELEVATE."""
+        ccnl = load_ccnl("funzioni-centrali-aran.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 4
+        assert codes == {
+            "OPERATORI",
+            "ASSISTENTI",
+            "FUNZIONARI",
+            "ELEVATE_PROFESSIONALITA",
+        }
+
+    def test_funzioni_centrali_aran_funzionari_salary_tranche1(self) -> None:
+        """FUNZIONARI first tranche (9/5/2022): 1958.49 EUR/month."""
+        ccnl = load_ccnl("funzioni-centrali-aran.json")
+        lv = ccnl.level_by_code("FUNZIONARI")
+        assert lv.base_salary.value_at(date(2022, 5, 9)) == Decimal("1958.49")
+
+    def test_funzioni_centrali_aran_funzionari_salary_tranche2(self) -> None:
+        """FUNZIONARI second tranche (1/1/2024): 2113.59 EUR/month."""
+        ccnl = load_ccnl("funzioni-centrali-aran.json")
+        lv = ccnl.level_by_code("FUNZIONARI")
+        assert lv.base_salary.value_at(date(2024, 1, 1)) == Decimal("2113.59")
+
+    def test_funzioni_centrali_aran_level_ordering(self) -> None:
+        """ELEVATE_PROFESSIONALITA is highest-order; OPERATORI is lowest-order."""
+        ccnl = load_ccnl("funzioni-centrali-aran.json")
+        orders = {lv.code: lv.order for lv in ccnl.levels}
+        assert orders["ELEVATE_PROFESSIONALITA"] == max(orders.values())
+        assert orders["OPERATORI"] == min(orders.values())
+
+    def test_funzioni_centrali_aran_additional_months(self) -> None:
+        """Additional months: 13 (tredicesima only)."""
+        ccnl = load_ccnl("funzioni-centrali-aran.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_funzioni_centrali_aran_hourly_divisor(self) -> None:
+        """Hourly divisor: 156 (Art. 29 c.3, 36h/week)."""
+        ccnl = load_ccnl("funzioni-centrali-aran.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(156)
+
+    def test_funzioni_centrali_aran_no_fixed_allowances(self) -> None:
+        """Conglobated model: all levels have no fixed allowances."""
+        ccnl = load_ccnl("funzioni-centrali-aran.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_funzioni_centrali_aran_tax_sector(self) -> None:
+        """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
+        ccnl = load_ccnl("funzioni-centrali-aran.json")
+        assert ccnl.meta.tax_sector == TaxSector.PUBBLICA_AMMINISTRAZIONE
+
+    def test_funzioni_centrali_aran_seniority_cadence(self) -> None:
+        """Seniority: maximum_count=0 (differenziali non automatici, Art. 16)."""
+        ccnl = load_ccnl("funzioni-centrali-aran.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 1
+        assert si.maximum_count == 0

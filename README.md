@@ -90,6 +90,7 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 38 | Agenzie di Viaggio e Turismo — Fiavet/Confcommercio | Terziario | ~25k | ✅ | ✅ | — |
 | 39 | Terziario Distribuzione e Servizi — Confesercenti | Terziario | ~230k | ✅ | ✅ | — |
 | 40 | Turismo — Federalberghi/Faita | Terziario | ~220k | ✅ | ✅ | — |
+| 41 | Funzioni Centrali 2022-2024 — ARAN (Ministeri, Agenzie, INPS, INAIL) | Pubblica Amministrazione | ~250k | ✅ | — | — |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
