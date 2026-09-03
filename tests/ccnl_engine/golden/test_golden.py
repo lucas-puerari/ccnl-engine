@@ -11,7 +11,7 @@ from typing import Any
 import pytest
 
 from ccnl_engine.contracts.loaders import load_ccnl
-from ccnl_engine.engine.compute import compute
+from ccnl_engine.engine.compute import ComputeRequest, compute
 from ccnl_engine.models.ccnl import TaxSector
 from ccnl_engine.models.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.tax.loaders import load_year_rules
@@ -54,23 +54,21 @@ class TestGolden:
         employment = _build_employment(inputs)
         as_of = date.fromisoformat(inputs["as_of"])
 
-        part_time_pct = Decimal(inputs["part_time_pct"])
-        seniority_count = int(inputs["seniority_count"])
-        negotiated_ral = (
-            Decimal(inputs["negotiated_ral"])
-            if inputs["negotiated_ral"] is not None
-            else None
-        )
-
         result = compute(
             ccnl,
-            inputs["level_code"],
-            as_of,
             rules,
-            employment,
-            part_time_pct=part_time_pct,
-            seniority_count=seniority_count,
-            negotiated_ral=negotiated_ral,
+            ComputeRequest(
+                level_code=inputs["level_code"],
+                as_of=as_of,
+                employment=employment,
+                part_time_pct=Decimal(inputs["part_time_pct"]),
+                seniority_count=int(inputs["seniority_count"]),
+                negotiated_ral=(
+                    Decimal(inputs["negotiated_ral"])
+                    if inputs["negotiated_ral"] is not None
+                    else None
+                ),
+            ),
         )
 
         # Compare each field in expected against the live ComputationResult

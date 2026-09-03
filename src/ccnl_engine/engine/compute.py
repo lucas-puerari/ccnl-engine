@@ -65,22 +65,9 @@ class _Annual:
     excluded_from_tfr: Decimal
 
 
-def compute(
-    ccnl: CCNL,
-    level_code: str,
-    as_of: date,
-    rules: YearRules,
-    employment: Employment,
-    part_time_pct: Decimal = _ONE,
-    seniority_count: int | None = None,
-    seniority_months: int | None = None,
-    negotiated_ral: Decimal | None = None,
-    negotiated_destination_ral: Decimal | None = None,
-    roles: frozenset[str] = frozenset(),
-    ad_personam_monthly: Decimal = _ZERO,
-    category: LevelCategory | None = None,
-) -> ComputationResult:
-    """Compute gross-to-net salary and employer cost for a given scenario.
+@dataclass(frozen=True)
+class ComputeRequest:
+    """Scenario parameters for a single compute() call.
 
     ``seniority_count`` and ``seniority_months`` are mutually exclusive; when
     neither is given no seniority increment applies. ``roles`` selects the
@@ -95,6 +82,28 @@ def compute(
     is the destination-level RAL for percentage-based apprentices: the engine
     applies ``apprenticeship_pct`` to it, producing the actual apprentice pay.
     The two fields are mutually exclusive.
+    """
+
+    level_code: str
+    as_of: date
+    employment: Employment
+    part_time_pct: Decimal = _ONE
+    seniority_count: int | None = None
+    seniority_months: int | None = None
+    negotiated_ral: Decimal | None = None
+    negotiated_destination_ral: Decimal | None = None
+    roles: frozenset[str] = frozenset()
+    ad_personam_monthly: Decimal = _ZERO
+    category: LevelCategory | None = None
+
+
+def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> ComputationResult:
+    """Compute gross-to-net salary and employer cost for a given scenario.
+
+    Args:
+        ccnl: The CCNL contract model.
+        rules: Tax and contribution rules for the relevant year.
+        request: Scenario parameters (level, date, employment, options).
 
     Returns:
         ComputationResult with all gross, net, and cost figures.
@@ -107,46 +116,55 @@ def compute(
             or negotiated_destination_ral is used with an under-classification
             apprenticeship track.
     """
-    if not (_ZERO < part_time_pct <= _ONE):
-        msg = f"part_time_pct must be in (0, 1], got {part_time_pct}"
+    if not (_ZERO < request.part_time_pct <= _ONE):
+        msg = f"part_time_pct must be in (0, 1], got {request.part_time_pct}"
         raise ValueError(msg)
-    if ad_personam_monthly < _ZERO:
-        msg = f"ad_personam_monthly must be >= 0, got {ad_personam_monthly}"
+    if request.ad_personam_monthly < _ZERO:
+        msg = f"ad_personam_monthly must be >= 0, got {request.ad_personam_monthly}"
         raise ValueError(msg)
-    _validate_negotiated_ral(negotiated_ral, negotiated_destination_ral, employment)
+    _validate_negotiated_ral(
+        request.negotiated_ral, request.negotiated_destination_ral, request.employment
+    )
 
-    level = ccnl.level_by_code(level_code)
-    worker_category = category if category is not None else level.category
+    level = ccnl.level_by_code(request.level_code)
+    worker_category = (
+        request.category if request.category is not None else level.category
+    )
     count = _resolve_seniority_count(
         ccnl.parameters.seniority_increments,
-        level_code,
-        seniority_count,
-        seniority_months,
+        request.level_code,
+        request.seniority_count,
+        request.seniority_months,
     )
     if worker_category in ccnl.parameters.seniority_increments.excluded_categories:
         count = 0
-    additional_months = ccnl.parameters.additional_months.value_at(as_of)
+    additional_months = ccnl.parameters.additional_months.value_at(request.as_of)
 
-    factor = part_time_pct
+    factor = request.part_time_pct
     apprenticeship_pct: Decimal | None = None
     under_level_code: str | None = None
-    if isinstance(employment, Apprentice):
+    if isinstance(request.employment, Apprentice):
         chain_ft, apprenticeship_pct, under_level_code = _apprentice_chain(
-            ccnl, level, employment, count, roles, as_of
+            ccnl, level, request.employment, count, request.roles, request.as_of
         )
         if apprenticeship_pct is not None:
             factor *= apprenticeship_pct
-        if negotiated_destination_ral is not None and apprenticeship_pct is None:
+        if (
+            request.negotiated_destination_ral is not None
+            and apprenticeship_pct is None
+        ):
             msg = (
                 "negotiated_destination_ral requires a percentage-based apprenticeship "
                 "track; the resolved track uses under-classification"
             )
             raise ValueError(msg)
     else:
-        chain_ft = _level_chain(ccnl, level, count, roles, as_of, apprentice=False)
+        chain_ft = _level_chain(
+            ccnl, level, count, request.roles, request.as_of, apprentice=False
+        )
 
     chain = chain_ft.scaled(factor)
-    ad_personam = money(ad_personam_monthly)
+    ad_personam = money(request.ad_personam_monthly)
     gross_monthly = money(
         chain.base + chain.seniority + chain.allowances_total + ad_personam
     )
@@ -154,8 +172,8 @@ def compute(
     gross_annual = annual.gross
 
     gross_annual, gross_monthly = _override_gross(
-        negotiated_ral,
-        negotiated_destination_ral,
+        request.negotiated_ral,
+        request.negotiated_destination_ral,
         apprenticeship_pct,
         gross_annual,
         gross_monthly,
@@ -163,7 +181,10 @@ def compute(
     )
 
     # The negotiated figure is the full RAL; CCNL exclusions don't apply to it.
-    ral_override = negotiated_ral is not None or negotiated_destination_ral is not None
+    ral_override = (
+        request.negotiated_ral is not None
+        or request.negotiated_destination_ral is not None
+    )
     contribution_base = (
         gross_annual
         if ral_override
@@ -172,7 +193,7 @@ def compute(
     tfr_base = (
         gross_annual if ral_override else money(gross_annual - annual.excluded_from_tfr)
     )
-    rates = _contrib.resolve_rates(rules, employment, worker_category)
+    rates = _contrib.resolve_rates(rules, request.employment, worker_category)
     inps_employee_annual = _contrib.inps_contribution(
         contribution_base, rates.employee_rate, rules
     )
@@ -180,7 +201,7 @@ def compute(
         contribution_base, rates.employer_rate, rules
     )
     employer_funds_annual = _employer_funds(
-        ccnl, worker_category, contribution_base, as_of
+        ccnl, worker_category, contribution_base, request.as_of
     )
     tfr_annual = _contrib.tfr(tfr_base, rules)
 
@@ -197,15 +218,15 @@ def compute(
     employer_cost_annual = money(
         gross_annual + inps_employer_annual + employer_funds_annual + tfr_annual
     )
-    hourly_divisor = ccnl.parameters.hourly_divisor.value_at(as_of)
+    hourly_divisor = ccnl.parameters.hourly_divisor.value_at(request.as_of)
 
     return ComputationResult(
         ccnl_id=ccnl.meta.id,
-        level_code=level_code,
-        employment_type=employment.type,
-        part_time_pct=part_time_pct,
-        as_of=as_of,
-        year=as_of.year,
+        level_code=request.level_code,
+        employment_type=request.employment.type,
+        part_time_pct=request.part_time_pct,
+        as_of=request.as_of,
+        year=request.as_of.year,
         seniority_count=count,
         base_monthly=chain.base,
         seniority_monthly=chain.seniority,
