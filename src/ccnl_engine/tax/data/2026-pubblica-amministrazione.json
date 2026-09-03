@@ -1,6 +1,6 @@
 {
   "year": 2026,
-  "sector": "pubblica_amministrazione",
+  "sector": "pubblica-amministrazione",
   "irpef_brackets": [
     { "up_to": "28000.00", "rate": "0.23" },
     { "up_to": "50000.00", "rate": "0.33" },

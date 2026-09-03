@@ -13,7 +13,7 @@
   "inputs": {
     "ccnl_file": "sanita-aran.json",
     "year": 2026,
-    "tax_sector": "pubblica_amministrazione",
+    "tax_sector": "pubblica-amministrazione",
     "num_employees": 50,
     "level_code": "PROFESSIONISTI",
     "as_of": "2026-01-01",
