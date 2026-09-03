@@ -98,6 +98,7 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 46 | Area Dirigenza Funzioni Locali 2022-2024 — ARAN (Dirigenti enti locali, Segretari comunali) | Pubblica Amministrazione | ~13k | ✅ | — | — |
 | 47 | Area Dirigenza Funzioni Centrali 2022-2024 — ARAN (Dirigenti ministeri, agenzie fiscali, INPS, INAIL) | Pubblica Amministrazione | ~30k | ✅ | — | — |
 | 48 | Area Dirigenza Istruzione e Ricerca 2022-2024 — ARAN (Dirigenti scolastici, universitari, ricerca) | Pubblica Amministrazione | ~8k | ✅ | — | — |
+| 49 | Comparto Istruzione e Ricerca 2022-2024 — ARAN (Docenti e ATA scuola, università, ricerca) | Pubblica Amministrazione | ~1,2M | ✅ | — | — |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 

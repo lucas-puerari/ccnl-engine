@@ -1,0 +1,167 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "istruzione-ricerca-aran",
+    "name": "CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN",
+    "cnel_code": "S305",
+    "sector": "Pubblica Amministrazione",
+    "tax_sector": "pubblica_amministrazione",
+    "signatories": [
+      "ARAN",
+      "FLC CGIL",
+      "CISL FSUR",
+      "UIL SCUOLA RUA",
+      "GILDA UNAMS",
+      "SNALS CONFSAL"
+    ],
+    "agreement_date": "2025-12-23",
+    "validity": {
+      "valid_from": "2022-01-01",
+      "valid_until": "2024-12-31"
+    },
+    "sources": [
+      {
+        "url": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
+        "type": "fonte_primaria",
+        "agreement_date": "2025-12-23",
+        "notes": "Allegato 1 al CCNL Comparto Istruzione e Ricerca 2022-2024. Tabella A1 (incrementi mensili da 1/1/2024) e Tabella A2 (stipendio tabellare annuo a regime dal 1/1/2024) per docenti ATA. Valori per tutte le fasce di anzianità. Fonte primaria."
+      },
+      {
+        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=494",
+        "type": "fonte_secondaria",
+        "agreement_date": null,
+        "notes": "kitech.it: codice CNEL S305 confermato per scuole personale docente Comparto Istruzione e Ricerca."
+      }
+    ],
+    "extraction": {
+      "method": "manual_pdf_extraction",
+      "model": null,
+      "timestamp": "2026-09-03",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        { "valid_from": "2022-01-01", "valid_until": null, "value": "156" }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        { "valid_from": "2022-01-01", "valid_until": null, "value": "13" }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 1,
+      "maximum_count": 0,
+      "amount_by_level": {}
+    }
+  },
+  "levels": [
+    {
+      "code": "COLLABORATORE_SCOLASTICO",
+      "order": 1,
+      "description": "ATA: Collaboratore scolastico (ex bidello, ex commesso)",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-01-01", "valid_until": "2024-01-01", "value": "1257.08" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1342.82" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "OPERATORE",
+      "order": 2,
+      "description": "ATA: Operatore scolastico (nuovo profilo dal 1/5/2024 CCNL 18/1/2024)",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-01-01", "valid_until": "2024-01-01", "value": "1287.56" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1375.38" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "ASSISTENTE",
+      "order": 3,
+      "description": "ATA: Assistente amministrativo, assistente tecnico, cuoco, infermiere",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-01-01", "valid_until": "2024-01-01", "value": "1401.28" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1496.85" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "DOCENTE_INFANZIA_PRIMARIA",
+      "order": 4,
+      "description": "Docente scuola dell'infanzia e primaria; docente secondaria II (diploma)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-01-01", "valid_until": "2024-01-01", "value": "1614.53" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1724.65" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "DOCENTE_SECONDARIA",
+      "order": 5,
+      "description": "Docente secondaria I grado (PE/Ed.Fisica) e secondaria II (laurea)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-01-01", "valid_until": "2024-01-01", "value": "1747.59" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1866.79" }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "FUNZIONARIO_ED_ESPERTO",
+      "order": 6,
+      "description": "ATA: Funzionario ed esperto (ex dsga, direttori servizi generali)",
+      "category": "quadro",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2022-01-01", "valid_until": "2024-01-01", "value": "1835.45" },
+          { "valid_from": "2024-01-01", "valid_until": null,         "value": "1960.65" }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": [],
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "out_of_scope",
+    "layer_3": "out_of_scope",
+    "notes": [
+      "SOURCE: Stipendio tabellare annuo da Tabella A2 CCNL 23/12/2025 allegato ufficiale (notiziedellascuola.it). Valori fascia 0-8 anni da 1/1/2024.",
+      "SOURCE: Pre-2024: back-calcolato sottraendo incremento mensile (Tabella A1) × 13. Esempio COLLABORATORE: 17.456,64 - 85,74×13 = 16.342,02€/anno = 1.257,08€/mese.",
+      "SOURCE: CNEL S305 da kitech.it per comparto Istruzione e Ricerca personale docente. Confermato coerente con S325 (area dirigenza IR).",
+      "SOURCE: COLLABORATORE_SCOLASTICO — Tab A2 0-8: 17.456,64€/anno; incremento Tab A1: 85,74€/mese.",
+      "SOURCE: OPERATORE — Tab A2 0-8: 17.879,93€/anno; incremento: 87,82€/mese (nuovo profilo da 1/5/2024).",
+      "SOURCE: ASSISTENTE — Tab A2 0-8: 19.459,12€/anno; incremento: 95,58€/mese.",
+      "SOURCE: DOCENTE_INFANZIA_PRIMARIA — Tab A2 0-8: 22.420,48€/anno; incremento: 110,12€/mese. Copre anche docente secondaria II diploma (stesso valore tabellare).",
+      "SOURCE: DOCENTE_SECONDARIA — Tab A2 0-8: 24.268,28€/anno; incremento: 119,20€/mese. Copre secondaria I grado, secondaria II laurea (stessi valori entry). Incremento secondaria II laurea: 119,20 (0-8) ma diverge per fasce superiori (136,18 per fascia 9-14).",
+      "SOURCE: FUNZIONARIO_ED_ESPERTO — Tab A2 0-8: 25.488,37€/anno; incremento: 125,19€/mese.",
+      "INFO: Platea ~1,2M: ~800k docenti (infanzia, primaria, secondaria I e II), ~230k ATA scuola, ~130k personale università e ricerca, ~80k AFAM (quifinanza.it).",
+      "INFO: Indennità di funzione (IF) docenti: da ~200€ a ~313€/mese a seconda dell'ordine (da CCNL 23/12/2025). Non modellata come fixed_allowance per eterogeneità tra ordini (SIMPLIFICATION).",
+      "INFO: No apprendistato — D.Lgs. 165/2001. Layer 2 out_of_scope.",
+      "INFO: Personale università, ricerca e AFAM: non modellato separatamente (trattamento retributivo distinto con sezioni specifiche nel CCNL). SIMPLIFICATION: unico JSON copre principalmente la scuola.",
+      "SIMPLIFICATION: CNEL S305 confermato per comparto, include tutte le sezioni (scuola, università, ricerca, AFAM).",
+      "SIMPLIFICATION: Hourly divisor 156 = 36h/settimana × 52/12. I docenti hanno orario cattedra (18h/settimana insegnamento), non direttamente comparabile. Il divisore si applica per l'hourly_rate indicativo.",
+      "SIMPLIFICATION: Base salary = fascia 0-8 anni (entry level). Le 6 fasce di anzianità (0-8, 9-14, 15-20, 21-27, 28-34, 35+) non sono scatti automatici ma bande per anzianità di servizio. Fascia superiore non modellata.",
+      "SIMPLIFICATION: seniority maximum_count=0 (fasce non sono scatti automatici nell'accezione del CCNL privato). Per la fascia di anzianità corretta, usare negotiated_ral o livello dedicato.",
+      "SIMPLIFICATION: DOCENTE_SECONDARIA aggrega secondaria I grado e secondaria II (laurea) che condividono lo stesso tabellare entry. DOCENTE_INFANZIA_PRIMARIA aggrega anche secondaria II (diploma) con stesso tabellare entry.",
+      "SIMPLIFICATION: valid_from period 1 = 2022-01-01 (inizio validità del triennio). Il previgente CCNL 2019-2021 aveva stabilito i valori pre-2024; la data esatta di firma del CCNL 2019-2021 non è disponibile dalla fonte e viene approssimata."
+    ]
+  }
+}
