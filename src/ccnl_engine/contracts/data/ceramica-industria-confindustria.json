@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "ceramica-industria-confindustria",
     "name": "CCNL Ceramica Industria (Confindustria-Assopiastrelle)",
     "cnel_code": "B122",

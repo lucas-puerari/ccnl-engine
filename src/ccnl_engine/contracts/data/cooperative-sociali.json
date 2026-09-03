@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "cooperative-sociali",
     "name": "CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)",
     "cnel_code": "T151",

@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "alimentari-federalimentare",
     "name": "CCNL per i lavoratori dell'industria alimentare (Federalimentare)",
     "cnel_code": "E012",

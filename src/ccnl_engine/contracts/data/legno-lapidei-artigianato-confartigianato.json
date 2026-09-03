@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "legno-lapidei-artigianato-confartigianato",
     "name": "CCNL Area Legno-Lapidei — Artigianato",
     "cnel_code": "F060",

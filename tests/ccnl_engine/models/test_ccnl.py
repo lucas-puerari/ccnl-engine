@@ -53,12 +53,12 @@ class TestStrictSchema:
     def test_optional_metadata_accepted(self) -> None:
         """agreement_date, validity and source notes are modelled."""
         data = make_ccnl_dict()
-        data["ccnl"]["agreement_date"] = "2024-03-22"
-        data["ccnl"]["validity"] = {"valid_from": "2024-04-01", "valid_until": None}
-        data["ccnl"]["sources"][0]["notes"] = "salary tables"
+        data["meta"]["agreement_date"] = "2024-03-22"
+        data["meta"]["validity"] = {"valid_from": "2024-04-01", "valid_until": None}
+        data["meta"]["sources"][0]["notes"] = "salary tables"
         ccnl = _validate(data)
-        assert ccnl.ccnl.validity is not None
-        assert ccnl.ccnl.validity.valid_until is None
+        assert ccnl.meta.validity is not None
+        assert ccnl.meta.validity.valid_until is None
 
 
 # ---------------------------------------------------------------------------

@@ -164,7 +164,7 @@ def compute(
     hourly_divisor = ccnl.parameters.hourly_divisor.value_at(as_of)
 
     return ComputationResult(
-        ccnl_id=ccnl.ccnl.id,
+        ccnl_id=ccnl.meta.id,
         level_code=level_code,
         employment_type=employment.type,
         part_time_pct=part_time_pct,
@@ -310,7 +310,7 @@ def _select_track(
             {c for t in ccnl.apprenticeship for c in t.destination_levels}
         )
         msg = (
-            f"CCNL '{ccnl.ccnl.id}' has no apprenticeship track for destination "
+            f"CCNL '{ccnl.meta.id}' has no apprenticeship track for destination "
             f"level {level.code!r} (coverage.layer_2 is {ccnl.coverage.layer_2}; "
             f"eligible destination levels: {eligible})"
         )

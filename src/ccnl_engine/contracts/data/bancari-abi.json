@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "bancari-abi",
     "name": "CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)",
     "cnel_code": "J241",

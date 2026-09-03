@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "studi-professionali-confprofessioni",
     "name": "CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)",
     "cnel_code": "H442",

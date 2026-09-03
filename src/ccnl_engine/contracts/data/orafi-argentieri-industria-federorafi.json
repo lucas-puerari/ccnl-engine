@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "orafi-argentieri-industria-federorafi",
     "name": "CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)",
     "cnel_code": "C021",

@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "tessile-moda-artigianato-confartigianato",
     "name": "CCNL Area Tessile-Moda e Chimica-Ceramica — Artigianato",
     "cnel_code": "V751",

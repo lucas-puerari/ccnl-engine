@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "carta-cartone-assocarta",
     "name": "CCNL Carta e Cartone — Aziende Industriali (Assocarta)",
     "cnel_code": "G022",

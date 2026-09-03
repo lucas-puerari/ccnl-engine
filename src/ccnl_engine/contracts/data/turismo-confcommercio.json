@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "ccnl": {
+  "meta": {
     "id": "turismo-confcommercio",
     "name": "CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)",
     "cnel_code": "H052",

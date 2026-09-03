@@ -38,7 +38,7 @@ class TestCCNLDataFilesValidate:
     def test_file_validates(self, json_file: Path) -> None:
         """Each data file must deserialise into a valid CCNL without errors."""
         ccnl = CCNL.model_validate_json(json_file.read_text(encoding="utf-8"))
-        assert ccnl.ccnl.id
+        assert ccnl.meta.id
 
 
 # ---------------------------------------------------------------------------
@@ -53,8 +53,8 @@ class TestLoadCcnl:
         """load_ccnl loads the commercio JSON and returns a CCNL instance."""
         ccnl = load_ccnl("commercio-confcommercio.json")
         assert isinstance(ccnl, CCNL)
-        assert ccnl.ccnl.id == "commercio-confcommercio"
-        assert ccnl.ccnl.cnel_code == "H011"
+        assert ccnl.meta.id == "commercio-confcommercio"
+        assert ccnl.meta.cnel_code == "H011"
 
     def test_commercio_has_eight_levels(self) -> None:
         """Commercio CCNL must contain exactly 8 classification levels."""
@@ -130,8 +130,8 @@ class TestLoadMetalmeccanico:
         """File parses, id and cnel_code are correct."""
         ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
         assert isinstance(ccnl, CCNL)
-        assert ccnl.ccnl.id == "metalmeccanico-federmeccanica"
-        assert ccnl.ccnl.cnel_code == "C011"
+        assert ccnl.meta.id == "metalmeccanico-federmeccanica"
+        assert ccnl.meta.cnel_code == "C011"
 
     def test_metalmeccanico_has_nine_levels(self) -> None:
         """Contract must have exactly 9 levels (D1…A1)."""
@@ -221,8 +221,8 @@ class TestLoadMetalmeccanicoConfapi:
         """File parses, id and cnel_code are correct."""
         ccnl = load_ccnl("metalmeccanico-confapi.json")
         assert isinstance(ccnl, CCNL)
-        assert ccnl.ccnl.id == "metalmeccanico-confapi"
-        assert ccnl.ccnl.cnel_code == "C018"
+        assert ccnl.meta.id == "metalmeccanico-confapi"
+        assert ccnl.meta.cnel_code == "C018"
 
     def test_confapi_has_nine_levels(self) -> None:
         """Contract must have exactly 9 levels (1-9)."""
@@ -314,8 +314,8 @@ class TestLoadChimicaFederchimica:
         """File parses, id and cnel_code are correct."""
         ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
         assert isinstance(ccnl, CCNL)
-        assert ccnl.ccnl.id == "chimica-farmaceutica-federchimica"
-        assert ccnl.ccnl.cnel_code == "B011"
+        assert ccnl.meta.id == "chimica-farmaceutica-federchimica"
+        assert ccnl.meta.cnel_code == "B011"
 
     def test_chimica_has_fifteen_levels(self) -> None:
         """Contract must have exactly 15 classification levels."""
@@ -436,8 +436,8 @@ class TestLoadTurismoConfcommercio:
     def test_turismo_loads(self) -> None:
         """File must parse without errors; id and CNEL code must match."""
         ccnl = load_ccnl("turismo-confcommercio.json")
-        assert ccnl.ccnl.id == "turismo-confcommercio"
-        assert ccnl.ccnl.cnel_code == "H052"
+        assert ccnl.meta.id == "turismo-confcommercio"
+        assert ccnl.meta.cnel_code == "H052"
 
     def test_turismo_has_ten_levels(self) -> None:
         """CCNL Turismo defines exactly 10 classification levels."""
@@ -531,8 +531,8 @@ class TestLoadEdiliziaAnce:
         """load_ccnl loads the edilizia JSON and returns the expected identifiers."""
         ccnl = load_ccnl("edilizia-ance.json")
         assert isinstance(ccnl, CCNL)
-        assert ccnl.ccnl.id == "edilizia-ance"
-        assert ccnl.ccnl.cnel_code == "F012"
+        assert ccnl.meta.id == "edilizia-ance"
+        assert ccnl.meta.cnel_code == "F012"
 
     def test_edilizia_has_seven_levels(self) -> None:
         """Edilizia ANCE CCNL must contain exactly 7 classification levels."""
@@ -582,7 +582,7 @@ class TestLoadEdiliziaAnce:
     def test_edilizia_tax_sector(self) -> None:
         """CCNL must declare tax_sector EDILIZIA."""
         ccnl = load_ccnl("edilizia-ance.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.EDILIZIA
+        assert ccnl.meta.tax_sector == TaxSector.EDILIZIA
 
     def test_edilizia_seniority_cadence(self) -> None:
         """Seniority increments must be biennale (24 months), max 5 scatti."""
@@ -629,8 +629,8 @@ class TestLoadCooperativeSociali:
         """File loads as valid CCNL with correct id and CNEL code T151."""
         ccnl = load_ccnl("cooperative-sociali.json")
         assert isinstance(ccnl, CCNL)
-        assert ccnl.ccnl.id == "cooperative-sociali"
-        assert ccnl.ccnl.cnel_code == "T151"
+        assert ccnl.meta.id == "cooperative-sociali"
+        assert ccnl.meta.cnel_code == "T151"
 
     def test_cooperative_sociali_has_16_levels(self) -> None:
         """Contract must contain exactly 16 levels (13 base + 3 Quadro)."""
@@ -701,7 +701,7 @@ class TestLoadCooperativeSociali:
     def test_cooperative_sociali_tax_sector(self) -> None:
         """CCNL must declare tax_sector TERZIARIO."""
         ccnl = load_ccnl("cooperative-sociali.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
 
     def test_cooperative_sociali_seniority_cadence(self) -> None:
         """Seniority increments: biennale (24 months), maximum 5 scatti."""
@@ -737,8 +737,8 @@ class TestLoadLogisticaTrasportoConfetra:
     def test_logistica_trasporto_confetra_loads(self) -> None:
         """CCNL id must be logistica-trasporto-confetra, CNEL code I100."""
         ccnl = load_ccnl("logistica-trasporto-confetra.json")
-        assert ccnl.ccnl.id == "logistica-trasporto-confetra"
-        assert ccnl.ccnl.cnel_code == "I100"
+        assert ccnl.meta.id == "logistica-trasporto-confetra"
+        assert ccnl.meta.cnel_code == "I100"
 
     def test_logistica_trasporto_confetra_has_9_levels(self) -> None:
         """Contract must have exactly 9 levels (6J excluded, abolished Dec 2025)."""
@@ -786,7 +786,7 @@ class TestLoadLogisticaTrasportoConfetra:
     def test_logistica_trasporto_confetra_tax_sector(self) -> None:
         """CCNL must declare tax_sector INDUSTRIA."""
         ccnl = load_ccnl("logistica-trasporto-confetra.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
 
     def test_logistica_trasporto_confetra_seniority_cadence(self) -> None:
         """Seniority increments: biennale (24 months), maximum 5 scatti."""
@@ -824,8 +824,8 @@ class TestLoadMultiserviziAnip:
     def test_multiservizi_anip_loads(self) -> None:
         """File must load and carry the correct id and CNEL code."""
         ccnl = load_ccnl("multiservizi-anip.json")
-        assert ccnl.ccnl.id == "multiservizi-anip"
-        assert ccnl.ccnl.cnel_code == "K511"
+        assert ccnl.meta.id == "multiservizi-anip"
+        assert ccnl.meta.cnel_code == "K511"
 
     def test_multiservizi_anip_has_10_levels(self) -> None:
         """Must have exactly 10 levels including par sub-levels."""
@@ -875,7 +875,7 @@ class TestLoadMultiserviziAnip:
     def test_multiservizi_anip_tax_sector(self) -> None:
         """CCNL must declare tax_sector TERZIARIO (CNEL K-prefix contract)."""
         ccnl = load_ccnl("multiservizi-anip.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
 
     def test_multiservizi_anip_seniority_cadence(self) -> None:
         """Seniority: biennale cadence (24 months), maximum 8 scatti."""
@@ -891,8 +891,8 @@ class TestLoadStudiProfessionaliConfprofessioni:
     def test_studi_professionali_confprofessioni_loads(self) -> None:
         """CCNL must load with correct id and CNEL code."""
         ccnl = load_ccnl("studi-professionali-confprofessioni.json")
-        assert ccnl.ccnl.id == "studi-professionali-confprofessioni"
-        assert ccnl.ccnl.cnel_code == "H442"
+        assert ccnl.meta.id == "studi-professionali-confprofessioni"
+        assert ccnl.meta.cnel_code == "H442"
 
     def test_studi_professionali_confprofessioni_has_8_levels(self) -> None:
         """CCNL must have exactly 8 levels: 5, 4, 4S, 3, 3S, 2, 1, Q."""
@@ -951,7 +951,7 @@ class TestLoadStudiProfessionaliConfprofessioni:
     def test_studi_professionali_confprofessioni_tax_sector(self) -> None:
         """CCNL must declare tax_sector TERZIARIO (CNEL H-prefix contract)."""
         ccnl = load_ccnl("studi-professionali-confprofessioni.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
 
     def test_studi_professionali_confprofessioni_seniority_cadence(
         self,
@@ -969,8 +969,8 @@ class TestLoadBancariAbi:
     def test_bancari_abi_loads(self) -> None:
         """Loads bancari-abi and verifies id and CNEL code J241."""
         ccnl = load_ccnl("bancari-abi.json")
-        assert ccnl.ccnl.id == "bancari-abi"
-        assert ccnl.ccnl.cnel_code == "J241"
+        assert ccnl.meta.id == "bancari-abi"
+        assert ccnl.meta.cnel_code == "J241"
 
     def test_bancari_abi_has_9_levels(self) -> None:
         """Nine levels: QD4, QD3, QD2, QD1, 3A4, 3A3, 3A2, 3A1, 1e2A."""
@@ -1031,7 +1031,7 @@ class TestLoadBancariAbi:
     def test_bancari_abi_tax_sector(self) -> None:
         """CCNL must declare tax_sector CREDITO (ABI banking sector)."""
         ccnl = load_ccnl("bancari-abi.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.CREDITO
+        assert ccnl.meta.tax_sector == TaxSector.CREDITO
 
     def test_bancari_abi_seniority_cadence(self) -> None:
         """Seniority: triennale cadence (36 months), maximum 8 scatti."""
@@ -1047,8 +1047,8 @@ class TestLoadTessileSmi:
     def test_tessile_smi_loads(self) -> None:
         """Contract id == 'tessile-smi', CNEL code == 'D014'."""
         ccnl = load_ccnl("tessile-smi.json")
-        assert ccnl.ccnl.id == "tessile-smi"
-        assert ccnl.ccnl.cnel_code == "D014"
+        assert ccnl.meta.id == "tessile-smi"
+        assert ccnl.meta.cnel_code == "D014"
 
     def test_tessile_smi_has_10_levels(self) -> None:
         """10 livelli: 1, 2, 2S, 3, 3S, 4, 5, 6, 7, 8."""
@@ -1122,7 +1122,7 @@ class TestLoadTessileSmi:
     def test_tessile_smi_tax_sector(self) -> None:
         """CCNL must declare tax_sector INDUSTRIA."""
         ccnl = load_ccnl("tessile-smi.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
 
     def test_tessile_smi_seniority_cadence(self) -> None:
         """Seniority: biennale cadence (24 months), maximum 4 scatti."""
@@ -1164,8 +1164,8 @@ class TestLoadAlimentariFederalimentare:
     def test_alimentari_federalimentare_loads(self) -> None:
         """CCNL id == 'alimentari-federalimentare', cnel_code == 'E012'."""
         ccnl = load_ccnl("alimentari-federalimentare.json")
-        assert ccnl.ccnl.id == "alimentari-federalimentare"
-        assert ccnl.ccnl.cnel_code == "E012"
+        assert ccnl.meta.id == "alimentari-federalimentare"
+        assert ccnl.meta.cnel_code == "E012"
 
     def test_alimentari_federalimentare_has_8_levels(self) -> None:
         """8 levels: 6, 5, 4, 3, 3A, 2, 1, 1S."""
@@ -1228,7 +1228,7 @@ class TestLoadAlimentariFederalimentare:
     def test_alimentari_federalimentare_tax_sector(self) -> None:
         """CCNL must declare tax_sector INDUSTRIA."""
         ccnl = load_ccnl("alimentari-federalimentare.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
 
     def test_alimentari_federalimentare_seniority_cadence(self) -> None:
         """Seniority: biennale cadence (24 months), maximum 5 scatti."""
@@ -1264,8 +1264,8 @@ class TestLoadDmoFederdistribuzione:
     def test_dmo_federdistribuzione_loads(self) -> None:
         """Loads dmo-federdistribuzione and verifies id and CNEL code H008."""
         ccnl = load_ccnl("dmo-federdistribuzione.json")
-        assert ccnl.ccnl.id == "dmo-federdistribuzione"
-        assert ccnl.ccnl.cnel_code == "H008"
+        assert ccnl.meta.id == "dmo-federdistribuzione"
+        assert ccnl.meta.cnel_code == "H008"
 
     def test_dmo_federdistribuzione_has_8_levels(self) -> None:
         """Eight levels: VII, VI, V, IV, III, II, I, Q."""
@@ -1326,7 +1326,7 @@ class TestLoadDmoFederdistribuzione:
     def test_dmo_federdistribuzione_tax_sector(self) -> None:
         """CCNL must declare tax_sector TERZIARIO."""
         ccnl = load_ccnl("dmo-federdistribuzione.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
 
     def test_dmo_federdistribuzione_seniority_cadence(self) -> None:
         """Seniority: triennale cadence (36 months), maximum 10 scatti."""
@@ -1360,8 +1360,8 @@ class TestLoadMetalmeccanicoArtigianato:
     def test_metalmeccanico_artigianato_loads(self) -> None:
         """File loads and has correct id and CNEL code."""
         ccnl = load_ccnl("metalmeccanico-artigianato.json")
-        assert ccnl.ccnl.id == "metalmeccanico-artigianato"
-        assert ccnl.ccnl.cnel_code == "C030"
+        assert ccnl.meta.id == "metalmeccanico-artigianato"
+        assert ccnl.meta.cnel_code == "C030"
 
     def test_metalmeccanico_artigianato_has_8_levels(self) -> None:
         """Contract has exactly 8 levels with expected codes."""
@@ -1411,7 +1411,7 @@ class TestLoadMetalmeccanicoArtigianato:
     def test_metalmeccanico_artigianato_tax_sector(self) -> None:
         """CCNL must declare tax_sector ARTIGIANATO."""
         ccnl = load_ccnl("metalmeccanico-artigianato.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.ARTIGIANATO
+        assert ccnl.meta.tax_sector == TaxSector.ARTIGIANATO
 
     def test_metalmeccanico_artigianato_seniority_cadence(self) -> None:
         """Seniority: biennale cadence (24 months), maximum 5 scatti."""
@@ -1443,8 +1443,8 @@ class TestLoadGommaPlasticaFederazioneGommaPlastica:
     def test_gomma_plastica_loads(self) -> None:
         """File loads and has correct id and CNEL code."""
         ccnl = load_ccnl("gomma-plastica-federazione-gomma-plastica.json")
-        assert ccnl.ccnl.id == "gomma-plastica-federazione-gomma-plastica"
-        assert ccnl.ccnl.cnel_code == "B371"
+        assert ccnl.meta.id == "gomma-plastica-federazione-gomma-plastica"
+        assert ccnl.meta.cnel_code == "B371"
 
     def test_gomma_plastica_has_10_levels(self) -> None:
         """Contract has exactly 10 levels with expected codes."""
@@ -1496,7 +1496,7 @@ class TestLoadGommaPlasticaFederazioneGommaPlastica:
     def test_gomma_plastica_tax_sector(self) -> None:
         """CCNL must declare tax_sector INDUSTRIA."""
         ccnl = load_ccnl("gomma-plastica-federazione-gomma-plastica.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
 
     def test_gomma_plastica_seniority_cadence(self) -> None:
         """Seniority: biennale cadence (24 months), maximum 5 scatti."""
@@ -1526,8 +1526,8 @@ class TestLoadGraficaEditoriaAieg:
     def test_grafica_editoria_aieg_loads(self) -> None:
         """File loads and has correct id and CNEL code."""
         ccnl = load_ccnl("grafica-editoria-aieg.json")
-        assert ccnl.ccnl.id == "grafica-editoria-aieg"
-        assert ccnl.ccnl.cnel_code == "G011"
+        assert ccnl.meta.id == "grafica-editoria-aieg"
+        assert ccnl.meta.cnel_code == "G011"
 
     def test_grafica_editoria_aieg_has_12_levels(self) -> None:
         """Grafici sector has exactly 12 levels with expected codes."""
@@ -1590,7 +1590,7 @@ class TestLoadGraficaEditoriaAieg:
     def test_grafica_editoria_aieg_tax_sector(self) -> None:
         """CCNL must declare tax_sector INDUSTRIA."""
         ccnl = load_ccnl("grafica-editoria-aieg.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
 
     def test_grafica_editoria_aieg_seniority_cadence(self) -> None:
         """Seniority: biennale cadence (24 months), maximum 5 scatti."""
@@ -1647,8 +1647,8 @@ class TestLoadCartaCartoneAssocarta:
     def test_carta_cartone_assocarta_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("carta-cartone-assocarta.json")
-        assert ccnl.ccnl.id == "carta-cartone-assocarta"
-        assert ccnl.ccnl.cnel_code == "G022"
+        assert ccnl.meta.id == "carta-cartone-assocarta"
+        assert ccnl.meta.cnel_code == "G022"
 
     def test_carta_cartone_assocarta_has_13_levels(self) -> None:
         """Contract has exactly 13 levels with correct codes."""
@@ -1712,7 +1712,7 @@ class TestLoadCartaCartoneAssocarta:
     def test_carta_cartone_assocarta_tax_sector(self) -> None:
         """CCNL must declare tax_sector INDUSTRIA."""
         ccnl = load_ccnl("carta-cartone-assocarta.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
 
     def test_carta_cartone_assocarta_seniority_cadence(self) -> None:
         """Seniority: biennale cadence (24 months), maximum 5 scatti."""
@@ -1728,8 +1728,8 @@ class TestLoadTelecomunicazioniAsstel:
     def test_telecomunicazioni_asstel_loads(self) -> None:
         """Contract id == 'telecomunicazioni-asstel', cnel_code == 'K411'."""
         ccnl = load_ccnl("telecomunicazioni-asstel.json")
-        assert ccnl.ccnl.id == "telecomunicazioni-asstel"
-        assert ccnl.ccnl.cnel_code == "K411"
+        assert ccnl.meta.id == "telecomunicazioni-asstel"
+        assert ccnl.meta.cnel_code == "K411"
 
     def test_telecomunicazioni_asstel_has_9_levels(self) -> None:
         """9 livelli: A1, A2, B1, B2, C1, C2, C3, C4, D1."""
@@ -1790,7 +1790,7 @@ class TestLoadTelecomunicazioniAsstel:
     def test_telecomunicazioni_asstel_tax_sector(self) -> None:
         """CCNL must declare tax_sector INDUSTRIA (Asstel/Confindustria)."""
         ccnl = load_ccnl("telecomunicazioni-asstel.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
 
     def test_telecomunicazioni_asstel_seniority_cadence(self) -> None:
         """Seniority: biennale cadence (24 months), maximum 7 scatti."""
@@ -1815,8 +1815,8 @@ class TestLoadVigilanzaPrivataAssiv:
     def test_vigilanza_privata_assiv_loads(self) -> None:
         """Contract loads with correct id and CNEL code HV40."""
         ccnl = load_ccnl("vigilanza-privata-assiv.json")
-        assert ccnl.ccnl.id == "vigilanza-privata-assiv"
-        assert ccnl.ccnl.cnel_code == "HV40"
+        assert ccnl.meta.id == "vigilanza-privata-assiv"
+        assert ccnl.meta.cnel_code == "HV40"
 
     def test_vigilanza_privata_assiv_has_7_levels(self) -> None:
         """GPG section has exactly 7 levels: Q, 1, 2, 3, 4, 5, 6."""
@@ -1864,7 +1864,7 @@ class TestLoadVigilanzaPrivataAssiv:
     def test_vigilanza_privata_assiv_tax_sector(self) -> None:
         """Contract declares TERZIARIO tax sector (non-Confindustria)."""
         ccnl = load_ccnl("vigilanza-privata-assiv.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
 
     def test_vigilanza_privata_assiv_seniority_cadence(self) -> None:
         """Seniority: triennale cadence (36 months), maximum 6 scatti."""
@@ -1888,8 +1888,8 @@ class TestLoadLegnoArredamentoFederlegno:
     def test_legno_arredamento_federlegno_loads(self) -> None:
         """Contract loads with id='legno-arredamento-federlegno', code F051."""
         ccnl = load_ccnl("legno-arredamento-federlegno.json")
-        assert ccnl.ccnl.id == "legno-arredamento-federlegno"
-        assert ccnl.ccnl.cnel_code == "F051"
+        assert ccnl.meta.id == "legno-arredamento-federlegno"
+        assert ccnl.meta.cnel_code == "F051"
 
     def test_legno_arredamento_federlegno_has_16_levels(self) -> None:
         """16 level codes across 12 salary bands (AE, AS, AC, AD areas)."""
@@ -1957,7 +1957,7 @@ class TestLoadLegnoArredamentoFederlegno:
     def test_legno_arredamento_federlegno_tax_sector(self) -> None:
         """Contract declares INDUSTRIA tax sector."""
         ccnl = load_ccnl("legno-arredamento-federlegno.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
 
     def test_legno_arredamento_federlegno_seniority_cadence(self) -> None:
         """Seniority: biennale cadence (24 months), maximum 5 scatti."""
@@ -1989,8 +1989,8 @@ class TestLoadEdiliziaArtigianatoCna:
     def test_edilizia_artigianato_cna_loads(self) -> None:
         """Contract loads and reports correct id and CNEL code."""
         ccnl = load_ccnl("edilizia-artigianato-cna.json")
-        assert ccnl.ccnl.id == "edilizia-artigianato-cna"
-        assert ccnl.ccnl.cnel_code == "F015"
+        assert ccnl.meta.id == "edilizia-artigianato-cna"
+        assert ccnl.meta.cnel_code == "F015"
 
     def test_edilizia_artigianato_cna_has_8_levels(self) -> None:
         """Contract has exactly 8 levels: 1-7 plus 7Q."""
@@ -2039,7 +2039,7 @@ class TestLoadEdiliziaArtigianatoCna:
     def test_edilizia_artigianato_cna_tax_sector(self) -> None:
         """Contract declares ARTIGIANATO tax sector."""
         ccnl = load_ccnl("edilizia-artigianato-cna.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.ARTIGIANATO
+        assert ccnl.meta.tax_sector == TaxSector.ARTIGIANATO
 
     def test_edilizia_artigianato_cna_seniority_cadence(self) -> None:
         """Seniority: biennale cadence (24 months), maximum 5 scatti."""
@@ -2101,8 +2101,8 @@ class TestLoadGasAcquaUtilitalia:
     def test_gas_acqua_utilitalia_loads(self) -> None:
         """Contract loads with id='gas-acqua-utilitalia' and CNEL K321."""
         ccnl = load_ccnl("gas-acqua-utilitalia.json")
-        assert ccnl.ccnl.id == "gas-acqua-utilitalia"
-        assert ccnl.ccnl.cnel_code == "K321"
+        assert ccnl.meta.id == "gas-acqua-utilitalia"
+        assert ccnl.meta.cnel_code == "K321"
 
     def test_gas_acqua_utilitalia_has_9_levels(self) -> None:
         """Contract has exactly 9 levels: 1-8 plus Q."""
@@ -2179,7 +2179,7 @@ class TestLoadGasAcquaUtilitalia:
     def test_gas_acqua_utilitalia_tax_sector(self) -> None:
         """Contract declares INDUSTRIA tax sector."""
         ccnl = load_ccnl("gas-acqua-utilitalia.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
 
     def test_gas_acqua_utilitalia_seniority_cadence(self) -> None:
         """Seniority abolished 2015: cadence 24 months, maximum_count 0."""
@@ -2195,8 +2195,8 @@ class TestLoadUnebaUneba:
     def test_uneba_uneba_loads(self) -> None:
         """Loads with id='uneba-uneba' and CNEL code T141."""
         ccnl = load_ccnl("uneba-uneba.json")
-        assert ccnl.ccnl.id == "uneba-uneba"
-        assert ccnl.ccnl.cnel_code == "T141"
+        assert ccnl.meta.id == "uneba-uneba"
+        assert ccnl.meta.cnel_code == "T141"
 
     def test_uneba_uneba_has_11_levels(self) -> None:
         """Contract has exactly 11 levels: Q, 1, 2, 3S, 3, 4S, 4, 5S, 5, 6S, 6."""
@@ -2244,7 +2244,7 @@ class TestLoadUnebaUneba:
     def test_uneba_uneba_tax_sector(self) -> None:
         """Contract declares TERZIARIO tax sector."""
         ccnl = load_ccnl("uneba-uneba.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
 
     def test_uneba_uneba_seniority_cadence(self) -> None:
         """Seniority: triennial (36 months), maximum 10 scatti (Art. 48)."""
@@ -2260,8 +2260,8 @@ class TestLoadAcconciaturaesteticaConfartigianato:
     def test_acconciatura_estetica_confartigianato_loads(self) -> None:
         """Loads with id='acconciatura-estetica-confartigianato', code H515."""
         ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
-        assert ccnl.ccnl.id == "acconciatura-estetica-confartigianato"
-        assert ccnl.ccnl.cnel_code == "H515"
+        assert ccnl.meta.id == "acconciatura-estetica-confartigianato"
+        assert ccnl.meta.cnel_code == "H515"
 
     def test_acconciatura_estetica_confartigianato_has_4_levels(self) -> None:
         """Contract has exactly 4 levels: 1, 2, 3, 4."""
@@ -2313,7 +2313,7 @@ class TestLoadAcconciaturaesteticaConfartigianato:
     def test_acconciatura_estetica_confartigianato_tax_sector(self) -> None:
         """Contract declares ARTIGIANATO tax sector."""
         ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.ARTIGIANATO
+        assert ccnl.meta.tax_sector == TaxSector.ARTIGIANATO
 
     def test_acconciatura_estetica_confartigianato_seniority_cadence(self) -> None:
         """Seniority: biennale (24 months), maximum 5 scatti."""
@@ -2348,8 +2348,8 @@ class TestLoadPanificazioneArtigianatoConfartigianato:
     def test_panificazione_artigianato_confartigianato_loads(self) -> None:
         """Loads with id='panificazione-artigianato-confartigianato', code E015."""
         ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
-        assert ccnl.ccnl.id == "panificazione-artigianato-confartigianato"
-        assert ccnl.ccnl.cnel_code == "E015"
+        assert ccnl.meta.id == "panificazione-artigianato-confartigianato"
+        assert ccnl.meta.cnel_code == "E015"
 
     def test_panificazione_artigianato_confartigianato_has_10_levels(self) -> None:
         """Contract has exactly 10 levels: B4 A4 B3 B3S A3 B2 A2 A1 B1 A1S."""
@@ -2402,7 +2402,7 @@ class TestLoadPanificazioneArtigianatoConfartigianato:
     def test_panificazione_artigianato_confartigianato_tax_sector(self) -> None:
         """Contract declares ARTIGIANATO tax sector."""
         ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.ARTIGIANATO
+        assert ccnl.meta.tax_sector == TaxSector.ARTIGIANATO
 
     def test_panificazione_artigianato_confartigianato_seniority_cadence(self) -> None:
         """Seniority: biennale (24 months), maximum 5 scatti (Art. 34-bis)."""
@@ -2439,8 +2439,8 @@ class TestLoadAutoferrotranvieriInternavigatori:
     def test_autoferrotranvieri_internavigatori_loads(self) -> None:
         """Contract id is autoferrotranvieri-internavigatori, CNEL code I022."""
         ccnl = load_ccnl("autoferrotranvieri-internavigatori.json")
-        assert ccnl.ccnl.id == "autoferrotranvieri-internavigatori"
-        assert ccnl.ccnl.cnel_code == "I022"
+        assert ccnl.meta.id == "autoferrotranvieri-internavigatori"
+        assert ccnl.meta.cnel_code == "I022"
 
     def test_autoferrotranvieri_internavigatori_has_33_levels(self) -> None:
         """Contract has exactly 33 levels (parametri 100 to 250)."""
@@ -2502,7 +2502,7 @@ class TestLoadAutoferrotranvieriInternavigatori:
     def test_autoferrotranvieri_internavigatori_tax_sector(self) -> None:
         """Contract declares TERZIARIO tax sector."""
         ccnl = load_ccnl("autoferrotranvieri-internavigatori.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
 
     def test_autoferrotranvieri_internavigatori_seniority_cadence(self) -> None:
         """Seniority: biennale (24 months), maximum 6 scatti."""
@@ -2518,8 +2518,8 @@ class TestLoadBccCreditoCooperativo:
     def test_bcc_credito_cooperativo_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("bcc-credito-cooperativo.json")
-        assert ccnl.ccnl.id == "bcc-credito-cooperativo"
-        assert ccnl.ccnl.cnel_code == "J271"
+        assert ccnl.meta.id == "bcc-credito-cooperativo"
+        assert ccnl.meta.cnel_code == "J271"
 
     def test_bcc_credito_cooperativo_has_11_levels(self) -> None:
         """Contract has exactly 11 levels across QD and Aree Professionali."""
@@ -2580,7 +2580,7 @@ class TestLoadBccCreditoCooperativo:
     def test_bcc_credito_cooperativo_tax_sector(self) -> None:
         """Contract declares CREDITO tax sector."""
         ccnl = load_ccnl("bcc-credito-cooperativo.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.CREDITO
+        assert ccnl.meta.tax_sector == TaxSector.CREDITO
 
     def test_bcc_credito_cooperativo_seniority_cadence(self) -> None:
         """Seniority: triennale (36 months); global max 8 (AP area), QD* max 12."""
@@ -2619,7 +2619,7 @@ class TestLoadBccCreditoCooperativo:
     def test_bcc_credito_cooperativo_apprentice_compute(self) -> None:
         """Apprentice 12 months elapsed → salary at 2AP2 level."""
         ccnl = load_ccnl("bcc-credito-cooperativo.json")
-        rules = load_year_rules(2026, ccnl.ccnl.tax_sector, num_employees=50)
+        rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
         result = compute(
             ccnl, "3AP1", date(2026, 6, 1), rules, Apprentice(months_elapsed=12)
         )
@@ -2634,8 +2634,8 @@ class TestLoadElettricoElettricita:
     def test_elettrico_elettricita_futura_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("elettrico-elettricita-futura.json")
-        assert ccnl.ccnl.id == "elettrico-elettricita-futura"
-        assert ccnl.ccnl.cnel_code == "K051"
+        assert ccnl.meta.id == "elettrico-elettricita-futura"
+        assert ccnl.meta.cnel_code == "K051"
 
     def test_elettrico_elettricita_futura_has_14_levels(self) -> None:
         """Contract has exactly 14 levels from C1 to QS."""
@@ -2701,7 +2701,7 @@ class TestLoadElettricoElettricita:
     def test_elettrico_elettricita_futura_tax_sector(self) -> None:
         """Contract declares INDUSTRIA tax sector."""
         ccnl = load_ccnl("elettrico-elettricita-futura.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
 
     def test_elettrico_elettricita_futura_seniority_cadence(self) -> None:
         """Seniority: biennale (24 months), maximum 5 scatti."""
@@ -2717,8 +2717,8 @@ class TestLoadCalzaturieroAssocalzaturifici:
     def test_calzaturiero_assocalzaturifici_loads(self) -> None:
         """CCNL loads with correct id and CNEL code D121."""
         ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
-        assert ccnl.ccnl.id == "calzaturiero-assocalzaturifici"
-        assert ccnl.ccnl.cnel_code == "D121"
+        assert ccnl.meta.id == "calzaturiero-assocalzaturifici"
+        assert ccnl.meta.cnel_code == "D121"
 
     def test_calzaturiero_assocalzaturifici_has_10_levels(self) -> None:
         """Contract has exactly 10 classification levels."""
@@ -2767,7 +2767,7 @@ class TestLoadCalzaturieroAssocalzaturifici:
     def test_calzaturiero_assocalzaturifici_tax_sector(self) -> None:
         """Contract declares INDUSTRIA tax sector."""
         ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
 
     def test_calzaturiero_assocalzaturifici_seniority_cadence(self) -> None:
         """Seniority: triennale (36 months), maximum 5 scatti."""
@@ -2830,8 +2830,8 @@ class TestLoadTessileModaArtigianatoConfartigianato:
     def test_tessile_moda_artigianato_confartigianato_loads(self) -> None:
         """Contract loads with correct id and CNEL code V751."""
         ccnl = load_ccnl("tessile-moda-artigianato-confartigianato.json")
-        assert ccnl.ccnl.id == "tessile-moda-artigianato-confartigianato"
-        assert ccnl.ccnl.cnel_code == "V751"
+        assert ccnl.meta.id == "tessile-moda-artigianato-confartigianato"
+        assert ccnl.meta.cnel_code == "V751"
 
     def test_tessile_moda_artigianato_confartigianato_has_7_levels(self) -> None:
         """Contract has exactly 7 levels: 1, 2, 3, 4, 5, 6, 6S."""
@@ -2885,7 +2885,7 @@ class TestLoadTessileModaArtigianatoConfartigianato:
     def test_tessile_moda_artigianato_confartigianato_tax_sector(self) -> None:
         """Contract declares ARTIGIANATO tax sector."""
         ccnl = load_ccnl("tessile-moda-artigianato-confartigianato.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.ARTIGIANATO
+        assert ccnl.meta.tax_sector == TaxSector.ARTIGIANATO
 
     def test_tessile_moda_artigianato_confartigianato_seniority_cadence(
         self,
@@ -2920,8 +2920,8 @@ class TestLoadLegnoLapideiArtigianatoConfartigianato:
     def test_legno_lapidei_artigianato_confartigianato_loads(self) -> None:
         """Contract loads with correct id and CNEL code F060."""
         ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato.json")
-        assert ccnl.ccnl.id == "legno-lapidei-artigianato-confartigianato"
-        assert ccnl.ccnl.cnel_code == "F060"
+        assert ccnl.meta.id == "legno-lapidei-artigianato-confartigianato"
+        assert ccnl.meta.cnel_code == "F060"
 
     def test_legno_lapidei_artigianato_confartigianato_has_8_levels(self) -> None:
         """Contract has exactly 8 levels: F, E, D, C, CS, B, A, AS."""
@@ -2986,7 +2986,7 @@ class TestLoadLegnoLapideiArtigianatoConfartigianato:
     def test_legno_lapidei_artigianato_confartigianato_tax_sector(self) -> None:
         """Contract declares ARTIGIANATO tax sector."""
         ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.ARTIGIANATO
+        assert ccnl.meta.tax_sector == TaxSector.ARTIGIANATO
 
     def test_legno_lapidei_artigianato_confartigianato_seniority_cadence(
         self,
@@ -3026,8 +3026,8 @@ class TestLoadComunicazioneArtigianatoConfartigianato:
     def test_comunicazione_artigianato_confartigianato_loads(self) -> None:
         """Contract loads with correct id and CNEL code G016."""
         ccnl = load_ccnl("comunicazione-artigianato-confartigianato.json")
-        assert ccnl.ccnl.id == "comunicazione-artigianato-confartigianato"
-        assert ccnl.ccnl.cnel_code == "G016"
+        assert ccnl.meta.id == "comunicazione-artigianato-confartigianato"
+        assert ccnl.meta.cnel_code == "G016"
 
     def test_comunicazione_artigianato_confartigianato_has_8_levels(self) -> None:
         """Contract has exactly 8 levels with the correct codes."""
@@ -3099,7 +3099,7 @@ class TestLoadComunicazioneArtigianatoConfartigianato:
     def test_comunicazione_artigianato_confartigianato_tax_sector(self) -> None:
         """Contract declares ARTIGIANATO tax sector."""
         ccnl = load_ccnl("comunicazione-artigianato-confartigianato.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.ARTIGIANATO
+        assert ccnl.meta.tax_sector == TaxSector.ARTIGIANATO
 
     def test_comunicazione_artigianato_confartigianato_seniority_cadence(
         self,
@@ -3134,8 +3134,8 @@ class TestLoadCeramicaIndustriaConfindustria:
     def test_ceramica_industria_confindustria_loads(self) -> None:
         """Contract loads with correct id and CNEL code B122."""
         ccnl = load_ccnl("ceramica-industria-confindustria.json")
-        assert ccnl.ccnl.id == "ceramica-industria-confindustria"
-        assert ccnl.ccnl.cnel_code == "B122"
+        assert ccnl.meta.id == "ceramica-industria-confindustria"
+        assert ccnl.meta.cnel_code == "B122"
 
     def test_ceramica_industria_confindustria_has_12_levels(self) -> None:
         """Contract has 12 levels: A B1 B2 C1 C2 C3 D1 D2 D3 E1 E2 F."""
@@ -3209,7 +3209,7 @@ class TestLoadCeramicaIndustriaConfindustria:
     def test_ceramica_industria_confindustria_tax_sector(self) -> None:
         """Contract declares INDUSTRIA tax sector."""
         ccnl = load_ccnl("ceramica-industria-confindustria.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
 
     def test_ceramica_industria_confindustria_seniority_cadence(self) -> None:
         """Seniority: biennale (24 months), maximum 5 scatti."""
@@ -3237,8 +3237,8 @@ class TestLoadOrafiArgentieriIndustriaFederorafi:
     def test_orafi_argentieri_industria_federorafi_loads(self) -> None:
         """Contract loads with correct id and CNEL code C021."""
         ccnl = load_ccnl("orafi-argentieri-industria-federorafi.json")
-        assert ccnl.ccnl.id == "orafi-argentieri-industria-federorafi"
-        assert ccnl.ccnl.cnel_code == "C021"
+        assert ccnl.meta.id == "orafi-argentieri-industria-federorafi"
+        assert ccnl.meta.cnel_code == "C021"
 
     def test_orafi_argentieri_industria_federorafi_has_8_levels(self) -> None:
         """Contract has 8 levels: 2 3 4 5 5S 6 7 7Q."""
@@ -3302,7 +3302,7 @@ class TestLoadOrafiArgentieriIndustriaFederorafi:
     def test_orafi_argentieri_industria_federorafi_tax_sector(self) -> None:
         """Contract declares INDUSTRIA tax sector."""
         ccnl = load_ccnl("orafi-argentieri-industria-federorafi.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
 
     def test_orafi_argentieri_industria_federorafi_seniority_cadence(
         self,
@@ -3334,8 +3334,8 @@ class TestLoadPelliCuoioIndustriaAssopellettieri:
     def test_pelli_cuoio_industria_assopellettieri_loads(self) -> None:
         """Contract loads with correct id and CNEL code D111."""
         ccnl = load_ccnl("pelli-cuoio-industria-assopellettieri.json")
-        assert ccnl.ccnl.id == "pelli-cuoio-industria-assopellettieri"
-        assert ccnl.ccnl.cnel_code == "D111"
+        assert ccnl.meta.id == "pelli-cuoio-industria-assopellettieri"
+        assert ccnl.meta.cnel_code == "D111"
 
     def test_pelli_cuoio_industria_assopellettieri_has_7_levels(self) -> None:
         """Contract has exactly 7 levels: 1, 2, 3, 4, 4S, 5, 6."""
@@ -3392,7 +3392,7 @@ class TestLoadPelliCuoioIndustriaAssopellettieri:
     def test_pelli_cuoio_industria_assopellettieri_tax_sector(self) -> None:
         """Contract declares INDUSTRIA tax sector."""
         ccnl = load_ccnl("pelli-cuoio-industria-assopellettieri.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.INDUSTRIA
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
 
     def test_pelli_cuoio_industria_assopellettieri_seniority_cadence(
         self,
@@ -3422,8 +3422,8 @@ class TestLoadPubbliciEserciziRistorazioneFipeAngem:
     def test_pubblici_esercizi_fipe_angem_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("pubblici-esercizi-fipe-angem.json")
-        assert ccnl.ccnl.id == "pubblici-esercizi-fipe-angem"
-        assert ccnl.ccnl.cnel_code == "H05Y"
+        assert ccnl.meta.id == "pubblici-esercizi-fipe-angem"
+        assert ccnl.meta.cnel_code == "H05Y"
 
     def test_pubblici_esercizi_fipe_angem_has_10_levels(self) -> None:
         """Contract has exactly 10 levels: 1, 2, 3, 4, 5, 6, 6s, 7, Qa, Qb."""
@@ -3485,7 +3485,7 @@ class TestLoadPubbliciEserciziRistorazioneFipeAngem:
     def test_pubblici_esercizi_fipe_angem_tax_sector(self) -> None:
         """Contract declares TERZIARIO tax sector."""
         ccnl = load_ccnl("pubblici-esercizi-fipe-angem.json")
-        assert ccnl.ccnl.tax_sector == TaxSector.TERZIARIO
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
 
     def test_pubblici_esercizi_fipe_angem_seniority_cadence(self) -> None:
         """Seniority: quadriennale (48 months), maximum 6 scatti."""
