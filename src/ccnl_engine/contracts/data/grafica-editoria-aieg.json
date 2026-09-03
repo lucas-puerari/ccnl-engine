@@ -36,10 +36,10 @@
       "SIMPLIFICATION: HOURLY DIVISOR: 173. SIMPLIFICATION: no official hourly rate table recovered for G011. The value 173 is derived from 40h/week standard (40×52/12=173.33→173). The CCNL uses divisore convenzionale 26 for daily calculations; the hourly divisor is inferred from the weekly-hours convention. If the actual contractual hours differ (e.g., 37.5h/week→163), divisore must be corrected.",
       "INFO: TRANCHE DATES: 01.03.2024, 01.09.2024, 01.05.2025, 01.10.2025, 01.07.2026. Values from rinnovo 20.12.2024 (retroactive application). Fonte: lexplain.it (5 tranches, all 12 Grafici levels) and kitech.it (componenti breakdown July 2026).",
       "SIMPLIFICATION: SENIORITY: 5 scatti biennali (24 months), valid from kitech.it July 2026. SIMPLIFICATION: pre-July 2026 scatto amounts not modelled (prior rinnovo values not recovered). The engine uses July 2026 amounts for all periods — impact negligible for current-date calculations.",
-      "INFO: SECTOR SCOPE: modella solo il settore GRAFICI (12 livelli: E, D2, D1, C2, C1, B3, B2, B1, B1S, A, AS, Q). Il settore EDITORI (9 livelli: 8°-0°/Q) con tabelle retributive leggermente diverse NON è modellato. Coverage marcata come layer_1=implemented solo per Grafici.",
-      "INFO: ADDITIONAL MONTHS: 13 (tredicesima only). Confermato da fonte secondaria (lavoro-economia.it / contratticcnl.it). La quattordicesima non è prevista dal CCNL G011 Grafici.",
-      "INFO: INPS: riutilizza 2026-industria.json (Confindustria). AIEG/Acigraf aderiscono a Confindustria; CIGO applicabile per il settore industria grafica (D.Lgs. 148/2015).",
-      "INFO: APPRENTICESHIP (Art. 26e, Tipologia 2, CCNL 19/01/2021, pag.42; confermato in vigore nel rinnovo 20.12.2024): traccia 'triennale' (gruppi C,B,A,Q → livelli C2,C1,B3,B2,B1,B1S,A,AS,Q): 36 mesi / 6 semestri, 70/75/80/85/90/95% poi 100%. Traccia 'biennale' (gruppo D → livelli D2,D1): 24 mesi / 6 quadrimestri (4 mesi ciascuno), 70/75/80/85/90/95% poi 100%. Livello E non citato come destinazione nell'apprendistato. Settore EDITORI non modellato in questo JSON. Fonte: fistelcisl.it PDF CCNL grafici-editoriali.pdf (pag. 41-42)."
+      "INFO: SECTOR SCOPE: models the GRAFICI (graphics workers) sector only (12 levels: E, D2, D1, C2, C1, B3, B2, B1, B1S, A, AS, Q). The EDITORI (publishers) sector (9 levels: 8°-0°/Q) with slightly different pay tables is NOT modelled. Coverage marked as layer_1=implemented for Grafici only.",
+      "INFO: ADDITIONAL MONTHS: 13 (tredicesima only). Confirmed by secondary source (lavoro-economia.it / contratticcnl.it). A quattordicesima is not provided for by CCNL G011 Grafici.",
+      "INFO: INPS: reuses 2026-industria.json (Confindustria). AIEG/Acigraf are members of Confindustria; CIGO applicable for the graphic arts industry sector (D.Lgs. 148/2015).",
+      "INFO: APPRENTICESHIP (Art. 26e, Type 2, CCNL 19/01/2021, p.42; confirmed in force in the 20.12.2024 renewal): 'triennale' track (groups C,B,A,Q → levels C2,C1,B3,B2,B1,B1S,A,AS,Q): 36 months / 6 semesters, 70/75/80/85/90/95% then 100%. 'biennale' track (group D → levels D2,D1): 24 months / 6 four-month periods (4 months each), 70/75/80/85/90/95% then 100%. Level E not listed as an apprenticeship destination. EDITORI sector not modelled in this JSON. Source: fistelcisl.it PDF CCNL grafici-editoriali.pdf (p. 41-42)."
     ]
   },
   "parameters": {
@@ -124,7 +124,7 @@
     {
       "code": "E",
       "order": 1,
-      "description": "E — lavoratore di 1ª categoria, mansioni semplici ed esecutive",
+      "description": "E — 1st category worker, simple and routine tasks",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "1365.55" },
@@ -139,7 +139,7 @@
     {
       "code": "D2",
       "order": 2,
-      "description": "D2 — lavoratore di 2ª categoria, operatore su macchine",
+      "description": "D2 — 2nd category worker, machine operator",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "1485.52" },
@@ -154,7 +154,7 @@
     {
       "code": "D1",
       "order": 3,
-      "description": "D1 — lavoratore di 2ª cat. superiore, operatore qualificato",
+      "description": "D1 — upper 2nd category worker, qualified operator",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "1582.37" },
@@ -169,7 +169,7 @@
     {
       "code": "C2",
       "order": 4,
-      "description": "C2 — lavoratore di 3ª categoria, tecnico grafico generico",
+      "description": "C2 — 3rd category worker, general graphic technician",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "1694.91" },
@@ -184,7 +184,7 @@
     {
       "code": "C1",
       "order": 5,
-      "description": "C1 — lavoratore di 3ª categoria, tecnico grafico specializzato",
+      "description": "C1 — 3rd category worker, specialist graphic technician",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "1852.88" },
@@ -199,7 +199,7 @@
     {
       "code": "B3",
       "order": 6,
-      "description": "B3 — lavoratore di 4ª categoria, tecnico grafico esperto",
+      "description": "B3 — 4th category worker, expert graphic technician",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "1964.85" },
@@ -214,7 +214,7 @@
     {
       "code": "B2",
       "order": 7,
-      "description": "B2 — lavoratore di 4ª cat. super, conduttore impianti complessi",
+      "description": "B2 — upper 4th category worker, complex equipment operator",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "2077.65" },
@@ -229,7 +229,7 @@
     {
       "code": "B1",
       "order": 8,
-      "description": "B1 — lavoratore di 5ª categoria, tecnico altamente qualificato",
+      "description": "B1 — 5th category worker, highly qualified technician",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "2184.33" },
@@ -244,7 +244,7 @@
     {
       "code": "B1S",
       "order": 9,
-      "description": "B1S — lavoratore di 5ª cat. super, responsabile di settore tecnico",
+      "description": "B1S — upper 5th category worker, technical department head",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "2233.87" },
@@ -259,7 +259,7 @@
     {
       "code": "A",
       "order": 10,
-      "description": "A — lavoratore di 6ª categoria, responsabile di produzione",
+      "description": "A — 6th category worker, production manager",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "2304.32" },
@@ -274,7 +274,7 @@
     {
       "code": "AS",
       "order": 11,
-      "description": "AS — livello speciale, quadro tecnico-editoriale senior",
+      "description": "AS — special grade, senior technical-editorial manager",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "2634.91" },
@@ -289,7 +289,7 @@
     {
       "code": "Q",
       "order": 12,
-      "description": "Q — quadro, massima responsabilità tecnica o gestionale",
+      "description": "Q — quadro, highest technical or managerial responsibility",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2024-09-01", "value": "2644.82" },

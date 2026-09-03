@@ -180,7 +180,7 @@
     {
       "code": "1",
       "order": 1,
-      "description": "Operai manovali",
+      "description": "General labourers",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "641.48" },
@@ -200,7 +200,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (congelata dal Protocollo 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "512.71" }
@@ -209,7 +209,7 @@
         },
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR confederale)",
+          "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
@@ -222,7 +222,7 @@
     {
       "code": "2",
       "order": 2,
-      "description": "Operai comuni / Impiegati esecutivi (primi 18 mesi)",
+      "description": "General workers / Clerical employees (first 18 months)",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "699.21" },
@@ -242,7 +242,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (congelata dal Protocollo 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "513.96" }
@@ -251,7 +251,7 @@
         },
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR confederale)",
+          "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
@@ -264,7 +264,7 @@
     {
       "code": "2par115",
       "order": 3,
-      "description": "Operai addetti ad attività ausiliarie in ambito scolastico/sanitario (par. 115)",
+      "description": "Workers assigned to auxiliary activities in school/healthcare settings (par. 115)",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "737.71" },
@@ -284,7 +284,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (congelata; valore assimilato al livello 2 per prassi contrattuale)",
+          "description": "Cost-of-living allowance (frozen; value assimilated to level 2 by contractual practice)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "513.96" }
@@ -293,7 +293,7 @@
         },
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR confederale)",
+          "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
@@ -306,7 +306,7 @@
     {
       "code": "3",
       "order": 4,
-      "description": "Operai qualificati / Impiegati esecutivi",
+      "description": "Skilled workers / Clerical employees",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "756.94" },
@@ -326,7 +326,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (congelata dal Protocollo 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "515.42" }
@@ -335,7 +335,7 @@
         },
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR confederale)",
+          "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
@@ -348,7 +348,7 @@
     {
       "code": "4par125",
       "order": 5,
-      "description": "Operai addetti a cabine e linee di verniciatura in forza al 01/06/2001 (par. 125)",
+      "description": "Workers assigned to painting booths and lines employed as of 01/06/2001 (par. 125)",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "801.85" },
@@ -368,7 +368,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (congelata; valore assimilato al livello 4 per prassi contrattuale)",
+          "description": "Cost-of-living allowance (frozen; value assimilated to level 4 by contractual practice)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "517.50" }
@@ -377,7 +377,7 @@
         },
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR confederale)",
+          "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
@@ -390,7 +390,7 @@
     {
       "code": "4",
       "order": 6,
-      "description": "Operai specializzati / Impiegati d'ordine",
+      "description": "Specialist workers / Junior clerical employees",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "821.08" },
@@ -410,7 +410,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (congelata dal Protocollo 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "517.50" }
@@ -419,7 +419,7 @@
         },
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR confederale)",
+          "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
@@ -432,7 +432,7 @@
     {
       "code": "5",
       "order": 7,
-      "description": "Operai provetti / Impiegati di concetto",
+      "description": "Expert workers / White-collar employees",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "898.06" },
@@ -452,7 +452,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (congelata dal Protocollo 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "518.53" }
@@ -461,7 +461,7 @@
         },
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR confederale)",
+          "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
@@ -474,7 +474,7 @@
     {
       "code": "6",
       "order": 8,
-      "description": "Operai con mansioni specialistiche / Impiegati di concetto senior",
+      "description": "Workers with specialist duties / Senior white-collar employees",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "1116.15" },
@@ -494,7 +494,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (congelata dal Protocollo 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "524.77" }
@@ -503,7 +503,7 @@
         },
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR confederale)",
+          "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
@@ -516,7 +516,7 @@
     {
       "code": "7",
       "order": 9,
-      "description": "Impiegati con funzioni direttive",
+      "description": "Employees with managerial functions",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "1289.36" },
@@ -536,7 +536,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (congelata dal Protocollo 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "532.06" }
@@ -545,7 +545,7 @@
         },
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR confederale)",
+          "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
@@ -558,7 +558,7 @@
     {
       "code": "Q",
       "order": 10,
-      "description": "Quadri con mansioni direttive di alta responsabilità",
+      "description": "Quadri with high-responsibility managerial duties",
       "base_salary": {
         "periods": [
           { "valid_from": "2021-07-01", "valid_until": "2022-07-01", "value": "1411.23" },
@@ -578,7 +578,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (congelata dal Protocollo 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since the Protocol of 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "532.06" }
@@ -587,7 +587,7 @@
         },
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR confederale)",
+          "description": "Distinct Pay Element (EDR, confederal)",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "10.33" }
@@ -596,7 +596,7 @@
         },
         {
           "code": "ind_funzione",
-          "description": "Indennità di funzione Quadro",
+          "description": "Quadro function allowance",
           "monthly": {
             "periods": [
               { "valid_from": "2021-07-01", "valid_until": null, "value": "25.82" }

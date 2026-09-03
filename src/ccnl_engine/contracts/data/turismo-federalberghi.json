@@ -77,7 +77,7 @@
     {
       "code": "A",
       "order": 10,
-      "description": "Livello A",
+      "description": "Level A",
       "category": "quadro",
       "base_salary": {
         "periods": [
@@ -94,7 +94,7 @@
     {
       "code": "B",
       "order": 9,
-      "description": "Livello B",
+      "description": "Level B",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -111,7 +111,7 @@
     {
       "code": "1",
       "order": 8,
-      "description": "Livello 1",
+      "description": "Level 1",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -128,7 +128,7 @@
     {
       "code": "2",
       "order": 7,
-      "description": "Livello 2",
+      "description": "Level 2",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -145,7 +145,7 @@
     {
       "code": "3",
       "order": 6,
-      "description": "Livello 3",
+      "description": "Level 3",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -162,7 +162,7 @@
     {
       "code": "4",
       "order": 5,
-      "description": "Livello 4",
+      "description": "Level 4",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -179,7 +179,7 @@
     {
       "code": "5",
       "order": 4,
-      "description": "Livello 5",
+      "description": "Level 5",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -196,7 +196,7 @@
     {
       "code": "6s",
       "order": 3,
-      "description": "Livello 6 super",
+      "description": "Level 6 super",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -213,7 +213,7 @@
     {
       "code": "6",
       "order": 2,
-      "description": "Livello 6",
+      "description": "Level 6",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -230,7 +230,7 @@
     {
       "code": "7",
       "order": 1,
-      "description": "Livello 7",
+      "description": "Level 7",
       "category": "operaio",
       "base_salary": {
         "periods": [
@@ -263,16 +263,16 @@
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
-      "SOURCE: Durate apprendistato Art. 54 CCNL 2010 (visual confirm page 89): inquadramento 2/3/4=48m, 5/6s=36m, 6=24m. Livelli A/B/1/7 non sono destinazione apprendistato.",
-      "SOURCE: Percentuali apprendistato Art. 58 CCNL 2010 (pdftotext pages 90-97): 1°anno=80%, 2°anno=85%, 3°anno=90%, dal 4°anno=95%. Uniforme per tutti i livelli destinazione.",
-      "SOURCE: Divisore orario 172 da Art. 151 CCNL 2010 (orario normale 40h/settimana). Verifica: 1550.69/9.01=172.1 (lug-2024: 1620.69/9.42=172.0).",
-      "SOURCE: 14 mensilità da Art. 160 (tredicesima) e Art. 161 (quattordicesima) rinnovo 2024.",
-      "SOURCE: Scatti anzianità Art. 158 CCNL 2010: sei scatti triennali (cadence_months=36, maximum_count=6). Importi per livello verificati visivamente su immagini PDF pagine 140-141: A=40.80, B=39.25, 1=37.70, 2=36.15, 3=34.86, 4=33.05, 5=32.54, 6s=31.25, 6=30.99, 7=30.47.",
-      "SOURCE: Tabella retributiva base vigente 01.04.2016 dal rinnovo 2014 (UILTuCS PDF): A=2210.16, B=2046.20, 1=1906.44, 2=1742.47, 3=1643.37, 4=1550.69, 5=1454.28, 6s=1398.37, 6=1378.55, 7=1291.81.",
-      "SOURCE: 5 tranche retributive 2024-2027 dal rinnovo 5-luglio-2024 (UILTuCS PDF): lug-2024, giu-2025, mag-2026, apr-2027, nov-2027.",
-      "INFO: CNEL code H052 è condiviso con CCNL Agenzie di Viaggio Fiavet — il motore consente duplicati.",
-      "SIMPLIFICATION: Il tipo di livello (quadro/impiegato/operaio) è indicativo. Il CCNL 2010 usa livelli numerici 1-6 più A, B, 6s, 7 senza distinzione formale di categoria contrattuale.",
-      "SIMPLIFICATION: Layer 3 (straordinario, notturno, festivo) fuori scope."
+      "SOURCE: Apprenticeship durations Art. 54 CCNL 2010 (visual confirm page 89): grades 2/3/4=48m, 5/6s=36m, 6=24m. Levels A/B/1/7 are not apprenticeship destinations.",
+      "SOURCE: Apprenticeship percentages Art. 58 CCNL 2010 (pdftotext pages 90-97): 1st year=80%, 2nd year=85%, 3rd year=90%, from 4th year=95%. Uniform for all destination levels.",
+      "SOURCE: Hourly divisor 172 from Art. 151 CCNL 2010 (standard working hours 40h/week). Verification: 1550.69/9.01=172.1 (Jul-2024: 1620.69/9.42=172.0).",
+      "SOURCE: 14 monthly payments from Art. 160 (thirteenth) and Art. 161 (fourteenth) of the 2024 renewal.",
+      "SOURCE: Seniority increments Art. 158 CCNL 2010: six triennial increments (cadence_months=36, maximum_count=6). Per-level amounts visually verified from PDF image pages 140-141: A=40.80, B=39.25, 1=37.70, 2=36.15, 3=34.86, 4=33.05, 5=32.54, 6s=31.25, 6=30.99, 7=30.47.",
+      "SOURCE: Base salary table effective 01.04.2016 from the 2014 renewal (UILTuCS PDF): A=2210.16, B=2046.20, 1=1906.44, 2=1742.47, 3=1643.37, 4=1550.69, 5=1454.28, 6s=1398.37, 6=1378.55, 7=1291.81.",
+      "SOURCE: 5 salary tranches 2024-2027 from the 5 July 2024 renewal (UILTuCS PDF): Jul-2024, Jun-2025, May-2026, Apr-2027, Nov-2027.",
+      "INFO: CNEL code H052 is shared with CCNL Agenzie di Viaggio Fiavet — the engine allows duplicates.",
+      "SIMPLIFICATION: The level category (quadro/impiegato/operaio) is indicative. The CCNL 2010 uses numeric levels 1-6 plus A, B, 6s, 7 with no formal contractual category distinction.",
+      "SIMPLIFICATION: Layer 3 (overtime, night work, public holidays) out of scope."
     ]
   }
 }

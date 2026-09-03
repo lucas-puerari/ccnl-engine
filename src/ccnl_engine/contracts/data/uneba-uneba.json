@@ -121,7 +121,7 @@
     {
       "code": "6",
       "order": 1,
-      "description": "Livello 6 — operatore generico ausiliario",
+      "description": "Level 6 — generic auxiliary worker",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1293.12" },
@@ -134,7 +134,7 @@
     {
       "code": "6S",
       "order": 2,
-      "description": "Livello 6 Super — operatore ausiliario qualificato",
+      "description": "Level 6 Super — qualified auxiliary worker",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1328.08" },
@@ -147,7 +147,7 @@
     {
       "code": "5",
       "order": 3,
-      "description": "Livello 5 — operatore di assistenza di base",
+      "description": "Level 5 — basic care worker",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1363.01" },
@@ -160,7 +160,7 @@
     {
       "code": "5S",
       "order": 4,
-      "description": "Livello 5 Super — operatore di assistenza qualificato",
+      "description": "Level 5 Super — qualified care worker",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1397.99" },
@@ -173,7 +173,7 @@
     {
       "code": "4",
       "order": 5,
-      "description": "Livello 4 — operatore socio-assistenziale",
+      "description": "Level 4 — social care worker",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1421.27" },
@@ -186,7 +186,7 @@
     {
       "code": "4S",
       "order": 6,
-      "description": "Livello 4 Super — operatore socio-sanitario (OSS)",
+      "description": "Level 4 Super — social health care worker (OSS)",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1467.86" },
@@ -199,7 +199,7 @@
     {
       "code": "3",
       "order": 7,
-      "description": "Livello 3 — operatore tecnico specializzato / educatore",
+      "description": "Level 3 — specialist technical worker / educator",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1549.40" },
@@ -212,7 +212,7 @@
     {
       "code": "3S",
       "order": 8,
-      "description": "Livello 3 Super — educatore professionale / tecnico qualificato",
+      "description": "Level 3 Super — professional educator / qualified technician",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1607.64" },
@@ -225,7 +225,7 @@
     {
       "code": "2",
       "order": 9,
-      "description": "Livello 2 — responsabile di servizio / coordinatore",
+      "description": "Level 2 — service manager / coordinator",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1735.81" },
@@ -238,7 +238,7 @@
     {
       "code": "1",
       "order": 10,
-      "description": "Livello 1 — direttore / responsabile di struttura",
+      "description": "Level 1 — director / facility manager",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1840.65" },
@@ -251,7 +251,7 @@
     {
       "code": "Q",
       "order": 11,
-      "description": "Quadro — dirigente / responsabile apicale (con indennità di funzione)",
+      "description": "Senior Manager (Quadro) — executive / top-level manager (with function allowance)",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-10-01", "valid_until": "2025-07-01", "value": "1957.15" },
@@ -262,7 +262,7 @@
       "fixed_allowances": [
         {
           "code": "IND_FUN",
-          "description": "Indennità di funzione Quadro (Art. 43 CCNL 2025)",
+          "description": "Quadro Function Allowance (Art. 43 CCNL 2025)",
           "monthly": {
             "periods": [
               { "valid_from": "2024-10-01", "valid_until": null, "value": "100.00" }

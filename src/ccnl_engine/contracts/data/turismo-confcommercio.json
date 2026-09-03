@@ -38,15 +38,15 @@
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
-      "INFO: SUBSETTORE: tabelle salariali dal rinnovo alberghi/turismo firmato il 5 giugno 2024 (CCNL H052 parte speciale alberghi). Il CCNL H052 comprende anche il subsettore pubblici esercizi/FIPE (rinnovo marzo 2025, tabelle leggermente diverse) non modellato in questo file.",
-      "INFO: MINIMI CONGLOBATI: i valori in base_salary sono i minimi tabellari conglobati mensili (paga base + contingenza inclusi), come pubblicati da lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027. fixed_allowances è vuoto per tutti i livelli. Verifica: livello 7 novembre 2027 = 1458.42 / 172 = 8.48 €/ora (coincide con tabella oraria pubblicata).",
-      "INFO: INDENNITÀ DI FUNZIONE QA/QB: alcune fonti (pubblici esercizi) mostrano un'indennità di funzione separata (QA=75€, QB=70€). Per il subsettore alberghi i valori nella tabella conglobata sembrano già includere questa componente. Se verifiche su buste paga reali mostrano uno scostamento, aggiungere fixed_allowances QA=75€ e QB=70€.",
-      "INFO: TRANCHE: luglio 2024, giugno 2025, maggio 2026, aprile 2027, novembre 2027. Nessuna tranche previgente modellata (limite inferiore: 2024-07-01).",
-      "INFO: SCATTI DI ANZIANITÀ: 6 scatti quadriennali (ogni 48 mesi). Importi da lexplain.it/scatti-di-anzianita-ccnl-turismo-ristorazione-e-pubblici-esercizi. Gli scatti sono erogati per 14 mensilità (incluse 13a e 14a) — la componente del gross_annual è già catturata dal moltiplicatore additional_months=14 nel motore.",
-      "INFO: APPRENDISTATO percentage (rinnovo 2024): 80% mesi 1-12, 85% mesi 13-24, 90% mesi 25-36 (fonte: albergoatenericcione.it, confermato da ricerche sul rinnovo 2024). Durata 36 mesi per i livelli 2°-5° e 6S (track 'professionalizzante_36'), 24 mesi per il 6° (track 'professionalizzante_24'); oltre la durata contrattuale il lavoratore è qualificato al 100%. Il 7° livello, il 1° e i Quadri non sono destinazioni. L'under-classification (2 livelli sotto / 1 livello sotto) riguardava il CCNL previgente.",
-      "INFO: MENSILITÀ: 14 (tredicesima a giugno, quattordicesima a dicembre). Confermato da CCNL e dalla nota 'importi erogati per 14 mensilità' per gli scatti.",
-      "INFO: DIVISORE ORARIO: 172 ore/mese (40 h/settimana × 52/12). Verificato per retrocomputo: 1458.42 / 172 = 8.478 ≈ 8.48 €/ora (livello 7, novembre 2027 — coincide con tabella oraria lexplain).",
-      "INFO: INPS: utilizza 2026-terziario.json (stesso tax_sector di commercio-confcommercio)."
+      "INFO: SUB-SECTOR: salary tables from the hotels/tourism renewal signed on 5 June 2024 (CCNL H052 hotels special section). CCNL H052 also covers the public establishments/FIPE sub-sector (renewal March 2025, slightly different tables) not modelled in this file.",
+      "INFO: CONGLOBATED MINIMUMS: the base_salary values are the monthly conglobated tabular minimums (basic pay + contingency included), as published by lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027. fixed_allowances is empty for all levels. Verification: level 7 November 2027 = 1458.42 / 172 = 8.48 EUR/h (matches published hourly table).",
+      "INFO: QA/QB FUNCTION ALLOWANCE: some sources (public establishments) show a separate function allowance (QA=EUR 75, QB=EUR 70). For the hotels sub-sector, the values in the conglobated table appear to already include this component. If checks against actual payslips show a discrepancy, add fixed_allowances QA=EUR 75 and QB=EUR 70.",
+      "INFO: TRANCHES: July 2024, June 2025, May 2026, April 2027, November 2027. No prior tranches modelled (lower bound: 2024-07-01).",
+      "INFO: SENIORITY INCREMENTS: 6 four-yearly increments (every 48 months). Amounts from lexplain.it/scatti-di-anzianita-ccnl-turismo-ristorazione-e-pubblici-esercizi. The increments are paid over 14 monthly instalments (including the 13th and 14th) — the gross_annual component is already captured by the additional_months=14 multiplier in the engine.",
+      "INFO: APPRENTICESHIP percentage (2024 renewal): 80% months 1-12, 85% months 13-24, 90% months 25-36 (source: albergoatenericcione.it, confirmed by research on the 2024 renewal). Duration 36 months for grades 2-5 and 6S (track 'professionalizzante_36'), 24 months for grade 6 (track 'professionalizzante_24'); beyond the contractual duration the worker is fully qualified at 100%. Grade 7, grade 1, and Quadri are not destinations. The under-classification (2 levels below / 1 level below) applied to the previous CCNL.",
+      "INFO: MONTHLY PAYMENTS: 14 (thirteenth in June, fourteenth in December). Confirmed by CCNL and by the note 'amounts paid over 14 monthly instalments' for seniority increments.",
+      "INFO: HOURLY DIVISOR: 172 hours/month (40 h/week × 52/12). Verified by back-calculation: 1458.42 / 172 = 8.478 ≈ 8.48 EUR/h (level 7, November 2027 — matches lexplain hourly table).",
+      "INFO: INPS: uses 2026-terziario.json (same tax_sector as commercio-confcommercio)."
     ]
   },
   "parameters": {
@@ -121,7 +121,7 @@
     {
       "code": "7",
       "order": 1,
-      "description": "7° livello — addetto a mansioni generiche, operazioni di pulizia e supporto",
+      "description": "Grade 7 — assigned to general tasks, cleaning and support operations",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1350.12" },
@@ -136,7 +136,7 @@
     {
       "code": "6",
       "order": 2,
-      "description": "6° livello — operatore di base (lavapiatti, facchino, commis)",
+      "description": "Grade 6 — basic operator (dishwasher, porter, commis)",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1440.78" },
@@ -151,7 +151,7 @@
     {
       "code": "6S",
       "order": 3,
-      "description": "6° livello super — operatore qualificato (cameriere ai piani, addetto bar base)",
+      "description": "Grade 6 super — qualified operator (room attendant, basic bar staff)",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1461.49" },
@@ -166,7 +166,7 @@
     {
       "code": "5",
       "order": 4,
-      "description": "5° livello — operatore specializzato (cameriere, cuoco, addetto ricevimento)",
+      "description": "Grade 5 — specialist operator (waiter, cook, receptionist)",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1519.93" },
@@ -181,7 +181,7 @@
     {
       "code": "4",
       "order": 5,
-      "description": "4° livello — tecnico di processo / capo turno / receptionist",
+      "description": "Grade 4 — process technician / shift leader / receptionist",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1620.69" },
@@ -196,7 +196,7 @@
     {
       "code": "3",
       "order": 6,
-      "description": "3° livello — tecnico senior / capo partita / front-office senior",
+      "description": "Grade 3 — senior technician / section chef / senior front-office",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1717.55" },
@@ -211,7 +211,7 @@
     {
       "code": "2",
       "order": 7,
-      "description": "2° livello — funzione direttiva junior / chef de rang / vice-direttore",
+      "description": "Grade 2 — junior management function / chef de rang / deputy manager",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1821.13" },
@@ -226,7 +226,7 @@
     {
       "code": "1",
       "order": 8,
-      "description": "1° livello — funzione direttiva / maître / capo ricevimento",
+      "description": "Grade 1 — management function / maître / head receptionist",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "1992.50" },
@@ -241,7 +241,7 @@
     {
       "code": "QB",
       "order": 9,
-      "description": "Quadro B — quadro di alta professionalità gestionale",
+      "description": "Grade QB — senior manager with high managerial professionalism",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "2138.57" },
@@ -257,7 +257,7 @@
     {
       "code": "QA",
       "order": 10,
-      "description": "Quadro A — quadro di massima responsabilità direzionale",
+      "description": "Grade QA — senior manager with maximum managerial responsibility",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-06-01", "value": "2309.93" },

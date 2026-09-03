@@ -21,14 +21,14 @@
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
-      "INFO: SALARY MODEL: conglobato (retribuzione tabellare comprensiva di paga base, ex contingenza, E.d.r.). Art. 32 CCNL (CNEL PDF): 'Sono conglobati in un unica voce denominata Retribuzione tabellare i seguenti istituti: paga base, ex indennita di contingenza, E.d.r.' Tabella PELLETTERIA con 7 livelli e 4 tranches (apr 2023, dic 2023, dic 2024, dic 2025) da fonte primaria CNEL PDF Art. 32.",
-      "SIMPLIFICATION: LIVELLO 1: dall'accordo 22/12/2023 il livello 1 non e piu un livello di inquadramento per i lavoratori permanenti (passaggio automatico a livello 2 entro 31/12/2023). Il valore retributivo del livello 1 rimane definito in contratto per tutta la durata fino al 2025 (tabella Art. 32, CNEL PDF, fonte primaria confermata). Si assume che l'Art. 55 (apprendistato) non sia stato modificato dall'accordo del 22/12/2023: tale accordo non era accessibile dalle fonti pubbliche consultate (archivio CNEL, siti sindacali), quindi la continuita del livello 1 come riferimento retributivo per gli apprendisti con destinazione 2° e 3° livello e assunta ma non verificata sul testo dell'accordo integrativo.",
+      "INFO: SALARY MODEL: conglobato (table pay inclusive of base pay, former contingenza, E.d.r.). Art. 32 CCNL (CNEL PDF): 'Sono conglobati in un unica voce denominata Retribuzione tabellare i seguenti istituti: paga base, ex indennita di contingenza, E.d.r.' PELLETTERIA table with 7 levels and 4 tranches (Apr 2023, Dec 2023, Dec 2024, Dec 2025) from primary source CNEL PDF Art. 32.",
+      "SIMPLIFICATION: LEVEL 1: from the agreement of 22/12/2023, level 1 is no longer a classification level for permanent workers (automatic reclassification to level 2 by 31/12/2023). The pay value for level 1 remains defined in the contract for the entire duration up to 2025 (table Art. 32, CNEL PDF, confirmed primary source). It is assumed that Art. 55 (apprenticeship) was not modified by the 22/12/2023 agreement: that agreement was not accessible from the public sources consulted (CNEL archive, union websites), so the continuity of level 1 as a pay reference for apprentices destined for level 2 and level 3 is assumed but not verified against the supplementary agreement text.",
       "INFO: HOURLY DIVISOR 173: Art. 35 CCNL (CNEL PDF): 'La retribuzione e oraria e si ottiene dividendo la retribuzione mensile per 173'.",
-      "INFO: ADDITIONAL MONTHS 13: tredicesima mensilita. Fonte: ANCL sintesi CCNL D111.",
-      "INFO: SCATTI DI ANZIANITA: Art. 54 CCNL (CNEL PDF). 'quattro aumenti biennali periodici di anzianita' — cadenza 24 mesi, massimo 4. Importi per livello da tabella Art. 54 CNEL PDF.",
-      "INFO: APPRENDISTATO: Art. 55 CCNL (CNEL PDF). Modello sotto-inquadramento (under_classification), durata massima 36 mesi. Sei track distinti (uno per livello di destinazione) con progressione retributiva specifica per ciascun livello, come da tabella Art. 55. Nota speciale livello 2: 'Gli apprendisti con destinazione finale al secondo saranno inquadrati al livello di destinazione finale con decorrenza dall'inizio del secondo periodo di apprendistato' (dal 11° mese in poi al livello 2).",
-      "INFO: INPS: aliquote settore industria da 2026-industria.json (file preesistente riutilizzato). Dipendente 9.19%; datore: <=15 dip 30.13%, 16-50 dip 30.20%, >50 dip 30.50%.",
-      "INFO: LIVELLO 6Q: non presente nella tabella CCNL del CNEL PDF (agosto 2023). Escluso dal modello."
+      "INFO: ADDITIONAL MONTHS 13: tredicesima (thirteenth month). Source: ANCL summary CCNL D111.",
+      "INFO: SENIORITY INCREMENTS: Art. 54 CCNL (CNEL PDF). 'quattro aumenti biennali periodici di anzianita' — 24-month cadence, maximum 4. Per-level amounts from Art. 54 CNEL PDF table.",
+      "INFO: APPRENTICESHIP: Art. 55 CCNL (CNEL PDF). Under-classification model, maximum duration 36 months. Six distinct tracks (one per destination level) with specific pay progression for each level, as per Art. 55 table. Special note for level 2: 'Gli apprendisti con destinazione finale al secondo saranno inquadrati al livello di destinazione finale con decorrenza dall'inizio del secondo periodo di apprendistato' (from month 11 onwards at level 2).",
+      "INFO: INPS: industry sector rates from 2026-industria.json (existing file reused). Employee 9.19%; employer: <=15 employees 30.13%, 16-50 employees 30.20%, >50 employees 30.50%.",
+      "INFO: LEVEL 6Q: not present in the CCNL table of the CNEL PDF (August 2023). Excluded from the model."
     ]
   },
   "parameters": {
@@ -88,7 +88,7 @@
     {
       "code": "1",
       "order": 1,
-      "description": "1° livello — operai comuni (classificazione eliminata dal 31/12/2023; retribuzione tabellare mantenuta per riferimento apprendistato Art. 55)",
+      "description": "Level 1 — general workers (classification removed from 31/12/2023; table pay retained as apprenticeship reference Art. 55)",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1277.56" },
@@ -102,7 +102,7 @@
     {
       "code": "2",
       "order": 2,
-      "description": "2° livello — operai qualificati",
+      "description": "Level 2 — skilled workers",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1643.87" },
@@ -116,7 +116,7 @@
     {
       "code": "3",
       "order": 3,
-      "description": "3° livello — operai specializzati",
+      "description": "Level 3 — specialist workers",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1731.70" },
@@ -130,7 +130,7 @@
     {
       "code": "4",
       "order": 4,
-      "description": "4° livello — operai altamente specializzati",
+      "description": "Level 4 — highly specialised workers",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1810.42" },
@@ -144,7 +144,7 @@
     {
       "code": "4S",
       "order": 5,
-      "description": "4° livello Super — tecnici e impiegati di concetto con mansioni elevate",
+      "description": "Level 4 Super — technicians and white-collar employees with advanced duties",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1852.54" },
@@ -158,7 +158,7 @@
     {
       "code": "5",
       "order": 6,
-      "description": "5° livello — impiegati di concetto con funzioni direttive e tecnici specializzati",
+      "description": "Level 5 — white-collar employees with managerial functions and specialist technicians",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "1977.01" },
@@ -172,7 +172,7 @@
     {
       "code": "6",
       "order": 7,
-      "description": "6° livello — quadri apicali e dirigenti di settore",
+      "description": "Level 6 — top-level quadri and sector executives",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-04-01", "valid_until": "2023-12-01", "value": "2184.12" },

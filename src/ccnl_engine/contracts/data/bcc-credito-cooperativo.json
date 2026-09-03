@@ -114,7 +114,7 @@
     {
       "code": "QD4",
       "order": 11,
-      "description": "Quadri Direttivi - 4° livello retributivo",
+      "description": "Executive Managers - 4th pay level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "4978.66" },
@@ -128,7 +128,7 @@
     {
       "code": "QD3",
       "order": 10,
-      "description": "Quadri Direttivi - 3° livello retributivo",
+      "description": "Executive Managers - 3rd pay level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "4239.27" },
@@ -142,7 +142,7 @@
     {
       "code": "QD2",
       "order": 9,
-      "description": "Quadri Direttivi - 2° livello retributivo",
+      "description": "Executive Managers - 2nd pay level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "3815.86" },
@@ -156,7 +156,7 @@
     {
       "code": "QD1",
       "order": 8,
-      "description": "Quadri Direttivi - 1° livello retributivo",
+      "description": "Executive Managers - 1st pay level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "3600.61" },
@@ -170,7 +170,7 @@
     {
       "code": "3AP4",
       "order": 7,
-      "description": "3ª Area Professionale - 4° livello retributivo",
+      "description": "3rd Professional Area - 4th pay level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "3206.90" },
@@ -184,7 +184,7 @@
     {
       "code": "3AP3",
       "order": 6,
-      "description": "3ª Area Professionale - 3° livello retributivo",
+      "description": "3rd Professional Area - 3rd pay level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2943.02" },
@@ -198,7 +198,7 @@
     {
       "code": "3AP2",
       "order": 5,
-      "description": "3ª Area Professionale - 2° livello retributivo",
+      "description": "3rd Professional Area - 2nd pay level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2780.38" },
@@ -212,7 +212,7 @@
     {
       "code": "3AP1",
       "order": 4,
-      "description": "3ª Area Professionale - 1° livello retributivo",
+      "description": "3rd Professional Area - 1st pay level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2637.95" },
@@ -226,7 +226,7 @@
     {
       "code": "2AP2",
       "order": 3,
-      "description": "2ª Area Professionale - 2° livello retributivo",
+      "description": "2nd Professional Area - 2nd pay level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2474.19" },
@@ -240,7 +240,7 @@
     {
       "code": "2AP1",
       "order": 2,
-      "description": "2ª Area Professionale - 1° livello retributivo",
+      "description": "2nd Professional Area - 1st pay level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2315.18" },
@@ -254,7 +254,7 @@
     {
       "code": "1AP",
       "order": 1,
-      "description": "1ª Area Professionale - livello unico",
+      "description": "1st Professional Area - single level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-09-01", "valid_until": "2025-01-01", "value": "2156.20" },

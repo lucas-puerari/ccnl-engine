@@ -138,7 +138,7 @@
     {
       "code": "QS",
       "order": 14,
-      "description": "Quadro Superiore",
+      "description": "Senior Quadro",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "4115.33" },
@@ -150,7 +150,7 @@
       "fixed_allowances": [
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
+          "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
               { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
@@ -175,7 +175,7 @@
       "fixed_allowances": [
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
+          "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
               { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
@@ -188,7 +188,7 @@
     {
       "code": "ASS",
       "order": 12,
-      "description": "Area Specialistica Superiore Superiore",
+      "description": "Senior Senior Specialist Area",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "3259.62" },
@@ -200,7 +200,7 @@
       "fixed_allowances": [
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
+          "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
               { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
@@ -212,7 +212,7 @@
     {
       "code": "AS",
       "order": 11,
-      "description": "Area Specialistica Superiore",
+      "description": "Senior Specialist Area",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "3050.90" },
@@ -224,7 +224,7 @@
       "fixed_allowances": [
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
+          "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
               { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
@@ -236,7 +236,7 @@
     {
       "code": "A1S",
       "order": 10,
-      "description": "Area 1 Superiore",
+      "description": "Area 1 Senior",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "2922.60" },
@@ -248,7 +248,7 @@
       "fixed_allowances": [
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
+          "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
               { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
@@ -272,7 +272,7 @@
       "fixed_allowances": [
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
+          "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
               { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
@@ -284,7 +284,7 @@
     {
       "code": "BSS",
       "order": 8,
-      "description": "Area B Superiore Superiore",
+      "description": "Area B Senior Senior",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "2655.60" },
@@ -296,7 +296,7 @@
       "fixed_allowances": [
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
+          "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
               { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
@@ -308,7 +308,7 @@
     {
       "code": "BS",
       "order": 7,
-      "description": "Area B Superiore",
+      "description": "Area B Senior",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "2542.40" },
@@ -320,7 +320,7 @@
       "fixed_allowances": [
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
+          "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
               { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
@@ -332,7 +332,7 @@
     {
       "code": "B1S",
       "order": 6,
-      "description": "Area B1 Superiore",
+      "description": "Area B1 Senior",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "2422.59" },
@@ -344,7 +344,7 @@
       "fixed_allowances": [
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
+          "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
               { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
@@ -368,7 +368,7 @@
       "fixed_allowances": [
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
+          "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
               { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
@@ -380,7 +380,7 @@
     {
       "code": "B2S",
       "order": 4,
-      "description": "Area B2 Superiore",
+      "description": "Area B2 Senior",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "2160.86" },
@@ -392,7 +392,7 @@
       "fixed_allowances": [
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
+          "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
               { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
@@ -416,7 +416,7 @@
       "fixed_allowances": [
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
+          "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
               { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
@@ -428,7 +428,7 @@
     {
       "code": "CS",
       "order": 2,
-      "description": "Area C Superiore",
+      "description": "Area C Senior",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-04-01", "valid_until": "2026-04-01", "value": "1782.73" },
@@ -440,7 +440,7 @@
       "fixed_allowances": [
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
+          "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
               { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }
@@ -464,7 +464,7 @@
       "fixed_allowances": [
         {
           "code": "edr",
-          "description": "Elemento Distinto della Retribuzione (EDR, frozen since 1988)",
+          "description": "Distinct Pay Element (EDR, frozen since 1988)",
           "monthly": {
             "periods": [
               { "valid_from": "2025-04-01", "valid_until": null, "value": "10.33" }

@@ -43,8 +43,8 @@
       "SOURCE: Q LEVEL INDENNITA' DI FUNZIONE 50.00 EUR/month (quadri ex L. 190/1985), cross-verified at April 2025 (lexplain.it total 2473.68 vs contratticcnl.it TEM 2423.68). valid_from set to 2023-01-01 for consistency with the first modelled tranche; not verified whether the amount was already 50 EUR in 2023.",
       "INFO: SENIORITY amounts unchanged across 01.01.2023, 01.01.2024, 01.04.2025, 01.01.2026: the January 2023 rinnovo and December 2025 rinnovo both addressed only TEM (minimi tabellari) and left Art.23 (scatti di anzianità) untouched. Amounts at kitech.it/lavoro-economia.it apply from at least 01.01.2023 onward. Source: rinnovo 10.12.2025 full text (filctemcgil.it); rinnovo Jan 2023 summary (terzomillennio.uil.it); no source reports scatti change in either rinnovo.",
       "SIMPLIFICATION: APPRENTICESHIP under_classification (art. apprendistato professionalizzante CCNL Gomma e Plastica; rule from contratticcnl.it: the apprentice cannot be classified more than two levels below the destination). Track 'professionalizzante' for destinations G, F, E, D, C, B: 0-12 months two levels below, 12-24 one level below, then destination. The 12/12 boundaries are an approximation (no public monthly table). H (only one level below exists), I, A and Q are not modelled as destinations.",
-      "INFO: INPS: riutilizza 2026-industria.json (Confindustria/CIGO). La Federazione Gomma Plastica aderisce a Confindustria; CIGO applicabile ai sensi del D.Lgs. 148/2015.",
-      "INFO: ADDITIONAL MONTHS: 13 (tredicesima). La quattordicesima non è prevista dal CCNL Gomma e Plastica Industria."
+      "INFO: INPS: reuses 2026-industria.json (Confindustria/CIGO). Federazione Gomma Plastica is a member of Confindustria; CIGO applicable pursuant to D.Lgs. 148/2015.",
+      "INFO: ADDITIONAL MONTHS: 13 (tredicesima). A quattordicesima is not provided for by the CCNL Gomma e Plastica Industria."
     ]
   },
   "parameters": {
@@ -119,7 +119,7 @@
     {
       "code": "I",
       "order": 1,
-      "description": "I — mansioni elementari, operazioni semplici con breve addestramento",
+      "description": "I — elementary tasks, simple operations with brief training",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-01-01", "valid_until": "2024-01-01", "value": "1493.30" },
@@ -136,7 +136,7 @@
     {
       "code": "H",
       "order": 2,
-      "description": "H — operaio qualificato di 1ª categoria, impiegato d'ordine",
+      "description": "H — qualified worker 1st category, clerical staff",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-01-01", "valid_until": "2024-01-01", "value": "1661.03" },
@@ -153,7 +153,7 @@
     {
       "code": "G",
       "order": 3,
-      "description": "G — operaio qualificato di 2ª categoria, impiegato di concetto",
+      "description": "G — qualified worker 2nd category, white-collar employee",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-01-01", "valid_until": "2024-01-01", "value": "1741.80" },
@@ -170,7 +170,7 @@
     {
       "code": "F",
       "order": 4,
-      "description": "F — operaio specializzato, impiegato tecnico (livello di riferimento CCNL)",
+      "description": "F — skilled worker, technical employee (CCNL reference level)",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-01-01", "valid_until": "2024-01-01", "value": "1869.12" },
@@ -187,7 +187,7 @@
     {
       "code": "E",
       "order": 5,
-      "description": "E — operaio altamente specializzato, impiegato tecnico esperto",
+      "description": "E — highly skilled worker, expert technical employee",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-01-01", "valid_until": "2024-01-01", "value": "1918.78" },
@@ -204,7 +204,7 @@
     {
       "code": "D",
       "order": 6,
-      "description": "D — capo squadra operai, impiegato tecnico/amministrativo qualificato",
+      "description": "D — team leader, qualified technical/administrative employee",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-01-01", "valid_until": "2024-01-01", "value": "1999.48" },
@@ -221,7 +221,7 @@
     {
       "code": "C",
       "order": 7,
-      "description": "C — capo reparto, impiegato di concetto con autonomia operativa",
+      "description": "C — department head, white-collar employee with operational autonomy",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-01-01", "valid_until": "2024-01-01", "value": "2024.93" },
@@ -238,7 +238,7 @@
     {
       "code": "B",
       "order": 8,
-      "description": "B — responsabile tecnico o amministrativo, alta professionalità",
+      "description": "B — technical or administrative manager, high professional grade",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-01-01", "valid_until": "2024-01-01", "value": "2051.87" },
@@ -255,7 +255,7 @@
     {
       "code": "A",
       "order": 9,
-      "description": "A — quadro, tecnico o funzionale di elevata specializzazione",
+      "description": "A — quadro, highly specialised technical or functional expert",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-01-01", "valid_until": "2024-01-01", "value": "2174.98" },
@@ -273,7 +273,7 @@
     {
       "code": "Q",
       "order": 10,
-      "description": "Q — quadro dirigenziale (quadro ex L. 190/1985), massima responsabilità",
+      "description": "Q — senior manager grade (quadro under L. 190/1985), highest responsibility",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-01-01", "valid_until": "2024-01-01", "value": "2309.97" },
@@ -288,7 +288,7 @@
       "fixed_allowances": [
         {
           "code": "INDENNITA_FUNZIONE_Q",
-          "description": "Indennità di funzione livello Q (quadri ex L. 190/1985)",
+          "description": "Management function allowance level Q (quadri under L. 190/1985)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-01-01", "valid_until": null, "value": "50.00" }

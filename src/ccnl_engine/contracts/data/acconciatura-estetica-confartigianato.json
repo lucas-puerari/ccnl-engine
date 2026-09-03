@@ -106,7 +106,7 @@
     {
       "code": "4",
       "order": 1,
-      "description": "Livello 4 — operatore ausiliario / apprendista base",
+      "description": "Level 4 — auxiliary worker / entry-level apprentice",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-02-01", "valid_until": "2024-05-01", "value": "1234.19" },
@@ -122,7 +122,7 @@
     {
       "code": "3",
       "order": 2,
-      "description": "Livello 3 — operatore qualificato (acconciatore/estetista)",
+      "description": "Level 3 — qualified worker (hairdresser/beautician)",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-02-01", "valid_until": "2024-05-01", "value": "1309.00" },
@@ -138,7 +138,7 @@
     {
       "code": "2",
       "order": 3,
-      "description": "Livello 2 — operatore specializzato / responsabile tecnico",
+      "description": "Level 2 — specialist worker / technical supervisor",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-02-01", "valid_until": "2024-05-01", "value": "1380.74" },
@@ -151,7 +151,7 @@
       "fixed_allowances": [
         {
           "code": "responsabile_tecnico",
-          "description": "Indennità Responsabile Tecnico (designazione datoriale), 100 EUR x 13 mensilità",
+          "description": "Technical Supervisor Allowance (employer designation), 100 EUR x 13 monthly payments",
           "monthly": {
             "periods": [
               { "valid_from": "2023-02-01", "valid_until": null, "value": "100.00" }
@@ -165,7 +165,7 @@
     {
       "code": "1",
       "order": 4,
-      "description": "Livello 1 — titolare tecnico / responsabile senior",
+      "description": "Level 1 — technical director / senior supervisor",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-02-01", "valid_until": "2024-05-01", "value": "1511.46" },
@@ -178,7 +178,7 @@
       "fixed_allowances": [
         {
           "code": "responsabile_tecnico",
-          "description": "Indennità Responsabile Tecnico (designazione datoriale), 100 EUR x 13 mensilità",
+          "description": "Technical Supervisor Allowance (employer designation), 100 EUR x 13 monthly payments",
           "monthly": {
             "periods": [
               { "valid_from": "2023-02-01", "valid_until": null, "value": "100.00" }

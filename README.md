@@ -48,7 +48,7 @@ print(result.employer_cost_annual)  # → Decimal('...')
 
 *CCNL Matrix*
 
-| # | CCNL | Sector | Lavoratori (~)[^1] | Layer 1 | Layer 2 | Layer 3 |
+| # | CCNL | Sector | Lavoratori (~)<sup><a id="ref-1" href="#fn-1">1</a></sup> | Layer 1 | Layer 2 | Layer 3 |
 |---|---|---|---:|:---:|:---:|:---:|
 | 1 | Commercio — Confcommercio | Terziario | ~800k | ✅ | ✅ | — |
 | 2 | Metalmeccanico — Federmeccanica/Assistal | Industria | ~1,7M | ✅ | ✅ | — |
@@ -91,7 +91,7 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 39 | Terziario Distribuzione e Servizi — Confesercenti | Terziario | ~230k | ✅ | ✅ | — |
 | 40 | Turismo — Federalberghi/Faita | Terziario | ~220k | ✅ | ✅ | — |
 
-[^1]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.
+<p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
 ## What is not modelled
 

@@ -6,7 +6,12 @@
     "cnel_code": "H442",
     "sector": "terziario",
     "tax_sector": "terziario",
-    "signatories": ["Confprofessioni", "Filcams-CGIL", "Fisascat-CISL", "Uiltucs-UIL"],
+    "signatories": [
+      "Confprofessioni",
+      "Filcams-CGIL",
+      "Fisascat-CISL",
+      "Uiltucs-UIL"
+    ],
     "sources": [
       {
         "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
@@ -31,26 +36,34 @@
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
-      "INFO: MINIMI CONGLOBATI: la retribuzione minima tabellare include contingenza (fino al 1/05/1992) ed EDR (Accordo Interconfederale 31/07/1992), conglobati per effetto del CCNL 10/12/1992 e riconfermati da Art. 138 CCNL 2024. fixed_allowances vuoto per tutti i livelli.",
-      "INFO: DIVISORE ORARIO: 170. Fonte primaria: Art. 45 e Art. 137 CCNL 2024 ('divisore convenzionale orario fissato in 170').",
-      "INFO: TRANCHE: quattro tranche — 1/03/2024, 1/10/2024, 1/10/2025, 1/12/2026. Fonte: Art. 139-140 e tabelle retributive CCNL 2024 (confprofessioni.eu, versione completa aprile 2026).",
-      "INFO: MENSILITA': 14 (tredicesima Art. 142 + quattordicesima Art. 143 CCNL 2024).",
-      "INFO: SCATTI DI ANZIANITA': triennali (cadenza 36 mesi), max 8 scatti. Importi cifra fissa da Art. 134 CCNL 2024 vigenti dal 1/10/2011: Q=30, 1=26, 2=23, 3S=22, 3=22, 4S=20, 4=20, 5=20.",
-      "INFO: ENAC (Art. 141 CCNL 2024): 42.35 (liv. 1), 102.53 (liv. 2), 110.40 (liv. 3S) EUR/mese, dovuto solo ai lavoratori già inquadrati nel CCNL Confedertecnica al 1/07/2004; modellato come allowance con role 'confedertecnica_pre_2004' (compute(..., roles={'confedertecnica_pre_2004'})).",
-      "SIMPLIFICATION: APPRENDISTATO percentage (Allegato B Tabella 3 CCNL 2024): 70% mesi 1-12, 85% mesi 13-24, 93% dal mese 25, applicato a tutte le destinazioni ammesse (4, 4S, 3, 3S, 2, 1); il V livello è escluso dall'apprendistato professionalizzante (Art. 30B) e i Quadri non sono destinazione. La stessa tabella percentuale è assunta per tutti i livelli di destinazione.",
-      "INFO: INPS: utilizza 2026-terziario.json (TaxSector.TERZIARIO). File gia' presente — nessuna modifica al tax file.",
-      "INFO: CNEL code H442: confermato dall'archivio CNEL 'Studi Professionali — Confprofessioni'. Lavoratori coperti: 317.554 (UNIEMENS 2022)."
+      "INFO: CONGLOBATED MINIMUMS: the minimum tabellare includes contingenza (up to 01/05/1992) and EDR (Interconfederal Agreement 31/07/1992), merged under CCNL 10/12/1992 and reaffirmed by Art. 138 CCNL 2024. fixed_allowances is empty for all levels.",
+      "INFO: HOURLY DIVISOR: 170. Primary source: Art. 45 and Art. 137 CCNL 2024 ('divisore convenzionale orario fissato in 170').",
+      "INFO: TRANCHES: four tranches — 01/03/2024, 01/10/2024, 01/10/2025, 01/12/2026. Source: Art. 139-140 and salary tables CCNL 2024 (confprofessioni.eu, complete version April 2026).",
+      "INFO: ADDITIONAL MONTHS: 14 (tredicesima Art. 142 + quattordicesima Art. 143 CCNL 2024).",
+      "INFO: SENIORITY INCREMENTS: triennial (36-month cadence), max 8 increments. Fixed amounts per Art. 134 CCNL 2024 in force from 01/10/2011: Q=30, 1=26, 2=23, 3S=22, 3=22, 4S=20, 4=20, 5=20.",
+      "INFO: ENAC (Art. 141 CCNL 2024): EUR 42.35 (level 1), EUR 102.53 (level 2), EUR 110.40 (level 3S) per month, payable only to workers already classified under the Confedertecnica CCNL as of 01/07/2004; modelled as an allowance with role 'confedertecnica_pre_2004' (compute(..., roles={'confedertecnica_pre_2004'})).",
+      "SIMPLIFICATION: APPRENTICESHIP percentage (Allegato B Table 3 CCNL 2024): 70% months 1-12, 85% months 13-24, 93% from month 25, applied to all eligible destinations (4, 4S, 3, 3S, 2, 1); level V is excluded from professional apprenticeship (Art. 30B) and Quadri are not a destination. The same percentage table is assumed for all destination levels.",
+      "INFO: INPS: uses 2026-terziario.json (TaxSector.TERZIARIO). File already present — no changes to the tax file.",
+      "INFO: CNEL code H442: confirmed from the CNEL archive 'Studi Professionali — Confprofessioni'. Workers covered: 317,554 (UNIEMENS 2022)."
     ]
   },
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        { "valid_from": "2024-03-01", "valid_until": null, "value": "170" }
+        {
+          "valid_from": "2024-03-01",
+          "valid_until": null,
+          "value": "170"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        { "valid_from": "2024-02-16", "valid_until": null, "value": "14" }
+        {
+          "valid_from": "2024-02-16",
+          "valid_until": null,
+          "value": "14"
+        }
       ]
     },
     "seniority_increments": {
@@ -59,42 +72,74 @@
       "amount_by_level": {
         "Q": {
           "periods": [
-            { "valid_from": "2024-02-16", "valid_until": null, "value": "30" }
+            {
+              "valid_from": "2024-02-16",
+              "valid_until": null,
+              "value": "30"
+            }
           ]
         },
         "1": {
           "periods": [
-            { "valid_from": "2024-02-16", "valid_until": null, "value": "26" }
+            {
+              "valid_from": "2024-02-16",
+              "valid_until": null,
+              "value": "26"
+            }
           ]
         },
         "2": {
           "periods": [
-            { "valid_from": "2024-02-16", "valid_until": null, "value": "23" }
+            {
+              "valid_from": "2024-02-16",
+              "valid_until": null,
+              "value": "23"
+            }
           ]
         },
         "3S": {
           "periods": [
-            { "valid_from": "2024-02-16", "valid_until": null, "value": "22" }
+            {
+              "valid_from": "2024-02-16",
+              "valid_until": null,
+              "value": "22"
+            }
           ]
         },
         "3": {
           "periods": [
-            { "valid_from": "2024-02-16", "valid_until": null, "value": "22" }
+            {
+              "valid_from": "2024-02-16",
+              "valid_until": null,
+              "value": "22"
+            }
           ]
         },
         "4S": {
           "periods": [
-            { "valid_from": "2024-02-16", "valid_until": null, "value": "20" }
+            {
+              "valid_from": "2024-02-16",
+              "valid_until": null,
+              "value": "20"
+            }
           ]
         },
         "4": {
           "periods": [
-            { "valid_from": "2024-02-16", "valid_until": null, "value": "20" }
+            {
+              "valid_from": "2024-02-16",
+              "valid_until": null,
+              "value": "20"
+            }
           ]
         },
         "5": {
           "periods": [
-            { "valid_from": "2024-02-16", "valid_until": null, "value": "20" }
+            {
+              "valid_from": "2024-02-16",
+              "valid_until": null,
+              "value": "20"
+            }
           ]
         }
       }
@@ -104,13 +149,29 @@
     {
       "code": "5",
       "order": 1,
-      "description": "5° Livello",
+      "description": "5th Level — clerical staff performing routine tasks",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "1406.48" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1445.63" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "1484.78" },
-          { "valid_from": "2026-12-01", "valid_until": null, "value": "1502.19" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-10-01",
+            "value": "1406.48"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1445.63"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-12-01",
+            "value": "1484.78"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1502.19"
+          }
         ]
       },
       "fixed_allowances": []
@@ -118,13 +179,29 @@
     {
       "code": "4",
       "order": 2,
-      "description": "4° Livello",
+      "description": "4th Level — qualified clerical staff",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "1511.28" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1553.35" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "1595.42" },
-          { "valid_from": "2026-12-01", "valid_until": null, "value": "1614.12" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-10-01",
+            "value": "1511.28"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1553.35"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-12-01",
+            "value": "1595.42"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1614.12"
+          }
         ]
       },
       "fixed_allowances": []
@@ -132,13 +209,29 @@
     {
       "code": "4S",
       "order": 3,
-      "description": "4° Livello Super",
+      "description": "4th Level Super — qualified staff with higher-grade duties",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "1567.44" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1611.07" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "1654.70" },
-          { "valid_from": "2026-12-01", "valid_until": null, "value": "1674.10" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-10-01",
+            "value": "1567.44"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1611.07"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-12-01",
+            "value": "1654.70"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1674.10"
+          }
         ]
       },
       "fixed_allowances": []
@@ -146,13 +239,29 @@
     {
       "code": "3",
       "order": 4,
-      "description": "3° Livello",
+      "description": "3rd Level — concept-grade staff with technical or administrative expertise",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "1616.37" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1661.37" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "1706.37" },
-          { "valid_from": "2026-12-01", "valid_until": null, "value": "1726.37" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-10-01",
+            "value": "1616.37"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1661.37"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-12-01",
+            "value": "1706.37"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1726.37"
+          }
         ]
       },
       "fixed_allowances": []
@@ -160,22 +269,42 @@
     {
       "code": "3S",
       "order": 5,
-      "description": "3° Livello Super",
+      "description": "3rd Level Super — senior concept-grade staff with specialised expertise",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "1631.19" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1676.60" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "1722.01" },
-          { "valid_from": "2026-12-01", "valid_until": null, "value": "1742.20" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-10-01",
+            "value": "1631.19"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1676.60"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-12-01",
+            "value": "1722.01"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1742.20"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "enac",
-          "description": "ENAC - Elemento Nazionale Allineamento Contrattuale (Art. 141), solo lavoratori già inquadrati nel CCNL Confedertecnica al 1/07/2004",
+          "description": "ENAC — National Contract Alignment Element (Art. 141 CCNL 2024), payable only to workers already classified under the Confedertecnica CCNL as of 01/07/2004",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-03-01", "valid_until": null, "value": "110.40" }
+              {
+                "valid_from": "2024-03-01",
+                "valid_until": null,
+                "value": "110.40"
+              }
             ]
           },
           "role": "confedertecnica_pre_2004"
@@ -185,22 +314,42 @@
     {
       "code": "2",
       "order": 6,
-      "description": "2° Livello",
+      "description": "2nd Level — senior concept-grade staff / highly specialised technicians",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "1758.60" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "1807.55" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "1856.50" },
-          { "valid_from": "2026-12-01", "valid_until": null, "value": "1878.26" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-10-01",
+            "value": "1758.60"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1807.55"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-12-01",
+            "value": "1856.50"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1878.26"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "enac",
-          "description": "ENAC - Elemento Nazionale Allineamento Contrattuale (Art. 141), solo lavoratori già inquadrati nel CCNL Confedertecnica al 1/07/2004",
+          "description": "ENAC — National Contract Alignment Element (Art. 141 CCNL 2024), payable only to workers already classified under the Confedertecnica CCNL as of 01/07/2004",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-03-01", "valid_until": null, "value": "102.53" }
+              {
+                "valid_from": "2024-03-01",
+                "valid_until": null,
+                "value": "102.53"
+              }
             ]
           },
           "role": "confedertecnica_pre_2004"
@@ -210,22 +359,42 @@
     {
       "code": "1",
       "order": 7,
-      "description": "1° Livello",
+      "description": "1st Level — staff with directive functions or highly specialised technical role",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "2018.99" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "2075.19" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "2131.39" },
-          { "valid_from": "2026-12-01", "valid_until": null, "value": "2156.38" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-10-01",
+            "value": "2018.99"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "2075.19"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-12-01",
+            "value": "2131.39"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "2156.38"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "enac",
-          "description": "ENAC - Elemento Nazionale Allineamento Contrattuale (Art. 141), solo lavoratori già inquadrati nel CCNL Confedertecnica al 1/07/2004",
+          "description": "ENAC — National Contract Alignment Element (Art. 141 CCNL 2024), payable only to workers already classified under the Confedertecnica CCNL as of 01/07/2004",
           "monthly": {
             "periods": [
-              { "valid_from": "2024-03-01", "valid_until": null, "value": "42.35" }
+              {
+                "valid_from": "2024-03-01",
+                "valid_until": null,
+                "value": "42.35"
+              }
             ]
           },
           "role": "confedertecnica_pre_2004"
@@ -235,13 +404,29 @@
     {
       "code": "Q",
       "order": 8,
-      "description": "Quadri",
+      "description": "Manager (Quadro) — staff with managerial functions (Art. 2095 c.c., L. 190/1985)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2024-03-01", "valid_until": "2024-10-01", "value": "2281.51" },
-          { "valid_from": "2024-10-01", "valid_until": "2025-10-01", "value": "2345.02" },
-          { "valid_from": "2025-10-01", "valid_until": "2026-12-01", "value": "2408.53" },
-          { "valid_from": "2026-12-01", "valid_until": null, "value": "2436.76" }
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2024-10-01",
+            "value": "2281.51"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "2345.02"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-12-01",
+            "value": "2408.53"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "2436.76"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -252,11 +437,30 @@
     {
       "type": "percentage",
       "name": "professionalizzante",
-      "destination_levels": ["4", "4S", "3", "3S", "2", "1"],
+      "destination_levels": [
+        "4",
+        "4S",
+        "3",
+        "3S",
+        "2",
+        "1"
+      ],
       "periods": [
-        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
-        { "months_from": 12, "months_until": 24, "percentage": "0.85" },
-        { "months_from": 24, "months_until": null, "percentage": "0.93" }
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.93"
+        }
       ]
     }
   ]

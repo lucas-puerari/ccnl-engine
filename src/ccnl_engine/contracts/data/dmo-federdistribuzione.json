@@ -99,7 +99,7 @@
     {
       "code": "VII",
       "order": 1,
-      "description": "Settimo livello",
+      "description": "Seventh level",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "779.47" },
@@ -113,7 +113,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (frozen)",
+          "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "517.51" }
@@ -122,7 +122,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
+          "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
@@ -131,7 +131,7 @@
         },
         {
           "code": "ind_funzione",
-          "description": "Indennità di funzione 7° livello",
+          "description": "Function allowance — 7th level",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "5.16" }
@@ -143,7 +143,7 @@
     {
       "code": "VI",
       "order": 2,
-      "description": "Sesto livello",
+      "description": "Sixth level",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "910.44" },
@@ -157,7 +157,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (frozen)",
+          "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "519.76" }
@@ -166,7 +166,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
+          "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
@@ -178,7 +178,7 @@
     {
       "code": "V",
       "order": 3,
-      "description": "Quinto livello",
+      "description": "Fifth level",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1014.11" },
@@ -192,7 +192,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (frozen)",
+          "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "521.94" }
@@ -201,7 +201,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
+          "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
@@ -213,7 +213,7 @@
     {
       "code": "IV",
       "order": 4,
-      "description": "Quarto livello",
+      "description": "Fourth level",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1122.46" },
@@ -227,7 +227,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (frozen)",
+          "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "524.22" }
@@ -236,7 +236,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
+          "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
@@ -248,7 +248,7 @@
     {
       "code": "III",
       "order": 5,
-      "description": "Terzo livello",
+      "description": "Third level",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1297.84" },
@@ -262,7 +262,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (frozen)",
+          "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "527.90" }
@@ -271,7 +271,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
+          "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
@@ -283,7 +283,7 @@
     {
       "code": "II",
       "order": 6,
-      "description": "Secondo livello",
+      "description": "Second level",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1518.42" },
@@ -297,7 +297,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (frozen)",
+          "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "532.54" }
@@ -306,7 +306,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
+          "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
@@ -318,7 +318,7 @@
     {
       "code": "I",
       "order": 7,
-      "description": "Primo livello",
+      "description": "First level",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1755.41" },
@@ -332,7 +332,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (frozen)",
+          "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "537.52" }
@@ -341,7 +341,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
+          "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
@@ -353,7 +353,7 @@
     {
       "code": "Q",
       "order": 8,
-      "description": "Quadri",
+      "description": "Managers (Quadri)",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-04-01", "valid_until": "2024-04-01", "value": "1948.72" },
@@ -367,7 +367,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza",
-          "description": "Indennità di contingenza (frozen)",
+          "description": "Cost-of-living allowance (frozen)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "540.37" }
@@ -376,7 +376,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 199, EUR 2.07)",
+          "description": "Third national element (Art. 199, EUR 2.07)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "2.07" }
@@ -385,7 +385,7 @@
         },
         {
           "code": "ind_funzione",
-          "description": "Indennità di funzione Quadri (Art. 113)",
+          "description": "Quadri function allowance (Art. 113)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-04-01", "valid_until": null, "value": "260.76" }

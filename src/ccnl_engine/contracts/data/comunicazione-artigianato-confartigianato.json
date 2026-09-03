@@ -141,7 +141,7 @@
     {
       "code": "6",
       "order": 1,
-      "description": "Livello 6 — lavoratore comune, addetto a mansioni di ordine",
+      "description": "Level 6 — common worker, assigned to routine duties",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "1415.36" },
@@ -156,7 +156,7 @@
     {
       "code": "5",
       "order": 2,
-      "description": "Livello 5 — lavoratore qualificato",
+      "description": "Level 5 — qualified worker",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "1503.02" },
@@ -171,7 +171,7 @@
     {
       "code": "5bis",
       "order": 3,
-      "description": "Livello 5 BIS — lavoratore specializzato (intermedio tra 5 e 4)",
+      "description": "Level 5 BIS — specialised worker (intermediate between 5 and 4)",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "1572.03" },
@@ -186,7 +186,7 @@
     {
       "code": "4",
       "order": 4,
-      "description": "Livello 4 — lavoratore specializzato superiore",
+      "description": "Level 4 — higher-grade specialised worker",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "1718.56" },
@@ -201,7 +201,7 @@
     {
       "code": "3",
       "order": 5,
-      "description": "Livello 3 — lavoratore altamente specializzato / impiegato di concetto",
+      "description": "Level 3 — highly specialised worker / white-collar employee",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "1852.12" },
@@ -216,7 +216,7 @@
     {
       "code": "2",
       "order": 6,
-      "description": "Livello 2 — tecnico / impiegato di concetto superiore",
+      "description": "Level 2 — technician / senior white-collar employee",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "1974.78" },
@@ -231,7 +231,7 @@
     {
       "code": "1B",
       "order": 7,
-      "description": "Livello 1B — quadro intermedio / impiegato direttivo",
+      "description": "Level 1B — intermediate manager / executive employee",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "2105.23" },
@@ -246,7 +246,7 @@
     {
       "code": "1A",
       "order": 8,
-      "description": "Livello 1A — quadro superiore / responsabile (+ indennita di funzione 51.65 EUR)",
+      "description": "Level 1A — senior manager / department head (+ function allowance EUR 51.65)",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-12-01", "valid_until": "2025-07-01", "value": "2363.59" },
@@ -258,7 +258,7 @@
       "fixed_allowances": [
         {
           "code": "indennita_funzione",
-          "description": "Indennita di funzione (solo livello 1A). Fonte: kitech.it Mar 2026. Importo assunto costante da dic 2024.",
+          "description": "Function allowance (level 1A only). Source: kitech.it Mar 2026. Amount assumed constant from Dec 2024.",
           "monthly": {
             "periods": [
               { "valid_from": "2024-12-01", "valid_until": null, "value": "51.65" }

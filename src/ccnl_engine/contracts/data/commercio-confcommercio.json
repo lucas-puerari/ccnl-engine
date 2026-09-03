@@ -116,7 +116,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza_edr",
-          "description": "Indennità di contingenza (congelata dal novembre 1993) + EDR 10,33 (Accordo 31/07/1992), colonna 'Contingenza + EDR' delle tabelle",
+          "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "540.37" }
@@ -125,7 +125,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 215), 2,07 EUR per tutti i livelli",
+          "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "2.07" }
@@ -134,7 +134,7 @@
         },
         {
           "code": "ind_funzione",
-          "description": "Indennità di funzione Quadri (Art. 129), 260,76 EUR per 14 mensilità",
+          "description": "Quadri function allowance (Art. 129), EUR 260.76 for 14 monthly payments",
           "monthly": {
             "periods": [
               { "valid_from": "2024-04-01", "valid_until": null, "value": "260.76" }
@@ -147,7 +147,7 @@
     {
       "code": "1",
       "order": 7,
-      "description": "1° livello",
+      "description": "1st level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "1864.88" },
@@ -160,7 +160,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza_edr",
-          "description": "Indennità di contingenza (congelata dal novembre 1993) + EDR 10,33 (Accordo 31/07/1992), colonna 'Contingenza + EDR' delle tabelle",
+          "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "537.52" }
@@ -169,7 +169,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 215), 2,07 EUR per tutti i livelli",
+          "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "2.07" }
@@ -181,7 +181,7 @@
     {
       "code": "2",
       "order": 6,
-      "description": "2° livello",
+      "description": "2nd level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "1613.11" },
@@ -194,7 +194,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza_edr",
-          "description": "Indennità di contingenza (congelata dal novembre 1993) + EDR 10,33 (Accordo 31/07/1992), colonna 'Contingenza + EDR' delle tabelle",
+          "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "532.54" }
@@ -203,7 +203,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 215), 2,07 EUR per tutti i livelli",
+          "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "2.07" }
@@ -215,7 +215,7 @@
     {
       "code": "3",
       "order": 5,
-      "description": "3° livello",
+      "description": "3rd level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "1378.78" },
@@ -228,7 +228,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza_edr",
-          "description": "Indennità di contingenza (congelata dal novembre 1993) + EDR 10,33 (Accordo 31/07/1992), colonna 'Contingenza + EDR' delle tabelle",
+          "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "527.90" }
@@ -237,7 +237,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 215), 2,07 EUR per tutti i livelli",
+          "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "2.07" }
@@ -249,7 +249,7 @@
     {
       "code": "4",
       "order": 4,
-      "description": "4° livello",
+      "description": "4th level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "1192.46" },
@@ -262,7 +262,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza_edr",
-          "description": "Indennità di contingenza (congelata dal novembre 1993) + EDR 10,33 (Accordo 31/07/1992), colonna 'Contingenza + EDR' delle tabelle",
+          "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "524.22" }
@@ -271,7 +271,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 215), 2,07 EUR per tutti i livelli",
+          "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "2.07" }
@@ -283,7 +283,7 @@
     {
       "code": "5",
       "order": 3,
-      "description": "5° livello",
+      "description": "5th level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "1077.35" },
@@ -296,7 +296,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza_edr",
-          "description": "Indennità di contingenza (congelata dal novembre 1993) + EDR 10,33 (Accordo 31/07/1992), colonna 'Contingenza + EDR' delle tabelle",
+          "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "521.94" }
@@ -305,7 +305,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 215), 2,07 EUR per tutti i livelli",
+          "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "2.07" }
@@ -317,7 +317,7 @@
     {
       "code": "6",
       "order": 2,
-      "description": "6° livello",
+      "description": "6th level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "967.22" },
@@ -330,7 +330,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza_edr",
-          "description": "Indennità di contingenza (congelata dal novembre 1993) + EDR 10,33 (Accordo 31/07/1992), colonna 'Contingenza + EDR' delle tabelle",
+          "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "519.76" }
@@ -339,7 +339,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 215), 2,07 EUR per tutti i livelli",
+          "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "2.07" }
@@ -351,7 +351,7 @@
     {
       "code": "7",
       "order": 1,
-      "description": "7° livello",
+      "description": "7th level",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-04-01", "valid_until": "2025-03-01", "value": "828.08" },
@@ -364,7 +364,7 @@
       "fixed_allowances": [
         {
           "code": "contingenza_edr",
-          "description": "Indennità di contingenza (congelata dal novembre 1993) + EDR 10,33 (Accordo 31/07/1992), colonna 'Contingenza + EDR' delle tabelle",
+          "description": "Cost-of-living allowance (frozen since November 1993) + EDR 10.33 (Agreement 31/07/1992), 'Contingenza + EDR' column of the salary tables",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "517.51" }
@@ -373,7 +373,7 @@
         },
         {
           "code": "terzo_elemento_nazionale",
-          "description": "Terzo elemento nazionale (Art. 215), 2,07 EUR per tutti i livelli",
+          "description": "Third national element (Art. 215), EUR 2.07 for all levels",
           "monthly": {
             "periods": [
               { "valid_from": "1993-11-01", "valid_until": null, "value": "2.07" }
@@ -382,7 +382,7 @@
         },
         {
           "code": "ind_funzione",
-          "description": "Altri elementi (ex 10.000 lire) del VII livello, 5,16 EUR, colonna 'Altri el.' delle tabelle",
+          "description": "Other elements (formerly ITL 10,000) for grade VII, EUR 5.16, 'Altri el.' column of the salary tables",
           "monthly": {
             "periods": [
               { "valid_from": "2024-04-01", "valid_until": null, "value": "5.16" }

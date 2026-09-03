@@ -126,7 +126,7 @@
       "fixed_allowances": [
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "description": "Distinct Pay Element (frozen since 1997)",
           "monthly": {
             "periods": [
               { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
@@ -151,7 +151,7 @@
       "fixed_allowances": [
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "description": "Distinct Pay Element (frozen since 1997)",
           "monthly": {
             "periods": [
               { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
@@ -176,7 +176,7 @@
       "fixed_allowances": [
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "description": "Distinct Pay Element (frozen since 1997)",
           "monthly": {
             "periods": [
               { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
@@ -201,7 +201,7 @@
       "fixed_allowances": [
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "description": "Distinct Pay Element (frozen since 1997)",
           "monthly": {
             "periods": [
               { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
@@ -226,7 +226,7 @@
       "fixed_allowances": [
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "description": "Distinct Pay Element (frozen since 1997)",
           "monthly": {
             "periods": [
               { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
@@ -251,7 +251,7 @@
       "fixed_allowances": [
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "description": "Distinct Pay Element (frozen since 1997)",
           "monthly": {
             "periods": [
               { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
@@ -276,7 +276,7 @@
       "fixed_allowances": [
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "description": "Distinct Pay Element (frozen since 1997)",
           "monthly": {
             "periods": [
               { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
@@ -301,7 +301,7 @@
       "fixed_allowances": [
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "description": "Distinct Pay Element (frozen since 1997)",
           "monthly": {
             "periods": [
               { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
@@ -326,7 +326,7 @@
       "fixed_allowances": [
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (frozen since 1997)",
+          "description": "Distinct Pay Element (frozen since 1997)",
           "monthly": {
             "periods": [
               { "valid_from": "2022-10-01", "valid_until": null, "value": "10.33" }
@@ -335,7 +335,7 @@
         },
         {
           "code": "IND_FUN",
-          "description": "Indennità di funzione Quadri (Art. 2.1 CCNL 30/09/2022)",
+          "description": "Management Function Allowance — Quadri grade (Art. 2.1 CCNL 30/09/2022)",
           "monthly": {
             "periods": [
               { "valid_from": "2022-10-01", "valid_until": null, "value": "51.65" }

@@ -45,18 +45,18 @@
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
-      "INFO: PERSONALE: tabelle per personale non viaggiante (impiegati e operai sedentari). Il CCNL include anche personale viaggiante (autisti adibiti a trasporto internazionale) con tabelle e regole distinte — non modellato in questo file.",
-      "INFO: MINIMI CONGLOBATI: i valori in base_salary sono la retribuzione mensile minima conglobata (minimo tabellare + contingenza ex Art. 61 nota + EPA). Verifica primaria: Art. 61 del testo unico settembre 2025 — 'A decorrere dall'1.1.2001 l'indennità di contingenza è stata conglobata nei minimi tabellari unitamente all'EDR di euro 10,33 mensili'. fixed_allowances è vuoto per tutti i livelli.",
-      "INFO: DIVISORE ORARIO: 168 ore/mese. Fonte primaria: Art. 61 co.3 testo unico settembre 2025 — 'La retribuzione oraria si ottiene dividendo la retribuzione mensile per 168'.",
-      "INFO: TRANCHE: quattro tranche al 1.1.2025 (+120 per 3S), 1.1.2026 (+90 per 3S), 1.1.2027 (+40 per 3S), 1.6.2027 (+40 per 3S). Fonte: contrattotrasporti.it/art-106-tabelle-retributive (Art. 106 testo unico) e circ283-2024 Confetra (tranche gennaio 2025).",
-      "INFO: ICE: l'Indennità di Copertura Economica (ICE) era un elemento provvisorio vigente fino al 31.12.2024. Cessa dal 1.1.2025 con l'entrata in vigore del rinnovo. I valori in base_salary non includono ICE (elemento cessato). Il testo unico cita aumenti netti di €230 al 3S rispetto alla retribuzione previgente comprensiva di ICE — la differenza con la somma algebrica delle tranche (€290 da base senza ICE) corrisponde al valore ICE preesistente del livello.",
-      "INFO: MENSILITÀ: 14 (tredicesima Art. 18 + quattordicesima Art. 19 testo unico settembre 2025).",
-      "INFO: SCATTI DI ANZIANITÀ: biennali (cadenza 24 mesi), max 5 bienni. Importi da Art. 17 testo unico settembre 2025. Personale non viaggiante.",
-      "INFO: LIVELLO 6° JUNIOR: abolito dal 31.12.2025 (rinnovo del 6.12.2024, circ008-2025 Confetra). Tutti i lavoratori inquadrati al 6J promossi automaticamente al 6°. Non modellato in questo file.",
-      "INFO: EPA: Elemento Professionale d'Area, componente introdotta con il rinnovo del 6.12.2024. Inclusa nei valori base_salary a decorrere dal 1.1.2025. Non è separata perché costituisce parte integrante della retribuzione minima (incide su tutti gli istituti contrattuali e legali) — vedi circ283-2024 Confetra.",
-      "INFO: EDR: l'EDR di € 10,33 mensili (accordo 26 gen 2001) è conglobato nei minimi tabellari dal 1.1.2001 (Art. 61 nota). Ulteriori EDR successivi (accordo 2011, accordo 2021) sono NON incidenti su istituti — non modellati in base_salary; rappresentano voce separata in busta paga al di fuori del motore.",
-      "INFO: INPS: utilizza 2026-industria.json (TaxSector.INDUSTRIA). File già presente — nessuna modifica al tax file.",
-      "INFO: APPRENDISTATO: tipo percentage da TABELLA A testo unico settembre 2025. 75% anno 1 (m1-12), 85% anno 2 (m13-24), 100% da m25. Livelli ammessi: 1, 2, 3, 3S, 4, 4J, 5, 6 (livello Q escluso). Durata massima 36 mesi. Source: Art. 106 + TABELLA A testo unico 09/2025 (contrattotrasporti.it)."
+      "INFO: STAFF: tables for non-travelling staff (clerical employees and sedentary workers). The CCNL also covers travelling staff (drivers engaged in international transport) with separate tables and rules — not modelled in this file.",
+      "INFO: CONGLOBATED MINIMUMS: base_salary values are the conglobated monthly minimum pay (minimum pay table + contingenza per Art. 61 note + EPA). Primary check: Art. 61 of the consolidated text September 2025 — 'From 1.1.2001 the indennità di contingenza has been conglobated into the minimum pay tables together with the EDR of EUR 10.33 per month'. fixed_allowances is empty for all levels.",
+      "INFO: HOURLY DIVISOR: 168 hours/month. Primary source: Art. 61 para. 3 consolidated text September 2025 — 'The hourly pay is obtained by dividing the monthly pay by 168'.",
+      "INFO: TRANCHES: four tranches at 1.1.2025 (+120 for 3S), 1.1.2026 (+90 for 3S), 1.1.2027 (+40 for 3S), 1.6.2027 (+40 for 3S). Source: contrattotrasporti.it/art-106-tabelle-retributive (Art. 106 consolidated text) and Confetra circ283-2024 (January 2025 tranche).",
+      "INFO: ICE: the Indennità di Copertura Economica (ICE) was a provisional element in force until 31.12.2024. It ceases from 1.1.2025 with the renewal taking effect. base_salary values do not include ICE (ceased element). The consolidated text cites net increases of EUR 230 at 3S compared to the previous pay including ICE — the difference from the algebraic sum of the tranches (EUR 290 from base without ICE) corresponds to the pre-existing ICE value for that level.",
+      "INFO: ADDITIONAL MONTHS: 14 (tredicesima Art. 18 + quattordicesima Art. 19 consolidated text September 2025).",
+      "INFO: SENIORITY INCREMENTS: biennial (24-month cadence), max 5 biennial periods. Amounts from Art. 17 consolidated text September 2025. Non-travelling staff.",
+      "INFO: LEVEL 6° JUNIOR: abolished from 31.12.2025 (renewal of 6.12.2024, Confetra circ008-2025). All workers graded at 6J automatically promoted to 6°. Not modelled in this file.",
+      "INFO: EPA: Elemento Professionale d'Area, a component introduced by the 6.12.2024 renewal. Included in base_salary values from 1.1.2025. Not shown separately because it forms an integral part of the minimum pay (it affects all contractual and statutory entitlements) — see Confetra circ283-2024.",
+      "INFO: EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) has been conglobated into the minimum pay tables from 1.1.2001 (Art. 61 note). Subsequent additional EDRs (agreement 2011, agreement 2021) are NON-incidente (do not affect contractual entitlements) — not modelled in base_salary; they represent a separate pay slip item outside the engine.",
+      "INFO: INPS: uses 2026-industria.json (TaxSector.INDUSTRIA). File already present — no changes to the tax file.",
+      "INFO: APPRENTICESHIP: percentage type from TABELLA A consolidated text September 2025. 75% year 1 (m1-12), 85% year 2 (m13-24), 100% from m25. Eligible levels: 1, 2, 3, 3S, 4, 4J, 5, 6 (level Q excluded). Maximum duration 36 months. Source: Art. 106 + TABELLA A consolidated text 09/2025 (contrattotrasporti.it)."
     ]
   },
   "parameters": {
@@ -126,7 +126,7 @@
     {
       "code": "6",
       "order": 1,
-      "description": "6° livello — addetto a mansioni generiche di supporto operativo",
+      "description": "Level 6 — worker assigned to generic operational support tasks",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1703.66" },
@@ -140,7 +140,7 @@
     {
       "code": "5",
       "order": 2,
-      "description": "5° livello — operatore qualificato (autista cat. B, magazziniere spec.)",
+      "description": "Level 5 — qualified operator (cat. B driver, specialist warehouse worker)",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1823.09" },
@@ -154,7 +154,7 @@
     {
       "code": "4J",
       "order": 3,
-      "description": "4° livello Junior — operatore senior di recente inquadramento",
+      "description": "Level 4 Junior — recently graded senior operator",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1865.28" },
@@ -168,7 +168,7 @@
     {
       "code": "4",
       "order": 4,
-      "description": "4° livello — operatore specializzato (autista pat. C/CE, operatore CED)",
+      "description": "Level 4 — specialist operator (C/CE licence driver, CED operator)",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "1912.81" },
@@ -182,7 +182,7 @@
     {
       "code": "3",
       "order": 5,
-      "description": "3° livello — operatore altamente specializzato / coordinatore di settore",
+      "description": "Level 3 — highly specialised operator / department coordinator",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2016.54" },
@@ -196,7 +196,7 @@
     {
       "code": "3S",
       "order": 6,
-      "description": "3° livello Super — tecnico/operativo di riferimento o responsabile di processo",
+      "description": "Level 3 Super — reference technical/operational expert or process manager",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2070.37" },
@@ -210,7 +210,7 @@
     {
       "code": "2",
       "order": 7,
-      "description": "2° livello — responsabile di unità operativa / funzione direttiva junior",
+      "description": "Level 2 — operational unit manager / junior management role",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2202.62" },
@@ -224,7 +224,7 @@
     {
       "code": "1",
       "order": 8,
-      "description": "1° livello — funzione direttiva / responsabile di area",
+      "description": "Level 1 — management role / area manager",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2396.85" },
@@ -238,7 +238,7 @@
     {
       "code": "Q",
       "order": 9,
-      "description": "Quadro — quadro di alta professionalità direttiva e gestionale",
+      "description": "Quadro — quadro with high directional and managerial expertise",
       "base_salary": {
         "periods": [
           { "valid_from": "2025-01-01", "valid_until": "2026-01-01", "value": "2541.13" },

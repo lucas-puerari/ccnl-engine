@@ -137,7 +137,7 @@
     {
       "code": "1",
       "order": 1,
-      "description": "Livello 1 — operatore di base",
+      "description": "Level 1 — basic operator",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-01-01", "value": "1323.50" },
@@ -152,7 +152,7 @@
     {
       "code": "2",
       "order": 2,
-      "description": "Livello 2 — operatore qualificato",
+      "description": "Level 2 — qualified operator",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-01-01", "value": "1399.62" },
@@ -167,7 +167,7 @@
     {
       "code": "3",
       "order": 3,
-      "description": "Livello 3 — operatore specializzato",
+      "description": "Level 3 — specialist operator",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-01-01", "value": "1462.03" },
@@ -182,7 +182,7 @@
     {
       "code": "4",
       "order": 4,
-      "description": "Livello 4 — operatore altamente qualificato",
+      "description": "Level 4 — highly qualified operator",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-01-01", "value": "1524.87" },
@@ -197,7 +197,7 @@
     {
       "code": "5",
       "order": 5,
-      "description": "Livello 5 — operatore specialista / impiegato",
+      "description": "Level 5 — specialist operator / clerical employee",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-01-01", "value": "1649.93" },
@@ -212,7 +212,7 @@
     {
       "code": "6",
       "order": 6,
-      "description": "Livello 6 — tecnico/impiegato di concetto",
+      "description": "Level 6 — skilled technician / senior clerical employee",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-01-01", "value": "1800.12" },
@@ -227,7 +227,7 @@
     {
       "code": "6S",
       "order": 7,
-      "description": "Livello 6S — quadro / direttore tecnico (incl. indennità funzione 20.66 EUR)",
+      "description": "Level 6S — senior manager / technical director (incl. function allowance EUR 20.66)",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-07-01", "valid_until": "2025-01-01", "value": "1943.25" },

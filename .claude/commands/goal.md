@@ -1,62 +1,62 @@
-# /goal — Obiettivo multi-sessione: aggiungi N nuovi CCNL al repo
+# /goal — Multi-session goal: add N new CCNLs to the repo
 
-Questo progetto usa un sistema di goal basato su git history, non sulla valutazione LLM del `/goal` built-in.
+This project uses a git-history-based goal system, not the LLM evaluation of the built-in `/goal`.
 
-Un Stop hook project-local conta i commit `feat(...): add CCNL ...` su main dopo ogni turno.
-Il goal è raggiunto quando ne esistono abbastanza in più rispetto al baseline.
-Lo stato persiste in `.claude/GOAL.md` (locale, non committato) — funziona tra sessioni diverse.
+A project-local Stop hook counts `feat(...): add CCNL ...` commits on main after each turn.
+The goal is reached when enough of them exist beyond the baseline.
+State persists in `.claude/GOAL.md` (local, not committed) — it works across sessions.
 
 ---
 
-## Imposta un nuovo goal
+## Set a new goal
 
-Se l'utente ha specificato quanti contratti aggiungere (es. `/goal 5`):
+If the user has specified how many contracts to add (e.g. `/goal 5`):
 
-1. Conta il baseline attuale (fonte di verità: file JSON dei contratti):
+1. Count the current baseline (source of truth: contract JSON files):
    ```bash
    ls src/ccnl_engine/contracts/data/*.json | grep -v '__init__' | wc -l
    ```
 
-2. Crea `.claude/GOAL.md`:
+2. Create `.claude/GOAL.md`:
    ```markdown
    ---
    status: active
-   baseline: <numero contato al punto 1>
-   target: <N richiesto dall'utente>
-   created: <data ISO>
+   baseline: <number counted in step 1>
+   target: <N requested by the user>
+   created: <ISO date>
    ---
 
-   Aggiungi <N> nuovi CCNL al repo seguendo il processo in `.claude/commands/new-contract.md`.
+   Add <N> new CCNLs to the repo following the process in `.claude/commands/new-contract.md`.
 
-   Ogni contratto deve:
-   - Essere mergiato su main tramite PR
-   - Avere un commit con formato: `feat(<slug>): add CCNL <nome> (<codice>) payroll engine`
-   - Comparire in `git log main --oneline`
+   Each contract must:
+   - Be merged to main via PR
+   - Have a commit with the format: `feat(<slug>): add CCNL <name> (<code>) payroll engine`
+   - Appear in `git log main --oneline`
 
-   Procedi in ordine, un contratto alla volta. Scegli quelli con il maggior numero di lavoratori coperti non ancora presenti nel repo.
+   Proceed in order, one contract at a time. Choose those with the highest number of covered workers not yet present in the repo.
    ```
 
-3. Inizia subito a lavorare seguendo `/new-contract`.
+3. Start working immediately following `/new-contract`.
 
 ---
 
-## Mostra stato (nessun argomento)
+## Show status (no argument)
 
-Leggi `.claude/GOAL.md` e mostra:
+Read `.claude/GOAL.md` and display:
 - `status`, `baseline`, `target`
-- Conteggio corrente: `git log main --oneline | grep -c "feat(.*): add CCNL"`
-- Quanti aggiunti e quanti mancano
+- Current count: `git log main --oneline | grep -c "feat(.*): add CCNL"`
+- How many added and how many remain
 
 ---
 
-## Cancella goal (`/goal clear`)
+## Clear goal (`/goal clear`)
 
-Aggiorna `status: cancelled` in `.claude/GOAL.md`.
+Update `status: cancelled` in `.claude/GOAL.md`.
 
 ---
 
-## Vincoli
+## Constraints
 
-- Non creare un commit esplicito "goal done" — il completamento è rilevato automaticamente dallo Stop hook contando i feat commit.
-- Non dichiarare il goal completato finché `git log main` non mostra i commit attesi.
-- Usa sempre `/new-contract` per aggiungere ogni singolo CCNL.
+- Do not create an explicit "goal done" commit — completion is detected automatically by the Stop hook counting feat commits.
+- Do not declare the goal complete until `git log main` shows the expected commits.
+- Always use `/new-contract` to add each individual CCNL.

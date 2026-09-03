@@ -31,16 +31,16 @@
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
-      "INFO: SALARY MODEL: split (paga base + contingenza + EDR). Paga base varia per tranche (Jul 2023, Jan 2024, Jan 2025). Contingenza congelata dal 31/07/1992 (valori da CNEL F051 PDF). EDR fisso 10,33 EUR per tutti i livelli (Accordo 31/07/1992). Fonte tabelle: CNEL F051 PDF (rinnovo 20/06/2023); tranche Jan 2024 confermata da lexplain.it; tranche Jan 2025 derivata dalla differenza tra totale da dottrinalavoro.it e contingenza+EDR.",
+      "INFO: SALARY MODEL: split (paga base + contingenza + EDR). Base pay varies by tranche (Jul 2023, Jan 2024, Jan 2025). Contingenza frozen from 31/07/1992 (values from CNEL F051 PDF). EDR fixed at EUR 10.33 for all levels (Agreement 31/07/1992). Table sources: CNEL F051 PDF (renewal 20/06/2023); Jan 2024 tranche confirmed by lexplain.it; Jan 2025 tranche derived from the difference between the total from dottrinalavoro.it and contingenza+EDR.",
       "SOURCE: HOURLY DIVISOR 174 (40h x 52 / 12 = 173.33, rounded up as used by the sector): no published hourly table in accessible primary sources; independent secondary sources converge on 174 (previdenza-professionisti.it). Daily coefficient 26 confirmed by the CNEL F051 PDF.",
-      "INFO: ADDITIONAL MONTHS: 13 mensilità (tredicesima). Fonte: CNEL F051 PDF, campo 'Numero mensilità: 13'.",
-      "SOURCE: SENIORITY: cadenza biennale (24 mesi), massimo 5 scatti; importi da previdenza-professionisti.it (2025, invariati dal 2009). AS2 (9,66) e AC1 (10,76) hanno scatti diversi pur condividendo la paga base. valid_from 2023-07-01 assunto pari alla prima tranche; il rinnovo 2023 non ha modificato gli scatti.",
-      "INFO: CONTINGENZA: 12 bande salariali per 16 codici di livello. I livelli AE4 e AS1 condividono la stessa paga base e contingenza (banda 4). I livelli AC1 e AS2 condividono la stessa paga base e contingenza (banda 5); AS2 ha scatto diverso da AC1. I livelli AC2, AC3 e AS4 condividono la stessa paga base e contingenza (banda 7). Tutti i valori di contingenza da CNEL F051 PDF.",
-      "SIMPLIFICATION: APPRENDISTATO under_classification (CCNL Legno, rinnovo 20/06/2023, CNEL F051 PDF): 1° periodo (0-12 mesi) due bande salariali sotto la destinazione; 2° periodo (12-24) una banda sotto; 3° periodo (24-36) una banda sotto con retribuzione intermedia fra livello di appartenenza e destinazione (midpoint_to_destination sul minimo tabellare); poi destinazione. Le bande sono AE1 | AE2 | AE3 | AE4-AS1 | AC1-AS2 | AS3 | AC2-AC3-AS4 | AC4 | AC5 | AD1 | AD2 | AD3; i track raggruppano le destinazioni con gli stessi offset di ordine. Destinazioni modellate: da AE3 ad AC4; AE1/AE2 (nessuna banda due gradini sotto), AC5 (quadri) e area direttiva escluse.",
-      "INFO: INDENNITA' DI FUNZIONE AD3: 25,82 EUR/mese non inclusa nel minimo tabellare, modellata come fixed_allowance del livello AD3.",
-      "INFO: INPS: aliquote settore industria da 2026-industria.json (file preesistente riutilizzato). Dipendente 9,19%; datore: ≤15 dip 30,13%, 16-50 dip 30,20%, >50 dip 30,50%. Nessun fondo bilaterale sostitutivo per CCNL Legno Industria (Fondimpresa per formazione, non incide sulle aliquote INPS).",
-      "SIMPLIFICATION: DESCRIZIONI LIVELLI: le descrizioni testuali dei livelli (es. 'Area Esecutiva — 1° livello') sono placeholder generati dall'engine basati sui codici area (AE/AS/AC/AD) e non corrispondono ai testi contrattuali ufficiali degli articoli di classificazione del CCNL. Il testo estratto dal PDF CNEL F051 non includeva le denominazioni ufficiali delle categorie per ciascun codice livello.",
-      "SIMPLIFICATION: ORDINAMENTO INTRA-BANDA: per i livelli che condividono la stessa paga base (AE4/AS1, AC1/AS2, AC2/AC3/AS4), l'ordine relativo è assegnato arbitrariamente (ordine crescente all'interno del gruppo) per soddisfare il vincolo del motore di unicità dell'ordine. Il CCNL non definisce una gerarchia interna tra livelli della stessa banda salariale. Funzionalmente ininfluente — il validatore richiede solo salary non decrescente per ordine crescente."
+      "INFO: ADDITIONAL MONTHS: 13 mensilità (tredicesima). Source: CNEL F051 PDF, field 'Numero mensilità: 13'.",
+      "SOURCE: SENIORITY: biennial cadence (24 months), maximum 5 increments; amounts from previdenza-professionisti.it (2025, unchanged since 2009). AS2 (9.66) and AC1 (10.76) have different increment amounts despite sharing the same base pay. valid_from 2023-07-01 assumed equal to the first tranche; the 2023 renewal did not modify seniority increments.",
+      "INFO: CONTINGENZA: 12 salary bands for 16 level codes. Levels AE4 and AS1 share the same base pay and contingenza (band 4). Levels AC1 and AS2 share the same base pay and contingenza (band 5); AS2 has a different seniority increment from AC1. Levels AC2, AC3 and AS4 share the same base pay and contingenza (band 7). All contingenza values from CNEL F051 PDF.",
+      "SIMPLIFICATION: APPRENTICESHIP under_classification (CCNL Legno, renewal 20/06/2023, CNEL F051 PDF): 1st period (0-12 months) two salary bands below destination; 2nd period (12-24) one band below; 3rd period (24-36) one band below with intermediate pay between current and destination level (midpoint_to_destination on the minimum pay table); then destination. The bands are AE1 | AE2 | AE3 | AE4-AS1 | AC1-AS2 | AS3 | AC2-AC3-AS4 | AC4 | AC5 | AD1 | AD2 | AD3; tracks group destinations sharing the same order offset. Modelled destinations: from AE3 to AC4; AE1/AE2 (no band two steps below), AC5 (quadri) and management area excluded.",
+      "INFO: MANAGEMENT FUNCTION ALLOWANCE AD3: EUR 25.82/month, not included in the minimum pay table, modelled as a fixed_allowance for level AD3.",
+      "INFO: INPS: industry sector rates from 2026-industria.json (existing file reused). Employee 9.19%; employer: ≤15 employees 30.13%, 16-50 employees 30.20%, >50 employees 30.50%. No substitute bilateral fund for CCNL Legno Industria (Fondimpresa for training only, does not affect INPS contribution rates).",
+      "SIMPLIFICATION: LEVEL DESCRIPTIONS: the level description texts (e.g. 'Area Esecutiva — 1° livello') are placeholders generated by the engine based on area codes (AE/AS/AC/AD) and do not correspond to the official classification article texts of the CCNL. The text extracted from the CNEL F051 PDF did not include the official category names for each level code.",
+      "SIMPLIFICATION: INTRA-BAND ORDERING: for levels sharing the same base pay (AE4/AS1, AC1/AS2, AC2/AC3/AS4), the relative order is assigned arbitrarily (ascending within the group) to satisfy the engine's order-uniqueness constraint. The CCNL does not define an internal hierarchy among levels within the same salary band. Functionally irrelevant — the validator only requires salary to be non-decreasing for ascending order."
     ]
   },
   "parameters": {
@@ -145,7 +145,7 @@
     {
       "code": "AE1",
       "order": 1,
-      "description": "Area Esecutiva — 1° livello (operai comuni)",
+      "description": "Executive Area — Level 1 (general workers)",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1113.43" },
@@ -156,7 +156,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "512.16" }
@@ -165,7 +165,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -178,7 +178,7 @@
     {
       "code": "AE2",
       "order": 2,
-      "description": "Area Esecutiva — 2° livello (operai qualificati)",
+      "description": "Executive Area — Level 2 (qualified workers)",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1323.47" },
@@ -189,7 +189,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "514.79" }
@@ -198,7 +198,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -211,7 +211,7 @@
     {
       "code": "AE3",
       "order": 3,
-      "description": "Area Esecutiva — 3° livello (operai specializzati)",
+      "description": "Executive Area — Level 3 (skilled workers)",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1406.48" },
@@ -222,7 +222,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "516.53" }
@@ -231,7 +231,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -244,7 +244,7 @@
     {
       "code": "AE4",
       "order": 4,
-      "description": "Area Esecutiva — 4° livello (operai altamente specializzati)",
+      "description": "Executive Area — Level 4 (highly skilled workers)",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1489.49" },
@@ -255,7 +255,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "517.76" }
@@ -264,7 +264,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -277,7 +277,7 @@
     {
       "code": "AS1",
       "order": 5,
-      "description": "Area Specialistica — 1° livello",
+      "description": "Specialist Area — Level 1",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1489.49" },
@@ -288,7 +288,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "517.76" }
@@ -297,7 +297,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -309,7 +309,7 @@
     {
       "code": "AC1",
       "order": 6,
-      "description": "Area Competenza — 1° livello",
+      "description": "Competency Area — Level 1",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1556.03" },
@@ -320,7 +320,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "518.45" }
@@ -329,7 +329,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -341,7 +341,7 @@
     {
       "code": "AS2",
       "order": 7,
-      "description": "Area Specialistica — 2° livello",
+      "description": "Specialist Area — Level 2",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1556.03" },
@@ -352,7 +352,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "518.45" }
@@ -361,7 +361,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -373,7 +373,7 @@
     {
       "code": "AS3",
       "order": 8,
-      "description": "Area Specialistica — 3° livello",
+      "description": "Specialist Area — Level 3",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1639.62" },
@@ -384,7 +384,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "521.02" }
@@ -393,7 +393,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -405,7 +405,7 @@
     {
       "code": "AC2",
       "order": 9,
-      "description": "Area Competenza — 2° livello",
+      "description": "Competency Area — Level 2",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1722.08" },
@@ -416,7 +416,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "522.41" }
@@ -425,7 +425,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -437,7 +437,7 @@
     {
       "code": "AC3",
       "order": 10,
-      "description": "Area Competenza — 3° livello",
+      "description": "Competency Area — Level 3",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1722.08" },
@@ -448,7 +448,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "522.41" }
@@ -457,7 +457,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -469,7 +469,7 @@
     {
       "code": "AS4",
       "order": 11,
-      "description": "Area Specialistica — 4° livello",
+      "description": "Specialist Area — Level 4",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1722.08" },
@@ -480,7 +480,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "522.41" }
@@ -489,7 +489,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -501,7 +501,7 @@
     {
       "code": "AC4",
       "order": 12,
-      "description": "Area Competenza — 4° livello",
+      "description": "Competency Area — Level 4",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "1888.07" },
@@ -512,7 +512,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "525.22" }
@@ -521,7 +521,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -533,7 +533,7 @@
     {
       "code": "AC5",
       "order": 13,
-      "description": "Area Competenza — 5° livello (quadri)",
+      "description": "Competency Area — Level 5 (quadri)",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "2054.02" },
@@ -544,7 +544,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "527.94" }
@@ -553,7 +553,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -566,7 +566,7 @@
     {
       "code": "AD1",
       "order": 14,
-      "description": "Area Direttiva — 1° livello",
+      "description": "Management Area — Level 1",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "2164.70" },
@@ -577,7 +577,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "529.75" }
@@ -586,7 +586,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -599,7 +599,7 @@
     {
       "code": "AD2",
       "order": 15,
-      "description": "Area Direttiva — 2° livello",
+      "description": "Management Area — Level 2",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "2275.98" },
@@ -610,7 +610,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "531.91" }
@@ -619,7 +619,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -632,7 +632,7 @@
     {
       "code": "AD3",
       "order": 16,
-      "description": "Area Direttiva — 3° livello (dirigenti apicali)",
+      "description": "Management Area — Level 3 (top management)",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-07-01", "valid_until": "2024-01-01", "value": "2330.21" },
@@ -643,7 +643,7 @@
       "fixed_allowances": [
         {
           "code": "CONT",
-          "description": "Indennità di contingenza (congelata dal 31/07/1992)",
+          "description": "Cost-of-living allowance (frozen since 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "531.91" }
@@ -652,7 +652,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Accordo 31/07/1992)",
+          "description": "Distinct Pay Element (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "10.33" }
@@ -661,7 +661,7 @@
         },
         {
           "code": "ind_funzione_AD3",
-          "description": "Indennità di funzione AD3, 25,82 EUR/mese, non inclusa nel minimo tabellare",
+          "description": "Management function allowance AD3, EUR 25.82/month, not included in the minimum pay table",
           "monthly": {
             "periods": [
               { "valid_from": "2023-07-01", "valid_until": null, "value": "25.82" }

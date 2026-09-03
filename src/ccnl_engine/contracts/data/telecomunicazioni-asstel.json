@@ -110,7 +110,7 @@
     {
       "code": "A1",
       "order": 1,
-      "description": "A1 — 1° livello, mansioni prevalentemente manuali senza conoscenze professionali",
+      "description": "A1 — Grade 1, predominantly manual tasks requiring no professional knowledge",
       "base_salary": {
         "periods": [
           { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "1399.68" },
@@ -124,7 +124,7 @@
     {
       "code": "A2",
       "order": 2,
-      "description": "A2 — 2° livello, conoscenze professionali elementari",
+      "description": "A2 — Grade 2, basic professional knowledge",
       "base_salary": {
         "periods": [
           { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "1560.50" },
@@ -138,7 +138,7 @@
     {
       "code": "B1",
       "order": 3,
-      "description": "B1 — 3° livello, conoscenze teorico-pratiche di media complessità",
+      "description": "B1 — Grade 3, theoretical and practical knowledge of medium complexity",
       "base_salary": {
         "periods": [
           { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "1702.98" },
@@ -152,7 +152,7 @@
     {
       "code": "B2",
       "order": 4,
-      "description": "B2 — 4° livello, qualificate conoscenze di tipo specialistico",
+      "description": "B2 — Grade 4, qualified specialist knowledge",
       "base_salary": {
         "periods": [
           { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "1841.94" },
@@ -166,7 +166,7 @@
     {
       "code": "C1",
       "order": 5,
-      "description": "C1 — 5° livello, capacità professionali e gestionali a elevate conoscenze",
+      "description": "C1 — Grade 5, advanced professional and managerial capabilities with high-level knowledge",
       "base_salary": {
         "periods": [
           { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "1988.73" },
@@ -180,7 +180,7 @@
     {
       "code": "C2",
       "order": 6,
-      "description": "C2 — 5°S livello, profili specialistici ad alto grado di specializzazione",
+      "description": "C2 — Grade 5S, specialist profiles with a high degree of specialisation",
       "base_salary": {
         "periods": [
           { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "2056.60" },
@@ -194,7 +194,7 @@
     {
       "code": "C3",
       "order": 7,
-      "description": "C3 — 6° livello, elevata e consolidata preparazione professionale e gestionale",
+      "description": "C3 — Grade 6, high and consolidated professional and managerial expertise",
       "base_salary": {
         "periods": [
           { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "2317.44" },
@@ -208,7 +208,7 @@
     {
       "code": "C4",
       "order": 8,
-      "description": "C4 — 7° livello, funzioni direttive di alta complessità organizzativa",
+      "description": "C4 — Grade 7, managerial functions of high organisational complexity",
       "base_salary": {
         "periods": [
           { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "2542.92" },
@@ -220,7 +220,7 @@
       "fixed_allowances": [
         {
           "code": "ERS",
-          "description": "Elemento Retributivo di Settore (7° livello)",
+          "description": "Sector Pay Element (Grade 7)",
           "monthly": {
             "periods": [
               { "valid_from": "2026-01-01", "valid_until": null, "value": "59.39" }
@@ -232,7 +232,7 @@
     {
       "code": "D1",
       "order": 9,
-      "description": "D1 — Quadri, massima responsabilità gestionale e professionale",
+      "description": "D1 — Quadri, maximum managerial and professional responsibility",
       "base_salary": {
         "periods": [
           { "valid_from": "2026-01-01", "valid_until": "2026-12-01", "value": "2542.92" },
@@ -244,7 +244,7 @@
       "fixed_allowances": [
         {
           "code": "IND_FUN",
-          "description": "Indennità di funzione Quadri (inclusiva dell'ERS 59.39)",
+          "description": "Quadri Function Allowance (inclusive of ERS 59.39)",
           "monthly": {
             "periods": [
               { "valid_from": "2026-01-01", "valid_until": null, "value": "98.13" }

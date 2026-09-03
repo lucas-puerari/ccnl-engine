@@ -99,7 +99,7 @@
     {
       "code": "QD4",
       "order": 9,
-      "description": "Quadri Direttivi - 4° livello",
+      "description": "Executive Managers - 4th level",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "4911.48" },
@@ -114,7 +114,7 @@
     {
       "code": "QD3",
       "order": 8,
-      "description": "Quadri Direttivi - 3° livello",
+      "description": "Executive Managers - 3rd level",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "4180.89" },
@@ -129,7 +129,7 @@
     {
       "code": "QD2",
       "order": 7,
-      "description": "Quadri Direttivi - 2° livello",
+      "description": "Executive Managers - 2nd level",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "3760.45" },
@@ -144,7 +144,7 @@
     {
       "code": "QD1",
       "order": 6,
-      "description": "Quadri Direttivi - 1° livello",
+      "description": "Executive Managers - 1st level",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "3547.80" },
@@ -159,7 +159,7 @@
     {
       "code": "3A4",
       "order": 5,
-      "description": "3ª Area professionale - 4° livello",
+      "description": "3rd Professional Area - 4th level",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "3156.90" },
@@ -174,7 +174,7 @@
     {
       "code": "3A3",
       "order": 4,
-      "description": "3ª Area professionale - 3° livello",
+      "description": "3rd Professional Area - 3rd level",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "2899.88" },
@@ -189,7 +189,7 @@
     {
       "code": "3A2",
       "order": 3,
-      "description": "3ª Area professionale - 2° livello",
+      "description": "3rd Professional Area - 2nd level",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "2739.63" },
@@ -204,7 +204,7 @@
     {
       "code": "3A1",
       "order": 2,
-      "description": "3ª Area professionale - 1° livello",
+      "description": "3rd Professional Area - 1st level",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "2599.29" },
@@ -219,7 +219,7 @@
     {
       "code": "1e2A",
       "order": 1,
-      "description": "1ª e 2ª Area professionale (Area Unificata)",
+      "description": "1st and 2nd Professional Area (Unified Area)",
       "base_salary": {
         "periods": [
           { "valid_from": "2023-11-23", "valid_until": "2024-09-01", "value": "2350.10" },

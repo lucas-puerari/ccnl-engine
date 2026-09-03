@@ -111,7 +111,7 @@
     {
       "code": "QA",
       "order": 10,
-      "description": "Quadro A — Funzione direttiva apicale",
+      "description": "Quadro A — Top management function",
       "category": "quadro",
       "base_salary": {
         "periods": [
@@ -128,7 +128,7 @@
     {
       "code": "QB",
       "order": 9,
-      "description": "Quadro B — Funzione direttiva",
+      "description": "Quadro B — Management function",
       "category": "quadro",
       "base_salary": {
         "periods": [
@@ -145,7 +145,7 @@
     {
       "code": "1",
       "order": 8,
-      "description": "Livello 1 — Impiegato di concetto con funzioni direttive",
+      "description": "Level 1 — Conceptual employee with managerial functions",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -162,7 +162,7 @@
     {
       "code": "2",
       "order": 7,
-      "description": "Livello 2 — Impiegato di concetto",
+      "description": "Level 2 — Conceptual employee",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -179,7 +179,7 @@
     {
       "code": "3",
       "order": 6,
-      "description": "Livello 3 — Impiegato qualificato",
+      "description": "Level 3 — Qualified employee",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -196,7 +196,7 @@
     {
       "code": "4",
       "order": 5,
-      "description": "Livello 4 — Impiegato",
+      "description": "Level 4 — Employee",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -213,7 +213,7 @@
     {
       "code": "5",
       "order": 4,
-      "description": "Livello 5 — Impiegato d'ordine qualificato",
+      "description": "Level 5 — Qualified clerical employee",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -230,7 +230,7 @@
     {
       "code": "6S",
       "order": 3,
-      "description": "Livello 6S — Impiegato d'ordine super",
+      "description": "Level 6S — Super clerical employee",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -247,7 +247,7 @@
     {
       "code": "6",
       "order": 2,
-      "description": "Livello 6 — Impiegato d'ordine",
+      "description": "Level 6 — Clerical employee",
       "category": "impiegato",
       "base_salary": {
         "periods": [
@@ -264,7 +264,7 @@
     {
       "code": "7",
       "order": 1,
-      "description": "Livello 7 — Personale ausiliario",
+      "description": "Level 7 — Auxiliary staff",
       "category": "operaio",
       "base_salary": {
         "periods": [
@@ -297,14 +297,14 @@
     "layer_2": "implemented",
     "layer_3": "out_of_scope",
     "notes": [
-      "SOURCE: Tabelle retributive 2024-2027 da rinnovo CCNL 26 luglio 2024 (CNEL PDF). Sei tranches: giu-24, lug-24, set-25, set-26, giu-27, dic-27.",
-      "SOURCE: Divisore orario 172 da Art. 146 CCNL base 2019 (CNEL PDF doc 20108). Stessa base del settore turismo Confcommercio.",
-      "SOURCE: Mensilita aggiuntive 14 da Art. 157 (tredicesima) e Art. 158 (quattordicesima) rinnovo 2024.",
-      "SOURCE: Scatti di anzianita triennali (Art. 156 CCNL 2019): cadenza 36 mesi, massimo 6 scatti. Importi per livello da tabella allegata al rinnovo 2024.",
-      "SOURCE: Apprendistato percentuale da Art. 64 CCNL 2019 (OCR pagine 32-33): primo anno 80%, secondo anno 85%, terzo anno 90%.",
-      "SOURCE: Codice CNEL H052 confermato da kitech.it CodiceCateg=81 (settore turismo Confcommercio, agenzie di viaggio incluse).",
-      "SIMPLIFICATION: Livelli QA e QB (Quadri) esclusi dal track apprendistato (apprendistato non applicabile ai Quadri per legge).",
-      "SIMPLIFICATION: Layer 3 (straordinari, notturni, festivita) fuori ambito."
+      "SOURCE: Salary tables 2024-2027 from CCNL renewal of 26 July 2024 (CNEL PDF). Six tranches: Jun-24, Jul-24, Sep-25, Sep-26, Jun-27, Dec-27.",
+      "SOURCE: Hourly divisor 172 from Art. 146 CCNL base 2019 (CNEL PDF doc 20108). Same basis as the Confcommercio tourism sector.",
+      "SOURCE: 14 additional monthly payments from Art. 157 (thirteenth month) and Art. 158 (fourteenth month) of the 2024 renewal.",
+      "SOURCE: Triennial seniority increments (Art. 156 CCNL 2019): 36-month cadence, maximum 6 increments. Per-level amounts from the table attached to the 2024 renewal.",
+      "SOURCE: Percentage-based apprenticeship from Art. 64 CCNL 2019 (OCR pages 32-33): first year 80%, second year 85%, third year 90%.",
+      "SOURCE: CNEL code H052 confirmed from kitech.it CodiceCateg=81 (Confcommercio tourism sector, travel agencies included).",
+      "SIMPLIFICATION: Levels QA and QB (Quadri) excluded from the apprenticeship track (apprenticeship not applicable to Quadri by law).",
+      "SIMPLIFICATION: Layer 3 (overtime, night shifts, public holidays) out of scope."
     ]
   }
 }

@@ -140,7 +140,7 @@
     {
       "code": "F",
       "order": 1,
-      "description": "Livello F — inserimento (transitorio, max 12 mesi)",
+      "description": "Level F — entry grade (transitional, max 12 months)",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "1378.91" },
@@ -155,7 +155,7 @@
     {
       "code": "E",
       "order": 2,
-      "description": "Livello E — operaio comune / impiegato d'ordine",
+      "description": "Level E — general worker / clerical staff",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "1467.59" },
@@ -170,7 +170,7 @@
     {
       "code": "D",
       "order": 3,
-      "description": "Livello D — operaio qualificato / impiegato",
+      "description": "Level D — qualified worker / employee",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "1549.71" },
@@ -185,7 +185,7 @@
     {
       "code": "C",
       "order": 4,
-      "description": "Livello C — operaio specializzato / impiegato di concetto",
+      "description": "Level C — skilled worker / white-collar employee",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "1639.40" },
@@ -200,7 +200,7 @@
     {
       "code": "CS",
       "order": 5,
-      "description": "Livello CS — operaio specializzato provetto / impiegato di concetto senior",
+      "description": "Level CS — expert skilled worker / senior white-collar employee",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "1718.25" },
@@ -215,7 +215,7 @@
     {
       "code": "B",
       "order": 6,
-      "description": "Livello B — impiegati di concetto / operai specializzati provetti",
+      "description": "Level B — white-collar employees / expert skilled workers",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "1796.32" },
@@ -230,7 +230,7 @@
     {
       "code": "A",
       "order": 7,
-      "description": "Livello A — impiegato direttivo / tecnico altamente specializzato",
+      "description": "Level A — managerial employee / highly specialised technician",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "1965.19" },
@@ -245,7 +245,7 @@
     {
       "code": "AS",
       "order": 8,
-      "description": "Livello AS — quadro / dirigente tecnico (livello massimo)",
+      "description": "Level AS — quadro / senior technical manager (top level)",
       "base_salary": {
         "periods": [
           { "valid_from": "2024-03-01", "valid_until": "2025-01-01", "value": "2108.37" },
