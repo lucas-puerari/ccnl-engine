@@ -1,0 +1,644 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "forze-polizia-ordinamento-civile",
+    "name": "DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)",
+    "cnel_code": "N/A",
+    "sector": "Pubblica Sicurezza — Forze di Polizia ad ordinamento civile",
+    "tax_sector": "pubblica-amministrazione",
+    "agreement_date": "2025-03-24",
+    "validity": {
+      "valid_from": "2022-01-01",
+      "valid_until": null
+    },
+    "signatories": [
+      "Presidenza del Consiglio dei Ministri",
+      "SIULP",
+      "SAP",
+      "SIAP",
+      "FSP Polizia di Stato",
+      "Federazione COISP-MOSAP",
+      "SILP CGIL",
+      "SAPPE",
+      "SINAPPE",
+      "OSAPP",
+      "UILPA PP",
+      "USPP",
+      "CISL FNS"
+    ],
+    "sources": [
+      {
+        "url": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f",
+        "type": "ccnl_pdf",
+        "agreement_date": "2025-03-24",
+        "notes": "DPR 24 marzo 2025 n. 53, GU n. 91 del 18/04/2025 SO n. 12. Recepimento accordi sindacali triennio 2022-2024 per personale Forze di polizia ad ordinamento civile e militare. In vigore dal 03/05/2025. Testo normativo di riferimento; tavole retributive Art. 6 non direttamente estratte da questo atto — verificare allegati DPR per conferma. I valori sono stati estratti dall'ipotesi di accordo 18/12/2024 (seconda fonte)."
+      },
+      {
+        "url": "https://nazionale.autonomidipolizia.it/wp-content/uploads/2024/12/ipotesi-accordo-18-12-2024.pdf",
+        "type": "ccnl_pdf",
+        "agreement_date": "2024-12-18",
+        "notes": "Ipotesi di accordo sindacale Forze di Polizia ad ordinamento civile triennio 2022/2024 sottoscritta il 18/12/2024 (fonte Autonomi di Polizia). Tavole retributive Art. 6 usate per estrazione dei parametri e valori mensili."
+      }
+    ],
+    "extraction": {
+      "method": "manual_pdf_extraction",
+      "model": null,
+      "timestamp": "2026-09-04",
+      "human_reviewed": true
+    }
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2022-04-01",
+          "valid_until": null,
+          "value": "156"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2022-04-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 1,
+      "maximum_count": 0,
+      "amount_by_level": {}
+    }
+  },
+  "levels": [
+    {
+      "code": "AGENTE",
+      "order": 1,
+      "description": "Agente (param 105,25)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1611.20"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1614.41"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1714.70"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "AGENTE_SCELTO",
+      "order": 2,
+      "description": "Agente Scelto (param 108,50)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1660.95"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1664.26"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1767.65"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "ASSISTENTE",
+      "order": 3,
+      "description": "Assistente (param 112,00)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1714.53"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1717.95"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1824.67"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "ASSISTENTE_CAPO",
+      "order": 4,
+      "description": "Assistente Capo (param 116,50)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1783.41"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1786.97"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1897.98"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "VICE_SOV",
+      "order": 5,
+      "description": "Vice Sovrintendente (param 116,75)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1787.24"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1790.81"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1902.05"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "ASSISTENTE_CAPO_5A",
+      "order": 6,
+      "description": "Assistente Capo con 5 anni di qualifica (param 117,00)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1791.07"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1794.64"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1906.13"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "SOVRINTENDENTE",
+      "order": 7,
+      "description": "Sovrintendente (param 121,50)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1859.96"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1863.67"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1979.44"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "ASSISTENTE_CAPO_COORD",
+      "order": 8,
+      "description": "Assistente Capo Coordinatore (param 121,50)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1859.96"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1863.67"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "1979.44"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "SOV_CAPO",
+      "order": 9,
+      "description": "Sovrintendente Capo (param 124,25)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1902.05"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1905.85"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2024.24"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "VICE_ISP",
+      "order": 10,
+      "description": "Vice Ispettore (param 124,75)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1909.71"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1913.52"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2032.39"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "SOV_CAPO_4A",
+      "order": 11,
+      "description": "Sovrintendente Capo con 4 anni di qualifica (param 125,75)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1925.02"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "1928.86"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2048.68"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "ISPETTORE",
+      "order": 12,
+      "description": "Ispettore (param 131,00)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "2005.38"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "2009.39"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2134.21"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "SOV_CAPO_COORD",
+      "order": 13,
+      "description": "Sovrintendente Capo Coordinatore (param 131,00)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "2005.38"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "2009.39"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2134.21"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "ISP_CAPO",
+      "order": 14,
+      "description": "Ispettore Capo (param 133,50)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "2043.66"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "2047.73"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2174.94"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "VICE_COMM",
+      "order": 15,
+      "description": "Vice Commissario (param 136,75)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "2093.41"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "2097.58"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2227.89"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "ISP_SUPERIORE",
+      "order": 16,
+      "description": "Ispettore Superiore (param 137,50)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "2104.89"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "2109.09"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2240.10"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "ISP_SUP_8A",
+      "order": 17,
+      "description": "Ispettore Superiore con 8 anni di qualifica (param 140,00)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "2143.16"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "2147.44"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2280.83"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "SOST_COMM",
+      "order": 18,
+      "description": "Sostituto Commissario (param 143,50)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "2196.74"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "2201.12"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2337.85"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "COMMISSARIO",
+      "order": 19,
+      "description": "Commissario (param 148,00)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "2265.63"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "2270.15"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2411.17"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "SOST_COMM_COORD",
+      "order": 20,
+      "description": "Sostituto Commissario Coordinatore (param 148,00)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "2265.63"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "2270.15"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2411.17"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "COMM_CAPO",
+      "order": 21,
+      "description": "Commissario Capo (param 150,50)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "2303.90"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2024-01-01",
+            "value": "2308.49"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "2451.90"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": [],
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      "INFO: Primo accordo DPR-based nel repository. Il Comparto Sicurezza-Difesa è disciplinato dal D.Lgs. 195/1995 — non da ARAN né da CCNL. Gli accordi sindacali sono recepiti con DPR (non con CCNL). DPR 53/2025 copre Polizia di Stato (97.931 effettivi, fonte poliziadistato.it 2024) e Corpo di Polizia Penitenziaria (~31.000 effettivi, fonte Rapporto Antigone 2025 / DAP): totale ~129.000 dipendenti.",
+      "INFO: Perimetro DPR 53/2025 — Art. 1: personale non dirigente delle Forze di polizia ad ordinamento civile (Polizia di Stato) e militare (Polizia Penitenziaria). Forze Armate (Esercito, Marina, Aeronautica), Carabinieri e Guardia di Finanza non rientrano.",
+      "INFO: Modello parametrico. Stipendio mensile = param × punto_parametrale_annuo / 12. Punto parametrale: T1 183,6993 €/anno (1/4/2022), T2 184,0659 €/anno (1/7/2022–31/12/2023), T3 195,50 €/anno (1/1/2024–). Fonte: Art. 6 DPR 53/2025 e ipotesi di accordo 18/12/2024.",
+      "INFO: Conglobazione confermata — IIS conglobata dal 1/1/2005 (D.Lgs. 193/2003). fixed_allowances: [] per tutti i livelli.",
+      "INFO: `order` assegnato per parametro crescente, non per gerarchia di carriera. Tre inversioni strutturali: Vice Sovrintendente (116,75) > Assistente Capo (116,50); Vice Ispettore (124,75) > Sovrintendente Capo (124,25); Vice Commissario (136,75) < Sostituto Commissario (143,50). Tre parità: SOVRINTENDENTE/ASSISTENTE_CAPO_COORD (121,50), ISPETTORE/SOV_CAPO_COORD (131,00), COMMISSARIO/SOST_COMM_COORD (148,00).",
+      "INFO: divisore orario 156 (36h/settimana) — DPR 18 giugno 2002 n. 164 (orario di lavoro Polizia di Stato), 36h × 52 / 12 = 156. Stessa derivazione degli altri contratti PA.",
+      "INFO: Tredicesima mensilità prevista — additional_months = 13.",
+      "INFO: Progressione economica non per scatti automatici sulla paga base, bensì per avanzamento di qualifica e tramite assegno funzionale (Art. 54 D.Lgs. 195/1995) maturato a 17, 27 e 32 anni di servizio. seniority_increments.maximum_count = 0.",
+      "INFO: Apprendistato assente — il reclutamento avviene per concorso pubblico (D.Lgs. 195/1995 art. 6). apprenticeship: [].",
+      "INFO: validity.valid_from = 2022-01-01 (inizio periodo normativo ex Art. 1 DPR 53/2025). Gli effetti retributivi iniziano il 2022-04-01 (prima tranche stipendiale), che coincide con la data valid_from del primo periodo base_salary.",
+      "INFO: Firmatari Polizia di Stato: SIULP, SAP, SIAP, FSP Polizia di Stato (ES-LS-CONSAP-M.P.), Federazione COISP-MOSAP, SILP CGIL. Firmatari Polizia Penitenziaria: SAPPE, SINAPPE, OSAPP, UILPA PP, USPP, CISL FNS. Fonte: testo DPR 53/2025.",
+      "SIMPLIFICATION: cnel_code = 'N/A' — il CNEL non assegna codici agli accordi DPR-based (questo comparto è escluso dalla contrattazione collettiva ordinaria ex D.Lgs. 195/1995 e resta in regime di diritto pubblico). Il CNEL medesimo non include questo comparto nel proprio archivio contratti.",
+      "SIMPLIFICATION: aliquote INPS/CTPS — dipendente 8,80%, datore 24,20% — proxy dal file 2026-pubblica-amministrazione.json già presente; verificare circolare INPS annuale per valori esatti (regime CTPS ex-INPDAP, identico a PA ordinaria).",
+      "SIMPLIFICATION: valori mensili arrotondati col metodo a due passi (annual = round(param × punto, 2); monthly = round(annual / 12, 2)) per allineamento con le tavole dell'ipotesi di accordo 18/12/2024. Differenza massima da calcolo diretto: 1 centesimo."
+    ]
+  }
+}

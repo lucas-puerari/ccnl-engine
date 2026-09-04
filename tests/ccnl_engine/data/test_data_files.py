@@ -5143,3 +5143,96 @@ class TestLoadImpiegatiTecniciAgricoli:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 12
+
+
+class TestLoadForzePoliziaOrdinamentoCivile:
+    """Tests for DPR 53/2025 — Forze di Polizia ad ordinamento civile."""
+
+    def test_forze_polizia_ordinamento_civile_loads(self) -> None:
+        """Contract id and cnel_code match DPR 53/2025 identifier."""
+        ccnl = load_ccnl("forze-polizia-ordinamento-civile.json")
+        assert ccnl.meta.id == "forze-polizia-ordinamento-civile"
+        assert ccnl.meta.cnel_code == "N/A"
+
+    def test_forze_polizia_ordinamento_civile_has_21_levels(self) -> None:
+        """Contract has exactly 21 qualifiche, codes match DPR 53/2025 Art. 6."""
+        ccnl = load_ccnl("forze-polizia-ordinamento-civile.json")
+        assert len(ccnl.levels) == 21
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {
+            "AGENTE",
+            "AGENTE_SCELTO",
+            "ASSISTENTE",
+            "ASSISTENTE_CAPO",
+            "VICE_SOV",
+            "ASSISTENTE_CAPO_5A",
+            "SOVRINTENDENTE",
+            "ASSISTENTE_CAPO_COORD",
+            "SOV_CAPO",
+            "VICE_ISP",
+            "SOV_CAPO_4A",
+            "ISPETTORE",
+            "SOV_CAPO_COORD",
+            "ISP_CAPO",
+            "VICE_COMM",
+            "ISP_SUPERIORE",
+            "ISP_SUP_8A",
+            "SOST_COMM",
+            "COMMISSARIO",
+            "SOST_COMM_COORD",
+            "COMM_CAPO",
+        }
+
+    def test_forze_polizia_ordinamento_civile_agente_salary_t1(self) -> None:
+        """Agente T1 monthly (2022-04-01) = 1611.20 (param 105,25 x 183,6993/12)."""
+        ccnl = load_ccnl("forze-polizia-ordinamento-civile.json")
+        lv = ccnl.level_by_code("AGENTE")
+        assert lv.base_salary.value_at(date(2022, 4, 1)) == Decimal("1611.20")
+
+    def test_forze_polizia_ordinamento_civile_agente_salary_t3(self) -> None:
+        """Agente T3 monthly from 2024-01-01 = 1714.70 (param 105,25 x 195,50/12)."""
+        ccnl = load_ccnl("forze-polizia-ordinamento-civile.json")
+        lv = ccnl.level_by_code("AGENTE")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1714.70")
+
+    def test_forze_polizia_ordinamento_civile_level_ordering(self) -> None:
+        """AGENTE order 1, COMM_CAPO order 21; VICE_SOV > ASSISTENTE_CAPO."""
+        ccnl = load_ccnl("forze-polizia-ordinamento-civile.json")
+        levels_by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert levels_by_order[0].code == "AGENTE"
+        assert levels_by_order[-1].code == "COMM_CAPO"
+        # Parameter inversion: Vice Sovrintendente (116.75) > Assistente Capo (116.50)
+        # so VICE_SOV must have higher order than ASSISTENTE_CAPO.
+        vice_sov = ccnl.level_by_code("VICE_SOV")
+        ass_capo = ccnl.level_by_code("ASSISTENTE_CAPO")
+        assert vice_sov.order > ass_capo.order
+
+    def test_forze_polizia_ordinamento_civile_additional_months(self) -> None:
+        """Contract has 13 additional months (tredicesima only)."""
+        ccnl = load_ccnl("forze-polizia-ordinamento-civile.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_forze_polizia_ordinamento_civile_hourly_divisor(self) -> None:
+        """Hourly divisor is 156 (36 h/week per DPR 164/2002)."""
+        ccnl = load_ccnl("forze-polizia-ordinamento-civile.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(156)
+
+    def test_forze_polizia_ordinamento_civile_no_fixed_allowances(self) -> None:
+        """All 21 levels have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("forze-polizia-ordinamento-civile.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == [], lv.code
+
+    def test_forze_polizia_ordinamento_civile_tax_sector(self) -> None:
+        """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
+        ccnl = load_ccnl("forze-polizia-ordinamento-civile.json")
+        assert ccnl.meta.tax_sector == TaxSector.PUBBLICA_AMMINISTRAZIONE
+
+    def test_forze_polizia_ordinamento_civile_seniority_cadence(self) -> None:
+        """No automatic scatti: maximum_count=0 (progression via qualifica)."""
+        ccnl = load_ccnl("forze-polizia-ordinamento-civile.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 1
+        assert si.maximum_count == 0
