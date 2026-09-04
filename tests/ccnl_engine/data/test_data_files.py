@@ -4913,3 +4913,76 @@ class TestLoadTrasportoFerroviarioAgens:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 7
+
+
+class TestLoadTrasportoAereoAssaeroporti:
+    """Tests for CCNL Trasporto Aereo — Gestori Aeroportuali (I810)."""
+
+    def test_trasporto_aereo_assaeroporti_loads(self) -> None:
+        """Contract loads with correct id and CNEL code I810."""
+        ccnl = load_ccnl("trasporto-aereo-assaeroporti.json")
+        assert ccnl.meta.id == "trasporto-aereo-assaeroporti"
+        assert ccnl.meta.cnel_code == "I810"
+
+    def test_trasporto_aereo_assaeroporti_has_11_levels(self) -> None:
+        """Contract has exactly 11 levels: 9 through 1S."""
+        ccnl = load_ccnl("trasporto-aereo-assaeroporti.json")
+        assert len(ccnl.levels) == 11
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"9", "8", "7", "6", "5", "4", "3", "2B", "2A", "1", "1S"}
+
+    def test_trasporto_aereo_assaeroporti_level4_salary_2025(self) -> None:
+        """Level 4 base salary at Jan 2025 (pre-Jul tranche) is 1207.47."""
+        ccnl = load_ccnl("trasporto-aereo-assaeroporti.json")
+        lv4 = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv4.base_salary.value_at(date(2025, 3, 1)) == Decimal("1207.47")
+
+    def test_trasporto_aereo_assaeroporti_level4_salary_2026(self) -> None:
+        """Level 4 base salary at Jul 2026 tranche is 1367.47."""
+        ccnl = load_ccnl("trasporto-aereo-assaeroporti.json")
+        lv4 = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv4.base_salary.value_at(date(2026, 9, 1)) == Decimal("1367.47")
+
+    def test_trasporto_aereo_assaeroporti_level_ordering(self) -> None:
+        """Level 9 is lowest-order; level 1S is highest-order."""
+        ccnl = load_ccnl("trasporto-aereo-assaeroporti.json")
+        levels_by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert levels_by_order[0].code == "9"
+        assert levels_by_order[-1].code == "1S"
+
+    def test_trasporto_aereo_assaeroporti_additional_months(self) -> None:
+        """Contract has 14 additional months (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("trasporto-aereo-assaeroporti.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 9, 1)) == Decimal(
+            14
+        )
+
+    def test_trasporto_aereo_assaeroporti_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (Art. G28)."""
+        ccnl = load_ccnl("trasporto-aereo-assaeroporti.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 9, 1)) == Decimal(173)
+
+    def test_trasporto_aereo_assaeroporti_split_allowances(self) -> None:
+        """Every level carries CONTINGENZA and EDR fixed allowances."""
+        ccnl = load_ccnl("trasporto-aereo-assaeroporti.json")
+        for lv in ccnl.levels:
+            codes = {fa.code for fa in lv.fixed_allowances}
+            assert codes == {"CONTINGENZA", "EDR"}, lv.code
+
+    def test_trasporto_aereo_assaeroporti_tax_sector(self) -> None:
+        """Contract declares INDUSTRIA tax sector."""
+        ccnl = load_ccnl("trasporto-aereo-assaeroporti.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_trasporto_aereo_assaeroporti_seniority_cadence(self) -> None:
+        """Seniority: biennale (24 months), maximum 8 scatti (Art. G23)."""
+        ccnl = load_ccnl("trasporto-aereo-assaeroporti.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 8
+
+    def test_trasporto_aereo_assaeroporti_level9_seniority_zero(self) -> None:
+        """Level 9 seniority amount is 0.00 (Art. G23 table omits level 9)."""
+        ccnl = load_ccnl("trasporto-aereo-assaeroporti.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.amount_by_level["9"].value_at(date(2026, 9, 1)) == Decimal("0.00")
