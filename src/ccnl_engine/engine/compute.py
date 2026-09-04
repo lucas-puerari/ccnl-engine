@@ -458,9 +458,7 @@ def _select_track(
     if len(candidates) == 1:
         return candidates[0]
     if not candidates:
-        eligible = sorted({
-            c for t in ccnl.apprenticeship for c in t.destination_levels
-        })
+        eligible = _eligible_destination_levels(ccnl)
         msg = (
             f"CCNL '{ccnl.meta.id}' has no apprenticeship track for destination "
             f"level {level.code!r} (coverage.layer_2 is {ccnl.coverage.layer_2}; "
@@ -473,6 +471,15 @@ def _select_track(
         f"tracks {names}; set Apprentice.track to choose one"
     )
     raise ValueError(msg)
+
+
+def _eligible_destination_levels(ccnl: CCNL) -> list[str]:
+    """Return sorted destination-level codes across all apprenticeship tracks.
+
+    Returns:
+        Sorted list of level codes covered by at least one apprenticeship track.
+    """
+    return sorted({c for t in ccnl.apprenticeship for c in t.destination_levels})
 
 
 def _find_period_index(periods: Sequence[_MonthPeriod], months_elapsed: int) -> int:
