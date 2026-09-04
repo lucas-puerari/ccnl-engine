@@ -104,7 +104,7 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 49 | Comparto Istruzione e Ricerca 2022-2024 — ARAN (Docenti e ATA scuola, università, ricerca) | Pubblica Amministrazione | ~1,2M | ✅ | ✅ |
 | 50 | Case di Cura Private - Personale Non Medico (AIOP/ARIS) | Sanità privata | ~150k | ✅ | ✅ |
 | 51 | Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi) | Lavoro Domestico | ~900k | ✅ | ✅ |
-| 52 | Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi) | Lavoro Domestico | (same population) | ✅ | ✅ |
+| 52 | Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi) | Lavoro Domestico | ~900k | ✅ | ✅ |
 | 53 | Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA | Agricoltura | ~600k | ✅ | ✅ |
 | 54 | Chimica e Affini PMI — Unionchimica Confapi | Chimica | ~56k | ✅ | ✅ |
 | 55 | Panificazione e Settori Affini Industria — Assipan/Fiesa/Federpanificatori | Alimentare | ~20k | ✅ | ✅ |
