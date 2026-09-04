@@ -1,10 +1,14 @@
 # ccnl-engine
 
-Italian CCNL payroll engine — gross-to-net and employer cost from first principles.
-
 [![PyPI](https://img.shields.io/pypi/v/ccnl-engine)](https://pypi.org/project/ccnl-engine/)
 [![Python](https://img.shields.io/pypi/pyversions/ccnl-engine)](https://pypi.org/project/ccnl-engine/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/lucas-puerari/ccnl-engine/blob/main/LICENSE)
+
+Python library for computing gross-to-net salary and employer cost from Italian CCNL
+tables and statutory contribution rates.
+
+→ [GitHub README](https://github.com/lucas-puerari/ccnl-engine) for the full CCNL coverage
+matrix, quick-start, and design rationale.
 
 ## Installation
 
@@ -12,37 +16,12 @@ Italian CCNL payroll engine — gross-to-net and employer cost from first princi
 pip install ccnl-engine
 ```
 
-## Quick start
-
-```python
-from decimal import Decimal
-from datetime import date
-
-from ccnl_engine.contracts.loaders import load_ccnl
-from ccnl_engine.tax.loaders import load_year_rules
-from ccnl_engine.engine.compute import ComputeRequest, compute
-from ccnl_engine.models.employment import Permanent
-
-ccnl  = load_ccnl("metalmeccanico-federmeccanica.json")
-rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
-
-result = compute(ccnl, rules, ComputeRequest(
-    level_code="D3",
-    as_of=date(2026, 1, 1),
-    employment=Permanent(),
-))
-
-print(result.gross_monthly)         # Decimal('...')
-print(result.net_monthly)           # Decimal('...')
-print(result.employer_cost_annual)  # Decimal('...')
-```
-
 ## Interactive demo
 
 Try the engine in your browser — no installation required:
 [**Open demo →**](../demo/)
 
-## Scope and limitations
+## Scope
 
 The engine models:
 
@@ -54,9 +33,18 @@ The engine models:
 - Apprenticeship contracts (under-classification and percentage tracks)
 - Domestic work (flat per-hour contributions, non-withholding employer)
 
-**Not modelled** (documented per-CCNL in `coverage.notes`):
+**Not modelled:**
 
-- Regional and municipal income tax surcharges (_addizionali_)
+- Regional and municipal income tax surcharges (*addizionali*)
 - Family-dependent deductions (Art. 12 TUIR)
-- _Trattamento integrativo_ (Art. 1 D.L. 3/2020)
+- *Trattamento integrativo* (Art. 1 D.L. 3/2020)
 - IRPEF phaseout above €200k (Art. 1 cc. 3–4 L. 199/2025)
+- Second-level bargaining (territorial and company agreements)
+- Overtime, night/holiday premiums, leave accruals, sick-pay integrations
+
+Each limitation is documented in the relevant data file's `coverage.notes` field.
+
+## Disclaimer
+
+Not legal or tax advice. Always verify results against official sources or a qualified
+payroll professional.

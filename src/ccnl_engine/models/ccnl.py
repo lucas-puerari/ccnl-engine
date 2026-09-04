@@ -170,7 +170,21 @@ class Parameters(BaseModel):
 
 
 class Level(BaseModel):
-    """A single classification level (*livello di inquadramento*)."""
+    """A single classification level (*livello di inquadramento*).
+
+    Attributes:
+        code: Short alphanumeric code identifying the level within the CCNL
+            (e.g. ``"D3"``, ``"A1"``). Used in ``ComputeRequest.level_code``.
+        order: Numeric ranking from lowest to highest seniority/pay (1 = lowest).
+            Used by ``CCNL.level_by_order``.
+        description: Human-readable name of the classification level.
+        base_salary: Time-series of monthly base salaries for this level.
+        fixed_allowances: List of fixed monthly allowances attached to the
+            level (e.g. EDR, contingenza). May be empty.
+        category: Worker category for this level. ``None`` when the level
+            hosts multiple categories and the category must be passed via
+            ``ComputeRequest.category``.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
@@ -262,12 +276,26 @@ class CCNLExtraction(BaseModel):
 class CCNLMeta(BaseModel):
     """Identifying metadata for a CCNL.
 
-    ``withholding_exempt`` must be set to ``True`` for sectors where the
-    employer is not a *sostituto d'imposta* for IRPEF (e.g. lavoro domestico,
-    where family employers are exempt under Art. 4 D.P.R. 600/1973).  When
-    True, the engine still computes IRPEF figures for informational purposes
-    but sets ``irpef_net`` to zero and reflects the flag in
-    ``ComputationResult.employer_withholds_irpef``.
+    Attributes:
+        id: Unique slug for the contract (e.g. ``"metalmeccanico-federmeccanica"``).
+            Used as ``ComputationResult.ccnl_id``.
+        name: Full name of the collective agreement.
+        cnel_code: CNEL registry code for the agreement.
+        sector: Human-readable industry sector (e.g. ``"Industria metalmeccanica"``).
+        tax_sector: INPS sector classification used to select the contribution-rate
+            file. Pass this to ``load_year_rules``.
+        signatories: List of employer associations and unions that signed the agreement.
+        sources: Primary source references (official gazette, CNEL,
+            association websites).
+        extraction: Metadata about how the data file was produced.
+        agreement_date: Date of the most recent renewal agreement, ISO 8601 string.
+            ``None`` if not yet modelled.
+        validity: Contractual validity window. ``None`` if not specified.
+        withholding_exempt: ``True`` for sectors where the employer is not a
+            *sostituto d'imposta* for IRPEF (e.g. lavoro domestico, exempt under
+            Art. 4 D.P.R. 600/1973). When ``True``, the engine still computes IRPEF
+            figures but sets ``irpef_net`` to zero and marks
+            ``ComputationResult.employer_withholds_irpef`` as ``False``.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -286,7 +314,18 @@ class CCNLMeta(BaseModel):
 
 
 class CCNL(BaseModel):
-    """Root model for a CCNL data file."""
+    """Root model for a CCNL data file.
+
+    Attributes:
+        schema_version: Data file format version (semver string).
+        meta: Identifying metadata — name, sector, INPS classification, sources.
+        parameters: Contract-wide parameters (hourly divisor, additional months,
+            seniority-increment rules, employer funds).
+        levels: Ordered list of classification levels from lowest to highest pay.
+        apprenticeship: Apprenticeship tracks modelled for this CCNL. Empty
+            when apprenticeship is out of scope or not yet modelled.
+        coverage: Implementation status flags and notes for the data file.
+    """
 
     model_config = ConfigDict(extra="forbid")
 

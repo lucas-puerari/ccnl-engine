@@ -3,6 +3,14 @@ site_url     = "https://lucas-puerari.github.io/ccnl-engine/docs/"
 docs_dir     = "docs"
 site_dir     = "_site/docs"
 
+[theme]
+name = "material"
+
+[[theme.palette]]
+scheme   = "slate"
+primary  = "black"
+accent   = "indigo"
+
 [plugins]
 search = {}
 
