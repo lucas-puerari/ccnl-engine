@@ -53,6 +53,31 @@ class _MonthlyPayChain:
             allowances=tuple((a, money(v * factor)) for a, v in self.allowances),
         )
 
+    def scaled_selective(
+        self, base_factor: Decimal, apprenticeship_pct: Decimal
+    ) -> _MonthlyPayChain:
+        """Scale for a percentage-based apprentice.
+
+        ``base_factor`` (part-time fraction) applies to every component.
+        ``apprenticeship_pct`` additionally applies to all components
+        *except* allowances whose ``apprenticeship_pct_relevant`` flag is
+        ``False`` — those are paid at their full part-time value.
+
+        Returns:
+            A new chain with selectively scaled components.
+        """
+        combined = base_factor * apprenticeship_pct
+
+        def _scale(a: Allowance, v: Decimal) -> Decimal:
+            f = combined if a.apprenticeship_pct_relevant else base_factor
+            return money(v * f)
+
+        return _MonthlyPayChain(
+            base=money(self.base * combined),
+            seniority=money(self.seniority * combined),
+            allowances=tuple((a, _scale(a, v)) for a, v in self.allowances),
+        )
+
     @property
     def allowances_total(self) -> Decimal:
         return money(sum((v for _, v in self.allowances), _ZERO))
@@ -166,7 +191,11 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
             ccnl, level, count, request.roles, request.as_of, is_apprentice=False
         )
 
-    chain = chain_ft.scaled(factor)
+    chain = (
+        chain_ft.scaled_selective(request.part_time_pct, apprenticeship_pct)
+        if apprenticeship_pct is not None
+        else chain_ft.scaled(factor)
+    )
     ad_personam = money(request.ad_personam_monthly)
     gross_monthly = money(
         chain.base + chain.seniority + chain.allowances_total + ad_personam

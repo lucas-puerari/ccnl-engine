@@ -34,7 +34,7 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_2": "implemented",
     "notes": [
       "INFO: SALARY MODEL: split. base_salary = minimum contractual (minimo tabellare). Levels H, G, F, E carry fixed_allowances: H has indennità di funzione (IND_FUN, EUR 160.00); G, F, E have aggiunta personale (AGG_PERSONALE, EUR 25.82 / 15.49 / 5.16). All allowances are TFR-relevant and contribution-relevant (default).",
       "INFO: RENEWAL: Unionchimica Confapi CCNL signed 23 February 2026, effective 1 January 2026 – 31 December 2028. Five tranches: 1 Jan 2026, 1 Apr 2027, 1 Dec 2027, 1 Jun 2028, 1 Dec 2028. Source: kitech.it B018.",
@@ -46,7 +46,7 @@
       "SIMPLIFICATION: SINGLE TRANCHE ONLY. Only the 1 January 2026 tranche is modelled. The 4 subsequent tranches (Apr 2027, Dec 2027, Jun 2028, Dec 2028) are not accessible from primary source at time of extraction. Update with official amounts when the renewal text becomes available.",
       "SIMPLIFICATION: CHIMICA-CONCIA SUB-SECTOR ONLY. Unionchimica Confapi covers three sub-sectors with different hourly divisors: Chimica-Concia (175), Plastica-Gomma (169), Abrasivi-Ceramica-Vetro (173). Only Chimica-Concia (divisor 175) is modelled. The level codes and salary amounts are the same across sub-sectors; only the hourly divisor differs.",
       "SIMPLIFICATION: HOURLY DIVISOR AGGREGATOR-SOURCED. The divisor of 175 for Chimica-Concia is taken from kitech.it (aggregator) and consistent with CCNL Federchimica B011 which also uses 175 for the chemical-pharmaceutical sub-sector. No official hourly rate column was available to back-calculate the divisor from primary source.",
-      "MISSING: APPRENTICESHIP RULES. The B018 2026 renewal apprenticeship provisions (percentage or under-classification, period boundaries, percentages) could not be confirmed from an accessible primary source. The 2019 text described a 36-month under-classification apprenticeship with two periods (0-10 months at initial level, 10+ months at next level), but this pre-dates the 2026 renewal and may have been amended. Apprenticeship is not modelled (empty list). Set layer_2 to 'implemented' and add the track when the 2026 renewal text is verified."
+      "INFO: APPRENTICESHIP. Apprendistato professionalizzante per sotto-inquadramento (D.Lgs. 81/2015). Durata massima 36 mesi, uniforme per tutti i livelli e sub-settori. Struttura: primo periodo (mesi 1-10) a 2 livelli sotto la destinazione; secondo periodo (mesi 11 a fine contratto) a 1 livello sotto la destinazione; al termine dell'apprendistato l'inquadramento finale è riconosciuto. Tre track modellati: professionalizzante_C_H (C-H, schema standard 2→1), professionalizzante_B (destinazione B: capped ad A per assenza di livelli inferiori, periodo unico), professionalizzante_A (destinazione A: resta ad A per tutta la durata). Fonte primaria: schede CNEL B018 direzionelavoro.it (ottobre 2023), voce (g) art. 1 Cap. I. Confermato invariato dal rinnovo 23/02/2026 (Confapi Padova circolare): apprendistato non oggetto di modifica."
     ]
   },
   "parameters": {
@@ -74,42 +74,74 @@
       "amount_by_level": {
         "A": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "10.33" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "10.33"
+            }
           ]
         },
         "B": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "11.88" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "11.88"
+            }
           ]
         },
         "C": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "12.91" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "12.91"
+            }
           ]
         },
         "D": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "13.94" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "13.94"
+            }
           ]
         },
         "E": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "15.49" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "15.49"
+            }
           ]
         },
         "F": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "18.08" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "18.08"
+            }
           ]
         },
         "G": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "20.66" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "20.66"
+            }
           ]
         },
         "H": {
           "periods": [
-            { "valid_from": "2026-01-01", "valid_until": null, "value": "23.24" }
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "23.24"
+            }
           ]
         }
       }
@@ -122,7 +154,11 @@
       "description": "Level A — entry workers, unskilled, first-time employees",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "1690.69" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1690.69"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -134,7 +170,11 @@
       "description": "Level B — semi-skilled operai and lower-grade impiegati",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "1830.43" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1830.43"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -146,7 +186,11 @@
       "description": "Level C — skilled operai, standard impiegati",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "2033.35" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2033.35"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -158,7 +202,11 @@
       "description": "Level D — highly skilled operai, senior impiegati",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "2267.00" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2267.00"
+          }
         ]
       },
       "fixed_allowances": [],
@@ -170,7 +218,11 @@
       "description": "Level E — specialist workers, junior technical staff",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "2444.03" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2444.03"
+          }
         ]
       },
       "fixed_allowances": [
@@ -179,7 +231,11 @@
           "description": "Aggiunta personale livello E",
           "monthly": {
             "periods": [
-              { "valid_from": "2026-01-01", "valid_until": null, "value": "5.16" }
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "5.16"
+              }
             ]
           }
         }
@@ -192,7 +248,11 @@
       "description": "Level F — senior technical staff, team leaders",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "2703.06" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2703.06"
+          }
         ]
       },
       "fixed_allowances": [
@@ -201,7 +261,11 @@
           "description": "Aggiunta personale livello F",
           "monthly": {
             "periods": [
-              { "valid_from": "2026-01-01", "valid_until": null, "value": "15.49" }
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "15.49"
+              }
             ]
           }
         }
@@ -214,7 +278,11 @@
       "description": "Level G — managers, senior professionals, department heads",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "2973.58" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2973.58"
+          }
         ]
       },
       "fixed_allowances": [
@@ -223,7 +291,11 @@
           "description": "Aggiunta personale livello G",
           "monthly": {
             "periods": [
-              { "valid_from": "2026-01-01", "valid_until": null, "value": "25.82" }
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "25.82"
+              }
             ]
           }
         }
@@ -236,7 +308,11 @@
       "description": "Level H — senior managers, top technical executives (quadri)",
       "base_salary": {
         "periods": [
-          { "valid_from": "2026-01-01", "valid_until": null, "value": "3168.51" }
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "3168.51"
+          }
         ]
       },
       "fixed_allowances": [
@@ -245,7 +321,11 @@
           "description": "Indennita di funzione livello H",
           "monthly": {
             "periods": [
-              { "valid_from": "2026-01-01", "valid_until": null, "value": "160.00" }
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "160.00"
+              }
             ]
           }
         }
@@ -253,5 +333,58 @@
       "category": "quadro"
     }
   ],
-  "apprenticeship": []
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_C_H",
+      "destination_levels": [
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 10,
+          "levels_below": 2
+        },
+        {
+          "months_from": 10,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_B",
+      "destination_levels": [
+        "B"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_A",
+      "destination_levels": [
+        "A"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    }
+  ]
 }

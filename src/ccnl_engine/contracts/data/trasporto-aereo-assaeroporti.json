@@ -41,10 +41,10 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_2": "implemented",
     "notes": [
-      "SIMPLIFICATION: APPRENTICESHIP PERCENTAGE BASE. Art. G14 §16 states percentages apply to 'minimi tabellari in vigore, indennità di contingenza' (tabellare + contingenza only). EDR per Art. G22 is not subject to the apprenticeship percentage. The engine applies the percentage uniformly to base + seniority + all allowances including EDR. EDR is therefore understated for apprentices. Maximum error per level per month: EDR × (1 − period_pct). Example level 3, period 12–18m (80%): EUR 45.51 × 0.20 = EUR 9.10.",
-      "SIMPLIFICATION: APPRENTICESHIP TRACKS. Art. G14 defines 18-month, 24-month, and 36-month tracks with different percentages. Only the 36-month track is modelled (the most common professionalising track).",
+      "INFO: APPRENTICESHIP TRACKS. Art. G14 §16 defines three professionalising tracks (18m, 24m, 36m) with percentage tables by semester. All three are implemented. Art. G14 does not restrict which track applies per destination level; employers and workers choose the duration per PFI. When calling compute() with Apprentice for any covered level, set Apprentice.track to 'professionalizzante_18m', 'professionalizzante_24m', or 'professionalizzante_36m'. Source: CCNL Parte Specifica Gestori Aeroportuali (assaeroporti.com, 04/06/2025), Art. G14 §16 table.",
+      "INFO: EDR APPRENTICESHIP EXEMPTION. Art. G14 §16 limits the apprenticeship percentage to 'minimi tabellari in vigore, indennità di contingenza'. EDR (Art. G22) is not listed and is therefore paid at full value for apprentices. Modelled via apprenticeship_pct_relevant=false on all EDR allowances.",
       "SIMPLIFICATION: SENIORITY CAP. Art. G23 §5 grants one additional scatto to employees hired before 1 January 1993 reaching 16 years of company seniority from 1 January 2026. The engine has no hire-date input; maximum_count is set to 8 for all workers, understating by 1 scatto for eligible pre-1993 employees.",
       "SIMPLIFICATION: LEVEL 9 SENIORITY. Art. G23 seniority table lists amounts for levels 1S through 8 only. Level 9 is absent. Modelled as 0.00; not confirmed whether intentional exclusion or typographical omission.",
       "SIMPLIFICATION: SUPPLEMENTARY ALLOWANCES. Role-conditional allowances (turno, campo, maneggio denaro, DPI) and the una tantum of EUR 500 (Art. G20, October 2025) are not modelled. All are attendance- or role-conditional or one-time payments.",
@@ -54,29 +54,125 @@
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        {"valid_from": "2025-01-01", "valid_until": null, "value": "173"}
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "173"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        {"valid_from": "2025-01-01", "valid_until": null, "value": "14"}
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "14"
+        }
       ]
     },
     "seniority_increments": {
       "cadence_months": 24,
       "maximum_count": 8,
       "amount_by_level": {
-        "1S": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "37.29"}]},
-        "1":  {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "34.45"}]},
-        "2A": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "32.18"}]},
-        "2B": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "30.47"}]},
-        "3":  {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "29.33"}]},
-        "4":  {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "27.42"}]},
-        "5":  {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "26.65"}]},
-        "6":  {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "25.31"}]},
-        "7":  {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "24.22"}]},
-        "8":  {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "22.67"}]},
-        "9":  {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "0.00"}]}
+        "1S": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "37.29"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "34.45"
+            }
+          ]
+        },
+        "2A": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "32.18"
+            }
+          ]
+        },
+        "2B": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "30.47"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "29.33"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "27.42"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "26.65"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "25.31"
+            }
+          ]
+        },
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "24.22"
+            }
+          ]
+        },
+        "8": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "22.67"
+            }
+          ]
+        },
+        "9": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        }
       }
     }
   },
@@ -88,22 +184,55 @@
       "category": null,
       "base_salary": {
         "periods": [
-          {"valid_from": "2025-01-01", "valid_until": "2025-07-01", "value": "686.07"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "742.88"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "776.97"},
-          {"valid_from": "2027-07-01", "valid_until": null,         "value": "805.38"}
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-07-01",
+            "value": "686.07"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "742.88"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "776.97"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "805.38"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "CONTINGENZA",
           "description": "Indennità di contingenza (frozen, Art. G21)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "509.83"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "509.83"
+              }
+            ]
+          }
         },
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Art. G22)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "27.23"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "27.23"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -114,22 +243,55 @@
       "category": null,
       "base_salary": {
         "periods": [
-          {"valid_from": "2025-01-01", "valid_until": "2025-07-01", "value": "864.46"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "936.03"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "978.98"},
-          {"valid_from": "2027-07-01", "valid_until": null,         "value": "1014.78"}
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-07-01",
+            "value": "864.46"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "936.03"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "978.98"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "1014.78"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "CONTINGENZA",
           "description": "Indennità di contingenza (frozen, Art. G21)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "513.95"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "513.95"
+              }
+            ]
+          }
         },
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Art. G22)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "32.24"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "32.24"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -140,22 +302,55 @@
       "category": null,
       "base_salary": {
         "periods": [
-          {"valid_from": "2025-01-01", "valid_until": "2025-07-01", "value": "960.49"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1040.03"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1087.76"},
-          {"valid_from": "2027-07-01", "valid_until": null,         "value": "1127.53"}
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-07-01",
+            "value": "960.49"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1040.03"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1087.76"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "1127.53"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "CONTINGENZA",
           "description": "Indennità di contingenza (frozen, Art. G21)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "516.28"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "516.28"
+              }
+            ]
+          }
         },
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Art. G22)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "34.93"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "34.93"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -166,22 +361,55 @@
       "category": null,
       "base_salary": {
         "periods": [
-          {"valid_from": "2025-01-01", "valid_until": "2025-07-01", "value": "1070.28"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1158.89"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1212.08"},
-          {"valid_from": "2027-07-01", "valid_until": null,         "value": "1256.39"}
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1070.28"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1158.89"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1212.08"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "1256.39"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "CONTINGENZA",
           "description": "Indennità di contingenza (frozen, Art. G21)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "518.79"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "518.79"
+              }
+            ]
+          }
         },
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Art. G22)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "38.01"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "38.01"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -192,22 +420,55 @@
       "category": null,
       "base_salary": {
         "periods": [
-          {"valid_from": "2025-01-01", "valid_until": "2025-07-01", "value": "1138.88"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1233.18"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1289.77"},
-          {"valid_from": "2027-07-01", "valid_until": null,         "value": "1336.93"}
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1138.88"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1233.18"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1289.77"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "1336.93"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "CONTINGENZA",
           "description": "Indennità di contingenza (frozen, Art. G21)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "520.40"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "520.40"
+              }
+            ]
+          }
         },
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Art. G22)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "39.93"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "39.93"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -218,22 +479,55 @@
       "category": null,
       "base_salary": {
         "periods": [
-          {"valid_from": "2025-01-01", "valid_until": "2025-07-01", "value": "1207.47"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1307.47"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1367.47"},
-          {"valid_from": "2027-07-01", "valid_until": null,         "value": "1417.47"}
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1207.47"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1307.47"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1367.47"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "1417.47"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "CONTINGENZA",
           "description": "Indennità di contingenza (frozen, Art. G21)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "522.19"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "522.19"
+              }
+            ]
+          }
         },
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Art. G22)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "41.85"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "41.85"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -244,22 +538,55 @@
       "category": null,
       "base_salary": {
         "periods": [
-          {"valid_from": "2025-01-01", "valid_until": "2025-07-01", "value": "1337.84"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1448.62"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1515.09"},
-          {"valid_from": "2027-07-01", "valid_until": null,         "value": "1570.49"}
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1337.84"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1448.62"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1515.09"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "1570.49"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "CONTINGENZA",
           "description": "Indennità di contingenza (frozen, Art. G21)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "524.52"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "524.52"
+              }
+            ]
+          }
         },
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Art. G22)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "45.51"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "45.51"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -270,22 +597,55 @@
       "category": null,
       "base_salary": {
         "periods": [
-          {"valid_from": "2025-01-01", "valid_until": "2025-07-01", "value": "1440.75"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1560.05"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1631.64"},
-          {"valid_from": "2027-07-01", "valid_until": null,         "value": "1691.30"}
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1440.75"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1560.05"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1631.64"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "1691.30"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "CONTINGENZA",
           "description": "Indennità di contingenza (frozen, Art. G21)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "527.39"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "527.39"
+              }
+            ]
+          }
         },
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Art. G22)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "48.39"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "48.39"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -296,22 +656,55 @@
       "category": null,
       "base_salary": {
         "periods": [
-          {"valid_from": "2025-01-01", "valid_until": "2025-07-01", "value": "1536.79"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1664.05"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1740.42"},
-          {"valid_from": "2027-07-01", "valid_until": null,         "value": "1804.05"}
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1536.79"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1664.05"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1740.42"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "1804.05"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "CONTINGENZA",
           "description": "Indennità di contingenza (frozen, Art. G21)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "530.07"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "530.07"
+              }
+            ]
+          }
         },
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Art. G22)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "51.09"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "51.09"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -322,22 +715,55 @@
       "category": null,
       "base_salary": {
         "periods": [
-          {"valid_from": "2025-01-01", "valid_until": "2025-07-01", "value": "1680.87"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "1820.06"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1903.58"},
-          {"valid_from": "2027-07-01", "valid_until": null,         "value": "1973.18"}
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1680.87"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1820.06"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1903.58"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "1973.18"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "CONTINGENZA",
           "description": "Indennità di contingenza (frozen, Art. G21)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "533.12"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "533.12"
+              }
+            ]
+          }
         },
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Art. G22)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "55.12"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "55.12"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -348,22 +774,55 @@
       "category": "quadro",
       "base_salary": {
         "periods": [
-          {"valid_from": "2025-01-01", "valid_until": "2025-07-01", "value": "1852.38"},
-          {"valid_from": "2025-07-01", "valid_until": "2026-07-01", "value": "2005.78"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2097.82"},
-          {"valid_from": "2027-07-01", "valid_until": null,         "value": "2174.53"}
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1852.38"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "2005.78"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2097.82"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "2174.53"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "CONTINGENZA",
           "description": "Indennità di contingenza (frozen, Art. G21)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "536.70"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "536.70"
+              }
+            ]
+          }
         },
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Art. G22)",
-          "monthly": {"periods": [{"valid_from": "2025-01-01", "valid_until": null, "value": "59.93"}]}
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "59.93"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
         }
       ]
     }
@@ -371,14 +830,116 @@
   "apprenticeship": [
     {
       "type": "percentage",
-      "name": "professionalizzante_36m",
-      "destination_levels": ["9", "8", "7", "6", "5", "4", "3", "2B", "2A", "1"],
+      "name": "professionalizzante_18m",
+      "destination_levels": [
+        "9",
+        "8",
+        "7",
+        "6",
+        "5",
+        "4",
+        "3",
+        "2B",
+        "2A",
+        "1"
+      ],
       "periods": [
-        {"months_from": 0,  "months_until": 12, "percentage": "0.75"},
-        {"months_from": 12, "months_until": 18, "percentage": "0.80"},
-        {"months_from": 18, "months_until": 24, "percentage": "0.85"},
-        {"months_from": 24, "months_until": 30, "percentage": "0.90"},
-        {"months_from": 30, "months_until": null, "percentage": "0.95"}
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "percentage": "0.90"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_24m",
+      "destination_levels": [
+        "9",
+        "8",
+        "7",
+        "6",
+        "5",
+        "4",
+        "3",
+        "2B",
+        "2A",
+        "1"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "percentage": "0.95"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_36m",
+      "destination_levels": [
+        "9",
+        "8",
+        "7",
+        "6",
+        "5",
+        "4",
+        "3",
+        "2B",
+        "2A",
+        "1"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 30,
+          "months_until": null,
+          "percentage": "0.95"
+        }
       ]
     }
   ]

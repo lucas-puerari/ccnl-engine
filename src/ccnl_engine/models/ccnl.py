@@ -44,8 +44,13 @@ class Allowance(BaseModel):
 
     ``role`` restricts the allowance to workers holding that role (``None``
     means every worker at the level). ``months_per_year`` overrides the
-    contract-wide ``additional_months`` for this allowance only. The two
-    relevance flags exclude the allowance from the contribution and TFR bases.
+    contract-wide ``additional_months`` for this allowance only. The three
+    relevance flags exclude the allowance from the TFR base, the contribution
+    base, or the apprenticeship-percentage base respectively.
+    ``apprenticeship_pct_relevant=False`` means the allowance is paid at full
+    value even for percentage-based apprentices (e.g. EDR per Art. 3 L.
+    297/1982, which Italian CCNL commonly exempt from apprenticeship
+    percentage reductions).
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -57,6 +62,7 @@ class Allowance(BaseModel):
     months_per_year: int | None = Field(default=None, ge=1)
     tfr_relevant: bool = True
     contribution_relevant: bool = True
+    apprenticeship_pct_relevant: bool = True
 
 
 class SeniorityIncrements(BaseModel):
