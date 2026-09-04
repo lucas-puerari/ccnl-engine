@@ -31,10 +31,36 @@ jobs:
       # ── Demo ──────────────────────────────────────────────────────────────
       - name: "Demo: assemble"
         run: |
-          mkdir -p _site
-          cp demo/index.html _site/index.html
-          cp demo/app.py     _site/app.py
+          mkdir -p _site/demo
+          cp demo/index.html _site/demo/index.html
+          cp demo/app.py     _site/demo/app.py
+          cp _site/demo/index.html _site/index.html  # root redirect placeholder replaced below
           touch _site/.nojekyll
+
+      - name: "Root: create landing page"
+        run: |
+          cat > _site/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta http-equiv="refresh" content="0; url=demo/" />
+            <title>ccnl-engine</title>
+            <style>
+              body { font-family: system-ui, sans-serif; max-width: 480px;
+                     margin: 80px auto; padding: 0 16px; text-align: center; }
+              a { color: #2563eb; }
+            </style>
+          </head>
+          <body>
+            <h1>ccnl-engine</h1>
+            <p>
+              <a href="demo/">Interactive demo</a> ·
+              <a href="docs/">API documentation</a>
+            </p>
+          </body>
+          </html>
+          EOF
 
       # ── Docs ──────────────────────────────────────────────────────────────
       - name: "Docs: install dependencies"
