@@ -46,7 +46,13 @@ jobs:
       - name: Test (pytest, coverage 100%)
         run: uv run pytest
 
-      - name: Upload coverage report
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: coverage.xml
+          fail_ci_if_error: false
+
+      - name: Upload coverage report (artifact)
         uses: actions/upload-artifact@v7
         if: always()
         with:
