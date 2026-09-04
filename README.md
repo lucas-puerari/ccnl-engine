@@ -137,18 +137,6 @@ The 59 contracts above cover approximately **14.3 million workers** (sum of per-
 
 Each limitation is documented in the relevant data file's `coverage.notes` field and marked with `# SIMPLIFICATION:` comments in the engine source.
 
-## Releasing a new version
-
-Releases are fully automated via GitHub Actions. Steps:
-
-1. Bump `version` in `pyproject.toml` following [SemVer](https://semver.org/).
-2. Commit the change: `git commit -m "chore: bump version to X.Y.Z"`.
-3. Push a tag: `git tag vX.Y.Z && git push origin vX.Y.Z`.
-
-The `release` workflow then: runs the full test suite, builds the wheel and sdist with `uv build`, verifies the tag matches the package version, publishes to PyPI via [Trusted Publishing](https://docs.pypi.org/trusted-publishers/) (no API token required), and creates a GitHub Release with auto-generated notes and the dist files attached.
-
-**Pre-requisite (one-time):** configure a Trusted Publisher on PyPI for this repository under the `pypi` GitHub environment.
-
 ## Development
 
 This library was built with AI coding assistants — [Claude Code](https://claude.ai/code), [Codex](https://openai.com/codex), and [Opencode](https://opencode.ai). Generated code is covered by the test suite but has not been manually reviewed line by line.
