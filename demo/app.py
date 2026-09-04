@@ -14,7 +14,7 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.contracts.loaders import load_ccnl
-from ccnl_engine.engine.compute import ComputeRequest, compute
+from ccnl_engine.engine.compute import Scenario, compute
 from ccnl_engine.models.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.tax.loaders import load_year_rules
 
@@ -118,14 +118,14 @@ def compute_salary(
         seniority: int | None = (
             seniority_months if employment_type != "apprentice" else None
         )
-        request = ComputeRequest(
+        scenario = Scenario(
             level_code=level_code,
             as_of=date(_DEFAULT_YEAR, 9, 4),
             employment=employment,
             part_time_pct=Decimal(str(round(part_time_pct, 4))),
             seniority_months=seniority,
         )
-        result = compute(ccnl, rules, request)
+        result = compute(ccnl, rules, scenario)
     except Exception as exc:  # ruff: ignore[blind-except]
         return json.dumps({"error": str(exc)})
 

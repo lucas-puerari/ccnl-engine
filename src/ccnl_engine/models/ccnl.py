@@ -174,7 +174,7 @@ class Level(BaseModel):
 
     Attributes:
         code: Short alphanumeric code identifying the level within the CCNL
-            (e.g. ``"D3"``, ``"A1"``). Used in ``ComputeRequest.level_code``.
+            (e.g. ``"D3"``, ``"A1"``). Used in ``Scenario.level_code``.
         order: Numeric ranking from lowest to highest seniority/pay (1 = lowest).
             Used by ``CCNL.level_by_order``.
         description: Human-readable name of the classification level.
@@ -183,7 +183,7 @@ class Level(BaseModel):
             level (e.g. EDR, contingenza). May be empty.
         category: Worker category for this level. ``None`` when the level
             hosts multiple categories and the category must be passed via
-            ``ComputeRequest.category``.
+            ``Scenario.category``.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -278,7 +278,7 @@ class CCNLMeta(BaseModel):
 
     Attributes:
         id: Unique slug for the contract (e.g. ``"metalmeccanico-federmeccanica"``).
-            Used as ``ComputationResult.ccnl_id``.
+            Used as ``Payslip.ccnl_id``.
         name: Full name of the collective agreement.
         cnel_code: CNEL registry code for the agreement.
         sector: Human-readable industry sector (e.g. ``"Industria metalmeccanica"``).
@@ -295,7 +295,7 @@ class CCNLMeta(BaseModel):
             *sostituto d'imposta* for IRPEF (e.g. lavoro domestico, exempt under
             Art. 4 D.P.R. 600/1973). When ``True``, the engine still computes IRPEF
             figures but sets ``irpef_net`` to zero and marks
-            ``ComputationResult.employer_withholds_irpef`` as ``False``.
+            ``Payslip.employer_withholds_irpef`` as ``False``.
     """
 
     model_config = ConfigDict(extra="forbid")

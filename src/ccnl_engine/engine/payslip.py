@@ -1,4 +1,4 @@
-"""ComputationResult — the output record of compute()."""
+"""Payslip — the output record of compute()."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 
 @dataclass(frozen=True)
-class ComputationResult:
+class Payslip:
     """Full gross-to-net and employer-cost breakdown for one payroll computation.
 
     Monthly components (``base_monthly``, ``seniority_monthly``,

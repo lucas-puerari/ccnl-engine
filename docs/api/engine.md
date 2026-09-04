@@ -8,11 +8,11 @@ Core computation functions and request/result models.
     options:
       members:
         - compute
-        - ComputeRequest
+        - Scenario
 
-## ComputationResult
+## Payslip
 
 ::: ccnl_engine.engine.result
     options:
       members:
-        - ComputationResult
+        - Payslip

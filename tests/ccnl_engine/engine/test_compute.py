@@ -20,7 +20,7 @@ from typing import TYPE_CHECKING, Any
 
 import pytest
 
-from ccnl_engine.engine.compute import ComputeRequest, _find_period_index, compute
+from ccnl_engine.engine.compute import Scenario, _find_period_index, compute
 from ccnl_engine.engine.rounding import money
 from ccnl_engine.models.apprenticeship import ApprenticeshipPeriod
 from ccnl_engine.models.ccnl import CCNL, LevelCategory
@@ -83,13 +83,13 @@ def _req(
     roles: frozenset[str] = frozenset(),
     ad_personam_monthly: Decimal = Decimal(0),
     category: LevelCategory | None = None,
-) -> ComputeRequest:
-    """Build a ComputeRequest with test defaults; override any field via kwargs.
+) -> Scenario:
+    """Build a Scenario with test defaults; override any field via kwargs.
 
     Returns:
-        A ComputeRequest with the given overrides applied.
+        A Scenario with the given overrides applied.
     """
-    return ComputeRequest(
+    return Scenario(
         level_code=level_code,
         as_of=as_of,
         employment=employment,
@@ -507,7 +507,7 @@ class TestComputeIvsCeilingSplit:
         r_capped = compute(
             _DEFAULT_CCNL,
             rules,
-            ComputeRequest(
+            Scenario(
                 level_code="4",
                 as_of=_DATE,
                 employment=_PERMANENT,
@@ -518,7 +518,7 @@ class TestComputeIvsCeilingSplit:
         r_flat = compute(
             _DEFAULT_CCNL,
             rules,
-            ComputeRequest(
+            Scenario(
                 level_code="4",
                 as_of=_DATE,
                 employment=_PERMANENT,
@@ -545,7 +545,7 @@ class TestComputeIvsCeilingSplit:
         r = compute(
             _DEFAULT_CCNL,
             self._rules_with_ceiling(),
-            ComputeRequest(
+            Scenario(
                 level_code="4",
                 as_of=_DATE,
                 employment=_PERMANENT,
@@ -563,7 +563,7 @@ class TestComputeIvsCeilingSplit:
         r = compute(
             _DEFAULT_CCNL,
             rules,
-            ComputeRequest(
+            Scenario(
                 level_code="4",
                 as_of=_DATE,
                 employment=_PERMANENT,
@@ -921,13 +921,13 @@ _DEFAULT_WEEKLY_HOURS: Decimal = _D("40")
 def _req_domestic(
     weekly_hours: Decimal | None = _DEFAULT_WEEKLY_HOURS,
     employment: Employment = _PERMANENT,
-) -> ComputeRequest:
-    """Build a ComputeRequest for the domestic INPS path.
+) -> Scenario:
+    """Build a Scenario for the domestic INPS path.
 
     Returns:
-        A ComputeRequest with weekly_hours set (required for domestic model).
+        A Scenario with weekly_hours set (required for domestic model).
     """
-    return ComputeRequest(
+    return Scenario(
         level_code="4",
         as_of=_DATE,
         employment=employment,

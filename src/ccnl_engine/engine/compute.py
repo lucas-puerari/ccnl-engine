@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING, Protocol
 
 from ccnl_engine.engine import contributions as _contrib
 from ccnl_engine.engine import irpef as _irpef
-from ccnl_engine.engine.result import ComputationResult
+from ccnl_engine.engine.payslip import Payslip
 from ccnl_engine.engine.rounding import money
 from ccnl_engine.models.apprenticeship import ApprenticeshipPercentage
 from ccnl_engine.models.employment import Apprentice, FixedTerm
@@ -91,7 +91,7 @@ class _AnnualisedPay:
 
 
 @dataclass(frozen=True)
-class ComputeRequest:
+class Scenario:
     """Scenario parameters for a single ``compute()`` call.
 
     Attributes:
@@ -151,16 +151,16 @@ class ComputeRequest:
     weekly_hours: Decimal | None = None
 
 
-def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> ComputationResult:
+def compute(ccnl: CCNL, rules: YearRules, scenario: Scenario) -> Payslip:
     """Compute gross-to-net salary and employer cost for a given scenario.
 
     Args:
         ccnl: The CCNL contract model.
         rules: Tax and contribution rules for the relevant year.
-        request: Scenario parameters (level, date, employment, options).
+        scenario: Scenario parameters (level, date, employment, options).
 
     Returns:
-        ComputationResult with all gross, net, and cost figures.
+        Payslip with all gross, net, and cost figures.
 
     Raises:
         ValueError: If part_time_pct is not in (0, 1], ad_personam_monthly < 0,
@@ -170,41 +170,43 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
             or negotiated_destination_ral is used with an under-classification
             apprenticeship track.
     """
-    if not (_ZERO < request.part_time_pct <= _ONE):
-        msg = f"part_time_pct must be in (0, 1], got {request.part_time_pct}"
+    if not (_ZERO < scenario.part_time_pct <= _ONE):
+        msg = f"part_time_pct must be in (0, 1], got {scenario.part_time_pct}"
         raise ValueError(msg)
-    if request.ad_personam_monthly < _ZERO:
-        msg = f"ad_personam_monthly must be >= 0, got {request.ad_personam_monthly}"
+    if scenario.ad_personam_monthly < _ZERO:
+        msg = f"ad_personam_monthly must be >= 0, got {scenario.ad_personam_monthly}"
         raise ValueError(msg)
     ral_override = _validate_negotiated_ral(
-        request.negotiated_ral, request.negotiated_destination_ral, request.employment
+        scenario.negotiated_ral,
+        scenario.negotiated_destination_ral,
+        scenario.employment,
     )
 
-    level = ccnl.level_by_code(request.level_code)
+    level = ccnl.level_by_code(scenario.level_code)
     worker_category = (
-        request.category if request.category is not None else level.category
+        scenario.category if scenario.category is not None else level.category
     )
     count = _resolve_seniority_count(
         ccnl.parameters.seniority_increments,
-        request.level_code,
-        request.seniority_count,
-        request.seniority_months,
+        scenario.level_code,
+        scenario.seniority_count,
+        scenario.seniority_months,
     )
     if worker_category in ccnl.parameters.seniority_increments.excluded_categories:
         count = 0
-    additional_months = ccnl.parameters.additional_months.value_at(request.as_of)
+    additional_months = ccnl.parameters.additional_months.value_at(scenario.as_of)
 
-    factor = request.part_time_pct
+    factor = scenario.part_time_pct
     apprenticeship_pct: Decimal | None = None
     under_level_code: str | None = None
-    if isinstance(request.employment, Apprentice):
+    if isinstance(scenario.employment, Apprentice):
         chain_ft, apprenticeship_pct, under_level_code = _apprentice_chain(
-            ccnl, level, request.employment, count, request.roles, request.as_of
+            ccnl, level, scenario.employment, count, scenario.roles, scenario.as_of
         )
         if apprenticeship_pct is not None:
             factor *= apprenticeship_pct
         if (
-            request.negotiated_destination_ral is not None
+            scenario.negotiated_destination_ral is not None
             and apprenticeship_pct is None
         ):
             msg = (
@@ -214,15 +216,15 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
             raise ValueError(msg)
     else:
         chain_ft = _level_chain(
-            ccnl, level, count, request.roles, request.as_of, is_apprentice=False
+            ccnl, level, count, scenario.roles, scenario.as_of, is_apprentice=False
         )
 
     chain = (
-        chain_ft.scaled_selective(request.part_time_pct, apprenticeship_pct)
+        chain_ft.scaled_selective(scenario.part_time_pct, apprenticeship_pct)
         if apprenticeship_pct is not None
         else chain_ft.scaled(factor)
     )
-    ad_personam = money(request.ad_personam_monthly)
+    ad_personam = money(scenario.ad_personam_monthly)
     gross_monthly = money(
         chain.base + chain.seniority + chain.allowances_total + ad_personam
     )
@@ -230,8 +232,8 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
     gross_annual = annual.gross
 
     gross_annual, gross_monthly = _override_gross(
-        request.negotiated_ral,
-        request.negotiated_destination_ral,
+        scenario.negotiated_ral,
+        scenario.negotiated_destination_ral,
         apprenticeship_pct,
         gross_annual,
         gross_monthly,
@@ -247,17 +249,17 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
     tfr_base = (
         gross_annual if ral_override else money(gross_annual - annual.excluded_from_tfr)
     )
-    hourly_divisor = ccnl.parameters.hourly_divisor.value_at(request.as_of)
+    hourly_divisor = ccnl.parameters.hourly_divisor.value_at(scenario.as_of)
     inps_employee_annual, inps_employer_annual = _inps_contributions(
         rules,
-        request,
+        scenario,
         gross_monthly,
         hourly_divisor,
         contribution_base,
         worker_category,
     )
     employer_funds_annual = _employer_funds(
-        ccnl, worker_category, contribution_base, request.as_of
+        ccnl, worker_category, contribution_base, scenario.as_of
     )
     tfr_annual = _contrib.tfr(tfr_base, rules)
 
@@ -283,13 +285,13 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
         gross_annual + inps_employer_annual + employer_funds_annual + tfr_annual
     )
 
-    return ComputationResult(
+    return Payslip(
         ccnl_id=ccnl.meta.id,
-        level_code=request.level_code,
-        employment_type=request.employment.type,
-        part_time_pct=request.part_time_pct,
-        as_of=request.as_of,
-        year=request.as_of.year,
+        level_code=scenario.level_code,
+        employment_type=scenario.employment.type,
+        part_time_pct=scenario.part_time_pct,
+        as_of=scenario.as_of,
+        year=scenario.as_of.year,
         seniority_count=count,
         base_monthly=chain.base,
         seniority_monthly=chain.seniority,
@@ -545,13 +547,13 @@ def _annualise(
 
 def _inps_contributions(
     rules: YearRules,
-    request: ComputeRequest,
+    scenario: Scenario,
     gross_monthly: Decimal,
     hourly_divisor: Decimal,
     contribution_base: Decimal,
     worker_category: LevelCategory | None,
 ) -> tuple[Decimal, Decimal]:
-    """Return (inps_employee_annual, inps_employer_annual) for the request.
+    """Return (inps_employee_annual, inps_employer_annual) for the scenario.
 
     Routes to the flat per-hour domestic model when
     ``rules.domestic_contributions`` is set, otherwise uses the standard
@@ -562,36 +564,36 @@ def _inps_contributions(
         INPS contribution), both rounded to two decimal places.
 
     Raises:
-        ValueError: If the domestic model is active and ``request.weekly_hours``
+        ValueError: If the domestic model is active and ``scenario.weekly_hours``
             is None.
     """
     if rules.domestic_contributions is not None:
-        if request.weekly_hours is None:
+        if scenario.weekly_hours is None:
             msg = "weekly_hours is required when rules.domestic_contributions is set"
             raise ValueError(msg)
         hourly_rate_for_bracket = money(gross_monthly / hourly_divisor)
-        is_fixed_term = isinstance(request.employment, FixedTerm)
+        is_fixed_term = isinstance(scenario.employment, FixedTerm)
         emp_ph, er_ph = rules.domestic_contributions.resolve(
             hourly_rate_for_bracket,
-            request.weekly_hours,
+            scenario.weekly_hours,
             is_fixed_term=is_fixed_term,
         )
-        annual_hours = request.weekly_hours * 52
+        annual_hours = scenario.weekly_hours * 52
         return money(emp_ph * annual_hours), money(er_ph * annual_hours)
-    rates = _contrib.resolve_rates(rules, request.employment, worker_category)
+    rates = _contrib.resolve_rates(rules, scenario.employment, worker_category)
     employee = _contrib.inps_contribution(
         contribution_base,
         rates.employee_rate,
         rates.employee_ivs_rate,
         rules,
-        ivs_ceiling_applies=request.ivs_ceiling_applies,
+        ivs_ceiling_applies=scenario.ivs_ceiling_applies,
     )
     employer = _contrib.inps_contribution(
         contribution_base,
         rates.employer_rate,
         rates.employer_ivs_rate,
         rules,
-        ivs_ceiling_applies=request.ivs_ceiling_applies,
+        ivs_ceiling_applies=scenario.ivs_ceiling_applies,
     )
     return employee, employer
 
