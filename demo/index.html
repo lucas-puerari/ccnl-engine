@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -316,7 +316,7 @@
 <!-- Loading overlay -->
 <div id="loading">
   <div class="spinner"></div>
-  <div id="loading-msg">Inizializzazione runtime Python…</div>
+  <div id="loading-msg">Initialising Python runtime…</div>
   <div class="progress-bar">
     <div class="progress-fill" id="progress-fill" style="width:0%"></div>
   </div>
@@ -325,44 +325,44 @@
 <header>
   <span class="logo">ccnl-engine</span>
   <span class="badge">demo</span>
-  <span class="tagline">Calcolo RAL, netto e costo datore · Anno 2026</span>
+  <span class="tagline">Italian payroll calculator · Gross-to-net &amp; employer cost · 2026</span>
 </header>
 
 <main>
   <!-- Form -->
   <div class="card">
-    <div class="card-title">Parametri di calcolo</div>
+    <div class="card-title">Parameters</div>
     <div class="form-grid">
       <div class="full">
-        <label for="sel-ccnl">CCNL</label>
+        <label for="sel-ccnl">CCNL (collective agreement)</label>
         <select id="sel-ccnl" disabled>
-          <option value="">— Caricamento in corso —</option>
+          <option value="">— Loading… —</option>
         </select>
       </div>
       <div class="full">
-        <label for="sel-level">Livello</label>
+        <label for="sel-level">Pay level</label>
         <select id="sel-level" disabled>
-          <option value="">— Seleziona prima il CCNL —</option>
+          <option value="">— Select a CCNL first —</option>
         </select>
       </div>
       <div>
-        <label for="sel-employment">Tipo contratto</label>
+        <label for="sel-employment">Contract type</label>
         <select id="sel-employment">
-          <option value="permanent">Indeterminato</option>
-          <option value="fixed_term">Determinato</option>
-          <option value="apprentice">Apprendistato</option>
+          <option value="permanent">Permanent</option>
+          <option value="fixed_term">Fixed-term</option>
+          <option value="apprentice">Apprenticeship</option>
         </select>
       </div>
       <div>
-        <label for="inp-employees">Dipendenti azienda</label>
+        <label for="inp-employees">Employer headcount</label>
         <input type="number" id="inp-employees" value="50" min="1" max="10000" />
       </div>
-      <div>
-        <label for="inp-seniority">Mesi di anzianità</label>
+      <div id="div-seniority-months">
+        <label for="inp-seniority">Seniority months</label>
         <input type="number" id="inp-seniority" value="0" min="0" max="600" />
       </div>
       <div id="div-apprentice-months" style="display:none">
-        <label for="inp-apprentice-months">Mesi nell'apprendistato</label>
+        <label for="inp-apprentice-months">Months into apprenticeship</label>
         <input type="number" id="inp-apprentice-months" value="0" min="0" max="60" />
       </div>
       <div class="full">
@@ -373,7 +373,7 @@
         </div>
       </div>
     </div>
-    <button id="calc-btn" disabled>Calcola</button>
+    <button id="calc-btn" disabled>Calculate</button>
   </div>
 
   <!-- Error -->
@@ -383,24 +383,24 @@
   <div id="results">
     <div class="kpi-grid">
       <div class="kpi">
-        <div class="kpi-label">Lordo mensile</div>
+        <div class="kpi-label">Monthly gross</div>
         <div class="kpi-value" id="kpi-gross-monthly">—</div>
         <div class="kpi-sub" id="kpi-gross-annual"></div>
       </div>
       <div class="kpi">
-        <div class="kpi-label">Netto mensile</div>
+        <div class="kpi-label">Monthly net</div>
         <div class="kpi-value green" id="kpi-net-monthly">—</div>
         <div class="kpi-sub" id="kpi-net-annual"></div>
       </div>
       <div class="kpi">
-        <div class="kpi-label">Costo datore annuo</div>
+        <div class="kpi-label">Annual employer cost</div>
         <div class="kpi-value amber" id="kpi-cost-annual">—</div>
-        <div class="kpi-sub">comprensivo di TFR e contributi</div>
+        <div class="kpi-sub">including TFR and contributions</div>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-title">Dettaglio</div>
+      <div class="card-title">Breakdown</div>
       <table class="breakdown-table">
         <colgroup>
           <col style="width:60%"/>
@@ -409,9 +409,9 @@
         </colgroup>
         <thead>
           <tr>
-            <th>Voce</th>
-            <th style="text-align:right">Mensile</th>
-            <th style="text-align:right">Annuale</th>
+            <th>Item</th>
+            <th style="text-align:right">Monthly</th>
+            <th style="text-align:right">Annual</th>
           </tr>
         </thead>
         <tbody id="breakdown-body"></tbody>
@@ -423,9 +423,12 @@
 
 <footer>
   <a href="https://github.com/lucas-puerari/ccnl-engine" target="_blank">ccnl-engine</a>
-  di <a href="https://pypi.org/project/ccnl-engine/" target="_blank">Lucas Puerari</a>
-  · Calcolo indicativo anno 2026 · Non costituisce consulenza fiscale o previdenziale
+  by <a href="https://pypi.org/project/ccnl-engine/" target="_blank">Lucas Puerari</a>
+  · Indicative figures for 2026 · Not financial or tax advice
 </footer>
+
+<!-- Pyodide must be loaded before the inline script below -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.27.0/full/pyodide.js"></script>
 
 <script>
 // ---- helpers ---------------------------------------------------------------
@@ -457,8 +460,7 @@ function showError(msg) {
 }
 
 function clearError() {
-  const box = document.getElementById("error-box");
-  box.style.display = "none";
+  document.getElementById("error-box").style.display = "none";
 }
 
 // ---- part-time slider -------------------------------------------------------
@@ -467,23 +469,20 @@ const slider = document.getElementById("inp-parttime");
 const ptVal  = document.getElementById("parttime-val");
 slider.addEventListener("input", () => { ptVal.textContent = slider.value + "%"; });
 
-// ---- apprentice toggle ------------------------------------------------------
+// ---- contract-type toggle ---------------------------------------------------
 
 document.getElementById("sel-employment").addEventListener("change", e => {
   const isApp = e.target.value === "apprentice";
   document.getElementById("div-apprentice-months").style.display = isApp ? "" : "none";
-  document.getElementById("inp-seniority").closest("div").style.display = isApp ? "none" : "";
+  document.getElementById("div-seniority-months").style.display  = isApp ? "none" : "";
 });
 
 // ---- CCNL / level selects ---------------------------------------------------
 
-let pyodideReady = false;
-
 async function populateCcnls(pyodide) {
-  const raw = pyodide.runPython("list_ccnls()");
-  const ccnls = JSON.parse(raw);
+  const ccnls = JSON.parse(pyodide.runPython("list_ccnls()"));
   const sel = document.getElementById("sel-ccnl");
-  sel.innerHTML = '<option value="">— Seleziona CCNL —</option>';
+  sel.innerHTML = '<option value="">— Select a CCNL —</option>';
   for (const c of ccnls) {
     const opt = document.createElement("option");
     opt.value = c.file;
@@ -497,13 +496,12 @@ async function onCcnlChange(pyodide) {
   const file = document.getElementById("sel-ccnl").value;
   const levelSel = document.getElementById("sel-level");
   const btn = document.getElementById("calc-btn");
-  levelSel.innerHTML = '<option value="">— Seleziona livello —</option>';
+  levelSel.innerHTML = '<option value="">— Select a level —</option>';
   levelSel.disabled = true;
   btn.disabled = true;
   if (!file) return;
 
-  const raw = pyodide.runPython(`load_ccnl_levels(${JSON.stringify(file)})`);
-  const levels = JSON.parse(raw);
+  const levels = JSON.parse(pyodide.runPython(`load_ccnl_levels(${JSON.stringify(file)})`));
   for (const lv of levels) {
     const opt = document.createElement("option");
     opt.value = lv.code;
@@ -511,53 +509,45 @@ async function onCcnlChange(pyodide) {
     levelSel.appendChild(opt);
   }
   levelSel.disabled = false;
-  levelSel.addEventListener("change", onLevelChange);
-}
-
-function onLevelChange() {
-  const hasLevel = document.getElementById("sel-level").value !== "";
-  document.getElementById("calc-btn").disabled = !hasLevel;
+  levelSel.addEventListener("change", () => {
+    btn.disabled = document.getElementById("sel-level").value === "";
+  });
 }
 
 // ---- compute ---------------------------------------------------------------
 
 function doCompute(pyodide) {
   clearError();
-  const file       = document.getElementById("sel-ccnl").value;
-  const levelCode  = document.getElementById("sel-level").value;
-  const empType    = document.getElementById("sel-employment").value;
-  const employees  = parseInt(document.getElementById("inp-employees").value) || 50;
-  const ptPct      = parseInt(slider.value) / 100;
-  const senMonths  = parseInt(document.getElementById("inp-seniority").value) || 0;
-  const appMonths  = parseInt(document.getElementById("inp-apprentice-months").value) || 0;
+  const file      = document.getElementById("sel-ccnl").value;
+  const levelCode = document.getElementById("sel-level").value;
+  const empType   = document.getElementById("sel-employment").value;
+  const employees = parseInt(document.getElementById("inp-employees").value) || 50;
+  const ptPct     = parseInt(slider.value) / 100;
+  const senMonths = parseInt(document.getElementById("inp-seniority").value) || 0;
+  const appMonths = parseInt(document.getElementById("inp-apprentice-months").value) || 0;
 
-  const raw = pyodide.runPython(
+  const r = JSON.parse(pyodide.runPython(
     `compute_salary(` +
     `${JSON.stringify(file)}, ` +
     `${JSON.stringify(levelCode)}, ` +
     `${JSON.stringify(empType)}, ` +
-    `${employees}, ` +
-    `${ptPct}, ` +
-    `${senMonths}, ` +
-    `${appMonths})`
-  );
-  const r = JSON.parse(raw);
+    `${employees}, ${ptPct}, ${senMonths}, ${appMonths})`
+  ));
 
   if (r.error) {
-    showError("Errore: " + r.error);
+    showError("Error: " + r.error);
     return;
   }
 
   // KPIs
   document.getElementById("kpi-gross-monthly").textContent = fmtM(r.gross_monthly);
-  document.getElementById("kpi-gross-annual").textContent  = fmt(r.gross_annual) + " annui";
+  document.getElementById("kpi-gross-annual").textContent  = fmt(r.gross_annual) + " / year";
   document.getElementById("kpi-net-monthly").textContent   = fmtM(r.net_monthly);
-  document.getElementById("kpi-net-annual").textContent    = fmt(r.net_annual) + " annui";
+  document.getElementById("kpi-net-annual").textContent    = fmt(r.net_annual) + " / year";
   document.getElementById("kpi-cost-annual").textContent   = fmt(r.employer_cost_annual);
 
   // Breakdown table
   const body = document.getElementById("breakdown-body");
-  const addMonths = r.gross_annual / r.gross_monthly; // back-calculate mensilitá
 
   function row(label, monthly, annual, cls = "") {
     const tr = document.createElement("tr");
@@ -575,85 +565,75 @@ function doCompute(pyodide) {
     return tr;
   }
   function totalRow(label, monthly, annual) {
-    const tr = row(label, monthly, annual, "total-row");
-    return tr;
+    return row(label, monthly, annual, "total-row");
   }
 
   body.innerHTML = "";
-  body.appendChild(sectionHead("Retribuzione"));
-  body.appendChild(row("Base mensile", r.base_monthly, null));
+  body.appendChild(sectionHead("Pay"));
+  body.appendChild(row("Base pay", r.base_monthly, null));
   if (r.seniority_monthly > 0)
-    body.appendChild(row(`Scatti anzianità (×${r.seniority_count})`, r.seniority_monthly, null));
+    body.appendChild(row(`Seniority increments (×${r.seniority_count})`, r.seniority_monthly, null));
   if (r.allowances_monthly > 0)
-    body.appendChild(row("Indennità mensili", r.allowances_monthly, null));
+    body.appendChild(row("Monthly allowances", r.allowances_monthly, null));
   if (r.apprenticeship_pct !== null)
-    body.appendChild(row(`Percentuale apprendistato`, null, null));
-  body.appendChild(row("Paga oraria", r.hourly_rate, null));
-  body.appendChild(totalRow("Lordo", r.gross_monthly, r.gross_annual));
+    body.appendChild(row(`Apprenticeship % (${(r.apprenticeship_pct * 100).toFixed(0)}%)`, null, null));
+  body.appendChild(row("Hourly rate", r.hourly_rate, null));
+  body.appendChild(totalRow("Gross", r.gross_monthly, r.gross_annual));
 
-  body.appendChild(sectionHead("A carico del lavoratore"));
-  body.appendChild(row("INPS", null, r.inps_employee_annual));
-  body.appendChild(row("IRPEF netta", null, r.irpef_net));
-  body.appendChild(totalRow("Netto in busta", r.net_monthly, r.net_annual));
+  body.appendChild(sectionHead("Employee deductions"));
+  body.appendChild(row("Social security (employee)", null, r.inps_employee_annual));
+  body.appendChild(row("Income tax — IRPEF (net)", null, r.irpef_net));
+  body.appendChild(totalRow("Net pay", r.net_monthly, r.net_annual));
 
-  body.appendChild(sectionHead("A carico del datore"));
-  body.appendChild(row("INPS datore", null, r.inps_employer_annual));
+  body.appendChild(sectionHead("Employer costs"));
+  body.appendChild(row("Social security (employer)", null, r.inps_employer_annual));
   if (r.employer_funds_annual > 0)
-    body.appendChild(row("Fondi contrattuali", null, r.employer_funds_annual));
-  body.appendChild(row("TFR annuale", null, r.tfr_annual));
-  body.appendChild(totalRow("Costo totale datore", null, r.employer_cost_annual));
+    body.appendChild(row("Contractual funds", null, r.employer_funds_annual));
+  body.appendChild(row("Severance pay — TFR", null, r.tfr_annual));
+  body.appendChild(totalRow("Total employer cost", null, r.employer_cost_annual));
 
-  // IRPEF note
+  // Note for non-withholding employers (e.g. domestic workers)
   const note = document.getElementById("irpef-note");
   if (!r.employer_withholds_irpef) {
     note.textContent =
-      "Il datore di lavoro non è sostituto d'imposta (es. lavoro domestico). " +
-      "L'IRPEF è indicativa: il lavoratore la versa direttamente.";
+      "The employer is not a tax withholding agent (e.g. domestic employment). " +
+      "IRPEF figures are informational; the worker files and pays income tax directly.";
     note.style.display = "block";
   } else {
     note.style.display = "none";
   }
 
   document.getElementById("results").style.display = "block";
-  clearError();
 }
 
 // ---- Pyodide boot ----------------------------------------------------------
 
 async function main() {
   try {
-    setProgress(5, "Caricamento Pyodide…");
-
-    // Load Pyodide
+    setProgress(5, "Loading Pyodide…");
     const pyodide = await loadPyodide();
-    setProgress(30, "Installazione dipendenze Python…");
+    setProgress(30, "Loading Python dependencies…");
 
-    // pydantic is bundled in Pyodide — load it without micropip
+    // pydantic ships pre-compiled inside Pyodide — do not use micropip for it
     await pyodide.loadPackage(["pydantic"]);
-    setProgress(60, "Installazione ccnl-engine…");
+    setProgress(60, "Installing ccnl-engine…");
 
-    // Install ccnl-engine from PyPI (pure-Python wheel; pydantic already loaded above)
     const micropip = pyodide.pyimport("micropip");
     await micropip.install("ccnl-engine");
-    setProgress(80, "Caricamento codice applicazione…");
+    setProgress(80, "Loading application…");
 
-    // Load the glue module
     const resp = await fetch("./app.py");
-    if (!resp.ok) throw new Error("app.py non trovato (" + resp.status + ")");
-    const appSrc = await resp.text();
-    pyodide.runPython(appSrc);
-    setProgress(100, "Pronto");
+    if (!resp.ok) throw new Error("app.py not found (" + resp.status + ")");
+    pyodide.runPython(await resp.text());
+    setProgress(100, "Ready");
 
-    // Wire UI
     await populateCcnls(pyodide);
     document.getElementById("sel-ccnl").addEventListener("change", () => onCcnlChange(pyodide));
     document.getElementById("calc-btn").addEventListener("click", () => doCompute(pyodide));
 
-    pyodideReady = true;
     setTimeout(hideLoading, 300);
-
   } catch (err) {
-    document.getElementById("loading-msg").textContent = "Errore: " + err.message;
+    document.getElementById("loading-msg").textContent = "Error: " + err.message;
     document.getElementById("loading").style.background = "rgba(50,10,10,.9)";
   }
 }
@@ -661,7 +641,5 @@ async function main() {
 main();
 </script>
 
-<!-- Pyodide from jsDelivr -->
-<script src="https://cdn.jsdelivr.net/pyodide/v0.27.0/full/pyodide.js"></script>
 </body>
 </html>
