@@ -64,7 +64,7 @@ jobs:
 
       # ── Docs ──────────────────────────────────────────────────────────────
       - name: "Docs: install dependencies"
-        run: uv pip install -e . "zensical>=0.0.11" "mkdocstrings[python]>=0.27"
+        run: uv pip install --system -e . "zensical>=0.0.11" "mkdocstrings[python]>=0.27"
 
       - name: "Docs: build with Zensical"
         run: uv run zensical build
