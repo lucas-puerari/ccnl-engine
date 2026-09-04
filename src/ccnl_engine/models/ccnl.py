@@ -252,7 +252,15 @@ class CCNLExtraction(BaseModel):
 
 
 class CCNLMeta(BaseModel):
-    """Identifying metadata for a CCNL."""
+    """Identifying metadata for a CCNL.
+
+    ``withholding_exempt`` must be set to ``True`` for sectors where the
+    employer is not a *sostituto d'imposta* for IRPEF (e.g. lavoro domestico,
+    where family employers are exempt under Art. 4 D.P.R. 600/1973).  When
+    True, the engine still computes IRPEF figures for informational purposes
+    but sets ``irpef_net`` to zero and reflects the flag in
+    ``ComputationResult.employer_withholds_irpef``.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
@@ -266,6 +274,7 @@ class CCNLMeta(BaseModel):
     extraction: CCNLExtraction
     agreement_date: str | None = None
     validity: CCNLValidity | None = None
+    withholding_exempt: bool = False
 
 
 class CCNL(BaseModel):

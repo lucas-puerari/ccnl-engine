@@ -592,6 +592,48 @@ class TestComputeIrpefFloor:
 
 
 # ---------------------------------------------------------------------------
+# Withholding exemption (non-sostituto d'imposta employers)
+# ---------------------------------------------------------------------------
+
+
+class TestComputeWithholdingExempt:
+    """withholding_exempt=True: irpef_net zero, informational fields retained."""
+
+    _EXEMPT_CCNL = _build_ccnl(**{"meta.withholding_exempt": True})
+
+    def test_irpef_net_is_zero(self) -> None:
+        """Exempt employer: irpef_net must be zero regardless of income."""
+        r = compute(self._EXEMPT_CCNL, _RULES, _req())
+
+        assert r.irpef_net == _D("0.00")
+
+    def test_employer_withholds_irpef_flag_false(self) -> None:
+        """Exempt employer: employer_withholds_irpef must be False."""
+        r = compute(self._EXEMPT_CCNL, _RULES, _req())
+
+        assert r.employer_withholds_irpef is False
+
+    def test_net_annual_excludes_irpef(self) -> None:
+        """Net = gross - INPS employee; IRPEF not deducted by employer."""
+        r = compute(self._EXEMPT_CCNL, _RULES, _req())
+
+        assert r.net_annual == r.gross_annual - r.inps_employee_annual
+
+    def test_irpef_informational_fields_nonzero(self) -> None:
+        """irpef_gross and work_income_deduction remain as informational."""
+        r = compute(self._EXEMPT_CCNL, _RULES, _req())
+
+        assert r.irpef_gross > _D("0.00")
+        assert r.work_income_deduction >= _D("0.00")
+
+    def test_standard_ccnl_withholds_irpef(self) -> None:
+        """Standard CCNL: employer_withholds_irpef must be True."""
+        r = compute(_DEFAULT_CCNL, _RULES, _req())
+
+        assert r.employer_withholds_irpef is True
+
+
+# ---------------------------------------------------------------------------
 # Apprentice — percentage
 # ---------------------------------------------------------------------------
 

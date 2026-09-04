@@ -47,6 +47,9 @@ class ComputationResult:
     irpef_gross: Decimal
     work_income_deduction: Decimal
     irpef_net: Decimal
+    employer_withholds_irpef: bool
+    """False when the employer is not a sostituto d'imposta (e.g. lavoro
+    domestico); irpef_gross and work_income_deduction remain informational."""
 
     net_annual: Decimal
     net_monthly: Decimal
