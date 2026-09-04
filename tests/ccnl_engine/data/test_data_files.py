@@ -4530,3 +4530,77 @@ class TestLoadLavoroDomesticoConvivente:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 7
+
+
+class TestLoadLavoroDomesticoNonConvivente:
+    """Tests for lavoro-domestico-non-convivente.json (DOMINA, CNEL H501)."""
+
+    def test_lavoro_domestico_non_convivente_loads(self) -> None:
+        """id='lavoro-domestico-non-convivente', cnel_code='H501'."""
+        ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
+        assert ccnl.meta.id == "lavoro-domestico-non-convivente"
+        assert ccnl.meta.cnel_code == "H501"
+
+    def test_lavoro_domestico_non_convivente_has_8_levels(self) -> None:
+        """Eight levels: A, AS, B, BS, C, CS, D, DS."""
+        ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
+        assert len(ccnl.levels) == 8
+        assert {lv.code for lv in ccnl.levels} == {
+            "A",
+            "AS",
+            "B",
+            "BS",
+            "C",
+            "CS",
+            "D",
+            "DS",
+        }
+
+    def test_lavoro_domestico_non_convivente_level_a_salary(self) -> None:
+        """Level A monthly salary: 6.51 EUR/h x 173 = 1126.23 EUR."""
+        ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
+        lv = ccnl.level_by_code("A")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1126.23")
+
+    def test_lavoro_domestico_non_convivente_level_ds_salary(self) -> None:
+        """Level DS monthly salary: 9.97 EUR/h x 173 = 1724.81 EUR."""
+        ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
+        lv = ccnl.level_by_code("DS")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1724.81")
+
+    def test_lavoro_domestico_non_convivente_level_ordering(self) -> None:
+        """DS has highest order (8); A has lowest (1)."""
+        ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
+        orders = {lv.code: lv.order for lv in ccnl.levels}
+        assert max(orders, key=lambda k: orders[k]) == "DS"
+        assert min(orders, key=lambda k: orders[k]) == "A"
+
+    def test_lavoro_domestico_non_convivente_additional_months(self) -> None:
+        """Additional months: 13 (tredicesima, Art. 27 CCNL)."""
+        ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_lavoro_domestico_non_convivente_hourly_divisor(self) -> None:
+        """Hourly divisor: 173 (40 h/week x 52/12, non-convivente)."""
+        ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(173)
+
+    def test_lavoro_domestico_non_convivente_no_fixed_allowances(self) -> None:
+        """All levels have no fixed allowances (function indennità not applicable)."""
+        ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_lavoro_domestico_non_convivente_tax_sector(self) -> None:
+        """Contract declares LAVORO_DOMESTICO tax sector."""
+        ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
+        assert ccnl.meta.tax_sector == TaxSector.LAVORO_DOMESTICO
+
+    def test_lavoro_domestico_non_convivente_seniority_cadence(self) -> None:
+        """Seniority: biennale (24 months), maximum 7 scatti."""
+        ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 7
