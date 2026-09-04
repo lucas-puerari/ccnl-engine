@@ -1,4 +1,3 @@
-[project]
 site_name    = "ccnl-engine"
 site_url     = "https://lucas-puerari.github.io/ccnl-engine/docs/"
 docs_dir     = "docs"
