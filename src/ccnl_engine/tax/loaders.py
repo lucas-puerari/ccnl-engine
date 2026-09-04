@@ -34,8 +34,21 @@ def load_year_rules(
 ) -> YearRules:
     """Load and validate tax year rules, resolving INPS rates by headcount.
 
+    INPS contribution rates are tiered by company size. This function selects
+    the correct tier for ``num_employees`` and returns a flat ``YearRules``
+    with the resolved rates — callers do not need to handle tier logic.
+
+    Args:
+        year: Tax year (e.g. ``2026``). A matching data file must exist in the
+            package bundle (``ccnl_engine/tax/data/<year>-<sector>.json``).
+        sector: INPS sector classification, taken from ``CCNL.meta.tax_sector``.
+        num_employees: Headcount used to select the INPS contribution-rate tier.
+            Use the employer's total headcount, not just the contract's.
+
     Returns:
-        The validated YearRules instance with rates resolved for num_employees.
+        A ``YearRules`` instance with INPS rates already resolved for the given
+        headcount. The ``inps`` field is ``None`` for domestic-work sectors,
+        which use ``domestic_contributions`` instead.
     """
     filename = f"{year}-{sector.value}.json"
     raw_text = (
