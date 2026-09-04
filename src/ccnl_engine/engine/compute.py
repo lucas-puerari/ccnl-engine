@@ -150,7 +150,7 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
     if request.ad_personam_monthly < _ZERO:
         msg = f"ad_personam_monthly must be >= 0, got {request.ad_personam_monthly}"
         raise ValueError(msg)
-    _validate_negotiated_ral(
+    ral_override = _validate_negotiated_ral(
         request.negotiated_ral, request.negotiated_destination_ral, request.employment
     )
 
@@ -213,10 +213,6 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
     )
 
     # The negotiated figure is the full RAL; CCNL exclusions don't apply to it.
-    ral_override = (
-        request.negotiated_ral is not None
-        or request.negotiated_destination_ral is not None
-    )
     contribution_base = (
         gross_annual
         if ral_override
@@ -321,7 +317,16 @@ def _validate_negotiated_ral(
     negotiated_ral: Decimal | None,
     negotiated_destination_ral: Decimal | None,
     employment: Employment,
-) -> None:
+) -> bool:
+    """Validate the negotiated-RAL arguments and return whether an override is active.
+
+    Returns:
+        True when either negotiated_ral or negotiated_destination_ral is set.
+
+    Raises:
+        ValueError: If both fields are given, or if negotiated_destination_ral
+            is used with a non-Apprentice employment type.
+    """
     if negotiated_ral is not None and negotiated_destination_ral is not None:
         msg = "negotiated_ral and negotiated_destination_ral are mutually exclusive"
         raise ValueError(msg)
@@ -330,6 +335,7 @@ def _validate_negotiated_ral(
     ):
         msg = "negotiated_destination_ral is only valid for Apprentice employment"
         raise ValueError(msg)
+    return negotiated_ral is not None or negotiated_destination_ral is not None
 
 
 def _resolve_seniority_count(

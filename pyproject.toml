@@ -11,6 +11,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "bandit>=1.9.4",
+    "complexipy>=8.0",
     "mypy>=2.3.1",
     "pip-audit>=2.10.1",
     "pytest>=9.1.1",
@@ -106,3 +107,11 @@ warn_required_dynamic_aliases = true
 # ---------------------------------------------------------------------------
 [tool.setuptools.package-data]
 "ccnl_engine" = ["contracts/data/*.json", "tax/data/*.json"]
+
+# ---------------------------------------------------------------------------
+# complexipy — Cognitive Complexity (SonarSource whitepaper v1.7)
+# ---------------------------------------------------------------------------
+[tool.complexipy]
+max-complexity-allowed = 15
+exclude = [".venv", "venv", "build", "dist"]
+failed = true

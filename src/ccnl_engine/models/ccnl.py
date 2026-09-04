@@ -417,30 +417,33 @@ class CCNL(BaseModel):
             msg = f"apprenticeship track names must be unique, got: {names}"
             raise ValueError(msg)
         for track in self.apprenticeship:
-            for code in track.destination_levels:
-                try:
-                    dest = self.level_by_code(code)
-                except ValueError:
-                    msg = (
-                        f"apprenticeship track {track.name!r} references "
-                        f"destination level {code!r} which does not exist"
-                    )
-                    raise ValueError(msg) from None
-                if isinstance(track, ApprenticeshipUnderClassification):
-                    self._assert_offsets_resolve(track, dest)
-            if (
-                isinstance(track, ApprenticeshipPercentage)
-                and track.reference_level is not None
-            ):
-                try:
-                    self.level_by_code(track.reference_level)
-                except ValueError:
-                    msg = (
-                        f"apprenticeship track {track.name!r} references "
-                        f"reference_level {track.reference_level!r} which does not "
-                        f"exist"
-                    )
-                    raise ValueError(msg) from None
+            self._assert_single_track(track)
+
+    def _assert_single_track(self, track: ApprenticeshipTrack) -> None:
+        for code in track.destination_levels:
+            try:
+                dest = self.level_by_code(code)
+            except ValueError:
+                msg = (
+                    f"apprenticeship track {track.name!r} references "
+                    f"destination level {code!r} which does not exist"
+                )
+                raise ValueError(msg) from None
+            if isinstance(track, ApprenticeshipUnderClassification):
+                self._assert_offsets_resolve(track, dest)
+        if (
+            isinstance(track, ApprenticeshipPercentage)
+            and track.reference_level is not None
+        ):
+            try:
+                self.level_by_code(track.reference_level)
+            except ValueError:
+                msg = (
+                    f"apprenticeship track {track.name!r} references "
+                    f"reference_level {track.reference_level!r} which does not "
+                    f"exist"
+                )
+                raise ValueError(msg) from None
 
     def _assert_offsets_resolve(
         self, track: ApprenticeshipUnderClassification, dest: Level
