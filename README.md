@@ -46,7 +46,7 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | Symbol | Meaning |
 |--------|---------|
 | ✅ | Fully modelled; all salary tables and rules for this layer are in scope |
-| ⚠️ | Partially modelled; known gaps or simplifications apply — see `coverage.notes` in the contract file |
+| ⚠️ | Partially modelled; known gaps or simplifications apply — see `coverage.notes` in the contract's JSON data file |
 | 🤖 | Extraction: extracted automatically via Claude Code — no manual human review |
 | 🧑 | Extraction: verified manually against the official source |
 
