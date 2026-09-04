@@ -40,7 +40,7 @@ print(result.employer_cost_annual)  # Decimal('...')
 ## Interactive demo
 
 Try the engine in your browser — no installation required:
-[**Open demo →**](../index.html)
+[**Open demo →**](../demo/)
 
 ## Scope and limitations
 
