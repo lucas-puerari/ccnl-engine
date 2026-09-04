@@ -1,0 +1,431 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "trasporto-ferroviario-agens",
+    "name": "CCNL Attività Ferroviarie — AGENS",
+    "cnel_code": "I320",
+    "sector": "trasporto",
+    "tax_sector": "industria",
+    "signatories": [
+      "AGENS — Aziende Aderenti alla Sezione Ferroviaria di Conftrasporto",
+      "FILT-CGIL — Federazione Italiana Lavoratori Trasporti",
+      "FIT-CISL — Federazione Italiana Trasporti",
+      "Uiltrasporti",
+      "FAST-Confsal — Federazione Autonoma Sindacati Trasporti",
+      "UGL Ferrovieri",
+      "ORSA Ferrovie"
+    ],
+    "sources": [
+      {
+        "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive",
+        "type": "web",
+        "agreement_date": "2025-05-22",
+        "notes": "Tabelle retributive I320. Three tranches: 01/06/2025, 01/11/2025, 01/06/2026. Hourly divisor 160. Contingenza=0.00, terzo elemento=0.00 for all levels confirming conglobated model."
+      },
+      {
+        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=299",
+        "type": "web",
+        "agreement_date": "2025-05-22",
+        "notes": "Seniority increments confirmed: 7 scatti biennali (24 months cadence), per-level EUR amounts from current table. Additional months 14 (tredicesima + quattordicesima) confirmed."
+      },
+      {
+        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx",
+        "type": "web",
+        "agreement_date": "2025-05-22",
+        "notes": "Cross-confirmation of function allowances Q1=250.00, Q2=130.00 additive to base tabellare. Seniority per-level amounts cross-confirmed with lavoro-economia.it."
+      },
+      {
+        "url": "https://www.redigo.info/2025/05/ccnl-ferrovie-rinnovo-2025",
+        "type": "web",
+        "agreement_date": "2025-05-22",
+        "notes": "Una tantum for Jan 2024-May 2025 gap explicitly stated as non-reflective on any contractual institute. Three salary tranches Jun 2025 / Nov 2025 / Jun 2026 confirmed. Additional months 14 cross-confirmed."
+      },
+      {
+        "url": "https://www.leggeinchiaro.it/ccnl-ferrovie",
+        "type": "web",
+        "agreement_date": "2025-05-22",
+        "notes": "Apprenticeship: apprendistato professionalizzante max 36 months. Pay rates are defined in the Piano Formativo Individuale (PFI) per worker, not as a contract-level table. Source of MISSING coverage determination."
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-04T00:00:00",
+      "human_reviewed": true
+    },
+    "agreement_date": "2025-05-22",
+    "validity": {
+      "valid_from": "2024-01-01",
+      "valid_until": "2026-12-31"
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "notes": [
+      "INFO: SALARY MODEL: conglobated. ilccnl.it salary table shows contingenza=0.00 and terzo elemento=0.00 for all 16 levels. kitech.it confirms additive structure: Q1 base tabellare=2826.07 + IND_FUN=250.00 total, Q2 base=2483.02 + IND_FUN=130.00 total. Two aggregator sources (ilccnl.it, kitech.it) agree on the decomposition, establishing the function allowances are additive to the conglobated base. Primary CCNL text (AGENS/FILT-CGIL) was not directly retrieved; all parameters derive from aggregator tables.",
+      "INFO: SIGNATORIES: AGENS (employer association, Conftrasporto affiliate) + FILT-CGIL/FIT-CISL/Uiltrasporti/FAST-Confsal/UGL Ferrovieri/ORSA Ferrovie (workers). CNEL code I320. The operating companies (FS Italiane, Trenitalia, RFI) are AGENS members; AGENS is the formal signatory.",
+      "INFO: HOURLY DIVISOR: 160, verbatim from ilccnl.it salary table. Standard for 40h/week contractual regime (160 = 40 × 4).",
+      "INFO: ADDITIONAL MONTHS: 14 — tredicesima + quattordicesima, confirmed from lavoro-economia.it and redigo.info (rinnovo May 2025).",
+      "INFO: SENIORITY: biennial (cadence 24 months), maximum 7 scatti. Per-level EUR amounts from lavoro-economia.it and kitech.it (both aggregators). NOTE: E2 and E3 show identical scatto amounts (22.66) in both aggregator sources; unconfirmed against the primary CCNL text and should be verified before relying on E2/E3 seniority amounts.",
+      "INFO: FUNCTION ALLOWANCES (IND_FUN): Q1 receives +250.00/month, Q2 receives +130.00/month. Modelled as fixed_allowances with code IND_FUN effective from first salary tranche (01/06/2025). Two aggregator sources (ilccnl.it, kitech.it) agree the allowances are additive to the base tabellare.",
+      "MISSING: APPRENTICESHIP. I320 specifies apprendistato professionalizzante (max 36 months). Per leggeinchiaro.it, the percentage-based pay rates are defined in the Piano Formativo Individuale (PFI) on a per-worker basis and are not published as a contract-level table. No fixed percentage track is available for modelling; apprenticeship is therefore not implemented.",
+      "SIMPLIFICATION: PRE-JUN 2025 PERIOD NOT MODELLED. The CCNL contractual coverage runs 2024-01-01 to 2026-12-31. The Jan 2024 – May 2025 wage gap was compensated by a lump-sum una tantum paid in Aug 2025 (per redigo.info), explicitly stated as having no effect on any contractual institute ('non avranno riflessi su alcun istituto contrattuale'). Salary periods therefore start 01/06/2025. Engine queries with as_of before Jun 2025 will return the Jun 2025 values, which overstate actual pay for that window.",
+      "SIMPLIFICATION: FONDO DI SOLIDARIETA FERROVIE. A 0.20% solidarity fund contribution applies (split approximately 2/3 employer, 1/3 employee) per the bilateral solidarity fund for the railway sector. Not modelled; adds approximately 0.067% to employee cost and 0.133% to employer cost above the standard INDUSTRIA INPS rates.",
+      "SIMPLIFICATION: SENIORITY AMOUNTS PRE-JUN 2025. Per-level scatto amounts are sourced from lavoro-economia.it/kitech.it representing the Jun 2026 table. Whether identical values applied in the Jun 2025 and Nov 2025 tranches is unconfirmed. Modelled as constant from 01/06/2025."
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-06-01",
+          "valid_until": null,
+          "value": "160"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-06-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 7,
+      "amount_by_level": {
+        "Q1": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "47.19" }
+          ]
+        },
+        "Q2": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "38.27" }
+          ]
+        },
+        "A": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "35.95" }
+          ]
+        },
+        "B1": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "33.62" }
+          ]
+        },
+        "B2": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "31.77" }
+          ]
+        },
+        "B3": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "31.30" }
+          ]
+        },
+        "C1": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "29.91" }
+          ]
+        },
+        "C2": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "29.45" }
+          ]
+        },
+        "D1": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "28.42" }
+          ]
+        },
+        "D2": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "25.64" }
+          ]
+        },
+        "D3": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "25.22" }
+          ]
+        },
+        "E1": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "24.34" }
+          ]
+        },
+        "E2": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "22.66" }
+          ]
+        },
+        "E3": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "22.66" }
+          ]
+        },
+        "F1": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "18.58" }
+          ]
+        },
+        "F2": {
+          "periods": [
+            { "valid_from": "2025-06-01", "valid_until": null, "value": "18.22" }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "F2",
+      "order": 1,
+      "description": "Level F2 — entry-level railway workers, unskilled support tasks",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "1548.29" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "1594.81" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "1633.56" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "operaio"
+    },
+    {
+      "code": "F1",
+      "order": 2,
+      "description": "Level F1 — basic railway workers, standard operational tasks",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "1579.25" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "1626.70" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "1666.23" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "operaio"
+    },
+    {
+      "code": "E3",
+      "order": 3,
+      "description": "Level E3 — semi-skilled railway workers, qualified operational tasks",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "1703.12" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "1754.29" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "1796.91" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "operaio"
+    },
+    {
+      "code": "E2",
+      "order": 4,
+      "description": "Level E2 — skilled railway workers, certified operational roles",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "1734.10" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "1786.18" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "1829.60" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "operaio"
+    },
+    {
+      "code": "E1",
+      "order": 5,
+      "description": "Level E1 — specialised railway workers, technical operational duties",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "1811.50" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "1865.92" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "1911.26" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "operaio"
+    },
+    {
+      "code": "D3",
+      "order": 6,
+      "description": "Level D3 — qualified railway technicians, standard professional duties",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "1842.47" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "1897.82" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "1943.94" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato"
+    },
+    {
+      "code": "D2",
+      "order": 7,
+      "description": "Level D2 — experienced railway technicians, intermediate professional roles",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "1873.44" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "1929.72" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "1976.62" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato"
+    },
+    {
+      "code": "D1",
+      "order": 8,
+      "description": "Level D1 — senior railway technicians, advanced professional duties",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "1935.36" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "1993.51" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2041.95" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato"
+    },
+    {
+      "code": "C2",
+      "order": 9,
+      "description": "Level C2 — railway professionals, specialist operational coordination",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "1966.33" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "2025.40" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2074.62" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato"
+    },
+    {
+      "code": "C1",
+      "order": 10,
+      "description": "Level C1 — senior railway professionals, team coordination roles",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "1997.30" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "2057.30" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2107.30" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato"
+    },
+    {
+      "code": "B3",
+      "order": 11,
+      "description": "Level B3 — railway supervisors, operational management duties",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "2043.75" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "2105.14" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2156.31" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato"
+    },
+    {
+      "code": "B2",
+      "order": 12,
+      "description": "Level B2 — railway section managers, intermediate management roles",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "2074.71" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "2137.04" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2188.97" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato"
+    },
+    {
+      "code": "B1",
+      "order": 13,
+      "description": "Level B1 — railway department managers, senior management roles",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "2167.61" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "2232.73" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2286.99" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato"
+    },
+    {
+      "code": "A",
+      "order": 14,
+      "description": "Level A — senior railway managers, strategic operational leadership",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "2275.99" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "2344.37" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2401.34" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "quadro"
+    },
+    {
+      "code": "Q2",
+      "order": 15,
+      "description": "Level Q2 — railway quadri (middle management), with IND_FUN function allowance",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "2353.41" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "2424.11" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2483.02" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_FUN",
+          "description": "Indennita di funzione livello Q2 (quadri, additive to base tabellare)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2025-06-01", "valid_until": null, "value": "130.00" }
+            ]
+          }
+        }
+      ],
+      "category": "quadro"
+    },
+    {
+      "code": "Q1",
+      "order": 16,
+      "description": "Level Q1 — railway quadri (senior management), with IND_FUN function allowance",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2025-06-01", "valid_until": "2025-11-01", "value": "2678.55" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-06-01", "value": "2759.01" },
+          { "valid_from": "2026-06-01", "valid_until": null, "value": "2826.07" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_FUN",
+          "description": "Indennita di funzione livello Q1 (quadri dirigenziali, additive to base tabellare)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2025-06-01", "valid_until": null, "value": "250.00" }
+            ]
+          }
+        }
+      ],
+      "category": "quadro"
+    }
+  ],
+  "apprenticeship": []
+}

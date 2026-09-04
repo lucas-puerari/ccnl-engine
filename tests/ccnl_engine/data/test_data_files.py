@@ -4826,3 +4826,90 @@ class TestLoadPanificazioneAssipan:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadTrasportoFerroviarioAgens:
+    """Tests for CCNL Attività Ferroviarie AGENS (I320)."""
+
+    def test_trasporto_ferroviario_agens_loads(self) -> None:
+        """Contract loads with correct id and CNEL code I320."""
+        ccnl = load_ccnl("trasporto-ferroviario-agens.json")
+        assert ccnl.meta.id == "trasporto-ferroviario-agens"
+        assert ccnl.meta.cnel_code == "I320"
+
+    def test_trasporto_ferroviario_agens_has_16_levels(self) -> None:
+        """Contract has exactly 16 levels with expected codes."""
+        ccnl = load_ccnl("trasporto-ferroviario-agens.json")
+        assert len(ccnl.levels) == 16
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {
+            "Q1",
+            "Q2",
+            "A",
+            "B1",
+            "B2",
+            "B3",
+            "C1",
+            "C2",
+            "D1",
+            "D2",
+            "D3",
+            "E1",
+            "E2",
+            "E3",
+            "F1",
+            "F2",
+        }
+
+    def test_trasporto_ferroviario_agens_level_q2_salary_2025(self) -> None:
+        """Q2 base salary at Jun 2025 tranche is 2353.41."""
+        ccnl = load_ccnl("trasporto-ferroviario-agens.json")
+        q2 = next(lv for lv in ccnl.levels if lv.code == "Q2")
+        assert q2.base_salary.value_at(date(2025, 6, 1)) == Decimal("2353.41")
+
+    def test_trasporto_ferroviario_agens_level_q2_salary_2026(self) -> None:
+        """Q2 base salary at Jun 2026 tranche is 2483.02."""
+        ccnl = load_ccnl("trasporto-ferroviario-agens.json")
+        q2 = next(lv for lv in ccnl.levels if lv.code == "Q2")
+        assert q2.base_salary.value_at(date(2026, 9, 1)) == Decimal("2483.02")
+
+    def test_trasporto_ferroviario_agens_level_ordering(self) -> None:
+        """F2 is lowest-order level; Q1 is highest-order level."""
+        ccnl = load_ccnl("trasporto-ferroviario-agens.json")
+        levels_by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert levels_by_order[0].code == "F2"
+        assert levels_by_order[-1].code == "Q1"
+
+    def test_trasporto_ferroviario_agens_additional_months(self) -> None:
+        """Contract has 14 additional months (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("trasporto-ferroviario-agens.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 9, 1)) == Decimal(
+            14
+        )
+
+    def test_trasporto_ferroviario_agens_hourly_divisor(self) -> None:
+        """Hourly divisor is 160 (40h/week contractual regime)."""
+        ccnl = load_ccnl("trasporto-ferroviario-agens.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 9, 1)) == Decimal(160)
+
+    def test_trasporto_ferroviario_agens_q2_has_ind_fun(self) -> None:
+        """Q2 carries IND_FUN fixed allowance of 130.00 (additive to base)."""
+        ccnl = load_ccnl("trasporto-ferroviario-agens.json")
+        q2 = next(lv for lv in ccnl.levels if lv.code == "Q2")
+        assert len(q2.fixed_allowances) == 1
+        assert q2.fixed_allowances[0].code == "IND_FUN"
+        assert q2.fixed_allowances[0].monthly.value_at(date(2026, 9, 1)) == Decimal(
+            "130.00"
+        )
+
+    def test_trasporto_ferroviario_agens_tax_sector(self) -> None:
+        """Contract declares INDUSTRIA tax sector."""
+        ccnl = load_ccnl("trasporto-ferroviario-agens.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_trasporto_ferroviario_agens_seniority_cadence(self) -> None:
+        """Seniority: biennale (24 months), maximum 7 scatti."""
+        ccnl = load_ccnl("trasporto-ferroviario-agens.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 7
