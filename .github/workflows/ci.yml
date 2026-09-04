@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint-test:
     name: Lint, typecheck, test
@@ -26,9 +30,6 @@ jobs:
 
       - name: Install dependencies
         run: uv sync --group dev
-
-      - name: Install package (editable)
-        run: uv pip install -e .
 
       - name: Lint (ruff check)
         run: uv run ruff check src/ tests/
@@ -69,9 +70,6 @@ jobs:
 
       - name: Install dependencies
         run: uv sync --group dev
-
-      - name: Install package (editable)
-        run: uv pip install -e .
 
       - name: Dependency vulnerability scan (pip-audit)
         run: uv run pip-audit --skip-editable
