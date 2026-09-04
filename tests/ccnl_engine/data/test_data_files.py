@@ -5304,3 +5304,71 @@ class TestLoadInformaticaPmiUnimatica:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadScuolePrivateAgidae:
+    """Tests for scuole-private-agidae (CCNL T241 Scuole Private Religiose)."""
+
+    def test_scuole_private_agidae_loads(self) -> None:
+        """Contract id and CNEL code are correct."""
+        ccnl = load_ccnl("scuole-private-agidae.json")
+        assert ccnl.meta.id == "scuole-private-agidae"
+        assert ccnl.meta.cnel_code == "T241"
+
+    def test_scuole_private_agidae_has_6_levels(self) -> None:
+        """Contract has 6 levels: L1 through L6."""
+        ccnl = load_ccnl("scuole-private-agidae.json")
+        assert len(ccnl.levels) == 6
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"L1", "L2", "L3", "L4", "L5", "L6"}
+
+    def test_scuole_private_agidae_level_l1_salary_2024(self) -> None:
+        """Level L1 base salary at Sep 2024 first tranche."""
+        ccnl = load_ccnl("scuole-private-agidae.json")
+        lv = next(lev for lev in ccnl.levels if lev.code == "L1")
+        val = lv.base_salary.value_at(date(2024, 9, 1))
+        assert val == Decimal("1642.99")
+
+    def test_scuole_private_agidae_level_l6_salary_2026(self) -> None:
+        """Level L6 base salary at Sep 2026 third tranche."""
+        ccnl = load_ccnl("scuole-private-agidae.json")
+        lv = next(lev for lev in ccnl.levels if lev.code == "L6")
+        val = lv.base_salary.value_at(date(2026, 9, 1))
+        assert val == Decimal("2138.71")
+
+    def test_scuole_private_agidae_level_ordering(self) -> None:
+        """L1 is lowest order; L6 is highest order."""
+        ccnl = load_ccnl("scuole-private-agidae.json")
+        by_order = sorted(ccnl.levels, key=lambda lev: lev.order)
+        assert by_order[0].code == "L1"
+        assert by_order[-1].code == "L6"
+
+    def test_scuole_private_agidae_additional_months(self) -> None:
+        """Contract has 13 additional months (tredicesima, Art. 23.6)."""
+        ccnl = load_ccnl("scuole-private-agidae.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 9, 1))
+        assert val == Decimal(13)
+
+    def test_scuole_private_agidae_hourly_divisor(self) -> None:
+        """Hourly divisor is 164 (Art. 49, 38h/week non-teaching staff)."""
+        ccnl = load_ccnl("scuole-private-agidae.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 9, 1))
+        assert val == Decimal(164)
+
+    def test_scuole_private_agidae_no_fixed_allowances(self) -> None:
+        """All 6 levels have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("scuole-private-agidae.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == [], lv.code
+
+    def test_scuole_private_agidae_tax_sector(self) -> None:
+        """Contract declares TERZIARIO tax sector."""
+        ccnl = load_ccnl("scuole-private-agidae.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_scuole_private_agidae_seniority_cadence(self) -> None:
+        """Seniority frozen at 31/12/2005 (Art. 29+32): maximum_count=0."""
+        ccnl = load_ccnl("scuole-private-agidae.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 1
+        assert si.maximum_count == 0

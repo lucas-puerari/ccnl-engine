@@ -1,0 +1,52 @@
+{
+  "_description": "Golden case: CCNL T241 Scuole Private Religiose AGIDAE, Level L3, 2026-09-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Sep 2026 third tranche: base_salary level L3 = 1783.87 EUR/month (conglobated).",
+    "Conglobated model: paga base comprensiva contingenza al 30/11/1991 (Art. 29 CCNL 2024).",
+    "Additional months: 13 (tredicesima, Art. 23.6).",
+    "INPS employer rate from 2026-terziario.json (terziario sector, <=50 employees).",
+    "Seniority: 0.00 — max_count=0 (salario di anzianita frozen at 31/12/2005, Art. 29+32).",
+    "Hourly divisor: 164 (Art. 49, 38h/week non-teaching staff).",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025)."
+  ],
+  "inputs": {
+    "ccnl_file": "scuole-private-agidae.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "L3",
+    "as_of": "2026-09-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "scuole-private-agidae",
+    "level_code": "L3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1783.87",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1783.87",
+    "gross_annual": "23190.31",
+    "hourly_rate": "10.88",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2131.19",
+    "inps_employer_annual": "6720.55",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1717.80",
+    "taxable_income": "21059.12",
+    "irpef_gross": "4843.60",
+    "work_income_deduction": "1009.55",
+    "irpef_net": "3834.05",
+    "net_annual": "17225.07",
+    "net_monthly": "1325.01",
+    "employer_cost_annual": "31628.66"
+  }
+}
