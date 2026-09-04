@@ -36,33 +36,47 @@
   "fixed_term_additional_rate": "0.014",
   "inps": {
     "employee_tiers": [
-      { "max_employees": null, "rate": "0.0919" }
+      {
+        "max_employees": null,
+        "rate": "0.0919",
+        "ivs_rate": "0.0919"
+      }
     ],
     "employer_tiers": [
       {
         "max_employees": null,
         "rate": "0.2693",
-        "rate_by_category": { "impiegato": "0.2471", "quadro": "0.2471" }
+        "ivs_rate": "0.2381",
+        "rate_by_category": {
+          "impiegato": "0.2471",
+          "quadro": "0.2471"
+        }
       }
     ],
-    "ceiling": null
+    "ceiling": "122295.00"
   },
   "apprentice": {
     "employee_rate": "0.0584",
+    "employee_ivs_rate": "0.0584",
     "employer_rate": "0.1161",
+    "employer_ivs_rate": "0.1000",
     "small_firm_max_employees": 9,
     "small_firm_employer_rate_months_0_11": "0.0311",
-    "small_firm_employer_rate_months_12_23": "0.0461"
+    "small_firm_employer_ivs_rate_months_0_11": "0.0150",
+    "small_firm_employer_rate_months_12_23": "0.0461",
+    "small_firm_employer_ivs_rate_months_12_23": "0.0300"
   },
   "tfr": {
     "accrual_divisor": "13.5"
   },
   "notes": [
     "IRPEF brackets and work_deduction_breakpoints: statutory, sector-agnostic.",
-    "INPS employer — SIMPLIFICATION: rate 26.93% from kitech.it (proxy data for non-construction crafts sector 2024; specific INPS circular not retrieved). Estimated components: IVS 23.81% + NASpI 1.61% + CUAF 0.68% + sickness for operai ~0.83% = ~26.93%. No CIGO/CIGS for the crafts sector (art. 3 D.Lgs. 148/2015). FSBA (0.45% employer + 0.15% employee) excluded: bilateral fund contribution, not INPS. No size tier.",
+    "INPS employer — SIMPLIFICATION: rate 26.93% from kitech.it (non-construction crafts sector 2026, source https://www.kitech.it/Contributi-previdenziali.aspx?p=1_1; specific INPS circular not retrieved). Component breakdown is part of the KNOWN GAP noted below: the operai-vs-impiegati difference (26.93% vs 24.71% = 2.22pp) does not reconcile with a malattia-only explanation (~0.83pp), suggesting the sector IVS rate may differ from the generic private-sector 23.81%. No CIGO/CIGS for the crafts sector (art. 3 D.Lgs. 148/2015). FSBA (0.45% employer + 0.15% employee) excluded: bilateral fund contribution, not INPS. No size tier.",
     "INPS employee — employee_tiers: 9.19% (IVS + NASpI) flat. No additional CIGS for employees (crafts sector has no CIGS).",
     "fixed_term_additional_rate: NASpI additional rate 1.4% (employer-only) per Art. 2 co. 28 L. 92/2012.",
-    "INPS employer by category — rate_by_category: white-collar employees (impiegati) and middle managers (quadri) 24.71% (kitech.it, same proxy source as the operai rate 26.93%); operai and levels without a category use 26.93%.",
-    "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled."
+    "KNOWN GAP: rate_by_category impiegato/quadro = 24.71% confirmed from kitech.it (non-construction crafts sector 2026, employer-only share of 33.90% total; source https://www.kitech.it/Contributi-previdenziali.aspx?p=1_1). The component breakdown of 24.71% is unknown: it does not reconcile with IVS (23.81%) + NASpI (1.61%) = 25.42%, suggesting either the artigianato IVS employer rate for impiegati is lower than the generic private-sector 23.81% (e.g. 23.10% IVS + 1.61% NASpI = 24.71%), or CUAF and/or NASpI differ in this sector. The operai-to-impiegati gap is 2.22pp (26.93% vs 24.71%), not the ~0.83pp malattia-only difference expected if IVS were uniform. IMPORTANT: the tier-level ivs_rate (23.81%) and the IVS ceiling split for impiegati are therefore also approximate until the component breakdown is confirmed from an authoritative INPS circular.",
+    "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
+    "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026, Art. 1 L. 335/1995 c. 18). Applies only when ivs_ceiling_applies=True (workers enrolled in INPS on or after 1 Jan 1996).",
+    "IVS ceiling and category rates: employer_ivs_rate (23.81%) is a single scalar uniform across all categories in this tier. When ivs_ceiling_applies=True and a category rate override is active (e.g. impiegati 24.71%), the engine assumes the IVS component equals the tier-level ivs_rate (23.81%) and treats the residual (0.90%) as non-IVS. This assumption is unverified for impiegati/quadri; see the KNOWN GAP note above."
   ]
 }

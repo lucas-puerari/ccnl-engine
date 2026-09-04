@@ -3,6 +3,7 @@
 from decimal import Decimal
 
 from ccnl_engine.engine.contributions import inps_contribution, resolve_rates, tfr
+from ccnl_engine.engine.rounding import money
 from ccnl_engine.models.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.tax.models import YearRules
 from tests.conftest import make_year_rules
@@ -19,15 +20,21 @@ def _rules(ceiling: str | None = None) -> YearRules:
     return make_year_rules(
         inps={
             "employee_rate": "0.0919",
+            "employee_ivs_rate": "0.0919",
             "employer_rate": "0.2898",
+            "employer_ivs_rate": "0.2381",
             "ceiling": ceiling,
             "employer_rate_by_category": {"impiegato": "0.2471"},
         },
         apprentice={
             "employee_rate": "0.0584",
+            "employee_ivs_rate": "0.0584",
             "employer_rate_months_0_11": "0.0311",
+            "employer_ivs_rate_months_0_11": "0.0150",
             "employer_rate_months_12_23": "0.0461",
+            "employer_ivs_rate_months_12_23": "0.0300",
             "employer_rate_after": "0.1161",
+            "employer_ivs_rate_after": "0.1000",
         },
     )
 
@@ -74,20 +81,58 @@ class TestResolveRates:
 class TestInpsContribution:
     """inps_contribution() with and without ceiling."""
 
-    def test_uncapped(self) -> None:
-        """No ceiling: contribution is base * rate, rounded to the cent."""
-        result = inps_contribution(_D("24972.50"), _D("0.0919"), _rules())
+    def test_uncapped_no_ceiling(self) -> None:
+        """No ceiling configured: flat rate on the full base."""
+        result = inps_contribution(
+            _D("24972.50"),
+            _D("0.0919"),
+            _D("0.0919"),
+            _rules(),
+            ivs_ceiling_applies=True,
+        )
         assert result == _D("2294.97")
 
-    def test_ceiling_base_below(self) -> None:
-        """Ceiling set and base < ceiling: base is unchanged."""
-        result = inps_contribution(_D("24000.00"), _D("0.0919"), _rules("30000.00"))
-        assert result == _D("24000.00") * _D("0.0919")
+    def test_ceiling_not_applies(self) -> None:
+        """ivs_ceiling_applies=False: flat rate even when ceiling is set."""
+        result = inps_contribution(
+            _D("150000.00"),
+            _D("0.3050"),
+            _D("0.2381"),
+            _rules("119650.00"),
+            ivs_ceiling_applies=False,
+        )
+        assert result == _D("150000.00") * _D("0.3050")
 
-    def test_ceiling_base_above(self) -> None:
-        """Ceiling set and base > ceiling: base is capped at ceiling."""
-        result = inps_contribution(_D("24000.00"), _D("0.0919"), _rules("20000.00"))
-        assert result == _D("20000.00") * _D("0.0919")
+    def test_ceiling_base_below(self) -> None:
+        """Ceiling applies but base < ceiling: IVS and non-IVS both on full base."""
+        total_rate = _D("0.3050")
+        ivs_rate = _D("0.2381")
+        base = _D("80000.00")
+        result = inps_contribution(
+            base,
+            total_rate,
+            ivs_rate,
+            _rules("119650.00"),
+            ivs_ceiling_applies=True,
+        )
+        assert result == base * total_rate
+
+    def test_ceiling_base_above_splits_correctly(self) -> None:
+        """Ceiling applies and base > ceiling: IVS portion capped, non-IVS uncapped."""
+        total_rate = _D("0.3050")
+        ivs_rate = _D("0.2381")
+        non_ivs_rate = total_rate - ivs_rate
+        base = _D("150000.00")
+        ceiling = _D("119650.00")
+        result = inps_contribution(
+            base,
+            total_rate,
+            ivs_rate,
+            _rules("119650.00"),
+            ivs_ceiling_applies=True,
+        )
+        expected = money(ceiling * ivs_rate + base * non_ivs_rate)
+        assert result == expected
 
 
 class TestTfr:

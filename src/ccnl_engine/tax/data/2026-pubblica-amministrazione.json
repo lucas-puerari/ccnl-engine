@@ -2,38 +2,73 @@
   "year": 2026,
   "sector": "pubblica-amministrazione",
   "irpef_brackets": [
-    { "up_to": "28000.00", "rate": "0.23" },
-    { "up_to": "50000.00", "rate": "0.33" },
-    { "up_to": null,       "rate": "0.43" }
+    {
+      "up_to": "28000.00",
+      "rate": "0.23"
+    },
+    {
+      "up_to": "50000.00",
+      "rate": "0.33"
+    },
+    {
+      "up_to": null,
+      "rate": "0.43"
+    }
   ],
   "work_deduction_breakpoints": [
-    { "income_up_to": "8500.00",  "deduction": "1955.00" },
-    { "income_up_to": "28000.00", "deduction": "700.00"  },
-    { "income_up_to": "50000.00", "deduction": "0.00"    },
-    { "income_up_to": null,       "deduction": "0.00"    }
+    {
+      "income_up_to": "8500.00",
+      "deduction": "1955.00"
+    },
+    {
+      "income_up_to": "28000.00",
+      "deduction": "700.00"
+    },
+    {
+      "income_up_to": "50000.00",
+      "deduction": "0.00"
+    },
+    {
+      "income_up_to": null,
+      "deduction": "0.00"
+    }
   ],
   "fixed_term_additional_rate": "0.000",
   "inps": {
     "employee_tiers": [
-      { "max_employees": null, "rate": "0.0880" }
+      {
+        "max_employees": null,
+        "rate": "0.0880",
+        "ivs_rate": "0.0880"
+      }
     ],
     "employer_tiers": [
-      { "max_employees": null, "rate": "0.2420" }
+      {
+        "max_employees": null,
+        "rate": "0.2420",
+        "ivs_rate": "0.2420"
+      }
     ],
     "ceiling": null
   },
   "apprentice": {
     "employee_rate": "0.0880",
+    "employee_ivs_rate": "0.0880",
     "employer_rate": "0.2420",
+    "employer_ivs_rate": "0.2420",
     "small_firm_max_employees": 9,
     "small_firm_employer_rate_months_0_11": "0.2420",
-    "small_firm_employer_rate_months_12_23": "0.2420"
+    "small_firm_employer_ivs_rate_months_0_11": "0.2420",
+    "small_firm_employer_rate_months_12_23": "0.2420",
+    "small_firm_employer_ivs_rate_months_12_23": "0.2420"
   },
-  "tfr": { "accrual_divisor": "13.5" },
+  "tfr": {
+    "accrual_divisor": "13.5"
+  },
   "notes": [
-    "IRPEF brackets: three-bracket structure per L. 199/2025 (Legge di Bilancio 2026); second bracket reduced from 35% to 33% effective 2026-01-01. Sterilization mechanism (Art. 1 co. 3-4 L. 199/2025) for redditi > 200,000 EUR is not modelled (SIMPLIFICATION).",
-    "work_deduction_breakpoints: Art. 13 co. 1 TUIR, as modified by D.Lgs. 216/2023 and confirmed by L. 207/2024 (Legge di Bilancio 2025). Breakpoints represent the piecewise-linear deduction schedule: flat at EUR 1,955 for income <= 8,500; linear from 1,955 to 700 in the 8,500-28,000 range; linear from 700 to 0 in the 28,000-50,000 range; zero above 50,000. The EUR 65 additional deduction for redditi 25,000-35,000 (Art. 13 co. 1-bis TUIR) is not modelled (SIMPLIFICATION).",
-    "SIMPLIFICATION: INPS rates for pubblici dipendenti (ex-INPDAP, CTPS): employee 8.80%, employer 24.20%. Source: kitech.it proxy (aliquote CTPS 2026). Verify against current INPS circular for exact rates; military/school/healthcare sub-funds may differ.",
+    "IRPEF brackets: three-bracket structure per L. 199/2025 (Legge di Bilancio 2026); second bracket reduced from 35% to 33% effective 2026-01-01. Sterilization of detrazioni for redditi > 200,000 EUR (Art. 1 co. 3-4 L. 199/2025) is out of scope for this engine (see separate fiscal library).",
+    "work_deduction_breakpoints: Art. 13 co. 1 TUIR, as modified by D.Lgs. 216/2023 and confirmed by L. 207/2024 (Legge di Bilancio 2025). Breakpoints represent the piecewise-linear deduction schedule: flat at EUR 1,955 for income <= 8,500; linear from 1,955 to 700 in the 8,500-28,000 range; linear from 700 to 0 in the 28,000-50,000 range; zero above 50,000.",
+    "INPS rates for pubblici dipendenti (CTPS — Cassa Trattamenti Pensionistici dei dipendenti dello Stato): employee 8.80%, employer 24.20%, total 33.00%. Confirmed from kitech.it (https://www.kitech.it/Contributi-previdenziali.aspx?p=17_210) and corroborated by INPS sources (33% total = 8.80% employee + 24.20% employer for CTPS, per INPS Gestione Dipendenti Pubblici). NOTE: other ex-INPDAP sub-funds differ — CPDEL/CPS/CPI total 32.65% (employee 8.85%, employer 23.80%); military, healthcare, and school sub-funds may vary. PA contracts mapped in this engine target CTPS-insured employees (civil servants); other sub-funds would require separate data.",
     "fixed_term_additional_rate: 0.000 — Pubblica Amministrazione is explicitly excluded from the NASpI addizionale (lavoratori delle pubbliche amministrazioni are in the statutory exclusion list per INPS guidance; source: nexumstp.it citing INPS rules). PA fixed-term contracts do not attract the 1.4% addizionale that applies to private-sector employers.",
     "SIMPLIFICATION: apprentice block is a schema-required placeholder (same rates as employee/employer); apprendistato is not applicable to PA contracts under D.Lgs. 165/2001 and no CCNL track will reference these values."
   ]

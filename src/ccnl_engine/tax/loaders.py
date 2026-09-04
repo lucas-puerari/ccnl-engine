@@ -23,6 +23,7 @@ if TYPE_CHECKING:
 class _Tier(Protocol):
     max_employees: int | None
     rate: Decimal
+    ivs_rate: Decimal
 
 
 def load_year_rules(
@@ -52,7 +53,9 @@ def load_year_rules(
         fixed_term_additional_rate=raw.fixed_term_additional_rate,
         inps=InpsRates(
             employee_rate=employee_tier.rate,
+            employee_ivs_rate=employee_tier.ivs_rate,
             employer_rate=employer_tier.rate,
+            employer_ivs_rate=employer_tier.ivs_rate,
             ceiling=raw.inps.ceiling,
             employer_rate_by_category=employer_tier.rate_by_category,
         ),
@@ -114,15 +117,27 @@ def _resolve_apprentice(
     small_firm = num_employees <= raw.small_firm_max_employees
     return ApprenticeRates(
         employee_rate=raw.employee_rate,
+        employee_ivs_rate=raw.employee_ivs_rate,
         employer_rate_months_0_11=(
             raw.small_firm_employer_rate_months_0_11
             if small_firm
             else raw.employer_rate
+        ),
+        employer_ivs_rate_months_0_11=(
+            raw.small_firm_employer_ivs_rate_months_0_11
+            if small_firm
+            else raw.employer_ivs_rate
         ),
         employer_rate_months_12_23=(
             raw.small_firm_employer_rate_months_12_23
             if small_firm
             else raw.employer_rate
         ),
+        employer_ivs_rate_months_12_23=(
+            raw.small_firm_employer_ivs_rate_months_12_23
+            if small_firm
+            else raw.employer_ivs_rate
+        ),
         employer_rate_after=raw.employer_rate,
+        employer_ivs_rate_after=raw.employer_ivs_rate,
     )

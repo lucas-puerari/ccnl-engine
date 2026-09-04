@@ -23,7 +23,9 @@ from ccnl_engine.tax.models import (
     IrpefBracket,
     TfrRules,
     YearRules,
+    _ApprenticeRawRates,
     _InpsEmployeeTier,
+    _InpsEmployerTier,
 )
 
 # ---------------------------------------------------------------------------
@@ -45,15 +47,21 @@ _VALID_DEDUCTIONS: list[dict[str, Any]] = [
 
 _VALID_INPS: dict[str, Any] = {
     "employee_rate": "0.0919",
+    "employee_ivs_rate": "0.0919",
     "employer_rate": "0.2898",
+    "employer_ivs_rate": "0.2381",
     "ceiling": None,
 }
 
 _VALID_APPRENTICE: dict[str, Any] = {
     "employee_rate": "0.0584",
+    "employee_ivs_rate": "0.0584",
     "employer_rate_months_0_11": "0.0311",
+    "employer_ivs_rate_months_0_11": "0.0150",
     "employer_rate_months_12_23": "0.0461",
+    "employer_ivs_rate_months_12_23": "0.0300",
     "employer_rate_after": "0.1161",
+    "employer_ivs_rate_after": "0.1000",
 }
 
 
@@ -120,6 +128,34 @@ class TestDeductionBreakpoint:
 # ---------------------------------------------------------------------------
 
 
+class TestInpsTiers:
+    """Unit tests for _InpsEmployeeTier and _InpsEmployerTier ivs_rate validator."""
+
+    def test_employee_tier_ivs_rate_exceeds_rate_raises(self) -> None:
+        """ivs_rate > rate must raise ValidationError."""
+        with pytest.raises(ValidationError, match="ivs_rate"):
+            _InpsEmployeeTier(
+                max_employees=None, rate=Decimal("0.09"), ivs_rate=Decimal("0.10")
+            )
+
+    def test_employer_tier_ivs_rate_exceeds_rate_raises(self) -> None:
+        """ivs_rate > rate must raise ValidationError."""
+        with pytest.raises(ValidationError, match="ivs_rate"):
+            _InpsEmployerTier(
+                max_employees=None, rate=Decimal("0.28"), ivs_rate=Decimal("0.30")
+            )
+
+    def test_employer_tier_category_rate_below_ivs_rate_raises(self) -> None:
+        """rate_by_category value < ivs_rate must raise ValidationError."""
+        with pytest.raises(ValidationError, match="rate_by_category"):
+            _InpsEmployerTier(
+                max_employees=None,
+                rate=Decimal("0.2693"),
+                ivs_rate=Decimal("0.2381"),
+                rate_by_category={"impiegato": Decimal("0.20")},
+            )
+
+
 class TestInpsRates:
     """Unit tests for InpsRates construction."""
 
@@ -127,7 +163,9 @@ class TestInpsRates:
         """ceiling=None (no cap) is accepted."""
         r = InpsRates(
             employee_rate=Decimal("0.0919"),
+            employee_ivs_rate=Decimal("0.0919"),
             employer_rate=Decimal("0.2898"),
+            employer_ivs_rate=Decimal("0.2381"),
             ceiling=None,
         )
         assert r.ceiling is None
@@ -136,7 +174,9 @@ class TestInpsRates:
         """A finite ceiling is accepted."""
         r = InpsRates(
             employee_rate=Decimal("0.09"),
+            employee_ivs_rate=Decimal("0.09"),
             employer_rate=Decimal("0.28"),
+            employer_ivs_rate=Decimal("0.2381"),
             ceiling=Decimal(105014),
         )
         assert r.ceiling == Decimal(105014)
@@ -145,7 +185,9 @@ class TestInpsRates:
         """Category override applies only to listed categories."""
         r = InpsRates(
             employee_rate=Decimal("0.0919"),
+            employee_ivs_rate=Decimal("0.0919"),
             employer_rate=Decimal("0.2693"),
+            employer_ivs_rate=Decimal("0.2381"),
             ceiling=None,
             employer_rate_by_category={"impiegato": Decimal("0.2471")},
         )
@@ -160,7 +202,7 @@ class TestInpsRates:
 
 
 class TestApprenticeRates:
-    """Unit tests for ApprenticeRates.employer_rate_at()."""
+    """Unit tests for ApprenticeRates.employer_rate_at() and ivs_rate validators."""
 
     def test_rate_steps(self) -> None:
         """Employer rate steps at month 12 and month 24."""
@@ -170,6 +212,38 @@ class TestApprenticeRates:
         assert r.employer_rate_at(12) == Decimal("0.0461")
         assert r.employer_rate_at(23) == Decimal("0.0461")
         assert r.employer_rate_at(24) == Decimal("0.1161")
+
+    def test_ivs_rate_exceeds_total_raises(self) -> None:
+        """Any ivs_rate above its paired total rate must raise ValidationError."""
+        with pytest.raises(ValidationError, match=r"ivs_rate.*cannot exceed"):
+            ApprenticeRates.model_validate({
+                **_VALID_APPRENTICE,
+                "employer_ivs_rate_after": "0.20",
+            })
+
+
+class TestApprenticeRawRates:
+    """ivs_rate validators on _ApprenticeRawRates (raw JSON model)."""
+
+    _VALID_RAW: dict[str, Any] = {
+        "employee_rate": "0.0584",
+        "employee_ivs_rate": "0.0584",
+        "employer_rate": "0.1161",
+        "employer_ivs_rate": "0.1000",
+        "small_firm_max_employees": 9,
+        "small_firm_employer_rate_months_0_11": "0.0311",
+        "small_firm_employer_ivs_rate_months_0_11": "0.0150",
+        "small_firm_employer_rate_months_12_23": "0.0461",
+        "small_firm_employer_ivs_rate_months_12_23": "0.0300",
+    }
+
+    def test_ivs_rate_exceeds_total_raises(self) -> None:
+        """employer_ivs_rate above employer_rate must raise ValidationError."""
+        with pytest.raises(ValidationError, match=r"ivs_rate.*cannot exceed"):
+            _ApprenticeRawRates.model_validate({
+                **self._VALID_RAW,
+                "employer_ivs_rate": "0.20",  # exceeds employer_rate 0.1161
+            })
 
 
 # ---------------------------------------------------------------------------
@@ -324,17 +398,17 @@ class TestYearRules2026Json:
         assert yr.irpef_brackets[2].rate == Decimal("0.43")
         assert yr.inps.employee_rate == Decimal("0.0919")
         assert yr.inps.employer_rate == Decimal("0.2898")
-        assert yr.inps.ceiling is None
+        assert yr.inps.ceiling == Decimal("122295.00")
         assert yr.fixed_term_additional_rate == Decimal("0.014")
         assert yr.tfr.accrual_divisor == Decimal("13.5")
         assert yr.apprentice.employer_rate_after == Decimal("0.1161")
         assert yr.apprentice.employer_rate_months_0_11 == Decimal("0.1161")
 
     def test_employee_tier_above_threshold(self) -> None:
-        """Terziario above 50 employees adds the 0.30% CIGS employee share."""
+        """Terziario above 50 employees: employee +0.30% CIGS, employer 29.58%."""
         yr = load_year_rules(2026, TaxSector.TERZIARIO, 51)
         assert yr.inps.employee_rate == Decimal("0.0949")
-        assert yr.inps.employer_rate == Decimal("0.3028")
+        assert yr.inps.employer_rate == Decimal("0.2958")
 
     def test_small_firm_apprentice_rates(self) -> None:
         """Firms with at most 9 employees get the reduced apprentice rates."""
@@ -344,7 +418,7 @@ class TestYearRules2026Json:
         assert yr.apprentice.employer_rate_after == Decimal("0.1161")
 
     def test_artigianato_category_rates(self) -> None:
-        """Artigianato carries a lower employer rate for impiegati and quadri."""
+        """Artigianato: lower employer rate for impiegati/quadri (kitech.it source)."""
         yr = load_year_rules(2026, TaxSector.ARTIGIANATO, 10)
         assert yr.inps.employer_rate_by_category == {
             "impiegato": Decimal("0.2471"),
@@ -353,15 +427,23 @@ class TestYearRules2026Json:
 
     def test_no_open_tier_raises(self) -> None:
         """_resolve_tier raises ValueError when no tier covers the headcount."""
-        tiers = [_InpsEmployeeTier(max_employees=10, rate=Decimal("0.09"))]
+        tiers = [
+            _InpsEmployeeTier(
+                max_employees=10, rate=Decimal("0.09"), ivs_rate=Decimal("0.09")
+            )
+        ]
         with pytest.raises(ValueError, match="No employee-rate tier"):
             _resolve_tier(tiers, 100, "employee")
 
     def test_multiple_open_tiers_raises(self) -> None:
         """_assert_tier_integrity raises when more than one open tier exists."""
         tiers = [
-            _InpsEmployeeTier(max_employees=None, rate=Decimal("0.09")),
-            _InpsEmployeeTier(max_employees=None, rate=Decimal("0.10")),
+            _InpsEmployeeTier(
+                max_employees=None, rate=Decimal("0.09"), ivs_rate=Decimal("0.09")
+            ),
+            _InpsEmployeeTier(
+                max_employees=None, rate=Decimal("0.10"), ivs_rate=Decimal("0.09")
+            ),
         ]
         with pytest.raises(ValueError, match=r"2 open tiers"):
             _assert_tier_integrity(tiers, "employee")
@@ -369,9 +451,15 @@ class TestYearRules2026Json:
     def test_duplicate_max_employees_raises(self) -> None:
         """_assert_tier_integrity raises if max_employees values are duplicated."""
         tiers = [
-            _InpsEmployeeTier(max_employees=15, rate=Decimal("0.09")),
-            _InpsEmployeeTier(max_employees=15, rate=Decimal("0.10")),
-            _InpsEmployeeTier(max_employees=None, rate=Decimal("0.11")),
+            _InpsEmployeeTier(
+                max_employees=15, rate=Decimal("0.09"), ivs_rate=Decimal("0.09")
+            ),
+            _InpsEmployeeTier(
+                max_employees=15, rate=Decimal("0.10"), ivs_rate=Decimal("0.09")
+            ),
+            _InpsEmployeeTier(
+                max_employees=None, rate=Decimal("0.11"), ivs_rate=Decimal("0.09")
+            ),
         ]
         with pytest.raises(ValueError, match="duplicate max_employees=15"):
             _assert_tier_integrity(tiers, "employee")

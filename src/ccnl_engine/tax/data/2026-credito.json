@@ -2,40 +2,76 @@
   "year": 2026,
   "sector": "credito",
   "irpef_brackets": [
-    { "up_to": "28000.00", "rate": "0.23" },
-    { "up_to": "50000.00", "rate": "0.33" },
-    { "up_to": null,       "rate": "0.43" }
+    {
+      "up_to": "28000.00",
+      "rate": "0.23"
+    },
+    {
+      "up_to": "50000.00",
+      "rate": "0.33"
+    },
+    {
+      "up_to": null,
+      "rate": "0.43"
+    }
   ],
   "work_deduction_breakpoints": [
-    { "income_up_to": "8500.00",  "deduction": "1955.00" },
-    { "income_up_to": "28000.00", "deduction": "700.00"  },
-    { "income_up_to": "50000.00", "deduction": "0.00"    },
-    { "income_up_to": null,       "deduction": "0.00"    }
+    {
+      "income_up_to": "8500.00",
+      "deduction": "1955.00"
+    },
+    {
+      "income_up_to": "28000.00",
+      "deduction": "700.00"
+    },
+    {
+      "income_up_to": "50000.00",
+      "deduction": "0.00"
+    },
+    {
+      "income_up_to": null,
+      "deduction": "0.00"
+    }
   ],
   "fixed_term_additional_rate": "0.014",
   "inps": {
     "employee_tiers": [
-      { "max_employees": null, "rate": "0.0919" }
+      {
+        "max_employees": null,
+        "rate": "0.0919",
+        "ivs_rate": "0.0919"
+      }
     ],
     "employer_tiers": [
-      { "max_employees": null, "rate": "0.2676" }
+      {
+        "max_employees": null,
+        "rate": "0.2676",
+        "ivs_rate": "0.2381"
+      }
     ],
-    "ceiling": null
+    "ceiling": "122295.00"
   },
   "apprentice": {
     "employee_rate": "0.0584",
+    "employee_ivs_rate": "0.0584",
     "employer_rate": "0.1161",
+    "employer_ivs_rate": "0.1000",
     "small_firm_max_employees": 9,
     "small_firm_employer_rate_months_0_11": "0.0311",
-    "small_firm_employer_rate_months_12_23": "0.0461"
+    "small_firm_employer_ivs_rate_months_0_11": "0.0150",
+    "small_firm_employer_rate_months_12_23": "0.0461",
+    "small_firm_employer_ivs_rate_months_12_23": "0.0300"
   },
-  "tfr": { "accrual_divisor": "13.5" },
+  "tfr": {
+    "accrual_divisor": "13.5"
+  },
   "notes": [
     "IRPEF brackets: three-bracket structure per L. 199/2025 (Legge di Bilancio 2026); second bracket reduced from 35% to 33% effective 2026-01-01.",
     "work_deduction_breakpoints: Art. 13 co. 1 TUIR, as modified by D.Lgs. 216/2023 and confirmed by L. 207/2024.",
-    "INPS rates: credito sector (Credito e Assicurazioni). employee_rate 9.19% (IVS+NASpI). employer_rate 26.76% flat (no size tiers); source: kitech.it/Contributi-previdenziali.aspx?p=9_165 (proxy — SIMPLIFICATION: proxy data, verify against INPS circular). No size-tier pages for credito on kitech.it (industria has separate tier pages), corroborating flat structure. Fondo di solidarietà del credito (bilateral, substitutes FIS/CIGO/CIGS) is sector-specific and presumed included in the aggregate 26.76% — not double-counted (SIMPLIFICATION: verify against INPS circulars).",
+    "INPS rates: credito sector (Credito e Assicurazioni). Rates confirmed from kitech.it 2026 Table 6.1 (https://www.kitech.it/Contributi-previdenziali.aspx?p=9_165): dirigenti and operai/impiegati 35.95% total = 9.19% employee + 26.76% employer. No size tiers (flat structure corroborated by absence of size-tier pages for credito on kitech.it). NOTE: kitech.it shows 'salariati' at 38.50% total (29.31% employer); this category (hourly auxiliary workers) is not present in standard credito CCNLs and is not modelled. SIMPLIFICATION: Fondo di solidarietà del credito (D.Lgs. 148/2015, bilateral fund substituting CIG/CIGS; ordinary rate 0.50% total: ~0.33% employer + ~0.17% employee) is presumed aggregated into the 26.76%/9.19% kitech.it totals. If the fund is reported separately by the employer, actual INPS rates would be 26.43% employer and 9.02% employee (IVS+NASpI only), and the 0.33%/0.17% must be remitted on top — verify against INPS circular for Fondo credito.",
     "fixed_term_additional_rate: NASpI addizionale base rate 1.4% (employer-only) per Art. 2 co. 28 L. 92/2012.",
-    "INPS employee — employee_rate 9.19% flat (IVS+NASpI); the Fondo di solidarietà del credito employee share is presumed included in the aggregate (SIMPLIFICATION: verify against INPS circulars).",
-    "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled."
+    "INPS dipendente — employee_rate 9.19% flat confirmed (kitech.it 2026); includes IVS employee share + NASpI employee share. Fondo di solidarietà employee share (if not included in 9.19%) would be an additional ~0.17% — see SIMPLIFICATION note above.",
+    "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
+    "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026, Art. 1 L. 335/1995 c. 18). Applies only when ivs_ceiling_applies=True (workers enrolled in INPS on or after 1 Jan 1996)."
   ]
 }

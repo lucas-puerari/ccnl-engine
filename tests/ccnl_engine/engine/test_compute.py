@@ -16,15 +16,19 @@ from __future__ import annotations
 import copy
 from datetime import date
 from decimal import Decimal
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import pytest
 
 from ccnl_engine.engine.compute import ComputeRequest, _find_period_index, compute
+from ccnl_engine.engine.rounding import money
 from ccnl_engine.models.apprenticeship import ApprenticeshipPeriod
 from ccnl_engine.models.ccnl import CCNL, LevelCategory
 from ccnl_engine.models.employment import Apprentice, Employment, FixedTerm, Permanent
 from tests.conftest import make_ccnl_dict, make_year_rules
+
+if TYPE_CHECKING:
+    from ccnl_engine.tax.models import YearRules
 
 _DATE = date(2026, 6, 1)
 _D = Decimal
@@ -439,7 +443,9 @@ class TestComputeEmployerFunds:
         rules = make_year_rules(
             inps={
                 "employee_rate": "0.0919",
+                "employee_ivs_rate": "0.0919",
                 "employer_rate": "0.30",
+                "employer_ivs_rate": "0.2381",
                 "ceiling": None,
                 "employer_rate_by_category": {"impiegato": "0.20"},
             }
@@ -471,6 +477,102 @@ class TestComputeFixedTerm:
         actual_diff = r_fixed.inps_employer_annual - r_perm.inps_employer_annual
         assert abs(actual_diff - expected_diff) <= _D("0.01")
         assert r_fixed.employment_type == "fixed_term"
+
+
+# ---------------------------------------------------------------------------
+# IVS ceiling split — end-to-end
+# ---------------------------------------------------------------------------
+
+
+class TestComputeIvsCeilingSplit:
+    """compute() with ivs_ceiling_applies=True and RAL above the massimale."""
+
+    _CEILING = "122295.00"
+
+    def _rules_with_ceiling(self) -> YearRules:
+        return make_year_rules(
+            inps={
+                "employee_rate": "0.0919",
+                "employee_ivs_rate": "0.0919",
+                "employer_rate": "0.2898",
+                "employer_ivs_rate": "0.2381",
+                "ceiling": self._CEILING,
+            }
+        )
+
+    def test_below_ceiling_unchanged(self) -> None:
+        """RAL below the massimale: ceiling split equals flat rate."""
+        ral = _D("80000.00")
+        rules = self._rules_with_ceiling()
+        r_capped = compute(
+            _DEFAULT_CCNL,
+            rules,
+            ComputeRequest(
+                level_code="4",
+                as_of=_DATE,
+                employment=_PERMANENT,
+                negotiated_ral=ral,
+                ivs_ceiling_applies=True,
+            ),
+        )
+        r_flat = compute(
+            _DEFAULT_CCNL,
+            rules,
+            ComputeRequest(
+                level_code="4",
+                as_of=_DATE,
+                employment=_PERMANENT,
+                negotiated_ral=ral,
+                ivs_ceiling_applies=False,
+            ),
+        )
+        assert r_capped.inps_employee_annual == r_flat.inps_employee_annual
+        assert r_capped.inps_employer_annual == r_flat.inps_employer_annual
+
+    def test_above_ceiling_ivs_capped_non_ivs_uncapped(self) -> None:
+        """RAL above massimale: IVS portion capped, non-IVS applied to full base."""
+        ral = _D("150000.00")
+        ceiling = _D(self._CEILING)
+        emp_rate = _D("0.0919")
+        emp_ivs_rate = _D("0.0919")
+        er_rate = _D("0.2898")
+        er_ivs_rate = _D("0.2381")
+        er_non_ivs = er_rate - er_ivs_rate
+        emp_non_ivs = emp_rate - emp_ivs_rate
+        expected_employee = money(ceiling * emp_ivs_rate + ral * emp_non_ivs)
+        expected_employer = money(ceiling * er_ivs_rate + ral * er_non_ivs)
+
+        r = compute(
+            _DEFAULT_CCNL,
+            self._rules_with_ceiling(),
+            ComputeRequest(
+                level_code="4",
+                as_of=_DATE,
+                employment=_PERMANENT,
+                negotiated_ral=ral,
+                ivs_ceiling_applies=True,
+            ),
+        )
+        assert r.inps_employee_annual == expected_employee
+        assert r.inps_employer_annual == expected_employer
+
+    def test_ceiling_flag_false_skips_split(self) -> None:
+        """ivs_ceiling_applies=False: flat rate even when ceiling is configured."""
+        ral = _D("150000.00")
+        rules = self._rules_with_ceiling()
+        r = compute(
+            _DEFAULT_CCNL,
+            rules,
+            ComputeRequest(
+                level_code="4",
+                as_of=_DATE,
+                employment=_PERMANENT,
+                negotiated_ral=ral,
+                ivs_ceiling_applies=False,
+            ),
+        )
+        assert r.inps_employee_annual == _D("150000.00") * _D("0.0919")
+        assert r.inps_employer_annual == _D("150000.00") * _D("0.2898")
 
 
 # ---------------------------------------------------------------------------
@@ -522,9 +624,13 @@ class TestComputeApprenticePercentage:
         rules = make_year_rules(
             apprentice={
                 "employee_rate": "0.0584",
+                "employee_ivs_rate": "0.0584",
                 "employer_rate_months_0_11": "0.0311",
+                "employer_ivs_rate_months_0_11": "0.0150",
                 "employer_rate_months_12_23": "0.0461",
+                "employer_ivs_rate_months_12_23": "0.0300",
                 "employer_rate_after": "0.1161",
+                "employer_ivs_rate_after": "0.1000",
             }
         )
         rates = [
