@@ -103,10 +103,11 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 48 | Area Dirigenza Istruzione e Ricerca 2022-2024 — ARAN (Dirigenti scolastici, universitari, ricerca) | Pubblica Amministrazione | ~8k | ✅ | ✅ |
 | 49 | Comparto Istruzione e Ricerca 2022-2024 — ARAN (Docenti e ATA scuola, università, ricerca) | Pubblica Amministrazione | ~1,2M | ✅ | ✅ |
 | 50 | Case di Cura Private - Personale Non Medico (AIOP/ARIS) | Sanità privata | ~150k | ✅ | ✅ |
+| 51 | Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi) | Lavoro Domestico | ~900k | ✅ | ✅ |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
-The 50 contracts above cover approximately **12.5 million workers** (sum of per-CCNL estimates; some overlap possible where sector boundaries are not mutually exclusive). Italy has roughly **16 million employees** covered by some collective agreement (ISTAT/CNEL 2024, public and private sectors combined). This library therefore reaches an estimated **~75–80% of CCNL-covered workers**.
+The 51 contracts above cover approximately **13.4 million workers** (sum of per-CCNL estimates; some overlap possible where sector boundaries are not mutually exclusive). Italy has roughly **16 million employees** covered by some collective agreement (ISTAT/CNEL 2024, public and private sectors combined). This library therefore reaches an estimated **~80–85% of CCNL-covered workers**.
 
 ## What is not modelled
 

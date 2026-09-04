@@ -54,6 +54,7 @@ class TestGolden:
         employment = _build_employment(inputs)
         as_of = date.fromisoformat(inputs["as_of"])
 
+        weekly_hours_raw = inputs.get("weekly_hours")
         result = compute(
             ccnl,
             rules,
@@ -66,6 +67,11 @@ class TestGolden:
                 negotiated_ral=(
                     Decimal(inputs["negotiated_ral"])
                     if inputs["negotiated_ral"] is not None
+                    else None
+                ),
+                weekly_hours=(
+                    Decimal(str(weekly_hours_raw))
+                    if weekly_hours_raw is not None
                     else None
                 ),
             ),
