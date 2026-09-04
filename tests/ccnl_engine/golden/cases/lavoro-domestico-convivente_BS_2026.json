@@ -1,0 +1,52 @@
+{
+  "_description": "Golden case: CCNL Lavoro Domestico Convivente (H501), Level BS, 2026-01-01, permanent, weekly_hours=54, no seniority.",
+  "_notes": [
+    "TABELLA A (conviventi) value: 1053.39 EUR/month (Domina PDF 2026).",
+    "Flat INPS per-hour: weekly_hours=54 > threshold 24 -> hours bracket.",
+    "employee_ph=0.31, employer_ph=0.93, annual_hours=54*52=2808.",
+    "employer_withholds_irpef=False (Art. 4 DPR 600/1973).",
+    "Net annual = gross_annual - inps_employee_annual (IRPEF not withheld)."
+  ],
+  "inputs": {
+    "ccnl_file": "lavoro-domestico-convivente.json",
+    "year": 2026,
+    "tax_sector": "lavoro-domestico",
+    "num_employees": 1,
+    "level_code": "BS",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null,
+    "weekly_hours": 54
+  },
+  "expected": {
+    "ccnl_id": "lavoro-domestico-convivente",
+    "level_code": "BS",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1053.39",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1053.39",
+    "gross_annual": "13694.07",
+    "hourly_rate": "4.50",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "870.48",
+    "inps_employer_annual": "2611.44",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1014.38",
+    "taxable_income": "12823.59",
+    "irpef_gross": "2949.43",
+    "work_income_deduction": "1620.71",
+    "irpef_net": "0",
+    "employer_withholds_irpef": false,
+    "net_annual": "12823.59",
+    "net_monthly": "986.43",
+    "employer_cost_annual": "17319.89"
+  }
+}

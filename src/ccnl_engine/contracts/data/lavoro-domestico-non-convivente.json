@@ -1,0 +1,280 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "lavoro-domestico-non-convivente",
+    "name": "CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)",
+    "cnel_code": "H501",
+    "sector": "lavoro domestico",
+    "tax_sector": "lavoro-domestico",
+    "withholding_exempt": true,
+    "signatories": [
+      "DOMINA — Associazione Nazionale Famiglie Datori di Lavoro Domestico",
+      "FIDALDO — Federazione Italiana Datori di Lavoro Domestico",
+      "ASSINDATCOLF — Associazione Nazionale dei Datori di Lavoro Domestico",
+      "FILCAMS-CGIL",
+      "FISASCAT-CISL",
+      "UILTUCS-UIL",
+      "FEDERCOLF"
+    ],
+    "sources": [
+      {
+        "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
+        "type": "table",
+        "agreement_date": "2026-01-01"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-04T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      "INFO: SALARY MODEL: conglobated retribuzione globale (TABELLA C — Lavoratori Non Conviventi, Art. 14 Co.2 lett. b CCNL). Hourly rates from official Domina salary table PDF (TABELLA-minimi-retributivi-2026.pdf, effective 01/01/2026). Monthly base_salary = hourly_rate × 173. Source is signatory employer association — primary source.",
+      "INFO: TAX SECTOR: lavoro-domestico (TaxSector.LAVORO_DOMESTICO). Flat per-hour INPS contributions from INPS Circ. 9/2026; withholding_exempt=true per Art. 4 D.P.R. 600/1973.",
+      "INFO: HOURLY DIVISOR: 173, derived from 40 h/week (Art. 14 Co.2 CCNL). Formula: 40 × 52 / 12 = 173.33, rounded to 173. Convivente and non-convivente are independent pay scales (different tables, different hourly divisors).",
+      "INFO: BASE SALARY: computed as hourly_rate × 173. Engine divides gross_monthly / hourly_divisor to recover the contractual hourly rate exactly.",
+      "INFO: ADDITIONAL MONTHS: 13 (tredicesima mensilità, Art. 27 CCNL). No quattordicesima.",
+      "INFO: SENIORITY: biennale (24 months), maximum 7 scatti. Per-level amounts = 4% × non-convivente base (= hourly × 173 × 4%). Amounts frozen at 2026 values — future ISTAT tranches require manual update.",
+      "INFO: APPRENTICESHIP: none. Domestic workers excluded from D.lgs. 81/2015 Art. 47 apprenticeship.",
+      "INFO: D/DS function allowance: not applicable for non-convivente (TABELLA C shows only hourly rates, no separate indennità column). D/DS hourly rates already reflect the seniority grade.",
+      "SIMPLIFICATION: CNEL code H501 sourced from kitech.it page title; unverified against CNEL archive (archive not accessible via HTTP at time of extraction).",
+      "SIMPLIFICATION: Single period 2026-01-01; pre-2026 tranches are out of scope.",
+      "SIMPLIFICATION: Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amount_by_level will need manual update.",
+      "INFO: Livello Unico (hourly 5.83) is a special sub-under-18 level excluded from this model."
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "173"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 7,
+      "amount_by_level": {
+        "A": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "45.05"
+            }
+          ]
+        },
+        "AS": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "46.78"
+            }
+          ]
+        },
+        "B": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "48.51"
+            }
+          ]
+        },
+        "BS": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "51.55"
+            }
+          ]
+        },
+        "C": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "54.39"
+            }
+          ]
+        },
+        "CS": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "57.44"
+            }
+          ]
+        },
+        "D": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "66.22"
+            }
+          ]
+        },
+        "DS": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "68.99"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "A",
+      "order": 1,
+      "description": "Level A — entry-level domestic worker (colf generica)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1126.23"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "AS",
+      "order": 2,
+      "description": "Level AS — domestic worker with seniority qualification",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1169.48"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "B",
+      "order": 3,
+      "description": "Level B — qualified domestic worker (colf qualificata)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1212.73"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "BS",
+      "order": 4,
+      "description": "Level BS — qualified domestic worker with seniority",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1288.85"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "C",
+      "order": 5,
+      "description": "Level C — specialised domestic worker / assistant caregiver (badante)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1359.78"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "CS",
+      "order": 6,
+      "description": "Level CS — specialised domestic worker with seniority",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1435.90"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "D",
+      "order": 7,
+      "description": "Level D — senior caregiver / household manager",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1655.61"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "DS",
+      "order": 8,
+      "description": "Level DS — senior caregiver / household manager with seniority",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1724.81"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    }
+  ],
+  "apprenticeship": []
+}

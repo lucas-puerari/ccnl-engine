@@ -1,0 +1,309 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "lavoro-domestico-convivente",
+    "name": "CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)",
+    "cnel_code": "H501",
+    "sector": "lavoro domestico",
+    "tax_sector": "lavoro-domestico",
+    "withholding_exempt": true,
+    "signatories": [
+      "DOMINA — Associazione Nazionale Famiglie Datori di Lavoro Domestico",
+      "FIDALDO — Federazione Italiana Datori di Lavoro Domestico",
+      "ASSINDATCOLF — Associazione Nazionale dei Datori di Lavoro Domestico",
+      "FILCAMS-CGIL",
+      "FISASCAT-CISL",
+      "UILTUCS-UIL",
+      "FEDERCOLF"
+    ],
+    "sources": [
+      {
+        "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
+        "type": "table",
+        "agreement_date": "2026-01-01"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-04T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      "INFO: SALARY MODEL: conglobated retribuzione globale (TABELLA A — Lavoratori Conviventi, Art. 14 Co.1 lett. a CCNL). Values confirmed from official Domina salary table PDF (TABELLA-minimi-retributivi-2026.pdf, effective 01/01/2026, ISTAT +1.00%). Source is signatory employer association — primary source.",
+      "INFO: TAX SECTOR: lavoro-domestico (TaxSector.LAVORO_DOMESTICO). Flat per-hour INPS contributions from INPS Circ. 9/2026; withholding_exempt=true per Art. 4 D.P.R. 600/1973 (family employers are not sostituti d'imposta).",
+      "INFO: HOURLY DIVISOR: 234, derived from 54 h/week contractual maximum for conviventi (Art. 10 CCNL). Formula: 54 × 52 / 12 = 234. Convivente and non-convivente are independent pay scales (different tables, different hourly divisors).",
+      "INFO: ADDITIONAL MONTHS: 13 (tredicesima mensilità, Art. 27 CCNL). No quattordicesima for domestic workers.",
+      "INFO: SENIORITY: biennale (24 months), maximum 7 scatti. Per-level euro amounts = 4% × 2026 base (confirmed: kitech.it amounts match Domina base × 4% exactly at every level). Amounts frozen at 2026 base — will not automatically recompute at future ISTAT tranches.",
+      "INFO: APPRENTICESHIP: none. Domestic workers are excluded from D.lgs. 81/2015 Art. 47 apprenticeship provisions.",
+      "INFO: D/DS INDENNITÀ DI FUNZIONE: 207.69 EUR/month (Art. 34 CCNL) for levels D and DS only. Modelled as fixed_allowance (no role restriction — applies to all workers at those levels). Confirmed from Domina official table.",
+      "SIMPLIFICATION: CNEL code H501 sourced from kitech.it page title; unverified against CNEL archive (archive not accessible via HTTP at time of extraction). Update if CNEL confirms a different code.",
+      "SIMPLIFICATION: Single period 2026-01-01; pre-2026 tranches are out of scope. Prior renewal tranches (2021–2025) exist but are not modelled.",
+      "SIMPLIFICATION: Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amounts_by_level will need manual update.",
+      "INFO: Livello Unico (811.09) is a special sub-under-18 level excluded from this model — single-source, limited coverage.",
+      "SIMPLIFICATION: This file models TABELLA A only — full-time conviventi at 54 h/week (Art. 14 Co.1 lett. a CCNL). TABELLA B (conviventi ad orario ridotto, Art. 14 Co.2: B=702.25, BS=737.39, C=814.60) is out of scope. Callers must use a TABELLA B file (not yet modelled) for reduced-hours conviventi.",
+      "SIMPLIFICATION: Dividing TABELLA A monthly base by hourly_divisor 234 yields the cash-only rate (excludes board and lodging in kind). The hourly-wage INPS bracket lookup for weekly_hours <= 24 has not been validated for this file; the wage-bracket path is not exercised by the golden cases shipped with this file."
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "234"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 7,
+      "amount_by_level": {
+        "A": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "36.32"
+            }
+          ]
+        },
+        "AS": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "38.34"
+            }
+          ]
+        },
+        "B": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "39.33"
+            }
+          ]
+        },
+        "BS": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "42.14"
+            }
+          ]
+        },
+        "C": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "44.95"
+            }
+          ]
+        },
+        "CS": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "47.75"
+            }
+          ]
+        },
+        "D": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "56.18"
+            }
+          ]
+        },
+        "DS": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "58.99"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "A",
+      "order": 1,
+      "description": "Level A — entry-level domestic worker (colf generica)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "908.10"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "AS",
+      "order": 2,
+      "description": "Level AS — domestic worker with seniority qualification",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "958.55"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "B",
+      "order": 3,
+      "description": "Level B — qualified domestic worker (colf qualificata)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "983.16"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "BS",
+      "order": 4,
+      "description": "Level BS — qualified domestic worker with seniority",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1053.39"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "C",
+      "order": 5,
+      "description": "Level C — specialised domestic worker / assistant caregiver (badante)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1123.63"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "CS",
+      "order": 6,
+      "description": "Level CS — specialised domestic worker with seniority",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1193.84"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "D",
+      "order": 7,
+      "description": "Level D — senior caregiver / household manager",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1404.51"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione (Art. 34 CCNL) — livelli D/DS, conviventi",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "207.69"
+              }
+            ]
+          }
+        }
+      ],
+      "category": null
+    },
+    {
+      "code": "DS",
+      "order": 8,
+      "description": "Level DS — senior caregiver / household manager with seniority",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1474.73"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione (Art. 34 CCNL) — livelli D/DS, conviventi",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "207.69"
+              }
+            ]
+          }
+        }
+      ],
+      "category": null
+    }
+  ],
+  "apprenticeship": []
+}
