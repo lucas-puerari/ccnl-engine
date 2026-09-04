@@ -11,7 +11,7 @@ from typing import Any
 import pytest
 
 from ccnl_engine.contracts.loaders import load_ccnl
-from ccnl_engine.engine.compute import ComputeRequest, compute
+from ccnl_engine.engine.compute import Scenario, compute
 from ccnl_engine.models.ccnl import TaxSector
 from ccnl_engine.models.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.tax.loaders import load_year_rules
@@ -58,7 +58,7 @@ class TestGolden:
         result = compute(
             ccnl,
             rules,
-            ComputeRequest(
+            Scenario(
                 level_code=inputs["level_code"],
                 as_of=as_of,
                 employment=employment,
@@ -77,7 +77,7 @@ class TestGolden:
             ),
         )
 
-        # Compare each field in expected against the live ComputationResult
+        # Compare each field in expected against the live Payslip
         for field, raw_value in expected.items():
             actual = getattr(result, field)
             if raw_value is None:

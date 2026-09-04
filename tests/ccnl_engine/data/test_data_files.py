@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 
 from ccnl_engine.contracts.loaders import load_ccnl
-from ccnl_engine.engine.compute import ComputeRequest, compute
+from ccnl_engine.engine.compute import Scenario, compute
 from ccnl_engine.models.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
@@ -1258,7 +1258,7 @@ class TestLoadAlimentariFederalimentare:
         result = compute(
             ccnl,
             rules,
-            ComputeRequest(
+            Scenario(
                 level_code="3A",
                 as_of=date(2026, 1, 1),
                 employment=Apprentice(months_elapsed=5),
@@ -2633,7 +2633,7 @@ class TestLoadBccCreditoCooperativo:
         result = compute(
             ccnl,
             rules,
-            ComputeRequest(
+            Scenario(
                 level_code="3AP1",
                 as_of=date(2026, 6, 1),
                 employment=Apprentice(months_elapsed=12),

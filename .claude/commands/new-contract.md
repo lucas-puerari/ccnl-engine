@@ -228,7 +228,7 @@ Fix all Pydantic errors before continuing. Do not proceed with broken JSON.
 from datetime import date
 from ccnl_engine.contracts.loaders import load_ccnl
 from ccnl_engine.tax.loaders import load_year_rules
-from ccnl_engine.engine.compute import ComputeRequest, compute
+from ccnl_engine.engine.compute import Scenario, compute
 from ccnl_engine.models.ccnl import TaxSector
 from ccnl_engine.models.employment import Permanent
 
@@ -237,7 +237,7 @@ rules = load_year_rules({year}, TaxSector.{SECTOR}, num_employees=50)
 result = compute(
     ccnl,
     rules,
-    ComputeRequest(level_code="{level}", as_of=date({year}, {mm}, 1), employment=Permanent()),
+    Scenario(level_code="{level}", as_of=date({year}, {mm}, 1), employment=Permanent()),
 )
 ```
 
