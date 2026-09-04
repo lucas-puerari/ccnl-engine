@@ -56,6 +56,8 @@ ignore = [
     "S101",    # assert
     "RUF012",  # mutable-class-default
     "CPY001",  # missing-copyright-notice
+    "D203",    # incorrect-blank-line-before-class (incompatible with D211)
+    "D213",    # multi-line-summary-second-line (incompatible with D212)
     "D413",    # missing-blank-line-after-last-section
     "PLR0913", # too-many-arguments
     "PLR0917", # too-many-positional-arguments
