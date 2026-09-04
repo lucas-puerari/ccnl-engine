@@ -221,7 +221,14 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
     taxable_income = money(gross_annual - inps_employee_annual)
     irpef_gross = _irpef.irpef_gross(taxable_income, rules)
     work_income_deduction = _irpef.work_income_deduction(gross_annual, rules)
-    irpef_net = money(max(_ZERO, irpef_gross - work_income_deduction))
+    # When the employer is not a sostituto d'imposta, irpef_net is zeroed;
+    # irpef_gross and work_income_deduction remain as informational figures.
+    employer_withholds_irpef = not ccnl.meta.withholding_exempt
+    irpef_net = (
+        money(max(_ZERO, irpef_gross - work_income_deduction))
+        if employer_withholds_irpef
+        else _ZERO
+    )
 
     net_annual = money(gross_annual - inps_employee_annual - irpef_net)
     net_monthly = money(net_annual / additional_months)
@@ -255,6 +262,7 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
         irpef_gross=irpef_gross,
         work_income_deduction=work_income_deduction,
         irpef_net=irpef_net,
+        employer_withholds_irpef=employer_withholds_irpef,
         net_annual=net_annual,
         net_monthly=net_monthly,
         employer_cost_annual=employer_cost_annual,
