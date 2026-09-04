@@ -815,6 +815,22 @@ class TestComputeApprenticePercentage:
                 _req(employment=Apprentice(months_elapsed=0, track="nope")),
             )
 
+    def test_pct_exempt_allowance_paid_at_full_value(self) -> None:
+        """Allowances with apprenticeship_pct_relevant=False are not scaled by the pct.
+
+        Level 4 base=1000, one exempt allowance=200 (pct_relevant=False).
+        Track: 80%. Allowance should remain 200, not 160.
+        """
+        data = make_ccnl_dict()
+        data["levels"][2]["fixed_allowances"] = [
+            _allowance("EDR", "200.00", apprenticeship_pct_relevant=False)
+        ]
+        ccnl = CCNL.model_validate(data)
+        r = compute(ccnl, _RULES, _req(employment=Apprentice(months_elapsed=0)))
+        # base: 1000 * 0.80 = 800; allowance: 200 (exempt, not scaled by 0.80)
+        assert r.base_monthly == _D("800.00")
+        assert r.allowances_monthly == _D("200.00")
+
 
 # ---------------------------------------------------------------------------
 # Apprentice — under-classification

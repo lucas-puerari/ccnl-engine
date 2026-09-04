@@ -106,10 +106,10 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 51 | Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi) | Lavoro Domestico | ~900k | ✅ | ✅ |
 | 52 | Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi) | Lavoro Domestico | (same population) | ✅ | ✅ |
 | 53 | Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA | Agricoltura | ~600k | ✅ | ✅ |
-| 54 | Chimica e Affini PMI — Unionchimica Confapi | Chimica | ~56k | ✅ | 🟡 |
+| 54 | Chimica e Affini PMI — Unionchimica Confapi | Chimica | ~56k | ✅ | ⚠️ |
 | 55 | Panificazione e Settori Affini Industria — Assipan/Fiesa/Federpanificatori | Alimentare | ~20k | ✅ | ✅ |
 | 56 | Attività Ferroviarie — AGENS | Trasporto | ~75k | ✅ | ⚠️ |
-| 57 | Trasporto Aereo — Gestori Aeroportuali (Assaeroporti) | Trasporto | ~40k | ✅ | ⚠️ |
+| 57 | Trasporto Aereo — Gestori Aeroportuali (Assaeroporti) | Trasporto | ~40k | ✅ | ✅ |
 | 58 | Igiene Ambientale — Servizi Ambientali e di Igiene Urbana (Utilitalia/FISE) | Industria | ~65k | ✅ | ⚠️ |
 | 59 | Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti | Agricoltura | ~80k | ✅ | ⚠️ |
 
