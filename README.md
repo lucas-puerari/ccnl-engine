@@ -133,7 +133,7 @@ Each limitation is documented in the relevant data file's `coverage.notes` field
 
 ## Development
 
-This library was built with AI coding assistants — [Claude Code](https://claude.ai/code), [Codex](https://openai.com/codex), and [Opencode](https://opencode.ai). All generated code was reviewed and is covered by the test suite.
+This library was built with AI coding assistants — [Claude Code](https://claude.ai/code), [Codex](https://openai.com/codex), and [Opencode](https://opencode.ai). Generated code is covered by the test suite but has not been manually reviewed line by line.
 
 ## Disclaimer
 
