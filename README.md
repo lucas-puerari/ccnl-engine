@@ -1,5 +1,11 @@
 # ccnl-engine
 
+[![PyPI version](https://img.shields.io/pypi/v/ccnl-engine?logo=pypi&logoColor=white)](https://pypi.org/project/ccnl-engine/)
+[![Python](https://img.shields.io/pypi/pyversions/ccnl-engine?logo=python&logoColor=white)](https://pypi.org/project/ccnl-engine/)
+[![CI](https://github.com/lucas-puerari/ccnl-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/lucas-puerari/ccnl-engine/actions/workflows/ci.yml)
+[![Coverage](https://codecov.io/gh/lucas-puerari/ccnl-engine/graph/badge.svg)](https://codecov.io/gh/lucas-puerari/ccnl-engine)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A Python library for modeling Italian collective labor agreements (CCNL) as structured, versioned data and computing gross-to-net salary and employer cost from first principles.
 
 ## Why
@@ -130,6 +136,18 @@ The 59 contracts above cover approximately **14.3 million workers** (sum of per-
 - Overtime, night/holiday premiums, leave accruals, sick-pay integrations
 
 Each limitation is documented in the relevant data file's `coverage.notes` field and marked with `# SIMPLIFICATION:` comments in the engine source.
+
+## Releasing a new version
+
+Releases are fully automated via GitHub Actions. Steps:
+
+1. Bump `version` in `pyproject.toml` following [SemVer](https://semver.org/).
+2. Commit the change: `git commit -m "chore: bump version to X.Y.Z"`.
+3. Push a tag: `git tag vX.Y.Z && git push origin vX.Y.Z`.
+
+The `release` workflow then: runs the full test suite, builds the wheel and sdist with `uv build`, verifies the tag matches the package version, publishes to PyPI via [Trusted Publishing](https://docs.pypi.org/trusted-publishers/) (no API token required), and creates a GitHub Release with auto-generated notes and the dist files attached.
+
+**Pre-requisite (one-time):** configure a Trusted Publisher on PyPI for this repository under the `pypi` GitHub environment.
 
 ## Development
 
