@@ -19,6 +19,7 @@ from ccnl_engine.tax.loaders import (
 from ccnl_engine.tax.models import (
     ApprenticeRates,
     DeductionBreakpoint,
+    DomesticInpsRates,
     InpsRates,
     IrpefBracket,
     TfrRules,
@@ -26,6 +27,12 @@ from ccnl_engine.tax.models import (
     _ApprenticeRawRates,
     _InpsEmployeeTier,
     _InpsEmployerTier,
+    _YearRulesRaw,
+)
+from tests.conftest import (
+    DOMESTIC_CONTRIBUTIONS,
+    IRPEF_BRACKETS_2026,
+    WORK_DEDUCTIONS_2026,
 )
 
 # ---------------------------------------------------------------------------
@@ -396,23 +403,27 @@ class TestYearRules2026Json:
         assert yr.irpef_brackets[0].rate == Decimal("0.23")
         assert yr.irpef_brackets[1].rate == Decimal("0.33")
         assert yr.irpef_brackets[2].rate == Decimal("0.43")
+        assert yr.inps is not None
         assert yr.inps.employee_rate == Decimal("0.0919")
         assert yr.inps.employer_rate == Decimal("0.2898")
         assert yr.inps.ceiling == Decimal("122295.00")
         assert yr.fixed_term_additional_rate == Decimal("0.014")
         assert yr.tfr.accrual_divisor == Decimal("13.5")
+        assert yr.apprentice is not None
         assert yr.apprentice.employer_rate_after == Decimal("0.1161")
         assert yr.apprentice.employer_rate_months_0_11 == Decimal("0.1161")
 
     def test_employee_tier_above_threshold(self) -> None:
         """Terziario above 50 employees: employee +0.30% CIGS, employer 29.58%."""
         yr = load_year_rules(2026, TaxSector.TERZIARIO, 51)
+        assert yr.inps is not None
         assert yr.inps.employee_rate == Decimal("0.0949")
         assert yr.inps.employer_rate == Decimal("0.2958")
 
     def test_small_firm_apprentice_rates(self) -> None:
         """Firms with at most 9 employees get the reduced apprentice rates."""
         yr = load_year_rules(2026, TaxSector.TERZIARIO, 9)
+        assert yr.apprentice is not None
         assert yr.apprentice.employer_rate_months_0_11 == Decimal("0.0311")
         assert yr.apprentice.employer_rate_months_12_23 == Decimal("0.0461")
         assert yr.apprentice.employer_rate_after == Decimal("0.1161")
@@ -420,10 +431,22 @@ class TestYearRules2026Json:
     def test_artigianato_category_rates(self) -> None:
         """Artigianato: lower employer rate for impiegati/quadri (kitech.it source)."""
         yr = load_year_rules(2026, TaxSector.ARTIGIANATO, 10)
+        assert yr.inps is not None
         assert yr.inps.employer_rate_by_category == {
             "impiegato": Decimal("0.2471"),
             "quadro": Decimal("0.2471"),
         }
+
+    def test_domestic_2026_loads(self) -> None:
+        """load_year_rules(2026, LAVORO_DOMESTICO, 1) returns domestic_contributions."""
+        yr = load_year_rules(2026, TaxSector.LAVORO_DOMESTICO, 1)
+        assert yr.inps is None
+        assert yr.apprentice is None
+        assert yr.domestic_contributions is not None
+        assert yr.domestic_contributions.weekly_hours_threshold == 24
+        assert yr.domestic_contributions.hours_bracket.employee_per_hour == Decimal(
+            "0.31"
+        )
 
     def test_no_open_tier_raises(self) -> None:
         """_resolve_tier raises ValueError when no tier covers the headcount."""
@@ -468,3 +491,89 @@ class TestYearRules2026Json:
         """TfrRules accrual_divisor is parsed as Decimal."""
         tfr = TfrRules(accrual_divisor=Decimal("13.5"))
         assert tfr.accrual_divisor == Decimal("13.5")
+
+
+_DOMESTIC_RATES = DomesticInpsRates.model_validate(DOMESTIC_CONTRIBUTIONS)
+
+_RAW_BASE: dict[str, Any] = {
+    "year": 2026,
+    "sector": "test",
+    "irpef_brackets": IRPEF_BRACKETS_2026,
+    "work_deduction_breakpoints": WORK_DEDUCTIONS_2026,
+    "fixed_term_additional_rate": "0.014",
+    "tfr": {"accrual_divisor": "13.5"},
+}
+
+
+class TestDomesticInpsRates:
+    """DomesticInpsRates.resolve() — all selector branches."""
+
+    def test_hours_bracket_permanent(self) -> None:
+        """weekly_hours > 24 → hours bracket, permanent rate."""
+        emp, er = _DOMESTIC_RATES.resolve(
+            Decimal("8.00"), Decimal(40), is_fixed_term=False
+        )
+        assert emp == Decimal("0.31")
+        assert er == Decimal("0.93")
+
+    def test_hours_bracket_fixed_term(self) -> None:
+        """weekly_hours > 24 → hours bracket, fixed-term employer rate."""
+        emp, er = _DOMESTIC_RATES.resolve(
+            Decimal("8.00"), Decimal(30), is_fixed_term=True
+        )
+        assert emp == Decimal("0.31")
+        assert er == Decimal("1.01")
+
+    def test_wage_bracket_low_permanent(self) -> None:
+        """hourly_rate <= 9.61 + weekly_hours <= 24 → lowest wage bracket."""
+        emp, er = _DOMESTIC_RATES.resolve(
+            Decimal("8.00"), Decimal(20), is_fixed_term=False
+        )
+        assert emp == Decimal("0.43")
+        assert er == Decimal("1.27")
+
+    def test_wage_bracket_mid_fixed_term(self) -> None:
+        """9.61 < hourly_rate <= 11.70, weekly_hours <= 24 → mid bracket, ft."""
+        emp, er = _DOMESTIC_RATES.resolve(
+            Decimal("10.00"), Decimal(20), is_fixed_term=True
+        )
+        assert emp == Decimal("0.48")
+        assert er == Decimal("1.57")
+
+    def test_wage_bracket_high_permanent(self) -> None:
+        """hourly_rate > 11.70 + weekly_hours <= 24 → highest bracket."""
+        emp, er = _DOMESTIC_RATES.resolve(
+            Decimal("15.00"), Decimal(24), is_fixed_term=False
+        )
+        assert emp == Decimal("0.59")
+        assert er == Decimal("1.75")
+
+    def test_no_matching_wage_bracket_raises(self) -> None:
+        """resolve() raises ValueError when no wage bracket covers the rate."""
+        rates = DomesticInpsRates.model_validate({
+            "weekly_hours_threshold": 24,
+            "hours_bracket": {
+                "employee_per_hour": "0.31",
+                "employer_per_hour": "0.93",
+                "employer_per_hour_fixed_term": "1.01",
+            },
+            "wage_brackets": [
+                {
+                    "hourly_rate_up_to": "9.61",
+                    "employee_per_hour": "0.43",
+                    "employer_per_hour": "1.27",
+                    "employer_per_hour_fixed_term": "1.39",
+                },
+            ],
+        })
+        with pytest.raises(ValueError, match="no wage bracket covers"):
+            rates.resolve(Decimal("15.00"), Decimal(20), is_fixed_term=False)
+
+
+class TestYearRulesRawContributionModel:
+    """_YearRulesRaw validator: must have inps+apprentice or domestic_contributions."""
+
+    def test_missing_both_raises(self) -> None:
+        """Neither inps+apprentice nor domestic_contributions → ValidationError."""
+        with pytest.raises(ValidationError, match="domestic_contributions"):
+            _YearRulesRaw.model_validate(_RAW_BASE)

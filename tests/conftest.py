@@ -73,6 +73,53 @@ def make_year_rules(
     })
 
 
+#: Flat per-hour domestic contribution table (INPS Circ. 9/2026, con CUAF).
+DOMESTIC_CONTRIBUTIONS: dict[str, Any] = {
+    "weekly_hours_threshold": 24,
+    "hours_bracket": {
+        "employee_per_hour": "0.31",
+        "employer_per_hour": "0.93",
+        "employer_per_hour_fixed_term": "1.01",
+    },
+    "wage_brackets": [
+        {
+            "hourly_rate_up_to": "9.61",
+            "employee_per_hour": "0.43",
+            "employer_per_hour": "1.27",
+            "employer_per_hour_fixed_term": "1.39",
+        },
+        {
+            "hourly_rate_up_to": "11.70",
+            "employee_per_hour": "0.48",
+            "employer_per_hour": "1.44",
+            "employer_per_hour_fixed_term": "1.57",
+        },
+        {
+            "hourly_rate_up_to": None,
+            "employee_per_hour": "0.59",
+            "employer_per_hour": "1.75",
+            "employer_per_hour_fixed_term": "1.91",
+        },
+    ],
+}
+
+
+def make_domestic_year_rules() -> YearRules:
+    """Build a YearRules with domestic flat-hour contributions (no standard INPS).
+
+    Returns:
+        A validated YearRules with domestic_contributions set and inps=None.
+    """
+    return YearRules.model_validate({
+        "year": 2026,
+        "irpef_brackets": IRPEF_BRACKETS_2026,
+        "work_deduction_breakpoints": WORK_DEDUCTIONS_2026,
+        "fixed_term_additional_rate": "0.014",
+        "domestic_contributions": DOMESTIC_CONTRIBUTIONS,
+        "tfr": {"accrual_divisor": "13.5"},
+    })
+
+
 def _series(value: str, valid_from: str = "2020-01-01") -> dict[str, Any]:
     return {
         "periods": [{"valid_from": valid_from, "valid_until": None, "value": value}]

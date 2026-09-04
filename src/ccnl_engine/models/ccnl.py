@@ -35,6 +35,7 @@ class TaxSector(StrEnum):
     CREDITO = "credito"
     ARTIGIANATO = "artigianato"
     PUBBLICA_AMMINISTRAZIONE = "pubblica-amministrazione"
+    LAVORO_DOMESTICO = "lavoro-domestico"
 
 
 class Allowance(BaseModel):

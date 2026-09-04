@@ -51,7 +51,17 @@ def resolve_rates(
 
     Returns:
         ContributionRates with employee and employer rates for the scenario.
+
+    Raises:
+        TypeError: If ``rules.inps`` or ``rules.apprentice`` is None (domestic
+            model sectors must take the flat-hour path in compute() instead).
     """
+    if rules.inps is None or rules.apprentice is None:
+        msg = (
+            "resolve_rates requires standard INPS rates; "
+            "domestic sectors must use the flat-hour path in compute()"
+        )
+        raise TypeError(msg)
     if isinstance(employment, Apprentice):
         emp_rate = rules.apprentice.employee_rate
         er_rate = rules.apprentice.employer_rate_at(employment.months_elapsed)
@@ -95,7 +105,7 @@ def inps_contribution(
     Returns:
         The annual INPS contribution amount, rounded to two decimal places.
     """
-    ceiling = rules.inps.ceiling
+    ceiling = rules.inps.ceiling if rules.inps is not None else None
     if ivs_ceiling_applies and ceiling is not None:
         ivs_base = min(base_annual, ceiling)
         non_ivs_rate = total_rate - ivs_rate

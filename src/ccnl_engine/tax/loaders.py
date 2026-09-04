@@ -10,6 +10,7 @@ from ccnl_engine.tax.models import (
     InpsRates,
     YearRules,
     _ApprenticeRawRates,
+    _InpsRawRates,
     _YearRulesRaw,
 )
 
@@ -44,22 +45,20 @@ def load_year_rules(
         .read_text(encoding="utf-8")
     )
     raw = _YearRulesRaw.model_validate_json(raw_text)
-    employer_tier = _resolve_tier(raw.inps.employer_tiers, num_employees, "employer")
-    employee_tier = _resolve_tier(raw.inps.employee_tiers, num_employees, "employee")
+    inps = _resolve_inps(raw.inps, num_employees)
+    apprentice = (
+        _resolve_apprentice(raw.apprentice, num_employees)
+        if raw.apprentice is not None
+        else None
+    )
     return YearRules(
         year=raw.year,
         irpef_brackets=raw.irpef_brackets,
         work_deduction_breakpoints=raw.work_deduction_breakpoints,
         fixed_term_additional_rate=raw.fixed_term_additional_rate,
-        inps=InpsRates(
-            employee_rate=employee_tier.rate,
-            employee_ivs_rate=employee_tier.ivs_rate,
-            employer_rate=employer_tier.rate,
-            employer_ivs_rate=employer_tier.ivs_rate,
-            ceiling=raw.inps.ceiling,
-            employer_rate_by_category=employer_tier.rate_by_category,
-        ),
-        apprentice=_resolve_apprentice(raw.apprentice, num_employees),
+        inps=inps,
+        apprentice=apprentice,
+        domestic_contributions=raw.domestic_contributions,
         tfr=raw.tfr,
         notes=raw.notes,
     )
@@ -109,6 +108,27 @@ def _assert_tier_integrity(tiers: Sequence[_Tier], side: str) -> None:
             msg = f"{side}-rate tiers: duplicate max_employees={tier.max_employees}."
             raise ValueError(msg)
         seen.add(tier.max_employees)
+
+
+def _resolve_inps(raw: _InpsRawRates | None, num_employees: int) -> InpsRates | None:
+    """Resolve INPS tiers by headcount; return None for domestic-model sectors.
+
+    Returns:
+        Resolved InpsRates for standard sectors; None when raw is None
+        (i.e. the tax file uses domestic_contributions instead).
+    """
+    if raw is None:
+        return None
+    employer_tier = _resolve_tier(raw.employer_tiers, num_employees, "employer")
+    employee_tier = _resolve_tier(raw.employee_tiers, num_employees, "employee")
+    return InpsRates(
+        employee_rate=employee_tier.rate,
+        employee_ivs_rate=employee_tier.ivs_rate,
+        employer_rate=employer_tier.rate,
+        employer_ivs_rate=employer_tier.ivs_rate,
+        ceiling=raw.ceiling,
+        employer_rate_by_category=employer_tier.rate_by_category,
+    )
 
 
 def _resolve_apprentice(

@@ -25,7 +25,7 @@ from ccnl_engine.engine.rounding import money
 from ccnl_engine.models.apprenticeship import ApprenticeshipPeriod
 from ccnl_engine.models.ccnl import CCNL, LevelCategory
 from ccnl_engine.models.employment import Apprentice, Employment, FixedTerm, Permanent
-from tests.conftest import make_ccnl_dict, make_year_rules
+from tests.conftest import make_ccnl_dict, make_domestic_year_rules, make_year_rules
 
 if TYPE_CHECKING:
     from ccnl_engine.tax.models import YearRules
@@ -581,7 +581,7 @@ class TestComputeIvsCeilingSplit:
 
 
 class TestComputeIrpefFloor:
-    """net = gross - inps when deduction exceeds gross IRPEF."""
+    """Net = gross - inps when deduction exceeds gross IRPEF."""
 
     def test_irpef_net_floored_at_zero(self) -> None:
         """Low income: deduction > irpef_gross → irpef_net == 0."""
@@ -890,3 +890,76 @@ class TestFindPeriodIndex:
         ]
         with pytest.raises(ValueError, match="months_elapsed"):
             _find_period_index(periods, months_elapsed=5)
+
+
+# ---------------------------------------------------------------------------
+# Domestic flat-hour INPS model
+# ---------------------------------------------------------------------------
+
+
+_DOMESTIC_RULES = make_domestic_year_rules()
+_DOMESTIC_CCNL = _build_ccnl()  # standard CCNL; rules carry the domestic model
+_DEFAULT_WEEKLY_HOURS: Decimal = _D("40")
+
+
+def _req_domestic(
+    weekly_hours: Decimal | None = _DEFAULT_WEEKLY_HOURS,
+    employment: Employment = _PERMANENT,
+) -> ComputeRequest:
+    """Build a ComputeRequest for the domestic INPS path.
+
+    Returns:
+        A ComputeRequest with weekly_hours set (required for domestic model).
+    """
+    return ComputeRequest(
+        level_code="4",
+        as_of=_DATE,
+        employment=employment,
+        weekly_hours=weekly_hours,
+    )
+
+
+class TestComputeDomesticInps:
+    """Flat per-hour INPS model (rules.domestic_contributions is not None)."""
+
+    def test_missing_weekly_hours_raises(self) -> None:
+        """domestic_contributions set but weekly_hours=None must raise."""
+        with pytest.raises(ValueError, match="weekly_hours is required"):
+            compute(_DOMESTIC_CCNL, _DOMESTIC_RULES, _req_domestic(weekly_hours=None))
+
+    def test_hours_bracket_permanent(self) -> None:
+        """weekly_hours > 24 → hours bracket; permanent uses base employer rate."""
+        r = compute(
+            _DOMESTIC_CCNL, _DOMESTIC_RULES, _req_domestic(weekly_hours=_D("40"))
+        )
+
+        annual_hours = _D("40") * _D("52")
+        assert r.inps_employee_annual == money(_D("0.31") * annual_hours)
+        assert r.inps_employer_annual == money(_D("0.93") * annual_hours)
+
+    def test_hours_bracket_fixed_term(self) -> None:
+        """weekly_hours > 24 + FixedTerm → hours bracket fixed-term rate."""
+        r = compute(
+            _DOMESTIC_CCNL, _DOMESTIC_RULES, _req_domestic(employment=_FIXED_TERM)
+        )
+
+        annual_hours = _D("40") * _D("52")
+        assert r.inps_employee_annual == money(_D("0.31") * annual_hours)
+        assert r.inps_employer_annual == money(_D("1.01") * annual_hours)
+
+    def test_wage_bracket_low(self) -> None:
+        """weekly_hours <= 24 + low hourly rate → lowest wage bracket."""
+        # Hourly rate for level 4 (1000/168 ≈ 5.95) → below 9.61 bracket
+        r = compute(
+            _DOMESTIC_CCNL, _DOMESTIC_RULES, _req_domestic(weekly_hours=_D("20"))
+        )
+
+        annual_hours = _D("20") * _D("52")
+        assert r.inps_employee_annual == money(_D("0.43") * annual_hours)
+        assert r.inps_employer_annual == money(_D("1.27") * annual_hours)
+
+    def test_net_is_gross_minus_inps_minus_irpef(self) -> None:
+        """Net = gross - INPS employee - irpef_net for domestic path."""
+        r = compute(_DOMESTIC_CCNL, _DOMESTIC_RULES, _req_domestic())
+
+        assert r.net_annual == r.gross_annual - r.inps_employee_annual - r.irpef_net

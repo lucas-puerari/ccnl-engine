@@ -1,0 +1,54 @@
+{
+  "year": 2026,
+  "sector": "lavoro-domestico",
+  "irpef_brackets": [
+    { "up_to": "28000.00", "rate": "0.23" },
+    { "up_to": "50000.00", "rate": "0.33" },
+    { "up_to": null,       "rate": "0.43" }
+  ],
+  "work_deduction_breakpoints": [
+    { "income_up_to": "8500.00",  "deduction": "1955.00" },
+    { "income_up_to": "28000.00", "deduction": "700.00"  },
+    { "income_up_to": "50000.00", "deduction": "0.00"    },
+    { "income_up_to": null,       "deduction": "0.00"    }
+  ],
+  "fixed_term_additional_rate": "0.014",
+  "domestic_contributions": {
+    "weekly_hours_threshold": 24,
+    "hours_bracket": {
+      "employee_per_hour": "0.31",
+      "employer_per_hour": "0.93",
+      "employer_per_hour_fixed_term": "1.01"
+    },
+    "wage_brackets": [
+      {
+        "hourly_rate_up_to": "9.61",
+        "employee_per_hour": "0.43",
+        "employer_per_hour": "1.27",
+        "employer_per_hour_fixed_term": "1.39"
+      },
+      {
+        "hourly_rate_up_to": "11.70",
+        "employee_per_hour": "0.48",
+        "employer_per_hour": "1.44",
+        "employer_per_hour_fixed_term": "1.57"
+      },
+      {
+        "hourly_rate_up_to": null,
+        "employee_per_hour": "0.59",
+        "employer_per_hour": "1.75",
+        "employer_per_hour_fixed_term": "1.91"
+      }
+    ]
+  },
+  "tfr": {
+    "accrual_divisor": "13.5"
+  },
+  "notes": [
+    "SOURCE: INPS Circolare n. 9 del 3 febbraio 2026 — contributi lavoro domestico 2026.",
+    "INFO: Domestic sector uses flat per-hour contributions (domestic_contributions); the standard 'inps' and 'apprentice' blocks are absent.",
+    "INFO: fixed_term_additional_rate retained for informational purposes; the addizionale NASpI is pre-baked into employer_per_hour_fixed_term in domestic_contributions.",
+    "SIMPLIFICATION: CUAF variant (senza CUAF) not modelled; 'con CUAF' amounts used throughout.",
+    "SIMPLIFICATION: IRPEF figures are informational only — family employers are not sostituti d'imposta (Art. 4 D.P.R. 600/1973). Set withholding_exempt: true in the CCNL JSON to zero irpef_net."
+  ]
+}
