@@ -1,6 +1,6 @@
 [project]
 name = "ccnl-engine"
-version = "0.1.0"
+version = "0.1.1"
 description = "Italian CCNL payroll engine: gross-to-net and employer cost from first principles"
 readme = "README.md"
 license = { text = "MIT" }
