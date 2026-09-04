@@ -24,8 +24,14 @@ class FixedTerm(BaseModel):
 class Apprentice(BaseModel):
     """Apprenticeship contract; salary is derived from CCNL apprenticeship rules.
 
-    ``track`` names the CCNL apprenticeship track to apply; it is required only
-    when more than one track covers the destination level.
+    Attributes:
+        months_elapsed: Months of apprenticeship service elapsed so far.
+            Used to look up the applicable ``apprenticeship_pct`` in the
+            CCNL percentage track, or the under-classification level in
+            under-classification tracks.
+        track: Name of the CCNL apprenticeship track to apply. Required
+            only when more than one track covers the destination level;
+            ``None`` lets the engine select the unique applicable track.
     """
 
     model_config = ConfigDict(extra="forbid")

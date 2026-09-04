@@ -92,21 +92,48 @@ class _AnnualisedPay:
 
 @dataclass(frozen=True)
 class ComputeRequest:
-    """Scenario parameters for a single compute() call.
+    """Scenario parameters for a single ``compute()`` call.
 
-    ``seniority_count`` and ``seniority_months`` are mutually exclusive; when
-    neither is given no seniority increment applies. ``roles`` selects the
-    role-restricted allowances the worker is entitled to. ``ad_personam_monthly``
-    is an individual frozen element (e.g. pre-abolition seniority) added to
-    gross as given, not scaled by ``part_time_pct``. ``category`` overrides the
-    level's worker category when a level hosts several categories (e.g.
-    operai and impiegati sharing level 3 in edilizia).
-
-    ``negotiated_ral`` replaces the CCNL-derived gross for any employment type
-    and is taken as-is (no further scaling).  ``negotiated_destination_ral``
-    is the destination-level RAL for percentage-based apprentices: the engine
-    applies ``apprenticeship_pct`` to it, producing the actual apprentice pay.
-    The two fields are mutually exclusive.
+    Attributes:
+        level_code: Classification level code as defined in the CCNL
+            (e.g. ``"D3"``). Must match a level in the provided CCNL.
+        as_of: Reference date for time-series values (base pay, seniority
+            amounts, allowances). Determines which entry in each ``TimeSeries``
+            is active.
+        employment: Employment contract type — ``Permanent``, ``FixedTerm``,
+            or ``Apprentice``.
+        part_time_pct: Part-time coefficient in the range ``(0, 1]``. A
+            full-time worker uses the default ``1``. Gross pay, INPS, and TFR
+            are all scaled by this value; ``ad_personam_monthly`` is not.
+        seniority_count: Explicit number of seniority increments (*scatti*)
+            already accrued. Mutually exclusive with ``seniority_months``; when
+            neither is given, no increment applies.
+        seniority_months: Months of service elapsed; the engine derives the
+            increment count from CCNL cadence rules. Mutually exclusive with
+            ``seniority_count``.
+        negotiated_ral: Individual gross annual salary (RAL) agreed outside
+            the CCNL tables. Replaces the CCNL-derived figure for any
+            employment type and is used as-is (not scaled). Mutually exclusive
+            with ``negotiated_destination_ral``.
+        negotiated_destination_ral: Destination-level RAL for
+            percentage-based apprentices. The engine applies
+            ``apprenticeship_pct`` to this value to produce the apprentice's
+            actual pay. Mutually exclusive with ``negotiated_ral``; only valid
+            for ``Apprentice`` employment on a percentage track.
+        roles: Set of role identifiers the worker holds (e.g. ``{"capoturno"}``).
+            Selects role-restricted allowances defined in the CCNL level.
+        ad_personam_monthly: Individual frozen monthly element added directly
+            to gross (e.g. a pre-abolition seniority increment). Not scaled by
+            ``part_time_pct``. Must be ``>= 0``.
+        category: Worker category override (``"operaio"``, ``"impiegato"``,
+            ``"quadro"``, ``"dirigente"``). Required when a level hosts
+            multiple categories (e.g. edilizia level 3). Defaults to the
+            level's own category.
+        ivs_ceiling_applies: Set to ``True`` when the worker's gross is above
+            the IVS ceiling and only the IVS-specific contribution rate should
+            apply (rather than the full rate). Defaults to ``False``.
+        weekly_hours: Contractual weekly hours. Required when the tax-rules
+            file uses ``domestic_contributions`` (lavoro domestico).
     """
 
     level_code: str
@@ -122,7 +149,6 @@ class ComputeRequest:
     category: LevelCategory | None = None
     ivs_ceiling_applies: bool = False
     weekly_hours: Decimal | None = None
-    """Weekly hours worked. Required when rules.domestic_contributions is set."""
 
 
 def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> ComputationResult:
