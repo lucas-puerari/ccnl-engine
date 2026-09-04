@@ -1,4 +1,4 @@
-.PHONY: setup lint format typecheck test
+.PHONY: setup lint format typecheck test cognitive-complexity
 
 setup:
 	uv pip install -e .
@@ -18,3 +18,6 @@ typecheck:
 
 test:
 	uv run pytest
+
+cognitive-complexity:
+	uv run complexipy src/ && echo "Cognitive Complexity check passed"

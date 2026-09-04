@@ -20,3 +20,7 @@ echo "pytest (coverage 100%)..."
 uv run pytest
 
 echo "Tests passed."
+
+echo "cognitive complexity..."
+uv run complexipy $STAGED
+echo "Cognitive Complexity check passed."

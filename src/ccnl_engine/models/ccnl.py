@@ -394,22 +394,7 @@ class CCNL(BaseModel):
         sorted_levels = sorted(self.levels, key=lambda lv: lv.order)
         all_dates = _collect_transition_dates(sorted_levels)
         for check_date in sorted(all_dates):
-            prev_value: Decimal | None = None
-            prev_code: str = ""
-            for lv in sorted_levels:
-                try:
-                    value = lv.base_salary.value_at(check_date)
-                except ValueError:
-                    continue
-                if prev_value is not None and value < prev_value:
-                    msg = (
-                        f"salary ordering violated on {check_date}: "
-                        f"level {lv.code!r} (order={lv.order}) "
-                        f"earns {value} < level {prev_code!r} earns {prev_value}"
-                    )
-                    raise ValueError(msg)
-                prev_value = value
-                prev_code = lv.code
+            _check_salary_ordering_at_date(sorted_levels, check_date)
 
     def _assert_apprenticeship_tracks(self) -> None:
         names = [track.name for track in self.apprenticeship]
@@ -417,30 +402,33 @@ class CCNL(BaseModel):
             msg = f"apprenticeship track names must be unique, got: {names}"
             raise ValueError(msg)
         for track in self.apprenticeship:
-            for code in track.destination_levels:
-                try:
-                    dest = self.level_by_code(code)
-                except ValueError:
-                    msg = (
-                        f"apprenticeship track {track.name!r} references "
-                        f"destination level {code!r} which does not exist"
-                    )
-                    raise ValueError(msg) from None
-                if isinstance(track, ApprenticeshipUnderClassification):
-                    self._assert_offsets_resolve(track, dest)
-            if (
-                isinstance(track, ApprenticeshipPercentage)
-                and track.reference_level is not None
-            ):
-                try:
-                    self.level_by_code(track.reference_level)
-                except ValueError:
-                    msg = (
-                        f"apprenticeship track {track.name!r} references "
-                        f"reference_level {track.reference_level!r} which does not "
-                        f"exist"
-                    )
-                    raise ValueError(msg) from None
+            self._assert_single_track(track)
+
+    def _assert_single_track(self, track: ApprenticeshipTrack) -> None:
+        for code in track.destination_levels:
+            try:
+                dest = self.level_by_code(code)
+            except ValueError:
+                msg = (
+                    f"apprenticeship track {track.name!r} references "
+                    f"destination level {code!r} which does not exist"
+                )
+                raise ValueError(msg) from None
+            if isinstance(track, ApprenticeshipUnderClassification):
+                self._assert_offsets_resolve(track, dest)
+        if (
+            isinstance(track, ApprenticeshipPercentage)
+            and track.reference_level is not None
+        ):
+            try:
+                self.level_by_code(track.reference_level)
+            except ValueError:
+                msg = (
+                    f"apprenticeship track {track.name!r} references "
+                    f"reference_level {track.reference_level!r} which does not "
+                    f"exist"
+                )
+                raise ValueError(msg) from None
 
     def _assert_offsets_resolve(
         self, track: ApprenticeshipUnderClassification, dest: Level
@@ -463,6 +451,32 @@ class CCNL(BaseModel):
         if status == "out_of_scope" and has_tracks:
             msg = "coverage.layer_2 is 'out_of_scope' but apprenticeship tracks exist"
             raise ValueError(msg)
+
+
+def _check_salary_ordering_at_date(
+    sorted_levels: list[Level], check_date: date
+) -> None:
+    """Verify that base salaries are non-decreasing across levels on one date.
+
+    Raises:
+        ValueError: If any level earns less than a lower-ordered level on that date.
+    """
+    prev_value: Decimal | None = None
+    prev_code: str = ""
+    for lv in sorted_levels:
+        try:
+            value = lv.base_salary.value_at(check_date)
+        except ValueError:
+            continue
+        if prev_value is not None and value < prev_value:
+            msg = (
+                f"salary ordering violated on {check_date}: "
+                f"level {lv.code!r} (order={lv.order}) "
+                f"earns {value} < level {prev_code!r} earns {prev_value}"
+            )
+            raise ValueError(msg)
+        prev_value = value
+        prev_code = lv.code
 
 
 def _assert_unique(field: str, values: list[object]) -> None:

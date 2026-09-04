@@ -150,7 +150,7 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
     if request.ad_personam_monthly < _ZERO:
         msg = f"ad_personam_monthly must be >= 0, got {request.ad_personam_monthly}"
         raise ValueError(msg)
-    _validate_negotiated_ral(
+    ral_override = _validate_negotiated_ral(
         request.negotiated_ral, request.negotiated_destination_ral, request.employment
     )
 
@@ -213,10 +213,6 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
     )
 
     # The negotiated figure is the full RAL; CCNL exclusions don't apply to it.
-    ral_override = (
-        request.negotiated_ral is not None
-        or request.negotiated_destination_ral is not None
-    )
     contribution_base = (
         gross_annual
         if ral_override
@@ -321,7 +317,16 @@ def _validate_negotiated_ral(
     negotiated_ral: Decimal | None,
     negotiated_destination_ral: Decimal | None,
     employment: Employment,
-) -> None:
+) -> bool:
+    """Validate the negotiated-RAL arguments and return whether an override is active.
+
+    Returns:
+        True when either negotiated_ral or negotiated_destination_ral is set.
+
+    Raises:
+        ValueError: If both fields are given, or if negotiated_destination_ral
+            is used with a non-Apprentice employment type.
+    """
     if negotiated_ral is not None and negotiated_destination_ral is not None:
         msg = "negotiated_ral and negotiated_destination_ral are mutually exclusive"
         raise ValueError(msg)
@@ -330,6 +335,7 @@ def _validate_negotiated_ral(
     ):
         msg = "negotiated_destination_ral is only valid for Apprentice employment"
         raise ValueError(msg)
+    return negotiated_ral is not None or negotiated_destination_ral is not None
 
 
 def _resolve_seniority_count(
@@ -452,9 +458,7 @@ def _select_track(
     if len(candidates) == 1:
         return candidates[0]
     if not candidates:
-        eligible = sorted({
-            c for t in ccnl.apprenticeship for c in t.destination_levels
-        })
+        eligible = _eligible_destination_levels(ccnl)
         msg = (
             f"CCNL '{ccnl.meta.id}' has no apprenticeship track for destination "
             f"level {level.code!r} (coverage.layer_2 is {ccnl.coverage.layer_2}; "
@@ -467,6 +471,15 @@ def _select_track(
         f"tracks {names}; set Apprentice.track to choose one"
     )
     raise ValueError(msg)
+
+
+def _eligible_destination_levels(ccnl: CCNL) -> list[str]:
+    """Return sorted destination-level codes across all apprenticeship tracks.
+
+    Returns:
+        Sorted list of level codes covered by at least one apprenticeship track.
+    """
+    return sorted({c for t in ccnl.apprenticeship for c in t.destination_levels})
 
 
 def _find_period_index(periods: Sequence[_MonthPeriod], months_elapsed: int) -> int:
