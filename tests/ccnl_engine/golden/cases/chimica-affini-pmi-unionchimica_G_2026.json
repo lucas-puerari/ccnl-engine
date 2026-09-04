@@ -1,0 +1,43 @@
+{
+  "inputs": {
+    "ccnl_file": "chimica-affini-pmi-unionchimica.json",
+    "level_code": "G",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "employment_type": "permanent",
+    "as_of": "2026-09-01",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null,
+    "weekly_hours": null
+  },
+  "expected": {
+    "ccnl_id": "chimica-affini-pmi-unionchimica",
+    "level_code": "G",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "base_monthly": "2973.58",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "25.82",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2999.40",
+    "gross_annual": "38992.20",
+    "hourly_rate": "17.14",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "3700.36",
+    "inps_employer_annual": "11775.64",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "2888.31",
+    "taxable_income": "35291.84",
+    "irpef_gross": "8846.31",
+    "work_income_deduction": "350.25",
+    "irpef_net": "8496.06",
+    "employer_withholds_irpef": true,
+    "net_annual": "26795.78",
+    "net_monthly": "2061.21",
+    "employer_cost_annual": "53656.15"
+  }
+}
