@@ -4986,3 +4986,90 @@ class TestLoadTrasportoAereoAssaeroporti:
         ccnl = load_ccnl("trasporto-aereo-assaeroporti.json")
         si = ccnl.parameters.seniority_increments
         assert si.amount_by_level["9"].value_at(date(2026, 9, 1)) == Decimal("0.00")
+
+
+class TestLoadIgieneAmbientaleUtilitalia:
+    """Tests for CCNL Igiene Ambientale — Servizi Ambientali (K540)."""
+
+    def test_igiene_ambientale_utilitalia_loads(self) -> None:
+        """Contract loads with correct id and CNEL code K540."""
+        ccnl = load_ccnl("igiene-ambientale-utilitalia.json")
+        assert ccnl.meta.id == "igiene-ambientale-utilitalia"
+        assert ccnl.meta.cnel_code == "K540"
+
+    def test_igiene_ambientale_utilitalia_has_16_levels(self) -> None:
+        """Contract has exactly 16 levels from Q down to D2."""
+        ccnl = load_ccnl("igiene-ambientale-utilitalia.json")
+        assert len(ccnl.levels) == 16
+        codes = {lv.code for lv in ccnl.levels}
+        expected = {
+            "Q",
+            "A1",
+            "A2s",
+            "A2",
+            "B1s",
+            "B1",
+            "B2s",
+            "B2",
+            "C1s",
+            "C1",
+            "C2s",
+            "C2",
+            "D1s",
+            "D1",
+            "D2s",
+            "D2",
+        }
+        assert codes == expected
+
+    def test_igiene_ambientale_utilitalia_level_c1s_salary_2026(self) -> None:
+        """Level C1s base salary at 01/02/2026 is 2216.13 (post-reclassification)."""
+        ccnl = load_ccnl("igiene-ambientale-utilitalia.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C1s")
+        assert lv.base_salary.value_at(date(2026, 2, 1)) == Decimal("2216.13")
+
+    def test_igiene_ambientale_utilitalia_level_c1s_salary_2027(self) -> None:
+        """Level C1s base salary at 01/01/2027 (+36) is 2252.13."""
+        ccnl = load_ccnl("igiene-ambientale-utilitalia.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C1s")
+        assert lv.base_salary.value_at(date(2027, 1, 1)) == Decimal("2252.13")
+
+    def test_igiene_ambientale_utilitalia_level_ordering(self) -> None:
+        """Level D2 is lowest-order (1); level Q is highest-order (16)."""
+        ccnl = load_ccnl("igiene-ambientale-utilitalia.json")
+        levels_by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert levels_by_order[0].code == "D2"
+        assert levels_by_order[-1].code == "Q"
+
+    def test_igiene_ambientale_utilitalia_additional_months(self) -> None:
+        """Contract has 14 additional months (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("igiene-ambientale-utilitalia.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 6, 1)) == Decimal(
+            14
+        )
+
+    def test_igiene_ambientale_utilitalia_hourly_divisor(self) -> None:
+        """Hourly divisor is 169 (Art. 28)."""
+        ccnl = load_ccnl("igiene-ambientale-utilitalia.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 6, 1)) == Decimal(169)
+
+    def test_igiene_ambientale_utilitalia_allowances_edr_indemn(self) -> None:
+        """Every level carries EDR (10.33) and INDEMN_INT (50.00) allowances."""
+        ccnl = load_ccnl("igiene-ambientale-utilitalia.json")
+        for lv in ccnl.levels:
+            codes = {fa.code for fa in lv.fixed_allowances}
+            assert codes == {"EDR", "INDEMN_INT"}, lv.code
+
+    def test_igiene_ambientale_utilitalia_tax_sector(self) -> None:
+        """Contract declares INDUSTRIA tax sector."""
+        ccnl = load_ccnl("igiene-ambientale-utilitalia.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_igiene_ambientale_utilitalia_seniority_cadence(self) -> None:
+        """Seniority triennale (36m), max 10 globally; B=11, A=12 per level."""
+        ccnl = load_ccnl("igiene-ambientale-utilitalia.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 10
+        assert si.maximum_count_by_level["B1"] == 11
+        assert si.maximum_count_by_level["A1"] == 12

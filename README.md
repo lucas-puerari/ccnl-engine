@@ -110,10 +110,11 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 55 | Panificazione e Settori Affini Industria — Assipan/Fiesa/Federpanificatori | Alimentare | ~20k | ✅ | ✅ |
 | 56 | Attività Ferroviarie — AGENS | Trasporto | ~75k | ✅ | ⚠️ |
 | 57 | Trasporto Aereo — Gestori Aeroportuali (Assaeroporti) | Trasporto | ~40k | ✅ | ⚠️ |
+| 58 | Igiene Ambientale — Servizi Ambientali e di Igiene Urbana (Utilitalia/FISE) | Industria | ~65k | ✅ | ⚠️ |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
-The 57 contracts above cover approximately **14.2 million workers** (sum of per-CCNL estimates; some overlap possible where sector boundaries are not mutually exclusive). Italy has roughly **16 million employees** covered by some collective agreement (ISTAT/CNEL 2024, public and private sectors combined). This library therefore reaches an estimated **~80–85% of CCNL-covered workers**.
+The 58 contracts above cover approximately **14.3 million workers** (sum of per-CCNL estimates; some overlap possible where sector boundaries are not mutually exclusive). Italy has roughly **16 million employees** covered by some collective agreement (ISTAT/CNEL 2024, public and private sectors combined). This library therefore reaches an estimated **~80–85% of CCNL-covered workers**.
 
 ## What is not modelled
 
