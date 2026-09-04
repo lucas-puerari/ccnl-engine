@@ -48,13 +48,12 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | ✅ | Implemented |
 | ⚠️ | Partial (documented simplifications or missing sub-tracks) |
 | — | Out of scope |
-| 🤖 | Salary tables extracted automatically via Claude Code — no manual human review |
+| 🤖 | Extraction: extracted automatically via Claude Code — no manual human review |
+| 🧑 | Extraction: verified manually against the official source |
 
 *CCNL Matrix*
 
-> **🤖 Automated extraction.** Salary tables for all contracts below were extracted from official CCNL documents using Claude Code (AI-assisted), without manual human review. Values should be verified against the official source before use in production payroll systems.
-
-| # | CCNL | Sector | Lavoratori (~)<sup><a id="ref-1" href="#fn-1">1</a></sup> | Layer 1 | Layer 2 | 🤖 |
+| # | CCNL | Sector | Lavoratori (~)<sup><a id="ref-1" href="#fn-1">1</a></sup> | Layer 1 | Layer 2 | Extraction |
 |---|---|---|---:|:---:|:---:|:---:|
 | 1 | Commercio — Confcommercio | Terziario | ~800k | ✅ | ✅ | 🤖 |
 | 2 | Metalmeccanico — Federmeccanica/Assistal | Industria | ~1,7M | ✅ | ✅ | 🤖 |
@@ -117,6 +116,8 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 59 | Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti | Agricoltura | ~80k | ✅ | ✅ | 🤖 |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
+
+<p id="fn-2"><b>🤖 Automated extraction.</b> Salary tables for all contracts above were extracted from official CCNL documents using Claude Code (AI-assisted), without manual human review. Values should be verified against the official source before use in production payroll systems.</p>
 
 The 59 contracts above cover approximately **14.3 million workers** (sum of per-CCNL estimates; some overlap is possible where sector boundaries are not mutually exclusive, so the unique-worker count is somewhat lower). Italy has roughly **16 million employees** covered by some collective agreement (ISTAT/CNEL 2024, public and private sectors combined). This library therefore reaches an estimated **~85–90% of CCNL-covered workers** on a gross-headcount basis.
 
