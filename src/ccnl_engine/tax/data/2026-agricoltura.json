@@ -1,0 +1,61 @@
+{
+  "year": 2026,
+  "sector": "agricoltura",
+  "irpef_brackets": [
+    { "up_to": "28000.00", "rate": "0.23" },
+    { "up_to": "50000.00", "rate": "0.33" },
+    { "up_to": null,       "rate": "0.43" }
+  ],
+  "work_deduction_breakpoints": [
+    { "income_up_to": "8500.00",  "deduction": "1955.00" },
+    { "income_up_to": "28000.00", "deduction": "700.00"  },
+    { "income_up_to": "50000.00", "deduction": "0.00"    },
+    { "income_up_to": null,       "deduction": "0.00"    }
+  ],
+  "fixed_term_additional_rate": "0.014",
+  "inps": {
+    "employee_tiers": [
+      {
+        "max_employees": null,
+        "rate": "0.0884",
+        "ivs_rate": "0.0884"
+      }
+    ],
+    "employer_tiers": [
+      {
+        "max_employees": null,
+        "rate": "0.2166",
+        "ivs_rate": "0.2166"
+      }
+    ],
+    "ceiling": "122295.00"
+  },
+  "apprentice": {
+    "employee_rate": "0.0584",
+    "employee_ivs_rate": "0.0584",
+    "employer_rate": "0.1161",
+    "employer_ivs_rate": "0.1000",
+    "small_firm_max_employees": 9,
+    "small_firm_employer_rate_months_0_11": "0.0311",
+    "small_firm_employer_ivs_rate_months_0_11": "0.0150",
+    "small_firm_employer_rate_months_12_23": "0.0461",
+    "small_firm_employer_ivs_rate_months_12_23": "0.0300"
+  },
+  "tfr": {
+    "accrual_divisor": "13.5"
+  },
+  "notes": [
+    "INPS rates: Gestione Previdenziale Speciale per i Lavoratori Agricoli (OTI, standard agriculture). Employee 8.84%; employer 21.66%; total 30.50%. Source: ciatreviso.it citing INPS 2026 rates (https://ciatreviso.it/contributi-inps-inail-2026-agricoli-aliquote-e-le-scadenze-per-operai-otd-e-oti/); consistent with INPS Circular 46/2025 2025 rates (21.46% employer) adjusted +0.20pp for 2026.",
+    "SIMPLIFICATION: Agro-industrial processing variant (23.46% employer, total 32.30%) not modelled — standard agricultural rate 21.66% used throughout.",
+    "SIMPLIFICATION: INPS contribution base for agricultural OTI workers is legally the 'retribuzione convenzionale' (set annually by INPS decree), not the actual contractual salary. This engine applies rates to the actual gross salary. Net employer INPS will differ from statutory calculation; figures are indicative only.",
+    "SIMPLIFICATION: INAIL premium (8.50% unified from 2026 per new tariff table) is not modelled. The engine does not track INAIL.",
+    "SIMPLIFICATION: Territorial contribution reductions (mountain zones 75%, disadvantaged zones 68%) are not modelled.",
+    "SIMPLIFICATION: Bilateral fund contributions (EBAN, FISA, Agrifondo) are set at provincial level and are not modelled.",
+    "SIMPLIFICATION: Employee rate is a flat single tier (no CIGO or FIS addizionale for standard agricultural OTI). The standard agricultural sector does not apply CIGS/FIS contribution differentials by firm size.",
+    "SIMPLIFICATION: ivs_rate equals the full rate; no separate non-IVS component isolated.",
+    "IRPEF brackets and work_deduction_breakpoints: statutory 2026 (L. 199/2025). Agricultural employers ARE sostituti d'imposta for OTI workers.",
+    "fixed_term_additional_rate: NASpI addizionale 1.4% per Art. 2 co. 28 L. 92/2012.",
+    "Apprentice rates: same statutory structure as other sectors per L. 296/2006 and L. 92/2012. Agricultural apprenticeship is governed by Allegato n. 10 CCNL (agreement 23/02/2017).",
+    "IVS ceiling: EUR 122,295 (INPS Circ. 6/2026)."
+  ]
+}

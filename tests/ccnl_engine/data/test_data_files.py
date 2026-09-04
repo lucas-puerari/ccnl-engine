@@ -4604,3 +4604,68 @@ class TestLoadLavoroDomesticoNonConvivente:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 7
+
+
+class TestLoadOperaiAgricoli:
+    """Unit tests for operai-agricoli-florovivaisti.json."""
+
+    def test_operai_agricoli_loads(self) -> None:
+        """Contract loads and id/cnel_code are correct."""
+        ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
+        assert ccnl.meta.id == "operai-agricoli-florovivaisti"
+        assert ccnl.meta.cnel_code == "A011"
+
+    def test_operai_agricoli_has_3_levels(self) -> None:
+        """Contract has exactly 3 national professional areas."""
+        ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
+        assert len(ccnl.levels) == 3
+        assert {lv.code for lv in ccnl.levels} == {"Area1", "Area2", "Area3"}
+
+    def test_operai_agricoli_level_area2_salary_2026(self) -> None:
+        """Area2 base salary at June 2026 tranche is 1375.48 EUR."""
+        ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
+        area2 = next(lv for lv in ccnl.levels if lv.code == "Area2")
+        assert area2.base_salary.value_at(date(2026, 9, 1)) == Decimal("1375.48")
+
+    def test_operai_agricoli_level_area2_salary_2027(self) -> None:
+        """Area2 base salary at Jan 2027 tranche is 1398.86 EUR."""
+        ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
+        area2 = next(lv for lv in ccnl.levels if lv.code == "Area2")
+        assert area2.base_salary.value_at(date(2027, 1, 1)) == Decimal("1398.86")
+
+    def test_operai_agricoli_level_ordering(self) -> None:
+        """Area1 (specializzati) has highest order; Area3 (comuni) lowest."""
+        ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "Area3"
+        assert by_order[-1].code == "Area1"
+
+    def test_operai_agricoli_additional_months(self) -> None:
+        """Contract has 14 additional months (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 9, 1)) == Decimal(
+            14
+        )
+
+    def test_operai_agricoli_hourly_divisor(self) -> None:
+        """Hourly divisor is 169 (39 h/week x 52 / 12)."""
+        ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 9, 1)) == Decimal(169)
+
+    def test_operai_agricoli_no_fixed_allowances(self) -> None:
+        """All levels have no fixed allowances (conglobated salary model)."""
+        ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_operai_agricoli_tax_sector(self) -> None:
+        """Contract declares AGRICOLTURA tax sector."""
+        ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
+        assert ccnl.meta.tax_sector == TaxSector.AGRICOLTURA
+
+    def test_operai_agricoli_seniority_cadence(self) -> None:
+        """Seniority: triennale (36 months), maximum 5 scatti."""
+        ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 5
