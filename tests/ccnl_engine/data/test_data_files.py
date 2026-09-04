@@ -4669,3 +4669,86 @@ class TestLoadOperaiAgricoli:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 5
+
+
+class TestLoadChimicaAffiniPmiUnionichimica:
+    """Tests for CCNL Chimica e Affini PMI Unionchimica Confapi (B018)."""
+
+    def test_chimica_pmi_loads(self) -> None:
+        """Contract loads with correct id and CNEL code B018."""
+        ccnl = load_ccnl("chimica-affini-pmi-unionchimica.json")
+        assert ccnl.meta.id == "chimica-affini-pmi-unionchimica"
+        assert ccnl.meta.cnel_code == "B018"
+
+    def test_chimica_pmi_has_8_levels(self) -> None:
+        """Contract has exactly 8 levels: A through H."""
+        ccnl = load_ccnl("chimica-affini-pmi-unionchimica.json")
+        assert len(ccnl.levels) == 8
+        assert {lv.code for lv in ccnl.levels} == {
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+        }
+
+    def test_chimica_pmi_level_d_salary_2026(self) -> None:
+        """Level D base salary at Jan 2026 is 2267.00 EUR."""
+        ccnl = load_ccnl("chimica-affini-pmi-unionchimica.json")
+        lv_d = next(lv for lv in ccnl.levels if lv.code == "D")
+        assert lv_d.base_salary.value_at(date(2026, 9, 1)) == Decimal("2267.00")
+
+    def test_chimica_pmi_level_h_salary_2026(self) -> None:
+        """Level H base salary (minimum only) at Jan 2026 is 3168.51 EUR."""
+        ccnl = load_ccnl("chimica-affini-pmi-unionchimica.json")
+        lv_h = next(lv for lv in ccnl.levels if lv.code == "H")
+        assert lv_h.base_salary.value_at(date(2026, 9, 1)) == Decimal("3168.51")
+
+    def test_chimica_pmi_level_ordering(self) -> None:
+        """Level A has lowest order; level H has highest order."""
+        ccnl = load_ccnl("chimica-affini-pmi-unionchimica.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "A"
+        assert by_order[-1].code == "H"
+
+    def test_chimica_pmi_additional_months(self) -> None:
+        """Contract has 13 additional months (tredicesima only)."""
+        ccnl = load_ccnl("chimica-affini-pmi-unionchimica.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 9, 1)) == Decimal(
+            13
+        )
+
+    def test_chimica_pmi_hourly_divisor(self) -> None:
+        """Hourly divisor is 175 (Chimica-Concia sub-sector)."""
+        ccnl = load_ccnl("chimica-affini-pmi-unionchimica.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 9, 1)) == Decimal(175)
+
+    def test_chimica_pmi_fixed_allowances(self) -> None:
+        """H has IND_FUN=160.00; G/F/E have AGG_PERSONALE; A-D have none."""
+        ccnl = load_ccnl("chimica-affini-pmi-unionchimica.json")
+        by_code = {lv.code: lv for lv in ccnl.levels}
+        h_codes = [a.code for a in by_code["H"].fixed_allowances]
+        assert h_codes == ["IND_FUN"]
+        h_val = by_code["H"].fixed_allowances[0].monthly.value_at(date(2026, 9, 1))
+        assert h_val == Decimal("160.00")
+        for code in ("G", "F", "E"):
+            fa = by_code[code].fixed_allowances
+            assert len(fa) == 1
+            assert fa[0].code == "AGG_PERSONALE"
+        for code in ("A", "B", "C", "D"):
+            assert by_code[code].fixed_allowances == []
+
+    def test_chimica_pmi_tax_sector(self) -> None:
+        """Contract declares INDUSTRIA tax sector."""
+        ccnl = load_ccnl("chimica-affini-pmi-unionchimica.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_chimica_pmi_seniority_cadence(self) -> None:
+        """Seniority: biennale (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("chimica-affini-pmi-unionchimica.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5

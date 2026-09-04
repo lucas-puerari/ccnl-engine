@@ -1,0 +1,257 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "chimica-affini-pmi-unionchimica",
+    "name": "CCNL Chimica e Affini PMI — Unionchimica Confapi",
+    "cnel_code": "B018",
+    "sector": "chimica",
+    "tax_sector": "industria",
+    "signatories": [
+      "Unionchimica — Unione Italiana Industria Chimica PMI (Confapi)",
+      "FILCTEM-CGIL — Federazione Italiana Lavoratori Chimica Tessile Energia Manifatturiero",
+      "FEMCA-CISL — Federazione Energia Moda Chimica Affini",
+      "UILTEC-UIL — Unione Italiana Lavoratori Tecnologie Energie Chimica"
+    ],
+    "sources": [
+      {
+        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181",
+        "type": "table",
+        "agreement_date": "2026-02-23",
+        "notes": "Jan 2026 tabelle retributive for CNEL B018 Unionchimica Confapi"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-04T00:00:00",
+      "human_reviewed": true
+    },
+    "agreement_date": "2026-02-23",
+    "validity": {
+      "valid_from": "2026-01-01",
+      "valid_until": "2028-12-31"
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "notes": [
+      "INFO: SALARY MODEL: split. base_salary = minimum contractual (minimo tabellare). Levels H, G, F, E carry fixed_allowances: H has indennità di funzione (IND_FUN, EUR 160.00); G, F, E have aggiunta personale (AGG_PERSONALE, EUR 25.82 / 15.49 / 5.16). All allowances are TFR-relevant and contribution-relevant (default).",
+      "INFO: RENEWAL: Unionchimica Confapi CCNL signed 23 February 2026, effective 1 January 2026 – 31 December 2028. Five tranches: 1 Jan 2026, 1 Apr 2027, 1 Dec 2027, 1 Jun 2028, 1 Dec 2028. Source: kitech.it B018.",
+      "INFO: LEVELS: 8 professional levels A (lowest) to H (highest). Scala parametrale: H=100 reference, descending. All levels confirmed from kitech.it Jan 2026 table.",
+      "INFO: CNEL CODE: B018 (Unionchimica Confapi). Distinct from B011 (Federchimica) which covers large-firm chemical-pharmaceutical. B018 covers PMI (piccole e medie imprese) chemical sector.",
+      "INFO: TAX SECTOR: INDUSTRIA (existing). Standard INPS industria rates apply (2026-industria.json). No bilateral fund substitutes INPS in this contract.",
+      "INFO: ADDITIONAL MONTHS: 13 (tredicesima only). Source: kitech.it B018 mensilità aggiuntive field.",
+      "INFO: SENIORITY: biennale (24 months), maximum 5 scatti. Per-level EUR amounts from kitech.it Jan 2026 table: A=10.33, B=11.88, C=12.91, D=13.94, E=15.49, F=18.08, G=20.66, H=23.24.",
+      "SIMPLIFICATION: SINGLE TRANCHE ONLY. Only the 1 January 2026 tranche is modelled. The 4 subsequent tranches (Apr 2027, Dec 2027, Jun 2028, Dec 2028) are not accessible from primary source at time of extraction. Update with official amounts when the renewal text becomes available.",
+      "SIMPLIFICATION: CHIMICA-CONCIA SUB-SECTOR ONLY. Unionchimica Confapi covers three sub-sectors with different hourly divisors: Chimica-Concia (175), Plastica-Gomma (169), Abrasivi-Ceramica-Vetro (173). Only Chimica-Concia (divisor 175) is modelled. The level codes and salary amounts are the same across sub-sectors; only the hourly divisor differs.",
+      "SIMPLIFICATION: HOURLY DIVISOR AGGREGATOR-SOURCED. The divisor of 175 for Chimica-Concia is taken from kitech.it (aggregator) and consistent with CCNL Federchimica B011 which also uses 175 for the chemical-pharmaceutical sub-sector. No official hourly rate column was available to back-calculate the divisor from primary source.",
+      "MISSING: APPRENTICESHIP RULES. The B018 2026 renewal apprenticeship provisions (percentage or under-classification, period boundaries, percentages) could not be confirmed from an accessible primary source. The 2019 text described a 36-month under-classification apprenticeship with two periods (0-10 months at initial level, 10+ months at next level), but this pre-dates the 2026 renewal and may have been amended. Apprenticeship is not modelled (empty list). Set layer_2 to 'implemented' and add the track when the 2026 renewal text is verified."
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "175"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "A": {
+          "periods": [
+            { "valid_from": "2026-01-01", "valid_until": null, "value": "10.33" }
+          ]
+        },
+        "B": {
+          "periods": [
+            { "valid_from": "2026-01-01", "valid_until": null, "value": "11.88" }
+          ]
+        },
+        "C": {
+          "periods": [
+            { "valid_from": "2026-01-01", "valid_until": null, "value": "12.91" }
+          ]
+        },
+        "D": {
+          "periods": [
+            { "valid_from": "2026-01-01", "valid_until": null, "value": "13.94" }
+          ]
+        },
+        "E": {
+          "periods": [
+            { "valid_from": "2026-01-01", "valid_until": null, "value": "15.49" }
+          ]
+        },
+        "F": {
+          "periods": [
+            { "valid_from": "2026-01-01", "valid_until": null, "value": "18.08" }
+          ]
+        },
+        "G": {
+          "periods": [
+            { "valid_from": "2026-01-01", "valid_until": null, "value": "20.66" }
+          ]
+        },
+        "H": {
+          "periods": [
+            { "valid_from": "2026-01-01", "valid_until": null, "value": "23.24" }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "A",
+      "order": 1,
+      "description": "Level A — entry workers, unskilled, first-time employees",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2026-01-01", "valid_until": null, "value": "1690.69" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "operaio"
+    },
+    {
+      "code": "B",
+      "order": 2,
+      "description": "Level B — semi-skilled operai and lower-grade impiegati",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2026-01-01", "valid_until": null, "value": "1830.43" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "operaio"
+    },
+    {
+      "code": "C",
+      "order": 3,
+      "description": "Level C — skilled operai, standard impiegati",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2026-01-01", "valid_until": null, "value": "2033.35" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "operaio"
+    },
+    {
+      "code": "D",
+      "order": 4,
+      "description": "Level D — highly skilled operai, senior impiegati",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2026-01-01", "valid_until": null, "value": "2267.00" }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato"
+    },
+    {
+      "code": "E",
+      "order": 5,
+      "description": "Level E — specialist workers, junior technical staff",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2026-01-01", "valid_until": null, "value": "2444.03" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "AGG_PERSONALE",
+          "description": "Aggiunta personale livello E",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2026-01-01", "valid_until": null, "value": "5.16" }
+            ]
+          }
+        }
+      ],
+      "category": "impiegato"
+    },
+    {
+      "code": "F",
+      "order": 6,
+      "description": "Level F — senior technical staff, team leaders",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2026-01-01", "valid_until": null, "value": "2703.06" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "AGG_PERSONALE",
+          "description": "Aggiunta personale livello F",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2026-01-01", "valid_until": null, "value": "15.49" }
+            ]
+          }
+        }
+      ],
+      "category": "impiegato"
+    },
+    {
+      "code": "G",
+      "order": 7,
+      "description": "Level G — managers, senior professionals, department heads",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2026-01-01", "valid_until": null, "value": "2973.58" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "AGG_PERSONALE",
+          "description": "Aggiunta personale livello G",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2026-01-01", "valid_until": null, "value": "25.82" }
+            ]
+          }
+        }
+      ],
+      "category": "impiegato"
+    },
+    {
+      "code": "H",
+      "order": 8,
+      "description": "Level H — senior managers, top technical executives (quadri)",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2026-01-01", "valid_until": null, "value": "3168.51" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_FUN",
+          "description": "Indennita di funzione livello H",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2026-01-01", "valid_until": null, "value": "160.00" }
+            ]
+          }
+        }
+      ],
+      "category": "quadro"
+    }
+  ],
+  "apprenticeship": []
+}
