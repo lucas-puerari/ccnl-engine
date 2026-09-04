@@ -47,7 +47,6 @@ print(result.employer_cost_annual)  # → Decimal('...')
 |--------|---------|
 | ✅ | Implemented |
 | ⚠️ | Partial (documented simplifications or missing sub-tracks) |
-
 | 🤖 | Extraction: extracted automatically via Claude Code — no manual human review |
 | 🧑 | Extraction: verified manually against the official source |
 
