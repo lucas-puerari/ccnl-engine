@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Italian CCNL payroll engine: gross-to-net and employer cost from first principles"
 readme = "README.md"
 license = { text = "MIT" }
-authors = [{ name = "Intella", email = "dev@intella.tech" }]
+authors = [{ name = "Lucas Puerari", email = "puerari.lucas@gmail.com" }]
 keywords = ["ccnl", "payroll", "italy", "labor", "hrm"]
 classifiers = [
     "Development Status :: 3 - Alpha",
