@@ -1,6 +1,6 @@
 # Engine
 
-Core computation functions and request/result models.
+Core computation functions and types.
 
 ## compute
 
@@ -12,7 +12,7 @@ Core computation functions and request/result models.
 
 ## Payslip
 
-::: ccnl_engine.engine.result
+::: ccnl_engine.engine.payslip
     options:
       members:
         - Payslip
