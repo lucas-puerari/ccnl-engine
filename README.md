@@ -131,6 +131,10 @@ The 59 contracts above cover approximately **14.3 million workers** (sum of per-
 
 Each limitation is documented in the relevant data file's `coverage.notes` field and marked with `# SIMPLIFICATION:` comments in the engine source.
 
+## Development
+
+This library was built with AI coding assistants — [Claude Code](https://claude.ai/code), [Codex](https://openai.com/codex), and [Opencode](https://opencode.ai). All generated code was reviewed and is covered by the test suite.
+
 ## Disclaimer
 
 This library is not legal or tax advice. Figures are computed from publicly available CCNL tables and statutory rates as of the dates indicated in the data files. Always verify results against official sources or a qualified payroll professional.
