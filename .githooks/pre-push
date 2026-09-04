@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 # Enforce branch naming convention before push, and block direct pushes to main.
+# Tags (refs/tags/*) pushed from main are allowed — they trigger the release pipeline.
 BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null)
 
-# Block direct pushes to main
+# Allow tag pushes (stdin contains "refs/tags/…")
+while read local_ref local_sha remote_ref remote_sha; do
+  if echo "$remote_ref" | grep -q '^refs/tags/'; then
+    exit 0
+  fi
+done
+
+# Block direct branch pushes to main
 if [ "$BRANCH" = "main" ]; then
   echo "❌  Push rejected: direct push to 'main' is not allowed."
   echo "    Open a branch and merge via PR instead."
