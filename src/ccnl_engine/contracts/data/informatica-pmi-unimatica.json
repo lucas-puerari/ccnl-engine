@@ -1,0 +1,514 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "informatica-pmi-unimatica",
+    "name": "CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico",
+    "cnel_code": "G029",
+    "sector": "informatica-servizi-innovativi",
+    "tax_sector": "industria",
+    "signatories": [
+      "Unigec Confapi",
+      "Unimatica Confapi",
+      "SLC-CGIL",
+      "Fistel-CISL",
+      "Uilcom-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
+        "type": "table",
+        "agreement_date": "2025-04-14"
+      },
+      {
+        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=302",
+        "type": "table",
+        "agreement_date": "2025-04-14"
+      },
+      {
+        "url": "https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf",
+        "type": "full_text",
+        "agreement_date": "2021-03-09"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-04T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      "INFO: SCOPE: models the SETTORE INFORMATICO E SERVIZI INNOVATIVI sub-sector of G029 only (levels Q, 1–10). The SETTORE GRAFICO-EDITORIALE and SETTORE CARTARIO-CARTOTECNICO sub-sectors of G029 are NOT modelled here. Applicable to ICT companies covered by Art. 1 of the CCNL.",
+      "INFO: SALARY MODEL — CONGLOBATED: base_salary values are the total contractual retribuzione mensile (paga base + contingenza + EDR + indennità di funzione for Q) at each tranche date. Contingenza per level is frozen since 1994 and sourced from Allegato 24 of the G029 CCNL 09/03/2021 PDF. EDR = EUR 10.33 (all levels). Q level includes indennità di funzione = EUR 51.65 introduced from 01/01/2025 (sourced from kitech.it April 2025 tables, component-level breakdown). fixed_allowances is empty for all levels.",
+      "INFO: CONGLOBATED CHECK (non-circular): paga_base values from the April 14 2025 corrected tables (cdltorino.it) plus frozen contingenza (Allegato 24 PDF) plus EDR 10.33 independently sum to the kitech Jan 2026 totals to within EUR 0.01 on all 11 levels. Example at Jan 2026: level 5 paga_base 1529.38 + contingenza 525.47 + EDR 10.33 = 2065.18 (kitech ✓); level 10: 903.38 + 512.87 + 10.33 = 1426.58 (kitech ✓); Q: 2242.26 + 541.65 + 10.33 + 51.65 = 2845.89 (kitech ✓). The kitech values ARE the conglobated total, not paga_base only.",
+      "INFO: HOURLY DIVISOR = 169. Source: Art. 113 G029 CCNL 2021 PDF ('dal 1° gennaio 2019 si dividerà per 169'). Independent cross-check: contractual weekly hours = 39 h from 01/01/2019 (same Art. text); 39 × 52 / 12 = 169.00 exactly.",
+      "INFO: PAR COEFFICIENTS from Art. 116 G029 CCNL 2021 PDF (Settori Grafico-Editoriale, Informatico-Servizi Innovativi): Q=248, 1=247, 2=209, 3=195, 4=182, 5=169, 7=133, 8=125, 9=114, 10=100. CORRECTION: level 6 PAR was changed from 156 (2021 CCNL) to 150 in the April 14 2025 verbale integrativo corrected tables. This is confirmed by cdltorino.it rettifica article (PAR=150 shown explicitly) and is consistent with the kitech Jan 2026 total for level 6 (1407.71 + 523.01 + 10.33 = 1941.05). All base_salary values are computed from official paga_base (cdltorino April 2025) + frozen contingenza (Allegato 24 CCNL PDF) + EDR 10.33.",
+      "INFO: TRANCHE DATES: 01/01/2025 (first, effective retroactively from April 2025 per verbale); 01/01/2026 (second); 01/01/2027 (third). Reference level 5 increases: +60, +60, +30 EUR paga base. Confirmed by search results (bollettinoadapt.it, fiscoetasse.com).",
+      "INFO: ADDITIONAL MONTHS: 13 (tredicesima only). Source: Art. 97 G029 CCNL 2021 PDF (tredicesima mensilità). No quattordicesima article exists in G029.",
+      "INFO: SENIORITY: 5 scatti biennali (cadence 24 months). Source: Art. 45 G029 CCNL 2021 PDF ('per ogni biennio, e fino ad un massimo di 5 bienni'). Per-level amounts from same article (effective from 01/01/2002 update). kitech April 2025 table confirms same amounts unchanged in the 2025 renewal.",
+      "INFO: INPS: reuses 2026-industria.json (Confapi/industria sector). Unimatica-Confapi belongs to industria. CIGO applies (D.Lgs. 148/2015). No Cassa Edile or bilateral fund substituting INPS contributions.",
+      "INFO: APPRENTICESHIP GENERAL TRACK (Art. 52 CCNL, para. C Apprendistato professionalizzante): first period 2 levels below destination; second period 1 level below; third period classification stays 1 below but retribuzione is at destination level (levels_below=0 in engine, which models pay, not classification). Duration options: 36, 30 or 24 months by agreement. The 36-month (12+12+12) track is modelled as representative.",
+      "SIMPLIFICATION: APPRENTICESHIP GENERAL TRACK DURATION: the CCNL offers three duration options (36/30/24 months) by agreement between the parties; no per-destination-level assignment was found in the available text. The 36-month track (12+12+12) is used as representative for destination levels 1, 2, 3, 4, 5, 6, 7. Real durations may be shorter by agreement.",
+      "SIMPLIFICATION: APPRENTICESHIP — QUADRO (Q) NOT MODELLED AS DESTINATION: Art. 52 and Art. 64 contain no affirmative listing of Q as an apprendistato professionalizzante destination. Following repo precedent (telecomunicazioni-asstel, gomma-plastica) where Quadri are excluded from apprenticeship destinations when no explicit contractual text lists them, Q is omitted from destination_levels of the general track.",
+      "INFO: APPRENTICESHIP AUTOMATICO TRACK (Art. 52 CCNL, settore informatico-servizi innovativi Area Tecnica): destination level 8 → entry at level 9 (1 below), 18 months; destination level 9 → entry at level 10 (1 below), 18 months. After permanent hire, destination-level 8 apprentices spend 6 months at level 9 before final assignment (this post-apprenticeship transition is not modelled; it occurs outside the apprendistato period).",
+      "INFO: EDR ROLL-UP: rolling EDR (EUR 10.33) into base_salary is safe for G029 because G029 uses under_classification apprenticeship, meaning the apprentice pay is determined by the classified level's base_salary directly. The EDR percentage-of-base exemption (Art. 3 L. 537/1993) does not apply to under_classification."
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "169"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "Q": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "16.01"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "16.01"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "16.01"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "14.46"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "13.94"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "13.43"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "13.17"
+            }
+          ]
+        },
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "12.91"
+            }
+          ]
+        },
+        "8": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "12.39"
+            }
+          ]
+        },
+        "9": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "11.88"
+            }
+          ]
+        },
+        "10": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "11.62"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "10",
+      "order": 1,
+      "description": "Livello 10 — entry-level worker, simple tasks under close supervision (PAR 100)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1391.07"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1426.58"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1444.33"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "9",
+      "order": 2,
+      "description": "Livello 9 — basic technical tasks, limited autonomy (PAR 114)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1514.56"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1555.04"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1575.27"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "8",
+      "order": 3,
+      "description": "Livello 8 — qualified technical worker, applies skills to defined problems (PAR 125)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1612.01"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1656.39"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1678.58"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "7",
+      "order": 4,
+      "description": "Livello 7 — technical specialist, independent in structured contexts (PAR 133)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1705.20"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1752.42"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1776.03"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6",
+      "order": 5,
+      "description": "Livello 6 — senior technician, coordinates others in limited contexts (PAR 150)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1887.79"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1941.05"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1967.68"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 6,
+      "description": "Livello 5 — reference level (PAR 169); experienced specialist with consultancy role",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2005.18"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2065.18"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2095.18"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 7,
+      "description": "Livello 4 — senior specialist, responsible for team performance (PAR 182)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2121.11"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2185.72"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2218.03"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 8,
+      "description": "Livello 3 — senior professional, leads in complex environments (PAR 195)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2233.09"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2302.32"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2336.94"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 9,
+      "description": "Livello 2 — expert professional, strategic solutions, wide autonomy (PAR 209)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2356.73"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2430.93"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2468.03"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1",
+      "order": 10,
+      "description": "Livello 1 — top professional, full strategic responsibility (PAR 247)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2695.96"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2783.65"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2827.50"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "Q",
+      "order": 11,
+      "description": "Quadro — manager, exceptional leadership and innovative thinking (PAR 248 + indennità funzione 51.65)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2757.85"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2845.89"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2889.92"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_36",
+      "destination_levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "automatico_it",
+      "destination_levels": [
+        "8",
+        "9"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 1
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    }
+  ]
+}
