@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ccnl-engine · Demo</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f8f9fb;
+      --surface: #ffffff;
+      --border: #dde1e7;
+      --text: #1a1d23;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --green: #16a34a;
+      --red: #dc2626;
+      --amber: #d97706;
+      --radius: 10px;
+      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1117;
+        --surface: #1c1f27;
+        --border: #2d3140;
+        --text: #e8eaf0;
+        --muted: #9ca3af;
+        --accent: #3b82f6;
+        --accent-hover: #60a5fa;
+        --green: #22c55e;
+        --red: #f87171;
+        --amber: #fbbf24;
+      }
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    header .logo {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--accent);
+      letter-spacing: -.3px;
+    }
+    header .badge {
+      font-size: 11px;
+      font-weight: 600;
+      background: #dbeafe;
+      color: #1d4ed8;
+      border-radius: 4px;
+      padding: 2px 7px;
+    }
+    @media (prefers-color-scheme: dark) {
+      header .badge { background: #1e3a5f; color: #93c5fd; }
+    }
+    header .tagline {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Loading overlay */
+    #loading {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,17,23,.85);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      gap: 16px;
+    }
+    #loading.hidden { display: none; }
+    .spinner {
+      width: 40px; height: 40px;
+      border: 3px solid rgba(255,255,255,.15);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #loading-msg {
+      color: #e8eaf0;
+      font-size: 14px;
+      text-align: center;
+    }
+    .progress-bar {
+      width: 260px; height: 4px;
+      background: rgba(255,255,255,.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width .4s ease;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 16px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-grid .full { grid-column: 1 / -1; }
+    @media (max-width: 540px) { .form-grid { grid-template-columns: 1fr; } }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    select, input[type="number"], input[type="range"] {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 14px;
+      padding: 8px 10px;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      transition: border-color .15s;
+    }
+    select:focus, input[type="number"]:focus { border-color: var(--accent); }
+    select:disabled { opacity: .5; cursor: not-allowed; }
+    input[type="range"] {
+      padding: 0;
+      height: 6px;
+      cursor: pointer;
+      accent-color: var(--accent);
+    }
+    .range-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .range-val {
+      font-size: 14px;
+      font-weight: 600;
+      min-width: 42px;
+      text-align: right;
+      color: var(--accent);
+    }
+
+    #calc-btn {
+      margin-top: 8px;
+      width: 100%;
+      padding: 11px 24px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    #calc-btn:hover:not(:disabled) { background: var(--accent-hover); }
+    #calc-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+    /* Error banner */
+    #error-box {
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+      border-radius: var(--radius);
+      color: var(--red);
+      padding: 14px 18px;
+      font-size: 14px;
+      display: none;
+    }
+    @media (prefers-color-scheme: dark) {
+      #error-box { background: #2d1515; border-color: #991b1b; }
+    }
+
+    /* Results */
+    #results { display: none; }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 620px) { .kpi-grid { grid-template-columns: 1fr; } }
+
+    .kpi {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      text-align: center;
+    }
+    .kpi-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .kpi-value {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .kpi-value.green { color: var(--green); }
+    .kpi-value.amber { color: var(--amber); }
+    .kpi-value.red   { color: var(--red);   }
+    .kpi-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .breakdown-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .breakdown-table th {
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      padding: 0 0 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .breakdown-table th:last-child { text-align: right; }
+    .breakdown-table td {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .breakdown-table td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+    .breakdown-table tr:last-child td { border-bottom: none; }
+    .breakdown-table .section-head td {
+      font-weight: 700;
+      padding-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      border-bottom: none;
+    }
+    .breakdown-table .total-row td {
+      font-weight: 700;
+      border-top: 2px solid var(--border);
+      border-bottom: none;
+      padding-top: 10px;
+      font-size: 15px;
+    }
+
+    .note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 16px;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- Loading overlay -->
+<div id="loading">
+  <div class="spinner"></div>
+  <div id="loading-msg">Inizializzazione runtime Python…</div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+  </div>
+</div>
+
+<header>
+  <span class="logo">ccnl-engine</span>
+  <span class="badge">demo</span>
+  <span class="tagline">Calcolo RAL, netto e costo datore · Anno 2026</span>
+</header>
+
+<main>
+  <!-- Form -->
+  <div class="card">
+    <div class="card-title">Parametri di calcolo</div>
+    <div class="form-grid">
+      <div class="full">
+        <label for="sel-ccnl">CCNL</label>
+        <select id="sel-ccnl" disabled>
+          <option value="">— Caricamento in corso —</option>
+        </select>
+      </div>
+      <div class="full">
+        <label for="sel-level">Livello</label>
+        <select id="sel-level" disabled>
+          <option value="">— Seleziona prima il CCNL —</option>
+        </select>
+      </div>
+      <div>
+        <label for="sel-employment">Tipo contratto</label>
+        <select id="sel-employment">
+          <option value="permanent">Indeterminato</option>
+          <option value="fixed_term">Determinato</option>
+          <option value="apprentice">Apprendistato</option>
+        </select>
+      </div>
+      <div>
+        <label for="inp-employees">Dipendenti azienda</label>
+        <input type="number" id="inp-employees" value="50" min="1" max="10000" />
+      </div>
+      <div>
+        <label for="inp-seniority">Mesi di anzianità</label>
+        <input type="number" id="inp-seniority" value="0" min="0" max="600" />
+      </div>
+      <div id="div-apprentice-months" style="display:none">
+        <label for="inp-apprentice-months">Mesi nell'apprendistato</label>
+        <input type="number" id="inp-apprentice-months" value="0" min="0" max="60" />
+      </div>
+      <div class="full">
+        <label for="inp-parttime">Part-time</label>
+        <div class="range-row">
+          <input type="range" id="inp-parttime" min="10" max="100" value="100" step="5" />
+          <span class="range-val" id="parttime-val">100%</span>
+        </div>
+      </div>
+    </div>
+    <button id="calc-btn" disabled>Calcola</button>
+  </div>
+
+  <!-- Error -->
+  <div id="error-box"></div>
+
+  <!-- Results -->
+  <div id="results">
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">Lordo mensile</div>
+        <div class="kpi-value" id="kpi-gross-monthly">—</div>
+        <div class="kpi-sub" id="kpi-gross-annual"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Netto mensile</div>
+        <div class="kpi-value green" id="kpi-net-monthly">—</div>
+        <div class="kpi-sub" id="kpi-net-annual"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Costo datore annuo</div>
+        <div class="kpi-value amber" id="kpi-cost-annual">—</div>
+        <div class="kpi-sub">comprensivo di TFR e contributi</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Dettaglio</div>
+      <table class="breakdown-table">
+        <colgroup>
+          <col style="width:60%"/>
+          <col style="width:20%"/>
+          <col style="width:20%"/>
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Voce</th>
+            <th style="text-align:right">Mensile</th>
+            <th style="text-align:right">Annuale</th>
+          </tr>
+        </thead>
+        <tbody id="breakdown-body"></tbody>
+      </table>
+      <p class="note" id="irpef-note"></p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <a href="https://github.com/lucas-puerari/ccnl-engine" target="_blank">ccnl-engine</a>
+  di <a href="https://pypi.org/project/ccnl-engine/" target="_blank">Lucas Puerari</a>
+  · Calcolo indicativo anno 2026 · Non costituisce consulenza fiscale o previdenziale
+</footer>
+
+<script>
+// ---- helpers ---------------------------------------------------------------
+
+const fmt = (v, decimals = 0) =>
+  new Intl.NumberFormat("it-IT", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(v);
+
+const fmtM = v => fmt(v, 2);
+
+function setProgress(pct, msg) {
+  document.getElementById("progress-fill").style.width = pct + "%";
+  if (msg) document.getElementById("loading-msg").textContent = msg;
+}
+
+function hideLoading() {
+  document.getElementById("loading").classList.add("hidden");
+}
+
+function showError(msg) {
+  const box = document.getElementById("error-box");
+  box.textContent = msg;
+  box.style.display = "block";
+  document.getElementById("results").style.display = "none";
+}
+
+function clearError() {
+  const box = document.getElementById("error-box");
+  box.style.display = "none";
+}
+
+// ---- part-time slider -------------------------------------------------------
+
+const slider = document.getElementById("inp-parttime");
+const ptVal  = document.getElementById("parttime-val");
+slider.addEventListener("input", () => { ptVal.textContent = slider.value + "%"; });
+
+// ---- apprentice toggle ------------------------------------------------------
+
+document.getElementById("sel-employment").addEventListener("change", e => {
+  const isApp = e.target.value === "apprentice";
+  document.getElementById("div-apprentice-months").style.display = isApp ? "" : "none";
+  document.getElementById("inp-seniority").closest("div").style.display = isApp ? "none" : "";
+});
+
+// ---- CCNL / level selects ---------------------------------------------------
+
+let pyodideReady = false;
+
+async function populateCcnls(pyodide) {
+  const raw = pyodide.runPython("list_ccnls()");
+  const ccnls = JSON.parse(raw);
+  const sel = document.getElementById("sel-ccnl");
+  sel.innerHTML = '<option value="">— Seleziona CCNL —</option>';
+  for (const c of ccnls) {
+    const opt = document.createElement("option");
+    opt.value = c.file;
+    opt.textContent = c.name;
+    sel.appendChild(opt);
+  }
+  sel.disabled = false;
+}
+
+async function onCcnlChange(pyodide) {
+  const file = document.getElementById("sel-ccnl").value;
+  const levelSel = document.getElementById("sel-level");
+  const btn = document.getElementById("calc-btn");
+  levelSel.innerHTML = '<option value="">— Seleziona livello —</option>';
+  levelSel.disabled = true;
+  btn.disabled = true;
+  if (!file) return;
+
+  const raw = pyodide.runPython(`load_ccnl_levels(${JSON.stringify(file)})`);
+  const levels = JSON.parse(raw);
+  for (const lv of levels) {
+    const opt = document.createElement("option");
+    opt.value = lv.code;
+    opt.textContent = `${lv.code} — ${lv.description}`;
+    levelSel.appendChild(opt);
+  }
+  levelSel.disabled = false;
+  levelSel.addEventListener("change", onLevelChange);
+}
+
+function onLevelChange() {
+  const hasLevel = document.getElementById("sel-level").value !== "";
+  document.getElementById("calc-btn").disabled = !hasLevel;
+}
+
+// ---- compute ---------------------------------------------------------------
+
+function doCompute(pyodide) {
+  clearError();
+  const file       = document.getElementById("sel-ccnl").value;
+  const levelCode  = document.getElementById("sel-level").value;
+  const empType    = document.getElementById("sel-employment").value;
+  const employees  = parseInt(document.getElementById("inp-employees").value) || 50;
+  const ptPct      = parseInt(slider.value) / 100;
+  const senMonths  = parseInt(document.getElementById("inp-seniority").value) || 0;
+  const appMonths  = parseInt(document.getElementById("inp-apprentice-months").value) || 0;
+
+  const raw = pyodide.runPython(
+    `compute_salary(` +
+    `${JSON.stringify(file)}, ` +
+    `${JSON.stringify(levelCode)}, ` +
+    `${JSON.stringify(empType)}, ` +
+    `${employees}, ` +
+    `${ptPct}, ` +
+    `${senMonths}, ` +
+    `${appMonths})`
+  );
+  const r = JSON.parse(raw);
+
+  if (r.error) {
+    showError("Errore: " + r.error);
+    return;
+  }
+
+  // KPIs
+  document.getElementById("kpi-gross-monthly").textContent = fmtM(r.gross_monthly);
+  document.getElementById("kpi-gross-annual").textContent  = fmt(r.gross_annual) + " annui";
+  document.getElementById("kpi-net-monthly").textContent   = fmtM(r.net_monthly);
+  document.getElementById("kpi-net-annual").textContent    = fmt(r.net_annual) + " annui";
+  document.getElementById("kpi-cost-annual").textContent   = fmt(r.employer_cost_annual);
+
+  // Breakdown table
+  const body = document.getElementById("breakdown-body");
+  const addMonths = r.gross_annual / r.gross_monthly; // back-calculate mensilitá
+
+  function row(label, monthly, annual, cls = "") {
+    const tr = document.createElement("tr");
+    if (cls) tr.className = cls;
+    tr.innerHTML =
+      `<td>${label}</td>` +
+      `<td>${monthly !== null ? fmtM(monthly) : "—"}</td>` +
+      `<td>${annual  !== null ? fmt(annual)   : "—"}</td>`;
+    return tr;
+  }
+  function sectionHead(label) {
+    const tr = document.createElement("tr");
+    tr.className = "section-head";
+    tr.innerHTML = `<td colspan="3">${label}</td>`;
+    return tr;
+  }
+  function totalRow(label, monthly, annual) {
+    const tr = row(label, monthly, annual, "total-row");
+    return tr;
+  }
+
+  body.innerHTML = "";
+  body.appendChild(sectionHead("Retribuzione"));
+  body.appendChild(row("Base mensile", r.base_monthly, null));
+  if (r.seniority_monthly > 0)
+    body.appendChild(row(`Scatti anzianità (×${r.seniority_count})`, r.seniority_monthly, null));
+  if (r.allowances_monthly > 0)
+    body.appendChild(row("Indennità mensili", r.allowances_monthly, null));
+  if (r.apprenticeship_pct !== null)
+    body.appendChild(row(`Percentuale apprendistato`, null, null));
+  body.appendChild(row("Paga oraria", r.hourly_rate, null));
+  body.appendChild(totalRow("Lordo", r.gross_monthly, r.gross_annual));
+
+  body.appendChild(sectionHead("A carico del lavoratore"));
+  body.appendChild(row("INPS", null, r.inps_employee_annual));
+  body.appendChild(row("IRPEF netta", null, r.irpef_net));
+  body.appendChild(totalRow("Netto in busta", r.net_monthly, r.net_annual));
+
+  body.appendChild(sectionHead("A carico del datore"));
+  body.appendChild(row("INPS datore", null, r.inps_employer_annual));
+  if (r.employer_funds_annual > 0)
+    body.appendChild(row("Fondi contrattuali", null, r.employer_funds_annual));
+  body.appendChild(row("TFR annuale", null, r.tfr_annual));
+  body.appendChild(totalRow("Costo totale datore", null, r.employer_cost_annual));
+
+  // IRPEF note
+  const note = document.getElementById("irpef-note");
+  if (!r.employer_withholds_irpef) {
+    note.textContent =
+      "Il datore di lavoro non è sostituto d'imposta (es. lavoro domestico). " +
+      "L'IRPEF è indicativa: il lavoratore la versa direttamente.";
+    note.style.display = "block";
+  } else {
+    note.style.display = "none";
+  }
+
+  document.getElementById("results").style.display = "block";
+  clearError();
+}
+
+// ---- Pyodide boot ----------------------------------------------------------
+
+async function main() {
+  try {
+    setProgress(5, "Caricamento Pyodide…");
+
+    // Load Pyodide
+    const pyodide = await loadPyodide();
+    setProgress(30, "Installazione dipendenze Python…");
+
+    // pydantic is bundled in Pyodide — load it without micropip
+    await pyodide.loadPackage(["pydantic"]);
+    setProgress(60, "Installazione ccnl-engine…");
+
+    // Install ccnl-engine from PyPI (pure-Python wheel; pydantic already loaded above)
+    const micropip = pyodide.pyimport("micropip");
+    await micropip.install("ccnl-engine");
+    setProgress(80, "Caricamento codice applicazione…");
+
+    // Load the glue module
+    const resp = await fetch("./app.py");
+    if (!resp.ok) throw new Error("app.py non trovato (" + resp.status + ")");
+    const appSrc = await resp.text();
+    pyodide.runPython(appSrc);
+    setProgress(100, "Pronto");
+
+    // Wire UI
+    await populateCcnls(pyodide);
+    document.getElementById("sel-ccnl").addEventListener("change", () => onCcnlChange(pyodide));
+    document.getElementById("calc-btn").addEventListener("click", () => doCompute(pyodide));
+
+    pyodideReady = true;
+    setTimeout(hideLoading, 300);
+
+  } catch (err) {
+    document.getElementById("loading-msg").textContent = "Errore: " + err.message;
+    document.getElementById("loading").style.background = "rgba(50,10,10,.9)";
+  }
+}
+
+main();
+</script>
+
+<!-- Pyodide from jsDelivr -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.27.0/full/pyodide.js"></script>
+</body>
+</html>
