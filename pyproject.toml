@@ -26,6 +26,10 @@ Repository = "https://github.com/lucas-puerari/ccnl-engine"
 "Bug Tracker" = "https://github.com/lucas-puerari/ccnl-engine/issues"
 
 [dependency-groups]
+docs = [
+    "mkdocstrings[python]>=0.27",
+    "zensical>=0.0.11",
+]
 dev = [
     "bandit>=1.9.4",
     "complexipy>=8.0",

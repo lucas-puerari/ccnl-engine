@@ -1,4 +1,4 @@
-name: Deploy demo to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -28,14 +28,18 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v5
 
-      - name: Assemble site
+      - name: Assemble demo
         run: |
           mkdir -p _site
           cp demo/index.html _site/index.html
           cp demo/app.py     _site/app.py
-          # GitHub Pages requires this file to serve paths without a 404 on
-          # the root; the Jekyll processing bypass is also needed.
           touch _site/.nojekyll
+
+      - name: Install doc dependencies
+        run: uv pip install -e . "zensical>=0.0.11" "mkdocstrings[python]>=0.27"
+
+      - name: Build docs
+        run: uv run zensical build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
