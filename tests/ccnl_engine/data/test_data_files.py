@@ -104,12 +104,16 @@ class TestLoadYearRules:
         """Firms <=15 employees get the small-employer tier for industria."""
         yr_small = load_year_rules(2026, TaxSector.INDUSTRIA, 15)
         yr_medium = load_year_rules(2026, TaxSector.INDUSTRIA, 16)
+        assert yr_small.inps is not None
+        assert yr_medium.inps is not None
         assert yr_small.inps.employer_rate < yr_medium.inps.employer_rate
 
     def test_employer_tier_boundary(self) -> None:
         """Firms exactly at tier boundary are included in the lower tier."""
         yr_at = load_year_rules(2026, TaxSector.TERZIARIO, 50)
         yr_above = load_year_rules(2026, TaxSector.TERZIARIO, 51)
+        assert yr_at.inps is not None
+        assert yr_above.inps is not None
         assert yr_at.inps.employer_rate < yr_above.inps.employer_rate
 
     def test_missing_year_raises(self) -> None:

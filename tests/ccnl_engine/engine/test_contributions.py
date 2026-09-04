@@ -2,11 +2,13 @@
 
 from decimal import Decimal
 
+import pytest
+
 from ccnl_engine.engine.contributions import inps_contribution, resolve_rates, tfr
 from ccnl_engine.engine.rounding import money
 from ccnl_engine.models.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.tax.models import YearRules
-from tests.conftest import make_year_rules
+from tests.conftest import make_domestic_year_rules, make_year_rules
 
 _D = Decimal
 
@@ -141,3 +143,13 @@ class TestTfr:
     def test_standard(self) -> None:
         """TFR = base / 13.5, rounded to nearest cent."""
         assert tfr(_D("24972.50"), _rules()) == _D("1849.81")
+
+
+class TestResolveRatesGuard:
+    """resolve_rates() raises when rules.inps or rules.apprentice is None."""
+
+    def test_none_inps_raises(self) -> None:
+        """Domestic rules (inps=None) must raise TypeError from resolve_rates."""
+        domestic_rules = make_domestic_year_rules()
+        with pytest.raises(TypeError, match="resolve_rates requires standard INPS"):
+            resolve_rates(domestic_rules, Permanent(), None)

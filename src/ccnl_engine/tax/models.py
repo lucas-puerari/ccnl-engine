@@ -210,6 +210,91 @@ class _InpsEmployeeTier(BaseModel):
         return self
 
 
+class DomesticInpsHoursBracket(BaseModel):
+    """Flat-hour rates for domestic workers with > ``weekly_hours_threshold`` h/week.
+
+    Applies regardless of the worker's actual hourly wage; overrides all
+    ``DomesticInpsWageBracket`` entries when the hours condition is met.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    employee_per_hour: Decimal
+    employer_per_hour: Decimal
+    employer_per_hour_fixed_term: Decimal
+
+
+class DomesticInpsWageBracket(BaseModel):
+    """One hourly-wage bracket in the domestic INPS flat-rate table.
+
+    ``hourly_rate_up_to`` is inclusive; ``None`` on the last entry means
+    unbounded (covers any wage above the preceding bracket's threshold).
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    hourly_rate_up_to: Decimal | None
+    employee_per_hour: Decimal
+    employer_per_hour: Decimal
+    employer_per_hour_fixed_term: Decimal
+
+
+class DomesticInpsRates(BaseModel):
+    """Flat per-hour INPS contribution table for lavoro domestico.
+
+    The selector is two-dimensional (INPS Circ. 9/2026, table 1):
+    * ``weekly_hours > weekly_hours_threshold`` → use ``hours_bracket``,
+      regardless of the worker's actual wage.
+    * otherwise → walk ``wage_brackets`` in ascending ``hourly_rate_up_to``
+      order and use the first bracket whose threshold is not exceeded.
+
+    ``wage_brackets`` must end with one entry whose ``hourly_rate_up_to``
+    is ``None`` (the open-ended top bracket).
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    weekly_hours_threshold: int
+    hours_bracket: DomesticInpsHoursBracket
+    wage_brackets: list[DomesticInpsWageBracket]
+
+    def resolve(
+        self,
+        hourly_rate: Decimal,
+        weekly_hours: Decimal,
+        *,
+        is_fixed_term: bool,
+    ) -> tuple[Decimal, Decimal]:
+        """Return ``(employee_per_hour, employer_per_hour)`` for the scenario.
+
+        Returns:
+            A tuple of (employee contribution per hour, employer contribution
+            per hour) based on weekly_hours and hourly_rate.
+
+        Raises:
+            ValueError: If no wage bracket covers the given hourly_rate.
+        """
+        if weekly_hours > self.weekly_hours_threshold:
+            b = self.hours_bracket
+            er = (
+                b.employer_per_hour_fixed_term if is_fixed_term else b.employer_per_hour
+            )
+            return b.employee_per_hour, er
+        for bracket in self.wage_brackets:
+            if (
+                bracket.hourly_rate_up_to is None
+                or hourly_rate <= bracket.hourly_rate_up_to
+            ):
+                er = (
+                    bracket.employer_per_hour_fixed_term
+                    if is_fixed_term
+                    else bracket.employer_per_hour
+                )
+                return bracket.employee_per_hour, er
+        msg = f"no wage bracket covers hourly_rate={hourly_rate!r}"
+        raise ValueError(msg)
+
+
 class _InpsRawRates(BaseModel):
     """Raw INPS block from the tax JSON file, before tier resolution."""
 
@@ -279,7 +364,12 @@ class TfrRules(BaseModel):
 
 
 class _YearRulesRaw(BaseModel):
-    """Full deserialization model for a tax/data/<year>-<sector>.json file."""
+    """Full deserialization model for a tax/data/<year>-<sector>.json file.
+
+    Either ``inps`` + ``apprentice`` (standard percentage model) or
+    ``domestic_contributions`` (flat per-hour domestic model) must be present.
+    Both combinations are validated by ``_check_contribution_model``.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
@@ -288,14 +378,33 @@ class _YearRulesRaw(BaseModel):
     irpef_brackets: list[IrpefBracket]
     work_deduction_breakpoints: list[DeductionBreakpoint]
     fixed_term_additional_rate: Decimal
-    inps: _InpsRawRates
-    apprentice: _ApprenticeRawRates
+    inps: _InpsRawRates | None = None
+    apprentice: _ApprenticeRawRates | None = None
+    domestic_contributions: DomesticInpsRates | None = None
     tfr: TfrRules
     notes: list[str] = []
 
+    @model_validator(mode="after")
+    def _check_contribution_model(self) -> Self:
+        has_standard = self.inps is not None and self.apprentice is not None
+        has_domestic = self.domestic_contributions is not None
+        if not has_standard and not has_domestic:
+            msg = (
+                "tax file must contain either 'inps' + 'apprentice' "
+                "(standard model) or 'domestic_contributions' (domestic model)"
+            )
+            raise ValueError(msg)
+        return self
+
 
 class YearRules(BaseModel):
-    """All statutory tax and contribution parameters for a single fiscal year."""
+    """All statutory tax and contribution parameters for a single fiscal year.
+
+    ``inps`` and ``apprentice`` are set for standard sectors; ``None`` for
+    domestic sectors where ``domestic_contributions`` carries the flat-rate
+    table instead.  Exactly one contribution model is present (enforced by
+    the loader, which mirrors ``_YearRulesRaw._check_contribution_model``).
+    """
 
     model_config = ConfigDict(extra="forbid")
 
@@ -303,8 +412,9 @@ class YearRules(BaseModel):
     irpef_brackets: list[IrpefBracket]
     work_deduction_breakpoints: list[DeductionBreakpoint]
     fixed_term_additional_rate: Decimal
-    inps: InpsRates
-    apprentice: ApprenticeRates
+    inps: InpsRates | None = None
+    apprentice: ApprenticeRates | None = None
+    domestic_contributions: DomesticInpsRates | None = None
     tfr: TfrRules
     notes: list[str] = []
 

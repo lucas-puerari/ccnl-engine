@@ -11,7 +11,7 @@ from ccnl_engine.engine import irpef as _irpef
 from ccnl_engine.engine.result import ComputationResult
 from ccnl_engine.engine.rounding import money
 from ccnl_engine.models.apprenticeship import ApprenticeshipPercentage
-from ccnl_engine.models.employment import Apprentice
+from ccnl_engine.models.employment import Apprentice, FixedTerm
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
@@ -96,6 +96,8 @@ class ComputeRequest:
     ad_personam_monthly: Decimal = _ZERO
     category: LevelCategory | None = None
     ivs_ceiling_applies: bool = False
+    weekly_hours: Decimal | None = None
+    """Weekly hours worked. Required when rules.domestic_contributions is set."""
 
 
 def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> ComputationResult:
@@ -194,20 +196,14 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
     tfr_base = (
         gross_annual if ral_override else money(gross_annual - annual.excluded_from_tfr)
     )
-    rates = _contrib.resolve_rates(rules, request.employment, worker_category)
-    inps_employee_annual = _contrib.inps_contribution(
-        contribution_base,
-        rates.employee_rate,
-        rates.employee_ivs_rate,
+    hourly_divisor = ccnl.parameters.hourly_divisor.value_at(request.as_of)
+    inps_employee_annual, inps_employer_annual = _inps_contributions(
         rules,
-        ivs_ceiling_applies=request.ivs_ceiling_applies,
-    )
-    inps_employer_annual = _contrib.inps_contribution(
+        request,
+        gross_monthly,
+        hourly_divisor,
         contribution_base,
-        rates.employer_rate,
-        rates.employer_ivs_rate,
-        rules,
-        ivs_ceiling_applies=request.ivs_ceiling_applies,
+        worker_category,
     )
     employer_funds_annual = _employer_funds(
         ccnl, worker_category, contribution_base, request.as_of
@@ -228,7 +224,6 @@ def compute(ccnl: CCNL, rules: YearRules, request: ComputeRequest) -> Computatio
     employer_cost_annual = money(
         gross_annual + inps_employer_annual + employer_funds_annual + tfr_annual
     )
-    hourly_divisor = ccnl.parameters.hourly_divisor.value_at(request.as_of)
 
     return ComputationResult(
         ccnl_id=ccnl.meta.id,
@@ -470,6 +465,59 @@ def _annualise(
         excluded_from_contributions=money(excluded_contrib),
         excluded_from_tfr=money(excluded_tfr),
     )
+
+
+def _inps_contributions(
+    rules: YearRules,
+    request: ComputeRequest,
+    gross_monthly: Decimal,
+    hourly_divisor: Decimal,
+    contribution_base: Decimal,
+    worker_category: LevelCategory | None,
+) -> tuple[Decimal, Decimal]:
+    """Return (inps_employee_annual, inps_employer_annual) for the request.
+
+    Routes to the flat per-hour domestic model when
+    ``rules.domestic_contributions`` is set, otherwise uses the standard
+    percentage model via :func:`~ccnl_engine.engine.contributions.resolve_rates`.
+
+    Returns:
+        A tuple of (employee annual INPS contribution, employer annual
+        INPS contribution), both rounded to two decimal places.
+
+    Raises:
+        ValueError: If the domestic model is active and ``request.weekly_hours``
+            is None.
+    """
+    if rules.domestic_contributions is not None:
+        if request.weekly_hours is None:
+            msg = "weekly_hours is required when rules.domestic_contributions is set"
+            raise ValueError(msg)
+        hourly_rate_for_bracket = money(gross_monthly / hourly_divisor)
+        is_fixed_term = isinstance(request.employment, FixedTerm)
+        emp_ph, er_ph = rules.domestic_contributions.resolve(
+            hourly_rate_for_bracket,
+            request.weekly_hours,
+            is_fixed_term=is_fixed_term,
+        )
+        annual_hours = request.weekly_hours * 52
+        return money(emp_ph * annual_hours), money(er_ph * annual_hours)
+    rates = _contrib.resolve_rates(rules, request.employment, worker_category)
+    employee = _contrib.inps_contribution(
+        contribution_base,
+        rates.employee_rate,
+        rates.employee_ivs_rate,
+        rules,
+        ivs_ceiling_applies=request.ivs_ceiling_applies,
+    )
+    employer = _contrib.inps_contribution(
+        contribution_base,
+        rates.employer_rate,
+        rates.employer_ivs_rate,
+        rules,
+        ivs_ceiling_applies=request.ivs_ceiling_applies,
+    )
+    return employee, employer
 
 
 def _employer_funds(
