@@ -405,10 +405,10 @@ class TestYearRules2026Json:
         assert yr.apprentice.employer_rate_months_0_11 == Decimal("0.1161")
 
     def test_employee_tier_above_threshold(self) -> None:
-        """Terziario above 50 employees adds the 0.30% CIGS employee share."""
+        """Terziario above 50 employees: employee +0.30% CIGS, employer 29.58%."""
         yr = load_year_rules(2026, TaxSector.TERZIARIO, 51)
         assert yr.inps.employee_rate == Decimal("0.0949")
-        assert yr.inps.employer_rate == Decimal("0.3028")
+        assert yr.inps.employer_rate == Decimal("0.2958")
 
     def test_small_firm_apprentice_rates(self) -> None:
         """Firms with at most 9 employees get the reduced apprentice rates."""

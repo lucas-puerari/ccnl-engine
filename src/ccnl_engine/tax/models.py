@@ -40,6 +40,15 @@ class InpsRates(BaseModel):
     ``ivs_ceiling_applies`` is passed to the contribution engine, only these
     portions are capped at the massimale retributivo; the remainder is always
     applied to the full base.
+
+    **Uniform-IVS invariant**: ``employer_ivs_rate`` is a single scalar that
+    applies uniformly across all worker categories.  When a category-specific
+    rate is active, the IVS component is still taken from ``employer_ivs_rate``
+    and the category non-IVS residual is ``category_rate - employer_ivs_rate``.
+    This invariant is enforced by ``_InpsEmployerTier._check_ivs_rate``, which
+    requires every category rate to be ≥ ``ivs_rate`` so the residual is
+    non-negative.  A sector where the IVS rate genuinely varies by category
+    would need a ``ivs_rate_by_category`` field.
     """
 
     model_config = ConfigDict(extra="forbid")
