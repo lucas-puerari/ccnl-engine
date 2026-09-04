@@ -1,0 +1,282 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "impiegati-tecnici-agricoli",
+    "name": "CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti",
+    "cnel_code": "A021",
+    "sector": "agricoltura",
+    "tax_sector": "agricoltura",
+    "withholding_exempt": false,
+    "signatories": [
+      "Confagricoltura — Confederazione Generale dell'Agricoltura Italiana",
+      "CIA — Confederazione Italiana Agricoltori",
+      "Coldiretti — Confederazione Nazionale Coldiretti",
+      "FLAI-CGIL — Federazione Lavoratori Agroindustria",
+      "CONFEDERDIA — Confederazione Italiana dei Dirigenti e delle Alte Professionalità dell'Agricoltura",
+      "FAI-CISL — Federazione Agro Alimentare",
+      "UILA-UIL — Unione Italiana Lavoratori Agroalimentari"
+    ],
+    "sources": [
+      {
+        "url": "https://www.contratticcnl.it/ccnl/a021/",
+        "type": "web",
+        "agreement_date": "2024-06-18",
+        "notes": "CNEL code A021, agreement date 18/06/2024, effective 01/07/2024. Contract covers impiegati, tecnici and quadri in agricultural sector. Expiry 31/12/2027."
+      },
+      {
+        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=3",
+        "type": "table",
+        "agreement_date": "2024-06-18",
+        "notes": "Salary levels: 1Q=1888.38 (base 1788.38 + IND_FUN 100.00), 1=1686.76, 2=1541.41, 3=1417.89, 4=1335.93, 5=1278.60, 6=1217.23. Hourly divisor 169. Daily divisor 26. Additional months 14 (tredicesima + quattordicesima). Seniority: biennale (24 months), 12 scatti, per-level amounts confirmed. Level 1Q listed as 1888.38 'with function allowance'; confirmed base 1788.38 + IND_FUN 100.00."
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-04T00:00:00",
+      "human_reviewed": true
+    },
+    "agreement_date": "2024-06-18",
+    "validity": {
+      "valid_from": "2024-07-01",
+      "valid_until": "2027-12-31"
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "notes": [
+      "INFO: SALARY MODEL: conglobated retribuzione tabellare minima (levels 1-6). Single base_salary per level with no separate contingenza or EDR columns in the lavoro-economia.it table (consistent with A011 agricultural model). Level 1Q additionally carries an indennità di funzione of 100.00 EUR/month, additive to the base tabellare (source: lavoro-economia.it/ccnl/ccnl.aspx?c=3 showing 1Q total=1888.38 'with function allowance', decomposed as base 1788.38 + IND_FUN 100.00).",
+      "INFO: RENEWAL: CCNL signed 18/06/2024 (quadriennio 2024-2027). Single salary tranche effective 01/07/2024. No subsequent tranches found at time of extraction.",
+      "INFO: CNEL CODE: A021. Source: contratticcnl.it/ccnl/a021/.",
+      "INFO: LEVELS: 7 levels (1Q, 1, 2, 3, 4, 5, 6). Level 1Q = Quadri (managerial cadre). Levels 1-6 = Impiegati/Tecnici from senior professional to entry-level clerk. Level 6 corresponds to first-year apprentice destination baseline.",
+      "INFO: HOURLY DIVISOR: 169 hours/month. Formula: 39 h/week x 52 weeks / 12 = 169.00. Consistent with operai-agricoli-florovivaisti (A011) which also uses 169 for the 39h/week agricultural regime.",
+      "INFO: ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima). Standard for impiegati in the agricultural sector.",
+      "INFO: SENIORITY: biennale (cadence 24 months), maximum 12 scatti. Per-level EUR amounts: 1Q and 1 = 33.05, 2 = 29.44, 3 = 26.86, 4 = 24.79, 5 = 23.76, 6 = 22.21. Levels 1Q and 1 share the same scatto amount.",
+      "INFO: TAX SECTOR: AGRICOLTURA. INPS rates follow Gestione Previdenziale Speciale Agricola (impiegati OTI). Reuses 2026-agricoltura.json.",
+      "MISSING: APPRENTICESHIP. A021 specifies apprendistato professionalizzante per D.Lgs. 81/2015. Pay percentages are defined in the Piano Formativo Individuale (PFI) on a per-worker basis and are not published as a contract-level table accessible from available sources. Apprenticeship is therefore not implemented.",
+      "INFO: INDENNITA DI FUNZIONE: level 1Q receives +100.00 EUR/month additive to base_salary 1788.38. Modelled as fixed_allowance code IND_FUN. Source: lavoro-economia.it/ccnl/ccnl.aspx?c=3 (total 1888.38 'with function allowance').",
+      "SIMPLIFICATION: SINGLE TRANCHE. Only one salary tranche (01/07/2024) was found at time of extraction. If the 2024-2027 quadriennio provides additional tranches, update base_salary periods accordingly.",
+      "SIMPLIFICATION: INPS CONTRIBUTION BASE. INPS contributions for agricultural impiegati OTI are legally computed on the retribuzione convenzionale (set annually by INPS decree, DL 338/1989 Art. 1), not on the actual contractual salary. This engine applies rates to actual gross salary; net INPS figures are indicative only.",
+      "SIMPLIFICATION: BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and Agrifondo (supplementary pension) bilateral contributions are not modelled."
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-07-01",
+          "valid_until": null,
+          "value": "169"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-07-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 12,
+      "amount_by_level": {
+        "1Q": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "33.05"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "33.05"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "29.44"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "26.86"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "24.79"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "23.76"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "22.21"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "6",
+      "order": 1,
+      "description": "Livello 6 — Impiegati d'ordine di prima nomina, manovalanza di fatica",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "1217.23"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "5",
+      "order": 2,
+      "description": "Livello 5 — Impiegati d'ordine con compiti esecutivi",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "1278.60"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "4",
+      "order": 3,
+      "description": "Livello 4 — Impiegati con mansioni di concetto o amministrative qualificate",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "1335.93"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "3",
+      "order": 4,
+      "description": "Livello 3 — Tecnici e impiegati con funzioni di concetto di grado superiore",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "1417.89"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "2",
+      "order": 5,
+      "description": "Livello 2 — Tecnici specializzati, impiegati di concetto superiore",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "1541.41"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "1",
+      "order": 6,
+      "description": "Livello 1 — Funzionari e tecnici direttivi con responsabilita di settore",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "1686.76"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null
+    },
+    {
+      "code": "1Q",
+      "order": 7,
+      "description": "Livello 1Q — Quadri (dirigenti intermedi con autonomia gestionale)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "1788.38"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_FUN",
+          "description": "Indennita di funzione livello 1Q (Quadri, additive to base tabellare)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": null,
+                "value": "100.00"
+              }
+            ]
+          }
+        }
+      ],
+      "category": "quadro"
+    }
+  ],
+  "apprenticeship": []
+}
