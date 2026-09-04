@@ -4752,3 +4752,77 @@ class TestLoadChimicaAffiniPmiUnionichimica:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadPanificazioneAssipan:
+    """Tests for CCNL Panificazione e Settori Affini — Industria (E023)."""
+
+    def test_panif_loads(self) -> None:
+        """Contract loads with id panificazione-assipan and CNEL code E023."""
+        ccnl = load_ccnl("panificazione-assipan.json")
+        assert ccnl.meta.id == "panificazione-assipan"
+        assert ccnl.meta.cnel_code == "E023"
+
+    def test_panif_has_7_levels(self) -> None:
+        """Contract has exactly 7 levels: VI, V, IV, IIIB, IIIA, II, I."""
+        ccnl = load_ccnl("panificazione-assipan.json")
+        assert len(ccnl.levels) == 7
+        assert {lv.code for lv in ccnl.levels} == {
+            "I",
+            "II",
+            "IIIA",
+            "IIIB",
+            "IV",
+            "V",
+            "VI",
+        }
+
+    def test_panif_level_iiib_salary_2024(self) -> None:
+        """Level IIIB base salary at Feb 2024 AFAC tranche is 1822.31 EUR."""
+        ccnl = load_ccnl("panificazione-assipan.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "IIIB")
+        assert lv.base_salary.value_at(date(2024, 2, 1)) == Decimal("1822.31")
+
+    def test_panif_level_iiib_salary_2026(self) -> None:
+        """Level IIIB base salary at Sep 2026 tranche is 2046.31 EUR."""
+        ccnl = load_ccnl("panificazione-assipan.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "IIIB")
+        assert lv.base_salary.value_at(date(2026, 9, 1)) == Decimal("2046.31")
+
+    def test_panif_level_ordering(self) -> None:
+        """Level VI has lowest order; level I has highest order."""
+        ccnl = load_ccnl("panificazione-assipan.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "VI"
+        assert by_order[-1].code == "I"
+
+    def test_panif_additional_months(self) -> None:
+        """Contract has 14 additional months (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("panificazione-assipan.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 9, 1)) == Decimal(
+            14
+        )
+
+    def test_panif_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (verbatim from Art. 50 bis)."""
+        ccnl = load_ccnl("panificazione-assipan.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 9, 1)) == Decimal(173)
+
+    def test_panif_fixed_allowances_premio(self) -> None:
+        """All 7 levels carry PREMIO_PROD fixed allowance (Art. 50 ter)."""
+        ccnl = load_ccnl("panificazione-assipan.json")
+        for lv in ccnl.levels:
+            assert len(lv.fixed_allowances) == 1
+            assert lv.fixed_allowances[0].code == "PREMIO_PROD"
+
+    def test_panif_tax_sector(self) -> None:
+        """Contract declares INDUSTRIA tax sector."""
+        ccnl = load_ccnl("panificazione-assipan.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_panif_seniority_cadence(self) -> None:
+        """Seniority: biennale (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("panificazione-assipan.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5

@@ -107,10 +107,11 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 52 | Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi) | Lavoro Domestico | (same population) | ✅ | ✅ |
 | 53 | Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA | Agricoltura | ~600k | ✅ | ✅ |
 | 54 | Chimica e Affini PMI — Unionchimica Confapi | Chimica | ~56k | ✅ | 🟡 |
+| 55 | Panificazione e Settori Affini Industria — Assipan/Fiesa/Federpanificatori | Alimentare | ~20k | ✅ | ✅ |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
-The 54 contracts above cover approximately **14.1 million workers** (sum of per-CCNL estimates; some overlap possible where sector boundaries are not mutually exclusive). Italy has roughly **16 million employees** covered by some collective agreement (ISTAT/CNEL 2024, public and private sectors combined). This library therefore reaches an estimated **~80–85% of CCNL-covered workers**.
+The 55 contracts above cover approximately **14.1 million workers** (sum of per-CCNL estimates; some overlap possible where sector boundaries are not mutually exclusive). Italy has roughly **16 million employees** covered by some collective agreement (ISTAT/CNEL 2024, public and private sectors combined). This library therefore reaches an estimated **~80–85% of CCNL-covered workers**.
 
 ## What is not modelled
 

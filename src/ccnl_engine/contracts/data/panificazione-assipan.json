@@ -1,0 +1,312 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "panificazione-assipan",
+    "name": "CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)",
+    "cnel_code": "E023",
+    "sector": "alimentare",
+    "tax_sector": "industria",
+    "signatories": [
+      "Assipan — Associazione Sindacale Panificatori Industriali",
+      "Fiesa-Assopanificatori — Federazione Italiana Esercenti Specializzati Alimentazione",
+      "Federpanificatori",
+      "FLAI-CGIL — Federazione Lavoratori Agro-industrie",
+      "FAI-CISL — Federazione Agroalimentare e Industriale",
+      "UILA-UIL — Unione Italiana Lavoratori Agroalimentari"
+    ],
+    "sources": [
+      {
+        "url": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
+        "type": "pdf",
+        "agreement_date": "2025-02-26",
+        "notes": "Testo Unico CCNL Panificazione e Settori Affini Industria, signed 26 Feb 2025. Economic provisions effective from Feb 1, 2024 (AFAC advance). Art. 50 bis (retribuzione), Art. 51 (scatti di anzianita), Art. 52 (mensilita aggiuntive), Art. 28 (apprendistato)."
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-04T00:00:00",
+      "human_reviewed": true
+    },
+    "agreement_date": "2025-02-26",
+    "validity": {
+      "valid_from": "2023-01-01",
+      "valid_until": "2026-12-31"
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      "INFO: SALARY MODEL: conglobated. Art. 50 bis states the minimo tabellare is the conglobated figure (paga base + contingenza frozen 1 Nov 1991 + EDR) and that the quota oraria is obtained by dividing it by 173. The premio di produzione nazionale is articled separately in Art. 50 ter as a distinct element outside the conglobated minimum, therefore modelled as fixed_allowance per level.",
+      "INFO: SIGNATORIES: Assipan/Fiesa-Assopanificatori/Federpanificatori (employer) — FLAI-CGIL/FAI-CISL/UILA-UIL (worker). CNEL code E023. NOTE: Aidepi is NOT a signatory to E023; Aidepi firms use CCNL Alimentari Industria (E012).",
+      "INFO: HOURLY DIVISOR: 173, verbatim from Art. 50 bis: 'I minimi di cui sopra sono riferiti ad una prestazione di lavoro di 173 ore mensili. La quota oraria si ricava dividendo le retribuzioni per 173.'",
+      "INFO: ADDITIONAL MONTHS: 14 — tredicesima (Art. 52, para 1) + quattordicesima (Art. 52, para 2, paid June 30). Both confirmed from Testo Unico 2025.",
+      "INFO: SENIORITY: biennale (24 months), maximum 5 scatti. Amounts frozen since Aug 1, 1997 (Art. 51). Per-level EUR: I=34.28, II=31.67, IIIA=29.25, IIIB=27.24, IV=22.91, V=20.27, VI=17.14.",
+      "INFO: PREMIO DI PRODUZIONE NAZIONALE: fixed cifra per level, frozen since Aug 1, 1995 (Art. 50 ter). All seven levels receive it. Modelled as fixed_allowance with code PREMIO_PROD.",
+      "SIMPLIFICATION: PREMIO DI PRODUZIONE FREQUENCY. Art. 50 ter states the fixed amounts but does not explicitly confirm whether payment occurs monthly across all 14 mensilita or as a single annual sum. Modelled as monthly (14x), consistent with the quattordicesima structure of this contract. If paid as a single annual sum, gross_annual is overstated by approx. EUR 337/yr at level IIIB. Verify against payroll practice or the company-level regulation.",
+      "INFO: APPRENTICESHIP: Art. 28 percentage model. Two tracks: Track A (levels I/II/IIIA/IIIB/IV) periods 0-12m=70%, 12-24m=80%, 24m+=90%; Track B (level V) periods 0-12m=70%, 12m+=80%. Level VI is excluded from apprendistato per Art. 28. Maximum contractual durations: I-IIIB=36m, IV=30m, V=24m — not enforced by engine but documented here. The 95% bracket (Art. 28, months 49+) is unreachable given max durations; omitted from both tracks.",
+      "SIMPLIFICATION: PRE-AFAC TRANCHE NOT MODELLED. The pre-AFAC baseline amounts (valid until Jan 31, 2024) are not modelled as a separate period. The earliest modelled tranche is the AFAC advance effective Feb 1, 2024. The pre-AFAC window (2023-01-01 to 2024-01-31) is unmodelled; if the engine is called with as_of in that range it will return the Feb 2024 values, which overstate the actual salary.",
+      "SIMPLIFICATION: HOURLY RATE ENGINE DISCREPANCY. Art. 50 bis defines the official quota oraria by dividing the conglobated minimum (base only) by 173. The engine computes hourly_rate = gross_monthly / 173 where gross includes the premio di produzione fixed_allowance. For level IIIB Sep 2026: official quota oraria is derived as 2046.31/173 = 11.83; engine reports (2046.31+28.04)/173 = 11.99. This is a known engine limitation shared by all contracts with separate fixed allowances."
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-02-01",
+          "valid_until": null,
+          "value": "173"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-02-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "I": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "34.28" }
+          ]
+        },
+        "II": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "31.67" }
+          ]
+        },
+        "IIIA": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "29.25" }
+          ]
+        },
+        "IIIB": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "27.24" }
+          ]
+        },
+        "IV": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "22.91" }
+          ]
+        },
+        "V": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "20.27" }
+          ]
+        },
+        "VI": {
+          "periods": [
+            { "valid_from": "2024-02-01", "valid_until": null, "value": "17.14" }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "VI",
+      "order": 1,
+      "description": "Level VI — entry-level workers, no qualification required, unskilled tasks",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-07-01", "value": "1338.48" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-11-01", "value": "1386.25" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-09-01", "value": "1434.02" },
+          { "valid_from": "2026-09-01", "valid_until": null, "value": "1481.15" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_PROD",
+          "description": "Premio di produzione nazionale livello VI (Art. 50 ter, frozen Aug 1995)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2024-02-01", "valid_until": null, "value": "17.60" }
+            ]
+          }
+        }
+      ],
+      "category": "operaio"
+    },
+    {
+      "code": "V",
+      "order": 2,
+      "description": "Level V — semi-skilled workers, basic production tasks under supervision",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-07-01", "value": "1494.89" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-11-01", "value": "1551.73" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-09-01", "value": "1608.58" },
+          { "valid_from": "2026-09-01", "valid_until": null, "value": "1664.67" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_PROD",
+          "description": "Premio di produzione nazionale livello V (Art. 50 ter, frozen Aug 1995)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2024-02-01", "valid_until": null, "value": "20.79" }
+            ]
+          }
+        }
+      ],
+      "category": "operaio"
+    },
+    {
+      "code": "IV",
+      "order": 3,
+      "description": "Level IV — skilled workers, qualified bakers and production workers",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-07-01", "value": "1616.69" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-11-01", "value": "1680.22" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-09-01", "value": "1743.76" },
+          { "valid_from": "2026-09-01", "valid_until": null, "value": "1806.45" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_PROD",
+          "description": "Premio di produzione nazionale livello IV (Art. 50 ter, frozen Aug 1995)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2024-02-01", "valid_until": null, "value": "23.55" }
+            ]
+          }
+        }
+      ],
+      "category": "operaio"
+    },
+    {
+      "code": "IIIB",
+      "order": 4,
+      "description": "Level IIIB — specialist workers, master bakers, experienced technicians",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-07-01", "value": "1822.31" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-11-01", "value": "1897.31" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-09-01", "value": "1972.31" },
+          { "valid_from": "2026-09-01", "valid_until": null, "value": "2046.31" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_PROD",
+          "description": "Premio di produzione nazionale livello IIIB (Art. 50 ter, frozen Aug 1995)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2024-02-01", "valid_until": null, "value": "28.04" }
+            ]
+          }
+        }
+      ],
+      "category": "operaio"
+    },
+    {
+      "code": "IIIA",
+      "order": 5,
+      "description": "Level IIIA — highly skilled workers, senior technicians, team leaders",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-07-01", "value": "1921.23" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-11-01", "value": "2001.96" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-09-01", "value": "2082.70" },
+          { "valid_from": "2026-09-01", "valid_until": null, "value": "2162.35" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_PROD",
+          "description": "Premio di produzione nazionale livello IIIA (Art. 50 ter, frozen Aug 1995)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2024-02-01", "valid_until": null, "value": "30.09" }
+            ]
+          }
+        }
+      ],
+      "category": "operaio"
+    },
+    {
+      "code": "II",
+      "order": 6,
+      "description": "Level II — supervisors, senior specialists, department coordinators",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-07-01", "value": "2042.99" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-11-01", "value": "2130.89" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-09-01", "value": "2218.79" },
+          { "valid_from": "2026-09-01", "valid_until": null, "value": "2305.51" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_PROD",
+          "description": "Premio di produzione nazionale livello II (Art. 50 ter, frozen Aug 1995)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2024-02-01", "valid_until": null, "value": "32.54" }
+            ]
+          }
+        }
+      ],
+      "category": "impiegato"
+    },
+    {
+      "code": "I",
+      "order": 7,
+      "description": "Level I — managers, senior professionals, plant directors",
+      "base_salary": {
+        "periods": [
+          { "valid_from": "2024-02-01", "valid_until": "2024-07-01", "value": "2173.64" },
+          { "valid_from": "2024-07-01", "valid_until": "2025-11-01", "value": "2269.18" },
+          { "valid_from": "2025-11-01", "valid_until": "2026-09-01", "value": "2364.72" },
+          { "valid_from": "2026-09-01", "valid_until": null, "value": "2458.99" }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_PROD",
+          "description": "Premio di produzione nazionale livello I (Art. 50 ter, frozen Aug 1995)",
+          "monthly": {
+            "periods": [
+              { "valid_from": "2024-02-01", "valid_until": null, "value": "35.20" }
+            ]
+          }
+        }
+      ],
+      "category": "impiegato"
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "panif_track_a",
+      "destination_levels": ["I", "II", "IIIA", "IIIB", "IV"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
+        { "months_from": 12, "months_until": 24, "percentage": "0.80" },
+        { "months_from": 24, "months_until": null, "percentage": "0.90" }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "panif_track_b",
+      "destination_levels": ["V"],
+      "periods": [
+        { "months_from": 0, "months_until": 12, "percentage": "0.70" },
+        { "months_from": 12, "months_until": null, "percentage": "0.80" }
+      ]
+    }
+  ]
+}
