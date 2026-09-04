@@ -1,0 +1,52 @@
+{
+  "_description": "Golden case: CCNL G029 Informatica-Servizi Innovativi PMI (Unimatica-Confapi), Level 5, 2026-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Jan 2026 second tranche: base_salary level 5 = 2065.18 EUR/month (conglobated).",
+    "Conglobated model: paga base 1529.38 + contingenza 525.47 + EDR 10.33 = 2065.18.",
+    "Additional months: 13 (tredicesima only, Art. 97 G029 CCNL).",
+    "INPS employer rate from 2026-industria.json (industria sector, ≤50 employees tier = 30.20%).",
+    "Seniority: 0.00 — seniority_count=0, biennale cadence (Art. 45), max 5 scatti.",
+    "Hourly divisor: 169 (Art. 113, 39 h/week from 01/01/2019).",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025)."
+  ],
+  "inputs": {
+    "ccnl_file": "informatica-pmi-unimatica.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "5",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "informatica-pmi-unimatica",
+    "level_code": "5",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "2065.18",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2065.18",
+    "gross_annual": "26847.34",
+    "hourly_rate": "12.22",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2547.81",
+    "inps_employer_annual": "8107.90",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1988.69",
+    "taxable_income": "24299.53",
+    "irpef_gross": "5588.89",
+    "work_income_deduction": "774.18",
+    "irpef_net": "4814.71",
+    "net_annual": "19484.82",
+    "net_monthly": "1498.83",
+    "employer_cost_annual": "36943.93"
+  }
+}

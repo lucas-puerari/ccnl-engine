@@ -5236,3 +5236,71 @@ class TestLoadForzePoliziaOrdinamentoCivile:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 1
         assert si.maximum_count == 0
+
+
+class TestLoadInformaticaPmiUnimatica:
+    """Tests for informatica-pmi-unimatica (CCNL G029 Settore Informatico)."""
+
+    def test_informatica_pmi_unimatica_loads(self) -> None:
+        """Contract id and CNEL code are correct."""
+        ccnl = load_ccnl("informatica-pmi-unimatica.json")
+        assert ccnl.meta.id == "informatica-pmi-unimatica"
+        assert ccnl.meta.cnel_code == "G029"
+
+    def test_informatica_pmi_unimatica_has_11_levels(self) -> None:
+        """Contract has 11 levels: Q and 1 through 10."""
+        ccnl = load_ccnl("informatica-pmi-unimatica.json")
+        assert len(ccnl.levels) == 11
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"Q", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}
+
+    def test_informatica_pmi_unimatica_level5_salary_2025(self) -> None:
+        """Level 5 base_salary at Jan 2025 (reference tranche, +60 EUR)."""
+        ccnl = load_ccnl("informatica-pmi-unimatica.json")
+        lv = next(lev for lev in ccnl.levels if lev.code == "5")
+        val = lv.base_salary.value_at(date(2025, 1, 1))
+        assert val == Decimal("2005.18")
+
+    def test_informatica_pmi_unimatica_level5_salary_2026(self) -> None:
+        """Level 5 base_salary at Jan 2026 (second tranche, +60 EUR)."""
+        ccnl = load_ccnl("informatica-pmi-unimatica.json")
+        lv = next(lev for lev in ccnl.levels if lev.code == "5")
+        val = lv.base_salary.value_at(date(2026, 1, 1))
+        assert val == Decimal("2065.18")
+
+    def test_informatica_pmi_unimatica_level_ordering(self) -> None:
+        """Q is the highest-order level; level 10 is the lowest."""
+        ccnl = load_ccnl("informatica-pmi-unimatica.json")
+        by_order = sorted(ccnl.levels, key=lambda lev: lev.order)
+        assert by_order[0].code == "10"
+        assert by_order[-1].code == "Q"
+
+    def test_informatica_pmi_unimatica_additional_months(self) -> None:
+        """Contract has 13 additional months (tredicesima only)."""
+        ccnl = load_ccnl("informatica-pmi-unimatica.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(13)
+
+    def test_informatica_pmi_unimatica_hourly_divisor(self) -> None:
+        """Hourly divisor is 169 (39 h/week from 01/01/2019, Art. 113)."""
+        ccnl = load_ccnl("informatica-pmi-unimatica.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal(169)
+
+    def test_informatica_pmi_unimatica_no_fixed_allowances(self) -> None:
+        """All 11 levels have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("informatica-pmi-unimatica.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == [], lv.code
+
+    def test_informatica_pmi_unimatica_tax_sector(self) -> None:
+        """Contract declares INDUSTRIA tax sector (Confapi)."""
+        ccnl = load_ccnl("informatica-pmi-unimatica.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_informatica_pmi_unimatica_seniority_cadence(self) -> None:
+        """Seniority: 5 biennial scatti (cadence 24 months, Art. 45)."""
+        ccnl = load_ccnl("informatica-pmi-unimatica.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
