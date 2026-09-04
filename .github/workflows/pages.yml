@@ -28,17 +28,19 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v5
 
-      - name: Assemble demo
+      # ── Demo ──────────────────────────────────────────────────────────────
+      - name: "Demo: assemble"
         run: |
           mkdir -p _site
           cp demo/index.html _site/index.html
           cp demo/app.py     _site/app.py
           touch _site/.nojekyll
 
-      - name: Install doc dependencies
+      # ── Docs ──────────────────────────────────────────────────────────────
+      - name: "Docs: install dependencies"
         run: uv pip install -e . "zensical>=0.0.11" "mkdocstrings[python]>=0.27"
 
-      - name: Build docs
+      - name: "Docs: build with Zensical"
         run: uv run zensical build
 
       - name: Upload Pages artifact
