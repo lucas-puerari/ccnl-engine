@@ -122,8 +122,14 @@ class SeniorityIncrements(BaseModel):
 class EmployerFund(BaseModel):
     """An employer-side contribution to a contractual fund (e.g. Cassa Edile).
 
-    ``rate`` is a fraction of the contribution base. ``applies_to_categories``
-    restricts the fund to levels of the given categories (``None`` = all).
+    ``rate`` is a fraction of the **INPS contribution base** (gross minus
+    contribution-excluded allowances) as computed by the engine.  This is the
+    same base used for INPS social-security contributions.  Note that some
+    sector funds (notably Cassa Edile) are conventionally assessed on a
+    different base (*imponibile Cassa Edile*); if the fund's official rate is
+    expressed on that base, it must be adjusted to the INPS base before being
+    stored here.  ``applies_to_categories`` restricts the fund to levels of the
+    given categories (``None`` = all).
     """
 
     model_config = ConfigDict(extra="forbid")

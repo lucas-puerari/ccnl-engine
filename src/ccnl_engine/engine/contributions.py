@@ -41,8 +41,13 @@ def resolve_rates(
     """Resolve INPS rates for an employment type and worker category.
 
     Apprentices use the statutory reduced rates (L. 296/2006 art. 1 c. 773,
-    headcount already resolved in ``rules.apprentice``). Fixed-term contracts
-    add the NASpI *addizionale* to the employer rate (Art. 2 c. 28 L. 92/2012).
+    headcount already resolved in ``rules.apprentice``).  The NASpI
+    *addizionale* (Art. 2 c. 28 L. 92/2012) is **not** applied to apprentices:
+    apprendistato is explicitly exempt under Art. 2 c. 29 of the same law, so
+    the ``Apprentice`` branch returns before the ``FixedTerm`` check — this is
+    intentional, not an oversight.  Fixed-term non-apprentice contracts add the
+    addizionale to the employer rate only; the IVS rate is unchanged because
+    the addizionale is a non-IVS component (NASpI fund).
 
     Returns:
         ContributionRates with employee and employer rates for the scenario.
