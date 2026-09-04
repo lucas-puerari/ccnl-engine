@@ -1,0 +1,16 @@
+[project]
+site_name    = "ccnl-engine"
+site_url     = "https://lucas-puerari.github.io/ccnl-engine/docs/"
+docs_dir     = "docs"
+site_dir     = "_site/docs"
+
+[plugins]
+search = {}
+
+[plugins.mkdocstrings]
+handlers.python.options.docstring_style   = "google"
+handlers.python.options.show_source       = false
+handlers.python.options.show_root_heading = true
+handlers.python.options.members_order     = "source"
+handlers.python.options.filters           = ["!^_"]
+handlers.python.options.inherited_members = false
