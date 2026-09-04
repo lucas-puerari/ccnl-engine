@@ -51,56 +51,192 @@
   },
   "coverage": {
     "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_2": "implemented",
     "notes": [
       "SIMPLIFICATION: FIRST SALARY PERIOD. The 16-level classification (Q, A1, A2s, A2, B1s, B1, B2s, B2, C1s, C1, C2s, C2, D1s, D1, D2s, D2) took effect on 01/02/2026. The preceding period (01/01/2025-31/01/2026) used a different level structure. Only the post-reclassification system is modelled; queries for as_of dates before 2026-02-01 will return an out-of-range error.",
       "SIMPLIFICATION: CONGLOBATED SALARY. Salary amounts are modelled as a single conglobated figure (paga base parametrale inclusive of contingenza). No official hourly-rate column is published for K540 by the available sources; lavoro-economia.it returns a single Minimo column (not split Base/Contingenza as it does for contracts with split components). The conglobated model is consistent with the source format.",
       "SIMPLIFICATION: INPS RATES. INDUSTRIA rates from 2026-industria.json are used. The waste-management sector may attract a CIGO addizionale (~0.80% employer) that is not modelled. Actual INPS circular for K540 was not retrieved.",
       "SIMPLIFICATION: APPRENTICESHIP OLD-TO-NEW LEVEL MAPPING. Art. 14 specifies tracks by old classification codes (1B-8, Q). New 16-level codes are mapped by parametric order: 1B to D2/D2s, 2B to D1/D1s, 3B to C2/C2s, 4B to C1/C1s, 5B to B2/B2s, 6B to B1/B1s, 7B to A2/A2s, 8 to A1, Q to Q. Three tracks are modelled with the exact periods and durations from the contract table.",
-      "SIMPLIFICATION: APPRENTICESHIP PERCENTAGE BASE. Art. 14 percentages apply to the tabular minimum (paga base parametrale). EDR (EUR 10.33) is excluded from apprenticeship percentage in period 1; indennita integrativa (EUR 50.00) is excluded in period 1. The engine applies the percentage uniformly to base + seniority + all allowances. Overstatement per month is at most EUR 10.33 x (1 - pct) per apprentice in period 1.",
+      "INFO: APPRENTICESHIP PERCENTAGE BASE. Art. 14 punto 8 (CCNL K540 testo consolidato 09/12/2025, fonte: utroppitu.eu) dispone che le indennità ex Art. 32 lett. D (indennità integrativa EUR 50.00) siano corrisposte per intero dal 1° periodo di formazione — pagamento a valore pieno, non soggetto alla percentuale. L'EDR (EUR 10.33, Art. 27 c.4 lett. d, Accordo interconfederale 31/07/1992) non è citato in Art. 14; per sua natura di elemento fisso interconfederale è trattato come esente dalla percentuale. Entrambi modellati con apprenticeship_pct_relevant=false.",
       "SIMPLIFICATION: BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) and Previambiente supplementary pension fund contributions are not modelled."
     ]
   },
   "parameters": {
     "hourly_divisor": {
       "periods": [
-        {"valid_from": "2026-02-01", "valid_until": null, "value": "169"}
+        {
+          "valid_from": "2026-02-01",
+          "valid_until": null,
+          "value": "169"
+        }
       ]
     },
     "additional_months": {
       "periods": [
-        {"valid_from": "2026-02-01", "valid_until": null, "value": "14"}
+        {
+          "valid_from": "2026-02-01",
+          "valid_until": null,
+          "value": "14"
+        }
       ]
     },
     "seniority_increments": {
       "cadence_months": 36,
       "maximum_count": 10,
       "maximum_count_by_level": {
-        "B2":  11,
+        "B2": 11,
         "B2s": 11,
-        "B1":  11,
+        "B1": 11,
         "B1s": 11,
-        "A2":  12,
+        "A2": 12,
         "A2s": 12,
-        "A1":  12
+        "A1": 12
       },
       "amount_by_level": {
-        "Q":   {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "39.17"}]},
-        "A1":  {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "29.05"}]},
-        "A2s": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "26.04"}]},
-        "A2":  {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "26.04"}]},
-        "B1s": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "24.65"}]},
-        "B1":  {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "24.65"}]},
-        "B2s": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "21.83"}]},
-        "B2":  {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "21.83"}]},
-        "C1s": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "20.92"}]},
-        "C1":  {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "20.92"}]},
-        "C2s": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "19.11"}]},
-        "C2":  {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "19.11"}]},
-        "D1s": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "17.66"}]},
-        "D1":  {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "17.66"}]},
-        "D2s": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "15.24"}]},
-        "D2":  {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "15.24"}]}
+        "Q": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "39.17"
+            }
+          ]
+        },
+        "A1": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "29.05"
+            }
+          ]
+        },
+        "A2s": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "26.04"
+            }
+          ]
+        },
+        "A2": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "26.04"
+            }
+          ]
+        },
+        "B1s": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "24.65"
+            }
+          ]
+        },
+        "B1": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "24.65"
+            }
+          ]
+        },
+        "B2s": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "21.83"
+            }
+          ]
+        },
+        "B2": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "21.83"
+            }
+          ]
+        },
+        "C1s": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "20.92"
+            }
+          ]
+        },
+        "C1": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "20.92"
+            }
+          ]
+        },
+        "C2s": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "19.11"
+            }
+          ]
+        },
+        "C2": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "19.11"
+            }
+          ]
+        },
+        "D1s": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "17.66"
+            }
+          ]
+        },
+        "D1": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "17.66"
+            }
+          ]
+        },
+        "D2s": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "15.24"
+            }
+          ]
+        },
+        "D2": {
+          "periods": [
+            {
+              "valid_from": "2026-02-01",
+              "valid_until": null,
+              "value": "15.24"
+            }
+          ]
+        }
       }
     }
   },
@@ -108,30 +244,74 @@
     {
       "type": "percentage",
       "name": "30m-80-90",
-      "destination_levels": ["D2", "D1"],
+      "destination_levels": [
+        "D2",
+        "D1"
+      ],
       "periods": [
-        {"months_from": 0,  "months_until": 15, "percentage": "0.80"},
-        {"months_from": 15, "months_until": null, "percentage": "0.90"}
+        {
+          "months_from": 0,
+          "months_until": 15,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 15,
+          "months_until": null,
+          "percentage": "0.90"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "30m-75-85-90",
-      "destination_levels": ["C2"],
+      "destination_levels": [
+        "C2"
+      ],
       "periods": [
-        {"months_from": 0,  "months_until": 12, "percentage": "0.75"},
-        {"months_from": 12, "months_until": 24, "percentage": "0.85"},
-        {"months_from": 24, "months_until": null, "percentage": "0.90"}
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.90"
+        }
       ]
     },
     {
       "type": "percentage",
       "name": "36m-85-90-95",
-      "destination_levels": ["C1", "B2", "B1", "A2", "A1", "Q"],
+      "destination_levels": [
+        "C1",
+        "B2",
+        "B1",
+        "A2",
+        "A1",
+        "Q"
+      ],
       "periods": [
-        {"months_from": 0,  "months_until": 12, "percentage": "0.85"},
-        {"months_from": 12, "months_until": 24, "percentage": "0.90"},
-        {"months_from": 24, "months_until": null, "percentage": "0.95"}
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.95"
+        }
       ]
     }
   ],
@@ -142,24 +322,58 @@
       "description": "Livello D2 — operai e impiegati con mansioni di base non qualificate",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2027-01-01", "value": "1439.36"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "1475.36"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "1515.36"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "1555.36"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2027-01-01",
+            "value": "1439.36"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "1475.36"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "1515.36"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1555.36"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -169,25 +383,63 @@
       "description": "Livello D2S — operai e impiegati con mansioni di base non qualificate, posizione superiore",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2026-10-01", "value": "1631.26"},
-          {"valid_from": "2026-10-01", "valid_until": "2027-01-01", "value": "1663.25"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "1699.25"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "1739.25"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "1779.25"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2026-10-01",
+            "value": "1631.26"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "1663.25"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "1699.25"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "1739.25"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1779.25"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -197,25 +449,63 @@
       "description": "Livello D1 — operai e impiegati qualificati con mansioni esecutive di primo livello",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2026-10-01", "value": "1807.21"},
-          {"valid_from": "2026-10-01", "valid_until": "2027-01-01", "value": "1839.19"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "1875.19"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "1915.19"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "1955.19"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2026-10-01",
+            "value": "1807.21"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "1839.19"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "1875.19"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "1915.19"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1955.19"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -225,25 +515,63 @@
       "description": "Livello D1S — operai e impiegati qualificati con mansioni esecutive, posizione superiore",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2026-10-01", "value": "1999.10"},
-          {"valid_from": "2026-10-01", "valid_until": "2027-01-01", "value": "2027.89"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "2063.89"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "2103.89"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "2143.89"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2026-10-01",
+            "value": "1999.10"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "2027.89"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "2063.89"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "2103.89"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2143.89"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -253,25 +581,63 @@
       "description": "Livello C2 — operai e impiegati specializzati con mansioni di secondo livello",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2026-10-01", "value": "2007.10"},
-          {"valid_from": "2026-10-01", "valid_until": "2027-01-01", "value": "2031.09"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "2067.09"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "2107.09"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "2147.09"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2026-10-01",
+            "value": "2007.10"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-01-01",
+            "value": "2031.09"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "2067.09"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "2107.09"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2147.09"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -281,24 +647,58 @@
       "description": "Livello C2S — operai e impiegati specializzati di secondo livello, posizione superiore",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2027-01-01", "value": "2080.19"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "2116.19"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "2156.19"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "2196.19"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2027-01-01",
+            "value": "2080.19"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "2116.19"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "2156.19"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2196.19"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -308,24 +708,58 @@
       "description": "Livello C1 — operai e impiegati specializzati con mansioni di primo livello",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2027-01-01", "value": "2148.77"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "2184.77"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "2224.77"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "2264.77"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2027-01-01",
+            "value": "2148.77"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "2184.77"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "2224.77"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2264.77"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -335,24 +769,58 @@
       "description": "Livello C1S — operai e impiegati specializzati di primo livello, posizione superiore",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2027-01-01", "value": "2216.13"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "2252.13"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "2292.13"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "2332.13"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2027-01-01",
+            "value": "2216.13"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "2252.13"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "2292.13"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2332.13"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -362,24 +830,58 @@
       "description": "Livello B2 — operai e impiegati altamente specializzati con mansioni di secondo livello",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2027-01-01", "value": "2316.73"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "2352.73"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "2392.73"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "2432.73"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2027-01-01",
+            "value": "2316.73"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "2352.73"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "2392.73"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2432.73"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -389,24 +891,58 @@
       "description": "Livello B2S — operai e impiegati altamente specializzati di secondo livello, posizione superiore",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2027-01-01", "value": "2419.56"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "2455.56"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "2495.56"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "2535.56"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2027-01-01",
+            "value": "2419.56"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "2455.56"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "2495.56"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2535.56"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -416,24 +952,58 @@
       "description": "Livello B1 — operai e impiegati altamente specializzati con mansioni di primo livello",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2027-01-01", "value": "2545.29"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "2581.29"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "2621.29"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "2661.29"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2027-01-01",
+            "value": "2545.29"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "2581.29"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "2621.29"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2661.29"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -443,24 +1013,58 @@
       "description": "Livello B1S — operai e impiegati altamente specializzati di primo livello, posizione superiore",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2027-01-01", "value": "2668.22"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "2704.22"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "2744.22"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "2784.22"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2027-01-01",
+            "value": "2668.22"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "2704.22"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "2744.22"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2784.22"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -470,24 +1074,58 @@
       "description": "Livello A2 — tecnici e impiegati con responsabilita autonome di secondo livello",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2027-01-01", "value": "2804.50"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "2840.50"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "2880.50"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "2920.50"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2027-01-01",
+            "value": "2804.50"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "2840.50"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "2880.50"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2920.50"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -497,24 +1135,58 @@
       "description": "Livello A2S — tecnici e impiegati con responsabilita autonome di secondo livello, posizione superiore",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2027-01-01", "value": "2949.21"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "2985.21"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "3025.21"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "3065.21"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2027-01-01",
+            "value": "2949.21"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "2985.21"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "3025.21"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "3065.21"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -524,24 +1196,58 @@
       "description": "Livello A1 — tecnici e impiegati con responsabilita autonome di primo livello",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2027-01-01", "value": "3198.56"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "3234.56"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "3274.56"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "3314.56"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2027-01-01",
+            "value": "3198.56"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "3234.56"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "3274.56"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "3314.56"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     },
@@ -551,24 +1257,58 @@
       "description": "Livello Q — Quadri (dirigenti di secondo livello)",
       "base_salary": {
         "periods": [
-          {"valid_from": "2026-02-01", "valid_until": "2027-01-01", "value": "3518.41"},
-          {"valid_from": "2027-01-01", "valid_until": "2027-08-01", "value": "3554.41"},
-          {"valid_from": "2027-08-01", "valid_until": "2027-12-01", "value": "3594.41"},
-          {"valid_from": "2027-12-01", "valid_until": null,         "value": "3634.41"}
+          {
+            "valid_from": "2026-02-01",
+            "valid_until": "2027-01-01",
+            "value": "3518.41"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-08-01",
+            "value": "3554.41"
+          },
+          {
+            "valid_from": "2027-08-01",
+            "valid_until": "2027-12-01",
+            "value": "3594.41"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "3634.41"
+          }
         ]
       },
       "fixed_allowances": [
         {
           "code": "EDR",
           "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "10.33"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDEMN_INT",
           "description": "Indennita Integrativa Mensile (Art. 32 lett. d)",
-          "monthly": {"periods": [{"valid_from": "2026-02-01", "valid_until": null, "value": "50.00"}]},
-          "months_per_year": 12
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-02-01",
+                "valid_until": null,
+                "value": "50.00"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "apprenticeship_pct_relevant": false
         }
       ]
     }

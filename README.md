@@ -108,9 +108,9 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 53 | Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA | Agricoltura | ~600k | ✅ | ✅ |
 | 54 | Chimica e Affini PMI — Unionchimica Confapi | Chimica | ~56k | ✅ | ⚠️ |
 | 55 | Panificazione e Settori Affini Industria — Assipan/Fiesa/Federpanificatori | Alimentare | ~20k | ✅ | ✅ |
-| 56 | Attività Ferroviarie — AGENS | Trasporto | ~75k | ✅ | ⚠️ |
+| 56 | Attività Ferroviarie — AGENS | Trasporto | ~75k | ✅ | ✅ |
 | 57 | Trasporto Aereo — Gestori Aeroportuali (Assaeroporti) | Trasporto | ~40k | ✅ | ✅ |
-| 58 | Igiene Ambientale — Servizi Ambientali e di Igiene Urbana (Utilitalia/FISE) | Industria | ~65k | ✅ | ⚠️ |
+| 58 | Igiene Ambientale — Servizi Ambientali e di Igiene Urbana (Utilitalia/FISE) | Industria | ~65k | ✅ | ✅ |
 | 59 | Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti | Agricoltura | ~80k | ✅ | ⚠️ |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
