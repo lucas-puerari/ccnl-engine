@@ -1,0 +1,43 @@
+{
+  "inputs": {
+    "ccnl_file": "trasporto-ferroviario-agens.json",
+    "level_code": "Q2",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "employment_type": "permanent",
+    "as_of": "2026-09-01",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null,
+    "weekly_hours": null
+  },
+  "expected": {
+    "ccnl_id": "trasporto-ferroviario-agens",
+    "level_code": "Q2",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "base_monthly": "2483.02",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "130.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2613.02",
+    "gross_annual": "36582.28",
+    "hourly_rate": "16.33",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "3471.66",
+    "inps_employer_annual": "11047.85",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "2709.80",
+    "taxable_income": "33110.62",
+    "irpef_gross": "8126.50",
+    "work_income_deduction": "426.93",
+    "irpef_net": "7699.57",
+    "employer_withholds_irpef": true,
+    "net_annual": "25411.05",
+    "net_monthly": "1815.08",
+    "employer_cost_annual": "50339.93"
+  }
+}
