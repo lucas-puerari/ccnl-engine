@@ -68,15 +68,15 @@
       },
       {
         "kind": "missing",
-        "text": "Indennità economica funzionari (Allegato 2/D) — role-conditional, six sub-grade variants (Ex 3°/2°/1° Grado, Funz. Senior, Funz. Business, Ass. ex F2), not representable as a single Allowance. Affects L7 only."
+        "text": "Indennità economica funzionari (Allegato 2/D) — L7 only, six sub-grade variants (Ex 3°/2°/1° Grado, Funz. Senior, Funz. Business, Ass. ex F2) with distinct amounts. Monthly amounts not found in publicly accessible sources (Allegato 2/D not published). Not modelled."
       },
       {
-        "kind": "missing",
-        "text": "Indennità profilo J) 4° livello (Allegato 2/E) — €57.26/mese dal 01/01/2026, €59.51 dal 01/01/2027, €61.32 dal 01/01/2028. Sub-profile-conditional."
+        "kind": "info",
+        "text": "Indennità profilo J) 4° livello (Allegato 2/E) — modelled as fixed_allowance IND_PROFILO_J on L4 with role 'profilo_j'. Amounts: €57.26/mese dal 01/01/2026, €59.51 dal 01/01/2027, €61.32 dal 01/01/2028. Pass roles={'profilo_j'} in Scenario to include it."
       },
       {
-        "kind": "missing",
-        "text": "Indennità economica 6° livello quadro (Allegato 2/F) — €74.09/mese dal 01/01/2026. Sub-profile-conditional."
+        "kind": "info",
+        "text": "Indennità economica 6° livello quadro (Allegato 2/F) — modelled as fixed_allowance IND_QUADRO_6 on L6 with role 'quadro_6'. Amount: €74.09/mese dal 01/01/2026. Pass roles={'quadro_6'} in Scenario to include it."
       },
       {
         "kind": "simplification",
@@ -313,7 +313,22 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_QUADRO_6",
+          "description": "Indennità economica 6° livello quadro (Allegato 2/F) — per lavoratori quadro di 6° livello",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "74.09"
+              }
+            ]
+          },
+          "role": "quadro_6"
+        }
+      ],
       "category": "quadro"
     },
     {
@@ -365,7 +380,32 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_PROFILO_J",
+          "description": "Indennità economica profilo J) 4° livello (Allegato 2/E) — per lavoratori inquadrati nel profilo professionale J",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": "2027-01-01",
+                "value": "57.26"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": "2028-01-01",
+                "value": "59.51"
+              },
+              {
+                "valid_from": "2028-01-01",
+                "valid_until": null,
+                "value": "61.32"
+              }
+            ]
+          },
+          "role": "profilo_j"
+        }
+      ],
       "category": "impiegato"
     },
     {
