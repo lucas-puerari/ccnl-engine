@@ -1,0 +1,542 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "consorzi-agrari-assocap",
+    "name": "CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)",
+    "cnel_code": "A141",
+    "sector": "Agricoltura",
+    "tax_sector": "agricoltura",
+    "agreement_date": "2023-12-12",
+    "signatories": [
+      "ASSOCAP",
+      "FLAI-CGIL",
+      "FAI-CISL",
+      "UILA-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.wolterskluwer.it/",
+        "type": "table",
+        "agreement_date": "2023-12-12"
+      },
+      {
+        "url": "https://www.kitech.it/",
+        "type": "table",
+        "agreement_date": "2023-12-12"
+      },
+      {
+        "url": "https://www.flai.it/",
+        "type": "text",
+        "agreement_date": "2023-12-12"
+      },
+      {
+        "url": "https://ilccnl.it/contratto/ccnl/consorzi-agrari",
+        "type": "info",
+        "agreement_date": "2023-12-12"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "out_of_scope",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: split (paga base + contingenza) confirmed from ilccnl.it tables showing separate paga base, contingenza, and terzo elemento (0.00) columns."
+      },
+      {
+        "kind": "info",
+        "text": "Indennita di funzione modeled as INDENNITA_DI_FUNZIONE fixed_allowance for levels Q (335.50), 1 (192.50), 2 (115.50 EUR/month). Source: kitech."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: 5 biennial scatti per Art. 34 CCNL (FLAI-CGIL PDF primary source). Scatto amounts from kitech Jan 2026 table; applied from 2025-01-01 — no Jan 2025 per-level table found in public sources."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship: Art. 16 delegates rules to Annex E, not publicly available. layer_2 = out_of_scope."
+      },
+      {
+        "kind": "info",
+        "text": "Headcount: ~2,133 workers (ASSOCAP, CNEL archive 2023)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Jan 2024 tranche (first of four per 12/12/2023 accord) not modeled; no per-level table found in public sources. Engine returns no result for as_of before 2025-01-01."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Jan 2027 tranche not yet published per-level; not modeled."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Indennita di cassa (EUR 55.00/month, cashiers only) not modeled — applies only to a subset of workers."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: FILCOOP SANITARIO bilateral health fund not modeled."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "169"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "Q": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "53.20"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "53.20"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "50.61"
+            }
+          ]
+        },
+        "3S": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "47.00"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "45.19"
+            }
+          ]
+        },
+        "4S": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "44.16"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "43.12"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "41.32"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "39.51"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [],
+  "levels": [
+    {
+      "code": "Q",
+      "order": 9,
+      "description": "Quadro",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2149.74"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2212.99"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "542.43"
+              }
+            ]
+          }
+        },
+        {
+          "code": "INDENNITA_DI_FUNZIONE",
+          "description": "Indennita di funzione (management supplement, livello Q)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "335.50"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "order": 8,
+      "description": "Livello 1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2149.74"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2212.99"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "542.43"
+              }
+            ]
+          }
+        },
+        {
+          "code": "INDENNITA_DI_FUNZIONE",
+          "description": "Indennita di funzione (senior staff supplement, livello 1)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "192.50"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "order": 7,
+      "description": "Livello 2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1945.72"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2002.97"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "538.73"
+              }
+            ]
+          }
+        },
+        {
+          "code": "INDENNITA_DI_FUNZIONE",
+          "description": "Indennita di funzione (supervisor supplement, livello 2)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "115.50"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "3S",
+      "order": 6,
+      "description": "Livello 3 Super",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1661.84"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1710.74"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "532.94"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "order": 5,
+      "description": "Livello 3",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1529.42"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1574.42"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "530.19"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "4S",
+      "order": 4,
+      "description": "Livello 4 Super",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1426.84"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1468.82"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "528.57"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "order": 3,
+      "description": "Livello 4",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1336.36"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1375.68"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "526.95"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "order": 2,
+      "description": "Livello 5",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1197.79"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1233.03"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "524.41"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "6",
+      "order": 1,
+      "description": "Livello 6",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1040.28"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1070.87"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingency allowance (frozen cost-of-living adjustment, per Protocol 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "521.73"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
