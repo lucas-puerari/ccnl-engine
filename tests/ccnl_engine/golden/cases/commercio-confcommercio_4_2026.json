@@ -1,0 +1,62 @@
+{
+  "_description": "Golden: CCNL Commercio Confcommercio (H011), Level 4, 2026-11-01, permanent, no seniority.",
+  "_notes": [
+    "Level 4 (quarto livello), split model: base_salary + CONTINGENZA_EDR + TERZO_ELEMENTO.",
+    "Tranche 2026-11-01: base=1292.46, allowances=524.22+2.07=526.29, gross=1818.75.",
+    "Cross-validation (real payslip, lexplain.it April 2024): base=1192.46, contingenza_edr=524.22,",
+    "  terzo_elemento=2.07, lordo=1718.75 — confirms salary table entries are correct.",
+    "  Source: https://www.lexplain.it/4-livello-commercio-calcolo-stipendio-netto-in-busta-paga-2024-2025/",
+    "14 mensilita (tredicesima + quattordicesima), hourly_divisor=168."
+  ],
+  "inputs": {
+    "ccnl_file": "commercio-confcommercio.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "4",
+    "as_of": "2026-11-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "commercio-confcommercio",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1292.46",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "526.29",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1818.75",
+    "gross_annual": "25462.50",
+    "hourly_rate": "10.83",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2340.00",
+    "inps_employer_annual": "7379.03",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1886.11",
+    "taxable_income": "23122.50",
+    "irpef_gross": "5318.18",
+    "work_income_deduction": "863.31",
+    "irpef_net": "4454.87",
+    "employer_withholds_irpef": true,
+    "second_level_monthly": "0.00",
+    "net_annual": "18901.86",
+    "net_monthly": "1350.13",
+    "employer_cost_annual": "34727.64",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "234.23",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}

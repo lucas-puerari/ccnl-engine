@@ -1,0 +1,61 @@
+{
+  "_description": "Golden: CCNL Commercio Confcommercio (H011), Level 4, 2025-11-01, permanent, 2 seniority counts.",
+  "_notes": [
+    "Level 4 (quarto livello), tranche 2025-11-01: base=1257.46.",
+    "Seniority: 2 scatti x 20.66 = 41.32 (triennale cadence, amount_by_level[4]=20.66).",
+    "allowances: CONTINGENZA_EDR=524.22 + TERZO_ELEMENTO=2.07 = 526.29.",
+    "gross=1257.46+41.32+526.29=1825.07. 14 mensilita, hourly_divisor=168.",
+    "Tax year 2026 rules used (only 2026 tax data available)."
+  ],
+  "inputs": {
+    "ccnl_file": "commercio-confcommercio.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "4",
+    "as_of": "2025-11-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 2,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "commercio-confcommercio",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2025,
+    "seniority_count": 2,
+    "base_monthly": "1257.46",
+    "seniority_monthly": "41.32",
+    "allowances_monthly": "526.29",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1825.07",
+    "gross_annual": "25550.98",
+    "hourly_rate": "10.86",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2348.14",
+    "inps_employer_annual": "7404.67",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1892.67",
+    "taxable_income": "23202.84",
+    "irpef_gross": "5336.65",
+    "work_income_deduction": "857.62",
+    "irpef_net": "4479.03",
+    "employer_withholds_irpef": true,
+    "second_level_monthly": "0.00",
+    "net_annual": "18949.87",
+    "net_monthly": "1353.56",
+    "employer_cost_annual": "34848.32",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "226.06",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}
