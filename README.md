@@ -152,7 +152,7 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 
 <p id="fn-2"><a href="#ref-2">2.</a> Salary tables were extracted from official CCNL documents using Claude Code (AI-assisted), without manual human review. Values should be verified against the official source before use in production payroll systems.</p>
 
-The 75 contracts above cover approximately **14.5 million workers** (sum of per-CCNL estimates; some overlap is possible where sector boundaries are not mutually exclusive, so the unique-worker count is somewhat lower). Italy has roughly **16 million employees** covered by some collective agreement (ISTAT/CNEL 2024, public and private sectors combined). This library therefore reaches an estimated **~85–90% of CCNL-covered workers** on a gross-headcount basis.
+The 85 contract configurations above (84 distinct CCNLs, with CCNL Lavoro Domestico split into two variants) are the largest by headcount in the **private sector**. Italy has approximately **14–15 million private-sector employees** covered by CCNLs (ISTAT/CNEL 2024, excluding the ~3.3M public-sector workers covered by ARAN contracts, which this library does not implement). The gross sum of per-CCNL headcount estimates in the table is ~15M, but this figure overstates unique coverage due to overlap between sectoral agreements (e.g., a worker covered by a sector-wide CCNL may also be counted under a smaller sub-sector variant). A reliable per-worker unique count is not derivable from gross headcount sums alone; the figure is provided for orientation only.
 
 ## Advanced usage
 
