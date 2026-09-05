@@ -10,11 +10,12 @@ from __future__ import annotations
 import importlib.resources
 import json
 import operator
-from datetime import date
+from datetime import UTC, datetime
 from decimal import Decimal
 
 from ccnl_engine.contracts.loaders import load_ccnl
 from ccnl_engine.engine.compute import Scenario, compute
+from ccnl_engine.io.bundled import read_bundled
 from ccnl_engine.models.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.tax.loaders import load_year_rules
 
@@ -24,18 +25,31 @@ _DEFAULT_YEAR = 2026
 def list_ccnls() -> str:
     """Return JSON list of all available CCNLs, sorted by name.
 
+    Works for both editable installs (plain ``.json``) and installed wheels
+    (compressed ``.json.gz``): iterates the data package, normalises the name,
+    then reads via :func:`~ccnl_engine.io.bundled.read_bundled`.
+
     Returns:
         JSON-encoded list of ``{file, id, name, tax_sector}`` dicts.
     """
     data_pkg = importlib.resources.files("ccnl_engine.contracts.data")
     result: list[dict[str, str]] = []
+    seen: set[str] = set()
     for entry in data_pkg.iterdir():
-        if not entry.name.endswith(".json"):
+        name = entry.name
+        if name.endswith(".json.gz"):
+            json_name = name[:-3]  # strip .gz → plain filename
+        elif name.endswith(".json"):
+            json_name = name
+        else:
             continue
-        raw = json.loads(entry.read_text("utf-8"))
+        if json_name in seen:
+            continue
+        seen.add(json_name)
+        raw = json.loads(read_bundled(data_pkg, json_name))
         meta = raw["meta"]
         result.append({
-            "file": entry.name,
+            "file": json_name,
             "id": meta["id"],
             "name": meta["name"],
             "tax_sector": meta["tax_sector"],
@@ -91,7 +105,7 @@ def compute_salary(
     employment_type: str,
     num_employees: int,
     part_time_pct: float = 1.0,
-    seniority_months: int = 0,
+    seniority_count: int = 0,
     months_elapsed: int = 0,
 ) -> str:
     """Compute gross-to-net and employer cost.
@@ -100,9 +114,9 @@ def compute_salary(
         filename: Bare CCNL filename.
         level_code: Level code within the CCNL.
         employment_type: ``"permanent"``, ``"fixed_term"``, or ``"apprentice"``.
-        num_employees: Employer headcount (drives INPS rate tier).
+        num_employees: Employer headcount (drives INPS rate tier and Scenario).
         part_time_pct: Part-time fraction in (0, 1], default full-time.
-        seniority_months: Months of seniority for increment calculation.
+        seniority_count: Number of seniority increments (*scatti di anzianità*).
         months_elapsed: Months elapsed in apprenticeship (apprentice only).
 
     Returns:
@@ -115,15 +129,13 @@ def compute_salary(
     try:
         ccnl = load_ccnl(filename)
         rules = load_year_rules(_DEFAULT_YEAR, ccnl.meta.tax_sector, num_employees)
-        seniority: int | None = (
-            seniority_months if employment_type != "apprentice" else None
-        )
         scenario = Scenario(
             level_code=level_code,
-            as_of=date(_DEFAULT_YEAR, 9, 4),
+            as_of=datetime.now(tz=UTC).date(),
             employment=employment,
+            num_employees=num_employees,
             part_time_pct=Decimal(str(round(part_time_pct, 4))),
-            seniority_months=seniority,
+            seniority_count=seniority_count,
         )
         result = compute(ccnl, rules, scenario)
     except Exception as exc:  # ruff: ignore[blind-except]
@@ -145,6 +157,8 @@ def compute_salary(
         "irpef_gross": float(result.irpef_gross),
         "work_income_deduction": float(result.work_income_deduction),
         "irpef_net": float(result.irpef_net),
+        "trattamento_integrativo": float(result.trattamento_integrativo),
+        "fiscal_simplifications": sorted(str(s) for s in result.fiscal_simplifications),
         "net_annual": float(result.net_annual),
         "net_monthly": float(result.net_monthly),
         "employer_cost_annual": float(result.employer_cost_annual),
