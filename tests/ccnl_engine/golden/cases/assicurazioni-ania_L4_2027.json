@@ -1,0 +1,50 @@
+{
+  "_description": "Golden case: CCNL Assicurazioni ANIA (J121), Level L4, 2027-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Second tranche (2027-01-01): base monthly 2256.28 EUR (Allegato 2/B, tabella omnicomprensiva).",
+    "14 mensilità: gross_annual = 2256.28 × 14 = 31587.92.",
+    "No 2027-credito.json exists; tax rules loaded from 2026-credito.json.",
+    "INPS: employee 9.19%, employer 26.76% flat (Credito e Assicurazioni, proxy kitech.it).",
+    "Hourly divisor 160 (37h/week). Hourly rate = 2256.28 / 160 = 14.1017... → 14.10."
+  ],
+  "inputs": {
+    "ccnl_file": "assicurazioni-ania.json",
+    "year": 2026,
+    "tax_sector": "credito",
+    "num_employees": 50,
+    "level_code": "L4",
+    "as_of": "2027-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "assicurazioni-ania",
+    "level_code": "L4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2027,
+    "seniority_count": 0,
+    "base_monthly": "2256.28",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2256.28",
+    "gross_annual": "31587.92",
+    "hourly_rate": "14.10",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2902.93",
+    "inps_employer_annual": "8452.93",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "2339.85",
+    "taxable_income": "28684.99",
+    "irpef_gross": "6666.05",
+    "work_income_deduction": "585.84",
+    "irpef_net": "6080.21",
+    "net_annual": "22604.78",
+    "net_monthly": "1614.63",
+    "employer_cost_annual": "42380.70"
+  }
+}

@@ -1,0 +1,458 @@
+{
+  "schema_version": "0.3",
+  "meta": {
+    "id": "assicurazioni-ania",
+    "name": "CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)",
+    "cnel_code": "J121",
+    "sector": "assicurazioni",
+    "tax_sector": "credito",
+    "agreement_date": "2026-05-13",
+    "signatories": [
+      "ANIA",
+      "FIRST-CISL",
+      "FISAC-CGIL",
+      "FNA",
+      "SNFIA",
+      "UILCA"
+    ],
+    "sources": [
+      {
+        "url": "https://www.first-cisl.it/",
+        "type": "table",
+        "agreement_date": "2026-05-13"
+      },
+      {
+        "url": "https://www.contratticcnl.it/",
+        "type": "text",
+        "agreement_date": null
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "notes": [
+      "INFO: Covers personale amministrativo assunto dal 18/12/1999 (Allegato 2/B — tabella omnicomprensiva). Pre-1999 hires (Allegato 2/A) are out of scope.",
+      "INFO: First tranche decorrenza 01/01/2026 is retroactive; CCNL signed 13/05/2026. Arretrati January–July 2026 paid in July 2026 (Allegato 7). Period start is 2026-01-01 in the engine.",
+      "INFO: Additional months = 14 (tredicesima + quattordicesima). Monthly amounts are 1/14 of annual retribuzione. Source: Allegato 2/B header, FirstCISL PDF rinnovo 13/05/2026.",
+      "INFO: Seniority: cl 1 = anni 1-4 (48 months, quadriennale); cl 2 onward = 3 years each (36 months, triennale). Source: Art. 113 CCNL + Allegato 2/B class table.",
+      "INFO: L7 maximum seniority class is CL08 (anni 23-25); L1-L6 reach CL12 (oltre 34 anni). maximum_count_by_level overrides L7 to 7 advances.",
+      "INFO: Hourly divisor 160 (37h/week). Source: ilccnl.it, confirmed from Art. orario di lavoro CCNL ANIA.",
+      "INFO: Seniority increment amounts vary across tranches (e.g. L4: 67.51 → 70.17 → 72.30). Represented exactly via TimeSeries in amount_by_level.",
+      "MISSING: Indennità economica funzionari (Allegato 2/D) — role-conditional, six sub-grade variants (Ex 3°/2°/1° Grado, Funz. Senior, Funz. Business, Ass. ex F2), not representable as a single Allowance. Affects L7 only.",
+      "MISSING: Indennità profilo J) 4° livello (Allegato 2/E) — €57.26/mese dal 01/01/2026, €59.51 dal 01/01/2027, €61.32 dal 01/01/2028. Sub-profile-conditional.",
+      "MISSING: Indennità economica 6° livello quadro (Allegato 2/F) — €74.09/mese dal 01/01/2026. Sub-profile-conditional.",
+      "SIMPLIFICATION: Seniority increment = modal per-class difference in the 1/14 monthly table (Allegato 2/B); classes above CL01 may differ from the official table by ±0.02. Source: Allegato 2/B, Rinnovo 13/05/2026.",
+      "SIMPLIFICATION: INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); reuses 2026-credito.json. Verify against the annual INPS circular.",
+      "SOURCE: Salary tables: FirstCISL Gruppo Unipol, Allegato 2/B — Tabella omnicomprensiva post-1999, decorrenza 01/01/2026, 01/01/2027, 01/01/2028.",
+      "SOURCE: Apprenticeship: Art. 5, Allegato 18 (Accordo apprendistato professionalizzante), CCNL testo 2017/2018, confirmed applicable post-rinnovo 2026.",
+      "SOURCE: Class cadence: Art. 113 CCNL + column 'Anni serv.' Allegato 2/B."
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "160"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 11,
+      "first_cadence_months": 48,
+      "maximum_count_by_level": {
+        "L7": 7
+      },
+      "amount_by_level": {
+        "L7": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "95.33"
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": "2028-01-01",
+              "value": "99.08"
+            },
+            {
+              "valid_from": "2028-01-01",
+              "valid_until": null,
+              "value": "102.08"
+            }
+          ]
+        },
+        "L6": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "76.36"
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": "2028-01-01",
+              "value": "79.37"
+            },
+            {
+              "valid_from": "2028-01-01",
+              "valid_until": null,
+              "value": "81.77"
+            }
+          ]
+        },
+        "L5": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "71.56"
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": "2028-01-01",
+              "value": "74.37"
+            },
+            {
+              "valid_from": "2028-01-01",
+              "valid_until": null,
+              "value": "76.63"
+            }
+          ]
+        },
+        "L4": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "67.51"
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": "2028-01-01",
+              "value": "70.17"
+            },
+            {
+              "valid_from": "2028-01-01",
+              "valid_until": null,
+              "value": "72.30"
+            }
+          ]
+        },
+        "L3": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "61.88"
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": "2028-01-01",
+              "value": "64.32"
+            },
+            {
+              "valid_from": "2028-01-01",
+              "valid_until": null,
+              "value": "66.27"
+            }
+          ]
+        },
+        "L2": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "56.53"
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": "2028-01-01",
+              "value": "58.76"
+            },
+            {
+              "valid_from": "2028-01-01",
+              "valid_until": null,
+              "value": "60.54"
+            }
+          ]
+        },
+        "L1": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": "2027-01-01",
+              "value": "53.62"
+            },
+            {
+              "valid_from": "2027-01-01",
+              "valid_until": "2028-01-01",
+              "value": "55.73"
+            },
+            {
+              "valid_from": "2028-01-01",
+              "valid_until": null,
+              "value": "57.42"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "L7",
+      "order": 7,
+      "description": "7° livello — Funzionario",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2906.31"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "3020.73"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "3112.27"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "quadro"
+    },
+    {
+      "code": "L6",
+      "order": 6,
+      "description": "6° livello — Quadro",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2455.37"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2552.04"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2629.37"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "quadro"
+    },
+    {
+      "code": "L5",
+      "order": 5,
+      "description": "5° livello — Impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2300.90"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2391.49"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2463.96"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato"
+    },
+    {
+      "code": "L4",
+      "order": 4,
+      "description": "4° livello — Impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2170.82"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2256.28"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2324.66"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato"
+    },
+    {
+      "code": "L3",
+      "order": 3,
+      "description": "3° livello — Impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1989.74"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2068.08"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2130.75"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato"
+    },
+    {
+      "code": "L2",
+      "order": 2,
+      "description": "2° livello — Impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1817.76"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1889.32"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1946.58"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato"
+    },
+    {
+      "code": "L1",
+      "order": 1,
+      "description": "1° livello — Impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1724.19"
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1792.07"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1846.38"
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato"
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "area_c_l3",
+      "destination_levels": ["L3"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "area_b_l4",
+      "destination_levels": ["L4"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "area_b_l5",
+      "destination_levels": ["L5"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    }
+  ]
+}
