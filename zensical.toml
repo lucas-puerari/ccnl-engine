@@ -3,6 +3,16 @@ site_url     = "https://lucas-puerari.github.io/ccnl-engine/docs/"
 docs_dir     = "docs"
 site_dir     = "_site/docs"
 
+nav = [
+  { "Get started" = "index.md" },
+  { "Examples"    = "examples.md" },
+  { "API" = [
+    { "Engine"  = "api/engine.md" },
+    { "Models"  = "api/models.md" },
+    { "Loaders" = "api/loaders.md" },
+  ]},
+]
+
 [theme]
 name = "material"
 

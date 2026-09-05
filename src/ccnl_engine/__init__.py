@@ -17,6 +17,7 @@ Usage::
         level_code="C2",
         as_of=date(2026, 1, 1),
         employment=Permanent(),
+        num_employees=50,
     )
     payslip = compute(ccnl, rules, scenario)
 """

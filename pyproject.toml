@@ -76,6 +76,8 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["S", "ARG", "SLF001", "PLR6301"]  # PLR6301: pytest methods don't need self
+# Examples are doc scripts: print is intentional, late imports are illustrative, line length is secondary.
+"docs/examples/**" = ["T201", "E402", "RUF100", "I001", "E501", "N999", "RUF010"]
 # Pydantic needs runtime access to annotated types; TCH001-TCH003 would move
 # them to TYPE_CHECKING blocks, breaking model_validate and field resolution.
 # Applies only to files that define Pydantic models, not to engine code.
