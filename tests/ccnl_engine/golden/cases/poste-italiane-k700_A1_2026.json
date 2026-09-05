@@ -1,0 +1,62 @@
+{
+  "_description": "Golden case: CCNL Poste Italiane K700, level A1, 2026-01-01, permanent, no seniority.",
+  "_notes": [
+    "Jan 2026 uses second tranche (2025-09-01): A1 paga base = 1982.41 EUR/month (Allegato 9).",
+    "Salary model: split — base_salary = paga base, fixed_allowances = contingenza 545.44 + funzione 333.33.",
+    "allowances_monthly = 545.44 + 333.33 = 878.77. gross_monthly = 1982.41 + 878.77 = 2861.18.",
+    "Funzione at staff floor rate (SIMPLIFICATION: produzione rate 391.67 not modeled without roles).",
+    "hourly_rate = 2861.18 / 156 = 18.34. Additional months: 14.",
+    "gross_annual = 2861.18 * 14 = 39389.86 (funzione months_per_year=12: 333.33*12=3999.96 in gross_annual).",
+    "Seniority: 0 (no traditional scatti; Art. 25 legacy RIA only).",
+    "INPS industria rates from 2026-industria.json (50-employee tier)."
+  ],
+  "inputs": {
+    "ccnl_file": "poste-italiane-k700.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "A1",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "poste-italiane-k700",
+    "level_code": "A1",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1982.41",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "878.77",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2861.18",
+    "gross_annual": "39389.86",
+    "hourly_rate": "18.34",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "3738.10",
+    "inps_employer_annual": "11895.74",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "2917.77",
+    "taxable_income": "35651.76",
+    "irpef_gross": "8965.08",
+    "work_income_deduction": "337.60",
+    "irpef_net": "8627.48",
+    "net_annual": "27024.28",
+    "net_monthly": "1930.31",
+    "employer_cost_annual": "54203.37",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "0",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}

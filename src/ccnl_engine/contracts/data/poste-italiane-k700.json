@@ -1,0 +1,500 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "poste-italiane-k700",
+    "name": "CCNL Poste Italiane S.p.A. (personale non dirigente)",
+    "cnel_code": "K700",
+    "sector": "Servizi postali",
+    "tax_sector": "industria",
+    "agreement_date": "2024-07-23",
+    "signatories": [
+      "POSTE ITALIANE S.p.A.",
+      "SLP-CISL",
+      "SLC-CGIL",
+      "UIL Poste"
+    ],
+    "sources": [
+      {
+        "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
+        "type": "text",
+        "agreement_date": "2024-07-23"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: split. base_salary = minimo tabellare (Allegato 9, changes each tranche); fixed_allowances = contingenza (per-level, frozen) + indennità di funzione for A1/A2 (months_per_year=12)."
+      },
+      {
+        "kind": "info",
+        "text": "Hourly divisor 156 from Art. 65 III: retribuzione base oraria = mensile / 156. Cross-check: 36h/week × 52/12 = 156 h/month (Art. 26 normal workweek = 36h)."
+      },
+      {
+        "kind": "info",
+        "text": "Additional months: 14. Art. 67 tredicesima: base = posizione retributiva + contingenza + EDR — funzione excluded. Art. 68 quattordicesima: same explicit enumeration. Both articles confirm funzione not in mensilità aggiuntive."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: no traditional scatti di anzianità for new hires. Retribuzione individuale di anzianità (D.P.R. 335/1990) is a legacy element for pre-privatization workers only (Art. 25 CCNL). Model: cadence_months=24, maximum_count=0."
+      },
+      {
+        "kind": "info",
+        "text": "A1/A2 levels: paga base and contingenza are identical for staff and produzione; funzione differs (Art. 21 CCNL). Modeled as single levels; funzione uses staff rate as floor (see SIMPLIFICATION)."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship: Art. 24 CCNL — under_classification, inquadrato al livello immediatamente inferiore per l'intera durata (max 36 mesi). Destinations B, C, D, E. Level A excluded (Quadri e coordinamento/controllo). Level F excluded (lowest, no level below)."
+      },
+      {
+        "kind": "info",
+        "text": "Headcount: ~116,801 workers (CNEL/INPS archive, K700)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: EDR (elemento distintivo della retribuzione) omitted. Art. 65 I qualifies it as 'ove spettante'; amount not stated in Allegato 9 or CCNL body. Legacy entitlement for pre-privatization workers only."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Indennità di funzione modeled at staff rate (A1: 333.33/mo, A2: 187.50/mo). Produzione rate is higher (A1: 391.67, A2: 233.33); delta of 58.34-46.00 EUR/mo not captured without Scenario.roles."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: INPS industria rates applied. Poste Italiane is a large private-law employer since 1998; IPOST merged into INPS in 2012. No Poste-specific INPS rate exists in the engine."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: industria CIGO (1.70-2.00%) included in employer INPS rate. Poste Italiane is not a manufacturing firm and is not CIGO-subject; actual employer cost is lower. Verify against INPS circ. for the correct Poste INPS classification."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Legacy retribuzione individuale di anzianità (D.P.R. 335/1990) and posizioni economiche differenziate (CCNL 1997) not modeled."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Salary tranche 01/07/2024–31/08/2025 covered by one-time 'anticipo sui futuri miglioramenti economici' (lump sum, September 2024). Engine carries paga base at 2024-07-23 level (same as pre-renewal) for that window."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-07-23",
+          "valid_until": null,
+          "value": "156"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-07-23",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 0,
+      "amount_by_level": {}
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "professionalizzante",
+      "destination_levels": ["B", "C", "D", "E"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "F",
+      "order": 1,
+      "description": "Livello F",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-23",
+            "valid_until": "2025-09-01",
+            "value": "997.73"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1039.37"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-09-01",
+            "value": "1081.01"
+          },
+          {
+            "valid_from": "2027-09-01",
+            "valid_until": "2027-12-01",
+            "value": "1121.83"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1154.49"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza (Allegato 9 CCNL, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-23",
+                "valid_until": null,
+                "value": "517.03"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "E",
+      "order": 2,
+      "description": "Livello E",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-23",
+            "valid_until": "2025-09-01",
+            "value": "1117.64"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1162.79"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-09-01",
+            "value": "1207.94"
+          },
+          {
+            "valid_from": "2027-09-01",
+            "valid_until": "2027-12-01",
+            "value": "1252.20"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1287.61"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza (Allegato 9 CCNL, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-23",
+                "valid_until": null,
+                "value": "524.86"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "D",
+      "order": 3,
+      "description": "Livello D",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-23",
+            "valid_until": "2025-09-01",
+            "value": "1266.79"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1316.04"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-09-01",
+            "value": "1365.29"
+          },
+          {
+            "valid_from": "2027-09-01",
+            "valid_until": "2027-12-01",
+            "value": "1413.57"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1452.20"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza (Allegato 9 CCNL, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-23",
+                "valid_until": null,
+                "value": "524.86"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "C",
+      "order": 4,
+      "description": "Livello C",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-23",
+            "valid_until": "2025-09-01",
+            "value": "1330.56"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1381.56"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-09-01",
+            "value": "1432.56"
+          },
+          {
+            "valid_from": "2027-09-01",
+            "valid_until": "2027-12-01",
+            "value": "1482.56"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1522.56"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza (Allegato 9 CCNL, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-23",
+                "valid_until": null,
+                "value": "524.86"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "B",
+      "order": 5,
+      "description": "Livello B",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-23",
+            "valid_until": "2025-09-01",
+            "value": "1448.75"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1503.00"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-09-01",
+            "value": "1557.25"
+          },
+          {
+            "valid_from": "2027-09-01",
+            "valid_until": "2027-12-01",
+            "value": "1610.43"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1652.98"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza (Allegato 9 CCNL, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-23",
+                "valid_until": null,
+                "value": "524.86"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "A2",
+      "order": 6,
+      "description": "Livello A — posizione retributiva A2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-23",
+            "valid_until": "2025-09-01",
+            "value": "1695.77"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1757.16"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-09-01",
+            "value": "1818.55"
+          },
+          {
+            "valid_from": "2027-09-01",
+            "valid_until": "2027-12-01",
+            "value": "1878.74"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1926.89"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza (Allegato 9 CCNL, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-23",
+                "valid_until": null,
+                "value": "537.81"
+              }
+            ]
+          }
+        },
+        {
+          "code": "IND_FUNZIONE_A2",
+          "description": "Indennità di funzione Quadri — posizione A2 (Art. 21 CCNL, staff floor 2250 EUR/anno)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-23",
+                "valid_until": null,
+                "value": "187.50"
+              }
+            ]
+          },
+          "months_per_year": 12
+        }
+      ]
+    },
+    {
+      "code": "A1",
+      "order": 7,
+      "description": "Livello A — posizione retributiva A1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-23",
+            "valid_until": "2025-09-01",
+            "value": "1914.79"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1982.41"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-09-01",
+            "value": "2050.03"
+          },
+          {
+            "valid_from": "2027-09-01",
+            "valid_until": "2027-12-01",
+            "value": "2116.33"
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2169.37"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza (Allegato 9 CCNL, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-23",
+                "valid_until": null,
+                "value": "545.44"
+              }
+            ]
+          }
+        },
+        {
+          "code": "IND_FUNZIONE_A1",
+          "description": "Indennità di funzione Quadri — posizione A1 (Art. 21 CCNL, staff floor 4000 EUR/anno)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-23",
+                "valid_until": null,
+                "value": "333.33"
+              }
+            ]
+          },
+          "months_per_year": 12
+        }
+      ]
+    }
+  ]
+}

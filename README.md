@@ -134,6 +134,7 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 | 70 | A141 | Consorzi Agrari — ASSOCAP | Agricoltura | ~2k | ✅ | ✅ | 🤖 |
 | 71 | A221 | Organizzazioni Allevatori e Enti Zootecnici — AIA | Agricoltura | ~2k | ✅ | ✅ | 🤖 |
 | 72 | E018 | Dipendenti PMI Alimentare — Unionalimentari-Confapi | Alimentare | ~35k | ✅ | ✅ | 🤖 |
+| 73 | K700 | Poste Italiane S.p.A. (non dirigenti) | Industria | ~117k | ✅ | ✅ | 🤖 |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
