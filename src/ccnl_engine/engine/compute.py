@@ -25,6 +25,7 @@ if TYPE_CHECKING:
         Level,
         LevelCategory,
         SeniorityIncrements,
+        SeniorityTier,
         SupplementaryAllowance,
     )
     from ccnl_engine.models.employment import Employment
@@ -267,7 +268,13 @@ def compute(
     under_level_code: str | None = None
     if isinstance(scenario.employment, Apprentice):
         chain_ft, apprenticeship_pct, under_level_code = _apprentice_chain(
-            ccnl, level, scenario.employment, count, scenario.roles, scenario.as_of
+            ccnl,
+            level,
+            scenario.employment,
+            count,
+            scenario.roles,
+            scenario.as_of,
+            seniority_months=scenario.seniority_months,
         )
         if apprenticeship_pct is not None:
             factor *= apprenticeship_pct
@@ -282,7 +289,13 @@ def compute(
             raise ValueError(msg)
     else:
         chain_ft = _level_chain(
-            ccnl, level, count, scenario.roles, scenario.as_of, is_apprentice=False
+            ccnl,
+            level,
+            count,
+            scenario.roles,
+            scenario.as_of,
+            is_apprentice=False,
+            seniority_months=scenario.seniority_months,
         )
 
     chain = (
@@ -457,6 +470,79 @@ def _validate_negotiated_ral(
     return negotiated_ral is not None or negotiated_destination_ral is not None
 
 
+def _count_from_tiers(tiers: list[SeniorityTier], seniority_months: int) -> int:
+    """Sum the number of increments earned across all tiers from service months.
+
+    Tiers are consumed in order. Each tier's full capacity
+    (``cadence_months * maximum_count``) of service months is exhausted before
+    advancing to the next tier.
+
+    Returns:
+        Total increment count across all tiers.
+    """
+    remaining = seniority_months
+    total = 0
+    for tier in tiers:
+        count = min(remaining // tier.cadence_months, tier.maximum_count)
+        total += count
+        remaining -= tier.maximum_count * tier.cadence_months
+        if remaining < 0:
+            break
+    return total
+
+
+def _resolve_tier_amount(
+    tiers: list[SeniorityTier],
+    level_code: str,
+    seniority_months: int,
+    as_of: date,
+) -> Decimal:
+    """Compute total seniority amount from tiered rules given service months.
+
+    Returns:
+        Rounded total monthly seniority amount for the level.
+    """
+    remaining = seniority_months
+    total = _ZERO
+    for tier in tiers:
+        amount_ts = tier.amount_by_level.get(level_code)
+        amount = amount_ts.value_at(as_of) if amount_ts is not None else _ZERO
+        count = min(remaining // tier.cadence_months, tier.maximum_count)
+        total += amount * Decimal(count)
+        remaining -= tier.maximum_count * tier.cadence_months
+        if remaining < 0:
+            break
+    return money(total)
+
+
+def _resolve_tier_amount_from_count(
+    tiers: list[SeniorityTier],
+    level_code: str,
+    count: int,
+    as_of: date,
+) -> Decimal:
+    """Compute total seniority amount from tiered rules given an explicit count.
+
+    Used when ``seniority_months`` is unavailable and only the increment
+    count is known. Increments are distributed across tiers sequentially
+    (tier 1 fills first, then tier 2, …).
+
+    Returns:
+        Rounded total monthly seniority amount for the level.
+    """
+    remaining = count
+    total = _ZERO
+    for tier in tiers:
+        if remaining <= 0:
+            break
+        amount_ts = tier.amount_by_level.get(level_code)
+        amount = amount_ts.value_at(as_of) if amount_ts is not None else _ZERO
+        tier_count = min(remaining, tier.maximum_count)
+        total += amount * Decimal(tier_count)
+        remaining -= tier_count
+    return money(total)
+
+
 def _resolve_seniority_count(
     seniority_rules: SeniorityIncrements,
     level_code: str,
@@ -480,6 +566,8 @@ def _resolve_seniority_count(
         if seniority_months < 0:
             msg = f"seniority_months must be >= 0, got {seniority_months}"
             raise ValueError(msg)
+        if seniority_rules.tiers:
+            return _count_from_tiers(seniority_rules.tiers, seniority_months)
         first = seniority_rules.first_cadence_for(level_code)
         if seniority_months < first:
             return 0
@@ -498,6 +586,67 @@ def _resolve_seniority_count(
     return count
 
 
+def _seniority_amount(
+    seniority_rules: SeniorityIncrements,
+    level_code: str,
+    count: int,
+    as_of: date,
+    *,
+    is_apprentice: bool,
+    seniority_months: int | None,
+) -> Decimal:
+    """Resolve the monthly seniority amount for one level on one date.
+
+    Handles apprentice amounts, tiered ladders, flat amounts, and the absent
+    (zero) case. Tiered ladders prefer ``seniority_months`` when available;
+    fall back to count-based distribution otherwise.
+
+    Returns:
+        Rounded monthly seniority amount in EUR.
+    """
+    # SIMPLIFICATION: apprentices accrue only the CCNL apprentice-specific
+    # increment (if any); the level increments start after qualification.
+    if is_apprentice:
+        raw = (
+            seniority_rules.apprentice_amount.value_at(as_of)
+            if seniority_rules.apprentice_amount is not None
+            else _ZERO
+        )
+        return money(raw * count)
+    if seniority_rules.tiers:
+        if seniority_months is not None:
+            return _resolve_tier_amount(
+                seniority_rules.tiers, level_code, seniority_months, as_of
+            )
+        # seniority_count was given directly (no months info); distribute
+        # count across tiers sequentially.
+        return _resolve_tier_amount_from_count(
+            seniority_rules.tiers, level_code, count, as_of
+        )
+    if level_code in seniority_rules.amount_by_level:
+        raw = seniority_rules.amount_by_level[level_code].value_at(as_of)
+        return money(raw * count)
+    return _ZERO
+
+
+def _allowance_active(
+    allowance: Allowance,
+    roles: frozenset[str],
+    seniority_months: int | None,
+) -> bool:
+    """Return whether an allowance is active for the given roles and service time.
+
+    Returns:
+        True when the allowance's role and service-months conditions are met.
+    """
+    if allowance.role is not None and allowance.role not in roles:
+        return False
+    threshold = allowance.service_months_threshold
+    if threshold is None:
+        return True
+    return seniority_months is not None and seniority_months >= threshold
+
+
 def _level_chain(
     ccnl: CCNL,
     level: Level,
@@ -506,28 +655,25 @@ def _level_chain(
     as_of: date,
     *,
     is_apprentice: bool,
+    seniority_months: int | None = None,
 ) -> _MonthlyPayChain:
     seniority_rules = ccnl.parameters.seniority_increments
-    # SIMPLIFICATION: apprentices accrue only the CCNL apprentice-specific
-    # increment (if any); the level increments start after qualification.
-    if is_apprentice:
-        amount = (
-            seniority_rules.apprentice_amount.value_at(as_of)
-            if seniority_rules.apprentice_amount is not None
-            else _ZERO
-        )
-    elif level.code in seniority_rules.amount_by_level:
-        amount = seniority_rules.amount_by_level[level.code].value_at(as_of)
-    else:
-        amount = _ZERO
+    seniority = _seniority_amount(
+        seniority_rules,
+        level.code,
+        count,
+        as_of,
+        is_apprentice=is_apprentice,
+        seniority_months=seniority_months,
+    )
     allowances = tuple(
         (a, a.monthly.value_at(as_of))
         for a in level.fixed_allowances
-        if a.role is None or a.role in roles
+        if _allowance_active(a, roles, seniority_months)
     )
     return _MonthlyPayChain(
         base=level.base_salary.value_at(as_of),
-        seniority=money(amount * count),
+        seniority=seniority,
         allowances=allowances,
     )
 
@@ -539,6 +685,8 @@ def _apprentice_chain(
     count: int,
     roles: frozenset[str],
     as_of: date,
+    *,
+    seniority_months: int | None = None,
 ) -> tuple[_MonthlyPayChain, Decimal | None, str | None]:
     track = _select_track(ccnl, level, employment)
     period_index = _find_period_index(track.periods, employment.months_elapsed)
@@ -548,11 +696,27 @@ def _apprentice_chain(
             if track.reference_level is not None
             else level
         )
-        chain = _level_chain(ccnl, reference, count, roles, as_of, is_apprentice=True)
+        chain = _level_chain(
+            ccnl,
+            reference,
+            count,
+            roles,
+            as_of,
+            is_apprentice=True,
+            seniority_months=seniority_months,
+        )
         return chain, track.periods[period_index].percentage, None
     period = track.periods[period_index]
     pay_level = ccnl.level_by_order(level.order - period.levels_below)
-    chain = _level_chain(ccnl, pay_level, count, roles, as_of, is_apprentice=True)
+    chain = _level_chain(
+        ccnl,
+        pay_level,
+        count,
+        roles,
+        as_of,
+        is_apprentice=True,
+        seniority_months=seniority_months,
+    )
     if period.midpoint_to_destination:
         # SIMPLIFICATION: the midpoint applies to the base salary only;
         # allowances are those of the pay level.

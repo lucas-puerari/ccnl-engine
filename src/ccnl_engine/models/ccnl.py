@@ -74,6 +74,12 @@ class Allowance(BaseModel):
     value even for percentage-based apprentices (e.g. EDR per Art. 3 L.
     297/1982, which Italian CCNL commonly exempt from apprenticeship
     percentage reductions).
+
+    ``service_months_threshold`` makes the allowance conditional: it is
+    included only when ``Scenario.seniority_months`` is provided and is at
+    least this many months. When ``Scenario.seniority_count`` is used instead
+    of ``seniority_months``, threshold-gated allowances are excluded (the
+    engine cannot gate on service time without knowing service time).
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -86,6 +92,7 @@ class Allowance(BaseModel):
     tfr_relevant: bool = True
     contribution_relevant: bool = True
     apprenticeship_pct_relevant: bool = True
+    service_months_threshold: int | None = Field(default=None, ge=0)
 
 
 class SupplementaryAllowance(BaseModel):
@@ -122,14 +129,45 @@ class SupplementaryAllowance(BaseModel):
     apprenticeship_pct_relevant: bool = True
 
 
+class SeniorityTier(BaseModel):
+    """One cadence tier in a multi-tier seniority ladder (*scatti di anzianità*).
+
+    When a contract uses a single cadence throughout (e.g. 10 biennial scatti)
+    use the flat ``cadence_months``/``maximum_count``/``amount_by_level`` fields
+    on :class:`SeniorityIncrements` instead.
+
+    When the cadence changes after a certain number of increments (e.g. 6
+    biennial, then 1 dodecennial, then 3 quadrennial), populate
+    ``SeniorityIncrements.tiers`` and leave ``amount_by_level`` empty.
+    Tiers are consumed in order: the engine exhausts tier 1's full capacity
+    (``cadence_months * maximum_count`` service months) before advancing to tier 2.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    cadence_months: int = Field(gt=0)
+    maximum_count: int = Field(gt=0)
+    amount_by_level: dict[str, TimeSeries]
+
+
 class SeniorityIncrements(BaseModel):
     """Seniority increment (*scatti di anzianità*) rules for a CCNL.
 
-    ``first_cadence_months`` is the service required for the first increment
-    when it differs from ``cadence_months``; ``first_cadence_months_by_level``
-    and ``maximum_count_by_level`` override the contract-wide values for
-    specific levels. ``apprentice_amount`` is the increment (if any) accrued
-    during an apprenticeship, replacing the level amount. Workers of an
+    **Flat mode** (default): set ``cadence_months``, ``maximum_count``, and
+    ``amount_by_level``. All increments share the same cadence and per-scatto
+    amount. ``first_cadence_months`` and the ``*_by_level`` overrides refine
+    the flat behaviour per level.
+
+    **Tiered mode**: set ``tiers`` to a non-empty list of
+    :class:`SeniorityTier` entries and leave ``amount_by_level`` empty.
+    ``cadence_months`` and ``maximum_count`` remain required for schema
+    compatibility but are ignored at runtime (the tier definitions take
+    precedence). ``first_cadence_months`` and ``first_cadence_months_by_level``
+    are also ignored in tiered mode; the first tier's ``cadence_months`` acts
+    as the first cadence.
+
+    ``apprentice_amount`` is the increment (if any) accrued during an
+    apprenticeship, replacing the level amount. Workers of an
     ``excluded_categories`` category accrue no increment (e.g. operai edili,
     who receive APE through the Cassa Edile instead).
     """
@@ -139,6 +177,7 @@ class SeniorityIncrements(BaseModel):
     cadence_months: int = Field(gt=0)
     maximum_count: int = Field(ge=0)
     amount_by_level: dict[str, TimeSeries]
+    tiers: list[SeniorityTier] = []
     first_cadence_months: int | None = Field(default=None, gt=0)
     first_cadence_months_by_level: dict[str, int] = {}
     maximum_count_by_level: dict[str, int] = {}
@@ -147,6 +186,15 @@ class SeniorityIncrements(BaseModel):
 
     @model_validator(mode="after")
     def _check_cadence(self) -> Self:
+        if self.tiers:
+            if self.amount_by_level:
+                msg = (
+                    "seniority_increments.tiers and amount_by_level are mutually "
+                    "exclusive: use tiers for multi-tier ladders, amount_by_level "
+                    "for uniform-cadence contracts"
+                )
+                raise ValueError(msg)
+            return self
         candidates = [("first_cadence_months", self.first_cadence_months)]
         candidates += [
             (f"first_cadence_months_by_level[{code!r}]", months)
@@ -168,9 +216,13 @@ class SeniorityIncrements(BaseModel):
     def maximum_for(self, level_code: str) -> int:
         """Return the maximum increment count applicable to a level.
 
+        In tiered mode returns the sum of all tier maximums.
+
         Returns:
             The maximum seniority increment count for the given level.
         """
+        if self.tiers:
+            return sum(t.maximum_count for t in self.tiers)
         return self.maximum_count_by_level.get(level_code, self.maximum_count)
 
     def first_cadence_for(self, level_code: str) -> int:
@@ -473,6 +525,15 @@ class CCNL(BaseModel):
                     msg = (
                         f"seniority_increments.{field_name} references level "
                         f"code {code!r} which does not exist in levels"
+                    )
+                    raise ValueError(msg)
+        for i, tier in enumerate(si.tiers):
+            for code in tier.amount_by_level:
+                if code not in existing:
+                    msg = (
+                        f"seniority_increments.tiers[{i}].amount_by_level "
+                        f"references level code {code!r} which does not exist "
+                        f"in levels"
                     )
                     raise ValueError(msg)
 
