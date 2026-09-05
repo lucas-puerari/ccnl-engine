@@ -1,0 +1,628 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "laterizi-industria-f021",
+    "name": "CCNL Laterizi e Manufatti Cementizi - Industria",
+    "cnel_code": "F021",
+    "sector": "industria",
+    "tax_sector": "edilizia",
+    "signatories": [
+      "Confindustria Ceramica Raggruppamento Laterizi",
+      "Assobeton",
+      "FENEAL-UIL",
+      "FILCA-CISL",
+      "FILLEA-CGIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
+        "type": "text",
+        "agreement_date": "2022-05-31"
+      },
+      {
+        "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/LATERIZI/Ipotesi_di_Accordo_Rinnovo_CCNL_Laterizi_e_manufatti_31.10.2025.pdf",
+        "type": "text",
+        "agreement_date": "2025-10-31"
+      },
+      {
+        "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/Tabella-retributiva-CCNL-Laterizi-INDUSTRIA-DA-FEBBRAIO-2025.pdf",
+        "type": "table",
+        "agreement_date": "2022-05-31"
+      },
+      {
+        "url": "https://lawinsider.com/it/contracts/euRWxUzbye9",
+        "type": "text",
+        "agreement_date": "2020-02-12"
+      },
+      {
+        "url": "https://www.thaler.it/assets/files/Transparenzdekret/Laterizi_-_Aziende_industriali.pdf",
+        "type": "table",
+        "agreement_date": null
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: split. base_salary = paga tabellare (TEM), varying by level and tranche. fixed_allowances per level: CONTINGENZA (frozen since 1993 Protocol) + EDR (10.33 EUR, all levels). Level AS also carries Indennita di funzione quadri (51.65 EUR) — applied to ASQ level only. Source: FILCA-CISL tabella retributiva (2022 and 2025 renewals); thaler.it parametri contrattuali."
+      },
+      {
+        "kind": "info",
+        "text": "SALARY TABLE: 2022 contract (decorrenza 01/04/2022, signed 31/05/2022): 3 tranches at 01/07/2022, 01/10/2023, 01/02/2025. 2025 contract (decorrenza 01/10/2025, signed 31/10/2025): 4 tranches at 01/10/2025, 01/07/2026, 01/07/2027, 01/07/2028. Sources: FILCA-CISL salary tables (primary)."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 174. Source: thaler.it parametri contrattuali ('Divisori Giornaliero: 174'). Consistent with 40h/week standard (40 x 52 / 12 = 173.33 rounded to 174) and confirmed by filleacgil.it lapidei CCNL text referencing the same divisor."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP: under_classification, Art. 9 Apprendistato professionalizzante from 12/02/2020 CCNL organic text (lawinsider.com/it/contracts/euRWxUzbye9). Checked 2022 renewal (modified articles: 13, 14, 21, 31, 33, 35bis, 35ter, 52 — Art. 9 absent) and 2025 renewal (modified articles: 3, 4, 9bis, 13, 21, 32, 33, 35bis, 35ter, 53, 55, 66 — Art. 9 absent). Art. 9 unchanged in both renewals; 2020 text governs."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP — level E period 1: the CCNL Art. 9 prescribes 2 levels below destination for period 1 in all tracks. For destination E (order=2), 2 below would reach order=0 which does not exist. Engine level_by_order raises ValueError for missing orders. SIMPLIFICATION: E track period 1 uses levels_below=1 (pay at level F, order=1), the lowest available level below E. Duration: 6+6 months."
+      },
+      {
+        "kind": "simplification",
+        "text": "ASQ SENIORITY: thaler.it seniority table lists AS, A, B, CS, C, D, E, F amounts but not ASQ separately. SIMPLIFICATION: ASQ uses the same scatto amount as AS (14.72 EUR/biennio)."
+      },
+      {
+        "kind": "info",
+        "text": "LEVEL F SUPERMINIMO: FILCA-CISL table note: 'Nel livello F e compreso l'importo di euro 4,13 a titolo di superminimo.' The 4.13 EUR is already embedded in the base_salary values for level F across all tranches. No separate fixed_allowance added."
+      },
+      {
+        "kind": "info",
+        "text": "ASQ LEVEL: distinct classification from AS. Quadri (ASQ) hold the same paga tabellare as AS but additionally receive the Indennita di funzione quadri (51.65 EUR/month). Source: thaler.it 'Livelli e Qualifiche' table and 'Indennita funzione quadri: 51.65 euro mensili lordi'. FILCA-CISL salary table groups AS+quadri in a single row labelled 'A S' with Supermin.individ.=51.65; lavoro-economia.it c=131 shows separate ASQ and AS totals."
+      },
+      {
+        "kind": "info",
+        "text": "ARCO FUND: employer complementary pension contribution from 01/07/2026 = 1.90%, from 01/01/2028 = 2.00% (2025 renewal Art. 55). The ARCO base is: paga tabellare + contingenza + EDR + indennita funzione quadri (where applicable). Not modelled in employer_funds (TFR-based bilateral fund, not captured by the current engine schema)."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2022-04-01",
+          "valid_until": null,
+          "value": "174"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2022-04-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "ASQ": {
+          "periods": [
+            {
+              "valid_from": "2022-04-01",
+              "valid_until": null,
+              "value": "14.72"
+            }
+          ]
+        },
+        "AS": {
+          "periods": [
+            {
+              "valid_from": "2022-04-01",
+              "valid_until": null,
+              "value": "14.72"
+            }
+          ]
+        },
+        "A": {
+          "periods": [
+            {
+              "valid_from": "2022-04-01",
+              "valid_until": null,
+              "value": "11.71"
+            }
+          ]
+        },
+        "B": {
+          "periods": [
+            {
+              "valid_from": "2022-04-01",
+              "valid_until": null,
+              "value": "9.60"
+            }
+          ]
+        },
+        "CS": {
+          "periods": [
+            {
+              "valid_from": "2022-04-01",
+              "valid_until": null,
+              "value": "8.70"
+            }
+          ]
+        },
+        "C": {
+          "periods": [
+            {
+              "valid_from": "2022-04-01",
+              "valid_until": null,
+              "value": "8.32"
+            }
+          ]
+        },
+        "D": {
+          "periods": [
+            {
+              "valid_from": "2022-04-01",
+              "valid_until": null,
+              "value": "7.87"
+            }
+          ]
+        },
+        "E": {
+          "periods": [
+            {
+              "valid_from": "2022-04-01",
+              "valid_until": null,
+              "value": "7.23"
+            }
+          ]
+        },
+        "F": {
+          "periods": [
+            {
+              "valid_from": "2022-04-01",
+              "valid_until": null,
+              "value": "6.79"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_36",
+      "destination_levels": ["ASQ", "AS", "A", "B"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_30",
+      "destination_levels": ["CS", "C"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 10,
+          "levels_below": 2
+        },
+        {
+          "months_from": 10,
+          "months_until": 20,
+          "levels_below": 1
+        },
+        {
+          "months_from": 20,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_24",
+      "destination_levels": ["D"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 8,
+          "levels_below": 2
+        },
+        {
+          "months_from": 8,
+          "months_until": 16,
+          "levels_below": 1
+        },
+        {
+          "months_from": 16,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_12",
+      "destination_levels": ["E"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "levels_below": 1
+        },
+        {
+          "months_from": 6,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "ASQ",
+      "order": 9,
+      "description": "Quadri AS — Impiegati inquadrati al livello AS con responsabilita di coordinamento e gestione di settori fondamentali",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "2095.27"},
+          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "2159.98"},
+          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "2200.42"},
+          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "2257.03"},
+          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2402.62"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2491.60"},
+          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "2580.57"},
+          {"valid_from": "2028-07-01", "valid_until": null, "value": "2588.66"}
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "534.84"}
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+            ]
+          }
+        },
+        {
+          "code": "IND_FUNZIONE_QUADRI",
+          "description": "Indennita di funzione quadri (L. 190/1985)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "51.65"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "AS",
+      "order": 8,
+      "description": "AS — Impiegati con funzioni direttive e discrezionalita di poteri",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "2095.27"},
+          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "2159.98"},
+          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "2200.42"},
+          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "2257.03"},
+          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2402.62"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2491.60"},
+          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "2580.57"},
+          {"valid_from": "2028-07-01", "valid_until": null, "value": "2588.66"}
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "534.84"}
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "A",
+      "order": 7,
+      "description": "A — Impiegati con funzioni autonome di guida e coordinamento",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "1761.92"},
+          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "1816.33"},
+          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "1850.34"},
+          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "1897.95"},
+          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2020.38"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2095.20"},
+          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "2170.02"},
+          {"valid_from": "2028-07-01", "valid_until": null, "value": "2176.82"}
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "528.01"}
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "B",
+      "order": 6,
+      "description": "B — Impiegati e Operai con mansioni di concetto o manutenzione impianti con coordinamento",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "1438.12"},
+          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "1482.53"},
+          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "1510.29"},
+          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "1549.15"},
+          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1649.08"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1710.15"},
+          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "1771.22"},
+          {"valid_from": "2028-07-01", "valid_until": null, "value": "1776.77"}
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "521.40"}
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "CS",
+      "order": 5,
+      "description": "CS — Operai specializzati con interventi elettrici/elettronici o coordinamento squadra",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "1360.34"},
+          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "1402.40"},
+          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "1428.69"},
+          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "1465.49"},
+          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1560.12"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1617.95"},
+          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "1675.78"},
+          {"valid_from": "2028-07-01", "valid_until": null, "value": "1681.04"}
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "517.58"}
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "C",
+      "order": 4,
+      "description": "C — Impiegati e Operai con autonomia esecutiva e conoscenze professionali specifiche",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "1294.23"},
+          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "1334.23"},
+          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "1359.23"},
+          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "1394.23"},
+          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1484.23"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1539.23"},
+          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "1594.23"},
+          {"valid_from": "2028-07-01", "valid_until": null, "value": "1599.23"}
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "517.52"}
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "D",
+      "order": 3,
+      "description": "D — Impiegati con mansioni d'ordine e Operai con capacita tecnico-pratiche",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "1203.09"},
+          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "1240.15"},
+          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "1263.31"},
+          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "1295.74"},
+          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1379.12"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1430.08"},
+          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "1481.04"},
+          {"valid_from": "2028-07-01", "valid_until": null, "value": "1485.67"}
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "515.99"}
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "E",
+      "order": 2,
+      "description": "E — Impiegati con mansioni esecutive generiche e Operai con capacita pratica di mestiere",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "1115.27"},
+          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "1149.68"},
+          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "1171.19"},
+          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "1201.30"},
+          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1278.73"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1326.05"},
+          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "1373.37"},
+          {"valid_from": "2028-07-01", "valid_until": null, "value": "1377.67"}
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "514.04"}
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "F",
+      "order": 1,
+      "description": "F — Operai con semplici conoscenze conseguibili con breve pratica (incl. superminimo 4.13 EUR)",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "954.28"},
+          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "983.69"},
+          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "1002.07"},
+          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "1027.81"},
+          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1093.99"},
+          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1134.43"},
+          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "1174.87"},
+          {"valid_from": "2028-07-01", "valid_until": null, "value": "1178.55"}
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "511.74"}
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
