@@ -1,0 +1,483 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "fiori-recisi-ancef",
+    "name": "CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)",
+    "cnel_code": "H201",
+    "sector": "Fiori recisi, verde e piante ornamentali (import-export)",
+    "tax_sector": "terziario",
+    "agreement_date": "2023-03-30",
+    "signatories": [
+      "ANCEF",
+      "FLAI-CGIL",
+      "FISASCAT-CISL",
+      "UIL Tucs"
+    ],
+    "sources": [
+      {
+        "url": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
+        "type": "text",
+        "agreement_date": "2023-03-30"
+      },
+      {
+        "url": "https://www.redigo.info/tabelle-retributive/fiori-recisi-ancef",
+        "type": "salary_table",
+        "agreement_date": "2023-03-30"
+      },
+      {
+        "url": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=29864",
+        "type": "text",
+        "agreement_date": "2023-03-30"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "CCNL signed 30/03/2023 by ANCEF, FLAI-CGIL, FISASCAT-CISL, UIL Tucs. Valid 01/01/2023-31/12/2026."
+      },
+      {
+        "kind": "info",
+        "text": "Salary model: conglobated. ilccnl.it shows contingenza=0 and EDR=0 for all levels at 2026-01-01. No split components."
+      },
+      {
+        "kind": "info",
+        "text": "8 levels (highest to lowest): Q, 1S, 1, 2, 3, 4, 5, 6. 4 tranches: 01/01/2023, 01/01/2024, 01/01/2025, 01/01/2026."
+      },
+      {
+        "kind": "info",
+        "text": "Salary values at all 4 tranches confirmed from redigo.info tabelle retributive (structured table, all 8 levels)."
+      },
+      {
+        "kind": "info",
+        "text": "Additional months: 14. Art. 38 (tredicesima) + Art. 39 (quattordicesima). Confirmed from FISASCAT announcement."
+      },
+      {
+        "kind": "info",
+        "text": "Hourly divisor: 170. Art. 45 of the CCNL. Confirmed from ccnlportatili.it and ilccnl.it."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority (Art. 48): triennale cadence (36 months), maximum 10 scatti. Per-level amounts confirmed from ccnlportatili.it; Q and 1S and levels 1-2 amounts cross-checked against ilccnl.it (Q=34.70, 1S=30.30, 1=29.50, 2=26.90)."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship (Art. 15): under_classification. Durations by destination group confirmed from olympus.uniurb.it (2023 renewal): L1-L2=36mo, L3-L4=30mo, L5=27mo. L5 structure (12mo at lb=1, then lb=0) confirmed from esterinocafasso.it 2023 renewal coverage."
+      },
+      {
+        "kind": "info",
+        "text": "Headcount: 1,341 workers (ADAPT 18 Rapporto CNEL, 2022 UniEmens data). FISASCAT quotes ~15,000 addetti del settore — this is sector-wide (including florists and growers under other CCNLs); ADAPT figure is INPS code H201 only."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: L1-L2 and L3-L4 apprenticeship pay progression (2 levels below for first half, 1 level below for second half) sourced from ccnlportatili.it, an undated secondary source. Durations are confirmed from olympus.uniurb.it; the internal half-split structure is not independently confirmed from the 2023 CCNL primary text for L1-L4."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: tax_sector=terziario. ANCEF represents importers and wholesalers of flowers. Actual INPS sector code matches terziario (commercial trade). Terziario rates applied."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2023-01-01",
+          "valid_until": null,
+          "value": 170
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2023-01-01",
+          "valid_until": null,
+          "value": 14
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 10,
+      "amount_by_level": {
+        "Q": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "34.70"
+            }
+          ]
+        },
+        "1S": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "30.30"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "29.50"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "26.90"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "25.00"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "23.70"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "23.10"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "22.40"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "professionalizzante - dest livelli 1-2",
+      "destination_levels": ["1", "2"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante - dest livelli 3-4",
+      "destination_levels": ["3", "4"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 15,
+          "levels_below": 2
+        },
+        {
+          "months_from": 15,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante - dest livello 5",
+      "destination_levels": ["5"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 1
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "Q",
+      "order": 8,
+      "description": "Quadro",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-01-01",
+            "value": "2563.88"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "2597.97"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2649.11"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2700.25"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1S",
+      "order": 7,
+      "description": "1° Super",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-01-01",
+            "value": "2339.01"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "2369.31"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2414.76"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2460.21"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1",
+      "order": 6,
+      "description": "1° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-01-01",
+            "value": "2081.12"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "2107.18"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2146.27"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2185.36"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 5,
+      "description": "2° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-01-01",
+            "value": "1832.61"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1854.58"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1887.53"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1920.48"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 4,
+      "description": "3° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-01-01",
+            "value": "1712.57"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1732.57"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1762.57"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1792.57"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 3,
+      "description": "4° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-01-01",
+            "value": "1583.74"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1601.62"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1628.44"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1655.26"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 2,
+      "description": "5° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-01-01",
+            "value": "1510.30"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1526.97"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1551.97"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1576.97"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6",
+      "order": 1,
+      "description": "6° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-01-01",
+            "value": "1418.04"
+          },
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1433.19"
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1455.92"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1478.65"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ]
+}

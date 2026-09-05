@@ -1,0 +1,61 @@
+{
+  "_description": "Golden case: CCNL Fiori Freschi Recisi ANCEF (H201), Level 3, 2026-01-01, permanent, full-time, no seniority, 50 employees.",
+  "_notes": [
+    "Level 3 is the contract reference level (Art. 1: EUR 120 increase negotiated on 3 livello).",
+    "4th tranche 01/01/2026: base_monthly=1792.57. Conglobated model (contingenza=0, EDR=0).",
+    "gross_annual = 1792.57 * 14 = 25095.98. hourly_rate = 1792.57 / 170 = 10.54.",
+    "seniority_count=0: seniority_monthly=0.00 (triennale cadence, max 10 scatti).",
+    "INPS terziario 2026, 50 employees. trattamento_integrativo applies at this income level."
+  ],
+  "inputs": {
+    "ccnl_file": "fiori-recisi-ancef.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "3",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "fiori-recisi-ancef",
+    "level_code": "3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1792.57",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1792.57",
+    "gross_annual": "25095.98",
+    "hourly_rate": "10.54",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2306.32",
+    "inps_employer_annual": "7272.82",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1858.96",
+    "taxable_income": "22789.66",
+    "irpef_gross": "5241.62",
+    "work_income_deduction": "886.90",
+    "irpef_net": "4354.72",
+    "employer_withholds_irpef": true,
+    "second_level_monthly": "0.00",
+    "net_annual": "18703.00",
+    "net_monthly": "1335.93",
+    "employer_cost_annual": "34227.76",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "268.06",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}

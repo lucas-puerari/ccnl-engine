@@ -6921,3 +6921,77 @@ class TestLoadFedercasa:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 14
+
+
+class TestLoadFioriRecisiAncef:
+    """Unit tests for CCNL Fiori Freschi Recisi ANCEF (H201)."""
+
+    def test_fiori_recisi_ancef_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("fiori-recisi-ancef.json")
+        assert ccnl.meta.id == "fiori-recisi-ancef"
+        assert ccnl.meta.cnel_code == "H201"
+
+    def test_fiori_recisi_ancef_has_8_levels(self) -> None:
+        """8 levels: Q, 1S, 1, 2, 3, 4, 5, 6."""
+        ccnl = load_ccnl("fiori-recisi-ancef.json")
+        assert len(ccnl.levels) == 8
+        assert {lv.code for lv in ccnl.levels} == {
+            "Q",
+            "1S",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+        }
+
+    def test_fiori_recisi_ancef_level_3_salary_jan2023(self) -> None:
+        """Level 3 at 2023-01-01 == 1712.57 (first tranche, reference level)."""
+        ccnl = load_ccnl("fiori-recisi-ancef.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2023, 1, 1)) == Decimal("1712.57")
+
+    def test_fiori_recisi_ancef_level_3_salary_jan2026(self) -> None:
+        """Level 3 at 2026-01-01 == 1792.57 (fourth tranche)."""
+        ccnl = load_ccnl("fiori-recisi-ancef.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1792.57")
+
+    def test_fiori_recisi_ancef_level_ordering(self) -> None:
+        """Highest order = Q (8), lowest = 6 (1)."""
+        ccnl = load_ccnl("fiori-recisi-ancef.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "6"
+        assert by_order[-1].code == "Q"
+
+    def test_fiori_recisi_ancef_additional_months(self) -> None:
+        """14 mensilita: tredicesima + quattordicesima (Art.38-39)."""
+        ccnl = load_ccnl("fiori-recisi-ancef.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            14
+        )
+
+    def test_fiori_recisi_ancef_hourly_divisor(self) -> None:
+        """Hourly divisor = 170 (Art.45)."""
+        ccnl = load_ccnl("fiori-recisi-ancef.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == 170
+
+    def test_fiori_recisi_ancef_no_fixed_allowances(self) -> None:
+        """All 8 levels have empty fixed_allowances (conglobated model)."""
+        ccnl = load_ccnl("fiori-recisi-ancef.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_fiori_recisi_ancef_tax_sector(self) -> None:
+        """tax_sector == TERZIARIO (flower import-export commercial trade)."""
+        ccnl = load_ccnl("fiori-recisi-ancef.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_fiori_recisi_ancef_seniority_cadence(self) -> None:
+        """Seniority: triennale (36 months), max 10 scatti (Art.48)."""
+        ccnl = load_ccnl("fiori-recisi-ancef.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 10

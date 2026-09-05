@@ -143,6 +143,7 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 | 79 | H124 | Farmacie Municipalizzate (ASSOFARM) | Terziario | ~6k | ✅ | ✅ | 🤖 |
 | 80 | I911 | Trasporto a Fune (Funivie Terrestri ed Aeree) — ANEF | Industria | n/d | ✅ | ✅ | 🤖 |
 | 81 | T611 | Dipendenti Aziende Enti Pubblici Economici Federcasa | Case popolari | n/d | ✅ | ✅ | 🤖 |
+| 82 | H201 | Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF) | Fiori recisi | ~1.3k | ✅ | ✅ | 🤖 |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
