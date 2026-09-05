@@ -132,6 +132,7 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 | 68 | A051 | Attivita Agromeccaniche (Contoterzismo) — CAI Agromec | Agricoltura | ~4k | ✅ | ✅ | 🤖 |
 | 69 | A131 | Consorzi di Bonifica — SNEBI | Agricoltura | ~4k | ✅ | ✅ | 🤖 |
 | 70 | A141 | Consorzi Agrari — ASSOCAP | Agricoltura | ~2k | ✅ | ✅ | 🤖 |
+| 71 | A221 | Organizzazioni Allevatori e Enti Zootecnici — AIA | Agricoltura | ~2k | ✅ | ✅ | 🤖 |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
