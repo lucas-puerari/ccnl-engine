@@ -5606,3 +5606,73 @@ class TestLoadDistribuzioneCooperativaAncc:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 10
+
+
+class TestLoadLavanderiIndustrialiAssosistema:
+    """Unit tests for CCNL Lavanderie Industriali (D0L1) — turismo comparto."""
+
+    def test_lavanderie_industriali_assosistema_loads(self) -> None:
+        """Contract loads with correct id and CNEL code D0L1."""
+        ccnl = load_ccnl("lavanderie-industriali-assosistema.json")
+        assert ccnl.meta.id == "lavanderie-industriali-assosistema"
+        assert ccnl.meta.cnel_code == "D0L1"
+
+    def test_lavanderie_industriali_assosistema_has_10_levels(self) -> None:
+        """Contract has exactly 10 levels: A1..A3, B1..B3, C1..C3, D2."""
+        ccnl = load_ccnl("lavanderie-industriali-assosistema.json")
+        assert len(ccnl.levels) == 10
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3", "D2"}
+
+    def test_lavanderie_industriali_assosistema_level_b2_salary_may2026(self) -> None:
+        """B2 minimo tabellare at 2026-05-01 source-confirmed tranche."""
+        ccnl = load_ccnl("lavanderie-industriali-assosistema.json")
+        lv = ccnl.level_by_code("B2")
+        assert lv.base_salary.value_at(date(2026, 5, 1)) == Decimal("1991.35")
+
+    def test_lavanderie_industriali_assosistema_level_b2_salary_dec2026(self) -> None:
+        """B2 minimo tabellare at 2026-12-01 derived second tranche."""
+        ccnl = load_ccnl("lavanderie-industriali-assosistema.json")
+        lv = ccnl.level_by_code("B2")
+        assert lv.base_salary.value_at(date(2026, 12, 1)) == Decimal("2012.94")
+
+    def test_lavanderie_industriali_assosistema_level_ordering(self) -> None:
+        """A1 has lowest order (1); D2 has highest order (10)."""
+        ccnl = load_ccnl("lavanderie-industriali-assosistema.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "A1"
+        assert by_order[-1].code == "D2"
+
+    def test_lavanderie_industriali_assosistema_additional_months(self) -> None:
+        """Contract has 13 mensilità (tredicesima only, no quattordicesima)."""
+        ccnl = load_ccnl("lavanderie-industriali-assosistema.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 6, 1))
+        assert val == Decimal(13)
+
+    def test_lavanderie_industriali_assosistema_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 h/month (40h/week standard)."""
+        ccnl = load_ccnl("lavanderie-industriali-assosistema.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 6, 1))
+        assert val == Decimal(173)
+
+    def test_lavanderie_industriali_assosistema_incentivo_di_modulo(self) -> None:
+        """D2 has INCENTIVO_DI_MODULO and INDENNITA_FUNZIONE; A1 has none."""
+        ccnl = load_ccnl("lavanderie-industriali-assosistema.json")
+        a1 = ccnl.level_by_code("A1")
+        assert a1.fixed_allowances == []
+        d2 = ccnl.level_by_code("D2")
+        d2_codes = {a.code for a in d2.fixed_allowances}
+        assert "INCENTIVO_DI_MODULO" in d2_codes
+        assert "INDENNITA_FUNZIONE" in d2_codes
+
+    def test_lavanderie_industriali_assosistema_tax_sector(self) -> None:
+        """Contract uses INDUSTRIA tax sector (Assosistema Confindustria)."""
+        ccnl = load_ccnl("lavanderie-industriali-assosistema.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_lavanderie_industriali_assosistema_seniority_cadence(self) -> None:
+        """Seniority: biennial cadence (24 months), maximum 5 scatti."""
+        ccnl = load_ccnl("lavanderie-industriali-assosistema.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5

@@ -1,0 +1,62 @@
+{
+  "_description": "Golden case: CCNL Lavanderie Industriali (D0L1), Level B2, 2026-05-01, permanent, no seniority.",
+  "_notes": [
+    "May 2026 first tranche (source-confirmed): minimo tabellare B2 = 1,991.35 EUR/month.",
+    "Split model: base_monthly = minimo tabellare only (contingenza conglobata since 2008).",
+    "Allowances: INCENTIVO_DI_MODULO B2 = 65.39 EUR/month.",
+    "gross_monthly = 1,991.35 + 65.39 = 2,056.74.",
+    "hourly_rate = 2,056.74 / 173 = 11.89 (40h/week divisor).",
+    "Additional months: 13 (tredicesima only).",
+    "INPS employer rate from 2026-industria.json (industria sector, 50 employees tier).",
+    "Seniority: 0.00 — no scatti accumulated.",
+    "Trattamento integrativo applies (taxable_income 24,200.22 < 28,000 threshold).",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
+    "Turismo comparto only — sanitario tables not modelled (see coverage notes)."
+  ],
+  "inputs": {
+    "ccnl_file": "lavanderie-industriali-assosistema.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "B2",
+    "as_of": "2026-05-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "lavanderie-industriali-assosistema",
+    "level_code": "B2",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1991.35",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "65.39",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2056.74",
+    "gross_annual": "26737.62",
+    "hourly_rate": "11.89",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2537.40",
+    "inps_employer_annual": "8074.76",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1980.56",
+    "taxable_income": "24200.22",
+    "irpef_gross": "5566.05",
+    "work_income_deduction": "781.25",
+    "irpef_net": "4784.80",
+    "net_annual": "19531.95",
+    "net_monthly": "1502.46",
+    "employer_cost_annual": "36792.94",
+    "trattamento_integrativo": "116.53",
+    "fiscal_simplifications": [
+      "no_addizionali",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}
