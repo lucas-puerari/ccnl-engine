@@ -1,0 +1,605 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "lavanderie-industriali-assosistema",
+    "name": "CCNL Lavanderie Industriali (Assosistema Confindustria) — comparto Turismo",
+    "cnel_code": "D0L1",
+    "sector": "lavanderie-industriali",
+    "tax_sector": "industria",
+    "signatories": [
+      "Assosistema Confindustria",
+      "Filctem-CGIL",
+      "Femca-CISL",
+      "Uiltec-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.assosistema.it/11527-2/",
+        "type": "text",
+        "agreement_date": "2026-05-19"
+      },
+      {
+        "url": "https://ilccnl.it/contratto/ccnl/lavanderie---industria",
+        "type": "table",
+        "agreement_date": "2026-05-19"
+      },
+      {
+        "url": "https://www.iqnotizie.it/notizia/IQ47433/",
+        "type": "table",
+        "agreement_date": "2026-05-19"
+      },
+      {
+        "url": "https://previdenza-professionisti.it/",
+        "type": "table",
+        "agreement_date": "2026-05-19"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "partial",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "SECTOR SCOPE: turismo comparto only. Assosistema/Filctem CCNL covers two comparti (turismo and sanitario). Pre-2026 renewal both had distinct salary tables, with sanitario approx. 9 months behind turismo tranches. The 2026-2028 ipotesi applies 180 EUR total increase to both comparti, maintaining separate bases. Tables sourced are turismo. Sanitario comparto tables not accessible (Assosistema circulars login-walled)."
+      },
+      {
+        "kind": "missing",
+        "text": "SANITARIO COMPARTO: salary tables for the sanitario comparto are not modelled. Workers covered by the sanitario area have distinct minimo tabellare values not represented here. Use this CCNL only for turismo-area workers."
+      },
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: split. base_salary = minimo tabellare (contingenza conglobata since 2008, confirmed in CCNL text). fixed_allowances per level = INCENTIVO_DI_MODULO (frozen, level-specific constant). D2 also receives INDENNITA_FUNZIONE 130.00 EUR/month. A1 has no incentivo di modulo (0 EUR). Verified: B1 May 2026 = 1897.54; B1/173 = 10.97 (non-integer, consistent with split). C2 May 2026 = 2535.98; (2535.98+93.44)/173 = 15.20 (matches ilccnl.it hourly for C2)."
+      },
+      {
+        "kind": "info",
+        "text": "MODELLED TRANCHES: 2026-05-01 (source-confirmed from ilccnl.it, iqnotizie.it, previdenza-professionisti.it, all concordant); 2026-12-01 (derived: +20 EUR on B1, other levels proportional using coefficient vector verified across 4 historical tranches 2023-2025). Oct 2027 (+50 EUR B1) and Oct 2028 (+60 EUR B1) announced but table not published — not modelled."
+      },
+      {
+        "kind": "info",
+        "text": "AGREEMENT DATE: 2026-05-19 is ipotesi di accordo date. Ratification (scioglimento della riserva) was due by 2026-06-19 per Assosistema circular. Definitive signing date not independently confirmed; 2026-05-19 used in sources."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY: biennale (cadence_months=24), maximum 5 scatti. Per-level amounts from previdenza-professionisti.it (Assosistema D0L1 table): A1=6.71, A2=6.97, A3=7.23, B1=7.23, B2=8.00, B3=8.26, C1=8.26, C2=9.81, C3=11.88, D2=11.88. Cross-confirmed by lavoro-economia.it (identical amounts). Amounts from previgente CCNL assumed unchanged in 2026 renewal."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 13 (tredicesima only). Source: ilccnl.it and lavoro-economia.it. No quattordicesima."
+      },
+      {
+        "kind": "info",
+        "text": "INPS: uses 2026-industria.json (industria sector, Assosistema Confindustria). Bilateral funds FASIIL (health) and PREVIMODA (pension) are supplementary to INPS, not substituting. Employer INPS rate unaffected."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP: under_classification professionalizzante only. Two tracks per previdenza-professionisti.it (Assosistema D0L1, 2023 rules assumed unchanged in 2026 renewal): 36-month track (destinations A3..C2, periods: 0-12 at 2 levels below, 12-24 at 1 level below, 24+ at destination); 24-month track (destinations A2, C3, D2, periods: 0-12 at 1 level below, 12+ at destination). A1 excluded (no destination below it). Alta formazione and qualifica/diploma apprenticeship not modelled."
+      },
+      {
+        "kind": "simplification",
+        "text": "DERIVED TRANCHE: Dec 2026 amounts derived from B1+20 using level coefficients (A1=0.7936, A2=0.9126, A3=0.9762, B1=1.0000, B2=1.0794, B3=1.2540, C1=1.2778, C2=1.5396, C3=D2=1.9762), verified as identical across all 4 historical tranches of the 2023-2025 agreement. Not independently confirmed from published Dec 2026 table."
+      },
+      {
+        "kind": "simplification",
+        "text": "INCENTIVO DI MODULO: per-level amounts from lavoro-economia.it / previdenza-professionisti.it cross-confirmed for previgente CCNL. Assumed unchanged in 2026 renewal. No published 2026 text shows a change."
+      },
+      {
+        "kind": "simplification",
+        "text": "SENIORITY AMOUNTS: assumed unchanged in 2026 renewal. Sources reflect previgente CCNL values. 2026 renewal public summary does not mention changes to scatti amounts."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP ALLOWANCES: engine draws INCENTIVO_DI_MODULO from the effective pay level, not the destination level. An apprentice at A3 destination (month 6, pay level A1) receives 0.00 allowances because A1 has no incentivo. An apprentice at B1 destination (month 18, pay level A3) receives 57.00 EUR (A3 incentivo). Verified by compute sweep across all five boundary cases (A3/m6, A2/m6, B1/m18, C2/m30, D2/m18)."
+      },
+      {
+        "kind": "info",
+        "text": "SOURCE CAVEAT: previdenza-professionisti.it entry uses a domain-level URL; the exact deep-link page was not captured. Data cross-confirmed by lavoro-economia.it for seniority amounts."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2026-05-01",
+          "valid_until": null,
+          "value": "173"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2026-05-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "A1": {
+          "periods": [
+            {
+              "valid_from": "2026-05-01",
+              "valid_until": null,
+              "value": "6.71"
+            }
+          ]
+        },
+        "A2": {
+          "periods": [
+            {
+              "valid_from": "2026-05-01",
+              "valid_until": null,
+              "value": "6.97"
+            }
+          ]
+        },
+        "A3": {
+          "periods": [
+            {
+              "valid_from": "2026-05-01",
+              "valid_until": null,
+              "value": "7.23"
+            }
+          ]
+        },
+        "B1": {
+          "periods": [
+            {
+              "valid_from": "2026-05-01",
+              "valid_until": null,
+              "value": "7.23"
+            }
+          ]
+        },
+        "B2": {
+          "periods": [
+            {
+              "valid_from": "2026-05-01",
+              "valid_until": null,
+              "value": "8.00"
+            }
+          ]
+        },
+        "B3": {
+          "periods": [
+            {
+              "valid_from": "2026-05-01",
+              "valid_until": null,
+              "value": "8.26"
+            }
+          ]
+        },
+        "C1": {
+          "periods": [
+            {
+              "valid_from": "2026-05-01",
+              "valid_until": null,
+              "value": "8.26"
+            }
+          ]
+        },
+        "C2": {
+          "periods": [
+            {
+              "valid_from": "2026-05-01",
+              "valid_until": null,
+              "value": "9.81"
+            }
+          ]
+        },
+        "C3": {
+          "periods": [
+            {
+              "valid_from": "2026-05-01",
+              "valid_until": null,
+              "value": "11.88"
+            }
+          ]
+        },
+        "D2": {
+          "periods": [
+            {
+              "valid_from": "2026-05-01",
+              "valid_until": null,
+              "value": "11.88"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_36",
+      "destination_levels": ["A3", "B1", "B2", "B3", "C1", "C2"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_24",
+      "destination_levels": ["A2", "C3", "D2"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 1
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "A1",
+      "order": 1,
+      "description": "Livello A1 — entry-level workers, basic laundry operations",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-12-01",
+            "value": "1563.45"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1579.32"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A2",
+      "order": 2,
+      "description": "Livello A2 — semi-skilled workers, assisted operations",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-12-01",
+            "value": "1768.69"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1786.94"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "INCENTIVO_DI_MODULO",
+          "description": "Incentivo di modulo — A2, frozen",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "52.68"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "A3",
+      "order": 3,
+      "description": "Livello A3 — qualified workers, autonomous standard operations",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-12-01",
+            "value": "1862.97"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1882.49"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "INCENTIVO_DI_MODULO",
+          "description": "Incentivo di modulo — A3, frozen",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "57.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "B1",
+      "order": 4,
+      "description": "Livello B1 — skilled workers, complex laundry and sterilisation operations",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-12-01",
+            "value": "1897.54"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1917.54"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "INCENTIVO_DI_MODULO",
+          "description": "Incentivo di modulo — B1, frozen",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "59.76"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "B2",
+      "order": 5,
+      "description": "Livello B2 — specialist workers, multi-task roles with technical responsibility",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-12-01",
+            "value": "1991.35"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "2012.94"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "INCENTIVO_DI_MODULO",
+          "description": "Incentivo di modulo — B2, frozen",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "65.39"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "B3",
+      "order": 6,
+      "description": "Livello B3 — highly qualified workers, team coordination and process oversight",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-12-01",
+            "value": "2177.06"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "2202.14"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "INCENTIVO_DI_MODULO",
+          "description": "Incentivo di modulo — B3, frozen",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "75.51"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "C1",
+      "order": 7,
+      "description": "Livello C1 — senior specialists, supervisory and quality-control functions",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-12-01",
+            "value": "2250.08"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "2275.64"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "INCENTIVO_DI_MODULO",
+          "description": "Incentivo di modulo — C1, frozen",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "78.76"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "C2",
+      "order": 8,
+      "description": "Livello C2 — area managers, planning and operational leadership",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-12-01",
+            "value": "2535.98"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "2566.77"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "INCENTIVO_DI_MODULO",
+          "description": "Incentivo di modulo — C2, frozen",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "93.44"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "C3",
+      "order": 9,
+      "description": "Livello C3 — senior managers, strategic operational responsibility",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-12-01",
+            "value": "2975.91"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "3015.43"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "INCENTIVO_DI_MODULO",
+          "description": "Incentivo di modulo — C3, frozen",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "103.25"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "D2",
+      "order": 10,
+      "category": "quadro",
+      "description": "Livello D2 — quadri, executive management (L. 190/1985)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2026-12-01",
+            "value": "2975.91"
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "3015.43"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "INCENTIVO_DI_MODULO",
+          "description": "Incentivo di modulo — D2, frozen",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "103.25"
+              }
+            ]
+          }
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione quadri — D2, frozen",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": null,
+                "value": "130.00"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
