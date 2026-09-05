@@ -75,6 +75,7 @@ def _req(
     level_code: str = "4",
     as_of: date = _DATE,
     employment: Employment = _PERMANENT,
+    num_employees: int = 50,
     part_time_pct: Decimal = Decimal(1),
     seniority_count: int | None = None,
     seniority_months: int | None = None,
@@ -93,6 +94,7 @@ def _req(
         level_code=level_code,
         as_of=as_of,
         employment=employment,
+        num_employees=num_employees,
         part_time_pct=part_time_pct,
         seniority_count=seniority_count,
         seniority_months=seniority_months,
@@ -107,6 +109,20 @@ def _req(
 # ---------------------------------------------------------------------------
 # Validation errors
 # ---------------------------------------------------------------------------
+
+
+class TestScenario:
+    """Scenario construction validation."""
+
+    def test_num_employees_zero_raises(self) -> None:
+        """num_employees < 1 must raise ValueError at construction time."""
+        with pytest.raises(ValueError, match="num_employees"):
+            Scenario(
+                level_code="4",
+                as_of=_DATE,
+                employment=_PERMANENT,
+                num_employees=0,
+            )
 
 
 class TestComputeValidation:
@@ -511,6 +527,7 @@ class TestComputeIvsCeilingSplit:
                 level_code="4",
                 as_of=_DATE,
                 employment=_PERMANENT,
+                num_employees=50,
                 negotiated_ral=ral,
                 ivs_ceiling_applies=True,
             ),
@@ -522,6 +539,7 @@ class TestComputeIvsCeilingSplit:
                 level_code="4",
                 as_of=_DATE,
                 employment=_PERMANENT,
+                num_employees=50,
                 negotiated_ral=ral,
                 ivs_ceiling_applies=False,
             ),
@@ -549,6 +567,7 @@ class TestComputeIvsCeilingSplit:
                 level_code="4",
                 as_of=_DATE,
                 employment=_PERMANENT,
+                num_employees=50,
                 negotiated_ral=ral,
                 ivs_ceiling_applies=True,
             ),
@@ -567,6 +586,7 @@ class TestComputeIvsCeilingSplit:
                 level_code="4",
                 as_of=_DATE,
                 employment=_PERMANENT,
+                num_employees=50,
                 negotiated_ral=ral,
                 ivs_ceiling_applies=False,
             ),
@@ -931,6 +951,7 @@ def _req_domestic(
         level_code="4",
         as_of=_DATE,
         employment=employment,
+        num_employees=1,
         weekly_hours=weekly_hours,
     )
 

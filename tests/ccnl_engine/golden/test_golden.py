@@ -46,10 +46,11 @@ class TestGolden:
         expected = case["expected"]
 
         ccnl = load_ccnl(inputs["ccnl_file"])
+        num_employees = int(inputs["num_employees"])
         rules = load_year_rules(
             inputs["year"],
             TaxSector(inputs["tax_sector"]),
-            int(inputs["num_employees"]),
+            num_employees,
         )
         employment = _build_employment(inputs)
         as_of = date.fromisoformat(inputs["as_of"])
@@ -62,6 +63,7 @@ class TestGolden:
                 level_code=inputs["level_code"],
                 as_of=as_of,
                 employment=employment,
+                num_employees=num_employees,
                 part_time_pct=Decimal(inputs["part_time_pct"]),
                 seniority_count=int(inputs["seniority_count"]),
                 negotiated_ral=(

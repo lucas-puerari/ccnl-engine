@@ -134,11 +134,15 @@ class Scenario:
             apply (rather than the full rate). Defaults to ``False``.
         weekly_hours: Contractual weekly hours. Required when the tax-rules
             file uses ``domestic_contributions`` (lavoro domestico).
+        num_employees: Total headcount of the employer. Used to select the
+            correct INPS contribution-rate tier when calling
+            :func:`~ccnl_engine.tax.loaders.load_year_rules`. Must be >= 1.
     """
 
     level_code: str
     as_of: date
     employment: Employment
+    num_employees: int
     part_time_pct: Decimal = _ONE
     seniority_count: int | None = None
     seniority_months: int | None = None
@@ -149,6 +153,16 @@ class Scenario:
     category: LevelCategory | None = None
     ivs_ceiling_applies: bool = False
     weekly_hours: Decimal | None = None
+
+    def __post_init__(self) -> None:
+        """Validate num_employees is at least 1.
+
+        Raises:
+            ValueError: If num_employees is less than 1.
+        """
+        if self.num_employees < 1:
+            msg = f"num_employees must be >= 1, got {self.num_employees}"
+            raise ValueError(msg)
 
 
 def compute(ccnl: CCNL, rules: YearRules, scenario: Scenario) -> Payslip:
