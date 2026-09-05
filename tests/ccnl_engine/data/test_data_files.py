@@ -5425,11 +5425,20 @@ class TestLoadAssicurazioniAnia:
         val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
         assert val == Decimal(160)
 
-    def test_assicurazioni_ania_no_fixed_allowances(self) -> None:
-        """All 7 levels have no fixed allowances (tabella omnicomprensiva)."""
+    def test_assicurazioni_ania_fixed_allowances(self) -> None:
+        """L4: IND_PROFILO_J (profilo_j); L6: IND_QUADRO_6 (quadro_6); others empty."""
         ccnl = load_ccnl("assicurazioni-ania.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == [], lv.code
+            if lv.code == "L4":
+                assert len(lv.fixed_allowances) == 1
+                assert lv.fixed_allowances[0].code == "IND_PROFILO_J"
+                assert lv.fixed_allowances[0].role == "profilo_j"
+            elif lv.code == "L6":
+                assert len(lv.fixed_allowances) == 1
+                assert lv.fixed_allowances[0].code == "IND_QUADRO_6"
+                assert lv.fixed_allowances[0].role == "quadro_6"
+            else:
+                assert lv.fixed_allowances == [], lv.code
 
     def test_assicurazioni_ania_tax_sector(self) -> None:
         """Contract uses CREDITO tax sector (Credito e Assicurazioni)."""

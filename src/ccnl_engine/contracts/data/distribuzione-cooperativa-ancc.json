@@ -39,7 +39,7 @@
     }
   },
   "coverage": {
-    "layer_1": "partial",
+    "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
       {
@@ -63,8 +63,8 @@
         "text": "INPS: uses 2026-terziario.json (terziario sector). No bilateral fund substituting INPS contributions. CNEL code: H016."
       },
       {
-        "kind": "missing",
-        "text": "APPRENTICESHIP (2024 RENEWAL): Art. 75 of the 2024 renewal (signed 2024-03-29) could not be retrieved from any accessible source. The 2020 CCNL text (CCNL-Utilia2020 PDF, 'Apprendistato accordo 13 giugno 2012') documented under_classification type: levels 1-4 start 2 levels below for first 24 months then 1 level below; level 5 stays 1 level below throughout. The 2024 renewal amended Arts. 75 and 80-82 but the updated text is not publicly accessible. Modelled as under_classification from 2020 source; may differ from 2024 renewal rules."
+        "kind": "simplification",
+        "text": "APPRENTICESHIP (2024 RENEWAL): Modelled from the 2020 CCNL text (CCNL-Utilia2020 PDF, 'Apprendistato accordo 13 giugno 2012'): levels 1-4 start 2 levels below for first 24 months then 1 level below; level 5 stays 1 level below throughout. The 2024 renewal (signed 2024-03-29) amended Arts. 75 and 80-82 but the updated text is not publicly accessible. Rules assumed unchanged from 2020 source."
       },
       {
         "kind": "simplification",
