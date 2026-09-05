@@ -6371,3 +6371,129 @@ class TestLoadFarmaciePrivateH121:
         period = farmacista.periods[0]
         assert isinstance(period, UnderClassificationPeriod)
         assert period.levels_below == 0
+
+
+class TestLoadFarmacieMunicipaliASSO:
+    """Tests for CCNL Farmacie Municipalizzate ASSOFARM (H124)."""
+
+    def test_farmacie_municipalizzate_assofarm_loads(self) -> None:
+        """Contract loads with correct id and CNEL code H124."""
+        ccnl = load_ccnl("farmacie-municipalizzate-assofarm.json")
+        assert ccnl.meta.id == "farmacie-municipalizzate-assofarm"
+        assert ccnl.meta.cnel_code == "H124"
+
+    def test_farmacie_municipalizzate_assofarm_has_11_levels(self) -> None:
+        """11 levels: 1Q 1S 1C 1_12 1_2 1 and livelli 2-6."""
+        ccnl = load_ccnl("farmacie-municipalizzate-assofarm.json")
+        assert len(ccnl.levels) == 11
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {
+            "1Q",
+            "1S",
+            "1C",
+            "1_12",
+            "1_2",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+        }
+
+    def test_farmacie_municipalizzate_assofarm_level3_salary_tranche1(
+        self,
+    ) -> None:
+        """Level 3 base 1749.50 at first tranche (01/07/2022, Allegato B)."""
+        ccnl = load_ccnl("farmacie-municipalizzate-assofarm.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2022, 8, 1)) == Decimal("1749.50")
+
+    def test_farmacie_municipalizzate_assofarm_level3_salary_tranche3(
+        self,
+    ) -> None:
+        """Level 3 base 1777.29 at third tranche (01/07/2024, Allegato B)."""
+        ccnl = load_ccnl("farmacie-municipalizzate-assofarm.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1777.29")
+
+    def test_farmacie_municipalizzate_assofarm_level_ordering(self) -> None:
+        """Highest order is 1Q (area manager); lowest is 6o livello."""
+        ccnl = load_ccnl("farmacie-municipalizzate-assofarm.json")
+        sorted_levels = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert sorted_levels[0].code == "6"
+        assert sorted_levels[-1].code == "1Q"
+
+    def test_farmacie_municipalizzate_assofarm_additional_months(self) -> None:
+        """14 mensilita: quattordicesima (luglio) + tredicesima (Art. 20)."""
+        ccnl = load_ccnl("farmacie-municipalizzate-assofarm.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_farmacie_municipalizzate_assofarm_hourly_divisor(self) -> None:
+        """Divisore 173 (Art. 18 explicit)."""
+        ccnl = load_ccnl("farmacie-municipalizzate-assofarm.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal(173)
+
+    def test_farmacie_municipalizzate_assofarm_levels_2_to_6_no_allowances(
+        self,
+    ) -> None:
+        """Levels 2-6 have no fixed allowances (conglobated, no IQ or IS)."""
+        ccnl = load_ccnl("farmacie-municipalizzate-assofarm.json")
+        no_allowance_codes = {"2", "3", "4", "5", "6", "1"}
+        for lv in ccnl.levels:
+            if lv.code in no_allowance_codes:
+                assert lv.fixed_allowances == []
+
+    def test_farmacie_municipalizzate_assofarm_tax_sector(self) -> None:
+        """Contract uses terziario tax sector (ASSOFARM/FILCAMS)."""
+        ccnl = load_ccnl("farmacie-municipalizzate-assofarm.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_farmacie_municipalizzate_assofarm_seniority_cadence(self) -> None:
+        """15 scatti biennali (cadence 24 months, max 15, Allegato E)."""
+        ccnl = load_ccnl("farmacie-municipalizzate-assofarm.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 15
+
+    def test_farmacie_municipalizzate_assofarm_iq_allowances(self) -> None:
+        """Levels 1Q/1S/1C each have one IQ allowance (Allegato C)."""
+        ccnl = load_ccnl("farmacie-municipalizzate-assofarm.json")
+        for code, expected_monthly in [
+            ("1Q", "160.00"),
+            ("1S", "150.00"),
+            ("1C", "145.00"),
+        ]:
+            lv = next(lv for lv in ccnl.levels if lv.code == code)
+            assert len(lv.fixed_allowances) == 1
+            assert lv.fixed_allowances[0].code == "iq"
+            val = lv.fixed_allowances[0].monthly.value_at(date(2026, 1, 1))
+            assert val == Decimal(expected_monthly)
+
+    def test_farmacie_municipalizzate_assofarm_apprenticeship_two_tracks(
+        self,
+    ) -> None:
+        """Two under_classification tracks per Allegato F."""
+        ccnl = load_ccnl("farmacie-municipalizzate-assofarm.json")
+        tracks = ccnl.apprenticeship
+        assert len(tracks) == 2
+        assert all(isinstance(t, ApprenticeshipUnderClassification) for t in tracks)
+        farmacista = next(t for t in tracks if t.name == "farmacista_collaboratore")
+        assert farmacista.destination_levels == ["1"]
+        p0 = farmacista.periods[0]
+        assert isinstance(p0, UnderClassificationPeriod)
+        assert p0.levels_below == 0
+
+    def test_farmacie_municipalizzate_assofarm_1_12_shares_base_salary(
+        self,
+    ) -> None:
+        """Levels 1_12, 1_2 and 1 share identical base_salary (Allegato B)."""
+        ccnl = load_ccnl("farmacie-municipalizzate-assofarm.json")
+        ref = next(lv for lv in ccnl.levels if lv.code == "1")
+        for code in ("1_12", "1_2"):
+            lv = next(lv for lv in ccnl.levels if lv.code == code)
+            assert lv.base_salary.value_at(
+                date(2026, 1, 1)
+            ) == ref.base_salary.value_at(date(2026, 1, 1))
