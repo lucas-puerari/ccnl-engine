@@ -6044,3 +6044,70 @@ class TestLoadOrganizzazioniAllevatoriAia:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 10
+
+
+class TestLoadAlimentariPmiUnionalimentari:
+    """Tests for CCNL PMI Alimentare E018 (Unionalimentari-Confapi)."""
+
+    def test_alimentari_pmi_unionalimentari_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("alimentari-pmi-unionalimentari.json")
+        assert ccnl.meta.id == "alimentari-pmi-unionalimentari"
+        assert ccnl.meta.cnel_code == "E018"
+
+    def test_alimentari_pmi_unionalimentari_has_9_levels(self) -> None:
+        """Settore alimentare has exactly 9 levels."""
+        ccnl = load_ccnl("alimentari-pmi-unionalimentari.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"Q", "1", "2", "3", "4", "5", "6", "7", "8"}
+
+    def test_alimentari_pmi_unionalimentari_level4_salary_jun2025(self) -> None:
+        """Level 4 paga base Jun 2025: 1672.78 (Unionalimentari circular)."""
+        ccnl = load_ccnl("alimentari-pmi-unionalimentari.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv.base_salary.value_at(date(2025, 6, 1)) == Decimal("1672.78")
+
+    def test_alimentari_pmi_unionalimentari_level4_salary_jan2026(self) -> None:
+        """Level 4 paga base Jan 2026: 1746.87 (Unionalimentari circular)."""
+        ccnl = load_ccnl("alimentari-pmi-unionalimentari.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1746.87")
+
+    def test_alimentari_pmi_unionalimentari_level_ordering(self) -> None:
+        """Highest order level is Q; lowest is 8."""
+        ccnl = load_ccnl("alimentari-pmi-unionalimentari.json")
+        sorted_levels = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert sorted_levels[0].code == "8"
+        assert sorted_levels[-1].code == "Q"
+
+    def test_alimentari_pmi_unionalimentari_additional_months(self) -> None:
+        """Contract has 14 mensilita (Art. 4.1 CCNL text)."""
+        ccnl = load_ccnl("alimentari-pmi-unionalimentari.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_alimentari_pmi_unionalimentari_hourly_divisor(self) -> None:
+        """Hourly divisor 173 h/month (Art. 4.3 CCNL text)."""
+        ccnl = load_ccnl("alimentari-pmi-unionalimentari.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal(173)
+
+    def test_alimentari_pmi_unionalimentari_split_allowances(self) -> None:
+        """All 9 levels carry CONTINGENZA and EDR allowances (split model)."""
+        ccnl = load_ccnl("alimentari-pmi-unionalimentari.json")
+        for lv in ccnl.levels:
+            codes = {a.code for a in lv.fixed_allowances}
+            assert codes == {"CONTINGENZA", "EDR"}
+
+    def test_alimentari_pmi_unionalimentari_tax_sector(self) -> None:
+        """Contract uses INDUSTRIA tax sector."""
+        ccnl = load_ccnl("alimentari-pmi-unionalimentari.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_alimentari_pmi_unionalimentari_seniority_cadence(self) -> None:
+        """Five biennial scatti per Art. 5.5 CCNL text."""
+        ccnl = load_ccnl("alimentari-pmi-unionalimentari.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5

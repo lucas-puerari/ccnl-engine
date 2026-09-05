@@ -133,6 +133,7 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 | 69 | A131 | Consorzi di Bonifica — SNEBI | Agricoltura | ~4k | ✅ | ✅ | 🤖 |
 | 70 | A141 | Consorzi Agrari — ASSOCAP | Agricoltura | ~2k | ✅ | ✅ | 🤖 |
 | 71 | A221 | Organizzazioni Allevatori e Enti Zootecnici — AIA | Agricoltura | ~2k | ✅ | ✅ | 🤖 |
+| 72 | E018 | Dipendenti PMI Alimentare — Unionalimentari-Confapi | Alimentare | ~35k | ✅ | ✅ | 🤖 |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
