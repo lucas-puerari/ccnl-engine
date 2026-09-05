@@ -28,20 +28,36 @@ git checkout main
 git pull
 ```
 
+If a queue is active (GOAL.md contains checkbox lines), mark the merged items
+`[x]` in GOAL.md now — match by contract id or name from the PR title.
+
 Only continue to Step 1 once `gh pr list --state open` returns no results and `main` is fully up to date.
 
 ---
 
 ## Step 1 — Select the contract
 
-If no contract has been specified by the user, choose the one with the highest **worker headcount** not yet in the coverage matrix in `README.md`.
+**Priority order** (highest to lowest):
 
-How to find headcount:
-- Search: `CNEL archivio contratti lavoratori coperti {sector}` or
-  `ISTAT lavoratori dipendenti CCNL {sector} {year}`
-- CNEL contract archive: https://www.cnel.it/Contratti-Collettivi
-- Ministero del Lavoro: annual report on collective bargaining coverage
-- State the headcount and source explicitly before proceeding.
+1. **Explicit argument**: if the user specified a contract code or name, use that.
+
+2. **Queue file** (`.claude/CONTRACTS_QUEUE.md` exists):
+   - Find the first entry marked `[ ]` (to-do).
+   - Mark it `[~]` (in progress) in the file before doing anything else.
+   - If no `[ ]` entries remain, report that the queue is complete and stop.
+
+3. **Fallback**: choose the contract with the highest **worker headcount**
+   not yet in the coverage matrix in `README.md`.
+   - Search: `CNEL archivio contratti lavoratori coperti {sector}` or
+     `ISTAT lavoratori dipendenti CCNL {sector} {year}`
+   - CNEL contract archive: https://www.cnel.it/Contratti-Collettivi
+   - Ministero del Lavoro: annual report on collective bargaining coverage
+
+State the selected contract name and CNEL code explicitly before proceeding.
+
+**If no public data is found** (during Step 2 research): do not create JSON or
+open a PR. Instead mark the entry `[B]` in the queue with a short note on what
+was searched, then proceed to the next iteration.
 
 ---
 
@@ -328,14 +344,16 @@ Do not proceed to Step 10 until the advisor has confirmed the implementation is 
 
 ## Step 10 — Commit and PR
 
-Commit format and PR rules are in `CLAUDE.md`. For this command specifically:
-
-**Commit message**:
+**Commit** (single line, max 100 chars, no trailers):
 ```
 feat({id}): add CCNL {Name} ({CNEL code}) payroll engine
 ```
 
-**PR body** — four sections:
+**Open the PR using `/open-pr`** — do not run `gh pr create` manually.
+`/open-pr` enforces the branch-name pattern, checks for uncommitted changes,
+and builds the body from the diff automatically.
+
+The PR body must contain these four sections (filled with real content):
 
 ```
 ## What
@@ -352,6 +370,9 @@ new TaxSector if any; key SIMPLIFICATIONs and their scope]
 ## Verification
 [N tests passed, 100% branch coverage, ruff clean, mypy strict]
 ```
+
+After the PR is merged, mark the item `[x]` in GOAL.md (if a queue is active)
+and proceed to the next iteration.
 
 ---
 
