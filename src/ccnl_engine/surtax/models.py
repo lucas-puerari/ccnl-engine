@@ -58,6 +58,9 @@ class ComunaleEntry(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
+    nome: str = ""
+    """Italian municipality name (e.g. ``"Roma"``). Empty string if not available."""
+
     brackets: list[SurtaxBracket]
     """Marginal rate brackets, ascending by ``up_to`` with the last entry unbounded."""
 
