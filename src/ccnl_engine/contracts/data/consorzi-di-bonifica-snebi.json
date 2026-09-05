@@ -1,0 +1,665 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "consorzi-di-bonifica-snebi",
+    "name": "CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)",
+    "cnel_code": "A131",
+    "sector": "Agricoltura",
+    "tax_sector": "agricoltura",
+    "agreement_date": "2025-05-21",
+    "signatories": [
+      "SNEBI",
+      "FLAI-CGIL",
+      "FAI-CISL",
+      "FILBI-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
+        "type": "table",
+        "agreement_date": "2025-05-21"
+      },
+      {
+        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=286",
+        "type": "table",
+        "agreement_date": "2025-05-21"
+      },
+      {
+        "url": "https://ilccnl.it/contratto/ccnl/consorzi-di-bonifica",
+        "type": "info",
+        "agreement_date": "2025-05-21"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "out_of_scope",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: split (paga base + contingenza) per ilccnl.it, contingenza frozen at EUR 0.00, terzo elemento 0.00 (confirmed via ilccnl.it for D100, D104, D107). base_salary is the full minimo tabellare. Note: ilccnl.it tabelle show the pre-2000 cohort (e.g. D100 Jan2026=1513.09); post-2000 values (D100 Jan2026=1534.16) are sourced from redigo.info and kitech=286."
+      },
+      {
+        "kind": "info",
+        "text": "Cohort: two salary tables — 'in servizio al 15-07-2000' (pre-2000) and 'in servizio dal 15-07-2000' (post-2000). This file models the post-2000 table. kitech.it CodiceCateg=286 title confirms post-2000 identity; redigo.info column 2 matches (D100 Jan2026=1534.16). Pre-2000 table is ~1.4% lower."
+      },
+      {
+        "kind": "info",
+        "text": "Hourly divisor 164.67 h/month from ilccnl.it (single source). Consistent with 38h/week: 52x38/12=164.67. Daily divisor: 26."
+      },
+      {
+        "kind": "info",
+        "text": "Additional months: 14 — tredicesima (dicembre) + quattordicesima (giugno). Source: ilccnl.it ('quattordici mensilitA')."
+      },
+      {
+        "kind": "info",
+        "text": "Tranches: 2025-07-01 (+3%) and 2026-01-01 (+2.2%). Both sourced from redigo.info primary table. No pre-July-2025 salary is modeled; engine returns no result for as_of before 2025-07-01."
+      },
+      {
+        "kind": "simplification",
+        "text": "Dual-cohort: workers hired by 15-07-2000 have a lower salary table (~1.4% below post-2000) not modeled here. Those workers are a declining cohort (tenure 25+ years); new hires always enter the post-2000 table."
+      },
+      {
+        "kind": "simplification",
+        "text": "B128 and B132 each contain two ex-classification sub-levels (B128: ex-4/2 and ex-5/2; B132: ex-4/1 and ex-5/1) sharing the same base salary but with different scatto amounts. Modeled as B128/B128_ex52 and B132/B132_ex51. Plain codes carry the ex-4 (higher) scatto as best-guess; _ex52/_ex51 codes carry the ex-5 (lower) scatto. Mapping is unverifiable from public sources (B128: 47.92 vs 44.44; B132: 50.05 vs 47.73)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Seniority: contract provides 10 scatti total (6 biennali, 1 dodicennale, 3 quadriennali). Scatti 1-6 modeled at cadence_months=24, maximum_count=6. Scatti 7-10 (one 12-year + three 4-year) are omitted — mixed cadence is not expressible in the schema."
+      },
+      {
+        "kind": "info",
+        "text": "AQ-category levels (AQ162, AQ164, AQ185, AQ187) are quadri. An indennita di funzione may apply per standard quadri CCNL practice, but the amount could not be confirmed from available public sources; not modeled."
+      },
+      {
+        "kind": "info",
+        "text": "layer_2 out_of_scope: no apprenticeship data found in available public sources. Full CCNL PDF required."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-07-01",
+          "valid_until": null,
+          "value": "164.67"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-07-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 6,
+      "amount_by_level": {
+        "D100": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "0.00"}]},
+        "D104": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "38.45"}]},
+        "D107": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "40.77"}]},
+        "D112": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "41.16"}]},
+        "D115": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "44.25"}]},
+        "D116": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "44.25"}]},
+        "D117": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "44.35"}]},
+        "C118": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "44.44"}]},
+        "C122": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "46.04"}]},
+        "C127": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "47.73"}]},
+        "B128": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "47.92"}]},
+        "B128_ex52": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "44.44"}]},
+        "B132": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "50.05"}]},
+        "B132_ex51": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "47.73"}]},
+        "A134": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "51.99"}]},
+        "A135": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "51.99"}]},
+        "A157": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "60.68"}]},
+        "A159": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "60.68"}]},
+        "A160": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "65.14"}]},
+        "AQ162": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "65.14"}]},
+        "AQ164": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "65.14"}]},
+        "A170": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "68.23"}]},
+        "A184": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "71.32"}]},
+        "AQ185": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "71.32"}]},
+        "AQ187": {"periods": [{"valid_from": "2025-07-01", "valid_until": null, "value": "71.32"}]}
+      }
+    }
+  },
+  "apprenticeship": [],
+  "levels": [
+    {
+      "code": "D100",
+      "order": 1,
+      "description": "D100",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "1501.35"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1534.16"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D104",
+      "order": 2,
+      "description": "D104",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "1561.40"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1595.53"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D107",
+      "order": 3,
+      "description": "D107",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "1606.45"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1641.56"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D112",
+      "order": 4,
+      "description": "D112",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "1681.53"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1718.28"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D115",
+      "order": 5,
+      "description": "D115",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "1726.55"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1764.29"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D116",
+      "order": 6,
+      "description": "D116",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "1741.56"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1779.62"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D117",
+      "order": 7,
+      "description": "D117",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "1756.58"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1794.97"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C118",
+      "order": 8,
+      "description": "C118",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "1771.60"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1810.32"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C122",
+      "order": 9,
+      "description": "C122",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "1831.65"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1871.68"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C127",
+      "order": 10,
+      "description": "C127",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "1906.71"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1948.38"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "B128",
+      "order": 11,
+      "description": "B128 — ex cat. 4/2 (best-guess scatto 47.92)",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "1921.73"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1963.73"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "B128_ex52",
+      "order": 12,
+      "description": "B128 — ex cat. 5/2 (alternate scatto 44.44)",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "1921.73"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1963.73"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "B132",
+      "order": 13,
+      "description": "B132 — ex cat. 4/1 (best-guess scatto 50.05)",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "1981.79"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2025.10"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "B132_ex51",
+      "order": 14,
+      "description": "B132 — ex cat. 5/1 (alternate scatto 47.73)",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "1981.79"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2025.10"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A134",
+      "order": 15,
+      "description": "A134",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "2011.82"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2055.79"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A135",
+      "order": 16,
+      "description": "A135",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "2026.83"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2071.13"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A157",
+      "order": 17,
+      "description": "A157",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "2357.13"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2408.65"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A159",
+      "order": 18,
+      "description": "A159",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "2387.15"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2439.32"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A160",
+      "order": 19,
+      "description": "A160",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "2402.17"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2454.67"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "AQ162",
+      "order": 20,
+      "description": "AQ162 — quadro",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "2432.19"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2485.35"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "AQ164",
+      "order": 21,
+      "description": "AQ164 — quadro",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "2462.22"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2516.04"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A170",
+      "order": 22,
+      "description": "A170",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "2552.30"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2608.08"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A184",
+      "order": 23,
+      "description": "A184",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "2762.49"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2822.87"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "AQ185",
+      "order": 24,
+      "description": "AQ185 — quadro",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "2777.50"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2838.21"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "AQ187",
+      "order": 25,
+      "description": "AQ187 — quadro",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-01-01",
+            "value": "2807.53"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2868.89"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ]
+}

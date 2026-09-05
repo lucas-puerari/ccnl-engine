@@ -5812,3 +5812,78 @@ class TestLoadContoterzismoCaiagromec:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 0
+
+
+class TestLoadConsorziDiBonificaSnebi:
+    """Tests for CCNL Consorzi di Bonifica (SNEBI) — CNEL A131."""
+
+    def test_consorzi_di_bonifica_snebi_loads(self) -> None:
+        """Contract loads with correct id and CNEL code A131."""
+        ccnl = load_ccnl("consorzi-di-bonifica-snebi.json")
+        assert ccnl.meta.id == "consorzi-di-bonifica-snebi"
+        assert ccnl.meta.cnel_code == "A131"
+
+    def test_consorzi_di_bonifica_snebi_has_25_levels(self) -> None:
+        """Contract has 25 levels including 4 B-sub-levels."""
+        ccnl = load_ccnl("consorzi-di-bonifica-snebi.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 25
+        assert {
+            "D100",
+            "C127",
+            "B128",
+            "B128_ex52",
+            "B132",
+            "B132_ex51",
+            "AQ162",
+            "AQ187",
+        }.issubset(codes)
+
+    def test_consorzi_di_bonifica_snebi_level_c127_salary_jul2025(self) -> None:
+        """C127 post-2000 Jul 2025 salary is 1906.71 (redigo.info)."""
+        ccnl = load_ccnl("consorzi-di-bonifica-snebi.json")
+        lv = ccnl.level_by_code("C127")
+        assert lv.base_salary.value_at(date(2025, 7, 1)) == Decimal("1906.71")
+
+    def test_consorzi_di_bonifica_snebi_level_c127_salary_jan2026(self) -> None:
+        """C127 post-2000 Jan 2026 salary is 1948.38 (redigo.info)."""
+        ccnl = load_ccnl("consorzi-di-bonifica-snebi.json")
+        lv = ccnl.level_by_code("C127")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1948.38")
+
+    def test_consorzi_di_bonifica_snebi_level_ordering(self) -> None:
+        """D100 has lowest order (1); AQ187 has highest order (25)."""
+        ccnl = load_ccnl("consorzi-di-bonifica-snebi.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "D100"
+        assert by_order[-1].code == "AQ187"
+
+    def test_consorzi_di_bonifica_snebi_additional_months(self) -> None:
+        """Contract has 14 mensilita (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("consorzi-di-bonifica-snebi.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_consorzi_di_bonifica_snebi_hourly_divisor(self) -> None:
+        """Hourly divisor 164.67 h/month (38h/week, ilccnl.it source)."""
+        ccnl = load_ccnl("consorzi-di-bonifica-snebi.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal("164.67")
+
+    def test_consorzi_di_bonifica_snebi_no_fixed_allowances(self) -> None:
+        """All levels have no fixed allowances (contingenza frozen at 0)."""
+        ccnl = load_ccnl("consorzi-di-bonifica-snebi.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_consorzi_di_bonifica_snebi_tax_sector(self) -> None:
+        """Contract uses AGRICOLTURA tax sector."""
+        ccnl = load_ccnl("consorzi-di-bonifica-snebi.json")
+        assert ccnl.meta.tax_sector == TaxSector.AGRICOLTURA
+
+    def test_consorzi_di_bonifica_snebi_seniority_cadence(self) -> None:
+        """Six biennial scatti modeled; dodicennale+quadriennali omitted."""
+        ccnl = load_ccnl("consorzi-di-bonifica-snebi.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 6
