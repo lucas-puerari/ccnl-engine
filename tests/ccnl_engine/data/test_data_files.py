@@ -6137,3 +6137,76 @@ class TestLoadAlimentariPmiUnionalimentari:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadPosteItalianeK700:
+    """Tests for CCNL Poste Italiane S.p.A. (K700)."""
+
+    def test_k700_loads(self) -> None:
+        """Contract loads with correct id and CNEL code K700."""
+        ccnl = load_ccnl("poste-italiane-k700.json")
+        assert ccnl.meta.id == "poste-italiane-k700"
+        assert ccnl.meta.cnel_code == "K700"
+
+    def test_k700_has_7_levels(self) -> None:
+        """7 pay levels: F E D C B A2 A1 (Art. 21; A has two posizioni)."""
+        ccnl = load_ccnl("poste-italiane-k700.json")
+        assert len(ccnl.levels) == 7
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"F", "E", "D", "C", "B", "A2", "A1"}
+
+    def test_k700_level_c_salary_tranche1(self) -> None:
+        """Level C paga base at 2024-07-23: 1330.56 (Allegato 9 CCNL)."""
+        ccnl = load_ccnl("poste-italiane-k700.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C")
+        assert lv.base_salary.value_at(date(2024, 7, 23)) == Decimal("1330.56")
+
+    def test_k700_level_c_salary_tranche2(self) -> None:
+        """Level C paga base at 2025-09-01: 1381.56 (Allegato 9 CCNL)."""
+        ccnl = load_ccnl("poste-italiane-k700.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C")
+        assert lv.base_salary.value_at(date(2025, 9, 1)) == Decimal("1381.56")
+
+    def test_k700_level_ordering(self) -> None:
+        """Highest order is A1 (Quadri); lowest is F."""
+        ccnl = load_ccnl("poste-italiane-k700.json")
+        sorted_levels = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert sorted_levels[0].code == "F"
+        assert sorted_levels[-1].code == "A1"
+
+    def test_k700_additional_months(self) -> None:
+        """14 mensilità: tredicesima (Art. 67) + quattordicesima (Art. 68)."""
+        ccnl = load_ccnl("poste-italiane-k700.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_k700_hourly_divisor(self) -> None:
+        """Hourly divisor 156 h/month (Art. 65 III, 36h/week)."""
+        ccnl = load_ccnl("poste-italiane-k700.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal(156)
+
+    def test_k700_contingenza_allowances(self) -> None:
+        """Every level carries CONTINGENZA; A1/A2 add funzione at staff floor rate."""
+        ccnl = load_ccnl("poste-italiane-k700.json")
+        for lv in ccnl.levels:
+            codes = {a.code for a in lv.fixed_allowances}
+            assert "CONTINGENZA" in codes
+        a1 = next(lv for lv in ccnl.levels if lv.code == "A1")
+        a1_codes = {a.code for a in a1.fixed_allowances}
+        assert "IND_FUNZIONE_A1" in a1_codes
+        a2 = next(lv for lv in ccnl.levels if lv.code == "A2")
+        a2_codes = {a.code for a in a2.fixed_allowances}
+        assert "IND_FUNZIONE_A2" in a2_codes
+
+    def test_k700_tax_sector(self) -> None:
+        """Contract uses INDUSTRIA tax sector (private employer post-1998)."""
+        ccnl = load_ccnl("poste-italiane-k700.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_k700_seniority_cadence(self) -> None:
+        """No traditional scatti: maximum_count=0 (Art. 25, legacy RIA only)."""
+        ccnl = load_ccnl("poste-italiane-k700.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 0
