@@ -183,6 +183,9 @@ class SeniorityIncrements(BaseModel):
     maximum_count_by_level: dict[str, int] = {}
     apprentice_amount: TimeSeries | None = None
     excluded_categories: list[LevelCategory] = []
+    amount_by_level_by_category: dict[LevelCategory, dict[str, TimeSeries]] = {}
+    maximum_count_by_category: dict[LevelCategory, int] = {}
+    first_cadence_months_by_category: dict[LevelCategory, int] = {}
 
     @model_validator(mode="after")
     def _check_cadence(self) -> Self:
@@ -200,6 +203,10 @@ class SeniorityIncrements(BaseModel):
             (f"first_cadence_months_by_level[{code!r}]", months)
             for code, months in self.first_cadence_months_by_level.items()
         ]
+        candidates += [
+            (f"first_cadence_months_by_category[{cat!r}]", months)
+            for cat, months in self.first_cadence_months_by_category.items()
+        ]
         for name, months in candidates:
             if months is not None and months < self.cadence_months:
                 msg = (
@@ -211,11 +218,20 @@ class SeniorityIncrements(BaseModel):
             if count < 0:
                 msg = f"maximum_count_by_level[{code!r}] must be >= 0, got {count}"
                 raise ValueError(msg)
+        for cat, count in self.maximum_count_by_category.items():
+            if count < 0:
+                msg = f"maximum_count_by_category[{cat!r}] must be >= 0, got {count}"
+                raise ValueError(msg)
         return self
 
-    def maximum_for(self, level_code: str) -> int:
-        """Return the maximum increment count applicable to a level.
+    def maximum_for(
+        self,
+        level_code: str,
+        worker_category: LevelCategory | None = None,
+    ) -> int:
+        """Return the maximum increment count applicable to a level/category.
 
+        Category overrides take precedence over per-level and global values.
         In tiered mode returns the sum of all tier maximums.
 
         Returns:
@@ -223,14 +239,30 @@ class SeniorityIncrements(BaseModel):
         """
         if self.tiers:
             return sum(t.maximum_count for t in self.tiers)
+        if (
+            worker_category is not None
+            and worker_category in self.maximum_count_by_category
+        ):
+            return self.maximum_count_by_category[worker_category]
         return self.maximum_count_by_level.get(level_code, self.maximum_count)
 
-    def first_cadence_for(self, level_code: str) -> int:
+    def first_cadence_for(
+        self,
+        level_code: str,
+        worker_category: LevelCategory | None = None,
+    ) -> int:
         """Return the months of service required for the first increment.
+
+        Category overrides take precedence over per-level and global values.
 
         Returns:
             The months of service required for the first seniority increment.
         """
+        if (
+            worker_category is not None
+            and worker_category in self.first_cadence_months_by_category
+        ):
+            return self.first_cadence_months_by_category[worker_category]
         return self.first_cadence_months_by_level.get(
             level_code, self.first_cadence_months or self.cadence_months
         )
@@ -515,27 +547,9 @@ class CCNL(BaseModel):
     def _assert_seniority_level_codes(self) -> None:
         existing = {lv.code for lv in self.levels}
         si = self.parameters.seniority_increments
-        for field_name, mapping in (
-            ("amount_by_level", si.amount_by_level),
-            ("maximum_count_by_level", si.maximum_count_by_level),
-            ("first_cadence_months_by_level", si.first_cadence_months_by_level),
-        ):
-            for code in mapping:
-                if code not in existing:
-                    msg = (
-                        f"seniority_increments.{field_name} references level "
-                        f"code {code!r} which does not exist in levels"
-                    )
-                    raise ValueError(msg)
-        for i, tier in enumerate(si.tiers):
-            for code in tier.amount_by_level:
-                if code not in existing:
-                    msg = (
-                        f"seniority_increments.tiers[{i}].amount_by_level "
-                        f"references level code {code!r} which does not exist "
-                        f"in levels"
-                    )
-                    raise ValueError(msg)
+        _check_flat_level_codes(existing, si)
+        _check_category_level_codes(existing, si)
+        _check_tier_level_codes(existing, si)
 
     def _assert_salary_order_non_decreasing(self) -> None:
         if len(self.levels) < 2:
@@ -626,6 +640,45 @@ def _check_salary_ordering_at_date(
             raise ValueError(msg)
         prev_value = value
         prev_code = lv.code
+
+
+def _check_flat_level_codes(existing: set[str], si: "SeniorityIncrements") -> None:
+    for field_name, mapping in (
+        ("amount_by_level", si.amount_by_level),
+        ("maximum_count_by_level", si.maximum_count_by_level),
+        ("first_cadence_months_by_level", si.first_cadence_months_by_level),
+    ):
+        for code in mapping:
+            if code not in existing:
+                msg = (
+                    f"seniority_increments.{field_name} references level "
+                    f"code {code!r} which does not exist in levels"
+                )
+                raise ValueError(msg)
+
+
+def _check_category_level_codes(existing: set[str], si: "SeniorityIncrements") -> None:
+    for cat, cat_amounts in si.amount_by_level_by_category.items():
+        for code in cat_amounts:
+            if code not in existing:
+                msg = (
+                    f"seniority_increments.amount_by_level_by_category"
+                    f"[{cat!r}] references level code {code!r} which "
+                    f"does not exist in levels"
+                )
+                raise ValueError(msg)
+
+
+def _check_tier_level_codes(existing: set[str], si: "SeniorityIncrements") -> None:
+    for i, tier in enumerate(si.tiers):
+        for code in tier.amount_by_level:
+            if code not in existing:
+                msg = (
+                    f"seniority_increments.tiers[{i}].amount_by_level "
+                    f"references level code {code!r} which does not exist "
+                    f"in levels"
+                )
+                raise ValueError(msg)
 
 
 def _assert_unique(field: str, values: list[object]) -> None:

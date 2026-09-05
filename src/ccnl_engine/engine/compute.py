@@ -258,6 +258,7 @@ def compute(
         scenario.level_code,
         scenario.seniority_count,
         scenario.seniority_months,
+        worker_category=worker_category,
     )
     if worker_category in ccnl.parameters.seniority_increments.excluded_categories:
         count = 0
@@ -274,6 +275,7 @@ def compute(
             count,
             scenario.roles,
             scenario.as_of,
+            worker_category=worker_category,
             seniority_months=scenario.seniority_months,
         )
         if apprenticeship_pct is not None:
@@ -294,6 +296,7 @@ def compute(
             count,
             scenario.roles,
             scenario.as_of,
+            worker_category=worker_category,
             is_apprentice=False,
             seniority_months=scenario.seniority_months,
         )
@@ -548,6 +551,8 @@ def _resolve_seniority_count(
     level_code: str,
     seniority_count: int | None,
     seniority_months: int | None,
+    *,
+    worker_category: LevelCategory | None = None,
 ) -> int:
     """Resolve the seniority increment count from either explicit input.
 
@@ -556,19 +561,20 @@ def _resolve_seniority_count(
 
     Raises:
         ValueError: If both seniority_count and seniority_months are given,
-            or if either value is negative, or if seniority_count exceeds the maximum.
+            or if either value is negative, or if seniority_count exceeds the
+            maximum.
     """
     if seniority_count is not None and seniority_months is not None:
         msg = "seniority_count and seniority_months are mutually exclusive"
         raise ValueError(msg)
-    maximum = seniority_rules.maximum_for(level_code)
+    maximum = seniority_rules.maximum_for(level_code, worker_category)
     if seniority_months is not None:
         if seniority_months < 0:
             msg = f"seniority_months must be >= 0, got {seniority_months}"
             raise ValueError(msg)
         if seniority_rules.tiers:
             return _count_from_tiers(seniority_rules.tiers, seniority_months)
-        first = seniority_rules.first_cadence_for(level_code)
+        first = seniority_rules.first_cadence_for(level_code, worker_category)
         if seniority_months < first:
             return 0
         count = 1 + (seniority_months - first) // seniority_rules.cadence_months
@@ -592,14 +598,16 @@ def _seniority_amount(
     count: int,
     as_of: date,
     *,
+    worker_category: LevelCategory | None,
     is_apprentice: bool,
     seniority_months: int | None,
 ) -> Decimal:
     """Resolve the monthly seniority amount for one level on one date.
 
-    Handles apprentice amounts, tiered ladders, flat amounts, and the absent
-    (zero) case. Tiered ladders prefer ``seniority_months`` when available;
-    fall back to count-based distribution otherwise.
+    Handles apprentice amounts, category-specific amounts, tiered ladders,
+    flat amounts, and the absent (zero) case. Tiered ladders prefer
+    ``seniority_months`` when available; fall back to count-based
+    distribution otherwise.
 
     Returns:
         Rounded monthly seniority amount in EUR.
@@ -623,6 +631,11 @@ def _seniority_amount(
         return _resolve_tier_amount_from_count(
             seniority_rules.tiers, level_code, count, as_of
         )
+    if worker_category is not None:
+        cat_amounts = seniority_rules.amount_by_level_by_category.get(worker_category)
+        if cat_amounts is not None and level_code in cat_amounts:
+            raw = cat_amounts[level_code].value_at(as_of)
+            return money(raw * count)
     if level_code in seniority_rules.amount_by_level:
         raw = seniority_rules.amount_by_level[level_code].value_at(as_of)
         return money(raw * count)
@@ -654,6 +667,7 @@ def _level_chain(
     roles: frozenset[str],
     as_of: date,
     *,
+    worker_category: LevelCategory | None = None,
     is_apprentice: bool,
     seniority_months: int | None = None,
 ) -> _MonthlyPayChain:
@@ -663,6 +677,7 @@ def _level_chain(
         level.code,
         count,
         as_of,
+        worker_category=worker_category,
         is_apprentice=is_apprentice,
         seniority_months=seniority_months,
     )
@@ -686,6 +701,7 @@ def _apprentice_chain(
     roles: frozenset[str],
     as_of: date,
     *,
+    worker_category: LevelCategory | None = None,
     seniority_months: int | None = None,
 ) -> tuple[_MonthlyPayChain, Decimal | None, str | None]:
     track = _select_track(ccnl, level, employment)
@@ -702,6 +718,7 @@ def _apprentice_chain(
             count,
             roles,
             as_of,
+            worker_category=worker_category,
             is_apprentice=True,
             seniority_months=seniority_months,
         )
@@ -714,6 +731,7 @@ def _apprentice_chain(
         count,
         roles,
         as_of,
+        worker_category=worker_category,
         is_apprentice=True,
         seniority_months=seniority_months,
     )

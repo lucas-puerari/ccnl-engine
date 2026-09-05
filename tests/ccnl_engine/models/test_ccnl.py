@@ -206,10 +206,10 @@ class TestCCNLSeniority:
             maximum_count_by_level={"4": 1},
             first_cadence_months_by_level={"4": 48},
         )
-        assert si.maximum_for("4") == 1
-        assert si.maximum_for("3") == 5
-        assert si.first_cadence_for("4") == 48
-        assert si.first_cadence_for("3") == 24
+        assert si.maximum_for("4", None) == 1
+        assert si.maximum_for("3", None) == 5
+        assert si.first_cadence_for("4", None) == 48
+        assert si.first_cadence_for("3", None) == 24
         si_first = SeniorityIncrements(
             cadence_months=36,
             maximum_count=5,
@@ -238,6 +238,38 @@ class TestCCNLSeniority:
         }
         with pytest.raises(ValidationError, match="first_cadence_months_by_level ref"):
             _validate(data)
+
+    def test_negative_category_maximum_raises(self) -> None:
+        """maximum_count_by_category values must be >= 0."""
+        with pytest.raises(ValidationError, match="must be >= 0"):
+            SeniorityIncrements(
+                cadence_months=24,
+                maximum_count=10,
+                amount_by_level={},
+                maximum_count_by_category={"operaio": -1},
+            )
+
+    def test_unknown_amount_by_level_by_category_raises(self) -> None:
+        """amount_by_level_by_category referencing a missing level must raise."""
+        data = make_ccnl_dict()
+        data["parameters"]["seniority_increments"]["amount_by_level_by_category"] = {
+            "operaio": {"999": _SERIES}
+        }
+        with pytest.raises(ValidationError, match="amount_by_level_by_category"):
+            _validate(data)
+
+    def test_first_cadence_for_by_category(self) -> None:
+        """first_cadence_for returns category override when present."""
+        si = SeniorityIncrements(
+            cadence_months=24,
+            maximum_count=10,
+            amount_by_level={},
+            first_cadence_months=48,
+            first_cadence_months_by_category={"operaio": 24},
+        )
+        assert si.first_cadence_for("2", "operaio") == 24
+        assert si.first_cadence_for("2", "impiegato") == 48
+        assert si.first_cadence_for("2") == 48
 
 
 # ---------------------------------------------------------------------------
