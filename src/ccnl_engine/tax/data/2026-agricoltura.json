@@ -2,15 +2,36 @@
   "year": 2026,
   "sector": "agricoltura",
   "irpef_brackets": [
-    { "up_to": "28000.00", "rate": "0.23" },
-    { "up_to": "50000.00", "rate": "0.33" },
-    { "up_to": null,       "rate": "0.43" }
+    {
+      "up_to": "28000.00",
+      "rate": "0.23"
+    },
+    {
+      "up_to": "50000.00",
+      "rate": "0.33"
+    },
+    {
+      "up_to": null,
+      "rate": "0.43"
+    }
   ],
   "work_deduction_breakpoints": [
-    { "income_up_to": "8500.00",  "deduction": "1955.00" },
-    { "income_up_to": "28000.00", "deduction": "700.00"  },
-    { "income_up_to": "50000.00", "deduction": "0.00"    },
-    { "income_up_to": null,       "deduction": "0.00"    }
+    {
+      "income_up_to": "8500.00",
+      "deduction": "1955.00"
+    },
+    {
+      "income_up_to": "28000.00",
+      "deduction": "700.00"
+    },
+    {
+      "income_up_to": "50000.00",
+      "deduction": "0.00"
+    },
+    {
+      "income_up_to": null,
+      "deduction": "0.00"
+    }
   ],
   "fixed_term_additional_rate": "0.014",
   "inps": {
@@ -43,6 +64,11 @@
   },
   "tfr": {
     "accrual_divisor": "13.5"
+  },
+  "trattamento_integrativo": {
+    "threshold_mid": "15000",
+    "threshold_upper": "28000",
+    "max_amount": "1200"
   },
   "notes": [
     "INPS rates: Gestione Previdenziale Speciale per i Lavoratori Agricoli (OTI, standard agriculture). Employee 8.84%; employer 21.66%; total 30.50%. Source: ciatreviso.it citing INPS 2026 rates (https://ciatreviso.it/contributi-inps-inail-2026-agricoli-aliquote-e-le-scadenze-per-operai-otd-e-oti/); consistent with INPS Circular 46/2025 2025 rates (21.46% employer) adjusted +0.20pp for 2026.",

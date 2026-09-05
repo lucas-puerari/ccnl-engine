@@ -65,6 +65,11 @@
   "tfr": {
     "accrual_divisor": "13.5"
   },
+  "trattamento_integrativo": {
+    "threshold_mid": "15000",
+    "threshold_upper": "28000",
+    "max_amount": "1200"
+  },
   "notes": [
     "IRPEF brackets: three-bracket structure per L. 199/2025 (Legge di Bilancio 2026); second bracket reduced from 35% to 33% effective 2026-01-01.",
     "work_deduction_breakpoints: Art. 13 co. 1 TUIR, as modified by D.Lgs. 216/2023 and confirmed by L. 207/2024.",

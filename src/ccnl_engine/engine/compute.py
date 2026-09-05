@@ -12,6 +12,7 @@ from ccnl_engine.engine.payslip import Payslip
 from ccnl_engine.engine.rounding import money
 from ccnl_engine.models.apprenticeship import ApprenticeshipPercentage
 from ccnl_engine.models.employment import Apprentice, FixedTerm
+from ccnl_engine.models.fiscal import FiscalSimplification
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
@@ -277,10 +278,10 @@ def compute(ccnl: CCNL, rules: YearRules, scenario: Scenario) -> Payslip:
     )
     tfr_annual = _contrib.tfr(tfr_base, rules)
 
-    # Not modelled (scope of a separate fiscal library): addizionali
+    # Not modelled (scope of a separate fiscal layer): addizionali
     # regionali/comunali; detrazioni per carichi di famiglia (Art. 12 TUIR);
-    # trattamento integrativo (Art. 1 D.L. 3/2020); sterilization of
-    # detrazioni for redditi > EUR 200k (Art. 1 c. 3-4 L. 199/2025).
+    # sterilization of detrazioni for redditi > EUR 200k (Art. 1 c. 3-4
+    # L. 199/2025).
     taxable_income = money(gross_annual - inps_employee_annual)
     irpef_gross = _irpef.irpef_gross(taxable_income, rules)
     work_income_deduction = _irpef.work_income_deduction(gross_annual, rules)
@@ -293,7 +294,13 @@ def compute(ccnl: CCNL, rules: YearRules, scenario: Scenario) -> Payslip:
         else _ZERO
     )
 
-    net_annual = money(gross_annual - inps_employee_annual - irpef_net)
+    # Trattamento integrativo (Art. 1 D.L. 3/2020): computed when the tax
+    # data file carries the required parameters.
+    ti, fiscal_simplifications = _compute_ti(
+        gross_annual, irpef_gross, work_income_deduction, rules
+    )
+
+    net_annual = money(gross_annual - inps_employee_annual - irpef_net + ti)
     net_monthly = money(net_annual / additional_months)
     employer_cost_annual = money(
         gross_annual + inps_employer_annual + employer_funds_annual + tfr_annual
@@ -325,6 +332,8 @@ def compute(ccnl: CCNL, rules: YearRules, scenario: Scenario) -> Payslip:
         work_income_deduction=work_income_deduction,
         irpef_net=irpef_net,
         employer_withholds_irpef=employer_withholds_irpef,
+        trattamento_integrativo=ti,
+        fiscal_simplifications=fiscal_simplifications,
         net_annual=net_annual,
         net_monthly=net_monthly,
         employer_cost_annual=employer_cost_annual,
@@ -623,3 +632,35 @@ def _employer_funds(
         if fund.applies_to(category):
             total += money(contribution_base * fund.rate.value_at(as_of))
     return money(total)
+
+
+def _compute_ti(
+    gross_annual: Decimal,
+    irpef_gross: Decimal,
+    work_income_deduction: Decimal,
+    rules: YearRules,
+) -> tuple[Decimal, frozenset[FiscalSimplification]]:
+    """Return (trattamento_integrativo, fiscal_simplifications) for the scenario.
+
+    When the tax data file carries trattamento integrativo parameters, the
+    bonus is computed and the three unmodelled simplifications are returned.
+    Otherwise, all four ``FiscalSimplification`` members are returned and the
+    bonus is zero.
+
+    Returns:
+        Tuple of (ti_amount, fiscal_simplifications_frozenset).
+    """
+    ti_rules = rules.trattamento_integrativo
+    if ti_rules is not None:
+        ti = _irpef.trattamento_integrativo(
+            gross_annual, irpef_gross, work_income_deduction, ti_rules
+        )
+        simplifications: frozenset[FiscalSimplification] = frozenset({
+            FiscalSimplification.NO_ADDIZIONALI,
+            FiscalSimplification.NO_DETRAZIONI_FAMILIARI,
+            FiscalSimplification.NO_STERILIZZAZIONE_DETRAZIONI,
+        })
+    else:
+        ti = _ZERO
+        simplifications = frozenset(FiscalSimplification)
+    return ti, simplifications

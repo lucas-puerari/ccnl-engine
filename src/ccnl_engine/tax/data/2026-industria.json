@@ -80,6 +80,11 @@
   "tfr": {
     "accrual_divisor": "13.5"
   },
+  "trattamento_integrativo": {
+    "threshold_mid": "15000",
+    "threshold_upper": "28000",
+    "max_amount": "1200"
+  },
   "notes": [
     "IRPEF brackets and work_deduction_breakpoints: identical to terziario — these are statutory and sector-agnostic.",
     "INPS employer — components verified for manufacturing/metalworking industry 2026: IVS 23.81% (Circ. INPS 6/2026) + DS/NASpI 1.61% + CUAF 2.48% + CIGO 1.70% (≤50 employees) or 2.00% (>50 employees, D.Lgs. 148/2015 art. 5, Circ. INPS 1/2026) + FIS 0.533% employer (6-15 employees, 2/3 of 0.80%, Circ. INPS 5/2025) or CIGS 0.60% employer (>15 employees, 2/3 of 0.90%). Total by tier: ≤15 employees = 30.13%; 16-50 employees = 30.20%; >50 employees = 30.50%. Does not include INAIL (sector-variable, not modelled).",

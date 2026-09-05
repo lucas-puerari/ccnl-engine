@@ -45,8 +45,14 @@
     "irpef_gross": "4393.01",
     "work_income_deduction": "1148.39",
     "irpef_net": "3244.62",
-    "net_annual": "15855.41",
-    "net_monthly": "1219.65",
-    "employer_cost_annual": "28255.14"
+    "net_annual": "16498.52",
+    "net_monthly": "1269.12",
+    "employer_cost_annual": "28255.14",
+    "trattamento_integrativo": "643.11",
+    "fiscal_simplifications": [
+      "no_addizionali",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
   }
 }

@@ -80,6 +80,11 @@
   "tfr": {
     "accrual_divisor": "13.5"
   },
+  "trattamento_integrativo": {
+    "threshold_mid": "15000",
+    "threshold_upper": "28000",
+    "max_amount": "1200"
+  },
   "notes": [
     "IRPEF brackets and work_deduction_breakpoints: statutory, identical to other sectors.",
     "SIMPLIFICATION: Cassa Edile contributions (~18.5% of gross for operai — ferie 8.5%, gratifica natalizia 10%) are NOT included in employer_tiers. The employer_cost_annual computed by the engine understates the real cost for operai. Impiegati are less affected as Cassa Edile covers mainly operai items.",

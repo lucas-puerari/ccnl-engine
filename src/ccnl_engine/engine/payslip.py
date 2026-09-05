@@ -9,6 +9,8 @@ if TYPE_CHECKING:
     from datetime import date
     from decimal import Decimal
 
+    from ccnl_engine.models.fiscal import FiscalSimplification
+
 
 @dataclass(frozen=True)
 class Payslip:
@@ -75,8 +77,16 @@ class Payslip:
             ``irpef_gross`` and ``work_income_deduction`` are informational
             only and ``irpef_net`` is zero.
 
+        trattamento_integrativo: Trattamento integrativo bonus (Art. 1 D.L.
+            3/2020), if computed; ``0`` when not applicable or when the tax
+            data file does not carry the required parameters.
+        fiscal_simplifications: Set of fiscal elements omitted from this
+            computation. Callers can check membership to know which items are
+            absent from the net figure.
+
         net_annual: Annual net pay (``gross_annual`` minus
-            ``inps_employee_annual`` minus ``irpef_net``).
+            ``inps_employee_annual`` minus ``irpef_net`` plus
+            ``trattamento_integrativo``).
         net_monthly: Monthly net pay (``net_annual / additional_months``).
 
         employer_cost_annual: Total annual employer cost
@@ -113,6 +123,9 @@ class Payslip:
     work_income_deduction: Decimal
     irpef_net: Decimal
     employer_withholds_irpef: bool
+
+    trattamento_integrativo: Decimal
+    fiscal_simplifications: frozenset[FiscalSimplification]
 
     net_annual: Decimal
     net_monthly: Decimal

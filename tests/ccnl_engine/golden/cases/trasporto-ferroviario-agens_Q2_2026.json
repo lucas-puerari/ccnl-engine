@@ -36,6 +36,12 @@
     "work_income_deduction": "426.93",
     "irpef_net": "7699.57",
     "employer_withholds_irpef": true,
+    "trattamento_integrativo": "0",
+    "fiscal_simplifications": [
+      "no_addizionali",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ],
     "net_annual": "25411.05",
     "net_monthly": "1815.08",
     "employer_cost_annual": "50339.93"

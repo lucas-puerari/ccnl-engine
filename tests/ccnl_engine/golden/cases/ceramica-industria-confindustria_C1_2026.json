@@ -48,6 +48,12 @@
     "irpef_net": "5449.24",
     "net_annual": "21101.89",
     "net_monthly": "1623.22",
-    "employer_cost_annual": "40367.16"
+    "employer_cost_annual": "40367.16",
+    "trattamento_integrativo": "0",
+    "fiscal_simplifications": [
+      "no_addizionali",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
   }
 }
