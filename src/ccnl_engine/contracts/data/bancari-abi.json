@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "bancari-abi",
     "name": "CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)",
@@ -37,11 +37,26 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: Hourly divisor 162 for the 37.5h/week period (2023-11-23 to 2024-06-30) and 160 from 2024-07-01 (37h/week).",
-      "INFO: Seniority: first scatto after 48 months, then every 36 months; maximum 8 scatti for the Aree Professionali and 7 for QD3/QD4 (maximum_count_by_level).",
-      "SIMPLIFICATION: Apprenticeship (Art. 35, rinnovo 23-11-2023) targets the 3ª area professionale without naming the level; modelled for destination levels 3A2, 3A3 and 3A4 with 18 months one level below, then the destination level. 3A1 is excluded because the level below (Area Unificata 1ª e 2ª area) is not an apprenticeship classification.",
-      "SIMPLIFICATION: INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); the Fondo di solidarietà del credito (bilateral) is presumed included in the aggregate rate. Verify against the annual INPS circular.",
-      "SOURCE: Apprenticeship: https://www.ccnlbancari.it/ Art. 35, post-rinnovo 2023-11-23."
+      {
+        "kind": "info",
+        "text": "Hourly divisor 162 for the 37.5h/week period (2023-11-23 to 2024-06-30) and 160 from 2024-07-01 (37h/week)."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: first scatto after 48 months, then every 36 months; maximum 8 scatti for the Aree Professionali and 7 for QD3/QD4 (maximum_count_by_level)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Apprenticeship (Art. 35, rinnovo 23-11-2023) targets the 3ª area professionale without naming the level; modelled for destination levels 3A2, 3A3 and 3A4 with 18 months one level below, then the destination level. 3A1 is excluded because the level below (Area Unificata 1ª e 2ª area) is not an apprenticeship classification."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); the Fondo di solidarietà del credito (bilateral) is presumed included in the aggregate rate. Verify against the annual INPS circular."
+      },
+      {
+        "kind": "source",
+        "text": "Apprenticeship: https://www.ccnlbancari.it/ Art. 35, post-rinnovo 2023-11-23."
+      }
     ]
   },
   "parameters": {

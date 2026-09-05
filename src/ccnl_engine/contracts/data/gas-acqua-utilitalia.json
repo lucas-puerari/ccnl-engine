@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "gas-acqua-utilitalia",
     "name": "CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas",
@@ -44,13 +44,34 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: SALARY MODEL: conglobated contingenza ('minimi tabellari integrati') with EDR 10.33 shown separately. Confirmed from scheda riassuntiva PDF (CCNL 30/09/2022, sosvavsrl.it), section heading 'Minimi tabellari integrati'. EDR is a fixed statutory element (frozen since 1997, Accordo interconfederale) shown as a distinct line in all salary tables; modelled as fixed_allowance for each level.",
-      "INFO: HOURLY DIVISOR: 167. Stated explicitly in §4.3 of the PDF scheda riassuntiva: 'Coefficiente orario: 167'. Corresponds to 38h 30min contractual week (§4.4). Back-calculation: L1(2024-09-01)=1677.64/167=10.05 EUR/h.",
-      "INFO: ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima). Stated in §4.1: 'Mensilità: 14'. Tredicesima confirmed §5.3, quattordicesima confirmed §5.4.",
-      "SIMPLIFICATION: SENIORITY: abolished from 31/12/2015 (§5.5 of CCNL PDF). Frozen as 'elemento ad personam non riassorbibile' at the individual amount accrued by each worker as at 31/12/2015. No new increments can be earned by any worker hired after 2015. Modelled as maximum_count=0 (all amounts 0.00) — no seniority is added for new hires. SIMPLIFICATION: the frozen elemento ad personam for pre-2016 hires is individual and not computable from level alone; it is not modelled.",
-      "INFO: LEVEL Q ALLOWANCE: Indennità di funzione 51.65 EUR/month (12 mensilità) per §2.1 of the CCNL PDF. Shown separately from minimo and EDR in all salary tables.",
-      "SIMPLIFICATION: INPS: reuses 2026-industria.json. Gas and water utilities (aziende private del settore gas-acqua) are classified under 'attività industriali' for INPS contribution purposes. Employer associations Utilitalia and Proxigas are Confindustria-aligned. SIMPLIFICATION: exact INPS circular for this sector not verified; 2026-industria.json rates used as proxy.",
-      "INFO: COVERAGE: CCNL covers approximately 50,000 workers in about 600 private gas and water distribution companies (source: filctemcgil.it, 2025 renewal announcement). CNEL code K321."
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: conglobated contingenza ('minimi tabellari integrati') with EDR 10.33 shown separately. Confirmed from scheda riassuntiva PDF (CCNL 30/09/2022, sosvavsrl.it), section heading 'Minimi tabellari integrati'. EDR is a fixed statutory element (frozen since 1997, Accordo interconfederale) shown as a distinct line in all salary tables; modelled as fixed_allowance for each level."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 167. Stated explicitly in §4.3 of the PDF scheda riassuntiva: 'Coefficiente orario: 167'. Corresponds to 38h 30min contractual week (§4.4). Back-calculation: L1(2024-09-01)=1677.64/167=10.05 EUR/h."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima). Stated in §4.1: 'Mensilità: 14'. Tredicesima confirmed §5.3, quattordicesima confirmed §5.4."
+      },
+      {
+        "kind": "simplification",
+        "text": "SENIORITY: abolished from 31/12/2015 (§5.5 of CCNL PDF). Frozen as 'elemento ad personam non riassorbibile' at the individual amount accrued by each worker as at 31/12/2015. No new increments can be earned by any worker hired after 2015. Modelled as maximum_count=0 (all amounts 0.00) — no seniority is added for new hires. SIMPLIFICATION: the frozen elemento ad personam for pre-2016 hires is individual and not computable from level alone; it is not modelled."
+      },
+      {
+        "kind": "info",
+        "text": "LEVEL Q ALLOWANCE: Indennità di funzione 51.65 EUR/month (12 mensilità) per §2.1 of the CCNL PDF. Shown separately from minimo and EDR in all salary tables."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS: reuses 2026-industria.json. Gas and water utilities (aziende private del settore gas-acqua) are classified under 'attività industriali' for INPS contribution purposes. Employer associations Utilitalia and Proxigas are Confindustria-aligned. SIMPLIFICATION: exact INPS circular for this sector not verified; 2026-industria.json rates used as proxy."
+      },
+      {
+        "kind": "info",
+        "text": "COVERAGE: CCNL covers approximately 50,000 workers in about 600 private gas and water distribution companies (source: filctemcgil.it, 2025 renewal announcement). CNEL code K321."
+      }
     ]
   },
   "parameters": {

@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "chimica-affini-pmi-unionchimica",
     "name": "CCNL Chimica e Affini PMI — Unionchimica Confapi",
@@ -36,17 +36,50 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: SALARY MODEL: split. base_salary = minimum contractual (minimo tabellare). Levels H, G, F, E carry fixed_allowances: H has indennità di funzione (IND_FUN, EUR 160.00); G, F, E have aggiunta personale (AGG_PERSONALE, EUR 25.82 / 15.49 / 5.16). All allowances are TFR-relevant and contribution-relevant (default).",
-      "INFO: RENEWAL: Unionchimica Confapi CCNL signed 23 February 2026, effective 1 January 2026 – 31 December 2028. Five tranches: 1 Jan 2026, 1 Apr 2027, 1 Dec 2027, 1 Jun 2028, 1 Dec 2028. Source: kitech.it B018.",
-      "INFO: LEVELS: 8 professional levels A (lowest) to H (highest). Scala parametrale: H=100 reference, descending. All levels confirmed from kitech.it Jan 2026 table.",
-      "INFO: CNEL CODE: B018 (Unionchimica Confapi). Distinct from B011 (Federchimica) which covers large-firm chemical-pharmaceutical. B018 covers PMI (piccole e medie imprese) chemical sector.",
-      "INFO: TAX SECTOR: INDUSTRIA (existing). Standard INPS industria rates apply (2026-industria.json). No bilateral fund substitutes INPS in this contract.",
-      "INFO: ADDITIONAL MONTHS: 13 (tredicesima only). Source: kitech.it B018 mensilità aggiuntive field.",
-      "INFO: SENIORITY: biennale (24 months), maximum 5 scatti. Per-level EUR amounts from kitech.it Jan 2026 table: A=10.33, B=11.88, C=12.91, D=13.94, E=15.49, F=18.08, G=20.66, H=23.24.",
-      "SIMPLIFICATION: SINGLE TRANCHE ONLY. Only the 1 January 2026 tranche is modelled. The 4 subsequent tranches (Apr 2027, Dec 2027, Jun 2028, Dec 2028) are not accessible from primary source at time of extraction. Update with official amounts when the renewal text becomes available.",
-      "SIMPLIFICATION: CHIMICA-CONCIA SUB-SECTOR ONLY. Unionchimica Confapi covers three sub-sectors with different hourly divisors: Chimica-Concia (175), Plastica-Gomma (169), Abrasivi-Ceramica-Vetro (173). Only Chimica-Concia (divisor 175) is modelled. The level codes and salary amounts are the same across sub-sectors; only the hourly divisor differs.",
-      "SIMPLIFICATION: HOURLY DIVISOR AGGREGATOR-SOURCED. The divisor of 175 for Chimica-Concia is taken from kitech.it (aggregator) and consistent with CCNL Federchimica B011 which also uses 175 for the chemical-pharmaceutical sub-sector. No official hourly rate column was available to back-calculate the divisor from primary source.",
-      "INFO: APPRENTICESHIP. Apprendistato professionalizzante per sotto-inquadramento (D.Lgs. 81/2015). Durata massima 36 mesi, uniforme per tutti i livelli e sub-settori. Struttura: primo periodo (mesi 1-10) a 2 livelli sotto la destinazione; secondo periodo (mesi 11 a fine contratto) a 1 livello sotto la destinazione; al termine dell'apprendistato l'inquadramento finale è riconosciuto. Tre track modellati: professionalizzante_C_H (C-H, schema standard 2→1), professionalizzante_B (destinazione B: capped ad A per assenza di livelli inferiori, periodo unico), professionalizzante_A (destinazione A: resta ad A per tutta la durata). Fonte primaria: schede CNEL B018 direzionelavoro.it (ottobre 2023), voce (g) art. 1 Cap. I. Confermato invariato dal rinnovo 23/02/2026 (Confapi Padova circolare): apprendistato non oggetto di modifica."
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: split. base_salary = minimum contractual (minimo tabellare). Levels H, G, F, E carry fixed_allowances: H has indennità di funzione (IND_FUN, EUR 160.00); G, F, E have aggiunta personale (AGG_PERSONALE, EUR 25.82 / 15.49 / 5.16). All allowances are TFR-relevant and contribution-relevant (default)."
+      },
+      {
+        "kind": "info",
+        "text": "RENEWAL: Unionchimica Confapi CCNL signed 23 February 2026, effective 1 January 2026 – 31 December 2028. Five tranches: 1 Jan 2026, 1 Apr 2027, 1 Dec 2027, 1 Jun 2028, 1 Dec 2028. Source: kitech.it B018."
+      },
+      {
+        "kind": "info",
+        "text": "LEVELS: 8 professional levels A (lowest) to H (highest). Scala parametrale: H=100 reference, descending. All levels confirmed from kitech.it Jan 2026 table."
+      },
+      {
+        "kind": "info",
+        "text": "CNEL CODE: B018 (Unionchimica Confapi). Distinct from B011 (Federchimica) which covers large-firm chemical-pharmaceutical. B018 covers PMI (piccole e medie imprese) chemical sector."
+      },
+      {
+        "kind": "info",
+        "text": "TAX SECTOR: INDUSTRIA (existing). Standard INPS industria rates apply (2026-industria.json). No bilateral fund substitutes INPS in this contract."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 13 (tredicesima only). Source: kitech.it B018 mensilità aggiuntive field."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY: biennale (24 months), maximum 5 scatti. Per-level EUR amounts from kitech.it Jan 2026 table: A=10.33, B=11.88, C=12.91, D=13.94, E=15.49, F=18.08, G=20.66, H=23.24."
+      },
+      {
+        "kind": "simplification",
+        "text": "SINGLE TRANCHE ONLY. Only the 1 January 2026 tranche is modelled. The 4 subsequent tranches (Apr 2027, Dec 2027, Jun 2028, Dec 2028) are not accessible from primary source at time of extraction. Update with official amounts when the renewal text becomes available."
+      },
+      {
+        "kind": "simplification",
+        "text": "CHIMICA-CONCIA SUB-SECTOR ONLY. Unionchimica Confapi covers three sub-sectors with different hourly divisors: Chimica-Concia (175), Plastica-Gomma (169), Abrasivi-Ceramica-Vetro (173). Only Chimica-Concia (divisor 175) is modelled. The level codes and salary amounts are the same across sub-sectors; only the hourly divisor differs."
+      },
+      {
+        "kind": "simplification",
+        "text": "HOURLY DIVISOR AGGREGATOR-SOURCED. The divisor of 175 for Chimica-Concia is taken from kitech.it (aggregator) and consistent with CCNL Federchimica B011 which also uses 175 for the chemical-pharmaceutical sub-sector. No official hourly rate column was available to back-calculate the divisor from primary source."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP. Apprendistato professionalizzante per sotto-inquadramento (D.Lgs. 81/2015). Durata massima 36 mesi, uniforme per tutti i livelli e sub-settori. Struttura: primo periodo (mesi 1-10) a 2 livelli sotto la destinazione; secondo periodo (mesi 11 a fine contratto) a 1 livello sotto la destinazione; al termine dell'apprendistato l'inquadramento finale è riconosciuto. Tre track modellati: professionalizzante_C_H (C-H, schema standard 2→1), professionalizzante_B (destinazione B: capped ad A per assenza di livelli inferiori, periodo unico), professionalizzante_A (destinazione A: resta ad A per tutta la durata). Fonte primaria: schede CNEL B018 direzionelavoro.it (ottobre 2023), voce (g) art. 1 Cap. I. Confermato invariato dal rinnovo 23/02/2026 (Confapi Padova circolare): apprendistato non oggetto di modifica."
+      }
     ]
   },
   "parameters": {

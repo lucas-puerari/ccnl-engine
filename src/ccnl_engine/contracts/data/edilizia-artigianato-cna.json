@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "edilizia-artigianato-cna",
     "name": "CCNL Edilizia e Affini Artigianato",
@@ -55,16 +55,46 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: Split salary model: paga base (TimeSeries, 4 tranches May 2025/Jan 2026/Jan 2027/Jan 2028) + contingenza (frozen since July 1992 Protocol) + EDR (frozen EUR 10.33 since 1992).",
-      "INFO: Paga base May 2025 and Jan 2026 verified directly against published salary tables (ilccnl.it, kitech.it). Jan 2026 cross-checked across all 8 levels.",
-      "SIMPLIFICATION: Jan 2027 and Jan 2028 paga base values derived from parametro system (L1=100, L2=115, L3=130, L4=139, L5=150, L6=180, L7=L7Q=205) applied to the May 2025 base. Tranche increments at level 1: May 2025 +75, Jan 2026 +35, Jan 2027 +35, Jan 2028 +33. All parametro-derived values cross-checked against Jan 2026 published figures; deviation < 0.01 EUR.",
-      "INFO: Level 7Q has the same paga base as level 7, plus a fixed indennita di funzione of EUR 140.00/month (F015 Art. on Quadri, L. 190/1985). Modelled at order 8 (above level 7 order 7).",
-      "SIMPLIFICATION: Seniority increment cadence (24 months) and maximum count (5) taken from general CCNL Edilizia Artigianato provisions; F015-specific text not independently confirmed. Level 1 scatto = EUR 0.00 as published in kitech.it.",
-      "SIMPLIFICATION: For blue-collar workers in construction the Cassa Edile / EPR bilateral system provides additional accrual benefits (annual leave, Christmas bonus, seniority) that are separate from INPS seniority increments. These are not modelled; only the tabular seniority increments are implemented.",
-      "INFO: Apprenticeship standard professionalizzante Group 4 (Art. 7, Allegato D, renewal May 2025): 36 months / 6 semesters, destination level 4, 74/76/79/86/91/96% per semester, track 'standard_gruppo_4'. Source: ediltecnico.it citing F015 Allegato D.",
-      "INFO: INPS contribution rates from 2026-artigianato.json (artigianato sector). No Cassa Edile contribution substitution modelled in the INPS rate; employer Cassa Edile contributions are additional and are out of scope.",
-      "INFO: Layer 3 (overtime, Cassa Edile contributions, holiday/night premiums, accruals managed bilaterally) is out of scope.",
-      "INFO: Apprenticeship specialistico tracks (Allegato D, verbale 05/09/2023, Art. 9): 1 Sp (54m, livelli 4-5): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%, 42-54=96%. 3 Sp (42m, livello 3): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%. SIMPLIFICATION: 2 Sp (45m, livelli 3-4): last 8th sem.=3m (not 6m) to reach 45m (the exact boundary of the last period is not published in textual form by any secondary source; total duration of 45m is confirmed). Source: studiodalmaschio.it; fareapprendistato.it; cdltorino.it."
+      {
+        "kind": "info",
+        "text": "Split salary model: paga base (TimeSeries, 4 tranches May 2025/Jan 2026/Jan 2027/Jan 2028) + contingenza (frozen since July 1992 Protocol) + EDR (frozen EUR 10.33 since 1992)."
+      },
+      {
+        "kind": "info",
+        "text": "Paga base May 2025 and Jan 2026 verified directly against published salary tables (ilccnl.it, kitech.it). Jan 2026 cross-checked across all 8 levels."
+      },
+      {
+        "kind": "simplification",
+        "text": "Jan 2027 and Jan 2028 paga base values derived from parametro system (L1=100, L2=115, L3=130, L4=139, L5=150, L6=180, L7=L7Q=205) applied to the May 2025 base. Tranche increments at level 1: May 2025 +75, Jan 2026 +35, Jan 2027 +35, Jan 2028 +33. All parametro-derived values cross-checked against Jan 2026 published figures; deviation < 0.01 EUR."
+      },
+      {
+        "kind": "info",
+        "text": "Level 7Q has the same paga base as level 7, plus a fixed indennita di funzione of EUR 140.00/month (F015 Art. on Quadri, L. 190/1985). Modelled at order 8 (above level 7 order 7)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Seniority increment cadence (24 months) and maximum count (5) taken from general CCNL Edilizia Artigianato provisions; F015-specific text not independently confirmed. Level 1 scatto = EUR 0.00 as published in kitech.it."
+      },
+      {
+        "kind": "simplification",
+        "text": "For blue-collar workers in construction the Cassa Edile / EPR bilateral system provides additional accrual benefits (annual leave, Christmas bonus, seniority) that are separate from INPS seniority increments. These are not modelled; only the tabular seniority increments are implemented."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship standard professionalizzante Group 4 (Art. 7, Allegato D, renewal May 2025): 36 months / 6 semesters, destination level 4, 74/76/79/86/91/96% per semester, track 'standard_gruppo_4'. Source: ediltecnico.it citing F015 Allegato D."
+      },
+      {
+        "kind": "info",
+        "text": "INPS contribution rates from 2026-artigianato.json (artigianato sector). No Cassa Edile contribution substitution modelled in the INPS rate; employer Cassa Edile contributions are additional and are out of scope."
+      },
+      {
+        "kind": "info",
+        "text": "Layer 3 (overtime, Cassa Edile contributions, holiday/night premiums, accruals managed bilaterally) is out of scope."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship specialistico tracks (Allegato D, verbale 05/09/2023, Art. 9): 1 Sp (54m, livelli 4-5): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%, 42-54=96%. 3 Sp (42m, livello 3): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%. SIMPLIFICATION: 2 Sp (45m, livelli 3-4): last 8th sem.=3m (not 6m) to reach 45m (the exact boundary of the last period is not published in textual form by any secondary source; total duration of 45m is confirmed). Source: studiodalmaschio.it; fareapprendistato.it; cdltorino.it."
+      }
     ]
   },
   "parameters": {

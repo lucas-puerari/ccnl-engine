@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "ceramica-industria-confindustria",
     "name": "CCNL Ceramica Industria (Confindustria-Assopiastrelle)",
@@ -30,12 +30,30 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: SALARY MODEL: conglobated tabular minimum (single base pay absorbing contingency and EDR) + IPO (Organisational Position Allowance) as a separate fixed_allowance for the levels that receive it. Source: official FILCTEM-CGIL tables (PDF signed 22/07/2024, PIASTRELLE sub-sector). REFRACTORY MATERIALS has tables identical to PIASTRELLE.",
-      "INFO: HOURLY_DIVISOR: 173 hours/month (40h weeks × 52/12 = 173.33 rounded). Verified on lavoro-economia.it for CCNL B122.",
-      "SIMPLIFICATION: SENIORITY: 5 biennial increments (cadence 24 months, maximum 5). Amounts from kitech.it (B122, primary levels). Amounts for B2, C2, C3, D2, D3, E2 assumed equal to B1, C1, D1, E1 respectively (same tabular minimum, standard practice for CCNL ceramica); not confirmed from a primary source.",
-      "SIMPLIFICATION: APPRENTICESHIP: 95% percentage on destination (base + IPO). Percentage from pre-2024-renewal aggregator sources; the 22/07/2024 renewal does not appear to have changed the apprenticeship structure according to the same sources. The main CCNL PDF is scanned and cannot be extracted. Maximum legal duration (D.Lgs 81/2015 Art. 44).",
-      "SIMPLIFICATION: APPRENTICE INCREMENT: apprentice_amount=null. No confirmation from any accessible primary source for B122 industria. The EUR 6 value from Jan 2025 is confirmed only for CCNL Ceramica Artigianato (V751), not for B122.",
-      "INFO: SUB-SECTORS: CCNL B122 covers Tiles (porcelain and stoneware), Refractory Materials, Sanitary Ceramics and Tableware, and Artistic and Traditional Ceramics. This file models the PIASTRELLE sub-sector (and REFRATTARI, which has identical tables). Sanitary Ceramics has a different pay structure (significantly higher IPO) and is not modelled here."
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: conglobated tabular minimum (single base pay absorbing contingency and EDR) + IPO (Organisational Position Allowance) as a separate fixed_allowance for the levels that receive it. Source: official FILCTEM-CGIL tables (PDF signed 22/07/2024, PIASTRELLE sub-sector). REFRACTORY MATERIALS has tables identical to PIASTRELLE."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY_DIVISOR: 173 hours/month (40h weeks × 52/12 = 173.33 rounded). Verified on lavoro-economia.it for CCNL B122."
+      },
+      {
+        "kind": "simplification",
+        "text": "SENIORITY: 5 biennial increments (cadence 24 months, maximum 5). Amounts from kitech.it (B122, primary levels). Amounts for B2, C2, C3, D2, D3, E2 assumed equal to B1, C1, D1, E1 respectively (same tabular minimum, standard practice for CCNL ceramica); not confirmed from a primary source."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP: 95% percentage on destination (base + IPO). Percentage from pre-2024-renewal aggregator sources; the 22/07/2024 renewal does not appear to have changed the apprenticeship structure according to the same sources. The main CCNL PDF is scanned and cannot be extracted. Maximum legal duration (D.Lgs 81/2015 Art. 44)."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE INCREMENT: apprentice_amount=null. No confirmation from any accessible primary source for B122 industria. The EUR 6 value from Jan 2025 is confirmed only for CCNL Ceramica Artigianato (V751), not for B122."
+      },
+      {
+        "kind": "info",
+        "text": "SUB-SECTORS: CCNL B122 covers Tiles (porcelain and stoneware), Refractory Materials, Sanitary Ceramics and Tableware, and Artistic and Traditional Ceramics. This file models the PIASTRELLE sub-sector (and REFRATTARI, which has identical tables). Sanitary Ceramics has a different pay structure (significantly higher IPO) and is not modelled here."
+      }
     ]
   },
   "levels": [

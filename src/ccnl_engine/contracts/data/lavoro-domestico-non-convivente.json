@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "lavoro-domestico-non-convivente",
     "name": "CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)",
@@ -34,18 +34,54 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: SALARY MODEL: conglobated retribuzione globale (TABELLA C — Lavoratori Non Conviventi, Art. 14 Co.2 lett. b CCNL). Hourly rates from official Domina salary table PDF (TABELLA-minimi-retributivi-2026.pdf, effective 01/01/2026). Monthly base_salary = hourly_rate × 173. Source is signatory employer association — primary source.",
-      "INFO: TAX SECTOR: lavoro-domestico (TaxSector.LAVORO_DOMESTICO). Flat per-hour INPS contributions from INPS Circ. 9/2026; withholding_exempt=true per Art. 4 D.P.R. 600/1973.",
-      "INFO: HOURLY DIVISOR: 173, derived from 40 h/week (Art. 14 Co.2 CCNL). Formula: 40 × 52 / 12 = 173.33, rounded to 173. Convivente and non-convivente are independent pay scales (different tables, different hourly divisors).",
-      "INFO: BASE SALARY: computed as hourly_rate × 173. Engine divides gross_monthly / hourly_divisor to recover the contractual hourly rate exactly.",
-      "INFO: ADDITIONAL MONTHS: 13 (tredicesima mensilità, Art. 27 CCNL). No quattordicesima.",
-      "INFO: SENIORITY: biennale (24 months), maximum 7 scatti. Per-level amounts = 4% × non-convivente base (= hourly × 173 × 4%). Amounts frozen at 2026 values — future ISTAT tranches require manual update.",
-      "INFO: APPRENTICESHIP: none. Domestic workers excluded from D.lgs. 81/2015 Art. 47 apprenticeship.",
-      "INFO: D/DS function allowance: not applicable for non-convivente (TABELLA C shows only hourly rates, no separate indennità column). D/DS hourly rates already reflect the seniority grade.",
-      "SIMPLIFICATION: CNEL code H501 sourced from kitech.it page title; unverified against CNEL archive (archive not accessible via HTTP at time of extraction).",
-      "SIMPLIFICATION: Single period 2026-01-01; pre-2026 tranches are out of scope.",
-      "SIMPLIFICATION: Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amount_by_level will need manual update.",
-      "INFO: Livello Unico (hourly 5.83) is a special sub-under-18 level excluded from this model."
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: conglobated retribuzione globale (TABELLA C — Lavoratori Non Conviventi, Art. 14 Co.2 lett. b CCNL). Hourly rates from official Domina salary table PDF (TABELLA-minimi-retributivi-2026.pdf, effective 01/01/2026). Monthly base_salary = hourly_rate × 173. Source is signatory employer association — primary source."
+      },
+      {
+        "kind": "info",
+        "text": "TAX SECTOR: lavoro-domestico (TaxSector.LAVORO_DOMESTICO). Flat per-hour INPS contributions from INPS Circ. 9/2026; withholding_exempt=true per Art. 4 D.P.R. 600/1973."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 173, derived from 40 h/week (Art. 14 Co.2 CCNL). Formula: 40 × 52 / 12 = 173.33, rounded to 173. Convivente and non-convivente are independent pay scales (different tables, different hourly divisors)."
+      },
+      {
+        "kind": "info",
+        "text": "BASE SALARY: computed as hourly_rate × 173. Engine divides gross_monthly / hourly_divisor to recover the contractual hourly rate exactly."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 13 (tredicesima mensilità, Art. 27 CCNL). No quattordicesima."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY: biennale (24 months), maximum 7 scatti. Per-level amounts = 4% × non-convivente base (= hourly × 173 × 4%). Amounts frozen at 2026 values — future ISTAT tranches require manual update."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP: none. Domestic workers excluded from D.lgs. 81/2015 Art. 47 apprenticeship."
+      },
+      {
+        "kind": "info",
+        "text": "D/DS function allowance: not applicable for non-convivente (TABELLA C shows only hourly rates, no separate indennità column). D/DS hourly rates already reflect the seniority grade."
+      },
+      {
+        "kind": "simplification",
+        "text": "CNEL code H501 sourced from kitech.it page title; unverified against CNEL archive (archive not accessible via HTTP at time of extraction)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Single period 2026-01-01; pre-2026 tranches are out of scope."
+      },
+      {
+        "kind": "simplification",
+        "text": "Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amount_by_level will need manual update."
+      },
+      {
+        "kind": "info",
+        "text": "Livello Unico (hourly 5.83) is a special sub-under-18 level excluded from this model."
+      }
     ]
   },
   "parameters": {

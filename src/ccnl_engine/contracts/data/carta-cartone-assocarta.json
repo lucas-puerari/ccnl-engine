@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "carta-cartone-assocarta",
     "name": "CCNL Carta e Cartone — Aziende Industriali (Assocarta)",
@@ -48,14 +48,38 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: SALARY MODEL: two tranches modelled — 2024-07-01 (last tranche of CCNL 28/07/2021, source: lexplain.it) and 2026-04-01 (first tranche of rinnovo 10/02/2026, source: kitech.it). The 2024 tranche total = paga base + EMC (Elemento di Modernizzazione Contrattuale, EUR 20.00 at C1, parametrised). The 2026 rinnovo is conglobated: EMC absorbed into the new paga base. Both periods are modelled as base_salary totals; fixed_allowances=[] for all levels. The +125 EUR increase on C1 paga base (rinnovo) minus the EMC (EUR 20 abolished) = net +105 EUR on C1 total (1855.11 → 1960.11).",
-      "SIMPLIFICATION: FUTURE TRANCHES from the 2026-02-10 rinnovo (+45 EUR on C1 from 01.01.2027, +45 from 01.01.2028, +60 from 01.09.2028) are derived for every level by scaling the C1 increment with the level's ratio to C1 at the 01.04.2026 tranche (parametric conglobated scale), rounded to the cent. Replace with the official tables once published.",
-      "INFO: CONGLOBATED CHECK: 2024 values confirmed via lexplain.it (paga base + EMC columns explicit). 2026 values from kitech.it; rinnovo zetaservice PDF confirms Q (2882.91) and C1 (1960.11) at 2026-04-01, consistent with kitech. Level ordering is strictly monotone at both tranche dates.",
-      "INFO: HOURLY DIVISOR: 173 (40h/week, Art. Orario di Lavoro CCNL 28/07/2021; confirmed ilccnl.it).",
-      "INFO: ADDITIONAL MONTHS: 13 (tredicesima only). Source: CCNL 28/07/2021 Art. Tredicesima mensilità. Quattordicesima not provided.",
-      "INFO: SENIORITY: biennale (24 months), max 5 scatti. Per-level amounts from CCNL 28/07/2021 Art. Aumenti periodici di anzianità (pisacaneboxes.com PDF, verified). Amounts unchanged in rinnovo 10/02/2026.",
-      "INFO: APPRENTICESHIP professionalizzante, percentage type (CCNL 28/07/2021 Art. Apprendistato professionalizzante, pisacaneboxes.com PDF): track 'triennale' (36 months, 6 semesters 70/75/80/85/90/95%) for destination levels C3, C2, C1, C1S, B2, B2S, B1, A; track 'biennale_categoria_D' (24 months, 6 quadrimestri with the same percentages) for D2 and D1. E, AS and Q are not apprenticeship destinations. The final 95% period is open-ended: after the contractual duration the worker is qualified and paid at 100% as a permanent employee.",
-      "INFO: INPS: reuses 2026-industria.json (Confindustria/CIGO). Assocarta is a Confindustria federation; CIGO applicable per D.Lgs. 148/2015."
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: two tranches modelled — 2024-07-01 (last tranche of CCNL 28/07/2021, source: lexplain.it) and 2026-04-01 (first tranche of rinnovo 10/02/2026, source: kitech.it). The 2024 tranche total = paga base + EMC (Elemento di Modernizzazione Contrattuale, EUR 20.00 at C1, parametrised). The 2026 rinnovo is conglobated: EMC absorbed into the new paga base. Both periods are modelled as base_salary totals; fixed_allowances=[] for all levels. The +125 EUR increase on C1 paga base (rinnovo) minus the EMC (EUR 20 abolished) = net +105 EUR on C1 total (1855.11 → 1960.11)."
+      },
+      {
+        "kind": "simplification",
+        "text": "FUTURE TRANCHES from the 2026-02-10 rinnovo (+45 EUR on C1 from 01.01.2027, +45 from 01.01.2028, +60 from 01.09.2028) are derived for every level by scaling the C1 increment with the level's ratio to C1 at the 01.04.2026 tranche (parametric conglobated scale), rounded to the cent. Replace with the official tables once published."
+      },
+      {
+        "kind": "info",
+        "text": "CONGLOBATED CHECK: 2024 values confirmed via lexplain.it (paga base + EMC columns explicit). 2026 values from kitech.it; rinnovo zetaservice PDF confirms Q (2882.91) and C1 (1960.11) at 2026-04-01, consistent with kitech. Level ordering is strictly monotone at both tranche dates."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 173 (40h/week, Art. Orario di Lavoro CCNL 28/07/2021; confirmed ilccnl.it)."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 13 (tredicesima only). Source: CCNL 28/07/2021 Art. Tredicesima mensilità. Quattordicesima not provided."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY: biennale (24 months), max 5 scatti. Per-level amounts from CCNL 28/07/2021 Art. Aumenti periodici di anzianità (pisacaneboxes.com PDF, verified). Amounts unchanged in rinnovo 10/02/2026."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP professionalizzante, percentage type (CCNL 28/07/2021 Art. Apprendistato professionalizzante, pisacaneboxes.com PDF): track 'triennale' (36 months, 6 semesters 70/75/80/85/90/95%) for destination levels C3, C2, C1, C1S, B2, B2S, B1, A; track 'biennale_categoria_D' (24 months, 6 quadrimestri with the same percentages) for D2 and D1. E, AS and Q are not apprenticeship destinations. The final 95% period is open-ended: after the contractual duration the worker is qualified and paid at 100% as a permanent employee."
+      },
+      {
+        "kind": "info",
+        "text": "INPS: reuses 2026-industria.json (Confindustria/CIGO). Assocarta is a Confindustria federation; CIGO applicable per D.Lgs. 148/2015."
+      }
     ]
   },
   "parameters": {

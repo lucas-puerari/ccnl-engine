@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "agenzie-viaggio-fiavet",
     "name": "CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio",
@@ -605,14 +605,38 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "SOURCE: Salary tables 2024-2027 from CCNL renewal of 26 July 2024 (CNEL PDF). Six tranches: Jun-24, Jul-24, Sep-25, Sep-26, Jun-27, Dec-27.",
-      "SOURCE: Hourly divisor 172 from Art. 146 CCNL base 2019 (CNEL PDF doc 20108). Same basis as the Confcommercio tourism sector.",
-      "SOURCE: 14 additional monthly payments from Art. 157 (thirteenth month) and Art. 158 (fourteenth month) of the 2024 renewal.",
-      "SOURCE: Triennial seniority increments (Art. 156 CCNL 2019): 36-month cadence, maximum 6 increments. Per-level amounts from the table attached to the 2024 renewal.",
-      "SOURCE: Percentage-based apprenticeship from Art. 64 CCNL 2019 (OCR pages 32-33): first year 80%, second year 85%, third year 90%.",
-      "SOURCE: CNEL code H052 confirmed from kitech.it CodiceCateg=81 (Confcommercio tourism sector, travel agencies included).",
-      "SIMPLIFICATION: Levels QA and QB (Quadri) excluded from the apprenticeship track (apprenticeship not applicable to Quadri by law).",
-      "SIMPLIFICATION: Layer 3 (overtime, night shifts, public holidays) out of scope."
+      {
+        "kind": "source",
+        "text": "Salary tables 2024-2027 from CCNL renewal of 26 July 2024 (CNEL PDF). Six tranches: Jun-24, Jul-24, Sep-25, Sep-26, Jun-27, Dec-27."
+      },
+      {
+        "kind": "source",
+        "text": "Hourly divisor 172 from Art. 146 CCNL base 2019 (CNEL PDF doc 20108). Same basis as the Confcommercio tourism sector."
+      },
+      {
+        "kind": "source",
+        "text": "14 additional monthly payments from Art. 157 (thirteenth month) and Art. 158 (fourteenth month) of the 2024 renewal."
+      },
+      {
+        "kind": "source",
+        "text": "Triennial seniority increments (Art. 156 CCNL 2019): 36-month cadence, maximum 6 increments. Per-level amounts from the table attached to the 2024 renewal."
+      },
+      {
+        "kind": "source",
+        "text": "Percentage-based apprenticeship from Art. 64 CCNL 2019 (OCR pages 32-33): first year 80%, second year 85%, third year 90%."
+      },
+      {
+        "kind": "source",
+        "text": "CNEL code H052 confirmed from kitech.it CodiceCateg=81 (Confcommercio tourism sector, travel agencies included)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Levels QA and QB (Quadri) excluded from the apprenticeship track (apprenticeship not applicable to Quadri by law)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Layer 3 (overtime, night shifts, public holidays) out of scope."
+      }
     ]
   }
 }

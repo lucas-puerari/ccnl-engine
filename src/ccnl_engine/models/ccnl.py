@@ -21,9 +21,32 @@ CoverageStatus = Literal["implemented", "partial", "out_of_scope"]
 #: and employer-fund applicability).
 LevelCategory = Literal["operaio", "impiegato", "quadro", "dirigente"]
 
-#: Allowed prefixes for coverage notes.
+
+class NoteKind(StrEnum):
+    """Semantic category of a coverage note."""
+
+    SOURCE = "source"
+    INFO = "info"
+    SIMPLIFICATION = "simplification"
+    MISSING = "missing"
+
+
+class CoverageNote(BaseModel):
+    """A structured note attached to a CCNL coverage block.
+
+    Replaces the legacy string-prefix convention (``SIMPLIFICATION: …``,
+    ``MISSING: …``, etc.) with a typed ``kind`` field.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    kind: NoteKind
+    text: str
+
+
+#: Allowed prefixes for coverage notes (kept for reference; superseded by NoteKind).
 NOTE_PREFIXES: tuple[str, ...] = ("SIMPLIFICATION:", "MISSING:", "SOURCE:", "INFO:")
-_MISSING_PREFIX = "MISSING:"
+_MISSING_KIND = NoteKind.MISSING
 
 
 class TaxSector(StrEnum):
@@ -212,30 +235,22 @@ class Level(BaseModel):
 class Coverage(BaseModel):
     """Declares implementation status for a CCNL data file.
 
-    Every note must start with one of :data:`NOTE_PREFIXES`. A ``MISSING:``
-    note documents data the engine supports but the file lacks, and is only
-    allowed while at least one of layer 1 / layer 2 is ``partial``.
+    A ``missing`` note documents data the engine supports but the file lacks,
+    and is only allowed while at least one of layer_1 / layer_2 is ``partial``.
     """
 
     model_config = ConfigDict(extra="forbid")
 
     layer_1: CoverageStatus
     layer_2: CoverageStatus
-    notes: list[str]
+    notes: list[CoverageNote]
 
     @model_validator(mode="after")
     def _check_notes(self) -> Self:
-        for i, note in enumerate(self.notes):
-            if not note.startswith(NOTE_PREFIXES):
-                msg = (
-                    f"coverage.notes[{i}] must start with one of "
-                    f"{list(NOTE_PREFIXES)}, got: {note[:60]!r}"
-                )
-                raise ValueError(msg)
-        has_missing = any(n.startswith(_MISSING_PREFIX) for n in self.notes)
+        has_missing = any(n.kind == _MISSING_KIND for n in self.notes)
         if has_missing and "partial" not in {self.layer_1, self.layer_2}:
             msg = (
-                "coverage has MISSING: notes but neither layer_1 nor layer_2 "
+                "coverage has 'missing' notes but neither layer_1 nor layer_2 "
                 "is 'partial'"
             )
             raise ValueError(msg)
@@ -329,7 +344,7 @@ class CCNL(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    schema_version: str
+    schema_version: Literal["0.4"]
     meta: CCNLMeta
     parameters: Parameters
     levels: list[Level]

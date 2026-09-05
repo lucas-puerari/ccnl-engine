@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "metalmeccanico-artigianato",
     "name": "CCNL Metalmeccanica e Installazione di Impianti — Artigianato",
@@ -48,16 +48,46 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: CONGLOBATED MINIMUMS: base_salary values are conglobated minimum pay figures, incorporating base pay, contingenza and EDR in a single amount. Conglobation confirmed in force from 16.06.2011 (source: EBNA CCNL 17.12.2021, Art. 28 and attached tables). fixed_allowances is empty for all levels.",
-      "INFO: 2022 TRANCHES: three tranches CCNL 17.12.2021 (01.01.2022, 01.05.2022, 01.12.2022). Per-level increments verified against EBNA/Direzionelavoro.it. Values at 01.12.2022 confirmed from EBNA primary source.",
-      "INFO: AFAC TRANCHES: Accordo Fondo Anticipazione Contrattuale 21.12.2023, two tranches (01.12.2023, 01.04.2024). Values at 01.04.2024 cross-verified against kitech.it for all 8 levels.",
-      "SIMPLIFICATION: 2024 RENEWAL TRANCHES: agreement 19.11.2024, four tranches (01.12.2024, 01.07.2025, 01.03.2026, 01.11.2026). Values at 01.03.2026 verified against kitech.it for all 8 levels. SIMPLIFICATION: values at 01.12.2024, 01.07.2025 and 01.11.2026 for levels other than 4° are derived proportionally using level 4° as reference (increments EUR 50, 25, 25, 20) and inter-level ratios confirmed by the AFAC/kitech comparison. The official 2024 renewal text was not fully retrieved.",
-      "INFO: HOURLY DIVISOR: 173 hours/month (40h/week, Art. 28 CCNL 17.12.2021). Arithmetic monthly/hourly verification did not yield clean integer results on the available values; confirmation is based on the primary CCNL text.",
-      "INFO: SENIORITY INCREMENTS: biennial (24 months), maximum 5 increments. Per-level amounts from EBLART/Direzionelavoro.it table (tab. 7.1). The effective date of the amounts (01.01.2022) is assumed to coincide with the first salary tranche; the primary source does not report a separate effective date for seniority increments.",
-      "INFO: APPRENTICESHIP percentage, 10 semesters (60 months max), operai progression (source EBLART, apprenticeship professionalizzante article): 70% (sem. I-II), 75% (III), 78% (IV), 80% (V), 85% (VI), 88% (VII), 92% (VIII), 100% (IX-X); track 'operai' for destinations 5, 4, 3, 2bis. Since the 2015 reform level 6° cannot be used as a destination.",
-      "SIMPLIFICATION: INPS: SIMPLIFICATION — single employer rate 26.93% (proxy source kitech.it; specific INPS circular for artigianato 2026 not retrieved). Estimated components: IVS 23.81% + NASpI 1.61% + CUAF 0.68% + malattia operai ~0.83% = ~26.93%. The rate models operai. SIMPLIFICATION: impiegati and quadri have an effective rate of ~24.71% (source: kitech.it, impiegati category), not modellable under the current employer_tiers schema (worker-category axis absent); the employer cost computed for impiegato levels is overstated by ~2.2pp. No CIGO/CIGS (D.Lgs. 148/2015 art. 3, artigianato sector excluded). FSBA (0.45% employer + 0.15% employee) is a bilateral contribution, not INPS: excluded from the tax file.",
-      "INFO: ADDITIONAL MONTHS: 13 (tredicesima). A quattordicesima is not provided for by the CCNL Artigianato Metalmeccanico.",
-      "INFO: APPRENTICESHIP administrative impiegati (destination levels 2, 1): 3 years, percentages 70% (year 1), 77% (year 2), 87% (year 3), 100% thereafter. Track 'impiegati'. Level 1Q (quadro) excluded. Source: CCNL metalmeccanico artigianato renewal 17.12.2021 (EBLART summary); formazione-apprendistato.com; conflavoro.it 2021 summary."
+      {
+        "kind": "info",
+        "text": "CONGLOBATED MINIMUMS: base_salary values are conglobated minimum pay figures, incorporating base pay, contingenza and EDR in a single amount. Conglobation confirmed in force from 16.06.2011 (source: EBNA CCNL 17.12.2021, Art. 28 and attached tables). fixed_allowances is empty for all levels."
+      },
+      {
+        "kind": "info",
+        "text": "2022 TRANCHES: three tranches CCNL 17.12.2021 (01.01.2022, 01.05.2022, 01.12.2022). Per-level increments verified against EBNA/Direzionelavoro.it. Values at 01.12.2022 confirmed from EBNA primary source."
+      },
+      {
+        "kind": "info",
+        "text": "AFAC TRANCHES: Accordo Fondo Anticipazione Contrattuale 21.12.2023, two tranches (01.12.2023, 01.04.2024). Values at 01.04.2024 cross-verified against kitech.it for all 8 levels."
+      },
+      {
+        "kind": "simplification",
+        "text": "2024 RENEWAL TRANCHES: agreement 19.11.2024, four tranches (01.12.2024, 01.07.2025, 01.03.2026, 01.11.2026). Values at 01.03.2026 verified against kitech.it for all 8 levels. SIMPLIFICATION: values at 01.12.2024, 01.07.2025 and 01.11.2026 for levels other than 4° are derived proportionally using level 4° as reference (increments EUR 50, 25, 25, 20) and inter-level ratios confirmed by the AFAC/kitech comparison. The official 2024 renewal text was not fully retrieved."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 173 hours/month (40h/week, Art. 28 CCNL 17.12.2021). Arithmetic monthly/hourly verification did not yield clean integer results on the available values; confirmation is based on the primary CCNL text."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY INCREMENTS: biennial (24 months), maximum 5 increments. Per-level amounts from EBLART/Direzionelavoro.it table (tab. 7.1). The effective date of the amounts (01.01.2022) is assumed to coincide with the first salary tranche; the primary source does not report a separate effective date for seniority increments."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP percentage, 10 semesters (60 months max), operai progression (source EBLART, apprenticeship professionalizzante article): 70% (sem. I-II), 75% (III), 78% (IV), 80% (V), 85% (VI), 88% (VII), 92% (VIII), 100% (IX-X); track 'operai' for destinations 5, 4, 3, 2bis. Since the 2015 reform level 6° cannot be used as a destination."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS: SIMPLIFICATION — single employer rate 26.93% (proxy source kitech.it; specific INPS circular for artigianato 2026 not retrieved). Estimated components: IVS 23.81% + NASpI 1.61% + CUAF 0.68% + malattia operai ~0.83% = ~26.93%. The rate models operai. SIMPLIFICATION: impiegati and quadri have an effective rate of ~24.71% (source: kitech.it, impiegati category), not modellable under the current employer_tiers schema (worker-category axis absent); the employer cost computed for impiegato levels is overstated by ~2.2pp. No CIGO/CIGS (D.Lgs. 148/2015 art. 3, artigianato sector excluded). FSBA (0.45% employer + 0.15% employee) is a bilateral contribution, not INPS: excluded from the tax file."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 13 (tredicesima). A quattordicesima is not provided for by the CCNL Artigianato Metalmeccanico."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP administrative impiegati (destination levels 2, 1): 3 years, percentages 70% (year 1), 77% (year 2), 87% (year 3), 100% thereafter. Track 'impiegati'. Level 1Q (quadro) excluded. Source: CCNL metalmeccanico artigianato renewal 17.12.2021 (EBLART summary); formazione-apprendistato.com; conflavoro.it 2021 summary."
+      }
     ]
   },
   "parameters": {

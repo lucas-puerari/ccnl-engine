@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "terziario-confesercenti",
     "name": "CCNL Terziario Distribuzione e Servizi — Confesercenti",
@@ -553,16 +553,46 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "SOURCE: Base salary table effective from 01.01.2020 (Table I, CCNL 12.12.2019, confesercenti.it PDF).",
-      "SOURCE: 2024 renewal salary increases from Art. 213 (CNEL id 20260, 22.03.2024). Tranches: 01/04/2023, 01/04/2024, 01/03/2025, 01/11/2025, 01/11/2026, 01/02/2027.",
-      "SOURCE: Seniority increment amounts from Art. 205 CCNL 2019, effective from 01.01.1990 (triennial, max 10).",
-      "SOURCE: Hourly divisor 168 from Art. 211 CCNL 2019 (40h/week).",
-      "SOURCE: 14 monthly payments from Art. 220 (thirteenth) and Art. 221 (fourteenth) CCNL 2019.",
-      "SOURCE: Apprenticeship from Art. 53 (under-classification) and Art. 64 (durations: II-V 36 months, VI 24 months) CCNL 2019.",
-      "SIMPLIFICATION: One-off lump sum of EUR 350 at grade IV (paid 175+175 in July 2024/2025) not modelled in base_salary — it is not a structural increase.",
-      "SIMPLIFICATION: Grade I not included as an apprenticeship destination: Art. 64 lists only II-VI.",
-      "SIMPLIFICATION: Track sesto-livello: Art. 53 exception — first half at grade VII since two levels below VI is not possible; second half 1 level below VI = VII. Both halves at grade VII.",
-      "INFO: Apprenticeship type b (professionalizzante). Durations: II=36m, III=36m, IV=36m, V=36m, VI=24m. Half-period = 18m (II-V) and 12m (VI)."
+      {
+        "kind": "source",
+        "text": "Base salary table effective from 01.01.2020 (Table I, CCNL 12.12.2019, confesercenti.it PDF)."
+      },
+      {
+        "kind": "source",
+        "text": "2024 renewal salary increases from Art. 213 (CNEL id 20260, 22.03.2024). Tranches: 01/04/2023, 01/04/2024, 01/03/2025, 01/11/2025, 01/11/2026, 01/02/2027."
+      },
+      {
+        "kind": "source",
+        "text": "Seniority increment amounts from Art. 205 CCNL 2019, effective from 01.01.1990 (triennial, max 10)."
+      },
+      {
+        "kind": "source",
+        "text": "Hourly divisor 168 from Art. 211 CCNL 2019 (40h/week)."
+      },
+      {
+        "kind": "source",
+        "text": "14 monthly payments from Art. 220 (thirteenth) and Art. 221 (fourteenth) CCNL 2019."
+      },
+      {
+        "kind": "source",
+        "text": "Apprenticeship from Art. 53 (under-classification) and Art. 64 (durations: II-V 36 months, VI 24 months) CCNL 2019."
+      },
+      {
+        "kind": "simplification",
+        "text": "One-off lump sum of EUR 350 at grade IV (paid 175+175 in July 2024/2025) not modelled in base_salary — it is not a structural increase."
+      },
+      {
+        "kind": "simplification",
+        "text": "Grade I not included as an apprenticeship destination: Art. 64 lists only II-VI."
+      },
+      {
+        "kind": "simplification",
+        "text": "Track sesto-livello: Art. 53 exception — first half at grade VII since two levels below VI is not possible; second half 1 level below VI = VII. Both halves at grade VII."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship type b (professionalizzante). Durations: II=36m, III=36m, IV=36m, V=36m, VI=24m. Half-period = 18m (II-V) and 12m (VI)."
+      }
     ]
   }
 }

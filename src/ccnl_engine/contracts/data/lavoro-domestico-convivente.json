@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "lavoro-domestico-convivente",
     "name": "CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)",
@@ -34,19 +34,58 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: SALARY MODEL: conglobated retribuzione globale (TABELLA A — Lavoratori Conviventi, Art. 14 Co.1 lett. a CCNL). Values confirmed from official Domina salary table PDF (TABELLA-minimi-retributivi-2026.pdf, effective 01/01/2026, ISTAT +1.00%). Source is signatory employer association — primary source.",
-      "INFO: TAX SECTOR: lavoro-domestico (TaxSector.LAVORO_DOMESTICO). Flat per-hour INPS contributions from INPS Circ. 9/2026; withholding_exempt=true per Art. 4 D.P.R. 600/1973 (family employers are not sostituti d'imposta).",
-      "INFO: HOURLY DIVISOR: 234, derived from 54 h/week contractual maximum for conviventi (Art. 10 CCNL). Formula: 54 × 52 / 12 = 234. Convivente and non-convivente are independent pay scales (different tables, different hourly divisors).",
-      "INFO: ADDITIONAL MONTHS: 13 (tredicesima mensilità, Art. 27 CCNL). No quattordicesima for domestic workers.",
-      "INFO: SENIORITY: biennale (24 months), maximum 7 scatti. Per-level euro amounts = 4% × 2026 base (confirmed: kitech.it amounts match Domina base × 4% exactly at every level). Amounts frozen at 2026 base — will not automatically recompute at future ISTAT tranches.",
-      "INFO: APPRENTICESHIP: none. Domestic workers are excluded from D.lgs. 81/2015 Art. 47 apprenticeship provisions.",
-      "INFO: D/DS INDENNITÀ DI FUNZIONE: 207.69 EUR/month (Art. 34 CCNL) for levels D and DS only. Modelled as fixed_allowance (no role restriction — applies to all workers at those levels). Confirmed from Domina official table.",
-      "SIMPLIFICATION: CNEL code H501 sourced from kitech.it page title; unverified against CNEL archive (archive not accessible via HTTP at time of extraction). Update if CNEL confirms a different code.",
-      "SIMPLIFICATION: Single period 2026-01-01; pre-2026 tranches are out of scope. Prior renewal tranches (2021–2025) exist but are not modelled.",
-      "SIMPLIFICATION: Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amounts_by_level will need manual update.",
-      "INFO: Livello Unico (811.09) is a special sub-under-18 level excluded from this model — single-source, limited coverage.",
-      "SIMPLIFICATION: This file models TABELLA A only — full-time conviventi at 54 h/week (Art. 14 Co.1 lett. a CCNL). TABELLA B (conviventi ad orario ridotto, Art. 14 Co.2: B=702.25, BS=737.39, C=814.60) is out of scope. Callers must use a TABELLA B file (not yet modelled) for reduced-hours conviventi.",
-      "SIMPLIFICATION: Dividing TABELLA A monthly base by hourly_divisor 234 yields the cash-only rate (excludes board and lodging in kind). The hourly-wage INPS bracket lookup for weekly_hours <= 24 has not been validated for this file; the wage-bracket path is not exercised by the golden cases shipped with this file."
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: conglobated retribuzione globale (TABELLA A — Lavoratori Conviventi, Art. 14 Co.1 lett. a CCNL). Values confirmed from official Domina salary table PDF (TABELLA-minimi-retributivi-2026.pdf, effective 01/01/2026, ISTAT +1.00%). Source is signatory employer association — primary source."
+      },
+      {
+        "kind": "info",
+        "text": "TAX SECTOR: lavoro-domestico (TaxSector.LAVORO_DOMESTICO). Flat per-hour INPS contributions from INPS Circ. 9/2026; withholding_exempt=true per Art. 4 D.P.R. 600/1973 (family employers are not sostituti d'imposta)."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 234, derived from 54 h/week contractual maximum for conviventi (Art. 10 CCNL). Formula: 54 × 52 / 12 = 234. Convivente and non-convivente are independent pay scales (different tables, different hourly divisors)."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 13 (tredicesima mensilità, Art. 27 CCNL). No quattordicesima for domestic workers."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY: biennale (24 months), maximum 7 scatti. Per-level euro amounts = 4% × 2026 base (confirmed: kitech.it amounts match Domina base × 4% exactly at every level). Amounts frozen at 2026 base — will not automatically recompute at future ISTAT tranches."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP: none. Domestic workers are excluded from D.lgs. 81/2015 Art. 47 apprenticeship provisions."
+      },
+      {
+        "kind": "info",
+        "text": "D/DS INDENNITÀ DI FUNZIONE: 207.69 EUR/month (Art. 34 CCNL) for levels D and DS only. Modelled as fixed_allowance (no role restriction — applies to all workers at those levels). Confirmed from Domina official table."
+      },
+      {
+        "kind": "simplification",
+        "text": "CNEL code H501 sourced from kitech.it page title; unverified against CNEL archive (archive not accessible via HTTP at time of extraction). Update if CNEL confirms a different code."
+      },
+      {
+        "kind": "simplification",
+        "text": "Single period 2026-01-01; pre-2026 tranches are out of scope. Prior renewal tranches (2021–2025) exist but are not modelled."
+      },
+      {
+        "kind": "simplification",
+        "text": "Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amounts_by_level will need manual update."
+      },
+      {
+        "kind": "info",
+        "text": "Livello Unico (811.09) is a special sub-under-18 level excluded from this model — single-source, limited coverage."
+      },
+      {
+        "kind": "simplification",
+        "text": "This file models TABELLA A only — full-time conviventi at 54 h/week (Art. 14 Co.1 lett. a CCNL). TABELLA B (conviventi ad orario ridotto, Art. 14 Co.2: B=702.25, BS=737.39, C=814.60) is out of scope. Callers must use a TABELLA B file (not yet modelled) for reduced-hours conviventi."
+      },
+      {
+        "kind": "simplification",
+        "text": "Dividing TABELLA A monthly base by hourly_divisor 234 yields the cash-only rate (excludes board and lodging in kind). The hourly-wage INPS bracket lookup for weekly_hours <= 24 has not been validated for this file; the wage-bracket path is not exercised by the golden cases shipped with this file."
+      }
     ]
   },
   "parameters": {

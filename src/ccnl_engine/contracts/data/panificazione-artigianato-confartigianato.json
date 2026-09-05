@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "panificazione-artigianato-confartigianato",
     "name": "CCNL Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA)",
@@ -38,19 +38,58 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: SALARY MODEL: unified TOTALE as base_salary. Each level's TOTALE = Tabellare conglobato (contingenza+EDR absorbed, per Art. 32 + conglobamento clause) + Indennità Speciale per Panificazione (Art. 33, fixed per level since Aug 1995) + ERR (0.44 EUR/month, fixed). Ind.Speciale confirmed from Art. 33 table in UILA CCNL PDF: A1S=94.77, A1=88.06, A2=82.63, A3=75.92, A4=72.05, B1=92.19, B2=76.44, B3S=74.87, B3=72.56, B4=68.69. ERR=0.44. All folded into base_salary; fixed_allowances=[] for all levels. Cross-verified: artser.it tabellare A2 Apr 2024 = 1705.54; 1705.54 + 82.63 + 0.44 = 1788.61 exact match across all 4 tranches (diff constant 83.07 EUR). Art. 31 confirms hourly divisor 173.",
-      "INFO: ADDITIONAL MONTHS: 13. Art. 33 (Ind.Speciale) replaced the quattordicesima from August 1995 ('viene a cessare, per tutti i lavoratori, la maturazione dei ratei relativi alla ex 14a mensilita'). Art. 36 (Gratifica natalizia) confirms only tredicesima remains. Source: UILA CCNL PDF Art. 33 and Art. 36.",
-      "INFO: TRANCHE DATES: four tranches — 2024-04-01 (April 2024, first 2024 renewal tranche), 2025-01-01 (January 2025), 2025-11-01 (November 2025), 2026-04-01 (April 2026). Source: ilccnl.it panificazione tables + lavoro-economia.it renewal PDF (CCNL 6 June 2024).",
-      "INFO: HOURLY DIVISOR: 173, derived from 40-hour work week. Formula: 40 h/week x 52/12 = 173.33, rounded to 173 per contract practice. Verified: A2 Apr 2024 = 1788.61 / 173 = 10.34 EUR/h; A1 Apr 2024 = 1909.58 / 173 = 11.04 EUR/h; B1 Apr 2024 = 2010.49 / 173 = 11.62 EUR/h — consistent divisor 173 across 3 levels, confirming TOTALE model.",
-      "INFO: SENIORITY: biennale (every 24 months), maximum 5 scatti. Governed by Art. 34-bis (Aumenti periodici di anzianita per il settore della Panificazione). In force since 1 January 1996 per Art. 34-bis text ('A decorrere dal 1 gennaio 1996, i lavoratori, esclusi gli apprendisti, hanno diritto a maturare aumenti periodici di anzianita per ogni biennio [...] fino ad un massimo di 5 bienni'). The June 2024 renewal (Art. 58 amendment) separately added seniority for APPRENTICES (10 EUR flat from 2025-01-01) — that is a distinct provision. Per-level amounts confirmed from Art. 34-bis table in UILA CCNL PDF: A1S=21.69, A1=19.11, A2=17.56, A3=16.01, A4=14.46, B1=21.69, B2=19.11, B3S=17.64, B3=16.01, B4=14.46 EUR/scatto. valid_from set to 1996-01-01. The apprentice scatto (10 EUR flat from 2025-01-01, Art. 58 as amended by the June 2024 renewal) is modelled as seniority_increments.apprentice_amount.",
-      "INFO: APPRENTICESHIP: 1° Gruppo only (Panificazione Gruppo A livelli A1s, A1 → destination A1, duration 5 anni/10 semestri). Percentages confirmed from Art. 58 table in UILA CCNL PDF (p. 69, Settore Panificazione Gruppo A 1° Gruppo): sem 1-2=70%, sem 3-4=75%, sem 5-6=84%, sem 7-8=90%, sem 9-10=100%. Converted to 12-month periods: 0-12mo=70%, 12-24mo=75%, 24-36mo=84%, 36-48mo=90%, 48-60mo=100%. Source: Art. 58, UILA CCNL PDF.",
-      "SIMPLIFICATION: IND.SPECIALE: Indennita Speciale art.33 ter is fixed per level and does not change across tranches (confirmed: same amounts from 1995 to date, not subject to renewal increases). Folded into TOTALE base_salary for simplicity; the engine has no per-level fixed-allowance that is non-absorbable and constant — modeling as part of base_salary is the cleanest approach and does not affect any computation.",
-      "SIMPLIFICATION: ERR: Elemento Retributivo Residuo (0.44 EUR/month) is a national fixed element, identical for all levels. Folded into TOTALE; the rounding impact on any level is less than 0.01 EUR/month.",
-      "SIMPLIFICATION: IND.FUNZIONE A1S: Indennita di Funzione 36.15 EUR/month for level A1S introduced from April 2026 (Art. 33 quater, CCNL 2024). Included in the Apr 2026 TOTALE value (2248.73) as confirmed by lavoro-economia.it. Not modeled as a separate fixed_allowance.",
-      "SIMPLIFICATION: ERT (VENETO): Elemento Retributivo Territoriale Veneto (ERT, expired 31.12.2025) was a territorial supplement specific to Veneto. Not modeled at national level.",
-      "INFO: PRE-APRIL-2024: periods before 2024-04-01 are outside the modelled window (2018-2022 CCNL values not included).",
-      "INFO: INPS: reuses 2026-artigianato.json (ARTIGIANATO sector, existing file).",
-      "INFO: APPRENTICESHIP gruppi A2, A3, B1, B2, B3S, B4 added from formazione-apprendistato.com panificazione table (medium-high confidence: secondary aggregator + IPSOA 2024 news confirm 2024 rinnovo structure). Semiannual progressions as per Art. 58 + Allegato apprendistato. Gruppo 1° (dest=A1, primary source UILA PDF) unchanged."
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: unified TOTALE as base_salary. Each level's TOTALE = Tabellare conglobato (contingenza+EDR absorbed, per Art. 32 + conglobamento clause) + Indennità Speciale per Panificazione (Art. 33, fixed per level since Aug 1995) + ERR (0.44 EUR/month, fixed). Ind.Speciale confirmed from Art. 33 table in UILA CCNL PDF: A1S=94.77, A1=88.06, A2=82.63, A3=75.92, A4=72.05, B1=92.19, B2=76.44, B3S=74.87, B3=72.56, B4=68.69. ERR=0.44. All folded into base_salary; fixed_allowances=[] for all levels. Cross-verified: artser.it tabellare A2 Apr 2024 = 1705.54; 1705.54 + 82.63 + 0.44 = 1788.61 exact match across all 4 tranches (diff constant 83.07 EUR). Art. 31 confirms hourly divisor 173."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 13. Art. 33 (Ind.Speciale) replaced the quattordicesima from August 1995 ('viene a cessare, per tutti i lavoratori, la maturazione dei ratei relativi alla ex 14a mensilita'). Art. 36 (Gratifica natalizia) confirms only tredicesima remains. Source: UILA CCNL PDF Art. 33 and Art. 36."
+      },
+      {
+        "kind": "info",
+        "text": "TRANCHE DATES: four tranches — 2024-04-01 (April 2024, first 2024 renewal tranche), 2025-01-01 (January 2025), 2025-11-01 (November 2025), 2026-04-01 (April 2026). Source: ilccnl.it panificazione tables + lavoro-economia.it renewal PDF (CCNL 6 June 2024)."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 173, derived from 40-hour work week. Formula: 40 h/week x 52/12 = 173.33, rounded to 173 per contract practice. Verified: A2 Apr 2024 = 1788.61 / 173 = 10.34 EUR/h; A1 Apr 2024 = 1909.58 / 173 = 11.04 EUR/h; B1 Apr 2024 = 2010.49 / 173 = 11.62 EUR/h — consistent divisor 173 across 3 levels, confirming TOTALE model."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY: biennale (every 24 months), maximum 5 scatti. Governed by Art. 34-bis (Aumenti periodici di anzianita per il settore della Panificazione). In force since 1 January 1996 per Art. 34-bis text ('A decorrere dal 1 gennaio 1996, i lavoratori, esclusi gli apprendisti, hanno diritto a maturare aumenti periodici di anzianita per ogni biennio [...] fino ad un massimo di 5 bienni'). The June 2024 renewal (Art. 58 amendment) separately added seniority for APPRENTICES (10 EUR flat from 2025-01-01) — that is a distinct provision. Per-level amounts confirmed from Art. 34-bis table in UILA CCNL PDF: A1S=21.69, A1=19.11, A2=17.56, A3=16.01, A4=14.46, B1=21.69, B2=19.11, B3S=17.64, B3=16.01, B4=14.46 EUR/scatto. valid_from set to 1996-01-01. The apprentice scatto (10 EUR flat from 2025-01-01, Art. 58 as amended by the June 2024 renewal) is modelled as seniority_increments.apprentice_amount."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP: 1° Gruppo only (Panificazione Gruppo A livelli A1s, A1 → destination A1, duration 5 anni/10 semestri). Percentages confirmed from Art. 58 table in UILA CCNL PDF (p. 69, Settore Panificazione Gruppo A 1° Gruppo): sem 1-2=70%, sem 3-4=75%, sem 5-6=84%, sem 7-8=90%, sem 9-10=100%. Converted to 12-month periods: 0-12mo=70%, 12-24mo=75%, 24-36mo=84%, 36-48mo=90%, 48-60mo=100%. Source: Art. 58, UILA CCNL PDF."
+      },
+      {
+        "kind": "simplification",
+        "text": "IND.SPECIALE: Indennita Speciale art.33 ter is fixed per level and does not change across tranches (confirmed: same amounts from 1995 to date, not subject to renewal increases). Folded into TOTALE base_salary for simplicity; the engine has no per-level fixed-allowance that is non-absorbable and constant — modeling as part of base_salary is the cleanest approach and does not affect any computation."
+      },
+      {
+        "kind": "simplification",
+        "text": "ERR: Elemento Retributivo Residuo (0.44 EUR/month) is a national fixed element, identical for all levels. Folded into TOTALE; the rounding impact on any level is less than 0.01 EUR/month."
+      },
+      {
+        "kind": "simplification",
+        "text": "IND.FUNZIONE A1S: Indennita di Funzione 36.15 EUR/month for level A1S introduced from April 2026 (Art. 33 quater, CCNL 2024). Included in the Apr 2026 TOTALE value (2248.73) as confirmed by lavoro-economia.it. Not modeled as a separate fixed_allowance."
+      },
+      {
+        "kind": "simplification",
+        "text": "ERT (VENETO): Elemento Retributivo Territoriale Veneto (ERT, expired 31.12.2025) was a territorial supplement specific to Veneto. Not modeled at national level."
+      },
+      {
+        "kind": "info",
+        "text": "PRE-APRIL-2024: periods before 2024-04-01 are outside the modelled window (2018-2022 CCNL values not included)."
+      },
+      {
+        "kind": "info",
+        "text": "INPS: reuses 2026-artigianato.json (ARTIGIANATO sector, existing file)."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP gruppi A2, A3, B1, B2, B3S, B4 added from formazione-apprendistato.com panificazione table (medium-high confidence: secondary aggregator + IPSOA 2024 news confirm 2024 rinnovo structure). Semiannual progressions as per Art. 58 + Allegato apprendistato. Gruppo 1° (dest=A1, primary source UILA PDF) unchanged."
+      }
     ]
   },
   "parameters": {

@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "calzaturiero-assocalzaturifici",
     "name": "CCNL per i lavoratori addetti all'industria delle calzature",
@@ -40,13 +40,34 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "SIMPLIFICATION: Salary model is conglobated (minimi retributivi include paga base, contingenza, and EDR). Modeled as base_salary with fixed_allowances: [] for all levels except level 8.",
-      "SIMPLIFICATION: Level 8 indennità di funzione per quadri (EUR 41.31/month per sourced table) is not modeled because it applies only to supervisory employees (quadri), not all level-8 workers. Base salary for level 8 reflects the contractual minimum (EUR 2,509.13 at Aug 2026), excluding the function allowance.",
-      "SIMPLIFICATION: Level 1 receives a special wage correction from 1 January 2025 (EUR 1,502.46, up from EUR 1,315.70 at Aug 2024), separate from the standard tranche dates of Aug 2024, Aug 2025, Aug 2026. Modeled as a four-period TimeSeries for level 1 only.",
-      "SIMPLIFICATION: Seniority cadence is triennale (36 months) for all levels; maximum 5 scatti. Scatto amounts derived from businessonline.it article (2025) cross-checked with kitech.it current table.",
-      "INFO: Workers covered: approximately 75,000 (Assocalzaturifici member companies). Agreement signed 2024-07-17; valid 2024-01-01 to 2026-12-31.",
-      "INFO: INPS rates from 2026-industria.json (same sector as metalmeccanico). IRPEF 2026 brackets applied (L. 199/2025).",
-      "INFO: APPRENTICESHIP (professionalizzante): 80/90/100% in three periods. Total duration 36 months per Art. apprendistato. Period splits by level group: L6-L8=10/10/16m, L3-L5=11/11/14m, L2-L2S=12/12/12m. L1 not eligible as destination. Source: CCNL 2024-07-17 Assocalzaturifici (D121), circolare apprendistato; businessonline.it article 2024; kitech.it scheda D121."
+      {
+        "kind": "simplification",
+        "text": "Salary model is conglobated (minimi retributivi include paga base, contingenza, and EDR). Modeled as base_salary with fixed_allowances: [] for all levels except level 8."
+      },
+      {
+        "kind": "simplification",
+        "text": "Level 8 indennità di funzione per quadri (EUR 41.31/month per sourced table) is not modeled because it applies only to supervisory employees (quadri), not all level-8 workers. Base salary for level 8 reflects the contractual minimum (EUR 2,509.13 at Aug 2026), excluding the function allowance."
+      },
+      {
+        "kind": "simplification",
+        "text": "Level 1 receives a special wage correction from 1 January 2025 (EUR 1,502.46, up from EUR 1,315.70 at Aug 2024), separate from the standard tranche dates of Aug 2024, Aug 2025, Aug 2026. Modeled as a four-period TimeSeries for level 1 only."
+      },
+      {
+        "kind": "simplification",
+        "text": "Seniority cadence is triennale (36 months) for all levels; maximum 5 scatti. Scatto amounts derived from businessonline.it article (2025) cross-checked with kitech.it current table."
+      },
+      {
+        "kind": "info",
+        "text": "Workers covered: approximately 75,000 (Assocalzaturifici member companies). Agreement signed 2024-07-17; valid 2024-01-01 to 2026-12-31."
+      },
+      {
+        "kind": "info",
+        "text": "INPS rates from 2026-industria.json (same sector as metalmeccanico). IRPEF 2026 brackets applied (L. 199/2025)."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP (professionalizzante): 80/90/100% in three periods. Total duration 36 months per Art. apprendistato. Period splits by level group: L6-L8=10/10/16m, L3-L5=11/11/14m, L2-L2S=12/12/12m. L1 not eligible as destination. Source: CCNL 2024-07-17 Assocalzaturifici (D121), circolare apprendistato; businessonline.it article 2024; kitech.it scheda D121."
+      }
     ]
   },
   "parameters": {

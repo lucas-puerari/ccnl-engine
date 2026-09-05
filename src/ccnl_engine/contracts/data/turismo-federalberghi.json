@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "turismo-federalberghi",
     "name": "CCNL Turismo — Federalberghi/Faita",
@@ -613,16 +613,46 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "SOURCE: Apprenticeship durations Art. 54 CCNL 2010 (visual confirm page 89): grades 2/3/4=48m, 5/6s=36m, 6=24m. Levels A/B/1/7 are not apprenticeship destinations.",
-      "SOURCE: Apprenticeship percentages Art. 58 CCNL 2010 (pdftotext pages 90-97): 1st year=80%, 2nd year=85%, 3rd year=90%, from 4th year=95%. Uniform for all destination levels.",
-      "SOURCE: Hourly divisor 172 from Art. 151 CCNL 2010 (standard working hours 40h/week). Verification: 1550.69/9.01=172.1 (Jul-2024: 1620.69/9.42=172.0).",
-      "SOURCE: 14 monthly payments from Art. 160 (thirteenth) and Art. 161 (fourteenth) of the 2024 renewal.",
-      "SOURCE: Seniority increments Art. 158 CCNL 2010: six triennial increments (cadence_months=36, maximum_count=6). Per-level amounts visually verified from PDF image pages 140-141: A=40.80, B=39.25, 1=37.70, 2=36.15, 3=34.86, 4=33.05, 5=32.54, 6s=31.25, 6=30.99, 7=30.47.",
-      "SOURCE: Base salary table effective 01.04.2016 from the 2014 renewal (UILTuCS PDF): A=2210.16, B=2046.20, 1=1906.44, 2=1742.47, 3=1643.37, 4=1550.69, 5=1454.28, 6s=1398.37, 6=1378.55, 7=1291.81.",
-      "SOURCE: 5 salary tranches 2024-2027 from the 5 July 2024 renewal (UILTuCS PDF): Jul-2024, Jun-2025, May-2026, Apr-2027, Nov-2027.",
-      "INFO: CNEL code H052 is shared with CCNL Agenzie di Viaggio Fiavet — the engine allows duplicates.",
-      "SIMPLIFICATION: The level category (quadro/impiegato/operaio) is indicative. The CCNL 2010 uses numeric levels 1-6 plus A, B, 6s, 7 with no formal contractual category distinction.",
-      "SIMPLIFICATION: Layer 3 (overtime, night work, public holidays) out of scope."
+      {
+        "kind": "source",
+        "text": "Apprenticeship durations Art. 54 CCNL 2010 (visual confirm page 89): grades 2/3/4=48m, 5/6s=36m, 6=24m. Levels A/B/1/7 are not apprenticeship destinations."
+      },
+      {
+        "kind": "source",
+        "text": "Apprenticeship percentages Art. 58 CCNL 2010 (pdftotext pages 90-97): 1st year=80%, 2nd year=85%, 3rd year=90%, from 4th year=95%. Uniform for all destination levels."
+      },
+      {
+        "kind": "source",
+        "text": "Hourly divisor 172 from Art. 151 CCNL 2010 (standard working hours 40h/week). Verification: 1550.69/9.01=172.1 (Jul-2024: 1620.69/9.42=172.0)."
+      },
+      {
+        "kind": "source",
+        "text": "14 monthly payments from Art. 160 (thirteenth) and Art. 161 (fourteenth) of the 2024 renewal."
+      },
+      {
+        "kind": "source",
+        "text": "Seniority increments Art. 158 CCNL 2010: six triennial increments (cadence_months=36, maximum_count=6). Per-level amounts visually verified from PDF image pages 140-141: A=40.80, B=39.25, 1=37.70, 2=36.15, 3=34.86, 4=33.05, 5=32.54, 6s=31.25, 6=30.99, 7=30.47."
+      },
+      {
+        "kind": "source",
+        "text": "Base salary table effective 01.04.2016 from the 2014 renewal (UILTuCS PDF): A=2210.16, B=2046.20, 1=1906.44, 2=1742.47, 3=1643.37, 4=1550.69, 5=1454.28, 6s=1398.37, 6=1378.55, 7=1291.81."
+      },
+      {
+        "kind": "source",
+        "text": "5 salary tranches 2024-2027 from the 5 July 2024 renewal (UILTuCS PDF): Jul-2024, Jun-2025, May-2026, Apr-2027, Nov-2027."
+      },
+      {
+        "kind": "info",
+        "text": "CNEL code H052 is shared with CCNL Agenzie di Viaggio Fiavet — the engine allows duplicates."
+      },
+      {
+        "kind": "simplification",
+        "text": "The level category (quadro/impiegato/operaio) is indicative. The CCNL 2010 uses numeric levels 1-6 plus A, B, 6s, 7 with no formal contractual category distinction."
+      },
+      {
+        "kind": "simplification",
+        "text": "Layer 3 (overtime, night work, public holidays) out of scope."
+      }
     ]
   }
 }

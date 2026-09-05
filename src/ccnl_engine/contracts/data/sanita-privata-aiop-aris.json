@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "sanita-privata-aiop-aris",
     "name": "CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)",
@@ -519,16 +519,46 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: CCNL signed 2020-10-08; nominally covers 2016-2018 (Art. 4). Applied in ultrattività from 2019 onwards. Salary tables (Tabella 1) effective 2020-07-01 per Art. 51. No renewal signed as of 2026-09-03.",
-      "INFO: Salary values are conglobated: EADR incorporated into tabellare from 2020-07-01 per Art. 55. Back-calculation: A 1467.45×13=19076.85 ✓; C4 2076.38×13=26992.94 ✓; DS4 2418.05×13=31434.65 ✓.",
-      "INFO: 28 levels (A, A1–A4, B, B1–B4, C, C1–C4, D, D1–D4, DS, DS1–DS4, E, E1, E2). Order assigned by 2020-07-01 salary because professional families A/B/C/D/DS/E have overlapping salary ranges — categories are not a single hierarchy. A4 (order 6) is paid above B (order 5) per Tabella 1. Horizontal progressions within each category are modelled as static levels per Art. 48; the engine does not auto-advance a worker's level after the contractual service threshold.",
-      "INFO: Retribuzione individuale di anzianità frozen at 1993-12-31 per Art. 56 (no new seniority accruals). Modelled as seniority_increments.maximum_count=0.",
-      "INFO: CCNL covers ospedalieri, IRCCS, riabilitazione (AIOP/ARIS members). Does not apply to RSA governed by separate AIOP RSA or Uneba agreements.",
-      "SIMPLIFICATION: hourly_divisor=156 (Art. 58: paga giornaliera=monthly/26, oraria=giornaliera/6 for 36h/week). Levels D4, DS4, E, E1, E2 work 38h/week per Art. 18 (oraria=giornaliera/6.33, exact divisor≈164.6), modelled as 156 uniformly.",
-      "SIMPLIFICATION: Apprenticeship (Art. 23 §14, Art. 23 §2): destination levels are the four category entry positions A, B, C, D only. Horizontal-progression steps (A1-A4, B1-B4, C1-C4, D1-D4) are not apprenticeship destinations. DS and E categories excluded per Art. 23 §2. OSS and Albo-registered health professions excluded per Art. 23 §2 but per-qualification restriction not modellable at level granularity.",
-      "SIMPLIFICATION: INPS: uses 2026-terziario.json as proxy. Private healthcare (AIOP/ARIS) is classified in the terziario sector for INPS purposes; verify against INPS Circolare n. 6/2026.",
-      "INFO: CCNL applied in ultrattività; Decreto Lavoro 2026 introduced a statutory 30% IPCA auto-adjustment if no renewal within 12 months of expiry. If triggered, legally applicable 2026 minimums may exceed the 2020 Tabella 1 values modelled here. Engine models contractual tables only.",
-      "SOURCE: CNEL code T011 verified at https://www.contratticcnl.it/ccnl/t011/ (146585 employees, ARIS/AIOP, ATECO 86)."
+      {
+        "kind": "info",
+        "text": "CCNL signed 2020-10-08; nominally covers 2016-2018 (Art. 4). Applied in ultrattività from 2019 onwards. Salary tables (Tabella 1) effective 2020-07-01 per Art. 51. No renewal signed as of 2026-09-03."
+      },
+      {
+        "kind": "info",
+        "text": "Salary values are conglobated: EADR incorporated into tabellare from 2020-07-01 per Art. 55. Back-calculation: A 1467.45×13=19076.85 ✓; C4 2076.38×13=26992.94 ✓; DS4 2418.05×13=31434.65 ✓."
+      },
+      {
+        "kind": "info",
+        "text": "28 levels (A, A1–A4, B, B1–B4, C, C1–C4, D, D1–D4, DS, DS1–DS4, E, E1, E2). Order assigned by 2020-07-01 salary because professional families A/B/C/D/DS/E have overlapping salary ranges — categories are not a single hierarchy. A4 (order 6) is paid above B (order 5) per Tabella 1. Horizontal progressions within each category are modelled as static levels per Art. 48; the engine does not auto-advance a worker's level after the contractual service threshold."
+      },
+      {
+        "kind": "info",
+        "text": "Retribuzione individuale di anzianità frozen at 1993-12-31 per Art. 56 (no new seniority accruals). Modelled as seniority_increments.maximum_count=0."
+      },
+      {
+        "kind": "info",
+        "text": "CCNL covers ospedalieri, IRCCS, riabilitazione (AIOP/ARIS members). Does not apply to RSA governed by separate AIOP RSA or Uneba agreements."
+      },
+      {
+        "kind": "simplification",
+        "text": "hourly_divisor=156 (Art. 58: paga giornaliera=monthly/26, oraria=giornaliera/6 for 36h/week). Levels D4, DS4, E, E1, E2 work 38h/week per Art. 18 (oraria=giornaliera/6.33, exact divisor≈164.6), modelled as 156 uniformly."
+      },
+      {
+        "kind": "simplification",
+        "text": "Apprenticeship (Art. 23 §14, Art. 23 §2): destination levels are the four category entry positions A, B, C, D only. Horizontal-progression steps (A1-A4, B1-B4, C1-C4, D1-D4) are not apprenticeship destinations. DS and E categories excluded per Art. 23 §2. OSS and Albo-registered health professions excluded per Art. 23 §2 but per-qualification restriction not modellable at level granularity."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS: uses 2026-terziario.json as proxy. Private healthcare (AIOP/ARIS) is classified in the terziario sector for INPS purposes; verify against INPS Circolare n. 6/2026."
+      },
+      {
+        "kind": "info",
+        "text": "CCNL applied in ultrattività; Decreto Lavoro 2026 introduced a statutory 30% IPCA auto-adjustment if no renewal within 12 months of expiry. If triggered, legally applicable 2026 minimums may exceed the 2020 Tabella 1 values modelled here. Engine models contractual tables only."
+      },
+      {
+        "kind": "source",
+        "text": "CNEL code T011 verified at https://www.contratticcnl.it/ccnl/t011/ (146585 employees, ARIS/AIOP, ATECO 86)."
+      }
     ]
   }
 }

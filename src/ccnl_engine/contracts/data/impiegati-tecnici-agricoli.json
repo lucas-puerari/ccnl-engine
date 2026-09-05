@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "impiegati-tecnici-agricoli",
     "name": "CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti",
@@ -46,19 +46,58 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: SALARY MODEL: conglobated retribuzione tabellare minima (levels 1-6). Single base_salary per level with no separate contingenza or EDR columns in the lavoro-economia.it table (consistent with A011 agricultural model). Level 1Q additionally carries an indennità di funzione of 100.00 EUR/month, additive to the base tabellare (source: lavoro-economia.it/ccnl/ccnl.aspx?c=3 showing 1Q total=1888.38 'with function allowance', decomposed as base 1788.38 + IND_FUN 100.00).",
-      "INFO: RENEWAL: CCNL signed 18/06/2024 (quadriennio 2024-2027). Single salary tranche effective 01/07/2024. No subsequent tranches found at time of extraction.",
-      "INFO: CNEL CODE: A021. Source: contratticcnl.it/ccnl/a021/.",
-      "INFO: LEVELS: 7 levels (1Q, 1, 2, 3, 4, 5, 6). Level 1Q = Quadri (managerial cadre). Levels 1-6 = Impiegati/Tecnici from senior professional to entry-level clerk. Level 6 corresponds to first-year apprentice destination baseline.",
-      "INFO: HOURLY DIVISOR: 169 hours/month. Formula: 39 h/week x 52 weeks / 12 = 169.00. Consistent with operai-agricoli-florovivaisti (A011) which also uses 169 for the 39h/week agricultural regime.",
-      "INFO: ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima). Standard for impiegati in the agricultural sector.",
-      "INFO: SENIORITY: biennale (cadence 24 months), maximum 12 scatti. Per-level EUR amounts: 1Q and 1 = 33.05, 2 = 29.44, 3 = 26.86, 4 = 24.79, 5 = 23.76, 6 = 22.21. Levels 1Q and 1 share the same scatto amount.",
-      "INFO: TAX SECTOR: AGRICOLTURA. INPS rates follow Gestione Previdenziale Speciale Agricola (impiegati OTI). Reuses 2026-agricoltura.json.",
-      "INFO: APPRENTICESHIP. A021 specifica apprendistato professionalizzante per D.Lgs. 81/2015. Le percentuali retributive sono definite nel Piano Formativo Individuale (PFI) concordato tra le parti del singolo rapporto di lavoro e non pubblicate come tabella contrattuale. Non esiste una tabella fissa di percentuali nel testo del CCNL: l'array apprenticeship è vuoto per struttura contrattuale, non per omissione di modellazione. Analogo ai contratti pubblici dove l'apprendistato è escluso dall'ambito di applicazione. (Fonte: contratticcnl.it/ccnl/a021, leggeinchiaro.it CCNL A021.)",
-      "INFO: INDENNITA DI FUNZIONE: level 1Q receives +100.00 EUR/month additive to base_salary 1788.38. Modelled as fixed_allowance code IND_FUN. Source: lavoro-economia.it/ccnl/ccnl.aspx?c=3 (total 1888.38 'with function allowance').",
-      "SIMPLIFICATION: SINGLE TRANCHE. Only one salary tranche (01/07/2024) was found at time of extraction. If the 2024-2027 quadriennio provides additional tranches, update base_salary periods accordingly.",
-      "SIMPLIFICATION: INPS CONTRIBUTION BASE. INPS contributions for agricultural impiegati OTI are legally computed on the retribuzione convenzionale (set annually by INPS decree, DL 338/1989 Art. 1), not on the actual contractual salary. This engine applies rates to actual gross salary; net INPS figures are indicative only.",
-      "SIMPLIFICATION: BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and Agrifondo (supplementary pension) bilateral contributions are not modelled."
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: conglobated retribuzione tabellare minima (levels 1-6). Single base_salary per level with no separate contingenza or EDR columns in the lavoro-economia.it table (consistent with A011 agricultural model). Level 1Q additionally carries an indennità di funzione of 100.00 EUR/month, additive to the base tabellare (source: lavoro-economia.it/ccnl/ccnl.aspx?c=3 showing 1Q total=1888.38 'with function allowance', decomposed as base 1788.38 + IND_FUN 100.00)."
+      },
+      {
+        "kind": "info",
+        "text": "RENEWAL: CCNL signed 18/06/2024 (quadriennio 2024-2027). Single salary tranche effective 01/07/2024. No subsequent tranches found at time of extraction."
+      },
+      {
+        "kind": "info",
+        "text": "CNEL CODE: A021. Source: contratticcnl.it/ccnl/a021/."
+      },
+      {
+        "kind": "info",
+        "text": "LEVELS: 7 levels (1Q, 1, 2, 3, 4, 5, 6). Level 1Q = Quadri (managerial cadre). Levels 1-6 = Impiegati/Tecnici from senior professional to entry-level clerk. Level 6 corresponds to first-year apprentice destination baseline."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 169 hours/month. Formula: 39 h/week x 52 weeks / 12 = 169.00. Consistent with operai-agricoli-florovivaisti (A011) which also uses 169 for the 39h/week agricultural regime."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima). Standard for impiegati in the agricultural sector."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY: biennale (cadence 24 months), maximum 12 scatti. Per-level EUR amounts: 1Q and 1 = 33.05, 2 = 29.44, 3 = 26.86, 4 = 24.79, 5 = 23.76, 6 = 22.21. Levels 1Q and 1 share the same scatto amount."
+      },
+      {
+        "kind": "info",
+        "text": "TAX SECTOR: AGRICOLTURA. INPS rates follow Gestione Previdenziale Speciale Agricola (impiegati OTI). Reuses 2026-agricoltura.json."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP. A021 specifica apprendistato professionalizzante per D.Lgs. 81/2015. Le percentuali retributive sono definite nel Piano Formativo Individuale (PFI) concordato tra le parti del singolo rapporto di lavoro e non pubblicate come tabella contrattuale. Non esiste una tabella fissa di percentuali nel testo del CCNL: l'array apprenticeship è vuoto per struttura contrattuale, non per omissione di modellazione. Analogo ai contratti pubblici dove l'apprendistato è escluso dall'ambito di applicazione. (Fonte: contratticcnl.it/ccnl/a021, leggeinchiaro.it CCNL A021.)"
+      },
+      {
+        "kind": "info",
+        "text": "INDENNITA DI FUNZIONE: level 1Q receives +100.00 EUR/month additive to base_salary 1788.38. Modelled as fixed_allowance code IND_FUN. Source: lavoro-economia.it/ccnl/ccnl.aspx?c=3 (total 1888.38 'with function allowance')."
+      },
+      {
+        "kind": "simplification",
+        "text": "SINGLE TRANCHE. Only one salary tranche (01/07/2024) was found at time of extraction. If the 2024-2027 quadriennio provides additional tranches, update base_salary periods accordingly."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS CONTRIBUTION BASE. INPS contributions for agricultural impiegati OTI are legally computed on the retribuzione convenzionale (set annually by INPS decree, DL 338/1989 Art. 1), not on the actual contractual salary. This engine applies rates to actual gross salary; net INPS figures are indicative only."
+      },
+      {
+        "kind": "simplification",
+        "text": "BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and Agrifondo (supplementary pension) bilateral contributions are not modelled."
+      }
     ]
   },
   "parameters": {

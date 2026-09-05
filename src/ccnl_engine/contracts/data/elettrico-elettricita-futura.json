@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "elettrico-elettricita-futura",
     "name": "CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)",
@@ -40,14 +40,38 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: Salary model is split. base_salary = paga base (time-series, 4 tranches from the 2025-02-11 renewal); fixed_allowances = EDR (Elemento Distinto della Retribuzione) frozen at EUR 10.33/month since 1988, same for all levels.",
-      "INFO: hourly_divisor 173.33 as stated by the contract (40h/week statutory base: 40 x 52 / 12). Actual weekly hours are 38 (non-shift) or 40 (shift); the divisor is contractually fixed on the 40h base.",
-      "INFO: Seniority cadence 24 months (biennale), maximum 5 scatti (10 years of service per contract text). Amounts vary by level (kitech.it, April 2026).",
-      "INFO: APPRENTICESHIP (Art. 15 CCNL 2025-02-11, apprendistato professionalizzante). Three tracks by qualification group. Gruppo C (dest CS, 36m): yr1=86%, yr2=90%, yr3=96%, then 100%. Gruppo B excl. BSS (dest B1, 36m): same progression. BSS + Gruppo A (dest BSS and A1, 24m): yr1=86%, yr2=96%, then 100%. Source: Art. 15 para.5 table (CCNL full text PDF filctemcgil.it, 2025-02-11). Note: only the four qualification levels explicitly cited in Art.15 (CS, B1, BSS, A1) are modelled; S-suffix variants (B1S, A1S, etc.) are senior-grade levels not addressed in the apprenticeship article.",
-      "SIMPLIFICATION: April 2027 base salary values derived from April 2026 (kitech.it) plus the same increment as April 2025 → April 2026. October 2027 values verified against contratticcnl.it (all 14 levels match).",
-      "SOURCE: contratticcnl.it shows data alignment errors for BSS, BS, B1 in the April 2026 and April 2027 columns; kitech.it April 2026 values used as authoritative for all 14 levels.",
-      "INFO: Workers covered: approximately 63,000 in 687 companies (Enel SpA, Terna SpA, GSE, Sogin, Energia Libera and affiliated). Agreement signed 2025-02-11; valid until 2027-12-31.",
-      "INFO: INPS rates from 2026-industria.json (industria sector, 50 employees tier). IRPEF 2026 brackets applied (L. 199/2025)."
+      {
+        "kind": "info",
+        "text": "Salary model is split. base_salary = paga base (time-series, 4 tranches from the 2025-02-11 renewal); fixed_allowances = EDR (Elemento Distinto della Retribuzione) frozen at EUR 10.33/month since 1988, same for all levels."
+      },
+      {
+        "kind": "info",
+        "text": "hourly_divisor 173.33 as stated by the contract (40h/week statutory base: 40 x 52 / 12). Actual weekly hours are 38 (non-shift) or 40 (shift); the divisor is contractually fixed on the 40h base."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority cadence 24 months (biennale), maximum 5 scatti (10 years of service per contract text). Amounts vary by level (kitech.it, April 2026)."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP (Art. 15 CCNL 2025-02-11, apprendistato professionalizzante). Three tracks by qualification group. Gruppo C (dest CS, 36m): yr1=86%, yr2=90%, yr3=96%, then 100%. Gruppo B excl. BSS (dest B1, 36m): same progression. BSS + Gruppo A (dest BSS and A1, 24m): yr1=86%, yr2=96%, then 100%. Source: Art. 15 para.5 table (CCNL full text PDF filctemcgil.it, 2025-02-11). Note: only the four qualification levels explicitly cited in Art.15 (CS, B1, BSS, A1) are modelled; S-suffix variants (B1S, A1S, etc.) are senior-grade levels not addressed in the apprenticeship article."
+      },
+      {
+        "kind": "simplification",
+        "text": "April 2027 base salary values derived from April 2026 (kitech.it) plus the same increment as April 2025 → April 2026. October 2027 values verified against contratticcnl.it (all 14 levels match)."
+      },
+      {
+        "kind": "source",
+        "text": "contratticcnl.it shows data alignment errors for BSS, BS, B1 in the April 2026 and April 2027 columns; kitech.it April 2026 values used as authoritative for all 14 levels."
+      },
+      {
+        "kind": "info",
+        "text": "Workers covered: approximately 63,000 in 687 companies (Enel SpA, Terna SpA, GSE, Sogin, Energia Libera and affiliated). Agreement signed 2025-02-11; valid until 2027-12-31."
+      },
+      {
+        "kind": "info",
+        "text": "INPS rates from 2026-industria.json (industria sector, 50 employees tier). IRPEF 2026 brackets applied (L. 199/2025)."
+      }
     ]
   },
   "parameters": {
