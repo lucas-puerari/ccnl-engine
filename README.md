@@ -136,13 +136,14 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 | 72 | E018 | Dipendenti PMI Alimentare — Unionalimentari-Confapi | Alimentare | ~35k | ✅ | ✅ | 🤖 |
 | 73 | K700 | Poste Italiane S.p.A. (non dirigenti) | Industria | ~117k | ✅ | ✅ | 🤖 |
 | 74 | IC35 | Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA) | Terziario | ~41k | ✅ | ✅ | 🤖 |
-| 75 | I481 | Agenzie Marittime Raccomandatarie, Aeree e Mediatori Marittimi — FEDERAGENTI | Terziario | ~5k | ✅ | ✅ | 🤖 |
+| 75 | H121 | Dipendenti Farmacie Private (FEDERFARMA) | Terziario | ~60k | ✅ | ✅ | 🤖 |
+| 76 | I481 | Agenzie Marittime Raccomandatarie, Aeree e Mediatori Marittimi — FEDERAGENTI | Terziario | ~5k | ✅ | ✅ | 🤖 |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
 <p id="fn-2"><a href="#ref-2">2.</a> Salary tables were extracted from official CCNL documents using Claude Code (AI-assisted), without manual human review. Values should be verified against the official source before use in production payroll systems.</p>
 
-The 62 contracts above cover approximately **14.5 million workers** (sum of per-CCNL estimates; some overlap is possible where sector boundaries are not mutually exclusive, so the unique-worker count is somewhat lower). Italy has roughly **16 million employees** covered by some collective agreement (ISTAT/CNEL 2024, public and private sectors combined). This library therefore reaches an estimated **~85–90% of CCNL-covered workers** on a gross-headcount basis.
+The 75 contracts above cover approximately **14.5 million workers** (sum of per-CCNL estimates; some overlap is possible where sector boundaries are not mutually exclusive, so the unique-worker count is somewhat lower). Italy has roughly **16 million employees** covered by some collective agreement (ISTAT/CNEL 2024, public and private sectors combined). This library therefore reaches an estimated **~85–90% of CCNL-covered workers** on a gross-headcount basis.
 
 ## Advanced usage
 
