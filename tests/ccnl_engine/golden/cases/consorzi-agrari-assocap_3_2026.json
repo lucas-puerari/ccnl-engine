@@ -1,0 +1,58 @@
+{
+  "_description": "Golden case: CCNL Consorzi Agrari A141, level 3, 2026-01-01, permanent, no seniority.",
+  "_notes": [
+    "Jan 2026 second tranche: livello 3 paga base = 1574.42 EUR/month (kitech primary source).",
+    "Salary model: split — base_salary = paga base, fixed_allowances = contingenza (530.19 for level 3).",
+    "gross_monthly = 1574.42 + 530.19 = 2104.61. hourly_rate = 2104.61 / 169 = 12.45.",
+    "Additional months: 14 (tredicesima + quattordicesima). gross_annual = 2104.61 * 14 = 29464.54.",
+    "Seniority: 0 — no seniority increments accrued at query date.",
+    "INPS agricoltura rates from 2026-agricoltura.json (50-employee tier).",
+    "Trattamento integrativo: 0 — gross_annual 29464.54 exceeds TI upper threshold 28000."
+  ],
+  "inputs": {
+    "ccnl_file": "consorzi-agrari-assocap.json",
+    "year": 2026,
+    "tax_sector": "agricoltura",
+    "num_employees": 50,
+    "level_code": "3",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "consorzi-agrari-assocap",
+    "level_code": "3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1574.42",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "530.19",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2104.61",
+    "gross_annual": "29464.54",
+    "hourly_rate": "12.45",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2604.67",
+    "inps_employer_annual": "6382.02",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "2182.56",
+    "taxable_income": "26859.87",
+    "irpef_gross": "6177.77",
+    "work_income_deduction": "653.40",
+    "irpef_net": "5524.37",
+    "net_annual": "21335.50",
+    "net_monthly": "1523.96",
+    "employer_cost_annual": "38029.12",
+    "trattamento_integrativo": "0",
+    "fiscal_simplifications": [
+      "no_addizionali",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}

@@ -5887,3 +5887,80 @@ class TestLoadConsorziDiBonificaSnebi:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 6
+
+
+class TestLoadConsorziAgrariAssocap:
+    """Tests for CCNL Consorzi Agrari (ASSOCAP) A141."""
+
+    def test_consorzi_agrari_assocap_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("consorzi-agrari-assocap.json")
+        assert ccnl.meta.id == "consorzi-agrari-assocap"
+        assert ccnl.meta.cnel_code == "A141"
+
+    def test_consorzi_agrari_assocap_has_9_levels(self) -> None:
+        """Contract has 9 levels: Q, 1, 2, 3S, 3, 4S, 4, 5, 6."""
+        ccnl = load_ccnl("consorzi-agrari-assocap.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 9
+        assert codes == {
+            "Q",
+            "1",
+            "2",
+            "3S",
+            "3",
+            "4S",
+            "4",
+            "5",
+            "6",
+        }
+
+    def test_consorzi_agrari_assocap_level3_salary_2025(self) -> None:
+        """Level 3 paga base Jan 2025: 1529.42 (Wolters Kluwer)."""
+        ccnl = load_ccnl("consorzi-agrari-assocap.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2025, 1, 1)) == Decimal("1529.42")
+
+    def test_consorzi_agrari_assocap_level3_salary_2026(self) -> None:
+        """Level 3 paga base Jan 2026: 1574.42 (kitech)."""
+        ccnl = load_ccnl("consorzi-agrari-assocap.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1574.42")
+
+    def test_consorzi_agrari_assocap_level_ordering(self) -> None:
+        """Highest order level is Q; lowest is 6."""
+        ccnl = load_ccnl("consorzi-agrari-assocap.json")
+        sorted_levels = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert sorted_levels[0].code == "6"
+        assert sorted_levels[-1].code == "Q"
+
+    def test_consorzi_agrari_assocap_additional_months(self) -> None:
+        """Contract has 14 mensilita (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("consorzi-agrari-assocap.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_consorzi_agrari_assocap_hourly_divisor(self) -> None:
+        """Hourly divisor 169 h/month (ilccnl.it source)."""
+        ccnl = load_ccnl("consorzi-agrari-assocap.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal(169)
+
+    def test_consorzi_agrari_assocap_split_model_contingenza(self) -> None:
+        """Level 3 has CONTINGENZA fixed allowance of 530.19 EUR/month."""
+        ccnl = load_ccnl("consorzi-agrari-assocap.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        cont = next(a for a in lv.fixed_allowances if a.code == "CONTINGENZA")
+        assert cont.monthly.value_at(date(2026, 1, 1)) == Decimal("530.19")
+
+    def test_consorzi_agrari_assocap_tax_sector(self) -> None:
+        """Contract uses AGRICOLTURA tax sector."""
+        ccnl = load_ccnl("consorzi-agrari-assocap.json")
+        assert ccnl.meta.tax_sector == TaxSector.AGRICOLTURA
+
+    def test_consorzi_agrari_assocap_seniority_cadence(self) -> None:
+        """Five biennial scatti per Art. 34 CCNL (FLAI-CGIL PDF)."""
+        ccnl = load_ccnl("consorzi-agrari-assocap.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
