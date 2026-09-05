@@ -145,6 +145,8 @@ def compute_salary(
         "base_monthly": float(payslip.base_monthly),
         "seniority_monthly": float(payslip.seniority_monthly),
         "allowances_monthly": float(payslip.allowances_monthly),
+        "ad_personam_monthly": float(payslip.ad_personam_monthly),
+        "second_level_monthly": float(payslip.second_level_monthly),
         "gross_monthly": float(payslip.gross_monthly),
         "gross_annual": float(payslip.gross_annual),
         "hourly_rate": float(payslip.hourly_rate),
@@ -157,6 +159,8 @@ def compute_salary(
         "irpef_gross": float(payslip.irpef_gross),
         "work_income_deduction": float(payslip.work_income_deduction),
         "irpef_net": float(payslip.irpef_net),
+        "addizionale_regionale_annual": float(payslip.addizionale_regionale_annual),
+        "addizionale_comunale_annual": float(payslip.addizionale_comunale_annual),
         "trattamento_integrativo": float(payslip.trattamento_integrativo),
         "fiscal_simplifications": sorted(
             str(s) for s in payslip.fiscal_simplifications
@@ -170,4 +174,5 @@ def compute_salary(
             if payslip.apprenticeship_pct is not None
             else None
         ),
+        "apprenticeship_under_level_code": payslip.apprenticeship_under_level_code,
     })
