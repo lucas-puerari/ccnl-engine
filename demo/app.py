@@ -137,35 +137,37 @@ def compute_salary(
             part_time_pct=Decimal(str(round(part_time_pct, 4))),
             seniority_count=seniority_count,
         )
-        result = compute(ccnl, rules, scenario)
+        payslip = compute(ccnl, rules, scenario)
     except Exception as exc:  # ruff: ignore[blind-except]
         return json.dumps({"error": str(exc)})
 
     return json.dumps({
-        "base_monthly": float(result.base_monthly),
-        "seniority_monthly": float(result.seniority_monthly),
-        "allowances_monthly": float(result.allowances_monthly),
-        "gross_monthly": float(result.gross_monthly),
-        "gross_annual": float(result.gross_annual),
-        "hourly_rate": float(result.hourly_rate),
-        "seniority_count": result.seniority_count,
-        "inps_employee_annual": float(result.inps_employee_annual),
-        "inps_employer_annual": float(result.inps_employer_annual),
-        "employer_funds_annual": float(result.employer_funds_annual),
-        "tfr_annual": float(result.tfr_annual),
-        "taxable_income": float(result.taxable_income),
-        "irpef_gross": float(result.irpef_gross),
-        "work_income_deduction": float(result.work_income_deduction),
-        "irpef_net": float(result.irpef_net),
-        "trattamento_integrativo": float(result.trattamento_integrativo),
-        "fiscal_simplifications": sorted(str(s) for s in result.fiscal_simplifications),
-        "net_annual": float(result.net_annual),
-        "net_monthly": float(result.net_monthly),
-        "employer_cost_annual": float(result.employer_cost_annual),
-        "employer_withholds_irpef": result.employer_withholds_irpef,
+        "base_monthly": float(payslip.base_monthly),
+        "seniority_monthly": float(payslip.seniority_monthly),
+        "allowances_monthly": float(payslip.allowances_monthly),
+        "gross_monthly": float(payslip.gross_monthly),
+        "gross_annual": float(payslip.gross_annual),
+        "hourly_rate": float(payslip.hourly_rate),
+        "seniority_count": payslip.seniority_count,
+        "inps_employee_annual": float(payslip.inps_employee_annual),
+        "inps_employer_annual": float(payslip.inps_employer_annual),
+        "employer_funds_annual": float(payslip.employer_funds_annual),
+        "tfr_annual": float(payslip.tfr_annual),
+        "taxable_income": float(payslip.taxable_income),
+        "irpef_gross": float(payslip.irpef_gross),
+        "work_income_deduction": float(payslip.work_income_deduction),
+        "irpef_net": float(payslip.irpef_net),
+        "trattamento_integrativo": float(payslip.trattamento_integrativo),
+        "fiscal_simplifications": sorted(
+            str(s) for s in payslip.fiscal_simplifications
+        ),
+        "net_annual": float(payslip.net_annual),
+        "net_monthly": float(payslip.net_monthly),
+        "employer_cost_annual": float(payslip.employer_cost_annual),
+        "employer_withholds_irpef": payslip.employer_withholds_irpef,
         "apprenticeship_pct": (
-            float(result.apprenticeship_pct)
-            if result.apprenticeship_pct is not None
+            float(payslip.apprenticeship_pct)
+            if payslip.apprenticeship_pct is not None
             else None
         ),
     })

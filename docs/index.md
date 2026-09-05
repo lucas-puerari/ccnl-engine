@@ -37,8 +37,7 @@ The engine models:
 
 - Regional and municipal income tax surcharges (*addizionali*)
 - Family-dependent deductions (Art. 12 TUIR)
-- *Trattamento integrativo* (Art. 1 D.L. 3/2020)
-- IRPEF phaseout above €200k (Art. 1 cc. 3–4 L. 199/2025)
+- IRPEF phaseout above €200k (Art. 1 cc. 3-4 L. 199/2025)
 - Second-level bargaining (territorial and company agreements)
 - Overtime, night/holiday premiums, leave accruals, sick-pay integrations
 
