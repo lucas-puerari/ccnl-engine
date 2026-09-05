@@ -99,4 +99,4 @@ class TestSurtaxModelsValidation:
     def test_comunale_entry_empty_brackets_raises(self) -> None:
         """ComunaleEntry with empty brackets raises ValidationError."""
         with pytest.raises(ValidationError, match="must not be empty"):
-            ComunaleEntry(brackets=[])
+            ComunaleEntry(nome="Test", brackets=[])

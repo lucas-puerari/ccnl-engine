@@ -1035,6 +1035,7 @@ class TestComputeAddizionali:
             },
             comunale={
                 "X001": ComunaleEntry(
+                    nome="Test",
                     brackets=[SurtaxBracket(up_to=None, rate=Decimal("0.008"))],
                     soglia=Decimal(10000),
                 )
@@ -1135,6 +1136,7 @@ class TestComputeAddizionali:
             regionale={},
             comunale={
                 "X001": ComunaleEntry(
+                    nome="Test",
                     brackets=[SurtaxBracket(up_to=None, rate=Decimal("0.008"))],
                     soglia=Decimal(10000),
                 )
