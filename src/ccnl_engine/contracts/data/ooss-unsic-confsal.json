@@ -1,0 +1,372 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "ooss-unsic-confsal",
+    "name": "CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSIC/CONFSAL)",
+    "cnel_code": "V925",
+    "sector": "Organizzazioni sindacali nazionali e territoriali",
+    "tax_sector": "terziario",
+    "agreement_date": "2023-01-19",
+    "signatories": [
+      "UNSIC",
+      "CONFSAL",
+      "ASNALI",
+      "SNALV CONFSAL",
+      "FNA CONFSAL",
+      "CONFIAL",
+      "FISMIC CONFSAL",
+      "FAST CONFSAL",
+      "SNALA CONFSAL",
+      "FEDER.AGRI.",
+      "FENALCA INTERNATIONAL"
+    ],
+    "sources": [
+      {
+        "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
+        "type": "text",
+        "agreement_date": "2023-01-19"
+      },
+      {
+        "url": "https://www.kitech.it/",
+        "type": "salary_table",
+        "agreement_date": "2026-03-26"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "CCNL OO.SS. signed 19/01/2023 by UNSIC/CONFSAL. Valid 01/01/2023-31/12/2025; renewed 26/03/2026 for 01/01/2026-31/12/2028."
+      },
+      {
+        "kind": "info",
+        "text": "Salary model: conglobated. Art. 49 states 'paga base nazionale conglobata'. No split components."
+      },
+      {
+        "kind": "info",
+        "text": "6 levels (1=highest: Direttore Generale, 6=lowest: Usciere/Fattorino). Art. 49 table."
+      },
+      {
+        "kind": "info",
+        "text": "Hourly divisor 170: Art. 49 explicit ('divisore convenzionale 170'). Verified: 2746.80/170=16.16, 2065.40/170=12.15, 1565.30/170=9.21."
+      },
+      {
+        "kind": "info",
+        "text": "Additional months: 14. Art. 52: gratifica natalizia (13ma) + quattordicesima mensilita."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority (Art. 51): triennale (36mo), max 5 scatti, 1% of current tabellare. Amounts stored per tranche."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship (Art. 15): under_classification, max 2 levels below destination. 3 tracks (dest 3,4,5). Duration 36mo each with 18/18 split confirmed from CCNL text."
+      },
+      {
+        "kind": "info",
+        "text": "No dedicated INPS code per contratticcnl.it. Tax sector=terziario applied."
+      },
+      {
+        "kind": "info",
+        "text": "Headcount: 6,968 workers, 830 employers (ADAPT 18 Rapporto CNEL)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: 2026 salary values (L1=2788.00, L2=2331.75, L3=2096.38, L4=1863.44, L5=1735.04, L6=1588.78) sourced from proxy (kitech.it) for the 2026-2028 renewal. Primary source PDF covers 2023-2025 only."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: dest level 5 apprenticeship: lb=2 is structurally impossible (only 1 level below exists). Modelled as lb=1 for full 36mo duration per Art. 15 cap ('non piu di due livelli')."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2023-01-19",
+          "valid_until": null,
+          "value": 170
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2023-01-19",
+          "valid_until": null,
+          "value": 14
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2023-01-19",
+              "valid_until": "2026-01-01",
+              "value": "27.47"
+            },
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "27.88"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2023-01-19",
+              "valid_until": "2026-01-01",
+              "value": "22.97"
+            },
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "23.32"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2023-01-19",
+              "valid_until": "2026-01-01",
+              "value": "20.65"
+            },
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "20.96"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2023-01-19",
+              "valid_until": "2026-01-01",
+              "value": "18.36"
+            },
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "18.63"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2023-01-19",
+              "valid_until": "2026-01-01",
+              "value": "17.09"
+            },
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "17.35"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2023-01-19",
+              "valid_until": "2026-01-01",
+              "value": "15.65"
+            },
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "15.89"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "professionalizzante - dest livello 3",
+      "destination_levels": ["3"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante - dest livello 4",
+      "destination_levels": ["4"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante - dest livello 5",
+      "destination_levels": ["5"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "1",
+      "order": 6,
+      "description": "Livello I - Direttore Generale",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-19",
+            "valid_until": "2026-01-01",
+            "value": "2746.80"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2788.00"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 5,
+      "description": "Livello II - Direttori Nazionali / Coordinatori",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-19",
+            "valid_until": "2026-01-01",
+            "value": "2297.29"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2331.75"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 4,
+      "description": "Livello III - Responsabili Regionali / Impiegati di concetto",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-19",
+            "valid_until": "2026-01-01",
+            "value": "2065.40"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "2096.38"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 3,
+      "description": "Livello IV - Responsabili Zonali / Operatori servizi",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-19",
+            "valid_until": "2026-01-01",
+            "value": "1835.90"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1863.44"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 2,
+      "description": "Livello V - Impiegati d'ordine / Addetti",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-19",
+            "valid_until": "2026-01-01",
+            "value": "1709.40"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1735.04"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6",
+      "order": 1,
+      "description": "Livello VI - Usciere / Fattorino / Autista / Addetto pulizie",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-19",
+            "valid_until": "2026-01-01",
+            "value": "1565.30"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "1588.78"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ]
+}
