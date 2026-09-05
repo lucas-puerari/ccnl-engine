@@ -1,0 +1,512 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "federcasa",
+    "name": "CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa",
+    "cnel_code": "T611",
+    "sector": "Case popolari",
+    "tax_sector": "terziario",
+    "agreement_date": "2024-11-06",
+    "signatories": [
+      "Federcasa",
+      "FP CGIL",
+      "FPS CISL",
+      "UIL FPL",
+      "Fesica Confsal"
+    ],
+    "sources": [
+      {
+        "url": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
+        "type": "text",
+        "agreement_date": "2024-11-06"
+      },
+      {
+        "url": "https://cislfp.it/wp-content/uploads/2024/11/Tabelle-economiche-CCNL-Federcasa-2022-2024.pdf",
+        "type": "text",
+        "agreement_date": "2024-11-06"
+      },
+      {
+        "url": "https://ilccnl.it/ccnl/federcasa/federcasa/tabelleretributive",
+        "type": "text",
+        "agreement_date": "2024-11-06"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: conglobated. Art. 71 (p.63): retribuzione base = minimi tabellari. Art. 72 (p.64): single importo column, no contingenza or EDR columns. Confirmed by ilccnl.it (A1, A2, A3, As, B1 at 01/12/2024)."
+      },
+      {
+        "kind": "info",
+        "text": "16 levels (highest to lowest): Q1, Q2, As, A1, A2, A3, Bs, B1, B2, B3, C1, C2, C3, Ds, D1, D2."
+      },
+      {
+        "kind": "info",
+        "text": "Single salary period from 01/12/2024 (Art. 72). Increases for 2022, 2023, and pre-Dec 2024 paid as una tantum (IVC and arretrati), not as tabellare changes."
+      },
+      {
+        "kind": "info",
+        "text": "Dec 2024 increase formula: NUOVO = round(OLD x 1.075, 2). Confirmed: A1 2365.54 x 1.075 = 2542.96, A2 2193.81 x 1.075 = 2358.35, A3 2017.79 x 1.075 = 2169.12, As 2580.20 x 1.075 = 2773.72, B1 1938.97 x 1.075 = 2084.39 (all matching ilccnl.it to the cent)."
+      },
+      {
+        "kind": "info",
+        "text": "Hourly divisor 156 from Art. 71.5: 'un importo pari ad 1/156 della retribuzione individuale mensile'. Also derived from 36h/week x 52/12 = 156."
+      },
+      {
+        "kind": "info",
+        "text": "Art. 71.5 defines 'retribuzione oraria' as 1/156 of monthly including tredicesima and quattordicesima quotas. Engine uses gross_monthly / 156 without those quotas, so engine hourly_rate differs slightly from the contractual figure."
+      },
+      {
+        "kind": "info",
+        "text": "Additional months: 14. Art. 76 (p.68): tredicesima in December + quattordicesima in June."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: biennale cadence (Art. 73.1: 'al compimento di ogni biennio'), maximum 14 (Art. 73.2: 'un massimo di 14 aumenti periodici'). Art. 73.4: scatti maturated from 01/01/2018 reduced by 10%."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship: Art. 19 defers terms to accordo interconfederale 18/05/2016 and a CCNL-specific agreement within 6 months of signing. No public text of that agreement found."
+      },
+      {
+        "kind": "info",
+        "text": "Headcount: not verified. No CNEL/ADAPT figure located for T611 Federcasa."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: tax_sector=terziario. Federcasa entities are public economic entities (ex-IACP/ATER/ATC). Art. 1.2 confirms these entities left the public-sector comparto. Actual INPS classification unverified; terziario is the closest available proxy."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Seniority amounts are the 10%-reduced values (post-01/01/2018 cohort per Art. 73.4). Workers with pre-2018 scatti retain grandfathered full amounts; at maximum 14 scatti this would affect workers hired before ~1990. New-hire cohort (all post-2018 scatti) is exact."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: As of 2026-09-05 the 2022-2024 CCNL has expired (31/12/2024). Art. 4 B.5-8 triggers IVC at 30% of IPCA from ~Mar 2025 and 50% from ~Sep 2025 during the renewal gap. The engine models tabellare only; IVC payable during the gap is not included."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-12-01",
+          "valid_until": null,
+          "value": 156
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-12-01",
+          "valid_until": null,
+          "value": 14
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 14,
+      "amount_by_level": {
+        "Q1": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "38.25"
+            }
+          ]
+        },
+        "Q2": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "31.50"
+            }
+          ]
+        },
+        "As": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "28.35"
+            }
+          ]
+        },
+        "A1": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "25.20"
+            }
+          ]
+        },
+        "A2": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "22.05"
+            }
+          ]
+        },
+        "A3": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "19.35"
+            }
+          ]
+        },
+        "Bs": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "18.90"
+            }
+          ]
+        },
+        "B1": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "18.45"
+            }
+          ]
+        },
+        "B2": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "16.74"
+            }
+          ]
+        },
+        "B3": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "15.39"
+            }
+          ]
+        },
+        "C1": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "14.85"
+            }
+          ]
+        },
+        "C2": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "13.95"
+            }
+          ]
+        },
+        "C3": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "13.05"
+            }
+          ]
+        },
+        "Ds": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "12.60"
+            }
+          ]
+        },
+        "D1": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "12.06"
+            }
+          ]
+        },
+        "D2": {
+          "periods": [
+            {
+              "valid_from": "2024-12-01",
+              "valid_until": null,
+              "value": "11.61"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [],
+  "levels": [
+    {
+      "code": "Q1",
+      "order": 16,
+      "description": "Quadro 1 (parametro 220)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "3483.40"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "Q2",
+      "order": 15,
+      "description": "Quadro 2 (parametro 190)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "3001.82"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "As",
+      "order": 14,
+      "description": "Area A Super (parametro 176)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "2773.72"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A1",
+      "order": 13,
+      "description": "Area A 1 (parametro 162)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "2542.96"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A2",
+      "order": 12,
+      "description": "Area A 2 (parametro 150)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "2358.35"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A3",
+      "order": 11,
+      "description": "Area A 3 (parametro 138)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "2169.12"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "Bs",
+      "order": 10,
+      "description": "Area B Super (parametro 137)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "2143.87"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "B1",
+      "order": 9,
+      "description": "Area B 1 (parametro 135)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "2084.39"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "B2",
+      "order": 8,
+      "description": "Area B 2 (parametro 128)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "1979.16"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "B3",
+      "order": 7,
+      "description": "Area B 3 (parametro 121)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "1874.51"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C1",
+      "order": 6,
+      "description": "Area C 1 (parametro 118)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "1829.95"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C2",
+      "order": 5,
+      "description": "Area C 2 (parametro 114)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "1762.49"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C3",
+      "order": 4,
+      "description": "Area C 3 (parametro 110)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "1706.87"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "Ds",
+      "order": 3,
+      "description": "Area D Super (parametro 108)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "1699.39"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D1",
+      "order": 2,
+      "description": "Area D 1 (parametro 103)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "1601.65"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D2",
+      "order": 1,
+      "description": "Area D 2 (parametro 100)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": null,
+            "value": "1548.03"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ]
+}

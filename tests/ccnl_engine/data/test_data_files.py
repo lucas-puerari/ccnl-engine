@@ -6838,3 +6838,86 @@ class TestLoadFunivieAnef:
         assert len(track.periods) == 2
         assert track.periods[0].levels_below == 1
         assert track.periods[1].levels_below == 0
+
+
+class TestLoadFedercasa:
+    """CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa (T611)."""
+
+    def test_federcasa_loads(self) -> None:
+        """Contract loads and id/cnel_code match."""
+        ccnl = load_ccnl("federcasa.json")
+        assert ccnl.meta.id == "federcasa"
+        assert ccnl.meta.cnel_code == "T611"
+
+    def test_federcasa_has_16_levels(self) -> None:
+        """Exactly 16 levels covering all four areas plus Quadri."""
+        ccnl = load_ccnl("federcasa.json")
+        assert len(ccnl.levels) == 16
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {
+            "Q1",
+            "Q2",
+            "As",
+            "A1",
+            "A2",
+            "A3",
+            "Bs",
+            "B1",
+            "B2",
+            "B3",
+            "C1",
+            "C2",
+            "C3",
+            "Ds",
+            "D1",
+            "D2",
+        }
+
+    def test_federcasa_level_b1_salary_dec2024(self) -> None:
+        """B1 base salary from 01/12/2024 = 2084.39 (Art.72, ilccnl.it)."""
+        ccnl = load_ccnl("federcasa.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "B1")
+        assert lv.base_salary.value_at(date(2025, 1, 1)) == Decimal("2084.39")
+
+    def test_federcasa_level_a1_salary_dec2024(self) -> None:
+        """A1 base salary from 01/12/2024 = 2542.96 (Art.72, ilccnl.it)."""
+        ccnl = load_ccnl("federcasa.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "A1")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("2542.96")
+
+    def test_federcasa_level_ordering(self) -> None:
+        """Highest order = Q1 (16), lowest = D2 (1)."""
+        ccnl = load_ccnl("federcasa.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "D2"
+        assert by_order[-1].code == "Q1"
+
+    def test_federcasa_additional_months(self) -> None:
+        """14 mensilita: tredicesima dicembre + quattordicesima giugno (Art.76)."""
+        ccnl = load_ccnl("federcasa.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            14
+        )
+
+    def test_federcasa_hourly_divisor(self) -> None:
+        """Hourly divisor = 156 (Art.71.5: 1/156 retribuzione mensile)."""
+        ccnl = load_ccnl("federcasa.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == 156
+
+    def test_federcasa_no_fixed_allowances(self) -> None:
+        """All 16 levels have empty fixed_allowances (conglobated model)."""
+        ccnl = load_ccnl("federcasa.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_federcasa_tax_sector(self) -> None:
+        """tax_sector == TERZIARIO (SIMPLIFICATION: actual sector unverified)."""
+        ccnl = load_ccnl("federcasa.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_federcasa_seniority_cadence(self) -> None:
+        """Seniority: biennale (24 months), max 14 scatti (Art.73.1-2)."""
+        ccnl = load_ccnl("federcasa.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 14
