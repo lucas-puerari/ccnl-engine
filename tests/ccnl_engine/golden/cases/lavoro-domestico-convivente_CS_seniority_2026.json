@@ -1,0 +1,58 @@
+{
+  "_description": "Golden case: CCNL Lavoro Domestico convivente (D200), Level CS, 2026-01-01, permanent, 40h/week, seniority_count=2.",
+  "_notes": [
+    "withholding_exempt=True: employer is not sostituto d'imposta.",
+    "irpef_gross and work_income_deduction are informational; irpef_net=0.",
+    "seniority_count=2: verifies scatti di anzianita on a domestic CCNL.",
+    "weekly_hours=40 required for domestic contribution calculation.",
+    "trattamento_integrativo computed (low gross annual)."
+  ],
+  "inputs": {
+    "ccnl_file": "lavoro-domestico-convivente.json",
+    "year": 2026,
+    "tax_sector": "lavoro-domestico",
+    "num_employees": 1,
+    "level_code": "CS",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 2,
+    "negotiated_ral": null,
+    "weekly_hours": 40
+  },
+  "expected": {
+    "ccnl_id": "lavoro-domestico-convivente",
+    "level_code": "CS",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 2,
+    "base_monthly": "1193.84",
+    "seniority_monthly": "95.50",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1289.34",
+    "gross_annual": "16761.42",
+    "hourly_rate": "5.51",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "644.80",
+    "inps_employer_annual": "1934.40",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1241.59",
+    "taxable_income": "16116.62",
+    "irpef_gross": "3706.82",
+    "work_income_deduction": "1423.30",
+    "irpef_net": "0",
+    "employer_withholds_irpef": false,
+    "trattamento_integrativo": "1037.41",
+    "fiscal_simplifications": [
+      "no_addizionali",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ],
+    "net_annual": "17154.03",
+    "net_monthly": "1319.54",
+    "employer_cost_annual": "19937.41"
+  }
+}

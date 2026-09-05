@@ -1,0 +1,58 @@
+{
+  "_description": "Golden case: CCNL Metalmeccanico Federmeccanica (H041), Level C3, 2026-01-01, negotiated_ral=130000, ivs_ceiling_applies=True.",
+  "_notes": [
+    "negotiated_ral=130000 EUR/year forces the scenario above the 2026 INPS massimale.",
+    "ivs_ceiling_applies=True: IVS contributions are split at the massimale threshold.",
+    "Verifies that inps_employee_annual and inps_employer_annual correctly apply the two-rate structure.",
+    "trattamento_integrativo=0 (RAL > 28000).",
+    "IRPEF 2026 brackets applied."
+  ],
+  "inputs": {
+    "ccnl_file": "metalmeccanico-federmeccanica.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 200,
+    "level_code": "C3",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": "130000",
+    "ivs_ceiling_applies": true
+  },
+  "expected": {
+    "ccnl_id": "metalmeccanico-federmeccanica",
+    "level_code": "C3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "2158.26",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "10000.00",
+    "gross_annual": "130000.00",
+    "hourly_rate": "57.80",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "11628.91",
+    "inps_employer_annual": "37815.44",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "9629.63",
+    "taxable_income": "118371.09",
+    "irpef_gross": "43099.57",
+    "work_income_deduction": "0.00",
+    "irpef_net": "43099.57",
+    "employer_withholds_irpef": true,
+    "trattamento_integrativo": "0",
+    "fiscal_simplifications": [
+      "no_addizionali",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ],
+    "net_annual": "75271.52",
+    "net_monthly": "5790.12",
+    "employer_cost_annual": "177445.07"
+  }
+}

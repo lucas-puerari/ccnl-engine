@@ -1,0 +1,56 @@
+{
+  "_description": "Golden case: CCNL Commercio Confcommercio (D401), Level 4, as_of=2025-11-01 (tranche boundary), permanent, full-time.",
+  "_notes": [
+    "Nov 2025 tranche: new base salary effective 2025-11-01.",
+    "Tests that value_at() picks up the new value on the exact boundary date.",
+    "IRPEF 2026 brackets applied (year derived from as_of → 2025, tax year 2026... wait no, year=2025).",
+    "No seniority, full-time, permanent."
+  ],
+  "inputs": {
+    "ccnl_file": "commercio-confcommercio.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "4",
+    "as_of": "2025-11-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "commercio-confcommercio",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2025,
+    "seniority_count": 0,
+    "base_monthly": "1257.46",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "526.29",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1783.75",
+    "gross_annual": "24972.50",
+    "hourly_rate": "10.62",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2294.97",
+    "inps_employer_annual": "7237.03",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1849.81",
+    "taxable_income": "22677.53",
+    "irpef_gross": "5215.83",
+    "work_income_deduction": "894.85",
+    "irpef_net": "4320.98",
+    "employer_withholds_irpef": true,
+    "trattamento_integrativo": "279.46",
+    "fiscal_simplifications": [
+      "no_addizionali",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ],
+    "net_annual": "18636.01",
+    "net_monthly": "1331.14",
+    "employer_cost_annual": "34059.34"
+  }
+}

@@ -76,6 +76,7 @@ class TestGolden:
                     if weekly_hours_raw is not None
                     else None
                 ),
+                ivs_ceiling_applies=bool(inputs.get("ivs_ceiling_applies", False)),
             ),
         )
 
