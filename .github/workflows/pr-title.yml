@@ -23,6 +23,7 @@ jobs:
           types: |
             feat
             fix
+            build
             chore
             ci
             docs
