@@ -50,23 +50,16 @@ Run them in this order. Fix coverage first, then lint, then types.
 
 ---
 
-## Source of truth for contract count
-
-```bash
-ls src/ccnl_engine/contracts/data/*.json | grep -v '__init__' | wc -l
-```
-
-Use this count for goal tracking, not `git log`. If the two diverge, the JSON count is authoritative.
-
----
-
 ## Available commands
 
 | Command | When to use |
 |---------|-------------|
 | `/new-contract` | Full 10-step workflow to add one CCNL (research → merged PR) |
-| `/batch N` | Add N CCNLs sequentially in one session without stopping |
+| `/batch N <command>` | Repeat `<command>` N times without stopping; tracks progress via `.claude/GOAL.md` |
 | `/new-branch <type> <slug>` | Create a CI-valid branch from up-to-date main |
+
+`/batch` has built-in defaults for known commands (e.g. `/new-contract`).
+For custom commands, supply a `progress_cmd` — a bash one-liner returning the current completion count.
 
 ---
 
