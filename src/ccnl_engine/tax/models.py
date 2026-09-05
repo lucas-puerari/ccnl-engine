@@ -363,6 +363,26 @@ class TfrRules(BaseModel):
     accrual_divisor: Decimal
 
 
+class TrattamentoIntegrativoRules(BaseModel):
+    """Parameters for the trattamento integrativo (Art. 1 D.L. 3/2020).
+
+    The bonus is computed on gross annual income (RAL) as follows:
+
+    - RAL <= ``threshold_mid``: ``max_amount`` if IRPEF lorda > detrazioni lavoro,
+      else 0.
+    - ``threshold_mid`` < RAL <= ``threshold_upper``:
+      max(0, ``max_amount`` * (``threshold_upper`` - RAL)
+      / (``threshold_upper`` - ``threshold_mid``)).
+    - RAL > ``threshold_upper``: 0.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    threshold_mid: Decimal
+    threshold_upper: Decimal
+    max_amount: Decimal
+
+
 class _YearRulesRaw(BaseModel):
     """Full deserialization model for a tax/data/<year>-<sector>.json file.
 
@@ -382,6 +402,7 @@ class _YearRulesRaw(BaseModel):
     apprentice: _ApprenticeRawRates | None = None
     domestic_contributions: DomesticInpsRates | None = None
     tfr: TfrRules
+    trattamento_integrativo: TrattamentoIntegrativoRules | None = None
     notes: list[str] = []
 
     @model_validator(mode="after")
@@ -416,6 +437,7 @@ class YearRules(BaseModel):
     apprentice: ApprenticeRates | None = None
     domestic_contributions: DomesticInpsRates | None = None
     tfr: TfrRules
+    trattamento_integrativo: TrattamentoIntegrativoRules | None = None
     notes: list[str] = []
 
     @model_validator(mode="after")

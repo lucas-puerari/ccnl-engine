@@ -50,6 +50,7 @@ from ccnl_engine.models.ccnl import (
     TaxSector,
 )
 from ccnl_engine.models.employment import Apprentice, Employment, FixedTerm, Permanent
+from ccnl_engine.models.fiscal import FiscalSimplification
 from ccnl_engine.models.validity import TimeSeries, ValidityPeriod
 from ccnl_engine.tax.loaders import load_year_rules
 from ccnl_engine.tax.models import YearRules
@@ -73,6 +74,7 @@ __all__ = [
     "EmployerFund",
     # Employment
     "Employment",
+    "FiscalSimplification",
     "FixedTerm",
     "Level",
     "LevelCategory",

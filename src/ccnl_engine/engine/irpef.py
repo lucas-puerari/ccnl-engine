@@ -2,18 +2,19 @@
 
 Implements Art. 11 TUIR brackets and the Art. 13 co. 1 TUIR work-income
 deduction (piecewise-linear schedule as modified by D.Lgs. 216/2023 and
-confirmed by L. 207/2024).
+confirmed by L. 207/2024), and the trattamento integrativo (Art. 1 D.L.
+3/2020 as updated by L. 207/2024).
 
 Not in scope for this engine (handled by a separate fiscal library):
 addizionali regionali/comunali; detrazioni per carichi di famiglia (Art. 12
-TUIR); bonus/trattamento integrativo (Art. 1 D.L. 3/2020); sterilization of
-detrazioni for redditi > EUR 200k (Art. 1 c. 3-4 L. 199/2025).
+TUIR); sterilization of detrazioni for redditi > EUR 200k (Art. 1 c. 3-4
+L. 199/2025).
 """
 
 from decimal import Decimal
 
 from ccnl_engine.engine.rounding import money
-from ccnl_engine.tax.models import YearRules
+from ccnl_engine.tax.models import TrattamentoIntegrativoRules, YearRules
 
 _ZERO = Decimal(0)
 
@@ -67,6 +68,34 @@ def work_income_deduction(gross_income: Decimal, rules: YearRules) -> Decimal:
                 gross_income, lo_income, hi_income, lo.deduction, hi.deduction
             )
     return money(points[-1].deduction)
+
+
+def trattamento_integrativo(
+    gross_annual: Decimal,
+    irpef_lorda: Decimal,
+    detrazioni_lavoro: Decimal,
+    rules: TrattamentoIntegrativoRules,
+) -> Decimal:
+    """Compute the trattamento integrativo bonus (Art. 1 D.L. 3/2020).
+
+    Args:
+        gross_annual: Annual gross pay (RAL) used to determine the bonus tier.
+        irpef_lorda: Gross IRPEF before work-income deduction (Art. 11 TUIR).
+        detrazioni_lavoro: Work-income deduction (Art. 13 TUIR).
+        rules: Threshold and amount parameters from the tax data file.
+
+    Returns:
+        The trattamento integrativo amount, rounded to two decimal places.
+        Zero when RAL exceeds ``rules.threshold_upper`` or when the bonus
+        condition is not met.
+    """
+    if gross_annual > rules.threshold_upper:
+        return _ZERO
+    if gross_annual <= rules.threshold_mid:
+        return money(rules.max_amount) if irpef_lorda > detrazioni_lavoro else _ZERO
+    span = rules.threshold_upper - rules.threshold_mid
+    scaled = rules.max_amount * (rules.threshold_upper - gross_annual) / span
+    return money(max(_ZERO, scaled))
 
 
 def _interpolate_deduction(

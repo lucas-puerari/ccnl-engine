@@ -73,6 +73,7 @@ def load_year_rules(
         apprentice=apprentice,
         domestic_contributions=raw.domestic_contributions,
         tfr=raw.tfr,
+        trattamento_integrativo=raw.trattamento_integrativo,
         notes=raw.notes,
     )
 

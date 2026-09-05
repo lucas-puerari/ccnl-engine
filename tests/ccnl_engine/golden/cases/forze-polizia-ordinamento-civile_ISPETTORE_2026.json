@@ -24,10 +24,16 @@
     "irpef_gross": "5819.73",
     "work_income_deduction": "716.43",
     "irpef_net": "5103.30",
-    "net_annual": "20199.89",
-    "net_monthly": "1553.84",
+    "net_annual": "20223.45",
+    "net_monthly": "1555.65",
     "employer_cost_annual": "36514.12",
     "apprenticeship_pct": null,
-    "apprenticeship_under_level_code": null
+    "apprenticeship_under_level_code": null,
+    "trattamento_integrativo": "23.56",
+    "fiscal_simplifications": [
+      "no_addizionali",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
   }
 }

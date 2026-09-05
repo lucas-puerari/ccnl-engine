@@ -69,6 +69,11 @@
   "tfr": {
     "accrual_divisor": "13.5"
   },
+  "trattamento_integrativo": {
+    "threshold_mid": "15000",
+    "threshold_upper": "28000",
+    "max_amount": "1200"
+  },
   "notes": [
     "IRPEF brackets and work_deduction_breakpoints: statutory, sector-agnostic.",
     "INPS employer — SIMPLIFICATION: rate 26.93% from kitech.it (non-construction crafts sector 2026, source https://www.kitech.it/Contributi-previdenziali.aspx?p=1_1; specific INPS circular not retrieved). Component breakdown is part of the KNOWN GAP noted below: the operai-vs-impiegati difference (26.93% vs 24.71% = 2.22pp) does not reconcile with a malattia-only explanation (~0.83pp), suggesting the sector IVS rate may differ from the generic private-sector 23.81%. No CIGO/CIGS for the crafts sector (art. 3 D.Lgs. 148/2015). FSBA (0.45% employer + 0.15% employee) excluded: bilateral fund contribution, not INPS. No size tier.",

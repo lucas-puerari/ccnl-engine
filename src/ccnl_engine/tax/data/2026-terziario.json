@@ -75,6 +75,11 @@
   "tfr": {
     "accrual_divisor": "13.5"
   },
+  "trattamento_integrativo": {
+    "threshold_mid": "15000",
+    "threshold_upper": "28000",
+    "max_amount": "1200"
+  },
   "notes": [
     "IRPEF brackets: three-bracket structure per L. 199/2025 (Legge di Bilancio 2026); second bracket reduced from 35% to 33% effective 2026-01-01. Sterilization of detrazioni for redditi > 200,000 EUR (Art. 1 co. 3-4 L. 199/2025) is out of scope for this engine (see separate fiscal library).",
     "work_deduction_breakpoints: Art. 13 co. 1 TUIR, as modified by D.Lgs. 216/2023 and confirmed by L. 207/2024 (Legge di Bilancio 2025). Breakpoints represent the piecewise-linear deduction schedule: flat at EUR 1,955 for income <= 8,500; linear from 1,955 to 700 in the 8,500-28,000 range; linear from 700 to 0 in the 28,000-50,000 range; zero above 50,000.",

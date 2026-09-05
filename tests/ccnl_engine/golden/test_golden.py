@@ -88,6 +88,12 @@ class TestGolden:
                 assert actual == Decimal(raw_value), (
                     f"{field}: expected {raw_value!r}, got {actual!r}"
                 )
+            elif isinstance(actual, frozenset):
+                # Stored in JSON as a sorted list of strings for determinism.
+                actual_sorted = sorted(str(v) for v in actual)
+                assert actual_sorted == raw_value, (
+                    f"{field}: expected {raw_value!r}, got {actual_sorted!r}"
+                )
             else:
                 assert actual == raw_value, (
                     f"{field}: expected {raw_value!r}, got {actual!r}"
