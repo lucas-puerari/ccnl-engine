@@ -43,9 +43,18 @@ class Payslip:
             scaled by ``part_time_pct``.
         ad_personam_monthly: Individual frozen monthly element (e.g.
             pre-abolition seniority) added directly to gross, **not** scaled
-            by ``part_time_pct``.
-        gross_monthly: Total monthly gross pay (sum of the four monthly
-            components above).
+            by ``part_time_pct``.  Contrast with ``second_level_monthly``,
+            which is the collective supplement scaled by ``part_time_pct``.
+        second_level_monthly: Total scaled monthly amount from second-level
+            (territorial or company) agreements — the sum of all
+            :class:`~ccnl_engine.models.ccnl.SupplementaryAllowance` items
+            passed via ``Scenario.second_level_allowances``, each scaled by
+            ``part_time_pct`` (and optionally by the apprenticeship percentage).
+            Zero when no second-level allowances are provided.
+        gross_monthly: Total monthly gross pay (sum of the five monthly
+            components: ``base_monthly``, ``seniority_monthly``,
+            ``allowances_monthly``, ``ad_personam_monthly``,
+            ``second_level_monthly``).
         gross_annual: Annual gross pay, accounting for additional months
             (``gross_monthly * additional_months``).
         hourly_rate: Hourly gross rate derived from the contractual weekly
@@ -117,6 +126,7 @@ class Payslip:
     seniority_monthly: Decimal
     allowances_monthly: Decimal
     ad_personam_monthly: Decimal
+    second_level_monthly: Decimal
     gross_monthly: Decimal
     gross_annual: Decimal
     hourly_rate: Decimal
