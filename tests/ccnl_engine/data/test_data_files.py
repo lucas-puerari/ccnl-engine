@@ -7060,3 +7060,69 @@ class TestLoadOossUnsicConfsal:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 5
+
+
+class TestLoadRecapitoCorrispondenzaFise:
+    """Tests for CCNL Recapito Corrispondenza FISE-ARE (K711)."""
+
+    def test_recapito_corrispondenza_fise_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("recapito-corrispondenza-fise.json")
+        assert ccnl.meta.id == "recapito-corrispondenza-fise"
+        assert ccnl.meta.cnel_code == "K711"
+
+    def test_recapito_corrispondenza_fise_has_8_levels(self) -> None:
+        """Contract has exactly 8 levels with codes 1,2,3S,3,4,5S,5,6."""
+        ccnl = load_ccnl("recapito-corrispondenza-fise.json")
+        assert len(ccnl.levels) == 8
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3S", "3", "4", "5S", "5", "6"}
+
+    def test_recapito_corrispondenza_fise_level3_salary_feb2024(self) -> None:
+        """Level 3 base salary at 2024-02-01: 1567.29 EUR (1st tranche)."""
+        ccnl = load_ccnl("recapito-corrispondenza-fise.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2024, 2, 1)) == Decimal("1567.29")
+
+    def test_recapito_corrispondenza_fise_level3_salary_jun2026(self) -> None:
+        """Level 3 base salary at 2026-06-01: 1687.29 EUR (4th tranche)."""
+        ccnl = load_ccnl("recapito-corrispondenza-fise.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2026, 6, 1)) == Decimal("1687.29")
+
+    def test_recapito_corrispondenza_fise_level_ordering(self) -> None:
+        """Level 1 is highest; level 6 is lowest."""
+        ccnl = load_ccnl("recapito-corrispondenza-fise.json")
+        ordered = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert ordered[0].code == "6"
+        assert ordered[-1].code == "1"
+
+    def test_recapito_corrispondenza_fise_additional_months(self) -> None:
+        """14 mensilita: tredicesima + quattordicesima."""
+        ccnl = load_ccnl("recapito-corrispondenza-fise.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_recapito_corrispondenza_fise_hourly_divisor(self) -> None:
+        """Hourly divisor 173 (confirmed from ilccnl.it cross-check)."""
+        ccnl = load_ccnl("recapito-corrispondenza-fise.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == 173
+
+    def test_recapito_corrispondenza_fise_edr_allowance(self) -> None:
+        """All 8 levels have EDR=10.33 as fixed_allowance (split model)."""
+        ccnl = load_ccnl("recapito-corrispondenza-fise.json")
+        for lv in ccnl.levels:
+            assert len(lv.fixed_allowances) == 1
+            assert lv.fixed_allowances[0].code == "EDR"
+
+    def test_recapito_corrispondenza_fise_tax_sector(self) -> None:
+        """tax_sector == TERZIARIO."""
+        ccnl = load_ccnl("recapito-corrispondenza-fise.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_recapito_corrispondenza_fise_seniority_cadence(self) -> None:
+        """Seniority: biennale (24 months), max 8 scatti."""
+        ccnl = load_ccnl("recapito-corrispondenza-fise.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 8
