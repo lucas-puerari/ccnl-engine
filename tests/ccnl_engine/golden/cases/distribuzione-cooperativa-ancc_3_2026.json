@@ -1,0 +1,60 @@
+{
+  "_description": "Golden case: CCNL Distribuzione Cooperativa (H016), Level 3, 2026-11-01, permanent, no seniority.",
+  "_notes": [
+    "Nov 2026 third tranche (reparametrization-derived, not source-confirmed): minimo tabellare L3 = 1,474.52 EUR/month.",
+    "Split model: base_monthly = minimo tabellare only.",
+    "Allowances: CONTINGENZA (528.28) + TERZO_ELEMENTO (3.07) = 531.35 EUR/month.",
+    "gross_monthly = 1,474.52 + 531.35 = 2,005.87.",
+    "hourly_rate = 2,005.87 / 165 = 12.16 (38h/week divisor, ilccnl.it).",
+    "Additional months: 14 (tredicesima + quattordicesima).",
+    "INPS employer rate from 2026-terziario.json (terziario sector, 50 employees tier).",
+    "Seniority: 0.00 — no scatti accumulated.",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025)."
+  ],
+  "inputs": {
+    "ccnl_file": "distribuzione-cooperativa-ancc.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "3",
+    "as_of": "2026-11-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "distribuzione-cooperativa-ancc",
+    "level_code": "3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1474.52",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "531.35",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2005.87",
+    "gross_annual": "28082.18",
+    "hourly_rate": "12.16",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2580.75",
+    "inps_employer_annual": "8138.22",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "2080.16",
+    "taxable_income": "25501.43",
+    "irpef_gross": "5865.33",
+    "work_income_deduction": "697.39",
+    "irpef_net": "5167.94",
+    "net_annual": "20333.49",
+    "net_monthly": "1452.39",
+    "employer_cost_annual": "38300.56",
+    "trattamento_integrativo": "0",
+    "fiscal_simplifications": [
+      "no_addizionali",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}

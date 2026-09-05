@@ -5538,3 +5538,71 @@ class TestLoadEnergiaPetrolioConfindustria:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 0
+
+
+class TestLoadDistribuzioneCooperativaAncc:
+    """Unit tests for CCNL Distribuzione Cooperativa (ANCC-Coop, H016)."""
+
+    def test_distribuzione_cooperativa_ancc_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("distribuzione-cooperativa-ancc.json")
+        assert ccnl.meta.id == "distribuzione-cooperativa-ancc"
+        assert ccnl.meta.cnel_code == "H016"
+
+    def test_distribuzione_cooperativa_ancc_has_9_levels(self) -> None:
+        """Contract has exactly 9 levels: Q, 1, 2, 3S, 3, 4S, 4, 5, 6."""
+        ccnl = load_ccnl("distribuzione-cooperativa-ancc.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"Q", "1", "2", "3S", "3", "4S", "4", "5", "6"}
+
+    def test_distribuzione_cooperativa_ancc_level3_salary_2025(self) -> None:
+        """L3 minimo tabellare at 2025-05-01 first modelled tranche."""
+        ccnl = load_ccnl("distribuzione-cooperativa-ancc.json")
+        lv = ccnl.level_by_code("3")
+        assert lv.base_salary.value_at(date(2025, 5, 1)) == Decimal("1393.34")
+
+    def test_distribuzione_cooperativa_ancc_level3_salary_2025_dec(self) -> None:
+        """L3 minimo tabellare at 2025-12-01 confirmed fourth tranche."""
+        ccnl = load_ccnl("distribuzione-cooperativa-ancc.json")
+        lv = ccnl.level_by_code("3")
+        assert lv.base_salary.value_at(date(2025, 12, 1)) == Decimal("1433.93")
+
+    def test_distribuzione_cooperativa_ancc_level_ordering(self) -> None:
+        """Level 6 has lowest order (1); Q has highest order (9)."""
+        ccnl = load_ccnl("distribuzione-cooperativa-ancc.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "6"
+        assert by_order[-1].code == "Q"
+
+    def test_distribuzione_cooperativa_ancc_additional_months(self) -> None:
+        """Contract has 14 mensilità (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("distribuzione-cooperativa-ancc.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_distribuzione_cooperativa_ancc_hourly_divisor(self) -> None:
+        """Hourly divisor is 165 h/month (38h/week, ilccnl.it)."""
+        ccnl = load_ccnl("distribuzione-cooperativa-ancc.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal(165)
+
+    def test_distribuzione_cooperativa_ancc_fixed_allowances_contingenza(self) -> None:
+        """All levels carry CONTINGENZA and TERZO_ELEMENTO allowances."""
+        ccnl = load_ccnl("distribuzione-cooperativa-ancc.json")
+        for lv in ccnl.levels:
+            codes = {a.code for a in lv.fixed_allowances}
+            assert "CONTINGENZA" in codes, lv.code
+            assert "TERZO_ELEMENTO" in codes, lv.code
+
+    def test_distribuzione_cooperativa_ancc_tax_sector(self) -> None:
+        """Contract uses TERZIARIO tax sector."""
+        ccnl = load_ccnl("distribuzione-cooperativa-ancc.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_distribuzione_cooperativa_ancc_seniority_cadence(self) -> None:
+        """Seniority: triennial cadence (36 months), maximum 10 scatti."""
+        ccnl = load_ccnl("distribuzione-cooperativa-ancc.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 10

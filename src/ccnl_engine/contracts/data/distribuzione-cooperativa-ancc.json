@@ -1,0 +1,762 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "distribuzione-cooperativa-ancc",
+    "name": "CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)",
+    "cnel_code": "H016",
+    "sector": "distribuzione-cooperativa",
+    "tax_sector": "terziario",
+    "signatories": [
+      "ANCC-Coop",
+      "Confcooperative Consumo e Utenza",
+      "AGCI Agrital",
+      "Filcams-CGIL",
+      "Fisascat-CISL",
+      "Uiltucs-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016",
+        "type": "table",
+        "agreement_date": "2024-03-29"
+      },
+      {
+        "url": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=31717:coop29324&catid=262&Itemid=139",
+        "type": "text",
+        "agreement_date": "2024-03-29"
+      },
+      {
+        "url": "https://ilccnl.it/contratto/ccnl/cooperative-di-consumo",
+        "type": "table",
+        "agreement_date": "2024-03-29"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "partial",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: split. base_salary = minimo tabellare only. fixed_allowances per level: (1) CONTINGENZA frozen since January 1993, level-specific constant; (2) TERZO_ELEMENTO 3.07 EUR all levels, constant; (3) INDENNITA_FUNZIONE 250.76 EUR, Q only, constant since 2008. Total monthly = base_salary + CONTINGENZA + TERZO_ELEMENTO (+ INDENNITA_FUNZIONE for Q). Verified against kitech.it Dec 2025 table: Q=2985.20 (expected 2985.23), L1=2533.93 (expected 2533.96), L4=1763.99 (expected 1764.02). 3-cent gap = TERZO_ELEMENTO rounding (3.07 filcams vs 3.10 kitech); filcams used."
+      },
+      {
+        "kind": "info",
+        "text": "MODELLED TRANCHES: 2025-05-01 (third tranche, source-confirmed from filcams.cgil.it and kitech.it), 2025-12-01 (fourth tranche, confirmed), 2026-11-01 (fifth, derived), 2027-03-01 (sixth and final, derived). April 2023 and April 2024 tranches not modelled — pre-signing period. Derivation method: per-level ratios from confirmed Dec 2025 L4 increments (35 EUR/tranche); validated by independent check pre-2023 Q minimo = 1,897.32 EUR matching search snippet."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 14 (tredicesima December + quattordicesima June). Source: CCNL text (olympus.uniurb.it summary, kitech.it)."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY: triennial (cadence_months=36), maximum 10 scatti. Per-level amounts from kitech.it Dec 2025 (proxy, label SIMPLIFICATION). Q=27.82, L1=26.64, L2=24.52, L3S=21.79, L3=21.79, L4S=19.93, L4=19.93, L5=18.84, L6=16.51 EUR/scatto. L3S=L3 and L4S=L4 duplication confirmed plausible in Terziario family."
+      },
+      {
+        "kind": "info",
+        "text": "INPS: uses 2026-terziario.json (terziario sector). No bilateral fund substituting INPS contributions. CNEL code: H016."
+      },
+      {
+        "kind": "missing",
+        "text": "APPRENTICESHIP (2024 RENEWAL): Art. 75 of the 2024 renewal (signed 2024-03-29) could not be retrieved from any accessible source. The 2020 CCNL text (CCNL-Utilia2020 PDF, 'Apprendistato accordo 13 giugno 2012') documented under_classification type: levels 1-4 start 2 levels below for first 24 months then 1 level below; level 5 stays 1 level below throughout. The 2024 renewal amended Arts. 75 and 80-82 but the updated text is not publicly accessible. Modelled as under_classification from 2020 source; may differ from 2024 renewal rules."
+      },
+      {
+        "kind": "simplification",
+        "text": "HOURLY DIVISOR: 165 h/month used, per ilccnl.it (38h/week standard, all levels). Art. 198 of the CCNL also references 168 for 40h/week and higher divisors for extended shifts. Conflict: ilccnl.it states 165 as the contract divisor; Art. 198 lists 168 for 40h/week. Dominant workforce (post-2011 hires in a high-turnover retail sector on the 38h standard) is served by 165. 42h/week (182) and 45h/week (195) schedules not modelled."
+      },
+      {
+        "kind": "simplification",
+        "text": "DERIVED TRANCHES: November 2026 and March 2027 per-level amounts derived from reparametrization of confirmed Dec 2025 L4 increment (35 EUR per tranche); ratios applied proportionally to all levels. Not independently confirmed against official sources."
+      },
+      {
+        "kind": "simplification",
+        "text": "INDENNITA_FUNZIONE (Q): 250.76 EUR assumed constant throughout 2023-2027 contract. Amount confirmed at Dec 2025 by kitech.it and reported unchanged since at least 2008. No published CCNL text indicates a change in the 2024 renewal."
+      },
+      {
+        "kind": "simplification",
+        "text": "SENIORITY AMOUNTS: from kitech.it only (proxy source). No independent primary-source confirmation. Cadence (36 months) and maximum (10) confirmed from CCNL text via olympus.uniurb.it."
+      },
+      {
+        "kind": "simplification",
+        "text": "UNA TANTUM: 350 EUR gross at L4 level (proportionally reparametrized per other levels), paid April 2024 and April 2025 to workers in service at 2024-03-29 signing date. One-off payment with no engine representation; deliberately excluded."
+      },
+      {
+        "kind": "simplification",
+        "text": "PRE-SIGNING TRANCHES: April 2023 (retroactive) and April 2024 tranches not modelled. Coverage starts at 2025-05-01 (first source-confirmed post-signing tranche)."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-05-01",
+          "valid_until": null,
+          "value": "165"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-05-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 10,
+      "amount_by_level": {
+        "Q": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "27.82"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "26.64"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "24.52"
+            }
+          ]
+        },
+        "3S": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "21.79"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "21.79"
+            }
+          ]
+        },
+        "4S": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "19.93"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "19.93"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "18.84"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "16.51"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "livelli_1_a_4",
+      "destination_levels": ["1", "2", "3S", "3", "4S", "4"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 24,
+          "levels_below": 2
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "livello_5",
+      "destination_levels": ["5"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "6",
+      "order": 1,
+      "description": "Livello 6 — entry-level workers, basic operations",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-12-01",
+            "value": "834.31"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-11-01",
+            "value": "858.62"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-03-01",
+            "value": "882.93"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "910.71"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza — frozen January 1993",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "517.25"
+              }
+            ]
+          }
+        },
+        {
+          "code": "TERZO_ELEMENTO",
+          "description": "Elemento Distinto della Retribuzione (EDR) — constant",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "3.07"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "order": 2,
+      "description": "Livello 5 — semi-skilled workers, routine operations with basic training",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-12-01",
+            "value": "1084.60"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-11-01",
+            "value": "1116.20"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-03-01",
+            "value": "1147.80"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "1183.91"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza — frozen January 1993",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "522.18"
+              }
+            ]
+          }
+        },
+        {
+          "code": "TERZO_ELEMENTO",
+          "description": "Elemento Distinto della Retribuzione (EDR) — constant",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "3.07"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "order": 3,
+      "description": "Livello 4 — qualified workers with autonomous task execution",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-12-01",
+            "value": "1201.43"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-11-01",
+            "value": "1236.43"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-03-01",
+            "value": "1271.43"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "1311.43"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza — frozen January 1993",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "524.49"
+              }
+            ]
+          }
+        },
+        {
+          "code": "TERZO_ELEMENTO",
+          "description": "Elemento Distinto della Retribuzione (EDR) — constant",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "3.07"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "4S",
+      "order": 4,
+      "description": "Livello 4S — intermediate between 4 and 3, specialised operations",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-12-01",
+            "value": "1293.22"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-11-01",
+            "value": "1330.89"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-03-01",
+            "value": "1368.56"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "1411.61"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza — frozen January 1993",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "525.92"
+              }
+            ]
+          }
+        },
+        {
+          "code": "TERZO_ELEMENTO",
+          "description": "Elemento Distinto della Retribuzione (EDR) — constant",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "3.07"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "order": 5,
+      "description": "Livello 3 — skilled workers, complex tasks requiring specific competencies",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-12-01",
+            "value": "1393.34"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-11-01",
+            "value": "1433.93"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-03-01",
+            "value": "1474.52"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "1520.91"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza — frozen January 1993",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "528.28"
+              }
+            ]
+          }
+        },
+        {
+          "code": "TERZO_ELEMENTO",
+          "description": "Elemento Distinto della Retribuzione (EDR) — constant",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "3.07"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "3S",
+      "order": 6,
+      "description": "Livello 3S — senior skilled workers, multi-competency roles",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-12-01",
+            "value": "1501.79"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-11-01",
+            "value": "1545.54"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-03-01",
+            "value": "1589.29"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "1639.29"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza — frozen January 1993",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "529.98"
+              }
+            ]
+          }
+        },
+        {
+          "code": "TERZO_ELEMENTO",
+          "description": "Elemento Distinto della Retribuzione (EDR) — constant",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "3.07"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "order": 7,
+      "description": "Livello 2 — highly qualified workers, responsible for complex processes",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-12-01",
+            "value": "1685.33"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-11-01",
+            "value": "1734.43"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-03-01",
+            "value": "1783.53"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "1839.64"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza — frozen January 1993",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "533.85"
+              }
+            ]
+          }
+        },
+        {
+          "code": "TERZO_ELEMENTO",
+          "description": "Elemento Distinto della Retribuzione (EDR) — constant",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "3.07"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "order": 8,
+      "description": "Livello 1 — senior specialists and team coordinators",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-12-01",
+            "value": "1935.64"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-11-01",
+            "value": "1992.03"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-03-01",
+            "value": "2048.42"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "2112.86"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza — frozen January 1993",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "538.83"
+              }
+            ]
+          }
+        },
+        {
+          "code": "TERZO_ELEMENTO",
+          "description": "Elemento Distinto della Retribuzione (EDR) — constant",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "3.07"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "Q",
+      "order": 9,
+      "category": "quadro",
+      "description": "Quadro — middle managers with coordination and responsibility (L. 190/1985)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-12-01",
+            "value": "2127.54"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-11-01",
+            "value": "2189.52"
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-03-01",
+            "value": "2251.50"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "2322.33"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza — frozen January 1993",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "541.85"
+              }
+            ]
+          }
+        },
+        {
+          "code": "TERZO_ELEMENTO",
+          "description": "Elemento Distinto della Retribuzione (EDR) — constant",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "3.07"
+              }
+            ]
+          }
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione quadri — constant since 2008",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "250.76"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
