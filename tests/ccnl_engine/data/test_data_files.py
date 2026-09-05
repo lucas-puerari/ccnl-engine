@@ -6446,3 +6446,83 @@ class TestLoadFarmaciePrivateH121:
         period = farmacista.periods[0]
         assert isinstance(period, UnderClassificationPeriod)
         assert period.levels_below == 0
+
+
+class TestLoadLateriziIndustriaF021:
+    """Tests for CCNL Laterizi e Manufatti Cementizi - Industria (F021)."""
+
+    def test_laterizi_industria_f021_loads(self) -> None:
+        """Contract loads with correct id and CNEL code F021."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        assert ccnl.meta.id == "laterizi-industria-f021"
+        assert ccnl.meta.cnel_code == "F021"
+
+    def test_laterizi_industria_f021_has_9_levels(self) -> None:
+        """9 levels: ASQ AS A B CS C D E F (thaler.it livelli e qualifiche)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"ASQ", "AS", "A", "B", "CS", "C", "D", "E", "F"}
+
+    def test_laterizi_industria_f021_level_as_salary_2022(self) -> None:
+        """Level AS paga tabellare 2095.27 at 2022-04-01 (previgente)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "AS")
+        assert lv.base_salary.value_at(date(2022, 4, 1)) == Decimal("2095.27")
+
+    def test_laterizi_industria_f021_level_b_salary_2026(self) -> None:
+        """Level B paga tabellare 1710.15 at 2026-07-01 (2nd 2025 tranche)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "B")
+        assert lv.base_salary.value_at(date(2026, 7, 1)) == Decimal("1710.15")
+
+    def test_laterizi_industria_f021_level_ordering(self) -> None:
+        """Highest order is ASQ (Quadri); lowest order is F."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        sorted_levels = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert sorted_levels[0].code == "F"
+        assert sorted_levels[-1].code == "ASQ"
+
+    def test_laterizi_industria_f021_additional_months(self) -> None:
+        """13 mensililita': tredicesima only (quattordicesima: non prevista)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(13)
+
+    def test_laterizi_industria_f021_hourly_divisor(self) -> None:
+        """Divisore orario 174 per 40h/week (thaler.it parametri contrattuali)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal(174)
+
+    def test_laterizi_industria_f021_asq_has_three_allowances(self) -> None:
+        """ASQ level has CONTINGENZA + EDR + IND_FUNZIONE_QUADRI allowances."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        asq = next(lv for lv in ccnl.levels if lv.code == "ASQ")
+        codes = {a.code for a in asq.fixed_allowances}
+        assert codes == {"CONTINGENZA", "EDR", "IND_FUNZIONE_QUADRI"}
+
+    def test_laterizi_industria_f021_tax_sector(self) -> None:
+        """Contract uses edilizia tax sector (CNEL macrosector F)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        assert ccnl.meta.tax_sector == TaxSector.EDILIZIA
+
+    def test_laterizi_industria_f021_seniority_cadence(self) -> None:
+        """5 scatti biennali (cadence 24 months, max 5; thaler.it scatti)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_laterizi_industria_f021_apprenticeship_tracks(self) -> None:
+        """4 under_classification tracks (Art. 9 CCNL 12/02/2020)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        tracks = ccnl.apprenticeship
+        assert len(tracks) == 4
+        assert all(isinstance(t, ApprenticeshipUnderClassification) for t in tracks)
+        track36 = next(t for t in tracks if t.name == "professionalizzante_36")
+        assert set(track36.destination_levels) == {"ASQ", "AS", "A", "B"}
+        assert track36.periods[0].levels_below == 2  # type: ignore[union-attr]
+        track12 = next(t for t in tracks if t.name == "professionalizzante_12")
+        assert track12.destination_levels == ["E"]
+        assert track12.periods[0].levels_below == 1  # type: ignore[union-attr]

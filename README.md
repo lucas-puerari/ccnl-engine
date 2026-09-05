@@ -138,6 +138,7 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 | 74 | IC35 | Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA) | Terziario | ~41k | ✅ | ✅ | 🤖 |
 | 75 | H121 | Dipendenti Farmacie Private (FEDERFARMA) | Terziario | ~60k | ✅ | ✅ | 🤖 |
 | 76 | I481 | Agenzie Marittime Raccomandatarie, Aeree e Mediatori Marittimi — FEDERAGENTI | Terziario | ~5k | ✅ | ✅ | 🤖 |
+| 77 | F021 | Laterizi e Manufatti Cementizi - Industria | Edilizia | ~17k | ✅ | ✅ | 🤖 |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
