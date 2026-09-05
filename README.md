@@ -129,6 +129,7 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 | 65 | H016 | Distribuzione Cooperativa — ANCC-Coop | Terziario | ~63k | ⚠️ | ✅ | 🤖 |
 | 66 | D0L1 | Lavanderie Industriali — Assosistema (turismo) | Industria | ~17k | ⚠️ | ✅ | 🤖 |
 | 67 | H601 | CED, ICT, Professioni Digitali e STP — Assoced | Terziario | ~22k | ✅ | ✅ | 🤖 |
+| 68 | A051 | Attivita Agromeccaniche (Contoterzismo) — CAI Agromec | Agricoltura | ~4k | ✅ | ✅ | 🤖 |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 

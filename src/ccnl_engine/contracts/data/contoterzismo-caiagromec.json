@@ -1,0 +1,288 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "contoterzismo-caiagromec",
+    "name": "CCNL Attivita Agromeccaniche (Contoterzismo) CAI Agromec-FAI-FLAI-UILA",
+    "cnel_code": "A051",
+    "sector": "Agricoltura",
+    "tax_sector": "agricoltura",
+    "agreement_date": "2024-06-18",
+    "signatories": [
+      "CAI Agromec",
+      "FAI-CISL",
+      "FLAI-CGIL",
+      "UILA-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
+        "type": "table",
+        "agreement_date": "2024-06-18"
+      },
+      {
+        "url": "https://ilccnl.it/contratto/ccnl/agricoltura---contoterzisti",
+        "type": "table",
+        "agreement_date": "2024-06-18"
+      },
+      {
+        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=1",
+        "type": "table",
+        "agreement_date": "2024-06-18"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "out_of_scope",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: paga base nazionale conglobata (contingenza absorbed since 2009 in agriculture sector). Single TimeSeries per level, no separate contingenza or EDR. Back-check: L3 Jun2026 2014.03/169=11.92, L4 1827.82/169=10.82, L5 1720.14/169=10.18 — all match redigo.info hourly rates."
+      },
+      {
+        "kind": "info",
+        "text": "Divisore convenzionale 169 h/month (confirmed: lavoro-economia.it c=1 shows hourly column; cross-checked 3 levels). Daily divisor: 26."
+      },
+      {
+        "kind": "info",
+        "text": "Mensilita supplementari: tredicesima (dicembre) e quattordicesima (giugno). additional_months=14. Source: ilccnl.it fetched page."
+      },
+      {
+        "kind": "info",
+        "text": "4 salary tranches effective: 2024-06-01, 2025-06-01, 2026-06-01, 2027-06-01. Source: redigo.info (primary, all 4 tranches verified); ilccnl.it (Jun2026 cross-check)."
+      },
+      {
+        "kind": "info",
+        "text": "Salary floors reflect CCNL national minimums only. kitech.it (CodiceCateg=1) shows values ca. EUR 20/month higher — those are in-assenza-di-contratto-integrativo-territoriale top-ups, not CCNL minimums. redigo.info and ilccnl.it agree on the lower CCNL floor used here."
+      },
+      {
+        "kind": "simplification",
+        "text": "Seniority: contract provides 'premi di continuita professionale' at milestones 5yr/10yr/15yr (EUR 50/150/180 annual lump sums, not monthly scatti). The uniform-cadence seniority_increments schema cannot model milestone-based premi; maximum_count=0, cadence_months=24 is a schema placeholder. The milestone premi are omitted."
+      },
+      {
+        "kind": "info",
+        "text": "layer_2 out_of_scope: no apprenticeship tracks modeled. The 2024 CCNL text (Art. 13 and Allegati E/F per CAI Agromec contract structure) references apprendistato professionalizzante but no percentage or under-classification table was found in any primary source (ilccnl.it, redigo.info, lavoro-economia.it). If apprenticeship provisions exist, they require the full CCNL PDF to model correctly."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-06-01",
+          "valid_until": null,
+          "value": "169"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-06-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 0,
+      "amount_by_level": {}
+    }
+  },
+  "apprenticeship": [],
+  "levels": [
+    {
+      "code": "6",
+      "order": 1,
+      "description": "6° livello",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1409.41"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "1443.70"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "1466.56"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1489.41"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 2,
+      "description": "5° livello",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1642.99"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "1689.28"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "1720.14"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1750.99"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 3,
+      "description": "4° livello",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1742.10"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "1793.53"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "1827.82"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1862.10"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 4,
+      "description": "3° livello",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1914.03"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "1974.03"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "2014.03"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2054.03"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 5,
+      "description": "2° livello",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "2081.78"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "2150.35"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "2196.06"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2241.78"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1",
+      "order": 6,
+      "description": "1° livello",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "2216.94"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-06-01",
+            "value": "2292.37"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "2342.66"
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "2392.94"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ]
+}
