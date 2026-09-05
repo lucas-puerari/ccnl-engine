@@ -1,0 +1,63 @@
+{
+  "_description": "Golden case: CCNL Federcasa (T611), Level B1, 2026-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Single period from 2024-12-01. B1 is the contract reference parametro (135, par. 135).",
+    "Dec 2024 increase: 1938.97 x 1.075 = 2084.39 (round to 2 decimals). Confirmed by ilccnl.it.",
+    "Conglobated model: gross_monthly = base_salary = 2084.39 (no contingenza, no EDR).",
+    "gross_annual = 2084.39 x 14 = 29181.46.",
+    "hourly_rate = 2084.39 / 156 = 13.36 (note: contractual Art.71.5 rate includes 13a/14a quotas).",
+    "seniority_count=0, so seniority_monthly=0.00. 10%-reduced amounts apply to post-2018 scatti.",
+    "INPS: terziario (SIMPLIFICATION: actual Federcasa INPS sector unverified)."
+  ],
+  "inputs": {
+    "ccnl_file": "federcasa.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "B1",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "federcasa",
+    "level_code": "B1",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "2084.39",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2084.39",
+    "gross_annual": "29181.46",
+    "hourly_rate": "13.36",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2681.78",
+    "inps_employer_annual": "8456.79",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "2161.59",
+    "taxable_income": "26499.68",
+    "irpef_gross": "6094.93",
+    "work_income_deduction": "662.41",
+    "irpef_net": "5432.52",
+    "employer_withholds_irpef": true,
+    "second_level_monthly": "0.00",
+    "net_annual": "21067.16",
+    "net_monthly": "1504.80",
+    "employer_cost_annual": "39799.84",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "0",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}
