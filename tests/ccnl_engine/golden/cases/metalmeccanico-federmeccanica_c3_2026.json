@@ -6,7 +6,6 @@
     "INPS rates: industria sector, 16-50 employees (2026-industria.json, second tier). employee 9.19%, employer 30.20% (IVS 23.81% + DS 1.61% + CUAF 2.48% + CIGO 1.70% + CIGS 0.60%, D.Lgs.148/2015, Circ.INPS 5/2025 e 6/2026).",
     "additional_months: 13 (tredicesima only, no quattordicesima).",
     "Art. 13 TUIR deduction: piecewise-linear at gross_income=28748.59.",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION).",
     "Seniority: 0 increments — seniority_monthly is 0.00."
   ],
   "inputs": {
@@ -48,9 +47,12 @@
     "net_annual": "20711.85",
     "net_monthly": "1593.22",
     "employer_cost_annual": "39560.19",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "0",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

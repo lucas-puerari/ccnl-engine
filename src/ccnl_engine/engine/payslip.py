@@ -76,6 +76,17 @@ class Payslip:
             ``irpef_gross`` and ``work_income_deduction`` are informational
             only and ``irpef_net`` is zero.
 
+        addizionale_regionale_annual: Annual addizionale regionale IRPEF
+            (Art. 50 TUIR), computed from the regional marginal bracket table.
+            Zero when ``Scenario.regione`` is ``None`` or no
+            :class:`~ccnl_engine.surtax.models.SurtaxRules` was passed to
+            :func:`~ccnl_engine.engine.compute.compute`.
+        addizionale_comunale_annual: Annual addizionale comunale IRPEF
+            (Art. 1 D.Lgs. 360/1998), computed from the municipal bracket
+            table and exemption threshold.  Zero when
+            ``Scenario.comune_belfiore`` is ``None`` or no
+            :class:`~ccnl_engine.surtax.models.SurtaxRules` was passed.
+
         trattamento_integrativo: Trattamento integrativo bonus (Art. 1 D.L.
             3/2020), if computed; ``0`` when not applicable or when the tax
             data file does not carry the required parameters.
@@ -84,8 +95,9 @@ class Payslip:
             absent from the net figure.
 
         net_annual: Annual net pay (``gross_annual`` minus
-            ``inps_employee_annual`` minus ``irpef_net`` plus
-            ``trattamento_integrativo``).
+            ``inps_employee_annual`` minus ``irpef_net`` minus
+            ``addizionale_regionale_annual`` minus
+            ``addizionale_comunale_annual`` plus ``trattamento_integrativo``).
         net_monthly: Monthly net pay (``net_annual / additional_months``).
 
         employer_cost_annual: Total annual employer cost
@@ -122,6 +134,9 @@ class Payslip:
     work_income_deduction: Decimal
     irpef_net: Decimal
     employer_withholds_irpef: bool
+
+    addizionale_regionale_annual: Decimal
+    addizionale_comunale_annual: Decimal
 
     trattamento_integrativo: Decimal
     fiscal_simplifications: frozenset[FiscalSimplification]

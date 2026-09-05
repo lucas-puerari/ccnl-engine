@@ -5,8 +5,7 @@
     "Scatti di anzianita abolished from 1 Jan 2010 (CCNL art.); seniority_monthly is 0.00 regardless of seniority_count.",
     "INPS rates: industria sector, 16-50 employees (2026-industria.json, second tier). employee 9.19%, employer 30.20%.",
     "additional_months: 13 (tredicesima only, no quattordicesima).",
-    "Art. 13 TUIR deduction: piecewise-linear at gross_income=31463.38.",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+    "Art. 13 TUIR deduction: piecewise-linear at gross_income=31463.38."
   ],
   "inputs": {
     "ccnl_file": "chimica-farmaceutica-federchimica.json",
@@ -47,9 +46,12 @@
     "net_annual": "22469.73",
     "net_monthly": "1728.44",
     "employer_cost_annual": "43295.94",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "0",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

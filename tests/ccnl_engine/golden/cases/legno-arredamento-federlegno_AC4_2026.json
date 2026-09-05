@@ -5,8 +5,7 @@
     "Split salary: base=2061.83, contingenza=525.22, EDR=10.33 → gross_monthly=2597.38.",
     "Additional months: 13 (tredicesima only, CNEL F051 PDF 'Numero mensilita: 13').",
     "INPS employer rate 30.20% (16-50 employees tier, 2026-industria.json).",
-    "Hourly divisor 174 (40h/week standard, derived from 40 x 52 / 12 ≈ 173.33 → 174).",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+    "Hourly divisor 174 (40h/week standard, derived from 40 x 52 / 12 ≈ 173.33 → 174)."
   ],
   "inputs": {
     "ccnl_file": "legno-arredamento-federlegno.json",
@@ -47,9 +46,12 @@
     "net_annual": "23792.78",
     "net_monthly": "1830.21",
     "employer_cost_annual": "46464.43",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "0",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

@@ -5,8 +5,7 @@
     "Conglobated model: single base_salary per level; fixed_allowances=[]. allowances_monthly=0.",
     "Additional months: 13 (tredicesima only, Art. 42 CCNL TLC 12/11/2020).",
     "INPS: 2026-industria.json (Confindustria/CIGO; >50 employees tier: 30.20% datore).",
-    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025)."
   ],
   "inputs": {
     "ccnl_file": "telecomunicazioni-asstel.json",
@@ -47,9 +46,12 @@
     "net_annual": "19405.45",
     "net_monthly": "1492.73",
     "employer_cost_annual": "36470.76",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "138.14",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

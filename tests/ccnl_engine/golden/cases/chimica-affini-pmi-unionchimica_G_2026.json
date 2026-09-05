@@ -36,9 +36,12 @@
     "work_income_deduction": "350.25",
     "irpef_net": "8496.06",
     "employer_withholds_irpef": true,
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "0",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ],

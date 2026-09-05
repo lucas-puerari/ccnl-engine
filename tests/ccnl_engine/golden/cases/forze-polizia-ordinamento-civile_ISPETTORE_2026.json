@@ -29,9 +29,12 @@
     "employer_cost_annual": "36514.12",
     "apprenticeship_pct": null,
     "apprenticeship_under_level_code": null,
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "23.56",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

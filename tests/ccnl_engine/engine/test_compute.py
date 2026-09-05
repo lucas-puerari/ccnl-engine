@@ -25,9 +25,17 @@ from ccnl_engine.engine.rounding import money
 from ccnl_engine.models.apprenticeship import ApprenticeshipPeriod
 from ccnl_engine.models.ccnl import CCNL, LevelCategory
 from ccnl_engine.models.employment import Apprentice, Employment, FixedTerm, Permanent
+from ccnl_engine.models.fiscal import FiscalSimplification
+from ccnl_engine.surtax.models import (
+    ComunaleEntry,
+    RegionaleEntry,
+    SurtaxBracket,
+    SurtaxRules,
+)
 from tests.conftest import make_ccnl_dict, make_domestic_year_rules, make_year_rules
 
 if TYPE_CHECKING:
+    from ccnl_engine.engine.payslip import Payslip
     from ccnl_engine.tax.models import YearRules
 
 _DATE = date(2026, 6, 1)
@@ -1000,3 +1008,149 @@ class TestComputeDomesticInps:
         r = compute(_DOMESTIC_CCNL, _DOMESTIC_RULES, _req_domestic())
 
         assert r.net_annual == r.gross_annual - r.inps_employee_annual - r.irpef_net
+
+
+# ---------------------------------------------------------------------------
+# Addizionale regionale e comunale
+# ---------------------------------------------------------------------------
+
+_FS = FiscalSimplification  # short alias for long assertion lines
+
+
+class TestComputeAddizionali:
+    """Tests for the addizionale regionale and comunale computation."""
+
+    def _surtax_rules(self) -> SurtaxRules:
+        """Build a minimal SurtaxRules with one region and one municipality.
+
+        Returns:
+            A SurtaxRules instance with TestRegione and X001 entries.
+        """
+        return SurtaxRules(
+            year=2026,
+            regionale={
+                "TestRegione": RegionaleEntry(
+                    brackets=[SurtaxBracket(up_to=None, rate=Decimal("0.0123"))]
+                )
+            },
+            comunale={
+                "X001": ComunaleEntry(
+                    brackets=[SurtaxBracket(up_to=None, rate=Decimal("0.008"))],
+                    soglia=Decimal(10000),
+                )
+            },
+        )
+
+    def _result(self, **scenario_kwargs: object) -> Payslip:
+        ccnl = CCNL.model_validate(make_ccnl_dict())
+        rules = make_year_rules()
+        scenario = Scenario(
+            level_code="4",
+            as_of=date(2026, 1, 1),
+            employment=Permanent(),
+            num_employees=10,
+            **scenario_kwargs,  # type: ignore[arg-type]
+        )
+        return compute(ccnl, rules, scenario, self._surtax_rules())
+
+    def test_without_surtax_parameter_both_zero(self) -> None:
+        """When surtax=None (default), both addizionali are zero."""
+        ccnl = CCNL.model_validate(make_ccnl_dict())
+        rules = make_year_rules()
+        r = compute(
+            ccnl,
+            rules,
+            Scenario(
+                level_code="4",
+                as_of=date(2026, 1, 1),
+                employment=Permanent(),
+                num_employees=10,
+            ),
+        )
+        assert r.addizionale_regionale_annual == Decimal("0.00")
+        assert r.addizionale_comunale_annual == Decimal("0.00")
+        assert _FS.NO_ADDIZIONALE_REGIONALE in r.fiscal_simplifications
+        assert _FS.NO_ADDIZIONALE_COMUNALE in r.fiscal_simplifications
+
+    def test_regione_only(self) -> None:
+        """With regione set, addizionale regionale > 0; comunale still zero."""
+        r = self._result(regione="TestRegione")
+        assert r.addizionale_regionale_annual > Decimal(0)
+        assert r.addizionale_comunale_annual == Decimal("0.00")
+        assert _FS.NO_ADDIZIONALE_REGIONALE not in r.fiscal_simplifications
+        assert _FS.NO_ADDIZIONALE_COMUNALE in r.fiscal_simplifications
+
+    def test_comune_only(self) -> None:
+        """With comune_belfiore set, addizionale comunale > 0; regionale still zero."""
+        r = self._result(comune_belfiore="X001")
+        assert r.addizionale_comunale_annual > Decimal(0)
+        assert r.addizionale_regionale_annual == Decimal("0.00")
+        assert _FS.NO_ADDIZIONALE_COMUNALE not in r.fiscal_simplifications
+        assert _FS.NO_ADDIZIONALE_REGIONALE in r.fiscal_simplifications
+
+    def test_both_set_both_computed(self) -> None:
+        """With both fields set, both surtaxes are computed and neither flag is set."""
+        r = self._result(regione="TestRegione", comune_belfiore="X001")
+        assert r.addizionale_regionale_annual > Decimal(0)
+        assert r.addizionale_comunale_annual > Decimal(0)
+        assert _FS.NO_ADDIZIONALE_REGIONALE not in r.fiscal_simplifications
+        assert _FS.NO_ADDIZIONALE_COMUNALE not in r.fiscal_simplifications
+
+    def test_both_reduce_net_annual(self) -> None:
+        """Net annual is reduced by the sum of both addizionali."""
+        r = self._result(regione="TestRegione", comune_belfiore="X001")
+        expected_net = (
+            r.gross_annual
+            - r.inps_employee_annual
+            - r.irpef_net
+            - r.addizionale_regionale_annual
+            - r.addizionale_comunale_annual
+            + r.trattamento_integrativo
+        )
+        assert r.net_annual == expected_net
+
+    def test_unknown_regione_produces_zero(self) -> None:
+        """Unknown region name → addizionale regionale is zero, no flag."""
+        r = self._result(regione="RegioneSconosciuta")
+        assert r.addizionale_regionale_annual == Decimal("0.00")
+        # No flag: the caller passed a region, we just didn't find it
+        assert _FS.NO_ADDIZIONALE_REGIONALE not in r.fiscal_simplifications
+
+    def test_unknown_comune_produces_zero(self) -> None:
+        """Unknown belfiore code → addizionale comunale zero, no flag."""
+        r = self._result(comune_belfiore="Z999")
+        assert r.addizionale_comunale_annual == Decimal("0.00")
+        assert _FS.NO_ADDIZIONALE_COMUNALE not in r.fiscal_simplifications
+
+    def test_soglia_exempts_low_income(self) -> None:
+        """Income below the soglia yields zero comunal surtax."""
+        # Build a scenario where taxable_income will be below the soglia
+        # Use negotiated_ral to control income
+        tiny_ral = Decimal(9000)  # well below X001's soglia of 10000
+
+        ccnl = CCNL.model_validate(make_ccnl_dict())
+        rules = make_year_rules()
+        surtax = SurtaxRules(
+            year=2026,
+            regionale={},
+            comunale={
+                "X001": ComunaleEntry(
+                    brackets=[SurtaxBracket(up_to=None, rate=Decimal("0.008"))],
+                    soglia=Decimal(10000),
+                )
+            },
+        )
+        r = compute(
+            ccnl,
+            rules,
+            Scenario(
+                level_code="4",
+                as_of=date(2026, 1, 1),
+                employment=Permanent(),
+                num_employees=10,
+                negotiated_ral=tiny_ral,
+                comune_belfiore="X001",
+            ),
+            surtax,
+        )
+        assert r.addizionale_comunale_annual == Decimal("0.00")

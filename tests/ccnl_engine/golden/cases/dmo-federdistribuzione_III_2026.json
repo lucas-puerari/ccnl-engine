@@ -5,8 +5,7 @@
     "Split salary: base=1453.94, contingenza=527.90, terzo_elemento_nazionale=2.07 → gross_monthly=1983.91.",
     "Additional months: 14 (tredicesima Art. 204 + quattordicesima Art. 205).",
     "INPS employer rate 28.98% (<=50 employees tier, 2026-terziario.json, Table 7.1).",
-    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025)."
   ],
   "inputs": {
     "ccnl_file": "dmo-federdistribuzione.json",
@@ -47,9 +46,12 @@
     "net_annual": "20156.41",
     "net_monthly": "1439.74",
     "employer_cost_annual": "37881.25",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "20.79",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

@@ -5,8 +5,7 @@
     "Split salary: base=1566.16, contingenza=522.32, EDR=10.33, IAR=85.41 → gross_monthly=2184.22.",
     "Additional months: 14 (tredicesima + quattordicesima, FLAI Veneto confermato).",
     "INPS employer rate 30.20% (16-50 employees tier, 2026-industria.json).",
-    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025)."
   ],
   "inputs": {
     "ccnl_file": "alimentari-federalimentare.json",
@@ -47,9 +46,12 @@
     "net_annual": "21929.33",
     "net_monthly": "1566.38",
     "employer_cost_annual": "42079.08",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "0",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

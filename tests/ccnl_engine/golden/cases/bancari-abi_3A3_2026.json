@@ -6,8 +6,7 @@
     "No 2024-credito.json tax file exists; only 2026-credito.json was created for this PR.",
     "Golden case uses 2026-03-01 (fourth tranche) to match available tax-year file.",
     "INPS rates: employee 9.19%, employer 26.76% flat (credito sector, proxy kitech.it).",
-    "Art. 13 TUIR deduction: piecewise-linear at gross_income=39773.37.",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+    "Art. 13 TUIR deduction: piecewise-linear at gross_income=39773.37."
   ],
   "inputs": {
     "ccnl_file": "bancari-abi.json",
@@ -48,9 +47,12 @@
     "net_annual": "27324.58",
     "net_monthly": "2101.89",
     "employer_cost_annual": "53362.90",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "0",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]
