@@ -2,14 +2,13 @@
 
 from __future__ import annotations
 
+import dataclasses
+import json
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from datetime import date as _date
+from decimal import Decimal
 
-if TYPE_CHECKING:
-    from datetime import date
-    from decimal import Decimal
-
-    from ccnl_engine.models.fiscal import FiscalSimplification
+from ccnl_engine.models.fiscal import FiscalSimplification
 
 
 @dataclass(frozen=True)
@@ -98,7 +97,7 @@ class Payslip:
     level_code: str
     employment_type: str
     part_time_pct: Decimal
-    as_of: date
+    as_of: _date
     year: int
 
     seniority_count: int
@@ -131,3 +130,77 @@ class Payslip:
     net_monthly: Decimal
 
     employer_cost_annual: Decimal
+
+    def to_dict(self) -> dict[str, object]:
+        """Serialise the payslip to a plain Python dictionary.
+
+        All ``Decimal`` amounts are converted to ``str`` to avoid floating-point
+        loss. ``date`` is serialised as an ISO-8601 string. ``frozenset`` fields
+        are converted to sorted lists of strings for deterministic output.
+
+        Returns:
+            A dictionary with only JSON-native types (``str``, ``int``, ``bool``,
+            ``list``, ``None``).
+        """
+        out: dict[str, object] = {}
+        for field in dataclasses.fields(self):
+            value = getattr(self, field.name)
+            if isinstance(value, Decimal):
+                out[field.name] = str(value)
+            elif isinstance(value, _date):
+                out[field.name] = value.isoformat()
+            elif isinstance(value, frozenset):
+                out[field.name] = sorted(str(v) for v in value)
+            else:
+                out[field.name] = value
+        return out
+
+    def to_json(self) -> str:
+        """Serialise the payslip to a JSON string.
+
+        Returns:
+            A compact JSON string. See :meth:`to_dict` for the encoding rules.
+        """
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_dict(cls, data: dict[str, object]) -> Payslip:
+        """Reconstruct a :class:`Payslip` from a dictionary produced by :meth:`to_dict`.
+
+        Args:
+            data: A dictionary as returned by :meth:`to_dict`.
+
+        Returns:
+            A new :class:`Payslip` with all fields restored to their original types.
+        """
+        field_types = {f.name: f.type for f in dataclasses.fields(cls)}
+        kwargs: dict[str, object] = {}
+        for field in dataclasses.fields(cls):
+            raw = data[field.name]
+            hint = field_types[field.name]
+            # Resolve the field type by name; TYPE_CHECKING-guarded hints are
+            # stored as strings when from __future__ import annotations is active.
+            if hint in {"Decimal", "Decimal | None"}:
+                kwargs[field.name] = Decimal(raw) if raw is not None else None  # type: ignore[arg-type]
+            elif hint in {"date", "_date"}:
+                kwargs[field.name] = _date.fromisoformat(raw)  # type: ignore[arg-type]
+            elif hint == "frozenset[FiscalSimplification]":
+                kwargs[field.name] = frozenset(
+                    FiscalSimplification(v)
+                    for v in raw  # type: ignore[attr-defined]
+                )
+            else:
+                kwargs[field.name] = raw
+        return cls(**kwargs)  # type: ignore[arg-type]
+
+    @classmethod
+    def from_json(cls, raw: str) -> Payslip:
+        """Reconstruct a :class:`Payslip` from a JSON string.
+
+        Args:
+            raw: A JSON string as returned by :meth:`to_json`.
+
+        Returns:
+            A new :class:`Payslip` with all fields restored to their original types.
+        """
+        return cls.from_dict(json.loads(raw))
