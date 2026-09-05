@@ -1262,6 +1262,7 @@ class TestLoadAlimentariFederalimentare:
                 level_code="3A",
                 as_of=date(2026, 1, 1),
                 employment=Apprentice(months_elapsed=5),
+                num_employees=50,
             ),
         )
         assert result.apprenticeship_under_level_code == "4"
@@ -2637,6 +2638,7 @@ class TestLoadBccCreditoCooperativo:
                 level_code="3AP1",
                 as_of=date(2026, 6, 1),
                 employment=Apprentice(months_elapsed=12),
+                num_employees=50,
             ),
         )
         # At 12 months, pay level is 2AP2 (under-classification)
