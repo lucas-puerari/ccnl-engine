@@ -28,6 +28,9 @@ git checkout main
 git pull
 ```
 
+If a queue is active (GOAL.md contains checkbox lines), mark the merged items
+`[x]` in GOAL.md now — match by contract id or name from the PR title.
+
 Only continue to Step 1 once `gh pr list --state open` returns no results and `main` is fully up to date.
 
 ---
