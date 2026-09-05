@@ -5746,3 +5746,69 @@ class TestLoadCedAssoced:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 0
+
+
+class TestLoadContoterzismoCaiagromec:
+    """Tests for CCNL Attivita Agromeccaniche A051 (contoterzismo-caiagromec)."""
+
+    def test_contoterzismo_caiagromec_loads(self) -> None:
+        """Contract loads with correct id and CNEL code A051."""
+        ccnl = load_ccnl("contoterzismo-caiagromec.json")
+        assert ccnl.meta.id == "contoterzismo-caiagromec"
+        assert ccnl.meta.cnel_code == "A051"
+
+    def test_contoterzismo_caiagromec_has_6_levels(self) -> None:
+        """Contract has 6 levels: 1, 2, 3, 4, 5, 6."""
+        ccnl = load_ccnl("contoterzismo-caiagromec.json")
+        assert len(ccnl.levels) == 6
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3", "4", "5", "6"}
+
+    def test_contoterzismo_caiagromec_level3_salary_jun2024(self) -> None:
+        """L3 paga base conglobata at 2024-06-01 first tranche is 1914.03."""
+        ccnl = load_ccnl("contoterzismo-caiagromec.json")
+        lv = ccnl.level_by_code("3")
+        assert lv.base_salary.value_at(date(2024, 6, 1)) == Decimal("1914.03")
+
+    def test_contoterzismo_caiagromec_level3_salary_jun2026(self) -> None:
+        """L3 paga base conglobata at 2026-06-01 third tranche is 2014.03."""
+        ccnl = load_ccnl("contoterzismo-caiagromec.json")
+        lv = ccnl.level_by_code("3")
+        assert lv.base_salary.value_at(date(2026, 6, 1)) == Decimal("2014.03")
+
+    def test_contoterzismo_caiagromec_level_ordering(self) -> None:
+        """Level 6 has lowest order (1); level 1 has highest order (6)."""
+        ccnl = load_ccnl("contoterzismo-caiagromec.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "6"
+        assert by_order[-1].code == "1"
+
+    def test_contoterzismo_caiagromec_additional_months(self) -> None:
+        """Contract has 14 mensilita (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("contoterzismo-caiagromec.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 6, 1))
+        assert val == Decimal(14)
+
+    def test_contoterzismo_caiagromec_hourly_divisor(self) -> None:
+        """Hourly divisor is 169 h/month (confirmed lavoro-economia.it)."""
+        ccnl = load_ccnl("contoterzismo-caiagromec.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 6, 1))
+        assert val == Decimal(169)
+
+    def test_contoterzismo_caiagromec_no_fixed_allowances(self) -> None:
+        """All levels have no fixed allowances (conglobated salary model)."""
+        ccnl = load_ccnl("contoterzismo-caiagromec.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_contoterzismo_caiagromec_tax_sector(self) -> None:
+        """Contract uses AGRICOLTURA tax sector."""
+        ccnl = load_ccnl("contoterzismo-caiagromec.json")
+        assert ccnl.meta.tax_sector == TaxSector.AGRICOLTURA
+
+    def test_contoterzismo_caiagromec_seniority_cadence(self) -> None:
+        """No periodic scatti: maximum_count=0 (only milestone premi exist)."""
+        ccnl = load_ccnl("contoterzismo-caiagromec.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 0
