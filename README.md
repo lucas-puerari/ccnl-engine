@@ -15,7 +15,7 @@ A Python library for modeling Italian collective labor agreements (CCNL) as stru
 Italian payroll is governed by collective agreements (CCNL) that define base salaries, seniority increments, and allowances as time-series values — they change at negotiated renewal dates. Existing tools either lock this data inside proprietary systems or require a full HRMS. This library treats each CCNL as a validated JSON file and the computation as a pure function:
 
 ```
-compute(ccnl, rules, Scenario(...)) → Payslip
+compute(ccnl, rules, scenario) → Payslip
 ```
 
 ## Quickstart
@@ -141,14 +141,56 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 
 The 62 contracts above cover approximately **14.5 million workers** (sum of per-CCNL estimates; some overlap is possible where sector boundaries are not mutually exclusive, so the unique-worker count is somewhat lower). Italy has roughly **16 million employees** covered by some collective agreement (ISTAT/CNEL 2024, public and private sectors combined). This library therefore reaches an estimated **~85–90% of CCNL-covered workers** on a gross-headcount basis.
 
+## Advanced usage
+
+### Second-level bargaining (territorial and company agreements)
+
+Supplements from territorial or company agreements (contrattazione di secondo livello) can be added at runtime via `Scenario.second_level_allowances`. Pass a tuple of `SupplementaryAllowance` objects, each with a plain monthly amount and relevance flags:
+
+```python
+from ccnl_engine import SupplementaryAllowance
+
+scenario = Scenario(
+    ...,
+    second_level_allowances=(
+        # Territorial supplement paid every month, included in INPS and TFR bases.
+        SupplementaryAllowance(
+            code="ERT",
+            description="Elemento Retributivo Territoriale Veneto",
+            monthly=Decimal("150.00"),
+        ),
+        # Result bonus paid once a year, not TFR-relevant.
+        SupplementaryAllowance(
+            code="PDR",
+            description="Premio di risultato aziendale",
+            monthly=Decimal("500.00"),
+            months_per_year=1,
+            tfr_relevant=False,
+        ),
+    ),
+)
+payslip = compute(ccnl, rules, scenario)
+print(payslip.second_level_monthly)  # scaled aggregate, already in gross_monthly
+```
+
+Each item is scaled by `part_time_pct`. The `apprenticeship_pct_relevant` flag controls whether the apprenticeship percentage also applies (default `True`). `second_level_allowances` is mutually exclusive with `negotiated_ral` / `negotiated_destination_ral`. The preferential 5% substitute tax on *premio di risultato* (Art. 1 c. 182 L. 208/2015) is not yet modelled.
+
+### IVS contributory ceiling split (Art. 1 L. 335/1995)
+
+Workers enrolled in INPS on or after 1 January 1996 are subject to the *massimale annuo della base contributiva* (EUR 122,295 for 2026). Above this ceiling, only non-IVS contributions (NASpI, CUAF, CIG) continue:
+
+```python
+scenario = Scenario(..., ivs_ceiling_applies=True)
+```
+
+When `True` and the relevant tax file carries a `ceiling` value, the engine applies INPS contributions in two parts: the IVS rate on `min(gross_annual, ceiling)` and the remaining rate on the full base. Defaults to `False` (no ceiling) for backward compatibility.
+
 ## What is not modelled
 
-- Addizionali regionali and addizionali comunali
 - Detrazioni per carichi di famiglia (Art. 12 TUIR)
-- IVS contributory ceiling split (Art. 1 L. 335/1995)
-- Second-level bargaining (territorial and company agreements)
 - Bilateral system contributions (EST, Fon.Te, …)
 - Overtime, night/holiday premiums, leave accruals, sick-pay integrations
+- Preferential 5% tax on *premio di risultato* (Art. 1 c. 182 L. 208/2015)
 
 See [API docs](https://lucas-puerari.github.io/ccnl-engine/docs/) for full detail.
 

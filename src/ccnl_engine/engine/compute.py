@@ -25,6 +25,7 @@ if TYPE_CHECKING:
         Level,
         LevelCategory,
         SeniorityIncrements,
+        SupplementaryAllowance,
     )
     from ccnl_engine.models.employment import Employment
     from ccnl_engine.surtax.models import SurtaxRules
@@ -149,6 +150,18 @@ class Scenario:
             ``None`` or when no :class:`~ccnl_engine.surtax.models.SurtaxRules`
             is passed to :func:`compute`, the surtax is zero and
             ``FiscalSimplification.NO_ADDIZIONALE_COMUNALE`` is set.
+        second_level_allowances: Allowances from a territorial or company
+            second-level agreement (contrattazione di secondo livello).  Each
+            item is a :class:`~ccnl_engine.models.ccnl.SupplementaryAllowance`
+            carrying a plain monthly amount, relevance flags, and an optional
+            ``months_per_year`` override.  Every item is scaled by
+            ``part_time_pct``; whether the apprenticeship percentage also
+            applies is controlled per-item by ``apprenticeship_pct_relevant``.
+            Mutually exclusive with ``negotiated_ral`` and
+            ``negotiated_destination_ral``: those fields already express the
+            full agreed salary and adding second-level items on top would
+            double-count.  Contrast with ``ad_personam_monthly``, which is an
+            *individual* frozen supplement not scaled by ``part_time_pct``.
     """
 
     level_code: str
@@ -167,15 +180,30 @@ class Scenario:
     weekly_hours: Decimal | None = None
     regione: str | None = None
     comune_belfiore: str | None = None
+    second_level_allowances: tuple[SupplementaryAllowance, ...] = ()
 
     def __post_init__(self) -> None:
-        """Validate num_employees is at least 1.
+        """Validate num_employees and second_level_allowances constraints.
 
         Raises:
-            ValueError: If num_employees is less than 1.
+            ValueError: If num_employees is less than 1, or if
+                second_level_allowances is non-empty while negotiated_ral or
+                negotiated_destination_ral is set (the negotiated figure already
+                represents the full agreed salary; adding second-level items on
+                top would double-count them).
         """
         if self.num_employees < 1:
             msg = f"num_employees must be >= 1, got {self.num_employees}"
+            raise ValueError(msg)
+        if self.second_level_allowances and (
+            self.negotiated_ral is not None
+            or self.negotiated_destination_ral is not None
+        ):
+            msg = (
+                "second_level_allowances cannot be combined with negotiated_ral "
+                "or negotiated_destination_ral: the negotiated figure already "
+                "represents the full agreed salary"
+            )
             raise ValueError(msg)
 
 
@@ -263,10 +291,18 @@ def compute(
         else chain_ft.scaled(factor)
     )
     ad_personam = money(scenario.ad_personam_monthly)
-    gross_monthly = money(
-        chain.base + chain.seniority + chain.allowances_total + ad_personam
+    sl_scaled, second_level_monthly_total = _scale_second_level(
+        scenario.second_level_allowances, scenario.part_time_pct, apprenticeship_pct
     )
-    annual = _annualise(chain, ad_personam, additional_months)
+
+    gross_monthly = money(
+        chain.base
+        + chain.seniority
+        + chain.allowances_total
+        + ad_personam
+        + second_level_monthly_total
+    )
+    annual = _annualise(chain, ad_personam, additional_months, sl_scaled)
     gross_annual = annual.gross
 
     gross_annual, gross_monthly = _override_gross(
@@ -347,6 +383,7 @@ def compute(
         seniority_monthly=chain.seniority,
         allowances_monthly=chain.allowances_total,
         ad_personam_monthly=ad_personam,
+        second_level_monthly=second_level_monthly_total,
         gross_monthly=gross_monthly,
         gross_annual=gross_annual,
         hourly_rate=money(gross_monthly / hourly_divisor),
@@ -574,9 +611,48 @@ def _find_period_index(periods: Sequence[_MonthPeriod], months_elapsed: int) -> 
     raise ValueError(msg)
 
 
+def _scale_second_level(
+    allowances: Sequence[SupplementaryAllowance],
+    part_time_pct: Decimal,
+    apprenticeship_pct: Decimal | None,
+) -> tuple[list[tuple[Decimal, SupplementaryAllowance]], Decimal]:
+    """Scale second-level allowances by part_time_pct and optionally apprenticeship_pct.
+
+    Each item is multiplied by ``part_time_pct``; the apprenticeship percentage
+    is applied on top only when ``apprenticeship_pct`` is not ``None`` and the
+    item's ``apprenticeship_pct_relevant`` flag is ``True``.
+
+    Returns:
+        A tuple of (scaled pairs, monthly total) where scaled pairs are
+        (scaled_monthly, allowance) items and monthly total is their rounded sum.
+    """
+    result: list[tuple[Decimal, SupplementaryAllowance]] = []
+    total = _ZERO
+    for sl in allowances:
+        scaled = money(sl.monthly * part_time_pct)
+        if apprenticeship_pct is not None and sl.apprenticeship_pct_relevant:
+            scaled = money(scaled * apprenticeship_pct)
+        result.append((scaled, sl))
+        total += scaled
+    return result, money(total)
+
+
 def _annualise(
-    chain: _MonthlyPayChain, ad_personam: Decimal, additional_months: Decimal
+    chain: _MonthlyPayChain,
+    ad_personam: Decimal,
+    additional_months: Decimal,
+    second_level: Sequence[tuple[Decimal, SupplementaryAllowance]] = (),
 ) -> _AnnualisedPay:
+    """Annualise the monthly pay chain into gross and exclusion amounts.
+
+    ``second_level`` carries already-scaled monthly amounts paired with their
+    :class:`~ccnl_engine.models.ccnl.SupplementaryAllowance` descriptors so
+    that ``months_per_year``, ``contribution_relevant``, and ``tfr_relevant``
+    can be honoured just like CCNL-level allowances.
+
+    Returns:
+        An :class:`_AnnualisedPay` with rounded gross and exclusion totals.
+    """
     gross = (chain.base + chain.seniority + ad_personam) * additional_months
     excluded_contrib = _ZERO
     excluded_tfr = _ZERO
@@ -591,6 +667,18 @@ def _annualise(
         if not allowance.contribution_relevant:
             excluded_contrib += annual
         if not allowance.tfr_relevant:
+            excluded_tfr += annual
+    for scaled_monthly, sl in second_level:
+        months = (
+            Decimal(sl.months_per_year)
+            if sl.months_per_year is not None
+            else additional_months
+        )
+        annual = scaled_monthly * months
+        gross += annual
+        if not sl.contribution_relevant:
+            excluded_contrib += annual
+        if not sl.tfr_relevant:
             excluded_tfr += annual
     return _AnnualisedPay(
         gross=money(gross),
