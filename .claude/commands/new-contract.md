@@ -341,14 +341,16 @@ Do not proceed to Step 10 until the advisor has confirmed the implementation is 
 
 ## Step 10 — Commit and PR
 
-Commit format and PR rules are in `CLAUDE.md`. For this command specifically:
-
-**Commit message**:
+**Commit** (single line, max 100 chars, no trailers):
 ```
 feat({id}): add CCNL {Name} ({CNEL code}) payroll engine
 ```
 
-**PR body** — four sections:
+**Open the PR using `/open-pr`** — do not run `gh pr create` manually.
+`/open-pr` enforces the branch-name pattern, checks for uncommitted changes,
+and builds the body from the diff automatically.
+
+The PR body must contain these four sections (filled with real content):
 
 ```
 ## What
@@ -365,6 +367,9 @@ new TaxSector if any; key SIMPLIFICATIONs and their scope]
 ## Verification
 [N tests passed, 100% branch coverage, ruff clean, mypy strict]
 ```
+
+After the PR is merged, mark the item `[x]` in GOAL.md (if a queue is active)
+and proceed to the next iteration.
 
 ---
 
