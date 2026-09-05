@@ -5444,3 +5444,97 @@ class TestLoadAssicurazioniAnia:
         assert si.maximum_count == 11
         assert si.first_cadence_months == 48
         assert si.maximum_count_by_level.get("L7") == 7
+
+
+class TestLoadEnergiaPetrolioConfindustria:
+    """CCNL Energia e Petrolio (Confindustria Energia) — B254."""
+
+    def test_energia_petrolio_confindustria_loads(self) -> None:
+        """Contract loads with correct id and CNEL code B254."""
+        ccnl = load_ccnl("energia-petrolio-confindustria.json")
+        assert ccnl.meta.id == "energia-petrolio-confindustria"
+        assert ccnl.meta.cnel_code == "B254"
+
+    def test_energia_petrolio_confindustria_has_23_levels(self) -> None:
+        """Contract has 23 levels across 6 groups.
+
+        Groups: 6-0, 5-0..5-4, 4-1..4-4, 3-1..3-4, 2-1..2-4, 1-1..1-5.
+        """
+        ccnl = load_ccnl("energia-petrolio-confindustria.json")
+        assert len(ccnl.levels) == 23
+        expected = {
+            "6-0",
+            "5-0",
+            "5-1",
+            "5-2",
+            "5-3",
+            "5-4",
+            "4-1",
+            "4-2",
+            "4-3",
+            "4-4",
+            "3-1",
+            "3-2",
+            "3-3",
+            "3-4",
+            "2-1",
+            "2-2",
+            "2-3",
+            "2-4",
+            "1-1",
+            "1-2",
+            "1-3",
+            "1-4",
+            "1-5",
+        }
+        assert {lv.code for lv in ccnl.levels} == expected
+
+    def test_energia_petrolio_confindustria_level_4_2_salary_2025(self) -> None:
+        """Group 4/2 paga_base at 2025-07-01 first modelled tranche."""
+        ccnl = load_ccnl("energia-petrolio-confindustria.json")
+        lv = ccnl.level_by_code("4-2")
+        assert lv.base_salary.value_at(date(2025, 7, 1)) == Decimal("2546.61")
+
+    def test_energia_petrolio_confindustria_level_4_2_salary_2026(self) -> None:
+        """Group 4/2 paga_base at 2026-07-01 fourth tranche."""
+        ccnl = load_ccnl("energia-petrolio-confindustria.json")
+        lv = ccnl.level_by_code("4-2")
+        assert lv.base_salary.value_at(date(2026, 7, 1)) == Decimal("2651.61")
+
+    def test_energia_petrolio_confindustria_level_ordering(self) -> None:
+        """6-0 is the lowest order; 1-5 is the highest order."""
+        ccnl = load_ccnl("energia-petrolio-confindustria.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "6-0"
+        assert by_order[-1].code == "1-5"
+
+    def test_energia_petrolio_confindustria_additional_months(self) -> None:
+        """Contract has 14 mensilità (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("energia-petrolio-confindustria.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 7, 1))
+        assert val == Decimal(14)
+
+    def test_energia_petrolio_confindustria_hourly_divisor(self) -> None:
+        """Hourly divisor is 174.5 h/month (CCNL, two independent sources)."""
+        ccnl = load_ccnl("energia-petrolio-confindustria.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 7, 1))
+        assert val == Decimal("174.5")
+
+    def test_energia_petrolio_confindustria_fixed_allowances_present(self) -> None:
+        """All levels have at least one fixed allowance (EDR_IPCA)."""
+        ccnl = load_ccnl("energia-petrolio-confindustria.json")
+        for lv in ccnl.levels:
+            codes = {a.code for a in lv.fixed_allowances}
+            assert "EDR_IPCA" in codes, lv.code
+
+    def test_energia_petrolio_confindustria_tax_sector(self) -> None:
+        """Contract uses INDUSTRIA tax sector."""
+        ccnl = load_ccnl("energia-petrolio-confindustria.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_energia_petrolio_confindustria_seniority_cadence(self) -> None:
+        """Seniority abolished 2016: maximum_count=0, cadence=24 months."""
+        ccnl = load_ccnl("energia-petrolio-confindustria.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 0

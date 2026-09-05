@@ -125,6 +125,7 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 | 61 | G029 | Comunicazione, Informatica e Servizi Innovativi PMI — Unimatica-Confapi (Settore Informatico) | Industria | ~20k | ✅ | ✅ | 🤖 |
 | 62 | T241 | Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE | Terziario | ~50k | ✅ | ⚠️ | 🤖 |
 | 63 | J121 | Assicurazioni — ANIA | Credito | ~45k | ✅ | ⚠️ | 🤖 |
+| 64 | B254 | Energia e Petrolio — Confindustria Energia | Industria | ~38k | ✅ | ✅ | 🤖 |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 

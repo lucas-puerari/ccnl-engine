@@ -1,0 +1,1859 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "energia-petrolio-confindustria",
+    "name": "CCNL Energia e Petrolio (Confindustria Energia)",
+    "cnel_code": "B254",
+    "sector": "energia",
+    "tax_sector": "industria",
+    "signatories": [
+      "Confindustria Energia",
+      "Filctem-CGIL",
+      "Femca-CISL",
+      "Uiltec-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
+        "type": "table",
+        "agreement_date": "2025-04-16"
+      },
+      {
+        "url": "https://www.previdenza-professionisti.it/diritto-del-lavoro/ccnl-energia-e-petrolio---scheda.html",
+        "type": "text",
+        "agreement_date": "2025-04-16"
+      },
+      {
+        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=B254",
+        "type": "table",
+        "agreement_date": "2026-07-01"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: split. base_salary = paga_base (minimi tabellari) only. fixed_allowances per level include: (1) EDR_IPCA — Elemento Distinto della Retribuzione, group-specific TimeSeries from Jul 2025; (2) INDENNITA_FUNZIONE — level-specific function allowance (constant for groups 2-6, TimeSeries Jul 2025=190/Jan 2027=200 for group 1 quadri); (3) CREA — level-specific, constant, group 1 only. Total paga tabellare = base_salary + INDENNITA_FUNZIONE + CREA; verified against kitech at Jul 2026 (exact match 23/23 levels)."
+      },
+      {
+        "kind": "info",
+        "text": "MODELLED TRANCHES: 2025-07-01 (first tranche, new CCNL 2025-2027), 2025-12-01 (second), 2026-01-01 (third), 2026-07-01 (fourth), 2027-07-01 (fifth and final). Jan-Jun 2025 retroactive tranche (ipotesi signed 2025-04-16) not modelled — belongs to the transition period of the previous CCNL."
+      },
+      {
+        "kind": "info",
+        "text": "EDR IPCA: introduced 2025-03-01 (pre-modelled). First modelled period from 2025-07-01 at increased amounts: G1=60.71, G2=54.98, G3=49.79, G4=44.00, G5=38.59, G6=33.57. Second period from 2026-01-01: G1=70.37, G2=63.73, G3=57.71, G4=51.00, G5=44.73, G6=38.91. Open-ended (no further increase published). Source: redigo.info."
+      },
+      {
+        "kind": "info",
+        "text": "FUNCTION ALLOWANCE GROUP 1 (indennità di funzione quadri): 190 EUR/month for all 14 mensilità, valid 2025-07-01 to 2026-12-31; increases to 200 EUR from 2027-01-01. Source: contratticcnl.it (CCNL 2025-2027). Constant for groups 2-5; absent for group 6."
+      },
+      {
+        "kind": "info",
+        "text": "CREA (Compenso per Risultato ed Eccellenza Aziendale): only for group 1 (quadri). Amounts from kitech Jul 2026 back-calculation: 1-1=90.65, 1-2=181.31, 1-3=271.96, 1-4=362.61, 1-5=453.26. Constant throughout the contract (no source indicates time variation)."
+      },
+      {
+        "kind": "info",
+        "text": "CATEGORY: group 1 levels (1-1 through 1-5) are Quadri under L. 190/1985. Groups 2-6 are impiegati/operai; category omitted as the CCNL does not publish a clean impiegato/operaio split by level."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY INCREMENTS: abolished from 2016-01-01 by the 2016 CCNL renewal. Amounts accrued up to 2015 are crystallised as a personal supplement. Modelled as maximum_count=0, amount_by_level={}, cadence_months=24 (historical biennial cadence)."
+      },
+      {
+        "kind": "simplification",
+        "text": "HOURLY DIVISOR: 174.5 h/month. Source: previdenza-professionisti.it and lavoro-economia.it. The CCNL states EDR is 'omnicomprensivo' with no impact on other contractual institutes including the hourly calculation. The engine applies hourly_rate = gross_monthly / 174.5, where gross_monthly includes EDR. This overstates hourly_rate by EDR/174.5 (~0.29/h at group 4). Engine limitation: no per-allowance hourly_relevant flag exists."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 14 (tredicesima December + quattordicesima June). Source: previdenza-professionisti.it."
+      },
+      {
+        "kind": "info",
+        "text": "INPS: uses 2026-industria.json (standard industry sector). CNEL code: B254."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP: percentage type, 3 tracks (livelli_2_3, livello_4, livello_5). Source: previdenza-professionisti.it (2025-04-16 CCNL). Livelli 2-3 max 24 months (90% for first 12m, 95% thereafter). Livello 4 max 36 months (90% for first 12m, 95% thereafter). Livello 5 max 36 months (80% for first 12m, 90% thereafter). Reference retribution per CCNL Art.: 'il minimo del livello di inquadramento e del relativo CREA'."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP LEVEL 6: percentages not found in any consulted source (previdenza-professionisti.it lists only tracks for levels 2-3, 4, 5). Level 6-0 omitted from apprenticeship tracks."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP REFERENCE BASE: per CCNL, reference is 'minimo tabellare e relativo CREA'. Modelled correctly: INDENNITA_FUNZIONE and INDENNITA_FUNZIONE_QUADRI set apprenticeship_pct_relevant=false (paid at full value, not reduced); EDR set apprenticeship_pct_relevant=false (omnicomprensivo, no impact on other institutes); CREA set apprenticeship_pct_relevant=true (explicitly in CCNL base for group 1)."
+      },
+      {
+        "kind": "simplification",
+        "text": "FUNCTION ALLOWANCE GROUPS 2-5: amounts assumed constant throughout the 2025-2027 CCNL (no published CCNL text or source indicates a change). Values derived from kitech Jul 2026 back-calculation; a second date was not available for verification."
+      },
+      {
+        "kind": "simplification",
+        "text": "CREA CONSTANCY: CREA amounts assumed constant throughout 2025-2027 (no source indicates time variation). Values from kitech Jul 2026 only."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-07-01",
+          "valid_until": null,
+          "value": "174.5"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-07-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 0,
+      "amount_by_level": {}
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "livelli_2_3",
+      "destination_levels": [
+        "2-1",
+        "2-2",
+        "2-3",
+        "2-4",
+        "3-1",
+        "3-2",
+        "3-3",
+        "3-4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "percentage": "0.95"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "livello_4",
+      "destination_levels": [
+        "4-1",
+        "4-2",
+        "4-3",
+        "4-4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "percentage": "0.95"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "livello_5",
+      "destination_levels": [
+        "5-0",
+        "5-1",
+        "5-2",
+        "5-3",
+        "5-4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "percentage": "0.90"
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "6-0",
+      "order": 1,
+      "description": "Gruppo 6/0 — entry-level workers, basic routine operations",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "1942.80"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "1965.69"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "1980.95"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2022.90"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "2072.49"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 6",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "33.57"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "38.91"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "5-0",
+      "order": 2,
+      "description": "Gruppo 5/0 — standard workers, base position (no function allowance)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2233.24"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "2259.54"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2277.08"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2325.31"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "2382.32"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 5",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "38.59"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "44.73"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "5-1",
+      "order": 3,
+      "description": "Gruppo 5/1 — standard workers, first function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2233.24"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "2259.54"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2277.08"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2325.31"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "2382.32"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 5",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "38.59"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "44.73"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 5/1",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "45.33"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "5-2",
+      "order": 4,
+      "description": "Gruppo 5/2 — standard workers, second function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2233.24"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "2259.54"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2277.08"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2325.31"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "2382.32"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 5",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "38.59"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "44.73"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 5/2",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "90.66"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "5-3",
+      "order": 5,
+      "description": "Gruppo 5/3 — standard workers, third function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2233.24"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "2259.54"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2277.08"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2325.31"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "2382.32"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 5",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "38.59"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "44.73"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 5/3",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "136.00"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "5-4",
+      "order": 6,
+      "description": "Gruppo 5/4 — standard workers, fourth function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2233.24"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "2259.54"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2277.08"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2325.31"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "2382.32"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 5",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "38.59"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "44.73"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 5/4",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "181.33"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "4-1",
+      "order": 7,
+      "description": "Gruppo 4/1 — skilled workers, first function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2546.61"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "2576.61"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2596.61"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2651.61"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "2716.61"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 4",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "44.00"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "51.00"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 4/1",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "53.39"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "4-2",
+      "order": 8,
+      "description": "Gruppo 4/2 — skilled workers, second function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2546.61"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "2576.61"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2596.61"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2651.61"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "2716.61"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 4",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "44.00"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "51.00"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 4/2",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "106.79"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "4-3",
+      "order": 9,
+      "description": "Gruppo 4/3 — skilled workers, third function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2546.61"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "2576.61"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2596.61"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2651.61"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "2716.61"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 4",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "44.00"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "51.00"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 4/3",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "160.18"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "4-4",
+      "order": 10,
+      "description": "Gruppo 4/4 — skilled workers, fourth function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2546.61"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "2576.61"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2596.61"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2651.61"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "2716.61"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 4",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "44.00"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "51.00"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 4/4",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "213.57"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "3-1",
+      "order": 11,
+      "description": "Gruppo 3/1 — senior workers, first function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2881.73"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "2915.68"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2938.31"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3000.55"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "3074.11"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 3",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "49.79"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "57.71"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 3/1",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "60.93"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "3-2",
+      "order": 12,
+      "description": "Gruppo 3/2 — senior workers, second function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2881.73"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "2915.68"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2938.31"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3000.55"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "3074.11"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 3",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "49.79"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "57.71"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 3/2",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "121.86"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "3-3",
+      "order": 13,
+      "description": "Gruppo 3/3 — senior workers, third function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2881.73"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "2915.68"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2938.31"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3000.55"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "3074.11"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 3",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "49.79"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "57.71"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 3/3",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "182.79"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "3-4",
+      "order": 14,
+      "description": "Gruppo 3/4 — senior workers, fourth function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "2881.73"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "2915.68"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2938.31"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3000.55"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "3074.11"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 3",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "49.79"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "57.71"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 3/4",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "243.72"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "2-1",
+      "order": 15,
+      "description": "Gruppo 2/1 — specialist workers, first function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "3182.05"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "3219.54"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "3244.53"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3313.25"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "3394.47"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 2",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "54.98"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "63.73"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 2/1",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "67.99"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "2-2",
+      "order": 16,
+      "description": "Gruppo 2/2 — specialist workers, second function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "3182.05"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "3219.54"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "3244.53"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3313.25"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "3394.47"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 2",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "54.98"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "63.73"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 2/2",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "135.98"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "2-3",
+      "order": 17,
+      "description": "Gruppo 2/3 — specialist workers, third function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "3182.05"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "3219.54"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "3244.53"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3313.25"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "3394.47"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 2",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "54.98"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "63.73"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 2/3",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "203.98"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "2-4",
+      "order": 18,
+      "description": "Gruppo 2/4 — specialist workers, fourth function allowance tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "3182.05"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "3219.54"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "3244.53"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3313.25"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "3394.47"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 2",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "54.98"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "63.73"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennità di funzione — Gruppo 2/4",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "271.97"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        }
+      ]
+    },
+    {
+      "code": "1-1",
+      "order": 19,
+      "category": "quadro",
+      "description": "Quadro Gruppo 1/1 — manager, first CREA tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "3513.55"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "3554.94"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "3582.54"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3658.42"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "3748.10"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 1",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "60.71"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "70.37"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE_QUADRI",
+          "description": "Indennità di funzione quadri (L. 190/1985) — Gruppo 1",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2027-01-01",
+                "value": "190.00"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "200.00"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "CREA",
+          "description": "Compenso per Risultato ed Eccellenza Aziendale — Gruppo 1/1",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "90.65"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "1-2",
+      "order": 20,
+      "category": "quadro",
+      "description": "Quadro Gruppo 1/2 — manager, second CREA tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "3513.55"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "3554.94"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "3582.54"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3658.42"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "3748.10"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 1",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "60.71"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "70.37"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE_QUADRI",
+          "description": "Indennità di funzione quadri (L. 190/1985) — Gruppo 1",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2027-01-01",
+                "value": "190.00"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "200.00"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "CREA",
+          "description": "Compenso per Risultato ed Eccellenza Aziendale — Gruppo 1/2",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "181.31"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "1-3",
+      "order": 21,
+      "category": "quadro",
+      "description": "Quadro Gruppo 1/3 — manager, third CREA tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "3513.55"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "3554.94"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "3582.54"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3658.42"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "3748.10"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 1",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "60.71"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "70.37"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE_QUADRI",
+          "description": "Indennità di funzione quadri (L. 190/1985) — Gruppo 1",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2027-01-01",
+                "value": "190.00"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "200.00"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "CREA",
+          "description": "Compenso per Risultato ed Eccellenza Aziendale — Gruppo 1/3",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "271.96"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "1-4",
+      "order": 22,
+      "category": "quadro",
+      "description": "Quadro Gruppo 1/4 — manager, fourth CREA tier",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "3513.55"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "3554.94"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "3582.54"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3658.42"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "3748.10"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 1",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "60.71"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "70.37"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE_QUADRI",
+          "description": "Indennità di funzione quadri (L. 190/1985) — Gruppo 1",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2027-01-01",
+                "value": "190.00"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "200.00"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "CREA",
+          "description": "Compenso per Risultato ed Eccellenza Aziendale — Gruppo 1/4",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "362.61"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "1-5",
+      "order": 23,
+      "category": "quadro",
+      "description": "Quadro Gruppo 1/5 — manager, fifth CREA tier (highest)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2025-12-01",
+            "value": "3513.55"
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-01-01",
+            "value": "3554.94"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "3582.54"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "3658.42"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": null,
+            "value": "3748.10"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "EDR_IPCA",
+          "description": "Elemento Distinto della Retribuzione IPCA — Gruppo 1",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "60.71"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "70.37"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "INDENNITA_FUNZIONE_QUADRI",
+          "description": "Indennità di funzione quadri (L. 190/1985) — Gruppo 1",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2027-01-01",
+                "value": "190.00"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "200.00"
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": false
+        },
+        {
+          "code": "CREA",
+          "description": "Compenso per Risultato ed Eccellenza Aziendale — Gruppo 1/5",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "453.26"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
