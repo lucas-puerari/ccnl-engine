@@ -124,6 +124,7 @@ print(result.employer_cost_annual)  # → Decimal('...')
 | 60 | Forze di Polizia ad ordinamento civile 2022-2024 — DPR 53/2025 (Polizia di Stato, Polizia Penitenziaria) | Pubblica Amministrazione | ~130k | ✅ | ✅ | 🤖 |
 | 61 | Comunicazione, Informatica e Servizi Innovativi PMI — Unimatica-Confapi (Settore Informatico) | Industria | ~20k | ✅ | ✅ | 🤖 |
 | 62 | Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE | Terziario | ~50k | ✅ | ⚠️ | 🤖 |
+| 63 | Assicurazioni — ANIA | Credito | ~45k | ✅ | ⚠️ | 🤖 |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 

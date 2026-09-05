@@ -5372,3 +5372,73 @@ class TestLoadScuolePrivateAgidae:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 1
         assert si.maximum_count == 0
+
+
+class TestLoadAssicurazioniAnia:
+    """Tests for assicurazioni-ania (CCNL J121 ANIA, Rinnovo 13/05/2026)."""
+
+    def test_assicurazioni_ania_loads(self) -> None:
+        """Contract id and CNEL code are correct (J121)."""
+        ccnl = load_ccnl("assicurazioni-ania.json")
+        assert ccnl.meta.id == "assicurazioni-ania"
+        assert ccnl.meta.cnel_code == "J121"
+
+    def test_assicurazioni_ania_has_7_levels(self) -> None:
+        """Contract has 7 levels: L1 through L7."""
+        ccnl = load_ccnl("assicurazioni-ania.json")
+        assert len(ccnl.levels) == 7
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"L1", "L2", "L3", "L4", "L5", "L6", "L7"}
+
+    def test_assicurazioni_ania_level_l4_salary_2026(self) -> None:
+        """L4 base salary at 01/01/2026 first tranche (Allegato 2/B)."""
+        ccnl = load_ccnl("assicurazioni-ania.json")
+        lv = ccnl.level_by_code("L4")
+        val = lv.base_salary.value_at(date(2026, 1, 1))
+        assert val == Decimal("2170.82")
+
+    def test_assicurazioni_ania_level_l4_salary_2027(self) -> None:
+        """L4 base salary at 01/01/2027 second tranche (Allegato 2/B)."""
+        ccnl = load_ccnl("assicurazioni-ania.json")
+        lv = ccnl.level_by_code("L4")
+        val = lv.base_salary.value_at(date(2027, 1, 1))
+        assert val == Decimal("2256.28")
+
+    def test_assicurazioni_ania_level_ordering(self) -> None:
+        """L1 is lowest order; L7 is highest order."""
+        ccnl = load_ccnl("assicurazioni-ania.json")
+        by_order = sorted(ccnl.levels, key=lambda lev: lev.order)
+        assert by_order[0].code == "L1"
+        assert by_order[-1].code == "L7"
+
+    def test_assicurazioni_ania_additional_months(self) -> None:
+        """Contract has 14 mensilità (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("assicurazioni-ania.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_assicurazioni_ania_hourly_divisor(self) -> None:
+        """Hourly divisor is 160 (37h/week, Art. orario CCNL ANIA)."""
+        ccnl = load_ccnl("assicurazioni-ania.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal(160)
+
+    def test_assicurazioni_ania_no_fixed_allowances(self) -> None:
+        """All 7 levels have no fixed allowances (tabella omnicomprensiva)."""
+        ccnl = load_ccnl("assicurazioni-ania.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == [], lv.code
+
+    def test_assicurazioni_ania_tax_sector(self) -> None:
+        """Contract uses CREDITO tax sector (Credito e Assicurazioni)."""
+        ccnl = load_ccnl("assicurazioni-ania.json")
+        assert ccnl.meta.tax_sector == TaxSector.CREDITO
+
+    def test_assicurazioni_ania_seniority_cadence(self) -> None:
+        """Seniority: 48-month first class then 36-month; 11 max advances."""
+        ccnl = load_ccnl("assicurazioni-ania.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 11
+        assert si.first_cadence_months == 48
+        assert si.maximum_count_by_level.get("L7") == 7
