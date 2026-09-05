@@ -1,8 +1,16 @@
 #!/bin/bash
 # goal-stop-hook.sh — project-local Stop hook for git-history-based goal tracking.
-# Goal is reached when git log contains at least (baseline + target) feat CCNL commits.
+# Goal is reached when (baseline + target) contract JSON files exist.
 
 set -euo pipefail
+
+# Read stdin — hooks receive a JSON object with session context.
+# Exit immediately if this is a subagent stop (not the interactive session).
+INPUT=$(cat)
+HOOK_EVENT=$(echo "$INPUT" | jq -r '.hook_event_name // "Stop"' 2>/dev/null || echo "Stop")
+if [[ "$HOOK_EVENT" != "Stop" ]]; then
+  exit 0
+fi
 
 GOAL_FILE=".claude/GOAL.md"
 
