@@ -5804,11 +5804,22 @@ class TestLoadContoterzismoCaiagromec:
         val = ccnl.parameters.hourly_divisor.value_at(date(2026, 6, 1))
         assert val == Decimal(169)
 
-    def test_contoterzismo_caiagromec_no_fixed_allowances(self) -> None:
-        """All levels have no fixed allowances (conglobated salary model)."""
+    def test_contoterzismo_caiagromec_premi_continuita(self) -> None:
+        """All levels carry 3 premi di continuita with service thresholds."""
         ccnl = load_ccnl("contoterzismo-caiagromec.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            codes = {a.code for a in lv.fixed_allowances}
+            assert codes == {
+                "PREMIO_CONTINUITA_5YR",
+                "PREMIO_CONTINUITA_10YR",
+                "PREMIO_CONTINUITA_15YR",
+            }
+            thresholds = {
+                a.code: a.service_months_threshold for a in lv.fixed_allowances
+            }
+            assert thresholds["PREMIO_CONTINUITA_5YR"] == 60
+            assert thresholds["PREMIO_CONTINUITA_10YR"] == 120
+            assert thresholds["PREMIO_CONTINUITA_15YR"] == 180
 
     def test_contoterzismo_caiagromec_tax_sector(self) -> None:
         """Contract uses AGRICOLTURA tax sector."""
@@ -5890,12 +5901,18 @@ class TestLoadConsorziDiBonificaSnebi:
         ccnl = load_ccnl("consorzi-di-bonifica-snebi.json")
         assert ccnl.meta.tax_sector == TaxSector.AGRICOLTURA
 
-    def test_consorzi_di_bonifica_snebi_seniority_cadence(self) -> None:
-        """Six biennial scatti modeled; dodicennale+quadriennali omitted."""
+    def test_consorzi_di_bonifica_snebi_seniority_tiers(self) -> None:
+        """Ten scatti in three tiers: 6 biennial, 1 dodecennial, 3 quadrennial."""
         ccnl = load_ccnl("consorzi-di-bonifica-snebi.json")
         si = ccnl.parameters.seniority_increments
-        assert si.cadence_months == 24
-        assert si.maximum_count == 6
+        assert len(si.tiers) == 3
+        assert si.tiers[0].cadence_months == 24
+        assert si.tiers[0].maximum_count == 6
+        assert si.tiers[1].cadence_months == 144
+        assert si.tiers[1].maximum_count == 1
+        assert si.tiers[2].cadence_months == 48
+        assert si.tiers[2].maximum_count == 3
+        assert si.maximum_for("C127") == 10
 
 
 class TestLoadConsorziAgrariAssocap:

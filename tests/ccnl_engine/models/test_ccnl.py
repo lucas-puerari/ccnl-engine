@@ -397,3 +397,92 @@ class TestEmployerFundsAndAllowances:
         ]
         with pytest.raises(ValidationError):
             _validate(data)
+
+
+class TestSeniorityTiers:
+    """Tests for the SeniorityTier / tiered seniority ladder."""
+
+    def _tiered_data(self) -> dict[str, Any]:
+        """Return a minimal CCNL dict with a 2-tier seniority ladder.
+
+        Returns:
+            Raw dict suitable for CCNL.model_validate().
+        """
+        data = make_ccnl_dict(app_type="")
+        data["parameters"]["seniority_increments"] = {
+            "cadence_months": 24,
+            "maximum_count": 0,
+            "amount_by_level": {},
+            "tiers": [
+                {
+                    "cadence_months": 24,
+                    "maximum_count": 3,
+                    "amount_by_level": {"4": _series("10.00")},
+                },
+                {
+                    "cadence_months": 48,
+                    "maximum_count": 2,
+                    "amount_by_level": {"4": _series("15.00")},
+                },
+            ],
+        }
+        return data
+
+    def test_tiered_ccnl_validates(self) -> None:
+        """A CCNL with tiers loads without error."""
+        _validate(self._tiered_data())
+
+    def test_tiers_and_amount_by_level_mutually_exclusive(self) -> None:
+        """Providing both tiers and amount_by_level is rejected."""
+        data = self._tiered_data()
+        data["parameters"]["seniority_increments"]["amount_by_level"] = {
+            "4": _series("5.00")
+        }
+        with pytest.raises(ValidationError):
+            _validate(data)
+
+    def test_tier_unknown_level_code_raises(self) -> None:
+        """A tier referencing a non-existent level code is rejected."""
+        data = self._tiered_data()
+        data["parameters"]["seniority_increments"]["tiers"][0]["amount_by_level"] = {
+            "NONEXISTENT": _series("10.00")
+        }
+        with pytest.raises(ValueError, match=r"tiers.*NONEXISTENT.*does not exist"):
+            _validate(data)
+
+    def test_maximum_for_sums_tiers(self) -> None:
+        """maximum_for returns the sum of all tier maximums."""
+        ccnl = _validate(self._tiered_data())
+        si = ccnl.parameters.seniority_increments
+        assert si.maximum_for("4") == 5  # 3 + 2
+
+
+class TestServiceMonthsThreshold:
+    """Tests for Allowance.service_months_threshold field validation."""
+
+    def test_negative_threshold_raises(self) -> None:
+        """service_months_threshold must be >= 0."""
+        data = make_ccnl_dict(app_type="")
+        data["levels"][0]["fixed_allowances"] = [
+            {
+                "code": "X",
+                "description": "X",
+                "monthly": _SERIES,
+                "service_months_threshold": -1,
+            }
+        ]
+        with pytest.raises(ValidationError):
+            _validate(data)
+
+    def test_zero_threshold_accepted(self) -> None:
+        """service_months_threshold=0 is accepted (always active)."""
+        data = make_ccnl_dict(app_type="")
+        data["levels"][0]["fixed_allowances"] = [
+            {
+                "code": "X",
+                "description": "X",
+                "monthly": _SERIES,
+                "service_months_threshold": 0,
+            }
+        ]
+        _validate(data)
