@@ -65,7 +65,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: ISQ for Q2 and Q3 modelled at 100 EUR with service_months_threshold=24 (minimum for 2+ anni in Area Q, Tabella C). Workers with 12+ anni receive 130 EUR (delta 30 EUR/month, max ~360 EUR/yr). The threshold gates correctly to zero below 24 months; the 100 vs 130 split at 144 months is not representable with a single fixed_allowance amount."
+        "text": "SIMPLIFICATION: ISQ for Q2 and Q3 modelled at flat 100 EUR (the 2+ anni tier per Tabella C). Workers with 12+ anni receive 130 EUR (delta 30 EUR/month, max ~360 EUR/yr). The two-tier split at 144 months cannot be represented as a single fixed_allowance amount."
       },
       {
         "kind": "simplification",
@@ -322,8 +322,7 @@
                 "value": "100.00"
               }
             ]
-          },
-          "service_months_threshold": 24
+          }
         }
       ]
     },
@@ -378,8 +377,7 @@
                 "value": "100.00"
               }
             ]
-          },
-          "service_months_threshold": 24
+          }
         }
       ]
     },
