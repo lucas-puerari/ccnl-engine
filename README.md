@@ -34,8 +34,15 @@ scenario = Scenario(
 rules = load_year_rules(2026, TaxSector.TERZIARIO, scenario.num_employees)
 result = compute(ccnl, rules, scenario)
 
-print(result.net_annual)  # → Decimal('...')
-print(result.employer_cost_annual)  # → Decimal('...')
+print(result.net_annual)              # → Decimal('...')
+print(result.trattamento_integrativo) # → Decimal('...') — Art. 1 D.L. 3/2020 bonus
+print(result.fiscal_simplifications)  # → frozenset of items not computed by the engine
+print(result.employer_cost_annual)    # → Decimal('...')
+
+# Serialisation
+d = result.to_dict()   # plain dict — all Decimals as str, date as ISO string
+j = result.to_json()   # compact JSON string
+copy = result.from_json(j)  # round-trip: copy == result
 ```
 
 ## CCNL coverage

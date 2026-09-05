@@ -20,3 +20,12 @@ Domain models for employment contracts and CCNL structure.
         - CCNLMeta
         - Level
         - TaxSector
+        - CoverageNote
+        - NoteKind
+
+## Fiscal
+
+::: ccnl_engine.models.fiscal
+    options:
+      members:
+        - FiscalSimplification
