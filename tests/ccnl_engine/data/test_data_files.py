@@ -5676,3 +5676,73 @@ class TestLoadLavanderiIndustrialiAssosistema:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadCedAssoced:
+    """Unit tests for CCNL CED, ICT, Professioni Digitali e STP (H601)."""
+
+    def test_ced_assoced_loads(self) -> None:
+        """Contract loads with correct id and CNEL code H601."""
+        ccnl = load_ccnl("ced-assoced.json")
+        assert ccnl.meta.id == "ced-assoced"
+        assert ccnl.meta.cnel_code == "H601"
+
+    def test_ced_assoced_has_9_levels(self) -> None:
+        """Contract has 9 levels: 6, 5, 4, 3, 3S, 2, 1, Q, QDIR."""
+        ccnl = load_ccnl("ced-assoced.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"6", "5", "4", "3", "3S", "2", "1", "Q", "QDIR"}
+
+    def test_ced_assoced_level_3_salary_sep2025(self) -> None:
+        """L3 paga base conglobata at 2025-09-01 first tranche."""
+        ccnl = load_ccnl("ced-assoced.json")
+        lv = ccnl.level_by_code("3")
+        assert lv.base_salary.value_at(date(2025, 9, 1)) == Decimal("1861.71")
+
+    def test_ced_assoced_level_3_salary_jun2026(self) -> None:
+        """L3 paga base conglobata at 2026-06-01 second tranche."""
+        ccnl = load_ccnl("ced-assoced.json")
+        lv = ccnl.level_by_code("3")
+        assert lv.base_salary.value_at(date(2026, 6, 1)) == Decimal("1907.12")
+
+    def test_ced_assoced_level_ordering(self) -> None:
+        """Level 6 has lowest order (1); QDIR has highest order (9)."""
+        ccnl = load_ccnl("ced-assoced.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "6"
+        assert by_order[-1].code == "QDIR"
+
+    def test_ced_assoced_additional_months(self) -> None:
+        """Contract has 14 mensilita (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("ced-assoced.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 6, 1))
+        assert val == Decimal(14)
+
+    def test_ced_assoced_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 h/month (Art. 171)."""
+        ccnl = load_ccnl("ced-assoced.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 6, 1))
+        assert val == Decimal(173)
+
+    def test_ced_assoced_indennita_funzione(self) -> None:
+        """Q and QDIR have INDENNITA_FUNZIONE; L3 has none (conglobated)."""
+        ccnl = load_ccnl("ced-assoced.json")
+        lv3 = ccnl.level_by_code("3")
+        assert lv3.fixed_allowances == []
+        q_codes = {a.code for a in ccnl.level_by_code("Q").fixed_allowances}
+        qdir_codes = {a.code for a in ccnl.level_by_code("QDIR").fixed_allowances}
+        assert "INDENNITA_FUNZIONE" in q_codes
+        assert "INDENNITA_FUNZIONE" in qdir_codes
+
+    def test_ced_assoced_tax_sector(self) -> None:
+        """Contract uses TERZIARIO tax sector (Confterziario/UGL)."""
+        ccnl = load_ccnl("ced-assoced.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_ced_assoced_seniority_cadence(self) -> None:
+        """Seniority abolished 2019 for new hires: biennial, maximum_count=0."""
+        ccnl = load_ccnl("ced-assoced.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 0
