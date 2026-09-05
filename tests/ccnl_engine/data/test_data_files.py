@@ -6289,3 +6289,78 @@ class TestLoadAutorimesseIC35:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 9
+
+
+class TestLoadAgenzieMaritime:
+    """Tests for CCNL Agenzie Marittime Raccomandatarie (I481)."""
+
+    def test_i481_loads(self) -> None:
+        """Contract loads with id=agenzie-marittime-i481 and cnel=I481."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        assert ccnl.meta.id == "agenzie-marittime-i481"
+        assert ccnl.meta.cnel_code == "I481"
+
+    def test_i481_has_7_levels(self) -> None:
+        """Contract has exactly 7 levels coded '1' through '7'."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        assert len(ccnl.levels) == 7
+        assert {lv.code for lv in ccnl.levels} == {"1", "2", "3", "4", "5", "6", "7"}
+
+    def test_i481_level4_salary_tranche1(self) -> None:
+        """Level 4 conglobata at 01/09/2024 = 2052.70 EUR (2024 renewal)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv.base_salary.value_at(date(2024, 9, 1)) == Decimal("2052.70")
+
+    def test_i481_level4_salary_tranche3(self) -> None:
+        """Level 4 conglobata at 01/01/2026 = 2137.70 EUR (third tranche)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("2137.70")
+
+    def test_i481_level_ordering(self) -> None:
+        """Lowest order is '1' (entry); highest order is '7' (Quadro)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        sorted_lvs = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert sorted_lvs[0].code == "1"
+        assert sorted_lvs[-1].code == "7"
+
+    def test_i481_additional_months(self) -> None:
+        """14 mensilita': tredicesima (Art. 24) + quattordicesima (Art. 25)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_i481_hourly_divisor(self) -> None:
+        """Hourly divisor 168 (Art. 20: retribuzione / 168 = paga oraria)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal(168)
+
+    def test_i481_levels1_to_6_no_fixed_allowances(self) -> None:
+        """Levels 1-6 have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        for lv in ccnl.levels:
+            if lv.code != "7":
+                assert lv.fixed_allowances == []
+
+    def test_i481_tax_sector(self) -> None:
+        """Contract uses TERZIARIO tax sector (agenzie marittime/aeree)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_i481_seniority_cadence(self) -> None:
+        """8 biennial scatti di anzianita' (Art. 23, 2021 CCNL)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 8
+
+    def test_i481_level7_funzione_allowance(self) -> None:
+        """L7 has FUNZIONE allowance 51.65 EUR/month (Art. 5, 2021 CCNL)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        lv7 = next(lv for lv in ccnl.levels if lv.code == "7")
+        assert len(lv7.fixed_allowances) == 1
+        fa = lv7.fixed_allowances[0]
+        assert fa.code == "FUNZIONE"
+        assert fa.monthly.value_at(date(2026, 1, 1)) == Decimal("51.65")

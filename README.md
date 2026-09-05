@@ -136,6 +136,7 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 | 72 | E018 | Dipendenti PMI Alimentare — Unionalimentari-Confapi | Alimentare | ~35k | ✅ | ✅ | 🤖 |
 | 73 | K700 | Poste Italiane S.p.A. (non dirigenti) | Industria | ~117k | ✅ | ✅ | 🤖 |
 | 74 | IC35 | Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA) | Terziario | ~41k | ✅ | ✅ | 🤖 |
+| 75 | I481 | Agenzie Marittime Raccomandatarie, Aeree e Mediatori Marittimi — FEDERAGENTI | Terziario | ~5k | ✅ | ✅ | 🤖 |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
