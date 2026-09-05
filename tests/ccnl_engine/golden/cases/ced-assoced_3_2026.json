@@ -1,0 +1,61 @@
+{
+  "_description": "Golden case: CCNL CED, ICT, Professioni Digitali e STP (H601), Level 3, 2026-06-01, permanent, no seniority.",
+  "_notes": [
+    "Jun 2026 second tranche (source-confirmed: redigo.info and kitech.it): minimo tabellare L3 = 1,907.12 EUR/month.",
+    "Conglobated model: base_monthly = paga base conglobata (Art. 172, 2022 stesura). No separate contingenza.",
+    "L3 has no fixed_allowances: allowances_monthly = 0.00.",
+    "gross_monthly = 1,907.12 (base only).",
+    "hourly_rate = 1,907.12 / 173 = 11.02 (Art. 171, divisore convenzionale 173).",
+    "Additional months: 14 (tredicesima Art. 175 + quattordicesima Art. 176).",
+    "INPS terziario rates from 2026-terziario.json (50 employees tier).",
+    "Seniority: 0.00 — scatti abrogated from 2019-01-01 for new hires (Art. 166, 2022 stesura).",
+    "Trattamento integrativo applies (taxable 24,245.98 < 28,000 threshold).",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025)."
+  ],
+  "inputs": {
+    "ccnl_file": "ced-assoced.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "3",
+    "as_of": "2026-06-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "ced-assoced",
+    "level_code": "3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1907.12",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1907.12",
+    "gross_annual": "26699.68",
+    "hourly_rate": "11.02",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2453.70",
+    "inps_employer_annual": "7737.57",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1977.75",
+    "taxable_income": "24245.98",
+    "irpef_gross": "5576.58",
+    "work_income_deduction": "783.69",
+    "irpef_net": "4792.89",
+    "net_annual": "19573.12",
+    "net_monthly": "1398.08",
+    "employer_cost_annual": "36415.00",
+    "trattamento_integrativo": "120.03",
+    "fiscal_simplifications": [
+      "no_addizionali",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}

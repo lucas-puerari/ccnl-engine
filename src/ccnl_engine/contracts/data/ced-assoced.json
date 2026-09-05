@@ -1,0 +1,475 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "ced-assoced",
+    "name": "CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)",
+    "cnel_code": "H601",
+    "sector": "Terziario",
+    "tax_sector": "terziario",
+    "agreement_date": "2025-07-28",
+    "signatories": [
+      "Assoced",
+      "LAIT",
+      "Confterziario",
+      "UGL Terziario"
+    ],
+    "sources": [
+      {
+        "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+        "type": "text",
+        "agreement_date": "2022-03-09"
+      },
+      {
+        "url": "https://www.redigo.info/ccnl-ced-ict-professioni-digitali-stp",
+        "type": "table",
+        "agreement_date": "2025-07-28"
+      },
+      {
+        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=62",
+        "type": "table",
+        "agreement_date": "2025-07-28"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: paga base nazionale conglobata (Art. 172, 2022 stesura). Single TimeSeries per level, no separate contingenza or EDR."
+      },
+      {
+        "kind": "info",
+        "text": "Unified classification covers CED, ICT, Professioni Digitali and STP workers (Art. 172 + Tabella A, one scale). No separate STP salary table exists in the 2022 stesura or 2025 renewal."
+      },
+      {
+        "kind": "info",
+        "text": "Divisore convenzionale 173 h/month (Art. 171) and 26 d/month (Art. 170). Source: 2022 stesura fondoeasi.it."
+      },
+      {
+        "kind": "info",
+        "text": "Mensilita supplementari: tredicesima (Art. 175) and quattordicesima (Art. 176). additional_months = 14."
+      },
+      {
+        "kind": "info",
+        "text": "Indennita di funzione (Tabella A note, 2025 renewal): QDIR 287/296/306 EUR, Q 250/258/266 EUR per 14 mensilita. Tranche dates: 01/09/2025, 01/09/2026, 01/09/2027, distinct from base salary tranches."
+      },
+      {
+        "kind": "info",
+        "text": "Scatti di anzianita (Art. 166, 2022 stesura): abrogated from 01/01/2019. Grandfathered for personale in forza al 31-12-2018 only. New hires (post-2018): maximum_count=0. Per-level 2009 amounts: QDIR=52, Q=47, L1=44, L2=40, L3S=36, L3=33, L4=30, L5=27, L6=24 (frozen, not updated since 2009 across 2022 and 2025 renewals)."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship (Art. 23-24, 2022 stesura, ccnlced.it allegato): under_classification. First half 2 levels below, second half 1 level below. Level 5 exception: stays at Level 6 throughout 24-month track. Destination L2 duration 36 months (studiocerbone.com: 240 h/36 months for 2° livello). Source ccnlced.it showed '6 months' for L2 — treated as parsing artifact; 36 months adopted from studiocerbone.com."
+      },
+      {
+        "kind": "info",
+        "text": "Salary tranches: 01/09/2025 (source-confirmed, redigo.info and kitech.it), 01/06/2026 (source-confirmed, both sources agree), 01/03/2027 (redigo.info only, single-source), 01/01/2028 (redigo.info only, single-source)."
+      },
+      {
+        "kind": "missing",
+        "text": "layer_2 partial: apprenticeship tracks cover destinations 2, 3S, 3, 4, 5 only (Art. 22). Levels 1, Q, QDIR are excluded from apprenticeship by the contract text. Level 6 is used as the pay level for L5-destination apprentices but is not itself a destination."
+      },
+      {
+        "kind": "missing",
+        "text": "Titolo XXIII conditional allowances not modelled: indennita di mensa (Art. 179), rimborso mezzi pubblici (Art. 180), indennita valori (Art. 181), and elemento economico di garanzia (Art. 177). These are condition-gated or azienda-specific and cannot be determined without employer-level data."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS terziario rates reused from 2026-terziario.json (same sector as H016). Verify against annual INPS circular for exact H601 sub-sector rate."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-09-01",
+          "valid_until": null,
+          "value": "173"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-09-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 0,
+      "amount_by_level": {}
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_36",
+      "destination_levels": ["2", "3S", "3", "4"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_24",
+      "destination_levels": ["5"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "6",
+      "order": 1,
+      "description": "6° livello",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-06-01",
+            "value": "1392.83"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-03-01",
+            "value": "1426.80"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-01-01",
+            "value": "1460.77"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1494.74"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 2,
+      "description": "5° livello",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-06-01",
+            "value": "1649.30"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-03-01",
+            "value": "1689.53"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-01-01",
+            "value": "1729.75"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1769.98"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 3,
+      "description": "4° livello",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-06-01",
+            "value": "1732.26"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-03-01",
+            "value": "1774.51"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-01-01",
+            "value": "1816.76"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1859.01"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 4,
+      "description": "3° livello",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-06-01",
+            "value": "1861.71"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-03-01",
+            "value": "1907.12"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-01-01",
+            "value": "1952.52"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1997.93"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3S",
+      "order": 5,
+      "description": "3° livello Super",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-06-01",
+            "value": "1988.66"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-03-01",
+            "value": "2037.17"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-01-01",
+            "value": "2085.67"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2134.17"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 6,
+      "description": "2° livello",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-06-01",
+            "value": "2074.17"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-03-01",
+            "value": "2124.76"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-01-01",
+            "value": "2175.35"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2225.94"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1",
+      "order": 7,
+      "description": "1° livello",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-06-01",
+            "value": "2316.80"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-03-01",
+            "value": "2373.31"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-01-01",
+            "value": "2429.81"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2486.32"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "Q",
+      "order": 8,
+      "description": "Quadri",
+      "category": "quadro",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-06-01",
+            "value": "2698.46"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-03-01",
+            "value": "2764.28"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-01-01",
+            "value": "2830.09"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2895.91"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennita di funzione Quadri (Tabella A, 2025 renewal, per 14 mensilita)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-09-01",
+                "valid_until": "2026-09-01",
+                "value": "250.00"
+              },
+              {
+                "valid_from": "2026-09-01",
+                "valid_until": "2027-09-01",
+                "value": "258.00"
+              },
+              {
+                "valid_from": "2027-09-01",
+                "valid_until": null,
+                "value": "266.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "QDIR",
+      "order": 9,
+      "description": "Quadri di Direzione",
+      "category": "quadro",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-06-01",
+            "value": "2969.23"
+          },
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-03-01",
+            "value": "3041.65"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-01-01",
+            "value": "3114.07"
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "3186.49"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennita di funzione Quadri di Direzione (Tabella A, 2025 renewal, per 14 mensilita)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-09-01",
+                "valid_until": "2026-09-01",
+                "value": "287.00"
+              },
+              {
+                "valid_from": "2026-09-01",
+                "valid_until": "2027-09-01",
+                "value": "296.00"
+              },
+              {
+                "valid_from": "2027-09-01",
+                "valid_until": null,
+                "value": "306.00"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
