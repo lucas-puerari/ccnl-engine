@@ -25,20 +25,21 @@ Try the engine in your browser — no installation required:
 
 The engine models:
 
-- IRPEF gross and net (Art. 11–13 TUIR), work income deductions
+- IRPEF gross and net (Art. 11–13 TUIR), work income deductions, *trattamento integrativo* (Art. 1 D.L. 3/2020)
+- Regional and municipal income tax surcharges (*addizionale regionale e comunale IRPEF*)
 - INPS contributions (employee and employer), resolved by headcount tier
 - TFR accrual
 - Contractual employer funds
 - Part-time scaling, seniority increments, fixed allowances
 - Apprenticeship contracts (under-classification and percentage tracks)
+- Fixed-term contracts (NASpI *addizionale*)
+- Second-level bargaining — territorial and company supplementary allowances (`Scenario.second_level_allowances`)
 - Domestic work (flat per-hour contributions, non-withholding employer)
 
 **Not modelled:**
 
-- Regional and municipal income tax surcharges (*addizionali*)
 - Family-dependent deductions (Art. 12 TUIR)
 - IRPEF phaseout above €200k (Art. 1 cc. 3-4 L. 199/2025)
-- Second-level bargaining (territorial and company agreements)
 - Overtime, night/holiday premiums, leave accruals, sick-pay integrations
 
 Each limitation is documented in the relevant data file's `coverage.notes` field.

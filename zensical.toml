@@ -31,3 +31,43 @@ handlers.python.options.show_root_heading = true
 handlers.python.options.members_order     = "source"
 handlers.python.options.filters           = ["!^_"]
 handlers.python.options.inherited_members = false
+
+# Replicate zensical defaults and add pymdownx.snippets.
+# base_path defaults to "." (project root), so --8<-- "docs/examples/foo.py"
+# resolves relative to the repo root.
+[markdown_extensions]
+abbr = {}
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+toc.permalink = true
+
+[markdown_extensions.pymdownx]
+arithmatex.generic  = true
+betterem            = {}
+caret               = {}
+details             = {}
+highlight.anchor_linenums     = true
+highlight.line_spans          = "__span"
+highlight.pygments_lang_class = true
+inlinehilite        = {}
+keys                = {}
+magiclink           = {}
+mark                = {}
+smartsymbols        = {}
+tabbed.alternate_style       = true
+tabbed.combine_header_slug   = true
+tasklist.custom_checkbox     = true
+tilde               = {}
+snippets            = {}
+
+[markdown_extensions.pymdownx.emoji]
+emoji_generator = "zensical.extensions.emoji.to_svg"
+emoji_index     = "zensical.extensions.emoji.twemoji"
+
+[[markdown_extensions.pymdownx.superfences.custom_fences]]
+name   = "mermaid"
+class  = "mermaid"
+format = "pymdownx.superfences.fence_code_format"
