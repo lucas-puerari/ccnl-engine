@@ -7126,3 +7126,87 @@ class TestLoadRecapitoCorrispondenzaFise:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 8
+
+
+class TestLoadServiziPostaliAppaltoFise:
+    """Tests for CCNL Servizi Postali in Appalto (FISE-ARE, K721)."""
+
+    def test_servizi_postali_appalto_fise_loads(self) -> None:
+        """Contract loads with correct id and CNEL code K721."""
+        ccnl = load_ccnl("servizi-postali-appalto-fise.json")
+        assert ccnl.meta.id == "servizi-postali-appalto-fise"
+        assert ccnl.meta.cnel_code == "K721"
+
+    def test_servizi_postali_appalto_fise_has_7_levels(self) -> None:
+        """7 levels: 1, 2, 3S, 3, 4S, 4, 5."""
+        ccnl = load_ccnl("servizi-postali-appalto-fise.json")
+        assert len(ccnl.levels) == 7
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3S", "3", "4S", "4", "5"}
+
+    def test_servizi_postali_appalto_fise_level3_salary_jan2024(self) -> None:
+        """Level 3 base salary at 2024-01-01: 1448.09 EUR (1st tranche)."""
+        ccnl = load_ccnl("servizi-postali-appalto-fise.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2024, 1, 1)) == Decimal("1448.09")
+
+    def test_servizi_postali_appalto_fise_level3_salary_dec2025(self) -> None:
+        """Level 3 base salary at 2025-12-01: 1509.09 EUR (3rd tranche)."""
+        ccnl = load_ccnl("servizi-postali-appalto-fise.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2025, 12, 1)) == Decimal("1509.09")
+
+    def test_servizi_postali_appalto_fise_level_ordering(self) -> None:
+        """Level 1 is highest (order=7); level 5 is lowest (order=1)."""
+        ccnl = load_ccnl("servizi-postali-appalto-fise.json")
+        ordered = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert ordered[0].code == "5"
+        assert ordered[-1].code == "1"
+
+    def test_servizi_postali_appalto_fise_additional_months(self) -> None:
+        """14 mensilita: tredicesima (Art. 37) + quattordicesima (Art. 38)."""
+        ccnl = load_ccnl("servizi-postali-appalto-fise.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_servizi_postali_appalto_fise_hourly_divisor(self) -> None:
+        """Hourly divisor 173 (Art. 33 explicit)."""
+        ccnl = load_ccnl("servizi-postali-appalto-fise.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == 173
+
+    def test_servizi_postali_appalto_fise_fixed_allowances(self) -> None:
+        """All 7 levels have IND-INT and EDR as fixed allowances (split model)."""
+        ccnl = load_ccnl("servizi-postali-appalto-fise.json")
+        for lv in ccnl.levels:
+            codes = {a.code for a in lv.fixed_allowances}
+            assert codes == {"IND-INT", "EDR"}
+
+    def test_servizi_postali_appalto_fise_tax_sector(self) -> None:
+        """tax_sector == TERZIARIO."""
+        ccnl = load_ccnl("servizi-postali-appalto-fise.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_servizi_postali_appalto_fise_seniority_cadence(self) -> None:
+        """Seniority: biennale (24 mo), max=10, first at 48 mo (impiegati)."""
+        ccnl = load_ccnl("servizi-postali-appalto-fise.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 10
+        assert si.first_cadence_months == 48
+
+    def test_servizi_postali_appalto_fise_operaio_seniority_max_1(self) -> None:
+        """Operaio maximum_count=1 (Art. 35A single premio)."""
+        ccnl = load_ccnl("servizi-postali-appalto-fise.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.maximum_count_by_category.get("operaio") == 1
+
+    def test_servizi_postali_appalto_fise_seniority_category_amounts(
+        self,
+    ) -> None:
+        """Operaio and impiegato have different seniority amounts at L2."""
+        ccnl = load_ccnl("servizi-postali-appalto-fise.json")
+        si = ccnl.parameters.seniority_increments
+        op = si.amount_by_level_by_category["operaio"]["2"]
+        imp = si.amount_by_level_by_category["impiegato"]["2"]
+        assert op.value_at(date(2026, 1, 1)) == Decimal("56.66")
+        assert imp.value_at(date(2026, 1, 1)) == Decimal("62.62")

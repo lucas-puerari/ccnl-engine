@@ -1,0 +1,59 @@
+{
+  "_description": "Golden: K721 Level 2, 2025-12-01, operaio, seniority_count=1 (maximum for operai).",
+  "_notes": [
+    "Art.35A operaio: one-time premio frozen at 1994 tabellare. L2 amount=56.66.",
+    "seniority_monthly=56.66, base=1650.74, IND-INT=63.33, EDR=10.33."
+  ],
+  "inputs": {
+    "ccnl_file": "servizi-postali-appalto-fise.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "2",
+    "as_of": "2025-12-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 1,
+    "category": "operaio",
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "servizi-postali-appalto-fise",
+    "level_code": "2",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2025,
+    "seniority_count": 1,
+    "base_monthly": "1650.74",
+    "seniority_monthly": "56.66",
+    "allowances_monthly": "73.66",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1781.06",
+    "gross_annual": "24934.84",
+    "hourly_rate": "10.30",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2291.51",
+    "inps_employer_annual": "7226.12",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1847.03",
+    "taxable_income": "22643.33",
+    "irpef_gross": "5207.97",
+    "work_income_deduction": "897.27",
+    "irpef_net": "4310.70",
+    "employer_withholds_irpef": true,
+    "second_level_monthly": "0.00",
+    "net_annual": "18615.57",
+    "net_monthly": "1329.68",
+    "employer_cost_annual": "34007.99",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "282.94",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}

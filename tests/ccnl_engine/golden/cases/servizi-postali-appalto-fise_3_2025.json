@@ -1,0 +1,59 @@
+{
+  "_description": "Golden: CCNL Servizi Postali in Appalto FISE (K721), Level 3, 2025-12-01, permanent, no seniority.",
+  "_notes": [
+    "Level 3 (mid). 3rd tranche: base=1509.09, IND-INT=55.56, EDR=10.33.",
+    "gross_monthly=1574.98, gross_annual=22049.72. hourly_rate=1574.98/173=9.10.",
+    "Verified: L1 Dec2025 gross=1961.90 matches kitech (1875.95+75.62+10.33=1961.90)."
+  ],
+  "inputs": {
+    "ccnl_file": "servizi-postali-appalto-fise.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "3",
+    "as_of": "2025-12-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "servizi-postali-appalto-fise",
+    "level_code": "3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2025,
+    "seniority_count": 0,
+    "base_monthly": "1509.09",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "65.89",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1574.98",
+    "gross_annual": "22049.72",
+    "hourly_rate": "9.10",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2026.37",
+    "inps_employer_annual": "6390.01",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1633.31",
+    "taxable_income": "20023.35",
+    "irpef_gross": "4605.37",
+    "work_income_deduction": "1082.95",
+    "irpef_net": "3522.42",
+    "employer_withholds_irpef": true,
+    "second_level_monthly": "0.00",
+    "net_annual": "17050.19",
+    "net_monthly": "1217.87",
+    "employer_cost_annual": "30073.04",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "549.26",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}

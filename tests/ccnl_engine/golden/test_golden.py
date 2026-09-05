@@ -88,6 +88,7 @@ class TestGolden:
                 ivs_ceiling_applies=bool(inputs.get("ivs_ceiling_applies", False)),
                 regione=regione,
                 comune_belfiore=comune_belfiore,
+                category=inputs.get("category"),
             ),
             surtax,
         )
