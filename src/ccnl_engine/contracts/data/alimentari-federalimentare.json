@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "alimentari-federalimentare",
     "name": "CCNL per i lavoratori dell'industria alimentare (Federalimentare)",
@@ -50,13 +50,34 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: SALARY MODEL: split (base pay/TEM + contingency allowance + EDR + IAR as separate allowances). TEM varies by level and tranche; contingency frozen from 31/07/1992 (Government-social partners Protocol); EDR fixed at 10.33 EUR for all levels (Agreement 31/07/1992). IAR (Additional Pay Increment) remains a separate component of the TEC — not absorbed into TEM (confirmed by FLAI Veneto: 'the CCNL renews and redefines the TEC as the sum of TEM and IAR'). TEM source: sindacato.it (2024 salary tables). IAR source: flaiveneto.it.",
-      "SIMPLIFICATION: IAR tranche September 2027: the CCNL sets +11 EUR at level 4; per-level amounts are derived by scaling +11 with the level's IAR ratio to level 4 (the IAR is parametric), rounded to the cent. Official per-level tables were not published at extraction time.",
-      "SOURCE: SENIORITY: biennial cadence (24 months), maximum 5 increments. Post-2024-renewal amounts from FLAI Veneto (renewal 01/03/2024). valid_from 2023-12-01 assumed equal to the first TEM tranche; sources do not explicitly confirm the effective date of increments (alternative: 2024-03-01, signing date).",
-      "INFO: CONTINGENCY ALLOWANCE: amounts from lexplain.it and kitech.it — confirmed by two independent sources. Values identical to the previous contracts (frozen since 1993). 1S=545.72, 1=538.70, 2=530.51, 3A=525.83, 3=522.32, 4=519.99, 5=517.65, 6=515.31.",
-      "INFO: FUNCTION ALLOWANCE 1S: 100 EUR/month for level-1S workers classified as Quadri (L. 190/1985), modelled as an allowance with role 'quadro' (compute(..., roles={'quadro'})).",
-      "SIMPLIFICATION: APPRENTICESHIP under_classification (Art. 21 CCNL, renewal 01/03/2024; period structure from afi-ipl.org): 36-month track for destinations 4, 3, 3A, 2, 1 (0-10 months two levels below, 10-22 one level below, then destination); 24-month track for destination 5 (0-10 months at level 6, then level 5). Level 6 and 1S are not apprenticeship destinations. The 10/22-month boundaries are as reported by the source; the contract text refers to 'first/second/third period'.",
-      "INFO: ADDITIONAL MONTHS: 14 (thirteenth + fourteenth month payment). Source: FLAI Veneto, confirmed by lexplain.it."
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: split (base pay/TEM + contingency allowance + EDR + IAR as separate allowances). TEM varies by level and tranche; contingency frozen from 31/07/1992 (Government-social partners Protocol); EDR fixed at 10.33 EUR for all levels (Agreement 31/07/1992). IAR (Additional Pay Increment) remains a separate component of the TEC — not absorbed into TEM (confirmed by FLAI Veneto: 'the CCNL renews and redefines the TEC as the sum of TEM and IAR'). TEM source: sindacato.it (2024 salary tables). IAR source: flaiveneto.it."
+      },
+      {
+        "kind": "simplification",
+        "text": "IAR tranche September 2027: the CCNL sets +11 EUR at level 4; per-level amounts are derived by scaling +11 with the level's IAR ratio to level 4 (the IAR is parametric), rounded to the cent. Official per-level tables were not published at extraction time."
+      },
+      {
+        "kind": "source",
+        "text": "SENIORITY: biennial cadence (24 months), maximum 5 increments. Post-2024-renewal amounts from FLAI Veneto (renewal 01/03/2024). valid_from 2023-12-01 assumed equal to the first TEM tranche; sources do not explicitly confirm the effective date of increments (alternative: 2024-03-01, signing date)."
+      },
+      {
+        "kind": "info",
+        "text": "CONTINGENCY ALLOWANCE: amounts from lexplain.it and kitech.it — confirmed by two independent sources. Values identical to the previous contracts (frozen since 1993). 1S=545.72, 1=538.70, 2=530.51, 3A=525.83, 3=522.32, 4=519.99, 5=517.65, 6=515.31."
+      },
+      {
+        "kind": "info",
+        "text": "FUNCTION ALLOWANCE 1S: 100 EUR/month for level-1S workers classified as Quadri (L. 190/1985), modelled as an allowance with role 'quadro' (compute(..., roles={'quadro'}))."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP under_classification (Art. 21 CCNL, renewal 01/03/2024; period structure from afi-ipl.org): 36-month track for destinations 4, 3, 3A, 2, 1 (0-10 months two levels below, 10-22 one level below, then destination); 24-month track for destination 5 (0-10 months at level 6, then level 5). Level 6 and 1S are not apprenticeship destinations. The 10/22-month boundaries are as reported by the source; the contract text refers to 'first/second/third period'."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 14 (thirteenth + fourteenth month payment). Source: FLAI Veneto, confirmed by lexplain.it."
+      }
     ]
   },
   "parameters": {

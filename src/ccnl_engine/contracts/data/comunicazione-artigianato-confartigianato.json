@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "comunicazione-artigianato-confartigianato",
     "name": "CCNL Area Comunicazione — Artigianato",
@@ -53,23 +53,74 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: SALARY MODEL: conglobated (minimi tabellari conglobati). Confirmed: ilccnl.it shows contingenza=0.00 for all levels. Back-calculation at Jul 2025: livello 4=1763.56/173=10.194 EUR/h, livello 1B=2160.15/173=12.487 EUR/h, livello 6=1452.42/173=8.394 EUR/h — all values divide to proportional hourly rates consistent with divisor 173, confirming conglobated model.",
-      "INFO: CNEL CODE: G016 confirmed from kitech.it and ADAPT farecontrattazione.it.",
-      "INFO: TRANCHE DATES: four tranches — 2024-12-01 (from Nov 2024 verbale integrativo), 2025-07-01, 2026-03-01, 2026-11-01. Source: redigo.info. Cross-validated Mar 2026 values against kitech.it.",
-      "INFO: HOURLY DIVISOR: 173. Source: ilccnl.it explicit '173.00 ore'. Cross-validated via back-calculation across 3 levels (see conglobated check above).",
-      "INFO: ADDITIONAL MONTHS: 13 (tredicesima only). Source: ilccnl.it ('una mensilita globale di fatto'). No quattordicesima.",
-      "INFO: SENIORITY: biennale (every 24 months), maximum 5 scatti. Per-level EUR amounts from two independent aggregators (kitech.it, lavoro-economia.it): 1A=16.01, 1B=16.01, 2=14.20, 3=13.43, 4=12.65, 5bis=11.88, 5=11.36, 6=10.33. Cadence confirmed '5 aumenti biennali' from lavoro-economia.it. SIMPLIFICATION: primary source (CCNL PDF or official signatory site) not fetched; amounts not disputed by the 2024 rinnovo analysis (informaimpresa.it mentions only the NEW EUR 10 apprentice scatto, not a change to permanent scatti).",
-      "INFO: APPRENTICE SENIORITY: EUR 10.00 from 2025-01-01. New clause introduced by Nov 2024 rinnovo ('Migliorata la norma relativa agli apprendisti che andranno a maturare gli scatti di anzianita'). Amount EUR 10.00 from CNA Ancona official communication. Zero before Jan 2025.",
-      "INFO: LEVEL 1A FUNCTION ALLOWANCE: indennita di funzione EUR 51.65, confirmed kitech.it Mar 2026 (base 2490.07 + allowance 51.65 = total 2541.72). Assumed constant from Dec 2024; no primary source shows a change in this amount through the 2024 rinnovo.",
-      "INFO: LEVEL ORDERING: 6 (lowest) < 5 < 5bis < 4 < 3 < 2 < 1B < 1A (highest). Level 5bis has higher salary than level 5 — this is correct per the CCNL (5bis = specializzato BIS, above the basic specializzato).",
-      "INFO: APPRENTICESHIP: new rules from 2024-11-18 rinnovo for post-Nov-18-2024 contracts. Track durations confirmed from adapt.it (G016-specific): operai/tecnici max 5 years, amministrativi max 3 years, centraliniste 2 years. Percentage progressions (70/78/85/92/100% for operai/tecnici; 70/80/90% for amministrativi) follow the Confartigianato/CNA artigianato national framework agreement (CCNA); G016-specific source (adapt.it) confirms durations but not the individual percentages. SIMPLIFICATION: percentages assumed from artigianato CCNA framework; not found in a G016-specific primary source (CCNL PDF not fetched).",
-      "INFO: INPS: reuses 2026-artigianato.json (ARTIGIANATO sector).",
-      "SIMPLIFICATION: Only aziende artigiane salary tables modelled. PMI non-artigiane tables (Art. 4, with EUR 207 total increase vs EUR 200 for artigiane, difference of EUR 7 in the Nov 2026 tranche) are not modelled. Applies to a small minority of firms covered by this CCNL.",
-      "SIMPLIFICATION: Only post-Nov-18-2024 apprenticeship rules modelled. Pre-renewal CCNL used a semestrali hybrid model (old percentage tables). Firms with apprenticeship contracts signed before Nov 18, 2024 may still follow the previgente rules.",
-      "SIMPLIFICATION: Centraliniste (switchboard operators) have a 2-year apprenticeship track per the 2024 rinnovo. Modelled as the general 3-year amministrativi track (overstates duration by 1 year for that role).",
-      "SIMPLIFICATION: Both apprenticeship tracks (operai_tecnici and amministrativi) are assigned to all 8 destination levels. In practice, the CCNL differentiates by job role, not only by destination level. Firms must select the correct track by role type.",
-      "SIMPLIFICATION: LEVEL CATEGORY: all levels left null. Multiple levels map to both operai and impiegati roles — a genuine one-to-many mapping the schema cannot represent as a single category value.",
-      "SIMPLIFICATION: Level 1A indennita di funzione EUR 51.65 assumed constant across all four tranches (Dec 2024 through Nov 2026+). Kitech.it only shows the Mar 2026 value; no primary source confirms the amount in Dec 2024 or Jul 2025. Difference is likely zero (function allowances are rarely changed in salary renewals) but not verified."
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: conglobated (minimi tabellari conglobati). Confirmed: ilccnl.it shows contingenza=0.00 for all levels. Back-calculation at Jul 2025: livello 4=1763.56/173=10.194 EUR/h, livello 1B=2160.15/173=12.487 EUR/h, livello 6=1452.42/173=8.394 EUR/h — all values divide to proportional hourly rates consistent with divisor 173, confirming conglobated model."
+      },
+      {
+        "kind": "info",
+        "text": "CNEL CODE: G016 confirmed from kitech.it and ADAPT farecontrattazione.it."
+      },
+      {
+        "kind": "info",
+        "text": "TRANCHE DATES: four tranches — 2024-12-01 (from Nov 2024 verbale integrativo), 2025-07-01, 2026-03-01, 2026-11-01. Source: redigo.info. Cross-validated Mar 2026 values against kitech.it."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 173. Source: ilccnl.it explicit '173.00 ore'. Cross-validated via back-calculation across 3 levels (see conglobated check above)."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 13 (tredicesima only). Source: ilccnl.it ('una mensilita globale di fatto'). No quattordicesima."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY: biennale (every 24 months), maximum 5 scatti. Per-level EUR amounts from two independent aggregators (kitech.it, lavoro-economia.it): 1A=16.01, 1B=16.01, 2=14.20, 3=13.43, 4=12.65, 5bis=11.88, 5=11.36, 6=10.33. Cadence confirmed '5 aumenti biennali' from lavoro-economia.it. SIMPLIFICATION: primary source (CCNL PDF or official signatory site) not fetched; amounts not disputed by the 2024 rinnovo analysis (informaimpresa.it mentions only the NEW EUR 10 apprentice scatto, not a change to permanent scatti)."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY: EUR 10.00 from 2025-01-01. New clause introduced by Nov 2024 rinnovo ('Migliorata la norma relativa agli apprendisti che andranno a maturare gli scatti di anzianita'). Amount EUR 10.00 from CNA Ancona official communication. Zero before Jan 2025."
+      },
+      {
+        "kind": "info",
+        "text": "LEVEL 1A FUNCTION ALLOWANCE: indennita di funzione EUR 51.65, confirmed kitech.it Mar 2026 (base 2490.07 + allowance 51.65 = total 2541.72). Assumed constant from Dec 2024; no primary source shows a change in this amount through the 2024 rinnovo."
+      },
+      {
+        "kind": "info",
+        "text": "LEVEL ORDERING: 6 (lowest) < 5 < 5bis < 4 < 3 < 2 < 1B < 1A (highest). Level 5bis has higher salary than level 5 — this is correct per the CCNL (5bis = specializzato BIS, above the basic specializzato)."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP: new rules from 2024-11-18 rinnovo for post-Nov-18-2024 contracts. Track durations confirmed from adapt.it (G016-specific): operai/tecnici max 5 years, amministrativi max 3 years, centraliniste 2 years. Percentage progressions (70/78/85/92/100% for operai/tecnici; 70/80/90% for amministrativi) follow the Confartigianato/CNA artigianato national framework agreement (CCNA); G016-specific source (adapt.it) confirms durations but not the individual percentages. SIMPLIFICATION: percentages assumed from artigianato CCNA framework; not found in a G016-specific primary source (CCNL PDF not fetched)."
+      },
+      {
+        "kind": "info",
+        "text": "INPS: reuses 2026-artigianato.json (ARTIGIANATO sector)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Only aziende artigiane salary tables modelled. PMI non-artigiane tables (Art. 4, with EUR 207 total increase vs EUR 200 for artigiane, difference of EUR 7 in the Nov 2026 tranche) are not modelled. Applies to a small minority of firms covered by this CCNL."
+      },
+      {
+        "kind": "simplification",
+        "text": "Only post-Nov-18-2024 apprenticeship rules modelled. Pre-renewal CCNL used a semestrali hybrid model (old percentage tables). Firms with apprenticeship contracts signed before Nov 18, 2024 may still follow the previgente rules."
+      },
+      {
+        "kind": "simplification",
+        "text": "Centraliniste (switchboard operators) have a 2-year apprenticeship track per the 2024 rinnovo. Modelled as the general 3-year amministrativi track (overstates duration by 1 year for that role)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Both apprenticeship tracks (operai_tecnici and amministrativi) are assigned to all 8 destination levels. In practice, the CCNL differentiates by job role, not only by destination level. Firms must select the correct track by role type."
+      },
+      {
+        "kind": "simplification",
+        "text": "LEVEL CATEGORY: all levels left null. Multiple levels map to both operai and impiegati roles — a genuine one-to-many mapping the schema cannot represent as a single category value."
+      },
+      {
+        "kind": "simplification",
+        "text": "Level 1A indennita di funzione EUR 51.65 assumed constant across all four tranches (Dec 2024 through Nov 2026+). Kitech.it only shows the Mar 2026 value; no primary source confirms the amount in Dec 2024 or Jul 2025. Difference is likely zero (function allowances are rarely changed in salary renewals) but not verified."
+      }
     ]
   },
   "parameters": {

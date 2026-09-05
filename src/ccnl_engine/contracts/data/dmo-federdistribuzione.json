@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "dmo-federdistribuzione",
     "name": "Distribuzione Moderna Organizzata — Federdistribuzione",
@@ -30,15 +30,42 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: Salary tables: 6 tranches from 01/04/2023 through 01/02/2027 per Allegato 11, Testo Unico CCNL DMO 29/09/2025 (Federdistribuzione). 47/48 cells verified arithmetic; L4 01/04/2023 PDF OCR reads '1112.46' but total (1646.68) and contingenza (524.22) prove 1122.46 — consistent with pre-acconto 1092.46 + 30 EUR acconto (Dec 2022 Protocol).",
-      "INFO: Split model confirmed: total / 168 at L1 = 14.905, L4 = 10.605, L7 = 8.309 — all non-integer. Source: Art. 194 (divisore 168 for 40h/week), Allegato 11.",
-      "INFO: Contingenza: frozen values from Allegato 11 column. EDR (lire 20,000 = 10.33 EUR) conglobated into contingenza on 01/01/1995 per Art. 190 — no separate EDR allowance modelled.",
-      "SIMPLIFICATION: Terzo elemento nazionale (Art. 199): EUR 2.07/month (lire 4,000) for workers in provinces without provincial terzi elementi (Art. 198, frozen since 1973). Modelled as 'edr' fixed allowance for all workers. # SIMPLIFICATION: some provinces have higher provincial elements (second-level bargaining, out of scope).",
-      "INFO: Indennità di funzione Quadri (Art. 113): EUR 260.76/month for 14 months (cumulative increments: 51.65+77.47+51.65+70.00+10.00=260.77; 0.01 rounding from lire). Allegato 11 shows 260.76.",
-      "INFO: Indennità di funzione 7° livello: EUR 5.16/month (lire 10,000) in 'altri elementi' column of Allegato 11 for Level VII. Same element and amount as Commercio Confcommercio 'ind_funzione' for livello 7.",
-      "INFO: Seniority: 10 scatti triennali (Art. 188), amounts from Testo Unico Art. 188 table. valid_from set to 2024-04-23 (renewal date).",
-      "INFO: Additional months: 14 (tredicesima Art. 204 + quattordicesima Art. 205).",
-      "INFO: APPRENTICESHIP: sotto-inquadramento per Art. 46 + Art. 57 Testo Unico DMO 29/09/2025. Art. 55: destinazioni ammesse livelli II–VI (I e Q esclusi). Livelli II–V: 36 mesi, 0–18m = 2 livelli sotto dest, 18m+ = 1 livello sotto. Livello VI: 24 mesi, 0–12m = 1 livello sotto (VII), 12m+ = livello VI (dest). Source: Testo Unico Federdistribuzione 29/09/2025 (Allegato apprendistato)."
+      {
+        "kind": "info",
+        "text": "Salary tables: 6 tranches from 01/04/2023 through 01/02/2027 per Allegato 11, Testo Unico CCNL DMO 29/09/2025 (Federdistribuzione). 47/48 cells verified arithmetic; L4 01/04/2023 PDF OCR reads '1112.46' but total (1646.68) and contingenza (524.22) prove 1122.46 — consistent with pre-acconto 1092.46 + 30 EUR acconto (Dec 2022 Protocol)."
+      },
+      {
+        "kind": "info",
+        "text": "Split model confirmed: total / 168 at L1 = 14.905, L4 = 10.605, L7 = 8.309 — all non-integer. Source: Art. 194 (divisore 168 for 40h/week), Allegato 11."
+      },
+      {
+        "kind": "info",
+        "text": "Contingenza: frozen values from Allegato 11 column. EDR (lire 20,000 = 10.33 EUR) conglobated into contingenza on 01/01/1995 per Art. 190 — no separate EDR allowance modelled."
+      },
+      {
+        "kind": "simplification",
+        "text": "Terzo elemento nazionale (Art. 199): EUR 2.07/month (lire 4,000) for workers in provinces without provincial terzi elementi (Art. 198, frozen since 1973). Modelled as 'edr' fixed allowance for all workers. # SIMPLIFICATION: some provinces have higher provincial elements (second-level bargaining, out of scope)."
+      },
+      {
+        "kind": "info",
+        "text": "Indennità di funzione Quadri (Art. 113): EUR 260.76/month for 14 months (cumulative increments: 51.65+77.47+51.65+70.00+10.00=260.77; 0.01 rounding from lire). Allegato 11 shows 260.76."
+      },
+      {
+        "kind": "info",
+        "text": "Indennità di funzione 7° livello: EUR 5.16/month (lire 10,000) in 'altri elementi' column of Allegato 11 for Level VII. Same element and amount as Commercio Confcommercio 'ind_funzione' for livello 7."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: 10 scatti triennali (Art. 188), amounts from Testo Unico Art. 188 table. valid_from set to 2024-04-23 (renewal date)."
+      },
+      {
+        "kind": "info",
+        "text": "Additional months: 14 (tredicesima Art. 204 + quattordicesima Art. 205)."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP: sotto-inquadramento per Art. 46 + Art. 57 Testo Unico DMO 29/09/2025. Art. 55: destinazioni ammesse livelli II–VI (I e Q esclusi). Livelli II–V: 36 mesi, 0–18m = 2 livelli sotto dest, 18m+ = 1 livello sotto. Livello VI: 24 mesi, 0–12m = 1 livello sotto (VII), 12m+ = livello VI (dest). Source: Testo Unico Federdistribuzione 29/09/2025 (Allegato apprendistato)."
+      }
     ]
   },
   "parameters": {

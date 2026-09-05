@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "tessile-smi",
     "name": "CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)",
@@ -40,13 +40,34 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: December 2024 tranche (01/12/2024): per-level values derived proportionally from the +EUR 95 increase at grade 4 (2024 SMI renewal, source filctemcgil.it). Rationale: Dec-2024 increment = 95/152 = 5/8 of the total increase Nov-2024→Jan-2026; verified by exact closure on all levels against Jan-2026 values from kitech.it.",
-      "INFO: Level 8 function allowance: the total ERN published on lexplain.it (2,316.33) includes the function allowance (EUR 51.65). base_salary = ERN - 51.65 = 2,264.68 (pre-Dec 2024) and 2,457.72 (Jan 2026). Source kitech.it reports minimum and total separately for Level 8. Verification: combined increase (Dec2024+Jan2026) at Level 8 = EUR 193.04, expected proportional = 126.74% × 152.24 = EUR 193.12 (delta < 0.1 EUR). Interpretation confirmed.",
-      "INFO: VV.PP. (Travelling and Area Salespeople): not modelled. Special category with their own rates (1st cat.: 1,932.91/1,932.91 pre-Dec 2024; 2nd cat.: 1,823.07); excluded due to complexity.",
-      "SIMPLIFICATION: Seniority increments: amounts from lexplain.it (article on CCNL tessile seniority increments). It was not possible to verify whether the amounts were updated with the 2024 renewal or whether they date from the previous contract. SIMPLIFICATION: the available amounts are used as an estimate for both periods.",
-      "INFO: Source for pre-Dec 2024 tables: lexplain.it, retrieved September 2026. Source for Jan 2026 tables: kitech.it, retrieved September 2026. Source for TEM and effective dates: SMI press release (sistemamodaitalia.com), November 2024.",
-      "INFO: APPRENTICESHIP: sotto-inquadramento. Group A (L4-L8) 36m total: 0-15m = 2 full levels below dest, 15-30m = 1 full level below, 30-36m+ = dest. Note: 'full level' skips S-variants, so levels_below in order arithmetic: L6-L8 → 2/1, L5 → 3/1, L4 → 4/2. Group B (L3/3S) 36m: 0-12m at L1, 12-30m at L2, 30m+ at dest. Group B (L2/2S) 36m: 0-12m at L1, then dest. L1 excluded as destination. Source: CCNL SMI (CNEL D014) + Gruppo24ORE scheda Oct 2023 + MySolution sintesi 2017. SIMPLIFICATION: MySolution notes 3S second period uses L2 pay (not L3).",
-      "INFO: JANUARY 2027 TRANCHE: +60.96 at L8 basis, proportional to parametri. Values from rinnovo 11/11/2024 (Chapter VI column 'da gennaio 2027'). Source: studiobergonzini.it ipotesi 11/11/2024 PDF."
+      {
+        "kind": "info",
+        "text": "December 2024 tranche (01/12/2024): per-level values derived proportionally from the +EUR 95 increase at grade 4 (2024 SMI renewal, source filctemcgil.it). Rationale: Dec-2024 increment = 95/152 = 5/8 of the total increase Nov-2024→Jan-2026; verified by exact closure on all levels against Jan-2026 values from kitech.it."
+      },
+      {
+        "kind": "info",
+        "text": "Level 8 function allowance: the total ERN published on lexplain.it (2,316.33) includes the function allowance (EUR 51.65). base_salary = ERN - 51.65 = 2,264.68 (pre-Dec 2024) and 2,457.72 (Jan 2026). Source kitech.it reports minimum and total separately for Level 8. Verification: combined increase (Dec2024+Jan2026) at Level 8 = EUR 193.04, expected proportional = 126.74% × 152.24 = EUR 193.12 (delta < 0.1 EUR). Interpretation confirmed."
+      },
+      {
+        "kind": "info",
+        "text": "VV.PP. (Travelling and Area Salespeople): not modelled. Special category with their own rates (1st cat.: 1,932.91/1,932.91 pre-Dec 2024; 2nd cat.: 1,823.07); excluded due to complexity."
+      },
+      {
+        "kind": "simplification",
+        "text": "Seniority increments: amounts from lexplain.it (article on CCNL tessile seniority increments). It was not possible to verify whether the amounts were updated with the 2024 renewal or whether they date from the previous contract. SIMPLIFICATION: the available amounts are used as an estimate for both periods."
+      },
+      {
+        "kind": "info",
+        "text": "Source for pre-Dec 2024 tables: lexplain.it, retrieved September 2026. Source for Jan 2026 tables: kitech.it, retrieved September 2026. Source for TEM and effective dates: SMI press release (sistemamodaitalia.com), November 2024."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP: sotto-inquadramento. Group A (L4-L8) 36m total: 0-15m = 2 full levels below dest, 15-30m = 1 full level below, 30-36m+ = dest. Note: 'full level' skips S-variants, so levels_below in order arithmetic: L6-L8 → 2/1, L5 → 3/1, L4 → 4/2. Group B (L3/3S) 36m: 0-12m at L1, 12-30m at L2, 30m+ at dest. Group B (L2/2S) 36m: 0-12m at L1, then dest. L1 excluded as destination. Source: CCNL SMI (CNEL D014) + Gruppo24ORE scheda Oct 2023 + MySolution sintesi 2017. SIMPLIFICATION: MySolution notes 3S second period uses L2 pay (not L3)."
+      },
+      {
+        "kind": "info",
+        "text": "JANUARY 2027 TRANCHE: +60.96 at L8 basis, proportional to parametri. Values from rinnovo 11/11/2024 (Chapter VI column 'da gennaio 2027'). Source: studiobergonzini.it ipotesi 11/11/2024 PDF."
+      }
     ]
   },
   "parameters": {

@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "telecomunicazioni-asstel",
     "name": "CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)",
@@ -36,15 +36,42 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: SALARY MODEL: conglobated (TEM = minimo tabellare + ex-contingenza + EDR + Elemento Retributivo di Settore), confirmed by footnote in rinnovo PDF (11/11/2025), tabelle retributive p.99-100. Back-calculation: C1(01/01/2026)=1988.73/173=11.50 EUR/h; A1=1399.68/173=8.09 EUR/h; C3=2317.44/173=13.39 EUR/h — all consistent with divisor 173. base_salary = TEM; fixed_allowances=[] for levels A1-C3.",
-      "INFO: FIXED ALLOWANCES: C4 (7° livello) carries Elemento Retributivo di Settore EUR 59.39/month separate from TEM (rinnovo PDF p.97). D1 (Quadri) carries Indennità di Funzione EUR 98.13/month inclusive of the 59.39 ERS (rinnovo PDF + CCNL 12/11/2020 sezione Quadri). Both use TEM parametro=228, identical base_salary. The validator checks base_salary only so the equal values are valid.",
-      "INFO: SALARY TRANCHES: four tranches from rinnovo 11/11/2025 — 01/01/2026, 01/12/2026, 01/07/2027, 01/12/2028. Pre-rinnovo salary tables (CCNL 12/11/2020) not modelled; engine scope starts from first 2026 tranche.",
-      "INFO: NEW CLASSIFICATION SYSTEM: rinnovo 11/11/2025 Art. 23 introduces Professional Areas A-D (effective 01/07/2026). Old→new mapping: 1°→A1, 2°→A2, 3°→B1, 4°→B2, 5°→C1, 5°S→C2, 6°→C3, 7°→C4, Q→D1. TEM values are identical regardless of which code system is in use; engine uses new codes throughout.",
-      "INFO: HOURLY DIVISOR: 173 (Art. 40, CCNL 12/11/2020: 'dividendo per 173'; 40h/week standard).",
-      "INFO: ADDITIONAL MONTHS: 13 (tredicesima only). Source: Art. 42, CCNL 12/11/2020. Quattordicesima not provided by this CCNL.",
-      "SOURCE: SENIORITY biennale (24 months), max 7 scatti, amounts from Art. 41 CCNL 12/11/2020: 6 of 9 levels confirmed (A2, B1, B2, C1, C3, C4); A1=A2 (21.54), C2=C1 (25.56) and D1=C4 (30.73) by adjacent-level approximation (1° livello, 5°S and Quadri absent from the Art. 41 table).",
-      "SIMPLIFICATION: APPRENTICESHIP professionalizzante, under_classification (Art. 20 CCNL 12/11/2020): 36 months, first 18 months two levels below the destination, next 18 months one level below, then the destination. Track covers destinations B1, B2, C1, C2, C3; A1/A2 (no level two steps below), C4 and D1 (funzioni direttive/Quadri) are not destinations.",
-      "SIMPLIFICATION: INPS: reuses 2026-industria.json (Confindustria/CIGO). SIMPLIFICATION: tax_sector='industria' is a modelling choice. Supporting facts: (a) Asstel is a Confindustria federation; (b) large TLC operators (Telecom Italia, etc.) have historically accessed CIGO/CIGS; (c) the CCNL itself (Art. 58 rinnovo 11/11/2025) describes the Fondo di Solidarietà Bilaterale TLC as 'in aggiunta' (supplementary), not as a CIG substitute. Counterargument: D.Lgs. 148/2015 Art. 26 bilateral funds are formally for sectors without CIG coverage; this was not verified against an INPS circular. If TERZIARIO rates apply instead, employer contribution at ≤50 employees would be 28.98% vs. 30.20% modelled here (difference ~1.2 pp). The Fondo di Solidarietà Bilaterale (0.20% datore + 0.10% lavoratore) is NOT modelled in either case."
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: conglobated (TEM = minimo tabellare + ex-contingenza + EDR + Elemento Retributivo di Settore), confirmed by footnote in rinnovo PDF (11/11/2025), tabelle retributive p.99-100. Back-calculation: C1(01/01/2026)=1988.73/173=11.50 EUR/h; A1=1399.68/173=8.09 EUR/h; C3=2317.44/173=13.39 EUR/h — all consistent with divisor 173. base_salary = TEM; fixed_allowances=[] for levels A1-C3."
+      },
+      {
+        "kind": "info",
+        "text": "FIXED ALLOWANCES: C4 (7° livello) carries Elemento Retributivo di Settore EUR 59.39/month separate from TEM (rinnovo PDF p.97). D1 (Quadri) carries Indennità di Funzione EUR 98.13/month inclusive of the 59.39 ERS (rinnovo PDF + CCNL 12/11/2020 sezione Quadri). Both use TEM parametro=228, identical base_salary. The validator checks base_salary only so the equal values are valid."
+      },
+      {
+        "kind": "info",
+        "text": "SALARY TRANCHES: four tranches from rinnovo 11/11/2025 — 01/01/2026, 01/12/2026, 01/07/2027, 01/12/2028. Pre-rinnovo salary tables (CCNL 12/11/2020) not modelled; engine scope starts from first 2026 tranche."
+      },
+      {
+        "kind": "info",
+        "text": "NEW CLASSIFICATION SYSTEM: rinnovo 11/11/2025 Art. 23 introduces Professional Areas A-D (effective 01/07/2026). Old→new mapping: 1°→A1, 2°→A2, 3°→B1, 4°→B2, 5°→C1, 5°S→C2, 6°→C3, 7°→C4, Q→D1. TEM values are identical regardless of which code system is in use; engine uses new codes throughout."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 173 (Art. 40, CCNL 12/11/2020: 'dividendo per 173'; 40h/week standard)."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 13 (tredicesima only). Source: Art. 42, CCNL 12/11/2020. Quattordicesima not provided by this CCNL."
+      },
+      {
+        "kind": "source",
+        "text": "SENIORITY biennale (24 months), max 7 scatti, amounts from Art. 41 CCNL 12/11/2020: 6 of 9 levels confirmed (A2, B1, B2, C1, C3, C4); A1=A2 (21.54), C2=C1 (25.56) and D1=C4 (30.73) by adjacent-level approximation (1° livello, 5°S and Quadri absent from the Art. 41 table)."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP professionalizzante, under_classification (Art. 20 CCNL 12/11/2020): 36 months, first 18 months two levels below the destination, next 18 months one level below, then the destination. Track covers destinations B1, B2, C1, C2, C3; A1/A2 (no level two steps below), C4 and D1 (funzioni direttive/Quadri) are not destinations."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS: reuses 2026-industria.json (Confindustria/CIGO). SIMPLIFICATION: tax_sector='industria' is a modelling choice. Supporting facts: (a) Asstel is a Confindustria federation; (b) large TLC operators (Telecom Italia, etc.) have historically accessed CIGO/CIGS; (c) the CCNL itself (Art. 58 rinnovo 11/11/2025) describes the Fondo di Solidarietà Bilaterale TLC as 'in aggiunta' (supplementary), not as a CIG substitute. Counterargument: D.Lgs. 148/2015 Art. 26 bilateral funds are formally for sectors without CIG coverage; this was not verified against an INPS circular. If TERZIARIO rates apply instead, employer contribution at ≤50 employees would be 28.98% vs. 30.20% modelled here (difference ~1.2 pp). The Fondo di Solidarietà Bilaterale (0.20% datore + 0.10% lavoratore) is NOT modelled in either case."
+      }
     ]
   },
   "parameters": {

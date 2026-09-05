@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "turismo-confcommercio",
     "name": "CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)",
@@ -37,15 +37,42 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: SUB-SECTOR: salary tables from the hotels/tourism renewal signed on 5 June 2024 (CCNL H052 hotels special section). CCNL H052 also covers the public establishments/FIPE sub-sector (renewal March 2025, slightly different tables) not modelled in this file.",
-      "INFO: CONGLOBATED MINIMUMS: the base_salary values are the monthly conglobated tabular minimums (basic pay + contingency included), as published by lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027. fixed_allowances is empty for all levels. Verification: level 7 November 2027 = 1458.42 / 172 = 8.48 EUR/h (matches published hourly table).",
-      "INFO: QA/QB FUNCTION ALLOWANCE: some sources (public establishments) show a separate function allowance (QA=EUR 75, QB=EUR 70). For the hotels sub-sector, the values in the conglobated table appear to already include this component. If checks against actual payslips show a discrepancy, add fixed_allowances QA=EUR 75 and QB=EUR 70.",
-      "INFO: TRANCHES: July 2024, June 2025, May 2026, April 2027, November 2027. No prior tranches modelled (lower bound: 2024-07-01).",
-      "INFO: SENIORITY INCREMENTS: 6 four-yearly increments (every 48 months). Amounts from lexplain.it/scatti-di-anzianita-ccnl-turismo-ristorazione-e-pubblici-esercizi. The increments are paid over 14 monthly instalments (including the 13th and 14th) — the gross_annual component is already captured by the additional_months=14 multiplier in the engine.",
-      "INFO: APPRENTICESHIP percentage (2024 renewal): 80% months 1-12, 85% months 13-24, 90% months 25-36 (source: albergoatenericcione.it, confirmed by research on the 2024 renewal). Duration 36 months for grades 2-5 and 6S (track 'professionalizzante_36'), 24 months for grade 6 (track 'professionalizzante_24'); beyond the contractual duration the worker is fully qualified at 100%. Grade 7, grade 1, and Quadri are not destinations. The under-classification (2 levels below / 1 level below) applied to the previous CCNL.",
-      "INFO: MONTHLY PAYMENTS: 14 (thirteenth in June, fourteenth in December). Confirmed by CCNL and by the note 'amounts paid over 14 monthly instalments' for seniority increments.",
-      "INFO: HOURLY DIVISOR: 172 hours/month (40 h/week × 52/12). Verified by back-calculation: 1458.42 / 172 = 8.478 ≈ 8.48 EUR/h (level 7, November 2027 — matches lexplain hourly table).",
-      "INFO: INPS: uses 2026-terziario.json (same tax_sector as commercio-confcommercio)."
+      {
+        "kind": "info",
+        "text": "SUB-SECTOR: salary tables from the hotels/tourism renewal signed on 5 June 2024 (CCNL H052 hotels special section). CCNL H052 also covers the public establishments/FIPE sub-sector (renewal March 2025, slightly different tables) not modelled in this file."
+      },
+      {
+        "kind": "info",
+        "text": "CONGLOBATED MINIMUMS: the base_salary values are the monthly conglobated tabular minimums (basic pay + contingency included), as published by lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027. fixed_allowances is empty for all levels. Verification: level 7 November 2027 = 1458.42 / 172 = 8.48 EUR/h (matches published hourly table)."
+      },
+      {
+        "kind": "info",
+        "text": "QA/QB FUNCTION ALLOWANCE: some sources (public establishments) show a separate function allowance (QA=EUR 75, QB=EUR 70). For the hotels sub-sector, the values in the conglobated table appear to already include this component. If checks against actual payslips show a discrepancy, add fixed_allowances QA=EUR 75 and QB=EUR 70."
+      },
+      {
+        "kind": "info",
+        "text": "TRANCHES: July 2024, June 2025, May 2026, April 2027, November 2027. No prior tranches modelled (lower bound: 2024-07-01)."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY INCREMENTS: 6 four-yearly increments (every 48 months). Amounts from lexplain.it/scatti-di-anzianita-ccnl-turismo-ristorazione-e-pubblici-esercizi. The increments are paid over 14 monthly instalments (including the 13th and 14th) — the gross_annual component is already captured by the additional_months=14 multiplier in the engine."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP percentage (2024 renewal): 80% months 1-12, 85% months 13-24, 90% months 25-36 (source: albergoatenericcione.it, confirmed by research on the 2024 renewal). Duration 36 months for grades 2-5 and 6S (track 'professionalizzante_36'), 24 months for grade 6 (track 'professionalizzante_24'); beyond the contractual duration the worker is fully qualified at 100%. Grade 7, grade 1, and Quadri are not destinations. The under-classification (2 levels below / 1 level below) applied to the previous CCNL."
+      },
+      {
+        "kind": "info",
+        "text": "MONTHLY PAYMENTS: 14 (thirteenth in June, fourteenth in December). Confirmed by CCNL and by the note 'amounts paid over 14 monthly instalments' for seniority increments."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 172 hours/month (40 h/week × 52/12). Verified by back-calculation: 1458.42 / 172 = 8.478 ≈ 8.48 EUR/h (level 7, November 2027 — matches lexplain hourly table)."
+      },
+      {
+        "kind": "info",
+        "text": "INPS: uses 2026-terziario.json (same tax_sector as commercio-confcommercio)."
+      }
     ]
   },
   "parameters": {

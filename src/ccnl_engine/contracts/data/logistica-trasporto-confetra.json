@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "logistica-trasporto-confetra",
     "name": "CCNL Logistica, Trasporto Merci e Spedizione (Confetra)",
@@ -44,18 +44,54 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: STAFF: tables for non-travelling staff (clerical employees and sedentary workers). The CCNL also covers travelling staff (drivers engaged in international transport) with separate tables and rules — not modelled in this file.",
-      "INFO: CONGLOBATED MINIMUMS: base_salary values are the conglobated monthly minimum pay (minimum pay table + contingenza per Art. 61 note + EPA). Primary check: Art. 61 of the consolidated text September 2025 — 'From 1.1.2001 the indennità di contingenza has been conglobated into the minimum pay tables together with the EDR of EUR 10.33 per month'. fixed_allowances is empty for all levels.",
-      "INFO: HOURLY DIVISOR: 168 hours/month. Primary source: Art. 61 para. 3 consolidated text September 2025 — 'The hourly pay is obtained by dividing the monthly pay by 168'.",
-      "INFO: TRANCHES: four tranches at 1.1.2025 (+120 for 3S), 1.1.2026 (+90 for 3S), 1.1.2027 (+40 for 3S), 1.6.2027 (+40 for 3S). Source: contrattotrasporti.it/art-106-tabelle-retributive (Art. 106 consolidated text) and Confetra circ283-2024 (January 2025 tranche).",
-      "INFO: ICE: the Indennità di Copertura Economica (ICE) was a provisional element in force until 31.12.2024. It ceases from 1.1.2025 with the renewal taking effect. base_salary values do not include ICE (ceased element). The consolidated text cites net increases of EUR 230 at 3S compared to the previous pay including ICE — the difference from the algebraic sum of the tranches (EUR 290 from base without ICE) corresponds to the pre-existing ICE value for that level.",
-      "INFO: ADDITIONAL MONTHS: 14 (tredicesima Art. 18 + quattordicesima Art. 19 consolidated text September 2025).",
-      "INFO: SENIORITY INCREMENTS: biennial (24-month cadence), max 5 biennial periods. Amounts from Art. 17 consolidated text September 2025. Non-travelling staff.",
-      "INFO: LEVEL 6° JUNIOR: abolished from 31.12.2025 (renewal of 6.12.2024, Confetra circ008-2025). All workers graded at 6J automatically promoted to 6°. Not modelled in this file.",
-      "INFO: EPA: Elemento Professionale d'Area, a component introduced by the 6.12.2024 renewal. Included in base_salary values from 1.1.2025. Not shown separately because it forms an integral part of the minimum pay (it affects all contractual and statutory entitlements) — see Confetra circ283-2024.",
-      "INFO: EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) has been conglobated into the minimum pay tables from 1.1.2001 (Art. 61 note). Subsequent additional EDRs (agreement 2011, agreement 2021) are NON-incidente (do not affect contractual entitlements) — not modelled in base_salary; they represent a separate pay slip item outside the engine.",
-      "INFO: INPS: uses 2026-industria.json (TaxSector.INDUSTRIA). File already present — no changes to the tax file.",
-      "INFO: APPRENTICESHIP: percentage type from TABELLA A consolidated text September 2025. 75% year 1 (m1-12), 85% year 2 (m13-24), 100% from m25. Eligible levels: 1, 2, 3, 3S, 4, 4J, 5, 6 (level Q excluded). Maximum duration 36 months. Source: Art. 106 + TABELLA A consolidated text 09/2025 (contrattotrasporti.it)."
+      {
+        "kind": "info",
+        "text": "STAFF: tables for non-travelling staff (clerical employees and sedentary workers). The CCNL also covers travelling staff (drivers engaged in international transport) with separate tables and rules — not modelled in this file."
+      },
+      {
+        "kind": "info",
+        "text": "CONGLOBATED MINIMUMS: base_salary values are the conglobated monthly minimum pay (minimum pay table + contingenza per Art. 61 note + EPA). Primary check: Art. 61 of the consolidated text September 2025 — 'From 1.1.2001 the indennità di contingenza has been conglobated into the minimum pay tables together with the EDR of EUR 10.33 per month'. fixed_allowances is empty for all levels."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 168 hours/month. Primary source: Art. 61 para. 3 consolidated text September 2025 — 'The hourly pay is obtained by dividing the monthly pay by 168'."
+      },
+      {
+        "kind": "info",
+        "text": "TRANCHES: four tranches at 1.1.2025 (+120 for 3S), 1.1.2026 (+90 for 3S), 1.1.2027 (+40 for 3S), 1.6.2027 (+40 for 3S). Source: contrattotrasporti.it/art-106-tabelle-retributive (Art. 106 consolidated text) and Confetra circ283-2024 (January 2025 tranche)."
+      },
+      {
+        "kind": "info",
+        "text": "ICE: the Indennità di Copertura Economica (ICE) was a provisional element in force until 31.12.2024. It ceases from 1.1.2025 with the renewal taking effect. base_salary values do not include ICE (ceased element). The consolidated text cites net increases of EUR 230 at 3S compared to the previous pay including ICE — the difference from the algebraic sum of the tranches (EUR 290 from base without ICE) corresponds to the pre-existing ICE value for that level."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 14 (tredicesima Art. 18 + quattordicesima Art. 19 consolidated text September 2025)."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY INCREMENTS: biennial (24-month cadence), max 5 biennial periods. Amounts from Art. 17 consolidated text September 2025. Non-travelling staff."
+      },
+      {
+        "kind": "info",
+        "text": "LEVEL 6° JUNIOR: abolished from 31.12.2025 (renewal of 6.12.2024, Confetra circ008-2025). All workers graded at 6J automatically promoted to 6°. Not modelled in this file."
+      },
+      {
+        "kind": "info",
+        "text": "EPA: Elemento Professionale d'Area, a component introduced by the 6.12.2024 renewal. Included in base_salary values from 1.1.2025. Not shown separately because it forms an integral part of the minimum pay (it affects all contractual and statutory entitlements) — see Confetra circ283-2024."
+      },
+      {
+        "kind": "info",
+        "text": "EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) has been conglobated into the minimum pay tables from 1.1.2001 (Art. 61 note). Subsequent additional EDRs (agreement 2011, agreement 2021) are NON-incidente (do not affect contractual entitlements) — not modelled in base_salary; they represent a separate pay slip item outside the engine."
+      },
+      {
+        "kind": "info",
+        "text": "INPS: uses 2026-industria.json (TaxSector.INDUSTRIA). File already present — no changes to the tax file."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP: percentage type from TABELLA A consolidated text September 2025. 75% year 1 (m1-12), 85% year 2 (m13-24), 100% from m25. Eligible levels: 1, 2, 3, 3S, 4, 4J, 5, 6 (level Q excluded). Maximum duration 36 months. Source: Art. 106 + TABELLA A consolidated text 09/2025 (contrattotrasporti.it)."
+      }
     ]
   },
   "parameters": {

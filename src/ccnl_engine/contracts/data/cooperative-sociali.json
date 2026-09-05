@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "cooperative-sociali",
     "name": "CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)",
@@ -32,14 +32,38 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: CONSOLIDATED MINIMUMS: the base_salary values are the monthly consolidated tabular minimums (base pay + contingency + EDR included), as published by lexplain.it. Hourly divisor 165 (CCNL art. 75, 38-hour week). Back-calculation check: A1 October 2025 = 1359.88 / 165 = EUR 8.24/h; C1 = 1545.21 / 165 = EUR 9.37/h; F2 = 2504.10 / 165 = EUR 15.17/h — consistent with the hourly rates published by lexplain.it.",
-      "INFO: QUADRO LEVELS: levels E2Q, F1Q, F2Q are modelled as separate levels with fixed_allowances (function allowance EUR 77.47, EUR 154.94, EUR 232.41/month respectively). The base_salary is identical to the corresponding non-Q level; the allowance is fixed and unchanged across tranches. Seniority increments for Q levels carry the same amount as the corresponding base level.",
-      "INFO: ADDITIONAL MONTHS: 13 until 31 December 2024 (thirteenth month only). From 1 January 2025: 13.5 (thirteenth month + fourteenth month equal to 50% of one monthly salary, paid in June, introduced by the 26 January 2024 renewal).",
-      "INFO: TRANCHES: February 2024 (first), October 2024 (second), October 2025 (third and last). Renewal signed on 26 January 2024. No pre-February-2024 tables modelled.",
-      "INFO: LEVELS WITH THE SAME BASE: C3 and D1 have identical minimums at each tranche (orders 6/7). D3 and E1 are identical (orders 9/10). Q levels (E2Q/F1Q/F2Q) have the same base as the non-Q level but the next order: the engine allows equal salaries between adjacent levels.",
-      "INFO: SENIORITY INCREMENTS: biennial (every 24 months), maximum 5 increments. Fixed amounts per level from the CCNL seniority table (source: ccnlcooperative.it, art. 80). C3 and D1 have the same amount (EUR 20.66); D3 and E1 have the same amount (EUR 26.86).",
-      "SIMPLIFICATION: INPS: uses 2026-terziario.json (same tax_sector as CCNL Commercio Confcommercio). The social cooperatives sector does not have a separate employer INPS rate verified from a primary circular; type-B social cooperatives may apply concessions under L. 381/1991 not modelled in this file.",
-      "INFO: APPRENTICESHIP (professionalizzante) under Art. 28 renewal 05/03/2024: 3 duration tracks by category: category A (dest=A2) 18m [0-9m=85%,9-18m=90%]; category B/C (dest=B,C1,C2,C3) 24m [0-12m=85%,12-24m=90%]; category D/E (dest=D1,D2,D3,E1,E2) 36m [0-18m=85%,18-36m=90%]. A1 and F/Q levels not eligible. Special: OSS in socio-sanitario reduced to 18m. Source: Art. 28 ccnlcooperative.it (consolidated text 2025, high confidence)."
+      {
+        "kind": "info",
+        "text": "CONSOLIDATED MINIMUMS: the base_salary values are the monthly consolidated tabular minimums (base pay + contingency + EDR included), as published by lexplain.it. Hourly divisor 165 (CCNL art. 75, 38-hour week). Back-calculation check: A1 October 2025 = 1359.88 / 165 = EUR 8.24/h; C1 = 1545.21 / 165 = EUR 9.37/h; F2 = 2504.10 / 165 = EUR 15.17/h — consistent with the hourly rates published by lexplain.it."
+      },
+      {
+        "kind": "info",
+        "text": "QUADRO LEVELS: levels E2Q, F1Q, F2Q are modelled as separate levels with fixed_allowances (function allowance EUR 77.47, EUR 154.94, EUR 232.41/month respectively). The base_salary is identical to the corresponding non-Q level; the allowance is fixed and unchanged across tranches. Seniority increments for Q levels carry the same amount as the corresponding base level."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 13 until 31 December 2024 (thirteenth month only). From 1 January 2025: 13.5 (thirteenth month + fourteenth month equal to 50% of one monthly salary, paid in June, introduced by the 26 January 2024 renewal)."
+      },
+      {
+        "kind": "info",
+        "text": "TRANCHES: February 2024 (first), October 2024 (second), October 2025 (third and last). Renewal signed on 26 January 2024. No pre-February-2024 tables modelled."
+      },
+      {
+        "kind": "info",
+        "text": "LEVELS WITH THE SAME BASE: C3 and D1 have identical minimums at each tranche (orders 6/7). D3 and E1 are identical (orders 9/10). Q levels (E2Q/F1Q/F2Q) have the same base as the non-Q level but the next order: the engine allows equal salaries between adjacent levels."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY INCREMENTS: biennial (every 24 months), maximum 5 increments. Fixed amounts per level from the CCNL seniority table (source: ccnlcooperative.it, art. 80). C3 and D1 have the same amount (EUR 20.66); D3 and E1 have the same amount (EUR 26.86)."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS: uses 2026-terziario.json (same tax_sector as CCNL Commercio Confcommercio). The social cooperatives sector does not have a separate employer INPS rate verified from a primary circular; type-B social cooperatives may apply concessions under L. 381/1991 not modelled in this file."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP (professionalizzante) under Art. 28 renewal 05/03/2024: 3 duration tracks by category: category A (dest=A2) 18m [0-9m=85%,9-18m=90%]; category B/C (dest=B,C1,C2,C3) 24m [0-12m=85%,12-24m=90%]; category D/E (dest=D1,D2,D3,E1,E2) 36m [0-18m=85%,18-36m=90%]. A1 and F/Q levels not eligible. Special: OSS in socio-sanitario reduced to 18m. Source: Art. 28 ccnlcooperative.it (consolidated text 2025, high confidence)."
+      }
     ]
   },
   "parameters": {

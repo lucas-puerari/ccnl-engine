@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "commercio-confcommercio",
     "name": "CCNL Terziario, Distribuzione e Servizi (Confcommercio)",
@@ -40,13 +40,34 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "SOURCE: Salary tables: five tranches of the rinnovo 22/03/2024 (paga base dal 1/4/2024, 1/3/2025, 1/11/2025, 1/11/2026, 1/2/2027) taken from the official tabelle retributive as perfected by the Accordo integrativo 28/03/2024 (rounding fixes on Q, I, II, VI vs the 22/03 ipotesi), consolidated text at comuneportofinomare.it (Eutekne) cross-checked with lexplain.it.",
-      "SOURCE: Seniority (Art. 205): ten triennial scatti; amounts Q 25,46, I 24,84, II 22,83, III 21,95, IV 20,66, V 20,30, VI 19,73, VII 19,47 (dal 1/1/1990, unchanged by the 2024 renewal).",
-      "INFO: 'contingenza_edr' is the tables' 'Contingenza + EDR' column (contingenza frozen since November 1993 per L. 438/1992 plus EDR 10,33); 'terzo_elemento_nazionale' is the 2,07 EUR element of Art. 215.",
-      "INFO: Indennità di funzione Quadri 260,76 EUR (Art. 129, 14 mensilità; the literal sum of the increments is 260,77, the tables carry 260,76); VII livello 'altri elementi' 5,16 EUR.",
-      "SOURCE: Apprenticeship (Art. 53 TU 2019, unchanged in 2024): sottoinquadramento, two levels below the destination for the first half and one level below for the second half; eligible destinations II-VI (Art. 62); durations II-V 36 months, VI 24 months (Art. 64). Track 'livelli_2_5' (18+18 months), track 'livello_6' (VII for the first 12 months; the second half stays at VII by the general one-level-below rule, lexplain.it reads it as VI: adopted the literal text). Art. 68 Tabella B profiles with 42/48-month durations and the farmacista di parafarmacia derogation (Accordo 31/10/2024) are profile-specific and not modelled.",
-      "INFO: INPS: see tax/data/2026-terziario.json notes.",
-      "INFO: CNEL code H011 confirmed by Il Sole 24 Ore / INPS UNIEMENS reference."
+      {
+        "kind": "source",
+        "text": "Salary tables: five tranches of the rinnovo 22/03/2024 (paga base dal 1/4/2024, 1/3/2025, 1/11/2025, 1/11/2026, 1/2/2027) taken from the official tabelle retributive as perfected by the Accordo integrativo 28/03/2024 (rounding fixes on Q, I, II, VI vs the 22/03 ipotesi), consolidated text at comuneportofinomare.it (Eutekne) cross-checked with lexplain.it."
+      },
+      {
+        "kind": "source",
+        "text": "Seniority (Art. 205): ten triennial scatti; amounts Q 25,46, I 24,84, II 22,83, III 21,95, IV 20,66, V 20,30, VI 19,73, VII 19,47 (dal 1/1/1990, unchanged by the 2024 renewal)."
+      },
+      {
+        "kind": "info",
+        "text": "'contingenza_edr' is the tables' 'Contingenza + EDR' column (contingenza frozen since November 1993 per L. 438/1992 plus EDR 10,33); 'terzo_elemento_nazionale' is the 2,07 EUR element of Art. 215."
+      },
+      {
+        "kind": "info",
+        "text": "Indennità di funzione Quadri 260,76 EUR (Art. 129, 14 mensilità; the literal sum of the increments is 260,77, the tables carry 260,76); VII livello 'altri elementi' 5,16 EUR."
+      },
+      {
+        "kind": "source",
+        "text": "Apprenticeship (Art. 53 TU 2019, unchanged in 2024): sottoinquadramento, two levels below the destination for the first half and one level below for the second half; eligible destinations II-VI (Art. 62); durations II-V 36 months, VI 24 months (Art. 64). Track 'livelli_2_5' (18+18 months), track 'livello_6' (VII for the first 12 months; the second half stays at VII by the general one-level-below rule, lexplain.it reads it as VI: adopted the literal text). Art. 68 Tabella B profiles with 42/48-month durations and the farmacista di parafarmacia derogation (Accordo 31/10/2024) are profile-specific and not modelled."
+      },
+      {
+        "kind": "info",
+        "text": "INPS: see tax/data/2026-terziario.json notes."
+      },
+      {
+        "kind": "info",
+        "text": "CNEL code H011 confirmed by Il Sole 24 Ore / INPS UNIEMENS reference."
+      }
     ]
   },
   "parameters": {

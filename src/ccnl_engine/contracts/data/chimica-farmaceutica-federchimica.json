@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "chimica-farmaceutica-federchimica",
     "name": "CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)",
@@ -37,17 +37,50 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: CONSOLIDATED TEM: the base_salary values represent the total Minimum Economic Treatment (TEM) = base minimum (Min) + IPO (Organisational Position Integration, per level) + EAR (Additional Pay Element: A=EUR 190, B=EUR 100, C-F=0, fixed throughout the contract) + EDR (Distinct Pay Element, added from 01/07/2027, per level). fixed_allowances is empty for all levels.",
-      "INFO: PRIMARY SOURCE: TEM tables from the Federchimica/Farmindustria primary source (CCNL 2025-2028, signed 15/04/2025): informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf. The PDF contains the increment tables (Min and IPO per tranche) and the absolute TEM values at each due date for all 15 levels.",
-      "INFO: MODELLED TRANCHES: (1) Pre-existing (end of CCNL 2022-2025, valid_from 2025-06-01): Min+IPO+EAR from PDF page 2 column 'Previgente'. (2) 1/7/2025: first tranche CCNL 2025-2028. (3) 1/12/2025: second tranche. (4) 1/7/2026: third tranche — independently verified on kitech.it (CNEL B011), exact match. (5) 1/7/2027: fourth tranche + EDR (per level, PDF page 4). (6) 1/6/2028: fifth and final tranche.",
-      "INFO: EDR: from 01/07/2027 the Distinct Pay Element (EDR) is added, monthly amounts per level: A1=39, A2=34, A3=33, B1=32, B2=30, C1=28, C2=27, D1=26, D2=25, D3=24, E1=22, E2=20, E3=19, E4=19, F=18. The modelled TEM already includes EDR in the periods from 01/07/2027.",
-      "INFO: IPO VARIES BY TRANCHE: the IPO is not fixed across tranches but receives its own increments (table on PDF page 1, IPO columns per due date). TEM values are calculated by summing Min, IPO, and EAR (and EDR from 01/07/2027) for each tranche.",
-      "INFO: PRE-JUNE-2025 TRANCHES (CCNL 2022-2025, 5 tranches July 2022 - June 2025) are outside the modelled window: the Federchimica PDF reports only the 'Previgente' column as the baseline.",
-      "INFO: SENIORITY INCREMENTS abolished from 1 January 2010; amounts accrued up to 2009 are crystallised as a non-absorbable personal supplement, to be passed to compute() as ad_personam_monthly. maximum_count=0 and amount_by_level={}.",
-      "INFO: HOURLY DIVISOR: 175 h/month (chemical-pharmaceutical sector). The 173 divisor applies only to the ceramics and abrasives sub-sector.",
-      "INFO: ADDITIONAL MONTHS: 13 (thirteenth month only). The fourteenth month applies only to the lubricants/LPG, ceramics/abrasives, and insulation sub-sectors.",
-      "INFO: INPS: uses 2026-industria.json (standard industry sector). CNEL code: B011.",
-      "INFO: APPRENTICESHIP (sotto-inquadramento, Art. 3 CCNL): single track 'professionalizzante' covers all eligible destinations E3–B1 (10 levels). Rule: 0–18m = 2 levels below dest; 18m+ = 1 level below dest (two equal periods, total 36m typical). Excluded: F (Art. 3 explicit), E4 (2-below not resolvable), A3/A2/A1 (management tier, not standard apprenticeship). Prior track 'destinazione_D1' had levels_below=3 (error); corrected to 2. Source: Art. 3 CCNL Federchimica (lavoro-economia.it B011); informatori.it sintesi apprendistato B011."
+      {
+        "kind": "info",
+        "text": "CONSOLIDATED TEM: the base_salary values represent the total Minimum Economic Treatment (TEM) = base minimum (Min) + IPO (Organisational Position Integration, per level) + EAR (Additional Pay Element: A=EUR 190, B=EUR 100, C-F=0, fixed throughout the contract) + EDR (Distinct Pay Element, added from 01/07/2027, per level). fixed_allowances is empty for all levels."
+      },
+      {
+        "kind": "info",
+        "text": "PRIMARY SOURCE: TEM tables from the Federchimica/Farmindustria primary source (CCNL 2025-2028, signed 15/04/2025): informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf. The PDF contains the increment tables (Min and IPO per tranche) and the absolute TEM values at each due date for all 15 levels."
+      },
+      {
+        "kind": "info",
+        "text": "MODELLED TRANCHES: (1) Pre-existing (end of CCNL 2022-2025, valid_from 2025-06-01): Min+IPO+EAR from PDF page 2 column 'Previgente'. (2) 1/7/2025: first tranche CCNL 2025-2028. (3) 1/12/2025: second tranche. (4) 1/7/2026: third tranche — independently verified on kitech.it (CNEL B011), exact match. (5) 1/7/2027: fourth tranche + EDR (per level, PDF page 4). (6) 1/6/2028: fifth and final tranche."
+      },
+      {
+        "kind": "info",
+        "text": "EDR: from 01/07/2027 the Distinct Pay Element (EDR) is added, monthly amounts per level: A1=39, A2=34, A3=33, B1=32, B2=30, C1=28, C2=27, D1=26, D2=25, D3=24, E1=22, E2=20, E3=19, E4=19, F=18. The modelled TEM already includes EDR in the periods from 01/07/2027."
+      },
+      {
+        "kind": "info",
+        "text": "IPO VARIES BY TRANCHE: the IPO is not fixed across tranches but receives its own increments (table on PDF page 1, IPO columns per due date). TEM values are calculated by summing Min, IPO, and EAR (and EDR from 01/07/2027) for each tranche."
+      },
+      {
+        "kind": "info",
+        "text": "PRE-JUNE-2025 TRANCHES (CCNL 2022-2025, 5 tranches July 2022 - June 2025) are outside the modelled window: the Federchimica PDF reports only the 'Previgente' column as the baseline."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY INCREMENTS abolished from 1 January 2010; amounts accrued up to 2009 are crystallised as a non-absorbable personal supplement, to be passed to compute() as ad_personam_monthly. maximum_count=0 and amount_by_level={}."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 175 h/month (chemical-pharmaceutical sector). The 173 divisor applies only to the ceramics and abrasives sub-sector."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 13 (thirteenth month only). The fourteenth month applies only to the lubricants/LPG, ceramics/abrasives, and insulation sub-sectors."
+      },
+      {
+        "kind": "info",
+        "text": "INPS: uses 2026-industria.json (standard industry sector). CNEL code: B011."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP (sotto-inquadramento, Art. 3 CCNL): single track 'professionalizzante' covers all eligible destinations E3–B1 (10 levels). Rule: 0–18m = 2 levels below dest; 18m+ = 1 level below dest (two equal periods, total 36m typical). Excluded: F (Art. 3 explicit), E4 (2-below not resolvable), A3/A2/A1 (management tier, not standard apprenticeship). Prior track 'destinazione_D1' had levels_below=3 (error); corrected to 2. Source: Art. 3 CCNL Federchimica (lavoro-economia.it B011); informatori.it sintesi apprendistato B011."
+      }
     ]
   },
   "parameters": {

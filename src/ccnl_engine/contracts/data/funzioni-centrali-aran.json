@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "funzioni-centrali-aran",
     "name": "CCNL Comparto Funzioni Centrali — Triennio 2022-2024",
@@ -155,14 +155,38 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.",
-      "INFO: apprendistato assente dal CCNL vigente (fonte primaria: indice ARAN CCNL 2022-2024, Art. 1-38 senza capitolo apprendistato) e dal CCNL Ministeri 12/6/2003 richiamato dall'Art. 38 Conferme, che esclude espressamente gli apprendisti dall'ambito di applicazione (fonte secondaria: olympus.uniurb.it); quadro normativo PA D.Lgs. 165/2001 non prevede apprendistato ex D.Lgs. 81/2015.",
-      "SIMPLIFICATION: codice CNEL S005 derivato da tre fonti secondarie convergenti (lavoro-economia.it, blia.it ID S005-209278, contratticcnl.it); sito CNEL non direttamente interrogabile via HTTP (JS-driven search).",
-      "SIMPLIFICATION: aliquote INPS CTPS (ex-INPDAP) — dipendente 8,80%, datore 24,20% — da proxy kitech.it 2026; verificare circolare INPS annuale per valori esatti.",
-      "INFO: retribuzione tabellare conglobata dal 1/1/2024 per 13 mensilità (Tabella 2, Art. 30 CCNL 2022-2024); tranche precedente dal 9/5/2022 derivata per sottrazione degli incrementi Tabella 1.",
-      "INFO: divisore orario 156 (settimana di 36h) — Art. 29 c.3 CCNL 2022-2024 fonte primaria. Verifica: OPERATORI 1653,97/156=10,60; ASSISTENTI 1740,36/156=11,16; FUNZIONARI 2113,59/156=13,55.",
-      "INFO: progressione economica non automatica — differenziali stipendiali assegnati per graduatoria (Art. 16 CCNL 2022-2024); seniority_increments.maximum_count=0.",
-      "INFO: sub-settori ENAC, ANSFISA, ANSV e AGID hanno tabelle retributive proprie (Tabelle 3-6 CCNL) non modellate — out_of_scope per implementazione standard."
+      {
+        "kind": "info",
+        "text": "Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL."
+      },
+      {
+        "kind": "info",
+        "text": "apprendistato assente dal CCNL vigente (fonte primaria: indice ARAN CCNL 2022-2024, Art. 1-38 senza capitolo apprendistato) e dal CCNL Ministeri 12/6/2003 richiamato dall'Art. 38 Conferme, che esclude espressamente gli apprendisti dall'ambito di applicazione (fonte secondaria: olympus.uniurb.it); quadro normativo PA D.Lgs. 165/2001 non prevede apprendistato ex D.Lgs. 81/2015."
+      },
+      {
+        "kind": "simplification",
+        "text": "codice CNEL S005 derivato da tre fonti secondarie convergenti (lavoro-economia.it, blia.it ID S005-209278, contratticcnl.it); sito CNEL non direttamente interrogabile via HTTP (JS-driven search)."
+      },
+      {
+        "kind": "simplification",
+        "text": "aliquote INPS CTPS (ex-INPDAP) — dipendente 8,80%, datore 24,20% — da proxy kitech.it 2026; verificare circolare INPS annuale per valori esatti."
+      },
+      {
+        "kind": "info",
+        "text": "retribuzione tabellare conglobata dal 1/1/2024 per 13 mensilità (Tabella 2, Art. 30 CCNL 2022-2024); tranche precedente dal 9/5/2022 derivata per sottrazione degli incrementi Tabella 1."
+      },
+      {
+        "kind": "info",
+        "text": "divisore orario 156 (settimana di 36h) — Art. 29 c.3 CCNL 2022-2024 fonte primaria. Verifica: OPERATORI 1653,97/156=10,60; ASSISTENTI 1740,36/156=11,16; FUNZIONARI 2113,59/156=13,55."
+      },
+      {
+        "kind": "info",
+        "text": "progressione economica non automatica — differenziali stipendiali assegnati per graduatoria (Art. 16 CCNL 2022-2024); seniority_increments.maximum_count=0."
+      },
+      {
+        "kind": "info",
+        "text": "sub-settori ENAC, ANSFISA, ANSV e AGID hanno tabelle retributive proprie (Tabelle 3-6 CCNL) non modellate — out_of_scope per implementazione standard."
+      }
     ]
   }
 }

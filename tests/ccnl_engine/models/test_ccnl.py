@@ -294,23 +294,43 @@ class TestCCNLApprenticeshipTracks:
 
 
 class TestCoverage:
-    """Note prefixes, MISSING rule and layer_2 <-> tracks consistency."""
+    """CoverageNote kind, MISSING rule and layer_2 <-> tracks consistency."""
 
-    def test_note_without_prefix_raises(self) -> None:
-        """Every note must start with an allowed prefix."""
+    def test_note_invalid_kind_raises(self) -> None:
+        """A note with an unknown kind must be rejected."""
         data = make_ccnl_dict()
-        data["coverage"]["notes"] = ["Salary model: conglobated."]
-        with pytest.raises(ValidationError, match="must start with one of"):
+        data["coverage"]["notes"] = [{"kind": "unknown", "text": "something"}]
+        with pytest.raises(ValidationError):
+            _validate(data)
+
+    def test_note_missing_text_raises(self) -> None:
+        """A note missing the text field must be rejected."""
+        data = make_ccnl_dict()
+        data["coverage"]["notes"] = [{"kind": "info"}]
+        with pytest.raises(ValidationError):
             _validate(data)
 
     def test_missing_note_requires_partial(self) -> None:
-        """A MISSING: note is only allowed while a layer is partial."""
+        """A 'missing' note is only allowed while a layer is partial."""
         data = make_ccnl_dict()
-        data["coverage"]["notes"] = ["MISSING: Jan 2027 tranche."]
-        with pytest.raises(ValidationError, match="MISSING: notes but neither"):
+        data["coverage"]["notes"] = [{"kind": "missing", "text": "Jan 2027 tranche."}]
+        with pytest.raises(ValidationError, match="'missing' notes but neither"):
             _validate(data)
         data["coverage"]["layer_1"] = "partial"
-        assert _validate(data).coverage.layer_1 == "partial"
+        result = _validate(data)
+        assert result.coverage.layer_1 == "partial"
+        assert result.coverage.notes[0].kind.value == "missing"
+
+    def test_all_note_kinds_accepted(self) -> None:
+        """All four NoteKind values are valid."""
+        data = make_ccnl_dict()
+        data["coverage"]["notes"] = [
+            {"kind": "source", "text": "example.com"},
+            {"kind": "info", "text": "some context"},
+            {"kind": "simplification", "text": "approximation applied"},
+        ]
+        result = _validate(data)
+        assert len(result.coverage.notes) == 3
 
     def test_implemented_without_tracks_allowed(self) -> None:
         """layer_2 implemented is valid even with no apprenticeship tracks.

@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "autoferrotranvieri-internavigatori",
     "name": "CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)",
@@ -55,18 +55,54 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: CNEL CODE: I022 confirmed from CNEL archivio contratti (www.cnel.it/Contratti-Collettivi) for the Autoferrotranvieri e Internavigatori sector.",
-      "INFO: SIGNATORIES: employer side — AGENS (aziende ex gestione governativa), ASSTRA (aziende di trasporto pubblico locale), ANAV (autolinee e autoservizi). Union side — FILT-CGIL, FIT-CISL, Uiltrasporti, Faisa-Cisal, UGL-FNA. Confirmed from AGENS circular 20/03/2025.",
-      "INFO: AGREEMENT DATE: 2024-12-11 (intesa preliminare, confirmed in AGENS circular 20/03/2025 as the date that became definitively effective upon scioglimento delle riserve on 20/03/2025). Contract validity: 01/01/2024 to 31/12/2026.",
-      "INFO: SALARY MODEL: conglobated (TOTALE). base_salary per level = tabellare (Sep 2023) + contingenza (frozen since 1992) + TDR (Trattamento Distinto della Retribuzione, 51.65 EUR at par.175) + mensa (16.53 EUR/month, in retribuzione normale per Art. 43) + indennita di funzione (72.30 EUR for par.250, 51.65 EUR for par.230, 0 for all others). Sources: UilTrasporti official salary table PDF (March 2025); Thaler 2022 CCNL summary (contingenza and TDR tables).",
-      "INFO: SALARY TRANCHES: 3 periods. Period 1 (2024-12-11 to 2025-03-01): Sep 2023 tabellare values. Period 2 (2025-03-01 to 2026-08-01): +60 EUR at par.175, pro-rated. Period 3 (2026-08-01 to null): +100 EUR at par.175 (cumulative +160 EUR at par.175). Confirmed from UilTrasporti table and AGENS circular 20/03/2025.",
-      "INFO: HOURLY DIVISOR: 195. Derived from CCNL Art. 15 (primary source, italpaghe.ilccnl.it): 'Gli importi orari si determinano dividendo la retribuzione giornaliera per l'orario medio giornaliero.' Daily = monthly/30; for 39h/week the CCNL Thaler 2022 summary specifies dividing by 6 to get daily hours: 39/6 = 6.5h/day; divisor = 30 * 6.5 = 195. Three independent sources (CCNL Art. 15, lexplain.it, Thaler 2022) confirm the formula. Note: lavoro-economia.it states 'divisore convenzionale 169' but this contradicts the CCNL primary text and two corroborating sources; not adopted.",
-      "INFO: ADDITIONAL MONTHS: 14 (tredicesima in December + quattordicesima in June). Confirmed from CCNL Art. 40 (tredicesima) and Art. 41 (quattordicesima). Source: Thaler 2022 CCNL summary.",
-      "INFO: SENIORITY: biennale (24 months), maximum 6 scatti. Per-level amounts (EUR/scatto) confirmed from Thaler 2022 CCNL summary table, all 33 parametri. Note: two pairs share the same scatto amount (par.158 = par.160 = 24.65; par.138 = par.139 = 21.06) — this is as published.",
-      "INFO: EDR 2024: fixed_allowances per level, code 'edr_2024', 40 EUR at par.175 proportional to the parametro, active 2025-03-01 to 2026-04-30 (14 months). Per AGENS circular 20/03/2025 it is 'non computabile ai fini del TFR e della contribuzione al Fondo Priamo': modelled with tfr_relevant=false (Fondo Priamo is a bilateral pension fund, not modelled).",
-      "INFO: APPRENTICESHIP: CCNL Art. 36-bis (apprendistato professionalizzante). No wage reduction: the apprentice earns 100% of the destination parametro from day one; the track therefore covers every parametro. Source: Art. 36-bis per AGENS circular 20/03/2025.",
-      "SIMPLIFICATION: INPS reuses 2026-terziario.json. The Autoferrotranvieri sector (TPL) includes both public-owned (ex-gestione governativa) and private operators. INPS classification is TERZIARIO for private TPL companies (confirmed by ASSTRA/ANAV membership profile and INPS contribution circulars for the trasporti locali sector). SIMPLIFICATION: some publicly-owned TPL operators may have different INPS contribution schemes; this file models private-sector employers.",
-      "INFO: LEVELS: 33 parametri from 100 to 250. The CCNL classification assigns one or more job profiles per parametro; this file models one level per parametro as the economic unit. Descriptions are representative summaries; multiple job profiles exist at each parametro."
+      {
+        "kind": "info",
+        "text": "CNEL CODE: I022 confirmed from CNEL archivio contratti (www.cnel.it/Contratti-Collettivi) for the Autoferrotranvieri e Internavigatori sector."
+      },
+      {
+        "kind": "info",
+        "text": "SIGNATORIES: employer side — AGENS (aziende ex gestione governativa), ASSTRA (aziende di trasporto pubblico locale), ANAV (autolinee e autoservizi). Union side — FILT-CGIL, FIT-CISL, Uiltrasporti, Faisa-Cisal, UGL-FNA. Confirmed from AGENS circular 20/03/2025."
+      },
+      {
+        "kind": "info",
+        "text": "AGREEMENT DATE: 2024-12-11 (intesa preliminare, confirmed in AGENS circular 20/03/2025 as the date that became definitively effective upon scioglimento delle riserve on 20/03/2025). Contract validity: 01/01/2024 to 31/12/2026."
+      },
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: conglobated (TOTALE). base_salary per level = tabellare (Sep 2023) + contingenza (frozen since 1992) + TDR (Trattamento Distinto della Retribuzione, 51.65 EUR at par.175) + mensa (16.53 EUR/month, in retribuzione normale per Art. 43) + indennita di funzione (72.30 EUR for par.250, 51.65 EUR for par.230, 0 for all others). Sources: UilTrasporti official salary table PDF (March 2025); Thaler 2022 CCNL summary (contingenza and TDR tables)."
+      },
+      {
+        "kind": "info",
+        "text": "SALARY TRANCHES: 3 periods. Period 1 (2024-12-11 to 2025-03-01): Sep 2023 tabellare values. Period 2 (2025-03-01 to 2026-08-01): +60 EUR at par.175, pro-rated. Period 3 (2026-08-01 to null): +100 EUR at par.175 (cumulative +160 EUR at par.175). Confirmed from UilTrasporti table and AGENS circular 20/03/2025."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 195. Derived from CCNL Art. 15 (primary source, italpaghe.ilccnl.it): 'Gli importi orari si determinano dividendo la retribuzione giornaliera per l'orario medio giornaliero.' Daily = monthly/30; for 39h/week the CCNL Thaler 2022 summary specifies dividing by 6 to get daily hours: 39/6 = 6.5h/day; divisor = 30 * 6.5 = 195. Three independent sources (CCNL Art. 15, lexplain.it, Thaler 2022) confirm the formula. Note: lavoro-economia.it states 'divisore convenzionale 169' but this contradicts the CCNL primary text and two corroborating sources; not adopted."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 14 (tredicesima in December + quattordicesima in June). Confirmed from CCNL Art. 40 (tredicesima) and Art. 41 (quattordicesima). Source: Thaler 2022 CCNL summary."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY: biennale (24 months), maximum 6 scatti. Per-level amounts (EUR/scatto) confirmed from Thaler 2022 CCNL summary table, all 33 parametri. Note: two pairs share the same scatto amount (par.158 = par.160 = 24.65; par.138 = par.139 = 21.06) — this is as published."
+      },
+      {
+        "kind": "info",
+        "text": "EDR 2024: fixed_allowances per level, code 'edr_2024', 40 EUR at par.175 proportional to the parametro, active 2025-03-01 to 2026-04-30 (14 months). Per AGENS circular 20/03/2025 it is 'non computabile ai fini del TFR e della contribuzione al Fondo Priamo': modelled with tfr_relevant=false (Fondo Priamo is a bilateral pension fund, not modelled)."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP: CCNL Art. 36-bis (apprendistato professionalizzante). No wage reduction: the apprentice earns 100% of the destination parametro from day one; the track therefore covers every parametro. Source: Art. 36-bis per AGENS circular 20/03/2025."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS reuses 2026-terziario.json. The Autoferrotranvieri sector (TPL) includes both public-owned (ex-gestione governativa) and private operators. INPS classification is TERZIARIO for private TPL companies (confirmed by ASSTRA/ANAV membership profile and INPS contribution circulars for the trasporti locali sector). SIMPLIFICATION: some publicly-owned TPL operators may have different INPS contribution schemes; this file models private-sector employers."
+      },
+      {
+        "kind": "info",
+        "text": "LEVELS: 33 parametri from 100 to 250. The CCNL classification assigns one or more job profiles per parametro; this file models one level per parametro as the economic unit. Descriptions are representative summaries; multiple job profiles exist at each parametro."
+      }
     ]
   },
   "parameters": {

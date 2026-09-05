@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "trasporto-aereo-assaeroporti",
     "name": "CCNL Trasporto Aereo — Gestori Aeroportuali",
@@ -43,12 +43,30 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: APPRENTICESHIP TRACKS. Art. G14 §16 defines three professionalising tracks (18m, 24m, 36m) with percentage tables by semester. All three are implemented. Art. G14 does not restrict which track applies per destination level; employers and workers choose the duration per PFI. When calling compute() with Apprentice for any covered level, set Apprentice.track to 'professionalizzante_18m', 'professionalizzante_24m', or 'professionalizzante_36m'. Source: CCNL Parte Specifica Gestori Aeroportuali (assaeroporti.com, 04/06/2025), Art. G14 §16 table.",
-      "INFO: EDR APPRENTICESHIP EXEMPTION. Art. G14 §16 limits the apprenticeship percentage to 'minimi tabellari in vigore, indennità di contingenza'. EDR (Art. G22) is not listed and is therefore paid at full value for apprentices. Modelled via apprenticeship_pct_relevant=false on all EDR allowances.",
-      "SIMPLIFICATION: SENIORITY CAP. Art. G23 §5 grants one additional scatto to employees hired before 1 January 1993 reaching 16 years of company seniority from 1 January 2026. The engine has no hire-date input; maximum_count is set to 8 for all workers, understating by 1 scatto for eligible pre-1993 employees.",
-      "SIMPLIFICATION: LEVEL 9 SENIORITY. Art. G23 seniority table lists amounts for levels 1S through 8 only. Level 9 is absent. Modelled as 0.00; not confirmed whether intentional exclusion or typographical omission.",
-      "SIMPLIFICATION: SUPPLEMENTARY ALLOWANCES. Role-conditional allowances (turno, campo, maneggio denaro, DPI) and the una tantum of EUR 500 (Art. G20, October 2025) are not modelled. All are attendance- or role-conditional or one-time payments.",
-      "SIMPLIFICATION: ART. G6 RECLASSIFICATION. A supplementary agreement of 23 March 2026 reportedly amended Art. G6 (professional classification). The amendment text was not retrieved; its effect on level codes and salary tables for as_of dates from 2026-03-01 onward is unverified. Hourly divisor taken from Art. G28 text; no official hourly-rate column available in the source for back-calculation cross-check."
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP TRACKS. Art. G14 §16 defines three professionalising tracks (18m, 24m, 36m) with percentage tables by semester. All three are implemented. Art. G14 does not restrict which track applies per destination level; employers and workers choose the duration per PFI. When calling compute() with Apprentice for any covered level, set Apprentice.track to 'professionalizzante_18m', 'professionalizzante_24m', or 'professionalizzante_36m'. Source: CCNL Parte Specifica Gestori Aeroportuali (assaeroporti.com, 04/06/2025), Art. G14 §16 table."
+      },
+      {
+        "kind": "info",
+        "text": "EDR APPRENTICESHIP EXEMPTION. Art. G14 §16 limits the apprenticeship percentage to 'minimi tabellari in vigore, indennità di contingenza'. EDR (Art. G22) is not listed and is therefore paid at full value for apprentices. Modelled via apprenticeship_pct_relevant=false on all EDR allowances."
+      },
+      {
+        "kind": "simplification",
+        "text": "SENIORITY CAP. Art. G23 §5 grants one additional scatto to employees hired before 1 January 1993 reaching 16 years of company seniority from 1 January 2026. The engine has no hire-date input; maximum_count is set to 8 for all workers, understating by 1 scatto for eligible pre-1993 employees."
+      },
+      {
+        "kind": "simplification",
+        "text": "LEVEL 9 SENIORITY. Art. G23 seniority table lists amounts for levels 1S through 8 only. Level 9 is absent. Modelled as 0.00; not confirmed whether intentional exclusion or typographical omission."
+      },
+      {
+        "kind": "simplification",
+        "text": "SUPPLEMENTARY ALLOWANCES. Role-conditional allowances (turno, campo, maneggio denaro, DPI) and the una tantum of EUR 500 (Art. G20, October 2025) are not modelled. All are attendance- or role-conditional or one-time payments."
+      },
+      {
+        "kind": "simplification",
+        "text": "ART. G6 RECLASSIFICATION. A supplementary agreement of 23 March 2026 reportedly amended Art. G6 (professional classification). The amendment text was not retrieved; its effect on level codes and salary tables for as_of dates from 2026-03-01 onward is unverified. Hourly divisor taken from Art. G28 text; no official hourly-rate column available in the source for back-calculation cross-check."
+      }
     ]
   },
   "parameters": {

@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "forze-polizia-ordinamento-civile",
     "name": "DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)",
@@ -625,20 +625,62 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: Primo accordo DPR-based nel repository. Il Comparto Sicurezza-Difesa è disciplinato dal D.Lgs. 195/1995 — non da ARAN né da CCNL. Gli accordi sindacali sono recepiti con DPR (non con CCNL). DPR 53/2025 copre Polizia di Stato (97.931 effettivi, fonte poliziadistato.it 2024) e Corpo di Polizia Penitenziaria (~31.000 effettivi, fonte Rapporto Antigone 2025 / DAP): totale ~129.000 dipendenti.",
-      "INFO: Perimetro DPR 53/2025 — Art. 1: personale non dirigente delle Forze di polizia ad ordinamento civile (Polizia di Stato) e militare (Polizia Penitenziaria). Forze Armate (Esercito, Marina, Aeronautica), Carabinieri e Guardia di Finanza non rientrano.",
-      "INFO: Modello parametrico. Stipendio mensile = param × punto_parametrale_annuo / 12. Punto parametrale: T1 183,6993 €/anno (1/4/2022), T2 184,0659 €/anno (1/7/2022–31/12/2023), T3 195,50 €/anno (1/1/2024–). Fonte: Art. 6 DPR 53/2025 e ipotesi di accordo 18/12/2024.",
-      "INFO: Conglobazione confermata — IIS conglobata dal 1/1/2005 (D.Lgs. 193/2003). fixed_allowances: [] per tutti i livelli.",
-      "INFO: `order` assegnato per parametro crescente, non per gerarchia di carriera. Tre inversioni strutturali: Vice Sovrintendente (116,75) > Assistente Capo (116,50); Vice Ispettore (124,75) > Sovrintendente Capo (124,25); Vice Commissario (136,75) < Sostituto Commissario (143,50). Tre parità: SOVRINTENDENTE/ASSISTENTE_CAPO_COORD (121,50), ISPETTORE/SOV_CAPO_COORD (131,00), COMMISSARIO/SOST_COMM_COORD (148,00).",
-      "INFO: divisore orario 156 (36h/settimana) — DPR 18 giugno 2002 n. 164 (orario di lavoro Polizia di Stato), 36h × 52 / 12 = 156. Stessa derivazione degli altri contratti PA.",
-      "INFO: Tredicesima mensilità prevista — additional_months = 13.",
-      "INFO: Progressione economica non per scatti automatici sulla paga base, bensì per avanzamento di qualifica e tramite assegno funzionale (Art. 54 D.Lgs. 195/1995) maturato a 17, 27 e 32 anni di servizio. seniority_increments.maximum_count = 0.",
-      "INFO: Apprendistato assente — il reclutamento avviene per concorso pubblico (D.Lgs. 195/1995 art. 6). apprenticeship: [].",
-      "INFO: validity.valid_from = 2022-01-01 (inizio periodo normativo ex Art. 1 DPR 53/2025). Gli effetti retributivi iniziano il 2022-04-01 (prima tranche stipendiale), che coincide con la data valid_from del primo periodo base_salary.",
-      "INFO: Firmatari Polizia di Stato: SIULP, SAP, SIAP, FSP Polizia di Stato (ES-LS-CONSAP-M.P.), Federazione COISP-MOSAP, SILP CGIL. Firmatari Polizia Penitenziaria: SAPPE, SINAPPE, OSAPP, UILPA PP, USPP, CISL FNS. Fonte: testo DPR 53/2025.",
-      "SIMPLIFICATION: cnel_code = 'N/A' — il CNEL non assegna codici agli accordi DPR-based (questo comparto è escluso dalla contrattazione collettiva ordinaria ex D.Lgs. 195/1995 e resta in regime di diritto pubblico). Il CNEL medesimo non include questo comparto nel proprio archivio contratti.",
-      "SIMPLIFICATION: aliquote INPS/CTPS — dipendente 8,80%, datore 24,20% — proxy dal file 2026-pubblica-amministrazione.json già presente; verificare circolare INPS annuale per valori esatti (regime CTPS ex-INPDAP, identico a PA ordinaria).",
-      "SIMPLIFICATION: valori mensili arrotondati col metodo a due passi (annual = round(param × punto, 2); monthly = round(annual / 12, 2)) per allineamento con le tavole dell'ipotesi di accordo 18/12/2024. Differenza massima da calcolo diretto: 1 centesimo."
+      {
+        "kind": "info",
+        "text": "Primo accordo DPR-based nel repository. Il Comparto Sicurezza-Difesa è disciplinato dal D.Lgs. 195/1995 — non da ARAN né da CCNL. Gli accordi sindacali sono recepiti con DPR (non con CCNL). DPR 53/2025 copre Polizia di Stato (97.931 effettivi, fonte poliziadistato.it 2024) e Corpo di Polizia Penitenziaria (~31.000 effettivi, fonte Rapporto Antigone 2025 / DAP): totale ~129.000 dipendenti."
+      },
+      {
+        "kind": "info",
+        "text": "Perimetro DPR 53/2025 — Art. 1: personale non dirigente delle Forze di polizia ad ordinamento civile (Polizia di Stato) e militare (Polizia Penitenziaria). Forze Armate (Esercito, Marina, Aeronautica), Carabinieri e Guardia di Finanza non rientrano."
+      },
+      {
+        "kind": "info",
+        "text": "Modello parametrico. Stipendio mensile = param × punto_parametrale_annuo / 12. Punto parametrale: T1 183,6993 €/anno (1/4/2022), T2 184,0659 €/anno (1/7/2022–31/12/2023), T3 195,50 €/anno (1/1/2024–). Fonte: Art. 6 DPR 53/2025 e ipotesi di accordo 18/12/2024."
+      },
+      {
+        "kind": "info",
+        "text": "Conglobazione confermata — IIS conglobata dal 1/1/2005 (D.Lgs. 193/2003). fixed_allowances: [] per tutti i livelli."
+      },
+      {
+        "kind": "info",
+        "text": "`order` assegnato per parametro crescente, non per gerarchia di carriera. Tre inversioni strutturali: Vice Sovrintendente (116,75) > Assistente Capo (116,50); Vice Ispettore (124,75) > Sovrintendente Capo (124,25); Vice Commissario (136,75) < Sostituto Commissario (143,50). Tre parità: SOVRINTENDENTE/ASSISTENTE_CAPO_COORD (121,50), ISPETTORE/SOV_CAPO_COORD (131,00), COMMISSARIO/SOST_COMM_COORD (148,00)."
+      },
+      {
+        "kind": "info",
+        "text": "divisore orario 156 (36h/settimana) — DPR 18 giugno 2002 n. 164 (orario di lavoro Polizia di Stato), 36h × 52 / 12 = 156. Stessa derivazione degli altri contratti PA."
+      },
+      {
+        "kind": "info",
+        "text": "Tredicesima mensilità prevista — additional_months = 13."
+      },
+      {
+        "kind": "info",
+        "text": "Progressione economica non per scatti automatici sulla paga base, bensì per avanzamento di qualifica e tramite assegno funzionale (Art. 54 D.Lgs. 195/1995) maturato a 17, 27 e 32 anni di servizio. seniority_increments.maximum_count = 0."
+      },
+      {
+        "kind": "info",
+        "text": "Apprendistato assente — il reclutamento avviene per concorso pubblico (D.Lgs. 195/1995 art. 6). apprenticeship: []."
+      },
+      {
+        "kind": "info",
+        "text": "validity.valid_from = 2022-01-01 (inizio periodo normativo ex Art. 1 DPR 53/2025). Gli effetti retributivi iniziano il 2022-04-01 (prima tranche stipendiale), che coincide con la data valid_from del primo periodo base_salary."
+      },
+      {
+        "kind": "info",
+        "text": "Firmatari Polizia di Stato: SIULP, SAP, SIAP, FSP Polizia di Stato (ES-LS-CONSAP-M.P.), Federazione COISP-MOSAP, SILP CGIL. Firmatari Polizia Penitenziaria: SAPPE, SINAPPE, OSAPP, UILPA PP, USPP, CISL FNS. Fonte: testo DPR 53/2025."
+      },
+      {
+        "kind": "simplification",
+        "text": "cnel_code = 'N/A' — il CNEL non assegna codici agli accordi DPR-based (questo comparto è escluso dalla contrattazione collettiva ordinaria ex D.Lgs. 195/1995 e resta in regime di diritto pubblico). Il CNEL medesimo non include questo comparto nel proprio archivio contratti."
+      },
+      {
+        "kind": "simplification",
+        "text": "aliquote INPS/CTPS — dipendente 8,80%, datore 24,20% — proxy dal file 2026-pubblica-amministrazione.json già presente; verificare circolare INPS annuale per valori esatti (regime CTPS ex-INPDAP, identico a PA ordinaria)."
+      },
+      {
+        "kind": "simplification",
+        "text": "valori mensili arrotondati col metodo a due passi (annual = round(param × punto, 2); monthly = round(annual / 12, 2)) per allineamento con le tavole dell'ipotesi di accordo 18/12/2024. Differenza massima da calcolo diretto: 1 centesimo."
+      }
     ]
   }
 }

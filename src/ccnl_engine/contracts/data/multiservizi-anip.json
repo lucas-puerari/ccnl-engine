@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "multiservizi-anip",
     "name": "CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)",
@@ -49,16 +49,46 @@
     "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
-      "INFO: Salary model: SPLIT. Paga base (minimo tabellare) is a time series; contingenza and EDR are frozen fixed_allowances. Source: oristanoservizi.it/CCNL-Multiservizi-scadenza-2024.pdf (2021-2024 contract, 5 tranches) and accordo integrativo 6 Aug 2025 (2025-2028 contract, 8 tranches) via redigo.info.",
-      "INFO: hourly_divisor: 173 — confirmed per CCNL text: 'I divisori per ottenere la quota oraria e giornaliera sono, rispettivamente, 173 e 26'. Cross-checked: level Q July 2021 total 1953.62/11.29hr = 173 (hourly rate from table). Source: oristanoservizi.it PDF.",
-      "INFO: additional_months: 14 (tredicesima + quattordicesima). Source: CCNL text — 'Tredicesima: entro il 20 dicembre; Quattordicesima: entro il 15 luglio'. Both in misura di una mensilità della retribuzione globale mensile.",
-      "INFO: Seniority — impiegati (levels 5, 6, 7, Q): biennale scatti equal to 6.25% of (minimo tabellare + contingenza al 1 agosto 1983, EUR 279.60), maximum 8; amounts are recomputed at every salary tranche (verified against the July 2021 and July 2025 published values).",
-      "INFO: Seniority — operai (levels 1, 2, 2par115, 3, 4par125, 4): 'anzianità forfettaria di settore', a single fixed monthly amount from the 5th year of sector seniority; modelled with first_cadence_months_by_level=48 and maximum_count_by_level=1. Amounts per CCNL text (June 2011 increase after E.d.a.r. cessation). Source: oristanoservizi.it PDF.",
-      "INFO: Contingenza par levels: the CCNL text notes that contingenza values for 4par125 and 2par115 are not explicitly stated; by industry convention they match the values for levels 4 and 2 respectively. Source: note in oristanoservizi.it PDF.",
-      "SIMPLIFICATION: Apprenticeship: under-classification, 30 months for destination levels 4 and 5 (CCNL: '30 mesi per i livelli 4° e 5°'): first half two classification levels below the destination, second half one level below (the parametric sub-levels 2par115 and 4par125 are skipped, hence levels_below 3/1 for destination 5 and 4/2 for destination 4). Destination level 2 (apprentice stays at level 1 for the whole period) and other destinations are not modelled: durations not sourced. Source: ccnlportatili.it.",
-      "INFO: July 2025 values: the 2021-2024 CCNL included a 5th salary tranche effective July 2025 (e.g. +10 EUR on level 2). This was superseded by the 2025-2028 renewal (signed 13 June 2025, definitive tables per accordo integrativo 6 August 2025, effective retroactively from 1 July 2025 per Art. 73). The JSON models post-renewal July 2025 values (819.21 for level 2) directly. Workers received the higher new-contract amount; the old 5th tranche value (779.21) was never separately operative.",
-      "SIMPLIFICATION: INPS rates: terziario sector — reusing 2026-terziario.json (9.19% employee, tiered employer). SIMPLIFICATION: some sources indicate pulizie sector has a small FISE bilateral contribution; specific INPS circular for this sector was not verified. Use kitech.it proxy rates as label.",
-      "INFO: Workers covered: ~403,000 per INPS-UNIEMENS 2025 data; largest uncovered CCNL at time of implementation."
+      {
+        "kind": "info",
+        "text": "Salary model: SPLIT. Paga base (minimo tabellare) is a time series; contingenza and EDR are frozen fixed_allowances. Source: oristanoservizi.it/CCNL-Multiservizi-scadenza-2024.pdf (2021-2024 contract, 5 tranches) and accordo integrativo 6 Aug 2025 (2025-2028 contract, 8 tranches) via redigo.info."
+      },
+      {
+        "kind": "info",
+        "text": "hourly_divisor: 173 — confirmed per CCNL text: 'I divisori per ottenere la quota oraria e giornaliera sono, rispettivamente, 173 e 26'. Cross-checked: level Q July 2021 total 1953.62/11.29hr = 173 (hourly rate from table). Source: oristanoservizi.it PDF."
+      },
+      {
+        "kind": "info",
+        "text": "additional_months: 14 (tredicesima + quattordicesima). Source: CCNL text — 'Tredicesima: entro il 20 dicembre; Quattordicesima: entro il 15 luglio'. Both in misura di una mensilità della retribuzione globale mensile."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority — impiegati (levels 5, 6, 7, Q): biennale scatti equal to 6.25% of (minimo tabellare + contingenza al 1 agosto 1983, EUR 279.60), maximum 8; amounts are recomputed at every salary tranche (verified against the July 2021 and July 2025 published values)."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority — operai (levels 1, 2, 2par115, 3, 4par125, 4): 'anzianità forfettaria di settore', a single fixed monthly amount from the 5th year of sector seniority; modelled with first_cadence_months_by_level=48 and maximum_count_by_level=1. Amounts per CCNL text (June 2011 increase after E.d.a.r. cessation). Source: oristanoservizi.it PDF."
+      },
+      {
+        "kind": "info",
+        "text": "Contingenza par levels: the CCNL text notes that contingenza values for 4par125 and 2par115 are not explicitly stated; by industry convention they match the values for levels 4 and 2 respectively. Source: note in oristanoservizi.it PDF."
+      },
+      {
+        "kind": "simplification",
+        "text": "Apprenticeship: under-classification, 30 months for destination levels 4 and 5 (CCNL: '30 mesi per i livelli 4° e 5°'): first half two classification levels below the destination, second half one level below (the parametric sub-levels 2par115 and 4par125 are skipped, hence levels_below 3/1 for destination 5 and 4/2 for destination 4). Destination level 2 (apprentice stays at level 1 for the whole period) and other destinations are not modelled: durations not sourced. Source: ccnlportatili.it."
+      },
+      {
+        "kind": "info",
+        "text": "July 2025 values: the 2021-2024 CCNL included a 5th salary tranche effective July 2025 (e.g. +10 EUR on level 2). This was superseded by the 2025-2028 renewal (signed 13 June 2025, definitive tables per accordo integrativo 6 August 2025, effective retroactively from 1 July 2025 per Art. 73). The JSON models post-renewal July 2025 values (819.21 for level 2) directly. Workers received the higher new-contract amount; the old 5th tranche value (779.21) was never separately operative."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS rates: terziario sector — reusing 2026-terziario.json (9.19% employee, tiered employer). SIMPLIFICATION: some sources indicate pulizie sector has a small FISE bilateral contribution; specific INPS circular for this sector was not verified. Use kitech.it proxy rates as label."
+      },
+      {
+        "kind": "info",
+        "text": "Workers covered: ~403,000 per INPS-UNIEMENS 2025 data; largest uncovered CCNL at time of implementation."
+      }
     ]
   },
   "parameters": {

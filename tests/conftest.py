@@ -168,7 +168,7 @@ def make_ccnl_dict(*, app_type: str = "percentage") -> dict[str, Any]:
     else:
         tracks = []
     return {
-        "schema_version": "0.3",
+        "schema_version": "0.4",
         "meta": {
             "id": "test",
             "name": "Test CCNL",
@@ -187,7 +187,11 @@ def make_ccnl_dict(*, app_type: str = "percentage") -> dict[str, Any]:
         "coverage": {
             "layer_1": "implemented",
             "layer_2": "implemented" if tracks else "partial",
-            "notes": [] if tracks else ["MISSING: apprenticeship not modelled."],
+            "notes": (
+                []
+                if tracks
+                else [{"kind": "missing", "text": "apprenticeship not modelled."}]
+            ),
         },
         "parameters": {
             "hourly_divisor": _series("168"),

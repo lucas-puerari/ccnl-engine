@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "meta": {
     "id": "assicurazioni-ania",
     "name": "CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)",
@@ -38,21 +38,66 @@
     "layer_1": "implemented",
     "layer_2": "partial",
     "notes": [
-      "INFO: Covers personale amministrativo assunto dal 18/12/1999 (Allegato 2/B — tabella omnicomprensiva). Pre-1999 hires (Allegato 2/A) are out of scope.",
-      "INFO: First tranche decorrenza 01/01/2026 is retroactive; CCNL signed 13/05/2026. Arretrati January–July 2026 paid in July 2026 (Allegato 7). Period start is 2026-01-01 in the engine.",
-      "INFO: Additional months = 14 (tredicesima + quattordicesima). Monthly amounts are 1/14 of annual retribuzione. Source: Allegato 2/B header, FirstCISL PDF rinnovo 13/05/2026.",
-      "INFO: Seniority: cl 1 = anni 1-4 (48 months, quadriennale); cl 2 onward = 3 years each (36 months, triennale). Source: Art. 113 CCNL + Allegato 2/B class table.",
-      "INFO: L7 maximum seniority class is CL08 (anni 23-25); L1-L6 reach CL12 (oltre 34 anni). maximum_count_by_level overrides L7 to 7 advances.",
-      "INFO: Hourly divisor 160 (37h/week). Source: ilccnl.it, confirmed from Art. orario di lavoro CCNL ANIA.",
-      "INFO: Seniority increment amounts vary across tranches (e.g. L4: 67.51 → 70.17 → 72.30). Represented exactly via TimeSeries in amount_by_level.",
-      "MISSING: Indennità economica funzionari (Allegato 2/D) — role-conditional, six sub-grade variants (Ex 3°/2°/1° Grado, Funz. Senior, Funz. Business, Ass. ex F2), not representable as a single Allowance. Affects L7 only.",
-      "MISSING: Indennità profilo J) 4° livello (Allegato 2/E) — €57.26/mese dal 01/01/2026, €59.51 dal 01/01/2027, €61.32 dal 01/01/2028. Sub-profile-conditional.",
-      "MISSING: Indennità economica 6° livello quadro (Allegato 2/F) — €74.09/mese dal 01/01/2026. Sub-profile-conditional.",
-      "SIMPLIFICATION: Seniority increment = modal per-class difference in the 1/14 monthly table (Allegato 2/B); classes above CL01 may differ from the official table by ±0.02. Source: Allegato 2/B, Rinnovo 13/05/2026.",
-      "SIMPLIFICATION: INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); reuses 2026-credito.json. Verify against the annual INPS circular.",
-      "SOURCE: Salary tables: FirstCISL Gruppo Unipol, Allegato 2/B — Tabella omnicomprensiva post-1999, decorrenza 01/01/2026, 01/01/2027, 01/01/2028.",
-      "SOURCE: Apprenticeship: Art. 5, Allegato 18 (Accordo apprendistato professionalizzante), CCNL testo 2017/2018, confirmed applicable post-rinnovo 2026.",
-      "SOURCE: Class cadence: Art. 113 CCNL + column 'Anni serv.' Allegato 2/B."
+      {
+        "kind": "info",
+        "text": "Covers personale amministrativo assunto dal 18/12/1999 (Allegato 2/B — tabella omnicomprensiva). Pre-1999 hires (Allegato 2/A) are out of scope."
+      },
+      {
+        "kind": "info",
+        "text": "First tranche decorrenza 01/01/2026 is retroactive; CCNL signed 13/05/2026. Arretrati January–July 2026 paid in July 2026 (Allegato 7). Period start is 2026-01-01 in the engine."
+      },
+      {
+        "kind": "info",
+        "text": "Additional months = 14 (tredicesima + quattordicesima). Monthly amounts are 1/14 of annual retribuzione. Source: Allegato 2/B header, FirstCISL PDF rinnovo 13/05/2026."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: cl 1 = anni 1-4 (48 months, quadriennale); cl 2 onward = 3 years each (36 months, triennale). Source: Art. 113 CCNL + Allegato 2/B class table."
+      },
+      {
+        "kind": "info",
+        "text": "L7 maximum seniority class is CL08 (anni 23-25); L1-L6 reach CL12 (oltre 34 anni). maximum_count_by_level overrides L7 to 7 advances."
+      },
+      {
+        "kind": "info",
+        "text": "Hourly divisor 160 (37h/week). Source: ilccnl.it, confirmed from Art. orario di lavoro CCNL ANIA."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority increment amounts vary across tranches (e.g. L4: 67.51 → 70.17 → 72.30). Represented exactly via TimeSeries in amount_by_level."
+      },
+      {
+        "kind": "missing",
+        "text": "Indennità economica funzionari (Allegato 2/D) — role-conditional, six sub-grade variants (Ex 3°/2°/1° Grado, Funz. Senior, Funz. Business, Ass. ex F2), not representable as a single Allowance. Affects L7 only."
+      },
+      {
+        "kind": "missing",
+        "text": "Indennità profilo J) 4° livello (Allegato 2/E) — €57.26/mese dal 01/01/2026, €59.51 dal 01/01/2027, €61.32 dal 01/01/2028. Sub-profile-conditional."
+      },
+      {
+        "kind": "missing",
+        "text": "Indennità economica 6° livello quadro (Allegato 2/F) — €74.09/mese dal 01/01/2026. Sub-profile-conditional."
+      },
+      {
+        "kind": "simplification",
+        "text": "Seniority increment = modal per-class difference in the 1/14 monthly table (Allegato 2/B); classes above CL01 may differ from the official table by ±0.02. Source: Allegato 2/B, Rinnovo 13/05/2026."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); reuses 2026-credito.json. Verify against the annual INPS circular."
+      },
+      {
+        "kind": "source",
+        "text": "Salary tables: FirstCISL Gruppo Unipol, Allegato 2/B — Tabella omnicomprensiva post-1999, decorrenza 01/01/2026, 01/01/2027, 01/01/2028."
+      },
+      {
+        "kind": "source",
+        "text": "Apprenticeship: Art. 5, Allegato 18 (Accordo apprendistato professionalizzante), CCNL testo 2017/2018, confirmed applicable post-rinnovo 2026."
+      },
+      {
+        "kind": "source",
+        "text": "Class cadence: Art. 113 CCNL + column 'Anni serv.' Allegato 2/B."
+      }
     ]
   },
   "parameters": {
@@ -406,7 +451,9 @@
     {
       "type": "under_classification",
       "name": "area_c_l3",
-      "destination_levels": ["L3"],
+      "destination_levels": [
+        "L3"
+      ],
       "periods": [
         {
           "months_from": 0,
@@ -423,7 +470,9 @@
     {
       "type": "under_classification",
       "name": "area_b_l4",
-      "destination_levels": ["L4"],
+      "destination_levels": [
+        "L4"
+      ],
       "periods": [
         {
           "months_from": 0,
@@ -440,7 +489,9 @@
     {
       "type": "under_classification",
       "name": "area_b_l5",
-      "destination_levels": ["L5"],
+      "destination_levels": [
+        "L5"
+      ],
       "periods": [
         {
           "months_from": 0,
