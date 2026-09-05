@@ -1,11 +1,11 @@
 #!/bin/bash
-# batch-stop-hook.sh — project-local Stop hook for /batch goal tracking.
-# Goal is reached when (baseline + target) contract JSON files exist.
+# batch-stop-hook.sh — Stop hook for /batch loop tracking.
+# Reads progress_cmd from .claude/GOAL.md and blocks stop until target is reached.
 
 set -euo pipefail
 
 # Read stdin — hooks receive a JSON object with session context.
-# Exit immediately if this is a subagent stop (not the interactive session).
+# Exit immediately for subagent stops; only enforce on the interactive session.
 INPUT=$(cat)
 HOOK_EVENT=$(echo "$INPUT" | jq -r '.hook_event_name // "Stop"' 2>/dev/null || echo "Stop")
 if [[ "$HOOK_EVENT" != "Stop" ]]; then
@@ -22,26 +22,37 @@ FRONTMATTER=$(sed -n '/^---$/,/^---$/{ /^---$/d; p; }' "$GOAL_FILE")
 STATUS=$(echo "$FRONTMATTER" | grep '^status:' | sed 's/status: *//' | tr -d ' "' || echo "")
 BASELINE=$(echo "$FRONTMATTER" | grep '^baseline:' | sed 's/baseline: *//' | tr -d ' "' || echo "0")
 TARGET=$(echo "$FRONTMATTER" | grep '^target:' | sed 's/target: *//' | tr -d ' "' || echo "")
+PROGRESS_CMD=$(echo "$FRONTMATTER" | grep '^progress_cmd:' | sed 's/progress_cmd: *//' | tr -d '"' || echo "")
 
 if [[ "$STATUS" != "active" ]]; then
   exit 0
 fi
 
 if [[ -z "$TARGET" ]] || ! [[ "$TARGET" =~ ^[0-9]+$ ]]; then
-  echo "⚠️  GOAL.md is active but target is missing or invalid. Edit .claude/GOAL.md to fix." >&2
+  echo "⚠️  GOAL.md is active but target is missing or invalid." >&2
   exit 0
 fi
 
-# Count contract JSON files — source of truth, independent of commit message wording
-CURRENT=$(ls src/ccnl_engine/contracts/data/*.json 2>/dev/null | grep -v '__init__' | wc -l | tr -d ' ')
+if [[ -z "$PROGRESS_CMD" ]]; then
+  echo "⚠️  GOAL.md is active but progress_cmd is missing." >&2
+  exit 0
+fi
+
+# Run the configurable progress command to get the current count.
+CURRENT=$(bash -c "$PROGRESS_CMD" 2>/dev/null | tr -d ' ' || echo "0")
+if ! [[ "$CURRENT" =~ ^[0-9]+$ ]]; then
+  echo "⚠️  progress_cmd did not return an integer (got: $CURRENT)." >&2
+  exit 0
+fi
+
 NEEDED=$(( BASELINE + TARGET ))
-ADDED=$(( CURRENT - BASELINE ))
+DONE=$(( CURRENT - BASELINE ))
 
 if [[ "$CURRENT" -ge "$NEEDED" ]]; then
   TEMP_FILE="${GOAL_FILE}.tmp.$$"
   sed "s/^status: .*/status: done/" "$GOAL_FILE" > "$TEMP_FILE"
   mv "$TEMP_FILE" "$GOAL_FILE"
-  echo "✅ Goal achieved: $ADDED new CCNL contracts added (needed $TARGET)."
+  echo "✅ Batch complete: $DONE/$TARGET iterations done."
   exit 0
 fi
 
@@ -50,13 +61,13 @@ GOAL_BODY=$(awk '/^---$/{i++; next} i>=2' "$GOAL_FILE")
 
 jq -n \
   --arg goal "$GOAL_BODY" \
-  --argjson added "$ADDED" \
+  --argjson done "$DONE" \
   --argjson remaining "$REMAINING" \
   --argjson target "$TARGET" \
   '{
     "decision": "block",
-    "reason": ("🎯 Progress: " + ($added|tostring) + "/" + ($target|tostring) + " CCNL contracts added. " + ($remaining|tostring) + " remaining.\n\n" + $goal),
-    "systemMessage": ("🎯 Goal active | " + ($added|tostring) + "/" + ($target|tostring) + " CCNL added — " + ($remaining|tostring) + " more needed.")
+    "reason": ("🎯 Progress: " + ($done|tostring) + "/" + ($target|tostring) + " iterations done. " + ($remaining|tostring) + " remaining.\n\n" + $goal),
+    "systemMessage": ("🎯 Batch active | " + ($done|tostring) + "/" + ($target|tostring) + " done — " + ($remaining|tostring) + " remaining.")
   }'
 
 exit 0

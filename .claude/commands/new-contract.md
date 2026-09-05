@@ -169,13 +169,12 @@ Do not proceed to Step 3 until the advisor has confirmed the research is sound.
 
 ## Step 3 — Set up the branch
 
-```bash
-git checkout main
-git pull
-git checkout -b chore/{id}-{datoriale}
+Use `/new-branch`:
+```
+/new-branch chore {id}-{datoriale}
 ```
 
-The CI validates branch naming — use the pattern above, no deviations.
+This validates the branch type, syncs main, and creates the branch.
 Never work directly on `main`. Never push directly to `main`.
 
 ---
@@ -329,16 +328,14 @@ Do not proceed to Step 10 until the advisor has confirmed the implementation is 
 
 ## Step 10 — Commit and PR
 
-**Commit message**: single line only. The git hook rejects multi-line messages.
+Commit format and PR rules are in `CLAUDE.md`. For this command specifically:
+
+**Commit message**:
 ```
 feat({id}): add CCNL {Name} ({CNEL code}) payroll engine
 ```
 
-**Branch**: `chore/{id}-{datoriale}` (CI validates branch naming pattern).
-
-**Never push directly to `main`.** All changes go through a PR.
-
-**PR body** — exact structure:
+**PR body** — four sections:
 
 ```
 ## What
@@ -360,6 +357,8 @@ new TaxSector if any; key SIMPLIFICATIONs and their scope]
 
 ## Known pitfalls
 
+Contract-specific pitfalls (general rules are in `CLAUDE.md`):
+
 - **Apprenticeship type**: always verify against the actual renewal year. A pre-renewal CCNL
   may use `under_classification` while the post-renewal switched to `percentage` — secondary
   sources often describe the old model without flagging it.
@@ -367,11 +366,6 @@ new TaxSector if any; key SIMPLIFICATIONs and their scope]
   understated by ~30% (paga base only instead of total).
 - **Scatti cadence**: biennale (24), triennale (36), quadriennale (48) — never assume.
 - **`amount_by_level` codes**: must match `levels[].code` exactly — a mismatch is a load error.
-- **Docstring overflow**: ruff E501 applies to docstrings. Long test descriptions overflow 88
-  chars. Check before running ruff.
-- **Top-level imports**: ruff PLC0415 rejects imports inside test methods. Always add at the
-  top of the file.
-- **Multi-line commit message**: the git hook rejects it. One line only.
 - **Coverage gap on new TaxSector**: ship enum change + tax file + CCNL JSON in the same commit.
 
 ---
@@ -383,7 +377,6 @@ new TaxSector if any; key SIMPLIFICATIONs and their scope]
 - No trade-off on CCNL data: every parameter must be confirmed before calling advisor.
   If a value cannot be verified, stop and search further — never approximate or assume.
 - No PR before `pytest` reaches 100% branch coverage.
-- Commit message: single line.
-- Never push directly to `main` — not even for tooling, skills, or documentation.
 - Do not open a PR with failing or skipped tests.
-- Do not start a new contract if any PR is still open — merge first, then begin.
+- Do not start a new contract if any PR is still open — merge first (Step 0), then begin.
+- See `CLAUDE.md` for commit format, branch naming, and PR body rules.

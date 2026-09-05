@@ -1,47 +1,53 @@
-# /batch — Add N CCNLs in one continuous session
+# /batch — Repeat a command N times without stopping
 
-Uses a Stop hook to prevent the session from ending between contracts.
-Progress is tracked in `.claude/GOAL.md` (local, not committed).
+Runs a sub-command N times in sequence, tracking progress in `.claude/GOAL.md`.
+A Stop hook prevents the session from ending between iterations.
 
 ---
 
 ## Usage
 
-- `/batch N` — start a new batch: add N CCNLs sequentially, one at a time
+- `/batch N <command> [progress_cmd]` — start a batch
 - `/batch resume` — resume an interrupted batch
 - `/batch status` — show progress
 - `/batch clear` — cancel the active batch
 
+`progress_cmd` is a bash one-liner that outputs the current count of completed
+items (integer). If omitted and `command` is a known project command, use its
+default (see below). If unknown, ask the user for a progress_cmd before starting.
+
+### Known defaults
+
+| command | default progress_cmd |
+|---------|---------------------|
+| `/new-contract` | `ls src/ccnl_engine/contracts/data/*.json \| grep -v '__init__' \| wc -l` |
+
 ---
 
-## Start: `/batch N`
+## Start: `/batch N <command>`
 
-1. Count the current baseline (source of truth — contract JSON files):
-   ```bash
-   ls src/ccnl_engine/contracts/data/*.json | grep -v '__init__' | wc -l
-   ```
+1. Run `progress_cmd` to get the current baseline count.
 
 2. Create `.claude/GOAL.md`:
    ```
    ---
    status: active
-   baseline: <number from step 1>
+   baseline: <count from step 1>
    target: <N>
+   command: <command>
+   progress_cmd: <progress_cmd>
    started: <ISO date>
    ---
 
-   Add <N> new CCNLs following `.claude/commands/new-contract.md`.
-   Proceed in order, one contract at a time. Choose those with the highest
-   number of covered workers not yet present in the repo.
+   Run <command> <N> times, one at a time, without stopping between iterations.
    ```
 
-3. Begin the loop immediately. For each contract:
-   - Follow every step in `.claude/commands/new-contract.md` exactly.
-   - After the PR is merged and main is synced, proceed to the next contract.
-   - Do not stop or wait for user input between contracts.
+3. Invoke `<command>` immediately. After each iteration completes, proceed to
+   the next without waiting for user input. The Stop hook re-injects this goal
+   automatically — do not stop voluntarily between iterations.
 
-4. When all N contracts are merged, update `status: done` in `.claude/GOAL.md`
-   and report completion.
+4. When `progress_cmd` returns `baseline + target`, update `status: done` and
+   report completion.
 
 ---
 
@@ -50,42 +56,23 @@ Progress is tracked in `.claude/GOAL.md` (local, not committed).
 1. Read `.claude/GOAL.md`. If missing or `status` is `done` or `cancelled`,
    report that there is nothing to resume.
 
-2. Count current contracts:
-   ```bash
-   ls src/ccnl_engine/contracts/data/*.json | grep -v '__init__' | wc -l
-   ```
+2. Run `progress_cmd` to get the current count.
 
-3. Check for open PRs — a contract may be in flight:
-   ```bash
-   gh pr list --state open
-   ```
-   If a PR is open, merge it first before counting.
-
-4. Compute: `remaining = (baseline + target) - current`.
+3. Compute: `remaining = (baseline + target) - current`.
    If `remaining <= 0`, update `status: done` and report.
 
-5. Continue the loop for the remaining contracts (same rules as Start).
+4. Continue the loop for the remaining iterations.
 
 ---
 
 ## Status: `/batch status`
 
-Read `.claude/GOAL.md`, count current JSON files, and report:
-- Baseline, target, current count
-- Contracts added so far, remaining
+Read `.claude/GOAL.md`, run `progress_cmd`, and report:
+- command, baseline, target, current count
+- iterations completed, remaining
 
 ---
 
 ## Clear: `/batch clear`
 
 Set `status: cancelled` in `.claude/GOAL.md`.
-
----
-
-## Constraints
-
-- Source of truth for progress: `ls src/ccnl_engine/contracts/data/*.json | grep -v '__init__' | wc -l`.
-- Follow `.claude/commands/new-contract.md` exactly for each iteration.
-- Never push directly to `main`.
-- The Stop hook re-injects this goal automatically after each contract; do not
-  wait for user instructions between iterations.
