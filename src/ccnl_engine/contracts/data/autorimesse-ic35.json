@@ -1,0 +1,979 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "autorimesse-ic35",
+    "name": "CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)",
+    "cnel_code": "IC35",
+    "sector": "Autorimesse e noleggio automezzi",
+    "tax_sector": "terziario",
+    "agreement_date": "2025-12-09",
+    "signatories": [
+      "ANIASA",
+      "FILT-CGIL",
+      "FIT-CISL",
+      "UILTRASPORTI"
+    ],
+    "sources": [
+      {
+        "url": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
+        "type": "scanned",
+        "agreement_date": "2025-12-09"
+      },
+      {
+        "url": "https://www.comuneportofinomare.it/wp-content/uploads/CCNL-Autorimesse.pdf",
+        "type": "text",
+        "agreement_date": "2019-10-23"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: split. base_salary = retribuzione tabellare (Allegato 1 of 2025-12-09 verbale); fixed_allowances = CONTINGENZA (per-level, frozen) + EDR (10.33 all levels, frozen since Protocollo Intesa 1992) + EAR (per-level, frozen; Art. 41 vigente CCNL; labeled 'E.A.S. CCNL 23/10/2019' in Allegato 1)."
+      },
+      {
+        "kind": "info",
+        "text": "Hourly divisor 173 confirmed from 2019 CCNL primary source. Cross-check: 40h/week x 52 / 12 = 173.33, consistent with 173."
+      },
+      {
+        "kind": "info",
+        "text": "Additional months: 14. The 2025-12-09 verbale page 5 explicitly states 'tredicesima, la quattordicesima mensilita' for fixed-term workers, confirming both for all workers."
+      },
+      {
+        "kind": "info",
+        "text": "Q1, Q2, A1 share parametro 205 and identical paga base and contingenza per Allegato 1. Allegato 1 gives no salary basis for ordering among the three; order Q1 > Q2 > A1 is conventional."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: biennial (cadence_months=24), max 9 tranches from 2019 CCNL primary source. No seniority modifications found in the 2025 renewal text reviewed; amounts treated as unchanged (absence of evidence, not positive confirmation)."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship: percentage type, 85/90/95 percent by year of contract. Source: 2019 CCNL primary source. The 2025 renewal does not address apprenticeship provisions (absence of evidence, not positive confirmation)."
+      },
+      {
+        "kind": "info",
+        "text": "Source status: the 2025-12-09 document is a signed 'ipotesi di accordo' (conditional agreement). OO.SS. were to dissolve the reserve by 31/01/2026. As of 2026-09-05 the January 2026 tranches are in effect per public reporting; formal scioglimento not independently verified. Source is a signatory union PDF and sufficient as primary source."
+      },
+      {
+        "kind": "info",
+        "text": "Headcount: 41,438 workers (contratticcnl.it, CNEL/INPS archive, IC35, 2025)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Sezione Appalti (Art. 81-89) excluded. The appalto sub-section defines a separate A1-SA to C4-SA level ladder with different tranche dates and amounts, for companies doing washing/shuttling/car prep on behalf of rental firms. Not modeled: out of scope for the main contract coverage."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Ticket restaurant excluded. Art. 44/84 provides 8.00 EUR/day (from 01/01/2023), rising to 10.00 EUR/day from 01/04/2027, conditional on >= 5 hours worked. Per-day and conditional: not representable as a monthly fixed allowance."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Hourly divisor 173 applies to standard 40h/week staff. The 2019 CCNL notes 182 (autisti/drivers) and 191 (custodi/security) in specific roles. Only 173 modeled here: dominant case. Verify per-role divisor for drivers and security classifications."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Apprenticeship article numbers from 2019 CCNL may have changed in the current consolidated text (Art. numbering in 2025 verbale differs from 2019 PDF). The 85/90/95 percentage structure is from the 2019 source and is assumed unchanged."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-12-09",
+          "valid_until": null,
+          "value": "173"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-12-09",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 9,
+      "amount_by_level": {
+        "Q1": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "33.10"}]},
+        "Q2": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "33.10"}]},
+        "A1": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "33.10"}]},
+        "A2": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "32.19"}]},
+        "B1": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "30.36"}]},
+        "B2": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "29.57"}]},
+        "B3": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "29.39"}]},
+        "C1": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "29.23"}]},
+        "C2": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "27.17"}]},
+        "C3": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "26.61"}]},
+        "C4": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "25.35"}]}
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante",
+      "destination_levels": [
+        "Q1", "Q2", "A1", "A2", "B1", "B2", "B3", "C1", "C2", "C3", "C4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.95"
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "C4",
+      "order": 1,
+      "description": "Livello C4",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-12-09",
+            "valid_until": "2026-01-01",
+            "value": "1002.24"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1028.05"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "1053.85"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-11-01",
+            "value": "1092.56"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1131.27"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (Allegato 1, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "511.44"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo Intesa 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento Aggiuntivo della Retribuzione (Art. 41 vigente CCNL; frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "36.18"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "C3",
+      "order": 2,
+      "description": "Livello C3",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-12-09",
+            "valid_until": "2026-01-01",
+            "value": "1282.87"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1315.91"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "1348.94"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-11-01",
+            "value": "1398.49"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1448.04"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (Allegato 1, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "515.67"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo Intesa 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento Aggiuntivo della Retribuzione (Art. 41 vigente CCNL; frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "17.68"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "C2",
+      "order": 3,
+      "description": "Livello C2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-12-09",
+            "valid_until": "2026-01-01",
+            "value": "1383.09"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1418.70"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "1454.32"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-11-01",
+            "value": "1507.74"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1561.16"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (Allegato 1, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "517.26"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo Intesa 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento Aggiuntivo della Retribuzione (Art. 41 vigente CCNL; frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "11.75"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "C1",
+      "order": 4,
+      "description": "Livello C1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-12-09",
+            "valid_until": "2026-01-01",
+            "value": "1553.48"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1593.48"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "1633.48"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-11-01",
+            "value": "1693.48"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1753.48"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (Allegato 1, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "520.75"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo Intesa 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento Aggiuntivo della Retribuzione (Art. 41 vigente CCNL; frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "27.45"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "B3",
+      "order": 5,
+      "description": "Livello B3",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-12-09",
+            "valid_until": "2026-01-01",
+            "value": "1613.61"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1655.16"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "1696.71"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-11-01",
+            "value": "1759.03"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1821.35"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (Allegato 1, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "521.06"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo Intesa 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento Aggiuntivo della Retribuzione (Art. 41 vigente CCNL; frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "0.99"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "B2",
+      "order": 6,
+      "description": "Livello B2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-12-09",
+            "valid_until": "2026-01-01",
+            "value": "1683.77"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1727.13"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "1770.48"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-11-01",
+            "value": "1835.52"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1900.55"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (Allegato 1, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "522.46"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo Intesa 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento Aggiuntivo della Retribuzione (Art. 41 vigente CCNL; frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "3.52"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "B1",
+      "order": 7,
+      "description": "Livello B1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-12-09",
+            "valid_until": "2026-01-01",
+            "value": "1763.95"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1809.37"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "1854.79"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-11-01",
+            "value": "1922.92"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1991.05"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (Allegato 1, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "524.10"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo Intesa 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento Aggiuntivo della Retribuzione (Art. 41 vigente CCNL; frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "6.41"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "A2",
+      "order": 8,
+      "description": "Livello A2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-12-09",
+            "valid_until": "2026-01-01",
+            "value": "1934.33"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1984.14"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "2033.94"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-11-01",
+            "value": "2108.65"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "2183.36"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (Allegato 1, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "527.49"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo Intesa 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento Aggiuntivo della Retribuzione (Art. 41 vigente CCNL; frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "22.11"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "A1",
+      "order": 9,
+      "description": "Livello A1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-12-09",
+            "valid_until": "2026-01-01",
+            "value": "2054.60"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "2107.50"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "2160.40"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-11-01",
+            "value": "2239.76"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "2319.11"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (Allegato 1, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "529.75"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo Intesa 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento Aggiuntivo della Retribuzione (Art. 41 vigente CCNL; frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "26.45"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "Q2",
+      "order": 10,
+      "description": "Livello Q2 (Quadro di secondo livello)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-12-09",
+            "valid_until": "2026-01-01",
+            "value": "2054.60"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "2107.50"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "2160.40"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-11-01",
+            "value": "2239.76"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "2319.11"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (Allegato 1, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "529.75"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo Intesa 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento Aggiuntivo della Retribuzione (Art. 41 vigente CCNL; frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "26.45"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "Q1",
+      "order": 11,
+      "description": "Livello Q1 (Quadro di primo livello)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-12-09",
+            "valid_until": "2026-01-01",
+            "value": "2054.60"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "2107.50"
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": "2027-05-01",
+            "value": "2160.40"
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": "2027-11-01",
+            "value": "2239.76"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "2319.11"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (Allegato 1, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "529.75"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo Intesa 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        },
+        {
+          "code": "EAR",
+          "description": "Elemento Aggiuntivo della Retribuzione (Art. 41 vigente CCNL; frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-12-09",
+                "valid_until": null,
+                "value": "26.45"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -135,6 +135,7 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 | 71 | A221 | Organizzazioni Allevatori e Enti Zootecnici — AIA | Agricoltura | ~2k | ✅ | ✅ | 🤖 |
 | 72 | E018 | Dipendenti PMI Alimentare — Unionalimentari-Confapi | Alimentare | ~35k | ✅ | ✅ | 🤖 |
 | 73 | K700 | Poste Italiane S.p.A. (non dirigenti) | Industria | ~117k | ✅ | ✅ | 🤖 |
+| 74 | IC35 | Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA) | Terziario | ~41k | ✅ | ✅ | 🤖 |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
