@@ -1,0 +1,60 @@
+{
+  "_description": "Golden case: CCNL Recapito Corrispondenza FISE-ARE (K711), Level 3, 2026-06-01, permanent, full-time, no seniority, 50 employees.",
+  "_notes": [
+    "Level 3 (mid-range). as_of=2026-06-01 (4th and final tranche): base_monthly=1687.29, EDR=10.33.",
+    "Split model: base_salary=tabellare+contingenza combined, fixed_allowances=EDR 10.33.",
+    "gross_monthly=1697.62, gross_annual=1697.62*14=23766.68. hourly_rate=1697.62/173=9.81.",
+    "INPS terziario 2026, 50 employees. trattamento_integrativo applies at this income level."
+  ],
+  "inputs": {
+    "ccnl_file": "recapito-corrispondenza-fise.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "3",
+    "as_of": "2026-06-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "recapito-corrispondenza-fise",
+    "level_code": "3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1687.29",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "10.33",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1697.62",
+    "gross_annual": "23766.68",
+    "hourly_rate": "9.81",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2184.16",
+    "inps_employer_annual": "6887.58",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1760.49",
+    "taxable_income": "21582.52",
+    "irpef_gross": "4963.98",
+    "work_income_deduction": "972.45",
+    "irpef_net": "3991.53",
+    "employer_withholds_irpef": true,
+    "second_level_monthly": "0.00",
+    "net_annual": "17981.76",
+    "net_monthly": "1284.41",
+    "employer_cost_annual": "32414.75",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "390.77",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}
