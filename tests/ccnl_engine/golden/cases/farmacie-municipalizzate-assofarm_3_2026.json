@@ -1,0 +1,63 @@
+{
+  "_description": "Golden case: CCNL Farmacie Municipalizzate ASSOFARM (H124), Level 3, 2026-08-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Third tranche (01/07/2024): retribuzione di base level 3 = 1777.29 EUR/month.",
+    "Conglobated model: single retribuzione di base per Allegato B (no separate contingenza or EDR).",
+    "Additional months: 14 (tredicesima Art. 20 + quattordicesima Art. 21).",
+    "Hourly divisor: 173 (Art. 18 explicit). Hourly rate: 1777.29 / 173 = 10.27.",
+    "Seniority: 0.00 (seniority_count=0, biennale cadence, max 15 scatti).",
+    "INPS: terziario (SIMPLIFICATION: exact INPS sub-sector not verified, see coverage notes).",
+    "num_employees=50 for consistency with other contracts; typical ASSOFARM pharmacy has ~19 employees."
+  ],
+  "inputs": {
+    "ccnl_file": "farmacie-municipalizzate-assofarm.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "3",
+    "as_of": "2026-08-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "farmacie-municipalizzate-assofarm",
+    "level_code": "3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1777.29",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1777.29",
+    "gross_annual": "24882.06",
+    "hourly_rate": "10.27",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2286.66",
+    "inps_employer_annual": "7210.82",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1843.12",
+    "taxable_income": "22595.40",
+    "irpef_gross": "5196.94",
+    "work_income_deduction": "900.67",
+    "irpef_net": "4296.27",
+    "employer_withholds_irpef": true,
+    "second_level_monthly": "0.00",
+    "net_annual": "18586.94",
+    "net_monthly": "1327.64",
+    "employer_cost_annual": "33936.00",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "287.81",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}

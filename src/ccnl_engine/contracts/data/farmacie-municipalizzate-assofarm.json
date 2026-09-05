@@ -1,0 +1,587 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "farmacie-municipalizzate-assofarm",
+    "name": "CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)",
+    "cnel_code": "H124",
+    "sector": "Farmacie municipalizzate e partecipate da enti locali",
+    "tax_sector": "terziario",
+    "agreement_date": "2022-07-07",
+    "signatories": [
+      "ASSOFARM",
+      "FILCAMS-CGIL",
+      "FISASCAT-CISL",
+      "UILTuCS"
+    ],
+    "sources": [
+      {
+        "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+        "type": "text",
+        "agreement_date": "2022-07-07"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: conglobated. Allegato B shows unified retribuzione di base with no separate contingenza or EDR columns. Back-calculation: L1=2109.97/173=12.20 EUR/h, L3=1777.29/173=10.27 EUR/h, L6=1421.48/173=8.22 EUR/h (all consistent with divisor 173)."
+      },
+      {
+        "kind": "info",
+        "text": "Hourly divisor 173: Art. 18 explicit: 'La quota oraria di retribuzione si ottiene dividendo la retribuzione mensile per 173'."
+      },
+      {
+        "kind": "info",
+        "text": "Additional months: 14. Art. 20 explicit: quattordicesima (luglio) + tredicesima (dicembre)."
+      },
+      {
+        "kind": "info",
+        "text": "IQ (Indennita Quadri): Allegato C, effective 01/07/2022. Levels 1Q=160, 1S=150, 1C=145 EUR/month."
+      },
+      {
+        "kind": "info",
+        "text": "IS (Indennita Speciale): Art. 19bis + Allegato A. Level 1+12anni=130, Level 1+2anni=100 EUR/month. Unchanged in 2022 renewal (Allegato C covers only IQ increments; Art. 19bis refers to Tabella A 2015 values)."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: 15 scatti biennali per Allegato E, decorrenza 1 gennaio 2014."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship: Allegato F, under-classification. Farmacista collaboratore stays at Primo livello for all 36 months (levels_below=0). Non-pharmacist roles (Coadiutore, Capo settore, Addetto amministrativo): months 1-12 at Sesto, months 13-36 at Quinto, exit Quarto."
+      },
+      {
+        "kind": "info",
+        "text": "Contract valid 07/07/2022-31/12/2024, ultrattivo since 01/01/2025 (no successor deposited at CNEL as of 2026-09-05). Third tranche (01/07/2024) modelled open-ended."
+      },
+      {
+        "kind": "info",
+        "text": "Headcount: 6,389 workers, 335 employers (ASSOFARM primary source)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: INPS terziario rates used. ASSOFARM pharmacies operate under commercial pharmacy rules; exact INPS circular for this sub-sector not verified."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Levels 1_12 and 1_2 are automatic time-in-grade progressions for Farmacista Collaboratore (12+ or 2+ years continuous service). Engine cannot model auto-advancement; they are implemented as static level codes distinguishable only by IS allowance amount."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Kitech shows 'Function Allow.' (40.90 for L2, 36.26 for L3 etc.) and 'Tech-Prof Allow.' for quadri sub-levels. These appear in no allegato of the signed CCNL (Art. 17 defines retribuzione di base as Tabelle A+B only). Excluded: for 1Q, base+IQ=2456.91+160=2616.91 vs kitech total 2758.68; the delta 141.77 = 77.47+64.30 matches kitech's two extra lines, confirming they are historical line items outside the contractual minimum."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2022-07-01",
+          "valid_until": null,
+          "value": 173
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2022-07-01",
+          "valid_until": null,
+          "value": 14
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 15,
+      "amount_by_level": {
+        "1Q": {
+          "periods": [
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": null,
+              "value": "26.50"
+            }
+          ]
+        },
+        "1S": {
+          "periods": [
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": null,
+              "value": "25.82"
+            }
+          ]
+        },
+        "1C": {
+          "periods": [
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": null,
+              "value": "25.31"
+            }
+          ]
+        },
+        "1_12": {
+          "periods": [
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": null,
+              "value": "25.31"
+            }
+          ]
+        },
+        "1_2": {
+          "periods": [
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": null,
+              "value": "25.31"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": null,
+              "value": "25.31"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": null,
+              "value": "23.24"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": null,
+              "value": "22.72"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": null,
+              "value": "20.66"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": null,
+              "value": "20.14"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": null,
+              "value": "19.63"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "farmacista_collaboratore",
+      "destination_levels": ["1"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante",
+      "destination_levels": ["4"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "1Q",
+      "order": 11,
+      "description": "1o livello Q - Direttore responsabile e area manager",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "2418.48"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "2439.44"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "2456.91"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "iq",
+          "description": "Indennita Quadri (Allegato C, dal 01/07/2022)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-07-01",
+                "valid_until": null,
+                "value": "160.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "1S",
+      "order": 10,
+      "description": "1o livello super - Direttore responsabile con funzioni direttive",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "2335.35"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "2355.59"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "2372.46"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "iq",
+          "description": "Indennita Quadri (Allegato C, dal 01/07/2022)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-07-01",
+                "valid_until": null,
+                "value": "150.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "1C",
+      "order": 9,
+      "description": "1o livello C - Farmacista collaboratore con funzioni speciali",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "2230.93"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "2250.26"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "2266.37"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "iq",
+          "description": "Indennita Quadri (Allegato C, dal 01/07/2022)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-07-01",
+                "valid_until": null,
+                "value": "145.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "1_12",
+      "order": 8,
+      "description": "1o livello + 12 anni - Farmacista collaboratore con 12+ anni di servizio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "2076.97"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "2094.97"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "2109.97"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "is",
+          "description": "Indennita Speciale Art. 19bis (dal 31/12/2015, invariata nel 2022)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-07-01",
+                "valid_until": null,
+                "value": "130.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "1_2",
+      "order": 7,
+      "description": "1o livello + 2 anni - Farmacista collaboratore con 24+ mesi di servizio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "2076.97"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "2094.97"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "2109.97"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "is",
+          "description": "Indennita Speciale Art. 19bis (dal 31/12/2015, invariata nel 2022)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-07-01",
+                "valid_until": null,
+                "value": "100.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "order": 6,
+      "description": "1o livello - Farmacista collaboratore",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "2076.97"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "2094.97"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "2109.97"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 5,
+      "description": "2o livello - Lavoratori con funzioni di coordinamento o tecnico-specialistiche",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "1842.88"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "1858.85"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "1872.16"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 4,
+      "description": "3o livello - Lavoratori con conoscenze tecnico-pratiche qualificate",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "1749.50"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "1764.66"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "1777.29"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 3,
+      "description": "4o livello - Lavoratori con compiti esecutivi e conoscenze tecnico-pratiche",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "1626.76"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "1640.86"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "1652.61"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 2,
+      "description": "5o livello - Lavoratori qualificati con normali conoscenze operative",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "1498.36"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "1511.35"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "1522.17"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6",
+      "order": 1,
+      "description": "6o livello - Lavoratori con mansioni di pulizia e operazioni semplici",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-07-01",
+            "value": "1399.25"
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "1411.37"
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": null,
+            "value": "1421.48"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ]
+}
