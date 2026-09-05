@@ -6210,3 +6210,82 @@ class TestLoadPosteItalianeK700:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 0
+
+
+class TestLoadAutorimesseIC35:
+    """Tests for CCNL Autorimesse, Noleggio Automezzi e Parcheggi (IC35)."""
+
+    def test_ic35_loads(self) -> None:
+        """Contract loads with correct id and CNEL code IC35."""
+        ccnl = load_ccnl("autorimesse-ic35.json")
+        assert ccnl.meta.id == "autorimesse-ic35"
+        assert ccnl.meta.cnel_code == "IC35"
+
+    def test_ic35_has_11_levels(self) -> None:
+        """11 levels: Q1 Q2 A1 A2 B1 B2 B3 C1 C2 C3 C4 (Allegato 1)."""
+        ccnl = load_ccnl("autorimesse-ic35.json")
+        assert len(ccnl.levels) == 11
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {
+            "Q1",
+            "Q2",
+            "A1",
+            "A2",
+            "B1",
+            "B2",
+            "B3",
+            "C1",
+            "C2",
+            "C3",
+            "C4",
+        }
+
+    def test_ic35_level_b1_salary_tranche1(self) -> None:
+        """B1 paga base inside gen-26 tranche: 1809.37 (Allegato 1)."""
+        ccnl = load_ccnl("autorimesse-ic35.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "B1")
+        assert lv.base_salary.value_at(date(2026, 3, 1)) == Decimal("1809.37")
+
+    def test_ic35_level_b1_salary_tranche2(self) -> None:
+        """B1 paga base inside ott-26 tranche: 1854.79 (Allegato 1)."""
+        ccnl = load_ccnl("autorimesse-ic35.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "B1")
+        assert lv.base_salary.value_at(date(2026, 11, 1)) == Decimal("1854.79")
+
+    def test_ic35_level_ordering(self) -> None:
+        """Highest order is Q1 (Quadro di primo livello); lowest is C4."""
+        ccnl = load_ccnl("autorimesse-ic35.json")
+        sorted_levels = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert sorted_levels[0].code == "C4"
+        assert sorted_levels[-1].code == "Q1"
+
+    def test_ic35_additional_months(self) -> None:
+        """14 mensilita': tredicesima + quattordicesima (verbale p.5)."""
+        ccnl = load_ccnl("autorimesse-ic35.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_ic35_hourly_divisor(self) -> None:
+        """Hourly divisor 173 h/month (40h/week, 2019 CCNL source)."""
+        ccnl = load_ccnl("autorimesse-ic35.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal(173)
+
+    def test_ic35_three_fixed_allowances(self) -> None:
+        """Every level carries CONTINGENZA, EDR and EAR allowances."""
+        ccnl = load_ccnl("autorimesse-ic35.json")
+        for lv in ccnl.levels:
+            codes = {a.code for a in lv.fixed_allowances}
+            assert codes == {"CONTINGENZA", "EDR", "EAR"}
+
+    def test_ic35_tax_sector(self) -> None:
+        """Contract uses TERZIARIO tax sector (service/transport sector)."""
+        ccnl = load_ccnl("autorimesse-ic35.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_ic35_seniority_cadence(self) -> None:
+        """9 biennial scatti di anzianita' (2019 CCNL, Art. anzianita')."""
+        ccnl = load_ccnl("autorimesse-ic35.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 9
