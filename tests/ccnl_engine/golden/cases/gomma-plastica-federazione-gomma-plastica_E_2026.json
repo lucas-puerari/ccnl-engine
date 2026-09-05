@@ -5,8 +5,7 @@
     "Conglobated TEM: single base_salary per level; fixed_allowances=[] for E. allowances_monthly=0.",
     "Additional months: 13 (tredicesima only, CCNL Gomma e Plastica Industria).",
     "INPS: 2026-industria.json (Confindustria/CIGO; >50 employees tier: 30.20% datore).",
-    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025)."
   ],
   "inputs": {
     "ccnl_file": "gomma-plastica-federazione-gomma-plastica.json",
@@ -47,9 +46,12 @@
     "net_annual": "19658.99",
     "net_monthly": "1512.23",
     "employer_cost_annual": "37116.55",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "94.82",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

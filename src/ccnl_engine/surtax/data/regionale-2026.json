@@ -1,0 +1,346 @@
+{
+  "year": 2026,
+  "notes": [
+    "Fonte: Dipartimento delle Finanze, MEF — addizionale regionale all'IRPEF.",
+    "Rate in forma decimale (es. 0.0123 = 1.23%). Aliquote marginali per scaglione di reddito.",
+    "Chiave: nome regione/provincia autonoma in italiano."
+  ],
+  "rates": {
+    "Piemonte": {
+      "brackets": [
+        {
+          "up_to": "28000.00",
+          "rate": "0.0167"
+        },
+        {
+          "up_to": "50000.00",
+          "rate": "0.0287"
+        },
+        {
+          "up_to": null,
+          "rate": "0.0333"
+        }
+      ]
+    },
+    "Valle d'Aosta": {
+      "brackets": [
+        {
+          "up_to": null,
+          "rate": "0.0123"
+        }
+      ]
+    },
+    "Lombardia": {
+      "brackets": [
+        {
+          "up_to": "28000.00",
+          "rate": "0.0123"
+        },
+        {
+          "up_to": "50000.00",
+          "rate": "0.0123"
+        },
+        {
+          "up_to": null,
+          "rate": "0.0173"
+        }
+      ]
+    },
+    "Provincia Autonoma di Bolzano": {
+      "brackets": [
+        {
+          "up_to": null,
+          "rate": "0.0173"
+        }
+      ]
+    },
+    "Provincia Autonoma di Trento": {
+      "brackets": [
+        {
+          "up_to": "15000.00",
+          "rate": "0.0173"
+        },
+        {
+          "up_to": "28000.00",
+          "rate": "0.0296"
+        },
+        {
+          "up_to": "50000.00",
+          "rate": "0.032"
+        },
+        {
+          "up_to": null,
+          "rate": "0.0333"
+        }
+      ]
+    },
+    "Veneto": {
+      "brackets": [
+        {
+          "up_to": "15000.00",
+          "rate": "0.0133"
+        },
+        {
+          "up_to": "28000.00",
+          "rate": "0.0193"
+        },
+        {
+          "up_to": "50000.00",
+          "rate": "0.0278"
+        },
+        {
+          "up_to": null,
+          "rate": "0.0333"
+        }
+      ]
+    },
+    "Friuli-Venezia Giulia": {
+      "brackets": [
+        {
+          "up_to": "15000.00",
+          "rate": "0.007"
+        },
+        {
+          "up_to": "28000.00",
+          "rate": "0.0123"
+        },
+        {
+          "up_to": "50000.00",
+          "rate": "0.0123"
+        },
+        {
+          "up_to": null,
+          "rate": "0.0123"
+        }
+      ]
+    },
+    "Liguria": {
+      "brackets": [
+        {
+          "up_to": "15000.00",
+          "rate": "0.0173"
+        },
+        {
+          "up_to": "28000.00",
+          "rate": "0.0333"
+        },
+        {
+          "up_to": "50000.00",
+          "rate": "0.0333"
+        },
+        {
+          "up_to": null,
+          "rate": "0.0333"
+        }
+      ]
+    },
+    "Emilia-Romagna": {
+      "brackets": [
+        {
+          "up_to": "28000.00",
+          "rate": "0.0123"
+        },
+        {
+          "up_to": "50000.00",
+          "rate": "0.0318"
+        },
+        {
+          "up_to": null,
+          "rate": "0.0323"
+        }
+      ]
+    },
+    "Toscana": {
+      "brackets": [
+        {
+          "up_to": "15000.00",
+          "rate": "0.0123"
+        },
+        {
+          "up_to": "28000.00",
+          "rate": "0.0158"
+        },
+        {
+          "up_to": "50000.00",
+          "rate": "0.0172"
+        },
+        {
+          "up_to": null,
+          "rate": "0.0173"
+        }
+      ]
+    },
+    "Umbria": {
+      "brackets": [
+        {
+          "up_to": "15000.00",
+          "rate": "0.0123"
+        },
+        {
+          "up_to": "28000.00",
+          "rate": "0.0153"
+        },
+        {
+          "up_to": "50000.00",
+          "rate": "0.017"
+        },
+        {
+          "up_to": null,
+          "rate": "0.0173"
+        }
+      ]
+    },
+    "Marche": {
+      "brackets": [
+        {
+          "up_to": "15000.00",
+          "rate": "0.0203"
+        },
+        {
+          "up_to": "28000.00",
+          "rate": "0.0223"
+        },
+        {
+          "up_to": "50000.00",
+          "rate": "0.0363"
+        },
+        {
+          "up_to": null,
+          "rate": "0.0363"
+        }
+      ]
+    },
+    "Lazio": {
+      "brackets": [
+        {
+          "up_to": "15000.00",
+          "rate": "0.0162"
+        },
+        {
+          "up_to": "28000.00",
+          "rate": "0.0268"
+        },
+        {
+          "up_to": "50000.00",
+          "rate": "0.0331"
+        },
+        {
+          "up_to": null,
+          "rate": "0.0333"
+        }
+      ]
+    },
+    "Abruzzo": {
+      "brackets": [
+        {
+          "up_to": "15000.00",
+          "rate": "0.0133"
+        },
+        {
+          "up_to": "28000.00",
+          "rate": "0.0213"
+        },
+        {
+          "up_to": "50000.00",
+          "rate": "0.0323"
+        },
+        {
+          "up_to": null,
+          "rate": "0.0333"
+        }
+      ]
+    },
+    "Molise": {
+      "brackets": [
+        {
+          "up_to": null,
+          "rate": "0.0123"
+        }
+      ]
+    },
+    "Campania": {
+      "brackets": [
+        {
+          "up_to": null,
+          "rate": "0.0123"
+        }
+      ]
+    },
+    "Puglia": {
+      "brackets": [
+        {
+          "up_to": "15000.00",
+          "rate": "0.0142"
+        },
+        {
+          "up_to": "28000.00",
+          "rate": "0.0143"
+        },
+        {
+          "up_to": "50000.00",
+          "rate": "0.0332"
+        },
+        {
+          "up_to": null,
+          "rate": "0.0333"
+        }
+      ]
+    },
+    "Basilicata": {
+      "brackets": [
+        {
+          "up_to": "15000.00",
+          "rate": "0.0123"
+        },
+        {
+          "up_to": "28000.00",
+          "rate": "0.0123"
+        },
+        {
+          "up_to": "50000.00",
+          "rate": "0.0123"
+        },
+        {
+          "up_to": null,
+          "rate": "0.0173"
+        }
+      ]
+    },
+    "Calabria": {
+      "brackets": [
+        {
+          "up_to": "15000.00",
+          "rate": "0.0173"
+        },
+        {
+          "up_to": "28000.00",
+          "rate": "0.0302"
+        },
+        {
+          "up_to": "50000.00",
+          "rate": "0.0312"
+        },
+        {
+          "up_to": null,
+          "rate": "0.0333"
+        }
+      ]
+    },
+    "Sicilia": {
+      "brackets": [
+        {
+          "up_to": null,
+          "rate": "0.0123"
+        }
+      ]
+    },
+    "Sardegna": {
+      "brackets": [
+        {
+          "up_to": null,
+          "rate": "0.0123"
+        }
+      ]
+    }
+  }
+}

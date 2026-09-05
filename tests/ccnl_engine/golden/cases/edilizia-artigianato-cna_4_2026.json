@@ -5,8 +5,7 @@
     "Split salary model: base 1533.88 + CONT 520.12 + EDR 10.33 = 2064.33.",
     "Additional months: 13 (tredicesima only, ilccnl.it).",
     "INPS employer rate from 2026-artigianato.json (artigianato sector, 16-50 employees tier).",
-    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025)."
   ],
   "inputs": {
     "ccnl_file": "edilizia-artigianato-cna.json",
@@ -47,9 +46,12 @@
     "net_annual": "19647.24",
     "net_monthly": "1511.33",
     "employer_cost_annual": "36051.17",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "107.42",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

@@ -48,9 +48,12 @@
     "net_annual": "34342.05",
     "net_monthly": "2641.70",
     "employer_cost_annual": "67816.51",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "0",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

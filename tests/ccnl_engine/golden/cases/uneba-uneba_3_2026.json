@@ -6,8 +6,7 @@
     "Additional months: 14 (tredicesima + quattordicesima, Art. 46 CCNL 2025).",
     "INPS employer rate from 2026-terziario.json (terziario sector, 16-50 employees tier).",
     "Seniority: 0.00 — seniority_count=0, triennial cadence, max 10 scatti (Art. 48).",
-    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025)."
   ],
   "inputs": {
     "ccnl_file": "uneba-uneba.json",
@@ -48,9 +47,12 @@
     "net_annual": "17457.18",
     "net_monthly": "1246.94",
     "employer_cost_annual": "31096.11",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "480.01",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

@@ -7,7 +7,6 @@
     "INPS CTPS ex-INPDAP: employee 8.80%, employer 24.20% (kitech.it proxy 2026, SIMPLIFICATION).",
     "Seniority: 0.00 — maximum_count=0 (DEP non automatici, Art. 60).",
     "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION).",
     "Indennità specificità infermieristica not included (profile-specific, not universal)."
   ],
   "inputs": {
@@ -49,9 +48,12 @@
     "net_annual": "19814.72",
     "net_monthly": "1524.21",
     "employer_cost_annual": "35528.13",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "92.72",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

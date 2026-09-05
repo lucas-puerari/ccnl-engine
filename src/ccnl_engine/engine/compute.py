@@ -27,6 +27,7 @@ if TYPE_CHECKING:
         SeniorityIncrements,
     )
     from ccnl_engine.models.employment import Employment
+    from ccnl_engine.surtax.models import SurtaxRules
     from ccnl_engine.tax.models import YearRules
 
 _ONE = Decimal(1)
@@ -138,6 +139,16 @@ class Scenario:
         num_employees: Total headcount of the employer. Used to select the
             correct INPS contribution-rate tier when calling
             :func:`~ccnl_engine.tax.loaders.load_year_rules`. Must be >= 1.
+        regione: Italian region name for addizionale regionale IRPEF lookup
+            (e.g. ``"Lombardia"``). When ``None`` or when no
+            :class:`~ccnl_engine.surtax.models.SurtaxRules` is passed to
+            :func:`compute`, the surtax is zero and
+            ``FiscalSimplification.NO_ADDIZIONALE_REGIONALE`` is set.
+        comune_belfiore: Codice catastale (belfiore) of the worker's
+            municipality of residence (e.g. ``"H501"`` for Rome). When
+            ``None`` or when no :class:`~ccnl_engine.surtax.models.SurtaxRules`
+            is passed to :func:`compute`, the surtax is zero and
+            ``FiscalSimplification.NO_ADDIZIONALE_COMUNALE`` is set.
     """
 
     level_code: str
@@ -154,6 +165,8 @@ class Scenario:
     category: LevelCategory | None = None
     ivs_ceiling_applies: bool = False
     weekly_hours: Decimal | None = None
+    regione: str | None = None
+    comune_belfiore: str | None = None
 
     def __post_init__(self) -> None:
         """Validate num_employees is at least 1.
@@ -166,13 +179,23 @@ class Scenario:
             raise ValueError(msg)
 
 
-def compute(ccnl: CCNL, rules: YearRules, scenario: Scenario) -> Payslip:
+def compute(
+    ccnl: CCNL,
+    rules: YearRules,
+    scenario: Scenario,
+    surtax: SurtaxRules | None = None,
+) -> Payslip:
     """Compute gross-to-net salary and employer cost for a given scenario.
 
     Args:
         ccnl: The CCNL contract model.
         rules: Tax and contribution rules for the relevant year.
         scenario: Scenario parameters (level, date, employment, options).
+        surtax: Addizionale regionale e comunale rate tables for the year
+            (loaded via :func:`~ccnl_engine.surtax.loaders.load_surtax_rules`).
+            When ``None``, both surtaxes are zero and the corresponding
+            :class:`~ccnl_engine.models.fiscal.FiscalSimplification` tags
+            are set on the payslip.
 
     Returns:
         Payslip with all gross, net, and cost figures.
@@ -278,10 +301,9 @@ def compute(ccnl: CCNL, rules: YearRules, scenario: Scenario) -> Payslip:
     )
     tfr_annual = _contrib.tfr(tfr_base, rules)
 
-    # Not modelled (scope of a separate fiscal layer): addizionali
-    # regionali/comunali; detrazioni per carichi di famiglia (Art. 12 TUIR);
-    # sterilization of detrazioni for redditi > EUR 200k (Art. 1 c. 3-4
-    # L. 199/2025).
+    # Not modelled (scope of a separate fiscal layer): detrazioni per carichi
+    # di famiglia (Art. 12 TUIR); sterilization of detrazioni for redditi
+    # > EUR 200k (Art. 1 c. 3-4 L. 199/2025).
     taxable_income = money(gross_annual - inps_employee_annual)
     irpef_gross = _irpef.irpef_gross(taxable_income, rules)
     work_income_deduction = _irpef.work_income_deduction(gross_annual, rules)
@@ -300,7 +322,14 @@ def compute(ccnl: CCNL, rules: YearRules, scenario: Scenario) -> Payslip:
         gross_annual, irpef_gross, work_income_deduction, rules
     )
 
-    net_annual = money(gross_annual - inps_employee_annual - irpef_net + ti)
+    # Addizionale regionale e comunale (Art. 50 TUIR; Art. 1 D.Lgs. 360/1998).
+    add_reg, add_com, fiscal_simplifications = _compute_addizionali(
+        taxable_income, scenario, surtax, fiscal_simplifications
+    )
+
+    net_annual = money(
+        gross_annual - inps_employee_annual - irpef_net - add_reg - add_com + ti
+    )
     net_monthly = money(net_annual / additional_months)
     employer_cost_annual = money(
         gross_annual + inps_employer_annual + employer_funds_annual + tfr_annual
@@ -332,6 +361,8 @@ def compute(ccnl: CCNL, rules: YearRules, scenario: Scenario) -> Payslip:
         work_income_deduction=work_income_deduction,
         irpef_net=irpef_net,
         employer_withholds_irpef=employer_withholds_irpef,
+        addizionale_regionale_annual=add_reg,
+        addizionale_comunale_annual=add_com,
         trattamento_integrativo=ti,
         fiscal_simplifications=fiscal_simplifications,
         net_annual=net_annual,
@@ -656,7 +687,8 @@ def _compute_ti(
             gross_annual, irpef_gross, work_income_deduction, ti_rules
         )
         simplifications: frozenset[FiscalSimplification] = frozenset({
-            FiscalSimplification.NO_ADDIZIONALI,
+            FiscalSimplification.NO_ADDIZIONALE_REGIONALE,
+            FiscalSimplification.NO_ADDIZIONALE_COMUNALE,
             FiscalSimplification.NO_DETRAZIONI_FAMILIARI,
             FiscalSimplification.NO_STERILIZZAZIONE_DETRAZIONI,
         })
@@ -664,3 +696,47 @@ def _compute_ti(
         ti = _ZERO
         simplifications = frozenset(FiscalSimplification)
     return ti, simplifications
+
+
+def _compute_addizionali(
+    taxable_income: Decimal,
+    scenario: Scenario,
+    surtax: SurtaxRules | None,
+    existing: frozenset[FiscalSimplification],
+) -> tuple[Decimal, Decimal, frozenset[FiscalSimplification]]:
+    """Return (addizionale_regionale, addizionale_comunale, updated_simplifications).
+
+    When ``surtax`` is ``None`` or the relevant ``Scenario`` field is ``None``,
+    the corresponding surtax is zero and its ``FiscalSimplification`` tag is
+    added.  Otherwise the surtax is computed from the bundled bracket table.
+
+    Returns:
+        Tuple of (regionale_amount, comunale_amount, simplifications_frozenset).
+    """
+    sfs: set[FiscalSimplification] = set(existing)
+    reg = _ZERO
+    com = _ZERO
+
+    if surtax is not None and scenario.regione is not None:
+        entry = surtax.regionale.get(scenario.regione)
+        if entry is not None:
+            reg = _irpef.surtax_from_brackets(taxable_income, entry.brackets)
+        # If region name is not found, reg stays zero (no flag: the caller
+        # intentionally passed a region; it is simply not in the dataset,
+        # e.g. a non-deliberated rate or an unrecognised name).
+        sfs.discard(FiscalSimplification.NO_ADDIZIONALE_REGIONALE)
+    else:
+        sfs.add(FiscalSimplification.NO_ADDIZIONALE_REGIONALE)
+
+    if surtax is not None and scenario.comune_belfiore is not None:
+        entry_com = surtax.comunale.get(scenario.comune_belfiore)
+        if entry_com is not None:
+            com = _irpef.surtax_from_brackets(
+                taxable_income, entry_com.brackets, entry_com.soglia
+            )
+        # Unrecognised belfiore code → zero, no flag (municipality has 0%).
+        sfs.discard(FiscalSimplification.NO_ADDIZIONALE_COMUNALE)
+    else:
+        sfs.add(FiscalSimplification.NO_ADDIZIONALE_COMUNALE)
+
+    return reg, com, frozenset(sfs)

@@ -6,7 +6,7 @@ import json
 from datetime import date
 from decimal import Decimal
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import pytest
 
@@ -14,7 +14,11 @@ from ccnl_engine.contracts.loaders import load_ccnl
 from ccnl_engine.engine.compute import Scenario, compute
 from ccnl_engine.models.ccnl import TaxSector
 from ccnl_engine.models.employment import Apprentice, FixedTerm, Permanent
+from ccnl_engine.surtax.loaders import load_surtax_rules
 from ccnl_engine.tax.loaders import load_year_rules
+
+if TYPE_CHECKING:
+    from ccnl_engine.surtax.models import SurtaxRules
 
 _CASES_DIR = Path(__file__).parent / "cases"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
@@ -56,6 +60,11 @@ class TestGolden:
         as_of = date.fromisoformat(inputs["as_of"])
 
         weekly_hours_raw = inputs.get("weekly_hours")
+        regione = inputs.get("regione")
+        comune_belfiore = inputs.get("comune_belfiore")
+        surtax: SurtaxRules | None = None
+        if regione is not None or comune_belfiore is not None:
+            surtax = load_surtax_rules(inputs["year"])
         result = compute(
             ccnl,
             rules,
@@ -77,7 +86,10 @@ class TestGolden:
                     else None
                 ),
                 ivs_ceiling_applies=bool(inputs.get("ivs_ceiling_applies", False)),
+                regione=regione,
+                comune_belfiore=comune_belfiore,
             ),
+            surtax,
         )
 
         # Compare each field in expected against the live Payslip

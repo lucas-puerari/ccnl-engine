@@ -5,8 +5,7 @@
     "Conglobated model: single base_salary per level; fixed_allowances=[]. allowances_monthly=0.",
     "Additional months: 14 (tredicesima + quattordicesima, Art. 117 base CCNL 2013).",
     "INPS: 2026-terziario.json (non-Confindustria services; employer 28.98% at <=50 employees).",
-    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025)."
   ],
   "inputs": {
     "ccnl_file": "vigilanza-privata-assiv.json",
@@ -47,9 +46,12 @@
     "net_annual": "16244.25",
     "net_monthly": "1160.30",
     "employer_cost_annual": "28047.14",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "686.37",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

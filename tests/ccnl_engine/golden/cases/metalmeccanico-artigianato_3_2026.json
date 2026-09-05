@@ -5,8 +5,7 @@
     "Conglobated salary: no separate contingenza or EDR. allowances_monthly=0.",
     "Additional months: 13 (tredicesima only, Art. mensilità CCNL 17.12.2021).",
     "INPS employer rate 26.93% flat (kitech.it proxy, artigianato non-edile; no CIGO/CIGS).",
-    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025)."
   ],
   "inputs": {
     "ccnl_file": "metalmeccanico-artigianato.json",
@@ -47,9 +46,12 @@
     "net_annual": "17486.57",
     "net_monthly": "1345.12",
     "employer_cost_annual": "30701.47",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "475.02",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

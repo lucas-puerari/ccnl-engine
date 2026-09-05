@@ -141,6 +141,7 @@ packages = ["src/ccnl_engine"]
 exclude = [
     "src/ccnl_engine/contracts/data/*.json",
     "src/ccnl_engine/tax/data/*.json",
+    "src/ccnl_engine/surtax/data/*.json",
 ]
 
 [tool.hatch.build.targets.sdist]

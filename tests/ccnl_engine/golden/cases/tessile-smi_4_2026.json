@@ -4,8 +4,7 @@
     "Second tranche (2026-01-01): conglobated monthly 1938.95 EUR (Jan 2026 confirmed table, kitech.it).",
     "No Dec 2024 tranche modelled (per-level amounts not available in public sources — see coverage.notes).",
     "INPS employer rate 30.20% (16-50 employees tier, 2026-industria.json).",
-    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025)."
   ],
   "inputs": {
     "ccnl_file": "tessile-smi.json",
@@ -46,9 +45,12 @@
     "net_annual": "18704.67",
     "net_monthly": "1438.82",
     "employer_cost_annual": "34685.81",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "257.88",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

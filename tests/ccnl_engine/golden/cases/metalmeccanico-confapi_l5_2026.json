@@ -6,7 +6,6 @@
     "INPS rates: industria sector, 16-50 employees (2026-industria.json, second tier). employee 9.19%, employer 30.20%.",
     "additional_months: 13 (tredicesima only, no quattordicesima).",
     "Art. 13 TUIR deduction: piecewise-linear at gross_income=29196.31.",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION).",
     "Seniority: 0 increments — seniority_monthly is 0.00."
   ],
   "inputs": {
@@ -48,9 +47,12 @@
     "net_annual": "21009.64",
     "net_monthly": "1616.13",
     "employer_cost_annual": "40176.29",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "0",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

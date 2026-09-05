@@ -7,8 +7,7 @@
     "Hourly divisor: 172 (Art. 151 CCNL 2010, 40h/week). Verify: 1695.69 / 172 = 9.86 EUR/hr.",
     "INPS employer rate from 2026-terziario.json (terziario sector, <=50 employees).",
     "Seniority: 0.00 — seniority_count=0, triennale cadence (36m), max 6 scatti.",
-    "IRPEF 2026 brackets from 2026-terziario.json.",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+    "IRPEF 2026 brackets from 2026-terziario.json."
   ],
   "inputs": {
     "ccnl_file": "turismo-federalberghi.json",
@@ -49,9 +48,12 @@
     "net_annual": "17967.10",
     "net_monthly": "1283.36",
     "employer_cost_annual": "32377.90",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "393.26",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

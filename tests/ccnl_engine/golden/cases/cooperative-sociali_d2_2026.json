@@ -4,8 +4,7 @@
     "base_monthly is the conglobated minimum at third tranche (2025-10-01): D2 = 1727.83. Divisore 165, 38h/week.",
     "additional_months = 13.5 from 2025-01-01 (tredicesima + quattordicesima 50%). gross_annual = 1727.83 × 13.5 = 23325.71.",
     "INPS: terziario sector, 50 employees (2026-terziario.json). employee 9.19%, employer (second tier applicable).",
-    "Livelli Q (E2Q, F1Q, F2Q) not modelled — SIMPLIFICATION (indennità di funzione excluded).",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+    "Livelli Q (E2Q, F1Q, F2Q) not modelled — SIMPLIFICATION (indennità di funzione excluded)."
   ],
   "inputs": {
     "ccnl_file": "cooperative-sociali.json",
@@ -46,9 +45,12 @@
     "net_annual": "17742.50",
     "net_monthly": "1314.26",
     "employer_cost_annual": "31813.33",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "431.47",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]

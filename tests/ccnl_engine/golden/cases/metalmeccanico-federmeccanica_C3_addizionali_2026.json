@@ -1,0 +1,60 @@
+{
+  "_description": "Golden case: CCNL Metalmeccanici Federmeccanica, Level C3, 2026-01-01, permanent, full-time. Addizionale regionale Lombardia + addizionale comunale Agordo (A083, brackets + soglia).",
+  "_notes": [
+    "Addizionale regionale Lombardia 2026: 1.23% su tutto il reddito (scaglione unico fino a 28.000).",
+    "Addizionale comunale Agordo (A083): soglia 10.000; 0.63% fino a 15.000; 0.76% da 15.001 a 28.000.",
+    "Calcolo: 15000 * 0.0063 + 10394.73 * 0.0076 = 94.50 + 79.00 = 173.50.",
+    "Trattamento integrativo: 0 (RAL > 28.000).",
+    "Fonte aliquote: MEF, addizionale-comunale-2026.json (A083), addizionale-regionale-2026.json (Lombardia)."
+  ],
+  "inputs": {
+    "ccnl_file": "metalmeccanico-federmeccanica.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "C3",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null,
+    "regione": "Lombardia",
+    "comune_belfiore": "A083"
+  },
+  "expected": {
+    "ccnl_id": "metalmeccanico-federmeccanica",
+    "level_code": "C3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "2158.26",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2158.26",
+    "gross_annual": "28057.38",
+    "hourly_rate": "12.48",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2662.65",
+    "inps_employer_annual": "8473.33",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "2078.32",
+    "taxable_income": "25394.73",
+    "irpef_gross": "5840.79",
+    "work_income_deduction": "698.17",
+    "irpef_net": "5142.62",
+    "employer_withholds_irpef": true,
+    "addizionale_regionale_annual": "312.36",
+    "addizionale_comunale_annual": "173.50",
+    "trattamento_integrativo": "0",
+    "fiscal_simplifications": [
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ],
+    "net_annual": "19766.25",
+    "net_monthly": "1520.48",
+    "employer_cost_annual": "38609.03"
+  }
+}

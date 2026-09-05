@@ -21,6 +21,7 @@ from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 _DATA_DIRS: list[tuple[str, str]] = [
     ("ccnl_engine/contracts/data", "src/ccnl_engine/contracts/data"),
     ("ccnl_engine/tax/data", "src/ccnl_engine/tax/data"),
+    ("ccnl_engine/surtax/data", "src/ccnl_engine/surtax/data"),
 ]
 
 

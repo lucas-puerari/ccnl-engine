@@ -7,8 +7,7 @@
     "Hourly divisor: 168 (Art. 211 CCNL 2019, 40h/week). Verify: 1816.68 / 168 = 10.81 EUR/hr.",
     "INPS employer rate from 2026-terziario.json (terziario sector, <=50 employees, 28.98%).",
     "Seniority: 0.00 — seniority_count=0, triennale cadence (36m), max 10 scatti.",
-    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
-    "No addizionali regionali/comunali modelled (engine SIMPLIFICATION)."
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025)."
   ],
   "inputs": {
     "ccnl_file": "terziario-confesercenti.json",
@@ -49,9 +48,12 @@
     "net_annual": "18886.15",
     "net_monthly": "1349.01",
     "employer_cost_annual": "34688.11",
+    "addizionale_regionale_annual": "0.00",
+    "addizionale_comunale_annual": "0.00",
     "trattamento_integrativo": "236.91",
     "fiscal_simplifications": [
-      "no_addizionali",
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
       "no_detrazioni_familiari",
       "no_sterilizzazione_detrazioni"
     ]
