@@ -11,6 +11,7 @@ from ccnl_engine.engine.compute import Scenario, compute
 from ccnl_engine.models.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
+    UnderClassificationPeriod,
 )
 from ccnl_engine.models.ccnl import CCNL, TaxSector
 from ccnl_engine.models.employment import Apprentice
@@ -6289,3 +6290,84 @@ class TestLoadAutorimesseIC35:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 9
+
+
+class TestLoadFarmaciePrivateH121:
+    """Tests for CCNL Dipendenti delle Farmacie Private (H121)."""
+
+    def test_farmacie_private_h121_loads(self) -> None:
+        """Contract loads with correct id and CNEL code H121."""
+        ccnl = load_ccnl("farmacie-private-h121.json")
+        assert ccnl.meta.id == "farmacie-private-h121"
+        assert ccnl.meta.cnel_code == "H121"
+
+    def test_farmacie_private_h121_has_9_levels(self) -> None:
+        """9 levels: Q1 Q2 Q3 and livelli 1-6 (Tabella A, Art. 3)."""
+        ccnl = load_ccnl("farmacie-private-h121.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"Q1", "Q2", "Q3", "1", "2", "3", "4", "5", "6"}
+
+    def test_farmacie_private_h121_level3_salary_2022(self) -> None:
+        """Level 3 paga base 1130.17 at 2022-01-01 (single tranche)."""
+        ccnl = load_ccnl("farmacie-private-h121.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2022, 1, 1)) == Decimal("1130.17")
+
+    def test_farmacie_private_h121_level1_salary_2022(self) -> None:
+        """Level 1 paga base 1429.19 at 2022-01-01 (same as Q3, Tabella A)."""
+        ccnl = load_ccnl("farmacie-private-h121.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "1")
+        assert lv.base_salary.value_at(date(2022, 1, 1)) == Decimal("1429.19")
+
+    def test_farmacie_private_h121_level_ordering(self) -> None:
+        """Highest order is Q1 (Direttore responsabile); lowest is 6o livello."""
+        ccnl = load_ccnl("farmacie-private-h121.json")
+        sorted_levels = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert sorted_levels[0].code == "6"
+        assert sorted_levels[-1].code == "Q1"
+
+    def test_farmacie_private_h121_additional_months(self) -> None:
+        """14 mensilita': tredicesima (Art. 62) + quattordicesima (Art. 63)."""
+        ccnl = load_ccnl("farmacie-private-h121.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_farmacie_private_h121_hourly_divisor(self) -> None:
+        """Divisore convenzionale 173 h/month for 40h/week (Art. 57)."""
+        ccnl = load_ccnl("farmacie-private-h121.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal(173)
+
+    def test_farmacie_private_h121_q1_has_isq(self) -> None:
+        """Q1 level has three allowances: contingenza, edr, and isq."""
+        ccnl = load_ccnl("farmacie-private-h121.json")
+        q1 = next(lv for lv in ccnl.levels if lv.code == "Q1")
+        codes = {a.code for a in q1.fixed_allowances}
+        assert codes == {"contingenza", "edr", "isq"}
+
+    def test_farmacie_private_h121_tax_sector(self) -> None:
+        """Contract uses terziario tax sector (INPS-CNEL: TERZIARIO E SERVIZI)."""
+        ccnl = load_ccnl("farmacie-private-h121.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_farmacie_private_h121_seniority_cadence(self) -> None:
+        """15 scatti biennali (cadence 24 months, max 15) per Art. 53."""
+        ccnl = load_ccnl("farmacie-private-h121.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 15
+
+    def test_farmacie_private_h121_apprenticeship_under_classification(
+        self,
+    ) -> None:
+        """Two under_classification tracks (Allegato II, accord 14/06/2012)."""
+        ccnl = load_ccnl("farmacie-private-h121.json")
+        tracks = ccnl.apprenticeship
+        assert len(tracks) == 2
+        assert all(isinstance(t, ApprenticeshipUnderClassification) for t in tracks)
+        farmacista = next(t for t in tracks if t.name == "farmacista_collaboratore")
+        assert farmacista.destination_levels == ["1"]
+        period = farmacista.periods[0]
+        assert isinstance(period, UnderClassificationPeriod)
+        assert period.levels_below == 0

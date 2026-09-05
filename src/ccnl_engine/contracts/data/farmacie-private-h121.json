@@ -1,0 +1,639 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "farmacie-private-h121",
+    "name": "CCNL Dipendenti delle Farmacie Private",
+    "cnel_code": "H121",
+    "sector": "Farmacie private",
+    "tax_sector": "terziario",
+    "agreement_date": "2021-09-07",
+    "signatories": [
+      "FEDERFARMA",
+      "FILCAMS-CGIL",
+      "FISASCAT-CISL",
+      "UILTUCS"
+    ],
+    "sources": [
+      {
+        "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+        "type": "text",
+        "agreement_date": "2021-09-07"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: split. base_salary = retribuzione base nazionale conglobata (Tabella A, Art. 58). fixed_allowances = contingenza (per-level, frozen since 1977 per settore commercio) + EDR 10.33 (all levels, accordo 31/07/1992) + ISQ (Q levels, Tabella C)."
+      },
+      {
+        "kind": "info",
+        "text": "Divisore convenzionale 173 confirmed from Art. 57 of primary CCNL text."
+      },
+      {
+        "kind": "info",
+        "text": "Additional months: 14. Art. 62 (13a mensilita) and Art. 63 (14a mensilita) confirmed from primary source."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: 15 scatti biennali (Art. 53). Amounts from Tabella D (1.2.1996 column) of primary CCNL PDF."
+      },
+      {
+        "kind": "info",
+        "text": "Contract expired 31/08/2024 (Art. 102). No successor signed as of 2026-09-05 (INPS-CNEL spreadsheet updated 25/07/2026 shows Periodo finale=null for H121). Tables valid open-ended under ultrattività."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship from Accordo 14 giugno 2012 (Allegato II). Farmacista collaboratore (dest 1o) stays at level 1o for all 36 months. Commesso/Magazziniere/Contabile (dest 4o): months 0-12 at level 6o, months 13-36 at level 5o."
+      },
+      {
+        "kind": "info",
+        "text": "Headcount: 77,146 workers in 16,324 companies (INPS-CNEL archive, H121)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Farmacie Rurali Sussidiate (Tabella B) excluded. Rural pharmacies have lower base salaries; Tabella A (urban) is modelled only."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: ISQ for Q2 and Q3 modelled at 100 EUR with service_months_threshold=24 (minimum for 2+ anni in Area Q, Tabella C). Workers with 12+ anni receive 130 EUR (delta 30 EUR/month, max ~360 EUR/yr). The threshold gates correctly to zero below 24 months; the 100 vs 130 split at 144 months is not representable with a single fixed_allowance amount."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: EDR (10.33 EUR, Art. 54e) is contractually due for 13 mensilita but the engine multiplies fixed_allowances by additional_months=14. Annual overcount ~10 EUR per worker."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Tabella D groups Q2, Q3, and 1o into a single scatto amount of 25.30 EUR. Q1 uses 25.82 EUR."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2021-11-01",
+          "valid_until": null,
+          "value": 173
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2021-11-01",
+          "valid_until": null,
+          "value": 14
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 15,
+      "amount_by_level": {
+        "Q1": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "25.82"
+            }
+          ]
+        },
+        "Q2": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "25.30"
+            }
+          ]
+        },
+        "Q3": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "25.30"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "25.30"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "23.24"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "22.72"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "20.65"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "20.14"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2021-11-01",
+              "valid_until": null,
+              "value": "19.62"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "farmacista_collaboratore",
+      "destination_levels": ["1"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante",
+      "destination_levels": ["4"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "Q1",
+      "order": 9,
+      "description": "Area Q1 - Direttore responsabile di farmacia",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "1668.97"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "536.07"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        },
+        {
+          "code": "isq",
+          "description": "Indennità Speciale Quadri (Art. 3 CCNL)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "130.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "Q2",
+      "order": 8,
+      "description": "Area Q2 - Farmacista collaboratore specializzato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "1499.19"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "530.45"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        },
+        {
+          "code": "isq",
+          "description": "Indennità Speciale Quadri - 100 EUR (2+ anni in Area Q, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "100.00"
+              }
+            ]
+          },
+          "service_months_threshold": 24
+        }
+      ]
+    },
+    {
+      "code": "Q3",
+      "order": 7,
+      "description": "Area Q3 - Farmacista collaboratore con 24+ mesi in qualifica",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "1429.19"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "530.45"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        },
+        {
+          "code": "isq",
+          "description": "Indennità Speciale Quadri - 100 EUR (2+ anni in Area Q, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "100.00"
+              }
+            ]
+          },
+          "service_months_threshold": 24
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "order": 6,
+      "description": "1o livello - Farmacista collaboratore",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "1429.19"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "530.45"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "order": 5,
+      "description": "2o livello - Lavoratori di concetto con funzioni di coordinamento",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "1215.92"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "521.63"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "order": 4,
+      "description": "3o livello - Lavoratori di concetto con conoscenze tecniche",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "1130.17"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "519.00"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "order": 3,
+      "description": "4o livello - Lavoratori con compiti operativi e conoscenze tecnico-pratiche",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "1017.02"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "515.40"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "order": 2,
+      "description": "5o livello - Lavoratori qualificati con normali conoscenze",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "898.97"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "512.07"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "6",
+      "order": 1,
+      "description": "6o livello - Lavoratori di pulizia e operazioni semplici",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-11-01",
+            "valid_until": null,
+            "value": "807.81"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennità di contingenza (settore commercio)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "509.11"
+              }
+            ]
+          }
+        },
+        {
+          "code": "edr",
+          "description": "Elemento Distinto della Retribuzione (accordo 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
