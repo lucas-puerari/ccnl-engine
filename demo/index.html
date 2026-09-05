@@ -302,6 +302,27 @@
       line-height: 1.5;
     }
 
+    .breakdown-table .sub-row td:first-child {
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    #simplifications-note {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: var(--radius);
+      color: #92400e;
+      padding: 12px 16px;
+      font-size: 13px;
+      margin-top: 12px;
+      display: none;
+      line-height: 1.6;
+    }
+    @media (prefers-color-scheme: dark) {
+      #simplifications-note { background: #2d2000; border-color: #78350f; color: #fcd34d; }
+    }
+
     footer {
       text-align: center;
       padding: 24px;
@@ -417,6 +438,7 @@
         <tbody id="breakdown-body"></tbody>
       </table>
       <p class="note" id="irpef-note"></p>
+      <div id="simplifications-note"></div>
     </div>
   </div>
 </main>
@@ -559,6 +581,9 @@ function doCompute(pyodide) {
       `<td>${annual  !== null ? fmt(annual)   : "—"}</td>`;
     return tr;
   }
+  function subRow(label, monthly, annual) {
+    return row(label, monthly, annual, "sub-row");
+  }
   function sectionHead(label) {
     const tr = document.createElement("tr");
     tr.className = "section-head";
@@ -570,24 +595,55 @@ function doCompute(pyodide) {
   }
 
   body.innerHTML = "";
+
+  // --- Pay section ---
   body.appendChild(sectionHead("Pay"));
-  body.appendChild(row("Base pay", r.base_monthly, null));
+  body.appendChild(row("Base pay", r.base_monthly, r.base_monthly * 13));
   if (r.seniority_monthly > 0)
-    body.appendChild(row(`Seniority increments (×${r.seniority_count})`, r.seniority_monthly, null));
+    body.appendChild(row(`Seniority increments (×${r.seniority_count})`, r.seniority_monthly, r.seniority_monthly * 13));
   if (r.allowances_monthly > 0)
-    body.appendChild(row("Monthly allowances", r.allowances_monthly, null));
-  if (r.apprenticeship_pct !== null)
-    body.appendChild(row(`Apprenticeship % (${(r.apprenticeship_pct * 100).toFixed(0)}%)`, null, null));
+    body.appendChild(row("Monthly allowances", r.allowances_monthly, r.allowances_monthly * 13));
+  if (r.ad_personam_monthly > 0)
+    body.appendChild(row("Ad personam supplement", r.ad_personam_monthly, r.ad_personam_monthly * 13));
+  if (r.second_level_monthly > 0)
+    body.appendChild(row("Second-level agreement", r.second_level_monthly, r.second_level_monthly * 13));
+  if (r.apprenticeship_pct !== null) {
+    const pctLabel = `Apprenticeship % (${(r.apprenticeship_pct * 100).toFixed(0)}% of reference level)`;
+    body.appendChild(row(pctLabel, null, null));
+  }
+  if (r.apprenticeship_under_level_code)
+    body.appendChild(row(`Apprentice target level: ${r.apprenticeship_under_level_code}`, null, null));
   body.appendChild(row("Hourly rate", r.hourly_rate, null));
   body.appendChild(totalRow("Gross", r.gross_monthly, r.gross_annual));
 
+  // --- Employee deductions section ---
   body.appendChild(sectionHead("Employee deductions"));
-  body.appendChild(row("Social security (employee)", null, r.inps_employee_annual));
+  body.appendChild(row("Social security — INPS (employee)", null, r.inps_employee_annual));
+
+  // IRPEF detail block
+  body.appendChild(subRow("Taxable income (IRPEF base)", null, r.taxable_income));
+  body.appendChild(subRow("IRPEF (gross, before deductions)", null, r.irpef_gross));
+  body.appendChild(subRow("↳ Work income deduction (art. 13 TUIR)", null, -r.work_income_deduction));
   body.appendChild(row("Income tax — IRPEF (net)", null, r.irpef_net));
+
+  if (r.addizionale_regionale_annual > 0)
+    body.appendChild(row("Regional income surtax (addizionale regionale)", null, r.addizionale_regionale_annual));
+  else
+    body.appendChild(row("Regional income surtax (addizionale regionale)", null, null));
+
+  if (r.addizionale_comunale_annual > 0)
+    body.appendChild(row("Municipal income surtax (addizionale comunale)", null, r.addizionale_comunale_annual));
+  else
+    body.appendChild(row("Municipal income surtax (addizionale comunale)", null, null));
+
+  if (r.trattamento_integrativo > 0)
+    body.appendChild(row("Trattamento integrativo (art. 1 D.L. 3/2020)", null, -r.trattamento_integrativo));
+
   body.appendChild(totalRow("Net pay", r.net_monthly, r.net_annual));
 
+  // --- Employer costs section ---
   body.appendChild(sectionHead("Employer costs"));
-  body.appendChild(row("Social security (employer)", null, r.inps_employer_annual));
+  body.appendChild(row("Social security — INPS (employer)", null, r.inps_employer_annual));
   if (r.employer_funds_annual > 0)
     body.appendChild(row("Contractual funds", null, r.employer_funds_annual));
   body.appendChild(row("Severance pay — TFR", null, r.tfr_annual));
@@ -602,6 +658,17 @@ function doCompute(pyodide) {
     note.style.display = "block";
   } else {
     note.style.display = "none";
+  }
+
+  // Fiscal simplifications warning
+  const simpNote = document.getElementById("simplifications-note");
+  if (r.fiscal_simplifications && r.fiscal_simplifications.length > 0) {
+    simpNote.innerHTML =
+      "⚠️ <strong>Not included in this estimate:</strong> " +
+      r.fiscal_simplifications.join(", ") + ".";
+    simpNote.style.display = "block";
+  } else {
+    simpNote.style.display = "none";
   }
 
   document.getElementById("results").style.display = "block";
