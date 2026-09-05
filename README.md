@@ -22,19 +22,17 @@ compute(ccnl, rules, Scenario(...)) → Payslip
 
 ```python
 from datetime import date
-from ccnl_engine.contracts.loaders import load_ccnl
-from ccnl_engine.tax.loaders import load_year_rules
-from ccnl_engine.engine.compute import Scenario, compute
-from ccnl_engine.models.ccnl import TaxSector
-from ccnl_engine.models.employment import Permanent
+from ccnl_engine import Scenario, Permanent, TaxSector, compute, load_ccnl, load_year_rules
 
 ccnl = load_ccnl("commercio-confcommercio.json")
-rules = load_year_rules(2026, TaxSector.TERZIARIO, num_employees=50)
-result = compute(
-    ccnl,
-    rules,
-    Scenario(level_code="4", as_of=date(2026, 9, 1), employment=Permanent()),
+scenario = Scenario(
+    level_code="4",
+    as_of=date(2026, 9, 1),
+    employment=Permanent(),
+    num_employees=50,
 )
+rules = load_year_rules(2026, TaxSector.TERZIARIO, scenario.num_employees)
+result = compute(ccnl, rules, scenario)
 
 print(result.net_annual)  # → Decimal('...')
 print(result.employer_cost_annual)  # → Decimal('...')
