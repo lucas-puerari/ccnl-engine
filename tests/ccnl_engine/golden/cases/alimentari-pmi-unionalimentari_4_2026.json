@@ -1,0 +1,57 @@
+{
+  "_description": "Golden case: CCNL PMI Alimentare E018, level 4, 2026-01-01, permanent, no seniority.",
+  "_notes": [
+    "Jan 2026 second tranche: livello 4 paga base = 1746.87 EUR/month (Unionalimentari circular 28/05/2025).",
+    "Salary model: split — base_salary = paga base, fixed_allowances = contingenza 525.02 + EDR 10.33.",
+    "allowances_monthly = 525.02 + 10.33 = 535.35. gross_monthly = 1746.87 + 535.35 = 2282.22.",
+    "hourly_rate = 2282.22 / 173 = 13.19. Additional months: 14. gross_annual = 2282.22 * 14 = 31951.08.",
+    "Seniority: 0. trattamento_integrativo: 0 (gross_annual 31951.08 exceeds TI upper threshold 28000).",
+    "INPS industria rates from 2026-industria.json (50-employee tier)."
+  ],
+  "inputs": {
+    "ccnl_file": "alimentari-pmi-unionalimentari.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "4",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "alimentari-pmi-unionalimentari",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1746.87",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "535.35",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2282.22",
+    "gross_annual": "31951.08",
+    "hourly_rate": "13.19",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "3032.16",
+    "inps_employer_annual": "9649.23",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "2366.75",
+    "taxable_income": "28918.92",
+    "irpef_gross": "6743.24",
+    "work_income_deduction": "574.28",
+    "irpef_net": "6168.96",
+    "net_annual": "22749.96",
+    "net_monthly": "1625.00",
+    "employer_cost_annual": "43967.06",
+    "trattamento_integrativo": "0",
+    "fiscal_simplifications": [
+      "no_addizionali",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}
