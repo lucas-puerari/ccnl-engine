@@ -1,5 +1,5 @@
 #!/bin/bash
-# goal-stop-hook.sh — project-local Stop hook for git-history-based goal tracking.
+# batch-stop-hook.sh — project-local Stop hook for /batch goal tracking.
 # Goal is reached when (baseline + target) contract JSON files exist.
 
 set -euo pipefail
