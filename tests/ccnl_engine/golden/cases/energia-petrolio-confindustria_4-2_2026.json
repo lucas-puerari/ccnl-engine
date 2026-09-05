@@ -1,0 +1,58 @@
+{
+  "_description": "Golden case: CCNL Energia e Petrolio (B254), Level 4-2, 2026-07-01, permanent, no seniority.",
+  "_notes": [
+    "Jul 2026 fourth tranche: paga_base group 4 = 2651.61 EUR/month.",
+    "Split model: base_monthly=paga_base only; allowances include EDR_IPCA (51.00) + INDENNITA_FUNZIONE (106.79) = 157.79.",
+    "gross_monthly = 2651.61 + 157.79 = 2809.40.",
+    "Additional months: 14 (tredicesima + quattordicesima).",
+    "INPS employer rate from 2026-industria.json (industria sector, 50 employees tier).",
+    "Seniority: 0.00 — maximum_count=0 (abolished 2016).",
+    "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025)."
+  ],
+  "inputs": {
+    "ccnl_file": "energia-petrolio-confindustria.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "4-2",
+    "as_of": "2026-07-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "energia-petrolio-confindustria",
+    "level_code": "4-2",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "2651.61",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "157.79",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2809.40",
+    "gross_annual": "39331.60",
+    "hourly_rate": "16.10",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "3732.57",
+    "inps_employer_annual": "11878.14",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "2913.45",
+    "taxable_income": "35599.03",
+    "irpef_gross": "8947.68",
+    "work_income_deduction": "339.45",
+    "irpef_net": "8608.23",
+    "net_annual": "26990.80",
+    "net_monthly": "1927.91",
+    "employer_cost_annual": "54123.19",
+    "trattamento_integrativo": "0",
+    "fiscal_simplifications": [
+      "no_addizionali",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}
