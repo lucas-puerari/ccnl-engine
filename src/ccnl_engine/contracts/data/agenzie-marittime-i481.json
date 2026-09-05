@@ -1,0 +1,265 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "agenzie-marittime-i481",
+    "name": "CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi",
+    "cnel_code": "I481",
+    "sector": "Agenzie marittime e aeree",
+    "tax_sector": "terziario",
+    "agreement_date": "2024-09-13",
+    "signatories": [
+      "FEDERAGENTI",
+      "FILT-CGIL",
+      "FIT-CISL",
+      "UILTRASPORTI"
+    ],
+    "sources": [
+      {
+        "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
+        "type": "text",
+        "agreement_date": "2021-07-30"
+      },
+      {
+        "url": "https://www.zhrexpert.it/ccnl/i481-agenzie-marittime.html",
+        "type": "proxy",
+        "agreement_date": "2024-09-13"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: conglobated (Art. 21: 'paga base, contingenza ed EDR'). Source: 2021 CCNL primary text (FILT-CGIL PDF, signed 30/07/2021)."
+      },
+      {
+        "kind": "info",
+        "text": "Hourly divisor 168 confirmed from Art. 20 primary source: 'La paga oraria si ottiene dividendo la retribuzione mensile per 168'. Cross-check: L4 Sep-2026 = 2177.70 / 168 = 12.96 EUR/h (matches lavoro-economia.it hourly rate)."
+      },
+      {
+        "kind": "info",
+        "text": "Additional months: 14. Art. 24 (tredicesima) and Art. 25 (quattordicesima) of the 2021 CCNL primary source."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: 8 biennali (Art. 23, 2021 CCNL primary source). Amounts from Art. 23 table dated 01/04/2004: L7=33.00, L6=32.50, L5=32.00, L4=28.75, L3=27.75, L2=26.50. Level 1 not listed in Art. 23 table: modeled as 0.00."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship: under-classification, Art. 8 of 2021 CCNL (D.Lgs. 81/2015). Destination levels 3-6 only. Three tracks: dest=3 (24 months), dest=4-5 (30 months), dest=6 (36 months). Source: Art. 8, 2021 CCNL primary text."
+      },
+      {
+        "kind": "info",
+        "text": "Indennita' per i Quadri (level 7): 51.65 EUR/month. Source: Art. 5 of the 2021 CCNL primary text (FILT-CGIL PDF): 'A far data dal 1 gennaio 1992, tale indennita' viene elevata a Euro 51,65 lorde mensili.' Modeled as fixed_allowance FUNZIONE, level 7 only."
+      },
+      {
+        "kind": "info",
+        "text": "Salary table (4 tranches): 01/09/2024, 01/09/2025, 01/01/2026, 01/09/2026 from 2024 renewal (signed 13/09/2024). Source: zhrexpert.it (proxy); all cells confirmed consistent with primary-source cross-checks (L4 Sep-2026: 2177.70 / 168 = 12.96 matches hourly rate). Best-attested cell: L4 at 01/01/2026 = 2137.70 (two independent proxy sources agree exactly)."
+      },
+      {
+        "kind": "info",
+        "text": "Headcount: approx. 5,000 workers (small sector, CNEL archive I481). Employers: FEDERAGENTI members (maritime agencies, shipping agents, air agencies)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: 2021-2023 previgente salary values not modeled (not publicly available). Modeling starts from the 2024 renewal first tranche (01/09/2024)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Level 1 seniority amount = 0.00. Art. 23 table (primary source) lists levels 2-7 only; level 1 is absent. Interpreted as no entitlement. Verify against consolidated CCNL text."
+      },
+      {
+        "kind": "info",
+        "text": "Indennita' per i Quadri amount 51.65 EUR confirmed from Art. 5, 2021 CCNL primary text. Amount unchanged since 01/01/1992 per contract text."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Whether indennita' di funzione rides the quattordicesima is unconfirmed. Modeled as a standard fixed_allowance (paid 14 mensilita'). If Art. 5 excludes it from the quattordicesima calculation, the annual figure is overstated by ~51.65 EUR/year."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-09-01",
+          "valid_until": null,
+          "value": "168"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-09-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 8,
+      "amount_by_level": {
+        "1": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "0.00"}]},
+        "2": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "26.50"}]},
+        "3": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "27.75"}]},
+        "4": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "28.75"}]},
+        "5": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "32.00"}]},
+        "6": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "32.50"}]},
+        "7": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "33.00"}]}
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "professionalizzante - dest livello 3",
+      "destination_levels": ["3"],
+      "periods": [
+        {"months_from": 0, "months_until": 12, "levels_below": 2},
+        {"months_from": 12, "months_until": null, "levels_below": 1}
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante - dest livelli 4-5",
+      "destination_levels": ["4", "5"],
+      "periods": [
+        {"months_from": 0, "months_until": 15, "levels_below": 2},
+        {"months_from": 15, "months_until": null, "levels_below": 1}
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante - dest livello 6",
+      "destination_levels": ["6"],
+      "periods": [
+        {"months_from": 0, "months_until": 18, "levels_below": 2},
+        {"months_from": 18, "months_until": null, "levels_below": 1}
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "1",
+      "order": 1,
+      "description": "Livello 1 (operaio comune)",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-09-01", "value": "1509.19"},
+          {"valid_from": "2025-09-01", "valid_until": "2026-01-01", "value": "1542.27"},
+          {"valid_from": "2026-01-01", "valid_until": "2026-09-01", "value": "1571.68"},
+          {"valid_from": "2026-09-01", "valid_until": null,          "value": "1601.09"}
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 2,
+      "description": "Livello 2",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-09-01", "value": "1735.32"},
+          {"valid_from": "2025-09-01", "valid_until": "2026-01-01", "value": "1773.37"},
+          {"valid_from": "2026-01-01", "valid_until": "2026-09-01", "value": "1807.20"},
+          {"valid_from": "2026-09-01", "valid_until": null,          "value": "1841.02"}
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 3,
+      "description": "Livello 3",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-09-01", "value": "1811.03"},
+          {"valid_from": "2025-09-01", "valid_until": "2026-01-01", "value": "1850.73"},
+          {"valid_from": "2026-01-01", "valid_until": "2026-09-01", "value": "1886.03"},
+          {"valid_from": "2026-09-01", "valid_until": null,          "value": "1921.32"}
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 4,
+      "description": "Livello 4",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-09-01", "value": "2052.70"},
+          {"valid_from": "2025-09-01", "valid_until": "2026-01-01", "value": "2097.70"},
+          {"valid_from": "2026-01-01", "valid_until": "2026-09-01", "value": "2137.70"},
+          {"valid_from": "2026-09-01", "valid_until": null,          "value": "2177.70"}
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 5,
+      "description": "Livello 5",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-09-01", "value": "2173.02"},
+          {"valid_from": "2025-09-01", "valid_until": "2026-01-01", "value": "2220.67"},
+          {"valid_from": "2026-01-01", "valid_until": "2026-09-01", "value": "2263.03"},
+          {"valid_from": "2026-09-01", "valid_until": null,          "value": "2305.38"}
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6",
+      "order": 6,
+      "description": "Livello 6",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-09-01", "value": "2234.20"},
+          {"valid_from": "2025-09-01", "valid_until": "2026-01-01", "value": "2283.17"},
+          {"valid_from": "2026-01-01", "valid_until": "2026-09-01", "value": "2326.70"},
+          {"valid_from": "2026-09-01", "valid_until": null,          "value": "2370.23"}
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "7",
+      "order": 7,
+      "description": "Livello 7 (Quadro)",
+      "base_salary": {
+        "periods": [
+          {"valid_from": "2024-09-01", "valid_until": "2025-09-01", "value": "2339.00"},
+          {"valid_from": "2025-09-01", "valid_until": "2026-01-01", "value": "2390.29"},
+          {"valid_from": "2026-01-01", "valid_until": "2026-09-01", "value": "2435.88"},
+          {"valid_from": "2026-09-01", "valid_until": null,          "value": "2481.46"}
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "FUNZIONE",
+          "description": "Indennita' di funzione (Art. 5, livello 7 only; proxy: 51.65 EUR since 2019)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-09-01",
+                "valid_until": null,
+                "value": "51.65"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
