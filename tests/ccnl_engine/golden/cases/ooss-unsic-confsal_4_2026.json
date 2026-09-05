@@ -1,0 +1,61 @@
+{
+  "_description": "Golden case: CCNL OO.SS. UNSIC/CONFSAL (V925), Level 4, 2026-01-01, permanent, full-time, no seniority, 50 employees.",
+  "_notes": [
+    "Level 4 (Responsabile Zonale / Operatore servizi). 2026 proxy value: base_monthly=1863.44.",
+    "Conglobated model (contingenza=0, EDR=0). hourly_rate = 1863.44 / 170 = 10.96.",
+    "gross_annual = 1863.44 * 14 = 26088.16. seniority_count=0: seniority_monthly=0.00.",
+    "INPS terziario 2026, 50 employees. trattamento_integrativo applies at this income level.",
+    "2026 salary from proxy source (kitech.it); 2023-2025 values from primary CCNL PDF."
+  ],
+  "inputs": {
+    "ccnl_file": "ooss-unsic-confsal.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "4",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "ooss-unsic-confsal",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1863.44",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1863.44",
+    "gross_annual": "26088.16",
+    "hourly_rate": "10.96",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2397.50",
+    "inps_employer_annual": "7560.35",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1932.46",
+    "taxable_income": "23690.66",
+    "irpef_gross": "5448.85",
+    "work_income_deduction": "823.04",
+    "irpef_net": "4625.81",
+    "employer_withholds_irpef": true,
+    "second_level_monthly": "0.00",
+    "net_annual": "19241.33",
+    "net_monthly": "1374.38",
+    "employer_cost_annual": "35580.97",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "176.48",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}

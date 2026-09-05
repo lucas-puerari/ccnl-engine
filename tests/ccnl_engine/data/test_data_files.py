@@ -6995,3 +6995,68 @@ class TestLoadFioriRecisiAncef:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 10
+
+
+class TestLoadOossUnsicConfsal:
+    """Tests for CCNL OO.SS. UNSIC/CONFSAL (V925)."""
+
+    def test_ooss_unsic_confsal_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("ooss-unsic-confsal.json")
+        assert ccnl.meta.id == "ooss-unsic-confsal"
+        assert ccnl.meta.cnel_code == "V925"
+
+    def test_ooss_unsic_confsal_has_6_levels(self) -> None:
+        """Contract has exactly 6 levels with codes 1-6."""
+        ccnl = load_ccnl("ooss-unsic-confsal.json")
+        assert len(ccnl.levels) == 6
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3", "4", "5", "6"}
+
+    def test_ooss_unsic_confsal_level3_salary_jan2023(self) -> None:
+        """Level 3 base salary at 2023-01-19: 2065.40 EUR (primary source)."""
+        ccnl = load_ccnl("ooss-unsic-confsal.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2023, 2, 1)) == Decimal("2065.40")
+
+    def test_ooss_unsic_confsal_level3_salary_jan2026(self) -> None:
+        """Level 3 base salary at 2026-01-01: 2096.38 EUR (proxy source)."""
+        ccnl = load_ccnl("ooss-unsic-confsal.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("2096.38")
+
+    def test_ooss_unsic_confsal_level_ordering(self) -> None:
+        """Level 1 (Direttore Generale) is highest; level 6 is lowest."""
+        ccnl = load_ccnl("ooss-unsic-confsal.json")
+        ordered = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert ordered[0].code == "6"
+        assert ordered[-1].code == "1"
+
+    def test_ooss_unsic_confsal_additional_months(self) -> None:
+        """14 mensilita: 13ma (Art.52) + 14ma (quattordicesima)."""
+        ccnl = load_ccnl("ooss-unsic-confsal.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_ooss_unsic_confsal_hourly_divisor(self) -> None:
+        """Hourly divisor 170 (Art.49: 'divisore convenzionale 170')."""
+        ccnl = load_ccnl("ooss-unsic-confsal.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == 170
+
+    def test_ooss_unsic_confsal_no_fixed_allowances(self) -> None:
+        """All 6 levels have empty fixed_allowances (conglobated model)."""
+        ccnl = load_ccnl("ooss-unsic-confsal.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_ooss_unsic_confsal_tax_sector(self) -> None:
+        """tax_sector == TERZIARIO (sindacali organizations, no dedicated INPS code)."""
+        ccnl = load_ccnl("ooss-unsic-confsal.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_ooss_unsic_confsal_seniority_cadence(self) -> None:
+        """Seniority: triennale (36 months), max 5 scatti (Art.51)."""
+        ccnl = load_ccnl("ooss-unsic-confsal.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 5
