@@ -6749,3 +6749,92 @@ class TestLoadFarmacieMunicipaliASSO:
             assert lv.base_salary.value_at(
                 date(2026, 1, 1)
             ) == ref.base_salary.value_at(date(2026, 1, 1))
+
+
+class TestLoadFunivieAnef:
+    """Tests for CCNL Trasporto a Fune ANEF (I911)."""
+
+    def test_funivie_anef_loads(self) -> None:
+        """Id == 'funivie-anef', cnel_code == 'I911'."""
+        ccnl = load_ccnl("funivie-anef.json")
+        assert ccnl.meta.id == "funivie-anef"
+        assert ccnl.meta.cnel_code == "I911"
+
+    def test_funivie_anef_has_8_levels(self) -> None:
+        """8 livelli retributivi: 1S 1 2 3 4 5 6 7."""
+        ccnl = load_ccnl("funivie-anef.json")
+        assert len(ccnl.levels) == 8
+        assert {lv.code for lv in ccnl.levels} == {
+            "1S",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+        }
+
+    def test_funivie_anef_level4_salary_tranche1(self) -> None:
+        """Level 4 paga base at first tranche 2025-05-01 = 1464.59."""
+        ccnl = load_ccnl("funivie-anef.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv.base_salary.value_at(date(2025, 6, 1)) == Decimal("1464.59")
+
+    def test_funivie_anef_level4_salary_tranche2(self) -> None:
+        """Level 4 paga base at second tranche 2025-10-01 = 1504.59."""
+        ccnl = load_ccnl("funivie-anef.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1504.59")
+
+    def test_funivie_anef_level_ordering(self) -> None:
+        """Highest order = 1S (8), lowest = 7 (1)."""
+        ccnl = load_ccnl("funivie-anef.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "7"
+        assert by_order[-1].code == "1S"
+
+    def test_funivie_anef_additional_months(self) -> None:
+        """14 mensilita: tredicesima natalizia + quattordicesima luglio."""
+        ccnl = load_ccnl("funivie-anef.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            14
+        )
+
+    def test_funivie_anef_hourly_divisor(self) -> None:
+        """Hourly divisor = 173 (Art. 18, CCNL ANEF 2025)."""
+        ccnl = load_ccnl("funivie-anef.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == 173
+
+    def test_funivie_anef_contingenza_only_no_edr(self) -> None:
+        """Each level has exactly one fixed allowance (contingenza, no EDR)."""
+        ccnl = load_ccnl("funivie-anef.json")
+        for lv in ccnl.levels:
+            assert len(lv.fixed_allowances) == 1
+            assert lv.fixed_allowances[0].code == "contingenza"
+
+    def test_funivie_anef_tax_sector(self) -> None:
+        """tax_sector == INDUSTRIA (SIMPLIFICATION)."""
+        ccnl = load_ccnl("funivie-anef.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_funivie_anef_seniority_cadence(self) -> None:
+        """Seniority: biennale cadence (24 months), max 5 scatti (Allegato 3)."""
+        ccnl = load_ccnl("funivie-anef.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_funivie_anef_apprenticeship(self) -> None:
+        """One under_classification track; level 7 excluded from destinations."""
+        ccnl = load_ccnl("funivie-anef.json")
+        tracks = ccnl.apprenticeship
+        assert len(tracks) == 1
+        assert isinstance(tracks[0], ApprenticeshipUnderClassification)
+        track = tracks[0]
+        assert track.name == "professionalizzante"
+        assert "7" not in track.destination_levels
+        assert "1S" not in track.destination_levels
+        assert len(track.periods) == 2
+        assert track.periods[0].levels_below == 1
+        assert track.periods[1].levels_below == 0

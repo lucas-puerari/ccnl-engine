@@ -1,0 +1,552 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "funivie-anef",
+    "name": "CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF",
+    "cnel_code": "I911",
+    "sector": "Trasporto a fune",
+    "tax_sector": "industria",
+    "agreement_date": "2025-05-16",
+    "signatories": [
+      "ANEF",
+      "FILT-CGIL",
+      "FIT-CISL",
+      "UILTRASPORTI",
+      "SAVT"
+    ],
+    "sources": [
+      {
+        "url": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
+        "type": "text",
+        "agreement_date": "2025-05-16"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: split. base_salary = paga base (Allegato 1). fixed_allowances = contingenza (per-level, Allegato 2). No EDR: ilccnl.it Oct-2025 table shows Terzo Elemento = 0.00; totals confirm base + contingenza only (e.g. 2179.27 + 528.67 = 2707.94)."
+      },
+      {
+        "kind": "info",
+        "text": "8 livelli retributivi (parametri 210/195/176/160/145/130/120/100 per Art. 18). Sintesi: '8 categorie professionali e altrettanti livelli retributivi'."
+      },
+      {
+        "kind": "info",
+        "text": "Hourly divisor 173 from Art. 18 of the 2025 CCNL text (confirmed thaler.it and lavoro-economia.it)."
+      },
+      {
+        "kind": "info",
+        "text": "Additional months: 14 (tredicesima natalizia + quattordicesima luglio, confirmed thaler.it and lavoro-economia.it)."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority from Allegato 3 (new-hire amounts, biennale cadence, max 5 scatti). Double-sourced: ilccnl.it Oct-2025 column confirms 1S=70, 1=65, 2=60, 3=55. Allegato 3.1 (pre-30/04/2016 cohort grandfathered amounts) not modelled."
+      },
+      {
+        "kind": "info",
+        "text": "Tranche dates (Allegato 1): 2025-05-01, 2025-10-01, 2027-03-01, 2028-03-01."
+      },
+      {
+        "kind": "info",
+        "text": "Headcount not verified; no CNEL/ADAPT figure located for I911. INPS-CNEL mapping: I911."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: tax_sector=industria used for INPS contribution rates. No dedicated funivie/trasporto-fune TaxSector in enum. Actual INPS classification for funivie terrestri unverified; industria rates are a proxy."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Indennita di funzione (118.79 EUR/month) for Quadri within levels 1S and 1 (L. 190/1985 Quadri status, not a separate retributive level) is not modelled. It is a person-status allowance, not a livello retributivo."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Allegato 3.1 (grandfathered scatti amounts for workers hired before 30/04/2016) not modelled. Only Allegato 3 (standard) amounts implemented."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Apprenticeship destinations limited to levels 1-6. Level 1S excluded: Quadro per L. 190/1985 is a person-status designation, not an apprenticeship destination in any sourced material."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-05-01",
+          "valid_until": null,
+          "value": 173
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-05-01",
+          "valid_until": null,
+          "value": 14
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "1S": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "70.00"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "65.00"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "60.00"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "55.00"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "50.00"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "45.00"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "40.00"
+            }
+          ]
+        },
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "35.00"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "professionalizzante",
+      "destination_levels": ["1", "2", "3", "4", "5", "6"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "1S",
+      "order": 8,
+      "description": "1° livello Super (parametro 210)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "2121.34"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2027-03-01",
+            "value": "2179.27"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-03-01",
+            "value": "2280.65"
+          },
+          {
+            "valid_from": "2028-03-01",
+            "valid_until": null,
+            "value": "2410.99"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennita di contingenza (Allegato 2, CCNL ANEF 2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "528.67"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "order": 7,
+      "description": "1° livello (parametro 195)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "1969.92"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2027-03-01",
+            "value": "2023.71"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-03-01",
+            "value": "2117.85"
+          },
+          {
+            "valid_from": "2028-03-01",
+            "valid_until": null,
+            "value": "2238.88"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennita di contingenza (Allegato 2, CCNL ANEF 2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "526.67"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "order": 6,
+      "description": "2° livello (parametro 176)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "1778.21"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2027-03-01",
+            "value": "1826.76"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-03-01",
+            "value": "1911.73"
+          },
+          {
+            "valid_from": "2028-03-01",
+            "valid_until": null,
+            "value": "2020.97"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennita di contingenza (Allegato 2, CCNL ANEF 2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "522.84"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "order": 5,
+      "description": "3° livello (parametro 160)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "1616.25"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2027-03-01",
+            "value": "1660.39"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-03-01",
+            "value": "1737.63"
+          },
+          {
+            "valid_from": "2028-03-01",
+            "valid_until": null,
+            "value": "1836.94"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennita di contingenza (Allegato 2, CCNL ANEF 2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "520.34"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "order": 4,
+      "description": "4° livello (parametro 145)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "1464.59"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2027-03-01",
+            "value": "1504.59"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-03-01",
+            "value": "1574.59"
+          },
+          {
+            "valid_from": "2028-03-01",
+            "valid_until": null,
+            "value": "1664.59"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennita di contingenza (Allegato 2, CCNL ANEF 2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "517.73"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "order": 3,
+      "description": "5° livello (parametro 130)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "1313.44"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2027-03-01",
+            "value": "1349.30"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-03-01",
+            "value": "1412.06"
+          },
+          {
+            "valid_from": "2028-03-01",
+            "valid_until": null,
+            "value": "1492.75"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennita di contingenza (Allegato 2, CCNL ANEF 2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "515.65"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "6",
+      "order": 2,
+      "description": "6° livello (parametro 120)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "1212.43"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2027-03-01",
+            "value": "1245.53"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-03-01",
+            "value": "1303.46"
+          },
+          {
+            "valid_from": "2028-03-01",
+            "valid_until": null,
+            "value": "1377.94"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennita di contingenza (Allegato 2, CCNL ANEF 2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "514.67"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "7",
+      "order": 1,
+      "description": "7° livello (parametro 100)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2025-10-01",
+            "value": "1010.41"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2027-03-01",
+            "value": "1038.00"
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": "2028-03-01",
+            "value": "1086.28"
+          },
+          {
+            "valid_from": "2028-03-01",
+            "valid_until": null,
+            "value": "1148.35"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "contingenza",
+          "description": "Indennita di contingenza (Allegato 2, CCNL ANEF 2025)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "511.21"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -141,6 +141,7 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 | 77 | F021 | Laterizi e Manufatti Cementizi - Industria | Edilizia | ~17k | ✅ | ✅ | 🤖 |
 | 78 | G211 | Esercizi Cinematografici e Cinema-Teatrali (ANEC) | Terziario | ~6k | ✅ | ✅ | 🤖 |
 | 79 | H124 | Farmacie Municipalizzate (ASSOFARM) | Terziario | ~6k | ✅ | ✅ | 🤖 |
+| 80 | I911 | Trasporto a Fune (Funivie Terrestri ed Aeree) — ANEF | Industria | n/d | ✅ | ✅ | 🤖 |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 
