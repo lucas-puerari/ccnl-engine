@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "ccnl-engine"
 version = "0.1.1"
@@ -33,6 +37,7 @@ docs = [
 dev = [
     "bandit>=1.9.4",
     "complexipy>=8.0",
+    "hatchling>=1.32.0",
     "mypy>=2.3.1",
     "pip-audit>=2.10.1",
     "pytest>=9.1.1",
@@ -126,10 +131,31 @@ init_typed = true
 warn_required_dynamic_aliases = true
 
 # ---------------------------------------------------------------------------
-# Package data — include JSON files in wheel/sdist
+# Hatchling — wheel packaging
 # ---------------------------------------------------------------------------
-[tool.setuptools.package-data]
-"ccnl_engine" = ["contracts/data/*.json", "tax/data/*.json"]
+[tool.hatch.build.targets.wheel]
+packages = ["src/ccnl_engine"]
+# Plain .json files are excluded from the wheel; the build hook (hatch_build.py)
+# injects compressed .json.gz variants instead. Editable installs read .json
+# directly via the fallback path in read_bundled().
+exclude = [
+    "src/ccnl_engine/contracts/data/*.json",
+    "src/ccnl_engine/tax/data/*.json",
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/",
+    "tests/",
+    "pyproject.toml",
+    "README.md",
+    "LICENSE",
+    "Makefile",
+    "packaging/",
+]
+
+[tool.hatch.build.hooks.custom]
+path = "packaging/build_hook.py"
 
 # ---------------------------------------------------------------------------
 # complexipy — Cognitive Complexity (SonarSource whitepaper v1.7)

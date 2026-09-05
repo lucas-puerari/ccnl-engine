@@ -5,6 +5,7 @@ from __future__ import annotations
 import importlib.resources
 from typing import TYPE_CHECKING, Protocol
 
+from ccnl_engine.io.bundled import read_bundled
 from ccnl_engine.tax.models import (
     ApprenticeRates,
     InpsRates,
@@ -51,12 +52,8 @@ def load_year_rules(
         which use ``domestic_contributions`` instead.
     """
     filename = f"{year}-{sector.value}.json"
-    raw_text = (
-        importlib.resources
-        .files("ccnl_engine.tax.data")
-        .joinpath(filename)
-        .read_text(encoding="utf-8")
-    )
+    pkg = importlib.resources.files("ccnl_engine.tax.data")
+    raw_text = read_bundled(pkg, filename)
     raw = _YearRulesRaw.model_validate_json(raw_text)
     inps = _resolve_inps(raw.inps, num_employees)
     apprentice = (

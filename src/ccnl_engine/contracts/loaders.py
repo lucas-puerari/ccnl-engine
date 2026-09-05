@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import importlib.resources
 
+from ccnl_engine.io.bundled import read_bundled
 from ccnl_engine.models.ccnl import CCNL
 
 
@@ -18,10 +19,6 @@ def load_ccnl(filename: str) -> CCNL:
     Returns:
         The validated CCNL instance.
     """
-    raw = (
-        importlib.resources
-        .files("ccnl_engine.contracts.data")
-        .joinpath(filename)
-        .read_text(encoding="utf-8")
-    )
+    pkg = importlib.resources.files("ccnl_engine.contracts.data")
+    raw = read_bundled(pkg, filename)
     return CCNL.model_validate_json(raw)
