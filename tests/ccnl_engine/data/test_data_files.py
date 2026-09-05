@@ -5964,3 +5964,83 @@ class TestLoadConsorziAgrariAssocap:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadOrganizzazioniAllevatoriAia:
+    """Tests for CCNL Organizzazioni Allevatori A221."""
+
+    def test_organizzazioni_allevatori_aia_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("organizzazioni-allevatori-aia.json")
+        assert ccnl.meta.id == "organizzazioni-allevatori-aia"
+        assert ccnl.meta.cnel_code == "A221"
+
+    def test_organizzazioni_allevatori_aia_has_13_levels(self) -> None:
+        """Contract has 13 levels: 1/2 through 3/2."""
+        ccnl = load_ccnl("organizzazioni-allevatori-aia.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 13
+        assert codes == {
+            "1/2",
+            "1/3",
+            "1/4",
+            "1/5",
+            "2/1",
+            "2/2",
+            "2/3",
+            "2/4A",
+            "2/4B",
+            "2/5",
+            "2/6",
+            "3/1",
+            "3/2",
+        }
+
+    def test_organizzazioni_allevatori_aia_level23_salary_sep2025(self) -> None:
+        """Level 2/3 minimo Sep 2025: 1895.67 (Wolters Kluwer 2026 ed.)."""
+        ccnl = load_ccnl("organizzazioni-allevatori-aia.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "2/3")
+        assert lv.base_salary.value_at(date(2025, 9, 1)) == Decimal("1895.67")
+
+    def test_organizzazioni_allevatori_aia_level12_salary_sep2025(self) -> None:
+        """Level 1/2 minimo Sep 2025: 2392.51 (Wolters Kluwer 2026 ed.)."""
+        ccnl = load_ccnl("organizzazioni-allevatori-aia.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "1/2")
+        assert lv.base_salary.value_at(date(2025, 9, 1)) == Decimal("2392.51")
+
+    def test_organizzazioni_allevatori_aia_level_ordering(self) -> None:
+        """Highest order level is 1/2; lowest is 3/2."""
+        ccnl = load_ccnl("organizzazioni-allevatori-aia.json")
+        sorted_levels = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert sorted_levels[0].code == "3/2"
+        assert sorted_levels[-1].code == "1/2"
+
+    def test_organizzazioni_allevatori_aia_additional_months(self) -> None:
+        """Contract has 14 mensilita (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("organizzazioni-allevatori-aia.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_organizzazioni_allevatori_aia_hourly_divisor(self) -> None:
+        """Hourly divisor 164.67 h/month (38h/week per Art. 11 CCNL)."""
+        ccnl = load_ccnl("organizzazioni-allevatori-aia.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal("164.67")
+
+    def test_organizzazioni_allevatori_aia_no_fixed_allowances(self) -> None:
+        """All 13 levels have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("organizzazioni-allevatori-aia.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_organizzazioni_allevatori_aia_tax_sector(self) -> None:
+        """Contract uses AGRICOLTURA tax sector."""
+        ccnl = load_ccnl("organizzazioni-allevatori-aia.json")
+        assert ccnl.meta.tax_sector == TaxSector.AGRICOLTURA
+
+    def test_organizzazioni_allevatori_aia_seniority_cadence(self) -> None:
+        """Ten biennial scatti per Art. 18 CCNL (FLAI + Confederdia)."""
+        ccnl = load_ccnl("organizzazioni-allevatori-aia.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 10

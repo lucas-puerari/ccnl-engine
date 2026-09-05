@@ -1,0 +1,59 @@
+{
+  "_description": "Golden case: CCNL Organizzazioni Allevatori A221, level 2/3, 2026-01-01, permanent, no seniority.",
+  "_notes": [
+    "Sep 2025 tranche (only modeled): livello 2/3 minimo tabellare = 1895.67 EUR/month.",
+    "Salary model: conglobated — base_salary is full minimo, fixed_allowances = [].",
+    "hourly_rate = 1895.67 / 164.67 = 11.51 (divisor 38h/week x 52/12, Art. 11 CCNL).",
+    "Additional months: 14 (tredicesima + quattordicesima, Art. 17 CCNL).",
+    "gross_annual = 1895.67 * 14 = 26539.38.",
+    "Seniority: 0 — no seniority increments accrued at query date.",
+    "INPS agricoltura rates from 2026-agricoltura.json (50-employee tier).",
+    "Trattamento integrativo: 134.83 — gross_annual 26539.38 is below TI threshold 28000."
+  ],
+  "inputs": {
+    "ccnl_file": "organizzazioni-allevatori-aia.json",
+    "year": 2026,
+    "tax_sector": "agricoltura",
+    "num_employees": 50,
+    "level_code": "2/3",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "organizzazioni-allevatori-aia",
+    "level_code": "2/3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1895.67",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1895.67",
+    "gross_annual": "26539.38",
+    "hourly_rate": "11.51",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2346.08",
+    "inps_employer_annual": "5748.43",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1965.88",
+    "taxable_income": "24193.30",
+    "irpef_gross": "5564.46",
+    "work_income_deduction": "794.00",
+    "irpef_net": "4770.46",
+    "net_annual": "19557.67",
+    "net_monthly": "1396.98",
+    "employer_cost_annual": "34253.69",
+    "trattamento_integrativo": "134.83",
+    "fiscal_simplifications": [
+      "no_addizionali",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}

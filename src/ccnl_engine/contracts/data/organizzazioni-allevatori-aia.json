@@ -1,0 +1,429 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "organizzazioni-allevatori-aia",
+    "name": "CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)",
+    "cnel_code": "A221",
+    "sector": "Agricoltura",
+    "tax_sector": "agricoltura",
+    "agreement_date": "2024-12-12",
+    "signatories": [
+      "AIA",
+      "FLAI-CGIL",
+      "FAI-CISL",
+      "UILA-UIL",
+      "Confederdia"
+    ],
+    "sources": [
+      {
+        "url": "https://www.wolterskluwer.it/",
+        "type": "table",
+        "agreement_date": "2024-12-12"
+      },
+      {
+        "url": "https://www.kitech.it/",
+        "type": "table",
+        "agreement_date": "2024-12-12"
+      },
+      {
+        "url": "https://www.confederdia.it/2023/11/30/ipotesi-di-accordo-rinnovo-ccnl-dipendenti-dalle-organizzazioni-degli-allevatori-consorzi-ed-enti-zootecnici/",
+        "type": "text",
+        "agreement_date": "2023-11-14"
+      },
+      {
+        "url": "https://www.lavoro-economia.it/",
+        "type": "info",
+        "agreement_date": "2024-12-12"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "out_of_scope",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: conglobated. Wolters Kluwer tables show Minimo = Totale with no separate contingenza column. fixed_allowances = [] for all levels."
+      },
+      {
+        "kind": "info",
+        "text": "Hourly divisor 164.67 = 38h/week x 52 / 12, confirmed from Art. 11 CCNL (FLAI PDF). Tredicesima + quattordicesima = 14 additional months (Art. 17 CCNL)."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: 10 biennial scatti per Art. 18 CCNL (FLAI PDF + Confederdia confirmed). Cadence biennale (24 months). Amounts effective 2025-01-01 per Dec 2024 economic renewal."
+      },
+      {
+        "kind": "info",
+        "text": "Indennita di funzione for Quadri (area 1): at least 13% of monthly salary per Art. 19 CCNL. Not modeled: percentage-based floor, not a fixed amount."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship: Annex 4 (profili formativi) referenced but not publicly parsed. layer_2 = out_of_scope."
+      },
+      {
+        "kind": "info",
+        "text": "Headcount: ~1,822 workers (AIA, CNEL archive 2023)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: First tranche (Jan 2025) from Dec 2024 renewal not modeled; no per-level table confirmed for that date. Engine returns no result for as_of before 2025-09-01."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Third tranche (Sep 2026) not modeled; per-level amounts not yet published in primary sources."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Indennita di funzione for area 1 Quadri (min 13% monthly) not modeled — variable floor amount, not expressible as fixed allowance."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-09-01",
+          "valid_until": null,
+          "value": "164.67"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-09-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 10,
+      "amount_by_level": {
+        "1/2": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "53.10"
+            }
+          ]
+        },
+        "1/3": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "50.36"
+            }
+          ]
+        },
+        "1/4": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "48.17"
+            }
+          ]
+        },
+        "1/5": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "45.97"
+            }
+          ]
+        },
+        "2/1": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "44.34"
+            }
+          ]
+        },
+        "2/2": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "43.24"
+            }
+          ]
+        },
+        "2/3": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "41.05"
+            }
+          ]
+        },
+        "2/4A": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "38.87"
+            }
+          ]
+        },
+        "2/4B": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "37.77"
+            }
+          ]
+        },
+        "2/5": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "37.22"
+            }
+          ]
+        },
+        "2/6": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "35.58"
+            }
+          ]
+        },
+        "3/1": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "31.74"
+            }
+          ]
+        },
+        "3/2": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "29.00"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [],
+  "levels": [
+    {
+      "code": "1/2",
+      "order": 13,
+      "description": "Area 1 Livello 2 (Quadri)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "2392.51"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1/3",
+      "order": 12,
+      "description": "Area 1 Livello 3",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "2288.35"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1/4",
+      "order": 11,
+      "description": "Area 1 Livello 4",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "2183.71"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1/5",
+      "order": 10,
+      "description": "Area 1 Livello 5",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "2105.96"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2/1",
+      "order": 9,
+      "description": "Area 2 Livello 1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "2028.26"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2/2",
+      "order": 8,
+      "description": "Area 2 Livello 2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "1974.23"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2/3",
+      "order": 7,
+      "description": "Area 2 Livello 3",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "1895.67"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2/4A",
+      "order": 6,
+      "description": "Area 2 Livello 4A",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "1791.72"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2/4B",
+      "order": 5,
+      "description": "Area 2 Livello 4B",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "1757.61"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2/5",
+      "order": 4,
+      "description": "Area 2 Livello 5",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "1737.68"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2/6",
+      "order": 3,
+      "description": "Area 2 Livello 6",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "1659.20"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3/1",
+      "order": 2,
+      "description": "Area 3 Livello 1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "1500.21"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3/2",
+      "order": 1,
+      "description": "Area 3 Livello 2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "1372.00"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ]
+}
