@@ -1,0 +1,59 @@
+{
+  "_description": "Golden case: CCNL Agenzie Marittime I481, level 4, 2026-01-01, permanent, no seniority.",
+  "_notes": [
+    "01/01/2026 is the third tranche (valid_from 2026-01-01): L4 paga conglobata = 2137.70 EUR/month.",
+    "Salary model: conglobated (Art. 21, 2021 CCNL). No fixed_allowances for level 4.",
+    "gross_monthly = 2137.70. hourly_rate = 2137.70 / 168 = 12.72.",
+    "gross_annual = 2137.70 * 14 = 29927.80.",
+    "Seniority: 0 (seniority_count=0). INPS terziario rates from 2026-terziario.json (50-employee tier)."
+  ],
+  "inputs": {
+    "ccnl_file": "agenzie-marittime-i481.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "4",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "agenzie-marittime-i481",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "2137.70",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2137.70",
+    "gross_annual": "29927.80",
+    "hourly_rate": "12.72",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2750.36",
+    "inps_employer_annual": "8673.08",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "2216.87",
+    "taxable_income": "27177.44",
+    "irpef_gross": "6250.81",
+    "work_income_deduction": "638.66",
+    "irpef_net": "5612.15",
+    "net_annual": "21565.29",
+    "net_monthly": "1540.38",
+    "employer_cost_annual": "40817.75",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "0",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}

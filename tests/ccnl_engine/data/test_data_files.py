@@ -6292,6 +6292,81 @@ class TestLoadAutorimesseIC35:
         assert si.maximum_count == 9
 
 
+class TestLoadAgenzieMaritime:
+    """Tests for CCNL Agenzie Marittime Raccomandatarie (I481)."""
+
+    def test_i481_loads(self) -> None:
+        """Contract loads with id=agenzie-marittime-i481 and cnel=I481."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        assert ccnl.meta.id == "agenzie-marittime-i481"
+        assert ccnl.meta.cnel_code == "I481"
+
+    def test_i481_has_7_levels(self) -> None:
+        """Contract has exactly 7 levels coded '1' through '7'."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        assert len(ccnl.levels) == 7
+        assert {lv.code for lv in ccnl.levels} == {"1", "2", "3", "4", "5", "6", "7"}
+
+    def test_i481_level4_salary_tranche1(self) -> None:
+        """Level 4 conglobata at 01/09/2024 = 2052.70 EUR (2024 renewal)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv.base_salary.value_at(date(2024, 9, 1)) == Decimal("2052.70")
+
+    def test_i481_level4_salary_tranche3(self) -> None:
+        """Level 4 conglobata at 01/01/2026 = 2137.70 EUR (third tranche)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("2137.70")
+
+    def test_i481_level_ordering(self) -> None:
+        """Lowest order is '1' (entry); highest order is '7' (Quadro)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        sorted_lvs = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert sorted_lvs[0].code == "1"
+        assert sorted_lvs[-1].code == "7"
+
+    def test_i481_additional_months(self) -> None:
+        """14 mensilita': tredicesima (Art. 24) + quattordicesima (Art. 25)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_i481_hourly_divisor(self) -> None:
+        """Hourly divisor 168 (Art. 20: retribuzione / 168 = paga oraria)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal(168)
+
+    def test_i481_levels1_to_6_no_fixed_allowances(self) -> None:
+        """Levels 1-6 have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        for lv in ccnl.levels:
+            if lv.code != "7":
+                assert lv.fixed_allowances == []
+
+    def test_i481_tax_sector(self) -> None:
+        """Contract uses TERZIARIO tax sector (agenzie marittime/aeree)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_i481_seniority_cadence(self) -> None:
+        """8 biennial scatti di anzianita' (Art. 23, 2021 CCNL)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 8
+
+    def test_i481_level7_funzione_allowance(self) -> None:
+        """L7 has FUNZIONE allowance 51.65 EUR/month (Art. 5, 2021 CCNL)."""
+        ccnl = load_ccnl("agenzie-marittime-i481.json")
+        lv7 = next(lv for lv in ccnl.levels if lv.code == "7")
+        assert len(lv7.fixed_allowances) == 1
+        fa = lv7.fixed_allowances[0]
+        assert fa.code == "FUNZIONE"
+        assert fa.monthly.value_at(date(2026, 1, 1)) == Decimal("51.65")
+
+
 class TestLoadFarmaciePrivateH121:
     """Tests for CCNL Dipendenti delle Farmacie Private (H121)."""
 
@@ -6373,6 +6448,72 @@ class TestLoadFarmaciePrivateH121:
         assert period.levels_below == 0
 
 
+class TestLoadLateriziIndustriaF021:
+    """Tests for CCNL Laterizi e Manufatti Cementizi - Industria (F021)."""
+
+    def test_laterizi_industria_f021_loads(self) -> None:
+        """Contract loads with correct id and CNEL code F021."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        assert ccnl.meta.id == "laterizi-industria-f021"
+        assert ccnl.meta.cnel_code == "F021"
+
+    def test_laterizi_industria_f021_has_9_levels(self) -> None:
+        """9 levels: ASQ AS A B CS C D E F (thaler.it livelli e qualifiche)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"ASQ", "AS", "A", "B", "CS", "C", "D", "E", "F"}
+
+    def test_laterizi_industria_f021_level_as_salary_2022(self) -> None:
+        """Level AS paga tabellare 2095.27 at 2022-04-01 (previgente)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "AS")
+        assert lv.base_salary.value_at(date(2022, 4, 1)) == Decimal("2095.27")
+
+    def test_laterizi_industria_f021_level_b_salary_2026(self) -> None:
+        """Level B paga tabellare 1710.15 at 2026-07-01 (2nd 2025 tranche)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "B")
+        assert lv.base_salary.value_at(date(2026, 7, 1)) == Decimal("1710.15")
+
+    def test_laterizi_industria_f021_level_ordering(self) -> None:
+        """Highest order is ASQ (Quadri); lowest order is F."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        sorted_levels = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert sorted_levels[0].code == "F"
+        assert sorted_levels[-1].code == "ASQ"
+
+    def test_laterizi_industria_f021_additional_months(self) -> None:
+        """13 mensililita': tredicesima only (quattordicesima: non prevista)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(13)
+
+    def test_laterizi_industria_f021_hourly_divisor(self) -> None:
+        """Divisore orario 174 per 40h/week (thaler.it parametri contrattuali)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal(174)
+
+    def test_laterizi_industria_f021_asq_has_three_allowances(self) -> None:
+        """ASQ level has CONTINGENZA + EDR + IND_FUNZIONE_QUADRI allowances."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        asq = next(lv for lv in ccnl.levels if lv.code == "ASQ")
+        codes = {a.code for a in asq.fixed_allowances}
+        assert codes == {"CONTINGENZA", "EDR", "IND_FUNZIONE_QUADRI"}
+
+    def test_laterizi_industria_f021_tax_sector(self) -> None:
+        """Contract uses edilizia tax sector (CNEL macrosector F)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        assert ccnl.meta.tax_sector == TaxSector.EDILIZIA
+
+    def test_laterizi_industria_f021_seniority_cadence(self) -> None:
+        """5 scatti biennali (cadence 24 months, max 5; thaler.it scatti)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        assert ccnl.parameters.seniority_increments.cadence_months == 24
+        assert ccnl.parameters.seniority_increments.maximum_count == 5
+
+
 class TestLoadEserciziCinematograficiAnec:
     """Tests for CCNL Esercizi Cinematografici e Cinema-Teatrali ANEC (G211)."""
 
@@ -6452,6 +6593,19 @@ class TestLoadEserciziCinematograficiAnec:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+    def test_laterizi_industria_f021_apprenticeship_tracks(self) -> None:
+        """4 under_classification tracks (Art. 9 CCNL 12/02/2020)."""
+        ccnl = load_ccnl("laterizi-industria-f021.json")
+        tracks = ccnl.apprenticeship
+        assert len(tracks) == 4
+        assert all(isinstance(t, ApprenticeshipUnderClassification) for t in tracks)
+        track36 = next(t for t in tracks if t.name == "professionalizzante_36")
+        assert set(track36.destination_levels) == {"ASQ", "AS", "A", "B"}
+        assert track36.periods[0].levels_below == 2  # type: ignore[union-attr]
+        track12 = next(t for t in tracks if t.name == "professionalizzante_12")
+        assert track12.destination_levels == ["E"]
+        assert track12.periods[0].levels_below == 1  # type: ignore[union-attr]
 
     def test_esercizi_cinematografici_anec_multiplex_level_c_tranche3(
         self,
