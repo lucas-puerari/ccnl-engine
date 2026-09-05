@@ -139,6 +139,7 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 | 75 | H121 | Dipendenti Farmacie Private (FEDERFARMA) | Terziario | ~60k | ✅ | ✅ | 🤖 |
 | 76 | I481 | Agenzie Marittime Raccomandatarie, Aeree e Mediatori Marittimi — FEDERAGENTI | Terziario | ~5k | ✅ | ✅ | 🤖 |
 | 77 | F021 | Laterizi e Manufatti Cementizi - Industria | Edilizia | ~17k | ✅ | ✅ | 🤖 |
+| 78 | G211 | Esercizi Cinematografici e Cinema-Teatrali (ANEC) | Terziario | ~6k | ✅ | ✅ | 🤖 |
 
 <p id="fn-1"><a href="#ref-1">1.</a> Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.</p>
 

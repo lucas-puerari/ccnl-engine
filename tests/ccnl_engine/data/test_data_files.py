@@ -6510,6 +6510,86 @@ class TestLoadLateriziIndustriaF021:
     def test_laterizi_industria_f021_seniority_cadence(self) -> None:
         """5 scatti biennali (cadence 24 months, max 5; thaler.it scatti)."""
         ccnl = load_ccnl("laterizi-industria-f021.json")
+        assert ccnl.parameters.seniority_increments.cadence_months == 24
+        assert ccnl.parameters.seniority_increments.maximum_count == 5
+
+
+class TestLoadEserciziCinematograficiAnec:
+    """Tests for CCNL Esercizi Cinematografici e Cinema-Teatrali ANEC (G211)."""
+
+    def test_esercizi_cinematografici_anec_loads(self) -> None:
+        """Contract id and CNEL code G211 (ANEC, cinema)."""
+        ccnl = load_ccnl("esercizi-cinematografici-anec.json")
+        assert ccnl.meta.id == "esercizi-cinematografici-anec"
+        assert ccnl.meta.cnel_code == "G211"
+
+    def test_esercizi_cinematografici_anec_has_15_levels(self) -> None:
+        """15 levels: 7 monosala + 8 multiplex (both systems in one file)."""
+        ccnl = load_ccnl("esercizi-cinematografici-anec.json")
+        assert len(ccnl.levels) == 15
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "5S",
+            "Q",
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "QB",
+            "QA",
+        }
+
+    def test_esercizi_cinematografici_anec_level3_salary_tranche1(self) -> None:
+        """Monosala level 3: 1288.01 at 2023-01-01 (first tranche)."""
+        ccnl = load_ccnl("esercizi-cinematografici-anec.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2023, 6, 1)) == Decimal("1288.01")
+
+    def test_esercizi_cinematografici_anec_level3_salary_tranche2(self) -> None:
+        """Monosala level 3: 1337.82 at 2024-11-01 (second tranche)."""
+        ccnl = load_ccnl("esercizi-cinematografici-anec.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2024, 11, 1)) == Decimal("1337.82")
+
+    def test_esercizi_cinematografici_anec_level_ordering(self) -> None:
+        """Lowest order is monosala 1 (parametro 100); highest is multiplex QA."""
+        ccnl = load_ccnl("esercizi-cinematografici-anec.json")
+        sorted_levels = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert sorted_levels[0].code == "1"
+        assert sorted_levels[-1].code == "QA"
+
+    def test_esercizi_cinematografici_anec_additional_months(self) -> None:
+        """14 mensilita': tredicesima (Art. 20) + quattordicesima (Art. 21)."""
+        ccnl = load_ccnl("esercizi-cinematografici-anec.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(14)
+
+    def test_esercizi_cinematografici_anec_hourly_divisor(self) -> None:
+        """Divisore 173 h/month (Art. 63 explicit: 'coefficiente 173')."""
+        ccnl = load_ccnl("esercizi-cinematografici-anec.json")
+        val = ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1))
+        assert val == Decimal(173)
+
+    def test_esercizi_cinematografici_anec_no_fixed_allowances(self) -> None:
+        """All 15 levels have empty fixed_allowances (conglobated model)."""
+        ccnl = load_ccnl("esercizi-cinematografici-anec.json")
+        assert all(lv.fixed_allowances == [] for lv in ccnl.levels)
+
+    def test_esercizi_cinematografici_anec_tax_sector(self) -> None:
+        """tax_sector TERZIARIO (cinema exhibitions; SIMPLIFICATION: FPLS)."""
+        ccnl = load_ccnl("esercizi-cinematografici-anec.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_esercizi_cinematografici_anec_seniority_cadence(self) -> None:
+        """5 scatti biennali (cadence 24 months, max 5) per Art. 22."""
+        ccnl = load_ccnl("esercizi-cinematografici-anec.json")
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
@@ -6526,3 +6606,20 @@ class TestLoadLateriziIndustriaF021:
         track12 = next(t for t in tracks if t.name == "professionalizzante_12")
         assert track12.destination_levels == ["E"]
         assert track12.periods[0].levels_below == 1  # type: ignore[union-attr]
+
+    def test_esercizi_cinematografici_anec_multiplex_level_c_tranche3(
+        self,
+    ) -> None:
+        """Multiplex level C third tranche (01/07/2025): 1436.95 EUR/month."""
+        ccnl = load_ccnl("esercizi-cinematografici-anec.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C")
+        assert lv.base_salary.value_at(date(2025, 8, 1)) == Decimal("1436.95")
+
+    def test_esercizi_cinematografici_anec_5s_f_equal_tranche3(self) -> None:
+        """5S and F share salary at tranche 3; adjacency is intentional."""
+        ccnl = load_ccnl("esercizi-cinematografici-anec.json")
+        lv_5s = next(lv for lv in ccnl.levels if lv.code == "5S")
+        lv_f = next(lv for lv in ccnl.levels if lv.code == "F")
+        val = Decimal("1736.47")
+        assert lv_5s.base_salary.value_at(date(2025, 8, 1)) == val
+        assert lv_f.base_salary.value_at(date(2025, 8, 1)) == val

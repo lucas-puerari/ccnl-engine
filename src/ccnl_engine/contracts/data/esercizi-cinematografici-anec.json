@@ -1,0 +1,650 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "id": "esercizi-cinematografici-anec",
+    "name": "CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)",
+    "cnel_code": "G211",
+    "sector": "cinema",
+    "tax_sector": "terziario",
+    "signatories": [
+      "ANEC",
+      "FISTel CISL",
+      "UILCOM UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+        "type": "text",
+        "agreement_date": "2025-10-16"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-05T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "source",
+        "text": "Primary source: CCNL Esercizi Cinematografici 2023-2026 (FISTel CISL, signed 16/10/2025). Art. 54: period 01/01/2023-31/12/2026. Three salary tranches: 01/01/2023, 01/11/2024, 01/07/2025 from salary tables (pages 59-65 of the PDF). Baseline (31/12/2022 column) used only for increment verification, not modelled as a separate period."
+      },
+      {
+        "kind": "source",
+        "text": "Hourly divisor 173: Art. 63 Dichiarazione a verbale (explicit formula: 'la retribuzione oraria si ottiene dividendo quella mensile per il coefficiente 173'). Daily divisor 26 also from Art. 63."
+      },
+      {
+        "kind": "source",
+        "text": "Additional months 14: Art. 20 (tredicesima, December) and Art. 21 (quattordicesima, paid 1 luglio each year)."
+      },
+      {
+        "kind": "source",
+        "text": "Seniority (Art. 22): biennale (cadence 24 months), maximum 5 scatti. Amounts from Tabella A (appended to CCNL). Cross-verified against Art. 62 (Indennita di Cassa 'Sola P.B.' table): Tabella A formula is 5% of frozen paga base (Art. 62 column) plus a fixed addend (3.62 for monosala L3, confirming 12.72+3.62=16.34). The salary table bottom row shows 16.26 for monosala L3 (IV scatto basis) — this is a typographic error; Tabella A value 16.34 is authoritative."
+      },
+      {
+        "kind": "source",
+        "text": "Apprenticeship (Art. 16): percentage type, 70%/80%/90% for years 1/2/3 of the apprenticeship, calculated on the minimo salariale of the classification level. In vigore dal 01/01/2018. Applicable to all 15 levels (Art. 16 states no level exclusion)."
+      },
+      {
+        "kind": "info",
+        "text": "Two parallel level systems in the same contract (one CNEL code G211): Monosala/Multisala (7 levels: 1,2,3,4,5,5S,Q with parametri 100/112/132/159/176/185/220) and Multiplex/Megaplex (8 levels: A,B,C,D,E,F,QB,QA with parametri 100/122/140/150/165/185/220/240). The 15 levels are interleaved by salary for ordering (non-decreasing constraint). Levels 1 and A share identical salaries (parametro 100), as do 5S and F (parametro 185) and Q and QB (parametro 220). Level QA (parametro 240) is Multiplex/Megaplex only. The 'order' field is a global salary rank across both classification scales and is not a promotion ladder."
+      },
+      {
+        "kind": "info",
+        "text": "Level code aliases in the PDF: monosala Q is also written 'VI Qua' in the paga table header and '6' in Tabella B. Code 'Q' (Tabella A label) is used consistently here."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: tax_sector=TERZIARIO. Cinema exhibition employees (esercizio cinematografico) were historically under ENPALS (now FPLS — Fondo Pensione Lavoratori dello Spettacolo dell'INPS, Art. 12 comma 6 of this CCNL). The FPLS contribution regime differs from ordinary terziario. terziario rates are used as an approximation pending a dedicated cinema-FPLS tax file."
+      },
+      {
+        "kind": "info",
+        "text": "Workers: 6,427 (ADAPT 18th Report, CNEL aggiornamento 31/12/2023)."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2023-01-01",
+          "valid_until": null,
+          "value": "173"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2023-01-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "13.26"
+            }
+          ]
+        },
+        "A": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "13.26"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "14.37"
+            }
+          ]
+        },
+        "B": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "15.38"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "16.34"
+            }
+          ]
+        },
+        "C": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "17.11"
+            }
+          ]
+        },
+        "D": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "18.07"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "18.96"
+            }
+          ]
+        },
+        "E": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "19.52"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "20.62"
+            }
+          ]
+        },
+        "5S": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "21.45"
+            }
+          ]
+        },
+        "F": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "21.45"
+            }
+          ]
+        },
+        "Q": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "24.82"
+            }
+          ]
+        },
+        "QB": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "24.82"
+            }
+          ]
+        },
+        "QA": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": null,
+              "value": "26.75"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "standard",
+      "destination_levels": [
+        "1", "A", "2", "B", "3", "C", "D", "4", "E", "5", "5S", "F", "Q", "QB", "QA"
+      ],
+      "reference_level": null,
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.90"
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "1",
+      "order": 1,
+      "description": "I livello — Monosala/Multisala (parametro 100)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-11-01",
+            "value": "1097.67"
+          },
+          {
+            "valid_from": "2024-11-01",
+            "valid_until": "2025-07-01",
+            "value": "1135.41"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": null,
+            "value": "1170.00"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A",
+      "order": 2,
+      "description": "Livello A — Multiplex/Megaplex (parametro 100)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-11-01",
+            "value": "1097.67"
+          },
+          {
+            "valid_from": "2024-11-01",
+            "valid_until": "2025-07-01",
+            "value": "1135.41"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": null,
+            "value": "1170.00"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 3,
+      "description": "II livello — Monosala/Multisala (parametro 112)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-11-01",
+            "value": "1168.95"
+          },
+          {
+            "valid_from": "2024-11-01",
+            "valid_until": "2025-07-01",
+            "value": "1211.21"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": null,
+            "value": "1249.95"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "B",
+      "order": 4,
+      "description": "Livello B — Multiplex/Megaplex (parametro 122)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-11-01",
+            "value": "1228.38"
+          },
+          {
+            "valid_from": "2024-11-01",
+            "valid_until": "2025-07-01",
+            "value": "1274.42"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": null,
+            "value": "1316.62"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 5,
+      "description": "III livello — Monosala/Multisala (parametro 132)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-11-01",
+            "value": "1288.01"
+          },
+          {
+            "valid_from": "2024-11-01",
+            "valid_until": "2025-07-01",
+            "value": "1337.82"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": null,
+            "value": "1383.48"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C",
+      "order": 6,
+      "description": "Livello C — Multiplex/Megaplex (parametro 140)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-11-01",
+            "value": "1335.69"
+          },
+          {
+            "valid_from": "2024-11-01",
+            "valid_until": "2025-07-01",
+            "value": "1388.52"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": null,
+            "value": "1436.95"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D",
+      "order": 7,
+      "description": "Livello D — Multiplex/Megaplex (parametro 150)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-11-01",
+            "value": "1395.12"
+          },
+          {
+            "valid_from": "2024-11-01",
+            "valid_until": "2025-07-01",
+            "value": "1451.72"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": null,
+            "value": "1503.61"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 8,
+      "description": "IV livello — Monosala/Multisala (parametro 159)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-11-01",
+            "value": "1448.49"
+          },
+          {
+            "valid_from": "2024-11-01",
+            "valid_until": "2025-07-01",
+            "value": "1508.49"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": null,
+            "value": "1563.49"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "E",
+      "order": 9,
+      "description": "Livello E — Multiplex/Megaplex (parametro 165)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-11-01",
+            "value": "1483.83"
+          },
+          {
+            "valid_from": "2024-11-01",
+            "valid_until": "2025-07-01",
+            "value": "1546.09"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": null,
+            "value": "1603.17"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 10,
+      "description": "V livello — Monosala/Multisala (parametro 176)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-11-01",
+            "value": "1550.02"
+          },
+          {
+            "valid_from": "2024-11-01",
+            "valid_until": "2025-07-01",
+            "value": "1616.44"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": null,
+            "value": "1677.32"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5S",
+      "order": 11,
+      "description": "V livello superiore — Monosala/Multisala (parametro 185)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-11-01",
+            "value": "1602.67"
+          },
+          {
+            "valid_from": "2024-11-01",
+            "valid_until": "2025-07-01",
+            "value": "1672.48"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": null,
+            "value": "1736.47"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "F",
+      "order": 12,
+      "description": "Livello F — Multiplex/Megaplex (parametro 185)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-11-01",
+            "value": "1602.67"
+          },
+          {
+            "valid_from": "2024-11-01",
+            "valid_until": "2025-07-01",
+            "value": "1672.48"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": null,
+            "value": "1736.47"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "Q",
+      "order": 13,
+      "description": "Quadro — Monosala/Multisala (parametro 220)",
+      "category": "quadro",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-11-01",
+            "value": "1811.00"
+          },
+          {
+            "valid_from": "2024-11-01",
+            "valid_until": "2025-07-01",
+            "value": "1894.02"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": null,
+            "value": "1970.12"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "QB",
+      "order": 14,
+      "description": "Quadro B — Multiplex/Megaplex (parametro 220)",
+      "category": "quadro",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-11-01",
+            "value": "1811.00"
+          },
+          {
+            "valid_from": "2024-11-01",
+            "valid_until": "2025-07-01",
+            "value": "1894.02"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": null,
+            "value": "1970.12"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "QA",
+      "order": 15,
+      "description": "Quadro A — Multiplex/Megaplex (parametro 240)",
+      "category": "quadro",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2024-11-01",
+            "value": "1929.86"
+          },
+          {
+            "valid_from": "2024-11-01",
+            "valid_until": "2025-07-01",
+            "value": "2020.43"
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": null,
+            "value": "2103.45"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ]
+}
