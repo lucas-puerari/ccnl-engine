@@ -11,7 +11,7 @@
     "Seniority: 0.00 — no scatti accumulated.",
     "Trattamento integrativo applies (taxable_income 24,200.22 < 28,000 threshold).",
     "IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).",
-    "Turismo comparto only — sanitario tables not modelled (see coverage notes)."
+    "Covers both turismo and sanitario comparti — SANITARIO_TURISMO unified table from 2026-05-01 (see coverage notes)."
   ],
   "inputs": {
     "ccnl_file": "lavanderie-industriali-assosistema.json",
