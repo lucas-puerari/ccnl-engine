@@ -71,6 +71,7 @@ nav = [
     { "CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/C…" = "contracts/impiegati-tecnici-agricoli.md" },
     { "CCNL Comunicazione, Informatica e Servizi Innovativi PMI …" = "contracts/informatica-pmi-unimatica.md" },
     { "CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN" = "contracts/istruzione-ricerca-aran.md" },
+    { "CCNL Industria Turistica (Federturismo Confindustria)" = "contracts/industria-turistica-federturismo.md" },
     { "CCNL Laterizi e Manufatti Cementizi - Industria" = "contracts/laterizi-industria-f021.md" },
     { "CCNL Lavanderie Industriali (Assosistema Confindustria)" = "contracts/lavanderie-industriali-assosistema.md" },
     { "CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conv…" = "contracts/lavoro-domestico-convivente.md" },

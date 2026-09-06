@@ -7945,3 +7945,89 @@ class TestLoadMarittimiIndustriaArmatoriale:
         )
         assert fn is not None
         assert fn.monthly.value_at(date(2026, 7, 1)) == Decimal("225.00")
+
+
+class TestLoadIndustriaTuristicaFederturismo:
+    """Tests for CCNL Industria Turistica — Federturismo (H05B)."""
+
+    def test_h05b_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("industria-turistica-federturismo.json")
+        assert ccnl.meta.ccnl_id == "industria-turistica-federturismo"
+        assert ccnl.meta.cnel_code == "H05B"
+
+    def test_h05b_has_9_levels(self) -> None:
+        """Contract has exactly 9 levels."""
+        ccnl = load_ccnl("industria-turistica-federturismo.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 9
+        assert codes == {"D2", "D1", "C3", "C2", "C1", "B2", "B1", "A2", "A1"}
+
+    def test_h05b_level_c1_salary_2025(self) -> None:
+        """Level C1 base salary at 2025-01-01 is 1739.43 EUR."""
+        ccnl = load_ccnl("industria-turistica-federturismo.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C1")
+        assert lv.base_salary.value_at(date(2025, 1, 1)) == Decimal("1739.43")
+
+    def test_h05b_level_c1_salary_2026(self) -> None:
+        """Level C1 base salary at 2026-05-01 is 1808.30 EUR."""
+        ccnl = load_ccnl("industria-turistica-federturismo.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C1")
+        assert lv.base_salary.value_at(date(2026, 5, 1)) == Decimal("1808.30")
+
+    def test_h05b_level_ordering(self) -> None:
+        """D2 is lowest order (1), A1 is highest order (9)."""
+        ccnl = load_ccnl("industria-turistica-federturismo.json")
+        levels_by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert levels_by_order[0].code == "D2"
+        assert levels_by_order[-1].code == "A1"
+
+    def test_h05b_additional_months(self) -> None:
+        """Additional months is 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("industria-turistica-federturismo.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 5, 1)) == Decimal(
+            14
+        )
+
+    def test_h05b_hourly_divisor(self) -> None:
+        """Hourly divisor is 172."""
+        ccnl = load_ccnl("industria-turistica-federturismo.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 5, 1)) == Decimal(172)
+
+    def test_h05b_d2_no_fixed_allowances(self) -> None:
+        """Level D2 has no fixed allowances (conglobated)."""
+        ccnl = load_ccnl("industria-turistica-federturismo.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "D2")
+        assert lv.fixed_allowances == []
+
+    def test_h05b_a1_indennita_funzione(self) -> None:
+        """Level A1 has function allowance of 75.00 EUR/month at 14 months."""
+        ccnl = load_ccnl("industria-turistica-federturismo.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "A1")
+        fa = next(
+            fa for fa in lv.fixed_allowances if fa.code == "INDENNITA_FUNZIONE_A1"
+        )
+        assert fa.monthly.value_at(date(2026, 5, 1)) == Decimal("75.00")
+        assert fa.months_per_year == 14
+
+    def test_h05b_a2_indennita_funzione(self) -> None:
+        """Level A2 has function allowance of 70.00 EUR/month at 14 months."""
+        ccnl = load_ccnl("industria-turistica-federturismo.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "A2")
+        fa = next(
+            fa for fa in lv.fixed_allowances if fa.code == "INDENNITA_FUNZIONE_A2"
+        )
+        assert fa.monthly.value_at(date(2026, 5, 1)) == Decimal("70.00")
+        assert fa.months_per_year == 14
+
+    def test_h05b_tax_sector(self) -> None:
+        """Tax sector is terziario."""
+        ccnl = load_ccnl("industria-turistica-federturismo.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_h05b_seniority_cadence(self) -> None:
+        """Seniority: 36-month cadence, maximum 6 scatti."""
+        ccnl = load_ccnl("industria-turistica-federturismo.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 6
