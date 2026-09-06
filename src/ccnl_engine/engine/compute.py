@@ -4,13 +4,17 @@ from __future__ import annotations
 
 from dataclasses import dataclass, replace
 from decimal import Decimal
-from typing import TYPE_CHECKING, Protocol
+from typing import TYPE_CHECKING
 
 from ccnl_engine.engine import contributions as _contrib
 from ccnl_engine.engine import irpef as _irpef
 from ccnl_engine.engine.payslip import Payslip
 from ccnl_engine.engine.rounding import money
 from ccnl_engine.models.apprenticeship import ApprenticeshipPercentage
+from ccnl_engine.models.employee import (
+    DestinationRalOverride,
+    RalOverride,
+)
 from ccnl_engine.models.employment import Apprentice, FixedTerm
 from ccnl_engine.models.fiscal import FiscalSimplification
 
@@ -28,11 +32,14 @@ if TYPE_CHECKING:
         SeniorityTier,
         SupplementaryAllowance,
     )
+    from ccnl_engine.models.employee import Employee, RalOverrideMode
+    from ccnl_engine.models.employer import Employer
     from ccnl_engine.models.employment import Employment
     from ccnl_engine.surtax.models import SurtaxRules
     from ccnl_engine.tax.models import YearRules
 
-_ONE = Decimal(1)
+from typing import Protocol
+
 _ZERO = Decimal(0)
 _TWO = Decimal(2)
 
@@ -94,132 +101,61 @@ class _AnnualisedPay:
     excluded_from_tfr: Decimal
 
 
-@dataclass(frozen=True)
-class Scenario:
-    """Scenario parameters for a single ``compute()`` call.
+def _resolve_second_level(
+    employer: Employer | None,
+) -> tuple[SupplementaryAllowance, ...]:
+    """Return the second-level allowances tuple, defaulting to empty.
 
-    Attributes:
-        level_code: Classification level code as defined in the CCNL
-            (e.g. ``"D3"``). Must match a level in the provided CCNL.
-        as_of: Reference date for time-series values (base pay, seniority
-            amounts, allowances). Determines which entry in each ``TimeSeries``
-            is active.
-        employment: Employment contract type — ``Permanent``, ``FixedTerm``,
-            or ``Apprentice``.
-        part_time_pct: Part-time coefficient in the range ``(0, 1]``. A
-            full-time worker uses the default ``1``. Gross pay, INPS, and TFR
-            are all scaled by this value; ``ad_personam_monthly`` is not.
-        seniority_count: Explicit number of seniority increments (*scatti*)
-            already accrued. Mutually exclusive with ``seniority_months``; when
-            neither is given, no increment applies.
-        seniority_months: Months of service elapsed; the engine derives the
-            increment count from CCNL cadence rules. Mutually exclusive with
-            ``seniority_count``.
-        negotiated_ral: Individual gross annual salary (RAL) agreed outside
-            the CCNL tables. Replaces the CCNL-derived figure for any
-            employment type and is used as-is (not scaled). Mutually exclusive
-            with ``negotiated_destination_ral``.
-        negotiated_destination_ral: Destination-level RAL for
-            percentage-based apprentices. The engine applies
-            ``apprenticeship_pct`` to this value to produce the apprentice's
-            actual pay. Mutually exclusive with ``negotiated_ral``; only valid
-            for ``Apprentice`` employment on a percentage track.
-        roles: Set of role identifiers the worker holds (e.g. ``{"capoturno"}``).
-            Selects role-restricted allowances defined in the CCNL level.
-        ad_personam_monthly: Individual frozen monthly element added directly
-            to gross (e.g. a pre-abolition seniority increment). Not scaled by
-            ``part_time_pct``. Must be ``>= 0``.
-        category: Worker category override (``"operaio"``, ``"impiegato"``,
-            ``"quadro"``, ``"dirigente"``). Required when a level hosts
-            multiple categories (e.g. edilizia level 3). Defaults to the
-            level's own category.
-        ivs_ceiling_applies: Set to ``True`` when the worker's gross is above
-            the IVS ceiling and only the IVS-specific contribution rate should
-            apply (rather than the full rate). Defaults to ``False``.
-        weekly_hours: Contractual weekly hours. Required when the tax-rules
-            file uses ``domestic_contributions`` (lavoro domestico).
-        num_employees: Total headcount of the employer. Used to select the
-            correct INPS contribution-rate tier when calling
-            :func:`~ccnl_engine.tax.loaders.load_year_rules`. Must be >= 1.
-        regione: Italian region name for addizionale regionale IRPEF lookup
-            (e.g. ``"Lombardia"``). When ``None`` or when no
-            :class:`~ccnl_engine.surtax.models.SurtaxRules` is passed to
-            :func:`compute`, the surtax is zero and
-            ``FiscalSimplification.NO_ADDIZIONALE_REGIONALE`` is set.
-        comune_belfiore: Codice catastale (belfiore) of the worker's
-            municipality of residence (e.g. ``"H501"`` for Rome). When
-            ``None`` or when no :class:`~ccnl_engine.surtax.models.SurtaxRules`
-            is passed to :func:`compute`, the surtax is zero and
-            ``FiscalSimplification.NO_ADDIZIONALE_COMUNALE`` is set.
-        second_level_allowances: Allowances from a territorial or company
-            second-level agreement (contrattazione di secondo livello).  Each
-            item is a :class:`~ccnl_engine.models.ccnl.SupplementaryAllowance`
-            carrying a plain monthly amount, relevance flags, and an optional
-            ``months_per_year`` override.  Every item is scaled by
-            ``part_time_pct``; whether the apprenticeship percentage also
-            applies is controlled per-item by ``apprenticeship_pct_relevant``.
-            Mutually exclusive with ``negotiated_ral`` and
-            ``negotiated_destination_ral``: those fields already express the
-            full agreed salary and adding second-level items on top would
-            double-count.  Contrast with ``ad_personam_monthly``, which is an
-            *individual* frozen supplement not scaled by ``part_time_pct``.
+    Returns:
+        The allowances tuple from ``employer``, or an empty tuple when
+        ``employer`` is ``None``.
     """
-
-    level_code: str
-    as_of: date
-    employment: Employment
-    num_employees: int
-    part_time_pct: Decimal = _ONE
-    seniority_count: int | None = None
-    seniority_months: int | None = None
-    negotiated_ral: Decimal | None = None
-    negotiated_destination_ral: Decimal | None = None
-    roles: frozenset[str] = frozenset()
-    ad_personam_monthly: Decimal = _ZERO
-    category: LevelCategory | None = None
-    ivs_ceiling_applies: bool = False
-    weekly_hours: Decimal | None = None
-    regione: str | None = None
-    comune_belfiore: str | None = None
-    second_level_allowances: tuple[SupplementaryAllowance, ...] = ()
-
-    def __post_init__(self) -> None:
-        """Validate num_employees and second_level_allowances constraints.
-
-        Raises:
-            ValueError: If num_employees is less than 1, or if
-                second_level_allowances is non-empty while negotiated_ral or
-                negotiated_destination_ral is set (the negotiated figure already
-                represents the full agreed salary; adding second-level items on
-                top would double-count them).
-        """
-        if self.num_employees < 1:
-            msg = f"num_employees must be >= 1, got {self.num_employees}"
-            raise ValueError(msg)
-        if self.second_level_allowances and (
-            self.negotiated_ral is not None
-            or self.negotiated_destination_ral is not None
-        ):
-            msg = (
-                "second_level_allowances cannot be combined with negotiated_ral "
-                "or negotiated_destination_ral: the negotiated figure already "
-                "represents the full agreed salary"
-            )
-            raise ValueError(msg)
+    return employer.second_level_allowances if employer is not None else ()
 
 
-def compute(
+def _extract_ral_override(employee: Employee) -> RalOverrideMode | None:
+    """Extract the RAL-override mode from the employee's agreement.
+
+    Returns:
+        The ``ral_override`` from :attr:`~ccnl_engine.models.employee\
+.IndividualAgreement.ral_override`, or ``None`` when no agreement is set.
+    """
+    return employee.agreement.ral_override if employee.agreement is not None else None
+
+
+def _guard_ral_conflict(
+    second_level_allowances: tuple[SupplementaryAllowance, ...],
+    ral_override_mode: RalOverrideMode | None,
+) -> None:
+    """Raise if second-level allowances are combined with a RAL override.
+
+    Raises:
+        ValueError: When ``second_level_allowances`` is non-empty and a RAL
+            override is also set.
+    """
+    if second_level_allowances and ral_override_mode is not None:
+        msg = (
+            "second_level_allowances cannot be combined with a RAL override: "
+            "the negotiated figure already represents the full agreed salary"
+        )
+        raise ValueError(msg)
+
+
+def compute(  # ruff: ignore[too-many-statements]
     ccnl: CCNL,
     rules: YearRules,
-    scenario: Scenario,
+    employee: Employee,
+    employer: Employer | None = None,
     surtax: SurtaxRules | None = None,
 ) -> Payslip:
-    """Compute gross-to-net salary and employer cost for a given scenario.
+    """Compute gross-to-net salary and employer cost for a given employee.
 
     Args:
         ccnl: The CCNL contract model.
         rules: Tax and contribution rules for the relevant year.
-        scenario: Scenario parameters (level, date, employment, options).
+        employee: Worker-side inputs (position, arrangement, tax, agreement).
+        employer: Employer-side inputs (second-level bargaining allowances).
+            Defaults to no supplementary allowances when ``None``.
         surtax: Addizionale regionale e comunale rate tables for the year
             (loaded via :func:`~ccnl_engine.surtax.loaders.load_surtax_rules`).
             When ``None``, both surtaxes are zero and the corresponding
@@ -230,62 +166,63 @@ def compute(
         Payslip with all gross, net, and cost figures.
 
     Raises:
-        ValueError: If part_time_pct is not in (0, 1], ad_personam_monthly < 0,
-            seniority arguments are invalid, negotiated_ral and
-            negotiated_destination_ral are both supplied,
-            negotiated_destination_ral is used with a non-Apprentice employment,
-            or negotiated_destination_ral is used with an under-classification
-            apprenticeship track.
+        ValueError: If second_level_allowances is non-empty while a RAL
+            override is set, or if DestinationRalOverride is used with a
+            non-Apprentice employment or an under-classification track.
     """
-    if not (_ZERO < scenario.part_time_pct <= _ONE):
-        msg = f"part_time_pct must be in (0, 1], got {scenario.part_time_pct}"
-        raise ValueError(msg)
-    if scenario.ad_personam_monthly < _ZERO:
-        msg = f"ad_personam_monthly must be >= 0, got {scenario.ad_personam_monthly}"
-        raise ValueError(msg)
-    ral_override = _validate_negotiated_ral(
-        scenario.negotiated_ral,
-        scenario.negotiated_destination_ral,
-        scenario.employment,
+    second_level_allowances = _resolve_second_level(employer)
+    ral_override_mode = _extract_ral_override(employee)
+    _guard_ral_conflict(second_level_allowances, ral_override_mode)
+
+    ral_override = _validate_ral_override(
+        ral_override_mode,
+        employee.position.employment,
     )
 
-    level = ccnl.level_by_code(scenario.level_code)
+    level = ccnl.level_by_code(employee.position.level_code)
     worker_category = (
-        scenario.category if scenario.category is not None else level.category
+        employee.position.category
+        if employee.position.category is not None
+        else level.category
     )
+
+    seniority_count_val = employee.arrangement.seniority_count
+    seniority_months_val = employee.arrangement.seniority_months
     count = _resolve_seniority_count(
         ccnl.parameters.seniority_increments,
-        scenario.level_code,
-        scenario.seniority_count,
-        scenario.seniority_months,
+        employee.position.level_code,
+        seniority_count_val,
+        seniority_months_val,
         worker_category=worker_category,
     )
     if worker_category in ccnl.parameters.seniority_increments.excluded_categories:
         count = 0
-    additional_months = ccnl.parameters.additional_months.value_at(scenario.as_of)
+    additional_months = ccnl.parameters.additional_months.value_at(
+        employee.position.as_of
+    )
 
-    factor = scenario.part_time_pct
+    factor = employee.arrangement.part_time_pct
     apprenticeship_pct: Decimal | None = None
     under_level_code: str | None = None
-    if isinstance(scenario.employment, Apprentice):
+    if isinstance(employee.position.employment, Apprentice):
         chain_ft, apprenticeship_pct, under_level_code = _apprentice_chain(
             ccnl,
             level,
-            scenario.employment,
+            employee.position.employment,
             count,
-            scenario.roles,
-            scenario.as_of,
+            employee.position.roles,
+            employee.position.as_of,
             worker_category=worker_category,
-            seniority_months=scenario.seniority_months,
+            seniority_months=seniority_months_val,
         )
         if apprenticeship_pct is not None:
             factor *= apprenticeship_pct
         if (
-            scenario.negotiated_destination_ral is not None
+            isinstance(ral_override_mode, DestinationRalOverride)
             and apprenticeship_pct is None
         ):
             msg = (
-                "negotiated_destination_ral requires a percentage-based apprenticeship "
+                "DestinationRalOverride requires a percentage-based apprenticeship "
                 "track; the resolved track uses under-classification"
             )
             raise ValueError(msg)
@@ -294,21 +231,26 @@ def compute(
             ccnl,
             level,
             count,
-            scenario.roles,
-            scenario.as_of,
+            employee.position.roles,
+            employee.position.as_of,
             worker_category=worker_category,
             is_apprentice=False,
-            seniority_months=scenario.seniority_months,
+            seniority_months=seniority_months_val,
         )
 
     chain = (
-        chain_ft.scaled_selective(scenario.part_time_pct, apprenticeship_pct)
+        chain_ft.scaled_selective(
+            employee.arrangement.part_time_pct, apprenticeship_pct
+        )
         if apprenticeship_pct is not None
         else chain_ft.scaled(factor)
     )
-    ad_personam = money(scenario.ad_personam_monthly)
+    agreement = employee.agreement
+    ad_personam = money(
+        agreement.ad_personam_monthly if agreement is not None else _ZERO
+    )
     sl_scaled, second_level_monthly_total = _scale_second_level(
-        scenario.second_level_allowances, scenario.part_time_pct, apprenticeship_pct
+        second_level_allowances, employee.arrangement.part_time_pct, apprenticeship_pct
     )
 
     gross_monthly = money(
@@ -322,8 +264,7 @@ def compute(
     gross_annual = annual.gross
 
     gross_annual, gross_monthly = _override_gross(
-        scenario.negotiated_ral,
-        scenario.negotiated_destination_ral,
+        ral_override_mode,
         apprenticeship_pct,
         gross_annual,
         gross_monthly,
@@ -339,17 +280,23 @@ def compute(
     tfr_base = (
         gross_annual if ral_override else money(gross_annual - annual.excluded_from_tfr)
     )
-    hourly_divisor = ccnl.parameters.hourly_divisor.value_at(scenario.as_of)
+    hourly_divisor = ccnl.parameters.hourly_divisor.value_at(employee.position.as_of)
+
+    tax = employee.tax
+    ivs_ceiling_applies = tax.ivs_ceiling_applies if tax is not None else False
+
     inps_employee_annual, inps_employer_annual = _inps_contributions(
         rules,
-        scenario,
+        employee.position.employment,
         gross_monthly,
         hourly_divisor,
         contribution_base,
         worker_category,
+        weekly_hours=employee.arrangement.weekly_hours,
+        ivs_ceiling_applies=ivs_ceiling_applies,
     )
     employer_funds_annual = _employer_funds(
-        ccnl, worker_category, contribution_base, scenario.as_of
+        ccnl, worker_category, contribution_base, employee.position.as_of
     )
     tfr_annual = _contrib.tfr(tfr_base, rules)
 
@@ -376,7 +323,11 @@ def compute(
 
     # Addizionale regionale e comunale (Art. 50 TUIR; Art. 1 D.Lgs. 360/1998).
     add_reg, add_com, fiscal_simplifications = _compute_addizionali(
-        taxable_income, scenario, surtax, fiscal_simplifications
+        taxable_income,
+        surtax,
+        fiscal_simplifications,
+        regione=tax.regione if tax is not None else None,
+        comune_belfiore=tax.comune_belfiore if tax is not None else None,
     )
 
     net_annual = money(
@@ -389,11 +340,11 @@ def compute(
 
     return Payslip(
         ccnl_id=ccnl.meta.id,
-        level_code=scenario.level_code,
-        employment_type=scenario.employment.type,
-        part_time_pct=scenario.part_time_pct,
-        as_of=scenario.as_of,
-        year=scenario.as_of.year,
+        level_code=employee.position.level_code,
+        employment_type=employee.position.employment.type,
+        part_time_pct=employee.arrangement.part_time_pct,
+        as_of=employee.position.as_of,
+        year=employee.position.as_of.year,
         seniority_count=count,
         base_monthly=chain.base,
         seniority_monthly=chain.seniority,
@@ -425,52 +376,50 @@ def compute(
 
 
 def _override_gross(
-    negotiated_ral: Decimal | None,
-    negotiated_destination_ral: Decimal | None,
+    ral_override_mode: RalOverrideMode | None,
     apprenticeship_pct: Decimal | None,
     gross_annual: Decimal,
     gross_monthly: Decimal,
     additional_months: Decimal,
 ) -> tuple[Decimal, Decimal]:
-    """Return (gross_annual, gross_monthly) after applying any negotiated-RAL override.
+    """Return (gross_annual, gross_monthly) after applying any RAL override.
 
     Returns:
-        Tuple of (gross_annual, gross_monthly). Unchanged when no override is given.
+        Tuple of (gross_annual, gross_monthly). Unchanged when no override is
+        given.
     """
-    if negotiated_ral is not None:
+    if isinstance(ral_override_mode, RalOverride):
         # Actual agreed salary; taken as-is.
-        gross_annual = money(negotiated_ral)
-    elif negotiated_destination_ral is not None:
+        gross_annual = money(ral_override_mode.value)
+    elif isinstance(ral_override_mode, DestinationRalOverride):
         # Destination-level RAL; apprenticeship_pct is guaranteed non-None here.
-        gross_annual = money(negotiated_destination_ral * apprenticeship_pct)  # type: ignore[operator]
+        gross_annual = money(
+            ral_override_mode.value * apprenticeship_pct  # type: ignore[operator]
+        )
     else:
         return gross_annual, gross_monthly
     return gross_annual, money(gross_annual / additional_months)
 
 
-def _validate_negotiated_ral(
-    negotiated_ral: Decimal | None,
-    negotiated_destination_ral: Decimal | None,
+def _validate_ral_override(
+    ral_override: RalOverrideMode | None,
     employment: Employment,
 ) -> bool:
-    """Validate the negotiated-RAL arguments and return whether an override is active.
+    """Validate the RAL-override mode and return whether an override is active.
 
     Returns:
-        True when either negotiated_ral or negotiated_destination_ral is set.
+        True when a RAL override is set.
 
     Raises:
-        ValueError: If both fields are given, or if negotiated_destination_ral
-            is used with a non-Apprentice employment type.
+        ValueError: If ``DestinationRalOverride`` is used with a non-Apprentice
+            employment type.
     """
-    if negotiated_ral is not None and negotiated_destination_ral is not None:
-        msg = "negotiated_ral and negotiated_destination_ral are mutually exclusive"
-        raise ValueError(msg)
-    if negotiated_destination_ral is not None and not isinstance(
+    if isinstance(ral_override, DestinationRalOverride) and not isinstance(
         employment, Apprentice
     ):
-        msg = "negotiated_destination_ral is only valid for Apprentice employment"
-        raise ValueError(msg)
-    return negotiated_ral is not None or negotiated_destination_ral is not None
+        msg = "DestinationRalOverride is only valid for Apprentice employment"
+        raise ValueError(msg)  # ruff: ignore[type-check-without-type-error]
+    return ral_override is not None
 
 
 def _count_from_tiers(tiers: list[SeniorityTier], seniority_months: int) -> int:
@@ -560,18 +509,10 @@ def _resolve_seniority_count(
         The resolved seniority increment count, clamped to the level maximum.
 
     Raises:
-        ValueError: If both seniority_count and seniority_months are given,
-            or if either value is negative, or if seniority_count exceeds the
-            maximum.
+        ValueError: If seniority_count exceeds the maximum for the level.
     """
-    if seniority_count is not None and seniority_months is not None:
-        msg = "seniority_count and seniority_months are mutually exclusive"
-        raise ValueError(msg)
     maximum = seniority_rules.maximum_for(level_code, worker_category)
     if seniority_months is not None:
-        if seniority_months < 0:
-            msg = f"seniority_months must be >= 0, got {seniority_months}"
-            raise ValueError(msg)
         if seniority_rules.tiers:
             return _count_from_tiers(seniority_rules.tiers, seniority_months)
         first = seniority_rules.first_cadence_for(level_code, worker_category)
@@ -580,9 +521,6 @@ def _resolve_seniority_count(
         count = 1 + (seniority_months - first) // seniority_rules.cadence_months
         return min(count, maximum)
     count = seniority_count or 0
-    if count < 0:
-        msg = f"seniority_count must be >= 0, got {count}"
-        raise ValueError(msg)
     if count > maximum:
         msg = (
             f"seniority_count {count} exceeds the maximum of {maximum} "
@@ -871,13 +809,16 @@ def _annualise(
 
 def _inps_contributions(
     rules: YearRules,
-    scenario: Scenario,
+    employment: Employment,
     gross_monthly: Decimal,
     hourly_divisor: Decimal,
     contribution_base: Decimal,
     worker_category: LevelCategory | None,
+    *,
+    weekly_hours: Decimal | None,
+    ivs_ceiling_applies: bool,
 ) -> tuple[Decimal, Decimal]:
-    """Return (inps_employee_annual, inps_employer_annual) for the scenario.
+    """Return (inps_employee_annual, inps_employer_annual) for the employee.
 
     Routes to the flat per-hour domestic model when
     ``rules.domestic_contributions`` is set, otherwise uses the standard
@@ -888,38 +829,37 @@ def _inps_contributions(
         INPS contribution), both rounded to two decimal places.
 
     Raises:
-        ValueError: If the domestic model is active and ``scenario.weekly_hours``
-            is None.
+        ValueError: If the domestic model is active and ``weekly_hours`` is None.
     """
     if rules.domestic_contributions is not None:
-        if scenario.weekly_hours is None:
+        if weekly_hours is None:
             msg = "weekly_hours is required when rules.domestic_contributions is set"
             raise ValueError(msg)
         hourly_rate_for_bracket = money(gross_monthly / hourly_divisor)
-        is_fixed_term = isinstance(scenario.employment, FixedTerm)
+        is_fixed_term = isinstance(employment, FixedTerm)
         emp_ph, er_ph = rules.domestic_contributions.resolve(
             hourly_rate_for_bracket,
-            scenario.weekly_hours,
+            weekly_hours,
             is_fixed_term=is_fixed_term,
         )
-        annual_hours = scenario.weekly_hours * 52
+        annual_hours = weekly_hours * 52
         return money(emp_ph * annual_hours), money(er_ph * annual_hours)
-    rates = _contrib.resolve_rates(rules, scenario.employment, worker_category)
-    employee = _contrib.inps_contribution(
+    rates = _contrib.resolve_rates(rules, employment, worker_category)
+    employee_inps = _contrib.inps_contribution(
         contribution_base,
         rates.employee_rate,
         rates.employee_ivs_rate,
         rules,
-        ivs_ceiling_applies=scenario.ivs_ceiling_applies,
+        ivs_ceiling_applies=ivs_ceiling_applies,
     )
-    employer = _contrib.inps_contribution(
+    employer_inps = _contrib.inps_contribution(
         contribution_base,
         rates.employer_rate,
         rates.employer_ivs_rate,
         rules,
-        ivs_ceiling_applies=scenario.ivs_ceiling_applies,
+        ivs_ceiling_applies=ivs_ceiling_applies,
     )
-    return employee, employer
+    return employee_inps, employer_inps
 
 
 def _employer_funds(
@@ -970,14 +910,16 @@ def _compute_ti(
 
 def _compute_addizionali(
     taxable_income: Decimal,
-    scenario: Scenario,
     surtax: SurtaxRules | None,
     existing: frozenset[FiscalSimplification],
+    *,
+    regione: str | None,
+    comune_belfiore: str | None,
 ) -> tuple[Decimal, Decimal, frozenset[FiscalSimplification]]:
     """Return (addizionale_regionale, addizionale_comunale, updated_simplifications).
 
-    When ``surtax`` is ``None`` or the relevant ``Scenario`` field is ``None``,
-    the corresponding surtax is zero and its ``FiscalSimplification`` tag is
+    When ``surtax`` is ``None`` or the relevant field is ``None``, the
+    corresponding surtax is zero and its ``FiscalSimplification`` tag is
     added.  Otherwise the surtax is computed from the bundled bracket table.
 
     Returns:
@@ -987,8 +929,8 @@ def _compute_addizionali(
     reg = _ZERO
     com = _ZERO
 
-    if surtax is not None and scenario.regione is not None:
-        entry = surtax.regionale.get(scenario.regione)
+    if surtax is not None and regione is not None:
+        entry = surtax.regionale.get(regione)
         if entry is not None:
             reg = _irpef.surtax_from_brackets(taxable_income, entry.brackets)
         # If region name is not found, reg stays zero (no flag: the caller
@@ -998,8 +940,8 @@ def _compute_addizionali(
     else:
         sfs.add(FiscalSimplification.NO_ADDIZIONALE_REGIONALE)
 
-    if surtax is not None and scenario.comune_belfiore is not None:
-        entry_com = surtax.comunale.get(scenario.comune_belfiore)
+    if surtax is not None and comune_belfiore is not None:
+        entry_com = surtax.comunale.get(comune_belfiore)
         if entry_com is not None:
             com = _irpef.surtax_from_brackets(
                 taxable_income, entry_com.brackets, entry_com.soglia

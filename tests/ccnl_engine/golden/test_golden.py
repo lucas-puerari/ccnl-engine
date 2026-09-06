@@ -11,8 +11,17 @@ from typing import TYPE_CHECKING, Any
 import pytest
 
 from ccnl_engine.contracts.loaders import load_ccnl
-from ccnl_engine.engine.compute import Scenario, compute
+from ccnl_engine.engine.compute import compute
 from ccnl_engine.models.ccnl import TaxSector
+from ccnl_engine.models.employee import (
+    ContractPosition,
+    Employee,
+    IndividualAgreement,
+    RalOverride,
+    SeniorityByCount,
+    TaxProfile,
+    WorkArrangement,
+)
 from ccnl_engine.models.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.surtax.loaders import load_surtax_rules
 from ccnl_engine.tax.loaders import load_year_rules
@@ -65,32 +74,51 @@ class TestGolden:
         surtax: SurtaxRules | None = None
         if regione is not None or comune_belfiore is not None:
             surtax = load_surtax_rules(inputs["year"])
+
+        seniority_count_raw = int(inputs["seniority_count"])
+        negotiated_ral_raw = inputs["negotiated_ral"]
+        ivs_ceiling_applies = bool(inputs.get("ivs_ceiling_applies", False))
+
+        seniority = (
+            SeniorityByCount(seniority_count_raw) if seniority_count_raw else None
+        )
+        arrangement = WorkArrangement(
+            part_time_pct=Decimal(inputs["part_time_pct"]),
+            seniority=seniority,
+            weekly_hours=(
+                Decimal(str(weekly_hours_raw)) if weekly_hours_raw is not None else None
+            ),
+        )
+        tax = (
+            TaxProfile(
+                regione=regione,
+                comune_belfiore=comune_belfiore,
+                ivs_ceiling_applies=ivs_ceiling_applies,
+            )
+            if regione is not None or comune_belfiore is not None or ivs_ceiling_applies
+            else None
+        )
+        agreement = (
+            IndividualAgreement(ral_override=RalOverride(Decimal(negotiated_ral_raw)))
+            if negotiated_ral_raw is not None
+            else None
+        )
+
         result = compute(
             ccnl,
             rules,
-            Scenario(
-                level_code=inputs["level_code"],
-                as_of=as_of,
-                employment=employment,
-                num_employees=num_employees,
-                part_time_pct=Decimal(inputs["part_time_pct"]),
-                seniority_count=int(inputs["seniority_count"]),
-                negotiated_ral=(
-                    Decimal(inputs["negotiated_ral"])
-                    if inputs["negotiated_ral"] is not None
-                    else None
+            Employee(
+                position=ContractPosition(
+                    level_code=inputs["level_code"],
+                    as_of=as_of,
+                    employment=employment,
+                    category=inputs.get("category"),
                 ),
-                weekly_hours=(
-                    Decimal(str(weekly_hours_raw))
-                    if weekly_hours_raw is not None
-                    else None
-                ),
-                ivs_ceiling_applies=bool(inputs.get("ivs_ceiling_applies", False)),
-                regione=regione,
-                comune_belfiore=comune_belfiore,
-                category=inputs.get("category"),
+                arrangement=arrangement,
+                tax=tax,
+                agreement=agreement,
             ),
-            surtax,
+            surtax=surtax,
         )
 
         # Compare each field in expected against the live Payslip

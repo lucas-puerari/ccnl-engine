@@ -15,24 +15,29 @@ A Python library for modeling Italian collective labor agreements (CCNL) as stru
 Italian payroll is governed by collective agreements (CCNL) that define base salaries, seniority increments, and allowances as time-series values — they change at negotiated renewal dates. Existing tools either lock this data inside proprietary systems or require a full HRMS. This library treats each CCNL as a validated JSON file and the computation as a pure function:
 
 ```
-compute(ccnl, rules, scenario) → Payslip
+compute(ccnl, rules, employee) → Payslip
 ```
 
 ## Quickstart
 
 ```python
 from datetime import date
-from ccnl_engine import Scenario, Permanent, TaxSector, compute, load_ccnl, load_year_rules
+from ccnl_engine import (
+    ContractPosition, Employee, Permanent,
+    WorkArrangement, compute, load_ccnl, load_year_rules,
+)
 
 ccnl = load_ccnl("commercio-confcommercio.json")
-scenario = Scenario(
-    level_code="4",
-    as_of=date(2026, 9, 1),
-    employment=Permanent(),
-    num_employees=50,
+rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
+employee = Employee(
+    position=ContractPosition(
+        level_code="4",
+        as_of=date(2026, 9, 1),
+        employment=Permanent(),
+    ),
+    arrangement=WorkArrangement(),
 )
-rules = load_year_rules(2026, TaxSector.TERZIARIO, scenario.num_employees)
-payslip = compute(ccnl, rules, scenario)
+payslip = compute(ccnl, rules, employee)
 
 print(payslip.net_annual)              # → Decimal('...')
 print(payslip.trattamento_integrativo) # → Decimal('...') — Art. 1 D.L. 3/2020 bonus

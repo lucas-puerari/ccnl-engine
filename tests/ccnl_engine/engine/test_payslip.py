@@ -9,14 +9,16 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import (
+    ContractPosition,
+    Employee,
     FiscalSimplification,
     Permanent,
     TaxSector,
+    WorkArrangement,
     compute,
     load_ccnl,
     load_year_rules,
 )
-from ccnl_engine.engine.compute import Scenario
 from ccnl_engine.engine.payslip import Payslip
 
 
@@ -28,13 +30,18 @@ def _payslip() -> Payslip:
     """
     ccnl = load_ccnl("commercio-confcommercio.json")
     rules = load_year_rules(2026, TaxSector.TERZIARIO, 50)
-    scenario = Scenario(
-        level_code="4",
-        as_of=date(2026, 1, 1),
-        employment=Permanent(),
-        num_employees=50,
+    return compute(
+        ccnl,
+        rules,
+        Employee(
+            position=ContractPosition(
+                level_code="4",
+                as_of=date(2026, 1, 1),
+                employment=Permanent(),
+            ),
+            arrangement=WorkArrangement(),
+        ),
     )
-    return compute(ccnl, rules, scenario)
 
 
 def _payslip_domestic() -> Payslip:
@@ -45,14 +52,18 @@ def _payslip_domestic() -> Payslip:
     """
     ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
     rules = load_year_rules(2026, TaxSector.LAVORO_DOMESTICO, 1)
-    scenario = Scenario(
-        level_code="C",
-        as_of=date(2026, 1, 1),
-        employment=Permanent(),
-        num_employees=1,
-        weekly_hours=Decimal(40),
+    return compute(
+        ccnl,
+        rules,
+        Employee(
+            position=ContractPosition(
+                level_code="C",
+                as_of=date(2026, 1, 1),
+                employment=Permanent(),
+            ),
+            arrangement=WorkArrangement(weekly_hours=Decimal(40)),
+        ),
     )
-    return compute(ccnl, rules, scenario)
 
 
 class TestToDict:

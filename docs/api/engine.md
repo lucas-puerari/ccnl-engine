@@ -8,7 +8,26 @@ Core computation functions and types.
     options:
       members:
         - compute
-        - Scenario
+
+## Input models
+
+::: ccnl_engine.models.employee
+    options:
+      members:
+        - Employee
+        - ContractPosition
+        - WorkArrangement
+        - TaxProfile
+        - IndividualAgreement
+        - SeniorityByCount
+        - SeniorityByMonths
+        - RalOverride
+        - DestinationRalOverride
+
+::: ccnl_engine.models.employer
+    options:
+      members:
+        - Employer
 
 ## Payslip
 

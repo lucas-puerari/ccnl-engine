@@ -7,27 +7,38 @@ ad_personam_monthly is NOT scaled (it is an individual frozen element).
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine import Permanent, Scenario, compute, load_ccnl, load_year_rules
+from ccnl_engine import (
+    ContractPosition,
+    Employee,
+    Permanent,
+    WorkArrangement,
+    compute,
+    load_ccnl,
+    load_year_rules,
+)
 
 ccnl = load_ccnl("commercio-confcommercio.json")
 rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
 
-scenario_ft = Scenario(
-    level_code="4",
-    as_of=date(2026, 1, 1),
-    employment=Permanent(),
-    num_employees=50,
+employee_ft = Employee(
+    position=ContractPosition(
+        level_code="4",
+        as_of=date(2026, 1, 1),
+        employment=Permanent(),
+    ),
+    arrangement=WorkArrangement(),
 )
-scenario_pt = Scenario(
-    level_code="4",
-    as_of=date(2026, 1, 1),
-    employment=Permanent(),
-    num_employees=50,
-    part_time_pct=Decimal("0.6"),  # 60% — 3 giorni su 5
+employee_pt = Employee(
+    position=ContractPosition(
+        level_code="4",
+        as_of=date(2026, 1, 1),
+        employment=Permanent(),
+    ),
+    arrangement=WorkArrangement(part_time_pct=Decimal("0.6")),  # 60% — 3 giorni su 5
 )
 
-full_time = compute(ccnl, rules, scenario_ft)
-part_time = compute(ccnl, rules, scenario_pt)
+full_time = compute(ccnl, rules, employee_ft)
+part_time = compute(ccnl, rules, employee_pt)
 
 print(f"Gross monthly — full-time:  {full_time.gross_monthly} EUR")
 print(f"Gross monthly — part-time:  {part_time.gross_monthly} EUR")
