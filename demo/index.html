@@ -109,6 +109,47 @@
     .hint { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
     .hint a { color: var(--accent); }
 
+    /* ---- Tooltip ---- */
+    .label-row { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
+    .label-row label { margin: 0; }
+    .tip {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--border); color: var(--muted);
+      font-size: 10px; font-weight: 700; cursor: default;
+      flex-shrink: 0; position: relative; user-select: none;
+      transition: background .15s;
+    }
+    .tip:hover, .tip:focus { background: var(--accent); color: #fff; outline: none; }
+    .tip::after {
+      content: attr(data-tip);
+      position: absolute; bottom: calc(100% + 8px); left: 50%;
+      transform: translateX(-50%);
+      background: #1a1d23; color: #e8eaf0;
+      font-size: 12px; font-weight: 400; line-height: 1.45;
+      padding: 8px 11px; border-radius: 7px;
+      width: max-content; max-width: 260px;
+      white-space: normal; text-align: left;
+      pointer-events: none; opacity: 0;
+      transition: opacity .15s;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    }
+    .tip::before {
+      content: ""; position: absolute; bottom: calc(100% + 2px); left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent; border-top-color: #1a1d23;
+      pointer-events: none; opacity: 0; transition: opacity .15s;
+      z-index: 10;
+    }
+    .tip:hover::after, .tip:focus::after,
+    .tip:hover::before, .tip:focus::before { opacity: 1; }
+    /* Flip tooltip to the right on small screens to avoid clipping */
+    @media (max-width: 400px) {
+      .tip::after { left: 0; transform: none; }
+      .tip::before { left: 8px; transform: none; }
+    }
+
     #calc-btn {
       margin-top: 8px; width: 100%; padding: 11px 24px;
       background: var(--accent); color: #fff; border: none; border-radius: 7px;
@@ -199,16 +240,25 @@
     <div class="form-grid">
 
       <div class="full">
-        <label for="sel-ccnl">CCNL (collective agreement)</label>
+        <div class="label-row">
+          <label for="sel-ccnl">CCNL (collective agreement)</label>
+          <span class="tip" tabindex="0" data-tip="Contratto Collettivo Nazionale di Lavoro — the collective agreement that governs this employment relationship. It determines base salary tables, seniority cadence, contribution rates, and TFR.">?</span>
+        </div>
         <select id="sel-ccnl" disabled><option value="">— Loading… —</option></select>
       </div>
       <div class="full">
-        <label for="sel-level">Pay level</label>
+        <div class="label-row">
+          <label for="sel-level">Pay level</label>
+          <span class="tip" tabindex="0" data-tip="The worker's qualification level (livello di inquadramento) within the CCNL. Higher levels carry a higher base salary and seniority increment amount.">?</span>
+        </div>
         <select id="sel-level" disabled><option value="">— Select a CCNL first —</option></select>
       </div>
 
       <div>
-        <label for="sel-employment">Contract type</label>
+        <div class="label-row">
+          <label for="sel-employment">Contract type</label>
+          <span class="tip" tabindex="0" data-tip="Permanent (tempo indeterminato): standard open-ended contract. Fixed-term (tempo determinato): adds the NASpI 1.4% surcharge. Apprenticeship (apprendistato): under-classification with a progressive pay percentage.">?</span>
+        </div>
         <select id="sel-employment">
           <option value="permanent">Permanent (tempo indeterminato)</option>
           <option value="fixed_term">Fixed-term (tempo determinato)</option>
@@ -217,13 +267,19 @@
       </div>
 
       <div>
-        <label for="inp-employees">Employer headcount</label>
+        <div class="label-row">
+          <label for="inp-employees">Employer headcount</label>
+          <span class="tip" tabindex="0" data-tip="Total employees at this workplace (sede di lavoro). Determines the INPS contribution rate tier — some CCNLs and the NASpI surcharge have different rates for employers with fewer than 15 employees.">?</span>
+        </div>
         <input type="number" id="inp-employees" value="50" min="1" max="10000" />
         <p class="hint">Drives the INPS contribution rate tier.</p>
       </div>
 
       <div id="div-seniority" class="full">
-        <label>Seniority</label>
+        <div class="label-row">
+          <label>Seniority</label>
+          <span class="tip" tabindex="0" data-tip="Scatti di anzianità: periodic increments added to the monthly pay after a fixed number of months of service (cadenza). The CCNL sets the cadence, the per-level amount, and the maximum number of increments. Choose 'count' to enter increments directly or 'months' to let the engine derive the count.">?</span>
+        </div>
         <div class="radio-row">
           <label><input type="radio" name="sen-mode" value="count" checked /> Scatti (count)</label>
           <label><input type="radio" name="sen-mode" value="months" /> Months of service</label>
@@ -233,12 +289,18 @@
       </div>
 
       <div id="div-apprentice-months" style="display:none" class="full">
-        <label for="inp-apprentice-months">Months into apprenticeship</label>
+        <div class="label-row">
+          <label for="inp-apprentice-months">Months into apprenticeship</label>
+          <span class="tip" tabindex="0" data-tip="How many months have elapsed since the apprenticeship started. The engine uses this to determine the current pay percentage band (e.g. 0–12 months: 80%, 13–24: 85%, …) as defined in the CCNL.">?</span>
+        </div>
         <input type="number" id="inp-apprentice-months" value="0" min="0" max="60" />
       </div>
 
       <div class="full">
-        <label for="inp-parttime">Part-time</label>
+        <div class="label-row">
+          <label for="inp-parttime">Part-time</label>
+          <span class="tip" tabindex="0" data-tip="Part-time fraction applied to base pay, seniority increments, and most INPS contributions. Ad personam supplements are not scaled. Set to 100% for full-time.">?</span>
+        </div>
         <div class="range-row">
           <input type="range" id="inp-parttime" min="10" max="100" value="100" step="5" />
           <span class="range-val" id="parttime-val">100%</span>
@@ -246,11 +308,17 @@
       </div>
 
       <div>
-        <label for="sel-regione">Region — addizionale regionale</label>
+        <div class="label-row">
+          <label for="sel-regione">Region — addizionale regionale</label>
+          <span class="tip" tabindex="0" data-tip="Worker's region of residence (regione di residenza). Required to compute the addizionale regionale IRPEF — a surcharge on top of national income tax, with rates that vary by region. Leave blank to skip this item.">?</span>
+        </div>
         <select id="sel-regione"><option value="">— not specified —</option></select>
       </div>
       <div>
-        <label for="inp-comune">Municipality Belfiore code — addizionale comunale</label>
+        <div class="label-row">
+          <label for="inp-comune">Belfiore code — addizionale comunale</label>
+          <span class="tip" tabindex="0" data-tip="Codice catastale del comune di residenza — a 4-character code (e.g. F205 for Milano). Required to compute the addizionale comunale IRPEF. Each municipality sets its own rate. Leave blank to skip this item.">?</span>
+        </div>
         <input type="text" id="inp-comune" placeholder="e.g. F205 (Milano)" maxlength="4"
                style="text-transform:uppercase" />
         <p class="hint">
@@ -267,19 +335,28 @@
           <div class="form-grid" style="margin-top:0">
 
             <div>
-              <label for="inp-ad-personam">Ad personam monthly (€)</label>
+              <div class="label-row">
+                <label for="inp-ad-personam">Ad personam monthly (€)</label>
+                <span class="tip" tabindex="0" data-tip="Supplemento individuale ad personam — a frozen monthly addition specific to this worker, typically inherited from pre-abolition seniority tiers or individual negotiation. Not scaled by part-time percentage.">?</span>
+              </div>
               <input type="number" id="inp-ad-personam" value="0" min="0" step="1" />
               <p class="hint">Individual frozen supplement (e.g. pre-abolition seniority). Not scaled by part-time.</p>
             </div>
 
             <div>
-              <label for="inp-second-level">Second-level monthly allowance (€)</label>
+              <div class="label-row">
+                <label for="inp-second-level">Second-level monthly allowance (€)</label>
+                <span class="tip" tabindex="0" data-tip="Monthly supplement from a territorial or company-level agreement (contrattazione integrativa di secondo livello). Mutually exclusive with RAL override — setting one disables the other.">?</span>
+              </div>
               <input type="number" id="inp-second-level" value="0" min="0" step="1" />
               <p class="hint">Territorial or company agreement supplement. Mutually exclusive with RAL override.</p>
             </div>
 
             <div>
-              <label for="inp-ral">RAL override — agreed annual gross (€)</label>
+              <div class="label-row">
+                <label for="inp-ral">RAL override — agreed annual gross (€)</label>
+                <span class="tip" tabindex="0" data-tip="Retribuzione Annua Lorda concordata individualmente — replaces the CCNL salary table with a negotiated annual gross. The engine uses this as the gross and still applies statutory contributions. Mutually exclusive with second-level allowance.">?</span>
+              </div>
               <input type="number" id="inp-ral" value="0" min="0" step="100" />
               <p class="hint">Replaces CCNL tables with a negotiated salary. Mutually exclusive with second-level allowance.</p>
             </div>
@@ -287,7 +364,10 @@
             <div style="display:flex; align-items:flex-start; gap:10px; padding-top:20px">
               <input type="checkbox" id="chk-ivs" style="width:auto; margin-top:3px; accent-color:var(--accent)" />
               <div>
-                <label for="chk-ivs" style="margin:0; color:var(--text); font-weight:500">IVS ceiling applies</label>
+                <div class="label-row" style="margin:0 0 2px">
+                  <label for="chk-ivs" style="margin:0; color:var(--text); font-weight:500">IVS ceiling applies</label>
+                  <span class="tip" tabindex="0" data-tip="When the worker's annual gross exceeds the INPS IVS contribution ceiling (massimale contributivo — ~€113,520 in 2026), only the IVS-specific reduced rate applies on income above the threshold. Check this for high-earning workers.">?</span>
+                </div>
                 <p class="hint" style="margin:0">Worker's gross exceeds the INPS IVS ceiling; only the ceiling-specific contribution rate applies above the threshold.</p>
               </div>
             </div>
