@@ -1,0 +1,62 @@
+{
+  "_description": "Golden case: CCNL Cemento Calce Gesso Industria (F032), Level AS3, 2026-10-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "2026-10-01 tranche (second of 2025 CCNL): paga base AS3 = 1751.82 EUR/month.",
+    "Split model: paga base + contingenza (519.46) + EDR (10.33) = 2281.61 EUR gross monthly.",
+    "Contingenza and EDR are both fixed allowances, months_per_year=13.",
+    "allowances_monthly = 519.46 + 10.33 = 529.79 EUR.",
+    "Hourly divisor = 175; hourly rate = 2281.61 / 175 = 13.04 EUR.",
+    "Additional months: 13 (tredicesima only). gross_annual = 2281.61 x 13 = 29660.93.",
+    "INPS employer rate from 2026-industria.json (industria sector, 16-50 employees tier).",
+    "Seniority: 0.00. No trattamento_integrativo (gross_annual > 28000 EUR threshold)."
+  ],
+  "inputs": {
+    "ccnl_file": "cemento-calce-gesso-industria.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "AS3",
+    "as_of": "2026-10-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "cemento-calce-gesso-industria",
+    "level_code": "AS3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1751.82",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "529.79",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2281.61",
+    "gross_annual": "29660.93",
+    "hourly_rate": "13.04",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2814.82",
+    "inps_employer_annual": "8957.60",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "2197.11",
+    "taxable_income": "26846.11",
+    "irpef_gross": "6174.61",
+    "work_income_deduction": "647.15",
+    "irpef_net": "5527.46",
+    "net_annual": "21318.65",
+    "net_monthly": "1639.90",
+    "employer_cost_annual": "40815.64",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "0",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}

@@ -7676,3 +7676,104 @@ class TestLoadOcchialiOcchialeriaIndustria:
         for lv in ccnl.levels:
             if lv.code != "Q":
                 assert lv.fixed_allowances == []
+
+
+class TestLoadCementoCalceGessoIndustria:
+    """Tests for F032 CCNL Cemento, Calce e Gesso — Industria (Federbeton)."""
+
+    def test_cemento_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("cemento-calce-gesso-industria.json")
+        assert ccnl.meta.ccnl_id == "cemento-calce-gesso-industria"
+        assert ccnl.meta.cnel_code == "F032"
+
+    def test_cemento_has_12_levels(self) -> None:
+        """Contract has exactly 12 levels with correct codes."""
+        ccnl = load_ccnl("cemento-calce-gesso-industria.json")
+        assert len(ccnl.levels) == 12
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {
+            "AE1",
+            "AQ1",
+            "AQ2",
+            "AS1",
+            "AS2",
+            "AS3",
+            "AC1",
+            "AC2",
+            "AC3",
+            "AD1",
+            "AD2",
+            "AD3",
+        }
+
+    def test_cemento_level_as3_salary_2024(self) -> None:
+        """AS3 paga base at 31/12/2024 pre-renewal base = 1631.82."""
+        ccnl = load_ccnl("cemento-calce-gesso-industria.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "AS3")
+        assert lv.base_salary.value_at(date(2024, 12, 31)) == Decimal("1631.82")
+
+    def test_cemento_level_as3_salary_2025(self) -> None:
+        """AS3 paga base at 01/10/2025 first renewal tranche = 1691.82."""
+        ccnl = load_ccnl("cemento-calce-gesso-industria.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "AS3")
+        assert lv.base_salary.value_at(date(2025, 10, 1)) == Decimal("1691.82")
+
+    def test_cemento_level_ordering(self) -> None:
+        """AD3 is highest order (12); AE1 is lowest order (1)."""
+        ccnl = load_ccnl("cemento-calce-gesso-industria.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "AE1"
+        assert by_order[-1].code == "AD3"
+
+    def test_cemento_additional_months(self) -> None:
+        """Additional months = 13 (tredicesima only)."""
+        ccnl = load_ccnl("cemento-calce-gesso-industria.json")
+        assert ccnl.parameters.additional_months.value_at(date(2025, 10, 1)) == Decimal(
+            13
+        )
+
+    def test_cemento_hourly_divisor(self) -> None:
+        """Hourly divisor = 175."""
+        ccnl = load_ccnl("cemento-calce-gesso-industria.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2025, 10, 1)) == Decimal(
+            175
+        )
+
+    def test_cemento_split_model_allowances(self) -> None:
+        """Split model: all levels carry CONTINGENZA and EDR fixed allowances."""
+        ccnl = load_ccnl("cemento-calce-gesso-industria.json")
+        for lv in ccnl.levels:
+            codes = {fa.code for fa in lv.fixed_allowances}
+            assert "CONTINGENZA" in codes
+            assert "EDR" in codes
+
+    def test_cemento_edr_uniform(self) -> None:
+        """EDR = 10.33 EUR/month across all 12 levels."""
+        ccnl = load_ccnl("cemento-calce-gesso-industria.json")
+        for lv in ccnl.levels:
+            edr = next(fa for fa in lv.fixed_allowances if fa.code == "EDR")
+            assert edr.monthly.value_at(date(2025, 10, 1)) == Decimal("10.33")
+
+    def test_cemento_tax_sector(self) -> None:
+        """Tax sector is industria."""
+        ccnl = load_ccnl("cemento-calce-gesso-industria.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_cemento_seniority_cadence(self) -> None:
+        """Seniority: 24-month cadence, max 5 scatti biennali (Art. 48)."""
+        ccnl = load_ccnl("cemento-calce-gesso-industria.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_cemento_level_ad3_fixed_allowances(self) -> None:
+        """AD3 (Quadro) has INDENNITA_FUNZIONE = 41.32 EUR/month."""
+        ccnl = load_ccnl("cemento-calce-gesso-industria.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "AD3")
+        fn = next(
+            (fa for fa in lv.fixed_allowances if fa.code == "INDENNITA_FUNZIONE"),
+            None,
+        )
+        assert fn is not None
+        assert fn.monthly.value_at(date(2025, 10, 1)) == Decimal("41.32")

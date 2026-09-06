@@ -32,6 +32,7 @@ nav = [
     { "CCNL per i lavoratori delle Banche di Credito Cooperativo…" = "contracts/bcc-credito-cooperativo.md" },
     { "CCNL per i lavoratori addetti all'industria delle calzature" = "contracts/calzaturiero-assocalzaturifici.md" },
     { "CCNL Carta e Cartone — Aziende Industriali (Assocarta)" = "contracts/carta-cartone-assocarta.md" },
+    { "CCNL Cemento, Calce e Gesso — Industria (Federbeton)" = "contracts/cemento-calce-gesso-industria.md" },
     { "CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)" = "contracts/ced-assoced.md" },
     { "CCNL Ceramica Industria (Confindustria-Assopiastrelle)" = "contracts/ceramica-industria-confindustria.md" },
     { "CCNL Chimica e Affini PMI — Unionchimica Confapi" = "contracts/chimica-affini-pmi-unionchimica.md" },
