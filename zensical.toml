@@ -79,6 +79,7 @@ nav = [
     { "CCNL Area Legno-Lapidei — Artigianato" = "contracts/legno-lapidei-artigianato-confartigianato.md" },
     { "CCNL Lapidei — Industria (Confindustria Marmomacchine/ANEPLA)" = "contracts/lapidei-industria.md" },
     { "CCNL Logistica, Trasporto Merci e Spedizione (Confetra)" = "contracts/logistica-trasporto-confetra.md" },
+    { "CCNL Marittimi — Industria Armatoriale (CONFITARMA)" = "contracts/marittimi-industria-armatoriale.md" },
     { "CCNL Metalmeccanica - Cooperative (Legacoop/Confcooperative/AGI)" = "contracts/metalmeccanica-cooperative.md" },
     { "CCNL Metalmeccanica e Installazione di Impianti — Artigia…" = "contracts/metalmeccanico-artigianato.md" },
     { "CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Con…" = "contracts/metalmeccanico-confapi.md" },

@@ -7858,3 +7858,90 @@ class TestLoadLapideiIndustria:
         lv = next(lv for lv in ccnl.levels if lv.code == "F")
         cont = next(fa for fa in lv.fixed_allowances if fa.code == "CONTINGENZA")
         assert cont.monthly.value_at(date(2026, 7, 1)) == Decimal("512.38")
+
+
+class TestLoadMarittimiIndustriaArmatoriale:
+    """Tests for CCNL Marittimi — Industria Armatoriale (I391)."""
+
+    def test_marittimi_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("marittimi-industria-armatoriale.json")
+        assert ccnl.meta.ccnl_id == "marittimi-industria-armatoriale"
+        assert ccnl.meta.cnel_code == "I391"
+
+    def test_marittimi_has_8_levels(self) -> None:
+        """Contract has 8 levels: I, II, III, IV, V, VI, VII, VIIQ."""
+        ccnl = load_ccnl("marittimi-industria-armatoriale.json")
+        assert len(ccnl.levels) == 8
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"I", "II", "III", "IV", "V", "VI", "VII", "VIIQ"}
+
+    def test_marittimi_level_iv_salary_2024(self) -> None:
+        """Level IV minimo at 01/07/2024 (first tranche) = 1891.66 EUR."""
+        ccnl = load_ccnl("marittimi-industria-armatoriale.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "IV")
+        assert lv.base_salary.value_at(date(2024, 7, 1)) == Decimal("1891.66")
+
+    def test_marittimi_level_iv_salary_2026(self) -> None:
+        """Level IV minimo at 01/07/2026 (third tranche) = 1989.32 EUR."""
+        ccnl = load_ccnl("marittimi-industria-armatoriale.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "IV")
+        assert lv.base_salary.value_at(date(2026, 7, 1)) == Decimal("1989.32")
+
+    def test_marittimi_level_ordering(self) -> None:
+        """Level I is lowest order (1) and VIIQ is highest order (8)."""
+        ccnl = load_ccnl("marittimi-industria-armatoriale.json")
+        ordered = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert ordered[0].code == "I"
+        assert ordered[-1].code == "VIIQ"
+
+    def test_marittimi_additional_months(self) -> None:
+        """Additional months: 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("marittimi-industria-armatoriale.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 7, 1)) == Decimal(
+            14
+        )
+
+    def test_marittimi_hourly_divisor(self) -> None:
+        """Hourly divisor: 173 (Art. 10 para 8)."""
+        ccnl = load_ccnl("marittimi-industria-armatoriale.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 7, 1)) == Decimal(173)
+
+    def test_marittimi_ear_allowance_all_levels(self) -> None:
+        """All 8 levels carry an EAR fixed allowance."""
+        ccnl = load_ccnl("marittimi-industria-armatoriale.json")
+        for lv in ccnl.levels:
+            codes = {fa.code for fa in lv.fixed_allowances}
+            assert "EAR" in codes
+
+    def test_marittimi_ear_increasing(self) -> None:
+        """EAR at level I increases across tranches: 18.40 -> 32.20 -> 46.01."""
+        ccnl = load_ccnl("marittimi-industria-armatoriale.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "I")
+        ear = next(fa for fa in lv.fixed_allowances if fa.code == "EAR")
+        assert ear.monthly.value_at(date(2024, 7, 1)) == Decimal("18.40")
+        assert ear.monthly.value_at(date(2025, 7, 1)) == Decimal("32.20")
+        assert ear.monthly.value_at(date(2026, 7, 1)) == Decimal("46.01")
+
+    def test_marittimi_tax_sector(self) -> None:
+        """Tax sector is industria."""
+        ccnl = load_ccnl("marittimi-industria-armatoriale.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_marittimi_seniority_cadence(self) -> None:
+        """Seniority: 24-month cadence, max 5 scatti biennali."""
+        ccnl = load_ccnl("marittimi-industria-armatoriale.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_marittimi_viiq_indennita_funzione(self) -> None:
+        """VIIQ carries INDENNITA_FUNZIONE of 225.00 EUR/month (fixed)."""
+        ccnl = load_ccnl("marittimi-industria-armatoriale.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "VIIQ")
+        fn = next(
+            (fa for fa in lv.fixed_allowances if fa.code == "INDENNITA_FUNZIONE"),
+            None,
+        )
+        assert fn is not None
+        assert fn.monthly.value_at(date(2026, 7, 1)) == Decimal("225.00")
