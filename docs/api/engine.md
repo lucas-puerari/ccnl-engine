@@ -2,6 +2,9 @@
 
 Core computation functions and types.
 
+See [Guide: Employment types](../guide/employment-types.md) and
+[Guide: Pay components](../guide/pay-components.md) for worked examples.
+
 ## compute
 
 ::: ccnl_engine.payroll.service.orchestrator

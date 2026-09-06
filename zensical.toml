@@ -4,12 +4,28 @@ docs_dir     = "docs"
 site_dir     = "_site/docs"
 
 nav = [
-  { "Get started" = "index.md" },
-  { "Examples"    = "examples.md" },
+  { "Home"       = "index.md" },
+  { "Get started" = "getting-started/index.md" },
+  { "Domain" = [
+    { "What is a CCNL" = "domain/index.md" },
+    { "Components"     = "domain/components.md" },
+  ]},
+  { "Guide" = [
+    { "Employment types" = "guide/employment-types.md" },
+    { "Pay components"   = "guide/pay-components.md" },
+    { "Second level"     = "guide/second-level.md" },
+    { "Fiscal"           = "guide/fiscal.md" },
+    { "Domestic work"    = "guide/domestic-work.md" },
+  ]},
+  { "Examples"   = "examples.md" },
+  { "Contracts"  = [
+    { "Index" = "contracts/index.md" },
+  ]},
   { "API" = [
-    { "Engine"  = "api/engine.md" },
-    { "Models"  = "api/models.md" },
-    { "Loaders" = "api/loaders.md" },
+    { "Overview" = "api/index.md" },
+    { "Engine"   = "api/engine.md" },
+    { "Models"   = "api/models.md" },
+    { "Loaders"  = "api/loaders.md" },
   ]},
 ]
 

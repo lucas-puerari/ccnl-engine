@@ -15,7 +15,7 @@ from pathlib import Path
 
 import pytest
 
-_EXAMPLES_DIR = Path(__file__).parent.parent.parent / "docs" / "examples"
+_EXAMPLES_DIR = Path(__file__).parent.parent.parent.parent / "docs" / "examples"
 _EXAMPLE_FILES = sorted(_EXAMPLES_DIR.glob("*.py"))
 
 

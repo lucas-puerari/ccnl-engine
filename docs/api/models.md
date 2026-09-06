@@ -2,6 +2,9 @@
 
 Domain models for employment contracts and CCNL structure.
 
+See [Domain: Components](../domain/components.md) for the conceptual background
+behind each model.
+
 ## Employment
 
 ::: ccnl_engine.payroll.domain.employment
