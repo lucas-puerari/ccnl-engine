@@ -119,9 +119,7 @@ class TestSecondLevelBasic:
 
     def test_second_level_monthly_on_payslip(self) -> None:
         """Payslip.second_level_monthly equals the scaled allowance total."""
-        result = compute(
-            _CCNL, _RULES, _sl_employee(), employer=_sl_employer(_SL_100)
-        )
+        result = compute(_CCNL, _RULES, _sl_employee(), employer=_sl_employer(_SL_100))
         assert result.second_level_monthly == _D("100.00")
 
     def test_zero_when_no_allowances(self) -> None:
@@ -131,17 +129,13 @@ class TestSecondLevelBasic:
 
     def test_gross_monthly_includes_supplement(self) -> None:
         """gross_monthly = base + second_level when no other components."""
-        result = compute(
-            _CCNL, _RULES, _sl_employee(), employer=_sl_employer(_SL_100)
-        )
+        result = compute(_CCNL, _RULES, _sl_employee(), employer=_sl_employer(_SL_100))
         expected = money(_D("1000.00") + _D("100.00"))
         assert result.gross_monthly == expected
 
     def test_gross_annual_includes_supplement(self) -> None:
         """gross_annual adds second_level * additional_months."""
-        result = compute(
-            _CCNL, _RULES, _sl_employee(), employer=_sl_employer(_SL_100)
-        )
+        result = compute(_CCNL, _RULES, _sl_employee(), employer=_sl_employer(_SL_100))
         # base 1000 * 12 + supplement 100 * 12 = 13200
         assert result.gross_annual == _D("13200.00")
 

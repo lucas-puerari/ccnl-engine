@@ -264,9 +264,7 @@ class TestComputePermanent:
 
     def test_level_without_seniority_entry(self) -> None:
         """Level '3' has no seniority in amount_by_level — seniority stays zero."""
-        r = compute(
-            _DEFAULT_CCNL, _RULES, _req(level_code="3", seniority_count=5)
-        )
+        r = compute(_DEFAULT_CCNL, _RULES, _req(level_code="3", seniority_count=5))
 
         assert r.seniority_monthly == _D("0.00")
         assert r.base_monthly == _D("800.00")
@@ -616,9 +614,7 @@ class TestComputeDomesticInps:
     def test_missing_weekly_hours_raises(self) -> None:
         """domestic_contributions set but weekly_hours=None must raise."""
         with pytest.raises(ValueError, match="weekly_hours is required"):
-            compute(
-                _DOMESTIC_CCNL, _DOMESTIC_RULES, _req_domestic(weekly_hours=None)
-            )
+            compute(_DOMESTIC_CCNL, _DOMESTIC_RULES, _req_domestic(weekly_hours=None))
 
     def test_hours_bracket_permanent(self) -> None:
         """weekly_hours > 24 → hours bracket; permanent uses base employer rate."""
