@@ -8377,3 +8377,83 @@ class TestLoadAutostradeTrafori:
         lv = next(lv for lv in ccnl.levels if lv.code == "B")
         edr = next(fa for fa in lv.fixed_allowances if fa.code == "EDR_1991")
         assert edr.months_per_year == 13
+
+
+class TestLoadCooperativeConsorziAgricoli:
+    """Tests for CCNL Cooperative e Consorzi Agricoli (A016)."""
+
+    def test_a016_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("cooperative-consorzi-agricoli.json")
+        assert ccnl.meta.ccnl_id == "cooperative-consorzi-agricoli"
+        assert ccnl.meta.cnel_code == "A016"
+
+    def test_a016_has_8_levels(self) -> None:
+        """Contract has exactly 8 levels."""
+        ccnl = load_ccnl("cooperative-consorzi-agricoli.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 8
+        assert codes == {"np", "7", "6", "5", "4", "3", "2", "1"}
+
+    def test_a016_level_3_salary_2024(self) -> None:
+        """Level 3 base salary at 2024-04-01 is 1821.25 EUR."""
+        ccnl = load_ccnl("cooperative-consorzi-agricoli.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2024, 4, 1)) == Decimal("1821.25")
+
+    def test_a016_level_3_salary_2026(self) -> None:
+        """Level 3 base salary at 2026-05-01 is 1877.79 EUR."""
+        ccnl = load_ccnl("cooperative-consorzi-agricoli.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2026, 5, 1)) == Decimal("1877.79")
+
+    def test_a016_level_ordering(self) -> None:
+        """Level np is lowest order (1), level 1 is highest order (8)."""
+        ccnl = load_ccnl("cooperative-consorzi-agricoli.json")
+        levels_by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert levels_by_order[0].code == "np"
+        assert levels_by_order[-1].code == "1"
+
+    def test_a016_additional_months(self) -> None:
+        """Additional months is 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("cooperative-consorzi-agricoli.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 5, 1)) == Decimal(
+            14
+        )
+
+    def test_a016_hourly_divisor(self) -> None:
+        """Hourly divisor is 169."""
+        ccnl = load_ccnl("cooperative-consorzi-agricoli.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 5, 1)) == Decimal(169)
+
+    def test_a016_level_3_no_allowances(self) -> None:
+        """Level 3 has no fixed allowances (operaio, no funzione)."""
+        ccnl = load_ccnl("cooperative-consorzi-agricoli.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.fixed_allowances == []
+
+    def test_a016_tax_sector(self) -> None:
+        """Tax sector is agricoltura."""
+        ccnl = load_ccnl("cooperative-consorzi-agricoli.json")
+        assert ccnl.meta.tax_sector == TaxSector.AGRICOLTURA
+
+    def test_a016_seniority_cadence(self) -> None:
+        """Seniority: 24-month cadence, maximum 12 scatti."""
+        ccnl = load_ccnl("cooperative-consorzi-agricoli.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 12
+
+    def test_a016_level_1_has_ind_funzione(self) -> None:
+        """Level 1 has IND_FUNZIONE_1 allowance (230.00 from Aug 2024)."""
+        ccnl = load_ccnl("cooperative-consorzi-agricoli.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "1")
+        ind = next(fa for fa in lv.fixed_allowances if fa.code == "IND_FUNZIONE_1")
+        assert ind.monthly.value_at(date(2024, 8, 1)) == Decimal("230.00")
+
+    def test_a016_level_1_ind_funzione_old_value(self) -> None:
+        """IND_FUNZIONE_1 before Aug 2024 is 180.00 EUR."""
+        ccnl = load_ccnl("cooperative-consorzi-agricoli.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "1")
+        ind = next(fa for fa in lv.fixed_allowances if fa.code == "IND_FUNZIONE_1")
+        assert ind.monthly.value_at(date(2024, 4, 1)) == Decimal("180.00")
