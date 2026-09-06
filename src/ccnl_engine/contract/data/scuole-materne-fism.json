@@ -1,0 +1,465 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "ccnl_id": "scuole-materne-fism",
+    "name": "CCNL Scuole Materne — FISM",
+    "cnel_code": "T271",
+    "sector": "istruzione privata cattolica per l'infanzia",
+    "tax_sector": "terziario",
+    "signatories": [
+      "FISM",
+      "CISL Scuola",
+      "FLC-CGIL",
+      "UIL Scuola RUA",
+      "SNALS-CONFSAL"
+    ],
+    "sources": [
+      {
+        "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+        "type": "pdf",
+        "agreement_date": "2025-05-28"
+      },
+      {
+        "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+        "type": "pdf",
+        "agreement_date": "2026-07-07"
+      }
+    ],
+    "extraction": {
+      "method": "ai_assisted",
+      "model": null,
+      "timestamp": "2026-09-06T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "CCNL FISM signed 28/05/2025 (sede ASI). Validity 01/09/2023-31/08/2027. Economic accord for 2026-2027 signed 07/07/2026."
+      },
+      {
+        "kind": "info",
+        "text": "CONGLOBATED (Art. 43): indennita di contingenza maturata al 30/11/1991 inglobata nella retribuzione tabellare (Art. 42 lett. B). No separate contingenza column."
+      },
+      {
+        "kind": "info",
+        "text": "SALARY TABLE (Art. 42 lett. B): 5 tranches — 01/09/2023, 01/06/2025, 01/09/2025 from main CCNL PDF; 01/09/2026, 01/09/2027 from 2026-2027 economic accord."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR (Art. 51): 160 h/month for 37h/week. Divisors for 35h=152, 32h=139 also stated."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS (Art. 49): tredicesima only, paid by 20 December."
+      },
+      {
+        "kind": "simplification",
+        "text": "SENIORITY (Arts. 44-46): periodic scatti (Arts. 35 CCNL 2006-2009) were frozen at 31/12/2015 and consolidated by CCNL 2016-2018. Salario di anzianita (Art. 46): 15 EUR/month (livelli I-II-III-IV) or 20 EUR/month (livelli V-VI-VII-VIII) as at 01/09/2025. Engine seniority model cannot express the milestone/hire-date nature; maximum_count=0 models new-hire case correctly but understates cost for long-tenure workers."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP: no apprenticeship clause found in main CCNL text. Sector primarily employs teachers on permanent contracts. Modelled as single percentage period at 100% (identity transform) for all levels; correct for permanent staff."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2023-09-01",
+          "valid_until": null,
+          "value": "160"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2023-09-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 1,
+      "maximum_count": 0,
+      "amount_by_level": {
+        "I": {
+          "periods": [
+            {
+              "valid_from": "2023-09-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "II": {
+          "periods": [
+            {
+              "valid_from": "2023-09-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "III": {
+          "periods": [
+            {
+              "valid_from": "2023-09-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "IV": {
+          "periods": [
+            {
+              "valid_from": "2023-09-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "V": {
+          "periods": [
+            {
+              "valid_from": "2023-09-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "VI": {
+          "periods": [
+            {
+              "valid_from": "2023-09-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "VII": {
+          "periods": [
+            {
+              "valid_from": "2023-09-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "VIII": {
+          "periods": [
+            {
+              "valid_from": "2023-09-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "I",
+      "order": 1,
+      "description": "Livello I — Personale ausiliario non qualificato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-09-01",
+            "valid_until": "2025-06-01",
+            "value": "1381.82"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1407.98"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1447.95"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-09-01",
+            "value": "1482.85"
+          },
+          {
+            "valid_from": "2027-09-01",
+            "valid_until": null,
+            "value": "1517.75"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "II",
+      "order": 2,
+      "description": "Livello II — Personale ausiliario qualificato / assistente",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-09-01",
+            "valid_until": "2025-06-01",
+            "value": "1435.96"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1463.14"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1504.68"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-09-01",
+            "value": "1540.94"
+          },
+          {
+            "valid_from": "2027-09-01",
+            "valid_until": null,
+            "value": "1577.20"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "III",
+      "order": 3,
+      "description": "Livello III — Personale amministrativo / ausiliario specializzato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-09-01",
+            "valid_until": "2025-06-01",
+            "value": "1438.04"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1465.26"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1506.86"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-09-01",
+            "value": "1543.18"
+          },
+          {
+            "valid_from": "2027-09-01",
+            "valid_until": null,
+            "value": "1579.50"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "IV",
+      "order": 4,
+      "description": "Livello IV — Educatore / personale qualificato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-09-01",
+            "valid_until": "2025-06-01",
+            "value": "1484.05"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1512.14"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1555.07"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-09-01",
+            "value": "1592.55"
+          },
+          {
+            "valid_from": "2027-09-01",
+            "valid_until": null,
+            "value": "1630.03"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "V",
+      "order": 5,
+      "description": "Livello V — Educatore di nido / personale specializzato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-09-01",
+            "valid_until": "2025-06-01",
+            "value": "1564.87"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1594.49"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1639.76"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-09-01",
+            "value": "1679.76"
+          },
+          {
+            "valid_from": "2027-09-01",
+            "valid_until": null,
+            "value": "1719.76"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "VI",
+      "order": 6,
+      "description": "Livello VI — Insegnante di scuola dell'infanzia",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-09-01",
+            "valid_until": "2025-06-01",
+            "value": "1584.55"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1614.55"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1659.55"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-09-01",
+            "value": "1699.55"
+          },
+          {
+            "valid_from": "2027-09-01",
+            "valid_until": null,
+            "value": "1739.55"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "VII",
+      "order": 7,
+      "description": "Livello VII — Coordinatore pedagogico / insegnante senior",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-09-01",
+            "valid_until": "2025-06-01",
+            "value": "1740.88"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1773.83"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1824.19"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-09-01",
+            "value": "1868.15"
+          },
+          {
+            "valid_from": "2027-09-01",
+            "valid_until": null,
+            "value": "1912.11"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "VIII",
+      "order": 8,
+      "description": "Livello VIII — Dirigente scolastico / direttore",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-09-01",
+            "valid_until": "2025-06-01",
+            "value": "1780.26"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1813.96"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1865.46"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-09-01",
+            "value": "1910.42"
+          },
+          {
+            "valid_from": "2027-09-01",
+            "valid_until": null,
+            "value": "1955.38"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante",
+      "destination_levels": [
+        "I", "II", "III", "IV", "V", "VI", "VII", "VIII"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    }
+  ]
+}

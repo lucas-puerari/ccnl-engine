@@ -7534,3 +7534,69 @@ class TestLoadIstituzioniServiziSocioAssistenzialiAnaste:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 10
+
+
+class TestLoadScuoleMaternieFism:
+    """Tests for CCNL Scuole Materne FISM (T271)."""
+
+    def test_fism_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("scuole-materne-fism.json")
+        assert ccnl.meta.ccnl_id == "scuole-materne-fism"
+        assert ccnl.meta.cnel_code == "T271"
+
+    def test_fism_has_8_levels(self) -> None:
+        """Contract has exactly 8 levels with codes I through VIII."""
+        ccnl = load_ccnl("scuole-materne-fism.json")
+        assert len(ccnl.levels) == 8
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"I", "II", "III", "IV", "V", "VI", "VII", "VIII"}
+
+    def test_fism_level5_salary_2023(self) -> None:
+        """Level V base salary at first tranche (2023-09-01) = 1564.87 EUR."""
+        ccnl = load_ccnl("scuole-materne-fism.json")
+        lv = next(x for x in ccnl.levels if x.code == "V")
+        assert lv.base_salary.value_at(date(2023, 9, 1)) == Decimal("1564.87")
+
+    def test_fism_level5_salary_2026(self) -> None:
+        """Level V base salary from 2026-09-01 (accord tranche) = 1679.76 EUR."""
+        ccnl = load_ccnl("scuole-materne-fism.json")
+        lv = next(x for x in ccnl.levels if x.code == "V")
+        assert lv.base_salary.value_at(date(2026, 9, 1)) == Decimal("1679.76")
+
+    def test_fism_level_ordering(self) -> None:
+        """Lowest order is I (1), highest order is VIII (8)."""
+        ccnl = load_ccnl("scuole-materne-fism.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "I"
+        assert by_order[-1].code == "VIII"
+
+    def test_fism_additional_months(self) -> None:
+        """Additional months = 13 (tredicesima only, Art. 49)."""
+        ccnl = load_ccnl("scuole-materne-fism.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 9, 1)) == Decimal(
+            13
+        )
+
+    def test_fism_hourly_divisor(self) -> None:
+        """Hourly divisor = 160 (37h/week, Art. 51)."""
+        ccnl = load_ccnl("scuole-materne-fism.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 9, 1)) == Decimal(160)
+
+    def test_fism_no_fixed_allowances(self) -> None:
+        """Conglobated model: all levels have no fixed allowances."""
+        ccnl = load_ccnl("scuole-materne-fism.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_fism_tax_sector(self) -> None:
+        """Tax sector is terziario."""
+        ccnl = load_ccnl("scuole-materne-fism.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_fism_seniority_frozen(self) -> None:
+        """Seniority frozen: maximum_count=0 (historic scatti frozen, Arts. 44-46)."""
+        ccnl = load_ccnl("scuole-materne-fism.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 1
+        assert si.maximum_count == 0
