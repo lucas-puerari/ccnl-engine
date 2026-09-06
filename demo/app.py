@@ -13,11 +13,17 @@ import operator
 from datetime import UTC, datetime
 from decimal import Decimal
 
-from ccnl_engine.contracts.loaders import load_ccnl
-from ccnl_engine.engine.compute import Scenario, compute
+from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.io.bundled import read_bundled
-from ccnl_engine.models.employment import Apprentice, FixedTerm, Permanent
-from ccnl_engine.tax.loaders import load_year_rules
+from ccnl_engine.payroll.domain.employee import (
+    ContractPosition,
+    Employee,
+    SeniorityByCount,
+    WorkArrangement,
+)
+from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
+from ccnl_engine.payroll.service.orchestrator import compute
+from ccnl_engine.tax.service.loaders import load_year_rules
 
 _DEFAULT_YEAR = 2026
 
@@ -32,7 +38,7 @@ def list_ccnls() -> str:
     Returns:
         JSON-encoded list of ``{file, id, name, tax_sector}`` dicts.
     """
-    data_pkg = importlib.resources.files("ccnl_engine.contracts.data")
+    data_pkg = importlib.resources.files("ccnl_engine.contract.data")
     result: list[dict[str, str]] = []
     seen: set[str] = set()
     for entry in data_pkg.iterdir():
@@ -50,7 +56,7 @@ def list_ccnls() -> str:
         meta = raw["meta"]
         result.append({
             "file": json_name,
-            "id": meta["id"],
+            "id": meta["ccnl_id"],
             "name": meta["name"],
             "tax_sector": meta["tax_sector"],
         })
@@ -114,7 +120,7 @@ def compute_salary(
         filename: Bare CCNL filename.
         level_code: Level code within the CCNL.
         employment_type: ``"permanent"``, ``"fixed_term"``, or ``"apprentice"``.
-        num_employees: Employer headcount (drives INPS rate tier and Scenario).
+        num_employees: Employer headcount (drives INPS rate tier).
         part_time_pct: Part-time fraction in (0, 1], default full-time.
         seniority_count: Number of seniority increments (*scatti di anzianità*).
         months_elapsed: Months elapsed in apprenticeship (apprentice only).
@@ -129,15 +135,22 @@ def compute_salary(
     try:
         ccnl = load_ccnl(filename)
         rules = load_year_rules(_DEFAULT_YEAR, ccnl.meta.tax_sector, num_employees)
-        scenario = Scenario(
-            level_code=level_code,
-            as_of=datetime.now(tz=UTC).date(),
-            employment=employment,
-            num_employees=num_employees,
-            part_time_pct=Decimal(str(round(part_time_pct, 4))),
-            seniority_count=seniority_count,
+        is_domestic = ccnl.meta.tax_sector == "lavoro-domestico"
+        employee = Employee(
+            position=ContractPosition(
+                level_code=level_code,
+                as_of=datetime.now(tz=UTC).date(),
+                employment=employment,
+            ),
+            arrangement=WorkArrangement(
+                part_time_pct=Decimal(str(round(part_time_pct, 4))),
+                seniority=SeniorityByCount(value=seniority_count)
+                if seniority_count
+                else None,
+                weekly_hours=Decimal(40) if is_domestic else None,
+            ),
         )
-        payslip = compute(ccnl, rules, scenario)
+        payslip = compute(ccnl, rules, employee)
     except Exception as exc:  # ruff: ignore[blind-except]
         return json.dumps({"error": str(exc)})
 
