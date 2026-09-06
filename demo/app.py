@@ -88,19 +88,32 @@ def list_ccnls() -> str:
 def load_ccnl_levels(filename: str) -> str:
     """Return JSON list of levels for a CCNL.
 
+    Includes ``max_seniority_count`` (the maximum number of seniority
+    increments allowed for that level) and ``seniority_cadence_months``
+    so the UI can constrain the seniority input and show a useful hint.
+
     Args:
         filename: Bare filename (e.g. ``metalmeccanico-federmeccanica.json``).
 
     Returns:
-        JSON-encoded list of ``{code, description, order}`` dicts ordered by
+        JSON-encoded list of ``{code, description, order,
+        max_seniority_count, seniority_cadence_months}`` dicts ordered by
         ``order``.
     """
     ccnl = load_ccnl(filename)
+    si = ccnl.parameters.seniority_increments
+    global_max = int(si.maximum_count) if si else 0
+    by_level: dict[str, int] = (
+        {k: int(v) for k, v in si.maximum_count_by_level.items()} if si else {}
+    )
+    cadence: int = int(si.cadence_months) if si else 0
     levels = [
         {
             "code": lv.code,
             "description": lv.description or lv.code,
             "order": lv.order,
+            "max_seniority_count": by_level.get(lv.code, global_max),
+            "seniority_cadence_months": cadence,
         }
         for lv in ccnl.levels
     ]
