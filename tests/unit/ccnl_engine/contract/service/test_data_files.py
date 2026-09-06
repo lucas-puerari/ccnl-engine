@@ -1,5 +1,6 @@
 """Tests for CCNL data loaders and bundled data files."""
 
+import importlib.resources
 from datetime import date
 from decimal import Decimal
 from pathlib import Path
@@ -25,26 +26,44 @@ from ccnl_engine.tax.domain.rules import YearRules
 from ccnl_engine.tax.service.loaders import load_year_rules
 
 # ---------------------------------------------------------------------------
-# Parametrised: every JSON in src/ccnl_engine/contracts/data/ must validate
+# Parametrised: every JSON in ccnl_engine.contract.data must validate
 # ---------------------------------------------------------------------------
 
-_DATA_DIR = (
-    Path(__file__).parent.parent.parent.parent
-    / "src"
-    / "ccnl_engine"
-    / "contracts"
-    / "data"
+# Use importlib.resources so the path is correct for both editable installs
+# (plain .json) and installed wheels (.json.gz), and does not depend on the
+# number of parent directories from this test file.
+_DATA_PKG = importlib.resources.files("ccnl_engine.contract.data")
+_JSON_FILES = sorted(
+    (entry for entry in _DATA_PKG.iterdir() if entry.name.endswith(".json")),
+    key=lambda e: e.name,
 )
-_JSON_FILES = sorted(_DATA_DIR.glob("*.json"))
 
 
 class TestCCNLDataFilesValidate:
     """Every JSON file in the data bundle must parse as a valid CCNL."""
 
+    def test_data_dir_is_non_empty(self) -> None:
+        """The data package must contain at least one JSON file.
+
+        A path typo or packaging mistake (e.g. wrong directory name in the
+        build hook) would silently produce an empty list and make the
+        parametrised test below run zero times without failing.  This sentinel
+        catches that class of bug early.
+        """
+        assert len(_JSON_FILES) > 0, (
+            "No .json files found in ccnl_engine.contract.data — "
+            "check the build hook data paths and the package structure."
+        )
+
     @pytest.mark.parametrize("json_file", _JSON_FILES, ids=lambda p: p.name)
     def test_file_validates(self, json_file: Path) -> None:
         """Each data file must deserialise into a valid CCNL without errors."""
-        ccnl = CCNL.model_validate_json(json_file.read_text(encoding="utf-8"))
+        ccnl = CCNL.model_validate_json(
+            importlib.resources
+            .files("ccnl_engine.contract.data")
+            .joinpath(json_file.name)
+            .read_text(encoding="utf-8")
+        )
         assert ccnl.meta.ccnl_id
 
 
