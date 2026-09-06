@@ -26,10 +26,10 @@
       }
     ],
     "extraction": {
-      "method": "manual",
+      "method": "ai_assisted",
       "model": null,
       "timestamp": "2026-09-05",
-      "human_reviewed": true
+      "human_reviewed": false
     }
   },
   "coverage": {
@@ -109,17 +109,105 @@
       "cadence_months": 24,
       "maximum_count": 9,
       "amount_by_level": {
-        "Q1": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "33.10"}]},
-        "Q2": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "33.10"}]},
-        "A1": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "33.10"}]},
-        "A2": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "32.19"}]},
-        "B1": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "30.36"}]},
-        "B2": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "29.57"}]},
-        "B3": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "29.39"}]},
-        "C1": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "29.23"}]},
-        "C2": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "27.17"}]},
-        "C3": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "26.61"}]},
-        "C4": {"periods": [{"valid_from": "2025-12-09", "valid_until": null, "value": "25.35"}]}
+        "Q1": {
+          "periods": [
+            {
+              "valid_from": "2025-12-09",
+              "valid_until": null,
+              "value": "33.10"
+            }
+          ]
+        },
+        "Q2": {
+          "periods": [
+            {
+              "valid_from": "2025-12-09",
+              "valid_until": null,
+              "value": "33.10"
+            }
+          ]
+        },
+        "A1": {
+          "periods": [
+            {
+              "valid_from": "2025-12-09",
+              "valid_until": null,
+              "value": "33.10"
+            }
+          ]
+        },
+        "A2": {
+          "periods": [
+            {
+              "valid_from": "2025-12-09",
+              "valid_until": null,
+              "value": "32.19"
+            }
+          ]
+        },
+        "B1": {
+          "periods": [
+            {
+              "valid_from": "2025-12-09",
+              "valid_until": null,
+              "value": "30.36"
+            }
+          ]
+        },
+        "B2": {
+          "periods": [
+            {
+              "valid_from": "2025-12-09",
+              "valid_until": null,
+              "value": "29.57"
+            }
+          ]
+        },
+        "B3": {
+          "periods": [
+            {
+              "valid_from": "2025-12-09",
+              "valid_until": null,
+              "value": "29.39"
+            }
+          ]
+        },
+        "C1": {
+          "periods": [
+            {
+              "valid_from": "2025-12-09",
+              "valid_until": null,
+              "value": "29.23"
+            }
+          ]
+        },
+        "C2": {
+          "periods": [
+            {
+              "valid_from": "2025-12-09",
+              "valid_until": null,
+              "value": "27.17"
+            }
+          ]
+        },
+        "C3": {
+          "periods": [
+            {
+              "valid_from": "2025-12-09",
+              "valid_until": null,
+              "value": "26.61"
+            }
+          ]
+        },
+        "C4": {
+          "periods": [
+            {
+              "valid_from": "2025-12-09",
+              "valid_until": null,
+              "value": "25.35"
+            }
+          ]
+        }
       }
     }
   },
@@ -128,7 +216,17 @@
       "type": "percentage",
       "name": "professionalizzante",
       "destination_levels": [
-        "Q1", "Q2", "A1", "A2", "B1", "B2", "B3", "C1", "C2", "C3", "C4"
+        "Q1",
+        "Q2",
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "B3",
+        "C1",
+        "C2",
+        "C3",
+        "C4"
       ],
       "periods": [
         {

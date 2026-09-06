@@ -31,10 +31,10 @@
       }
     ],
     "extraction": {
-      "method": "manual",
+      "method": "ai_assisted",
       "model": null,
       "timestamp": "2026-08-30T00:00:00",
-      "human_reviewed": true
+      "human_reviewed": false
     }
   },
   "coverage": {

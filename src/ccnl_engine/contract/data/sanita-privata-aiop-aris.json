@@ -33,10 +33,10 @@
       }
     ],
     "extraction": {
-      "method": "pdftotext + manual review of Arts. 18, 23, 50-58 and Tabella 1",
+      "method": "ai_assisted",
       "model": null,
       "timestamp": "2026-09-03",
-      "human_reviewed": true
+      "human_reviewed": false
     },
     "agreement_date": "2020-10-08",
     "validity": {

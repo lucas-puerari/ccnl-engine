@@ -19,10 +19,10 @@
       "Fillea-CGIL"
     ],
     "extraction": {
-      "method": "manual",
+      "method": "ai_assisted",
       "model": null,
       "timestamp": "2026-09-02",
-      "human_reviewed": true
+      "human_reviewed": false
     },
     "sources": [
       {
