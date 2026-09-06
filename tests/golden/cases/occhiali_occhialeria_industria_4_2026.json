@@ -1,0 +1,60 @@
+{
+  "_description": "Golden case: CCNL Occhiali e Occhialeria Industria (D271), Level 4, 2026-03-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "2026-03-01 tranche (first of 2026-2028 renewal): minimo tabellare level 4 = 2042.96 EUR/month.",
+    "Conglobated model (since 01/01/2009): contingenza and EDR inglobated into tabular minimum.",
+    "No fixed allowances at level 4. Additional months: 13 (tredicesima only).",
+    "INPS employer rate from 2026-industria.json (industria sector, 16-50 employees tier).",
+    "Seniority: 0.00 — no scatti accumulated (new hire case).",
+    "Trattamento integrativo applies (gross_annual 26558.48 below 28000 EUR threshold)."
+  ],
+  "inputs": {
+    "ccnl_file": "occhiali-occhialeria-industria.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "4",
+    "as_of": "2026-03-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "occhiali-occhialeria-industria",
+    "level_code": "4",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "2042.96",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2042.96",
+    "gross_annual": "26558.48",
+    "hourly_rate": "11.81",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2520.40",
+    "inps_employer_annual": "8020.66",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1967.29",
+    "taxable_income": "24038.08",
+    "irpef_gross": "5528.76",
+    "work_income_deduction": "792.77",
+    "irpef_net": "4735.99",
+    "net_annual": "19435.15",
+    "net_monthly": "1495.01",
+    "employer_cost_annual": "36546.43",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "133.06",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}
