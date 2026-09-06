@@ -1,0 +1,60 @@
+{
+  "_description": "Golden case: CCNL Lapidei Industria (F041), Level C, 2026-07-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "2026-07-01 tranche (second of 2025-2028 renewal): paga base C = 1662.64 EUR/month.",
+    "SPLIT model: paga base + contingenza frozen (C=518.37) + EDR (10.33) = 2191.34 gross.",
+    "Additional months: 13 (tredicesima only). Hourly divisor: 174.",
+    "INPS employer rate from 2026-industria.json (industria sector, 16-50 employees tier).",
+    "Seniority: 0.00 — no scatti accumulated (new hire case).",
+    "Trattamento integrativo: 0 (gross_annual 28487.42 above 28000 EUR threshold)."
+  ],
+  "inputs": {
+    "ccnl_file": "lapidei-industria.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "C",
+    "as_of": "2026-07-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "lapidei-industria",
+    "level_code": "C",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1662.64",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "528.70",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "2191.34",
+    "gross_annual": "28487.42",
+    "hourly_rate": "12.59",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2703.46",
+    "inps_employer_annual": "8603.20",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "2110.18",
+    "taxable_income": "25783.96",
+    "irpef_gross": "5930.31",
+    "work_income_deduction": "684.49",
+    "irpef_net": "5245.82",
+    "net_annual": "20538.14",
+    "net_monthly": "1579.86",
+    "employer_cost_annual": "39200.80",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "0",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}

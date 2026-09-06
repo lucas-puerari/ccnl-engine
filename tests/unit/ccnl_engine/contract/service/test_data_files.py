@@ -7777,3 +7777,84 @@ class TestLoadCementoCalceGessoIndustria:
         )
         assert fn is not None
         assert fn.monthly.value_at(date(2025, 10, 1)) == Decimal("41.32")
+
+
+class TestLoadLapideiIndustria:
+    """Tests for CCNL Lapidei — Industria (F041)."""
+
+    def test_lapidei_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("lapidei-industria.json")
+        assert ccnl.meta.ccnl_id == "lapidei-industria"
+        assert ccnl.meta.cnel_code == "F041"
+
+    def test_lapidei_has_8_levels(self) -> None:
+        """Contract has exactly 8 levels: F, E, D, C, CS, B, A, AS."""
+        ccnl = load_ccnl("lapidei-industria.json")
+        assert len(ccnl.levels) == 8
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"F", "E", "D", "C", "CS", "B", "A", "AS"}
+
+    def test_lapidei_level_c_salary_2025(self) -> None:
+        """Level C paga base at 01/01/2025: 1502.64 EUR."""
+        ccnl = load_ccnl("lapidei-industria.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C")
+        assert lv.base_salary.value_at(date(2025, 1, 1)) == Decimal("1502.64")
+
+    def test_lapidei_level_c_salary_2026(self) -> None:
+        """Level C paga base at 01/07/2026: 1662.64 EUR."""
+        ccnl = load_ccnl("lapidei-industria.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C")
+        assert lv.base_salary.value_at(date(2026, 7, 1)) == Decimal("1662.64")
+
+    def test_lapidei_level_ordering(self) -> None:
+        """Level F is lowest order (1) and AS is highest order (8)."""
+        ccnl = load_ccnl("lapidei-industria.json")
+        ordered = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert ordered[0].code == "F"
+        assert ordered[-1].code == "AS"
+
+    def test_lapidei_additional_months(self) -> None:
+        """Additional months: 13 (tredicesima only)."""
+        ccnl = load_ccnl("lapidei-industria.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 7, 1)) == Decimal(
+            13
+        )
+
+    def test_lapidei_hourly_divisor(self) -> None:
+        """Hourly divisor: 174."""
+        ccnl = load_ccnl("lapidei-industria.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 7, 1)) == Decimal(174)
+
+    def test_lapidei_split_model_allowances(self) -> None:
+        """All levels have exactly CONTINGENZA and EDR fixed allowances."""
+        ccnl = load_ccnl("lapidei-industria.json")
+        for lv in ccnl.levels:
+            codes = {fa.code for fa in lv.fixed_allowances}
+            assert codes == {"CONTINGENZA", "EDR"}
+
+    def test_lapidei_edr_uniform(self) -> None:
+        """EDR is 10.33 EUR/month across all levels."""
+        ccnl = load_ccnl("lapidei-industria.json")
+        for lv in ccnl.levels:
+            edr = next(fa for fa in lv.fixed_allowances if fa.code == "EDR")
+            assert edr.monthly.value_at(date(2026, 7, 1)) == Decimal("10.33")
+
+    def test_lapidei_tax_sector(self) -> None:
+        """Tax sector is industria."""
+        ccnl = load_ccnl("lapidei-industria.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_lapidei_seniority_cadence(self) -> None:
+        """Seniority: 24-month cadence, max 5 scatti biennali."""
+        ccnl = load_ccnl("lapidei-industria.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_lapidei_level_f_contingenza(self) -> None:
+        """Level F contingenza frozen at 512.38 EUR/month."""
+        ccnl = load_ccnl("lapidei-industria.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "F")
+        cont = next(fa for fa in lv.fixed_allowances if fa.code == "CONTINGENZA")
+        assert cont.monthly.value_at(date(2026, 7, 1)) == Decimal("512.38")
