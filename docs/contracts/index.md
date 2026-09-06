@@ -124,6 +124,7 @@ private-sector workforce.
 | 93 | F041 | [Lapidei — Industria (Confindustria Marmomacchine/ANEPLA)](lapidei-industria.md) | Industria lapidea | ~18k | ✅ | ✅ | 🤖 |
 | 94 | I391 | [Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | Navigazione marittima | ~15k | ✅ | ✅ | 🤖 |
 | 95 | H05B | [Industria Turistica — Federturismo Confindustria](industria-turistica-federturismo.md) | Turismo industria | ~40k | ✅ | ✅ | 🤖 |
+| 96 | E016 | [Alimentaristi Cooperative (Fedagripesca/Legacoop/AGCI)](alimentaristi-cooperative-e016.md) | Industria alimentare cooperativa | ~15k | ✅ | ✅ | 🤖 |
 
 [^1]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.
 [^2]: Salary tables were extracted from official CCNL documents using AI-assisted tooling, without manual human review. Verify against the official source before use in production payroll systems.
