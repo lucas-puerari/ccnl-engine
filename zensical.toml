@@ -23,6 +23,7 @@ nav = [
     { "CCNL Acconciatura ed Estetica — Confartigianato/CNA" = "contracts/acconciatura-estetica-confartigianato.md" },
     { "CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e M…" = "contracts/agenzie-marittime-i481.md" },
     { "CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio" = "contracts/agenzie-viaggio-fiavet.md" },
+    { "CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop/AGCI-Agrital)" = "contracts/alimentaristi-cooperative-e016.md" },
     { "CCNL per i lavoratori dell'industria alimentare (Federali…" = "contracts/alimentari-federalimentare.md" },
     { "CCNL Dipendenti Piccola e Media Industria Alimentare (Uni…" = "contracts/alimentari-pmi-unionalimentari.md" },
     { "CCNL per il personale dipendente non dirigente delle impr…" = "contracts/assicurazioni-ania.md" },
