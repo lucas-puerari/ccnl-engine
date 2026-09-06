@@ -146,7 +146,7 @@ packages = ["src/ccnl_engine"]
 # injects compressed .json.gz variants instead. Editable installs read .json
 # directly via the fallback path in read_bundled().
 exclude = [
-    "src/ccnl_engine/contracts/data/*.json",
+    "src/ccnl_engine/contract/data/*.json",
     "src/ccnl_engine/tax/data/*.json",
     "src/ccnl_engine/surtax/data/*.json",
 ]
