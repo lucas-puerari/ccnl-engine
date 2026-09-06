@@ -27,6 +27,7 @@ nav = [
     { "CCNL per i lavoratori dell'industria alimentare (Federali…" = "contracts/alimentari-federalimentare.md" },
     { "CCNL Dipendenti Piccola e Media Industria Alimentare (Uni…" = "contracts/alimentari-pmi-unionalimentari.md" },
     { "CCNL per il personale dipendente non dirigente delle impr…" = "contracts/assicurazioni-ania.md" },
+    { "CCNL Gruppo ANAS (T511)" = "contracts/anas.md" },
     { "CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)" = "contracts/autoferrotranvieri-internavigatori.md" },
     { "CCNL Autostrade e Trafori Concessionari (AISCAT)" = "contracts/autostrade-trafori.md" },
     { "CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)" = "contracts/autorimesse-ic35.md" },
