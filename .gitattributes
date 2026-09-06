@@ -1,0 +1,5 @@
+# Linguist overrides — exclude data files from language stats
+src/ccnl_engine/contracts/data/*.json  linguist-vendored
+src/ccnl_engine/tax/data/*.json        linguist-vendored
+src/ccnl_engine/surtax/data/*.json     linguist-vendored
+tests/ccnl_engine/golden/cases/*.json  linguist-generated
