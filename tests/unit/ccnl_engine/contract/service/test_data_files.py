@@ -8193,3 +8193,94 @@ class TestLoadTurismoConfesercenti:
         ccnl = load_ccnl("turismo-confesercenti.json")
         lv = next(lv for lv in ccnl.levels if lv.code == "7")
         assert lv.base_salary.value_at(date(2027, 11, 1)) == Decimal("1458.42")
+
+
+class TestLoadRsaAiop:
+    """Tests for CCNL RSA e Strutture Residenziali AIOP (T091)."""
+
+    def test_t091_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("rsa-aiop.json")
+        assert ccnl.meta.ccnl_id == "rsa-aiop"
+        assert ccnl.meta.cnel_code == "T091"
+
+    def test_t091_has_12_levels(self) -> None:
+        """Contract has exactly 12 levels."""
+        ccnl = load_ccnl("rsa-aiop.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 12
+        assert codes == {
+            "A",
+            "B",
+            "C",
+            "D1",
+            "D2",
+            "D3",
+            "E1",
+            "E2",
+            "E3",
+            "F",
+            "G",
+            "H",
+        }
+
+    def test_t091_level_d2_salary_2012(self) -> None:
+        """Level D2 base salary at 2012-04-01 is 1325.00 EUR."""
+        ccnl = load_ccnl("rsa-aiop.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "D2")
+        assert lv.base_salary.value_at(date(2012, 4, 1)) == Decimal("1325.00")
+
+    def test_t091_level_d2_salary_2023(self) -> None:
+        """Level D2 base salary at 2023-10-01 is 1463.33 EUR."""
+        ccnl = load_ccnl("rsa-aiop.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "D2")
+        assert lv.base_salary.value_at(date(2023, 10, 1)) == Decimal("1463.33")
+
+    def test_t091_level_ordering(self) -> None:
+        """Level A is lowest order (1), H is highest order (12)."""
+        ccnl = load_ccnl("rsa-aiop.json")
+        levels_by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert levels_by_order[0].code == "A"
+        assert levels_by_order[-1].code == "H"
+
+    def test_t091_additional_months(self) -> None:
+        """Additional months is 13 (tredicesima only)."""
+        ccnl = load_ccnl("rsa-aiop.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_t091_hourly_divisor(self) -> None:
+        """Hourly divisor is 165."""
+        ccnl = load_ccnl("rsa-aiop.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(165)
+
+    def test_t091_no_fixed_allowances(self) -> None:
+        """Level D2 has no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("rsa-aiop.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "D2")
+        assert lv.fixed_allowances == []
+
+    def test_t091_tax_sector(self) -> None:
+        """Tax sector is terziario."""
+        ccnl = load_ccnl("rsa-aiop.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_t091_seniority_cadence(self) -> None:
+        """Seniority: 60-month cadence, maximum 1 scatto."""
+        ccnl = load_ccnl("rsa-aiop.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 60
+        assert si.maximum_count == 1
+
+    def test_t091_seniority_a_level(self) -> None:
+        """Level A seniority is 40.00 EUR."""
+        ccnl = load_ccnl("rsa-aiop.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.amount_by_level["A"].value_at(date(2026, 1, 1)) == Decimal("40.00")
+
+    def test_t091_seniority_h_level_zero(self) -> None:
+        """Level H (excluded from seniority) has 0.00 EUR scatto."""
+        ccnl = load_ccnl("rsa-aiop.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.amount_by_level["H"].value_at(date(2026, 1, 1)) == Decimal("0.00")
