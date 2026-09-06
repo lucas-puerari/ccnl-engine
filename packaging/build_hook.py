@@ -19,7 +19,7 @@ from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 
 # Pairs of (package-relative dist prefix, source directory relative to project root).
 _DATA_DIRS: list[tuple[str, str]] = [
-    ("ccnl_engine/contracts/data", "src/ccnl_engine/contracts/data"),
+    ("ccnl_engine/contract/data", "src/ccnl_engine/contract/data"),
     ("ccnl_engine/tax/data", "src/ccnl_engine/tax/data"),
     ("ccnl_engine/surtax/data", "src/ccnl_engine/surtax/data"),
 ]
