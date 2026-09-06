@@ -1,0 +1,772 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "ccnl_id": "cooperative-sociali",
+    "name": "CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)",
+    "cnel_code": "T151",
+    "sector": "servizi socio-assistenziali",
+    "tax_sector": "terziario",
+    "signatories": [
+      "Confcooperative-Federsolidarietà",
+      "Legacoop Sociali",
+      "AGCI-Solidarietà",
+      "FP-CGIL",
+      "CISL-FPS",
+      "UIL-FPL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/",
+        "type": "table",
+        "agreement_date": "2024-01-26"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "model": null,
+      "timestamp": "2026-09-01T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "CONSOLIDATED MINIMUMS: the base_salary values are the monthly consolidated tabular minimums (base pay + contingency + EDR included), as published by lexplain.it. Hourly divisor 165 (CCNL art. 75, 38-hour week). Back-calculation check: A1 October 2025 = 1359.88 / 165 = EUR 8.24/h; C1 = 1545.21 / 165 = EUR 9.37/h; F2 = 2504.10 / 165 = EUR 15.17/h — consistent with the hourly rates published by lexplain.it."
+      },
+      {
+        "kind": "info",
+        "text": "QUADRO LEVELS: levels E2Q, F1Q, F2Q are modelled as separate levels with fixed_allowances (function allowance EUR 77.47, EUR 154.94, EUR 232.41/month respectively). The base_salary is identical to the corresponding non-Q level; the allowance is fixed and unchanged across tranches. Seniority increments for Q levels carry the same amount as the corresponding base level."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 13 until 31 December 2024 (thirteenth month only). From 1 January 2025: 13.5 (thirteenth month + fourteenth month equal to 50% of one monthly salary, paid in June, introduced by the 26 January 2024 renewal)."
+      },
+      {
+        "kind": "info",
+        "text": "TRANCHES: February 2024 (first), October 2024 (second), October 2025 (third and last). Renewal signed on 26 January 2024. No pre-February-2024 tables modelled."
+      },
+      {
+        "kind": "info",
+        "text": "LEVELS WITH THE SAME BASE: C3 and D1 have identical minimums at each tranche (orders 6/7). D3 and E1 are identical (orders 9/10). Q levels (E2Q/F1Q/F2Q) have the same base as the non-Q level but the next order: the engine allows equal salaries between adjacent levels."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY INCREMENTS: biennial (every 24 months), maximum 5 increments. Fixed amounts per level from the CCNL seniority table (source: ccnlcooperative.it, art. 80). C3 and D1 have the same amount (EUR 20.66); D3 and E1 have the same amount (EUR 26.86)."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS: uses 2026-terziario.json (same tax_sector as CCNL Commercio Confcommercio). The social cooperatives sector does not have a separate employer INPS rate verified from a primary circular; type-B social cooperatives may apply concessions under L. 381/1991 not modelled in this file."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP (professionalizzante) under Art. 28 renewal 05/03/2024: 3 duration tracks by category: category A (dest=A2) 18m [0-9m=85%,9-18m=90%]; category B/C (dest=B,C1,C2,C3) 24m [0-12m=85%,12-24m=90%]; category D/E (dest=D1,D2,D3,E1,E2) 36m [0-18m=85%,18-36m=90%]. A1 and F/Q levels not eligible. Special: OSS in socio-sanitario reduced to 18m. Source: Art. 28 ccnlcooperative.it (consolidated text 2025, high confidence)."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-02-01",
+          "valid_until": null,
+          "value": "165"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-02-01",
+          "valid_until": "2025-01-01",
+          "value": "13"
+        },
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "13.5"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "A1": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "11.62"
+            }
+          ]
+        },
+        "A2": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "13.43"
+            }
+          ]
+        },
+        "B": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "16.27"
+            }
+          ]
+        },
+        "C1": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "18.59"
+            }
+          ]
+        },
+        "C2": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "19.63"
+            }
+          ]
+        },
+        "C3": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "20.66"
+            }
+          ]
+        },
+        "D1": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "20.66"
+            }
+          ]
+        },
+        "D2": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "23.24"
+            }
+          ]
+        },
+        "D3": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "26.86"
+            }
+          ]
+        },
+        "E1": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "26.86"
+            }
+          ]
+        },
+        "E2": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "31.50"
+            }
+          ]
+        },
+        "E2Q": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "31.50"
+            }
+          ]
+        },
+        "F1": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "39.51"
+            }
+          ]
+        },
+        "F1Q": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "39.51"
+            }
+          ]
+        },
+        "F2": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "46.48"
+            }
+          ]
+        },
+        "F2Q": {
+          "periods": [
+            {
+              "valid_from": "2024-02-01",
+              "valid_until": null,
+              "value": "46.48"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "A1",
+      "order": 1,
+      "description": "Level A1 — generic entry-level worker",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1307.25"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1333.57"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1359.88"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A2",
+      "order": 2,
+      "description": "Level A2 — basic auxiliary worker",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1319.37"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1345.95"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1372.53"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "B",
+      "order": 3,
+      "description": "Level B — qualified auxiliary worker",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1380.99"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1408.88"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1436.78"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C1",
+      "order": 4,
+      "description": "Level C1 — basic care worker (OSS)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1485.21"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1515.21"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1545.21"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C2",
+      "order": 5,
+      "description": "Level C2 — qualified care worker",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1529.48"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1560.27"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1591.06"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C3",
+      "order": 6,
+      "description": "Level C3 — specialised care worker",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1574.40"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1605.98"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1637.56"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D1",
+      "order": 7,
+      "description": "Level D1 — junior technician",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1574.40"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1605.98"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1637.56"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D2",
+      "order": 8,
+      "description": "Level D2 — qualified technician",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1660.99"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1694.41"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1727.83"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D3",
+      "order": 9,
+      "description": "Level D3 — senior technician",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1768.11"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1803.63"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1839.16"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "E1",
+      "order": 10,
+      "description": "Level E1 — junior manager / coordinator",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1768.11"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1803.63"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1839.16"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "E2",
+      "order": 11,
+      "description": "Level E2 — senior manager / service director",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1908.55"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1946.97"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1985.39"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "E2Q",
+      "order": 12,
+      "description": "Level E2Q — senior manager Quadro (with function allowance)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "1908.55"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "1946.97"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "1985.39"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_FUN",
+          "description": "Quadro E2 function allowance",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "77.47"
+              }
+            ]
+          }
+        }
+      ],
+      "category": "quadro"
+    },
+    {
+      "code": "F1",
+      "order": 13,
+      "description": "Level F1 — area director / senior managerial function",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "2107.81"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "2150.18"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "2192.55"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "F1Q",
+      "order": 14,
+      "description": "Level F1Q — area director Quadro (with function allowance)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "2107.81"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "2150.18"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "2192.55"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_FUN",
+          "description": "Quadro F1 function allowance",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "154.94"
+              }
+            ]
+          }
+        }
+      ],
+      "category": "quadro"
+    },
+    {
+      "code": "F2",
+      "order": 15,
+      "description": "Level F2 — general director / highest responsibility function",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "2407.26"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "2455.68"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "2504.10"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "F2Q",
+      "order": 16,
+      "description": "Level F2Q — general director Quadro (with function allowance)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-02-01",
+            "valid_until": "2024-10-01",
+            "value": "2407.26"
+          },
+          {
+            "valid_from": "2024-10-01",
+            "valid_until": "2025-10-01",
+            "value": "2455.68"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": null,
+            "value": "2504.10"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_FUN",
+          "description": "Quadro F2 function allowance",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "232.41"
+              }
+            ]
+          }
+        }
+      ],
+      "category": "quadro"
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante_18m",
+      "destination_levels": [
+        "A2"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 9,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 9,
+          "months_until": 18,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_24m",
+      "destination_levels": [
+        "B",
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_36m",
+      "destination_levels": [
+        "D1",
+        "D2",
+        "D3",
+        "E1",
+        "E2"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 18,
+          "months_until": 36,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    }
+  ]
+}

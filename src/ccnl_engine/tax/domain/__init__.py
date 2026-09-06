@@ -1,0 +1,1 @@
+"""Tax domain models."""

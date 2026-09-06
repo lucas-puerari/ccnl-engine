@@ -218,6 +218,7 @@ __marimo__/
 .streamlit/secrets.toml
 
 # Project-specific files
-.claude/GOAL.md
-TODO.md
 _site/
+.claude/GOAL.md
+.vscode/
+TODO.md

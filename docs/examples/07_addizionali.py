@@ -19,7 +19,7 @@ from ccnl_engine import (
     load_ccnl,
     load_year_rules,
 )
-from ccnl_engine.surtax.loaders import load_surtax_rules
+from ccnl_engine.surtax.service.loaders import load_surtax_rules
 
 ccnl = load_ccnl("commercio-confcommercio.json")
 rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
