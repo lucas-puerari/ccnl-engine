@@ -1,0 +1,562 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "ccnl_id": "turismo-confesercenti",
+    "cnel_code": "H058",
+    "name": "CCNL Turismo (Assoturismo-Confesercenti)",
+    "sector": "turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi",
+    "tax_sector": "terziario",
+    "signatories": [
+      "Assoturismo-Confesercenti",
+      "Assohotel",
+      "Assocamping",
+      "Assoviaggi",
+      "FIEPET",
+      "FIBA",
+      "FILCAMS-CGIL",
+      "FISASCAT-CISL",
+      "UILTuCS"
+    ],
+    "agreement_date": "2024-07-22",
+    "sources": [
+      {
+        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
+        "type": "tabella_retributiva",
+        "agreement_date": "2024-07-22",
+        "notes": "Full alberghi sector table, all 5 tranches. Jul 2024 - Nov 2027."
+      },
+      {
+        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=82",
+        "type": "tabella_retributiva",
+        "agreement_date": "2024-07-22",
+        "notes": "Confirms alberghi table at 01/05/2026."
+      },
+      {
+        "url": "https://www.redigo.info/2024/07/24/ccnl-turismo-confesercenti-il-rinnovo-consolida-il-contratto-unico/",
+        "type": "comunicato",
+        "agreement_date": "2024-07-22",
+        "notes": "Tranche schedule and seniority cadence confirmed."
+      }
+    ],
+    "extraction": {
+      "timestamp": "2026-09-06",
+      "human_reviewed": false,
+      "method": "ai_assisted"
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "CCNL H058 — Assoturismo-Confesercenti. Conglobated. 10 levels: 7-6-6S-5-4-3-2-1-QB-QA. Divisor 172, 14 months. Seniority 36-month cadence, max 6. 5 tranches: Jul-2024 to Nov-2027."
+      },
+      {
+        "kind": "simplification",
+        "text": "Models the alberghi/campeggi sub-sector only (conglobated). Pubblici esercizi and stabilimenti balneari use a split (paga base + contingenza) model with different values and are out_of_scope."
+      },
+      {
+        "kind": "simplification",
+        "text": "Indennita di funzione for QA (EUR 75/month) and QB (EUR 70/month) conglobated into base_salary, consistent with turismo-federalberghi.json modeling."
+      },
+      {
+        "kind": "simplification",
+        "text": "Apprenticeship model not confirmed from primary source. Historically sotto-inquadramento 2 levels below destination; modeled as 100% passthrough pending contract text."
+      }
+    ]
+  },
+  "parameters": {
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-07-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-07-01",
+          "valid_until": null,
+          "value": "172"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 6,
+      "amount_by_level": {
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "30.47"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "30.99"
+            }
+          ]
+        },
+        "6S": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "31.25"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "32.54"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "33.05"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "34.86"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "36.15"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "37.70"
+            }
+          ]
+        },
+        "QB": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "39.25"
+            }
+          ]
+        },
+        "QA": {
+          "periods": [
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": null,
+              "value": "40.80"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante",
+      "destination_levels": [
+        "7",
+        "6",
+        "6S",
+        "5",
+        "4",
+        "3",
+        "2",
+        "1",
+        "QB",
+        "QA"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "7",
+      "order": 1,
+      "description": "Livello 7",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1350.12"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1383.45"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1412.60"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "1441.76"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1458.42"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6",
+      "order": 2,
+      "description": "Livello 6",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1440.78"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1476.34"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1507.45"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "1538.57"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1556.35"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6S",
+      "order": 3,
+      "description": "Livello 6S",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1461.49"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1497.57"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1529.13"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "1560.69"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1578.72"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 4,
+      "description": "Livello 5",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1519.93"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1557.44"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1590.27"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "1623.09"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1641.85"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 5,
+      "description": "Livello 4",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1620.69"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1660.69"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1695.69"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "1730.69"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1750.69"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 6,
+      "description": "Livello 3",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1717.55"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1759.94"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1797.04"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "1834.13"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1855.32"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 7,
+      "description": "Livello 2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1821.13"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1866.07"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1905.40"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "1944.73"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "1967.20"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "1",
+      "order": 8,
+      "description": "Livello 1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "1992.50"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "2041.68"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "2084.71"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "2127.73"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "2152.32"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "QB",
+      "order": 9,
+      "description": "Quadro B",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "2138.57"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "2191.35"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "2237.53"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "2283.72"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "2310.11"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "QA",
+      "order": 10,
+      "description": "Quadro A",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-06-01",
+            "value": "2309.93"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "2366.94"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "2416.82"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2027-11-01",
+            "value": "2466.71"
+          },
+          {
+            "valid_from": "2027-11-01",
+            "valid_until": null,
+            "value": "2495.22"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    }
+  ]
+}
