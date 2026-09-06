@@ -393,6 +393,16 @@
           <span class="range-val" id="parttime-val">100%</span>
         </div>
       </div>
+      <div>
+        <label for="sel-regione">Region (addizionale regionale)</label>
+        <select id="sel-regione">
+          <option value="">— not specified —</option>
+        </select>
+      </div>
+      <div>
+        <label for="inp-comune">Municipality Belfiore code (addizionale comunale)</label>
+        <input type="text" id="inp-comune" placeholder="e.g. F205 (Milano)" maxlength="4" style="text-transform:uppercase" />
+      </div>
     </div>
     <button id="calc-btn" disabled>Calculate</button>
   </div>
@@ -515,6 +525,17 @@ async function populateCcnls(pyodide) {
   sel.disabled = false;
 }
 
+async function populateRegioni(pyodide) {
+  const regioni = JSON.parse(pyodide.runPython("list_regioni()"));
+  const sel = document.getElementById("sel-regione");
+  for (const r of regioni) {
+    const opt = document.createElement("option");
+    opt.value = r;
+    opt.textContent = r;
+    sel.appendChild(opt);
+  }
+}
+
 async function onCcnlChange(pyodide) {
   const file = document.getElementById("sel-ccnl").value;
   const levelSel = document.getElementById("sel-level");
@@ -548,13 +569,16 @@ function doCompute(pyodide) {
   const ptPct     = parseInt(slider.value) / 100;
   const senMonths = parseInt(document.getElementById("inp-seniority").value) || 0;
   const appMonths = parseInt(document.getElementById("inp-apprentice-months").value) || 0;
+  const regione   = document.getElementById("sel-regione").value;
+  const comune    = document.getElementById("inp-comune").value.trim().toUpperCase();
 
   const r = JSON.parse(pyodide.runPython(
     `compute_salary(` +
     `${JSON.stringify(file)}, ` +
     `${JSON.stringify(levelCode)}, ` +
     `${JSON.stringify(empType)}, ` +
-    `${employees}, ${ptPct}, ${senMonths}, ${appMonths})`
+    `${employees}, ${ptPct}, ${senMonths}, ${appMonths}, ` +
+    `${JSON.stringify(regione)}, ${JSON.stringify(comune)})`
   ));
 
   if (r.error) {
@@ -626,15 +650,20 @@ function doCompute(pyodide) {
   body.appendChild(subRow("↳ Work income deduction (art. 13 TUIR)", null, -r.work_income_deduction));
   body.appendChild(row("Income tax — IRPEF (net)", null, r.irpef_net));
 
-  if (r.addizionale_regionale_annual > 0)
-    body.appendChild(row("Regional income surtax (addizionale regionale)", null, r.addizionale_regionale_annual));
-  else
-    body.appendChild(row("Regional income surtax (addizionale regionale)", null, null));
-
-  if (r.addizionale_comunale_annual > 0)
-    body.appendChild(row("Municipal income surtax (addizionale comunale)", null, r.addizionale_comunale_annual));
-  else
-    body.appendChild(row("Municipal income surtax (addizionale comunale)", null, null));
+  const noReg = r.fiscal_simplifications &&
+    r.fiscal_simplifications.includes("no_addizionale_regionale");
+  const noCom = r.fiscal_simplifications &&
+    r.fiscal_simplifications.includes("no_addizionale_comunale");
+  body.appendChild(row(
+    "Regional income surtax (addizionale regionale)",
+    null,
+    noReg ? null : r.addizionale_regionale_annual,
+  ));
+  body.appendChild(row(
+    "Municipal income surtax (addizionale comunale)",
+    null,
+    noCom ? null : r.addizionale_comunale_annual,
+  ));
 
   if (r.trattamento_integrativo > 0)
     body.appendChild(row("Trattamento integrativo (art. 1 D.L. 3/2020)", null, -r.trattamento_integrativo));
@@ -662,10 +691,19 @@ function doCompute(pyodide) {
 
   // Fiscal simplifications warning
   const simpNote = document.getElementById("simplifications-note");
-  if (r.fiscal_simplifications && r.fiscal_simplifications.length > 0) {
+  const SIMP_LABELS = {
+    no_addizionale_regionale: "regional income surtax (select a region above)",
+    no_addizionale_comunale:  "municipal income surtax (enter a Belfiore code above)",
+    no_detrazioni_familiari:  "family-dependent deductions (art. 12 TUIR)",
+    no_sterilizzazione_detrazioni: "deduction phase-out (sterilizzazione detrazioni)",
+  };
+  const simps = (r.fiscal_simplifications || []).map(
+    k => SIMP_LABELS[k] || k
+  );
+  if (simps.length > 0) {
     simpNote.innerHTML =
       "⚠️ <strong>Not included in this estimate:</strong> " +
-      r.fiscal_simplifications.join(", ") + ".";
+      simps.join("; ") + ".";
     simpNote.style.display = "block";
   } else {
     simpNote.style.display = "none";
@@ -696,6 +734,7 @@ async function main() {
     setProgress(100, "Ready");
 
     await populateCcnls(pyodide);
+    await populateRegioni(pyodide);
     document.getElementById("sel-ccnl").addEventListener("change", () => onCcnlChange(pyodide));
     document.getElementById("calc-btn").addEventListener("click", () => doCompute(pyodide));
 

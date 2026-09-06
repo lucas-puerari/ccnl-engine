@@ -12,6 +12,10 @@ import json
 import operator
 from datetime import UTC, datetime
 from decimal import Decimal
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ccnl_engine.surtax.domain.rules import SurtaxRules
 
 from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.io.bundled import read_bundled
@@ -19,13 +23,25 @@ from ccnl_engine.payroll.domain.employee import (
     ContractPosition,
     Employee,
     SeniorityByCount,
+    TaxProfile,
     WorkArrangement,
 )
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.payroll.service.orchestrator import compute
+from ccnl_engine.surtax.service.loaders import load_surtax_rules
 from ccnl_engine.tax.service.loaders import load_year_rules
 
 _DEFAULT_YEAR = 2026
+
+
+def list_regioni() -> str:
+    """Return JSON list of Italian region names with addizionale regionale data.
+
+    Returns:
+        JSON-encoded sorted list of region name strings.
+    """
+    surtax = load_surtax_rules(_DEFAULT_YEAR)
+    return json.dumps(sorted(surtax.regionale.keys()))
 
 
 def list_ccnls() -> str:
@@ -105,6 +121,58 @@ def _build_employment(
     return None, f"Tipo di contratto non supportato: {employment_type!r}"
 
 
+def _build_locality(
+    regione: str,
+    comune_belfiore: str,
+) -> tuple[SurtaxRules | None, TaxProfile | None]:
+    """Load surtax rules and build a TaxProfile when locality is provided.
+
+    Returns:
+        ``(surtax, tax)`` pair; both ``None`` when no locality is given.
+    """
+    if not regione and not comune_belfiore:
+        return None, None
+    surtax = load_surtax_rules(_DEFAULT_YEAR)
+    tax = TaxProfile(
+        regione=regione or None,
+        comune_belfiore=comune_belfiore or None,
+    )
+    return surtax, tax
+
+
+def _build_employee(
+    ccnl: object,
+    level_code: str,
+    employment: Permanent | FixedTerm | Apprentice,
+    part_time_pct: float,
+    seniority_count: int,
+    tax: TaxProfile | None,
+) -> Employee:
+    """Construct an :class:`Employee` from the form parameters.
+
+    Returns:
+        A fully initialised :class:`Employee` ready for :func:`compute`.
+    """
+    is_domestic = getattr(getattr(ccnl, "meta", None), "tax_sector", "") == (
+        "lavoro-domestico"
+    )
+    return Employee(
+        position=ContractPosition(
+            level_code=level_code,
+            as_of=datetime.now(tz=UTC).date(),
+            employment=employment,
+        ),
+        arrangement=WorkArrangement(
+            part_time_pct=Decimal(str(round(part_time_pct, 4))),
+            seniority=SeniorityByCount(value=seniority_count)
+            if seniority_count
+            else None,
+            weekly_hours=Decimal(40) if is_domestic else None,
+        ),
+        tax=tax,
+    )
+
+
 def compute_salary(
     filename: str,
     level_code: str,
@@ -113,6 +181,8 @@ def compute_salary(
     part_time_pct: float = 1.0,
     seniority_count: int = 0,
     months_elapsed: int = 0,
+    regione: str = "",
+    comune_belfiore: str = "",
 ) -> str:
     """Compute gross-to-net and employer cost.
 
@@ -124,6 +194,11 @@ def compute_salary(
         part_time_pct: Part-time fraction in (0, 1], default full-time.
         seniority_count: Number of seniority increments (*scatti di anzianità*).
         months_elapsed: Months elapsed in apprenticeship (apprentice only).
+        regione: Italian region name for addizionale regionale computation.
+            When empty, the surtax is not computed.
+        comune_belfiore: Belfiore code (codice catastale) of the worker's
+            municipality for addizionale comunale computation. When empty,
+            the surtax is not computed.
 
     Returns:
         JSON-encoded result dict or ``{"error": "..."}`` on failure.
@@ -132,25 +207,14 @@ def compute_salary(
     if employment is None:
         return json.dumps({"error": err})
 
+    surtax, tax = _build_locality(regione, comune_belfiore)
     try:
         ccnl = load_ccnl(filename)
         rules = load_year_rules(_DEFAULT_YEAR, ccnl.meta.tax_sector, num_employees)
-        is_domestic = ccnl.meta.tax_sector == "lavoro-domestico"
-        employee = Employee(
-            position=ContractPosition(
-                level_code=level_code,
-                as_of=datetime.now(tz=UTC).date(),
-                employment=employment,
-            ),
-            arrangement=WorkArrangement(
-                part_time_pct=Decimal(str(round(part_time_pct, 4))),
-                seniority=SeniorityByCount(value=seniority_count)
-                if seniority_count
-                else None,
-                weekly_hours=Decimal(40) if is_domestic else None,
-            ),
+        employee = _build_employee(
+            ccnl, level_code, employment, part_time_pct, seniority_count, tax
         )
-        payslip = compute(ccnl, rules, employee)
+        payslip = compute(ccnl, rules, employee, surtax=surtax)
     except Exception as exc:  # ruff: ignore[blind-except]
         return json.dumps({"error": str(exc)})
 
