@@ -2,7 +2,7 @@
   "schema_version": "0.4",
   "meta": {
     "id": "lavanderie-industriali-assosistema",
-    "name": "CCNL Lavanderie Industriali (Assosistema Confindustria) — comparto Turismo",
+    "name": "CCNL Lavanderie Industriali (Assosistema Confindustria)",
     "cnel_code": "D0L1",
     "sector": "lavanderie-industriali",
     "tax_sector": "industria",
@@ -42,16 +42,12 @@
     }
   },
   "coverage": {
-    "layer_1": "partial",
+    "layer_1": "implemented",
     "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
-        "text": "SECTOR SCOPE: turismo comparto only. Assosistema/Filctem CCNL covers two comparti (turismo and sanitario). Pre-2026 renewal both had distinct salary tables, with sanitario approx. 9 months behind turismo tranches. The 2026-2028 ipotesi applies 180 EUR total increase to both comparti, maintaining separate bases. Tables sourced are turismo. Sanitario comparto tables not accessible (Assosistema circulars login-walled)."
-      },
-      {
-        "kind": "missing",
-        "text": "SANITARIO COMPARTO: salary tables for the sanitario comparto are not modelled. Workers covered by the sanitario area have distinct minimo tabellare values not represented here. Use this CCNL only for turismo-area workers."
+        "text": "SECTOR SCOPE: both turismo and sanitario comparti. Pre-2026 the two sectors had distinct tranche dates (sanitario ~9 months behind turismo), but converged to identical minimi by Apr 2025 (sanitario) / Oct 2025 (turismo). The 2026-2028 rinnovo (19 May 2026) applies a single undifferentiated table labelled SANITARIO_TURISMO by Assosistema — confirmed by Assosistema circular title 'Costo medio orario CCNL Lavanderie industriali SANITARIO_TURISMO Aree ABCD tranche 2026'. This contract covers workers in both comparti from 2026-05-01."
       },
       {
         "kind": "info",

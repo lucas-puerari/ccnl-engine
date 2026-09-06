@@ -35,8 +35,8 @@
     }
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "partial",
+    "layer_1": "partial",
+    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
