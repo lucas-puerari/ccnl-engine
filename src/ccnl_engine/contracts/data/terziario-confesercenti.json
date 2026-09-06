@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "terziario-confesercenti",
+    "ccnl_id": "terziario-confesercenti",
     "name": "CCNL Terziario Distribuzione e Servizi — Confesercenti",
     "cnel_code": "H012",
     "sector": "Terziario distribuzione e servizi",

@@ -1,7 +1,7 @@
 """Negotiated RAL: individual salary agreed outside the CCNL tables.
 
 When a worker's gross annual salary (RAL) is individually negotiated
-above the CCNL minimum, pass it as RalOverride inside IndividualAgreement.
+above the CCNL minimum, pass it as RalOverride inside SalaryOverrides.
 The engine uses this figure directly instead of deriving pay from the
 level's base salary.
 
@@ -14,11 +14,11 @@ from decimal import Decimal
 from ccnl_engine import (
     ContractPosition,
     Employee,
-    IndividualAgreement,
+    SalaryOverrides,
     Permanent,
     RalOverride,
     WorkArrangement,
-    compute,
+    compute_payslip,
     load_ccnl,
     load_year_rules,
 )
@@ -44,11 +44,11 @@ employee_ral = Employee(
         employment=Permanent(),
     ),
     arrangement=WorkArrangement(),
-    agreement=IndividualAgreement(ral_override=RalOverride(Decimal("40000.00"))),
+    agreement=SalaryOverrides(ral_override=RalOverride(Decimal("40000.00"))),
 )
 
-ccnl_min = compute(ccnl, rules, employee_ccnl)
-negotiated = compute(ccnl, rules, employee_ral)
+ccnl_min = compute_payslip(ccnl, rules, employee_ccnl)
+negotiated = compute_payslip(ccnl, rules, employee_ral)
 
 print(f"Gross annual — CCNL minimum:  {ccnl_min.gross_annual} EUR")
 print(f"Gross annual — negotiated:    {negotiated.gross_annual} EUR")

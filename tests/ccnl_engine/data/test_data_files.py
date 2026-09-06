@@ -7,15 +7,16 @@ from pathlib import Path
 import pytest
 
 from ccnl_engine.contracts.loaders import load_ccnl
-from ccnl_engine.engine.compute import compute
-from ccnl_engine.models.apprenticeship import (
+from ccnl_engine.domain.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
     UnderClassificationPeriod,
 )
-from ccnl_engine.models.ccnl import CCNL, TaxSector
-from ccnl_engine.models.employee import ContractPosition, Employee, WorkArrangement
-from ccnl_engine.models.employment import Apprentice
+from ccnl_engine.domain.ccnl import CCNL, TaxSector
+from ccnl_engine.domain.employee import ContractPosition, Employee, WorkArrangement
+from ccnl_engine.domain.employment import Apprentice
+from ccnl_engine.engine.compute import compute_payslip
+from ccnl_engine.engine.compute.seniority import seniority_maximum
 from ccnl_engine.tax.loaders import load_year_rules
 from ccnl_engine.tax.models import YearRules
 
@@ -40,7 +41,7 @@ class TestCCNLDataFilesValidate:
     def test_file_validates(self, json_file: Path) -> None:
         """Each data file must deserialise into a valid CCNL without errors."""
         ccnl = CCNL.model_validate_json(json_file.read_text(encoding="utf-8"))
-        assert ccnl.meta.id
+        assert ccnl.meta.ccnl_id
 
 
 # ---------------------------------------------------------------------------
@@ -55,7 +56,7 @@ class TestLoadCcnl:
         """load_ccnl loads the commercio JSON and returns a CCNL instance."""
         ccnl = load_ccnl("commercio-confcommercio.json")
         assert isinstance(ccnl, CCNL)
-        assert ccnl.meta.id == "commercio-confcommercio"
+        assert ccnl.meta.ccnl_id == "commercio-confcommercio"
         assert ccnl.meta.cnel_code == "H011"
 
     def test_commercio_has_eight_levels(self) -> None:
@@ -136,7 +137,7 @@ class TestLoadMetalmeccanico:
         """File parses, id and cnel_code are correct."""
         ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
         assert isinstance(ccnl, CCNL)
-        assert ccnl.meta.id == "metalmeccanico-federmeccanica"
+        assert ccnl.meta.ccnl_id == "metalmeccanico-federmeccanica"
         assert ccnl.meta.cnel_code == "C011"
 
     def test_metalmeccanico_has_nine_levels(self) -> None:
@@ -227,7 +228,7 @@ class TestLoadMetalmeccanicoConfapi:
         """File parses, id and cnel_code are correct."""
         ccnl = load_ccnl("metalmeccanico-confapi.json")
         assert isinstance(ccnl, CCNL)
-        assert ccnl.meta.id == "metalmeccanico-confapi"
+        assert ccnl.meta.ccnl_id == "metalmeccanico-confapi"
         assert ccnl.meta.cnel_code == "C018"
 
     def test_confapi_has_nine_levels(self) -> None:
@@ -320,7 +321,7 @@ class TestLoadChimicaFederchimica:
         """File parses, id and cnel_code are correct."""
         ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
         assert isinstance(ccnl, CCNL)
-        assert ccnl.meta.id == "chimica-farmaceutica-federchimica"
+        assert ccnl.meta.ccnl_id == "chimica-farmaceutica-federchimica"
         assert ccnl.meta.cnel_code == "B011"
 
     def test_chimica_has_fifteen_levels(self) -> None:
@@ -442,7 +443,7 @@ class TestLoadTurismoConfcommercio:
     def test_turismo_loads(self) -> None:
         """File must parse without errors; id and CNEL code must match."""
         ccnl = load_ccnl("turismo-confcommercio.json")
-        assert ccnl.meta.id == "turismo-confcommercio"
+        assert ccnl.meta.ccnl_id == "turismo-confcommercio"
         assert ccnl.meta.cnel_code == "H052"
 
     def test_turismo_has_ten_levels(self) -> None:
@@ -537,7 +538,7 @@ class TestLoadEdiliziaAnce:
         """load_ccnl loads the edilizia JSON and returns the expected identifiers."""
         ccnl = load_ccnl("edilizia-ance.json")
         assert isinstance(ccnl, CCNL)
-        assert ccnl.meta.id == "edilizia-ance"
+        assert ccnl.meta.ccnl_id == "edilizia-ance"
         assert ccnl.meta.cnel_code == "F012"
 
     def test_edilizia_has_seven_levels(self) -> None:
@@ -635,7 +636,7 @@ class TestLoadCooperativeSociali:
         """File loads as valid CCNL with correct id and CNEL code T151."""
         ccnl = load_ccnl("cooperative-sociali.json")
         assert isinstance(ccnl, CCNL)
-        assert ccnl.meta.id == "cooperative-sociali"
+        assert ccnl.meta.ccnl_id == "cooperative-sociali"
         assert ccnl.meta.cnel_code == "T151"
 
     def test_cooperative_sociali_has_16_levels(self) -> None:
@@ -743,7 +744,7 @@ class TestLoadLogisticaTrasportoConfetra:
     def test_logistica_trasporto_confetra_loads(self) -> None:
         """CCNL id must be logistica-trasporto-confetra, CNEL code I100."""
         ccnl = load_ccnl("logistica-trasporto-confetra.json")
-        assert ccnl.meta.id == "logistica-trasporto-confetra"
+        assert ccnl.meta.ccnl_id == "logistica-trasporto-confetra"
         assert ccnl.meta.cnel_code == "I100"
 
     def test_logistica_trasporto_confetra_has_9_levels(self) -> None:
@@ -830,7 +831,7 @@ class TestLoadMultiserviziAnip:
     def test_multiservizi_anip_loads(self) -> None:
         """File must load and carry the correct id and CNEL code."""
         ccnl = load_ccnl("multiservizi-anip.json")
-        assert ccnl.meta.id == "multiservizi-anip"
+        assert ccnl.meta.ccnl_id == "multiservizi-anip"
         assert ccnl.meta.cnel_code == "K511"
 
     def test_multiservizi_anip_has_10_levels(self) -> None:
@@ -897,7 +898,7 @@ class TestLoadStudiProfessionaliConfprofessioni:
     def test_studi_professionali_confprofessioni_loads(self) -> None:
         """CCNL must load with correct id and CNEL code."""
         ccnl = load_ccnl("studi-professionali-confprofessioni.json")
-        assert ccnl.meta.id == "studi-professionali-confprofessioni"
+        assert ccnl.meta.ccnl_id == "studi-professionali-confprofessioni"
         assert ccnl.meta.cnel_code == "H442"
 
     def test_studi_professionali_confprofessioni_has_8_levels(self) -> None:
@@ -975,7 +976,7 @@ class TestLoadBancariAbi:
     def test_bancari_abi_loads(self) -> None:
         """Loads bancari-abi and verifies id and CNEL code J241."""
         ccnl = load_ccnl("bancari-abi.json")
-        assert ccnl.meta.id == "bancari-abi"
+        assert ccnl.meta.ccnl_id == "bancari-abi"
         assert ccnl.meta.cnel_code == "J241"
 
     def test_bancari_abi_has_9_levels(self) -> None:
@@ -1053,7 +1054,7 @@ class TestLoadTessileSmi:
     def test_tessile_smi_loads(self) -> None:
         """Contract id == 'tessile-smi', CNEL code == 'D014'."""
         ccnl = load_ccnl("tessile-smi.json")
-        assert ccnl.meta.id == "tessile-smi"
+        assert ccnl.meta.ccnl_id == "tessile-smi"
         assert ccnl.meta.cnel_code == "D014"
 
     def test_tessile_smi_has_10_levels(self) -> None:
@@ -1170,7 +1171,7 @@ class TestLoadAlimentariFederalimentare:
     def test_alimentari_federalimentare_loads(self) -> None:
         """CCNL id == 'alimentari-federalimentare', cnel_code == 'E012'."""
         ccnl = load_ccnl("alimentari-federalimentare.json")
-        assert ccnl.meta.id == "alimentari-federalimentare"
+        assert ccnl.meta.ccnl_id == "alimentari-federalimentare"
         assert ccnl.meta.cnel_code == "E012"
 
     def test_alimentari_federalimentare_has_8_levels(self) -> None:
@@ -1257,7 +1258,7 @@ class TestLoadAlimentariFederalimentare:
         """Apprentice 5 months elapsed → under level 4 (period 0-9 months)."""
         ccnl = load_ccnl("alimentari-federalimentare.json")
         rules = load_year_rules(2026, TaxSector.INDUSTRIA, num_employees=50)
-        result = compute(
+        result = compute_payslip(
             ccnl,
             rules,
             Employee(
@@ -1279,7 +1280,7 @@ class TestLoadDmoFederdistribuzione:
     def test_dmo_federdistribuzione_loads(self) -> None:
         """Loads dmo-federdistribuzione and verifies id and CNEL code H008."""
         ccnl = load_ccnl("dmo-federdistribuzione.json")
-        assert ccnl.meta.id == "dmo-federdistribuzione"
+        assert ccnl.meta.ccnl_id == "dmo-federdistribuzione"
         assert ccnl.meta.cnel_code == "H008"
 
     def test_dmo_federdistribuzione_has_8_levels(self) -> None:
@@ -1375,7 +1376,7 @@ class TestLoadMetalmeccanicoArtigianato:
     def test_metalmeccanico_artigianato_loads(self) -> None:
         """File loads and has correct id and CNEL code."""
         ccnl = load_ccnl("metalmeccanico-artigianato.json")
-        assert ccnl.meta.id == "metalmeccanico-artigianato"
+        assert ccnl.meta.ccnl_id == "metalmeccanico-artigianato"
         assert ccnl.meta.cnel_code == "C030"
 
     def test_metalmeccanico_artigianato_has_8_levels(self) -> None:
@@ -1458,7 +1459,7 @@ class TestLoadGommaPlasticaFederazioneGommaPlastica:
     def test_gomma_plastica_loads(self) -> None:
         """File loads and has correct id and CNEL code."""
         ccnl = load_ccnl("gomma-plastica-federazione-gomma-plastica.json")
-        assert ccnl.meta.id == "gomma-plastica-federazione-gomma-plastica"
+        assert ccnl.meta.ccnl_id == "gomma-plastica-federazione-gomma-plastica"
         assert ccnl.meta.cnel_code == "B371"
 
     def test_gomma_plastica_has_10_levels(self) -> None:
@@ -1541,7 +1542,7 @@ class TestLoadGraficaEditoriaAieg:
     def test_grafica_editoria_aieg_loads(self) -> None:
         """File loads and has correct id and CNEL code."""
         ccnl = load_ccnl("grafica-editoria-aieg.json")
-        assert ccnl.meta.id == "grafica-editoria-aieg"
+        assert ccnl.meta.ccnl_id == "grafica-editoria-aieg"
         assert ccnl.meta.cnel_code == "G011"
 
     def test_grafica_editoria_aieg_has_12_levels(self) -> None:
@@ -1662,7 +1663,7 @@ class TestLoadCartaCartoneAssocarta:
     def test_carta_cartone_assocarta_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("carta-cartone-assocarta.json")
-        assert ccnl.meta.id == "carta-cartone-assocarta"
+        assert ccnl.meta.ccnl_id == "carta-cartone-assocarta"
         assert ccnl.meta.cnel_code == "G022"
 
     def test_carta_cartone_assocarta_has_13_levels(self) -> None:
@@ -1743,7 +1744,7 @@ class TestLoadTelecomunicazioniAsstel:
     def test_telecomunicazioni_asstel_loads(self) -> None:
         """Contract id == 'telecomunicazioni-asstel', cnel_code == 'K411'."""
         ccnl = load_ccnl("telecomunicazioni-asstel.json")
-        assert ccnl.meta.id == "telecomunicazioni-asstel"
+        assert ccnl.meta.ccnl_id == "telecomunicazioni-asstel"
         assert ccnl.meta.cnel_code == "K411"
 
     def test_telecomunicazioni_asstel_has_9_levels(self) -> None:
@@ -1830,7 +1831,7 @@ class TestLoadVigilanzaPrivataAssiv:
     def test_vigilanza_privata_assiv_loads(self) -> None:
         """Contract loads with correct id and CNEL code HV40."""
         ccnl = load_ccnl("vigilanza-privata-assiv.json")
-        assert ccnl.meta.id == "vigilanza-privata-assiv"
+        assert ccnl.meta.ccnl_id == "vigilanza-privata-assiv"
         assert ccnl.meta.cnel_code == "HV40"
 
     def test_vigilanza_privata_assiv_has_7_levels(self) -> None:
@@ -1903,7 +1904,7 @@ class TestLoadLegnoArredamentoFederlegno:
     def test_legno_arredamento_federlegno_loads(self) -> None:
         """Contract loads with id='legno-arredamento-federlegno', code F051."""
         ccnl = load_ccnl("legno-arredamento-federlegno.json")
-        assert ccnl.meta.id == "legno-arredamento-federlegno"
+        assert ccnl.meta.ccnl_id == "legno-arredamento-federlegno"
         assert ccnl.meta.cnel_code == "F051"
 
     def test_legno_arredamento_federlegno_has_16_levels(self) -> None:
@@ -2004,7 +2005,7 @@ class TestLoadEdiliziaArtigianatoCna:
     def test_edilizia_artigianato_cna_loads(self) -> None:
         """Contract loads and reports correct id and CNEL code."""
         ccnl = load_ccnl("edilizia-artigianato-cna.json")
-        assert ccnl.meta.id == "edilizia-artigianato-cna"
+        assert ccnl.meta.ccnl_id == "edilizia-artigianato-cna"
         assert ccnl.meta.cnel_code == "F015"
 
     def test_edilizia_artigianato_cna_has_8_levels(self) -> None:
@@ -2116,7 +2117,7 @@ class TestLoadGasAcquaUtilitalia:
     def test_gas_acqua_utilitalia_loads(self) -> None:
         """Contract loads with id='gas-acqua-utilitalia' and CNEL K321."""
         ccnl = load_ccnl("gas-acqua-utilitalia.json")
-        assert ccnl.meta.id == "gas-acqua-utilitalia"
+        assert ccnl.meta.ccnl_id == "gas-acqua-utilitalia"
         assert ccnl.meta.cnel_code == "K321"
 
     def test_gas_acqua_utilitalia_has_9_levels(self) -> None:
@@ -2210,7 +2211,7 @@ class TestLoadUnebaUneba:
     def test_uneba_uneba_loads(self) -> None:
         """Loads with id='uneba-uneba' and CNEL code T141."""
         ccnl = load_ccnl("uneba-uneba.json")
-        assert ccnl.meta.id == "uneba-uneba"
+        assert ccnl.meta.ccnl_id == "uneba-uneba"
         assert ccnl.meta.cnel_code == "T141"
 
     def test_uneba_uneba_has_11_levels(self) -> None:
@@ -2275,7 +2276,7 @@ class TestLoadAcconciaturaesteticaConfartigianato:
     def test_acconciatura_estetica_confartigianato_loads(self) -> None:
         """Loads with id='acconciatura-estetica-confartigianato', code H515."""
         ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
-        assert ccnl.meta.id == "acconciatura-estetica-confartigianato"
+        assert ccnl.meta.ccnl_id == "acconciatura-estetica-confartigianato"
         assert ccnl.meta.cnel_code == "H515"
 
     def test_acconciatura_estetica_confartigianato_has_4_levels(self) -> None:
@@ -2363,7 +2364,7 @@ class TestLoadPanificazioneArtigianatoConfartigianato:
     def test_panificazione_artigianato_confartigianato_loads(self) -> None:
         """Loads with id='panificazione-artigianato-confartigianato', code E015."""
         ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
-        assert ccnl.meta.id == "panificazione-artigianato-confartigianato"
+        assert ccnl.meta.ccnl_id == "panificazione-artigianato-confartigianato"
         assert ccnl.meta.cnel_code == "E015"
 
     def test_panificazione_artigianato_confartigianato_has_10_levels(self) -> None:
@@ -2454,7 +2455,7 @@ class TestLoadAutoferrotranvieriInternavigatori:
     def test_autoferrotranvieri_internavigatori_loads(self) -> None:
         """Contract id is autoferrotranvieri-internavigatori, CNEL code I022."""
         ccnl = load_ccnl("autoferrotranvieri-internavigatori.json")
-        assert ccnl.meta.id == "autoferrotranvieri-internavigatori"
+        assert ccnl.meta.ccnl_id == "autoferrotranvieri-internavigatori"
         assert ccnl.meta.cnel_code == "I022"
 
     def test_autoferrotranvieri_internavigatori_has_33_levels(self) -> None:
@@ -2533,7 +2534,7 @@ class TestLoadBccCreditoCooperativo:
     def test_bcc_credito_cooperativo_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("bcc-credito-cooperativo.json")
-        assert ccnl.meta.id == "bcc-credito-cooperativo"
+        assert ccnl.meta.ccnl_id == "bcc-credito-cooperativo"
         assert ccnl.meta.cnel_code == "J271"
 
     def test_bcc_credito_cooperativo_has_11_levels(self) -> None:
@@ -2635,7 +2636,7 @@ class TestLoadBccCreditoCooperativo:
         """Apprentice 12 months elapsed → salary at 2AP2 level."""
         ccnl = load_ccnl("bcc-credito-cooperativo.json")
         rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
-        result = compute(
+        result = compute_payslip(
             ccnl,
             rules,
             Employee(
@@ -2658,7 +2659,7 @@ class TestLoadElettricoElettricita:
     def test_elettrico_elettricita_futura_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("elettrico-elettricita-futura.json")
-        assert ccnl.meta.id == "elettrico-elettricita-futura"
+        assert ccnl.meta.ccnl_id == "elettrico-elettricita-futura"
         assert ccnl.meta.cnel_code == "K051"
 
     def test_elettrico_elettricita_futura_has_14_levels(self) -> None:
@@ -2741,7 +2742,7 @@ class TestLoadCalzaturieroAssocalzaturifici:
     def test_calzaturiero_assocalzaturifici_loads(self) -> None:
         """CCNL loads with correct id and CNEL code D121."""
         ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
-        assert ccnl.meta.id == "calzaturiero-assocalzaturifici"
+        assert ccnl.meta.ccnl_id == "calzaturiero-assocalzaturifici"
         assert ccnl.meta.cnel_code == "D121"
 
     def test_calzaturiero_assocalzaturifici_has_10_levels(self) -> None:
@@ -2854,7 +2855,7 @@ class TestLoadTessileModaArtigianatoConfartigianato:
     def test_tessile_moda_artigianato_confartigianato_loads(self) -> None:
         """Contract loads with correct id and CNEL code V751."""
         ccnl = load_ccnl("tessile-moda-artigianato-confartigianato.json")
-        assert ccnl.meta.id == "tessile-moda-artigianato-confartigianato"
+        assert ccnl.meta.ccnl_id == "tessile-moda-artigianato-confartigianato"
         assert ccnl.meta.cnel_code == "V751"
 
     def test_tessile_moda_artigianato_confartigianato_has_7_levels(self) -> None:
@@ -2944,7 +2945,7 @@ class TestLoadLegnoLapideiArtigianatoConfartigianato:
     def test_legno_lapidei_artigianato_confartigianato_loads(self) -> None:
         """Contract loads with correct id and CNEL code F060."""
         ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato.json")
-        assert ccnl.meta.id == "legno-lapidei-artigianato-confartigianato"
+        assert ccnl.meta.ccnl_id == "legno-lapidei-artigianato-confartigianato"
         assert ccnl.meta.cnel_code == "F060"
 
     def test_legno_lapidei_artigianato_confartigianato_has_8_levels(self) -> None:
@@ -3050,7 +3051,7 @@ class TestLoadComunicazioneArtigianatoConfartigianato:
     def test_comunicazione_artigianato_confartigianato_loads(self) -> None:
         """Contract loads with correct id and CNEL code G016."""
         ccnl = load_ccnl("comunicazione-artigianato-confartigianato.json")
-        assert ccnl.meta.id == "comunicazione-artigianato-confartigianato"
+        assert ccnl.meta.ccnl_id == "comunicazione-artigianato-confartigianato"
         assert ccnl.meta.cnel_code == "G016"
 
     def test_comunicazione_artigianato_confartigianato_has_8_levels(self) -> None:
@@ -3158,7 +3159,7 @@ class TestLoadCeramicaIndustriaConfindustria:
     def test_ceramica_industria_confindustria_loads(self) -> None:
         """Contract loads with correct id and CNEL code B122."""
         ccnl = load_ccnl("ceramica-industria-confindustria.json")
-        assert ccnl.meta.id == "ceramica-industria-confindustria"
+        assert ccnl.meta.ccnl_id == "ceramica-industria-confindustria"
         assert ccnl.meta.cnel_code == "B122"
 
     def test_ceramica_industria_confindustria_has_12_levels(self) -> None:
@@ -3261,7 +3262,7 @@ class TestLoadOrafiArgentieriIndustriaFederorafi:
     def test_orafi_argentieri_industria_federorafi_loads(self) -> None:
         """Contract loads with correct id and CNEL code C021."""
         ccnl = load_ccnl("orafi-argentieri-industria-federorafi.json")
-        assert ccnl.meta.id == "orafi-argentieri-industria-federorafi"
+        assert ccnl.meta.ccnl_id == "orafi-argentieri-industria-federorafi"
         assert ccnl.meta.cnel_code == "C021"
 
     def test_orafi_argentieri_industria_federorafi_has_8_levels(self) -> None:
@@ -3358,7 +3359,7 @@ class TestLoadPelliCuoioIndustriaAssopellettieri:
     def test_pelli_cuoio_industria_assopellettieri_loads(self) -> None:
         """Contract loads with correct id and CNEL code D111."""
         ccnl = load_ccnl("pelli-cuoio-industria-assopellettieri.json")
-        assert ccnl.meta.id == "pelli-cuoio-industria-assopellettieri"
+        assert ccnl.meta.ccnl_id == "pelli-cuoio-industria-assopellettieri"
         assert ccnl.meta.cnel_code == "D111"
 
     def test_pelli_cuoio_industria_assopellettieri_has_7_levels(self) -> None:
@@ -3446,7 +3447,7 @@ class TestLoadPubbliciEserciziRistorazioneFipeAngem:
     def test_pubblici_esercizi_fipe_angem_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("pubblici-esercizi-fipe-angem.json")
-        assert ccnl.meta.id == "pubblici-esercizi-fipe-angem"
+        assert ccnl.meta.ccnl_id == "pubblici-esercizi-fipe-angem"
         assert ccnl.meta.cnel_code == "H05Y"
 
     def test_pubblici_esercizi_fipe_angem_has_10_levels(self) -> None:
@@ -3525,7 +3526,7 @@ class TestLoadAgenzieDiViaggioFiavet:
     def test_agenzie_viaggio_fiavet_loads(self) -> None:
         """Contract loads with id and CNEL code H052."""
         ccnl = load_ccnl("agenzie-viaggio-fiavet.json")
-        assert ccnl.meta.id == "agenzie-viaggio-fiavet"
+        assert ccnl.meta.ccnl_id == "agenzie-viaggio-fiavet"
         assert ccnl.meta.cnel_code == "H052"
 
     def test_agenzie_viaggio_fiavet_has_10_levels(self) -> None:
@@ -3591,7 +3592,7 @@ class TestLoadTerziarioConfesercenti:
     def test_terziario_confesercenti_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("terziario-confesercenti.json")
-        assert ccnl.meta.id == "terziario-confesercenti"
+        assert ccnl.meta.ccnl_id == "terziario-confesercenti"
         assert ccnl.meta.cnel_code == "H012"
 
     def test_terziario_confesercenti_has_8_levels(self) -> None:
@@ -3657,7 +3658,7 @@ class TestLoadTurismoFederalberghi:
     def test_turismo_federalberghi_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("turismo-federalberghi.json")
-        assert ccnl.meta.id == "turismo-federalberghi"
+        assert ccnl.meta.ccnl_id == "turismo-federalberghi"
         assert ccnl.meta.cnel_code == "H052"
 
     def test_turismo_federalberghi_has_10_levels(self) -> None:
@@ -3723,7 +3724,7 @@ class TestLoadFunzioniCentraliAran:
     def test_funzioni_centrali_aran_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("funzioni-centrali-aran.json")
-        assert ccnl.meta.id == "funzioni-centrali-aran"
+        assert ccnl.meta.ccnl_id == "funzioni-centrali-aran"
         assert ccnl.meta.cnel_code == "S005"
 
     def test_funzioni_centrali_aran_has_4_levels(self) -> None:
@@ -3794,7 +3795,7 @@ class TestLoadFunzioniLocaliAran:
     def test_funzioni_locali_aran_loads(self) -> None:
         """Contract loads with correct id and CNEL code S105."""
         ccnl = load_ccnl("funzioni-locali-aran.json")
-        assert ccnl.meta.id == "funzioni-locali-aran"
+        assert ccnl.meta.ccnl_id == "funzioni-locali-aran"
         assert ccnl.meta.cnel_code == "S105"
 
     def test_funzioni_locali_aran_has_4_levels(self) -> None:
@@ -3865,7 +3866,7 @@ class TestLoadSanitaAran:
     def test_sanita_aran_loads(self) -> None:
         """File loads successfully and has correct id and CNEL code."""
         ccnl = load_ccnl("sanita-aran.json")
-        assert ccnl.meta.id == "sanita-aran"
+        assert ccnl.meta.ccnl_id == "sanita-aran"
         assert ccnl.meta.cnel_code == "S205"
 
     def test_sanita_aran_has_5_levels(self) -> None:
@@ -3937,7 +3938,7 @@ class TestLoadDirigenzaSanitariaMedicoVeterinariaAran:
     def test_dirigenza_sanitaria_medico_veterinaria_aran_loads(self) -> None:
         """File loads and has correct id and CNEL code."""
         ccnl = load_ccnl("dirigenza-sanitaria-medico-veterinaria-aran.json")
-        assert ccnl.meta.id == "dirigenza-sanitaria-medico-veterinaria-aran"
+        assert ccnl.meta.ccnl_id == "dirigenza-sanitaria-medico-veterinaria-aran"
         assert ccnl.meta.cnel_code == "S225"
 
     def test_dirigenza_sanitaria_medico_veterinaria_aran_has_1_level(
@@ -4022,7 +4023,7 @@ class TestLoadDirigenzaSanitariaAreaSanitaAran:
     def test_dirigenza_sanitaria_area_sanita_aran_loads(self) -> None:
         """File loads and has correct id and CNEL code."""
         ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran.json")
-        assert ccnl.meta.id == "dirigenza-sanitaria-area-sanita-aran"
+        assert ccnl.meta.ccnl_id == "dirigenza-sanitaria-area-sanita-aran"
         assert ccnl.meta.cnel_code == "S225"
 
     def test_dirigenza_sanitaria_area_sanita_aran_has_1_level(self) -> None:
@@ -4097,7 +4098,7 @@ class TestLoadDirigenzaFunzioniLocaliAran:
     def test_dirigenza_funzioni_locali_aran_loads(self) -> None:
         """File loads and has correct id and CNEL code."""
         ccnl = load_ccnl("dirigenza-funzioni-locali-aran.json")
-        assert ccnl.meta.id == "dirigenza-funzioni-locali-aran"
+        assert ccnl.meta.ccnl_id == "dirigenza-funzioni-locali-aran"
         assert ccnl.meta.cnel_code == "S125"
 
     def test_dirigenza_funzioni_locali_aran_has_1_level(self) -> None:
@@ -4162,7 +4163,7 @@ class TestLoadDirigenzaFunzioniCentraliAran:
     def test_dirigenza_funzioni_centrali_aran_loads(self) -> None:
         """File loads and has correct id and CNEL code."""
         ccnl = load_ccnl("dirigenza-funzioni-centrali-aran.json")
-        assert ccnl.meta.id == "dirigenza-funzioni-centrali-aran"
+        assert ccnl.meta.ccnl_id == "dirigenza-funzioni-centrali-aran"
         assert ccnl.meta.cnel_code == "S025"
 
     def test_dirigenza_funzioni_centrali_aran_has_2_levels(self) -> None:
@@ -4230,7 +4231,7 @@ class TestLoadDirigenzaIstruzioneRicercaAran:
     def test_dirigenza_istruzione_ricerca_aran_loads(self) -> None:
         """File loads and has correct id and CNEL code."""
         ccnl = load_ccnl("dirigenza-istruzione-ricerca-aran.json")
-        assert ccnl.meta.id == "dirigenza-istruzione-ricerca-aran"
+        assert ccnl.meta.ccnl_id == "dirigenza-istruzione-ricerca-aran"
         assert ccnl.meta.cnel_code == "S325"
 
     def test_dirigenza_istruzione_ricerca_aran_has_2_levels(self) -> None:
@@ -4298,7 +4299,7 @@ class TestLoadIstruzioneRicercaAran:
     def test_istruzione_ricerca_aran_loads(self) -> None:
         """File loads and has correct id and CNEL code."""
         ccnl = load_ccnl("istruzione-ricerca-aran.json")
-        assert ccnl.meta.id == "istruzione-ricerca-aran"
+        assert ccnl.meta.ccnl_id == "istruzione-ricerca-aran"
         assert ccnl.meta.cnel_code == "S305"
 
     def test_istruzione_ricerca_aran_has_6_levels(self) -> None:
@@ -4370,7 +4371,7 @@ class TestLoadSanitaPrivataAiopAris:
     def test_sanita_privata_aiop_aris_loads(self) -> None:
         """Contract id and CNEL code match expected values."""
         ccnl = load_ccnl("sanita-privata-aiop-aris.json")
-        assert ccnl.meta.id == "sanita-privata-aiop-aris"
+        assert ccnl.meta.ccnl_id == "sanita-privata-aiop-aris"
         assert ccnl.meta.cnel_code == "T011"
 
     def test_sanita_privata_aiop_aris_has_28_levels(self) -> None:
@@ -4465,7 +4466,7 @@ class TestLoadLavoroDomesticoConvivente:
     def test_lavoro_domestico_convivente_loads(self) -> None:
         """id='lavoro-domestico-convivente', cnel_code='H501'."""
         ccnl = load_ccnl("lavoro-domestico-convivente.json")
-        assert ccnl.meta.id == "lavoro-domestico-convivente"
+        assert ccnl.meta.ccnl_id == "lavoro-domestico-convivente"
         assert ccnl.meta.cnel_code == "H501"
 
     def test_lavoro_domestico_convivente_has_8_levels(self) -> None:
@@ -4546,7 +4547,7 @@ class TestLoadLavoroDomesticoNonConvivente:
     def test_lavoro_domestico_non_convivente_loads(self) -> None:
         """id='lavoro-domestico-non-convivente', cnel_code='H501'."""
         ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
-        assert ccnl.meta.id == "lavoro-domestico-non-convivente"
+        assert ccnl.meta.ccnl_id == "lavoro-domestico-non-convivente"
         assert ccnl.meta.cnel_code == "H501"
 
     def test_lavoro_domestico_non_convivente_has_8_levels(self) -> None:
@@ -4620,7 +4621,7 @@ class TestLoadOperaiAgricoli:
     def test_operai_agricoli_loads(self) -> None:
         """Contract loads and id/cnel_code are correct."""
         ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
-        assert ccnl.meta.id == "operai-agricoli-florovivaisti"
+        assert ccnl.meta.ccnl_id == "operai-agricoli-florovivaisti"
         assert ccnl.meta.cnel_code == "A011"
 
     def test_operai_agricoli_has_3_levels(self) -> None:
@@ -4685,7 +4686,7 @@ class TestLoadChimicaAffiniPmiUnionichimica:
     def test_chimica_pmi_loads(self) -> None:
         """Contract loads with correct id and CNEL code B018."""
         ccnl = load_ccnl("chimica-affini-pmi-unionchimica.json")
-        assert ccnl.meta.id == "chimica-affini-pmi-unionchimica"
+        assert ccnl.meta.ccnl_id == "chimica-affini-pmi-unionchimica"
         assert ccnl.meta.cnel_code == "B018"
 
     def test_chimica_pmi_has_8_levels(self) -> None:
@@ -4768,7 +4769,7 @@ class TestLoadPanificazioneAssipan:
     def test_panif_loads(self) -> None:
         """Contract loads with id panificazione-assipan and CNEL code E023."""
         ccnl = load_ccnl("panificazione-assipan.json")
-        assert ccnl.meta.id == "panificazione-assipan"
+        assert ccnl.meta.ccnl_id == "panificazione-assipan"
         assert ccnl.meta.cnel_code == "E023"
 
     def test_panif_has_7_levels(self) -> None:
@@ -4842,7 +4843,7 @@ class TestLoadTrasportoFerroviarioAgens:
     def test_trasporto_ferroviario_agens_loads(self) -> None:
         """Contract loads with correct id and CNEL code I320."""
         ccnl = load_ccnl("trasporto-ferroviario-agens.json")
-        assert ccnl.meta.id == "trasporto-ferroviario-agens"
+        assert ccnl.meta.ccnl_id == "trasporto-ferroviario-agens"
         assert ccnl.meta.cnel_code == "I320"
 
     def test_trasporto_ferroviario_agens_has_16_levels(self) -> None:
@@ -4929,7 +4930,7 @@ class TestLoadTrasportoAereoAssaeroporti:
     def test_trasporto_aereo_assaeroporti_loads(self) -> None:
         """Contract loads with correct id and CNEL code I810."""
         ccnl = load_ccnl("trasporto-aereo-assaeroporti.json")
-        assert ccnl.meta.id == "trasporto-aereo-assaeroporti"
+        assert ccnl.meta.ccnl_id == "trasporto-aereo-assaeroporti"
         assert ccnl.meta.cnel_code == "I810"
 
     def test_trasporto_aereo_assaeroporti_has_11_levels(self) -> None:
@@ -5002,7 +5003,7 @@ class TestLoadIgieneAmbientaleUtilitalia:
     def test_igiene_ambientale_utilitalia_loads(self) -> None:
         """Contract loads with correct id and CNEL code K540."""
         ccnl = load_ccnl("igiene-ambientale-utilitalia.json")
-        assert ccnl.meta.id == "igiene-ambientale-utilitalia"
+        assert ccnl.meta.ccnl_id == "igiene-ambientale-utilitalia"
         assert ccnl.meta.cnel_code == "K540"
 
     def test_igiene_ambientale_utilitalia_has_16_levels(self) -> None:
@@ -5089,7 +5090,7 @@ class TestLoadImpiegatiTecniciAgricoli:
     def test_impiegati_tecnici_agricoli_loads(self) -> None:
         """Contract loads with correct id and CNEL code A021."""
         ccnl = load_ccnl("impiegati-tecnici-agricoli.json")
-        assert ccnl.meta.id == "impiegati-tecnici-agricoli"
+        assert ccnl.meta.ccnl_id == "impiegati-tecnici-agricoli"
         assert ccnl.meta.cnel_code == "A021"
 
     def test_impiegati_tecnici_agricoli_has_7_levels(self) -> None:
@@ -5159,7 +5160,7 @@ class TestLoadForzePoliziaOrdinamentoCivile:
     def test_forze_polizia_ordinamento_civile_loads(self) -> None:
         """Contract id and cnel_code match DPR 53/2025 identifier."""
         ccnl = load_ccnl("forze-polizia-ordinamento-civile.json")
-        assert ccnl.meta.id == "forze-polizia-ordinamento-civile"
+        assert ccnl.meta.ccnl_id == "forze-polizia-ordinamento-civile"
         assert ccnl.meta.cnel_code == "N/A"
 
     def test_forze_polizia_ordinamento_civile_has_21_levels(self) -> None:
@@ -5252,7 +5253,7 @@ class TestLoadInformaticaPmiUnimatica:
     def test_informatica_pmi_unimatica_loads(self) -> None:
         """Contract id and CNEL code are correct."""
         ccnl = load_ccnl("informatica-pmi-unimatica.json")
-        assert ccnl.meta.id == "informatica-pmi-unimatica"
+        assert ccnl.meta.ccnl_id == "informatica-pmi-unimatica"
         assert ccnl.meta.cnel_code == "G029"
 
     def test_informatica_pmi_unimatica_has_11_levels(self) -> None:
@@ -5320,7 +5321,7 @@ class TestLoadScuolePrivateAgidae:
     def test_scuole_private_agidae_loads(self) -> None:
         """Contract id and CNEL code are correct."""
         ccnl = load_ccnl("scuole-private-agidae.json")
-        assert ccnl.meta.id == "scuole-private-agidae"
+        assert ccnl.meta.ccnl_id == "scuole-private-agidae"
         assert ccnl.meta.cnel_code == "T241"
 
     def test_scuole_private_agidae_has_6_levels(self) -> None:
@@ -5388,7 +5389,7 @@ class TestLoadAssicurazioniAnia:
     def test_assicurazioni_ania_loads(self) -> None:
         """Contract id and CNEL code are correct (J121)."""
         ccnl = load_ccnl("assicurazioni-ania.json")
-        assert ccnl.meta.id == "assicurazioni-ania"
+        assert ccnl.meta.ccnl_id == "assicurazioni-ania"
         assert ccnl.meta.cnel_code == "J121"
 
     def test_assicurazioni_ania_has_7_levels(self) -> None:
@@ -5467,7 +5468,7 @@ class TestLoadEnergiaPetrolioConfindustria:
     def test_energia_petrolio_confindustria_loads(self) -> None:
         """Contract loads with correct id and CNEL code B254."""
         ccnl = load_ccnl("energia-petrolio-confindustria.json")
-        assert ccnl.meta.id == "energia-petrolio-confindustria"
+        assert ccnl.meta.ccnl_id == "energia-petrolio-confindustria"
         assert ccnl.meta.cnel_code == "B254"
 
     def test_energia_petrolio_confindustria_has_23_levels(self) -> None:
@@ -5561,7 +5562,7 @@ class TestLoadDistribuzioneCooperativaAncc:
     def test_distribuzione_cooperativa_ancc_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("distribuzione-cooperativa-ancc.json")
-        assert ccnl.meta.id == "distribuzione-cooperativa-ancc"
+        assert ccnl.meta.ccnl_id == "distribuzione-cooperativa-ancc"
         assert ccnl.meta.cnel_code == "H016"
 
     def test_distribuzione_cooperativa_ancc_has_9_levels(self) -> None:
@@ -5629,7 +5630,7 @@ class TestLoadLavanderiIndustrialiAssosistema:
     def test_lavanderie_industriali_assosistema_loads(self) -> None:
         """Contract loads with correct id and CNEL code D0L1."""
         ccnl = load_ccnl("lavanderie-industriali-assosistema.json")
-        assert ccnl.meta.id == "lavanderie-industriali-assosistema"
+        assert ccnl.meta.ccnl_id == "lavanderie-industriali-assosistema"
         assert ccnl.meta.cnel_code == "D0L1"
 
     def test_lavanderie_industriali_assosistema_has_10_levels(self) -> None:
@@ -5699,7 +5700,7 @@ class TestLoadCedAssoced:
     def test_ced_assoced_loads(self) -> None:
         """Contract loads with correct id and CNEL code H601."""
         ccnl = load_ccnl("ced-assoced.json")
-        assert ccnl.meta.id == "ced-assoced"
+        assert ccnl.meta.ccnl_id == "ced-assoced"
         assert ccnl.meta.cnel_code == "H601"
 
     def test_ced_assoced_has_9_levels(self) -> None:
@@ -5769,7 +5770,7 @@ class TestLoadContoterzismoCaiagromec:
     def test_contoterzismo_caiagromec_loads(self) -> None:
         """Contract loads with correct id and CNEL code A051."""
         ccnl = load_ccnl("contoterzismo-caiagromec.json")
-        assert ccnl.meta.id == "contoterzismo-caiagromec"
+        assert ccnl.meta.ccnl_id == "contoterzismo-caiagromec"
         assert ccnl.meta.cnel_code == "A051"
 
     def test_contoterzismo_caiagromec_has_6_levels(self) -> None:
@@ -5846,7 +5847,7 @@ class TestLoadConsorziDiBonificaSnebi:
     def test_consorzi_di_bonifica_snebi_loads(self) -> None:
         """Contract loads with correct id and CNEL code A131."""
         ccnl = load_ccnl("consorzi-di-bonifica-snebi.json")
-        assert ccnl.meta.id == "consorzi-di-bonifica-snebi"
+        assert ccnl.meta.ccnl_id == "consorzi-di-bonifica-snebi"
         assert ccnl.meta.cnel_code == "A131"
 
     def test_consorzi_di_bonifica_snebi_has_25_levels(self) -> None:
@@ -5918,7 +5919,7 @@ class TestLoadConsorziDiBonificaSnebi:
         assert si.tiers[1].maximum_count == 1
         assert si.tiers[2].cadence_months == 48
         assert si.tiers[2].maximum_count == 3
-        assert si.maximum_for("C127") == 10
+        assert seniority_maximum(si, "C127") == 10
 
 
 class TestLoadConsorziAgrariAssocap:
@@ -5927,7 +5928,7 @@ class TestLoadConsorziAgrariAssocap:
     def test_consorzi_agrari_assocap_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("consorzi-agrari-assocap.json")
-        assert ccnl.meta.id == "consorzi-agrari-assocap"
+        assert ccnl.meta.ccnl_id == "consorzi-agrari-assocap"
         assert ccnl.meta.cnel_code == "A141"
 
     def test_consorzi_agrari_assocap_has_9_levels(self) -> None:
@@ -6004,7 +6005,7 @@ class TestLoadOrganizzazioniAllevatoriAia:
     def test_organizzazioni_allevatori_aia_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("organizzazioni-allevatori-aia.json")
-        assert ccnl.meta.id == "organizzazioni-allevatori-aia"
+        assert ccnl.meta.ccnl_id == "organizzazioni-allevatori-aia"
         assert ccnl.meta.cnel_code == "A221"
 
     def test_organizzazioni_allevatori_aia_has_13_levels(self) -> None:
@@ -6084,7 +6085,7 @@ class TestLoadAlimentariPmiUnionalimentari:
     def test_alimentari_pmi_unionalimentari_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("alimentari-pmi-unionalimentari.json")
-        assert ccnl.meta.id == "alimentari-pmi-unionalimentari"
+        assert ccnl.meta.ccnl_id == "alimentari-pmi-unionalimentari"
         assert ccnl.meta.cnel_code == "E018"
 
     def test_alimentari_pmi_unionalimentari_has_9_levels(self) -> None:
@@ -6151,7 +6152,7 @@ class TestLoadPosteItalianeK700:
     def test_k700_loads(self) -> None:
         """Contract loads with correct id and CNEL code K700."""
         ccnl = load_ccnl("poste-italiane-k700.json")
-        assert ccnl.meta.id == "poste-italiane-k700"
+        assert ccnl.meta.ccnl_id == "poste-italiane-k700"
         assert ccnl.meta.cnel_code == "K700"
 
     def test_k700_has_7_levels(self) -> None:
@@ -6224,7 +6225,7 @@ class TestLoadAutorimesseIC35:
     def test_ic35_loads(self) -> None:
         """Contract loads with correct id and CNEL code IC35."""
         ccnl = load_ccnl("autorimesse-ic35.json")
-        assert ccnl.meta.id == "autorimesse-ic35"
+        assert ccnl.meta.ccnl_id == "autorimesse-ic35"
         assert ccnl.meta.cnel_code == "IC35"
 
     def test_ic35_has_11_levels(self) -> None:
@@ -6303,7 +6304,7 @@ class TestLoadAgenzieMaritime:
     def test_i481_loads(self) -> None:
         """Contract loads with id=agenzie-marittime-i481 and cnel=I481."""
         ccnl = load_ccnl("agenzie-marittime-i481.json")
-        assert ccnl.meta.id == "agenzie-marittime-i481"
+        assert ccnl.meta.ccnl_id == "agenzie-marittime-i481"
         assert ccnl.meta.cnel_code == "I481"
 
     def test_i481_has_7_levels(self) -> None:
@@ -6378,7 +6379,7 @@ class TestLoadFarmaciePrivateH121:
     def test_farmacie_private_h121_loads(self) -> None:
         """Contract loads with correct id and CNEL code H121."""
         ccnl = load_ccnl("farmacie-private-h121.json")
-        assert ccnl.meta.id == "farmacie-private-h121"
+        assert ccnl.meta.ccnl_id == "farmacie-private-h121"
         assert ccnl.meta.cnel_code == "H121"
 
     def test_farmacie_private_h121_has_9_levels(self) -> None:
@@ -6459,7 +6460,7 @@ class TestLoadLateriziIndustriaF021:
     def test_laterizi_industria_f021_loads(self) -> None:
         """Contract loads with correct id and CNEL code F021."""
         ccnl = load_ccnl("laterizi-industria-f021.json")
-        assert ccnl.meta.id == "laterizi-industria-f021"
+        assert ccnl.meta.ccnl_id == "laterizi-industria-f021"
         assert ccnl.meta.cnel_code == "F021"
 
     def test_laterizi_industria_f021_has_9_levels(self) -> None:
@@ -6525,7 +6526,7 @@ class TestLoadEserciziCinematograficiAnec:
     def test_esercizi_cinematografici_anec_loads(self) -> None:
         """Contract id and CNEL code G211 (ANEC, cinema)."""
         ccnl = load_ccnl("esercizi-cinematografici-anec.json")
-        assert ccnl.meta.id == "esercizi-cinematografici-anec"
+        assert ccnl.meta.ccnl_id == "esercizi-cinematografici-anec"
         assert ccnl.meta.cnel_code == "G211"
 
     def test_esercizi_cinematografici_anec_has_15_levels(self) -> None:
@@ -6636,7 +6637,7 @@ class TestLoadFarmacieMunicipaliASSO:
     def test_farmacie_municipalizzate_assofarm_loads(self) -> None:
         """Contract loads with correct id and CNEL code H124."""
         ccnl = load_ccnl("farmacie-municipalizzate-assofarm.json")
-        assert ccnl.meta.id == "farmacie-municipalizzate-assofarm"
+        assert ccnl.meta.ccnl_id == "farmacie-municipalizzate-assofarm"
         assert ccnl.meta.cnel_code == "H124"
 
     def test_farmacie_municipalizzate_assofarm_has_11_levels(self) -> None:
@@ -6762,7 +6763,7 @@ class TestLoadFunivieAnef:
     def test_funivie_anef_loads(self) -> None:
         """Id == 'funivie-anef', cnel_code == 'I911'."""
         ccnl = load_ccnl("funivie-anef.json")
-        assert ccnl.meta.id == "funivie-anef"
+        assert ccnl.meta.ccnl_id == "funivie-anef"
         assert ccnl.meta.cnel_code == "I911"
 
     def test_funivie_anef_has_8_levels(self) -> None:
@@ -6851,7 +6852,7 @@ class TestLoadFedercasa:
     def test_federcasa_loads(self) -> None:
         """Contract loads and id/cnel_code match."""
         ccnl = load_ccnl("federcasa.json")
-        assert ccnl.meta.id == "federcasa"
+        assert ccnl.meta.ccnl_id == "federcasa"
         assert ccnl.meta.cnel_code == "T611"
 
     def test_federcasa_has_16_levels(self) -> None:
@@ -6934,7 +6935,7 @@ class TestLoadFioriRecisiAncef:
     def test_fiori_recisi_ancef_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("fiori-recisi-ancef.json")
-        assert ccnl.meta.id == "fiori-recisi-ancef"
+        assert ccnl.meta.ccnl_id == "fiori-recisi-ancef"
         assert ccnl.meta.cnel_code == "H201"
 
     def test_fiori_recisi_ancef_has_8_levels(self) -> None:
@@ -7008,7 +7009,7 @@ class TestLoadOossUnsicConfsal:
     def test_ooss_unsic_confsal_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("ooss-unsic-confsal.json")
-        assert ccnl.meta.id == "ooss-unsic-confsal"
+        assert ccnl.meta.ccnl_id == "ooss-unsic-confsal"
         assert ccnl.meta.cnel_code == "V925"
 
     def test_ooss_unsic_confsal_has_6_levels(self) -> None:
@@ -7073,7 +7074,7 @@ class TestLoadRecapitoCorrispondenzaFise:
     def test_recapito_corrispondenza_fise_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("recapito-corrispondenza-fise.json")
-        assert ccnl.meta.id == "recapito-corrispondenza-fise"
+        assert ccnl.meta.ccnl_id == "recapito-corrispondenza-fise"
         assert ccnl.meta.cnel_code == "K711"
 
     def test_recapito_corrispondenza_fise_has_8_levels(self) -> None:
@@ -7139,7 +7140,7 @@ class TestLoadServiziPostaliAppaltoFise:
     def test_servizi_postali_appalto_fise_loads(self) -> None:
         """Contract loads with correct id and CNEL code K721."""
         ccnl = load_ccnl("servizi-postali-appalto-fise.json")
-        assert ccnl.meta.id == "servizi-postali-appalto-fise"
+        assert ccnl.meta.ccnl_id == "servizi-postali-appalto-fise"
         assert ccnl.meta.cnel_code == "K721"
 
     def test_servizi_postali_appalto_fise_has_7_levels(self) -> None:

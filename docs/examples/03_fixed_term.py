@@ -13,7 +13,7 @@ from ccnl_engine import (
     FixedTerm,
     Permanent,
     WorkArrangement,
-    compute,
+    compute_payslip,
     load_ccnl,
     load_year_rules,
 )
@@ -38,8 +38,8 @@ ft_employee = Employee(
     arrangement=WorkArrangement(),
 )
 
-permanent = compute(ccnl, rules, base_employee)
-fixed_term = compute(ccnl, rules, ft_employee)
+permanent = compute_payslip(ccnl, rules, base_employee)
+fixed_term = compute_payslip(ccnl, rules, ft_employee)
 
 print(f"Employer INPS — permanent:   {permanent.inps_employer_annual} EUR")
 print(f"Employer INPS — fixed-term:  {fixed_term.inps_employer_annual} EUR")

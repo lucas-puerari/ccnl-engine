@@ -13,8 +13,10 @@ from typing import Annotated, Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-_ONE = Decimal(1)
-_ZERO = Decimal(0)
+from ccnl_engine.primitives import validate_open_sequence
+
+_ONE: Decimal = Decimal(1)
+_ZERO: Decimal = Decimal(0)
 
 
 class ApprenticeshipPeriod(BaseModel):
@@ -69,30 +71,17 @@ def _check_month_bounds(months_from: int, months_until: int | None) -> None:
 def _validate_period_sequence(
     periods: Sequence[ApprenticeshipPeriod | UnderClassificationPeriod],
 ) -> None:
-    if not periods:
-        msg = "apprenticeship periods must not be empty"
-        raise ValueError(msg)
+    validate_open_sequence(
+        periods,
+        lambda p: p.months_from,
+        lambda p: p.months_until,
+        "apprenticeship periods",
+    )
     if periods[0].months_from != 0:
         msg = (
             f"first apprenticeship period must start at months_from=0, "
             f"got {periods[0].months_from}"
         )
-        raise ValueError(msg)
-    for i in range(len(periods) - 1):
-        if periods[i].months_until is None:
-            msg = (
-                f"only the last period may have months_until=None "
-                f"(period {i} is not the last)"
-            )
-            raise ValueError(msg)
-        if periods[i].months_until != periods[i + 1].months_from:
-            msg = (
-                f"gap between period {i} (months_until={periods[i].months_until}) "
-                f"and period {i + 1} (months_from={periods[i + 1].months_from})"
-            )
-            raise ValueError(msg)
-    if periods[-1].months_until is not None:
-        msg = "last apprenticeship period must be open-ended (months_until=None)"
         raise ValueError(msg)
 
 

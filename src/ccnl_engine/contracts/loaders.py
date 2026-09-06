@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import importlib.resources
 
+from ccnl_engine.domain.ccnl import CCNL
 from ccnl_engine.io.bundled import read_bundled
-from ccnl_engine.models.ccnl import CCNL
 
 
 def load_ccnl(filename: str) -> CCNL:

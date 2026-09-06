@@ -10,7 +10,7 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.models.validity import TimeSeries, ValidityPeriod
+from ccnl_engine.domain.validity import TimeSeries, ValidityPeriod
 
 # ---------------------------------------------------------------------------
 # Helpers

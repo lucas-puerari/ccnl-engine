@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "edilizia-artigianato-cna",
+    "ccnl_id": "edilizia-artigianato-cna",
     "name": "CCNL Edilizia e Affini Artigianato",
     "cnel_code": "F015",
     "sector": "edilizia",

@@ -2,13 +2,13 @@
 
 Public API
 ----------
-The single entry point is :func:`compute`.  All types needed to call it and
-interpret its result are re-exported from this module.
+The single entry point is :func:`compute_payslip`.  All types needed to call
+it and interpret its result are re-exported from this module.
 
 Usage::
 
     from ccnl_engine import (
-        compute, Employee, Employer, load_ccnl, load_year_rules,
+        compute_payslip, Employee, Employer, load_ccnl, load_year_rules,
         ContractPosition, WorkArrangement,
         Permanent,
     )
@@ -24,55 +24,44 @@ Usage::
         ),
         arrangement=WorkArrangement(),
     )
-    payslip = compute(ccnl, rules, employee)
+    payslip = compute_payslip(ccnl, rules, employee)
 """
 
 from __future__ import annotations
 
 from ccnl_engine.contracts.loaders import load_ccnl
-from ccnl_engine.engine.compute import compute
-from ccnl_engine.engine.payslip import Payslip
-from ccnl_engine.models.apprenticeship import (
-    ApprenticeshipPercentage,
-    ApprenticeshipPeriod,
-    ApprenticeshipTrack,
-    ApprenticeshipUnderClassification,
-    UnderClassificationPeriod,
-)
-from ccnl_engine.models.ccnl import (
+from ccnl_engine.domain.ccnl import (
     CCNL,
     Allowance,
-    CCNLExtraction,
     CCNLMeta,
-    CCNLSource,
-    CCNLValidity,
-    Coverage,
-    CoverageStatus,
+    CCNLParameters,
     EmployerFund,
     Level,
     LevelCategory,
-    Parameters,
     SeniorityIncrements,
     SupplementaryAllowance,
     TaxSector,
 )
-from ccnl_engine.models.employee import (
+from ccnl_engine.domain.employee import (
     ContractPosition,
     DestinationRalOverride,
     Employee,
-    IndividualAgreement,
     RalOverride,
     RalOverrideMode,
+    SalaryOverrides,
     Seniority,
     SeniorityByCount,
     SeniorityByMonths,
     TaxProfile,
     WorkArrangement,
 )
-from ccnl_engine.models.employer import Employer
-from ccnl_engine.models.employment import Apprentice, Employment, FixedTerm, Permanent
-from ccnl_engine.models.fiscal import FiscalSimplification
-from ccnl_engine.models.validity import TimeSeries, ValidityPeriod
+from ccnl_engine.domain.employer import Employer
+from ccnl_engine.domain.employment import Apprentice, Employment, FixedTerm, Permanent
+from ccnl_engine.domain.fiscal import FiscalSimplification
+from ccnl_engine.domain.validity import TimeSeries, ValidityPeriod
+from ccnl_engine.engine.compute import compute_payslip
+from ccnl_engine.engine.payslip import Payslip
+from ccnl_engine.surtax import SurtaxRules, load_surtax_rules
 from ccnl_engine.tax.loaders import load_year_rules
 from ccnl_engine.tax.models import YearRules
 
@@ -80,17 +69,9 @@ __all__ = [
     "CCNL",
     "Allowance",
     "Apprentice",
-    "ApprenticeshipPercentage",
-    "ApprenticeshipPeriod",
-    "ApprenticeshipTrack",
-    "ApprenticeshipUnderClassification",
-    "CCNLExtraction",
     "CCNLMeta",
-    "CCNLSource",
-    "CCNLValidity",
+    "CCNLParameters",
     "ContractPosition",
-    "Coverage",
-    "CoverageStatus",
     "DestinationRalOverride",
     "Employee",
     "Employer",
@@ -98,27 +79,27 @@ __all__ = [
     "Employment",
     "FiscalSimplification",
     "FixedTerm",
-    "IndividualAgreement",
     "Level",
     "LevelCategory",
-    "Parameters",
     "Payslip",
     "Permanent",
     "RalOverride",
     "RalOverrideMode",
+    "SalaryOverrides",
     "Seniority",
     "SeniorityByCount",
     "SeniorityByMonths",
     "SeniorityIncrements",
     "SupplementaryAllowance",
+    "SurtaxRules",
     "TaxProfile",
     "TaxSector",
     "TimeSeries",
-    "UnderClassificationPeriod",
     "ValidityPeriod",
     "WorkArrangement",
     "YearRules",
-    "compute",
+    "compute_payslip",
     "load_ccnl",
+    "load_surtax_rules",
     "load_year_rules",
 ]

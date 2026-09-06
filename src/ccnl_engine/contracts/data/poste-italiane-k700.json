@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "poste-italiane-k700",
+    "ccnl_id": "poste-italiane-k700",
     "name": "CCNL Poste Italiane S.p.A. (personale non dirigente)",
     "cnel_code": "K700",
     "sector": "Servizi postali",

@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "panificazione-assipan",
+    "ccnl_id": "panificazione-assipan",
     "name": "CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)",
     "cnel_code": "E023",
     "sector": "alimentare",

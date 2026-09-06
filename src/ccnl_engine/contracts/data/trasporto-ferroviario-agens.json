@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "trasporto-ferroviario-agens",
+    "ccnl_id": "trasporto-ferroviario-agens",
     "name": "CCNL Attività Ferroviarie — AGENS",
     "cnel_code": "I320",
     "sector": "trasporto",

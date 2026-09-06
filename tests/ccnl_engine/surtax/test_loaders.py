@@ -67,12 +67,12 @@ class TestLoadSurtaxRules:
         assert "A083" in rules.comunale  # Agordo
         assert "A008" in rules.comunale  # Abbateggio
 
-    def test_comunale_agordo_brackets_and_soglia(self) -> None:
-        """Agordo (A083) has 4 brackets and a soglia."""
+    def test_comunale_agordo_brackets_and_exemption_threshold(self) -> None:
+        """Agordo (A083) has 4 brackets and an exemption threshold."""
         rules = load_surtax_rules(2026)
         agordo = rules.comunale["A083"]
         assert len(agordo.brackets) == 4
-        assert agordo.soglia == Decimal("10000.00")
+        assert agordo.exemption_threshold == Decimal("10000.00")
 
     def test_comunale_last_bracket_unbounded(self) -> None:
         """Last bracket of every municipality has up_to=None."""

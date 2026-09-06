@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "farmacie-municipalizzate-assofarm",
+    "ccnl_id": "farmacie-municipalizzate-assofarm",
     "name": "CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)",
     "cnel_code": "H124",
     "sector": "Farmacie municipalizzate e partecipate da enti locali",

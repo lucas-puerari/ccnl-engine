@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "edilizia-ance",
+    "ccnl_id": "edilizia-ance",
     "name": "CCNL Edilizia — Industria (ANCE)",
     "cnel_code": "F012",
     "sector": "edilizia",

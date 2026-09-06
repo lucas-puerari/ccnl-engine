@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "energia-petrolio-confindustria",
+    "ccnl_id": "energia-petrolio-confindustria",
     "name": "CCNL Energia e Petrolio (Confindustria Energia)",
     "cnel_code": "B254",
     "sector": "energia",

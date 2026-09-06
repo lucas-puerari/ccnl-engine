@@ -4,11 +4,11 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.domain.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.engine.contributions import inps_contribution, resolve_rates, tfr
 from ccnl_engine.engine.rounding import money
-from ccnl_engine.models.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.tax.models import YearRules
-from tests.conftest import make_domestic_year_rules, make_year_rules
+from tests.helpers import make_domestic_year_rules, make_year_rules
 
 _D = Decimal
 

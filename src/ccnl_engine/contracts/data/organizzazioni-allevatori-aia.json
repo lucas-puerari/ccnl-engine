@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "organizzazioni-allevatori-aia",
+    "ccnl_id": "organizzazioni-allevatori-aia",
     "name": "CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)",
     "cnel_code": "A221",
     "sector": "Agricoltura",

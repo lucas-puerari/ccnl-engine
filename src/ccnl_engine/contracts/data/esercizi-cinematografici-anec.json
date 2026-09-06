@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "esercizi-cinematografici-anec",
+    "ccnl_id": "esercizi-cinematografici-anec",
     "name": "CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)",
     "cnel_code": "G211",
     "sector": "cinema",

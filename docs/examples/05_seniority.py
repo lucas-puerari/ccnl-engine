@@ -15,7 +15,7 @@ from ccnl_engine import (
     SeniorityByCount,
     SeniorityByMonths,
     WorkArrangement,
-    compute,
+    compute_payslip,
     load_ccnl,
     load_year_rules,
 )
@@ -44,8 +44,8 @@ employee_months = Employee(
     arrangement=WorkArrangement(seniority=SeniorityByMonths(108)),
 )
 
-p_count = compute(ccnl, rules, employee_count)
-p_months = compute(ccnl, rules, employee_months)
+p_count = compute_payslip(ccnl, rules, employee_count)
+p_months = compute_payslip(ccnl, rules, employee_months)
 
 print(
     f"Via count   — seniority count: {p_count.seniority_count},"

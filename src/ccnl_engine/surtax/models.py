@@ -7,22 +7,12 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, model_validator
 
+from ccnl_engine.primitives import Bracket
 
-class SurtaxBracket(BaseModel):
-    """One marginal bracket in a surtax rate schedule.
-
-    Mirrors :class:`~ccnl_engine.tax.models.IrpefBracket` so the same
-    bracket-sum computation can be reused.
-    """
-
-    model_config = ConfigDict(extra="forbid")
-
-    up_to: Decimal | None
-    """Upper income boundary (inclusive). ``None`` for the unbounded top bracket."""
-
-    rate: Decimal
-    """Marginal tax rate as a decimal fraction (e.g. ``Decimal("0.0123")`` for
-    1.23%)."""
+#: One marginal bracket in a surtax rate schedule.
+#: Shares the same structure as :class:`~ccnl_engine.tax.models.IrpefBracket`
+#: so the same bracket-sum computation can be reused.
+SurtaxBracket = Bracket
 
 
 class RegionaleEntry(BaseModel):
@@ -52,8 +42,9 @@ class ComunaleEntry(BaseModel):
     """Addizionale comunale IRPEF for one municipality.
 
     Municipalities with a simple flat rate have exactly one bracket with
-    ``up_to=None`` and ``soglia=0``. Municipalities with income brackets or
-    an exemption threshold will have multiple brackets and/or ``soglia > 0``.
+    ``up_to=None`` and ``exemption_threshold=0``. Municipalities with income
+    brackets or an exemption threshold will have multiple brackets and/or
+    ``exemption_threshold > 0``.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -64,8 +55,8 @@ class ComunaleEntry(BaseModel):
     brackets: list[SurtaxBracket]
     """Marginal rate brackets, ascending by ``up_to`` with the last entry unbounded."""
 
-    soglia: Decimal = Decimal(0)
-    """Exemption threshold: if taxable income ≤ soglia, the surtax is zero."""
+    exemption_threshold: Decimal = Decimal(0)
+    """Exemption threshold: if taxable income ≤ threshold, the surtax is zero."""
 
     @model_validator(mode="after")
     def _check_brackets(self) -> Self:
@@ -75,14 +66,18 @@ class ComunaleEntry(BaseModel):
         return self
 
 
-class _RegionaleRaw(BaseModel):
+class RegionaleRaw(BaseModel):
+    """Raw deserialization model for a regionale surtax data file."""
+
     model_config = ConfigDict(extra="forbid")
     year: int
     notes: list[str] = []
     rates: dict[str, RegionaleEntry]
 
 
-class _ComunaleRaw(BaseModel):
+class ComunaleRaw(BaseModel):
+    """Raw deserialization model for a comunale surtax data file."""
+
     model_config = ConfigDict(extra="forbid")
     year: int
     notes: list[str] = []

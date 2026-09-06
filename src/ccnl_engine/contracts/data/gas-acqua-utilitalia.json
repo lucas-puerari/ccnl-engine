@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "gas-acqua-utilitalia",
+    "ccnl_id": "gas-acqua-utilitalia",
     "name": "CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas",
     "cnel_code": "K321",
     "sector": "gas e acqua",

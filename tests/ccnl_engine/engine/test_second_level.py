@@ -18,20 +18,20 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.compute import compute
-from ccnl_engine.engine.rounding import money
-from ccnl_engine.models.ccnl import CCNL, SupplementaryAllowance
-from ccnl_engine.models.employee import (
+from ccnl_engine.domain.ccnl import CCNL, SupplementaryAllowance
+from ccnl_engine.domain.employee import (
     ContractPosition,
     DestinationRalOverride,
     Employee,
-    IndividualAgreement,
     RalOverride,
+    SalaryOverrides,
     WorkArrangement,
 )
-from ccnl_engine.models.employer import Employer
-from ccnl_engine.models.employment import Apprentice, Permanent
-from tests.conftest import make_ccnl_dict, make_year_rules
+from ccnl_engine.domain.employer import Employer
+from ccnl_engine.domain.employment import Apprentice, Permanent
+from ccnl_engine.engine.compute import compute_payslip
+from ccnl_engine.engine.rounding import money
+from tests.helpers import make_ccnl_dict, make_year_rules
 
 _D = Decimal
 _DATE = date(2026, 6, 1)
@@ -91,10 +91,10 @@ class TestSecondLevelGuard:
                 level_code="4", as_of=_DATE, employment=Permanent()
             ),
             arrangement=WorkArrangement(),
-            agreement=IndividualAgreement(ral_override=RalOverride(_D("20000"))),
+            agreement=SalaryOverrides(ral_override=RalOverride(_D("20000"))),
         )
         with pytest.raises(ValueError, match="RAL override"):
-            compute(_CCNL, _RULES, employee, employer=_sl_employer(_SL_100))
+            compute_payslip(_CCNL, _RULES, employee, employer=_sl_employer(_SL_100))
 
     def test_destination_ral_raises(self) -> None:
         """Combining second_level_allowances with DestinationRalOverride raises."""
@@ -103,12 +103,10 @@ class TestSecondLevelGuard:
                 level_code="4", as_of=_DATE, employment=Apprentice(months_elapsed=12)
             ),
             arrangement=WorkArrangement(),
-            agreement=IndividualAgreement(
-                ral_override=DestinationRalOverride(_D("20000"))
-            ),
+            agreement=SalaryOverrides(ral_override=DestinationRalOverride(_D("20000"))),
         )
         with pytest.raises(ValueError, match="RAL override"):
-            compute(_CCNL, _RULES, employee, employer=_sl_employer(_SL_100))
+            compute_payslip(_CCNL, _RULES, employee, employer=_sl_employer(_SL_100))
 
 
 # ---------------------------------------------------------------------------
@@ -121,30 +119,36 @@ class TestSecondLevelBasic:
 
     def test_second_level_monthly_on_payslip(self) -> None:
         """Payslip.second_level_monthly equals the scaled allowance total."""
-        result = compute(_CCNL, _RULES, _sl_employee(), employer=_sl_employer(_SL_100))
+        result = compute_payslip(
+            _CCNL, _RULES, _sl_employee(), employer=_sl_employer(_SL_100)
+        )
         assert result.second_level_monthly == _D("100.00")
 
     def test_zero_when_no_allowances(self) -> None:
         """second_level_monthly is zero when no allowances are supplied."""
-        result = compute(_CCNL, _RULES, _sl_employee())
+        result = compute_payslip(_CCNL, _RULES, _sl_employee())
         assert result.second_level_monthly == _D("0.00")
 
     def test_gross_monthly_includes_supplement(self) -> None:
         """gross_monthly = base + second_level when no other components."""
-        result = compute(_CCNL, _RULES, _sl_employee(), employer=_sl_employer(_SL_100))
+        result = compute_payslip(
+            _CCNL, _RULES, _sl_employee(), employer=_sl_employer(_SL_100)
+        )
         expected = money(_D("1000.00") + _D("100.00"))
         assert result.gross_monthly == expected
 
     def test_gross_annual_includes_supplement(self) -> None:
         """gross_annual adds second_level * additional_months."""
-        result = compute(_CCNL, _RULES, _sl_employee(), employer=_sl_employer(_SL_100))
+        result = compute_payslip(
+            _CCNL, _RULES, _sl_employee(), employer=_sl_employer(_SL_100)
+        )
         # base 1000 * 12 + supplement 100 * 12 = 13200
         assert result.gross_annual == _D("13200.00")
 
     def test_inps_base_includes_supplement(self) -> None:
         """INPS employee contribution is computed on gross including second-level."""
-        base_result = compute(_CCNL, _RULES, _sl_employee())
-        sl_result = compute(
+        base_result = compute_payslip(_CCNL, _RULES, _sl_employee())
+        sl_result = compute_payslip(
             _CCNL, _RULES, _sl_employee(), employer=_sl_employer(_SL_100)
         )
         # Supplement adds 1200/year to the INPS base; employee rate = 9.19%
@@ -153,8 +157,8 @@ class TestSecondLevelBasic:
 
     def test_tfr_includes_supplement(self) -> None:
         """TFR accrual base includes the second-level supplement."""
-        base_result = compute(_CCNL, _RULES, _sl_employee())
-        sl_result = compute(
+        base_result = compute_payslip(_CCNL, _RULES, _sl_employee())
+        sl_result = compute_payslip(
             _CCNL, _RULES, _sl_employee(), employer=_sl_employer(_SL_100)
         )
         delta = sl_result.tfr_annual - base_result.tfr_annual
@@ -171,7 +175,7 @@ class TestSecondLevelPartTime:
 
     def test_part_time_scales_supplement(self) -> None:
         """At 50% PT the supplement is halved."""
-        result = compute(
+        result = compute_payslip(
             _CCNL,
             _RULES,
             _sl_employee(part_time_pct=_D("0.5")),
@@ -196,7 +200,7 @@ class TestSecondLevelMonthsPerYear:
             monthly=_D("300.00"),
             months_per_year=1,
         )
-        result = compute(
+        result = compute_payslip(
             _CCNL, _RULES, _sl_employee(), employer=_sl_employer(once_a_year)
         )
         # base 12000 + prize 300 (1 month only)
@@ -221,8 +225,8 @@ class TestSecondLevelContributionRelevance:
             monthly=_D("100.00"),
             contribution_relevant=False,
         )
-        base_result = compute(_CCNL, _RULES, _sl_employee())
-        sl_result = compute(
+        base_result = compute_payslip(_CCNL, _RULES, _sl_employee())
+        sl_result = compute_payslip(
             _CCNL, _RULES, _sl_employee(), employer=_sl_employer(exempt)
         )
         # Supplement in gross but not in INPS base → INPS unchanged
@@ -246,8 +250,8 @@ class TestSecondLevelTfrRelevance:
             monthly=_D("100.00"),
             tfr_relevant=False,
         )
-        base_result = compute(_CCNL, _RULES, _sl_employee())
-        sl_result = compute(
+        base_result = compute_payslip(_CCNL, _RULES, _sl_employee())
+        sl_result = compute_payslip(
             _CCNL, _RULES, _sl_employee(), employer=_sl_employer(no_tfr)
         )
         assert sl_result.tfr_annual == base_result.tfr_annual
@@ -266,7 +270,7 @@ class TestSecondLevelApprenticeshipPct:
 
     def test_pct_relevant_true_applies_apprenticeship_factor(self) -> None:
         """By default the apprenticeship percentage (80%) also scales the supplement."""
-        result = compute(
+        result = compute_payslip(
             _CCNL,
             _RULES,
             _sl_employee(self._APPRENTICE),
@@ -283,7 +287,7 @@ class TestSecondLevelApprenticeshipPct:
             monthly=_D("100.00"),
             apprenticeship_pct_relevant=False,
         )
-        result = compute(
+        result = compute_payslip(
             _CCNL,
             _RULES,
             _sl_employee(self._APPRENTICE),

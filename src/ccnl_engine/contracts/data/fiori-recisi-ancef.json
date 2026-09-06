@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "fiori-recisi-ancef",
+    "ccnl_id": "fiori-recisi-ancef",
     "name": "CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)",
     "cnel_code": "H201",
     "sector": "Fiori recisi, verde e piante ornamentali (import-export)",

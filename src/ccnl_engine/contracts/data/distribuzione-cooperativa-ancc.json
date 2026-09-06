@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "distribuzione-cooperativa-ancc",
+    "ccnl_id": "distribuzione-cooperativa-ancc",
     "name": "CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)",
     "cnel_code": "H016",
     "sector": "distribuzione-cooperativa",

@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "trasporto-aereo-assaeroporti",
+    "ccnl_id": "trasporto-aereo-assaeroporti",
     "name": "CCNL Trasporto Aereo — Gestori Aeroportuali",
     "cnel_code": "I810",
     "sector": "trasporto aereo",

@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "sanita-privata-aiop-aris",
+    "ccnl_id": "sanita-privata-aiop-aris",
     "name": "CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)",
     "cnel_code": "T011",
     "sector": "Sanità privata",

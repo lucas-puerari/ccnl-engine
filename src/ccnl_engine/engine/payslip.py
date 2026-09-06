@@ -4,11 +4,40 @@ from __future__ import annotations
 
 import dataclasses
 import json
+import types
+import typing
 from dataclasses import dataclass
 from datetime import date as _date
 from decimal import Decimal
 
-from ccnl_engine.models.fiscal import FiscalSimplification
+from ccnl_engine.domain.fiscal import FiscalSimplification
+
+
+def _coerce(raw: object, hint: type) -> object:
+    """Coerce *raw* to the Python type described by the annotation *hint*.
+
+    Handles ``X | None`` unions, ``Decimal``, ``date``, and
+    ``frozenset[FiscalSimplification]``; everything else is returned as-is.
+
+    Returns:
+        The coerced value, or *raw* unchanged when no coercion applies.
+    """
+    origin = typing.get_origin(hint)
+    args = typing.get_args(hint)
+    if origin in {typing.Union, types.UnionType} and type(None) in args:
+        if raw is None:
+            return None
+        hint = next(a for a in args if a is not type(None))
+    if hint is Decimal:
+        return Decimal(str(raw))
+    if hint is _date:
+        return _date.fromisoformat(raw)  # type: ignore[arg-type]
+    if hint == frozenset[FiscalSimplification]:
+        return frozenset(
+            FiscalSimplification(v)
+            for v in raw  # type: ignore[attr-defined]
+        )
+    return raw
 
 
 @dataclass(frozen=True)
@@ -47,7 +76,7 @@ class Payslip:
             which is the collective supplement scaled by ``part_time_pct``.
         second_level_monthly: Total scaled monthly amount from second-level
             (territorial or company) agreements — the sum of all
-            :class:`~ccnl_engine.models.ccnl.SupplementaryAllowance` items
+            :class:`~ccnl_engine.domain.ccnl.SupplementaryAllowance` items
             passed via ``Scenario.second_level_allowances``, each scaled by
             ``part_time_pct`` (and optionally by the apprenticeship percentage).
             Zero when no second-level allowances are provided.
@@ -197,25 +226,19 @@ class Payslip:
 
         Returns:
             A new :class:`Payslip` with all fields restored to their original types.
+
+        Raises:
+            ValueError: If a required field is absent from ``data``.
         """
-        field_types = {f.name: f.type for f in dataclasses.fields(cls)}
+        hints = typing.get_type_hints(cls)
         kwargs: dict[str, object] = {}
         for field in dataclasses.fields(cls):
-            raw = data[field.name]
-            hint = field_types[field.name]
-            # Resolve the field type by name; TYPE_CHECKING-guarded hints are
-            # stored as strings when from __future__ import annotations is active.
-            if hint in {"Decimal", "Decimal | None"}:
-                kwargs[field.name] = Decimal(raw) if raw is not None else None  # type: ignore[arg-type]
-            elif hint in {"date", "_date"}:
-                kwargs[field.name] = _date.fromisoformat(raw)  # type: ignore[arg-type]
-            elif hint == "frozenset[FiscalSimplification]":
-                kwargs[field.name] = frozenset(
-                    FiscalSimplification(v)
-                    for v in raw  # type: ignore[attr-defined]
-                )
-            else:
-                kwargs[field.name] = raw
+            try:
+                raw = data[field.name]
+            except KeyError:
+                msg = f"Missing field: {field.name!r}"
+                raise ValueError(msg) from None
+            kwargs[field.name] = _coerce(raw, hints[field.name])
         return cls(**kwargs)  # type: ignore[arg-type]
 
     @classmethod

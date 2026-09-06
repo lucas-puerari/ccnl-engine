@@ -8,18 +8,18 @@ from typing import TYPE_CHECKING, Protocol
 from ccnl_engine.io.bundled import read_bundled
 from ccnl_engine.tax.models import (
     ApprenticeRates,
+    ApprenticeRawRates,
     InpsRates,
+    InpsRawRates,
     YearRules,
-    _ApprenticeRawRates,
-    _InpsRawRates,
-    _YearRulesRaw,
+    YearRulesRaw,
 )
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
     from decimal import Decimal
 
-    from ccnl_engine.models.ccnl import TaxSector
+    from ccnl_engine.domain.ccnl import TaxSector
 
 
 class _Tier(Protocol):
@@ -54,7 +54,7 @@ def load_year_rules(
     filename = f"{year}-{sector.value}.json"
     pkg = importlib.resources.files("ccnl_engine.tax.data")
     raw_text = read_bundled(pkg, filename)
-    raw = _YearRulesRaw.model_validate_json(raw_text)
+    raw = YearRulesRaw.model_validate_json(raw_text)
     inps = _resolve_inps(raw.inps, num_employees)
     apprentice = (
         _resolve_apprentice(raw.apprentice, num_employees)
@@ -121,7 +121,7 @@ def _assert_tier_integrity(tiers: Sequence[_Tier], side: str) -> None:
         seen.add(tier.max_employees)
 
 
-def _resolve_inps(raw: _InpsRawRates | None, num_employees: int) -> InpsRates | None:
+def _resolve_inps(raw: InpsRawRates | None, num_employees: int) -> InpsRates | None:
     """Resolve INPS tiers by headcount; return None for domestic-model sectors.
 
     Returns:
@@ -142,9 +142,7 @@ def _resolve_inps(raw: _InpsRawRates | None, num_employees: int) -> InpsRates | 
     )
 
 
-def _resolve_apprentice(
-    raw: _ApprenticeRawRates, num_employees: int
-) -> ApprenticeRates:
+def _resolve_apprentice(raw: ApprenticeRawRates, num_employees: int) -> ApprenticeRates:
     small_firm = num_employees <= raw.small_firm_max_employees
     return ApprenticeRates(
         employee_rate=raw.employee_rate,

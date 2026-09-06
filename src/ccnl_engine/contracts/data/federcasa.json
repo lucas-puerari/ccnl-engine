@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "federcasa",
+    "ccnl_id": "federcasa",
     "name": "CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa",
     "cnel_code": "T611",
     "sector": "Case popolari",

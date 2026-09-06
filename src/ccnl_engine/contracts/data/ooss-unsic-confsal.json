@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "ooss-unsic-confsal",
+    "ccnl_id": "ooss-unsic-confsal",
     "name": "CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSIC/CONFSAL)",
     "cnel_code": "V925",
     "sector": "Organizzazioni sindacali nazionali e territoriali",

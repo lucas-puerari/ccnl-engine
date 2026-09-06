@@ -78,16 +78,16 @@ def work_income_deduction(gross_income: Decimal, rules: YearRules) -> Decimal:
 
 def trattamento_integrativo(
     gross_annual: Decimal,
-    irpef_lorda: Decimal,
-    detrazioni_lavoro: Decimal,
+    irpef_gross: Decimal,
+    work_deduction: Decimal,
     rules: TrattamentoIntegrativoRules,
 ) -> Decimal:
     """Compute the trattamento integrativo bonus (Art. 1 D.L. 3/2020).
 
     Args:
         gross_annual: Annual gross pay (RAL) used to determine the bonus tier.
-        irpef_lorda: Gross IRPEF before work-income deduction (Art. 11 TUIR).
-        detrazioni_lavoro: Work-income deduction (Art. 13 TUIR).
+        irpef_gross: Gross IRPEF before work-income deduction (Art. 11 TUIR).
+        work_deduction: Work-income deduction (Art. 13 TUIR).
         rules: Threshold and amount parameters from the tax data file.
 
     Returns:
@@ -98,7 +98,7 @@ def trattamento_integrativo(
     if gross_annual > rules.threshold_upper:
         return _ZERO
     if gross_annual <= rules.threshold_mid:
-        return money(rules.max_amount) if irpef_lorda > detrazioni_lavoro else _ZERO
+        return money(rules.max_amount) if irpef_gross > work_deduction else _ZERO
     span = rules.threshold_upper - rules.threshold_mid
     scaled = rules.max_amount * (rules.threshold_upper - gross_annual) / span
     return money(max(_ZERO, scaled))
@@ -107,7 +107,7 @@ def trattamento_integrativo(
 def surtax_from_brackets(
     taxable_income: Decimal,
     brackets: list[SurtaxBracket],
-    soglia: Decimal = _ZERO,
+    exemption_threshold: Decimal = _ZERO,
 ) -> Decimal:
     """Compute addizionale IRPEF (regionale or comunale) via marginal brackets.
 
@@ -120,14 +120,14 @@ def surtax_from_brackets(
         taxable_income: IRPEF taxable base (gross annual minus employee INPS).
         brackets: Ascending list of :class:`~ccnl_engine.surtax.models.SurtaxBracket`
             entries; the last entry must have ``up_to=None``.
-        soglia: Full-exemption threshold (soglia di esenzione): if
-            ``taxable_income <= soglia`` the surtax is zero.  Defaults to zero
-            (no exemption).
+        exemption_threshold: Full-exemption threshold: if
+            ``taxable_income <= exemption_threshold`` the surtax is zero.
+            Defaults to zero (no exemption).
 
     Returns:
         Annual surtax amount, rounded to two decimal places.
     """
-    if taxable_income <= soglia or taxable_income <= _ZERO:
+    if taxable_income <= exemption_threshold or taxable_income <= _ZERO:
         return _ZERO
     tax = _ZERO
     prev_limit = _ZERO

@@ -15,7 +15,7 @@ from ccnl_engine.engine.irpef import (
 )
 from ccnl_engine.surtax.models import SurtaxBracket
 from ccnl_engine.tax.models import YearRules
-from tests.conftest import make_year_rules
+from tests.helpers import make_year_rules
 
 # ---------------------------------------------------------------------------
 # Fixture helpers

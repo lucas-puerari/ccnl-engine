@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "consorzi-di-bonifica-snebi",
+    "ccnl_id": "consorzi-di-bonifica-snebi",
     "name": "CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)",
     "cnel_code": "A131",
     "sector": "Agricoltura",

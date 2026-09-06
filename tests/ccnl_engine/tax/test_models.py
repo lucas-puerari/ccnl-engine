@@ -10,7 +10,12 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.models.ccnl import TaxSector
+from ccnl_engine.domain.ccnl import TaxSector
+from ccnl_engine.engine.contributions import (
+    apprentice_employer_rate,
+    inps_employer_rate,
+    resolve_domestic_inps_rate,
+)
 from ccnl_engine.tax.loaders import (
     _assert_tier_integrity,
     _resolve_tier,
@@ -18,18 +23,18 @@ from ccnl_engine.tax.loaders import (
 )
 from ccnl_engine.tax.models import (
     ApprenticeRates,
+    ApprenticeRawRates,
     DeductionBreakpoint,
     DomesticInpsRates,
+    InpsEmployeeTier,
+    InpsEmployerTier,
     InpsRates,
     IrpefBracket,
     TfrRules,
     YearRules,
-    _ApprenticeRawRates,
-    _InpsEmployeeTier,
-    _InpsEmployerTier,
-    _YearRulesRaw,
+    YearRulesRaw,
 )
-from tests.conftest import (
+from tests.helpers import (
     DOMESTIC_CONTRIBUTIONS,
     IRPEF_BRACKETS_2026,
     WORK_DEDUCTIONS_2026,
@@ -136,26 +141,26 @@ class TestDeductionBreakpoint:
 
 
 class TestInpsTiers:
-    """Unit tests for _InpsEmployeeTier and _InpsEmployerTier ivs_rate validator."""
+    """Unit tests for InpsEmployeeTier and InpsEmployerTier ivs_rate validator."""
 
     def test_employee_tier_ivs_rate_exceeds_rate_raises(self) -> None:
         """ivs_rate > rate must raise ValidationError."""
         with pytest.raises(ValidationError, match="ivs_rate"):
-            _InpsEmployeeTier(
+            InpsEmployeeTier(
                 max_employees=None, rate=Decimal("0.09"), ivs_rate=Decimal("0.10")
             )
 
     def test_employer_tier_ivs_rate_exceeds_rate_raises(self) -> None:
         """ivs_rate > rate must raise ValidationError."""
         with pytest.raises(ValidationError, match="ivs_rate"):
-            _InpsEmployerTier(
+            InpsEmployerTier(
                 max_employees=None, rate=Decimal("0.28"), ivs_rate=Decimal("0.30")
             )
 
     def test_employer_tier_category_rate_below_ivs_rate_raises(self) -> None:
         """rate_by_category value < ivs_rate must raise ValidationError."""
         with pytest.raises(ValidationError, match="rate_by_category"):
-            _InpsEmployerTier(
+            InpsEmployerTier(
                 max_employees=None,
                 rate=Decimal("0.2693"),
                 ivs_rate=Decimal("0.2381"),
@@ -198,9 +203,9 @@ class TestInpsRates:
             ceiling=None,
             employer_rate_by_category={"impiegato": Decimal("0.2471")},
         )
-        assert r.employer_rate_for(None) == Decimal("0.2693")
-        assert r.employer_rate_for("operaio") == Decimal("0.2693")
-        assert r.employer_rate_for("impiegato") == Decimal("0.2471")
+        assert inps_employer_rate(r, None) == Decimal("0.2693")
+        assert inps_employer_rate(r, "operaio") == Decimal("0.2693")
+        assert inps_employer_rate(r, "impiegato") == Decimal("0.2471")
 
 
 # ---------------------------------------------------------------------------
@@ -214,15 +219,15 @@ class TestApprenticeRates:
     def test_rate_steps(self) -> None:
         """Employer rate steps at month 12 and month 24."""
         r = ApprenticeRates.model_validate(_VALID_APPRENTICE)
-        assert r.employer_rate_at(0) == Decimal("0.0311")
-        assert r.employer_rate_at(11) == Decimal("0.0311")
-        assert r.employer_rate_at(12) == Decimal("0.0461")
-        assert r.employer_rate_at(23) == Decimal("0.0461")
-        assert r.employer_rate_at(24) == Decimal("0.1161")
+        assert apprentice_employer_rate(r, 0) == Decimal("0.0311")
+        assert apprentice_employer_rate(r, 11) == Decimal("0.0311")
+        assert apprentice_employer_rate(r, 12) == Decimal("0.0461")
+        assert apprentice_employer_rate(r, 23) == Decimal("0.0461")
+        assert apprentice_employer_rate(r, 24) == Decimal("0.1161")
 
     def test_ivs_rate_exceeds_total_raises(self) -> None:
         """Any ivs_rate above its paired total rate must raise ValidationError."""
-        with pytest.raises(ValidationError, match=r"ivs_rate.*cannot exceed"):
+        with pytest.raises(ValidationError, match=r"ivs_rate.*must not exceed"):
             ApprenticeRates.model_validate({
                 **_VALID_APPRENTICE,
                 "employer_ivs_rate_after": "0.20",
@@ -230,7 +235,7 @@ class TestApprenticeRates:
 
 
 class TestApprenticeRawRates:
-    """ivs_rate validators on _ApprenticeRawRates (raw JSON model)."""
+    """ivs_rate validators on ApprenticeRawRates (raw JSON model)."""
 
     _VALID_RAW: dict[str, Any] = {
         "employee_rate": "0.0584",
@@ -246,8 +251,8 @@ class TestApprenticeRawRates:
 
     def test_ivs_rate_exceeds_total_raises(self) -> None:
         """employer_ivs_rate above employer_rate must raise ValidationError."""
-        with pytest.raises(ValidationError, match=r"ivs_rate.*cannot exceed"):
-            _ApprenticeRawRates.model_validate({
+        with pytest.raises(ValidationError, match=r"ivs_rate.*must not exceed"):
+            ApprenticeRawRates.model_validate({
                 **self._VALID_RAW,
                 "employer_ivs_rate": "0.20",  # exceeds employer_rate 0.1161
             })
@@ -451,7 +456,7 @@ class TestYearRules2026Json:
     def test_no_open_tier_raises(self) -> None:
         """_resolve_tier raises ValueError when no tier covers the headcount."""
         tiers = [
-            _InpsEmployeeTier(
+            InpsEmployeeTier(
                 max_employees=10, rate=Decimal("0.09"), ivs_rate=Decimal("0.09")
             )
         ]
@@ -461,10 +466,10 @@ class TestYearRules2026Json:
     def test_multiple_open_tiers_raises(self) -> None:
         """_assert_tier_integrity raises when more than one open tier exists."""
         tiers = [
-            _InpsEmployeeTier(
+            InpsEmployeeTier(
                 max_employees=None, rate=Decimal("0.09"), ivs_rate=Decimal("0.09")
             ),
-            _InpsEmployeeTier(
+            InpsEmployeeTier(
                 max_employees=None, rate=Decimal("0.10"), ivs_rate=Decimal("0.09")
             ),
         ]
@@ -474,13 +479,13 @@ class TestYearRules2026Json:
     def test_duplicate_max_employees_raises(self) -> None:
         """_assert_tier_integrity raises if max_employees values are duplicated."""
         tiers = [
-            _InpsEmployeeTier(
+            InpsEmployeeTier(
                 max_employees=15, rate=Decimal("0.09"), ivs_rate=Decimal("0.09")
             ),
-            _InpsEmployeeTier(
+            InpsEmployeeTier(
                 max_employees=15, rate=Decimal("0.10"), ivs_rate=Decimal("0.09")
             ),
-            _InpsEmployeeTier(
+            InpsEmployeeTier(
                 max_employees=None, rate=Decimal("0.11"), ivs_rate=Decimal("0.09")
             ),
         ]
@@ -497,7 +502,7 @@ _DOMESTIC_RATES = DomesticInpsRates.model_validate(DOMESTIC_CONTRIBUTIONS)
 
 _RAW_BASE: dict[str, Any] = {
     "year": 2026,
-    "sector": "test",
+    "sector": "terziario",
     "irpef_brackets": IRPEF_BRACKETS_2026,
     "work_deduction_breakpoints": WORK_DEDUCTIONS_2026,
     "fixed_term_additional_rate": "0.014",
@@ -510,46 +515,46 @@ class TestDomesticInpsRates:
 
     def test_hours_bracket_permanent(self) -> None:
         """weekly_hours > 24 → hours bracket, permanent rate."""
-        emp, er = _DOMESTIC_RATES.resolve(
-            Decimal("8.00"), Decimal(40), is_fixed_term=False
+        emp, er = resolve_domestic_inps_rate(
+            _DOMESTIC_RATES, Decimal("8.00"), Decimal(40), is_fixed_term=False
         )
         assert emp == Decimal("0.31")
         assert er == Decimal("0.93")
 
     def test_hours_bracket_fixed_term(self) -> None:
         """weekly_hours > 24 → hours bracket, fixed-term employer rate."""
-        emp, er = _DOMESTIC_RATES.resolve(
-            Decimal("8.00"), Decimal(30), is_fixed_term=True
+        emp, er = resolve_domestic_inps_rate(
+            _DOMESTIC_RATES, Decimal("8.00"), Decimal(30), is_fixed_term=True
         )
         assert emp == Decimal("0.31")
         assert er == Decimal("1.01")
 
     def test_wage_bracket_low_permanent(self) -> None:
         """hourly_rate <= 9.61 + weekly_hours <= 24 → lowest wage bracket."""
-        emp, er = _DOMESTIC_RATES.resolve(
-            Decimal("8.00"), Decimal(20), is_fixed_term=False
+        emp, er = resolve_domestic_inps_rate(
+            _DOMESTIC_RATES, Decimal("8.00"), Decimal(20), is_fixed_term=False
         )
         assert emp == Decimal("0.43")
         assert er == Decimal("1.27")
 
     def test_wage_bracket_mid_fixed_term(self) -> None:
         """9.61 < hourly_rate <= 11.70, weekly_hours <= 24 → mid bracket, ft."""
-        emp, er = _DOMESTIC_RATES.resolve(
-            Decimal("10.00"), Decimal(20), is_fixed_term=True
+        emp, er = resolve_domestic_inps_rate(
+            _DOMESTIC_RATES, Decimal("10.00"), Decimal(20), is_fixed_term=True
         )
         assert emp == Decimal("0.48")
         assert er == Decimal("1.57")
 
     def test_wage_bracket_high_permanent(self) -> None:
         """hourly_rate > 11.70 + weekly_hours <= 24 → highest bracket."""
-        emp, er = _DOMESTIC_RATES.resolve(
-            Decimal("15.00"), Decimal(24), is_fixed_term=False
+        emp, er = resolve_domestic_inps_rate(
+            _DOMESTIC_RATES, Decimal("15.00"), Decimal(24), is_fixed_term=False
         )
         assert emp == Decimal("0.59")
         assert er == Decimal("1.75")
 
     def test_no_matching_wage_bracket_raises(self) -> None:
-        """resolve() raises ValueError when no wage bracket covers the rate."""
+        """resolve_domestic_inps_rate raises ValueError when no bracket covers."""
         rates = DomesticInpsRates.model_validate({
             "weekly_hours_threshold": 24,
             "hours_bracket": {
@@ -567,13 +572,15 @@ class TestDomesticInpsRates:
             ],
         })
         with pytest.raises(ValueError, match="no wage bracket covers"):
-            rates.resolve(Decimal("15.00"), Decimal(20), is_fixed_term=False)
+            resolve_domestic_inps_rate(
+                rates, Decimal("15.00"), Decimal(20), is_fixed_term=False
+            )
 
 
 class TestYearRulesRawContributionModel:
-    """_YearRulesRaw validator: must have inps+apprentice or domestic_contributions."""
+    """YearRulesRaw validator: must have inps+apprentice or domestic_contributions."""
 
     def test_missing_both_raises(self) -> None:
         """Neither inps+apprentice nor domestic_contributions → ValidationError."""
         with pytest.raises(ValidationError, match="domestic_contributions"):
-            _YearRulesRaw.model_validate(_RAW_BASE)
+            YearRulesRaw.model_validate(_RAW_BASE)

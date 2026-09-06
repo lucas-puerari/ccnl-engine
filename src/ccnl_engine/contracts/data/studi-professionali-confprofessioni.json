@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "studi-professionali-confprofessioni",
+    "ccnl_id": "studi-professionali-confprofessioni",
     "name": "CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)",
     "cnel_code": "H442",
     "sector": "terziario",

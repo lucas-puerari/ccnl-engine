@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "elettrico-elettricita-futura",
+    "ccnl_id": "elettrico-elettricita-futura",
     "name": "CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)",
     "cnel_code": "K051",
     "sector": "industria",

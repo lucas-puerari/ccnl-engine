@@ -15,7 +15,7 @@ from ccnl_engine import (
     Permanent,
     TaxProfile,
     WorkArrangement,
-    compute,
+    compute_payslip,
     load_ccnl,
     load_year_rules,
 )
@@ -26,7 +26,7 @@ rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
 surtax = load_surtax_rules(2026)
 
 # Baseline: no surtax argument → addizionali are zero.
-baseline = compute(
+baseline = compute_payslip(
     ccnl,
     rules,
     Employee(
@@ -54,7 +54,7 @@ employee = Employee(
     ),
 )
 
-p = compute(ccnl, rules, employee, surtax=surtax)
+p = compute_payslip(ccnl, rules, employee, surtax=surtax)
 
 print(f"Net annual (no addizionali):    {baseline.net_annual} EUR")
 print(f"Net annual (with addizionali):  {p.net_annual} EUR")

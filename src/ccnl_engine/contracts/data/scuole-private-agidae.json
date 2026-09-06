@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "scuole-private-agidae",
+    "ccnl_id": "scuole-private-agidae",
     "name": "CCNL Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE",
     "cnel_code": "T241",
     "sector": "istruzione privata",

@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "bcc-credito-cooperativo",
+    "ccnl_id": "bcc-credito-cooperativo",
     "name": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
     "cnel_code": "J271",
     "sector": "credito",

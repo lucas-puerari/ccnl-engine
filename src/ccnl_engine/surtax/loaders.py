@@ -6,9 +6,9 @@ import importlib.resources
 
 from ccnl_engine.io.bundled import read_bundled
 from ccnl_engine.surtax.models import (
+    ComunaleRaw,
+    RegionaleRaw,
     SurtaxRules,
-    _ComunaleRaw,
-    _RegionaleRaw,
 )
 
 
@@ -33,8 +33,8 @@ def load_surtax_rules(year: int) -> SurtaxRules:
     pkg = importlib.resources.files("ccnl_engine.surtax.data")
     reg_raw = read_bundled(pkg, f"regionale-{year}.json")
     com_raw = read_bundled(pkg, f"comunale-{year}.json")
-    reg = _RegionaleRaw.model_validate_json(reg_raw)
-    com = _ComunaleRaw.model_validate_json(com_raw)
+    reg = RegionaleRaw.model_validate_json(reg_raw)
+    com = ComunaleRaw.model_validate_json(com_raw)
     return SurtaxRules(
         year=year,
         regionale=reg.rates,

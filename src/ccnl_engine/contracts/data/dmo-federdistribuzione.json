@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "dmo-federdistribuzione",
+    "ccnl_id": "dmo-federdistribuzione",
     "name": "Distribuzione Moderna Organizzata — Federdistribuzione",
     "cnel_code": "H008",
     "sector": "terziario",

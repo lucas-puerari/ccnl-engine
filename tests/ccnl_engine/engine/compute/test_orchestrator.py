@@ -1,152 +1,55 @@
-"""Tests for engine.compute — compute() and private helper functions.
-
-100% branch coverage:
-* all validation error paths
-* permanent / fixed-term / apprentice employment dispatches
-* percentage and under-classification tracks, track selection by level
-* seniority resolution from SeniorityByCount or SeniorityByMonths,
-  first cadence, per-level maximum
-* role-scoped allowances, months_per_year, TFR/contribution relevance flags
-* employer funds by category, ad personam element, hourly rate
-* RalOverride / DestinationRalOverride override paths
-* IRPEF net floored at zero
-"""
+"""Tests for engine/compute/orchestrator — compute_payslip() and helpers."""
 
 from __future__ import annotations
 
-import copy
 from datetime import date
 from decimal import Decimal
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.engine.compute import _find_period_index, compute
-from ccnl_engine.engine.rounding import money
-from ccnl_engine.models.apprenticeship import ApprenticeshipPeriod
-from ccnl_engine.models.ccnl import CCNL, LevelCategory, SupplementaryAllowance
-from ccnl_engine.models.employee import (
+from ccnl_engine.domain.ccnl import CCNL, SupplementaryAllowance
+from ccnl_engine.domain.employee import (
     ContractPosition,
     DestinationRalOverride,
     Employee,
-    IndividualAgreement,
     RalOverride,
+    SalaryOverrides,
     SeniorityByCount,
     SeniorityByMonths,
     TaxProfile,
     WorkArrangement,
 )
-from ccnl_engine.models.employer import Employer
-from ccnl_engine.models.employment import Apprentice, Employment, FixedTerm, Permanent
-from ccnl_engine.models.fiscal import FiscalSimplification
+from ccnl_engine.domain.employer import Employer
+from ccnl_engine.domain.employment import Employment, Permanent
+from ccnl_engine.domain.fiscal import FiscalSimplification
+from ccnl_engine.engine.compute import compute_payslip
+from ccnl_engine.engine.rounding import money
 from ccnl_engine.surtax.models import (
     ComunaleEntry,
     RegionaleEntry,
     SurtaxBracket,
     SurtaxRules,
 )
-from tests.conftest import make_ccnl_dict, make_domestic_year_rules, make_year_rules
+from tests.ccnl_engine.engine.compute.builders import (
+    _D,
+    _DATE,
+    _FIXED_TERM,
+    _PERMANENT,
+    _RULES,
+    _allowance,
+    _build_ccnl,
+    _req,
+    _series,
+)
+from tests.helpers import make_ccnl_dict, make_domestic_year_rules, make_year_rules
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.payslip import Payslip
     from ccnl_engine.tax.models import YearRules
 
-_DATE = date(2026, 6, 1)
-_D = Decimal
-_RULES = make_year_rules()
-_PERMANENT = Permanent()
-_FIXED_TERM = FixedTerm()
-
-
-def _build_ccnl(app_type: str = "percentage", /, **mutations: object) -> CCNL:
-    """Build a CCNL from the shared dict, applying dotted-path mutations.
-
-    Returns:
-        A validated CCNL instance with the requested mutations applied.
-    """
-    data = make_ccnl_dict(app_type=app_type)
-    for path, value in mutations.items():
-        node: Any = data
-        keys = path.split(".")
-        for key in keys[:-1]:
-            node = node[int(key)] if key.isdigit() else node[key]
-        last = keys[-1]
-        if last.isdigit():
-            node[int(last)] = value
-        else:
-            node[last] = value
-    return CCNL.model_validate(data)
-
-
-def _series(value: str) -> dict[str, Any]:
-    return {
-        "periods": [{"valid_from": "2020-01-01", "valid_until": None, "value": value}]
-    }
-
-
-def _allowance(code: str, monthly: str, **extra: object) -> dict[str, Any]:
-    return {"code": code, "description": code, "monthly": _series(monthly), **extra}
-
-
 _DEFAULT_CCNL = _build_ccnl()
 _DEFAULT_CCNL_UC = _build_ccnl("under_classification")
-
-
-def _req(
-    level_code: str = "4",
-    as_of: date = _DATE,
-    employment: Employment = _PERMANENT,
-    part_time_pct: Decimal = Decimal(1),
-    seniority_count: int | None = None,
-    seniority_months: int | None = None,
-    negotiated_ral: Decimal | None = None,
-    negotiated_destination_ral: Decimal | None = None,
-    roles: frozenset[str] = frozenset(),
-    ad_personam_monthly: Decimal = Decimal(0),
-    category: LevelCategory | None = None,
-) -> Employee:
-    """Build an Employee with test defaults; override any field via kwargs.
-
-    Converts flat Scenario-style kwargs into the grouped Employee structure:
-    seniority_count/seniority_months → SeniorityByCount/SeniorityByMonths,
-    negotiated_ral/negotiated_destination_ral → RalOverride/DestinationRalOverride.
-
-    Returns:
-        An Employee with the given overrides applied.
-    """
-    seniority: SeniorityByCount | SeniorityByMonths | None = None
-    if seniority_count is not None:
-        seniority = SeniorityByCount(seniority_count)
-    elif seniority_months is not None:
-        seniority = SeniorityByMonths(seniority_months)
-
-    ral_override: RalOverride | DestinationRalOverride | None = None
-    if negotiated_ral is not None:
-        ral_override = RalOverride(negotiated_ral)
-    elif negotiated_destination_ral is not None:
-        ral_override = DestinationRalOverride(negotiated_destination_ral)
-
-    agreement: IndividualAgreement | None = None
-    if ral_override is not None or ad_personam_monthly != Decimal(0):
-        agreement = IndividualAgreement(
-            ral_override=ral_override,
-            ad_personam_monthly=ad_personam_monthly,
-        )
-
-    return Employee(
-        position=ContractPosition(
-            level_code=level_code,
-            as_of=as_of,
-            employment=employment,
-            category=category,
-            roles=roles,
-        ),
-        arrangement=WorkArrangement(
-            part_time_pct=part_time_pct,
-            seniority=seniority,
-        ),
-        agreement=agreement,
-    )
 
 
 # ---------------------------------------------------------------------------
@@ -184,9 +87,9 @@ class TestInputModels:
             WorkArrangement(weekly_hours=Decimal(0))
 
     def test_ad_personam_negative_raises(self) -> None:
-        """IndividualAgreement with ad_personam_monthly < 0 must raise."""
+        """SalaryOverrides with ad_personam_monthly < 0 must raise."""
         with pytest.raises(ValueError, match="ad_personam_monthly"):
-            IndividualAgreement(ad_personam_monthly=_D(-1))
+            SalaryOverrides(ad_personam_monthly=_D(-1))
 
     def test_ral_override_zero_raises(self) -> None:
         """RalOverride with value <= 0 must raise at construction."""
@@ -200,28 +103,28 @@ class TestInputModels:
 
 
 # ---------------------------------------------------------------------------
-# Validation errors inside compute()
+# Validation errors inside compute_payslip()
 # ---------------------------------------------------------------------------
 
 
 class TestComputeValidation:
-    """Guard-clause branches at the top of compute()."""
+    """Guard-clause branches at the top of compute_payslip()."""
 
     def test_unknown_level_code_raises(self) -> None:
         """Unknown level_code must raise ValueError."""
         with pytest.raises(ValueError, match="NOPE"):
-            compute(_DEFAULT_CCNL, _RULES, _req(level_code="NOPE"))
+            compute_payslip(_DEFAULT_CCNL, _RULES, _req(level_code="NOPE"))
 
     def test_seniority_count_above_maximum_raises(self) -> None:
         """SeniorityByCount above the level maximum must raise ValueError."""
         with pytest.raises(ValueError, match="exceeds the maximum of 10"):
-            compute(_DEFAULT_CCNL, _RULES, _req(seniority_count=11))
+            compute_payslip(_DEFAULT_CCNL, _RULES, _req(seniority_count=11))
 
     def test_second_level_with_ral_override_raises(self) -> None:
         """second_level_allowances cannot be combined with a RAL override."""
         sl = SupplementaryAllowance(code="X", description="X", monthly=_D("100"))
         with pytest.raises(ValueError, match="RAL override"):
-            compute(
+            compute_payslip(
                 _DEFAULT_CCNL,
                 _RULES,
                 _req(negotiated_ral=_D("20000")),
@@ -231,7 +134,7 @@ class TestComputeValidation:
     def test_negotiated_destination_ral_on_non_apprentice_raises(self) -> None:
         """DestinationRalOverride with a non-Apprentice employment raises."""
         with pytest.raises(ValueError, match="only valid for Apprentice"):
-            compute(
+            compute_payslip(
                 _DEFAULT_CCNL,
                 _RULES,
                 _req(negotiated_destination_ral=_D("20000.00")),
@@ -244,11 +147,11 @@ class TestComputeValidation:
 
 
 class TestComputePermanent:
-    """Permanent contract paths in compute()."""
+    """Permanent contract paths in compute_payslip()."""
 
     def test_full_time_no_seniority(self) -> None:
         """Permanent, full-time, no seniority: standard salary chain."""
-        r = compute(_DEFAULT_CCNL, _RULES, _req())
+        r = compute_payslip(_DEFAULT_CCNL, _RULES, _req())
 
         assert r.ccnl_id == "test"
         assert r.level_code == "4"
@@ -264,7 +167,7 @@ class TestComputePermanent:
         assert r.ad_personam_monthly == _D("0.00")
         assert r.gross_monthly == _D("1000.00")
         assert r.gross_annual == _D("12000.00")
-        assert r.hourly_rate == _D("5.95")  # 1000 / 168
+        assert r.hourly_rate == money(_D("1000.00") / _D("168"))
         assert r.employer_funds_annual == _D("0.00")
 
         assert r.apprenticeship_pct is None
@@ -280,7 +183,7 @@ class TestComputePermanent:
 
     def test_with_seniority_count(self) -> None:
         """seniority_count=2 adds 2 * 20 = 40 to monthly gross."""
-        r = compute(_DEFAULT_CCNL, _RULES, _req(seniority_count=2))
+        r = compute_payslip(_DEFAULT_CCNL, _RULES, _req(seniority_count=2))
 
         assert r.seniority_count == 2
         assert r.seniority_monthly == _D("40.00")
@@ -293,7 +196,7 @@ class TestComputePermanent:
     )
     def test_seniority_months_derivation(self, months: int, expected: int) -> None:
         """Count = 1 + (months - cadence) // cadence, clamped to the maximum."""
-        r = compute(_DEFAULT_CCNL, _RULES, _req(seniority_months=months))
+        r = compute_payslip(_DEFAULT_CCNL, _RULES, _req(seniority_months=months))
         assert r.seniority_count == expected
 
     @pytest.mark.parametrize(
@@ -304,7 +207,7 @@ class TestComputePermanent:
         ccnl = _build_ccnl(**{
             "parameters.seniority_increments.first_cadence_months": 48
         })
-        r = compute(ccnl, _RULES, _req(seniority_months=months))
+        r = compute_payslip(ccnl, _RULES, _req(seniority_months=months))
         assert r.seniority_count == expected
 
     def test_seniority_first_cadence_by_level(self) -> None:
@@ -312,10 +215,12 @@ class TestComputePermanent:
         ccnl = _build_ccnl(**{
             "parameters.seniority_increments.first_cadence_months_by_level": {"4": 48}
         })
-        assert compute(ccnl, _RULES, _req(seniority_months=47)).seniority_count == 0
-        assert compute(ccnl, _RULES, _req(seniority_months=48)).seniority_count == 1
+        r47 = compute_payslip(ccnl, _RULES, _req(seniority_months=47))
+        r48 = compute_payslip(ccnl, _RULES, _req(seniority_months=48))
+        assert r47.seniority_count == 0
+        assert r48.seniority_count == 1
         assert (
-            compute(
+            compute_payslip(
                 ccnl, _RULES, _req(level_code="3", seniority_months=36)
             ).seniority_count
             == 1
@@ -326,28 +231,18 @@ class TestComputePermanent:
         ccnl = _build_ccnl(**{
             "parameters.seniority_increments.maximum_count_by_level": {"4": 1}
         })
-        r = compute(ccnl, _RULES, _req(seniority_months=360))
+        r = compute_payslip(ccnl, _RULES, _req(seniority_months=360))
         assert r.seniority_count == 1
         assert r.seniority_monthly == _D("20.00")
         with pytest.raises(ValueError, match="exceeds the maximum of 1"):
-            compute(ccnl, _RULES, _req(seniority_count=2))
-
-    def test_excluded_category_zeroes_seniority(self) -> None:
-        """Workers with category in excluded_categories accrue no scatti."""
-        ccnl = _build_ccnl(**{
-            "levels.2.category": "operaio",
-            "parameters.seniority_increments.excluded_categories": ["operaio"],
-        })
-        r = compute(ccnl, _RULES, _req(seniority_months=120))
-        assert r.seniority_count == 0
-        assert r.seniority_monthly == _D("0.00")
+            compute_payslip(ccnl, _RULES, _req(seniority_count=2))
 
     def test_part_time_scales_all_components(self) -> None:
         """part_time_pct=0.5 halves every component; components sum to gross."""
         ccnl = _build_ccnl(**{
             "levels.2.fixed_allowances": [_allowance("edr", "10.33")]
         })
-        r = compute(
+        r = compute_payslip(
             ccnl,
             _RULES,
             _req(part_time_pct=_D("0.50"), seniority_count=1),
@@ -362,14 +257,16 @@ class TestComputePermanent:
     def test_negotiated_ral(self) -> None:
         """RalOverride overrides gross_annual; gross_monthly stays consistent."""
         ral = _D("20000.00")
-        r = compute(_DEFAULT_CCNL, _RULES, _req(negotiated_ral=ral))
+        r = compute_payslip(_DEFAULT_CCNL, _RULES, _req(negotiated_ral=ral))
 
         assert r.gross_annual == ral
         assert r.gross_monthly == _D("1666.67")
 
     def test_level_without_seniority_entry(self) -> None:
         """Level '3' has no seniority in amount_by_level — seniority stays zero."""
-        r = compute(_DEFAULT_CCNL, _RULES, _req(level_code="3", seniority_count=5))
+        r = compute_payslip(
+            _DEFAULT_CCNL, _RULES, _req(level_code="3", seniority_count=5)
+        )
 
         assert r.seniority_monthly == _D("0.00")
         assert r.base_monthly == _D("800.00")
@@ -377,7 +274,7 @@ class TestComputePermanent:
 
     def test_ad_personam_added_unscaled(self) -> None:
         """ad_personam_monthly is added as given, even under part-time."""
-        r = compute(
+        r = compute_payslip(
             _DEFAULT_CCNL,
             _RULES,
             _req(part_time_pct=_D("0.50"), ad_personam_monthly=_D("30.00")),
@@ -403,8 +300,8 @@ class TestComputeAllowances:
                 _allowance("quadro", "100.00", role="quadro"),
             ]
         })
-        plain = compute(ccnl, _RULES, _req())
-        quadro = compute(ccnl, _RULES, _req(roles=frozenset({"quadro"})))
+        plain = compute_payslip(ccnl, _RULES, _req())
+        quadro = compute_payslip(ccnl, _RULES, _req(roles=frozenset({"quadro"})))
         assert plain.allowances_monthly == _D("10.00")
         assert quadro.allowances_monthly == _D("110.00")
 
@@ -416,7 +313,7 @@ class TestComputeAllowances:
                 _allowance("ind", "50.00", months_per_year=12)
             ],
         })
-        r = compute(ccnl, _RULES, _req())
+        r = compute_payslip(ccnl, _RULES, _req())
         assert r.gross_monthly == _D("1050.00")
         assert r.gross_annual == _D("14600.00")  # 1000*14 + 50*12
 
@@ -432,8 +329,8 @@ class TestComputeAllowances:
                 )
             ]
         })
-        r = compute(ccnl, _RULES, _req())
-        base = compute(_DEFAULT_CCNL, _RULES, _req())
+        r = compute_payslip(ccnl, _RULES, _req())
+        base = compute_payslip(_DEFAULT_CCNL, _RULES, _req())
         assert r.gross_annual == _D("13200.00")
         assert r.inps_employee_annual == base.inps_employee_annual
         assert r.inps_employer_annual == base.inps_employer_annual
@@ -456,8 +353,8 @@ class TestComputeAllowances:
             ]
         })
         ral = _D("12000.00")
-        r_with_exclusion = compute(ccnl, _RULES, _req(negotiated_ral=ral))
-        r_clean = compute(_DEFAULT_CCNL, _RULES, _req(negotiated_ral=ral))
+        r_with_exclusion = compute_payslip(ccnl, _RULES, _req(negotiated_ral=ral))
+        r_clean = compute_payslip(_DEFAULT_CCNL, _RULES, _req(negotiated_ral=ral))
 
         assert r_with_exclusion.gross_annual == ral
         # Contribution and TFR bases must be identical regardless of CCNL allowances.
@@ -488,9 +385,9 @@ class TestComputeEmployerFunds:
             "levels.2.category": "operaio",
             "levels.1.category": "impiegato",
         })
-        operaio = compute(ccnl, _RULES, _req())
-        impiegato = compute(ccnl, _RULES, _req(level_code="3"))
-        uncategorised = compute(ccnl, _RULES, _req(level_code="2"))
+        operaio = compute_payslip(ccnl, _RULES, _req())
+        impiegato = compute_payslip(ccnl, _RULES, _req(level_code="3"))
+        uncategorised = compute_payslip(ccnl, _RULES, _req(level_code="2"))
         assert operaio.employer_funds_annual == _D("1200.00")
         assert operaio.employer_cost_annual == (
             operaio.gross_annual
@@ -505,7 +402,7 @@ class TestComputeEmployerFunds:
         """A fund with applies_to_categories=None applies to every level."""
         fund = {**self._FUND, "applies_to_categories": None}
         ccnl = _build_ccnl(**{"parameters.employer_funds": [fund]})
-        r = compute(ccnl, _RULES, _req(level_code="3"))
+        r = compute_payslip(ccnl, _RULES, _req(level_code="3"))
         assert r.employer_funds_annual == _D("960.00")
 
     def test_employer_rate_by_category(self) -> None:
@@ -524,8 +421,8 @@ class TestComputeEmployerFunds:
             "levels.1.category": "impiegato",
             "levels.2.category": "operaio",
         })
-        impiegato = compute(ccnl, rules, _req(level_code="3"))
-        operaio = compute(ccnl, rules, _req())
+        impiegato = compute_payslip(ccnl, rules, _req(level_code="3"))
+        operaio = compute_payslip(ccnl, rules, _req())
         assert impiegato.inps_employer_annual == _D("1920.00")  # 9600 * 0.20
         assert operaio.inps_employer_annual == _D("3600.00")  # 12000 * 0.30
 
@@ -540,8 +437,8 @@ class TestComputeFixedTerm:
 
     def test_fixed_term_naspi_addizionale(self) -> None:
         """Employer INPS for fixed-term must exceed permanent by 1.4% of gross."""
-        r_fixed = compute(_DEFAULT_CCNL, _RULES, _req(employment=_FIXED_TERM))
-        r_perm = compute(_DEFAULT_CCNL, _RULES, _req())
+        r_fixed = compute_payslip(_DEFAULT_CCNL, _RULES, _req(employment=_FIXED_TERM))
+        r_perm = compute_payslip(_DEFAULT_CCNL, _RULES, _req())
 
         expected_diff = r_fixed.gross_annual * _D("0.014")
         actual_diff = r_fixed.inps_employer_annual - r_perm.inps_employer_annual
@@ -577,17 +474,17 @@ class TestComputeIvsCeilingSplit:
             ),
             arrangement=WorkArrangement(),
             tax=TaxProfile(ivs_ceiling_applies=ivs_ceiling_applies),
-            agreement=IndividualAgreement(ral_override=RalOverride(ral)),
+            agreement=SalaryOverrides(ral_override=RalOverride(ral)),
         )
 
     def test_below_ceiling_unchanged(self) -> None:
         """RAL below the massimale: ceiling split equals flat rate."""
         ral = _D("80000.00")
         rules = self._rules_with_ceiling()
-        r_capped = compute(
+        r_capped = compute_payslip(
             _DEFAULT_CCNL, rules, self._employee(ral, ivs_ceiling_applies=True)
         )
-        r_flat = compute(
+        r_flat = compute_payslip(
             _DEFAULT_CCNL, rules, self._employee(ral, ivs_ceiling_applies=False)
         )
         assert r_capped.inps_employee_annual == r_flat.inps_employee_annual
@@ -606,7 +503,7 @@ class TestComputeIvsCeilingSplit:
         expected_employee = money(ceiling * emp_ivs_rate + ral * emp_non_ivs)
         expected_employer = money(ceiling * er_ivs_rate + ral * er_non_ivs)
 
-        r = compute(
+        r = compute_payslip(
             _DEFAULT_CCNL,
             self._rules_with_ceiling(),
             self._employee(ral, ivs_ceiling_applies=True),
@@ -617,7 +514,7 @@ class TestComputeIvsCeilingSplit:
     def test_ceiling_flag_false_skips_split(self) -> None:
         """ivs_ceiling_applies=False: flat rate even when ceiling is configured."""
         ral = _D("150000.00")
-        r = compute(
+        r = compute_payslip(
             _DEFAULT_CCNL,
             self._rules_with_ceiling(),
             self._employee(ral, ivs_ceiling_applies=False),
@@ -636,7 +533,7 @@ class TestComputeIrpefFloor:
 
     def test_irpef_net_floored_at_zero(self) -> None:
         """Low income: deduction > irpef_gross → irpef_net == 0."""
-        r = compute(_DEFAULT_CCNL, _RULES, _req(negotiated_ral=_D("5000.00")))
+        r = compute_payslip(_DEFAULT_CCNL, _RULES, _req(negotiated_ral=_D("5000.00")))
 
         assert r.irpef_net == _D("0.00")
         assert r.net_annual == r.gross_annual - r.inps_employee_annual
@@ -654,296 +551,34 @@ class TestComputeWithholdingExempt:
 
     def test_irpef_net_is_zero(self) -> None:
         """Exempt employer: irpef_net must be zero regardless of income."""
-        r = compute(self._EXEMPT_CCNL, _RULES, _req())
+        r = compute_payslip(self._EXEMPT_CCNL, _RULES, _req())
 
         assert r.irpef_net == _D("0.00")
 
     def test_employer_withholds_irpef_flag_false(self) -> None:
         """Exempt employer: employer_withholds_irpef must be False."""
-        r = compute(self._EXEMPT_CCNL, _RULES, _req())
+        r = compute_payslip(self._EXEMPT_CCNL, _RULES, _req())
 
         assert r.employer_withholds_irpef is False
 
     def test_net_annual_excludes_irpef(self) -> None:
         """Net = gross - INPS employee; IRPEF not deducted by employer."""
-        r = compute(self._EXEMPT_CCNL, _RULES, _req())
+        r = compute_payslip(self._EXEMPT_CCNL, _RULES, _req())
 
         assert r.net_annual == r.gross_annual - r.inps_employee_annual
 
     def test_irpef_informational_fields_nonzero(self) -> None:
         """irpef_gross and work_income_deduction remain as informational."""
-        r = compute(self._EXEMPT_CCNL, _RULES, _req())
+        r = compute_payslip(self._EXEMPT_CCNL, _RULES, _req())
 
         assert r.irpef_gross > _D("0.00")
         assert r.work_income_deduction >= _D("0.00")
 
     def test_standard_ccnl_withholds_irpef(self) -> None:
         """Standard CCNL: employer_withholds_irpef must be True."""
-        r = compute(_DEFAULT_CCNL, _RULES, _req())
+        r = compute_payslip(_DEFAULT_CCNL, _RULES, _req())
 
         assert r.employer_withholds_irpef is True
-
-
-# ---------------------------------------------------------------------------
-# Apprentice — percentage
-# ---------------------------------------------------------------------------
-
-
-class TestComputeApprenticePercentage:
-    """Percentage track dispatch."""
-
-    def test_basic(self) -> None:
-        """Apprentice salary = destination-level salary * pct (0.80)."""
-        r = compute(
-            _DEFAULT_CCNL, _RULES, _req(employment=Apprentice(months_elapsed=0))
-        )
-
-        assert r.apprenticeship_pct == _D("0.80")
-        assert r.apprenticeship_under_level_code is None
-        assert r.base_monthly == _D("800.00")
-        assert r.gross_annual == _D("9600.00")
-        assert r.employment_type == "apprentice"
-
-    def test_apprentice_contribution_rates(self) -> None:
-        """Apprentices use the reduced statutory INPS rates."""
-        r = compute(
-            _DEFAULT_CCNL, _RULES, _req(employment=Apprentice(months_elapsed=0))
-        )
-        assert r.inps_employee_annual == _D("560.64")  # 9600 * 0.0584
-        assert r.inps_employer_annual == _D("1114.56")  # 9600 * 0.1161
-
-    def test_small_firm_rates_by_months(self) -> None:
-        """Small-firm employer rate steps at 12 and 24 months."""
-        rules = make_year_rules(
-            apprentice={
-                "employee_rate": "0.0584",
-                "employee_ivs_rate": "0.0584",
-                "employer_rate_months_0_11": "0.0311",
-                "employer_ivs_rate_months_0_11": "0.0150",
-                "employer_rate_months_12_23": "0.0461",
-                "employer_ivs_rate_months_12_23": "0.0300",
-                "employer_rate_after": "0.1161",
-                "employer_ivs_rate_after": "0.1000",
-            }
-        )
-        rates = [
-            compute(
-                _DEFAULT_CCNL, rules, _req(employment=Apprentice(months_elapsed=m))
-            ).inps_employer_annual
-            for m in (0, 11, 12, 23, 24)
-        ]
-        assert rates == [
-            _D("298.56"),
-            _D("298.56"),
-            _D("442.56"),
-            _D("442.56"),
-            _D("1114.56"),
-        ]
-
-    def test_seniority_not_accrued_without_apprentice_amount(self) -> None:
-        """Without apprentice_amount the level increment does not apply."""
-        r = compute(
-            _DEFAULT_CCNL,
-            _RULES,
-            _req(employment=Apprentice(months_elapsed=0), seniority_count=2),
-        )
-        assert r.seniority_monthly == _D("0.00")
-
-    def test_apprentice_amount(self) -> None:
-        """apprentice_amount replaces the level increment for apprentices."""
-        ccnl = _build_ccnl(**{
-            "parameters.seniority_increments.apprentice_amount": _series("6.00")
-        })
-        r = compute(
-            ccnl,
-            _RULES,
-            _req(employment=Apprentice(months_elapsed=0), seniority_count=2),
-        )
-        assert r.seniority_monthly == _D("9.60")  # 12 * 0.80
-
-    def test_negotiated_ral(self) -> None:
-        """RalOverride is the actual apprentice salary; no further scaling."""
-        ral = _D("20000.00")
-        r = compute(
-            _DEFAULT_CCNL,
-            _RULES,
-            _req(employment=Apprentice(months_elapsed=0), negotiated_ral=ral),
-        )
-
-        assert r.gross_annual == _D("20000.00")
-        assert r.gross_monthly == _D("1666.67")
-
-    def test_negotiated_destination_ral(self) -> None:
-        """DestinationRalOverride * apprenticeship_pct yields the actual pay."""
-        ral = _D("20000.00")
-        r = compute(
-            _DEFAULT_CCNL,
-            _RULES,
-            _req(
-                employment=Apprentice(months_elapsed=0),
-                negotiated_destination_ral=ral,
-            ),
-        )
-
-        assert r.gross_annual == _D("16000.00")  # 20000 * 0.80
-        assert r.gross_monthly == _D("1333.33")
-
-    def test_negotiated_destination_ral_requires_percentage_track(self) -> None:
-        """DestinationRalOverride on an under-classification track raises."""
-        with pytest.raises(ValueError, match="under-classification"):
-            compute(
-                _DEFAULT_CCNL_UC,
-                _RULES,
-                _req(
-                    employment=Apprentice(months_elapsed=0),
-                    negotiated_destination_ral=_D("20000.00"),
-                ),
-            )
-
-    def test_level_without_track_raises(self) -> None:
-        """A destination level not covered by any track must raise ValueError."""
-        with pytest.raises(ValueError, match=r"eligible destination levels: \['4'\]"):
-            compute(
-                _DEFAULT_CCNL,
-                _RULES,
-                _req(level_code="3", employment=Apprentice(months_elapsed=0)),
-            )
-
-    def test_no_tracks_raises(self) -> None:
-        """A CCNL without apprenticeship tracks reports its coverage status."""
-        ccnl = _build_ccnl("none")
-        with pytest.raises(ValueError, match=r"coverage\.layer_2 is partial"):
-            compute(ccnl, _RULES, _req(employment=Apprentice(months_elapsed=0)))
-
-    def test_ambiguous_tracks_require_name(self) -> None:
-        """Two tracks on one level: the caller must name the track."""
-        second = copy.deepcopy(_DEFAULT_CCNL.apprenticeship[0].model_dump())
-        second["name"] = "gruppo_2"
-        second["periods"][0]["percentage"] = "0.70"
-        data = make_ccnl_dict()
-        data["apprenticeship"].append(second)
-        ccnl = CCNL.model_validate(data)
-        with pytest.raises(ValueError, match=r"set Apprentice\.track"):
-            compute(ccnl, _RULES, _req(employment=Apprentice(months_elapsed=0)))
-        r = compute(
-            ccnl,
-            _RULES,
-            _req(employment=Apprentice(months_elapsed=0, track="gruppo_2")),
-        )
-        assert r.apprenticeship_pct == _D("0.70")
-
-    def test_named_track_not_covering_level_raises(self) -> None:
-        """A named track must cover the requested destination level."""
-        with pytest.raises(ValueError, match="does not cover destination level '3'"):
-            compute(
-                _DEFAULT_CCNL,
-                _RULES,
-                _req(
-                    level_code="3",
-                    employment=Apprentice(months_elapsed=0, track="standard"),
-                ),
-            )
-
-    def test_unknown_track_name_raises(self) -> None:
-        """An unknown track name raises ValueError."""
-        with pytest.raises(ValueError, match="no apprenticeship track named 'nope'"):
-            compute(
-                _DEFAULT_CCNL,
-                _RULES,
-                _req(employment=Apprentice(months_elapsed=0, track="nope")),
-            )
-
-    def test_pct_exempt_allowance_paid_at_full_value(self) -> None:
-        """Allowances with apprenticeship_pct_relevant=False are not scaled by the pct.
-
-        Level 4 base=1000, one exempt allowance=200 (pct_relevant=False).
-        Track: 80%. Allowance should remain 200, not 160.
-        """
-        data = make_ccnl_dict()
-        data["levels"][2]["fixed_allowances"] = [
-            _allowance("EDR", "200.00", apprenticeship_pct_relevant=False)
-        ]
-        ccnl = CCNL.model_validate(data)
-        r = compute(ccnl, _RULES, _req(employment=Apprentice(months_elapsed=0)))
-        # base: 1000 * 0.80 = 800; allowance: 200 (exempt, not scaled by 0.80)
-        assert r.base_monthly == _D("800.00")
-        assert r.allowances_monthly == _D("200.00")
-
-
-# ---------------------------------------------------------------------------
-# Apprentice — under-classification
-# ---------------------------------------------------------------------------
-
-
-class TestComputeApprenticeUnderClassification:
-    """Under-classification track dispatch."""
-
-    def test_basic(self) -> None:
-        """Apprentice paid one level below (level '3': 800/month * 12 = 9600)."""
-        r = compute(
-            _DEFAULT_CCNL_UC, _RULES, _req(employment=Apprentice(months_elapsed=0))
-        )
-
-        assert r.apprenticeship_under_level_code == "3"
-        assert r.apprenticeship_pct is None
-        assert r.gross_annual == _D("9600.00")
-
-    def test_levels_below_progression(self) -> None:
-        """Each period resolves the pay level by order offset."""
-        track = copy.deepcopy(_DEFAULT_CCNL_UC.apprenticeship[0].model_dump())
-        track["periods"] = [
-            {"months_from": 0, "months_until": 12, "levels_below": 2},
-            {"months_from": 12, "months_until": 24, "levels_below": 1},
-            {"months_from": 24, "months_until": None, "levels_below": 0},
-        ]
-        ccnl = _build_ccnl("under_classification", **{"apprenticeship.0": track})
-        codes = [
-            compute(
-                ccnl, _RULES, _req(employment=Apprentice(months_elapsed=m))
-            ).apprenticeship_under_level_code
-            for m in (0, 12, 24)
-        ]
-        assert codes == ["2", "3", "4"]
-
-    def test_midpoint_to_destination(self) -> None:
-        """Midpoint period pays the mean of pay-level and destination base."""
-        track = copy.deepcopy(_DEFAULT_CCNL_UC.apprenticeship[0].model_dump())
-        track["periods"][0]["midpoint_to_destination"] = True
-        ccnl = _build_ccnl("under_classification", **{"apprenticeship.0": track})
-        r = compute(ccnl, _RULES, _req(employment=Apprentice(months_elapsed=0)))
-        assert r.base_monthly == _D("900.00")
-        assert r.apprenticeship_under_level_code == "3"
-
-    def test_negotiated_ral(self) -> None:
-        """RalOverride overrides the under-classification pay computation."""
-        ral = _D("20000.00")
-        r = compute(
-            _DEFAULT_CCNL_UC,
-            _RULES,
-            _req(employment=Apprentice(months_elapsed=0), negotiated_ral=ral),
-        )
-
-        assert r.gross_annual == ral
-        assert r.gross_monthly == _D("1666.67")
-
-
-# ---------------------------------------------------------------------------
-# Private helpers
-# ---------------------------------------------------------------------------
-
-
-class TestFindPeriodIndex:
-    """Direct unit tests for _find_period_index()."""
-
-    def test_not_found_raises(self) -> None:
-        """months_elapsed before the first period raises ValueError."""
-        periods = [
-            ApprenticeshipPeriod(
-                months_from=10, months_until=None, percentage=_D("0.8")
-            )
-        ]
-        with pytest.raises(ValueError, match="months_elapsed"):
-            _find_period_index(periods, months_elapsed=5)
 
 
 # ---------------------------------------------------------------------------
@@ -952,7 +587,7 @@ class TestFindPeriodIndex:
 
 
 _DOMESTIC_RULES = make_domestic_year_rules()
-_DOMESTIC_CCNL = _build_ccnl()  # standard CCNL; rules carry the domestic model
+_DOMESTIC_CCNL = _build_ccnl()
 _DEFAULT_WEEKLY_HOURS: Decimal = _D("40")
 
 
@@ -981,11 +616,13 @@ class TestComputeDomesticInps:
     def test_missing_weekly_hours_raises(self) -> None:
         """domestic_contributions set but weekly_hours=None must raise."""
         with pytest.raises(ValueError, match="weekly_hours is required"):
-            compute(_DOMESTIC_CCNL, _DOMESTIC_RULES, _req_domestic(weekly_hours=None))
+            compute_payslip(
+                _DOMESTIC_CCNL, _DOMESTIC_RULES, _req_domestic(weekly_hours=None)
+            )
 
     def test_hours_bracket_permanent(self) -> None:
         """weekly_hours > 24 → hours bracket; permanent uses base employer rate."""
-        r = compute(
+        r = compute_payslip(
             _DOMESTIC_CCNL, _DOMESTIC_RULES, _req_domestic(weekly_hours=_D("40"))
         )
 
@@ -995,7 +632,7 @@ class TestComputeDomesticInps:
 
     def test_hours_bracket_fixed_term(self) -> None:
         """weekly_hours > 24 + FixedTerm → hours bracket fixed-term rate."""
-        r = compute(
+        r = compute_payslip(
             _DOMESTIC_CCNL, _DOMESTIC_RULES, _req_domestic(employment=_FIXED_TERM)
         )
 
@@ -1006,7 +643,7 @@ class TestComputeDomesticInps:
     def test_wage_bracket_low(self) -> None:
         """weekly_hours <= 24 + low hourly rate → lowest wage bracket."""
         # Hourly rate for level 4 (1000/168 ≈ 5.95) → below 9.61 bracket
-        r = compute(
+        r = compute_payslip(
             _DOMESTIC_CCNL, _DOMESTIC_RULES, _req_domestic(weekly_hours=_D("20"))
         )
 
@@ -1016,7 +653,7 @@ class TestComputeDomesticInps:
 
     def test_net_is_gross_minus_inps_minus_irpef(self) -> None:
         """Net = gross - INPS employee - irpef_net for domestic path."""
-        r = compute(_DOMESTIC_CCNL, _DOMESTIC_RULES, _req_domestic())
+        r = compute_payslip(_DOMESTIC_CCNL, _DOMESTIC_RULES, _req_domestic())
 
         assert r.net_annual == r.gross_annual - r.inps_employee_annual - r.irpef_net
 
@@ -1048,7 +685,7 @@ class TestComputeAddizionali:
                 "X001": ComunaleEntry(
                     nome="Test",
                     brackets=[SurtaxBracket(up_to=None, rate=Decimal("0.008"))],
-                    soglia=Decimal(10000),
+                    exemption_threshold=Decimal(10000),
                 )
             },
         )
@@ -1068,11 +705,11 @@ class TestComputeAddizionali:
             else None
         )
         agreement = (
-            IndividualAgreement(ral_override=RalOverride(negotiated_ral))
+            SalaryOverrides(ral_override=RalOverride(negotiated_ral))
             if negotiated_ral is not None
             else None
         )
-        return compute(
+        return compute_payslip(
             ccnl,
             rules,
             Employee(
@@ -1092,7 +729,7 @@ class TestComputeAddizionali:
         """When surtax=None (default), both addizionali are zero."""
         ccnl = CCNL.model_validate(make_ccnl_dict())
         rules = make_year_rules()
-        r = compute(
+        r = compute_payslip(
             ccnl,
             rules,
             Employee(
@@ -1118,7 +755,7 @@ class TestComputeAddizionali:
         assert _FS.NO_ADDIZIONALE_COMUNALE in r.fiscal_simplifications
 
     def test_comune_only(self) -> None:
-        """With comune_belfiore set, addizionale comunale > 0; regionale still zero."""
+        """With comune_belfiore set, addizionale comunale > 0; regionale zero."""
         r = self._result(comune_belfiore="X001")
         assert r.addizionale_comunale_annual > Decimal(0)
         assert r.addizionale_regionale_annual == Decimal("0.00")
@@ -1126,7 +763,7 @@ class TestComputeAddizionali:
         assert _FS.NO_ADDIZIONALE_REGIONALE in r.fiscal_simplifications
 
     def test_both_set_both_computed(self) -> None:
-        """With both fields set, both surtaxes are computed and neither flag is set."""
+        """With both fields set, both surtaxes are computed; neither flag set."""
         r = self._result(regione="TestRegione", comune_belfiore="X001")
         assert r.addizionale_regionale_annual > Decimal(0)
         assert r.addizionale_comunale_annual > Decimal(0)
@@ -1172,11 +809,11 @@ class TestComputeAddizionali:
                 "X001": ComunaleEntry(
                     nome="Test",
                     brackets=[SurtaxBracket(up_to=None, rate=Decimal("0.008"))],
-                    soglia=Decimal(10000),
+                    exemption_threshold=Decimal(10000),
                 )
             },
         )
-        r = compute(
+        r = compute_payslip(
             ccnl,
             rules,
             Employee(
@@ -1187,220 +824,8 @@ class TestComputeAddizionali:
                 ),
                 arrangement=WorkArrangement(),
                 tax=TaxProfile(comune_belfiore="X001"),
-                agreement=IndividualAgreement(ral_override=RalOverride(tiny_ral)),
+                agreement=SalaryOverrides(ral_override=RalOverride(tiny_ral)),
             ),
             surtax=surtax,
         )
         assert r.addizionale_comunale_annual == Decimal("0.00")
-
-
-# ---------------------------------------------------------------------------
-# Tiered seniority (SeniorityTier / _resolve_tier_amount)
-# ---------------------------------------------------------------------------
-
-
-def _tiered_ccnl() -> CCNL:
-    """Minimal CCNL with a 2-tier seniority ladder on level 4.
-
-    Tier 1: 3 biennial scatti @ 10.00 EUR (months 24, 48, 72).
-    Tier 2: 2 quadrennial scatti @ 15.00 EUR (months 120, 168).
-
-    Returns:
-        A validated CCNL instance with tiered seniority.
-    """
-    data = make_ccnl_dict(app_type="")
-    data["parameters"]["seniority_increments"] = {
-        "cadence_months": 24,
-        "maximum_count": 5,
-        "amount_by_level": {},
-        "tiers": [
-            {
-                "cadence_months": 24,
-                "maximum_count": 3,
-                "amount_by_level": {"4": _series("10.00")},
-            },
-            {
-                "cadence_months": 48,
-                "maximum_count": 2,
-                "amount_by_level": {"4": _series("15.00")},
-            },
-        ],
-    }
-    return CCNL.model_validate(data)
-
-
-class TestTieredSeniority:
-    """Tests for tiered-cadence seniority resolution."""
-
-    _CCNL = _tiered_ccnl()
-
-    def _compute(
-        self,
-        seniority_months: int | None = None,
-        seniority_count: int | None = None,
-        level_code: str = "4",
-    ) -> Payslip:
-        seniority: SeniorityByCount | SeniorityByMonths | None = None
-        if seniority_count is not None:
-            seniority = SeniorityByCount(seniority_count)
-        elif seniority_months is not None:
-            seniority = SeniorityByMonths(seniority_months)
-        return compute(
-            self._CCNL,
-            _RULES,
-            Employee(
-                position=ContractPosition(
-                    level_code=level_code, as_of=_DATE, employment=_PERMANENT
-                ),
-                arrangement=WorkArrangement(seniority=seniority),
-            ),
-        )
-
-    def test_no_seniority(self) -> None:
-        """Zero service months yields zero seniority."""
-        r = self._compute(seniority_months=0)
-        assert r.seniority_monthly == _D(0)
-        assert r.seniority_count == 0
-
-    def test_below_first_tier_cadence(self) -> None:
-        """Service months below tier-1 cadence yield no scatti."""
-        r = self._compute(seniority_months=23)
-        assert r.seniority_monthly == _D(0)
-
-    def test_tier1_one_scatto(self) -> None:
-        """Exactly 24 months earns the first tier-1 scatto (10.00 EUR)."""
-        r = self._compute(seniority_months=24)
-        assert r.seniority_monthly == _D("10.00")
-        assert r.seniority_count == 1
-
-    def test_tier1_three_scatti(self) -> None:
-        """72 months (= 3x24) earns all tier-1 scatti (30.00 EUR)."""
-        r = self._compute(seniority_months=72)
-        assert r.seniority_monthly == _D("30.00")
-        assert r.seniority_count == 3
-
-    def test_tier2_first_scatto(self) -> None:
-        """120 months (72 tier-1 + 48 tier-2) earns 1 tier-2 scatto."""
-        r = self._compute(seniority_months=120)
-        assert r.seniority_monthly == _D("45.00")  # 3x10 + 1x15
-        assert r.seniority_count == 4
-
-    def test_tier2_both_scatti(self) -> None:
-        """168 months earns all 5 scatti (30 + 30 = 60 EUR)."""
-        r = self._compute(seniority_months=168)
-        assert r.seniority_monthly == _D("60.00")  # 3x10 + 2x15
-        assert r.seniority_count == 5
-
-    def test_beyond_maximum_capped(self) -> None:
-        """Extra service months beyond max are ignored."""
-        r = self._compute(seniority_months=9999)
-        assert r.seniority_monthly == _D("60.00")
-        assert r.seniority_count == 5
-
-    def test_count_input_tier_distribution(self) -> None:
-        """Explicit seniority_count distributes across tiers sequentially."""
-        # count=4: tier1 fills (3) + tier2 takes 1 -> 3x10 + 1x15 = 45
-        r = self._compute(seniority_count=4)
-        assert r.seniority_monthly == _D("45.00")
-        assert r.seniority_count == 4
-
-    def test_level_not_in_tier_yields_zero(self) -> None:
-        """A level absent from a tier's amount_by_level contributes zero."""
-        # Level 2 has no entry in either tier — seniority must be zero.
-        r = self._compute(seniority_months=200, level_code="2")
-        assert r.seniority_monthly == _D(0)
-
-
-# ---------------------------------------------------------------------------
-# Service-gated allowances (Allowance.service_months_threshold)
-# ---------------------------------------------------------------------------
-
-
-def _service_gated_ccnl() -> CCNL:
-    """Minimal CCNL with two service-gated annual allowances on level 4.
-
-    Allowance A: threshold=60 months, 50 EUR/year (months_per_year=1).
-    Allowance B: threshold=120 months, 150 EUR/year (months_per_year=1).
-
-    Returns:
-        A validated CCNL instance with service-gated allowances.
-    """
-    data = make_ccnl_dict(app_type="")
-    data["parameters"]["seniority_increments"] = {
-        "cadence_months": 24,
-        "maximum_count": 0,
-        "amount_by_level": {},
-    }
-    data["levels"][2]["fixed_allowances"] = [
-        {
-            "code": "PREMIO_5YR",
-            "description": "Premio 5 anni",
-            "monthly": _series("50.00"),
-            "months_per_year": 1,
-            "service_months_threshold": 60,
-        },
-        {
-            "code": "PREMIO_10YR",
-            "description": "Premio 10 anni",
-            "monthly": _series("150.00"),
-            "months_per_year": 1,
-            "service_months_threshold": 120,
-        },
-    ]
-    return CCNL.model_validate(data)
-
-
-class TestServiceGatedAllowances:
-    """Tests for Allowance.service_months_threshold gating."""
-
-    _CCNL = _service_gated_ccnl()
-
-    def _compute(
-        self,
-        seniority_months: int | None = None,
-        seniority_count: int | None = None,
-    ) -> Payslip:
-        seniority: SeniorityByCount | SeniorityByMonths | None = None
-        if seniority_count is not None:
-            seniority = SeniorityByCount(seniority_count)
-        elif seniority_months is not None:
-            seniority = SeniorityByMonths(seniority_months)
-        return compute(
-            self._CCNL,
-            _RULES,
-            Employee(
-                position=ContractPosition(
-                    level_code="4", as_of=_DATE, employment=_PERMANENT
-                ),
-                arrangement=WorkArrangement(seniority=seniority),
-            ),
-        )
-
-    def test_below_threshold_no_allowance(self) -> None:
-        """Below the 5yr threshold no allowance is included."""
-        r = self._compute(seniority_months=59)
-        assert r.allowances_monthly == _D(0)
-
-    def test_at_first_threshold(self) -> None:
-        """At 60 months the 5yr premio (50 EUR/year = 50/14 monthly) is active."""
-        r = self._compute(seniority_months=60)
-        # allowances_monthly is the raw monthly value from chain.allowances_total
-        assert r.allowances_monthly == _D("50.00")
-
-    def test_at_second_threshold(self) -> None:
-        """At 120 months both premi are active (50 + 150 = 200 monthly)."""
-        r = self._compute(seniority_months=120)
-        assert r.allowances_monthly == _D("200.00")
-
-    def test_no_seniority_months_excludes_gated(self) -> None:
-        """With only seniority_count, gated allowances are excluded."""
-        r = self._compute(seniority_count=0)
-        assert r.allowances_monthly == _D(0)
-
-    def test_annual_gross_uses_months_per_year(self) -> None:
-        """Annual gross reflects months_per_year=1 (not x14 additional months)."""
-        r_with = self._compute(seniority_months=60)
-        r_without = self._compute(seniority_months=59)
-        # Annual difference must be 50x1, not 50x14
-        diff = r_with.gross_annual - r_without.gross_annual
-        assert diff == _D("50.00")

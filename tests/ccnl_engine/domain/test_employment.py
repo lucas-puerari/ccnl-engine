@@ -3,7 +3,7 @@
 import pytest
 from pydantic import TypeAdapter, ValidationError
 
-from ccnl_engine.models.employment import Apprentice, Employment, FixedTerm, Permanent
+from ccnl_engine.domain.employment import Apprentice, Employment, FixedTerm, Permanent
 
 _ta: TypeAdapter[Employment] = TypeAdapter(Employment)
 

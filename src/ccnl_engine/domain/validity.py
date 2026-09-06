@@ -6,6 +6,8 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, model_validator
 
+from ccnl_engine.primitives import validate_open_sequence
+
 
 class ValidityPeriod(BaseModel):
     """A single time-bounded value within a TimeSeries."""
@@ -36,29 +38,12 @@ class TimeSeries(BaseModel):
 
     @model_validator(mode="after")
     def _check_series(self) -> Self:
-        p = self.periods
-        if not p:
-            msg = "TimeSeries must contain at least one ValidityPeriod"
-            raise ValueError(msg)
-        for i in range(len(p) - 1):
-            if p[i].valid_until is None:
-                msg = (
-                    f"only the last period may have valid_until=None "
-                    f"(period {i} of {len(p)} is not the last)"
-                )
-                raise ValueError(msg)
-            if p[i].valid_until != p[i + 1].valid_from:
-                msg = (
-                    f"gap between period {i} (valid_until={p[i].valid_until}) "
-                    f"and period {i + 1} (valid_from={p[i + 1].valid_from})"
-                )
-                raise ValueError(msg)
-        if p[-1].valid_until is not None:
-            msg = (
-                f"last period must be open-ended (valid_until=None), "
-                f"got valid_until={p[-1].valid_until}"
-            )
-            raise ValueError(msg)
+        validate_open_sequence(
+            self.periods,
+            lambda p: p.valid_from,
+            lambda p: p.valid_until,
+            "TimeSeries periods",
+        )
         return self
 
     def value_at(self, day: date) -> Decimal:

@@ -12,8 +12,13 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.models.ccnl import CCNL, EmployerFund, SeniorityIncrements
-from tests.conftest import make_ccnl_dict
+from ccnl_engine.domain.ccnl import CCNL, EmployerFund, SeniorityIncrements
+from ccnl_engine.engine.compute.seniority import (
+    seniority_first_cadence,
+    seniority_maximum,
+)
+from ccnl_engine.engine.contributions import fund_applies_to
+from tests.helpers import make_ccnl_dict
 
 _SERIES = {"periods": [{"valid_from": "2020-01-01", "valid_until": None, "value": "1"}]}
 
@@ -206,17 +211,17 @@ class TestCCNLSeniority:
             maximum_count_by_level={"4": 1},
             first_cadence_months_by_level={"4": 48},
         )
-        assert si.maximum_for("4", None) == 1
-        assert si.maximum_for("3", None) == 5
-        assert si.first_cadence_for("4", None) == 48
-        assert si.first_cadence_for("3", None) == 24
+        assert seniority_maximum(si, "4", None) == 1
+        assert seniority_maximum(si, "3", None) == 5
+        assert seniority_first_cadence(si, "4", None) == 48
+        assert seniority_first_cadence(si, "3", None) == 24
         si_first = SeniorityIncrements(
             cadence_months=36,
             maximum_count=5,
             amount_by_level={},
             first_cadence_months=48,
         )
-        assert si_first.first_cadence_for("3") == 48
+        assert seniority_first_cadence(si_first, "3") == 48
 
     def test_first_cadence_by_level_below_cadence_raises(self) -> None:
         """Per-level first cadence must also be >= cadence_months."""
@@ -267,9 +272,9 @@ class TestCCNLSeniority:
             first_cadence_months=48,
             first_cadence_months_by_category={"operaio": 24},
         )
-        assert si.first_cadence_for("2", "operaio") == 24
-        assert si.first_cadence_for("2", "impiegato") == 48
-        assert si.first_cadence_for("2") == 48
+        assert seniority_first_cadence(si, "2", "operaio") == 24
+        assert seniority_first_cadence(si, "2", "impiegato") == 48
+        assert seniority_first_cadence(si, "2") == 48
 
 
 # ---------------------------------------------------------------------------
@@ -403,16 +408,16 @@ class TestEmployerFundsAndAllowances:
             "rate": _series("0.185"),
             "applies_to_categories": ["operaio"],
         })
-        assert fund.applies_to("operaio")
-        assert not fund.applies_to("impiegato")
-        assert not fund.applies_to(None)
+        assert fund_applies_to(fund, "operaio")
+        assert not fund_applies_to(fund, "impiegato")
+        assert not fund_applies_to(fund, None)
         assert fund.rate.value_at(date(2026, 1, 1)) == Decimal("0.185")
         open_fund = EmployerFund.model_validate({
             "code": "f",
             "description": "f",
             "rate": _series("0.01"),
         })
-        assert open_fund.applies_to(None)
+        assert fund_applies_to(open_fund, None)
 
     def test_invalid_category_raises(self) -> None:
         """Categories are a closed vocabulary."""
@@ -486,7 +491,7 @@ class TestSeniorityTiers:
         """maximum_for returns the sum of all tier maximums."""
         ccnl = _validate(self._tiered_data())
         si = ccnl.parameters.seniority_increments
-        assert si.maximum_for("4") == 5  # 3 + 2
+        assert seniority_maximum(si, "4") == 5  # 3 + 2
 
 
 class TestServiceMonthsThreshold:

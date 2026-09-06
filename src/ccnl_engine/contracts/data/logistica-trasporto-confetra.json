@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "logistica-trasporto-confetra",
+    "ccnl_id": "logistica-trasporto-confetra",
     "name": "CCNL Logistica, Trasporto Merci e Spedizione (Confetra)",
     "cnel_code": "I100",
     "sector": "logistica",

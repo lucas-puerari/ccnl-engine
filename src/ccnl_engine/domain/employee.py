@@ -18,11 +18,11 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.models.ccnl import LevelCategory
-    from ccnl_engine.models.employment import Employment
+    from ccnl_engine.domain.ccnl import LevelCategory
+    from ccnl_engine.domain.employment import Employment
 
-_ZERO = Decimal(0)
-_ONE = Decimal(1)
+_ZERO: Decimal = Decimal(0)
+_ONE: Decimal = Decimal(1)
 
 
 # ---------------------------------------------------------------------------
@@ -118,7 +118,7 @@ class DestinationRalOverride:
     """Destination-level RAL for a percentage-track apprentice.
 
     The engine applies the apprenticeship percentage to this value to produce
-    the apprentice's actual pay.  Only valid for :class:`~ccnl_engine.models.\
+    the apprentice's actual pay.  Only valid for :class:`~ccnl_engine.domain.\
 employment.Apprentice` employment on a percentage track.  Mutually exclusive
     with :class:`RalOverride`.
 
@@ -157,9 +157,9 @@ class ContractPosition:
             (e.g. ``"D3"``).  Must match a level in the provided CCNL.
         as_of: Reference date for all time-series lookups (base pay,
             seniority amounts, allowances).
-        employment: Contract type — :class:`~ccnl_engine.models.employment.\
-Permanent`, :class:`~ccnl_engine.models.employment.FixedTerm`, or
-            :class:`~ccnl_engine.models.employment.Apprentice`.
+        employment: Contract type — :class:`~ccnl_engine.domain.employment.\
+Permanent`, :class:`~ccnl_engine.domain.employment.FixedTerm`, or
+            :class:`~ccnl_engine.domain.employment.Apprentice`.
         category: Worker category override (``"operaio"``, ``"impiegato"``,
             ``"quadro"``, ``"dirigente"``).  Required when a level hosts
             multiple categories (e.g. edilizia level 3).  Defaults to the
@@ -257,7 +257,7 @@ class TaxProfile:
 
 
 @dataclass(frozen=True)
-class IndividualAgreement:
+class SalaryOverrides:
     """Individually negotiated salary terms that override the CCNL tables.
 
     Attributes:
@@ -308,4 +308,4 @@ class Employee:
     position: ContractPosition
     arrangement: WorkArrangement
     tax: TaxProfile | None = None
-    agreement: IndividualAgreement | None = None
+    agreement: SalaryOverrides | None = None

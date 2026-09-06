@@ -7,18 +7,14 @@ from typing import Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from ccnl_engine.models.apprenticeship import (
+from ccnl_engine.domain.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipTrack,
     ApprenticeshipUnderClassification,
 )
-from ccnl_engine.models.validity import TimeSeries
+from ccnl_engine.domain.validity import TimeSeries
 
-#: Implementation status of a coverage layer.
 CoverageStatus = Literal["implemented", "partial", "out_of_scope"]
-
-#: Worker category of a classification level (drives contribution rates
-#: and employer-fund applicability).
 LevelCategory = Literal["operaio", "impiegato", "quadro", "dirigente"]
 
 
@@ -42,11 +38,6 @@ class CoverageNote(BaseModel):
 
     kind: NoteKind
     text: str
-
-
-#: Allowed prefixes for coverage notes (kept for reference; superseded by NoteKind).
-NOTE_PREFIXES: tuple[str, ...] = ("SIMPLIFICATION:", "MISSING:", "SOURCE:", "INFO:")
-_MISSING_KIND = NoteKind.MISSING
 
 
 class TaxSector(StrEnum):
@@ -224,49 +215,6 @@ class SeniorityIncrements(BaseModel):
                 raise ValueError(msg)
         return self
 
-    def maximum_for(
-        self,
-        level_code: str,
-        worker_category: LevelCategory | None = None,
-    ) -> int:
-        """Return the maximum increment count applicable to a level/category.
-
-        Category overrides take precedence over per-level and global values.
-        In tiered mode returns the sum of all tier maximums.
-
-        Returns:
-            The maximum seniority increment count for the given level.
-        """
-        if self.tiers:
-            return sum(t.maximum_count for t in self.tiers)
-        if (
-            worker_category is not None
-            and worker_category in self.maximum_count_by_category
-        ):
-            return self.maximum_count_by_category[worker_category]
-        return self.maximum_count_by_level.get(level_code, self.maximum_count)
-
-    def first_cadence_for(
-        self,
-        level_code: str,
-        worker_category: LevelCategory | None = None,
-    ) -> int:
-        """Return the months of service required for the first increment.
-
-        Category overrides take precedence over per-level and global values.
-
-        Returns:
-            The months of service required for the first seniority increment.
-        """
-        if (
-            worker_category is not None
-            and worker_category in self.first_cadence_months_by_category
-        ):
-            return self.first_cadence_months_by_category[worker_category]
-        return self.first_cadence_months_by_level.get(
-            level_code, self.first_cadence_months or self.cadence_months
-        )
-
 
 class EmployerFund(BaseModel):
     """An employer-side contribution to a contractual fund (e.g. Cassa Edile).
@@ -288,18 +236,8 @@ class EmployerFund(BaseModel):
     rate: TimeSeries
     applies_to_categories: list[LevelCategory] | None = None
 
-    def applies_to(self, category: LevelCategory | None) -> bool:
-        """Return whether the fund applies to a level of the given category.
 
-        Returns:
-            True if the fund applies to the given category, False otherwise.
-        """
-        if self.applies_to_categories is None:
-            return True
-        return category is not None and category in self.applies_to_categories
-
-
-class Parameters(BaseModel):
+class CCNLParameters(BaseModel):
     """Contract-wide parameters."""
 
     model_config = ConfigDict(extra="forbid")
@@ -350,7 +288,7 @@ class Level(BaseModel):
         return self
 
 
-class Coverage(BaseModel):
+class CCNLCoverage(BaseModel):
     """Declares implementation status for a CCNL data file.
 
     A ``missing`` note documents data the engine supports but the file lacks,
@@ -365,7 +303,7 @@ class Coverage(BaseModel):
 
     @model_validator(mode="after")
     def _check_notes(self) -> Self:
-        has_missing = any(n.kind == _MISSING_KIND for n in self.notes)
+        has_missing = any(n.kind == NoteKind.MISSING for n in self.notes)
         if has_missing and "partial" not in {self.layer_1, self.layer_2}:
             msg = (
                 "coverage has 'missing' notes but neither layer_1 nor layer_2 "
@@ -410,8 +348,9 @@ class CCNLMeta(BaseModel):
     """Identifying metadata for a CCNL.
 
     Attributes:
-        id: Unique slug for the contract (e.g. ``"metalmeccanico-federmeccanica"``).
-            Used as ``Payslip.ccnl_id``.
+        ccnl_id: Unique slug for the contract
+            (e.g. ``"metalmeccanico-federmeccanica"``). Used as
+            ``Payslip.ccnl_id``.
         name: Full name of the collective agreement.
         cnel_code: CNEL registry code for the agreement.
         sector: Human-readable industry sector (e.g. ``"Industria metalmeccanica"``).
@@ -433,7 +372,7 @@ class CCNLMeta(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    id: str
+    ccnl_id: str
     name: str
     cnel_code: str
     sector: str
@@ -464,7 +403,7 @@ class CCNL(BaseModel):
 
     schema_version: Literal["0.4"]
     meta: CCNLMeta
-    parameters: Parameters
+    parameters: CCNLParameters
     levels: list[Level]
     apprenticeship: list[ApprenticeshipTrack] = Field(
         default=[],
@@ -473,7 +412,7 @@ class CCNL(BaseModel):
             "(out of scope or data unavailable)."
         ),
     )
-    coverage: Coverage
+    coverage: CCNLCoverage
 
     @model_validator(mode="after")
     def _validate_cross_fields(self) -> Self:
@@ -497,7 +436,7 @@ class CCNL(BaseModel):
         for lv in self.levels:
             if lv.code == level_code:
                 return lv
-        msg = f"level_code {level_code!r} not found in CCNL {self.meta.id!r}"
+        msg = f"level_code {level_code!r} not found in CCNL {self.meta.ccnl_id!r}"
         raise ValueError(msg)
 
     def level_by_order(self, order: int) -> Level:
@@ -512,7 +451,7 @@ class CCNL(BaseModel):
         for lv in self.levels:
             if lv.order == order:
                 return lv
-        msg = f"no level with order {order} in CCNL {self.meta.id!r}"
+        msg = f"no level with order {order} in CCNL {self.meta.ccnl_id!r}"
         raise ValueError(msg)
 
     def apprenticeship_tracks_for(self, level_code: str) -> list[ApprenticeshipTrack]:
@@ -535,7 +474,7 @@ class CCNL(BaseModel):
         for track in self.apprenticeship:
             if track.name == name:
                 return track
-        msg = f"no apprenticeship track named {name!r} in CCNL {self.meta.id!r}"
+        msg = f"no apprenticeship track named {name!r} in CCNL {self.meta.ccnl_id!r}"
         raise ValueError(msg)
 
     def _assert_unique_orders(self) -> None:

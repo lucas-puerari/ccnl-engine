@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "servizi-postali-appalto-fise",
+    "ccnl_id": "servizi-postali-appalto-fise",
     "name": "CCNL Servizi Postali in Appalto (FISE-ARE)",
     "cnel_code": "K721",
     "sector": "Servizi postali in appalto e recapito",

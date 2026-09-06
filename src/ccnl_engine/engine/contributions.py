@@ -15,14 +15,23 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from ccnl_engine.domain.employment import Apprentice, FixedTerm
 from ccnl_engine.engine.rounding import money
-from ccnl_engine.models.employment import Apprentice, FixedTerm
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.models.employment import Employment
-    from ccnl_engine.tax.models import YearRules
+    from ccnl_engine.domain.ccnl import EmployerFund, LevelCategory
+    from ccnl_engine.domain.employment import Employment
+    from ccnl_engine.tax.models import (
+        ApprenticeRates,
+        DomesticInpsRates,
+        InpsRates,
+        YearRules,
+    )
+
+_APPRENTICE_STEP_1: int = 12
+_APPRENTICE_STEP_2: int = 24
 
 
 @dataclass(frozen=True)
@@ -36,7 +45,7 @@ class ContributionRates:
 
 
 def resolve_rates(
-    rules: YearRules, employment: Employment, category: str | None
+    rules: YearRules, employment: Employment, category: LevelCategory | None
 ) -> ContributionRates:
     """Resolve INPS rates for an employment type and worker category.
 
@@ -64,16 +73,16 @@ def resolve_rates(
         raise TypeError(msg)
     if isinstance(employment, Apprentice):
         emp_rate = rules.apprentice.employee_rate
-        er_rate = rules.apprentice.employer_rate_at(employment.months_elapsed)
+        er_rate = apprentice_employer_rate(rules.apprentice, employment.months_elapsed)
         return ContributionRates(
             employee_rate=emp_rate,
             employee_ivs_rate=rules.apprentice.employee_ivs_rate,
             employer_rate=er_rate,
-            employer_ivs_rate=rules.apprentice.employer_ivs_rate_at(
-                employment.months_elapsed
+            employer_ivs_rate=apprentice_employer_ivs_rate(
+                rules.apprentice, employment.months_elapsed
             ),
         )
-    employer_rate = rules.inps.employer_rate_for(category)
+    employer_rate = inps_employer_rate(rules.inps, category)
     # NASpI addizionale is not IVS; keep ivs_rate unchanged.
     employer_ivs_rate = rules.inps.employer_ivs_rate
     if isinstance(employment, FixedTerm):
@@ -120,3 +129,88 @@ def tfr(base_annual: Decimal, rules: YearRules) -> Decimal:
         The annual TFR accrual amount, rounded to two decimal places.
     """
     return money(base_annual / rules.tfr.accrual_divisor)
+
+
+def inps_employer_rate(rates: InpsRates, category: str | None) -> Decimal:
+    """Return the employer rate applicable to a worker category.
+
+    Returns:
+        The employer contribution rate for the given worker category.
+    """
+    if category is None:
+        return rates.employer_rate
+    return rates.employer_rate_by_category.get(category, rates.employer_rate)
+
+
+def apprentice_employer_rate(rates: ApprenticeRates, months_elapsed: int) -> Decimal:
+    """Return the employer rate in force at ``months_elapsed``.
+
+    Returns:
+        The employer contribution rate applicable at the given month.
+    """
+    if months_elapsed < _APPRENTICE_STEP_1:
+        return rates.employer_rate_months_0_11
+    if months_elapsed < _APPRENTICE_STEP_2:
+        return rates.employer_rate_months_12_23
+    return rates.employer_rate_after
+
+
+def apprentice_employer_ivs_rate(
+    rates: ApprenticeRates, months_elapsed: int
+) -> Decimal:
+    """Return the IVS-only employer rate in force at ``months_elapsed``.
+
+    Returns:
+        The IVS portion of the employer rate applicable at the given month.
+    """
+    if months_elapsed < _APPRENTICE_STEP_1:
+        return rates.employer_ivs_rate_months_0_11
+    if months_elapsed < _APPRENTICE_STEP_2:
+        return rates.employer_ivs_rate_months_12_23
+    return rates.employer_ivs_rate_after
+
+
+def resolve_domestic_inps_rate(
+    rates: DomesticInpsRates,
+    hourly_rate: Decimal,
+    weekly_hours: Decimal,
+    *,
+    is_fixed_term: bool,
+) -> tuple[Decimal, Decimal]:
+    """Return ``(employee_per_hour, employer_per_hour)`` for the scenario.
+
+    Returns:
+        A tuple of (employee contribution per hour, employer contribution
+        per hour) based on weekly_hours and hourly_rate.
+
+    Raises:
+        ValueError: If no wage bracket covers the given hourly_rate.
+    """
+    if weekly_hours > rates.weekly_hours_threshold:
+        b = rates.hours_bracket
+        er = b.employer_per_hour_fixed_term if is_fixed_term else b.employer_per_hour
+        return b.employee_per_hour, er
+    for bracket in rates.wage_brackets:
+        if (
+            bracket.hourly_rate_up_to is None
+            or hourly_rate <= bracket.hourly_rate_up_to
+        ):
+            er = (
+                bracket.employer_per_hour_fixed_term
+                if is_fixed_term
+                else bracket.employer_per_hour
+            )
+            return bracket.employee_per_hour, er
+    msg = f"no wage bracket covers hourly_rate={hourly_rate!r}"
+    raise ValueError(msg)
+
+
+def fund_applies_to(fund: EmployerFund, category: LevelCategory | None) -> bool:
+    """Return whether the fund applies to a level of the given category.
+
+    Returns:
+        True if the fund applies to the given category, False otherwise.
+    """
+    if fund.applies_to_categories is None:
+        return True
+    return category is not None and category in fund.applies_to_categories

@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "panificazione-artigianato-confartigianato",
+    "ccnl_id": "panificazione-artigianato-confartigianato",
     "name": "CCNL Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA)",
     "cnel_code": "E015",
     "sector": "panificazione e alimentazione artigianato",

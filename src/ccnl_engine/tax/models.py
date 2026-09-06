@@ -7,17 +7,11 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-_APPRENTICE_SMALL_FIRM_STEP_1 = 12
-_APPRENTICE_SMALL_FIRM_STEP_2 = 24
+from ccnl_engine.domain.ccnl import TaxSector
+from ccnl_engine.primitives import Bracket, assert_ivs_le_total
 
-
-class IrpefBracket(BaseModel):
-    """A single IRPEF marginal tax bracket (Art. 11 TUIR)."""
-
-    model_config = ConfigDict(extra="forbid")
-
-    up_to: Decimal | None
-    rate: Decimal
+#: A single IRPEF marginal tax bracket (Art. 11 TUIR).
+IrpefBracket = Bracket
 
 
 class DeductionBreakpoint(BaseModel):
@@ -45,7 +39,7 @@ class InpsRates(BaseModel):
     applies uniformly across all worker categories.  When a category-specific
     rate is active, the IVS component is still taken from ``employer_ivs_rate``
     and the category non-IVS residual is ``category_rate - employer_ivs_rate``.
-    This invariant is enforced by ``_InpsEmployerTier._check_ivs_rate``, which
+    This invariant is enforced by ``InpsEmployerTier._check_ivs_rate``, which
     requires every category rate to be ≥ ``ivs_rate`` so the residual is
     non-negative.  A sector where the IVS rate genuinely varies by category
     would need a ``ivs_rate_by_category`` field.
@@ -59,16 +53,6 @@ class InpsRates(BaseModel):
     employer_ivs_rate: Decimal
     ceiling: Decimal | None
     employer_rate_by_category: dict[str, Decimal] = {}
-
-    def employer_rate_for(self, category: str | None) -> Decimal:
-        """Return the employer rate applicable to a worker category.
-
-        Returns:
-            The employer contribution rate for the given worker category.
-        """
-        if category is None:
-            return self.employer_rate
-        return self.employer_rate_by_category.get(category, self.employer_rate)
 
 
 class ApprenticeRates(BaseModel):
@@ -126,37 +110,11 @@ class ApprenticeRates(BaseModel):
             ),
         ]
         for ivs_name, ivs_val, total_name, total_val in pairs:
-            if ivs_val > total_val:
-                msg = f"{ivs_name} {ivs_val} cannot exceed {total_name} {total_val}"
-                raise ValueError(msg)
+            assert_ivs_le_total(ivs_name, ivs_val, total_name, total_val)
         return self
 
-    def employer_rate_at(self, months_elapsed: int) -> Decimal:
-        """Return the employer rate in force at ``months_elapsed``.
 
-        Returns:
-            The employer contribution rate applicable at the given month.
-        """
-        if months_elapsed < _APPRENTICE_SMALL_FIRM_STEP_1:
-            return self.employer_rate_months_0_11
-        if months_elapsed < _APPRENTICE_SMALL_FIRM_STEP_2:
-            return self.employer_rate_months_12_23
-        return self.employer_rate_after
-
-    def employer_ivs_rate_at(self, months_elapsed: int) -> Decimal:
-        """Return the IVS-only employer rate in force at ``months_elapsed``.
-
-        Returns:
-            The IVS portion of the employer rate applicable at the given month.
-        """
-        if months_elapsed < _APPRENTICE_SMALL_FIRM_STEP_1:
-            return self.employer_ivs_rate_months_0_11
-        if months_elapsed < _APPRENTICE_SMALL_FIRM_STEP_2:
-            return self.employer_ivs_rate_months_12_23
-        return self.employer_ivs_rate_after
-
-
-class _InpsEmployerTier(BaseModel):
+class InpsEmployerTier(BaseModel):
     """A single employer-rate tier keyed by maximum headcount.
 
     ``ivs_rate`` is the IVS (Invalidità, Vecchiaia, Superstiti) portion of
@@ -174,9 +132,7 @@ class _InpsEmployerTier(BaseModel):
 
     @model_validator(mode="after")
     def _check_ivs_rate(self) -> Self:
-        if self.ivs_rate > self.rate:
-            msg = f"ivs_rate {self.ivs_rate} cannot exceed rate {self.rate}"
-            raise ValueError(msg)
+        assert_ivs_le_total("ivs_rate", self.ivs_rate, "rate", self.rate)
         for cat, cat_rate in self.rate_by_category.items():
             if cat_rate < self.ivs_rate:
                 msg = (
@@ -187,7 +143,7 @@ class _InpsEmployerTier(BaseModel):
         return self
 
 
-class _InpsEmployeeTier(BaseModel):
+class InpsEmployeeTier(BaseModel):
     """A single employee-rate tier keyed by maximum headcount.
 
     ``ivs_rate`` is the IVS portion of ``rate`` (subject to the massimale).
@@ -204,9 +160,7 @@ class _InpsEmployeeTier(BaseModel):
 
     @model_validator(mode="after")
     def _check_ivs_rate(self) -> Self:
-        if self.ivs_rate > self.rate:
-            msg = f"ivs_rate {self.ivs_rate} cannot exceed rate {self.rate}"
-            raise ValueError(msg)
+        assert_ivs_le_total("ivs_rate", self.ivs_rate, "rate", self.rate)
         return self
 
 
@@ -258,54 +212,18 @@ class DomesticInpsRates(BaseModel):
     hours_bracket: DomesticInpsHoursBracket
     wage_brackets: list[DomesticInpsWageBracket]
 
-    def resolve(
-        self,
-        hourly_rate: Decimal,
-        weekly_hours: Decimal,
-        *,
-        is_fixed_term: bool,
-    ) -> tuple[Decimal, Decimal]:
-        """Return ``(employee_per_hour, employer_per_hour)`` for the scenario.
 
-        Returns:
-            A tuple of (employee contribution per hour, employer contribution
-            per hour) based on weekly_hours and hourly_rate.
-
-        Raises:
-            ValueError: If no wage bracket covers the given hourly_rate.
-        """
-        if weekly_hours > self.weekly_hours_threshold:
-            b = self.hours_bracket
-            er = (
-                b.employer_per_hour_fixed_term if is_fixed_term else b.employer_per_hour
-            )
-            return b.employee_per_hour, er
-        for bracket in self.wage_brackets:
-            if (
-                bracket.hourly_rate_up_to is None
-                or hourly_rate <= bracket.hourly_rate_up_to
-            ):
-                er = (
-                    bracket.employer_per_hour_fixed_term
-                    if is_fixed_term
-                    else bracket.employer_per_hour
-                )
-                return bracket.employee_per_hour, er
-        msg = f"no wage bracket covers hourly_rate={hourly_rate!r}"
-        raise ValueError(msg)
-
-
-class _InpsRawRates(BaseModel):
+class InpsRawRates(BaseModel):
     """Raw INPS block from the tax JSON file, before tier resolution."""
 
     model_config = ConfigDict(extra="forbid")
 
-    employee_tiers: list[_InpsEmployeeTier]
-    employer_tiers: list[_InpsEmployerTier]
+    employee_tiers: list[InpsEmployeeTier]
+    employer_tiers: list[InpsEmployerTier]
     ceiling: Decimal | None
 
 
-class _ApprenticeRawRates(BaseModel):
+class ApprenticeRawRates(BaseModel):
     """Raw apprentice block from the tax JSON file, before headcount resolution."""
 
     model_config = ConfigDict(extra="forbid")
@@ -349,9 +267,7 @@ class _ApprenticeRawRates(BaseModel):
             ),
         ]
         for ivs_name, ivs_val, total_name, total_val in pairs:
-            if ivs_val > total_val:
-                msg = f"{ivs_name} {ivs_val} cannot exceed {total_name} {total_val}"
-                raise ValueError(msg)
+            assert_ivs_le_total(ivs_name, ivs_val, total_name, total_val)
         return self
 
 
@@ -383,7 +299,7 @@ class TrattamentoIntegrativoRules(BaseModel):
     max_amount: Decimal
 
 
-class _YearRulesRaw(BaseModel):
+class YearRulesRaw(BaseModel):
     """Full deserialization model for a tax/data/<year>-<sector>.json file.
 
     Either ``inps`` + ``apprentice`` (standard percentage model) or
@@ -394,12 +310,12 @@ class _YearRulesRaw(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     year: int
-    sector: str  # validated against TaxSector at load time
+    sector: TaxSector
     irpef_brackets: list[IrpefBracket]
     work_deduction_breakpoints: list[DeductionBreakpoint]
     fixed_term_additional_rate: Decimal
-    inps: _InpsRawRates | None = None
-    apprentice: _ApprenticeRawRates | None = None
+    inps: InpsRawRates | None = None
+    apprentice: ApprenticeRawRates | None = None
     domestic_contributions: DomesticInpsRates | None = None
     tfr: TfrRules
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
@@ -424,7 +340,7 @@ class YearRules(BaseModel):
     ``inps`` and ``apprentice`` are set for standard sectors; ``None`` for
     domestic sectors where ``domestic_contributions`` carries the flat-rate
     table instead.  Exactly one contribution model is present (enforced by
-    the loader, which mirrors ``_YearRulesRaw._check_contribution_model``).
+    the loader, which mirrors ``YearRulesRaw._check_contribution_model``).
     """
 
     model_config = ConfigDict(extra="forbid")

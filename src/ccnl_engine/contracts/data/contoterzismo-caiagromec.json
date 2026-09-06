@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "contoterzismo-caiagromec",
+    "ccnl_id": "contoterzismo-caiagromec",
     "name": "CCNL Attivita Agromeccaniche (Contoterzismo) CAI Agromec-FAI-FLAI-UILA",
     "cnel_code": "A051",
     "sector": "Agricoltura",

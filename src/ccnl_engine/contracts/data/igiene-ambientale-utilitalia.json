@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "igiene-ambientale-utilitalia",
+    "ccnl_id": "igiene-ambientale-utilitalia",
     "name": "CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana",
     "cnel_code": "K540",
     "sector": "servizi ambientali",

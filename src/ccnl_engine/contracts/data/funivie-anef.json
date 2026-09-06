@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "funivie-anef",
+    "ccnl_id": "funivie-anef",
     "name": "CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF",
     "cnel_code": "I911",
     "sector": "Trasporto a fune",

@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "impiegati-tecnici-agricoli",
+    "ccnl_id": "impiegati-tecnici-agricoli",
     "name": "CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti",
     "cnel_code": "A021",
     "sector": "agricoltura",

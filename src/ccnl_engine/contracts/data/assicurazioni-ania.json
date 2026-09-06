@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "assicurazioni-ania",
+    "ccnl_id": "assicurazioni-ania",
     "name": "CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)",
     "cnel_code": "J121",
     "sector": "assicurazioni",

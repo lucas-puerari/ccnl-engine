@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "informatica-pmi-unimatica",
+    "ccnl_id": "informatica-pmi-unimatica",
     "name": "CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico",
     "cnel_code": "G029",
     "sector": "informatica-servizi-innovativi",

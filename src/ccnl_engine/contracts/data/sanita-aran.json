@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "sanita-aran",
+    "ccnl_id": "sanita-aran",
     "name": "CCNL Comparto Sanità 2022-2024 — ARAN",
     "cnel_code": "S205",
     "sector": "Pubblica Amministrazione",

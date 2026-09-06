@@ -8,7 +8,7 @@ from decimal import Decimal
 import pytest
 from pydantic import TypeAdapter, ValidationError
 
-from ccnl_engine.models.apprenticeship import (
+from ccnl_engine.domain.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipTrack,
     ApprenticeshipUnderClassification,
@@ -133,17 +133,17 @@ class TestPeriodSequence:
 
     def test_non_last_open_ended_raises(self) -> None:
         """An intermediate open-ended period must raise."""
-        with pytest.raises(ValidationError, match="only the last period"):
+        with pytest.raises(ValidationError, match="only the last item"):
             _ta.validate_python(_pct_track(_pct_period(0, None), _pct_period(12, None)))
 
     def test_gap_raises(self) -> None:
         """A gap between consecutive periods must raise."""
-        with pytest.raises(ValidationError, match="gap between period"):
+        with pytest.raises(ValidationError, match="does not match next start"):
             _ta.validate_python(_uc_track(_uc_period(0, 12), _uc_period(18, None)))
 
     def test_closed_last_period_raises(self) -> None:
         """The last period must be open-ended."""
-        with pytest.raises(ValidationError, match="must be open-ended"):
+        with pytest.raises(ValidationError, match="last item must have no end"):
             _ta.validate_python(_uc_track(_uc_period(0, 12), _uc_period(12, 24)))
 
     def test_two_contiguous_periods_valid(self) -> None:

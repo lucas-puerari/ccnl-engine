@@ -11,18 +11,18 @@ from typing import TYPE_CHECKING, Any
 import pytest
 
 from ccnl_engine.contracts.loaders import load_ccnl
-from ccnl_engine.engine.compute import compute
-from ccnl_engine.models.ccnl import TaxSector
-from ccnl_engine.models.employee import (
+from ccnl_engine.domain.ccnl import TaxSector
+from ccnl_engine.domain.employee import (
     ContractPosition,
     Employee,
-    IndividualAgreement,
     RalOverride,
+    SalaryOverrides,
     SeniorityByCount,
     TaxProfile,
     WorkArrangement,
 )
-from ccnl_engine.models.employment import Apprentice, FixedTerm, Permanent
+from ccnl_engine.domain.employment import Apprentice, FixedTerm, Permanent
+from ccnl_engine.engine.compute import compute_payslip
 from ccnl_engine.surtax.loaders import load_surtax_rules
 from ccnl_engine.tax.loaders import load_year_rules
 
@@ -99,12 +99,12 @@ class TestGolden:
             else None
         )
         agreement = (
-            IndividualAgreement(ral_override=RalOverride(Decimal(negotiated_ral_raw)))
+            SalaryOverrides(ral_override=RalOverride(Decimal(negotiated_ral_raw)))
             if negotiated_ral_raw is not None
             else None
         )
 
-        result = compute(
+        result = compute_payslip(
             ccnl,
             rules,
             Employee(

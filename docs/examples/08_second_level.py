@@ -22,7 +22,7 @@ from ccnl_engine import (
     Permanent,
     SupplementaryAllowance,
     WorkArrangement,
-    compute,
+    compute_payslip,
     load_ccnl,
     load_year_rules,
 )
@@ -59,8 +59,8 @@ employee = Employee(
     arrangement=WorkArrangement(),
 )
 
-base = compute(ccnl, rules, employee)
-with_2l = compute(ccnl, rules, employee, employer=employer_2l)
+base = compute_payslip(ccnl, rules, employee)
+with_2l = compute_payslip(ccnl, rules, employee, employer=employer_2l)
 
 print(f"Second-level monthly:     {with_2l.second_level_monthly} EUR")
 print(f"Gross monthly — base:     {base.gross_monthly} EUR")

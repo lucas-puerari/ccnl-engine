@@ -15,7 +15,7 @@ from ccnl_engine import (
     Employee,
     Permanent,
     WorkArrangement,
-    compute,
+    compute_payslip,
     load_ccnl,
     load_year_rules,
 )
@@ -33,7 +33,7 @@ employee = Employee(
     arrangement=WorkArrangement(weekly_hours=Decimal(40)),
 )
 
-p = compute(ccnl, rules, employee)
+p = compute_payslip(ccnl, rules, employee)
 
 print(f"Gross monthly:         {p.gross_monthly} EUR")
 print(f"INPS employee annual:  {p.inps_employee_annual} EUR")

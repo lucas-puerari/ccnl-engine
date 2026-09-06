@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "recapito-corrispondenza-fise",
+    "ccnl_id": "recapito-corrispondenza-fise",
     "name": "CCNL Recapito Corrispondenza (FISE-ARE)",
     "cnel_code": "K711",
     "sector": "Recapito corrispondenza e spedizioni",

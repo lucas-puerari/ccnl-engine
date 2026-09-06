@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "alimentari-pmi-unionalimentari",
+    "ccnl_id": "alimentari-pmi-unionalimentari",
     "name": "CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)",
     "cnel_code": "E018",
     "sector": "Alimentare",

@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4",
   "meta": {
-    "id": "istruzione-ricerca-aran",
+    "ccnl_id": "istruzione-ricerca-aran",
     "name": "CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN",
     "cnel_code": "S305",
     "sector": "Pubblica Amministrazione",

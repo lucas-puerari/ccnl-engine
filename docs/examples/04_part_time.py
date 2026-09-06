@@ -12,7 +12,7 @@ from ccnl_engine import (
     Employee,
     Permanent,
     WorkArrangement,
-    compute,
+    compute_payslip,
     load_ccnl,
     load_year_rules,
 )
@@ -37,8 +37,8 @@ employee_pt = Employee(
     arrangement=WorkArrangement(part_time_pct=Decimal("0.6")),  # 60% — 3 giorni su 5
 )
 
-full_time = compute(ccnl, rules, employee_ft)
-part_time = compute(ccnl, rules, employee_pt)
+full_time = compute_payslip(ccnl, rules, employee_ft)
+part_time = compute_payslip(ccnl, rules, employee_pt)
 
 print(f"Gross monthly — full-time:  {full_time.gross_monthly} EUR")
 print(f"Gross monthly — part-time:  {part_time.gross_monthly} EUR")
