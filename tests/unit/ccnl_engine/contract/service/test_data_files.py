@@ -8539,3 +8539,162 @@ class TestLoadAnas:
         appr = ccnl.apprenticeship[0]
         assert isinstance(appr, ApprenticeshipPercentage)
         assert appr.periods[0].percentage == Decimal("0.70")
+
+
+class TestLoadVigilanzaPrivataFederdatGpg:
+    """Unit tests for CCNL Vigilanza Privata FEDERDAT GPG (HV17)."""
+
+    def test_hv17_gpg_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-gpg.json")
+        assert ccnl.meta.ccnl_id == "vigilanza-privata-federdat-gpg"
+        assert ccnl.meta.cnel_code == "HV17"
+
+    def test_hv17_gpg_has_7_levels(self) -> None:
+        """Contract has exactly 7 levels: VI V IV III II I Q."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-gpg.json")
+        assert len(ccnl.levels) == 7
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"VI", "V", "IV", "III", "II", "I", "Q"}
+
+    def test_hv17_gpg_level_iii_salary_tranche1(self) -> None:
+        """Level III base salary at 01/06/2023 is 1483.31 EUR."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-gpg.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "III")
+        assert lv.base_salary.value_at(date(2023, 6, 1)) == Decimal("1483.31")
+
+    def test_hv17_gpg_level_iii_salary_tranche2(self) -> None:
+        """Level III base salary at 01/04/2026 is 1651.31 EUR."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-gpg.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "III")
+        assert lv.base_salary.value_at(date(2026, 4, 1)) == Decimal("1651.31")
+
+    def test_hv17_gpg_level_ordering(self) -> None:
+        """Level VI is lowest (order 1), Q is highest (order 7)."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-gpg.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "VI"
+        assert by_order[-1].code == "Q"
+
+    def test_hv17_gpg_additional_months(self) -> None:
+        """Additional months is 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-gpg.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 4, 1)) == Decimal(
+            14
+        )
+
+    def test_hv17_gpg_hourly_divisor(self) -> None:
+        """Hourly divisor is 173."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-gpg.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 4, 1)) == Decimal(173)
+
+    def test_hv17_gpg_no_fixed_allowances(self) -> None:
+        """All GPG levels have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-gpg.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_hv17_gpg_tax_sector(self) -> None:
+        """Tax sector is terziario."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-gpg.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_hv17_gpg_seniority_cadence(self) -> None:
+        """Seniority: 36-month cadence, maximum 6 scatti."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-gpg.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 6
+
+    def test_hv17_gpg_level_q_salary_last_tranche(self) -> None:
+        """Level Q base salary at 01/12/2026 is 2434.74 EUR."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-gpg.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "Q")
+        assert lv.base_salary.value_at(date(2026, 12, 1)) == Decimal("2434.74")
+
+    def test_hv17_gpg_apprenticeship_passthrough(self) -> None:
+        """Apprenticeship is 100% passthrough (SIMPLIFICATION)."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-gpg.json")
+        assert len(ccnl.apprenticeship) == 1
+        appr = ccnl.apprenticeship[0]
+        assert isinstance(appr, ApprenticeshipPercentage)
+        assert appr.periods[0].percentage == Decimal("1.00")
+
+
+class TestLoadVigilanzaPrivataFederdatSf:
+    """Unit tests for CCNL Vigilanza Privata FEDERDAT SF (HV17)."""
+
+    def test_hv17_sf_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-sf.json")
+        assert ccnl.meta.ccnl_id == "vigilanza-privata-federdat-sf"
+        assert ccnl.meta.cnel_code == "HV17"
+
+    def test_hv17_sf_has_5_levels(self) -> None:
+        """Contract has exactly 5 levels: E D C B A."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-sf.json")
+        assert len(ccnl.levels) == 5
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"E", "D", "C", "B", "A"}
+
+    def test_hv17_sf_level_c_salary_tranche1(self) -> None:
+        """Level C base salary at 01/06/2023 is 1333.43 EUR."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-sf.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C")
+        assert lv.base_salary.value_at(date(2023, 6, 1)) == Decimal("1333.43")
+
+    def test_hv17_sf_level_c_salary_last_tranche(self) -> None:
+        """Level C base salary at 01/04/2026 is 1556.29 EUR."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-sf.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C")
+        assert lv.base_salary.value_at(date(2026, 4, 1)) == Decimal("1556.29")
+
+    def test_hv17_sf_level_ordering(self) -> None:
+        """Level E is lowest (order 1), A is highest (order 5)."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-sf.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "E"
+        assert by_order[-1].code == "A"
+
+    def test_hv17_sf_additional_months_pre_2024(self) -> None:
+        """Additional months before 01/01/2024 is 13."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-sf.json")
+        assert ccnl.parameters.additional_months.value_at(date(2023, 6, 1)) == Decimal(
+            13
+        )
+
+    def test_hv17_sf_additional_months_post_2024(self) -> None:
+        """Additional months from 01/01/2024 onwards is 14."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-sf.json")
+        assert ccnl.parameters.additional_months.value_at(date(2024, 1, 1)) == Decimal(
+            14
+        )
+
+    def test_hv17_sf_hourly_divisor(self) -> None:
+        """Hourly divisor is 173."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-sf.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 4, 1)) == Decimal(173)
+
+    def test_hv17_sf_no_fixed_allowances(self) -> None:
+        """All SF levels have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-sf.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_hv17_sf_tax_sector(self) -> None:
+        """Tax sector is terziario."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-sf.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_hv17_sf_seniority_cadence(self) -> None:
+        """Seniority: 36-month cadence, maximum 6 scatti."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-sf.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 6
+
+    def test_hv17_sf_level_a_salary_mid_tranche(self) -> None:
+        """Level A base salary at 01/10/2024 is 1886.32 EUR."""
+        ccnl = load_ccnl("vigilanza-privata-federdat-sf.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "A")
+        assert lv.base_salary.value_at(date(2024, 10, 1)) == Decimal("1886.32")

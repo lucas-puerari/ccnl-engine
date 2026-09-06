@@ -121,6 +121,8 @@ nav = [
     { "CCNL Turismo — Federalberghi/Faita" = "contracts/turismo-federalberghi.md" },
     { "CCNL Istituzioni Socio-Assistenziali — UNEBA" = "contracts/uneba-uneba.md" },
     { "CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fi…" = "contracts/vigilanza-privata-assiv.md" },
+    { "CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG" = "contracts/vigilanza-privata-federdat-gpg.md" },
+    { "CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF" = "contracts/vigilanza-privata-federdat-sf.md" },
   ]},
   { "API" = [
     { "Overview" = "api/index.md" },

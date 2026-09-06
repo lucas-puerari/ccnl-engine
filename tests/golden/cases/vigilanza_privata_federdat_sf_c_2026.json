@@ -1,0 +1,28 @@
+{
+  "_description": "CCNL Vigilanza Privata FEDERDAT SF (HV17) — livello C, 2026-04-01",
+  "_notes": [
+    "Conglobated model, 14 months (from 01/01/2024), divisor 173.",
+    "Seniority_count=0, num_employees=50. Level C at tranche 01/04/2026 (last SF tranche)."
+  ],
+  "inputs": {
+    "ccnl_file": "vigilanza-privata-federdat-sf.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "C",
+    "as_of": "2026-04-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "base_monthly": "1556.29",
+    "gross_monthly": "1556.29",
+    "gross_annual": "21788.06",
+    "hourly_rate": "9.00",
+    "net_annual": "16908.22",
+    "employer_cost_annual": "29716.17",
+    "trattamento_integrativo": "573.41"
+  }
+}

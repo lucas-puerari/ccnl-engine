@@ -130,6 +130,8 @@ private-sector workforce.
 | 99 | I192 | [Autostrade e Trafori Concessionari (AISCAT)](autostrade-trafori.md) | Autostrade e trafori | ~15k | ✅ | ✅ | 🤖 |
 | 100 | A016 | [Cooperative e Consorzi Agricoli (AGCI/Confcooperative/Legacoop)](cooperative-consorzi-agricoli.md) | Agricoltura cooperativa | ~60k | ✅ | ⚠️ | 🤖 |
 | 101 | T511 | [Gruppo ANAS](anas.md) | ANAS SpA — viabilità nazionale | ~7k | ✅ | ✅ | 🤖 |
+| 102 | HV17 | [Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | Vigilanza privata | ~45k | ⚠️ | ✅ | 🤖 |
+| 103 | HV17 | [Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | Servizi fiduciari | ~40k | ⚠️ | ✅ | 🤖 |
 
 [^1]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.
 [^2]: Salary tables were extracted from official CCNL documents using AI-assisted tooling, without manual human review. Verify against the official source before use in production payroll systems.
