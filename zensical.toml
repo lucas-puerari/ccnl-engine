@@ -77,6 +77,7 @@ nav = [
     { "CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non …" = "contracts/lavoro-domestico-non-convivente.md" },
     { "CCNL per i lavoratori dell'industria del legno, del sughe…" = "contracts/legno-arredamento-federlegno.md" },
     { "CCNL Area Legno-Lapidei — Artigianato" = "contracts/legno-lapidei-artigianato-confartigianato.md" },
+    { "CCNL Lapidei — Industria (Confindustria Marmomacchine/ANEPLA)" = "contracts/lapidei-industria.md" },
     { "CCNL Logistica, Trasporto Merci e Spedizione (Confetra)" = "contracts/logistica-trasporto-confetra.md" },
     { "CCNL Metalmeccanica - Cooperative (Legacoop/Confcooperative/AGI)" = "contracts/metalmeccanica-cooperative.md" },
     { "CCNL Metalmeccanica e Installazione di Impianti — Artigia…" = "contracts/metalmeccanico-artigianato.md" },
