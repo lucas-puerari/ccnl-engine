@@ -7239,3 +7239,86 @@ class TestLoadServiziPostaliAppaltoFise:
         imp = si.amount_by_level_by_category["impiegato"]["2"]
         assert op.value_at(date(2026, 1, 1)) == Decimal("56.66")
         assert imp.value_at(date(2026, 1, 1)) == Decimal("62.62")
+
+
+class TestLoadPortieriFabbricatiConfedilizia:
+    """Tests for CCNL Dipendenti da Proprietari di Fabbricati (H401)."""
+
+    def test_portieri_fabbricati_confedilizia_loads(self) -> None:
+        """Contract loads with correct id and CNEL code H401."""
+        ccnl = load_ccnl("portieri-fabbricati-confedilizia.json")
+        assert ccnl.meta.ccnl_id == "portieri-fabbricati-confedilizia"
+        assert ccnl.meta.cnel_code == "H401"
+
+    def test_portieri_fabbricati_confedilizia_has_11_levels(self) -> None:
+        """11 levels: B1-B5, C3, C4, D1-D4 (A and C1/C2 excluded)."""
+        ccnl = load_ccnl("portieri-fabbricati-confedilizia.json")
+        assert len(ccnl.levels) == 11
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {
+            "B1",
+            "B2",
+            "B3",
+            "B4",
+            "B5",
+            "C3",
+            "C4",
+            "D1",
+            "D2",
+            "D3",
+            "D4",
+        }
+
+    def test_portieri_fabbricati_confedilizia_level_b1_salary_2026(
+        self,
+    ) -> None:
+        """B1 base salary at 2026-01-01: 1519.10 EUR (1st tranche)."""
+        ccnl = load_ccnl("portieri-fabbricati-confedilizia.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "B1")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1519.10")
+
+    def test_portieri_fabbricati_confedilizia_level_c3_salary_2028(
+        self,
+    ) -> None:
+        """C3 base salary at 2028-01-01: 1868.50 EUR (3rd tranche)."""
+        ccnl = load_ccnl("portieri-fabbricati-confedilizia.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C3")
+        assert lv.base_salary.value_at(date(2028, 1, 1)) == Decimal("1868.50")
+
+    def test_portieri_fabbricati_confedilizia_level_ordering(self) -> None:
+        """C3 is highest (order=11); B5 is lowest (order=1)."""
+        ccnl = load_ccnl("portieri-fabbricati-confedilizia.json")
+        ordered = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert ordered[0].code == "B5"
+        assert ordered[-1].code == "C3"
+
+    def test_portieri_fabbricati_confedilizia_additional_months(self) -> None:
+        """13 mensilita: tredicesima only (Art. 130 Gratifica natalizia)."""
+        ccnl = load_ccnl("portieri-fabbricati-confedilizia.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 6, 1))
+        assert val == Decimal(13)
+
+    def test_portieri_fabbricati_confedilizia_hourly_divisor(self) -> None:
+        """Hourly divisor 173 (40 h/week, Art. 60/62/69 CCNL)."""
+        ccnl = load_ccnl("portieri-fabbricati-confedilizia.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 6, 1)) == 173
+
+    def test_portieri_fabbricati_confedilizia_no_fixed_allowances(
+        self,
+    ) -> None:
+        """All 11 levels have empty fixed_allowances (conglobated model)."""
+        ccnl = load_ccnl("portieri-fabbricati-confedilizia.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_portieri_fabbricati_confedilizia_tax_sector(self) -> None:
+        """tax_sector == TERZIARIO."""
+        ccnl = load_ccnl("portieri-fabbricati-confedilizia.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_portieri_fabbricati_confedilizia_seniority_cadence(self) -> None:
+        """Seniority: triennale (36 mo), max=12 scatti."""
+        ccnl = load_ccnl("portieri-fabbricati-confedilizia.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 12

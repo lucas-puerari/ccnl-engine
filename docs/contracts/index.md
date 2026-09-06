@@ -114,6 +114,7 @@ private-sector workforce.
 | 83 | V925 | Lavoratori Dipendenti Organizzazioni Sindacali (UNSIC/CONFSAL) | OO.SS. | ~7k | ✅ | ✅ | 🤖 |
 | 84 | K711 | Recapito Corrispondenza (FISE-ARE) | Recapito | ~1k | ✅ | ✅ | 🤖 |
 | 85 | K721 | Servizi Postali in Appalto (FISE-ARE) | Servizi postali | ~1k | ✅ | ✅ | 🤖 |
+| 86 | H401 | [Dipendenti da Proprietari di Fabbricati — Confedilizia](portieri-fabbricati-confedilizia.md) | Terziario | ~40k | ✅ | ✅ | 🤖 |
 
 [^1]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.
 [^2]: Salary tables were extracted from official CCNL documents using AI-assisted tooling, without manual human review. Verify against the official source before use in production payroll systems.
