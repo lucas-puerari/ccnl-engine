@@ -57,6 +57,7 @@ nav = [
     { "CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)" = "contracts/farmacie-municipalizzate-assofarm.md" },
     { "CCNL Dipendenti delle Farmacie Private" = "contracts/farmacie-private-h121.md" },
     { "CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa" = "contracts/federcasa.md" },
+    { "CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)" = "contracts/portieri-fabbricati-confedilizia.md" },
     { "CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (AN…" = "contracts/fiori-recisi-ancef.md" },
     { "DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinament…" = "contracts/forze-polizia-ordinamento-civile.md" },
     { "CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF" = "contracts/funivie-anef.md" },
