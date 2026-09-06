@@ -7600,3 +7600,79 @@ class TestLoadScuoleMaternieFism:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 1
         assert si.maximum_count == 0
+
+
+class TestLoadOcchialiOcchialeriaIndustria:
+    """Tests for D271 CCNL Occhiali e Occhialeria — Industria (ANFAO)."""
+
+    def test_occhiali_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("occhiali-occhialeria-industria.json")
+        assert ccnl.meta.ccnl_id == "occhiali-occhialeria-industria"
+        assert ccnl.meta.cnel_code == "D271"
+
+    def test_occhiali_has_10_levels(self) -> None:
+        """Contract has exactly 10 levels with correct codes."""
+        ccnl = load_ccnl("occhiali-occhialeria-industria.json")
+        assert len(ccnl.levels) == 10
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3", "3S", "4", "4S", "5", "5S", "6", "Q"}
+
+    def test_occhiali_level4_salary_2023(self) -> None:
+        """Level 4 tabular minimum at 01/05/2023 first tranche = 1887.96."""
+        ccnl = load_ccnl("occhiali-occhialeria-industria.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv.base_salary.value_at(date(2023, 5, 1)) == Decimal("1887.96")
+
+    def test_occhiali_level4_salary_2026(self) -> None:
+        """Level 4 tabular minimum at 01/03/2026 renewal tranche = 2042.96."""
+        ccnl = load_ccnl("occhiali-occhialeria-industria.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "4")
+        assert lv.base_salary.value_at(date(2026, 3, 1)) == Decimal("2042.96")
+
+    def test_occhiali_level_ordering(self) -> None:
+        """Q is highest order (10); level 1 is lowest order (1)."""
+        ccnl = load_ccnl("occhiali-occhialeria-industria.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "1"
+        assert by_order[-1].code == "Q"
+
+    def test_occhiali_additional_months(self) -> None:
+        """Additional months = 13 (tredicesima only)."""
+        ccnl = load_ccnl("occhiali-occhialeria-industria.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 3, 1)) == Decimal(
+            13
+        )
+
+    def test_occhiali_hourly_divisor(self) -> None:
+        """Hourly divisor = 173 (standard 40h/week)."""
+        ccnl = load_ccnl("occhiali-occhialeria-industria.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 3, 1)) == Decimal(173)
+
+    def test_occhiali_level_q_fixed_allowance(self) -> None:
+        """Level Q carries INDENNITA_FUNZIONE allowance of 82.63 EUR/month."""
+        ccnl = load_ccnl("occhiali-occhialeria-industria.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "Q")
+        assert len(lv.fixed_allowances) == 1
+        fa = lv.fixed_allowances[0]
+        assert fa.code == "INDENNITA_FUNZIONE"
+        assert fa.monthly.value_at(date(2026, 3, 1)) == Decimal("82.63")
+
+    def test_occhiali_tax_sector(self) -> None:
+        """Tax sector is industria."""
+        ccnl = load_ccnl("occhiali-occhialeria-industria.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_occhiali_seniority_cadence(self) -> None:
+        """Seniority: 24-month cadence, max 5 scatti biennali."""
+        ccnl = load_ccnl("occhiali-occhialeria-industria.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_occhiali_non_q_no_fixed_allowances(self) -> None:
+        """Conglobated model: all non-Q levels have no fixed allowances."""
+        ccnl = load_ccnl("occhiali-occhialeria-industria.json")
+        for lv in ccnl.levels:
+            if lv.code != "Q":
+                assert lv.fixed_allowances == []

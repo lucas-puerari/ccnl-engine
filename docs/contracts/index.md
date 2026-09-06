@@ -119,6 +119,7 @@ private-sector workforce.
 | 88 | T231 | [Scuole Private Laiche — ANINSEI/Assoscuola](scuole-private-laiche-aninsei.md) | Istruzione privata laica | ~25k | ✅ | ✅ | 🤖 |
 | 89 | T131 | [Istituzioni e Servizi Socio-Assistenziali — ANASTE](istituzioni-servizi-socio-assistenziali-anaste.md) | Servizi socio-assistenziali | ~120k | ✅ | ✅ | 🤖 |
 | 90 | T271 | [Scuole Materne — FISM](scuole-materne-fism.md) | Istruzione privata cattolica | ~30k | ✅ | ✅ | 🤖 |
+| 91 | D271 | [Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | Industria occhialeria | ~20k | ✅ | ✅ | 🤖 |
 
 [^1]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.
 [^2]: Salary tables were extracted from official CCNL documents using AI-assisted tooling, without manual human review. Verify against the official source before use in production payroll systems.
