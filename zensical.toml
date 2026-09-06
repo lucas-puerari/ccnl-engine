@@ -44,6 +44,7 @@ nav = [
     { "CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)" = "contracts/consorzi-agrari-assocap.md" },
     { "CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)" = "contracts/consorzi-di-bonifica-snebi.md" },
     { "CCNL Attivita Agromeccaniche (Contoterzismo) CAI Agromec-…" = "contracts/contoterzismo-caiagromec.md" },
+    { "CCNL Cooperative e Consorzi Agricoli (AGCI/Confcooperative/Legacoop)" = "contracts/cooperative-consorzi-agricoli.md" },
     { "CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)" = "contracts/cooperative-sociali.md" },
     { "CCNL Area Dirigenza Funzioni Centrali 2022-2024 — ARAN" = "contracts/dirigenza-funzioni-centrali-aran.md" },
     { "CCNL Area Dirigenza Funzioni Locali 2022-2024 — ARAN" = "contracts/dirigenza-funzioni-locali-aran.md" },

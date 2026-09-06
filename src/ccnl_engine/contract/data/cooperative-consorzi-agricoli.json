@@ -1,0 +1,457 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "ccnl_id": "cooperative-consorzi-agricoli",
+    "cnel_code": "A016",
+    "name": "CCNL Cooperative e Consorzi Agricoli",
+    "sector": "cooperative e consorzi agricoli — impiegati e operai agricoli",
+    "tax_sector": "agricoltura",
+    "signatories": [
+      "AGCI-Agrital",
+      "Confcooperative-Fedagripesca",
+      "Legacoop-Agroalimentare",
+      "FLAI-CGIL",
+      "FAI-CISL",
+      "UILA-UIL"
+    ],
+    "agreement_date": "2024-07-19",
+    "sources": [
+      {
+        "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+        "type": "tabella_retributiva",
+        "agreement_date": "2024-07-19",
+        "notes": "Verbale di accordo 19/07/2024 All. n.1: tabelle retributive conglobate per 8 livelli (1-7+np), 4 tranches 2024-2027. Seniority: Art. 61 (operai) e Art. 49 (impiegati). Indennità funzione quadri Art. 45 rivisitata dal 01/08/2024."
+      }
+    ],
+    "extraction": {
+      "timestamp": "2026-09-06",
+      "human_reviewed": false,
+      "method": "ai_assisted"
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "partial",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "CCNL A016 — Cooperative e Consorzi Agricoli. Conglobated model. 8 livelli: np-7-6-5-4-3-2-1. Divisore 169, 14 mesi. 4 tranches: apr-2024, mag-2025, mag-2026, feb-2027."
+      },
+      {
+        "kind": "info",
+        "text": "Quadri: i livelli 1Q e 2Q del precedente impianto corrispondono a livello 1° e 2° con aggiunta dell'indennità di funzione quadri (Art. 45): 1Q +EUR 180→230/mese, 2Q +EUR 125→160/mese dal 01/08/2024. Modellata come fixed_allowance a 14 mensilità su ciascun livello."
+      },
+      {
+        "kind": "simplification",
+        "text": "Scatti anzianità: Art. 61 (operai, max 5 biennali) e Art. 49 (impiegati, max 12 biennali) hanno importi differenti per i livelli 3-7. Modellati con gli importi operai (dominanti nelle cooperative). maximum_count=12 (impiegati); query operai con seniority_count>5 producono scatti sovrastimati."
+      },
+      {
+        "kind": "simplification",
+        "text": "Apprendistato: regola non reperita nel PDF 2024. Modellato come 100% passthrough."
+      }
+    ]
+  },
+  "levels": [
+    {
+      "code": "np",
+      "order": 1,
+      "description": "Area non professionalizzati",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-05-01",
+            "value": "1223.82"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-05-01",
+            "value": "1242.82"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-02-01",
+            "value": "1261.82"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1280.82"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "7",
+      "order": 2,
+      "description": "Livello 7°",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-05-01",
+            "value": "1450.84"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-05-01",
+            "value": "1473.36"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-02-01",
+            "value": "1495.88"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1518.40"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6",
+      "order": 3,
+      "description": "Livello 6°",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-05-01",
+            "value": "1563.74"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-05-01",
+            "value": "1588.01"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-02-01",
+            "value": "1612.28"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1636.55"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 4,
+      "description": "Livello 5°",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-05-01",
+            "value": "1610.38"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-05-01",
+            "value": "1635.38"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-02-01",
+            "value": "1660.38"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1685.38"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 5,
+      "description": "Livello 4°",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-05-01",
+            "value": "1693.44"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-05-01",
+            "value": "1719.73"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-02-01",
+            "value": "1746.02"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1772.31"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 6,
+      "description": "Livello 3°",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-05-01",
+            "value": "1821.25"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-05-01",
+            "value": "1849.52"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-02-01",
+            "value": "1877.79"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1906.06"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "2",
+      "order": 7,
+      "description": "Livello 2°",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-05-01",
+            "value": "1978.64"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-05-01",
+            "value": "2009.35"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-02-01",
+            "value": "2040.06"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "2070.77"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_FUNZIONE_2",
+          "description": "Indennità di funzione quadri 2° livello (Art. 45 CCNL 2024)",
+          "months_per_year": 14,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-04-01",
+                "valid_until": "2024-08-01",
+                "value": "125.00"
+              },
+              {
+                "valid_from": "2024-08-01",
+                "valid_until": null,
+                "value": "160.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "order": 8,
+      "description": "Livello 1°",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-05-01",
+            "value": "2200.92"
+          },
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-05-01",
+            "value": "2235.08"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-02-01",
+            "value": "2269.24"
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "2303.40"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_FUNZIONE_1",
+          "description": "Indennità di funzione quadri 1° livello (Art. 45 CCNL 2024)",
+          "months_per_year": 14,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-04-01",
+                "valid_until": "2024-08-01",
+                "value": "180.00"
+              },
+              {
+                "valid_from": "2024-08-01",
+                "valid_until": null,
+                "value": "230.00"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "parameters": {
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-04-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-04-01",
+          "valid_until": null,
+          "value": "169"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 12,
+      "amount_by_level": {
+        "np": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "9.44"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "10.85"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "11.39"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "11.93"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "12.20"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "29.44"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "33.05"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante",
+      "destination_levels": [
+        "np",
+        "7",
+        "6",
+        "5",
+        "4",
+        "3",
+        "2",
+        "1"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    }
+  ]
+}
