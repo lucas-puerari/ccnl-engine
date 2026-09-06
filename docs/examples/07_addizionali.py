@@ -2,16 +2,19 @@
 
 By default the engine omits addizionale regionale and comunale
 (they appear in fiscal_simplifications). Pass a SurtaxRules object
-and set regione / comune_belfiore in the Scenario to include them.
+and set regione / comune_belfiore in TaxProfile to include them.
 """
 
 from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
+    ContractPosition,
+    Employee,
     FiscalSimplification,
     Permanent,
-    Scenario,
+    TaxProfile,
+    WorkArrangement,
     compute,
     load_ccnl,
     load_year_rules,
@@ -26,26 +29,32 @@ surtax = load_surtax_rules(2026)
 baseline = compute(
     ccnl,
     rules,
-    Scenario(
-        level_code="4",
-        as_of=date(2026, 1, 1),
-        employment=Permanent(),
-        num_employees=50,
+    Employee(
+        position=ContractPosition(
+            level_code="4",
+            as_of=date(2026, 1, 1),
+            employment=Permanent(),
+        ),
+        arrangement=WorkArrangement(),
     ),
 )
 
 # Worker resident in Romano di Lombardia (codice belfiore H509), Lombardia.
 # Addizionale comunale: 0.80% with soglia 12 000 EUR.
-scenario = Scenario(
-    level_code="4",
-    as_of=date(2026, 1, 1),
-    employment=Permanent(),
-    num_employees=50,
-    regione="Lombardia",
-    comune_belfiore="H509",  # Romano di Lombardia
+employee = Employee(
+    position=ContractPosition(
+        level_code="4",
+        as_of=date(2026, 1, 1),
+        employment=Permanent(),
+    ),
+    arrangement=WorkArrangement(),
+    tax=TaxProfile(
+        regione="Lombardia",
+        comune_belfiore="H509",  # Romano di Lombardia
+    ),
 )
 
-p = compute(ccnl, rules, scenario, surtax=surtax)
+p = compute(ccnl, rules, employee, surtax=surtax)
 
 print(f"Net annual (no addizionali):    {baseline.net_annual} EUR")
 print(f"Net annual (with addizionali):  {p.net_annual} EUR")

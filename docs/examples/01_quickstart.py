@@ -1,24 +1,34 @@
 """Quickstart: permanent employee, full-time, no seniority.
 
-This is the minimal call: load a CCNL, build a Scenario, call compute().
+This is the minimal call: load a CCNL, build an Employee, call compute().
 """
 
 from datetime import date
 
-from ccnl_engine import Permanent, Scenario, compute, load_ccnl, load_year_rules
+from ccnl_engine import (
+    ContractPosition,
+    Employee,
+    Permanent,
+    WorkArrangement,
+    compute,
+    load_ccnl,
+    load_year_rules,
+)
 
 # Load CCNL data and the fiscal/contribution rules for the same year.
 ccnl = load_ccnl("commercio-confcommercio.json")
 rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
 
-scenario = Scenario(
-    level_code="4",
-    as_of=date(2026, 1, 1),
-    employment=Permanent(),
-    num_employees=50,
+employee = Employee(
+    position=ContractPosition(
+        level_code="4",
+        as_of=date(2026, 1, 1),
+        employment=Permanent(),
+    ),
+    arrangement=WorkArrangement(),
 )
 
-payslip = compute(ccnl, rules, scenario)
+payslip = compute(ccnl, rules, employee)
 
 print(f"CCNL:              {payslip.ccnl_id}")
 print(f"Level:             {payslip.level_code}")

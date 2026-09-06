@@ -7,13 +7,14 @@ from pathlib import Path
 import pytest
 
 from ccnl_engine.contracts.loaders import load_ccnl
-from ccnl_engine.engine.compute import Scenario, compute
+from ccnl_engine.engine.compute import compute
 from ccnl_engine.models.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
     UnderClassificationPeriod,
 )
 from ccnl_engine.models.ccnl import CCNL, TaxSector
+from ccnl_engine.models.employee import ContractPosition, Employee, WorkArrangement
 from ccnl_engine.models.employment import Apprentice
 from ccnl_engine.tax.loaders import load_year_rules
 from ccnl_engine.tax.models import YearRules
@@ -1259,11 +1260,13 @@ class TestLoadAlimentariFederalimentare:
         result = compute(
             ccnl,
             rules,
-            Scenario(
-                level_code="3A",
-                as_of=date(2026, 1, 1),
-                employment=Apprentice(months_elapsed=5),
-                num_employees=50,
+            Employee(
+                position=ContractPosition(
+                    level_code="3A",
+                    as_of=date(2026, 1, 1),
+                    employment=Apprentice(months_elapsed=5),
+                ),
+                arrangement=WorkArrangement(),
             ),
         )
         assert result.apprenticeship_under_level_code == "4"
@@ -2635,11 +2638,13 @@ class TestLoadBccCreditoCooperativo:
         result = compute(
             ccnl,
             rules,
-            Scenario(
-                level_code="3AP1",
-                as_of=date(2026, 6, 1),
-                employment=Apprentice(months_elapsed=12),
-                num_employees=50,
+            Employee(
+                position=ContractPosition(
+                    level_code="3AP1",
+                    as_of=date(2026, 6, 1),
+                    employment=Apprentice(months_elapsed=12),
+                ),
+                arrangement=WorkArrangement(),
             ),
         )
         # At 12 months, pay level is 2AP2 (under-classification)

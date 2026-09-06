@@ -1,6 +1,6 @@
 # Examples
 
-Runnable scripts covering every major `Scenario` field.
+Runnable scripts covering every major `Employee` field.
 Each file in `docs/examples/` is executed in CI via `tests/doc/test_docs_examples.py` —
 if an API change breaks an example, the build fails.
 
@@ -8,7 +8,7 @@ if an API change breaks an example, the build fails.
 
 ### Quickstart
 
-Minimal call: load a CCNL, build a `Scenario`, call `compute()`.
+Minimal call: load a CCNL, build an `Employee`, call `compute()`.
 
 ```python
 --8<-- "docs/examples/01_quickstart.py"

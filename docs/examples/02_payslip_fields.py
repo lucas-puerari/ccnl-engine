@@ -8,9 +8,11 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
+    ContractPosition,
+    Employee,
     FiscalSimplification,
     Permanent,
-    Scenario,
+    WorkArrangement,
     compute,
     load_ccnl,
     load_year_rules,
@@ -19,14 +21,16 @@ from ccnl_engine import (
 ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
 rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=200)
 
-scenario = Scenario(
-    level_code="C2",
-    as_of=date(2026, 6, 1),
-    employment=Permanent(),
-    num_employees=200,
+employee = Employee(
+    position=ContractPosition(
+        level_code="C2",
+        as_of=date(2026, 6, 1),
+        employment=Permanent(),
+    ),
+    arrangement=WorkArrangement(),
 )
 
-p = compute(ccnl, rules, scenario)
+p = compute(ccnl, rules, employee)
 
 # --- Pay components (monthly, already scaled by part_time_pct) ---
 print("=== Monthly pay breakdown ===")

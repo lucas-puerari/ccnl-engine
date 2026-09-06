@@ -4,10 +4,11 @@
 * all validation error paths
 * permanent / fixed-term / apprentice employment dispatches
 * percentage and under-classification tracks, track selection by level
-* seniority resolution from count or months, first cadence, per-level maximum
+* seniority resolution from SeniorityByCount or SeniorityByMonths,
+  first cadence, per-level maximum
 * role-scoped allowances, months_per_year, TFR/contribution relevance flags
 * employer funds by category, ad personam element, hourly rate
-* negotiated_ral / negotiated_destination_ral override paths
+* RalOverride / DestinationRalOverride override paths
 * IRPEF net floored at zero
 """
 
@@ -20,10 +21,22 @@ from typing import TYPE_CHECKING, Any
 
 import pytest
 
-from ccnl_engine.engine.compute import Scenario, _find_period_index, compute
+from ccnl_engine.engine.compute import _find_period_index, compute
 from ccnl_engine.engine.rounding import money
 from ccnl_engine.models.apprenticeship import ApprenticeshipPeriod
-from ccnl_engine.models.ccnl import CCNL, LevelCategory
+from ccnl_engine.models.ccnl import CCNL, LevelCategory, SupplementaryAllowance
+from ccnl_engine.models.employee import (
+    ContractPosition,
+    DestinationRalOverride,
+    Employee,
+    IndividualAgreement,
+    RalOverride,
+    SeniorityByCount,
+    SeniorityByMonths,
+    TaxProfile,
+    WorkArrangement,
+)
+from ccnl_engine.models.employer import Employer
 from ccnl_engine.models.employment import Apprentice, Employment, FixedTerm, Permanent
 from ccnl_engine.models.fiscal import FiscalSimplification
 from ccnl_engine.surtax.models import (
@@ -83,7 +96,6 @@ def _req(
     level_code: str = "4",
     as_of: date = _DATE,
     employment: Employment = _PERMANENT,
-    num_employees: int = 50,
     part_time_pct: Decimal = Decimal(1),
     seniority_count: int | None = None,
     seniority_months: int | None = None,
@@ -92,103 +104,137 @@ def _req(
     roles: frozenset[str] = frozenset(),
     ad_personam_monthly: Decimal = Decimal(0),
     category: LevelCategory | None = None,
-) -> Scenario:
-    """Build a Scenario with test defaults; override any field via kwargs.
+) -> Employee:
+    """Build an Employee with test defaults; override any field via kwargs.
+
+    Converts flat Scenario-style kwargs into the grouped Employee structure:
+    seniority_count/seniority_months → SeniorityByCount/SeniorityByMonths,
+    negotiated_ral/negotiated_destination_ral → RalOverride/DestinationRalOverride.
 
     Returns:
-        A Scenario with the given overrides applied.
+        An Employee with the given overrides applied.
     """
-    return Scenario(
-        level_code=level_code,
-        as_of=as_of,
-        employment=employment,
-        num_employees=num_employees,
-        part_time_pct=part_time_pct,
-        seniority_count=seniority_count,
-        seniority_months=seniority_months,
-        negotiated_ral=negotiated_ral,
-        negotiated_destination_ral=negotiated_destination_ral,
-        roles=roles,
-        ad_personam_monthly=ad_personam_monthly,
-        category=category,
+    seniority: SeniorityByCount | SeniorityByMonths | None = None
+    if seniority_count is not None:
+        seniority = SeniorityByCount(seniority_count)
+    elif seniority_months is not None:
+        seniority = SeniorityByMonths(seniority_months)
+
+    ral_override: RalOverride | DestinationRalOverride | None = None
+    if negotiated_ral is not None:
+        ral_override = RalOverride(negotiated_ral)
+    elif negotiated_destination_ral is not None:
+        ral_override = DestinationRalOverride(negotiated_destination_ral)
+
+    agreement: IndividualAgreement | None = None
+    if ral_override is not None or ad_personam_monthly != Decimal(0):
+        agreement = IndividualAgreement(
+            ral_override=ral_override,
+            ad_personam_monthly=ad_personam_monthly,
+        )
+
+    return Employee(
+        position=ContractPosition(
+            level_code=level_code,
+            as_of=as_of,
+            employment=employment,
+            category=category,
+            roles=roles,
+        ),
+        arrangement=WorkArrangement(
+            part_time_pct=part_time_pct,
+            seniority=seniority,
+        ),
+        agreement=agreement,
     )
 
 
 # ---------------------------------------------------------------------------
-# Validation errors
+# Input model validation (employee.py)
 # ---------------------------------------------------------------------------
 
 
-class TestScenario:
-    """Scenario construction validation."""
+class TestInputModels:
+    """Validation in the input model constructors."""
 
-    def test_num_employees_zero_raises(self) -> None:
-        """num_employees < 1 must raise ValueError at construction time."""
-        with pytest.raises(ValueError, match="num_employees"):
-            Scenario(
-                level_code="4",
-                as_of=_DATE,
-                employment=_PERMANENT,
-                num_employees=0,
-            )
+    def test_seniority_by_count_negative_raises(self) -> None:
+        """SeniorityByCount with value < 0 must raise at construction."""
+        with pytest.raises(ValueError, match="must be >= 0"):
+            SeniorityByCount(-1)
+
+    def test_seniority_by_months_negative_raises(self) -> None:
+        """SeniorityByMonths with value < 0 must raise at construction."""
+        with pytest.raises(ValueError, match="must be >= 0"):
+            SeniorityByMonths(-1)
+
+    def test_part_time_pct_out_of_range_raises(self) -> None:
+        """WorkArrangement with part_time_pct outside (0, 1] must raise."""
+        with pytest.raises(ValueError, match="part_time_pct"):
+            WorkArrangement(part_time_pct=Decimal(0))
+
+    @pytest.mark.parametrize("pct", ["-0.1", "1.01"])
+    def test_part_time_pct_boundary(self, pct: str) -> None:
+        """part_time_pct outside (0, 1] must raise at any invalid value."""
+        with pytest.raises(ValueError, match="part_time_pct"):
+            WorkArrangement(part_time_pct=_D(pct))
+
+    def test_weekly_hours_zero_raises(self) -> None:
+        """WorkArrangement with weekly_hours <= 0 must raise at construction."""
+        with pytest.raises(ValueError, match="weekly_hours"):
+            WorkArrangement(weekly_hours=Decimal(0))
+
+    def test_ad_personam_negative_raises(self) -> None:
+        """IndividualAgreement with ad_personam_monthly < 0 must raise."""
+        with pytest.raises(ValueError, match="ad_personam_monthly"):
+            IndividualAgreement(ad_personam_monthly=_D(-1))
+
+    def test_ral_override_zero_raises(self) -> None:
+        """RalOverride with value <= 0 must raise at construction."""
+        with pytest.raises(ValueError, match="must be > 0"):
+            RalOverride(_D(0))
+
+    def test_destination_ral_override_negative_raises(self) -> None:
+        """DestinationRalOverride with value <= 0 must raise at construction."""
+        with pytest.raises(ValueError, match="must be > 0"):
+            DestinationRalOverride(_D("-1"))
+
+
+# ---------------------------------------------------------------------------
+# Validation errors inside compute()
+# ---------------------------------------------------------------------------
 
 
 class TestComputeValidation:
     """Guard-clause branches at the top of compute()."""
-
-    @pytest.mark.parametrize("pct", ["0", "-0.1", "1.01"])
-    def test_part_time_pct_out_of_range_raises(self, pct: str) -> None:
-        """part_time_pct outside (0, 1] must raise ValueError."""
-        with pytest.raises(ValueError, match="part_time_pct"):
-            compute(_DEFAULT_CCNL, _RULES, _req(part_time_pct=_D(pct)))
-
-    def test_ad_personam_negative_raises(self) -> None:
-        """Negative ad_personam_monthly must raise ValueError."""
-        with pytest.raises(ValueError, match="ad_personam_monthly"):
-            compute(_DEFAULT_CCNL, _RULES, _req(ad_personam_monthly=_D(-1)))
 
     def test_unknown_level_code_raises(self) -> None:
         """Unknown level_code must raise ValueError."""
         with pytest.raises(ValueError, match="NOPE"):
             compute(_DEFAULT_CCNL, _RULES, _req(level_code="NOPE"))
 
-    def test_seniority_count_negative_raises(self) -> None:
-        """Negative seniority_count must raise ValueError."""
-        with pytest.raises(ValueError, match="seniority_count must be >= 0"):
-            compute(_DEFAULT_CCNL, _RULES, _req(seniority_count=-1))
-
-    def test_seniority_months_negative_raises(self) -> None:
-        """Negative seniority_months must raise ValueError."""
-        with pytest.raises(ValueError, match="seniority_months must be >= 0"):
-            compute(_DEFAULT_CCNL, _RULES, _req(seniority_months=-1))
-
-    def test_seniority_count_and_months_raises(self) -> None:
-        """Passing both seniority inputs must raise ValueError."""
-        with pytest.raises(ValueError, match="mutually exclusive"):
-            compute(_DEFAULT_CCNL, _RULES, _req(seniority_count=1, seniority_months=40))
-
     def test_seniority_count_above_maximum_raises(self) -> None:
-        """seniority_count above the level maximum must raise ValueError."""
+        """SeniorityByCount above the level maximum must raise ValueError."""
         with pytest.raises(ValueError, match="exceeds the maximum of 10"):
             compute(_DEFAULT_CCNL, _RULES, _req(seniority_count=11))
 
-    def test_negotiated_destination_ral_on_non_apprentice_raises(self) -> None:
-        """negotiated_destination_ral with a non-Apprentice employment raises."""
-        with pytest.raises(ValueError, match="only valid for Apprentice"):
-            compute(
-                _DEFAULT_CCNL, _RULES, _req(negotiated_destination_ral=_D("20000.00"))
-            )
-
-    def test_negotiated_ral_and_destination_ral_mutually_exclusive(self) -> None:
-        """Passing both negotiated_ral and negotiated_destination_ral raises."""
-        with pytest.raises(ValueError, match="mutually exclusive"):
+    def test_second_level_with_ral_override_raises(self) -> None:
+        """second_level_allowances cannot be combined with a RAL override."""
+        sl = SupplementaryAllowance(code="X", description="X", monthly=_D("100"))
+        with pytest.raises(ValueError, match="RAL override"):
             compute(
                 _DEFAULT_CCNL,
                 _RULES,
-                _req(
-                    negotiated_ral=_D("20000.00"),
-                    negotiated_destination_ral=_D("20000.00"),
-                ),
+                _req(negotiated_ral=_D("20000")),
+                employer=Employer(second_level_allowances=(sl,)),
+            )
+
+    def test_negotiated_destination_ral_on_non_apprentice_raises(self) -> None:
+        """DestinationRalOverride with a non-Apprentice employment raises."""
+        with pytest.raises(ValueError, match="only valid for Apprentice"):
+            compute(
+                _DEFAULT_CCNL,
+                _RULES,
+                _req(negotiated_destination_ral=_D("20000.00")),
             )
 
 
@@ -314,7 +360,7 @@ class TestComputePermanent:
         assert r.gross_annual == _D("6182.04")
 
     def test_negotiated_ral(self) -> None:
-        """negotiated_ral overrides gross_annual; gross_monthly stays consistent."""
+        """RalOverride overrides gross_annual; gross_monthly stays consistent."""
         ral = _D("20000.00")
         r = compute(_DEFAULT_CCNL, _RULES, _req(negotiated_ral=ral))
 
@@ -395,7 +441,7 @@ class TestComputeAllowances:
         assert r.taxable_income == r.gross_annual - r.inps_employee_annual
 
     def test_negotiated_ral_ignores_contribution_exclusions(self) -> None:
-        """negotiated_ral must not have CCNL allowance exclusions subtracted from it.
+        """RalOverride must not have CCNL allowance exclusions subtracted from it.
 
         A negotiated RAL is the total retribuzione annua lorda agreed between
         employer and employee — it replaces the CCNL chain entirely. Subtracting
@@ -509,7 +555,7 @@ class TestComputeFixedTerm:
 
 
 class TestComputeIvsCeilingSplit:
-    """compute() with ivs_ceiling_applies=True and RAL above the massimale."""
+    """compute() with TaxProfile.ivs_ceiling_applies=True and RAL above massimale."""
 
     _CEILING = "122295.00"
 
@@ -524,33 +570,25 @@ class TestComputeIvsCeilingSplit:
             }
         )
 
+    def _employee(self, ral: Decimal, *, ivs_ceiling_applies: bool) -> Employee:
+        return Employee(
+            position=ContractPosition(
+                level_code="4", as_of=_DATE, employment=_PERMANENT
+            ),
+            arrangement=WorkArrangement(),
+            tax=TaxProfile(ivs_ceiling_applies=ivs_ceiling_applies),
+            agreement=IndividualAgreement(ral_override=RalOverride(ral)),
+        )
+
     def test_below_ceiling_unchanged(self) -> None:
         """RAL below the massimale: ceiling split equals flat rate."""
         ral = _D("80000.00")
         rules = self._rules_with_ceiling()
         r_capped = compute(
-            _DEFAULT_CCNL,
-            rules,
-            Scenario(
-                level_code="4",
-                as_of=_DATE,
-                employment=_PERMANENT,
-                num_employees=50,
-                negotiated_ral=ral,
-                ivs_ceiling_applies=True,
-            ),
+            _DEFAULT_CCNL, rules, self._employee(ral, ivs_ceiling_applies=True)
         )
         r_flat = compute(
-            _DEFAULT_CCNL,
-            rules,
-            Scenario(
-                level_code="4",
-                as_of=_DATE,
-                employment=_PERMANENT,
-                num_employees=50,
-                negotiated_ral=ral,
-                ivs_ceiling_applies=False,
-            ),
+            _DEFAULT_CCNL, rules, self._employee(ral, ivs_ceiling_applies=False)
         )
         assert r_capped.inps_employee_annual == r_flat.inps_employee_annual
         assert r_capped.inps_employer_annual == r_flat.inps_employer_annual
@@ -571,14 +609,7 @@ class TestComputeIvsCeilingSplit:
         r = compute(
             _DEFAULT_CCNL,
             self._rules_with_ceiling(),
-            Scenario(
-                level_code="4",
-                as_of=_DATE,
-                employment=_PERMANENT,
-                num_employees=50,
-                negotiated_ral=ral,
-                ivs_ceiling_applies=True,
-            ),
+            self._employee(ral, ivs_ceiling_applies=True),
         )
         assert r.inps_employee_annual == expected_employee
         assert r.inps_employer_annual == expected_employer
@@ -586,18 +617,10 @@ class TestComputeIvsCeilingSplit:
     def test_ceiling_flag_false_skips_split(self) -> None:
         """ivs_ceiling_applies=False: flat rate even when ceiling is configured."""
         ral = _D("150000.00")
-        rules = self._rules_with_ceiling()
         r = compute(
             _DEFAULT_CCNL,
-            rules,
-            Scenario(
-                level_code="4",
-                as_of=_DATE,
-                employment=_PERMANENT,
-                num_employees=50,
-                negotiated_ral=ral,
-                ivs_ceiling_applies=False,
-            ),
+            self._rules_with_ceiling(),
+            self._employee(ral, ivs_ceiling_applies=False),
         )
         assert r.inps_employee_annual == _D("150000.00") * _D("0.0919")
         assert r.inps_employer_annual == _D("150000.00") * _D("0.2898")
@@ -739,7 +762,7 @@ class TestComputeApprenticePercentage:
         assert r.seniority_monthly == _D("9.60")  # 12 * 0.80
 
     def test_negotiated_ral(self) -> None:
-        """negotiated_ral is the actual apprentice salary; no further scaling."""
+        """RalOverride is the actual apprentice salary; no further scaling."""
         ral = _D("20000.00")
         r = compute(
             _DEFAULT_CCNL,
@@ -751,7 +774,7 @@ class TestComputeApprenticePercentage:
         assert r.gross_monthly == _D("1666.67")
 
     def test_negotiated_destination_ral(self) -> None:
-        """negotiated_destination_ral * apprenticeship_pct yields the actual pay."""
+        """DestinationRalOverride * apprenticeship_pct yields the actual pay."""
         ral = _D("20000.00")
         r = compute(
             _DEFAULT_CCNL,
@@ -765,21 +788,8 @@ class TestComputeApprenticePercentage:
         assert r.gross_annual == _D("16000.00")  # 20000 * 0.80
         assert r.gross_monthly == _D("1333.33")
 
-    def test_negotiated_ral_and_destination_ral_mutually_exclusive(self) -> None:
-        """Passing both negotiated_ral and negotiated_destination_ral raises."""
-        with pytest.raises(ValueError, match="mutually exclusive"):
-            compute(
-                _DEFAULT_CCNL,
-                _RULES,
-                _req(
-                    employment=Apprentice(months_elapsed=0),
-                    negotiated_ral=_D("20000.00"),
-                    negotiated_destination_ral=_D("20000.00"),
-                ),
-            )
-
     def test_negotiated_destination_ral_requires_percentage_track(self) -> None:
-        """negotiated_destination_ral on an under-classification track raises."""
+        """DestinationRalOverride on an under-classification track raises."""
         with pytest.raises(ValueError, match="under-classification"):
             compute(
                 _DEFAULT_CCNL_UC,
@@ -905,7 +915,7 @@ class TestComputeApprenticeUnderClassification:
         assert r.apprenticeship_under_level_code == "3"
 
     def test_negotiated_ral(self) -> None:
-        """negotiated_ral overrides the under-classification pay computation."""
+        """RalOverride overrides the under-classification pay computation."""
         ral = _D("20000.00")
         r = compute(
             _DEFAULT_CCNL_UC,
@@ -949,18 +959,19 @@ _DEFAULT_WEEKLY_HOURS: Decimal = _D("40")
 def _req_domestic(
     weekly_hours: Decimal | None = _DEFAULT_WEEKLY_HOURS,
     employment: Employment = _PERMANENT,
-) -> Scenario:
-    """Build a Scenario for the domestic INPS path.
+) -> Employee:
+    """Build an Employee for the domestic INPS path.
 
     Returns:
-        A Scenario with weekly_hours set (required for domestic model).
+        An Employee with weekly_hours set (required for domestic model).
     """
-    return Scenario(
-        level_code="4",
-        as_of=_DATE,
-        employment=employment,
-        num_employees=1,
-        weekly_hours=weekly_hours,
+    return Employee(
+        position=ContractPosition(
+            level_code="4",
+            as_of=_DATE,
+            employment=employment,
+        ),
+        arrangement=WorkArrangement(weekly_hours=weekly_hours),
     )
 
 
@@ -1042,17 +1053,40 @@ class TestComputeAddizionali:
             },
         )
 
-    def _result(self, **scenario_kwargs: object) -> Payslip:
+    def _result(
+        self,
+        *,
+        regione: str | None = None,
+        comune_belfiore: str | None = None,
+        negotiated_ral: Decimal | None = None,
+    ) -> Payslip:
         ccnl = CCNL.model_validate(make_ccnl_dict())
         rules = make_year_rules()
-        scenario = Scenario(
-            level_code="4",
-            as_of=date(2026, 1, 1),
-            employment=Permanent(),
-            num_employees=10,
-            **scenario_kwargs,  # type: ignore[arg-type]
+        tax = (
+            TaxProfile(regione=regione, comune_belfiore=comune_belfiore)
+            if regione is not None or comune_belfiore is not None
+            else None
         )
-        return compute(ccnl, rules, scenario, self._surtax_rules())
+        agreement = (
+            IndividualAgreement(ral_override=RalOverride(negotiated_ral))
+            if negotiated_ral is not None
+            else None
+        )
+        return compute(
+            ccnl,
+            rules,
+            Employee(
+                position=ContractPosition(
+                    level_code="4",
+                    as_of=date(2026, 1, 1),
+                    employment=Permanent(),
+                ),
+                arrangement=WorkArrangement(),
+                tax=tax,
+                agreement=agreement,
+            ),
+            surtax=self._surtax_rules(),
+        )
 
     def test_without_surtax_parameter_both_zero(self) -> None:
         """When surtax=None (default), both addizionali are zero."""
@@ -1061,11 +1095,13 @@ class TestComputeAddizionali:
         r = compute(
             ccnl,
             rules,
-            Scenario(
-                level_code="4",
-                as_of=date(2026, 1, 1),
-                employment=Permanent(),
-                num_employees=10,
+            Employee(
+                position=ContractPosition(
+                    level_code="4",
+                    as_of=date(2026, 1, 1),
+                    employment=Permanent(),
+                ),
+                arrangement=WorkArrangement(),
             ),
         )
         assert r.addizionale_regionale_annual == Decimal("0.00")
@@ -1125,8 +1161,6 @@ class TestComputeAddizionali:
 
     def test_soglia_exempts_low_income(self) -> None:
         """Income below the soglia yields zero comunal surtax."""
-        # Build a scenario where taxable_income will be below the soglia
-        # Use negotiated_ral to control income
         tiny_ral = Decimal(9000)  # well below X001's soglia of 10000
 
         ccnl = CCNL.model_validate(make_ccnl_dict())
@@ -1145,15 +1179,17 @@ class TestComputeAddizionali:
         r = compute(
             ccnl,
             rules,
-            Scenario(
-                level_code="4",
-                as_of=date(2026, 1, 1),
-                employment=Permanent(),
-                num_employees=10,
-                negotiated_ral=tiny_ral,
-                comune_belfiore="X001",
+            Employee(
+                position=ContractPosition(
+                    level_code="4",
+                    as_of=date(2026, 1, 1),
+                    employment=Permanent(),
+                ),
+                arrangement=WorkArrangement(),
+                tax=TaxProfile(comune_belfiore="X001"),
+                agreement=IndividualAgreement(ral_override=RalOverride(tiny_ral)),
             ),
-            surtax,
+            surtax=surtax,
         )
         assert r.addizionale_comunale_annual == Decimal("0.00")
 
@@ -1198,16 +1234,25 @@ class TestTieredSeniority:
 
     _CCNL = _tiered_ccnl()
 
-    def _compute(self, **kw: object) -> Payslip:
+    def _compute(
+        self,
+        seniority_months: int | None = None,
+        seniority_count: int | None = None,
+        level_code: str = "4",
+    ) -> Payslip:
+        seniority: SeniorityByCount | SeniorityByMonths | None = None
+        if seniority_count is not None:
+            seniority = SeniorityByCount(seniority_count)
+        elif seniority_months is not None:
+            seniority = SeniorityByMonths(seniority_months)
         return compute(
             self._CCNL,
             _RULES,
-            Scenario(
-                level_code="4",
-                as_of=_DATE,
-                employment=_PERMANENT,
-                num_employees=10,
-                **kw,  # type: ignore[arg-type]
+            Employee(
+                position=ContractPosition(
+                    level_code=level_code, as_of=_DATE, employment=_PERMANENT
+                ),
+                arrangement=WorkArrangement(seniority=seniority),
             ),
         )
 
@@ -1262,17 +1307,7 @@ class TestTieredSeniority:
     def test_level_not_in_tier_yields_zero(self) -> None:
         """A level absent from a tier's amount_by_level contributes zero."""
         # Level 2 has no entry in either tier — seniority must be zero.
-        r = compute(
-            self._CCNL,
-            _RULES,
-            Scenario(
-                level_code="2",
-                as_of=_DATE,
-                employment=_PERMANENT,
-                num_employees=10,
-                seniority_months=200,
-            ),
-        )
+        r = self._compute(seniority_months=200, level_code="2")
         assert r.seniority_monthly == _D(0)
 
 
@@ -1320,16 +1355,24 @@ class TestServiceGatedAllowances:
 
     _CCNL = _service_gated_ccnl()
 
-    def _compute(self, **kw: object) -> Payslip:
+    def _compute(
+        self,
+        seniority_months: int | None = None,
+        seniority_count: int | None = None,
+    ) -> Payslip:
+        seniority: SeniorityByCount | SeniorityByMonths | None = None
+        if seniority_count is not None:
+            seniority = SeniorityByCount(seniority_count)
+        elif seniority_months is not None:
+            seniority = SeniorityByMonths(seniority_months)
         return compute(
             self._CCNL,
             _RULES,
-            Scenario(
-                level_code="4",
-                as_of=_DATE,
-                employment=_PERMANENT,
-                num_employees=10,
-                **kw,  # type: ignore[arg-type]
+            Employee(
+                position=ContractPosition(
+                    level_code="4", as_of=_DATE, employment=_PERMANENT
+                ),
+                arrangement=WorkArrangement(seniority=seniority),
             ),
         )
 

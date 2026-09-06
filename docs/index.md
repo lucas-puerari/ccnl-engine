@@ -33,7 +33,7 @@ The engine models:
 - Part-time scaling, seniority increments, fixed allowances
 - Apprenticeship contracts (under-classification and percentage tracks)
 - Fixed-term contracts (NASpI *addizionale*)
-- Second-level bargaining — territorial and company supplementary allowances (`Scenario.second_level_allowances`)
+- Second-level bargaining — territorial and company supplementary allowances (`Employer.second_level_allowances`)
 - Domestic work (flat per-hour contributions, non-withholding employer)
 
 **Not modelled:**
