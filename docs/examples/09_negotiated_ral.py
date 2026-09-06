@@ -18,7 +18,7 @@ from ccnl_engine import (
     Permanent,
     RalOverride,
     WorkArrangement,
-    compute_payslip,
+    compute,
     load_ccnl,
     load_year_rules,
 )
@@ -47,8 +47,8 @@ employee_ral = Employee(
     agreement=SalaryOverrides(ral_override=RalOverride(Decimal("40000.00"))),
 )
 
-ccnl_min = compute_payslip(ccnl, rules, employee_ccnl)
-negotiated = compute_payslip(ccnl, rules, employee_ral)
+ccnl_min = compute(ccnl, rules, employee_ccnl)
+negotiated = compute(ccnl, rules, employee_ral)
 
 print(f"Gross annual — CCNL minimum:  {ccnl_min.gross_annual} EUR")
 print(f"Gross annual — negotiated:    {negotiated.gross_annual} EUR")

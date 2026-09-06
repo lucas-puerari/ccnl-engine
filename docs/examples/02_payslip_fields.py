@@ -1,6 +1,6 @@
 """Reading the Payslip: key output fields and their meaning.
 
-compute_payslip() returns a frozen dataclass with every component of gross-to-net
+compute() returns a frozen dataclass with every component of gross-to-net
 and employer cost. This example walks through the most commonly used fields.
 """
 
@@ -13,7 +13,7 @@ from ccnl_engine import (
     FiscalSimplification,
     Permanent,
     WorkArrangement,
-    compute_payslip,
+    compute,
     load_ccnl,
     load_year_rules,
 )
@@ -30,7 +30,7 @@ employee = Employee(
     arrangement=WorkArrangement(),
 )
 
-p = compute_payslip(ccnl, rules, employee)
+p = compute(ccnl, rules, employee)
 
 # --- Pay components (monthly, already scaled by part_time_pct) ---
 print("=== Monthly pay breakdown ===")

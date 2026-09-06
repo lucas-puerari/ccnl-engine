@@ -2,13 +2,13 @@
 
 Public API
 ----------
-The single entry point is :func:`compute_payslip`.  All types needed to call
+The single entry point is :func:`compute`.  All types needed to call
 it and interpret its result are re-exported from this module.
 
 Usage::
 
     from ccnl_engine import (
-        compute_payslip, Employee, Employer, load_ccnl, load_year_rules,
+        compute, Employee, Employer, load_ccnl, load_year_rules,
         ContractPosition, WorkArrangement,
         Permanent,
     )
@@ -24,13 +24,12 @@ Usage::
         ),
         arrangement=WorkArrangement(),
     )
-    payslip = compute_payslip(ccnl, rules, employee)
+    payslip = compute(ccnl, rules, employee)
 """
 
 from __future__ import annotations
 
-from ccnl_engine.contracts.loaders import load_ccnl
-from ccnl_engine.domain.ccnl import (
+from ccnl_engine.contract.domain.ccnl import (
     CCNL,
     Allowance,
     CCNLMeta,
@@ -42,7 +41,9 @@ from ccnl_engine.domain.ccnl import (
     SupplementaryAllowance,
     TaxSector,
 )
-from ccnl_engine.domain.employee import (
+from ccnl_engine.contract.domain.validity import TimeSeries, ValidityPeriod
+from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.payroll.domain.employee import (
     ContractPosition,
     DestinationRalOverride,
     Employee,
@@ -55,15 +56,19 @@ from ccnl_engine.domain.employee import (
     TaxProfile,
     WorkArrangement,
 )
-from ccnl_engine.domain.employer import Employer
-from ccnl_engine.domain.employment import Apprentice, Employment, FixedTerm, Permanent
-from ccnl_engine.domain.fiscal import FiscalSimplification
-from ccnl_engine.domain.validity import TimeSeries, ValidityPeriod
-from ccnl_engine.engine.compute import compute_payslip
-from ccnl_engine.engine.payslip import Payslip
+from ccnl_engine.payroll.domain.employer import Employer
+from ccnl_engine.payroll.domain.employment import (
+    Apprentice,
+    Employment,
+    FixedTerm,
+    Permanent,
+)
+from ccnl_engine.payroll.domain.fiscal import FiscalSimplification
+from ccnl_engine.payroll.domain.payslip import Payslip
+from ccnl_engine.payroll.service.orchestrator import compute
 from ccnl_engine.surtax import SurtaxRules, load_surtax_rules
-from ccnl_engine.tax.loaders import load_year_rules
-from ccnl_engine.tax.models import YearRules
+from ccnl_engine.tax.domain.rules import YearRules
+from ccnl_engine.tax.service.loaders import load_year_rules
 
 __all__ = [
     "CCNL",
@@ -98,7 +103,7 @@ __all__ = [
     "ValidityPeriod",
     "WorkArrangement",
     "YearRules",
-    "compute_payslip",
+    "compute",
     "load_ccnl",
     "load_surtax_rules",
     "load_year_rules",

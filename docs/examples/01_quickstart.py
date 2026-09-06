@@ -1,6 +1,6 @@
 """Quickstart: permanent employee, full-time, no seniority.
 
-This is the minimal call: load a CCNL, build an Employee, call compute_payslip().
+This is the minimal call: load a CCNL, build an Employee, call compute().
 """
 
 from datetime import date
@@ -10,7 +10,7 @@ from ccnl_engine import (
     Employee,
     Permanent,
     WorkArrangement,
-    compute_payslip,
+    compute,
     load_ccnl,
     load_year_rules,
 )
@@ -28,7 +28,7 @@ employee = Employee(
     arrangement=WorkArrangement(),
 )
 
-payslip = compute_payslip(ccnl, rules, employee)
+payslip = compute(ccnl, rules, employee)
 
 print(f"CCNL:              {payslip.ccnl_id}")
 print(f"Level:             {payslip.level_code}")

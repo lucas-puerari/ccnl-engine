@@ -9,8 +9,8 @@ from __future__ import annotations
 import copy
 from typing import Any
 
-from ccnl_engine.domain.ccnl import CCNL
-from ccnl_engine.tax.models import YearRules
+from ccnl_engine.contract.domain.ccnl import CCNL
+from ccnl_engine.tax.domain.rules import YearRules
 
 # ---------------------------------------------------------------------------
 # Shared raw data — canonical source for inline fixtures across the test suite

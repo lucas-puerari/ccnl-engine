@@ -16,7 +16,7 @@ from ccnl_engine import (
     Employee,
     Permanent,
     WorkArrangement,
-    compute_payslip,
+    compute,
     load_ccnl,
     load_year_rules,
 )
@@ -45,8 +45,8 @@ employee_permanent = Employee(
     arrangement=WorkArrangement(),
 )
 
-apprentice = compute_payslip(ccnl, rules, employee_apprentice)
-permanent = compute_payslip(ccnl, rules, employee_permanent)
+apprentice = compute(ccnl, rules, employee_apprentice)
+permanent = compute(ccnl, rules, employee_permanent)
 
 print(f"Apprenticeship %:    {apprentice.apprenticeship_pct}")
 print(f"Gross monthly — apprentice:  {apprentice.gross_monthly} EUR")
