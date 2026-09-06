@@ -1,0 +1,58 @@
+{
+  "_description": "Golden case: CCNL Turismo Confesercenti H058, Level 3, 2026-05-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "2026-05-01 tranche (3rd of 5, renewal 22/07/2024): paga base livello 3 = 1797.04 EUR/month.",
+    "Conglobated model (alberghi sub-sector). Divisor 172, 14 months.",
+    "INPS rates from 2026-terziario.json, 16-50 employees tier.",
+    "Seniority: 0 — new hire. Trattamento integrativo: 262.29."
+  ],
+  "inputs": {
+    "ccnl_file": "turismo-confesercenti.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "3",
+    "as_of": "2026-05-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "turismo-confesercenti",
+    "level_code": "3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1797.04",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1797.04",
+    "gross_annual": "25158.56",
+    "hourly_rate": "10.45",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2312.07",
+    "inps_employer_annual": "7290.95",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1863.60",
+    "taxable_income": "22846.49",
+    "irpef_gross": "5254.69",
+    "work_income_deduction": "882.87",
+    "irpef_net": "4371.82",
+    "net_annual": "18736.96",
+    "net_monthly": "1338.35",
+    "employer_cost_annual": "34313.11",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "262.29",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}

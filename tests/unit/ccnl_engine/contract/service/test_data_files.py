@@ -8115,3 +8115,81 @@ class TestLoadAlimentaristiCooperativeE016:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadTurismoConfesercenti:
+    """Tests for CCNL Turismo Confesercenti (H058)."""
+
+    def test_h058_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("turismo-confesercenti.json")
+        assert ccnl.meta.ccnl_id == "turismo-confesercenti"
+        assert ccnl.meta.cnel_code == "H058"
+
+    def test_h058_has_10_levels(self) -> None:
+        """Contract has exactly 10 levels."""
+        ccnl = load_ccnl("turismo-confesercenti.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 10
+        assert codes == {"7", "6", "6S", "5", "4", "3", "2", "1", "QB", "QA"}
+
+    def test_h058_level_3_salary_2024(self) -> None:
+        """Level 3 base salary at 2024-07-01 is 1717.55 EUR."""
+        ccnl = load_ccnl("turismo-confesercenti.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2024, 7, 1)) == Decimal("1717.55")
+
+    def test_h058_level_3_salary_2026(self) -> None:
+        """Level 3 base salary at 2026-05-01 is 1797.04 EUR."""
+        ccnl = load_ccnl("turismo-confesercenti.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2026, 5, 1)) == Decimal("1797.04")
+
+    def test_h058_level_ordering(self) -> None:
+        """Level 7 is lowest order (1), QA is highest order (10)."""
+        ccnl = load_ccnl("turismo-confesercenti.json")
+        levels_by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert levels_by_order[0].code == "7"
+        assert levels_by_order[-1].code == "QA"
+
+    def test_h058_additional_months(self) -> None:
+        """Additional months is 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("turismo-confesercenti.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 5, 1)) == Decimal(
+            14
+        )
+
+    def test_h058_hourly_divisor(self) -> None:
+        """Hourly divisor is 172."""
+        ccnl = load_ccnl("turismo-confesercenti.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 5, 1)) == Decimal(172)
+
+    def test_h058_no_fixed_allowances(self) -> None:
+        """Level 3 has no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("turismo-confesercenti.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.fixed_allowances == []
+
+    def test_h058_tax_sector(self) -> None:
+        """Tax sector is terziario."""
+        ccnl = load_ccnl("turismo-confesercenti.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_h058_seniority_cadence(self) -> None:
+        """Seniority: 36-month cadence, maximum 6 scatti."""
+        ccnl = load_ccnl("turismo-confesercenti.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 6
+
+    def test_h058_qa_salary_2026(self) -> None:
+        """Level QA base salary at 2026-05-01 is 2416.82 EUR."""
+        ccnl = load_ccnl("turismo-confesercenti.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "QA")
+        assert lv.base_salary.value_at(date(2026, 5, 1)) == Decimal("2416.82")
+
+    def test_h058_level_7_final_tranche(self) -> None:
+        """Level 7 base salary at 2027-11-01 is 1458.42 EUR."""
+        ccnl = load_ccnl("turismo-confesercenti.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "7")
+        assert lv.base_salary.value_at(date(2027, 11, 1)) == Decimal("1458.42")
