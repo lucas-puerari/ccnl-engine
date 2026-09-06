@@ -7399,3 +7399,69 @@ class TestLoadMetalmeccanicaCooperative:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadScuolePrivatelaicheAninsei:
+    """Tests for CCNL Scuole Private Laiche ANINSEI (T231)."""
+
+    def test_scuole_private_laiche_aninsei_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("scuole-private-laiche-aninsei.json")
+        assert ccnl.meta.ccnl_id == "scuole-private-laiche-aninsei"
+        assert ccnl.meta.cnel_code == "T231"
+
+    def test_scuole_private_laiche_aninsei_has_9_levels(self) -> None:
+        """Contract has exactly 9 levels with the expected codes."""
+        ccnl = load_ccnl("scuole-private-laiche-aninsei.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"I", "II", "III", "IV", "V", "VI", "VII", "VIII_A", "VIII_B"}
+
+    def test_scuole_private_laiche_aninsei_level4_salary_2024(self) -> None:
+        """Level IV base salary at first tranche (2024-06-15) = 1397.56 EUR."""
+        ccnl = load_ccnl("scuole-private-laiche-aninsei.json")
+        lv = next(x for x in ccnl.levels if x.code == "IV")
+        assert lv.base_salary.value_at(date(2024, 6, 15)) == Decimal("1397.56")
+
+    def test_scuole_private_laiche_aninsei_level4_salary_2026(self) -> None:
+        """Level IV base salary at third tranche (2026-01-01) = 1491.38 EUR."""
+        ccnl = load_ccnl("scuole-private-laiche-aninsei.json")
+        lv = next(x for x in ccnl.levels if x.code == "IV")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1491.38")
+
+    def test_scuole_private_laiche_aninsei_level_ordering(self) -> None:
+        """Lowest order is I (1), highest order is VIII_B (9)."""
+        ccnl = load_ccnl("scuole-private-laiche-aninsei.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "I"
+        assert by_order[-1].code == "VIII_B"
+
+    def test_scuole_private_laiche_aninsei_additional_months(self) -> None:
+        """Additional months = 13 (tredicesima only)."""
+        ccnl = load_ccnl("scuole-private-laiche-aninsei.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_scuole_private_laiche_aninsei_hourly_divisor(self) -> None:
+        """Hourly divisor = 165 (38h/week, Art. 27)."""
+        ccnl = load_ccnl("scuole-private-laiche-aninsei.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(165)
+
+    def test_scuole_private_laiche_aninsei_no_fixed_allowances(self) -> None:
+        """Conglobated model: all levels have no fixed allowances."""
+        ccnl = load_ccnl("scuole-private-laiche-aninsei.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_scuole_private_laiche_aninsei_tax_sector(self) -> None:
+        """Tax sector is terziario."""
+        ccnl = load_ccnl("scuole-private-laiche-aninsei.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_scuole_private_laiche_aninsei_seniority_cadence(self) -> None:
+        """Seniority frozen: maximum_count=0 (milestone-based, Art. 24)."""
+        ccnl = load_ccnl("scuole-private-laiche-aninsei.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 1
+        assert si.maximum_count == 0
