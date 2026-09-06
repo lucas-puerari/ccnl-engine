@@ -129,6 +129,7 @@ private-sector workforce.
 | 98 | T091 | [RSA e Strutture Residenziali Socio-Assistenziali (AIOP)](rsa-aiop.md) | Sanità residenziale privata | ~17k | ✅ | ✅ | 🤖 |
 | 99 | I192 | [Autostrade e Trafori Concessionari (AISCAT)](autostrade-trafori.md) | Autostrade e trafori | ~15k | ✅ | ✅ | 🤖 |
 | 100 | A016 | [Cooperative e Consorzi Agricoli (AGCI/Confcooperative/Legacoop)](cooperative-consorzi-agricoli.md) | Agricoltura cooperativa | ~60k | ✅ | ⚠️ | 🤖 |
+| 101 | T511 | [Gruppo ANAS](anas.md) | ANAS SpA — viabilità nazionale | ~7k | ✅ | ✅ | 🤖 |
 
 [^1]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.
 [^2]: Salary tables were extracted from official CCNL documents using AI-assisted tooling, without manual human review. Verify against the official source before use in production payroll systems.

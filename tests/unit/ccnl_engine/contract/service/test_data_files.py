@@ -8457,3 +8457,85 @@ class TestLoadCooperativeConsorziAgricoli:
         lv = next(lv for lv in ccnl.levels if lv.code == "1")
         ind = next(fa for fa in lv.fixed_allowances if fa.code == "IND_FUNZIONE_1")
         assert ind.monthly.value_at(date(2024, 4, 1)) == Decimal("180.00")
+
+
+class TestLoadAnas:
+    """Unit tests for CCNL Gruppo ANAS (T511)."""
+
+    def test_t511_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("anas.json")
+        assert ccnl.meta.ccnl_id == "anas"
+        assert ccnl.meta.cnel_code == "T511"
+
+    def test_t511_has_7_levels(self) -> None:
+        """Contract has exactly 7 levels: C1 C B2 B1 B A1 A."""
+        ccnl = load_ccnl("anas.json")
+        assert len(ccnl.levels) == 7
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"C1", "C", "B2", "B1", "B", "A1", "A"}
+
+    def test_t511_level_b1_salary_tranche1(self) -> None:
+        """Level B1 minimo tabellare at 01/03/2026 is 2074.84."""
+        ccnl = load_ccnl("anas.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "B1")
+        assert lv.base_salary.value_at(date(2026, 3, 1)) == Decimal("2074.84")
+
+    def test_t511_level_b1_salary_tranche2(self) -> None:
+        """Level B1 minimo tabellare at 01/09/2026 is 2124.84."""
+        ccnl = load_ccnl("anas.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "B1")
+        assert lv.base_salary.value_at(date(2026, 9, 1)) == Decimal("2124.84")
+
+    def test_t511_level_ordering(self) -> None:
+        """Level C1 is lowest (order 1), level A is highest (order 7)."""
+        ccnl = load_ccnl("anas.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "C1"
+        assert by_order[-1].code == "A"
+
+    def test_t511_additional_months(self) -> None:
+        """Additional months is 13 (tredicesima only)."""
+        ccnl = load_ccnl("anas.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 9, 1)) == Decimal(
+            13
+        )
+
+    def test_t511_hourly_divisor(self) -> None:
+        """Hourly divisor is 156."""
+        ccnl = load_ccnl("anas.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 9, 1)) == Decimal(156)
+
+    def test_t511_iis_allowance_present(self) -> None:
+        """Every level has exactly one fixed allowance: IIS."""
+        ccnl = load_ccnl("anas.json")
+        for lv in ccnl.levels:
+            codes = {fa.code for fa in lv.fixed_allowances}
+            assert codes == {"IIS"}
+
+    def test_t511_tax_sector(self) -> None:
+        """Tax sector is industria."""
+        ccnl = load_ccnl("anas.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_t511_seniority_cadence(self) -> None:
+        """Seniority: 24-month cadence, maximum 10 scatti."""
+        ccnl = load_ccnl("anas.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 10
+
+    def test_t511_level_a_iis_value(self) -> None:
+        """Level A IIS monthly value is 553.45."""
+        ccnl = load_ccnl("anas.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "A")
+        iis = next(fa for fa in lv.fixed_allowances if fa.code == "IIS")
+        assert iis.monthly.value_at(date(2026, 9, 1)) == Decimal("553.45")
+
+    def test_t511_apprenticeship_percentage(self) -> None:
+        """Apprenticeship first period is 70% (professionalizzante)."""
+        ccnl = load_ccnl("anas.json")
+        assert len(ccnl.apprenticeship) == 1
+        appr = ccnl.apprenticeship[0]
+        assert isinstance(appr, ApprenticeshipPercentage)
+        assert appr.periods[0].percentage == Decimal("0.70")
