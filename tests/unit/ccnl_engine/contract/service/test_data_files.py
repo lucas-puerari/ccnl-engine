@@ -8284,3 +8284,96 @@ class TestLoadRsaAiop:
         ccnl = load_ccnl("rsa-aiop.json")
         si = ccnl.parameters.seniority_increments
         assert si.amount_by_level["H"].value_at(date(2026, 1, 1)) == Decimal("0.00")
+
+
+class TestLoadAutostradeTrafori:
+    """Tests for CCNL Autostrade e Trafori Concessionari (I192)."""
+
+    def test_i192_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("autostrade-trafori.json")
+        assert ccnl.meta.ccnl_id == "autostrade-trafori"
+        assert ccnl.meta.cnel_code == "I192"
+
+    def test_i192_has_11_levels(self) -> None:
+        """Contract has exactly 11 levels."""
+        ccnl = load_ccnl("autostrade-trafori.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 11
+        assert codes == {
+            "D",
+            "C1",
+            "C",
+            "C+",
+            "B1",
+            "B1+",
+            "B",
+            "B+",
+            "A1",
+            "A",
+            "AQ",
+        }
+
+    def test_i192_level_b_salary_2023(self) -> None:
+        """Level B base salary at 2023-01-01 is 2200.85 EUR."""
+        ccnl = load_ccnl("autostrade-trafori.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "B")
+        assert lv.base_salary.value_at(date(2023, 1, 1)) == Decimal("2200.85")
+
+    def test_i192_level_b_salary_2026(self) -> None:
+        """Level B base salary at 2026-08-01 is 2469.60 EUR."""
+        ccnl = load_ccnl("autostrade-trafori.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "B")
+        assert lv.base_salary.value_at(date(2026, 8, 1)) == Decimal("2469.60")
+
+    def test_i192_level_ordering(self) -> None:
+        """Level D is lowest order (1), AQ is highest order (11)."""
+        ccnl = load_ccnl("autostrade-trafori.json")
+        levels_by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert levels_by_order[0].code == "D"
+        assert levels_by_order[-1].code == "AQ"
+
+    def test_i192_additional_months(self) -> None:
+        """Additional months is 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("autostrade-trafori.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 8, 1)) == Decimal(
+            14
+        )
+
+    def test_i192_hourly_divisor(self) -> None:
+        """Hourly divisor is 167."""
+        ccnl = load_ccnl("autostrade-trafori.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 8, 1)) == Decimal(167)
+
+    def test_i192_fixed_allowances_present(self) -> None:
+        """Level B has CONTINGENZA, EDR_1991, EDR_1997, IDR_2021."""
+        ccnl = load_ccnl("autostrade-trafori.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "B")
+        codes = {fa.code for fa in lv.fixed_allowances}
+        assert codes == {"CONTINGENZA", "EDR_1991", "EDR_1997", "IDR_2021"}
+
+    def test_i192_tax_sector(self) -> None:
+        """Tax sector is industria."""
+        ccnl = load_ccnl("autostrade-trafori.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_i192_seniority_cadence(self) -> None:
+        """Seniority: 24-month cadence, maximum 9 scatti."""
+        ccnl = load_ccnl("autostrade-trafori.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 9
+
+    def test_i192_aq_has_ind_funzione(self) -> None:
+        """AQ level has IND_FUNZIONE allowance (72.30 EUR/month)."""
+        ccnl = load_ccnl("autostrade-trafori.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "AQ")
+        ind_f = next(fa for fa in lv.fixed_allowances if fa.code == "IND_FUNZIONE")
+        assert ind_f.monthly.value_at(date(2026, 8, 1)) == Decimal("72.30")
+
+    def test_i192_edr1991_months_per_year(self) -> None:
+        """EDR_1991 allowance is paid 13 months per year."""
+        ccnl = load_ccnl("autostrade-trafori.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "B")
+        edr = next(fa for fa in lv.fixed_allowances if fa.code == "EDR_1991")
+        assert edr.months_per_year == 13
