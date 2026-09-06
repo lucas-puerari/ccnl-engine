@@ -47,7 +47,7 @@ Only continue to Step 1 once `gh pr list --state open` returns no results and `m
    - If no `[ ]` entries remain, report that the queue is complete and stop.
 
 3. **Fallback**: choose the contract with the highest **worker headcount**
-   not yet in the coverage matrix in `README.md`.
+   not yet in the coverage matrix in `docs/contracts/index.md`.
    - Search: `CNEL archivio contratti lavoratori coperti {sector}` or
      `ISTAT lavoratori dipendenti CCNL {sector} {year}`
    - CNEL contract archive: https://www.cnel.it/Contratti-Collettivi
@@ -212,7 +212,7 @@ Never work directly on `main`. Never push directly to `main`.
 
 ## Step 5 — Write the CCNL JSON
 
-File: `src/ccnl_engine/contracts/data/{id}.json`
+File: `src/ccnl_engine/contract/data/{id}.json`
 
 Pydantic validators enforce these invariants at load time (violations = immediate error):
 - `valid_from` on the first period = exact CCNL renewal date
@@ -229,7 +229,7 @@ Pydantic validators enforce these invariants at load time (violations = immediat
 
 Validate immediately after writing:
 ```bash
-uv run python -c "from ccnl_engine.contracts.loaders import load_ccnl; load_ccnl('{id}.json')"
+uv run python -c "from ccnl_engine.contract.service.loaders import load_ccnl; load_ccnl('{id}.json')"
 ```
 Fix all Pydantic errors before continuing. Do not proceed with broken JSON.
 
@@ -241,40 +241,46 @@ Fix all Pydantic errors before continuing. Do not proceed with broken JSON.
 
 ```python
 from datetime import date
-from ccnl_engine.contracts.loaders import load_ccnl
-from ccnl_engine.tax.loaders import load_year_rules
-from ccnl_engine.engine.compute import Scenario, compute
-from ccnl_engine.models.ccnl import TaxSector
-from ccnl_engine.models.employment import Permanent
+from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.tax.service.loaders import load_year_rules
+from ccnl_engine.payroll.service.orchestrator import compute
+from ccnl_engine.payroll.domain.employee import (
+    ContractPosition, Employee, WorkArrangement,
+)
+from ccnl_engine.payroll.domain.employment import Permanent
 
 ccnl  = load_ccnl("{id}.json")
-rules = load_year_rules({year}, TaxSector.{SECTOR}, num_employees=50)
-result = compute(
-    ccnl,
-    rules,
-    Scenario(level_code="{level}", as_of=date({year}, {mm}, 1), employment=Permanent()),
+rules = load_year_rules({year}, ccnl.meta.tax_sector, num_employees=50)
+employee = Employee(
+    position=ContractPosition(
+        level_code="{level}",
+        as_of=date({year}, {mm}, 1),
+        employment=Permanent(),
+    ),
+    arrangement=WorkArrangement(),
 )
+result = compute(ccnl, rules, employee)
 ```
 
-Choose: mid-range level, no seniority (`seniority_count=0`), permanent, 50 employees,
+Choose: mid-range level, no seniority, permanent, 50 employees,
 date on the second tranche.
 
-Save to `tests/ccnl_engine/golden/cases/{id}_{level}_{year}.json`.
+Save to `tests/golden/cases/{id}_{level}_{year}.json`.
 
 ---
 
 ## Step 7 — Write unit tests
 
 Append class `TestLoad{CamelCaseName}` at the bottom of
-`tests/ccnl_engine/data/test_data_files.py`.
+`tests/unit/ccnl_engine/contract/service/test_data_files.py`.
 
 **Required imports at the top of the file** — add only what is missing (never inside methods):
 ```python
-from ccnl_engine.models.apprenticeship import (
+from ccnl_engine.contract.domain.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
 )
-from ccnl_engine.models.ccnl import CCNL, TaxSector
+from ccnl_engine.contract.domain.ccnl import CCNL, TaxSector
 ```
 Imports inside test methods trigger ruff PLC0415 and fail CI.
 
@@ -298,12 +304,111 @@ docstrings too — count before saving.
 
 ---
 
-## Step 8 — Update README.md
+## Step 8 — Update the documentation
 
-Add one row to the coverage matrix table:
+Four files must be created or updated. Do them in order.
+
+### 8a. Add a row to `docs/contracts/index.md`
+
+Find the right sector section and insert one row in the table, matching the column
+order used by the surrounding rows:
+
 ```
-| {CCNL Name} | {Sector} | ✅ | ✅ |
+| {N} | `{CNEL}` | [{CCNL Name}]({id}.md) | {Sector} | {workers} | ✅ | ✅ | {date} |
 ```
+
+### 8b. Create `docs/contracts/{id}.md`
+
+Use this template (fill placeholders from the JSON meta block):
+
+```markdown
+# {meta.name}
+
+| | |
+|---|---|
+| **CNEL code** | `{meta.cnel_code}` |
+| **Sector** | {meta.sector} |
+| **Tax sector** | `{meta.tax_sector}` |
+| **Layer 1** | ✅ |
+| **Layer 2** | ✅ |
+
+[← Contracts index](index.md)
+
+## Contract data
+
+```json
+--8<-- "src/ccnl_engine/contract/data/{id}.json"
+```
+
+## Usage example
+
+```python
+--8<-- "docs/examples/contracts/{id}.py"
+```
+```
+
+### 8c. Create `docs/examples/contracts/{id}.py`
+
+Standard template (non-domestic):
+
+```python
+"""Usage example: {meta.name}."""
+from datetime import date
+from ccnl_engine import (
+    ContractPosition,
+    Employee,
+    Permanent,
+    WorkArrangement,
+    compute,
+    load_ccnl,
+    load_year_rules,
+)
+
+ccnl = load_ccnl("{id}.json")
+rules = load_year_rules(
+    {year}, ccnl.meta.tax_sector, num_employees=50
+)
+employee = Employee(
+    position=ContractPosition(
+        level_code="{middle_level_code}",
+        as_of=date({year}, {mm}, 1),
+        employment=Permanent(),
+    ),
+    arrangement=WorkArrangement(),
+)
+p = compute(ccnl, rules, employee)
+print(f"Gross monthly: {p.gross_monthly} EUR")
+print(f"Net annual:    {p.net_annual} EUR")
+print(f"Employer cost: {p.employer_cost_annual} EUR")
+```
+
+For domestic CCNLs (`lavoro-domestico-*`) add `from decimal import Decimal`,
+set `weekly_hours=Decimal("40")` in `WorkArrangement`, and print
+`p.employer_withholds_irpef`.
+
+Use `levels[len(levels) // 2]["code"]` from the JSON as `middle_level_code`.
+
+Use a `date` whose year matches the first period in `base_salary` whose
+`valid_from` ≤ today — never hardcode a date before the series starts or
+`value_at` will raise.
+
+### 8d. Add a nav entry to `zensical.toml`
+
+Inside the `{ "Contracts" = [...] }` block, insert one line in alphabetical
+order by the nav title:
+
+```toml
+{ "{Full CCNL title truncated to ~60 chars}" = "contracts/{id}.md" },
+```
+
+The nav entry title must be unique and stay ≤ ~80 chars (longer titles are
+silently truncated in the sidebar). Match the style of existing entries.
+
+---
+
+**CI smoke-test**: `tests/unit/docs/test_contract_examples.py` automatically
+picks up `docs/examples/contracts/{id}.py` — no test edit is needed.
+Run `uv run pytest tests/unit/docs/` to verify before committing.
 
 ---
 
@@ -388,6 +493,10 @@ Contract-specific pitfalls (general rules are in `CLAUDE.md`):
 - **Scatti cadence**: biennale (24), triennale (36), quadriennale (48) — never assume.
 - **`amount_by_level` codes**: must match `levels[].code` exactly — a mismatch is a load error.
 - **Coverage gap on new TaxSector**: ship enum change + tax file + CCNL JSON in the same commit.
+- **`value_at` date before series start**: the example script in `docs/examples/contracts/`
+  must use a `date` on or after the first `valid_from` in `base_salary`. Pick the
+  date of the second tranche (or later) to be safe — never hardcode `date(year, 1, 1)`
+  if the series starts after January.
 
 ---
 
