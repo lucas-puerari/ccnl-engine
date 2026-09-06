@@ -14,7 +14,7 @@ collective labor agreements (CCNL) and statutory contribution rates.
 | [Get started](getting-started/index.md) | Install, quickstart, and first payslip in 10 lines |
 | [Domain](domain/index.md) | What CCNLs are, how Italian labor law structures them |
 | [Guide](guide/employment-types.md) | How to use every library feature with worked examples |
-| [Contracts](contracts/index.md) | All 85 supported contracts — salary tables, sources, examples |
+| [Contracts](contracts/index.md) | All 100+ supported contracts — salary tables, sources, examples |
 | [API reference](api/index.md) | Full reference for every public type and function |
 
 ## Scope
