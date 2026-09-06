@@ -1,0 +1,3 @@
+# Make JSON files visible in GitHub language stats
+# (Linguist excludes type:data languages by default)
+*.json linguist-detectable
