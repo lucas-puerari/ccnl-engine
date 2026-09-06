@@ -122,6 +122,7 @@ private-sector workforce.
 | 91 | D271 | [Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | Industria occhialeria | ~20k | ✅ | ✅ | 🤖 |
 | 92 | F032 | [Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | Industria cemento | ~25k | ✅ | ✅ | 🤖 |
 | 93 | F041 | [Lapidei — Industria (Confindustria Marmomacchine/ANEPLA)](lapidei-industria.md) | Industria lapidea | ~18k | ✅ | ✅ | 🤖 |
+| 94 | I391 | [Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | Navigazione marittima | ~15k | ✅ | ✅ | 🤖 |
 
 [^1]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.
 [^2]: Salary tables were extracted from official CCNL documents using AI-assisted tooling, without manual human review. Verify against the official source before use in production payroll systems.
