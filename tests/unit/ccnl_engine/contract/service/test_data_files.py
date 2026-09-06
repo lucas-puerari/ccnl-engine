@@ -7322,3 +7322,80 @@ class TestLoadPortieriFabbricatiConfedilizia:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 12
+
+
+class TestLoadMetalmeccanicaCooperative:
+    """Tests for CCNL Metalmeccanica - Cooperative (C016)."""
+
+    def test_metalmeccanica_cooperative_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("metalmeccanica-cooperative.json")
+        assert ccnl.meta.ccnl_id == "metalmeccanica-cooperative"
+        assert ccnl.meta.cnel_code == "C016"
+
+    def test_metalmeccanica_cooperative_has_9_levels(self) -> None:
+        """Contract has exactly 9 levels with correct codes."""
+        ccnl = load_ccnl("metalmeccanica-cooperative.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"D1", "D2", "C1", "C2", "C3", "B1", "B2", "B3", "A1"}
+
+    def test_metalmeccanica_cooperative_level_d1_salary_2025(self) -> None:
+        """D1 base salary at first tranche (2025-06-01)."""
+        ccnl = load_ccnl("metalmeccanica-cooperative.json")
+        d1 = next(lv for lv in ccnl.levels if lv.code == "D1")
+        assert d1.base_salary.value_at(date(2025, 6, 1)) == Decimal("1754.06")
+
+    def test_metalmeccanica_cooperative_level_a1_salary_2026(self) -> None:
+        """A1 base salary at second tranche (2026-06-01)."""
+        ccnl = load_ccnl("metalmeccanica-cooperative.json")
+        a1 = next(lv for lv in ccnl.levels if lv.code == "A1")
+        assert a1.base_salary.value_at(date(2026, 6, 1)) == Decimal("3054.52")
+
+    def test_metalmeccanica_cooperative_level_ordering(self) -> None:
+        """A1 is the highest-order level; D1 is the lowest."""
+        ccnl = load_ccnl("metalmeccanica-cooperative.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "D1"
+        assert by_order[-1].code == "A1"
+
+    def test_metalmeccanica_cooperative_additional_months(self) -> None:
+        """Contract provides 13 additional months (tredicesima only)."""
+        ccnl = load_ccnl("metalmeccanica-cooperative.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 6, 1)) == Decimal(
+            13
+        )
+
+    def test_metalmeccanica_cooperative_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (40h/week, metalmeccanici standard)."""
+        ccnl = load_ccnl("metalmeccanica-cooperative.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 6, 1)) == Decimal(173)
+
+    def test_metalmeccanica_cooperative_fixed_allowances(self) -> None:
+        """A1 and B3 have IND_FUN allowances; all others have none."""
+        ccnl = load_ccnl("metalmeccanica-cooperative.json")
+        a1 = next(lv for lv in ccnl.levels if lv.code == "A1")
+        b3 = next(lv for lv in ccnl.levels if lv.code == "B3")
+        c2 = next(lv for lv in ccnl.levels if lv.code == "C2")
+        assert len(a1.fixed_allowances) == 1
+        assert a1.fixed_allowances[0].code == "IND_FUN"
+        assert a1.fixed_allowances[0].monthly.value_at(date(2026, 6, 1)) == Decimal(
+            "180.00"
+        )
+        assert len(b3.fixed_allowances) == 1
+        assert b3.fixed_allowances[0].monthly.value_at(date(2026, 6, 1)) == Decimal(
+            "120.00"
+        )
+        assert c2.fixed_allowances == []
+
+    def test_metalmeccanica_cooperative_tax_sector(self) -> None:
+        """Tax sector is industria."""
+        ccnl = load_ccnl("metalmeccanica-cooperative.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_metalmeccanica_cooperative_seniority_cadence(self) -> None:
+        """Seniority increments: biennali (24 months), max 5."""
+        ccnl = load_ccnl("metalmeccanica-cooperative.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
