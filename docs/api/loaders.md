@@ -4,19 +4,19 @@ Functions to load CCNL contract data and tax year rules from the bundled JSON fi
 
 ## Contracts
 
-::: ccnl_engine.contracts.loaders
+::: ccnl_engine.contract.service.loaders
     options:
       members:
         - load_ccnl
 
 ## Tax
 
-::: ccnl_engine.tax.loaders
+::: ccnl_engine.tax.service.loaders
     options:
       members:
         - load_year_rules
 
-::: ccnl_engine.tax.models
+::: ccnl_engine.tax.domain.rules
     options:
       members:
         - YearRules

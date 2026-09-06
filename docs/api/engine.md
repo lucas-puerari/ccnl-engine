@@ -4,34 +4,34 @@ Core computation functions and types.
 
 ## compute
 
-::: ccnl_engine.engine.compute
+::: ccnl_engine.payroll.service.orchestrator
     options:
       members:
         - compute
 
 ## Input models
 
-::: ccnl_engine.models.employee
+::: ccnl_engine.payroll.domain.employee
     options:
       members:
         - Employee
         - ContractPosition
         - WorkArrangement
         - TaxProfile
-        - IndividualAgreement
+        - SalaryOverrides
         - SeniorityByCount
         - SeniorityByMonths
         - RalOverride
         - DestinationRalOverride
 
-::: ccnl_engine.models.employer
+::: ccnl_engine.payroll.domain.employer
     options:
       members:
         - Employer
 
 ## Payslip
 
-::: ccnl_engine.engine.payslip
+::: ccnl_engine.payroll.domain.payslip
     options:
       members:
         - Payslip

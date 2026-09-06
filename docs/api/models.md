@@ -4,7 +4,7 @@ Domain models for employment contracts and CCNL structure.
 
 ## Employment
 
-::: ccnl_engine.models.employment
+::: ccnl_engine.payroll.domain.employment
     options:
       members:
         - Permanent
@@ -13,7 +13,7 @@ Domain models for employment contracts and CCNL structure.
 
 ## CCNL
 
-::: ccnl_engine.models.ccnl
+::: ccnl_engine.contract.domain.ccnl
     options:
       members:
         - CCNL
@@ -25,7 +25,7 @@ Domain models for employment contracts and CCNL structure.
 
 ## Fiscal
 
-::: ccnl_engine.models.fiscal
+::: ccnl_engine.payroll.domain.fiscal
     options:
       members:
         - FiscalSimplification
