@@ -127,6 +127,7 @@ private-sector workforce.
 | 96 | E016 | [Alimentaristi Cooperative (Fedagripesca/Legacoop/AGCI)](alimentaristi-cooperative-e016.md) | Industria alimentare cooperativa | ~15k | ✅ | ✅ | 🤖 |
 | 97 | H058 | [Turismo — Assoturismo-Confesercenti](turismo-confesercenti.md) | Turismo terziario | — | ✅ | ✅ | 🤖 |
 | 98 | T091 | [RSA e Strutture Residenziali Socio-Assistenziali (AIOP)](rsa-aiop.md) | Sanità residenziale privata | ~17k | ✅ | ✅ | 🤖 |
+| 99 | I192 | [Autostrade e Trafori Concessionari (AISCAT)](autostrade-trafori.md) | Autostrade e trafori | ~15k | ✅ | ✅ | 🤖 |
 
 [^1]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.
 [^2]: Salary tables were extracted from official CCNL documents using AI-assisted tooling, without manual human review. Verify against the official source before use in production payroll systems.

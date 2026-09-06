@@ -1,0 +1,28 @@
+{
+  "_description": "CCNL Autostrade e Trafori (I192) — level B, 2026-08-01 (first 2026 contract tranche)",
+  "_notes": [
+    "Split model: paga base + CONTINGENZA + EDR_1991 (13m) + EDR_1997 + IDR_2021.",
+    "gross_monthly = base(2469.60) + CONTINGENZA(529.40) + EDR_1991_adj + EDR_1997(81.34) + IDR_2021(31.25)."
+  ],
+  "inputs": {
+    "ccnl_file": "autostrade-trafori.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "B",
+    "as_of": "2026-08-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "base_monthly": "2469.60",
+    "gross_monthly": "3121.92",
+    "gross_annual": "43696.55",
+    "hourly_rate": "18.69",
+    "net_annual": "29498.89",
+    "employer_cost_annual": "60129.69",
+    "trattamento_integrativo": "0"
+  }
+}
