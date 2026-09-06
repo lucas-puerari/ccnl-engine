@@ -55,8 +55,8 @@ jobs:
           <body>
             <h1>ccnl-engine</h1>
             <p>
-              <a href="demo/">Interactive demo</a> ·
-              <a href="docs/">API documentation</a>
+              <a href="demo/">Demo</a> ·
+              <a href="docs/">Documentation</a>
             </p>
           </body>
           </html>

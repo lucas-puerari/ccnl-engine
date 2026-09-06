@@ -8,9 +8,13 @@
 
 A Python library for modeling Italian collective labor agreements (CCNL) as structured, versioned data and computing gross-to-net salary and employer cost from first principles.
 
-**[Interactive demo](https://lucas-puerari.github.io/ccnl-engine/demo/) · [Documentation](https://lucas-puerari.github.io/ccnl-engine/docs/) · [CCNL coverage](https://lucas-puerari.github.io/ccnl-engine/docs/contracts/index.html)**
+**[Documentation](https://lucas-puerari.github.io/ccnl-engine/docs/) · [Demo](https://lucas-puerari.github.io/ccnl-engine/demo/)**
 
-## Why
+## Motivation
+
+I never really understood employment contracts or pay slips. The whole system strikes me as needlessly complicated. On top of that, finding reliable CCNL information online feels like an uphill battle: conflicting figures are everywhere, and identifying authoritative sources is harder than it should be. This project grew out of a desire to understand a little more. I make no claim to becoming an expert, but I hope to make this information more accessible and comprehensible for everyone.
+
+## The Problem
 
 Italian payroll is governed by collective agreements (CCNL) that define base salaries, seniority increments, and allowances as time-series values — they change at negotiated renewal dates. Existing tools either lock this data inside proprietary systems or require a full HRMS. This library treats each CCNL as a validated JSON file and the computation as a pure function:
 

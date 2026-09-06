@@ -3,7 +3,7 @@
 Python library for computing gross-to-net salary and employer cost from Italian
 collective labor agreements (CCNL) and statutory contribution rates.
 
-[**Interactive demo**](../demo/) · [**GitHub**](https://github.com/lucas-puerari/ccnl-engine) · [**CCNL coverage**](contracts/index.md)
+[**Demo**](../demo/) · [**GitHub**](https://github.com/lucas-puerari/ccnl-engine) · [**CCNL coverage**](contracts/index.md)
 
 ---
 
