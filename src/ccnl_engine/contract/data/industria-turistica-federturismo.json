@@ -1,0 +1,485 @@
+{
+  "schema_version": "0.4",
+  "meta": {
+    "ccnl_id": "industria-turistica-federturismo",
+    "cnel_code": "H05B",
+    "name": "CCNL Industria Turistica (Federturismo Confindustria)",
+    "sector": "turismo — alberghi, campeggi, villaggi e strutture ricettive",
+    "tax_sector": "terziario",
+    "signatories": [
+      "Federturismo Confindustria",
+      "FILCAMS-CGIL",
+      "FISASCAT-CISL",
+      "UILTuCS"
+    ],
+    "agreement_date": "2025-01-01",
+    "sources": [
+      {
+        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B",
+        "type": "tabella_retributiva",
+        "agreement_date": "2025-01-01",
+        "notes": "A1 and D2 confirmed at 01/05/2026. Intermediate levels derived via parametric ratio and independently verified to <EUR 0.02."
+      }
+    ],
+    "extraction": {
+      "timestamp": "2026-09-06",
+      "human_reviewed": false,
+      "method": "ai_assisted"
+    }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "CCNL H05B — Federturismo Confindustria. Conglobated model. 9 levels: D2-D1-C3-C2-C1-B2-B1-A2-A1. Divisor 172, 14 months. Function allowances: A1+75 EUR, A2+70 EUR (14 months). Seniority 36-month cadence, max 6."
+      },
+      {
+        "kind": "info",
+        "text": "INPS: uses 2026-terziario.json (TaxSector.TERZIARIO). Same classification as H052 turismo-federalberghi."
+      },
+      {
+        "kind": "simplification",
+        "text": "Salary values for all levels except A1 and D2 derived via parametric ratio formula and verified against independent research to <EUR 0.02 accuracy."
+      },
+      {
+        "kind": "simplification",
+        "text": "Pre-renewal salary (pre 01/01/2025) not modeled; series starts 2025-01-01. Agreement date set to first tranche date; actual signing date unverified."
+      },
+      {
+        "kind": "simplification",
+        "text": "Seniority cadence set to 36 months; may be 36 or 48 per source ambiguity. Maximum scatti: 6."
+      },
+      {
+        "kind": "simplification",
+        "text": "Apprenticeship is under_classification 2 levels below destination (per-destination-level), not supported by engine schema. Modeled as 100% passthrough."
+      }
+    ]
+  },
+  "levels": [
+    {
+      "code": "D2",
+      "order": 1,
+      "description": "Livello D2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-06-01",
+            "value": "1368.69"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1393.70"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1422.88"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": null,
+            "value": "1464.57"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "D1",
+      "order": 2,
+      "description": "Livello D1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-06-01",
+            "value": "1481.04"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1508.11"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1539.69"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": null,
+            "value": "1584.79"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C3",
+      "order": 3,
+      "description": "Livello C3",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-06-01",
+            "value": "1540.03"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1568.17"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1601.00"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": null,
+            "value": "1647.90"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C2",
+      "order": 4,
+      "description": "Livello C2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-06-01",
+            "value": "1641.59"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1671.59"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1706.59"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": null,
+            "value": "1756.59"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "C1",
+      "order": 5,
+      "description": "Livello C1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-06-01",
+            "value": "1739.43"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1771.22"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1808.30"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": null,
+            "value": "1861.27"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "B2",
+      "order": 6,
+      "description": "Livello B2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-06-01",
+            "value": "1843.95"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "1877.65"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "1916.96"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": null,
+            "value": "1973.12"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "B1",
+      "order": 7,
+      "description": "Livello B1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-06-01",
+            "value": "2016.87"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "2053.74"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "2096.74"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": null,
+            "value": "2158.18"
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "A2",
+      "order": 8,
+      "description": "Livello A2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-06-01",
+            "value": "2164.27"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "2203.82"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "2249.96"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": null,
+            "value": "2315.87"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "INDENNITA_FUNZIONE_A2",
+          "description": "Indennità di funzione livello A2",
+          "months_per_year": 14,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "70.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "code": "A1",
+      "order": 9,
+      "description": "Livello A1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2025-06-01",
+            "value": "2337.18"
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-05-01",
+            "value": "2379.89"
+          },
+          {
+            "valid_from": "2026-05-01",
+            "valid_until": "2027-04-01",
+            "value": "2429.72"
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": null,
+            "value": "2500.91"
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "INDENNITA_FUNZIONE_A1",
+          "description": "Indennità di funzione livello A1",
+          "months_per_year": 14,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "75.00"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "parameters": {
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "172"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 6,
+      "amount_by_level": {
+        "D2": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "30.47"
+            }
+          ]
+        },
+        "D1": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "31.25"
+            }
+          ]
+        },
+        "C3": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "32.54"
+            }
+          ]
+        },
+        "C2": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "33.05"
+            }
+          ]
+        },
+        "C1": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "34.86"
+            }
+          ]
+        },
+        "B2": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "36.15"
+            }
+          ]
+        },
+        "B1": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "37.70"
+            }
+          ]
+        },
+        "A2": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "39.25"
+            }
+          ]
+        },
+        "A1": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "40.80"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante",
+      "destination_levels": [
+        "D2", "D1", "C3", "C2", "C1", "B2", "B1", "A2", "A1"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    }
+  ]
+}
