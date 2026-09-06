@@ -30,10 +30,10 @@
       }
     ],
     "extraction": {
-      "method": "manual_pdf_extraction",
+      "method": "ai_assisted",
       "model": null,
       "timestamp": "2026-09-03",
-      "human_reviewed": true
+      "human_reviewed": false
     }
   },
   "parameters": {

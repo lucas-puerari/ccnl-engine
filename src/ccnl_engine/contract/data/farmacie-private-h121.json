@@ -21,10 +21,10 @@
       }
     ],
     "extraction": {
-      "method": "manual",
+      "method": "ai_assisted",
       "model": null,
       "timestamp": "2026-09-05",
-      "human_reviewed": true
+      "human_reviewed": false
     }
   },
   "coverage": {
@@ -188,7 +188,9 @@
     {
       "type": "under_classification",
       "name": "farmacista_collaboratore",
-      "destination_levels": ["1"],
+      "destination_levels": [
+        "1"
+      ],
       "periods": [
         {
           "months_from": 0,
@@ -200,7 +202,9 @@
     {
       "type": "under_classification",
       "name": "professionalizzante",
-      "destination_levels": ["4"],
+      "destination_levels": [
+        "4"
+      ],
       "periods": [
         {
           "months_from": 0,

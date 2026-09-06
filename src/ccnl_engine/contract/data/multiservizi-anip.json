@@ -39,10 +39,10 @@
       }
     ],
     "extraction": {
-      "method": "manual_web_research",
+      "method": "ai_assisted",
       "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-01",
-      "human_reviewed": true
+      "human_reviewed": false
     }
   },
   "coverage": {

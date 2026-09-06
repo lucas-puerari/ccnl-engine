@@ -32,10 +32,10 @@
       }
     ],
     "extraction": {
-      "method": "manual",
+      "method": "ai_assisted",
       "model": null,
       "timestamp": "2026-09-05T00:00:00",
-      "human_reviewed": true
+      "human_reviewed": false
     }
   },
   "coverage": {
@@ -203,7 +203,14 @@
     {
       "type": "under_classification",
       "name": "livelli_1_a_4",
-      "destination_levels": ["1", "2", "3S", "3", "4S", "4"],
+      "destination_levels": [
+        "1",
+        "2",
+        "3S",
+        "3",
+        "4S",
+        "4"
+      ],
       "periods": [
         {
           "months_from": 0,
@@ -220,7 +227,9 @@
     {
       "type": "under_classification",
       "name": "livello_5",
-      "destination_levels": ["5"],
+      "destination_levels": [
+        "5"
+      ],
       "periods": [
         {
           "months_from": 0,

@@ -35,10 +35,10 @@
       }
     ],
     "extraction": {
-      "method": "manual",
+      "method": "ai_assisted",
       "model": null,
       "timestamp": "2026-09-05T00:00:00",
-      "human_reviewed": true
+      "human_reviewed": false
     }
   },
   "coverage": {
@@ -219,7 +219,14 @@
     {
       "type": "under_classification",
       "name": "professionalizzante_36",
-      "destination_levels": ["A3", "B1", "B2", "B3", "C1", "C2"],
+      "destination_levels": [
+        "A3",
+        "B1",
+        "B2",
+        "B3",
+        "C1",
+        "C2"
+      ],
       "periods": [
         {
           "months_from": 0,
@@ -241,7 +248,11 @@
     {
       "type": "under_classification",
       "name": "professionalizzante_24",
-      "destination_levels": ["A2", "C3", "D2"],
+      "destination_levels": [
+        "A2",
+        "C3",
+        "D2"
+      ],
       "periods": [
         {
           "months_from": 0,

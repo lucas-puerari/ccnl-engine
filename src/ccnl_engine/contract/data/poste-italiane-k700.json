@@ -21,10 +21,10 @@
       }
     ],
     "extraction": {
-      "method": "manual",
+      "method": "ai_assisted",
       "model": null,
       "timestamp": "2026-09-05",
-      "human_reviewed": true
+      "human_reviewed": false
     }
   },
   "coverage": {
@@ -114,7 +114,12 @@
     {
       "type": "under_classification",
       "name": "professionalizzante",
-      "destination_levels": ["B", "C", "D", "E"],
+      "destination_levels": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
       "periods": [
         {
           "months_from": 0,

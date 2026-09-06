@@ -41,10 +41,10 @@
       }
     ],
     "extraction": {
-      "method": "manual",
+      "method": "ai_assisted",
       "model": null,
       "timestamp": "2026-09-05",
-      "human_reviewed": true
+      "human_reviewed": false
     }
   },
   "coverage": {
@@ -200,7 +200,12 @@
     {
       "type": "under_classification",
       "name": "professionalizzante_36",
-      "destination_levels": ["ASQ", "AS", "A", "B"],
+      "destination_levels": [
+        "ASQ",
+        "AS",
+        "A",
+        "B"
+      ],
       "periods": [
         {
           "months_from": 0,
@@ -222,7 +227,10 @@
     {
       "type": "under_classification",
       "name": "professionalizzante_30",
-      "destination_levels": ["CS", "C"],
+      "destination_levels": [
+        "CS",
+        "C"
+      ],
       "periods": [
         {
           "months_from": 0,
@@ -244,7 +252,9 @@
     {
       "type": "under_classification",
       "name": "professionalizzante_24",
-      "destination_levels": ["D"],
+      "destination_levels": [
+        "D"
+      ],
       "periods": [
         {
           "months_from": 0,
@@ -266,7 +276,9 @@
     {
       "type": "under_classification",
       "name": "professionalizzante_12",
-      "destination_levels": ["E"],
+      "destination_levels": [
+        "E"
+      ],
       "periods": [
         {
           "months_from": 0,
@@ -288,14 +300,46 @@
       "description": "Quadri AS — Impiegati inquadrati al livello AS con responsabilita di coordinamento e gestione di settori fondamentali",
       "base_salary": {
         "periods": [
-          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "2095.27"},
-          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "2159.98"},
-          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "2200.42"},
-          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "2257.03"},
-          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2402.62"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2491.60"},
-          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "2580.57"},
-          {"valid_from": "2028-07-01", "valid_until": null, "value": "2588.66"}
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "2095.27"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-10-01",
+            "value": "2159.98"
+          },
+          {
+            "valid_from": "2023-10-01",
+            "valid_until": "2025-02-01",
+            "value": "2200.42"
+          },
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2025-10-01",
+            "value": "2257.03"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "2402.62"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2491.60"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "2580.57"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": null,
+            "value": "2588.66"
+          }
         ]
       },
       "fixed_allowances": [
@@ -304,7 +348,11 @@
           "description": "Indennita di contingenza (frozen since 1993 Protocol)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "534.84"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "534.84"
+              }
             ]
           }
         },
@@ -313,7 +361,11 @@
           "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         },
@@ -322,7 +374,11 @@
           "description": "Indennita di funzione quadri (L. 190/1985)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "51.65"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "51.65"
+              }
             ]
           }
         }
@@ -334,14 +390,46 @@
       "description": "AS — Impiegati con funzioni direttive e discrezionalita di poteri",
       "base_salary": {
         "periods": [
-          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "2095.27"},
-          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "2159.98"},
-          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "2200.42"},
-          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "2257.03"},
-          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2402.62"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2491.60"},
-          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "2580.57"},
-          {"valid_from": "2028-07-01", "valid_until": null, "value": "2588.66"}
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "2095.27"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-10-01",
+            "value": "2159.98"
+          },
+          {
+            "valid_from": "2023-10-01",
+            "valid_until": "2025-02-01",
+            "value": "2200.42"
+          },
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2025-10-01",
+            "value": "2257.03"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "2402.62"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2491.60"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "2580.57"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": null,
+            "value": "2588.66"
+          }
         ]
       },
       "fixed_allowances": [
@@ -350,7 +438,11 @@
           "description": "Indennita di contingenza (frozen since 1993 Protocol)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "534.84"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "534.84"
+              }
             ]
           }
         },
@@ -359,7 +451,11 @@
           "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -371,14 +467,46 @@
       "description": "A — Impiegati con funzioni autonome di guida e coordinamento",
       "base_salary": {
         "periods": [
-          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "1761.92"},
-          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "1816.33"},
-          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "1850.34"},
-          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "1897.95"},
-          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "2020.38"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "2095.20"},
-          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "2170.02"},
-          {"valid_from": "2028-07-01", "valid_until": null, "value": "2176.82"}
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1761.92"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-10-01",
+            "value": "1816.33"
+          },
+          {
+            "valid_from": "2023-10-01",
+            "valid_until": "2025-02-01",
+            "value": "1850.34"
+          },
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2025-10-01",
+            "value": "1897.95"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "2020.38"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2095.20"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "2170.02"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": null,
+            "value": "2176.82"
+          }
         ]
       },
       "fixed_allowances": [
@@ -387,7 +515,11 @@
           "description": "Indennita di contingenza (frozen since 1993 Protocol)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "528.01"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "528.01"
+              }
             ]
           }
         },
@@ -396,7 +528,11 @@
           "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -408,14 +544,46 @@
       "description": "B — Impiegati e Operai con mansioni di concetto o manutenzione impianti con coordinamento",
       "base_salary": {
         "periods": [
-          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "1438.12"},
-          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "1482.53"},
-          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "1510.29"},
-          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "1549.15"},
-          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1649.08"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1710.15"},
-          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "1771.22"},
-          {"valid_from": "2028-07-01", "valid_until": null, "value": "1776.77"}
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1438.12"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-10-01",
+            "value": "1482.53"
+          },
+          {
+            "valid_from": "2023-10-01",
+            "valid_until": "2025-02-01",
+            "value": "1510.29"
+          },
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2025-10-01",
+            "value": "1549.15"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "1649.08"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1710.15"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "1771.22"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": null,
+            "value": "1776.77"
+          }
         ]
       },
       "fixed_allowances": [
@@ -424,7 +592,11 @@
           "description": "Indennita di contingenza (frozen since 1993 Protocol)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "521.40"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "521.40"
+              }
             ]
           }
         },
@@ -433,7 +605,11 @@
           "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -445,14 +621,46 @@
       "description": "CS — Operai specializzati con interventi elettrici/elettronici o coordinamento squadra",
       "base_salary": {
         "periods": [
-          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "1360.34"},
-          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "1402.40"},
-          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "1428.69"},
-          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "1465.49"},
-          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1560.12"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1617.95"},
-          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "1675.78"},
-          {"valid_from": "2028-07-01", "valid_until": null, "value": "1681.04"}
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1360.34"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-10-01",
+            "value": "1402.40"
+          },
+          {
+            "valid_from": "2023-10-01",
+            "valid_until": "2025-02-01",
+            "value": "1428.69"
+          },
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2025-10-01",
+            "value": "1465.49"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "1560.12"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1617.95"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "1675.78"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": null,
+            "value": "1681.04"
+          }
         ]
       },
       "fixed_allowances": [
@@ -461,7 +669,11 @@
           "description": "Indennita di contingenza (frozen since 1993 Protocol)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "517.58"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "517.58"
+              }
             ]
           }
         },
@@ -470,7 +682,11 @@
           "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -482,14 +698,46 @@
       "description": "C — Impiegati e Operai con autonomia esecutiva e conoscenze professionali specifiche",
       "base_salary": {
         "periods": [
-          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "1294.23"},
-          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "1334.23"},
-          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "1359.23"},
-          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "1394.23"},
-          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1484.23"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1539.23"},
-          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "1594.23"},
-          {"valid_from": "2028-07-01", "valid_until": null, "value": "1599.23"}
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1294.23"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-10-01",
+            "value": "1334.23"
+          },
+          {
+            "valid_from": "2023-10-01",
+            "valid_until": "2025-02-01",
+            "value": "1359.23"
+          },
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2025-10-01",
+            "value": "1394.23"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "1484.23"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1539.23"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "1594.23"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": null,
+            "value": "1599.23"
+          }
         ]
       },
       "fixed_allowances": [
@@ -498,7 +746,11 @@
           "description": "Indennita di contingenza (frozen since 1993 Protocol)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "517.52"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "517.52"
+              }
             ]
           }
         },
@@ -507,7 +759,11 @@
           "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -519,14 +775,46 @@
       "description": "D — Impiegati con mansioni d'ordine e Operai con capacita tecnico-pratiche",
       "base_salary": {
         "periods": [
-          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "1203.09"},
-          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "1240.15"},
-          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "1263.31"},
-          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "1295.74"},
-          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1379.12"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1430.08"},
-          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "1481.04"},
-          {"valid_from": "2028-07-01", "valid_until": null, "value": "1485.67"}
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1203.09"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-10-01",
+            "value": "1240.15"
+          },
+          {
+            "valid_from": "2023-10-01",
+            "valid_until": "2025-02-01",
+            "value": "1263.31"
+          },
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2025-10-01",
+            "value": "1295.74"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "1379.12"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1430.08"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "1481.04"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": null,
+            "value": "1485.67"
+          }
         ]
       },
       "fixed_allowances": [
@@ -535,7 +823,11 @@
           "description": "Indennita di contingenza (frozen since 1993 Protocol)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "515.99"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "515.99"
+              }
             ]
           }
         },
@@ -544,7 +836,11 @@
           "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -556,14 +852,46 @@
       "description": "E — Impiegati con mansioni esecutive generiche e Operai con capacita pratica di mestiere",
       "base_salary": {
         "periods": [
-          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "1115.27"},
-          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "1149.68"},
-          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "1171.19"},
-          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "1201.30"},
-          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1278.73"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1326.05"},
-          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "1373.37"},
-          {"valid_from": "2028-07-01", "valid_until": null, "value": "1377.67"}
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "1115.27"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-10-01",
+            "value": "1149.68"
+          },
+          {
+            "valid_from": "2023-10-01",
+            "valid_until": "2025-02-01",
+            "value": "1171.19"
+          },
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2025-10-01",
+            "value": "1201.30"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "1278.73"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1326.05"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "1373.37"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": null,
+            "value": "1377.67"
+          }
         ]
       },
       "fixed_allowances": [
@@ -572,7 +900,11 @@
           "description": "Indennita di contingenza (frozen since 1993 Protocol)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "514.04"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "514.04"
+              }
             ]
           }
         },
@@ -581,7 +913,11 @@
           "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }
@@ -593,14 +929,46 @@
       "description": "F — Operai con semplici conoscenze conseguibili con breve pratica (incl. superminimo 4.13 EUR)",
       "base_salary": {
         "periods": [
-          {"valid_from": "2022-04-01", "valid_until": "2022-07-01", "value": "954.28"},
-          {"valid_from": "2022-07-01", "valid_until": "2023-10-01", "value": "983.69"},
-          {"valid_from": "2023-10-01", "valid_until": "2025-02-01", "value": "1002.07"},
-          {"valid_from": "2025-02-01", "valid_until": "2025-10-01", "value": "1027.81"},
-          {"valid_from": "2025-10-01", "valid_until": "2026-07-01", "value": "1093.99"},
-          {"valid_from": "2026-07-01", "valid_until": "2027-07-01", "value": "1134.43"},
-          {"valid_from": "2027-07-01", "valid_until": "2028-07-01", "value": "1174.87"},
-          {"valid_from": "2028-07-01", "valid_until": null, "value": "1178.55"}
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2022-07-01",
+            "value": "954.28"
+          },
+          {
+            "valid_from": "2022-07-01",
+            "valid_until": "2023-10-01",
+            "value": "983.69"
+          },
+          {
+            "valid_from": "2023-10-01",
+            "valid_until": "2025-02-01",
+            "value": "1002.07"
+          },
+          {
+            "valid_from": "2025-02-01",
+            "valid_until": "2025-10-01",
+            "value": "1027.81"
+          },
+          {
+            "valid_from": "2025-10-01",
+            "valid_until": "2026-07-01",
+            "value": "1093.99"
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1134.43"
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-07-01",
+            "value": "1174.87"
+          },
+          {
+            "valid_from": "2028-07-01",
+            "valid_until": null,
+            "value": "1178.55"
+          }
         ]
       },
       "fixed_allowances": [
@@ -609,7 +977,11 @@
           "description": "Indennita di contingenza (frozen since 1993 Protocol)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "511.74"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "511.74"
+              }
             ]
           }
         },
@@ -618,7 +990,11 @@
           "description": "Elemento Distinto della Retribuzione (Agreement 31/07/1992)",
           "monthly": {
             "periods": [
-              {"valid_from": "2022-04-01", "valid_until": null, "value": "10.33"}
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
             ]
           }
         }

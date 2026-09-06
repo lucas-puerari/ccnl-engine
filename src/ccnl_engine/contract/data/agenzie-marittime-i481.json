@@ -26,10 +26,10 @@
       }
     ],
     "extraction": {
-      "method": "manual",
+      "method": "ai_assisted",
       "model": null,
       "timestamp": "2026-09-05",
-      "human_reviewed": true
+      "human_reviewed": false
     }
   },
   "coverage": {
@@ -109,13 +109,69 @@
       "cadence_months": 24,
       "maximum_count": 8,
       "amount_by_level": {
-        "1": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "0.00"}]},
-        "2": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "26.50"}]},
-        "3": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "27.75"}]},
-        "4": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "28.75"}]},
-        "5": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "32.00"}]},
-        "6": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "32.50"}]},
-        "7": {"periods": [{"valid_from": "2024-09-01", "valid_until": null, "value": "33.00"}]}
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "26.50"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "27.75"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "28.75"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "32.00"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "32.50"
+            }
+          ]
+        },
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2024-09-01",
+              "valid_until": null,
+              "value": "33.00"
+            }
+          ]
+        }
       }
     }
   },
@@ -123,28 +179,59 @@
     {
       "type": "under_classification",
       "name": "professionalizzante - dest livello 3",
-      "destination_levels": ["3"],
+      "destination_levels": [
+        "3"
+      ],
       "periods": [
-        {"months_from": 0, "months_until": 12, "levels_below": 2},
-        {"months_from": 12, "months_until": null, "levels_below": 1}
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "levels_below": 1
+        }
       ]
     },
     {
       "type": "under_classification",
       "name": "professionalizzante - dest livelli 4-5",
-      "destination_levels": ["4", "5"],
+      "destination_levels": [
+        "4",
+        "5"
+      ],
       "periods": [
-        {"months_from": 0, "months_until": 15, "levels_below": 2},
-        {"months_from": 15, "months_until": null, "levels_below": 1}
+        {
+          "months_from": 0,
+          "months_until": 15,
+          "levels_below": 2
+        },
+        {
+          "months_from": 15,
+          "months_until": null,
+          "levels_below": 1
+        }
       ]
     },
     {
       "type": "under_classification",
       "name": "professionalizzante - dest livello 6",
-      "destination_levels": ["6"],
+      "destination_levels": [
+        "6"
+      ],
       "periods": [
-        {"months_from": 0, "months_until": 18, "levels_below": 2},
-        {"months_from": 18, "months_until": null, "levels_below": 1}
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "levels_below": 1
+        }
       ]
     }
   ],
@@ -155,10 +242,26 @@
       "description": "Livello 1 (operaio comune)",
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-09-01", "value": "1509.19"},
-          {"valid_from": "2025-09-01", "valid_until": "2026-01-01", "value": "1542.27"},
-          {"valid_from": "2026-01-01", "valid_until": "2026-09-01", "value": "1571.68"},
-          {"valid_from": "2026-09-01", "valid_until": null,          "value": "1601.09"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-09-01",
+            "value": "1509.19"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-01-01",
+            "value": "1542.27"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-09-01",
+            "value": "1571.68"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "1601.09"
+          }
         ]
       },
       "fixed_allowances": []
@@ -169,10 +272,26 @@
       "description": "Livello 2",
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-09-01", "value": "1735.32"},
-          {"valid_from": "2025-09-01", "valid_until": "2026-01-01", "value": "1773.37"},
-          {"valid_from": "2026-01-01", "valid_until": "2026-09-01", "value": "1807.20"},
-          {"valid_from": "2026-09-01", "valid_until": null,          "value": "1841.02"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-09-01",
+            "value": "1735.32"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-01-01",
+            "value": "1773.37"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-09-01",
+            "value": "1807.20"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "1841.02"
+          }
         ]
       },
       "fixed_allowances": []
@@ -183,10 +302,26 @@
       "description": "Livello 3",
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-09-01", "value": "1811.03"},
-          {"valid_from": "2025-09-01", "valid_until": "2026-01-01", "value": "1850.73"},
-          {"valid_from": "2026-01-01", "valid_until": "2026-09-01", "value": "1886.03"},
-          {"valid_from": "2026-09-01", "valid_until": null,          "value": "1921.32"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-09-01",
+            "value": "1811.03"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-01-01",
+            "value": "1850.73"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-09-01",
+            "value": "1886.03"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "1921.32"
+          }
         ]
       },
       "fixed_allowances": []
@@ -197,10 +332,26 @@
       "description": "Livello 4",
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-09-01", "value": "2052.70"},
-          {"valid_from": "2025-09-01", "valid_until": "2026-01-01", "value": "2097.70"},
-          {"valid_from": "2026-01-01", "valid_until": "2026-09-01", "value": "2137.70"},
-          {"valid_from": "2026-09-01", "valid_until": null,          "value": "2177.70"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-09-01",
+            "value": "2052.70"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-01-01",
+            "value": "2097.70"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-09-01",
+            "value": "2137.70"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "2177.70"
+          }
         ]
       },
       "fixed_allowances": []
@@ -211,10 +362,26 @@
       "description": "Livello 5",
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-09-01", "value": "2173.02"},
-          {"valid_from": "2025-09-01", "valid_until": "2026-01-01", "value": "2220.67"},
-          {"valid_from": "2026-01-01", "valid_until": "2026-09-01", "value": "2263.03"},
-          {"valid_from": "2026-09-01", "valid_until": null,          "value": "2305.38"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-09-01",
+            "value": "2173.02"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-01-01",
+            "value": "2220.67"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-09-01",
+            "value": "2263.03"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "2305.38"
+          }
         ]
       },
       "fixed_allowances": []
@@ -225,10 +392,26 @@
       "description": "Livello 6",
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-09-01", "value": "2234.20"},
-          {"valid_from": "2025-09-01", "valid_until": "2026-01-01", "value": "2283.17"},
-          {"valid_from": "2026-01-01", "valid_until": "2026-09-01", "value": "2326.70"},
-          {"valid_from": "2026-09-01", "valid_until": null,          "value": "2370.23"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-09-01",
+            "value": "2234.20"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-01-01",
+            "value": "2283.17"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-09-01",
+            "value": "2326.70"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "2370.23"
+          }
         ]
       },
       "fixed_allowances": []
@@ -239,10 +422,26 @@
       "description": "Livello 7 (Quadro)",
       "base_salary": {
         "periods": [
-          {"valid_from": "2024-09-01", "valid_until": "2025-09-01", "value": "2339.00"},
-          {"valid_from": "2025-09-01", "valid_until": "2026-01-01", "value": "2390.29"},
-          {"valid_from": "2026-01-01", "valid_until": "2026-09-01", "value": "2435.88"},
-          {"valid_from": "2026-09-01", "valid_until": null,          "value": "2481.46"}
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-09-01",
+            "value": "2339.00"
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-01-01",
+            "value": "2390.29"
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-09-01",
+            "value": "2435.88"
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": null,
+            "value": "2481.46"
+          }
         ]
       },
       "fixed_allowances": [

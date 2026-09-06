@@ -19,10 +19,10 @@
       }
     ],
     "extraction": {
-      "method": "manual",
+      "method": "ai_assisted",
       "model": null,
       "timestamp": "2026-09-05T00:00:00",
-      "human_reviewed": true
+      "human_reviewed": false
     }
   },
   "coverage": {
@@ -233,7 +233,21 @@
       "type": "percentage",
       "name": "standard",
       "destination_levels": [
-        "1", "A", "2", "B", "3", "C", "D", "4", "E", "5", "5S", "F", "Q", "QB", "QA"
+        "1",
+        "A",
+        "2",
+        "B",
+        "3",
+        "C",
+        "D",
+        "4",
+        "E",
+        "5",
+        "5S",
+        "F",
+        "Q",
+        "QB",
+        "QA"
       ],
       "reference_level": null,
       "periods": [
