@@ -7465,3 +7465,72 @@ class TestLoadScuolePrivatelaicheAninsei:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 1
         assert si.maximum_count == 0
+
+
+class TestLoadIstituzioniServiziSocioAssistenzialiAnaste:
+    """Tests for CCNL Istituzioni e Servizi Socio-Assistenziali ANASTE (T131)."""
+
+    def test_anaste_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("istituzioni-servizi-socio-assistenziali-anaste.json")
+        assert ccnl.meta.ccnl_id == "istituzioni-servizi-socio-assistenziali-anaste"
+        assert ccnl.meta.cnel_code == "T131"
+
+    def test_anaste_has_12_levels(self) -> None:
+        """Contract has exactly 12 levels with the expected codes."""
+        ccnl = load_ccnl("istituzioni-servizi-socio-assistenziali-anaste.json")
+        assert len(ccnl.levels) == 12
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"Q", "10", "9", "8", "7", "6", "5", "4", "3S", "3", "2", "1"}
+
+    def test_anaste_level6_salary_pre2025(self) -> None:
+        """Level 6 base salary before 2025-08-01 = 1604.06 EUR (Art. 69)."""
+        ccnl = load_ccnl("istituzioni-servizi-socio-assistenziali-anaste.json")
+        lv = next(x for x in ccnl.levels if x.code == "6")
+        assert lv.base_salary.value_at(date(2024, 1, 1)) == Decimal("1604.06")
+
+    def test_anaste_level6_salary_2025(self) -> None:
+        """Level 6 base salary from 2025-08-01 = 1696.37 EUR (CCNL rinnovo)."""
+        ccnl = load_ccnl("istituzioni-servizi-socio-assistenziali-anaste.json")
+        lv = next(x for x in ccnl.levels if x.code == "6")
+        assert lv.base_salary.value_at(date(2025, 8, 1)) == Decimal("1696.37")
+
+    def test_anaste_level_ordering(self) -> None:
+        """Lowest order is level 1 (order=1), highest is Q (order=12)."""
+        ccnl = load_ccnl("istituzioni-servizi-socio-assistenziali-anaste.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "1"
+        assert by_order[-1].code == "Q"
+
+    def test_anaste_additional_months(self) -> None:
+        """Additional months = 13 (tredicesima only, Art. 74)."""
+        ccnl = load_ccnl("istituzioni-servizi-socio-assistenziali-anaste.json")
+        assert ccnl.parameters.additional_months.value_at(date(2025, 8, 1)) == Decimal(
+            13
+        )
+
+    def test_anaste_hourly_divisor(self) -> None:
+        """Hourly divisor = 164 (38h/week, Art. 72)."""
+        ccnl = load_ccnl("istituzioni-servizi-socio-assistenziali-anaste.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2025, 8, 1)) == Decimal(164)
+
+    def test_anaste_level_q_fixed_allowance(self) -> None:
+        """Level Q has indennita di funzione 77.47 EUR/month (Art. 70)."""
+        ccnl = load_ccnl("istituzioni-servizi-socio-assistenziali-anaste.json")
+        lv_q = next(x for x in ccnl.levels if x.code == "Q")
+        assert len(lv_q.fixed_allowances) == 1
+        fa = lv_q.fixed_allowances[0]
+        assert fa.code == "INDENNITA_FUNZIONE"
+        assert fa.monthly.value_at(date(2025, 8, 1)) == Decimal("77.47")
+
+    def test_anaste_tax_sector(self) -> None:
+        """Tax sector is terziario."""
+        ccnl = load_ccnl("istituzioni-servizi-socio-assistenziali-anaste.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_anaste_seniority_cadence(self) -> None:
+        """Seniority: cadence 36 months, max 10 scatti (Art. 73)."""
+        ccnl = load_ccnl("istituzioni-servizi-socio-assistenziali-anaste.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 10
