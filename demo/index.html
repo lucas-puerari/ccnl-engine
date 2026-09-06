@@ -384,16 +384,8 @@ document.getElementById("sel-employment").addEventListener("change", e => {
   document.getElementById("div-seniority").style.display = isApp ? "none" : "";
 });
 
-// ---- Seniority mode toggle --------------------------------------------------
-
-document.querySelectorAll("input[name='sen-mode']").forEach(r => {
-  r.addEventListener("change", () => {
-    const isMonths = r.value === "months" && r.checked;
-    document.getElementById("seniority-hint").textContent = isMonths
-      ? "Months of continuous service elapsed. The engine derives the increment count from the CCNL cadence."
-      : "Number of seniority increments (scatti di anzianità) accrued.";
-  });
-});
+// Seniority mode toggle hint is handled inside onCcnlChange() so it can
+// incorporate the per-level max count. Nothing extra needed here.
 
 // ---- Advanced section toggle -----------------------------------------------
 
@@ -445,14 +437,46 @@ async function onCcnlChange(pyodide) {
   levelSel.disabled = true; btn.disabled = true;
   if (!file) return;
   const levels = JSON.parse(pyodide.runPython(`load_ccnl_levels(${JSON.stringify(file)})`));
+  // Build a map: levelCode → {max_seniority_count, seniority_cadence_months}
+  const levelMeta = {};
   for (const lv of levels) {
     const opt = document.createElement("option");
     opt.value = lv.code; opt.textContent = `${lv.code} — ${lv.description}`;
     levelSel.appendChild(opt);
+    levelMeta[lv.code] = {
+      maxCount: lv.max_seniority_count,
+      cadenceMonths: lv.seniority_cadence_months,
+    };
   }
   levelSel.disabled = false;
+
+  const senInput = document.getElementById("inp-seniority");
+  const senHint  = document.getElementById("seniority-hint");
+
+  function updateSeniorityConstraint() {
+    const code = levelSel.value;
+    const meta = code ? levelMeta[code] : null;
+    if (meta && meta.maxCount > 0) {
+      senInput.max = meta.maxCount;
+      if (parseInt(senInput.value) > meta.maxCount) senInput.value = meta.maxCount;
+      const mode = document.querySelector("input[name='sen-mode']:checked").value;
+      senHint.textContent = mode === "months"
+        ? `Months of service elapsed (engine derives increment count from CCNL cadence).`
+        : `Seniority increments accrued — max ${meta.maxCount} for this level`
+          + (meta.cadenceMonths ? ` (one every ${meta.cadenceMonths} months).` : ".");
+    } else {
+      senInput.max = 600;
+      senHint.textContent = "Number of seniority increments (scatti di anzianità) accrued.";
+    }
+  }
+
   levelSel.addEventListener("change", () => {
-    btn.disabled = document.getElementById("sel-level").value === "";
+    btn.disabled = levelSel.value === "";
+    updateSeniorityConstraint();
+  });
+  // Also re-run when seniority mode changes so the hint stays correct.
+  document.querySelectorAll("input[name='sen-mode']").forEach(r => {
+    r.addEventListener("change", updateSeniorityConstraint);
   });
 }
 
