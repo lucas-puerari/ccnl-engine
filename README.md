@@ -121,7 +121,7 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 | 57 | I810 | Trasporto Aereo — Gestori Aeroportuali (Assaeroporti) | Trasporto | ~40k | ✅ | ✅ | 🤖 |
 | 58 | K540 | Igiene Ambientale — Servizi Ambientali e di Igiene Urbana (Utilitalia/FISE) | Industria | ~65k | ✅ | ✅ | 🤖 |
 | 59 | A021 | Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti | Agricoltura | ~80k | ✅ | ✅ | 🤖 |
-| 60 | — | Forze di Polizia ad ordinamento civile 2022-2024 — DPR 53/2025 (Polizia di Stato, Polizia Penitenziaria) | Pubblica Amministrazione | ~130k | ✅ | ✅ | 🤖 |
+| 60 | DPR 53/2025<sup><a id="ref-3" href="#fn-3">3</a></sup> | Forze di Polizia ad ordinamento civile 2022-2024 — Polizia di Stato, Polizia Penitenziaria | Pubblica Amministrazione | ~130k | ✅ | ✅ | 🤖 |
 | 61 | G029 | Comunicazione, Informatica e Servizi Innovativi PMI — Unimatica-Confapi (Settore Informatico) | Industria | ~20k | ✅ | ✅ | 🤖 |
 | 62 | T241 | Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE | Terziario | ~50k | ✅ | ⚠️ | 🤖 |
 | 63 | J121 | Assicurazioni — ANIA | Credito | ~45k | ✅ | ⚠️ | 🤖 |
@@ -152,51 +152,9 @@ print(payslip.employer_cost_annual)    # → Decimal('...')
 
 <p id="fn-2"><a href="#ref-2">2.</a> Salary tables were extracted from official CCNL documents using Claude Code (AI-assisted), without manual human review. Values should be verified against the official source before use in production payroll systems.</p>
 
+<p id="fn-3"><a href="#ref-3">3.</a> Compensation for Forze di Polizia ad ordinamento civile is set by Presidential Decree (DPR), not by a collective agreement registered with CNEL. The applicable instrument is D.P.R. 24 marzo 2025, n. 53 (Gazzetta Ufficiale n. 91, 18 April 2025, Supplemento Ordinario). No CNEL code applies.</p>
+
 The 85 contract configurations above (84 distinct CCNLs, with CCNL Lavoro Domestico split into two variants) are the largest by headcount in the **private sector**. Italy has approximately **14–15 million private-sector employees** covered by CCNLs (ISTAT/CNEL 2024, excluding the ~3.3M public-sector workers covered by ARAN contracts, which this library does not implement). The gross sum of per-CCNL headcount estimates in the table is ~15M, but this figure overstates unique coverage due to overlap between sectoral agreements (e.g., a worker covered by a sector-wide CCNL may also be counted under a smaller sub-sector variant). A reliable per-worker unique count is not derivable from gross headcount sums alone; the figure is provided for orientation only.
-
-## Advanced usage
-
-### Second-level bargaining (territorial and company agreements)
-
-Supplements from territorial or company agreements (contrattazione di secondo livello) can be added at runtime via `Scenario.second_level_allowances`. Pass a tuple of `SupplementaryAllowance` objects, each with a plain monthly amount and relevance flags:
-
-```python
-from ccnl_engine import SupplementaryAllowance
-
-scenario = Scenario(
-    ...,
-    second_level_allowances=(
-        # Territorial supplement paid every month, included in INPS and TFR bases.
-        SupplementaryAllowance(
-            code="ERT",
-            description="Elemento Retributivo Territoriale Veneto",
-            monthly=Decimal("150.00"),
-        ),
-        # Result bonus paid once a year, not TFR-relevant.
-        SupplementaryAllowance(
-            code="PDR",
-            description="Premio di risultato aziendale",
-            monthly=Decimal("500.00"),
-            months_per_year=1,
-            tfr_relevant=False,
-        ),
-    ),
-)
-payslip = compute(ccnl, rules, scenario)
-print(payslip.second_level_monthly)  # scaled aggregate, already in gross_monthly
-```
-
-Each item is scaled by `part_time_pct`. The `apprenticeship_pct_relevant` flag controls whether the apprenticeship percentage also applies (default `True`). `second_level_allowances` is mutually exclusive with `negotiated_ral` / `negotiated_destination_ral`. The preferential 5% substitute tax on *premio di risultato* (Art. 1 c. 182 L. 208/2015) is not yet modelled.
-
-### IVS contributory ceiling split (Art. 1 L. 335/1995)
-
-Workers enrolled in INPS on or after 1 January 1996 are subject to the *massimale annuo della base contributiva* (EUR 122,295 for 2026). Above this ceiling, only non-IVS contributions (NASpI, CUAF, CIG) continue:
-
-```python
-scenario = Scenario(..., ivs_ceiling_applies=True)
-```
-
-When `True` and the relevant tax file carries a `ceiling` value, the engine applies INPS contributions in two parts: the IVS rate on `min(gross_annual, ceiling)` and the remaining rate on the full base. Defaults to `False` (no ceiling) for backward compatibility.
 
 ## What is not modelled
 
