@@ -1,0 +1,57 @@
+{
+  "_description": "Golden case: CCNL RSA AIOP T091, Level D2, 2026-01-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "Oct 2023 accordo ponte table: livello D2 = 1463.33 EUR/month (conglobato).",
+    "Divisor 165, 13 months. INPS rates from 2026-terziario.json, 16-50 employees tier.",
+    "Seniority: 0. Trattamento integrativo: 828.62 (gross_annual 19023.29 below 28000 threshold)."
+  ],
+  "inputs": {
+    "ccnl_file": "rsa-aiop.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "D2",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "rsa-aiop",
+    "level_code": "D2",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1463.33",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1463.33",
+    "gross_annual": "19023.29",
+    "hourly_rate": "8.87",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "1748.24",
+    "inps_employer_annual": "5512.95",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1409.13",
+    "taxable_income": "17275.05",
+    "irpef_gross": "3973.26",
+    "work_income_deduction": "1277.73",
+    "irpef_net": "2695.53",
+    "net_annual": "15408.14",
+    "net_monthly": "1185.24",
+    "employer_cost_annual": "25945.37",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "828.62",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}
