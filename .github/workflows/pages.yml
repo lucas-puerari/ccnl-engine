@@ -62,6 +62,18 @@ jobs:
           </html>
           EOF
 
+      # ── Coverage badge ────────────────────────────────────────────────────
+      - name: "Badge: install test + badge deps"
+        run: uv pip install --system -e . pytest pytest-cov "genbadge[coverage]"
+
+      - name: "Badge: run tests and collect coverage"
+        run: |
+          python -m pytest --cov=ccnl_engine --cov-report=xml:coverage.xml -q \
+            --no-header 2>&1 | tail -5
+
+      - name: "Badge: generate SVG"
+        run: genbadge coverage -i coverage.xml -o _site/coverage-badge.svg
+
       # ── Docs ──────────────────────────────────────────────────────────────
       - name: "Docs: install dependencies"
         run: uv pip install --system -e . "zensical>=0.0.11" "mkdocstrings[python]>=0.27"
