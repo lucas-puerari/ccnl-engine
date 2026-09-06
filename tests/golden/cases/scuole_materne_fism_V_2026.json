@@ -1,0 +1,60 @@
+{
+  "_description": "Golden case: CCNL Scuole Materne FISM (T271), Level V, 2026-09-01, permanent, full-time, no seniority.",
+  "_notes": [
+    "2026-09-01 tranche (2026-2027 accord): minimo tabellare level V = 1679.76 EUR/month.",
+    "Conglobated model: contingenza inglobata nella retribuzione tabellare (Art. 43).",
+    "No fixed allowances. Additional months: 13 (tredicesima only, Art. 49).",
+    "INPS employer rate from 2026-terziario.json (terziario sector, 16-50 employees tier).",
+    "Seniority: 0.00 — maximum_count=0 (historic scatti frozen, Art. 44-46).",
+    "Trattamento integrativo applies (gross_annual below 28000 EUR threshold)."
+  ],
+  "inputs": {
+    "ccnl_file": "scuole-materne-fism.json",
+    "year": 2026,
+    "tax_sector": "terziario",
+    "num_employees": 50,
+    "level_code": "V",
+    "as_of": "2026-09-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "scuole-materne-fism",
+    "level_code": "V",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1679.76",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1679.76",
+    "gross_annual": "21836.88",
+    "hourly_rate": "10.50",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "2006.81",
+    "inps_employer_annual": "6328.33",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1617.55",
+    "taxable_income": "19830.07",
+    "irpef_gross": "4560.92",
+    "work_income_deduction": "1096.65",
+    "irpef_net": "3464.27",
+    "net_annual": "16934.70",
+    "net_monthly": "1302.67",
+    "employer_cost_annual": "29782.76",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "568.90",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_familiari",
+      "no_sterilizzazione_detrazioni"
+    ]
+  }
+}
