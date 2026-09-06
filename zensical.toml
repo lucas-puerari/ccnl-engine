@@ -95,6 +95,7 @@ nav = [
     { "CCNL Comparto Sanità 2022-2024 — ARAN" = "contracts/sanita-aran.md" },
     { "CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)" = "contracts/sanita-privata-aiop-aris.md" },
     { "CCNL Istituzioni Formative Private (Scuole Private Religi…" = "contracts/scuole-private-agidae.md" },
+    { "CCNL Scuole Private Laiche — ANINSEI/Assoscuola" = "contracts/scuole-private-laiche-aninsei.md" },
     { "CCNL Servizi Postali in Appalto (FISE-ARE)" = "contracts/servizi-postali-appalto-fise.md" },
     { "CCNL per i dipendenti degli studi e delle attività profes…" = "contracts/studi-professionali-confprofessioni.md" },
     { "CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)" = "contracts/telecomunicazioni-asstel.md" },
