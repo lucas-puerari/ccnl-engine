@@ -5,6 +5,10 @@ Public API
 The single entry point is :func:`compute`.  All types needed to call
 it and interpret its result are re-exported from this module.
 
+Data loading (CCNL files, tax/INPS/surtax rules) is implemented in
+:mod:`ccnl_engine.engine` loaders and reads the versioned datasets bundled in
+:mod:`ccnl_engine.knowledge`.
+
 Usage::
 
     from ccnl_engine import (
@@ -29,8 +33,8 @@ Usage::
 
 from __future__ import annotations
 
-from ccnl_engine.contract.domain.ccnl import (
-    CCNL,
+from ccnl_engine.engine.contract import CCNL, load_ccnl
+from ccnl_engine.engine.contract.domain.ccnl import (
     Allowance,
     CCNLMeta,
     CCNLParameters,
@@ -41,9 +45,8 @@ from ccnl_engine.contract.domain.ccnl import (
     SupplementaryAllowance,
     TaxSector,
 )
-from ccnl_engine.contract.domain.validity import TimeSeries, ValidityPeriod
-from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.payroll.domain.employee import (
+from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
+from ccnl_engine.engine.payroll.domain.employee import (
     ContractPosition,
     DestinationRalOverride,
     Employee,
@@ -56,19 +59,18 @@ from ccnl_engine.payroll.domain.employee import (
     TaxProfile,
     WorkArrangement,
 )
-from ccnl_engine.payroll.domain.employer import Employer
-from ccnl_engine.payroll.domain.employment import (
+from ccnl_engine.engine.payroll.domain.employer import Employer
+from ccnl_engine.engine.payroll.domain.employment import (
     Apprentice,
     Employment,
     FixedTerm,
     Permanent,
 )
-from ccnl_engine.payroll.domain.fiscal import FiscalSimplification
-from ccnl_engine.payroll.domain.payslip import Payslip
-from ccnl_engine.payroll.service.orchestrator import compute
-from ccnl_engine.surtax import SurtaxRules, load_surtax_rules
-from ccnl_engine.tax.domain.rules import YearRules
-from ccnl_engine.tax.service.loaders import load_year_rules
+from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
+from ccnl_engine.engine.payroll.domain.payslip import Payslip
+from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.surtax import SurtaxRules, load_surtax_rules
+from ccnl_engine.engine.tax import YearRules, load_year_rules
 
 __all__ = [
     "CCNL",

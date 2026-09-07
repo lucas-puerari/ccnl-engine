@@ -10,9 +10,9 @@ from typing import TYPE_CHECKING, Any
 
 import pytest
 
-from ccnl_engine.contract.domain.ccnl import TaxSector
-from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.payroll.domain.employee import (
+from ccnl_engine.engine.contract.domain.ccnl import TaxSector
+from ccnl_engine.engine.contract.service.loaders import load_ccnl
+from ccnl_engine.engine.payroll.domain.employee import (
     ContractPosition,
     Employee,
     RalOverride,
@@ -21,13 +21,17 @@ from ccnl_engine.payroll.domain.employee import (
     TaxProfile,
     WorkArrangement,
 )
-from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
-from ccnl_engine.payroll.service.orchestrator import compute
-from ccnl_engine.surtax.service.loaders import load_surtax_rules
-from ccnl_engine.tax.service.loaders import load_year_rules
+from ccnl_engine.engine.payroll.domain.employment import (
+    Apprentice,
+    FixedTerm,
+    Permanent,
+)
+from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
+from ccnl_engine.engine.tax.service.loaders import load_year_rules
 
 if TYPE_CHECKING:
-    from ccnl_engine.surtax.domain.rules import SurtaxRules
+    from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
 
 _CASES_DIR = Path(__file__).parent / "cases"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))

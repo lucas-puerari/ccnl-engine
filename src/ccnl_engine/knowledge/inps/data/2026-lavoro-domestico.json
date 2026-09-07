@@ -1,0 +1,32 @@
+{
+  "year": 2026,
+  "sector": "lavoro-domestico",
+  "domestic_contributions": {
+    "weekly_hours_threshold": 24,
+    "hours_bracket": {
+      "employee_per_hour": "0.31",
+      "employer_per_hour": "0.93",
+      "employer_per_hour_fixed_term": "1.01"
+    },
+    "wage_brackets": [
+      {
+        "hourly_rate_up_to": "9.61",
+        "employee_per_hour": "0.43",
+        "employer_per_hour": "1.27",
+        "employer_per_hour_fixed_term": "1.39"
+      },
+      {
+        "hourly_rate_up_to": "11.70",
+        "employee_per_hour": "0.48",
+        "employer_per_hour": "1.44",
+        "employer_per_hour_fixed_term": "1.57"
+      },
+      {
+        "hourly_rate_up_to": null,
+        "employee_per_hour": "0.59",
+        "employer_per_hour": "1.75",
+        "employer_per_hour_fixed_term": "1.91"
+      }
+    ]
+  }
+}
