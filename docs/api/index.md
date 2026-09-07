@@ -4,11 +4,16 @@ Full reference for every public type and function exported by `ccnl_engine`.
 
 ## Modules
 
+The package is split in two namespaces: `ccnl_engine.engine` (computation,
+schemas and loaders) and `ccnl_engine.knowledge` (the versioned JSON data
+bundle the loaders read). See [Knowledge base](knowledge.md).
+
 | Page | Contents |
 |---|---|
 | [Engine](engine.md) | `compute()`, `Employee`, `ContractPosition`, `WorkArrangement`, `TaxProfile`, `Employer`, `Payslip` |
 | [Loaders](loaders.md) | `load_ccnl()`, `load_year_rules()`, `load_surtax_rules()`, `YearRules`, `InpsRates` |
 | [Models](models.md) | `CCNL`, `Level`, `Allowance`, employment types, fiscal enums |
+| [Knowledge](knowledge.md) | data layout, `__version__` |
 
 ## Quick reference
 

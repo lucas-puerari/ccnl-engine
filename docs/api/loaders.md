@@ -7,19 +7,19 @@ See [Get started](../getting-started/index.md) for the typical loading sequence 
 
 ## Contracts
 
-::: ccnl_engine.contract.service.loaders
+::: ccnl_engine.engine.contract.service.loaders
     options:
       members:
         - load_ccnl
 
 ## Tax
 
-::: ccnl_engine.tax.service.loaders
+::: ccnl_engine.engine.tax.service.loaders
     options:
       members:
         - load_year_rules
 
-::: ccnl_engine.tax.domain.rules
+::: ccnl_engine.engine.tax.domain.rules
     options:
       members:
         - YearRules

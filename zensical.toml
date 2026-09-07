@@ -125,10 +125,11 @@ nav = [
     { "CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF" = "contracts/vigilanza-privata-federdat-sf.md" },
   ]},
   { "API" = [
-    { "Overview" = "api/index.md" },
-    { "Engine"   = "api/engine.md" },
-    { "Models"   = "api/models.md" },
-    { "Loaders"  = "api/loaders.md" },
+    { "Overview"    = "api/index.md" },
+    { "Engine"      = "api/engine.md" },
+    { "Models"      = "api/models.md" },
+    { "Loaders"     = "api/loaders.md" },
+    { "Knowledge"   = "api/knowledge.md" },
   ]},
 ]
 

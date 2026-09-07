@@ -13,7 +13,7 @@
 ## Contract data
 
 ```json
---8<-- "src/ccnl_engine/contract/data/cemento-calce-gesso-industria.json"
+--8<-- "src/ccnl_engine/knowledge/ccnl/data/cemento-calce-gesso-industria.json"
 ```
 
 ## Usage example

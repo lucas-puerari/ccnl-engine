@@ -15,12 +15,12 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ccnl_engine.surtax.domain.rules import SurtaxRules
+    from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
 
-from ccnl_engine.contract.domain.ccnl import SupplementaryAllowance
-from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.io.bundled import read_bundled
-from ccnl_engine.payroll.domain.employee import (
+from ccnl_engine.engine.contract.domain.ccnl import SupplementaryAllowance
+from ccnl_engine.engine.contract.service.loaders import load_ccnl
+from ccnl_engine.engine.io.bundled import read_bundled
+from ccnl_engine.engine.payroll.domain.employee import (
     ContractPosition,
     Employee,
     RalOverride,
@@ -30,11 +30,15 @@ from ccnl_engine.payroll.domain.employee import (
     TaxProfile,
     WorkArrangement,
 )
-from ccnl_engine.payroll.domain.employer import Employer
-from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
-from ccnl_engine.payroll.service.orchestrator import compute
-from ccnl_engine.surtax.service.loaders import load_surtax_rules
-from ccnl_engine.tax.service.loaders import load_year_rules
+from ccnl_engine.engine.payroll.domain.employer import Employer
+from ccnl_engine.engine.payroll.domain.employment import (
+    Apprentice,
+    FixedTerm,
+    Permanent,
+)
+from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
+from ccnl_engine.engine.tax.service.loaders import load_year_rules
 
 _DEFAULT_YEAR = 2026
 
@@ -54,12 +58,12 @@ def list_ccnls() -> str:
 
     Works for both editable installs (plain ``.json``) and installed wheels
     (compressed ``.json.gz``): iterates the data package, normalises the name,
-    then reads via :func:`~ccnl_engine.io.bundled.read_bundled`.
+    then reads via :func:`~ccnl_engine.engine.io.bundled.read_bundled`.
 
     Returns:
         JSON-encoded list of ``{file, id, name, tax_sector}`` dicts.
     """
-    data_pkg = importlib.resources.files("ccnl_engine.contract.data")
+    data_pkg = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
     result: list[dict[str, str]] = []
     seen: set[str] = set()
     for entry in data_pkg.iterdir():

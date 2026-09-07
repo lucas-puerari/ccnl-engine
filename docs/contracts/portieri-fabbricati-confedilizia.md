@@ -13,7 +13,7 @@
 ## Contract data
 
 ```json
---8<-- "src/ccnl_engine/contract/data/portieri-fabbricati-confedilizia.json"
+--8<-- "src/ccnl_engine/knowledge/ccnl/data/portieri-fabbricati-confedilizia.json"
 ```
 
 ## Usage example

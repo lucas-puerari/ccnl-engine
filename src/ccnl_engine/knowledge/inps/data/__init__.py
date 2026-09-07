@@ -1,0 +1,1 @@
+"""INPS contribution data files."""

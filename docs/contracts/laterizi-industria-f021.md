@@ -18,7 +18,7 @@ Full contract parameters, salary tables and coverage notes — sourced directly
 from the bundled JSON:
 
 ```json
---8<-- "src/ccnl_engine/contract/data/laterizi-industria-f021.json"
+--8<-- "src/ccnl_engine/knowledge/ccnl/data/laterizi-industria-f021.json"
 ```
 
 ## Usage example

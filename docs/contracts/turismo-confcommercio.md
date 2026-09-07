@@ -18,7 +18,7 @@ Full contract parameters, salary tables and coverage notes — sourced directly
 from the bundled JSON:
 
 ```json
---8<-- "src/ccnl_engine/contract/data/turismo-confcommercio.json"
+--8<-- "src/ccnl_engine/knowledge/ccnl/data/turismo-confcommercio.json"
 ```
 
 ## Usage example

@@ -1,8 +1,9 @@
 """Hatchling build hook: compress JSON data files into .json.gz for the wheel.
 
 Only active for standard wheel builds (not editable installs or sdists).
-Each .json file in the two data directories is compressed with gzip (level 9,
-mtime=0 for reproducibility) and injected into the wheel via force_include.
+Each .json file in the four knowledge data directories is compressed with
+gzip (level 9, mtime=0 for reproducibility) and injected into the wheel via
+force_include.
 The plain .json files are excluded from the wheel by the pyproject.toml
 exclude list, so the wheel carries only the compressed variant.
 """
@@ -19,9 +20,10 @@ from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 
 # Pairs of (package-relative dist prefix, source directory relative to project root).
 _DATA_DIRS: list[tuple[str, str]] = [
-    ("ccnl_engine/contract/data", "src/ccnl_engine/contract/data"),
-    ("ccnl_engine/tax/data", "src/ccnl_engine/tax/data"),
-    ("ccnl_engine/surtax/data", "src/ccnl_engine/surtax/data"),
+    ("ccnl_engine/knowledge/ccnl/data", "src/ccnl_engine/knowledge/ccnl/data"),
+    ("ccnl_engine/knowledge/tax/data", "src/ccnl_engine/knowledge/tax/data"),
+    ("ccnl_engine/knowledge/inps/data", "src/ccnl_engine/knowledge/inps/data"),
+    ("ccnl_engine/knowledge/surtax/data", "src/ccnl_engine/knowledge/surtax/data"),
 ]
 
 

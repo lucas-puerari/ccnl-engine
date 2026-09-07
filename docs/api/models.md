@@ -7,7 +7,7 @@ behind each model.
 
 ## Employment
 
-::: ccnl_engine.payroll.domain.employment
+::: ccnl_engine.engine.payroll.domain.employment
     options:
       members:
         - Permanent
@@ -16,7 +16,7 @@ behind each model.
 
 ## CCNL
 
-::: ccnl_engine.contract.domain.ccnl
+::: ccnl_engine.engine.contract.domain.ccnl
     options:
       members:
         - CCNL
@@ -28,7 +28,7 @@ behind each model.
 
 ## Fiscal
 
-::: ccnl_engine.payroll.domain.fiscal
+::: ccnl_engine.engine.payroll.domain.fiscal
     options:
       members:
         - FiscalSimplification
