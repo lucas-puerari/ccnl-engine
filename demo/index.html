@@ -611,7 +611,7 @@ function doCompute(pyodide) {
     `${JSON.stringify(file)}, ${JSON.stringify(levelCode)}, ${JSON.stringify(empType)}, ` +
     `${employees}, ${ptPct}, ${senValue}, ${JSON.stringify(senMode)}, ` +
     `${appMonths}, ${JSON.stringify(regione)}, ${JSON.stringify(comune)}, ` +
-    `${ivsApplies}, ${adPersonam}, ${ralOverride}, ${secondLevel})`
+    `${ivsApplies ? "True" : "False"}, ${adPersonam}, ${ralOverride}, ${secondLevel})`
   ));
 
   if (r.error) { showError("Error: " + r.error); return; }
