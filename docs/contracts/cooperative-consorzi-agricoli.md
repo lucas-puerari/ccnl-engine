@@ -13,7 +13,7 @@
 ## Contract data
 
 ```json
---8<-- "src/ccnl_engine/contract/data/cooperative-consorzi-agricoli.json"
+--8<-- "src/ccnl_engine/knowledge/ccnl/data/cooperative-consorzi-agricoli.json"
 ```
 
 ## Usage example

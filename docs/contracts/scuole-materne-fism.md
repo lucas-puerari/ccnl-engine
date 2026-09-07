@@ -13,7 +13,7 @@
 ## Contract data
 
 ```json
---8<-- "src/ccnl_engine/contract/data/scuole-materne-fism.json"
+--8<-- "src/ccnl_engine/knowledge/ccnl/data/scuole-materne-fism.json"
 ```
 
 ## Usage example

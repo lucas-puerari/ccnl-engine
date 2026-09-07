@@ -13,7 +13,7 @@
 ## Contract data
 
 ```json
---8<-- "src/ccnl_engine/contract/data/rsa-aiop.json"
+--8<-- "src/ccnl_engine/knowledge/ccnl/data/rsa-aiop.json"
 ```
 
 ## Usage example

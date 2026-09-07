@@ -18,7 +18,7 @@ Full contract parameters, salary tables and coverage notes — sourced directly
 from the bundled JSON:
 
 ```json
---8<-- "src/ccnl_engine/contract/data/consorzi-di-bonifica-snebi.json"
+--8<-- "src/ccnl_engine/knowledge/ccnl/data/consorzi-di-bonifica-snebi.json"
 ```
 
 ## Usage example

@@ -18,7 +18,7 @@ Full contract parameters, salary tables and coverage notes — sourced directly
 from the bundled JSON:
 
 ```json
---8<-- "src/ccnl_engine/contract/data/comunicazione-artigianato-confartigianato.json"
+--8<-- "src/ccnl_engine/knowledge/ccnl/data/comunicazione-artigianato-confartigianato.json"
 ```
 
 ## Usage example

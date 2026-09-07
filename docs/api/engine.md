@@ -7,14 +7,14 @@ See [Guide: Employment types](../guide/employment-types.md) and
 
 ## compute
 
-::: ccnl_engine.payroll.service.orchestrator
+::: ccnl_engine.engine.payroll.service.orchestrator
     options:
       members:
         - compute
 
 ## Input models
 
-::: ccnl_engine.payroll.domain.employee
+::: ccnl_engine.engine.payroll.domain.employee
     options:
       members:
         - Employee
@@ -27,14 +27,14 @@ See [Guide: Employment types](../guide/employment-types.md) and
         - RalOverride
         - DestinationRalOverride
 
-::: ccnl_engine.payroll.domain.employer
+::: ccnl_engine.engine.payroll.domain.employer
     options:
       members:
         - Employer
 
 ## Payslip
 
-::: ccnl_engine.payroll.domain.payslip
+::: ccnl_engine.engine.payroll.domain.payslip
     options:
       members:
         - Payslip

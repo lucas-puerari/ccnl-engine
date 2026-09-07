@@ -13,7 +13,7 @@
 ## Contract data
 
 ```json
---8<-- "src/ccnl_engine/contract/data/vigilanza-privata-federdat-gpg.json"
+--8<-- "src/ccnl_engine/knowledge/ccnl/data/vigilanza-privata-federdat-gpg.json"
 ```
 
 ## Usage example

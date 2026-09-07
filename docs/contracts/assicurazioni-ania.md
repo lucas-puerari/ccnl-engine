@@ -18,7 +18,7 @@ Full contract parameters, salary tables and coverage notes — sourced directly
 from the bundled JSON:
 
 ```json
---8<-- "src/ccnl_engine/contract/data/assicurazioni-ania.json"
+--8<-- "src/ccnl_engine/knowledge/ccnl/data/assicurazioni-ania.json"
 ```
 
 ## Usage example
