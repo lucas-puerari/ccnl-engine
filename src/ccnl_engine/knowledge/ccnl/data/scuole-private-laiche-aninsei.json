@@ -1,1274 +1,1274 @@
 {
-    "schema_version": "0.5",
-    "meta": {
-        "ccnl_id": "scuole-private-laiche-aninsei",
-        "name": "CCNL Scuole Private Laiche (ANINSEI-Assoscuola)",
-        "cnel_code": "T231",
-        "sector": "istruzione privata laica",
-        "tax_sector": "terziario",
-        "signatories": [
-            "ANINSEI",
-            "Assoscuola",
-            "UIL Scuola RUA",
-            "CONFSAL-SNALS",
-            "ANIEF"
-        ],
-        "sources": [
-            {
-                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
-                "type": "pdf",
-                "agreement_date": "2024-06-15"
-            }
-        ],
-        "extraction": {
-            "method": "ai_assisted",
-            "model": null,
-            "timestamp": "2026-09-06T00:00:00",
-            "human_reviewed": false
-        }
-    },
-    "coverage": {
-        "layer_1": "implemented",
-        "layer_2": "implemented",
-        "notes": [
-            {
-                "kind": "info",
-                "text": "RENEWAL: CCNL signed 2024-06-15 by ANINSEI and Assoscuola with UIL Scuola RUA, CONFSAL-SNALS and ANIEF. Validity 01/01/2024-31/12/2027. Economic effects from 01/01/2025."
-            },
-            {
-                "kind": "info",
-                "text": "CONGLOBATED MINIMUMS (Art. 23): contingenza maturata al 30/11/1991 comprensiva dell'EDR e' inglobata nella retribuzione tabellare (Art. 22). Values are fully conglobated — no separate contingenza or EDR column."
-            },
-            {
-                "kind": "info",
-                "text": "SALARY TABLE (Art. 22): four tranches. Carry-over base from old CCNL 2021-2023 dal 01/09/2023 applies from 2024-06-15 to 2024-12-31. All four tranches read directly from Art. 22 table in PDF (pdftotext -layout, pages 51-53)."
-            },
-            {
-                "kind": "info",
-                "text": "HOURLY DIVISOR (Art. 27): 165 h/month for 38h/week full-time. The contract table lists divisors for reduced weekly hours (36h=156, 34h=147, 32h=139, 24h=104, 21h=91, 18h=78); each is 165 scaled by hours/38, matching part_time_pct equivalents. hourly_divisor=165 is exact — no simplification."
-            },
-            {
-                "kind": "info",
-                "text": "ADDITIONAL MONTHS (Art. 21): 13 (tredicesima only, paid by 16 December)."
-            },
-            {
-                "kind": "simplification",
-                "text": "SENIORITY (Art. 24): salario di anzianita frozen as of 2025-01-01. The mechanism is milestone-based (hire-date brackets), not cadence-based. Workers with 2+ years continuous service at 01/01/2025 receive 20 EUR/month; pre-2002 hires receive up to 90 EUR/month grandfathered. New hires after ~2023-01-01 receive nothing. The engine seniority model is cadence-based and cannot express hire-date milestones; maximum_count=0 models new-hire case correctly but understates cost for long-tenure workers."
-            },
-            {
-                "kind": "simplification",
-                "text": "APPRENTICESHIP (Art. 9.7): percentages 85/90/100% over 36 months confirmed from Art. 9.7 of PDF. Destination level list not extractable from available pages; all nine levels modelled as destinations. Exclude specific levels when primary source (Art. 9 full text) is confirmed."
-            }
-        ]
-    },
-    "parameters": {
-        "hourly_divisor": {
-            "periods": [
-                {
-                    "valid_from": "2024-06-15",
-                    "valid_until": null,
-                    "value": "165"
-                }
-            ]
-        },
-        "additional_months": {
-            "periods": [
-                {
-                    "valid_from": "2024-06-15",
-                    "valid_until": null,
-                    "value": "13"
-                }
-            ]
-        },
-        "seniority_increments": {
-            "cadence_months": 1,
-            "maximum_count": 0,
-            "amount_by_level": {
-                "I": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-15",
-                            "valid_until": null,
-                            "value": "0.00"
-                        }
-                    ]
-                },
-                "II": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-15",
-                            "valid_until": null,
-                            "value": "0.00"
-                        }
-                    ]
-                },
-                "III": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-15",
-                            "valid_until": null,
-                            "value": "0.00"
-                        }
-                    ]
-                },
-                "IV": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-15",
-                            "valid_until": null,
-                            "value": "0.00"
-                        }
-                    ]
-                },
-                "V": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-15",
-                            "valid_until": null,
-                            "value": "0.00"
-                        }
-                    ]
-                },
-                "VI": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-15",
-                            "valid_until": null,
-                            "value": "0.00"
-                        }
-                    ]
-                },
-                "VII": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-15",
-                            "valid_until": null,
-                            "value": "0.00"
-                        }
-                    ]
-                },
-                "VIII_A": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-15",
-                            "valid_until": null,
-                            "value": "0.00"
-                        }
-                    ]
-                },
-                "VIII_B": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-15",
-                            "valid_until": null,
-                            "value": "0.00"
-                        }
-                    ]
-                }
-            },
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                        "title": "ccnl-aninsei-2024-2027cd-pdf",
-                        "kind": "altro",
-                        "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                    },
-                    "section": "Scatti di anzianità"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        }
-    },
-    "levels": [
-        {
-            "code": "I",
-            "order": 1,
-            "description": "Livello I — personale ausiliario e operatore generico",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-15",
-                        "valid_until": "2025-01-01",
-                        "value": "1239.31",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-01-01",
-                        "valid_until": "2026-01-01",
-                        "value": "1280.91",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "1322.51",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": null,
-                        "value": "1347.46",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                        "title": "ccnl-aninsei-2024-2027cd-pdf",
-                        "kind": "altro",
-                        "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "II",
-            "order": 2,
-            "description": "Livello II — operatore qualificato, mansioni esecutive di supporto",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-15",
-                        "valid_until": "2025-01-01",
-                        "value": "1268.88",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-01-01",
-                        "valid_until": "2026-01-01",
-                        "value": "1311.47",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "1354.06",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": null,
-                        "value": "1379.61",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                        "title": "ccnl-aninsei-2024-2027cd-pdf",
-                        "kind": "altro",
-                        "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "III",
-            "order": 3,
-            "description": "Livello III — operatore specializzato, mansioni tecnico-pratiche",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-15",
-                        "valid_until": "2025-01-01",
-                        "value": "1330.16",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-01-01",
-                        "valid_until": "2026-01-01",
-                        "value": "1374.81",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "1419.45",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": null,
-                        "value": "1446.24",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                        "title": "ccnl-aninsei-2024-2027cd-pdf",
-                        "kind": "altro",
-                        "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "IV",
-            "order": 4,
-            "description": "Livello IV — impiegato o tecnico di concetto",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-15",
-                        "valid_until": "2025-01-01",
-                        "value": "1397.56",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-01-01",
-                        "valid_until": "2026-01-01",
-                        "value": "1444.47",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "1491.38",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": null,
-                        "value": "1519.52",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                        "title": "ccnl-aninsei-2024-2027cd-pdf",
-                        "kind": "altro",
-                        "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "V",
-            "order": 5,
-            "description": "Livello V — docente o impiegato di concetto con autonomia operativa",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-15",
-                        "valid_until": "2025-01-01",
-                        "value": "1489.64",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-01-01",
-                        "valid_until": "2026-01-01",
-                        "value": "1539.64",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "1589.64",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": null,
-                        "value": "1619.64",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                        "title": "ccnl-aninsei-2024-2027cd-pdf",
-                        "kind": "altro",
-                        "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "VI",
-            "order": 6,
-            "description": "Livello VI — docente coordinatore o tecnico senior con responsabilita",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-15",
-                        "valid_until": "2025-01-01",
-                        "value": "1489.64",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-01-01",
-                        "valid_until": "2026-01-01",
-                        "value": "1539.64",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "1589.64",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": null,
-                        "value": "1619.64",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                        "title": "ccnl-aninsei-2024-2027cd-pdf",
-                        "kind": "altro",
-                        "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "VII",
-            "order": 7,
-            "description": "Livello VII — quadro intermedio, responsabile di plesso o coordinatore",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-15",
-                        "valid_until": "2025-01-01",
-                        "value": "1512.44",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-01-01",
-                        "valid_until": "2026-01-01",
-                        "value": "1563.21",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "1615.67",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": null,
-                        "value": "1646.17",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                        "title": "ccnl-aninsei-2024-2027cd-pdf",
-                        "kind": "altro",
-                        "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "VIII_A",
-            "order": 8,
-            "description": "Livello VIII A — quadro superiore, direttore o responsabile di sede",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-15",
-                        "valid_until": "2025-01-01",
-                        "value": "1585.38",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-01-01",
-                        "valid_until": "2026-01-01",
-                        "value": "1638.59",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "1693.59",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": null,
-                        "value": "1725.56",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                        "title": "ccnl-aninsei-2024-2027cd-pdf",
-                        "kind": "altro",
-                        "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "VIII_B",
-            "order": 9,
-            "description": "Livello VIII B — quadro superiore con massima responsabilita gestionale",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-15",
-                        "valid_until": "2025-01-01",
-                        "value": "1671.80",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-01-01",
-                        "valid_until": "2026-01-01",
-                        "value": "1727.91",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "1785.91",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": null,
-                        "value": "1819.62",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "title": "ccnl-aninsei-2024-2027cd-pdf",
-                                    "kind": "altro",
-                                    "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-aninsei-2024-2027cd-pdf",
-                        "title": "ccnl-aninsei-2024-2027cd-pdf",
-                        "kind": "altro",
-                        "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        }
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "scuole-private-laiche-aninsei",
+    "name": "CCNL Scuole Private Laiche (ANINSEI-Assoscuola)",
+    "cnel_code": "T231",
+    "sector": "istruzione privata laica",
+    "tax_sector": "terziario",
+    "signatories": [
+      "ANINSEI",
+      "Assoscuola",
+      "UIL Scuola RUA",
+      "CONFSAL-SNALS",
+      "ANIEF"
     ],
-    "apprenticeship": [
-        {
-            "type": "percentage",
-            "name": "professionalizzante_36",
-            "destination_levels": [
-                "I",
-                "II",
-                "III",
-                "IV",
-                "V",
-                "VI",
-                "VII",
-                "VIII_A",
-                "VIII_B"
-            ],
-            "periods": [
-                {
-                    "months_from": 0,
-                    "months_until": 12,
-                    "percentage": "0.85"
-                },
-                {
-                    "months_from": 12,
-                    "months_until": 24,
-                    "percentage": "0.90"
-                },
-                {
-                    "months_from": 24,
-                    "months_until": 36,
-                    "percentage": "1.00"
-                },
-                {
-                    "months_from": 36,
-                    "months_until": null,
-                    "percentage": "1.00"
-                }
-            ]
-        }
+    "sources": [
+      {
+        "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+        "type": "pdf",
+        "agreement_date": "2024-06-15"
+      }
     ],
-    "ruleset": {
-        "id": "ccnl/scuole-private-laiche-aninsei",
-        "version": "2026.2",
-        "effective_from": "2024-06-15",
-        "effective_until": null,
-        "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
-        "verification_status": "unverified",
-        "source_hash": "a8a5d58c918175c1aeaf4d5d0851510da97e84b82899cd5bc1654f3e37cd6d37",
-        "published_at": "2026-09-07"
+    "extraction": {
+      "method": "ai_assisted",
+      "model": null,
+      "timestamp": "2026-09-06T00:00:00",
+      "human_reviewed": false
     }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "RENEWAL: CCNL signed 2024-06-15 by ANINSEI and Assoscuola with UIL Scuola RUA, CONFSAL-SNALS and ANIEF. Validity 01/01/2024-31/12/2027. Economic effects from 01/01/2025."
+      },
+      {
+        "kind": "info",
+        "text": "CONGLOBATED MINIMUMS (Art. 23): contingenza maturata al 30/11/1991 comprensiva dell'EDR e' inglobata nella retribuzione tabellare (Art. 22). Values are fully conglobated — no separate contingenza or EDR column."
+      },
+      {
+        "kind": "info",
+        "text": "SALARY TABLE (Art. 22): four tranches. Carry-over base from old CCNL 2021-2023 dal 01/09/2023 applies from 2024-06-15 to 2024-12-31. All four tranches read directly from Art. 22 table in PDF (pdftotext -layout, pages 51-53)."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR (Art. 27): 165 h/month for 38h/week full-time. The contract table lists divisors for reduced weekly hours (36h=156, 34h=147, 32h=139, 24h=104, 21h=91, 18h=78); each is 165 scaled by hours/38, matching part_time_pct equivalents. hourly_divisor=165 is exact — no simplification."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS (Art. 21): 13 (tredicesima only, paid by 16 December)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SENIORITY (Art. 24): salario di anzianita frozen as of 2025-01-01. The mechanism is milestone-based (hire-date brackets), not cadence-based. Workers with 2+ years continuous service at 01/01/2025 receive 20 EUR/month; pre-2002 hires receive up to 90 EUR/month grandfathered. New hires after ~2023-01-01 receive nothing. The engine seniority model is cadence-based and cannot express hire-date milestones; maximum_count=0 models new-hire case correctly but understates cost for long-tenure workers."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP (Art. 9.7): percentages 85/90/100% over 36 months confirmed from Art. 9.7 of PDF. Destination level list not extractable from available pages; all nine levels modelled as destinations. Exclude specific levels when primary source (Art. 9 full text) is confirmed."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-06-15",
+          "valid_until": null,
+          "value": "165"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-06-15",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 1,
+      "maximum_count": 0,
+      "amount_by_level": {
+        "I": {
+          "periods": [
+            {
+              "valid_from": "2024-06-15",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "II": {
+          "periods": [
+            {
+              "valid_from": "2024-06-15",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "III": {
+          "periods": [
+            {
+              "valid_from": "2024-06-15",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "IV": {
+          "periods": [
+            {
+              "valid_from": "2024-06-15",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "V": {
+          "periods": [
+            {
+              "valid_from": "2024-06-15",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "VI": {
+          "periods": [
+            {
+              "valid_from": "2024-06-15",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "VII": {
+          "periods": [
+            {
+              "valid_from": "2024-06-15",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "VIII_A": {
+          "periods": [
+            {
+              "valid_from": "2024-06-15",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "VIII_B": {
+          "periods": [
+            {
+              "valid_from": "2024-06-15",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+            "title": "ccnl-aninsei-2024-2027cd-pdf",
+            "kind": "associazione",
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+          },
+          "section": "Scatti di anzianità"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "I",
+      "order": 1,
+      "description": "Livello I — personale ausiliario e operatore generico",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-15",
+            "valid_until": "2025-01-01",
+            "value": "1239.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1280.91",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1322.51",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1347.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+            "title": "ccnl-aninsei-2024-2027cd-pdf",
+            "kind": "associazione",
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "II",
+      "order": 2,
+      "description": "Livello II — operatore qualificato, mansioni esecutive di supporto",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-15",
+            "valid_until": "2025-01-01",
+            "value": "1268.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1311.47",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1354.06",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1379.61",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+            "title": "ccnl-aninsei-2024-2027cd-pdf",
+            "kind": "associazione",
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "III",
+      "order": 3,
+      "description": "Livello III — operatore specializzato, mansioni tecnico-pratiche",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-15",
+            "valid_until": "2025-01-01",
+            "value": "1330.16",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1374.81",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1419.45",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1446.24",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+            "title": "ccnl-aninsei-2024-2027cd-pdf",
+            "kind": "associazione",
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "IV",
+      "order": 4,
+      "description": "Livello IV — impiegato o tecnico di concetto",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-15",
+            "valid_until": "2025-01-01",
+            "value": "1397.56",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1444.47",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1491.38",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1519.52",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+            "title": "ccnl-aninsei-2024-2027cd-pdf",
+            "kind": "associazione",
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "V",
+      "order": 5,
+      "description": "Livello V — docente o impiegato di concetto con autonomia operativa",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-15",
+            "valid_until": "2025-01-01",
+            "value": "1489.64",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1539.64",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1589.64",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1619.64",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+            "title": "ccnl-aninsei-2024-2027cd-pdf",
+            "kind": "associazione",
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "VI",
+      "order": 6,
+      "description": "Livello VI — docente coordinatore o tecnico senior con responsabilita",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-15",
+            "valid_until": "2025-01-01",
+            "value": "1489.64",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1539.64",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1589.64",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1619.64",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+            "title": "ccnl-aninsei-2024-2027cd-pdf",
+            "kind": "associazione",
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "VII",
+      "order": 7,
+      "description": "Livello VII — quadro intermedio, responsabile di plesso o coordinatore",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-15",
+            "valid_until": "2025-01-01",
+            "value": "1512.44",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1563.21",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1615.67",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1646.17",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+            "title": "ccnl-aninsei-2024-2027cd-pdf",
+            "kind": "associazione",
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "VIII_A",
+      "order": 8,
+      "description": "Livello VIII A — quadro superiore, direttore o responsabile di sede",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-15",
+            "valid_until": "2025-01-01",
+            "value": "1585.38",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1638.59",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1693.59",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1725.56",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+            "title": "ccnl-aninsei-2024-2027cd-pdf",
+            "kind": "associazione",
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "VIII_B",
+      "order": 9,
+      "description": "Livello VIII B — quadro superiore con massima responsabilita gestionale",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-15",
+            "valid_until": "2025-01-01",
+            "value": "1671.80",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1727.91",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1785.91",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1819.62",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+                  "title": "ccnl-aninsei-2024-2027cd-pdf",
+                  "kind": "associazione",
+                  "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aninsei-2024-2027cd-pdf",
+            "title": "ccnl-aninsei-2024-2027cd-pdf",
+            "kind": "associazione",
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante_36",
+      "destination_levels": [
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V",
+        "VI",
+        "VII",
+        "VIII_A",
+        "VIII_B"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "1.00"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/scuole-private-laiche-aninsei",
+    "version": "2026.2",
+    "effective_from": "2024-06-15",
+    "effective_until": null,
+    "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+    "verification_status": "unverified",
+    "source_hash": "9639e58d54459b6cd56221b7cd1c62abaf52856649e38cae8ac395938d22e959",
+    "published_at": "2026-09-07"
+  }
 }

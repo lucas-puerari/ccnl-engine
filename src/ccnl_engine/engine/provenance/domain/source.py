@@ -29,6 +29,40 @@ class SourceKind(StrEnum):
     ALTRO = "altro"
 
 
+class SourceAuthority(StrEnum):
+    """How authoritative a source document is.
+
+    Orthogonal to :class:`SourceKind` (which describes *what* the document
+    is); this describes *how much weight* to give it.
+
+    ``official``  — primary legal or institutional source: Gazzetta Ufficiale,
+                    CNEL archive, normattiva.it, INPS circolari, DPR/DL/Legge.
+    ``secondary`` — union/employer-association PDFs, salary tables published
+                    by sector bodies, commentary and aggregator sites.
+    ``derived``   — back-calculated or interpolated values not present verbatim
+                    in any source document.
+    """
+
+    OFFICIAL = "official"
+    SECONDARY = "secondary"
+    DERIVED = "derived"
+
+
+_KIND_TO_AUTHORITY: dict[SourceKind, SourceAuthority] = {
+    SourceKind.GAZZETTA: SourceAuthority.OFFICIAL,
+    SourceKind.CNEL: SourceAuthority.OFFICIAL,
+    SourceKind.INPS_CIRCOLARE: SourceAuthority.OFFICIAL,
+    SourceKind.LEGGE: SourceAuthority.OFFICIAL,
+    SourceKind.DPR: SourceAuthority.OFFICIAL,
+    SourceKind.DL: SourceAuthority.OFFICIAL,
+    SourceKind.DPR_DECRETO: SourceAuthority.OFFICIAL,
+    SourceKind.ASSOCIAZIONE: SourceAuthority.SECONDARY,
+    SourceKind.TABELLA_RETRIBUTIVA: SourceAuthority.SECONDARY,
+    SourceKind.RIVISTA: SourceAuthority.SECONDARY,
+    SourceKind.ALTRO: SourceAuthority.SECONDARY,
+}
+
+
 class SourceDocument(BaseModel):
     """A primary source document for one or more extracted rules.
 
@@ -41,6 +75,8 @@ class SourceDocument(BaseModel):
         pages: Page ranges (e.g. ``["12-14"]``) that hold the cited content.
         published_on: Publication date of the document, when known.
         jurisdiction: Legal jurisdiction (defaults to ``"it"``).
+        authority: Computed authority level derived from ``kind``
+            (see :class:`SourceAuthority`). Not stored in the JSON.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -52,6 +88,11 @@ class SourceDocument(BaseModel):
     pages: list[str] = Field(default=[])
     published_on: date | None = None
     jurisdiction: str = "it"
+
+    @property
+    def authority(self) -> SourceAuthority:
+        """Authority level derived from :attr:`kind`."""
+        return _KIND_TO_AUTHORITY[self.kind]
 
 
 class SourceLocation(BaseModel):

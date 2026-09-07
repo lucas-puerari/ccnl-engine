@@ -15,6 +15,7 @@ from ccnl_engine.engine.provenance.domain.extraction import (
     ExtractionTrace,
 )
 from ccnl_engine.engine.provenance.domain.source import (
+    SourceAuthority,
     SourceDocument,
     SourceKind,
     SourceLocation,
@@ -47,6 +48,29 @@ class TestSourceDocument:
         assert doc.url == "unavailable"
         assert doc.pages == []
         assert doc.jurisdiction == "it"
+
+    @pytest.mark.parametrize(
+        ("kind", "expected"),
+        [
+            (SourceKind.GAZZETTA, SourceAuthority.OFFICIAL),
+            (SourceKind.CNEL, SourceAuthority.OFFICIAL),
+            (SourceKind.INPS_CIRCOLARE, SourceAuthority.OFFICIAL),
+            (SourceKind.LEGGE, SourceAuthority.OFFICIAL),
+            (SourceKind.DPR, SourceAuthority.OFFICIAL),
+            (SourceKind.DL, SourceAuthority.OFFICIAL),
+            (SourceKind.DPR_DECRETO, SourceAuthority.OFFICIAL),
+            (SourceKind.ASSOCIAZIONE, SourceAuthority.SECONDARY),
+            (SourceKind.TABELLA_RETRIBUTIVA, SourceAuthority.SECONDARY),
+            (SourceKind.RIVISTA, SourceAuthority.SECONDARY),
+            (SourceKind.ALTRO, SourceAuthority.SECONDARY),
+        ],
+    )
+    def test_authority_derived_from_kind(
+        self, kind: SourceKind, expected: SourceAuthority
+    ) -> None:
+        """Authority is derived from kind without being stored."""
+        doc = SourceDocument(document_id="d", title="T", kind=kind)
+        assert doc.authority == expected
 
 
 class TestSourceLocation:

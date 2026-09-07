@@ -1,1305 +1,1305 @@
 {
-    "schema_version": "0.5",
-    "meta": {
-        "ccnl_id": "vigilanza-privata-federdat-gpg",
-        "cnel_code": "HV17",
-        "name": "CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG",
-        "sector": "vigilanza privata — guardie particolari giurate (GPG)",
-        "tax_sector": "terziario",
-        "signatories": [
-            "FEDERDAT",
-            "FILCAMS-CGIL",
-            "FISASCAT-CISL",
-            "UILTUCS-UIL"
-        ],
-        "agreement_date": "2023-05-04",
-        "sources": [
-            {
-                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
-                "type": "tabella_retributiva",
-                "agreement_date": "2024-02-16",
-                "notes": "Tabelle retributive GPG e SF, 2023-2026. Accordo di rinnovo 04/05/2023 (tranche 01/06/2023) + Ipotesi di accordo 16/02/2024 (tranches 01/06/2024 - 01/12/2026)."
-            }
-        ],
-        "extraction": {
-            "timestamp": "2026-09-06",
-            "human_reviewed": false,
-            "method": "ai_assisted"
-        }
-    },
-    "coverage": {
-        "layer_1": "partial",
-        "layer_2": "implemented",
-        "notes": [
-            {
-                "kind": "info",
-                "text": "CCNL HV17 FEDERDAT GPG section. Conglobated, 14 months, divisor 173. 7 levels. 6 tranches: 01/06/2023, 01/06/2024, 01/06/2025, 01/12/2025, 01/04/2026, 01/12/2026. Contract validity: 01/06/2023-31/12/2026."
-            },
-            {
-                "kind": "simplification",
-                "text": "Seniority amounts not found in renewal PDF (base CCNL 2013, art. 106 GPG). Values proxied from ASSIV CCNL (HV40, same sector). Cadence 36m and max 6 scatti confirmed ('6 trienni' in source)."
-            },
-            {
-                "kind": "simplification",
-                "text": "Apprenticeship: 100% passthrough. Rules not found in renewal document; verify against CCNL FEDERDAT base text."
-            },
-            {
-                "kind": "info",
-                "text": "Level VI salary at 01/06/2024 (1185.44) is anomalously high vs prior tranche (1108.06) — confirmed by source as conventional riallineamento for level VI."
-            }
-        ]
-    },
-    "levels": [
-        {
-            "code": "VI",
-            "order": 1,
-            "description": "Livello VI (convenzionale)",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-06-01",
-                        "valid_until": "2024-06-01",
-                        "value": "1108.06",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2025-06-01",
-                        "value": "1185.44",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2025-12-01",
-                        "value": "1218.44",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-12-01",
-                        "valid_until": "2026-04-01",
-                        "value": "1246.73",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-04-01",
-                        "valid_until": "2026-12-01",
-                        "value": "1293.87",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-12-01",
-                        "valid_until": null,
-                        "value": "1350.44",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "kind": "altro",
-                        "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "V",
-            "order": 2,
-            "description": "Livello V",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-06-01",
-                        "valid_until": "2024-06-01",
-                        "value": "1261.87",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2025-06-01",
-                        "value": "1285.44",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2025-12-01",
-                        "value": "1318.44",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-12-01",
-                        "valid_until": "2026-04-01",
-                        "value": "1346.73",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-04-01",
-                        "valid_until": "2026-12-01",
-                        "value": "1393.87",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-12-01",
-                        "valid_until": null,
-                        "value": "1450.44",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "kind": "altro",
-                        "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "IV",
-            "order": 3,
-            "description": "Livello IV",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-06-01",
-                        "valid_until": "2024-06-01",
-                        "value": "1328.88",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2025-06-01",
-                        "value": "1353.88",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2025-12-01",
-                        "value": "1388.88",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-12-01",
-                        "valid_until": "2026-04-01",
-                        "value": "1418.88",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-04-01",
-                        "valid_until": "2026-12-01",
-                        "value": "1468.88",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-12-01",
-                        "valid_until": null,
-                        "value": "1528.88",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "kind": "altro",
-                        "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "III",
-            "order": 4,
-            "description": "Livello III",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-06-01",
-                        "valid_until": "2024-06-01",
-                        "value": "1483.31",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2025-06-01",
-                        "value": "1513.31",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2025-12-01",
-                        "value": "1553.31",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-12-01",
-                        "valid_until": "2026-04-01",
-                        "value": "1591.31",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-04-01",
-                        "valid_until": "2026-12-01",
-                        "value": "1651.31",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-12-01",
-                        "valid_until": null,
-                        "value": "1723.31",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "kind": "altro",
-                        "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "II",
-            "order": 5,
-            "description": "Livello II",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-06-01",
-                        "valid_until": "2024-06-01",
-                        "value": "1660.38",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2025-06-01",
-                        "value": "1696.09",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2025-12-01",
-                        "value": "1746.09",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-12-01",
-                        "valid_until": "2026-04-01",
-                        "value": "1788.95",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-04-01",
-                        "valid_until": "2026-12-01",
-                        "value": "1860.38",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-12-01",
-                        "valid_until": null,
-                        "value": "1946.09",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "kind": "altro",
-                        "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "I",
-            "order": 6,
-            "description": "Livello I",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-06-01",
-                        "valid_until": "2024-06-01",
-                        "value": "1772.60",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2025-06-01",
-                        "value": "1811.89",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2025-12-01",
-                        "value": "1866.89",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-12-01",
-                        "valid_until": "2026-04-01",
-                        "value": "1914.03",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-04-01",
-                        "valid_until": "2026-12-01",
-                        "value": "1992.60",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-12-01",
-                        "valid_until": null,
-                        "value": "2086.89",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "kind": "altro",
-                        "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "Q",
-            "order": 7,
-            "description": "Livello Q (Quadro)",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-06-01",
-                        "valid_until": "2024-06-01",
-                        "value": "2049.03",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2025-06-01",
-                        "value": "2097.24",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2025-12-01",
-                        "value": "2164.74",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-12-01",
-                        "valid_until": "2026-04-01",
-                        "value": "2222.60",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-04-01",
-                        "valid_until": "2026-12-01",
-                        "value": "2319.03",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-12-01",
-                        "valid_until": null,
-                        "value": "2434.74",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                                    "kind": "altro",
-                                    "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "kind": "altro",
-                        "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        }
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "vigilanza-privata-federdat-gpg",
+    "cnel_code": "HV17",
+    "name": "CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG",
+    "sector": "vigilanza privata — guardie particolari giurate (GPG)",
+    "tax_sector": "terziario",
+    "signatories": [
+      "FEDERDAT",
+      "FILCAMS-CGIL",
+      "FISASCAT-CISL",
+      "UILTUCS-UIL"
     ],
-    "parameters": {
-        "additional_months": {
-            "periods": [
-                {
-                    "valid_from": "2023-06-01",
-                    "valid_until": null,
-                    "value": "14"
-                }
-            ]
-        },
-        "hourly_divisor": {
-            "periods": [
-                {
-                    "valid_from": "2023-06-01",
-                    "valid_until": null,
-                    "value": "173"
-                }
-            ]
-        },
-        "seniority_increments": {
-            "cadence_months": 36,
-            "maximum_count": 6,
-            "amount_by_level": {
-                "VI": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-06-01",
-                            "valid_until": null,
-                            "value": "19.66"
-                        }
-                    ]
-                },
-                "V": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-06-01",
-                            "valid_until": null,
-                            "value": "20.52"
-                        }
-                    ]
-                },
-                "IV": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-06-01",
-                            "valid_until": null,
-                            "value": "21.13"
-                        }
-                    ]
-                },
-                "III": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-06-01",
-                            "valid_until": null,
-                            "value": "22.46"
-                        }
-                    ]
-                },
-                "II": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-06-01",
-                            "valid_until": null,
-                            "value": "23.83"
-                        }
-                    ]
-                },
-                "I": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-06-01",
-                            "valid_until": null,
-                            "value": "26.12"
-                        }
-                    ]
-                },
-                "Q": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-06-01",
-                            "valid_until": null,
-                            "value": "31.30"
-                        }
-                    ]
-                }
-            },
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
-                        "kind": "altro",
-                        "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
-                    },
-                    "section": "Scatti di anzianità"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        }
-    },
-    "apprenticeship": [
-        {
-            "type": "percentage",
-            "name": "professionalizzante",
-            "destination_levels": [
-                "VI",
-                "V",
-                "IV",
-                "III",
-                "II",
-                "I"
-            ],
-            "reference_level": null,
-            "periods": [
-                {
-                    "months_from": 0,
-                    "months_until": null,
-                    "percentage": "1.00"
-                }
-            ]
-        }
+    "agreement_date": "2023-05-04",
+    "sources": [
+      {
+        "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
+        "type": "tabella_retributiva",
+        "agreement_date": "2024-02-16",
+        "notes": "Tabelle retributive GPG e SF, 2023-2026. Accordo di rinnovo 04/05/2023 (tranche 01/06/2023) + Ipotesi di accordo 16/02/2024 (tranches 01/06/2024 - 01/12/2026)."
+      }
     ],
-    "ruleset": {
-        "id": "ccnl/vigilanza-privata-federdat-gpg",
-        "version": "2026.2",
-        "effective_from": "2023-06-01",
-        "effective_until": null,
-        "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
-        "verification_status": "unverified",
-        "source_hash": "26af956b684285d004b5b55b08188b793f9909a86c79e52d0fe62d7d5955613f",
-        "published_at": "2026-09-07"
+    "extraction": {
+      "timestamp": "2026-09-06",
+      "human_reviewed": false,
+      "method": "ai_assisted"
     }
+  },
+  "coverage": {
+    "layer_1": "partial",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "CCNL HV17 FEDERDAT GPG section. Conglobated, 14 months, divisor 173. 7 levels. 6 tranches: 01/06/2023, 01/06/2024, 01/06/2025, 01/12/2025, 01/04/2026, 01/12/2026. Contract validity: 01/06/2023-31/12/2026."
+      },
+      {
+        "kind": "simplification",
+        "text": "Seniority amounts not found in renewal PDF (base CCNL 2013, art. 106 GPG). Values proxied from ASSIV CCNL (HV40, same sector). Cadence 36m and max 6 scatti confirmed ('6 trienni' in source)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Apprenticeship: 100% passthrough. Rules not found in renewal document; verify against CCNL FEDERDAT base text."
+      },
+      {
+        "kind": "info",
+        "text": "Level VI salary at 01/06/2024 (1185.44) is anomalously high vs prior tranche (1108.06) — confirmed by source as conventional riallineamento for level VI."
+      }
+    ]
+  },
+  "levels": [
+    {
+      "code": "VI",
+      "order": 1,
+      "description": "Livello VI (convenzionale)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1108.06",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1185.44",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-12-01",
+            "value": "1218.44",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-04-01",
+            "value": "1246.73",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": "2026-12-01",
+            "value": "1293.87",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1350.44",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "V",
+      "order": 2,
+      "description": "Livello V",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1261.87",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1285.44",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-12-01",
+            "value": "1318.44",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-04-01",
+            "value": "1346.73",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": "2026-12-01",
+            "value": "1393.87",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1450.44",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "IV",
+      "order": 3,
+      "description": "Livello IV",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1328.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1353.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-12-01",
+            "value": "1388.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-04-01",
+            "value": "1418.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": "2026-12-01",
+            "value": "1468.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1528.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "III",
+      "order": 4,
+      "description": "Livello III",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1483.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1513.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-12-01",
+            "value": "1553.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-04-01",
+            "value": "1591.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": "2026-12-01",
+            "value": "1651.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1723.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "II",
+      "order": 5,
+      "description": "Livello II",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1660.38",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1696.09",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-12-01",
+            "value": "1746.09",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-04-01",
+            "value": "1788.95",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": "2026-12-01",
+            "value": "1860.38",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "1946.09",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "I",
+      "order": 6,
+      "description": "Livello I",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "1772.60",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "1811.89",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-12-01",
+            "value": "1866.89",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-04-01",
+            "value": "1914.03",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": "2026-12-01",
+            "value": "1992.60",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "2086.89",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "Q",
+      "order": 7,
+      "description": "Livello Q (Quadro)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2024-06-01",
+            "value": "2049.03",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-06-01",
+            "value": "2097.24",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2025-12-01",
+            "value": "2164.74",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-12-01",
+            "valid_until": "2026-04-01",
+            "value": "2222.60",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-04-01",
+            "valid_until": "2026-12-01",
+            "value": "2319.03",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-12-01",
+            "valid_until": null,
+            "value": "2434.74",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
+  ],
+  "parameters": {
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2023-06-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2023-06-01",
+          "valid_until": null,
+          "value": "173"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 6,
+      "amount_by_level": {
+        "VI": {
+          "periods": [
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "19.66"
+            }
+          ]
+        },
+        "V": {
+          "periods": [
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "20.52"
+            }
+          ]
+        },
+        "IV": {
+          "periods": [
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "21.13"
+            }
+          ]
+        },
+        "III": {
+          "periods": [
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "22.46"
+            }
+          ]
+        },
+        "II": {
+          "periods": [
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "23.83"
+            }
+          ]
+        },
+        "I": {
+          "periods": [
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "26.12"
+            }
+          ]
+        },
+        "Q": {
+          "periods": [
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": null,
+              "value": "31.30"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "title": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+          },
+          "section": "Scatti di anzianità"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante",
+      "destination_levels": [
+        "VI",
+        "V",
+        "IV",
+        "III",
+        "II",
+        "I"
+      ],
+      "reference_level": null,
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/vigilanza-privata-federdat-gpg",
+    "version": "2026.2",
+    "effective_from": "2023-06-01",
+    "effective_until": null,
+    "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
+    "verification_status": "unverified",
+    "source_hash": "0fbdc8fa2b6a52e038a9e7d581ade146b5f56a267d3955755efb243626c4f7b2",
+    "published_at": "2026-09-07"
+  }
 }

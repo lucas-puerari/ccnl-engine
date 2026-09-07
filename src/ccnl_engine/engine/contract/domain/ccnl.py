@@ -14,6 +14,7 @@ from ccnl_engine.engine.contract.domain.apprenticeship import (
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries
 from ccnl_engine.engine.metadata import RulesetIdentity
+from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
 from ccnl_engine.engine.provenance.domain.source import SourceDocument, SourceKind
@@ -298,7 +299,14 @@ class Level(BaseModel):
 
 
 class CCNLCoverage(BaseModel):
-    """Declares implementation status for a CCNL data file.
+    """Declares implementation and confidence status for a CCNL data file.
+
+    Two orthogonal axes:
+
+    * **Coverage** (``layer_1`` / ``layer_2``): what the engine implements for
+      this contract — ``implemented``, ``partial``, or ``out_of_scope``.
+    * **Verification** (``verification_status``): how confident we are in the
+      data behind that implementation — verified, unverified, or needs review.
 
     A ``missing`` note documents data the engine supports but the file lacks,
     and is only allowed while at least one of layer_1 / layer_2 is ``partial``.
@@ -309,6 +317,7 @@ class CCNLCoverage(BaseModel):
     layer_1: CoverageStatus
     layer_2: CoverageStatus
     notes: list[CoverageNote]
+    verification_status: VerificationStatus = VerificationStatus.UNVERIFIED
 
     @model_validator(mode="after")
     def _check_notes(self) -> Self:

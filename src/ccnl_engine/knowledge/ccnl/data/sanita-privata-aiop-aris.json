@@ -1,1543 +1,1543 @@
 {
-    "schema_version": "0.5",
-    "meta": {
-        "ccnl_id": "sanita-privata-aiop-aris",
-        "name": "CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)",
-        "cnel_code": "T011",
-        "sector": "Sanità privata",
-        "tax_sector": "terziario",
-        "signatories": [
-            "AIOP",
-            "ARIS",
-            "FILCAMS CGIL",
-            "FP CGIL",
-            "FISASCAT CISL",
-            "CISL FP",
-            "UILTuCS",
-            "UILFPL",
-            "FIALS",
-            "CISAL SANITÀ"
-        ],
-        "sources": [
-            {
-                "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
-                "type": "ccnl_pdf",
-                "agreement_date": "2020-10-08",
-                "notes": "Official CCNL text signed 2020-10-08; salary tables in Tabella 1 effective 2020-07-01 per Art. 51; values conglobated (EADR included per Art. 55)"
-            },
-            {
-                "url": "https://www.contratticcnl.it/ccnl/t011/",
-                "type": "cnel_registry",
-                "agreement_date": null,
-                "notes": "CNEL registry entry confirming code T011, 146585 employees, ARIS/AIOP signatories"
-            }
-        ],
-        "extraction": {
-            "method": "ai_assisted",
-            "model": null,
-            "timestamp": "2026-09-03",
-            "human_reviewed": false
-        },
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "sanita-privata-aiop-aris",
+    "name": "CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)",
+    "cnel_code": "T011",
+    "sector": "Sanità privata",
+    "tax_sector": "terziario",
+    "signatories": [
+      "AIOP",
+      "ARIS",
+      "FILCAMS CGIL",
+      "FP CGIL",
+      "FISASCAT CISL",
+      "CISL FP",
+      "UILTuCS",
+      "UILFPL",
+      "FIALS",
+      "CISAL SANITÀ"
+    ],
+    "sources": [
+      {
+        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+        "type": "ccnl_pdf",
         "agreement_date": "2020-10-08",
-        "validity": {
-            "valid_from": "2020-07-01",
-            "valid_until": null
-        }
-    },
-    "parameters": {
-        "hourly_divisor": {
-            "periods": [
-                {
-                    "valid_from": "2020-07-01",
-                    "valid_until": null,
-                    "value": "156"
-                }
-            ]
-        },
-        "additional_months": {
-            "periods": [
-                {
-                    "valid_from": "2020-07-01",
-                    "valid_until": null,
-                    "value": "13"
-                }
-            ]
-        },
-        "seniority_increments": {
-            "cadence_months": 24,
-            "maximum_count": 0,
-            "amount_by_level": {},
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Scatti di anzianità"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        }
-    },
-    "levels": [
-        {
-            "code": "A",
-            "order": 1,
-            "description": "Categoria A — ausiliario generico",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "1467.45",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "A1",
-            "order": 2,
-            "description": "Categoria A — progressione orizzontale 1",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "1506.44",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "A2",
-            "order": 3,
-            "description": "Categoria A — progressione orizzontale 2",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "1544.35",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "A3",
-            "order": 4,
-            "description": "Categoria A — progressione orizzontale 3",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "1566.67",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "B",
-            "order": 5,
-            "description": "Categoria B — operatore tecnico-pratico",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "1579.86",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "A4",
-            "order": 6,
-            "description": "Categoria A — progressione orizzontale 4",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "1592.19",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "B1",
-            "order": 7,
-            "description": "Categoria B — progressione orizzontale 1",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "1624.54",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "B2",
-            "order": 8,
-            "description": "Categoria B — progressione orizzontale 2",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "1669.36",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "B3",
-            "order": 9,
-            "description": "Categoria B — progressione orizzontale 3",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "1697.76",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "B4",
-            "order": 10,
-            "description": "Categoria B — progressione orizzontale 4",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "1733.54",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "C",
-            "order": 11,
-            "description": "Categoria C — operatore qualificato",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "1803.61",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "C1",
-            "order": 12,
-            "description": "Categoria C — progressione orizzontale 1",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "1857.14",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "C2",
-            "order": 13,
-            "description": "Categoria C — progressione orizzontale 2",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "1921.25",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "D",
-            "order": 14,
-            "description": "Categoria D — professionista sanitario",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "1953.87",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "C3",
-            "order": 15,
-            "description": "Categoria C — progressione orizzontale 3",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "1984.10",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "D1",
-            "order": 16,
-            "description": "Categoria D — progressione orizzontale 1",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "2022.94",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "C4",
-            "order": 17,
-            "description": "Categoria C — progressione orizzontale 4",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "2076.38",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "D2",
-            "order": 18,
-            "description": "Categoria D — progressione orizzontale 2",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "2084.77",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "DS",
-            "order": 19,
-            "description": "Categoria DS — coordinatore",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "2101.08",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "D3",
-            "order": 20,
-            "description": "Categoria D — progressione orizzontale 3",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "2147.12",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "DS1",
-            "order": 21,
-            "description": "Categoria DS — progressione orizzontale 1",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "2180.26",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "D4",
-            "order": 22,
-            "description": "Categoria D — progressione orizzontale 4",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "2209.98",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "DS2",
-            "order": 23,
-            "description": "Categoria DS — progressione orizzontale 2",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "2261.56",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "DS3",
-            "order": 24,
-            "description": "Categoria DS — progressione orizzontale 3",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "2345.38",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "E",
-            "order": 25,
-            "description": "Categoria E — quadro / specialista",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "2410.22",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "DS4",
-            "order": 26,
-            "description": "Categoria DS — progressione orizzontale 4",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "2418.05",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "E1",
-            "order": 27,
-            "description": "Categoria E — progressione orizzontale 1",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "2936.33",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "E2",
-            "order": 28,
-            "description": "Categoria E — progressione orizzontale 2",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2020-07-01",
-                        "valid_until": null,
-                        "value": "3554.39",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                                    "kind": "altro",
-                                    "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
-                        "kind": "altro",
-                        "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        }
+        "notes": "Official CCNL text signed 2020-10-08; salary tables in Tabella 1 effective 2020-07-01 per Art. 51; values conglobated (EADR included per Art. 55)"
+      },
+      {
+        "url": "https://www.contratticcnl.it/ccnl/t011/",
+        "type": "cnel_registry",
+        "agreement_date": null,
+        "notes": "CNEL registry entry confirming code T011, 146585 employees, ARIS/AIOP signatories"
+      }
     ],
-    "apprenticeship": [
-        {
-            "type": "percentage",
-            "name": "Apprendistato professionalizzante 36 mesi",
-            "destination_levels": [
-                "A",
-                "B",
-                "C",
-                "D"
-            ],
-            "periods": [
-                {
-                    "months_from": 0,
-                    "months_until": 18,
-                    "percentage": "0.85"
-                },
-                {
-                    "months_from": 18,
-                    "months_until": null,
-                    "percentage": "0.90"
-                }
-            ]
-        }
-    ],
-    "coverage": {
-        "layer_1": "implemented",
-        "layer_2": "implemented",
-        "notes": [
-            {
-                "kind": "info",
-                "text": "CCNL signed 2020-10-08; nominally covers 2016-2018 (Art. 4). Applied in ultrattività from 2019 onwards. Salary tables (Tabella 1) effective 2020-07-01 per Art. 51. No renewal signed as of 2026-09-03."
-            },
-            {
-                "kind": "info",
-                "text": "Salary values are conglobated: EADR incorporated into tabellare from 2020-07-01 per Art. 55. Back-calculation: A 1467.45×13=19076.85 ✓; C4 2076.38×13=26992.94 ✓; DS4 2418.05×13=31434.65 ✓."
-            },
-            {
-                "kind": "info",
-                "text": "28 levels (A, A1–A4, B, B1–B4, C, C1–C4, D, D1–D4, DS, DS1–DS4, E, E1, E2). Order assigned by 2020-07-01 salary because professional families A/B/C/D/DS/E have overlapping salary ranges — categories are not a single hierarchy. A4 (order 6) is paid above B (order 5) per Tabella 1. Horizontal progressions within each category are modelled as static levels per Art. 48; the engine does not auto-advance a worker's level after the contractual service threshold."
-            },
-            {
-                "kind": "info",
-                "text": "Retribuzione individuale di anzianità frozen at 1993-12-31 per Art. 56 (no new seniority accruals). Modelled as seniority_increments.maximum_count=0."
-            },
-            {
-                "kind": "info",
-                "text": "CCNL covers ospedalieri, IRCCS, riabilitazione (AIOP/ARIS members). Does not apply to RSA governed by separate AIOP RSA or Uneba agreements."
-            },
-            {
-                "kind": "simplification",
-                "text": "hourly_divisor=156 (Art. 58: paga giornaliera=monthly/26, oraria=giornaliera/6 for 36h/week). Levels D4, DS4, E, E1, E2 work 38h/week per Art. 18 (oraria=giornaliera/6.33, exact divisor≈164.6), modelled as 156 uniformly."
-            },
-            {
-                "kind": "simplification",
-                "text": "Apprenticeship (Art. 23 §14, Art. 23 §2): destination levels are the four category entry positions A, B, C, D only. Horizontal-progression steps (A1-A4, B1-B4, C1-C4, D1-D4) are not apprenticeship destinations. DS and E categories excluded per Art. 23 §2. OSS and Albo-registered health professions excluded per Art. 23 §2 but per-qualification restriction not modellable at level granularity."
-            },
-            {
-                "kind": "simplification",
-                "text": "INPS: uses 2026-terziario.json as proxy. Private healthcare (AIOP/ARIS) is classified in the terziario sector for INPS purposes; verify against INPS Circolare n. 6/2026."
-            },
-            {
-                "kind": "info",
-                "text": "CCNL applied in ultrattività; Decreto Lavoro 2026 introduced a statutory 30% IPCA auto-adjustment if no renewal within 12 months of expiry. If triggered, legally applicable 2026 minimums may exceed the 2020 Tabella 1 values modelled here. Engine models contractual tables only."
-            },
-            {
-                "kind": "source",
-                "text": "CNEL code T011 verified at https://www.contratticcnl.it/ccnl/t011/ (146585 employees, ARIS/AIOP, ATECO 86)."
-            }
-        ]
+    "extraction": {
+      "method": "ai_assisted",
+      "model": null,
+      "timestamp": "2026-09-03",
+      "human_reviewed": false
     },
-    "ruleset": {
-        "id": "ccnl/sanita-privata-aiop-aris",
-        "version": "2026.2",
-        "effective_from": "2020-07-01",
-        "effective_until": null,
-        "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
-        "verification_status": "unverified",
-        "source_hash": "6af7936b988566cc7578c1a9a28460c5d728585d8f82e130af0cea7f8c899870",
-        "published_at": "2026-09-07"
+    "agreement_date": "2020-10-08",
+    "validity": {
+      "valid_from": "2020-07-01",
+      "valid_until": null
     }
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2020-07-01",
+          "valid_until": null,
+          "value": "156"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2020-07-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 0,
+      "amount_by_level": {},
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Scatti di anzianità"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "A",
+      "order": 1,
+      "description": "Categoria A — ausiliario generico",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "1467.45",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "A1",
+      "order": 2,
+      "description": "Categoria A — progressione orizzontale 1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "1506.44",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "A2",
+      "order": 3,
+      "description": "Categoria A — progressione orizzontale 2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "1544.35",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "A3",
+      "order": 4,
+      "description": "Categoria A — progressione orizzontale 3",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "1566.67",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "B",
+      "order": 5,
+      "description": "Categoria B — operatore tecnico-pratico",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "1579.86",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "A4",
+      "order": 6,
+      "description": "Categoria A — progressione orizzontale 4",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "1592.19",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "B1",
+      "order": 7,
+      "description": "Categoria B — progressione orizzontale 1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "1624.54",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "B2",
+      "order": 8,
+      "description": "Categoria B — progressione orizzontale 2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "1669.36",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "B3",
+      "order": 9,
+      "description": "Categoria B — progressione orizzontale 3",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "1697.76",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "B4",
+      "order": 10,
+      "description": "Categoria B — progressione orizzontale 4",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "1733.54",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "C",
+      "order": 11,
+      "description": "Categoria C — operatore qualificato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "1803.61",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "C1",
+      "order": 12,
+      "description": "Categoria C — progressione orizzontale 1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "1857.14",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "C2",
+      "order": 13,
+      "description": "Categoria C — progressione orizzontale 2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "1921.25",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "D",
+      "order": 14,
+      "description": "Categoria D — professionista sanitario",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "1953.87",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "C3",
+      "order": 15,
+      "description": "Categoria C — progressione orizzontale 3",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "1984.10",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "D1",
+      "order": 16,
+      "description": "Categoria D — progressione orizzontale 1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "2022.94",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "C4",
+      "order": 17,
+      "description": "Categoria C — progressione orizzontale 4",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "2076.38",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "D2",
+      "order": 18,
+      "description": "Categoria D — progressione orizzontale 2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "2084.77",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "DS",
+      "order": 19,
+      "description": "Categoria DS — coordinatore",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "2101.08",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "D3",
+      "order": 20,
+      "description": "Categoria D — progressione orizzontale 3",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "2147.12",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "DS1",
+      "order": 21,
+      "description": "Categoria DS — progressione orizzontale 1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "2180.26",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "D4",
+      "order": 22,
+      "description": "Categoria D — progressione orizzontale 4",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "2209.98",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "DS2",
+      "order": 23,
+      "description": "Categoria DS — progressione orizzontale 2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "2261.56",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "DS3",
+      "order": 24,
+      "description": "Categoria DS — progressione orizzontale 3",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "2345.38",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "E",
+      "order": 25,
+      "description": "Categoria E — quadro / specialista",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "2410.22",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "DS4",
+      "order": 26,
+      "description": "Categoria DS — progressione orizzontale 4",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "2418.05",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "E1",
+      "order": 27,
+      "description": "Categoria E — progressione orizzontale 1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "2936.33",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "E2",
+      "order": 28,
+      "description": "Categoria E — progressione orizzontale 2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2020-07-01",
+            "valid_until": null,
+            "value": "3554.39",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+                  "kind": "associazione",
+                  "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "title": "ccnl-case-di-cura-private-08-10-2020-pdf",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "Apprendistato professionalizzante 36 mesi",
+      "destination_levels": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "percentage": "0.90"
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "CCNL signed 2020-10-08; nominally covers 2016-2018 (Art. 4). Applied in ultrattività from 2019 onwards. Salary tables (Tabella 1) effective 2020-07-01 per Art. 51. No renewal signed as of 2026-09-03."
+      },
+      {
+        "kind": "info",
+        "text": "Salary values are conglobated: EADR incorporated into tabellare from 2020-07-01 per Art. 55. Back-calculation: A 1467.45×13=19076.85 ✓; C4 2076.38×13=26992.94 ✓; DS4 2418.05×13=31434.65 ✓."
+      },
+      {
+        "kind": "info",
+        "text": "28 levels (A, A1–A4, B, B1–B4, C, C1–C4, D, D1–D4, DS, DS1–DS4, E, E1, E2). Order assigned by 2020-07-01 salary because professional families A/B/C/D/DS/E have overlapping salary ranges — categories are not a single hierarchy. A4 (order 6) is paid above B (order 5) per Tabella 1. Horizontal progressions within each category are modelled as static levels per Art. 48; the engine does not auto-advance a worker's level after the contractual service threshold."
+      },
+      {
+        "kind": "info",
+        "text": "Retribuzione individuale di anzianità frozen at 1993-12-31 per Art. 56 (no new seniority accruals). Modelled as seniority_increments.maximum_count=0."
+      },
+      {
+        "kind": "info",
+        "text": "CCNL covers ospedalieri, IRCCS, riabilitazione (AIOP/ARIS members). Does not apply to RSA governed by separate AIOP RSA or Uneba agreements."
+      },
+      {
+        "kind": "simplification",
+        "text": "hourly_divisor=156 (Art. 58: paga giornaliera=monthly/26, oraria=giornaliera/6 for 36h/week). Levels D4, DS4, E, E1, E2 work 38h/week per Art. 18 (oraria=giornaliera/6.33, exact divisor≈164.6), modelled as 156 uniformly."
+      },
+      {
+        "kind": "simplification",
+        "text": "Apprenticeship (Art. 23 §14, Art. 23 §2): destination levels are the four category entry positions A, B, C, D only. Horizontal-progression steps (A1-A4, B1-B4, C1-C4, D1-D4) are not apprenticeship destinations. DS and E categories excluded per Art. 23 §2. OSS and Albo-registered health professions excluded per Art. 23 §2 but per-qualification restriction not modellable at level granularity."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS: uses 2026-terziario.json as proxy. Private healthcare (AIOP/ARIS) is classified in the terziario sector for INPS purposes; verify against INPS Circolare n. 6/2026."
+      },
+      {
+        "kind": "info",
+        "text": "CCNL applied in ultrattività; Decreto Lavoro 2026 introduced a statutory 30% IPCA auto-adjustment if no renewal within 12 months of expiry. If triggered, legally applicable 2026 minimums may exceed the 2020 Tabella 1 values modelled here. Engine models contractual tables only."
+      },
+      {
+        "kind": "source",
+        "text": "CNEL code T011 verified at https://www.contratticcnl.it/ccnl/t011/ (146585 employees, ARIS/AIOP, ATECO 86)."
+      }
+    ]
+  },
+  "ruleset": {
+    "id": "ccnl/sanita-privata-aiop-aris",
+    "version": "2026.2",
+    "effective_from": "2020-07-01",
+    "effective_until": null,
+    "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+    "verification_status": "unverified",
+    "source_hash": "2f21699b4b200b1f41182cceb4b09f7993e421100996aea8205da0a2b76d012f",
+    "published_at": "2026-09-07"
+  }
 }
