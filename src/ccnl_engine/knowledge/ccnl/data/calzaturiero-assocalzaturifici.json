@@ -522,5 +522,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/calzaturiero-assocalzaturifici",
+    "version": "2026.1",
+    "effective_from": "2024-08-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
+    "verification_status": "unverified",
+    "source_hash": "c1ec1a7153c606af5a248e1e81a89f6dbe477f87ae4ab642e217a9818b5af7e9"
+  }
 }

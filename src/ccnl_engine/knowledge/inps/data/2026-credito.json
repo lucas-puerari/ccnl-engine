@@ -28,5 +28,15 @@
     "small_firm_employer_ivs_rate_months_0_11": "0.0150",
     "small_firm_employer_rate_months_12_23": "0.0461",
     "small_firm_employer_ivs_rate_months_12_23": "0.0300"
+  },
+  "ruleset": {
+    "id": "inps/2026/credito",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "5fd99c440c67d10bf00b42ec3a99ddfb6e2193226473c9e193665cded0c26677"
   }
 }

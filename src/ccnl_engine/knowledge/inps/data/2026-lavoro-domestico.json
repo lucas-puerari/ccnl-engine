@@ -28,5 +28,15 @@
         "employer_per_hour_fixed_term": "1.91"
       }
     ]
+  },
+  "ruleset": {
+    "id": "inps/2026/lavoro-domestico",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "9e492ef0e910ec1243fd07692fecb9e8c2cf70008c01b85a439309ce0cb6dbee"
   }
 }

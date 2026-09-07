@@ -117,8 +117,8 @@ class TestSecondLevelGuard:
 class TestSecondLevelBasic:
     """second_level_monthly flows into gross, contribution, and TFR bases."""
 
-    def test_second_level_monthly_on_payslip(self) -> None:
-        """Payslip.second_level_monthly equals the scaled allowance total."""
+    def test_second_level_monthly_on_payroll(self) -> None:
+        """PayrollResult.second_level_monthly equals the scaled allowance total."""
         result = compute(_CCNL, _RULES, _sl_employee(), employer=_sl_employer(_SL_100))
         assert result.second_level_monthly == _D("100.00")
 

@@ -511,5 +511,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/telecomunicazioni-asstel",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
+    "verification_status": "unverified",
+    "source_hash": "fbf93a9bec37d226a4e8c984ad939d5c3e65debbc60b51dd63dd0d7bf2eb38a0"
+  }
 }

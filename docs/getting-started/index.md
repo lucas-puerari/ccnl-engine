@@ -11,7 +11,7 @@ Requires Python 3.11+.
 ## Quickstart
 
 The minimum working example: load a CCNL, describe the employee, compute the
-payslip.
+payroll.
 
 ```python
 --8<-- "docs/examples/01_quickstart.py"

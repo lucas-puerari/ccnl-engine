@@ -771,5 +771,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/carta-cartone-assocarta",
+    "version": "2026.1",
+    "effective_from": "2024-07-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/",
+    "verification_status": "unverified",
+    "source_hash": "f43a74cee282164674e25b7dffdd3c963b3f5ab909aea25be96c66daa27cca22"
+  }
 }

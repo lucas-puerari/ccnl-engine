@@ -960,5 +960,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/trasporto-aereo-assaeroporti",
+    "version": "2026.1",
+    "effective_from": "2025-01-01",
+    "effective_until": "2027-12-31",
+    "published_at": "2026-09-07",
+    "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+    "verification_status": "unverified",
+    "source_hash": "f59dedfe76515f8aca5145b46236ac71ae6d662304ab2a2c7f84222f72e796b0"
+  }
 }

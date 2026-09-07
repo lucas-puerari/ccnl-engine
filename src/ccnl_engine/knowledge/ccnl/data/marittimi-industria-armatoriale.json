@@ -599,7 +599,10 @@
       "type": "percentage",
       "name": "professionalizzante",
       "destination_levels": [
-        "III", "IV", "V", "VI"
+        "III",
+        "IV",
+        "V",
+        "VI"
       ],
       "periods": [
         {
@@ -619,5 +622,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/marittimi-industria-armatoriale",
+    "version": "2026.1",
+    "effective_from": "2024-07-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+    "verification_status": "verified",
+    "source_hash": "322af5e400a03c6e66020230dbca313949fd0c6f0e516cdb29be75b0335cd271"
+  }
 }

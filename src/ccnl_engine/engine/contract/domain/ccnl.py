@@ -13,6 +13,7 @@ from ccnl_engine.engine.contract.domain.apprenticeship import (
     ApprenticeshipUnderClassification,
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries
+from ccnl_engine.engine.metadata import RulesetIdentity
 
 CoverageStatus = Literal["implemented", "partial", "out_of_scope"]
 LevelCategory = Literal["operaio", "impiegato", "quadro", "dirigente"]
@@ -350,7 +351,7 @@ class CCNLMeta(BaseModel):
     Attributes:
         ccnl_id: Unique slug for the contract
             (e.g. ``"metalmeccanico-federmeccanica"``). Used as
-            ``Payslip.ccnl_id``.
+            ``PayrollResult.ccnl_id``.
         name: Full name of the collective agreement.
         cnel_code: CNEL registry code for the agreement.
         sector: Human-readable industry sector (e.g. ``"Industria metalmeccanica"``).
@@ -367,7 +368,7 @@ class CCNLMeta(BaseModel):
             *sostituto d'imposta* for IRPEF (e.g. lavoro domestico, exempt under
             Art. 4 D.P.R. 600/1973). When ``True``, the engine still computes IRPEF
             figures but sets ``irpef_net`` to zero and marks
-            ``Payslip.employer_withholds_irpef`` as ``False``.
+            ``PayrollResult.employer_withholds_irpef`` as ``False``.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -390,6 +391,8 @@ class CCNL(BaseModel):
 
     Attributes:
         schema_version: Data file format version (semver string).
+        ruleset: Identity and provenance of this contract ruleset
+            (id, version, validity, source hash, verification status).
         meta: Identifying metadata — name, sector, INPS classification, sources.
         parameters: Contract-wide parameters (hourly divisor, additional months,
             seniority-increment rules, employer funds).
@@ -402,6 +405,7 @@ class CCNL(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     schema_version: Literal["0.4"]
+    ruleset: RulesetIdentity | None = None
     meta: CCNLMeta
     parameters: CCNLParameters
     levels: list[Level]

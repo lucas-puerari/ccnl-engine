@@ -38,5 +38,15 @@
     "small_firm_employer_ivs_rate_months_0_11": "0.0150",
     "small_firm_employer_rate_months_12_23": "0.0461",
     "small_firm_employer_ivs_rate_months_12_23": "0.0300"
+  },
+  "ruleset": {
+    "id": "inps/2026/terziario",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "8948d810796995e08f92bd12f75dd0549450b6179f9486d02ec366470d0655b0"
   }
 }

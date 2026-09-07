@@ -603,5 +603,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/turismo-confcommercio",
+    "version": "2026.1",
+    "effective_from": "2024-07-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/",
+    "verification_status": "unverified",
+    "source_hash": "e8811ec09eb58f4857b56c5fe00d4a94c1db530004700421cdd53a2979f30855"
+  }
 }

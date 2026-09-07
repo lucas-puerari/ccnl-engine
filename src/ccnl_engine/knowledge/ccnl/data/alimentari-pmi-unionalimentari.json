@@ -610,5 +610,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/alimentari-pmi-unionalimentari",
+    "version": "2026.1",
+    "effective_from": "2025-06-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.unionalimentari.com/",
+    "verification_status": "unverified",
+    "source_hash": "2d5f11b0652e9342b08c34e599a7c95fc821d971979ce7297615f9b32b07b84d"
+  }
 }

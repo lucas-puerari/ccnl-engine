@@ -7,6 +7,7 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, model_validator
 
+from ccnl_engine.engine.metadata import RulesetIdentity
 from ccnl_engine.engine.primitives import Bracket
 
 #: One marginal bracket in a surtax rate schedule.
@@ -71,6 +72,7 @@ class RegionaleRaw(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
     year: int
+    ruleset: RulesetIdentity | None = None
     notes: list[str] = []
     rates: dict[str, RegionaleEntry]
 
@@ -80,6 +82,7 @@ class ComunaleRaw(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
     year: int
+    ruleset: RulesetIdentity | None = None
     notes: list[str] = []
     rates: dict[str, ComunaleEntry]
 
@@ -91,6 +94,7 @@ class SurtaxRules(BaseModel):
 
     Attributes:
         year: Fiscal year these rates apply to.
+        ruleset: Identity and provenance of this surtax ruleset.
         regionale: Per-region surtax data, keyed by Italian region name
             (e.g. ``"Lombardia"``).
         comunale: Per-municipality surtax data, keyed by *codice catastale*
@@ -100,5 +104,6 @@ class SurtaxRules(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     year: int
+    ruleset: RulesetIdentity | None = None
     regionale: dict[str, RegionaleEntry]
     comunale: dict[str, ComunaleEntry]

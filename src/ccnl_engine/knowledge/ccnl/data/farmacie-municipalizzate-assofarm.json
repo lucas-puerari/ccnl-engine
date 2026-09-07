@@ -587,5 +587,15 @@
       },
       "fixed_allowances": []
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/farmacie-municipalizzate-assofarm",
+    "version": "2026.1",
+    "effective_from": "2022-07-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+    "verification_status": "unverified",
+    "source_hash": "8f05c8404f8df3a6da9a1fc3ccc2cd546ae2e6a77559c74138269a85e1c633aa"
+  }
 }

@@ -453,5 +453,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/cooperative-consorzi-agricoli",
+    "version": "2026.1",
+    "effective_from": "2024-04-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+    "verification_status": "unverified",
+    "source_hash": "9efe9c7184d50bb2e4009a5261386e7f96db7f984b9fa8f8b881aa0ca0baaf94"
+  }
 }

@@ -14,12 +14,16 @@ Minimal call: load a CCNL, build an `Employee`, call `compute()`.
 --8<-- "docs/examples/01_quickstart.py"
 ```
 
-### Reading the Payslip
+### Reading the PayrollResult
 
-`compute()` returns a frozen dataclass with every gross-to-net and employer-cost component.
+`compute()` returns a `Calculation`: a frozen dataclass that bundles the
+`PayrollResult` (`calculation.result`) with the engine version, the CCNL / tax / INPS /
+surtax ruleset revisions used (`calculation.ruleset_version`) and a snapshot of
+the inputs (`calculation.input_snapshot`). Attribute reads are forwarded onto
+the `PayrollResult`, so `calculation.net_annual` works too.
 
 ```python
---8<-- "docs/examples/02_payslip_fields.py"
+--8<-- "docs/examples/02_payroll_fields.py"
 ```
 
 ## Contract types

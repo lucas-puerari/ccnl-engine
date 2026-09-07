@@ -381,7 +381,13 @@
     {
       "type": "percentage",
       "name": "professionalizzante",
-      "destination_levels": ["E", "D", "C", "B", "A"],
+      "destination_levels": [
+        "E",
+        "D",
+        "C",
+        "B",
+        "A"
+      ],
       "reference_level": null,
       "periods": [
         {
@@ -391,5 +397,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/vigilanza-privata-federdat-sf",
+    "version": "2026.1",
+    "effective_from": "2023-06-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
+    "verification_status": "unverified",
+    "source_hash": "c6b45d8ccfa7df63a57b7ccf738c7179a7c44f6bd8232f539571b02bf2f39bdc"
+  }
 }

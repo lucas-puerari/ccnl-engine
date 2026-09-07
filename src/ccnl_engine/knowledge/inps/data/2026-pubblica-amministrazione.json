@@ -28,5 +28,15 @@
     "small_firm_employer_ivs_rate_months_0_11": "0.2420",
     "small_firm_employer_rate_months_12_23": "0.2420",
     "small_firm_employer_ivs_rate_months_12_23": "0.2420"
+  },
+  "ruleset": {
+    "id": "inps/2026/pubblica-amministrazione",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "1ecc25cdd609f36b201f55af073e131e6125c6be8c781c887fee10b1b03a06d0"
   }
 }

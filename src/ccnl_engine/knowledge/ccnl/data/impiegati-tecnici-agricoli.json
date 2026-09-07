@@ -317,5 +317,15 @@
       "category": "quadro"
     }
   ],
-  "apprenticeship": []
+  "apprenticeship": [],
+  "ruleset": {
+    "id": "ccnl/impiegati-tecnici-agricoli",
+    "version": "2026.1",
+    "effective_from": "2024-07-01",
+    "effective_until": "2027-12-31",
+    "published_at": "2026-09-07",
+    "source": "https://www.contratticcnl.it/ccnl/a021/",
+    "verification_status": "unverified",
+    "source_hash": "0c473b23b151ac0bcaeb785eab2e91d776ec81ef200d901fbab34bef9853e2f9"
+  }
 }

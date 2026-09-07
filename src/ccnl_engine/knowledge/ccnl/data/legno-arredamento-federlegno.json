@@ -1292,5 +1292,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/legno-arredamento-federlegno",
+    "version": "2026.1",
+    "effective_from": "2023-07-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf",
+    "verification_status": "unverified",
+    "source_hash": "8fa28a6527719f2fc4803cac0429b9452556e143eed2dc087293d8b7630b80b2"
+  }
 }

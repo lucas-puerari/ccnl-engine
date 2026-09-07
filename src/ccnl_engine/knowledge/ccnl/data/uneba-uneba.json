@@ -600,5 +600,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/uneba-uneba",
+    "version": "2026.1",
+    "effective_from": "2024-10-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
+    "verification_status": "unverified",
+    "source_hash": "3c7058111a40a0d7b237f99b0d036d017e607e452a85e8f1afea1cb1c82875d5"
+  }
 }

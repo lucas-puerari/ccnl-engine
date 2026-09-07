@@ -397,5 +397,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/edilizia-ance",
+    "version": "2026.1",
+    "effective_from": "2025-02-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.idealista.it/news/finanza/lavoro/2025/07/10/251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
+    "verification_status": "unverified",
+    "source_hash": "c11c707ca8f48c75b5b35eb2176d802caf0441d7d65e82a525aede71a9483dfd"
+  }
 }

@@ -5,13 +5,14 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.payroll.domain.calculation import Calculation, InputSnapshot
 from ccnl_engine.engine.payroll.domain.employee import (
     DestinationRalOverride,
     RalOverride,
 )
 from ccnl_engine.engine.payroll.domain.employment import Apprentice, FixedTerm
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
-from ccnl_engine.engine.payroll.domain.payslip import Payslip
+from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
 from ccnl_engine.engine.payroll.service import contributions as _contrib
 from ccnl_engine.engine.payroll.service import irpef as _irpef
 from ccnl_engine.engine.payroll.service.apprenticeship import _apprentice_chain
@@ -19,6 +20,8 @@ from ccnl_engine.engine.payroll.service.chain import _level_chain
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.seniority import _resolve_seniority_count
 from ccnl_engine.engine.payroll.service.types import AnnualisedPay, MonthlyPayChain
+from ccnl_engine.knowledge.version import __version__ as knowledge_version
+from ccnl_engine.version import __version__ as engine_version
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
@@ -400,7 +403,7 @@ def compute(
     employee: Employee,
     employer: Employer | None = None,
     surtax: SurtaxRules | None = None,
-) -> Payslip:
+) -> Calculation:
     """Compute gross-to-net salary and employer cost for a given employee.
 
     Args:
@@ -413,10 +416,13 @@ def compute(
             (loaded via :func:`~ccnl_engine.knowledge.load_surtax_rules`).
             When ``None``, both surtaxes are zero and the corresponding
             :class:`~ccnl_engine.engine.payroll.domain.fiscal.FiscalSimplification` tags
-            are set on the payslip.
+            are set on the payroll.
 
     Returns:
-        Payslip with all gross, net, and cost figures.
+        A :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
+        whose ``result`` is the :class:`PayrollResult` with all gross, net, and cost
+        figures, together with the engine version, the ruleset identities used
+        and a serialisable snapshot of the inputs for reproducibility.
 
     Raises:
         ValueError: If second_level_allowances is non-empty while a RAL
@@ -496,9 +502,10 @@ def compute(
         if apprenticeship_pct is not None
         else chain_full_time.scaled(effective_factor)
     )
-    agreement = employee.agreement
     ad_personam = money(
-        agreement.ad_personam_monthly if agreement is not None else _ZERO
+        employee.agreement.ad_personam_monthly
+        if employee.agreement is not None
+        else _ZERO
     )
     scaled_second_level, second_level_monthly_total = _scale_second_level(
         second_level_allowances, employee.arrangement.part_time_pct, apprenticeship_pct
@@ -596,7 +603,7 @@ def compute(
         gross_annual + inps_employer_annual + employer_funds_annual + tfr_annual
     )
 
-    return Payslip(
+    result = PayrollResult(
         ccnl_id=ccnl.meta.ccnl_id,
         level_code=employee.position.level_code,
         employment_type=employee.position.employment.type,
@@ -631,3 +638,50 @@ def compute(
         net_monthly=net_monthly,
         employer_cost_annual=employer_cost_annual,
     )
+
+    snapshot = InputSnapshot.capture(
+        employee=employee,
+        employer=employer,
+        ccnl_id=ccnl.meta.ccnl_id,
+        tax_sector=ccnl.meta.tax_sector,
+        year=rules.year,
+        uses_surtax=surtax is not None,
+    )
+
+    return Calculation(
+        engine_version=engine_version,
+        ruleset_version=_ruleset_versions(ccnl, rules, surtax),
+        input_snapshot=snapshot,
+        result=result,
+    )
+
+
+def _ruleset_versions(
+    ccnl: CCNL,
+    rules: YearRules,
+    surtax: SurtaxRules | None,
+) -> dict[str, str]:
+    """Resolve the ``{kind: id@version}`` identities of the used rulesets.
+
+    Rulesets without a recorded block fall back to the knowledge-base version.
+
+    Returns:
+        A mapping from ruleset kind to its ``id@version`` identity.
+    """
+    versions: dict[str, str] = {}
+    if ccnl.ruleset is not None:
+        versions["ccnl"] = str(ccnl.ruleset)
+    else:
+        versions["ccnl"] = f"{ccnl.meta.ccnl_id}@{knowledge_version}"
+    if rules.ruleset is not None:
+        versions["tax"] = str(rules.ruleset)
+    else:
+        versions["tax"] = f"tax/{rules.year}/{ccnl.meta.tax_sector}@{knowledge_version}"
+    if rules.inps_ruleset is not None:
+        versions["inps"] = str(rules.inps_ruleset)
+    if surtax is not None:
+        if surtax.ruleset is not None:
+            versions["surtax"] = str(surtax.ruleset)
+        else:
+            versions["surtax"] = f"surtax/{surtax.year}@{knowledge_version}"
+    return versions

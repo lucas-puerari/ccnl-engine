@@ -1,7 +1,10 @@
-"""Reading the Payslip: key output fields and their meaning.
+"""Reading the PayrollResult: key output fields and their meaning.
 
-compute() returns a frozen dataclass with every component of gross-to-net
-and employer cost. This example walks through the most commonly used fields.
+compute() returns a Calculation that bundles the PayrollResult (``calculation.result``)
+with the engine version, the ruleset revisions used and a snapshot of the
+inputs. Attribute reads are also forwarded onto the PayrollResult, so
+``calculation.net_annual`` works too. This example walks through the most
+commonly used fields.
 """
 
 from datetime import date
@@ -30,7 +33,8 @@ employee = Employee(
     arrangement=WorkArrangement(),
 )
 
-p = compute(ccnl, rules, employee)
+calculation = compute(ccnl, rules, employee)
+p = calculation.result
 
 # --- Pay components (monthly, already scaled by part_time_pct) ---
 print("=== Monthly pay breakdown ===")
@@ -70,3 +74,10 @@ as_dict = p.to_dict()  # all Decimal → str, date → ISO string, frozenset →
 as_json = p.to_json()  # compact JSON string
 restored = type(p).from_json(as_json)  # round-trip
 assert restored == p
+
+# --- Provenance ---
+# Every Calculation carries the engine version, the ruleset revisions used
+# and a full snapshot of the inputs, so results are reproducible.
+assert calculation.engine_version == "0.5.0"
+assert calculation.ruleset_version["ccnl"] == "ccnl/metalmeccanico-federmeccanica@2026.1"
+assert calculation.input_snapshot.employee["position"]["level_code"] == "C2"

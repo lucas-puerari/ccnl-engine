@@ -622,5 +622,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/legno-lapidei-artigianato-confartigianato",
+    "version": "2026.1",
+    "effective_from": "2024-03-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
+    "verification_status": "unverified",
+    "source_hash": "e770da9b78fa45f03e99df85dd28bc88815de90895d0161648885903ac39efa0"
+  }
 }

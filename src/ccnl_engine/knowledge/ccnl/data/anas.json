@@ -459,7 +459,15 @@
     {
       "type": "percentage",
       "name": "professionalizzante",
-      "destination_levels": ["C1", "C", "B2", "B1", "B", "A1", "A"],
+      "destination_levels": [
+        "C1",
+        "C",
+        "B2",
+        "B1",
+        "B",
+        "A1",
+        "A"
+      ],
       "reference_level": null,
       "periods": [
         {
@@ -479,5 +487,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/anas",
+    "version": "2026.1",
+    "effective_from": "2026-03-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+    "verification_status": "unverified",
+    "source_hash": "70a09405a2556c1a8daeb2b30236a5ff6088e75b835debe0cfc3122024f21fcf"
+  }
 }

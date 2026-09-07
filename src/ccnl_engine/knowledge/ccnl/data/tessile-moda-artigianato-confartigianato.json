@@ -540,5 +540,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/tessile-moda-artigianato-confartigianato",
+    "version": "2026.1",
+    "effective_from": "2024-07-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato",
+    "verification_status": "unverified",
+    "source_hash": "51e393ceb0b8ade0f2308d6c0af4a4e1d9e6013ee77253c039809a9b9e65dc3b"
+  }
 }

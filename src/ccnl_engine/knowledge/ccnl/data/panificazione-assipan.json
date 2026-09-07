@@ -534,5 +534,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/panificazione-assipan",
+    "version": "2026.1",
+    "effective_from": "2023-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
+    "verification_status": "unverified",
+    "source_hash": "a2f1ea6da5884b8e9eb888750ca19637cdac064785d9e657617c1cfdb331fa8c"
+  }
 }

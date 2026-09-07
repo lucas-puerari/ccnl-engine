@@ -728,5 +728,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/grafica-editoria-aieg",
+    "version": "2026.1",
+    "effective_from": "2024-03-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/",
+    "verification_status": "unverified",
+    "source_hash": "927d4fd98399ef3ec8f978d0fd4ab1484f8e383e5f43c9b41e7b1aac467cd52e"
+  }
 }

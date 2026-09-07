@@ -51,5 +51,15 @@
     "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
     "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026, Art. 1 L. 335/1995 c. 18). Applies only when ivs_ceiling_applies=True (workers enrolled in INPS on or after 1 Jan 1996).",
     "IVS ceiling and category rates: employer_ivs_rate (23.81%) is a single scalar uniform across all categories in this tier. When ivs_ceiling_applies=True and a category rate override is active (e.g. impiegati 24.71%), the engine assumes the IVS component equals the tier-level ivs_rate (23.81%) and treats the residual (0.90%) as non-IVS. This assumption is unverified for impiegati/quadri; see the KNOWN GAP note above."
-  ]
+  ],
+  "ruleset": {
+    "id": "tax/2026/artigianato",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "b7ad369aeaf6199b52c0fef1772f0fab760a5be5d0446fd9e93ad953d14bc77b"
+  }
 }

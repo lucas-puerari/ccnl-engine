@@ -1855,5 +1855,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/energia-petrolio-confindustria",
+    "version": "2026.1",
+    "effective_from": "2025-07-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
+    "verification_status": "unverified",
+    "source_hash": "6745f16c3e14c8ef3570093628220b087876a8b088a12425bc70ddbb04147db6"
+  }
 }

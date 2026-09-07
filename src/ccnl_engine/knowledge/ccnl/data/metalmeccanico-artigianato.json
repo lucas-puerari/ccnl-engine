@@ -715,5 +715,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/metalmeccanico-artigianato",
+    "version": "2026.1",
+    "effective_from": "2022-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
+    "verification_status": "unverified",
+    "source_hash": "184f52ed296cfd0b74efacc79d5941b079a5cdfdd1d1167609e202ea05a4f258"
+  }
 }

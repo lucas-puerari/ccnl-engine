@@ -608,5 +608,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/lavanderie-industriali-assosistema",
+    "version": "2026.1",
+    "effective_from": "2026-05-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.assosistema.it/11527-2/",
+    "verification_status": "unverified",
+    "source_hash": "98d6d4facd28a44adf9604d9ab4cbecddb42769d544cb2872d64dfdd770b621c"
+  }
 }

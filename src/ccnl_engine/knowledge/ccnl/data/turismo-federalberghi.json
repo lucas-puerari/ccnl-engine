@@ -654,5 +654,15 @@
         "text": "Layer 3 (overtime, night work, public holidays) out of scope."
       }
     ]
+  },
+  "ruleset": {
+    "id": "ccnl/turismo-federalberghi",
+    "version": "2026.1",
+    "effective_from": "2024-07-05",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+    "verification_status": "unverified",
+    "source_hash": "82d3ed545d82f86beb8c2e7c1f89d1de7ff1b8a1a890ca16eef8affefa3e824d"
   }
 }

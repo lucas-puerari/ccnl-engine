@@ -55,5 +55,15 @@
     "fixed_term_additional_rate: NASpI addizionale 1.4% per Art. 2 co. 28 L. 92/2012.",
     "Apprentice rates: same statutory structure as other sectors per L. 296/2006 and L. 92/2012. Agricultural apprenticeship is governed by Allegato n. 10 CCNL (agreement 23/02/2017).",
     "IVS ceiling: EUR 122,295 (INPS Circ. 6/2026)."
-  ]
+  ],
+  "ruleset": {
+    "id": "tax/2026/agricoltura",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "72d2fc8636198594fb010dd0bbaa851359e5ffc3cb16dd628e923323d2344ace"
+  }
 }

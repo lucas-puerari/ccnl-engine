@@ -637,5 +637,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/farmacie-private-h121",
+    "version": "2026.1",
+    "effective_from": "2021-11-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+    "verification_status": "unverified",
+    "source_hash": "3b61c3df246ea9282f4b04a6579b5f4cc92f1ea4150e85aac3d6401292c37ed5"
+  }
 }

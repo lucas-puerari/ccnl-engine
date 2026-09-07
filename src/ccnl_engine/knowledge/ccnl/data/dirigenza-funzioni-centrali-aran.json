@@ -155,5 +155,15 @@
         "text": "Un unico livello per fascia; in realtà i dirigenti generali di prima fascia possono avere retribuzioni di posizione molto diverse per ente."
       }
     ]
+  },
+  "ruleset": {
+    "id": "ccnl/dirigenza-funzioni-centrali-aran",
+    "version": "2026.1",
+    "effective_from": "2022-01-01",
+    "effective_until": "2024-12-31",
+    "published_at": "2026-09-07",
+    "source": "https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf",
+    "verification_status": "unverified",
+    "source_hash": "2b5b8b73a116e240fed5e93e46cb33e6301a7f760e954b542bff5d9171d33f08"
   }
 }

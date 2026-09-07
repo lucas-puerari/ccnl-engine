@@ -485,5 +485,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/vigilanza-privata-assiv",
+    "version": "2026.1",
+    "effective_from": "2023-06-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139",
+    "verification_status": "unverified",
+    "source_hash": "804398f5f8f3fbff27834b853ce6217a5c96967bed6299539bff3e4dad42be1e"
+  }
 }

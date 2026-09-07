@@ -632,6 +632,8 @@ function doCompute(pyodide) {
     `<span class="meta-chip"><span>${EMP_LABELS[r.employment_type] || r.employment_type}${ptLabel}</span></span>`,
     `<span class="meta-chip">Year <span>${r.year}</span></span>`,
     `<span class="meta-chip">As of <span>${r.as_of}</span></span>`,
+    `<span class="meta-chip">Engine <span>v${r.engine_version}</span></span>`,
+    `<span class="meta-chip">Ruleset <span>${r.ruleset_version.ccnl} · ${r.ruleset_version.tax}</span></span>`,
   ].join("");
 
   // ---- Breakdown -----------------------------------------------------------

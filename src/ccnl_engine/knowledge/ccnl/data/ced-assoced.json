@@ -478,5 +478,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/ced-assoced",
+    "version": "2026.1",
+    "effective_from": "2025-09-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+    "verification_status": "unverified",
+    "source_hash": "14a82efa167020422065e5dbdb9b6f7f19fddcd77ea3ac1c963ca85d941007e6"
+  }
 }

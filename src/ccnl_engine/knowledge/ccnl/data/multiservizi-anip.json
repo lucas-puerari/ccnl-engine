@@ -1487,5 +1487,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/multiservizi-anip",
+    "version": "2026.1",
+    "effective_from": "2021-07-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf",
+    "verification_status": "unverified",
+    "source_hash": "1cf1d79b06f4f63c067cecbe290eb388617991b9196bc4ddd60559eff4b51be1"
+  }
 }

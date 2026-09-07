@@ -538,5 +538,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/consorzi-agrari-assocap",
+    "version": "2026.1",
+    "effective_from": "2025-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.wolterskluwer.it/",
+    "verification_status": "unverified",
+    "source_hash": "80b82d7b852a797e8f4a067eeafbe8cdbd232d92a235a293e6800a540eb1318d"
+  }
 }

@@ -775,7 +775,14 @@
       "type": "percentage",
       "name": "professionalizzante",
       "destination_levels": [
-        "F", "E", "D", "C", "CS", "B", "A", "AS"
+        "F",
+        "E",
+        "D",
+        "C",
+        "CS",
+        "B",
+        "A",
+        "AS"
       ],
       "periods": [
         {
@@ -785,5 +792,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/lapidei-industria",
+    "version": "2026.1",
+    "effective_from": "2022-12-31",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria",
+    "verification_status": "verified",
+    "source_hash": "1fcd0286ec3327f7aab59abacabc3c46dd85487b509fb2107076a902173a4df4"
+  }
 }

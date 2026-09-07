@@ -10,7 +10,7 @@ bundle the loaders read). See [Knowledge base](knowledge.md).
 
 | Page | Contents |
 |---|---|
-| [Engine](engine.md) | `compute()`, `Employee`, `ContractPosition`, `WorkArrangement`, `TaxProfile`, `Employer`, `Payslip` |
+| [Engine](engine.md) | `compute()`, `Calculation`, `InputSnapshot`, `Employee`, `ContractPosition`, `WorkArrangement`, `TaxProfile`, `Employer`, `PayrollResult` |
 | [Loaders](loaders.md) | `load_ccnl()`, `load_year_rules()`, `load_surtax_rules()`, `YearRules`, `InpsRates` |
 | [Models](models.md) | `CCNL`, `Level`, `Allowance`, employment types, fiscal enums |
 | [Knowledge](knowledge.md) | data layout, `__version__` |
@@ -34,7 +34,11 @@ from ccnl_engine import (
     # Salary overrides
     SalaryOverrides, RalOverride, RalOverrideMode, DestinationRalOverride,
     # Output
-    Payslip, FiscalSimplification,
+    PayrollResult, FiscalSimplification,
+    # Calculation
+    Calculation, InputSnapshot,
+    # Provenance
+    RulesetIdentity, VerificationStatus, engine_version,
     # Contract domain
     CCNL, CCNLMeta, CCNLParameters, Level, TaxSector, TimeSeries,
     # Tax domain

@@ -50,5 +50,15 @@
     "INPS employee — employee_tiers: 9.19% (IVS + NASpI) up to 15 employees; 9.49% above 15 (0.30% CIGS employee share, D.Lgs. 148/2015 art. 23).",
     "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
     "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026, Art. 1 L. 335/1995 c. 18). Applies only when ivs_ceiling_applies=True (workers enrolled in INPS on or after 1 Jan 1996)."
-  ]
+  ],
+  "ruleset": {
+    "id": "tax/2026/edilizia",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "f196751f049d7f1d8f914826f293888b7b58950444c5c4cd679033ff0c89209d"
+  }
 }

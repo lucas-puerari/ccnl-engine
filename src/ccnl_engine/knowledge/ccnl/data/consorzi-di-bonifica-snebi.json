@@ -1330,5 +1330,15 @@
       },
       "fixed_allowances": []
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/consorzi-di-bonifica-snebi",
+    "version": "2026.1",
+    "effective_from": "2025-07-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
+    "verification_status": "unverified",
+    "source_hash": "5bf9361fd804a687caa8c1e656d07edc609730d297d26a725445e2ef8a21b1ba"
+  }
 }

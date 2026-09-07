@@ -197,7 +197,16 @@
       "type": "percentage",
       "name": "professionalizzante",
       "destination_levels": [
-        "A", "B", "C", "D1", "D2", "D3", "E1", "E2", "E3", "F"
+        "A",
+        "B",
+        "C",
+        "D1",
+        "D2",
+        "D3",
+        "E1",
+        "E2",
+        "E3",
+        "F"
       ],
       "periods": [
         {
@@ -449,5 +458,15 @@
       },
       "fixed_allowances": []
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/rsa-aiop",
+    "version": "2026.1",
+    "effective_from": "2012-04-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+    "verification_status": "unverified",
+    "source_hash": "9d9c64e33ff0b8c4e24e643efb7105ce19f5e2f190f5e5a799e851451f47638a"
+  }
 }

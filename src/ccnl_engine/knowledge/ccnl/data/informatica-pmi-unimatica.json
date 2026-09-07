@@ -552,5 +552,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/informatica-pmi-unimatica",
+    "version": "2026.1",
+    "effective_from": "2025-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
+    "verification_status": "unverified",
+    "source_hash": "cf5b4d7b36d133a10a9f77f1a88071eb8c368c8a35a80983f10d5adcbe8cf1fb"
+  }
 }

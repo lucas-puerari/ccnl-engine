@@ -7,6 +7,7 @@ import json
 from typing import TYPE_CHECKING, Any, Protocol
 
 from ccnl_engine.engine.io.bundled import read_bundled
+from ccnl_engine.engine.metadata import RulesetIdentity, source_hash
 from ccnl_engine.engine.tax.domain.rules import (
     ApprenticeRates,
     ApprenticeRawRates,
@@ -59,10 +60,9 @@ def load_year_rules(
         headcount. The ``inps`` field is ``None`` for domestic-work sectors,
         which use ``domestic_contributions`` instead.
     """
-    raw = {
-        **read_tax_rules_raw(year, sector),
-        **read_inps_rules_raw(year, sector),
-    }
+    tax_raw = read_tax_rules_raw(year, sector)
+    inps_raw = read_inps_rules_raw(year, sector)
+    raw = {**tax_raw, **inps_raw}
     rules = YearRulesRaw.model_validate(raw)
     inps = _resolve_inps(rules.inps, num_employees)
     apprentice = (
@@ -72,6 +72,8 @@ def load_year_rules(
     )
     return YearRules(
         year=rules.year,
+        ruleset=_as_ruleset(tax_raw),
+        inps_ruleset=_as_ruleset(inps_raw),
         irpef_brackets=rules.irpef_brackets,
         work_deduction_breakpoints=rules.work_deduction_breakpoints,
         fixed_term_additional_rate=rules.fixed_term_additional_rate,
@@ -86,7 +88,44 @@ def load_year_rules(
 
 def _read_json(pkg: Traversable, filename: str) -> dict[str, Any]:
     data: dict[str, Any] = json.loads(read_bundled(pkg, filename))
+    _verify_ruleset_hash(data, filename)
     return data
+
+
+def _as_ruleset(raw: dict[str, Any]) -> RulesetIdentity | None:
+    """Parse a raw dict's ``ruleset`` block into a :class:`RulesetIdentity`.
+
+    Returns:
+        The parsed identity, or ``None`` when the dict carries no ``ruleset``.
+    """
+    block = raw.get("ruleset")
+    if not isinstance(block, dict):
+        return None
+    return RulesetIdentity.model_validate(block)
+
+
+def _verify_ruleset_hash(payload: dict[str, Any], filename: str) -> None:
+    """Verify a recorded ``ruleset.source_hash`` against the payload.
+
+    The check is skipped when the file carries no ``ruleset`` block or no
+    ``source_hash``; a stale hash means the data file was hand-modified after
+    the provenance backfill.
+
+    Raises:
+        ValueError: If the recomputed hash differs from the recorded one.
+    """
+    ruleset = payload.get("ruleset")
+    if not isinstance(ruleset, dict):
+        return
+    recorded = ruleset.get("source_hash")
+    if not isinstance(recorded, str):
+        return
+    if source_hash(payload) != recorded:
+        msg = (
+            f"ruleset source_hash mismatch in {filename}; data file has been "
+            "modified without updating its ruleset block."
+        )
+        raise ValueError(msg)
 
 
 def read_tax_rules_raw(year: int, sector: TaxSector) -> dict[str, Any]:

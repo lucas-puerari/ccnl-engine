@@ -707,7 +707,16 @@
       "type": "percentage",
       "name": "professionalizzante",
       "destination_levels": [
-        "1", "2", "3", "3S", "4", "4S", "5", "5S", "6", "Q"
+        "1",
+        "2",
+        "3",
+        "3S",
+        "4",
+        "4S",
+        "5",
+        "5S",
+        "6",
+        "Q"
       ],
       "periods": [
         {
@@ -717,5 +726,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/occhiali-occhialeria-industria",
+    "version": "2026.1",
+    "effective_from": "2023-05-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive",
+    "verification_status": "verified",
+    "source_hash": "4b9d33efe0655eddf147bcf6090b837bde455613cdddfdc5568211baa64f1160"
+  }
 }

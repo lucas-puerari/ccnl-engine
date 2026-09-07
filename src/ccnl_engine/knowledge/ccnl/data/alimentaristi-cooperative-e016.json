@@ -832,7 +832,14 @@
       "type": "percentage",
       "name": "professionalizzante",
       "destination_levels": [
-        "6", "5", "4", "3", "3A", "2", "1", "1A"
+        "6",
+        "5",
+        "4",
+        "3",
+        "3A",
+        "2",
+        "1",
+        "1A"
       ],
       "periods": [
         {
@@ -842,5 +849,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/alimentaristi-cooperative-e016",
+    "version": "2026.1",
+    "effective_from": "2023-12-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
+    "verification_status": "unverified",
+    "source_hash": "739ea267d294035d945f9885d1142ba6208c5a5bff201f41bef5a3624f7853ff"
+  }
 }

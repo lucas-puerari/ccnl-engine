@@ -1,7 +1,7 @@
 """Integration tests: full pipeline output must match pre-recorded cases exactly.
 
 Each case wires the bundle loaders (CCNL, tax/INPS, surtax) into ``compute()``
-and compares every ``Payslip`` field against the stored expected values.
+and compares every ``PayrollResult`` field against the stored expected values.
 """
 
 from __future__ import annotations
@@ -129,7 +129,7 @@ class TestIntegrationCases:
             surtax=surtax,
         )
 
-        # Compare each field in expected against the live Payslip
+        # Compare each field in expected against the live PayrollResult
         for field, raw_value in expected.items():
             actual = getattr(result, field)
             if raw_value is None:

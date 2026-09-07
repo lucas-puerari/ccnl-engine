@@ -479,5 +479,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/bancari-abi",
+    "version": "2026.1",
+    "effective_from": "2023-11-23",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
+    "verification_status": "unverified",
+    "source_hash": "33dbc242c4d608a5d872046b18278b06921bf22fea0b4e01b2f2de7e5ecf4108"
+  }
 }

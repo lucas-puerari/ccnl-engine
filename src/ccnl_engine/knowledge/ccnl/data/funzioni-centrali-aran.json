@@ -188,5 +188,15 @@
         "text": "sub-settori ENAC, ANSFISA, ANSV e AGID hanno tabelle retributive proprie (Tabelle 3-6 CCNL) non modellate — out_of_scope per implementazione standard."
       }
     ]
+  },
+  "ruleset": {
+    "id": "ccnl/funzioni-centrali-aran",
+    "version": "2026.1",
+    "effective_from": "2022-05-09",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+    "verification_status": "unverified",
+    "source_hash": "f092951a00452d0985927bd932be365803cf58906d353ca037bc8f67bcf72601"
   }
 }

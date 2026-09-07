@@ -264,5 +264,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/operai-agricoli-florovivaisti",
+    "version": "2026.1",
+    "effective_from": "2026-06-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
+    "verification_status": "unverified",
+    "source_hash": "d31d5ea06089faf025e2a0ee9739a048aa7d245ec69999ee3df2ca428025730d"
+  }
 }
