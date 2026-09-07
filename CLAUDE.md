@@ -60,8 +60,8 @@ The package is split in two namespaces:
   INPS and surtax JSON under `data/`, plus `__version__`.
   Loaders read it via `importlib.resources`; it carries no logic.
 
-`ccnl_engine.validation/` hosts model-validation helpers. JSON changes in
-`knowledge/*/data/` are code-level changes: they alter engine behaviour.
+JSON changes in `knowledge/*/data/` are code-level changes: they alter engine
+behaviour. End-to-end scenarios live in `tests/integration/cases/`.
 
 ---
 

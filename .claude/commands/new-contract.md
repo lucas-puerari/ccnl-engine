@@ -235,7 +235,7 @@ Fix all Pydantic errors before continuing. Do not proceed with broken JSON.
 
 ---
 
-## Step 6 — Compute the golden case with the engine
+## Step 6 — Compute the integration case with the engine
 
 **Never compute expected values by hand.** Run the engine and capture the output:
 
@@ -265,7 +265,7 @@ result = compute(ccnl, rules, employee)
 Choose: mid-range level, no seniority, permanent, 50 employees,
 date on the second tranche.
 
-Save to `tests/golden/cases/{id}_{level}_{year}.json`.
+Save to `tests/integration/cases/{id}_{level}_{year}.json`.
 
 ---
 

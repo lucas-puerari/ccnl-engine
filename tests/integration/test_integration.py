@@ -1,4 +1,8 @@
-"""Golden tests: compute() output must match pre-recorded expected values exactly."""
+"""Integration tests: full pipeline output must match pre-recorded cases exactly.
+
+Each case wires the bundle loaders (CCNL, tax/INPS, surtax) into ``compute()``
+and compares every ``Payslip`` field against the stored expected values.
+"""
 
 from __future__ import annotations
 
@@ -38,7 +42,7 @@ _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
 
 
 def _build_employment(inputs: dict[str, Any]) -> Permanent | FixedTerm | Apprentice:
-    """Construct an Employment model from the golden case inputs dict.
+    """Construct an Employment model from the integration case inputs dict.
 
     Returns:
         A Permanent, FixedTerm, or Apprentice instance based on employment_type.
@@ -52,12 +56,12 @@ def _build_employment(inputs: dict[str, Any]) -> Permanent | FixedTerm | Apprent
     return Apprentice(months_elapsed=months)
 
 
-class TestGolden:
-    """Each golden JSON must match compute() output field-by-field."""
+class TestIntegrationCases:
+    """Each case JSON must match compute() output field-by-field."""
 
     @pytest.mark.parametrize("case_file", _CASE_FILES, ids=lambda p: p.stem)
-    def test_golden(self, case_file: Path) -> None:
-        """Run compute() and compare every field against the golden JSON."""
+    def test_case_matches(self, case_file: Path) -> None:
+        """Run compute() and compare every field against the stored case JSON."""
         case = json.loads(case_file.read_text(encoding="utf-8"))
         inputs = case["inputs"]
         expected = case["expected"]
