@@ -5,4 +5,4 @@ Independent of the library version in ``pyproject.toml``.
 """
 
 #: Knowledge base version.
-__version__ = "2026.1"
+__version__ = "2026.2"

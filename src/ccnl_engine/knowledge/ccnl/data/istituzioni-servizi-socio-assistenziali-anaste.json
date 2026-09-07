@@ -1,498 +1,1127 @@
 {
-  "schema_version": "0.4",
-  "meta": {
-    "ccnl_id": "istituzioni-servizi-socio-assistenziali-anaste",
-    "name": "CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE)",
-    "cnel_code": "T131",
-    "sector": "servizi socio-assistenziali",
-    "tax_sector": "terziario",
-    "signatories": [
-      "ANASTE",
-      "FISASCAT-CISL",
-      "UILTuCS-UIL",
-      "UGL Terziario"
-    ],
-    "sources": [
-      {
-        "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
-        "type": "pdf",
-        "agreement_date": "2025-07-23"
-      }
-    ],
-    "extraction": {
-      "method": "ai_assisted",
-      "model": null,
-      "timestamp": "2026-09-06T00:00:00",
-      "human_reviewed": true
-    }
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
-    "notes": [
-      {
-        "kind": "info",
-        "text": "RENEWAL: CCNL signed 2025-07-23, triennio 2023-2025. Economic effects from 2025-08-01. Una tantum non modelled (non-recurring)."
-      },
-      {
-        "kind": "info",
-        "text": "CONGLOBATED (Art. 69): minimo contrattuale conglobato includes base wage, contingenza and EDR. No separate contingenza or EDR column."
-      },
-      {
-        "kind": "info",
-        "text": "HOURLY DIVISOR (Art. 72): 164 h/month for 38h/week. Verified: 1696.37/10.34=164.06 (lvl 6), 1893.48/11.55=163.94 (lvl 9), 2130.15/12.99=163.98 (lvl Q)."
-      },
-      {
-        "kind": "info",
-        "text": "ADDITIONAL MONTHS (Art. 74): tredicesima only (paid December). Art. 75 states the quattordicesima equivalent is already embedded in the monthly conglobated minimum."
-      },
-      {
-        "kind": "info",
-        "text": "SENIORITY (Art. 73): scatti triennali, max 10 scatti. Per-level amounts confirmed from Art. 73 table."
-      },
-      {
-        "kind": "info",
-        "text": "LEVEL Q ALLOWANCE (Art. 70): indennita di funzione 77.47 EUR/month paid 13 months/year."
-      },
-      {
-        "kind": "simplification",
-        "text": "LEVEL 1 PRE-2025: level 1 introduced ex-novo in 2025 renewal. Pre-2025 salary set equal to 2025-08-01 value (1295.43 EUR) — no historical data available."
-      },
-      {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP (Art. 22): modelled on levels 6-10 parameters (32 months, 90% mesi 1-28, 95% mesi 29+). Levels 1-5 have different duration (12 months, 95% from month 7) — not modelled separately."
-      },
-      {
-        "kind": "simplification",
-        "text": "NURSES ALLOWANCE: indennita professionale infermieri 155 EUR/month (12 months) not included — qualifica-specific, not level-specific."
-      }
-    ]
-  },
-  "parameters": {
-    "hourly_divisor": {
-      "periods": [
-        {
-          "valid_from": "2023-01-01",
-          "valid_until": null,
-          "value": "164"
+    "schema_version": "0.5",
+    "meta": {
+        "ccnl_id": "istituzioni-servizi-socio-assistenziali-anaste",
+        "name": "CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE)",
+        "cnel_code": "T131",
+        "sector": "servizi socio-assistenziali",
+        "tax_sector": "terziario",
+        "signatories": [
+            "ANASTE",
+            "FISASCAT-CISL",
+            "UILTuCS-UIL",
+            "UGL Terziario"
+        ],
+        "sources": [
+            {
+                "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                "type": "pdf",
+                "agreement_date": "2025-07-23"
+            }
+        ],
+        "extraction": {
+            "method": "ai_assisted",
+            "model": null,
+            "timestamp": "2026-09-06T00:00:00",
+            "human_reviewed": true
         }
-      ]
     },
-    "additional_months": {
-      "periods": [
-        {
-          "valid_from": "2023-01-01",
-          "valid_until": null,
-          "value": "13"
-        }
-      ]
-    },
-    "seniority_increments": {
-      "cadence_months": 36,
-      "maximum_count": 10,
-      "amount_by_level": {
-        "Q": {
-          "periods": [
+    "coverage": {
+        "layer_1": "implemented",
+        "layer_2": "implemented",
+        "notes": [
             {
-              "valid_from": "2023-01-01",
-              "valid_until": null,
-              "value": "35.12"
-            }
-          ]
-        },
-        "10": {
-          "periods": [
+                "kind": "info",
+                "text": "RENEWAL: CCNL signed 2025-07-23, triennio 2023-2025. Economic effects from 2025-08-01. Una tantum non modelled (non-recurring)."
+            },
             {
-              "valid_from": "2023-01-01",
-              "valid_until": null,
-              "value": "33.57"
-            }
-          ]
-        },
-        "9": {
-          "periods": [
+                "kind": "info",
+                "text": "CONGLOBATED (Art. 69): minimo contrattuale conglobato includes base wage, contingenza and EDR. No separate contingenza or EDR column."
+            },
             {
-              "valid_from": "2023-01-01",
-              "valid_until": null,
-              "value": "30.99"
-            }
-          ]
-        },
-        "8": {
-          "periods": [
+                "kind": "info",
+                "text": "HOURLY DIVISOR (Art. 72): 164 h/month for 38h/week. Verified: 1696.37/10.34=164.06 (lvl 6), 1893.48/11.55=163.94 (lvl 9), 2130.15/12.99=163.98 (lvl Q)."
+            },
             {
-              "valid_from": "2023-01-01",
-              "valid_until": null,
-              "value": "30.47"
-            }
-          ]
-        },
-        "7": {
-          "periods": [
+                "kind": "info",
+                "text": "ADDITIONAL MONTHS (Art. 74): tredicesima only (paid December). Art. 75 states the quattordicesima equivalent is already embedded in the monthly conglobated minimum."
+            },
             {
-              "valid_from": "2023-01-01",
-              "valid_until": null,
-              "value": "29.95"
-            }
-          ]
-        },
-        "6": {
-          "periods": [
+                "kind": "info",
+                "text": "SENIORITY (Art. 73): scatti triennali, max 10 scatti. Per-level amounts confirmed from Art. 73 table."
+            },
             {
-              "valid_from": "2023-01-01",
-              "valid_until": null,
-              "value": "28.92"
-            }
-          ]
-        },
-        "5": {
-          "periods": [
+                "kind": "info",
+                "text": "LEVEL Q ALLOWANCE (Art. 70): indennita di funzione 77.47 EUR/month paid 13 months/year."
+            },
             {
-              "valid_from": "2023-01-01",
-              "valid_until": null,
-              "value": "28.41"
-            }
-          ]
-        },
-        "4": {
-          "periods": [
+                "kind": "simplification",
+                "text": "LEVEL 1 PRE-2025: level 1 introduced ex-novo in 2025 renewal. Pre-2025 salary set equal to 2025-08-01 value (1295.43 EUR) — no historical data available."
+            },
             {
-              "valid_from": "2023-01-01",
-              "valid_until": null,
-              "value": "27.89"
-            }
-          ]
-        },
-        "3S": {
-          "periods": [
+                "kind": "simplification",
+                "text": "APPRENTICESHIP (Art. 22): modelled on levels 6-10 parameters (32 months, 90% mesi 1-28, 95% mesi 29+). Levels 1-5 have different duration (12 months, 95% from month 7) — not modelled separately."
+            },
             {
-              "valid_from": "2023-01-01",
-              "valid_until": null,
-              "value": "27.63"
+                "kind": "simplification",
+                "text": "NURSES ALLOWANCE: indennita professionale infermieri 155 EUR/month (12 months) not included — qualifica-specific, not level-specific."
             }
-          ]
-        },
-        "3": {
-          "periods": [
-            {
-              "valid_from": "2023-01-01",
-              "valid_until": null,
-              "value": "27.37"
-            }
-          ]
-        },
-        "2": {
-          "periods": [
-            {
-              "valid_from": "2023-01-01",
-              "valid_until": null,
-              "value": "26.86"
-            }
-          ]
-        },
-        "1": {
-          "periods": [
-            {
-              "valid_from": "2023-01-01",
-              "valid_until": null,
-              "value": "25.31"
-            }
-          ]
-        }
-      }
-    }
-  },
-  "levels": [
-    {
-      "code": "Q",
-      "order": 12,
-      "description": "Quadro (dirigente di struttura o coordinatore senior)",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-01-01",
-            "valid_until": "2025-08-01",
-            "value": "2014.24"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": null,
-            "value": "2130.15"
-          }
         ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "INDENNITA_FUNZIONE",
-          "description": "Indennita di funzione Quadri (Art. 70)",
-          "monthly": {
+    },
+    "parameters": {
+        "hourly_divisor": {
             "periods": [
-              {
-                "valid_from": "2023-01-01",
-                "valid_until": null,
-                "value": "77.47"
-              }
+                {
+                    "valid_from": "2023-01-01",
+                    "valid_until": null,
+                    "value": "164"
+                }
             ]
-          }
+        },
+        "additional_months": {
+            "periods": [
+                {
+                    "valid_from": "2023-01-01",
+                    "valid_until": null,
+                    "value": "13"
+                }
+            ]
+        },
+        "seniority_increments": {
+            "cadence_months": 36,
+            "maximum_count": 10,
+            "amount_by_level": {
+                "Q": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-01-01",
+                            "valid_until": null,
+                            "value": "35.12"
+                        }
+                    ]
+                },
+                "10": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-01-01",
+                            "valid_until": null,
+                            "value": "33.57"
+                        }
+                    ]
+                },
+                "9": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-01-01",
+                            "valid_until": null,
+                            "value": "30.99"
+                        }
+                    ]
+                },
+                "8": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-01-01",
+                            "valid_until": null,
+                            "value": "30.47"
+                        }
+                    ]
+                },
+                "7": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-01-01",
+                            "valid_until": null,
+                            "value": "29.95"
+                        }
+                    ]
+                },
+                "6": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-01-01",
+                            "valid_until": null,
+                            "value": "28.92"
+                        }
+                    ]
+                },
+                "5": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-01-01",
+                            "valid_until": null,
+                            "value": "28.41"
+                        }
+                    ]
+                },
+                "4": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-01-01",
+                            "valid_until": null,
+                            "value": "27.89"
+                        }
+                    ]
+                },
+                "3S": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-01-01",
+                            "valid_until": null,
+                            "value": "27.63"
+                        }
+                    ]
+                },
+                "3": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-01-01",
+                            "valid_until": null,
+                            "value": "27.37"
+                        }
+                    ]
+                },
+                "2": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-01-01",
+                            "valid_until": null,
+                            "value": "26.86"
+                        }
+                    ]
+                },
+                "1": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-01-01",
+                            "valid_until": null,
+                            "value": "25.31"
+                        }
+                    ]
+                }
+            },
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "pdf6-pdf",
+                        "title": "pdf6-pdf",
+                        "kind": "altro",
+                        "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                    },
+                    "section": "Scatti di anzianità"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
         }
-      ]
     },
-    {
-      "code": "10",
-      "order": 11,
-      "description": "Livello 10 — Responsabile di area/servizio",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-01-01",
-            "valid_until": "2025-08-01",
-            "value": "1864.82"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": null,
-            "value": "1972.13"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "9",
-      "order": 10,
-      "description": "Livello 9 — Coordinatore/Professionista senior",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-01-01",
-            "valid_until": "2025-08-01",
-            "value": "1790.45"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": null,
-            "value": "1893.48"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "8",
-      "order": 9,
-      "description": "Livello 8 — Operatore specializzato senior",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-01-01",
-            "valid_until": "2025-08-01",
-            "value": "1673.30"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": null,
-            "value": "1769.59"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "7",
-      "order": 8,
-      "description": "Livello 7 — Operatore specializzato",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-01-01",
-            "valid_until": "2025-08-01",
-            "value": "1657.55"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": null,
-            "value": "1752.93"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "6",
-      "order": 7,
-      "description": "Livello 6 — Operatore qualificato senior",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-01-01",
-            "valid_until": "2025-08-01",
-            "value": "1604.06"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": null,
-            "value": "1696.37"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "5",
-      "order": 6,
-      "description": "Livello 5 — Operatore qualificato",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-01-01",
-            "valid_until": "2025-08-01",
-            "value": "1547.98"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": null,
-            "value": "1637.06"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "4",
-      "order": 5,
-      "description": "Livello 4 — Operatore",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-01-01",
-            "valid_until": "2025-08-01",
-            "value": "1477.10"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": null,
-            "value": "1562.10"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "3S",
-      "order": 4,
-      "description": "Livello 3 Super — Operatore ausiliario specializzato",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-01-01",
-            "valid_until": "2025-08-01",
-            "value": "1442.05"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": null,
-            "value": "1525.03"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "3",
-      "order": 3,
-      "description": "Livello 3 — Operatore ausiliario",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-01-01",
-            "valid_until": "2025-08-01",
-            "value": "1406.99"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": null,
-            "value": "1487.96"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "2",
-      "order": 2,
-      "description": "Livello 2 — Addetto generico",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-01-01",
-            "valid_until": "2025-08-01",
-            "value": "1314.48"
-          },
-          {
-            "valid_from": "2025-08-01",
-            "valid_until": null,
-            "value": "1390.12"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "1",
-      "order": 1,
-      "description": "Livello 1 — Addetto base (introdotto nel rinnovo 2025)",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-01-01",
-            "valid_until": null,
-            "value": "1295.43"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    }
-  ],
-  "apprenticeship": [
-    {
-      "type": "percentage",
-      "name": "professionalizzante_32",
-      "destination_levels": [
-        "Q",
-        "10",
-        "9",
-        "8",
-        "7",
-        "6",
-        "5",
-        "4",
-        "3S",
-        "3",
-        "2",
-        "1"
-      ],
-      "periods": [
+    "levels": [
         {
-          "months_from": 0,
-          "months_until": 28,
-          "percentage": "0.90"
+            "code": "Q",
+            "order": 12,
+            "description": "Quadro (dirigente di struttura o coordinatore senior)",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-01-01",
+                        "valid_until": "2025-08-01",
+                        "value": "2014.24",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-08-01",
+                        "valid_until": null,
+                        "value": "2130.15",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "INDENNITA_FUNZIONE",
+                    "description": "Indennita di funzione Quadri (Art. 70)",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-01-01",
+                                "valid_until": null,
+                                "value": "77.47"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "pdf6-pdf",
+                                "title": "pdf6-pdf",
+                                "kind": "altro",
+                                "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "pdf6-pdf",
+                        "title": "pdf6-pdf",
+                        "kind": "altro",
+                        "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
         },
         {
-          "months_from": 28,
-          "months_until": null,
-          "percentage": "0.95"
+            "code": "10",
+            "order": 11,
+            "description": "Livello 10 — Responsabile di area/servizio",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-01-01",
+                        "valid_until": "2025-08-01",
+                        "value": "1864.82",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-08-01",
+                        "valid_until": null,
+                        "value": "1972.13",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "pdf6-pdf",
+                        "title": "pdf6-pdf",
+                        "kind": "altro",
+                        "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "9",
+            "order": 10,
+            "description": "Livello 9 — Coordinatore/Professionista senior",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-01-01",
+                        "valid_until": "2025-08-01",
+                        "value": "1790.45",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-08-01",
+                        "valid_until": null,
+                        "value": "1893.48",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "pdf6-pdf",
+                        "title": "pdf6-pdf",
+                        "kind": "altro",
+                        "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "8",
+            "order": 9,
+            "description": "Livello 8 — Operatore specializzato senior",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-01-01",
+                        "valid_until": "2025-08-01",
+                        "value": "1673.30",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-08-01",
+                        "valid_until": null,
+                        "value": "1769.59",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "pdf6-pdf",
+                        "title": "pdf6-pdf",
+                        "kind": "altro",
+                        "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "7",
+            "order": 8,
+            "description": "Livello 7 — Operatore specializzato",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-01-01",
+                        "valid_until": "2025-08-01",
+                        "value": "1657.55",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-08-01",
+                        "valid_until": null,
+                        "value": "1752.93",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "pdf6-pdf",
+                        "title": "pdf6-pdf",
+                        "kind": "altro",
+                        "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "6",
+            "order": 7,
+            "description": "Livello 6 — Operatore qualificato senior",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-01-01",
+                        "valid_until": "2025-08-01",
+                        "value": "1604.06",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-08-01",
+                        "valid_until": null,
+                        "value": "1696.37",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "pdf6-pdf",
+                        "title": "pdf6-pdf",
+                        "kind": "altro",
+                        "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "5",
+            "order": 6,
+            "description": "Livello 5 — Operatore qualificato",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-01-01",
+                        "valid_until": "2025-08-01",
+                        "value": "1547.98",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-08-01",
+                        "valid_until": null,
+                        "value": "1637.06",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "pdf6-pdf",
+                        "title": "pdf6-pdf",
+                        "kind": "altro",
+                        "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "4",
+            "order": 5,
+            "description": "Livello 4 — Operatore",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-01-01",
+                        "valid_until": "2025-08-01",
+                        "value": "1477.10",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-08-01",
+                        "valid_until": null,
+                        "value": "1562.10",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "pdf6-pdf",
+                        "title": "pdf6-pdf",
+                        "kind": "altro",
+                        "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "3S",
+            "order": 4,
+            "description": "Livello 3 Super — Operatore ausiliario specializzato",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-01-01",
+                        "valid_until": "2025-08-01",
+                        "value": "1442.05",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-08-01",
+                        "valid_until": null,
+                        "value": "1525.03",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "pdf6-pdf",
+                        "title": "pdf6-pdf",
+                        "kind": "altro",
+                        "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "3",
+            "order": 3,
+            "description": "Livello 3 — Operatore ausiliario",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-01-01",
+                        "valid_until": "2025-08-01",
+                        "value": "1406.99",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-08-01",
+                        "valid_until": null,
+                        "value": "1487.96",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "pdf6-pdf",
+                        "title": "pdf6-pdf",
+                        "kind": "altro",
+                        "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "2",
+            "order": 2,
+            "description": "Livello 2 — Addetto generico",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-01-01",
+                        "valid_until": "2025-08-01",
+                        "value": "1314.48",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-08-01",
+                        "valid_until": null,
+                        "value": "1390.12",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "pdf6-pdf",
+                        "title": "pdf6-pdf",
+                        "kind": "altro",
+                        "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "1",
+            "order": 1,
+            "description": "Livello 1 — Addetto base (introdotto nel rinnovo 2025)",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-01-01",
+                        "valid_until": null,
+                        "value": "1295.43",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "pdf6-pdf",
+                                    "title": "pdf6-pdf",
+                                    "kind": "altro",
+                                    "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "pdf6-pdf",
+                        "title": "pdf6-pdf",
+                        "kind": "altro",
+                        "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
         }
-      ]
+    ],
+    "apprenticeship": [
+        {
+            "type": "percentage",
+            "name": "professionalizzante_32",
+            "destination_levels": [
+                "Q",
+                "10",
+                "9",
+                "8",
+                "7",
+                "6",
+                "5",
+                "4",
+                "3S",
+                "3",
+                "2",
+                "1"
+            ],
+            "periods": [
+                {
+                    "months_from": 0,
+                    "months_until": 28,
+                    "percentage": "0.90"
+                },
+                {
+                    "months_from": 28,
+                    "months_until": null,
+                    "percentage": "0.95"
+                }
+            ]
+        }
+    ],
+    "ruleset": {
+        "id": "ccnl/istituzioni-servizi-socio-assistenziali-anaste",
+        "version": "2026.2",
+        "effective_from": "2023-01-01",
+        "effective_until": null,
+        "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
+        "verification_status": "verified",
+        "source_hash": "6ee39b072cfb9e93d61cb9e2446daa02703059648eb5cedad21e9f66f2dc4956",
+        "published_at": "2026-09-07"
     }
-  ],
-  "ruleset": {
-    "id": "ccnl/istituzioni-servizi-socio-assistenziali-anaste",
-    "version": "2026.1",
-    "effective_from": "2023-01-01",
-    "effective_until": null,
-    "published_at": "2026-09-07",
-    "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
-    "verification_status": "verified",
-    "source_hash": "10038189003f8e11c9b6ba2a6dc6af4e501a89ba5eb0fd42c471cd553ffd2f66"
-  }
 }

@@ -72,6 +72,7 @@ ignore = [
     "PLR0917", # too-many-positional-arguments
     "PLR0914", # too-many-locals
     "PLC2701", # import-private-name
+    "RUF105",  # noqa-comments — project uses # noqa style
 ]
 
 [tool.ruff.lint.per-file-ignores]

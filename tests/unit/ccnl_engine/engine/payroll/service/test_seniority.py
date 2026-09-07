@@ -13,7 +13,7 @@ from ccnl_engine.engine.payroll.domain.employee import (
     WorkArrangement,
 )
 from ccnl_engine.engine.payroll.service.orchestrator import compute
-from tests.helpers import make_ccnl_dict
+from tests.helpers import TEST_PROV, make_ccnl_dict
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _D,
     _DATE,
@@ -47,6 +47,7 @@ def _tiered_ccnl() -> CCNL:
         "cadence_months": 24,
         "maximum_count": 5,
         "amount_by_level": {},
+        "provenance": TEST_PROV,
         "tiers": [
             {
                 "cadence_months": 24,
@@ -183,6 +184,7 @@ def _service_gated_ccnl() -> CCNL:
         "cadence_months": 24,
         "maximum_count": 0,
         "amount_by_level": {},
+        "provenance": TEST_PROV,
     }
     data["levels"][2]["fixed_allowances"] = [
         {
@@ -191,6 +193,7 @@ def _service_gated_ccnl() -> CCNL:
             "monthly": _series("50.00"),
             "months_per_year": 1,
             "service_months_threshold": 60,
+            "provenance": TEST_PROV,
         },
         {
             "code": "PREMIO_10YR",
@@ -198,6 +201,7 @@ def _service_gated_ccnl() -> CCNL:
             "monthly": _series("150.00"),
             "months_per_year": 1,
             "service_months_threshold": 120,
+            "provenance": TEST_PROV,
         },
     ]
     return CCNL.model_validate(data)

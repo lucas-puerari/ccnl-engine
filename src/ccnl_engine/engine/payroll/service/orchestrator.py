@@ -30,16 +30,54 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import (
         CCNL,
         Allowance,
+        Level,
         LevelCategory,
+        SeniorityIncrements,
         SupplementaryAllowance,
     )
     from ccnl_engine.engine.payroll.domain.employee import Employee, RalOverrideMode
     from ccnl_engine.engine.payroll.domain.employer import Employer
     from ccnl_engine.engine.payroll.domain.employment import Employment
+    from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
     from ccnl_engine.engine.tax.domain.rules import DomesticInpsRates, YearRules
 
 _ZERO = Decimal(0)
+
+
+def _collect_provenance(
+    level: Level,
+    as_of: date,
+    chain: MonthlyPayChain,
+    seniority_increments: SeniorityIncrements,
+) -> tuple[RuleProvenance, ...]:
+    """Collect the provenance chain of the rules that produced a pay outcome.
+
+    Every provenance-bearing item that actually contributed to the computed
+    pay is gathered: the resolved level (plus any per-period base-salary
+    override), each applied allowance, and the seniority-increment rule.
+    Only non-``None`` entries are kept.
+
+    Returns:
+        An ordered tuple of the contributing :class:`RuleProvenance` objects.
+    """
+    out: list[RuleProvenance] = []
+
+    def _add(prov: RuleProvenance | None) -> None:
+        if prov is not None:
+            out.append(prov)
+
+    _add(level.provenance)
+    for period in level.base_salary.periods:
+        if period.valid_from <= as_of and (
+            period.valid_until is None or as_of < period.valid_until
+        ):
+            _add(period.provenance)
+            break
+    for allowance, _ in chain.allowances:
+        _add(allowance.provenance)
+    _add(seniority_increments.provenance)
+    return tuple(out)
 
 
 def _resolve_second_level(
@@ -637,6 +675,12 @@ def compute(
         net_annual=net_annual,
         net_monthly=net_monthly,
         employer_cost_annual=employer_cost_annual,
+        provenance=_collect_provenance(
+            level,
+            employee.position.as_of,
+            chain,
+            ccnl.parameters.seniority_increments,
+        ),
     )
 
     snapshot = InputSnapshot.capture(

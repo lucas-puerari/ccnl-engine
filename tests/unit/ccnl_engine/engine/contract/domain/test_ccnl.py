@@ -14,6 +14,7 @@ from pydantic import ValidationError
 
 from ccnl_engine.engine.contract.domain.ccnl import (
     CCNL,
+    CCNLMeta,
     EmployerFund,
     SeniorityIncrements,
 )
@@ -22,7 +23,9 @@ from ccnl_engine.engine.payroll.service.seniority import (
     seniority_first_cadence,
     seniority_maximum,
 )
-from tests.helpers import make_ccnl_dict
+from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
+from ccnl_engine.engine.provenance.domain.source import SourceKind
+from tests.helpers import TEST_PROV, _series_with_prov, make_ccnl_dict
 
 _SERIES = {"periods": [{"valid_from": "2020-01-01", "valid_until": None, "value": "1"}]}
 
@@ -71,6 +74,73 @@ class TestStrictSchema:
 
 
 # ---------------------------------------------------------------------------
+# Legacy schema 0.4 coercion
+# ---------------------------------------------------------------------------
+
+
+class TestMetaLegacyCoercion:
+    """meta.sources/extraction are coerced from schema 0.4 to StructuredProvenance."""
+
+    def test_non_dict_input_passes_through(self) -> None:
+        """A non-dict value is returned untouched by the before-validator."""
+        with pytest.raises(ValidationError):
+            CCNLMeta.model_validate("not-a-dict")
+
+    def test_structured_sources_are_not_coerced(self) -> None:
+        """Sources already carrying a document_id pass through unchanged."""
+        data = make_ccnl_dict()
+        data["meta"]["sources"] = [
+            {
+                "document_id": "doc-1",
+                "title": "T",
+                "kind": "gazzetta",
+                "url": "https://example.com",
+            }
+        ]
+        ccnl = _validate(data)
+        assert ccnl.meta.sources[0].document_id == "doc-1"
+        assert ccnl.meta.sources[0].kind == SourceKind.GAZZETTA
+        assert isinstance(ccnl.meta.extraction, ExtractionTrace)
+
+    def test_structured_extraction_is_not_coerced(self) -> None:
+        """Extraction traces already carrying a timestamp pass through."""
+        data = make_ccnl_dict()
+        data["meta"]["extraction"] = {
+            "method": "manual",
+            "model": None,
+            "extraction_timestamp": "2026-01-01T00:00:00",
+            "effective_from": "2026-01-01",
+            "verification_status": "unverified",
+        }
+        ccnl = _validate(data)
+        assert ccnl.meta.extraction.method.value == "manual"
+        assert ccnl.meta.extraction.effective_from == date(2026, 1, 1)
+
+    @pytest.mark.parametrize(
+        ("source_type", "expected"),
+        [
+            ("tabella retributiva", SourceKind.TABELLA_RETRIBUTIVA),
+            ("gazzetta ufficiale", SourceKind.GAZZETTA),
+            ("cnel", SourceKind.CNEL),
+            ("circolare inps", SourceKind.INPS_CIRCOLARE),
+            ("legge 81", SourceKind.LEGGE),
+            ("dpr", SourceKind.DPR),
+            ("decreto", SourceKind.DL),
+            ("associazione", SourceKind.ASSOCIAZIONE),
+            ("ccnl", SourceKind.ALTRO),
+        ],
+    )
+    def test_legacy_source_type_casts_to_kind(
+        self, source_type: str, expected: SourceKind
+    ) -> None:
+        """Legacy 0.4 source type strings map to the matching SourceKind."""
+        data = make_ccnl_dict()
+        data["meta"]["sources"] = [{"url": "https://example.com", "type": source_type}]
+        ccnl = _validate(data)
+        assert ccnl.meta.sources[0].kind == expected
+
+
+# ---------------------------------------------------------------------------
 # Level — non-decreasing salary validator
 # ---------------------------------------------------------------------------
 
@@ -86,8 +156,14 @@ class TestLevelSalaryNonDecreasing:
                 "valid_from": "2019-01-01",
                 "valid_until": "2020-01-01",
                 "value": "900.00",
+                "provenance": TEST_PROV,
             },
-            {"valid_from": "2020-01-01", "valid_until": None, "value": "1000.00"},
+            {
+                "valid_from": "2020-01-01",
+                "valid_until": None,
+                "value": "1000.00",
+                "provenance": TEST_PROV,
+            },
         ]
         assert len(_validate(data).levels[2].base_salary.periods) == 2
 
@@ -99,8 +175,14 @@ class TestLevelSalaryNonDecreasing:
                 "valid_from": "2019-01-01",
                 "valid_until": "2020-01-01",
                 "value": "1200.00",
+                "provenance": TEST_PROV,
             },
-            {"valid_from": "2020-01-01", "valid_until": None, "value": "1000.00"},
+            {
+                "valid_from": "2020-01-01",
+                "valid_until": None,
+                "value": "1000.00",
+                "provenance": TEST_PROV,
+            },
         ]
         with pytest.raises(ValidationError, match="non-decreasing over time"):
             _validate(data)
@@ -131,13 +213,13 @@ class TestCCNLLevels:
     def test_equal_salaries_valid(self) -> None:
         """Equal salaries across levels satisfy the non-decreasing constraint."""
         data = make_ccnl_dict()
-        data["levels"][1]["base_salary"] = _series("1000.00")
+        data["levels"][1]["base_salary"] = _series_with_prov("1000.00")
         assert len(_validate(data).levels) == 3
 
     def test_inverted_order_raises(self) -> None:
         """A higher-order level earning less must raise ValidationError."""
         data = make_ccnl_dict()
-        data["levels"][1]["base_salary"] = _series("1200.00")
+        data["levels"][1]["base_salary"] = _series_with_prov("1200.00")
         with pytest.raises(ValidationError, match="salary ordering violated"):
             _validate(data)
 
@@ -150,7 +232,7 @@ class TestCCNLLevels:
     def test_staggered_start_dates(self) -> None:
         """A level whose series starts after another's is skipped on earlier dates."""
         data = make_ccnl_dict()
-        data["levels"][2]["base_salary"] = _series("1000.00", "2021-01-01")
+        data["levels"][2]["base_salary"] = _series_with_prov("1000.00", "2021-01-01")
         assert len(_validate(data).levels) == 3
 
     def test_level_lookup_helpers(self) -> None:
@@ -434,7 +516,13 @@ class TestEmployerFundsAndAllowances:
         """months_per_year must be >= 1."""
         data = make_ccnl_dict()
         data["levels"][0]["fixed_allowances"] = [
-            {"code": "x", "description": "x", "monthly": _SERIES, "months_per_year": 0}
+            {
+                "code": "x",
+                "description": "x",
+                "monthly": _SERIES,
+                "months_per_year": 0,
+                "provenance": TEST_PROV,
+            }
         ]
         with pytest.raises(ValidationError):
             _validate(data)
@@ -454,6 +542,7 @@ class TestSeniorityTiers:
             "cadence_months": 24,
             "maximum_count": 0,
             "amount_by_level": {},
+            "provenance": TEST_PROV,
             "tiers": [
                 {
                     "cadence_months": 24,
@@ -510,6 +599,7 @@ class TestServiceMonthsThreshold:
                 "description": "X",
                 "monthly": _SERIES,
                 "service_months_threshold": -1,
+                "provenance": TEST_PROV,
             }
         ]
         with pytest.raises(ValidationError):
@@ -524,6 +614,94 @@ class TestServiceMonthsThreshold:
                 "description": "X",
                 "monthly": _SERIES,
                 "service_months_threshold": 0,
+                "provenance": TEST_PROV,
             }
         ]
         _validate(data)
+
+
+# ---------------------------------------------------------------------------
+# Schema 0.5 provenance completeness
+# ---------------------------------------------------------------------------
+
+_PROV = {
+    "location": {
+        "source_document": {
+            "document_id": "doc",
+            "title": "T",
+            "kind": "tabella_retributiva",
+            "url": "https://example.com",
+        },
+        "section": "Tabella livelli",
+    },
+    "extraction": {
+        "method": "manual",
+        "extraction_timestamp": "2026-01-01T00:00:00",
+        "verification_status": "unverified",
+        "effective_from": "2020-01-01",
+    },
+}
+
+
+def _make_v5_dict() -> dict[str, Any]:
+    """Minimal schema-0.5 dict with provenance on every required rule.
+
+    Returns:
+        A dict suitable for CCNL.model_validate() with schema_version="0.5".
+    """
+    data = make_ccnl_dict(app_type="")
+    data["schema_version"] = "0.5"
+    si = data["parameters"]["seniority_increments"]
+    si["provenance"] = _PROV
+    for level in data["levels"]:
+        level["provenance"] = _PROV
+        for period in level["base_salary"]["periods"]:
+            period["provenance"] = _PROV
+    return data
+
+
+class TestSchema05ProvenanceRequired:
+    """schema_version 0.5 requires provenance on every rule."""
+
+    def test_complete_provenance_accepted(self) -> None:
+        """A fully-populated 0.5 dict loads without errors."""
+        _validate(_make_v5_dict())
+
+    def test_missing_level_provenance_raises(self) -> None:
+        """A level without provenance in schema 0.5 raises ValidationError."""
+        data = _make_v5_dict()
+        del data["levels"][0]["provenance"]
+        with pytest.raises(ValidationError, match="provenance is required"):
+            _validate(data)
+
+    def test_missing_period_provenance_raises(self) -> None:
+        """A salary period without provenance in schema 0.5 raises ValidationError."""
+        data = _make_v5_dict()
+        del data["levels"][0]["base_salary"]["periods"][0]["provenance"]
+        with pytest.raises(ValidationError, match="provenance is required"):
+            _validate(data)
+
+    def test_missing_seniority_provenance_raises(self) -> None:
+        """Missing seniority_increments.provenance in 0.5 raises ValidationError."""
+        data = _make_v5_dict()
+        del data["parameters"]["seniority_increments"]["provenance"]
+        with pytest.raises(ValidationError, match="provenance is required"):
+            _validate(data)
+
+    def test_missing_allowance_provenance_raises(self) -> None:
+        """An allowance without provenance in schema 0.5 raises ValidationError."""
+        data = _make_v5_dict()
+        data["levels"][0]["fixed_allowances"] = [
+            {"code": "X", "description": "X", "monthly": _SERIES}
+        ]
+        with pytest.raises(ValidationError, match="provenance is required"):
+            _validate(data)
+
+    def test_schema_04_without_provenance_rejected(self) -> None:
+        """schema_version 0.4 files without provenance are also rejected."""
+        data = make_ccnl_dict(app_type="")
+        assert data["schema_version"] == "0.4"
+        # Strip provenance from seniority_increments to trigger the validator.
+        data["parameters"]["seniority_increments"].pop("provenance", None)
+        with pytest.raises(ValidationError, match="provenance is required"):
+            _validate(data)

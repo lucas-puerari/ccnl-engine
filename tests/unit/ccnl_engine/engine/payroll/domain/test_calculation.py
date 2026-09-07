@@ -97,8 +97,8 @@ class TestCalculation:
         calc = compute(make_minimal_ccnl(), make_year_rules(), _employee())
         assert isinstance(calc, Calculation)
         assert calc.engine_version == "0.5.0"
-        assert calc.ruleset_version["ccnl"] == "test@2026.1"
-        assert calc.ruleset_version["tax"] == "tax/2026/terziario@2026.1"
+        assert calc.ruleset_version["ccnl"] == "test@2026.2"
+        assert calc.ruleset_version["tax"] == "tax/2026/terziario@2026.2"
         assert "inps" not in calc.ruleset_version
         assert "surtax" not in calc.ruleset_version
         assert type(calc.result.net_annual) is Decimal
@@ -253,7 +253,7 @@ class TestDumpLoadBranches:
         ccnl = make_minimal_ccnl()
         rules = make_year_rules()
         versions = _ruleset_versions(ccnl, rules, surtax=None)
-        assert versions["ccnl"] == "test@2026.1"
-        assert versions["tax"] == "tax/2026/terziario@2026.1"
+        assert versions["ccnl"] == "test@2026.2"
+        assert versions["tax"] == "tax/2026/terziario@2026.2"
         assert "inps" not in versions
         assert "surtax" not in versions

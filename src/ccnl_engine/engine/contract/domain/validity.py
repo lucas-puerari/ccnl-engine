@@ -7,16 +7,23 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, model_validator
 
 from ccnl_engine.engine.primitives import validate_open_sequence
+from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 
 
 class ValidityPeriod(BaseModel):
-    """A single time-bounded value within a TimeSeries."""
+    """A single time-bounded value within a TimeSeries.
+
+    ``provenance`` overrides the provenance inherited from the owning domain
+    object when the value in this period came from a different source page or
+    was extracted differently.  ``None`` means "inherit from the owner".
+    """
 
     model_config = ConfigDict(extra="forbid")
 
     valid_from: date
     valid_until: date | None
     value: Decimal
+    provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _check_dates(self) -> Self:

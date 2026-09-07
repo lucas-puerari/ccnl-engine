@@ -1,529 +1,1294 @@
 {
-  "schema_version": "0.4",
-  "meta": {
-    "ccnl_id": "portieri-fabbricati-confedilizia",
-    "name": "CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)",
-    "cnel_code": "H401",
-    "sector": "portieri e custodi di condominio",
-    "tax_sector": "terziario",
-    "signatories": [
-      "Confedilizia",
-      "FILCAMS-CGIL",
-      "FISASCAT-CISL",
-      "UILTuCS"
+    "schema_version": "0.5",
+    "meta": {
+        "ccnl_id": "portieri-fabbricati-confedilizia",
+        "name": "CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)",
+        "cnel_code": "H401",
+        "sector": "portieri e custodi di condominio",
+        "tax_sector": "terziario",
+        "signatories": [
+            "Confedilizia",
+            "FILCAMS-CGIL",
+            "FISASCAT-CISL",
+            "UILTuCS"
+        ],
+        "sources": [
+            {
+                "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
+                "type": "table",
+                "agreement_date": "2025-10-30"
+            },
+            {
+                "url": "https://lexplain.it/ccnl-dipendenti-portieri-fabbricati-aumenti-stipendio/",
+                "type": "table",
+                "agreement_date": null
+            }
+        ],
+        "extraction": {
+            "method": "ai_assisted",
+            "model": null,
+            "timestamp": "2026-09-06T00:00:00",
+            "human_reviewed": true
+        }
+    },
+    "coverage": {
+        "layer_1": "implemented",
+        "layer_2": "implemented",
+        "notes": [
+            {
+                "kind": "info",
+                "text": "RENEWAL 2025: CCNL signed 2025-10-30. Normative provisions from 2025-11-01; economic provisions (salary tranches) from 2026-01-01. Contract expiry 2028-10-31. Signatories: Confedilizia + FILCAMS-CGIL, FISASCAT-CISL, UILTuCS."
+            },
+            {
+                "kind": "info",
+                "text": "CONGLOBATED MINIMUMS: base_salary values are the monthly conglobated tabular minimums (paga base + contingenza rolled in), as published by Confedilizia at confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati. fixed_allowances is empty for all levels. Back-calculation: B1 2026 = 1519.10 / 173 = 8.78 EUR/h; C3 2026 = 1795.94 / 173 = 10.38 EUR/h; D1 2026 = 1439.90 / 173 = 8.32 EUR/h — consistent divisor confirmed."
+            },
+            {
+                "kind": "info",
+                "text": "HOURLY DIVISOR: 173 h/month (40 h/week x 52/12). Applicable to profiles B (B1-B5), C3, C4, D (D1-D4) per Art. 60 (B profiles), Art. 62 comma 1 (C3/C4), Art. 69 commi 1-2 (D profiles) — all 40 h/week standard schedule."
+            },
+            {
+                "kind": "info",
+                "text": "EXCLUDED PROFILES: A1-A9 (portieri con alloggio, 45 h or 48 h/week — divisor would be 195 or 208, incompatible with single CCNLParameters.hourly_divisor; also alloggio in-kind not modelled). C1 and C2 (preposti alla direzione tecnica o amministrativa — Art. 62 comma 2 exempts them from the 40 h ceiling; no fixed hourly divisor applies). C4 primo impiego (entry-rate sub-classification at EUR 1290.52/2026, transitional not permanent level)."
+            },
+            {
+                "kind": "info",
+                "text": "SALARY TRANCHES: three annual steps — 2026-01-01, 2027-01-01, 2028-01-01 — as published on Confedilizia official table (3-column layout: 2026, 2027, 2028). D1 is a separate row (1439.90/1468.70/1498.07); D2-D3-D4 share a combined row (1438.58/1467.35/1496.70), confirmed by parsing raw HTML from confedilizia.it."
+            },
+            {
+                "kind": "info",
+                "text": "SENIORITY INCREMENTS: 36-month cadence (triennale), maximum 12 scatti per Art. 111-114. Art. 114 sets 12 scatti triennali for D profiles. D-profile scatto = 10.00 EUR (all D levels identical, per Art. 114; source: lexplain.it/scatti-di-anzianita-contratto-portieri-custodi-e-proprietari-di-fabbricati). B/C amounts from same source."
+            },
+            {
+                "kind": "info",
+                "text": "ADDITIONAL MONTHS: 13 (tredicesima only — Art. 130 'Gratifica natalizia'). Art. 130 provides tredicesima in December equal to one monthly salary; no quattordicesima provision exists in this CCNL. Confirmed via ilccnl.it full CCNL text and targeted search."
+            },
+            {
+                "kind": "info",
+                "text": "APPRENTICESHIP: percentage type per Art. 35-36 of the 2025 renewal. Art. 36 comma 6: 80% months 1-12, 85% months 13-24, 90% months 25-36. Two tracks exist: 36 months (B1, C3) and 24 months (B2, B4, C4, D1, D3). SIMPLIFICATION: all seven destinations use the single 36-month schedule; the five 24-month profiles are over-modelled by 12 months — an apprentice in those profiles is paid 90% during months 25-36 instead of 100%. Impact: slight under-payment for 1 year for 5 destination levels. B3, B5, D2, D4 have no CCNL apprenticeship provision; excluded from destination_levels."
+            },
+            {
+                "kind": "info",
+                "text": "B5 PART-TIME NOTE: Art. 122 provides a 15% hourly premium for B5 (pulitori/lavascale) with weekly schedule below 8 hours. Not modelled (SIMPLIFICATION)."
+            },
+            {
+                "kind": "info",
+                "text": "INPS: uses 2026-terziario.json (same tax_sector as commercio-confcommercio and turismo-confcommercio)."
+            }
+        ]
+    },
+    "parameters": {
+        "hourly_divisor": {
+            "periods": [
+                {
+                    "valid_from": "2026-01-01",
+                    "valid_until": null,
+                    "value": "173"
+                }
+            ]
+        },
+        "additional_months": {
+            "periods": [
+                {
+                    "valid_from": "2026-01-01",
+                    "valid_until": null,
+                    "value": "13"
+                }
+            ]
+        },
+        "seniority_increments": {
+            "cadence_months": 36,
+            "maximum_count": 12,
+            "amount_by_level": {
+                "B1": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-01-01",
+                            "valid_until": null,
+                            "value": "17.30"
+                        }
+                    ]
+                },
+                "B2": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-01-01",
+                            "valid_until": null,
+                            "value": "15.57"
+                        }
+                    ]
+                },
+                "B3": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-01-01",
+                            "valid_until": null,
+                            "value": "15.57"
+                        }
+                    ]
+                },
+                "B4": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-01-01",
+                            "valid_until": null,
+                            "value": "13.84"
+                        }
+                    ]
+                },
+                "B5": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-01-01",
+                            "valid_until": null,
+                            "value": "10.38"
+                        }
+                    ]
+                },
+                "C3": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-01-01",
+                            "valid_until": null,
+                            "value": "16.67"
+                        }
+                    ]
+                },
+                "C4": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-01-01",
+                            "valid_until": null,
+                            "value": "13.33"
+                        }
+                    ]
+                },
+                "D1": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-01-01",
+                            "valid_until": null,
+                            "value": "10.00"
+                        }
+                    ]
+                },
+                "D2": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-01-01",
+                            "valid_until": null,
+                            "value": "10.00"
+                        }
+                    ]
+                },
+                "D3": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-01-01",
+                            "valid_until": null,
+                            "value": "10.00"
+                        }
+                    ]
+                },
+                "D4": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-01-01",
+                            "valid_until": null,
+                            "value": "10.00"
+                        }
+                    ]
+                }
+            },
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "portieri-fabbricati-confedilizia",
+                        "title": "portieri-fabbricati-confedilizia",
+                        "kind": "tabella_retributiva",
+                        "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                    },
+                    "section": "Scatti di anzianità"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        }
+    },
+    "levels": [
+        {
+            "code": "B5",
+            "order": 1,
+            "description": "B5 — pulitore/lavascale (cleaner/stair cleaner)",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1264.51",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": "2028-01-01",
+                        "value": "1289.80",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2028-01-01",
+                        "valid_until": null,
+                        "value": "1315.60",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "portieri-fabbricati-confedilizia",
+                        "title": "portieri-fabbricati-confedilizia",
+                        "kind": "tabella_retributiva",
+                        "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "B4",
+            "order": 2,
+            "description": "B4 — addetto pulizie aree comuni (common areas cleaner)",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1342.34",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": "2028-01-01",
+                        "value": "1369.19",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2028-01-01",
+                        "valid_until": null,
+                        "value": "1396.57",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "portieri-fabbricati-confedilizia",
+                        "title": "portieri-fabbricati-confedilizia",
+                        "kind": "tabella_retributiva",
+                        "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "D4",
+            "order": 3,
+            "description": "D4 — addetto servizi generali (general services worker)",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1438.58",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": "2028-01-01",
+                        "value": "1467.35",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2028-01-01",
+                        "valid_until": null,
+                        "value": "1496.70",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "portieri-fabbricati-confedilizia",
+                        "title": "portieri-fabbricati-confedilizia",
+                        "kind": "tabella_retributiva",
+                        "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "D3",
+            "order": 4,
+            "description": "D3 — addetto servizi generali (general services worker)",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1438.58",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": "2028-01-01",
+                        "value": "1467.35",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2028-01-01",
+                        "valid_until": null,
+                        "value": "1496.70",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "portieri-fabbricati-confedilizia",
+                        "title": "portieri-fabbricati-confedilizia",
+                        "kind": "tabella_retributiva",
+                        "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "D2",
+            "order": 5,
+            "description": "D2 — addetto servizi generali (general services worker)",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1438.58",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": "2028-01-01",
+                        "value": "1467.35",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2028-01-01",
+                        "valid_until": null,
+                        "value": "1496.70",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "portieri-fabbricati-confedilizia",
+                        "title": "portieri-fabbricati-confedilizia",
+                        "kind": "tabella_retributiva",
+                        "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "D1",
+            "order": 6,
+            "description": "D1 — addetto servizi speciali (special services worker)",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1439.90",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": "2028-01-01",
+                        "value": "1468.70",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2028-01-01",
+                        "valid_until": null,
+                        "value": "1498.07",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "portieri-fabbricati-confedilizia",
+                        "title": "portieri-fabbricati-confedilizia",
+                        "kind": "tabella_retributiva",
+                        "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "B3",
+            "order": 7,
+            "description": "B3 — portiere part-time (part-time doorman/caretaker)",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1441.76",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": "2028-01-01",
+                        "value": "1470.59",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2028-01-01",
+                        "valid_until": null,
+                        "value": "1500.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "portieri-fabbricati-confedilizia",
+                        "title": "portieri-fabbricati-confedilizia",
+                        "kind": "tabella_retributiva",
+                        "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "B2",
+            "order": 8,
+            "description": "B2 — portiere (doorman/caretaker, standard profile)",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1444.24",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": "2028-01-01",
+                        "value": "1473.12",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2028-01-01",
+                        "valid_until": null,
+                        "value": "1502.58",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "portieri-fabbricati-confedilizia",
+                        "title": "portieri-fabbricati-confedilizia",
+                        "kind": "tabella_retributiva",
+                        "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "C4",
+            "order": 9,
+            "description": "C4 — custode (custodian, 40 h/week without accommodation)",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1512.61",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": "2028-01-01",
+                        "value": "1542.86",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2028-01-01",
+                        "valid_until": null,
+                        "value": "1573.72",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "portieri-fabbricati-confedilizia",
+                        "title": "portieri-fabbricati-confedilizia",
+                        "kind": "tabella_retributiva",
+                        "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "B1",
+            "order": 10,
+            "description": "B1 — portiere con mansioni di custodia (senior doorman with custody duties)",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1519.10",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": "2028-01-01",
+                        "value": "1549.48",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2028-01-01",
+                        "valid_until": null,
+                        "value": "1580.47",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "portieri-fabbricati-confedilizia",
+                        "title": "portieri-fabbricati-confedilizia",
+                        "kind": "tabella_retributiva",
+                        "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "C3",
+            "order": 11,
+            "description": "C3 — custode qualificato (qualified custodian, senior grade)",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1795.94",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": "2028-01-01",
+                        "value": "1831.86",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2028-01-01",
+                        "valid_until": null,
+                        "value": "1868.50",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "portieri-fabbricati-confedilizia",
+                                    "title": "portieri-fabbricati-confedilizia",
+                                    "kind": "tabella_retributiva",
+                                    "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "portieri-fabbricati-confedilizia",
+                        "title": "portieri-fabbricati-confedilizia",
+                        "kind": "tabella_retributiva",
+                        "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        }
     ],
-    "sources": [
-      {
-        "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
-        "type": "table",
-        "agreement_date": "2025-10-30"
-      },
-      {
-        "url": "https://lexplain.it/ccnl-dipendenti-portieri-fabbricati-aumenti-stipendio/",
-        "type": "table",
-        "agreement_date": null
-      }
+    "apprenticeship": [
+        {
+            "type": "percentage",
+            "name": "professionalizzante_36",
+            "destination_levels": [
+                "B1",
+                "B2",
+                "B4",
+                "C3",
+                "C4",
+                "D1",
+                "D3"
+            ],
+            "periods": [
+                {
+                    "months_from": 0,
+                    "months_until": 12,
+                    "percentage": "0.80"
+                },
+                {
+                    "months_from": 12,
+                    "months_until": 24,
+                    "percentage": "0.85"
+                },
+                {
+                    "months_from": 24,
+                    "months_until": 36,
+                    "percentage": "0.90"
+                },
+                {
+                    "months_from": 36,
+                    "months_until": null,
+                    "percentage": "1.00"
+                }
+            ]
+        }
     ],
-    "extraction": {
-      "method": "ai_assisted",
-      "model": null,
-      "timestamp": "2026-09-06T00:00:00",
-      "human_reviewed": true
+    "ruleset": {
+        "id": "ccnl/portieri-fabbricati-confedilizia",
+        "version": "2026.2",
+        "effective_from": "2026-01-01",
+        "effective_until": null,
+        "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
+        "verification_status": "verified",
+        "source_hash": "fe7a0dc0ac4bcdc8123202e0d610a83bc731524eca9cb06c9f2770122386ca04",
+        "published_at": "2026-09-07"
     }
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
-    "notes": [
-      {
-        "kind": "info",
-        "text": "RENEWAL 2025: CCNL signed 2025-10-30. Normative provisions from 2025-11-01; economic provisions (salary tranches) from 2026-01-01. Contract expiry 2028-10-31. Signatories: Confedilizia + FILCAMS-CGIL, FISASCAT-CISL, UILTuCS."
-      },
-      {
-        "kind": "info",
-        "text": "CONGLOBATED MINIMUMS: base_salary values are the monthly conglobated tabular minimums (paga base + contingenza rolled in), as published by Confedilizia at confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati. fixed_allowances is empty for all levels. Back-calculation: B1 2026 = 1519.10 / 173 = 8.78 EUR/h; C3 2026 = 1795.94 / 173 = 10.38 EUR/h; D1 2026 = 1439.90 / 173 = 8.32 EUR/h — consistent divisor confirmed."
-      },
-      {
-        "kind": "info",
-        "text": "HOURLY DIVISOR: 173 h/month (40 h/week x 52/12). Applicable to profiles B (B1-B5), C3, C4, D (D1-D4) per Art. 60 (B profiles), Art. 62 comma 1 (C3/C4), Art. 69 commi 1-2 (D profiles) — all 40 h/week standard schedule."
-      },
-      {
-        "kind": "info",
-        "text": "EXCLUDED PROFILES: A1-A9 (portieri con alloggio, 45 h or 48 h/week — divisor would be 195 or 208, incompatible with single CCNLParameters.hourly_divisor; also alloggio in-kind not modelled). C1 and C2 (preposti alla direzione tecnica o amministrativa — Art. 62 comma 2 exempts them from the 40 h ceiling; no fixed hourly divisor applies). C4 primo impiego (entry-rate sub-classification at EUR 1290.52/2026, transitional not permanent level)."
-      },
-      {
-        "kind": "info",
-        "text": "SALARY TRANCHES: three annual steps — 2026-01-01, 2027-01-01, 2028-01-01 — as published on Confedilizia official table (3-column layout: 2026, 2027, 2028). D1 is a separate row (1439.90/1468.70/1498.07); D2-D3-D4 share a combined row (1438.58/1467.35/1496.70), confirmed by parsing raw HTML from confedilizia.it."
-      },
-      {
-        "kind": "info",
-        "text": "SENIORITY INCREMENTS: 36-month cadence (triennale), maximum 12 scatti per Art. 111-114. Art. 114 sets 12 scatti triennali for D profiles. D-profile scatto = 10.00 EUR (all D levels identical, per Art. 114; source: lexplain.it/scatti-di-anzianita-contratto-portieri-custodi-e-proprietari-di-fabbricati). B/C amounts from same source."
-      },
-      {
-        "kind": "info",
-        "text": "ADDITIONAL MONTHS: 13 (tredicesima only — Art. 130 'Gratifica natalizia'). Art. 130 provides tredicesima in December equal to one monthly salary; no quattordicesima provision exists in this CCNL. Confirmed via ilccnl.it full CCNL text and targeted search."
-      },
-      {
-        "kind": "info",
-        "text": "APPRENTICESHIP: percentage type per Art. 35-36 of the 2025 renewal. Art. 36 comma 6: 80% months 1-12, 85% months 13-24, 90% months 25-36. Two tracks exist: 36 months (B1, C3) and 24 months (B2, B4, C4, D1, D3). SIMPLIFICATION: all seven destinations use the single 36-month schedule; the five 24-month profiles are over-modelled by 12 months — an apprentice in those profiles is paid 90% during months 25-36 instead of 100%. Impact: slight under-payment for 1 year for 5 destination levels. B3, B5, D2, D4 have no CCNL apprenticeship provision; excluded from destination_levels."
-      },
-      {
-        "kind": "info",
-        "text": "B5 PART-TIME NOTE: Art. 122 provides a 15% hourly premium for B5 (pulitori/lavascale) with weekly schedule below 8 hours. Not modelled (SIMPLIFICATION)."
-      },
-      {
-        "kind": "info",
-        "text": "INPS: uses 2026-terziario.json (same tax_sector as commercio-confcommercio and turismo-confcommercio)."
-      }
-    ]
-  },
-  "parameters": {
-    "hourly_divisor": {
-      "periods": [
-        {
-          "valid_from": "2026-01-01",
-          "valid_until": null,
-          "value": "173"
-        }
-      ]
-    },
-    "additional_months": {
-      "periods": [
-        {
-          "valid_from": "2026-01-01",
-          "valid_until": null,
-          "value": "13"
-        }
-      ]
-    },
-    "seniority_increments": {
-      "cadence_months": 36,
-      "maximum_count": 12,
-      "amount_by_level": {
-        "B1": {
-          "periods": [
-            {
-              "valid_from": "2026-01-01",
-              "valid_until": null,
-              "value": "17.30"
-            }
-          ]
-        },
-        "B2": {
-          "periods": [
-            {
-              "valid_from": "2026-01-01",
-              "valid_until": null,
-              "value": "15.57"
-            }
-          ]
-        },
-        "B3": {
-          "periods": [
-            {
-              "valid_from": "2026-01-01",
-              "valid_until": null,
-              "value": "15.57"
-            }
-          ]
-        },
-        "B4": {
-          "periods": [
-            {
-              "valid_from": "2026-01-01",
-              "valid_until": null,
-              "value": "13.84"
-            }
-          ]
-        },
-        "B5": {
-          "periods": [
-            {
-              "valid_from": "2026-01-01",
-              "valid_until": null,
-              "value": "10.38"
-            }
-          ]
-        },
-        "C3": {
-          "periods": [
-            {
-              "valid_from": "2026-01-01",
-              "valid_until": null,
-              "value": "16.67"
-            }
-          ]
-        },
-        "C4": {
-          "periods": [
-            {
-              "valid_from": "2026-01-01",
-              "valid_until": null,
-              "value": "13.33"
-            }
-          ]
-        },
-        "D1": {
-          "periods": [
-            {
-              "valid_from": "2026-01-01",
-              "valid_until": null,
-              "value": "10.00"
-            }
-          ]
-        },
-        "D2": {
-          "periods": [
-            {
-              "valid_from": "2026-01-01",
-              "valid_until": null,
-              "value": "10.00"
-            }
-          ]
-        },
-        "D3": {
-          "periods": [
-            {
-              "valid_from": "2026-01-01",
-              "valid_until": null,
-              "value": "10.00"
-            }
-          ]
-        },
-        "D4": {
-          "periods": [
-            {
-              "valid_from": "2026-01-01",
-              "valid_until": null,
-              "value": "10.00"
-            }
-          ]
-        }
-      }
-    }
-  },
-  "levels": [
-    {
-      "code": "B5",
-      "order": 1,
-      "description": "B5 — pulitore/lavascale (cleaner/stair cleaner)",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1264.51"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": "2028-01-01",
-            "value": "1289.80"
-          },
-          {
-            "valid_from": "2028-01-01",
-            "valid_until": null,
-            "value": "1315.60"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "B4",
-      "order": 2,
-      "description": "B4 — addetto pulizie aree comuni (common areas cleaner)",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1342.34"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": "2028-01-01",
-            "value": "1369.19"
-          },
-          {
-            "valid_from": "2028-01-01",
-            "valid_until": null,
-            "value": "1396.57"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "D4",
-      "order": 3,
-      "description": "D4 — addetto servizi generali (general services worker)",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1438.58"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": "2028-01-01",
-            "value": "1467.35"
-          },
-          {
-            "valid_from": "2028-01-01",
-            "valid_until": null,
-            "value": "1496.70"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "D3",
-      "order": 4,
-      "description": "D3 — addetto servizi generali (general services worker)",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1438.58"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": "2028-01-01",
-            "value": "1467.35"
-          },
-          {
-            "valid_from": "2028-01-01",
-            "valid_until": null,
-            "value": "1496.70"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "D2",
-      "order": 5,
-      "description": "D2 — addetto servizi generali (general services worker)",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1438.58"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": "2028-01-01",
-            "value": "1467.35"
-          },
-          {
-            "valid_from": "2028-01-01",
-            "valid_until": null,
-            "value": "1496.70"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "D1",
-      "order": 6,
-      "description": "D1 — addetto servizi speciali (special services worker)",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1439.90"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": "2028-01-01",
-            "value": "1468.70"
-          },
-          {
-            "valid_from": "2028-01-01",
-            "valid_until": null,
-            "value": "1498.07"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "B3",
-      "order": 7,
-      "description": "B3 — portiere part-time (part-time doorman/caretaker)",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1441.76"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": "2028-01-01",
-            "value": "1470.59"
-          },
-          {
-            "valid_from": "2028-01-01",
-            "valid_until": null,
-            "value": "1500.00"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "B2",
-      "order": 8,
-      "description": "B2 — portiere (doorman/caretaker, standard profile)",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1444.24"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": "2028-01-01",
-            "value": "1473.12"
-          },
-          {
-            "valid_from": "2028-01-01",
-            "valid_until": null,
-            "value": "1502.58"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "C4",
-      "order": 9,
-      "description": "C4 — custode (custodian, 40 h/week without accommodation)",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1512.61"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": "2028-01-01",
-            "value": "1542.86"
-          },
-          {
-            "valid_from": "2028-01-01",
-            "valid_until": null,
-            "value": "1573.72"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "B1",
-      "order": 10,
-      "description": "B1 — portiere con mansioni di custodia (senior doorman with custody duties)",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1519.10"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": "2028-01-01",
-            "value": "1549.48"
-          },
-          {
-            "valid_from": "2028-01-01",
-            "valid_until": null,
-            "value": "1580.47"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "C3",
-      "order": 11,
-      "description": "C3 — custode qualificato (qualified custodian, senior grade)",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1795.94"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": "2028-01-01",
-            "value": "1831.86"
-          },
-          {
-            "valid_from": "2028-01-01",
-            "valid_until": null,
-            "value": "1868.50"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    }
-  ],
-  "apprenticeship": [
-    {
-      "type": "percentage",
-      "name": "professionalizzante_36",
-      "destination_levels": [
-        "B1",
-        "B2",
-        "B4",
-        "C3",
-        "C4",
-        "D1",
-        "D3"
-      ],
-      "periods": [
-        {
-          "months_from": 0,
-          "months_until": 12,
-          "percentage": "0.80"
-        },
-        {
-          "months_from": 12,
-          "months_until": 24,
-          "percentage": "0.85"
-        },
-        {
-          "months_from": 24,
-          "months_until": 36,
-          "percentage": "0.90"
-        },
-        {
-          "months_from": 36,
-          "months_until": null,
-          "percentage": "1.00"
-        }
-      ]
-    }
-  ],
-  "ruleset": {
-    "id": "ccnl/portieri-fabbricati-confedilizia",
-    "version": "2026.1",
-    "effective_from": "2026-01-01",
-    "effective_until": null,
-    "published_at": "2026-09-07",
-    "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
-    "verification_status": "verified",
-    "source_hash": "02cac2bf463380e143ca103c4529edf944dbf163962c2b128e64ab83a7b276a2"
-  }
 }

@@ -1,472 +1,1101 @@
 {
-  "schema_version": "0.4",
-  "meta": {
-    "ccnl_id": "rsa-aiop",
-    "cnel_code": "T091",
-    "name": "CCNL RSA e Strutture Residenziali Socio-Assistenziali (AIOP)",
-    "sector": "residenze sanitarie assistenziali — personale non medico",
-    "tax_sector": "terziario",
-    "signatories": [
-      "AIOP",
-      "FP-CGIL",
-      "CISL-FP",
-      "UIL-FPL",
-      "UGL Sanità",
-      "FISMIC-CONFSAL",
-      "FIALS"
-    ],
-    "agreement_date": "2012-03-22",
-    "sources": [
-      {
-        "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
-        "type": "contratto_collettivo",
+    "schema_version": "0.5",
+    "meta": {
+        "ccnl_id": "rsa-aiop",
+        "cnel_code": "T091",
+        "name": "CCNL RSA e Strutture Residenziali Socio-Assistenziali (AIOP)",
+        "sector": "residenze sanitarie assistenziali — personale non medico",
+        "tax_sector": "terziario",
+        "signatories": [
+            "AIOP",
+            "FP-CGIL",
+            "CISL-FP",
+            "UIL-FPL",
+            "UGL Sanità",
+            "FISMIC-CONFSAL",
+            "FIALS"
+        ],
         "agreement_date": "2012-03-22",
-        "notes": "Original CCNL signed 22/03/2012, effective 01/04/2012. Art. 49 salary table, Art. 51 hourly divisor, Art. 54 tredicesima."
-      },
-      {
-        "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
-        "type": "accordo",
-        "agreement_date": "2023-10-03",
-        "notes": "Accordo ponte 03/10/2023, effective 01/10/2023, valid to 30/06/2024. Full salary table confirmed."
-      }
+        "sources": [
+            {
+                "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+                "type": "contratto_collettivo",
+                "agreement_date": "2012-03-22",
+                "notes": "Original CCNL signed 22/03/2012, effective 01/04/2012. Art. 49 salary table, Art. 51 hourly divisor, Art. 54 tredicesima."
+            },
+            {
+                "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
+                "type": "accordo",
+                "agreement_date": "2023-10-03",
+                "notes": "Accordo ponte 03/10/2023, effective 01/10/2023, valid to 30/06/2024. Full salary table confirmed."
+            }
+        ],
+        "extraction": {
+            "timestamp": "2026-09-06",
+            "human_reviewed": false,
+            "method": "ai_assisted"
+        }
+    },
+    "coverage": {
+        "layer_1": "implemented",
+        "layer_2": "implemented",
+        "notes": [
+            {
+                "kind": "info",
+                "text": "CCNL T091 — AIOP RSA. Conglobated. 12 levels: A-B-C-D1-D2-D3-E1-E2-E3-F-G-H. Divisor 165, 13 months. Original 2012 contract, updated by accordo ponte Oct 2023."
+            },
+            {
+                "kind": "info",
+                "text": "Accordo ponte (Oct 2023) expired June 2024. Contract applied in ultrattività pending renewal. Oct 2023 table modeled as current (valid_until null)."
+            },
+            {
+                "kind": "simplification",
+                "text": "Seniority: contract uses a flat EUR 40/month bonus at 5 years of service (levels A-E3 only; F/G/H excluded). Modeled as cadence_months=60, maximum_count=1. The Oct 2023 'premio di anzianita' (EUR 40 for 10+ year workers) is a one-time payment and is out_of_scope."
+            },
+            {
+                "kind": "simplification",
+                "text": "Apprenticeship: contract specifies sotto-inquadramento up to 2 levels below destination (levels A-F eligible, 36 months). Engine schema requires a static pay_level_code; modeled as 100% passthrough."
+            }
+        ]
+    },
+    "parameters": {
+        "additional_months": {
+            "periods": [
+                {
+                    "valid_from": "2012-04-01",
+                    "valid_until": null,
+                    "value": "13"
+                }
+            ]
+        },
+        "hourly_divisor": {
+            "periods": [
+                {
+                    "valid_from": "2012-04-01",
+                    "valid_until": null,
+                    "value": "165"
+                }
+            ]
+        },
+        "seniority_increments": {
+            "cadence_months": 60,
+            "maximum_count": 1,
+            "amount_by_level": {
+                "A": {
+                    "periods": [
+                        {
+                            "valid_from": "2012-04-01",
+                            "valid_until": null,
+                            "value": "40.00"
+                        }
+                    ]
+                },
+                "B": {
+                    "periods": [
+                        {
+                            "valid_from": "2012-04-01",
+                            "valid_until": null,
+                            "value": "40.00"
+                        }
+                    ]
+                },
+                "C": {
+                    "periods": [
+                        {
+                            "valid_from": "2012-04-01",
+                            "valid_until": null,
+                            "value": "40.00"
+                        }
+                    ]
+                },
+                "D1": {
+                    "periods": [
+                        {
+                            "valid_from": "2012-04-01",
+                            "valid_until": null,
+                            "value": "40.00"
+                        }
+                    ]
+                },
+                "D2": {
+                    "periods": [
+                        {
+                            "valid_from": "2012-04-01",
+                            "valid_until": null,
+                            "value": "40.00"
+                        }
+                    ]
+                },
+                "D3": {
+                    "periods": [
+                        {
+                            "valid_from": "2012-04-01",
+                            "valid_until": null,
+                            "value": "40.00"
+                        }
+                    ]
+                },
+                "E1": {
+                    "periods": [
+                        {
+                            "valid_from": "2012-04-01",
+                            "valid_until": null,
+                            "value": "40.00"
+                        }
+                    ]
+                },
+                "E2": {
+                    "periods": [
+                        {
+                            "valid_from": "2012-04-01",
+                            "valid_until": null,
+                            "value": "40.00"
+                        }
+                    ]
+                },
+                "E3": {
+                    "periods": [
+                        {
+                            "valid_from": "2012-04-01",
+                            "valid_until": null,
+                            "value": "40.00"
+                        }
+                    ]
+                },
+                "F": {
+                    "periods": [
+                        {
+                            "valid_from": "2012-04-01",
+                            "valid_until": null,
+                            "value": "0.00"
+                        }
+                    ]
+                },
+                "G": {
+                    "periods": [
+                        {
+                            "valid_from": "2012-04-01",
+                            "valid_until": null,
+                            "value": "0.00"
+                        }
+                    ]
+                },
+                "H": {
+                    "periods": [
+                        {
+                            "valid_from": "2012-04-01",
+                            "valid_until": null,
+                            "value": "0.00"
+                        }
+                    ]
+                }
+            },
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-rsa-aiop-2012-pdf",
+                        "title": "ccnl-rsa-aiop-2012-pdf",
+                        "kind": "altro",
+                        "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                    },
+                    "section": "Scatti di anzianità"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        }
+    },
+    "apprenticeship": [
+        {
+            "type": "percentage",
+            "name": "professionalizzante",
+            "destination_levels": [
+                "A",
+                "B",
+                "C",
+                "D1",
+                "D2",
+                "D3",
+                "E1",
+                "E2",
+                "E3",
+                "F"
+            ],
+            "periods": [
+                {
+                    "months_from": 0,
+                    "months_until": null,
+                    "percentage": "1.00"
+                }
+            ]
+        }
     ],
-    "extraction": {
-      "timestamp": "2026-09-06",
-      "human_reviewed": false,
-      "method": "ai_assisted"
-    }
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
-    "notes": [
-      {
-        "kind": "info",
-        "text": "CCNL T091 — AIOP RSA. Conglobated. 12 levels: A-B-C-D1-D2-D3-E1-E2-E3-F-G-H. Divisor 165, 13 months. Original 2012 contract, updated by accordo ponte Oct 2023."
-      },
-      {
-        "kind": "info",
-        "text": "Accordo ponte (Oct 2023) expired June 2024. Contract applied in ultrattività pending renewal. Oct 2023 table modeled as current (valid_until null)."
-      },
-      {
-        "kind": "simplification",
-        "text": "Seniority: contract uses a flat EUR 40/month bonus at 5 years of service (levels A-E3 only; F/G/H excluded). Modeled as cadence_months=60, maximum_count=1. The Oct 2023 'premio di anzianita' (EUR 40 for 10+ year workers) is a one-time payment and is out_of_scope."
-      },
-      {
-        "kind": "simplification",
-        "text": "Apprenticeship: contract specifies sotto-inquadramento up to 2 levels below destination (levels A-F eligible, 36 months). Engine schema requires a static pay_level_code; modeled as 100% passthrough."
-      }
-    ]
-  },
-  "parameters": {
-    "additional_months": {
-      "periods": [
+    "levels": [
         {
-          "valid_from": "2012-04-01",
-          "valid_until": null,
-          "value": "13"
-        }
-      ]
-    },
-    "hourly_divisor": {
-      "periods": [
+            "code": "A",
+            "order": 1,
+            "description": "Livello A",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2012-04-01",
+                        "valid_until": "2023-10-01",
+                        "value": "1105.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2023-10-01",
+                        "valid_until": null,
+                        "value": "1223.57",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-rsa-aiop-2012-pdf",
+                        "title": "ccnl-rsa-aiop-2012-pdf",
+                        "kind": "altro",
+                        "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
         {
-          "valid_from": "2012-04-01",
-          "valid_until": null,
-          "value": "165"
-        }
-      ]
-    },
-    "seniority_increments": {
-      "cadence_months": 60,
-      "maximum_count": 1,
-      "amount_by_level": {
-        "A": {
-          "periods": [
-            {
-              "valid_from": "2012-04-01",
-              "valid_until": null,
-              "value": "40.00"
+            "code": "B",
+            "order": 2,
+            "description": "Livello B",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2012-04-01",
+                        "valid_until": "2023-10-01",
+                        "value": "1185.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2023-10-01",
+                        "valid_until": null,
+                        "value": "1311.68",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-rsa-aiop-2012-pdf",
+                        "title": "ccnl-rsa-aiop-2012-pdf",
+                        "kind": "altro",
+                        "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
             }
-          ]
         },
-        "B": {
-          "periods": [
-            {
-              "valid_from": "2012-04-01",
-              "valid_until": null,
-              "value": "40.00"
-            }
-          ]
-        },
-        "C": {
-          "periods": [
-            {
-              "valid_from": "2012-04-01",
-              "valid_until": null,
-              "value": "40.00"
-            }
-          ]
-        },
-        "D1": {
-          "periods": [
-            {
-              "valid_from": "2012-04-01",
-              "valid_until": null,
-              "value": "40.00"
-            }
-          ]
-        },
-        "D2": {
-          "periods": [
-            {
-              "valid_from": "2012-04-01",
-              "valid_until": null,
-              "value": "40.00"
-            }
-          ]
-        },
-        "D3": {
-          "periods": [
-            {
-              "valid_from": "2012-04-01",
-              "valid_until": null,
-              "value": "40.00"
-            }
-          ]
-        },
-        "E1": {
-          "periods": [
-            {
-              "valid_from": "2012-04-01",
-              "valid_until": null,
-              "value": "40.00"
-            }
-          ]
-        },
-        "E2": {
-          "periods": [
-            {
-              "valid_from": "2012-04-01",
-              "valid_until": null,
-              "value": "40.00"
-            }
-          ]
-        },
-        "E3": {
-          "periods": [
-            {
-              "valid_from": "2012-04-01",
-              "valid_until": null,
-              "value": "40.00"
-            }
-          ]
-        },
-        "F": {
-          "periods": [
-            {
-              "valid_from": "2012-04-01",
-              "valid_until": null,
-              "value": "0.00"
-            }
-          ]
-        },
-        "G": {
-          "periods": [
-            {
-              "valid_from": "2012-04-01",
-              "valid_until": null,
-              "value": "0.00"
-            }
-          ]
-        },
-        "H": {
-          "periods": [
-            {
-              "valid_from": "2012-04-01",
-              "valid_until": null,
-              "value": "0.00"
-            }
-          ]
-        }
-      }
-    }
-  },
-  "apprenticeship": [
-    {
-      "type": "percentage",
-      "name": "professionalizzante",
-      "destination_levels": [
-        "A",
-        "B",
-        "C",
-        "D1",
-        "D2",
-        "D3",
-        "E1",
-        "E2",
-        "E3",
-        "F"
-      ],
-      "periods": [
         {
-          "months_from": 0,
-          "months_until": null,
-          "percentage": "1.00"
+            "code": "C",
+            "order": 3,
+            "description": "Livello C",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2012-04-01",
+                        "valid_until": "2023-10-01",
+                        "value": "1285.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2023-10-01",
+                        "valid_until": null,
+                        "value": "1419.80",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-rsa-aiop-2012-pdf",
+                        "title": "ccnl-rsa-aiop-2012-pdf",
+                        "kind": "altro",
+                        "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "D1",
+            "order": 4,
+            "description": "Livello D1",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2012-04-01",
+                        "valid_until": "2023-10-01",
+                        "value": "1285.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2023-10-01",
+                        "valid_until": null,
+                        "value": "1419.80",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-rsa-aiop-2012-pdf",
+                        "title": "ccnl-rsa-aiop-2012-pdf",
+                        "kind": "altro",
+                        "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "D2",
+            "order": 5,
+            "description": "Livello D2",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2012-04-01",
+                        "valid_until": "2023-10-01",
+                        "value": "1325.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2023-10-01",
+                        "valid_until": null,
+                        "value": "1463.33",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-rsa-aiop-2012-pdf",
+                        "title": "ccnl-rsa-aiop-2012-pdf",
+                        "kind": "altro",
+                        "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "D3",
+            "order": 6,
+            "description": "Livello D3",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2012-04-01",
+                        "valid_until": "2023-10-01",
+                        "value": "1355.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2023-10-01",
+                        "valid_until": null,
+                        "value": "1496.06",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-rsa-aiop-2012-pdf",
+                        "title": "ccnl-rsa-aiop-2012-pdf",
+                        "kind": "altro",
+                        "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "E1",
+            "order": 7,
+            "description": "Livello E1",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2012-04-01",
+                        "valid_until": "2023-10-01",
+                        "value": "1405.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2023-10-01",
+                        "valid_until": null,
+                        "value": "1550.56",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-rsa-aiop-2012-pdf",
+                        "title": "ccnl-rsa-aiop-2012-pdf",
+                        "kind": "altro",
+                        "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "E2",
+            "order": 8,
+            "description": "Livello E2",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2012-04-01",
+                        "valid_until": "2023-10-01",
+                        "value": "1455.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2023-10-01",
+                        "valid_until": null,
+                        "value": "1746.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-rsa-aiop-2012-pdf",
+                        "title": "ccnl-rsa-aiop-2012-pdf",
+                        "kind": "altro",
+                        "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "E3",
+            "order": 9,
+            "description": "Livello E3",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2012-04-01",
+                        "valid_until": "2023-10-01",
+                        "value": "1505.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2023-10-01",
+                        "valid_until": null,
+                        "value": "1806.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-rsa-aiop-2012-pdf",
+                        "title": "ccnl-rsa-aiop-2012-pdf",
+                        "kind": "altro",
+                        "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "F",
+            "order": 10,
+            "description": "Livello F",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2012-04-01",
+                        "valid_until": "2023-10-01",
+                        "value": "1905.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2023-10-01",
+                        "valid_until": null,
+                        "value": "2095.50",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-rsa-aiop-2012-pdf",
+                        "title": "ccnl-rsa-aiop-2012-pdf",
+                        "kind": "altro",
+                        "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "G",
+            "order": 11,
+            "description": "Livello G",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2012-04-01",
+                        "valid_until": "2023-10-01",
+                        "value": "2505.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2023-10-01",
+                        "valid_until": null,
+                        "value": "2749.49",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-rsa-aiop-2012-pdf",
+                        "title": "ccnl-rsa-aiop-2012-pdf",
+                        "kind": "altro",
+                        "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "H",
+            "order": 12,
+            "description": "Livello H",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2012-04-01",
+                        "valid_until": "2023-10-01",
+                        "value": "3005.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2023-10-01",
+                        "valid_until": null,
+                        "value": "3294.68",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-rsa-aiop-2012-pdf",
+                                    "title": "ccnl-rsa-aiop-2012-pdf",
+                                    "kind": "altro",
+                                    "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-rsa-aiop-2012-pdf",
+                        "title": "ccnl-rsa-aiop-2012-pdf",
+                        "kind": "altro",
+                        "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
         }
-      ]
+    ],
+    "ruleset": {
+        "id": "ccnl/rsa-aiop",
+        "version": "2026.2",
+        "effective_from": "2012-04-01",
+        "effective_until": null,
+        "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+        "verification_status": "unverified",
+        "source_hash": "a7820c85e811c99b330fa88bfa93c3fbbdc7698bb98d8a7dbf7d703b58e9f2c5",
+        "published_at": "2026-09-07"
     }
-  ],
-  "levels": [
-    {
-      "code": "A",
-      "order": 1,
-      "description": "Livello A",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2012-04-01",
-            "valid_until": "2023-10-01",
-            "value": "1105.00"
-          },
-          {
-            "valid_from": "2023-10-01",
-            "valid_until": null,
-            "value": "1223.57"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "B",
-      "order": 2,
-      "description": "Livello B",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2012-04-01",
-            "valid_until": "2023-10-01",
-            "value": "1185.00"
-          },
-          {
-            "valid_from": "2023-10-01",
-            "valid_until": null,
-            "value": "1311.68"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "C",
-      "order": 3,
-      "description": "Livello C",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2012-04-01",
-            "valid_until": "2023-10-01",
-            "value": "1285.00"
-          },
-          {
-            "valid_from": "2023-10-01",
-            "valid_until": null,
-            "value": "1419.80"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "D1",
-      "order": 4,
-      "description": "Livello D1",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2012-04-01",
-            "valid_until": "2023-10-01",
-            "value": "1285.00"
-          },
-          {
-            "valid_from": "2023-10-01",
-            "valid_until": null,
-            "value": "1419.80"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "D2",
-      "order": 5,
-      "description": "Livello D2",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2012-04-01",
-            "valid_until": "2023-10-01",
-            "value": "1325.00"
-          },
-          {
-            "valid_from": "2023-10-01",
-            "valid_until": null,
-            "value": "1463.33"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "D3",
-      "order": 6,
-      "description": "Livello D3",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2012-04-01",
-            "valid_until": "2023-10-01",
-            "value": "1355.00"
-          },
-          {
-            "valid_from": "2023-10-01",
-            "valid_until": null,
-            "value": "1496.06"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "E1",
-      "order": 7,
-      "description": "Livello E1",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2012-04-01",
-            "valid_until": "2023-10-01",
-            "value": "1405.00"
-          },
-          {
-            "valid_from": "2023-10-01",
-            "valid_until": null,
-            "value": "1550.56"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "E2",
-      "order": 8,
-      "description": "Livello E2",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2012-04-01",
-            "valid_until": "2023-10-01",
-            "value": "1455.00"
-          },
-          {
-            "valid_from": "2023-10-01",
-            "valid_until": null,
-            "value": "1746.00"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "E3",
-      "order": 9,
-      "description": "Livello E3",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2012-04-01",
-            "valid_until": "2023-10-01",
-            "value": "1505.00"
-          },
-          {
-            "valid_from": "2023-10-01",
-            "valid_until": null,
-            "value": "1806.00"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "F",
-      "order": 10,
-      "description": "Livello F",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2012-04-01",
-            "valid_until": "2023-10-01",
-            "value": "1905.00"
-          },
-          {
-            "valid_from": "2023-10-01",
-            "valid_until": null,
-            "value": "2095.50"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "G",
-      "order": 11,
-      "description": "Livello G",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2012-04-01",
-            "valid_until": "2023-10-01",
-            "value": "2505.00"
-          },
-          {
-            "valid_from": "2023-10-01",
-            "valid_until": null,
-            "value": "2749.49"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    },
-    {
-      "code": "H",
-      "order": 12,
-      "description": "Livello H",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2012-04-01",
-            "valid_until": "2023-10-01",
-            "value": "3005.00"
-          },
-          {
-            "valid_from": "2023-10-01",
-            "valid_until": null,
-            "value": "3294.68"
-          }
-        ]
-      },
-      "fixed_allowances": []
-    }
-  ],
-  "ruleset": {
-    "id": "ccnl/rsa-aiop",
-    "version": "2026.1",
-    "effective_from": "2012-04-01",
-    "effective_until": null,
-    "published_at": "2026-09-07",
-    "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
-    "verification_status": "unverified",
-    "source_hash": "9d9c64e33ff0b8c4e24e643efb7105ce19f5e2f190f5e5a799e851451f47638a"
-  }
 }

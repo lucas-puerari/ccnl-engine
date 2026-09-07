@@ -62,7 +62,11 @@ def load_year_rules(
     """
     tax_raw = read_tax_rules_raw(year, sector)
     inps_raw = read_inps_rules_raw(year, sector)
+    inps_sources = inps_raw.pop("sources", [])
+    inps_extraction = inps_raw.pop("extraction", None)
     raw = {**tax_raw, **inps_raw}
+    raw["inps_sources"] = inps_sources
+    raw["inps_extraction"] = inps_extraction
     rules = YearRulesRaw.model_validate(raw)
     inps = _resolve_inps(rules.inps, num_employees)
     apprentice = (
@@ -83,6 +87,10 @@ def load_year_rules(
         tfr=rules.tfr,
         trattamento_integrativo=rules.trattamento_integrativo,
         notes=rules.notes,
+        sources=rules.sources,
+        extraction=rules.extraction,
+        inps_sources=rules.inps_sources,
+        inps_extraction=rules.inps_extraction,
     )
 
 

@@ -86,7 +86,7 @@ class TestContractLoaderIntegrity:
         ccnl = load_ccnl_from_bundle("commercio-confcommercio.json")
         assert ccnl.ruleset is not None
         assert ccnl.ruleset.id == "ccnl/commercio-confcommercio"
-        assert ccnl.ruleset.version == "2026.1"
+        assert ccnl.ruleset.version == "2026.2"
 
 
 class TestVerifyRulesetHash:

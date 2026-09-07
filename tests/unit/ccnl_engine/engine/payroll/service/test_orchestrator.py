@@ -2,13 +2,19 @@
 
 from __future__ import annotations
 
-from datetime import date
+from datetime import UTC, date, datetime
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.engine.contract.domain.ccnl import CCNL, SupplementaryAllowance
+from ccnl_engine.engine.contract.domain.ccnl import (
+    CCNL,
+    Allowance,
+    SupplementaryAllowance,
+)
+from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
+from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
 from ccnl_engine.engine.payroll.domain.employee import (
     ContractPosition,
     DestinationRalOverride,
@@ -23,8 +29,19 @@ from ccnl_engine.engine.payroll.domain.employee import (
 from ccnl_engine.engine.payroll.domain.employer import Employer
 from ccnl_engine.engine.payroll.domain.employment import Employment, Permanent
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.orchestrator import _collect_provenance, compute
 from ccnl_engine.engine.payroll.service.rounding import money
+from ccnl_engine.engine.payroll.service.types import MonthlyPayChain
+from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.engine.provenance.domain.extraction import (
+    ExtractionMethod,
+    ExtractionTrace,
+)
+from ccnl_engine.engine.provenance.domain.source import (
+    SourceDocument,
+    SourceKind,
+    SourceLocation,
+)
 from ccnl_engine.engine.surtax.domain.rules import (
     ComunaleEntry,
     RegionaleEntry,
@@ -50,6 +67,32 @@ if TYPE_CHECKING:
 
 _DEFAULT_CCNL = _build_ccnl()
 _DEFAULT_CCNL_UC = _build_ccnl("under_classification")
+
+
+def _rule_provenance(tag: str) -> RuleProvenance:
+    """Build a RuleProvenance with a distinguishing document/section identity.
+
+    Returns:
+        A :class:`RuleProvenance` uniquely identified by ``tag``.
+    """
+    return RuleProvenance(
+        location=SourceLocation(
+            source_document=SourceDocument(
+                document_id=f"doc-{tag}",
+                title=f"Document {tag}",
+                kind=SourceKind.TABELLA_RETRIBUTIVA,
+                url="https://example.com",
+            ),
+            section=f"Tabella {tag}",
+        ),
+        extraction=ExtractionTrace(
+            method=ExtractionMethod.MANUAL,
+            extraction_timestamp=datetime(2026, 1, 1, tzinfo=UTC),
+            verification_status=VerificationStatus.UNVERIFIED,
+            effective_from=date(2025, 1, 1),
+        ),
+        note=tag,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -825,3 +868,74 @@ class TestComputeAddizionali:
             surtax=surtax,
         )
         assert r.addizionale_comunale_annual == Decimal("0.00")
+
+
+class TestProvenanceChain:
+    """The PayrollResult carries the provenance of the rules it consumed."""
+
+    def test_provenance_always_present(self) -> None:
+        """All CCNLs carry provenance; minimal dict yields a non-empty tuple."""
+        ccnl = CCNL.model_validate(make_ccnl_dict())
+        result = compute(ccnl, make_year_rules(), _req())
+        # Level 4 has provenance on the level and on its salary period.
+        assert len(result.provenance) >= 1
+
+    def test_level_and_period_provenance_collected(self) -> None:
+        """Level and per-period base-salary provenance are collected in order."""
+        prov_level = _rule_provenance("level")
+        prov_period = _rule_provenance("period")
+        ccnl = CCNL.model_validate(make_ccnl_dict())
+        level = ccnl.level_by_code("4")
+        level.provenance = prov_level
+        level.base_salary.periods[0].provenance = prov_period
+        # Clear seniority provenance so only level+period appear in the result.
+        ccnl.parameters.seniority_increments.provenance = None
+        result = compute(ccnl, make_year_rules(), _req())
+        assert result.provenance == (prov_level, prov_period)
+
+    def test_allowance_and_seniority_provenance_collected(self) -> None:
+        """Allowance and seniority-increment provenance are collected."""
+        prov_allowance = _rule_provenance("allowance")
+        prov_seniority = _rule_provenance("seniority")
+        ccnl = CCNL.model_validate(make_ccnl_dict())
+        level = ccnl.level_by_code("4")
+        level.fixed_allowances = [
+            Allowance(
+                code="a",
+                description="a",
+                monthly=TimeSeries(
+                    periods=[
+                        ValidityPeriod(
+                            valid_from=date(2020, 1, 1),
+                            valid_until=None,
+                            value=Decimal("10.00"),
+                        )
+                    ]
+                ),
+            )
+        ]
+        level.fixed_allowances[0].provenance = prov_allowance
+        ccnl.parameters.seniority_increments.provenance = prov_seniority
+        result = compute(ccnl, make_year_rules(), _req())
+        assert prov_allowance in result.provenance
+        assert prov_seniority in result.provenance
+
+    def test_no_matching_period_skips_period_provenance(self) -> None:
+        """When no salary period covers as_of, no period provenance is added."""
+        ccnl = CCNL.model_validate(make_ccnl_dict())
+        level = ccnl.level_by_code("4")
+        prov_level = _rule_provenance("level")
+        prov_period = _rule_provenance("period")
+        level.provenance = prov_level
+        level.base_salary.periods[0].valid_from = date(2025, 1, 1)
+        level.base_salary.periods[0].provenance = prov_period
+        # Clear seniority provenance so only level appears in the result.
+        ccnl.parameters.seniority_increments.provenance = None
+        # Calling _collect_provenance directly with a date before the period.
+        result = _collect_provenance(
+            level,
+            date(2024, 6, 1),
+            MonthlyPayChain(base=_D(0), seniority=_D(0), allowances=()),
+            ccnl.parameters.seniority_increments,
+        )
+        assert result == (prov_level,)
