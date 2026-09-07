@@ -597,3 +597,87 @@ class TestServiceMonthsThreshold:
             }
         ]
         _validate(data)
+
+
+# ---------------------------------------------------------------------------
+# Schema 0.5 provenance completeness
+# ---------------------------------------------------------------------------
+
+_PROV = {
+    "location": {
+        "source_document": {
+            "document_id": "doc",
+            "title": "T",
+            "kind": "tabella_retributiva",
+            "url": "https://example.com",
+        },
+        "section": "Tabella livelli",
+    },
+    "extraction": {
+        "method": "manual",
+        "extraction_timestamp": "2026-01-01T00:00:00",
+        "verification_status": "unverified",
+        "effective_from": "2020-01-01",
+    },
+}
+
+
+def _make_v5_dict() -> dict[str, Any]:
+    """Minimal schema-0.5 dict with provenance on every required rule.
+
+    Returns:
+        A dict suitable for CCNL.model_validate() with schema_version="0.5".
+    """
+    data = make_ccnl_dict(app_type="")
+    data["schema_version"] = "0.5"
+    si = data["parameters"]["seniority_increments"]
+    si["provenance"] = _PROV
+    for level in data["levels"]:
+        level["provenance"] = _PROV
+        for period in level["base_salary"]["periods"]:
+            period["provenance"] = _PROV
+    return data
+
+
+class TestSchema05ProvenanceRequired:
+    """schema_version 0.5 requires provenance on every rule."""
+
+    def test_complete_provenance_accepted(self) -> None:
+        """A fully-populated 0.5 dict loads without errors."""
+        _validate(_make_v5_dict())
+
+    def test_missing_level_provenance_raises(self) -> None:
+        """A level without provenance in schema 0.5 raises ValidationError."""
+        data = _make_v5_dict()
+        del data["levels"][0]["provenance"]
+        with pytest.raises(ValidationError, match="provenance is required"):
+            _validate(data)
+
+    def test_missing_period_provenance_raises(self) -> None:
+        """A salary period without provenance in schema 0.5 raises ValidationError."""
+        data = _make_v5_dict()
+        del data["levels"][0]["base_salary"]["periods"][0]["provenance"]
+        with pytest.raises(ValidationError, match="provenance is required"):
+            _validate(data)
+
+    def test_missing_seniority_provenance_raises(self) -> None:
+        """Missing seniority_increments.provenance in 0.5 raises ValidationError."""
+        data = _make_v5_dict()
+        del data["parameters"]["seniority_increments"]["provenance"]
+        with pytest.raises(ValidationError, match="provenance is required"):
+            _validate(data)
+
+    def test_missing_allowance_provenance_raises(self) -> None:
+        """An allowance without provenance in schema 0.5 raises ValidationError."""
+        data = _make_v5_dict()
+        data["levels"][0]["fixed_allowances"] = [
+            {"code": "X", "description": "X", "monthly": _SERIES}
+        ]
+        with pytest.raises(ValidationError, match="provenance is required"):
+            _validate(data)
+
+    def test_schema_04_without_provenance_accepted(self) -> None:
+        """schema_version 0.4 files are not subject to the provenance check."""
+        data = make_ccnl_dict(app_type="")
+        assert data["schema_version"] == "0.4"
+        _validate(data)

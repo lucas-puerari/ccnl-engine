@@ -427,6 +427,8 @@ class CCNL(BaseModel):
         self._assert_salary_order_non_decreasing()
         self._assert_apprenticeship_tracks()
         self._assert_coverage_consistency()
+        if self.schema_version == "0.5":
+            self._assert_provenance_complete()
         return self
 
     def level_by_code(self, level_code: str) -> Level:
@@ -551,6 +553,33 @@ class CCNL(BaseModel):
                     f"destination {dest.code!r}, order {dest.order})"
                 )
                 raise ValueError(msg) from None
+
+    def _assert_provenance_complete(self) -> None:
+        """Verify that every rule in a schema-0.5 file carries provenance.
+
+        Raises:
+            ValueError: If any level, salary period, allowance monthly period,
+                or seniority_increments is missing a ``provenance`` entry.
+        """
+        si = self.parameters.seniority_increments
+        if si.provenance is None:
+            msg = "schema 0.5: parameters.seniority_increments.provenance is required"
+            raise ValueError(msg)
+        for level in self.levels:
+            prefix = f"schema 0.5: level {level.code!r}"
+            if level.provenance is None:
+                msg = f"{prefix}: provenance is required"
+                raise ValueError(msg)
+            for i, period in enumerate(level.base_salary.periods):
+                if period.provenance is None:
+                    msg = f"{prefix}: base_salary.periods[{i}].provenance is required"
+                    raise ValueError(msg)
+            for allowance in level.fixed_allowances:
+                if allowance.provenance is None:
+                    msg = (
+                        f"{prefix}: allowance {allowance.code!r}.provenance is required"
+                    )
+                    raise ValueError(msg)
 
     def _assert_coverage_consistency(self) -> None:
         has_tracks = bool(self.apprenticeship)
