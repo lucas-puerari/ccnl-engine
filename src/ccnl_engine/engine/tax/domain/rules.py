@@ -8,6 +8,7 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.engine.contract.domain.ccnl import TaxSector
+from ccnl_engine.engine.metadata import RulesetIdentity
 from ccnl_engine.engine.primitives import Bracket, assert_ivs_le_total
 
 #: A single IRPEF marginal tax bracket (Art. 11 TUIR).
@@ -311,6 +312,7 @@ class YearRulesRaw(BaseModel):
 
     year: int
     sector: TaxSector
+    ruleset: RulesetIdentity | None = None
     irpef_brackets: list[IrpefBracket]
     work_deduction_breakpoints: list[DeductionBreakpoint]
     fixed_term_additional_rate: Decimal
@@ -346,6 +348,8 @@ class YearRules(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     year: int
+    ruleset: RulesetIdentity | None = None
+    inps_ruleset: RulesetIdentity | None = None
     irpef_brackets: list[IrpefBracket]
     work_deduction_breakpoints: list[DeductionBreakpoint]
     fixed_term_additional_rate: Decimal

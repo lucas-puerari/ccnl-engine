@@ -342,5 +342,15 @@
         }
       ]
     }
+  },
+  "ruleset": {
+    "id": "surtax/2026/regionale",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "cf136a2e04ce1f9a6e1cdeda51e7f496f8d808dcdd2aaf55f16eceea0479a691"
   }
 }

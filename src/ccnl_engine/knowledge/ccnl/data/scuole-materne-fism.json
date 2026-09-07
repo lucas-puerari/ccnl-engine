@@ -451,7 +451,14 @@
       "type": "percentage",
       "name": "professionalizzante",
       "destination_levels": [
-        "I", "II", "III", "IV", "V", "VI", "VII", "VIII"
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V",
+        "VI",
+        "VII",
+        "VIII"
       ],
       "periods": [
         {
@@ -461,5 +468,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/scuole-materne-fism",
+    "version": "2026.1",
+    "effective_from": "2023-09-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+    "verification_status": "verified",
+    "source_hash": "262f42fec21a06b8ff175bd43114dea895b6484ed4836dbb722f924a5137e5e9"
+  }
 }

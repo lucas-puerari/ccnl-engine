@@ -492,5 +492,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/orafi-argentieri-industria-federorafi",
+    "version": "2026.1",
+    "effective_from": "2022-06-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
+    "verification_status": "unverified",
+    "source_hash": "5eab07d53827862f9118395ae2b659d9413f82741ea166bc7f43e927c3fb9237"
+  }
 }

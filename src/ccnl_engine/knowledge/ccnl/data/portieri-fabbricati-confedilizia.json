@@ -515,5 +515,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/portieri-fabbricati-confedilizia",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
+    "verification_status": "verified",
+    "source_hash": "02cac2bf463380e143ca103c4529edf944dbf163962c2b128e64ab83a7b276a2"
+  }
 }

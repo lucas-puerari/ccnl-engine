@@ -374,5 +374,15 @@
       },
       "fixed_allowances": []
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/ooss-unsic-confsal",
+    "version": "2026.1",
+    "effective_from": "2023-01-19",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
+    "verification_status": "unverified",
+    "source_hash": "37398ba4d25dea7f1fd1478ffc6bc562abe01f66b770777d85fdfe3375836a35"
+  }
 }

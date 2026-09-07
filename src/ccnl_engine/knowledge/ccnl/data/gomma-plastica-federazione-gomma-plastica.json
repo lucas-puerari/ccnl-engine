@@ -692,5 +692,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/gomma-plastica-federazione-gomma-plastica",
+    "version": "2026.1",
+    "effective_from": "2023-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/",
+    "verification_status": "unverified",
+    "source_hash": "027e38f3b84ecacb50becf85eb13b5656451d9453877fd26ca4ac9012a901944"
+  }
 }

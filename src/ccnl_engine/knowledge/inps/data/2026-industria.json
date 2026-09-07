@@ -43,5 +43,15 @@
     "small_firm_employer_ivs_rate_months_0_11": "0.0150",
     "small_firm_employer_rate_months_12_23": "0.0461",
     "small_firm_employer_ivs_rate_months_12_23": "0.0300"
+  },
+  "ruleset": {
+    "id": "inps/2026/industria",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "103ab3c7a94609dd1ccd61dd2bec156afa67bba2af1cc01ba5674fe3c302b473"
   }
 }

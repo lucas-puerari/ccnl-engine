@@ -663,5 +663,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/tessile-smi",
+    "version": "2026.1",
+    "effective_from": "2024-11-11",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.sistemamodaitalia.com/",
+    "verification_status": "unverified",
+    "source_hash": "8bcfa2ea43ff3d6ee57d68703020c61ef71592320c81b33685d044f46052789f"
+  }
 }

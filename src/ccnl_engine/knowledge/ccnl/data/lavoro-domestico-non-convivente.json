@@ -312,5 +312,15 @@
       "category": null
     }
   ],
-  "apprenticeship": []
+  "apprenticeship": [],
+  "ruleset": {
+    "id": "ccnl/lavoro-domestico-non-convivente",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
+    "verification_status": "unverified",
+    "source_hash": "c43472c6e5b2594a94c2a52aff8fb5cb05e936660b39e31aadebe724625b7575"
+  }
 }

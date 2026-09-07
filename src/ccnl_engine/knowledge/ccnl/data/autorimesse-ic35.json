@@ -1073,5 +1073,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/autorimesse-ic35",
+    "version": "2026.1",
+    "effective_from": "2025-12-09",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
+    "verification_status": "unverified",
+    "source_hash": "3f7ffb3b8bd8723af0a5e7c266a07a126d2b7ec0bd84fa38bf403e3ce0d9e6c5"
+  }
 }

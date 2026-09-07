@@ -510,5 +510,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/bcc-credito-cooperativo",
+    "version": "2026.1",
+    "effective_from": "2024-09-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
+    "verification_status": "unverified",
+    "source_hash": "c903e8d7ade48cd89dca943b351887cb64f73cd15766763c9e452a125aa6280a"
+  }
 }

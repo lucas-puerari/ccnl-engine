@@ -501,5 +501,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/poste-italiane-k700",
+    "version": "2026.1",
+    "effective_from": "2024-07-23",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
+    "verification_status": "unverified",
+    "source_hash": "35cf3150ceeb2b1d7addb53e5df8ba59580266eaa8061369d99a5a4bb6d1d978"
+  }
 }

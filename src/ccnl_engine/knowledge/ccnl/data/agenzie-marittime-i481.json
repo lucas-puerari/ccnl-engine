@@ -460,5 +460,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/agenzie-marittime-i481",
+    "version": "2026.1",
+    "effective_from": "2024-09-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
+    "verification_status": "unverified",
+    "source_hash": "92cb907be824669d48e52617d52ee10da258591f8d6d035e86a428dbbad174f9"
+  }
 }

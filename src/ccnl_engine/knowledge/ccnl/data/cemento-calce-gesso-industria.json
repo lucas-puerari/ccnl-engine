@@ -935,9 +935,15 @@
       "type": "percentage",
       "name": "professionalizzante",
       "destination_levels": [
-        "AQ2", "AS1", "AS2", "AS3",
-        "AC1", "AC2", "AC3",
-        "AD1", "AD2"
+        "AQ2",
+        "AS1",
+        "AS2",
+        "AS3",
+        "AC1",
+        "AC2",
+        "AC3",
+        "AD1",
+        "AD2"
       ],
       "periods": [
         {
@@ -947,5 +953,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/cemento-calce-gesso-industria",
+    "version": "2026.1",
+    "effective_from": "2024-12-31",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
+    "verification_status": "verified",
+    "source_hash": "ee3e4a1eb615f052c85ede37670ca12246d9b5b1e9857a9ae855b0a3386c9a8b"
+  }
 }

@@ -275,5 +275,15 @@
         "text": "valid_from period 1 = 2022-01-01 (inizio validità del triennio). Il previgente CCNL 2019-2021 aveva stabilito i valori pre-2024; la data esatta di firma del CCNL 2019-2021 non è disponibile dalla fonte e viene approssimata."
       }
     ]
+  },
+  "ruleset": {
+    "id": "ccnl/istruzione-ricerca-aran",
+    "version": "2026.1",
+    "effective_from": "2022-01-01",
+    "effective_until": "2024-12-31",
+    "published_at": "2026-09-07",
+    "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
+    "verification_status": "unverified",
+    "source_hash": "919787f369d07c8159e2f5c2f400c8e70929695629501e09b22ec4da52b525ae"
   }
 }

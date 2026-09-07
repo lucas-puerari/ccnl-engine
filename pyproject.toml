@@ -86,6 +86,7 @@ ignore = [
 "src/ccnl_engine/engine/contract/domain/**" = ["TCH"]
 "src/ccnl_engine/engine/payroll/domain/**" = ["TCH"]
 "src/ccnl_engine/engine/surtax/domain/**" = ["TCH"]
+"src/ccnl_engine/engine/metadata/domain/**" = ["TCH"]
 "src/ccnl_engine/engine/primitives.py" = ["TCH"]
 
 [tool.ruff.format]

@@ -648,5 +648,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/metalmeccanico-federmeccanica",
+    "version": "2026.1",
+    "effective_from": "2021-06-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
+    "verification_status": "unverified",
+    "source_hash": "c9afd6a2d9f267d8e40ece65ff0ddbfd1bd84b29d19f01b0dd1e9f1629719e64"
+  }
 }

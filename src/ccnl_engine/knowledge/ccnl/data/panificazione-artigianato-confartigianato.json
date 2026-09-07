@@ -764,5 +764,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/panificazione-artigianato-confartigianato",
+    "version": "2026.1",
+    "effective_from": "1996-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+    "verification_status": "unverified",
+    "source_hash": "0d83655a77b239dd0d2412a9665739b39c5ce98ace64679f695dea48b82601b2"
+  }
 }

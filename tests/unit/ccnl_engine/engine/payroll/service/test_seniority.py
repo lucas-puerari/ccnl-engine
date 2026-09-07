@@ -25,7 +25,7 @@ from tests.unit.ccnl_engine.engine.payroll.service.builders import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.payroll.domain.payslip import Payslip
+    from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
 
 
 # ---------------------------------------------------------------------------
@@ -73,7 +73,7 @@ class TestTieredSeniority:
         seniority_months: int | None = None,
         seniority_count: int | None = None,
         level_code: str = "4",
-    ) -> Payslip:
+    ) -> PayrollResult:
         seniority: SeniorityByCount | SeniorityByMonths | None = None
         if seniority_count is not None:
             seniority = SeniorityByCount(seniority_count)
@@ -88,7 +88,7 @@ class TestTieredSeniority:
                 ),
                 arrangement=WorkArrangement(seniority=seniority),
             ),
-        )
+        ).result
 
     def test_no_seniority(self) -> None:
         """Zero service months yields zero seniority."""
@@ -212,7 +212,7 @@ class TestServiceGatedAllowances:
         self,
         seniority_months: int | None = None,
         seniority_count: int | None = None,
-    ) -> Payslip:
+    ) -> PayrollResult:
         seniority: SeniorityByCount | SeniorityByMonths | None = None
         if seniority_count is not None:
             seniority = SeniorityByCount(seniority_count)
@@ -227,7 +227,7 @@ class TestServiceGatedAllowances:
                 ),
                 arrangement=WorkArrangement(seniority=seniority),
             ),
-        )
+        ).result
 
     def test_below_threshold_no_allowance(self) -> None:
         """Below the 5yr threshold no allowance is included."""

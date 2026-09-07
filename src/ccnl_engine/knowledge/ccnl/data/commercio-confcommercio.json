@@ -740,5 +740,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/commercio-confcommercio",
+    "version": "2026.1",
+    "effective_from": "1993-11-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
+    "verification_status": "unverified",
+    "source_hash": "3802a95348a2c97b3b27bd26547f74f3f233842f96aee3b76c77079363687dd3"
+  }
 }

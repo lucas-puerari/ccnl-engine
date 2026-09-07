@@ -12,14 +12,11 @@ mutually-exclusive alternatives become structurally impossible to combine.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import date
 from decimal import Decimal
-from typing import TYPE_CHECKING
 
-if TYPE_CHECKING:
-    from datetime import date
-
-    from ccnl_engine.engine.contract.domain.ccnl import LevelCategory
-    from ccnl_engine.engine.payroll.domain.employment import Employment
+from ccnl_engine.engine.contract.domain.ccnl import LevelCategory
+from ccnl_engine.engine.payroll.domain.employment import Employment
 
 _ZERO: Decimal = Decimal(0)
 _ONE: Decimal = Decimal(1)

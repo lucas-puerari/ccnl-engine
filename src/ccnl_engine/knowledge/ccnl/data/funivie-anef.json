@@ -555,5 +555,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/funivie-anef",
+    "version": "2026.1",
+    "effective_from": "2025-05-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
+    "verification_status": "unverified",
+    "source_hash": "a728ff3b043b20909ad0c33c7b6dd0fc5cca986bc5f642069226ca5fb2ed3698"
+  }
 }

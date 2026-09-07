@@ -1510,5 +1510,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/autostrade-trafori",
+    "version": "2026.1",
+    "effective_from": "2023-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
+    "verification_status": "unverified",
+    "source_hash": "e5d0465a1778de92a397f97810c2afac781c3459400e8feeabb10484921ea1be"
+  }
 }

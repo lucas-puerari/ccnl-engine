@@ -447,5 +447,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/acconciatura-estetica-confartigianato",
+    "version": "2026.1",
+    "effective_from": "2023-02-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
+    "verification_status": "unverified",
+    "source_hash": "7462db9b326eb85c222743f8f6bd28b42ec18f280089c113232ed0e4b95d2815"
+  }
 }

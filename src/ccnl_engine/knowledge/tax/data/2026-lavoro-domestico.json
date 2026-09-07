@@ -48,5 +48,15 @@
     "INFO: fixed_term_additional_rate retained for informational purposes; the addizionale NASpI is pre-baked into employer_per_hour_fixed_term in domestic_contributions.",
     "SIMPLIFICATION: CUAF variant (senza CUAF) not modelled; 'con CUAF' amounts used throughout.",
     "SIMPLIFICATION: IRPEF figures are informational only — family employers are not sostituti d'imposta (Art. 4 D.P.R. 600/1973). Set withholding_exempt: true in the CCNL JSON to zero irpef_net."
-  ]
+  ],
+  "ruleset": {
+    "id": "tax/2026/lavoro-domestico",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "2774f7d0ae79da10742dc43d653843e5dcb364f7db9b569ebc2114fe9707b257"
+  }
 }

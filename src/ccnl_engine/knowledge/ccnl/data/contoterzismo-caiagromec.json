@@ -560,5 +560,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/contoterzismo-caiagromec",
+    "version": "2026.1",
+    "effective_from": "2024-06-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
+    "verification_status": "unverified",
+    "source_hash": "f8e3ef55db56a83401bf9fde49f393af5c1651161867d6c1e08d9008f2538587"
+  }
 }

@@ -45,7 +45,7 @@ from tests.unit.ccnl_engine.engine.payroll.service.builders import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.payroll.domain.payslip import Payslip
+    from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
     from ccnl_engine.engine.tax.domain.rules import YearRules
 
 _DEFAULT_CCNL = _build_ccnl()
@@ -692,7 +692,7 @@ class TestComputeAddizionali:
         regione: str | None = None,
         comune_belfiore: str | None = None,
         negotiated_ral: Decimal | None = None,
-    ) -> Payslip:
+    ) -> PayrollResult:
         ccnl = CCNL.model_validate(make_ccnl_dict())
         rules = make_year_rules()
         tax = (
@@ -719,7 +719,7 @@ class TestComputeAddizionali:
                 agreement=agreement,
             ),
             surtax=self._surtax_rules(),
-        )
+        ).result
 
     def test_without_surtax_parameter_both_zero(self) -> None:
         """When surtax=None (default), both addizionali are zero."""

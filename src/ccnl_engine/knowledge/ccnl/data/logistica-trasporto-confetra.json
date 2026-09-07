@@ -505,5 +505,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/logistica-trasporto-confetra",
+    "version": "2026.1",
+    "effective_from": "2025-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf",
+    "verification_status": "unverified",
+    "source_hash": "21a3ba8c2f5b6863508e598ffd3d89b6d12bfa79d630c871869af9f585e752b6"
+  }
 }

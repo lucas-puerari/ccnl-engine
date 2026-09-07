@@ -772,5 +772,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/dmo-federdistribuzione",
+    "version": "2026.1",
+    "effective_from": "2023-04-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf",
+    "verification_status": "unverified",
+    "source_hash": "be4a51415b7c0d282d714e33d818105395586752c16e0144e0dca98492befe66"
+  }
 }

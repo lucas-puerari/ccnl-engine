@@ -1,4 +1,4 @@
-"""Payslip — the output record of compute()."""
+"""PayrollResult — the output record of compute()."""
 
 from __future__ import annotations
 
@@ -41,7 +41,7 @@ def _coerce(raw: object, hint: type) -> object:
 
 
 @dataclass(frozen=True)
-class Payslip:
+class PayrollResult:
     """Full gross-to-net and employer-cost breakdown for one payroll computation.
 
     Monthly components (``base_monthly``, ``seniority_monthly``,
@@ -186,7 +186,7 @@ class Payslip:
     employer_cost_annual: Decimal
 
     def to_dict(self) -> dict[str, object]:
-        """Serialise the payslip to a plain Python dictionary.
+        """Serialise the payroll to a plain Python dictionary.
 
         All ``Decimal`` amounts are converted to ``str`` to avoid floating-point
         loss. ``date`` is serialised as an ISO-8601 string. ``frozenset`` fields
@@ -210,7 +210,7 @@ class Payslip:
         return out
 
     def to_json(self) -> str:
-        """Serialise the payslip to a JSON string.
+        """Serialise the payroll to a JSON string.
 
         Returns:
             A compact JSON string. See :meth:`to_dict` for the encoding rules.
@@ -218,14 +218,15 @@ class Payslip:
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_dict(cls, data: dict[str, object]) -> Payslip:
-        """Reconstruct a :class:`Payslip` from a dictionary produced by :meth:`to_dict`.
+    def from_dict(cls, data: dict[str, object]) -> PayrollResult:
+        """Reconstruct a :class:`PayrollResult` from a ``to_dict()`` dict.
 
         Args:
-            data: A dictionary as returned by :meth:`to_dict`.
+            data: A dictionary as produced by :meth:`to_dict`.
 
         Returns:
-            A new :class:`Payslip` with all fields restored to their original types.
+            A new :class:`PayrollResult` with all fields restored to
+            their original types.
 
         Raises:
             ValueError: If a required field is absent from ``data``.
@@ -242,13 +243,14 @@ class Payslip:
         return cls(**kwargs)  # type: ignore[arg-type]
 
     @classmethod
-    def from_json(cls, raw: str) -> Payslip:
-        """Reconstruct a :class:`Payslip` from a JSON string.
+    def from_json(cls, raw: str) -> PayrollResult:
+        """Reconstruct a :class:`PayrollResult` from a JSON string.
 
         Args:
             raw: A JSON string as returned by :meth:`to_json`.
 
         Returns:
-            A new :class:`Payslip` with all fields restored to their original types.
+            A new :class:`PayrollResult` with all fields restored to
+            their original types.
         """
         return cls.from_dict(json.loads(raw))

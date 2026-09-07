@@ -608,5 +608,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/pubblici-esercizi-fipe-angem",
+    "version": "2026.1",
+    "effective_from": "2024-06-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
+    "verification_status": "unverified",
+    "source_hash": "bd48c19e776f7fcd940eb9a379374a2df2eba538730071df56f2c32a04e23cae"
+  }
 }

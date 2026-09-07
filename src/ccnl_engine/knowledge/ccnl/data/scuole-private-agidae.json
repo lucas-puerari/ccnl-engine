@@ -395,5 +395,15 @@
       },
       "fixed_allowances": []
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/scuole-private-agidae",
+    "version": "2026.1",
+    "effective_from": "2024-09-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
+    "verification_status": "unverified",
+    "source_hash": "80b91371e2b1b9d00a7f49603b3a5055b5e492321b0ab92a44e14e033e4e8a5b"
+  }
 }

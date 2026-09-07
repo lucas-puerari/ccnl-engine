@@ -682,5 +682,15 @@
         "text": "valori mensili arrotondati col metodo a due passi (annual = round(param × punto, 2); monthly = round(annual / 12, 2)) per allineamento con le tavole dell'ipotesi di accordo 18/12/2024. Differenza massima da calcolo diretto: 1 centesimo."
       }
     ]
+  },
+  "ruleset": {
+    "id": "ccnl/forze-polizia-ordinamento-civile",
+    "version": "2026.1",
+    "effective_from": "2022-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f",
+    "verification_status": "unverified",
+    "source_hash": "b8da9d469c2f437f964c38fff48a702fec4e4e8ef9f0587f798f559e8bb99ddf"
   }
 }

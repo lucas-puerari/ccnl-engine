@@ -730,5 +730,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/gas-acqua-utilitalia",
+    "version": "2026.1",
+    "effective_from": "2022-10-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
+    "verification_status": "unverified",
+    "source_hash": "891c27174b9553b4993ccb82b560dd1f9f550523ef0768ac388bbafa65442ae3"
+  }
 }

@@ -721,5 +721,15 @@
       "category": "quadro"
     }
   ],
-  "apprenticeship": []
+  "apprenticeship": [],
+  "ruleset": {
+    "id": "ccnl/trasporto-ferroviario-agens",
+    "version": "2026.1",
+    "effective_from": "2024-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive",
+    "verification_status": "unverified",
+    "source_hash": "551b85054f73cea40488ef4737a057992b8fce0a51a5daa968cae8660adee670"
+  }
 }

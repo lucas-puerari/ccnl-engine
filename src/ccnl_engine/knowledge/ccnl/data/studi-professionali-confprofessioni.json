@@ -489,5 +489,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/studi-professionali-confprofessioni",
+    "version": "2026.1",
+    "effective_from": "2024-02-16",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+    "verification_status": "unverified",
+    "source_hash": "46bf04d74aa43b791313c06c8ca5dab92dbb847985b4dc855fbdd00e22defaf1"
+  }
 }

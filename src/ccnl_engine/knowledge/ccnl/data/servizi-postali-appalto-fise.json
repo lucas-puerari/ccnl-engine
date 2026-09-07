@@ -684,5 +684,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/servizi-postali-appalto-fise",
+    "version": "2026.1",
+    "effective_from": "2023-12-21",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+    "verification_status": "unverified",
+    "source_hash": "d29a0e19654f10b64c30108a0497d3228f3c3ac059ba4cee16197276f46f6b93"
+  }
 }

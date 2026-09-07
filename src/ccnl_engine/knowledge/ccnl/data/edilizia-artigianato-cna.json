@@ -893,5 +893,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/edilizia-artigianato-cna",
+    "version": "2026.1",
+    "effective_from": "2025-05-01",
+    "effective_until": "2028-09-30",
+    "published_at": "2026-09-07",
+    "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
+    "verification_status": "unverified",
+    "source_hash": "54c4861f17bb74d80e54556b490c7fa781e4e8d70fd187cf082b165727fe6ae0"
+  }
 }

@@ -545,5 +545,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/assicurazioni-ania",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.first-cisl.it/",
+    "verification_status": "unverified",
+    "source_hash": "195d3e2db1829ed4af8ad155978ca63d73ddfaa424a453aafabcf16b589d8ac9"
+  }
 }

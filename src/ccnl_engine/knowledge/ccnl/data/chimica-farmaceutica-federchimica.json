@@ -742,5 +742,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/chimica-farmaceutica-federchimica",
+    "version": "2026.1",
+    "effective_from": "2022-06-13",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf",
+    "verification_status": "unverified",
+    "source_hash": "fa9740a0818c1ce76d595b5867e2238eb984a66457177b1ede5fcfc5e5613ee6"
+  }
 }

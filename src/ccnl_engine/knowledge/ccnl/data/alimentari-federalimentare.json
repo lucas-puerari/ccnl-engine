@@ -883,5 +883,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/alimentari-federalimentare",
+    "version": "2026.1",
+    "effective_from": "2023-12-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://flaiveneto.it/rinnovato-il-ccnl-industria-alimentare/",
+    "verification_status": "unverified",
+    "source_hash": "2b488a9f5c0a1e02274e81b898b1a281135dc950aa9246d24c943d8766841a0c"
+  }
 }

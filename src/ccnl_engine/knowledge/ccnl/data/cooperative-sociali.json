@@ -768,5 +768,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/cooperative-sociali",
+    "version": "2026.1",
+    "effective_from": "2024-02-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/",
+    "verification_status": "unverified",
+    "source_hash": "2afea4f3dda9c79e78b4892084de73f6eb02ce2121900c368cb107f26c9fdf8f"
+  }
 }

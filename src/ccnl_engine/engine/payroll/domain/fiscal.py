@@ -1,13 +1,13 @@
-"""Fiscal simplification tags for Payslip."""
+"""Fiscal simplification tags for PayrollResult."""
 
 from enum import StrEnum
 
 
 class FiscalSimplification(StrEnum):
-    """Items not computed by this engine, reported on every Payslip.
+    """Items not computed by this engine, reported on every PayrollResult.
 
     Each value names a fiscal element that the engine omits. Callers can inspect
-    ``Payslip.fiscal_simplifications`` to know which elements are absent from
+    ``PayrollResult.fiscal_simplifications`` to know which elements are absent from
     the net figure and should be handled by a separate fiscal layer.
     """
 

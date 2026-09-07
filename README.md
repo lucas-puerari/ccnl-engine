@@ -19,8 +19,10 @@ I never really understood employment contracts or pay slips. The whole system st
 Italian payroll is governed by collective agreements (CCNL) that define base salaries, seniority increments, and allowances as time-series values — they change at negotiated renewal dates. Existing tools either lock this data inside proprietary systems or require a full HRMS. This library treats each CCNL as a validated JSON file and the computation as a pure function:
 
 ```
-compute(ccnl, rules, employee) → Payslip
+compute(ccnl, rules, employee) → Calculation
 ```
+
+The returned `Calculation` is self-describing: along with the `PayrollResult` (`.result`) it records the engine version, the exact CCNL / tax / INPS / surtax ruleset revisions used (`.ruleset_version`), and a snapshot of the inputs (`.input_snapshot`) — so any figure can be traced back to the engine and data that produced it.
 
 ## Quickstart
 
@@ -41,17 +43,21 @@ employee = Employee(
     ),
     arrangement=WorkArrangement(),
 )
-payslip = compute(ccnl, rules, employee)
+calculation = compute(ccnl, rules, employee)
 
-print(payslip.net_annual)              # → Decimal('...')
-print(payslip.trattamento_integrativo) # → Decimal('...') — Art. 1 D.L. 3/2020 bonus
-print(payslip.fiscal_simplifications)  # → frozenset of items not computed by the engine
-print(payslip.employer_cost_annual)    # → Decimal('...')
+payroll = calculation.result  # attributes are also forwarded onto the calculation
+print(payroll.net_annual)              # → Decimal('...')
+print(payroll.trattamento_integrativo) # → Decimal('...') — Art. 1 D.L. 3/2020 bonus
+print(payroll.fiscal_simplifications)  # → frozenset of items not computed by the engine
+print(payroll.employer_cost_annual)    # → Decimal('...')
+
+print(calculation.engine_version)      # → '0.5.0'
+print(calculation.ruleset_version)     # → {'ccnl': '…', 'tax': '…', 'inps': '…', 'surtax': '…'}
 ```
 
 ## CCNL coverage
 
-85 contracts covering ~15 million employees across private and public sectors.
+Over 100 contracts covering approximately 16 million employees across private and public sectors.
 
 → [**Full CCNL coverage table**](https://lucas-puerari.github.io/ccnl-engine/docs/contracts/index.html)
 

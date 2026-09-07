@@ -165,5 +165,15 @@
         "text": "Seconda fascia include categorie eterogenee (dirigenti scolastici, direttori università e AOU, dirigenti II fascia enti ricerca). Modellate come unico livello per mancanza di tabellare differenziato nella fonte disponibile."
       }
     ]
+  },
+  "ruleset": {
+    "id": "ccnl/dirigenza-istruzione-ricerca-aran",
+    "version": "2026.1",
+    "effective_from": "2022-01-01",
+    "effective_until": "2024-12-31",
+    "published_at": "2026-09-07",
+    "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
+    "verification_status": "unverified",
+    "source_hash": "6f9c75ac2e5a2edc8c30dc4c3f01777b3a26494a055fb2844dd29b7a6bcf300f"
   }
 }

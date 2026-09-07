@@ -1330,5 +1330,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/igiene-ambientale-utilitalia",
+    "version": "2026.1",
+    "effective_from": "2025-01-01",
+    "effective_until": "2027-12-31",
+    "published_at": "2026-09-07",
+    "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
+    "verification_status": "unverified",
+    "source_hash": "79bde8d81aed3950b9de0fd6d3f329be7b7a3c60a15582212a45b2cfb962c731"
+  }
 }

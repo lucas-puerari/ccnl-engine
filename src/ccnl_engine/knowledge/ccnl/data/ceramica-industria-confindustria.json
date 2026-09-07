@@ -753,5 +753,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/ceramica-industria-confindustria",
+    "version": "2026.1",
+    "effective_from": "2024-09-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
+    "verification_status": "unverified",
+    "source_hash": "a8c07c6cb146a8be85a29c54b26495639518802b2ba299a5435714a3bda5d293"
+  }
 }

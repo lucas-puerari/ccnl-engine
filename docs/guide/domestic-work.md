@@ -2,7 +2,7 @@
 
 Domestic employment (*lavoro domestico*) follows a contribution system entirely
 different from the general regime. Understanding the differences is essential before
-computing payslips for this sector.
+computing payrolls for this sector.
 
 See [Domain: Social contributions](../domain/components.md#9-social-contributions-inps)
 for the background on the general and flat-rate systems.
@@ -36,9 +36,9 @@ flat-rate INPS table to compute contributions.
 ```
 
 !!! warning
-    Because the employer does not withhold IRPEF, `payslip.irpef_net` is always
-    `Decimal(0)` for domestic workers. `payslip.irpef_gross` is computed for
+    Because the employer does not withhold IRPEF, `payroll.irpef_net` is always
+    `Decimal(0)` for domestic workers. `payroll.irpef_gross` is computed for
     informational purposes but is not deducted.
 
 **API reference:** [`WorkArrangement`](../api/engine.md),
-[`Payslip.employer_withholds_irpef`](../api/engine.md)
+[`PayrollResult.employer_withholds_irpef`](../api/engine.md)

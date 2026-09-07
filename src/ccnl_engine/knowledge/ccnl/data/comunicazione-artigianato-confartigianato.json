@@ -572,5 +572,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/comunicazione-artigianato-confartigianato",
+    "version": "2026.1",
+    "effective_from": "2024-12-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
+    "verification_status": "unverified",
+    "source_hash": "3f6b58e4f32f167ec89a280f060648ebae890a66273bf64f46cf83a2e19556fc"
+  }
 }

@@ -1,6 +1,8 @@
 """Quickstart: permanent employee, full-time, no seniority.
 
 This is the minimal call: load a CCNL, build an Employee, call compute().
+The returned Calculation wraps the PayrollResult (``calculation.result``) together
+with the engine and ruleset versions that produced it.
 """
 
 from datetime import date
@@ -28,12 +30,18 @@ employee = Employee(
     arrangement=WorkArrangement(),
 )
 
-payslip = compute(ccnl, rules, employee)
+calculation = compute(ccnl, rules, employee)
+payroll = calculation.result
 
-print(f"CCNL:              {payslip.ccnl_id}")
-print(f"Level:             {payslip.level_code}")
-print(f"Gross monthly:     {payslip.gross_monthly} EUR")
-print(f"Gross annual:      {payslip.gross_annual} EUR")
-print(f"Net annual:        {payslip.net_annual} EUR")
-print(f"Net monthly:       {payslip.net_monthly} EUR")
-print(f"Employer cost:     {payslip.employer_cost_annual} EUR")
+print(f"CCNL:              {payroll.ccnl_id}")
+print(f"Level:             {payroll.level_code}")
+print(f"Gross monthly:     {payroll.gross_monthly} EUR")
+print(f"Gross annual:      {payroll.gross_annual} EUR")
+print(f"Net annual:        {payroll.net_annual} EUR")
+print(f"Net monthly:       {payroll.net_monthly} EUR")
+print(f"Employer cost:     {payroll.employer_cost_annual} EUR")
+
+# The Calculation also records the provenance of the figures above.
+print(f"Engine version:    {calculation.engine_version}")
+print(f"Ruleset version:   {calculation.ruleset_version}")
+print(f"Input snapshot:    {calculation.input_snapshot}")

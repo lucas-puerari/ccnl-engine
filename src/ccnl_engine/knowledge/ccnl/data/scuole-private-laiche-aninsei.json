@@ -478,5 +478,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/scuole-private-laiche-aninsei",
+    "version": "2026.1",
+    "effective_from": "2024-06-15",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+    "verification_status": "unverified",
+    "source_hash": "fcc1f4079c036d62faf6185e4b63d9ede33b11b1c83ed207eb975a09f9862b01"
+  }
 }

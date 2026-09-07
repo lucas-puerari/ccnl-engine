@@ -23,7 +23,7 @@ _TAX_ONLY = {
     "notes",
 }
 _CONTRIB_KEYS = {"inps", "apprentice", "domestic_contributions"}
-_SHARED = {"year", "sector"}
+_SHARED = {"year", "sector", "ruleset"}
 
 
 class TestTaxInpsSplit:

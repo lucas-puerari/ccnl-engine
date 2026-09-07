@@ -35101,5 +35101,15 @@
         }
       ]
     }
+  },
+  "ruleset": {
+    "id": "surtax/2026/comunale",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "edee7a95d4ff4bb505b890fa75cfd203839ff3ed18aed7c0a7b7211bb8704c23"
   }
 }

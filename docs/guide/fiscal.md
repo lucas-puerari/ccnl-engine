@@ -19,7 +19,7 @@ for the legal background.
 
 By default the engine skips *addizionale regionale* and *addizionale comunale*,
 recording both as [`FiscalSimplification`](../api/models.md) entries in
-`payslip.fiscal_simplifications`.
+`payroll.fiscal_simplifications`.
 
 To include them, pass:
 - a `TaxProfile` on the `Employee` with `regione` and `comune_belfiore`, and
@@ -32,7 +32,7 @@ To include them, pass:
 
 ## FiscalSimplification flags
 
-Always check `payslip.fiscal_simplifications` before presenting results to end
+Always check `payroll.fiscal_simplifications` before presenting results to end
 users. The frozenset contains every item the engine did **not** compute, so
 callers know where to apply manual adjustments.
 

@@ -218,5 +218,15 @@
         "text": "Agreement date 2025-10-27 (firma definitiva) per ARAN press release. The PDF used is the Ipotesi from 14.01.2025; salary tables are identical to the final signed version."
       }
     ]
+  },
+  "ruleset": {
+    "id": "ccnl/sanita-aran",
+    "version": "2026.1",
+    "effective_from": "2022-01-01",
+    "effective_until": "2024-12-31",
+    "published_at": "2026-09-07",
+    "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
+    "verification_status": "unverified",
+    "source_hash": "7250d903081ff4945d60e368b5e122e71d7b4b1ffa0d18d49e8ad565ceea55c7"
   }
 }

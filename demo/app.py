@@ -337,55 +337,59 @@ def compute_salary(
         employee = _build_employee(
             ccnl, level_code, employment, part_time_pct, seniority, tax, agreement
         )
-        payslip = compute(ccnl, rules, employee, employer=employer, surtax=surtax)
+        calculation = compute(ccnl, rules, employee, employer=employer, surtax=surtax)
+        payroll = calculation.result
     except Exception as exc:  # ruff: ignore[blind-except]
         return json.dumps({"error": str(exc)})
 
     return json.dumps({
         # metadata
-        "ccnl_id": payslip.ccnl_id,
-        "level_code": payslip.level_code,
-        "employment_type": payslip.employment_type,
-        "year": payslip.year,
-        "as_of": payslip.as_of.isoformat(),
-        "part_time_pct": float(payslip.part_time_pct),
+        "ccnl_id": payroll.ccnl_id,
+        "level_code": payroll.level_code,
+        "employment_type": payroll.employment_type,
+        "year": payroll.year,
+        "as_of": payroll.as_of.isoformat(),
+        "part_time_pct": float(payroll.part_time_pct),
+        # provenance
+        "engine_version": calculation.engine_version,
+        "ruleset_version": calculation.ruleset_version,
         # pay components
-        "base_monthly": float(payslip.base_monthly),
-        "seniority_monthly": float(payslip.seniority_monthly),
-        "allowances_monthly": float(payslip.allowances_monthly),
-        "ad_personam_monthly": float(payslip.ad_personam_monthly),
-        "second_level_monthly": float(payslip.second_level_monthly),
-        "gross_monthly": float(payslip.gross_monthly),
-        "gross_annual": float(payslip.gross_annual),
-        "hourly_rate": float(payslip.hourly_rate),
-        "seniority_count": payslip.seniority_count,
+        "base_monthly": float(payroll.base_monthly),
+        "seniority_monthly": float(payroll.seniority_monthly),
+        "allowances_monthly": float(payroll.allowances_monthly),
+        "ad_personam_monthly": float(payroll.ad_personam_monthly),
+        "second_level_monthly": float(payroll.second_level_monthly),
+        "gross_monthly": float(payroll.gross_monthly),
+        "gross_annual": float(payroll.gross_annual),
+        "hourly_rate": float(payroll.hourly_rate),
+        "seniority_count": payroll.seniority_count,
         # apprenticeship
         "apprenticeship_pct": (
-            float(payslip.apprenticeship_pct)
-            if payslip.apprenticeship_pct is not None
+            float(payroll.apprenticeship_pct)
+            if payroll.apprenticeship_pct is not None
             else None
         ),
-        "apprenticeship_under_level_code": payslip.apprenticeship_under_level_code,
+        "apprenticeship_under_level_code": payroll.apprenticeship_under_level_code,
         # employee deductions
-        "inps_employee_annual": float(payslip.inps_employee_annual),
-        "taxable_income": float(payslip.taxable_income),
-        "irpef_gross": float(payslip.irpef_gross),
-        "work_income_deduction": float(payslip.work_income_deduction),
-        "irpef_net": float(payslip.irpef_net),
-        "addizionale_regionale_annual": float(payslip.addizionale_regionale_annual),
-        "addizionale_comunale_annual": float(payslip.addizionale_comunale_annual),
-        "trattamento_integrativo": float(payslip.trattamento_integrativo),
+        "inps_employee_annual": float(payroll.inps_employee_annual),
+        "taxable_income": float(payroll.taxable_income),
+        "irpef_gross": float(payroll.irpef_gross),
+        "work_income_deduction": float(payroll.work_income_deduction),
+        "irpef_net": float(payroll.irpef_net),
+        "addizionale_regionale_annual": float(payroll.addizionale_regionale_annual),
+        "addizionale_comunale_annual": float(payroll.addizionale_comunale_annual),
+        "trattamento_integrativo": float(payroll.trattamento_integrativo),
         # net
-        "net_annual": float(payslip.net_annual),
-        "net_monthly": float(payslip.net_monthly),
+        "net_annual": float(payroll.net_annual),
+        "net_monthly": float(payroll.net_monthly),
         # employer
-        "inps_employer_annual": float(payslip.inps_employer_annual),
-        "employer_funds_annual": float(payslip.employer_funds_annual),
-        "tfr_annual": float(payslip.tfr_annual),
-        "employer_cost_annual": float(payslip.employer_cost_annual),
+        "inps_employer_annual": float(payroll.inps_employer_annual),
+        "employer_funds_annual": float(payroll.employer_funds_annual),
+        "tfr_annual": float(payroll.tfr_annual),
+        "employer_cost_annual": float(payroll.employer_cost_annual),
         # flags
-        "employer_withholds_irpef": payslip.employer_withholds_irpef,
+        "employer_withholds_irpef": payroll.employer_withholds_irpef,
         "fiscal_simplifications": sorted(
-            str(s) for s in payslip.fiscal_simplifications
+            str(s) for s in payroll.fiscal_simplifications
         ),
     })

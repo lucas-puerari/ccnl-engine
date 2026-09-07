@@ -2127,5 +2127,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/autoferrotranvieri-internavigatori",
+    "version": "2026.1",
+    "effective_from": "2024-12-11",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
+    "verification_status": "unverified",
+    "source_hash": "019d2af87a179ffe1c7564682f207f487356c751aac06fe42310b3f9a6c022e2"
+  }
 }

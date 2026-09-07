@@ -11,12 +11,13 @@ Data loading (CCNL files, tax/INPS/surtax rules) is implemented in
 
 Usage::
 
+    from datetime import date
+
     from ccnl_engine import (
         compute, Employee, Employer, load_ccnl, load_year_rules,
         ContractPosition, WorkArrangement,
         Permanent,
     )
-    from datetime import date
 
     ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
     rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
@@ -28,7 +29,10 @@ Usage::
         ),
         arrangement=WorkArrangement(),
     )
-    payslip = compute(ccnl, rules, employee)
+    result = compute(ccnl, rules, employee)
+    print(result.result.net_annual)     # the resulting PayrollResult
+    print(result.engine_version)
+    print(result.ruleset_version)       # which CCNL/tax/INPS/surtax data was used
 """
 
 from __future__ import annotations
@@ -46,6 +50,8 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     TaxSector,
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
+from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity, VerificationStatus
+from ccnl_engine.engine.payroll.domain.calculation import Calculation, InputSnapshot
 from ccnl_engine.engine.payroll.domain.employee import (
     ContractPosition,
     DestinationRalOverride,
@@ -67,10 +73,11 @@ from ccnl_engine.engine.payroll.domain.employment import (
     Permanent,
 )
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
-from ccnl_engine.engine.payroll.domain.payslip import Payslip
+from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 from ccnl_engine.engine.surtax import SurtaxRules, load_surtax_rules
 from ccnl_engine.engine.tax import YearRules, load_year_rules
+from ccnl_engine.version import __version__ as engine_version
 
 __all__ = [
     "CCNL",
@@ -78,6 +85,7 @@ __all__ = [
     "Apprentice",
     "CCNLMeta",
     "CCNLParameters",
+    "Calculation",
     "ContractPosition",
     "DestinationRalOverride",
     "Employee",
@@ -86,12 +94,14 @@ __all__ = [
     "Employment",
     "FiscalSimplification",
     "FixedTerm",
+    "InputSnapshot",
     "Level",
     "LevelCategory",
-    "Payslip",
+    "PayrollResult",
     "Permanent",
     "RalOverride",
     "RalOverrideMode",
+    "RulesetIdentity",
     "SalaryOverrides",
     "Seniority",
     "SeniorityByCount",
@@ -103,9 +113,11 @@ __all__ = [
     "TaxSector",
     "TimeSeries",
     "ValidityPeriod",
+    "VerificationStatus",
     "WorkArrangement",
     "YearRules",
     "compute",
+    "engine_version",
     "load_ccnl",
     "load_surtax_rules",
     "load_year_rules",

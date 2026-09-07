@@ -215,5 +215,15 @@
         "text": "Indennità di comparto post-conglobamento (Tabella C col.4) fully charged to Fondo risorse decentrate — not modelled as a fixed_allowance (varies by administration and is not a universal fixed amount)."
       }
     ]
+  },
+  "ruleset": {
+    "id": "ccnl/funzioni-locali-aran",
+    "version": "2026.1",
+    "effective_from": "2022-01-01",
+    "effective_until": "2024-12-31",
+    "published_at": "2026-09-07",
+    "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+    "verification_status": "unverified",
+    "source_hash": "0b9256615167ea0a056a9ccea6836b039679ef1d36c208c88a2ffe645c5b4d39"
   }
 }

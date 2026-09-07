@@ -558,5 +558,15 @@
       },
       "fixed_allowances": []
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/turismo-confesercenti",
+    "version": "2026.1",
+    "effective_from": "2024-07-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
+    "verification_status": "unverified",
+    "source_hash": "d5cc634cadcb508e0f4c53939d5d3b8e0db39ce195825397ca169b7298fcabc6"
+  }
 }

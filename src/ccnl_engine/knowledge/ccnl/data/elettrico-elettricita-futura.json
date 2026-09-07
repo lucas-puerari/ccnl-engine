@@ -930,5 +930,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/elettrico-elettricita-futura",
+    "version": "2026.1",
+    "effective_from": "2025-04-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.contratticcnl.it/elettrico/tabelle-retributive/",
+    "verification_status": "unverified",
+    "source_hash": "6cc69d749ed4b1768fc1da213da45b2bb6eb2bbd7dcda1c2b5a399b345ec09de"
+  }
 }

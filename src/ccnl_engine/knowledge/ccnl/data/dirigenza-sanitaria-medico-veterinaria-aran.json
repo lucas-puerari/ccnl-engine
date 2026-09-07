@@ -185,5 +185,15 @@
         "text": "Questo file modella solo la componente medico-veterinaria del CCNL Area Sanità 27.02.2026. Il medesimo CCNL copre anche altri dirigenti sanitari (psicologi, farmacisti, biologi, fisici, chimici), modellati in 'dirigenza-sanitaria-area-sanita-aran.json'. Entrambi i file condividono codice CNEL S225."
       }
     ]
+  },
+  "ruleset": {
+    "id": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran",
+    "version": "2026.1",
+    "effective_from": "2022-01-01",
+    "effective_until": "2024-12-31",
+    "published_at": "2026-09-07",
+    "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
+    "verification_status": "unverified",
+    "source_hash": "27b00cf3130f07d1a891773c4c6a396f271465e1089ec4ddc702bac1e693f52d"
   }
 }

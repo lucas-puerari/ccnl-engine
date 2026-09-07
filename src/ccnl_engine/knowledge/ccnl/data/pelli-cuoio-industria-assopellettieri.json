@@ -506,5 +506,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/pelli-cuoio-industria-assopellettieri",
+    "version": "2026.1",
+    "effective_from": "2023-04-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
+    "verification_status": "unverified",
+    "source_hash": "98309f767cd0280a22e43df83fe0d2d469db80736cc79e699a8ce7c20bc37264"
+  }
 }

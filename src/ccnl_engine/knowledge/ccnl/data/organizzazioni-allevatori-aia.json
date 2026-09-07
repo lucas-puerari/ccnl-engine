@@ -425,5 +425,15 @@
       },
       "fixed_allowances": []
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/organizzazioni-allevatori-aia",
+    "version": "2026.1",
+    "effective_from": "2025-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.wolterskluwer.it/",
+    "verification_status": "unverified",
+    "source_hash": "7edc99e0dca9d6f87419b5da3f39fbfaca78ad91ceaa477b804ce2a88239cac3"
+  }
 }

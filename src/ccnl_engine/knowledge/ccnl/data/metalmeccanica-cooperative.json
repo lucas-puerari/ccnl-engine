@@ -519,5 +519,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/metalmeccanica-cooperative",
+    "version": "2026.1",
+    "effective_from": "2025-06-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/",
+    "verification_status": "unverified",
+    "source_hash": "4a45cf8484b861f82d16cfdce4a90ce681e20804ab31c73ac9c2bfaf8f4a4529"
+  }
 }

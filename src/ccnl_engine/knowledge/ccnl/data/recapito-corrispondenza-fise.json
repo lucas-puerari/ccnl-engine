@@ -522,5 +522,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/recapito-corrispondenza-fise",
+    "version": "2026.1",
+    "effective_from": "2024-02-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/",
+    "verification_status": "unverified",
+    "source_hash": "16f0b7b7ab5dbf1cc41144c9d8713db456d840e92062b12fd7c79a28c8c90325"
+  }
 }

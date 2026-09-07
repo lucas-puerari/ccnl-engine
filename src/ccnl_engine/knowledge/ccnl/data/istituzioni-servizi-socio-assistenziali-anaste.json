@@ -458,7 +458,18 @@
       "type": "percentage",
       "name": "professionalizzante_32",
       "destination_levels": [
-        "Q", "10", "9", "8", "7", "6", "5", "4", "3S", "3", "2", "1"
+        "Q",
+        "10",
+        "9",
+        "8",
+        "7",
+        "6",
+        "5",
+        "4",
+        "3S",
+        "3",
+        "2",
+        "1"
       ],
       "periods": [
         {
@@ -473,5 +484,15 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/istituzioni-servizi-socio-assistenziali-anaste",
+    "version": "2026.1",
+    "effective_from": "2023-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
+    "verification_status": "verified",
+    "source_hash": "10038189003f8e11c9b6ba2a6dc6af4e501a89ba5eb0fd42c471cd553ffd2f66"
+  }
 }

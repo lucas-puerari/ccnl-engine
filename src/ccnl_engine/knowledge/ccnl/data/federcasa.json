@@ -508,5 +508,15 @@
       },
       "fixed_allowances": []
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/federcasa",
+    "version": "2026.1",
+    "effective_from": "2024-12-01",
+    "effective_until": null,
+    "published_at": "2026-09-07",
+    "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
+    "verification_status": "unverified",
+    "source_hash": "c374a35b074f8a9c78014d739f3cda241f86450f0c9dd0b5a25308de5f210440"
+  }
 }
