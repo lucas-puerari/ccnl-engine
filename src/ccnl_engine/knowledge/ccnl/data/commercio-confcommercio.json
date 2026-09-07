@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.4",
+  "schema_version": "0.5",
   "meta": {
     "ccnl_id": "commercio-confcommercio",
     "name": "CCNL Terziario, Distribuzione e Servizi (Confcommercio)",
@@ -14,26 +14,34 @@
     ],
     "sources": [
       {
-        "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
-        "type": "text",
-        "agreement_date": "2024-03-22"
-      },
-      {
+        "document_id": "tabelle-retributive-commercio-2024",
+        "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+        "kind": "tabella_retributiva",
         "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-        "type": "table",
-        "agreement_date": null
+        "pages": [],
+        "published_on": "2024-03-28",
+        "jurisdiction": "it"
       },
       {
-        "url": "https://www.ascom.bo.it",
-        "type": "table",
-        "agreement_date": null
+        "document_id": "ccnl-commercio-confcommercio-2019",
+        "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+        "kind": "associazione",
+        "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
+        "pages": [],
+        "published_on": "2024-03-22",
+        "jurisdiction": "it"
       }
     ],
     "extraction": {
       "method": "ai_assisted",
       "model": null,
-      "timestamp": "2026-08-30T00:00:00",
-      "human_reviewed": false
+      "extraction_timestamp": "2026-08-30T00:00:00",
+      "verified_by": null,
+      "verified_at": null,
+      "verification_status": "unverified",
+      "effective_from": "2024-04-01",
+      "effective_until": null,
+      "back_calculation": null
     }
   },
   "coverage": {
@@ -165,6 +173,34 @@
             }
           ]
         }
+      },
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-commercio-confcommercio-2019",
+            "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+            "kind": "associazione",
+            "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
+            "pages": [],
+            "published_on": "2024-03-22",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Art. 205 — Scatti di anzianità",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-08-30T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "1990-01-01",
+          "effective_until": null,
+          "back_calculation": null
+        },
+        "note": "Dieci scatti triennali; importi vigenti dal 01/01/1990, invariati dal rinnovo 2024"
       }
     }
   },
@@ -178,27 +214,167 @@
           {
             "valid_from": "2024-04-01",
             "valid_until": "2025-03-01",
-            "value": "2070.25"
+            "value": "2070.25",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello Q, tranche dal 2024-04-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2024-04-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-03-01",
             "valid_until": "2025-11-01",
-            "value": "2122.33"
+            "value": "2122.33",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello Q, tranche dal 2025-03-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-03-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-11-01",
             "valid_until": "2026-11-01",
-            "value": "2183.09"
+            "value": "2183.09",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello Q, tranche dal 2025-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2026-11-01",
             "valid_until": "2027-02-01",
-            "value": "2243.85"
+            "value": "2243.85",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello Q, tranche dal 2026-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2027-02-01",
             "valid_until": null,
-            "value": "2313.29"
+            "value": "2313.29",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello Q, tranche dal 2027-02-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2027-02-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           }
         ]
       },
@@ -214,6 +390,34 @@
                 "value": "540.37"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabelle-retributive-commercio-2024",
+                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                "pages": [],
+                "published_on": "2024-03-28",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Contingenza + EDR — colonna tabella retributiva",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
           }
         },
         {
@@ -227,6 +431,34 @@
                 "value": "2.07"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-commercio-confcommercio-2019",
+                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "kind": "associazione",
+                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
+                "pages": [],
+                "published_on": "2024-03-22",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Art. 215 — Terzo elemento nazionale",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": null
           }
         },
         {
@@ -240,10 +472,66 @@
                 "value": "260.76"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-commercio-confcommercio-2019",
+                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "kind": "associazione",
+                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
+                "pages": [],
+                "published_on": "2024-03-22",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Art. 129 — Indennità di funzione Quadri",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "2024-04-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": "260,76 EUR × 14 mensilità (la somma algebrica è 260,77; la tabella porta 260,76)"
           }
         }
       ],
-      "category": "quadro"
+      "category": "quadro",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-retributive-commercio-2024",
+            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+            "pages": [],
+            "published_on": "2024-03-28",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Tabella retributiva — livello Q",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-08-30T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2024-04-01",
+          "effective_until": null,
+          "back_calculation": null
+        },
+        "note": null
+      }
     },
     {
       "code": "1",
@@ -254,27 +542,167 @@
           {
             "valid_from": "2024-04-01",
             "valid_until": "2025-03-01",
-            "value": "1864.88"
+            "value": "1864.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 1, tranche dal 2024-04-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2024-04-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-03-01",
             "valid_until": "2025-11-01",
-            "value": "1911.80"
+            "value": "1911.80",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 1, tranche dal 2025-03-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-03-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-11-01",
             "valid_until": "2026-11-01",
-            "value": "1966.54"
+            "value": "1966.54",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 1, tranche dal 2025-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2026-11-01",
             "valid_until": "2027-02-01",
-            "value": "2021.28"
+            "value": "2021.28",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 1, tranche dal 2026-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2027-02-01",
             "valid_until": null,
-            "value": "2083.84"
+            "value": "2083.84",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 1, tranche dal 2027-02-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2027-02-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           }
         ]
       },
@@ -290,6 +718,34 @@
                 "value": "537.52"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabelle-retributive-commercio-2024",
+                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                "pages": [],
+                "published_on": "2024-03-28",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Contingenza + EDR — colonna tabella retributiva",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
           }
         },
         {
@@ -303,9 +759,65 @@
                 "value": "2.07"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-commercio-confcommercio-2019",
+                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "kind": "associazione",
+                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
+                "pages": [],
+                "published_on": "2024-03-22",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Art. 215 — Terzo elemento nazionale",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": null
           }
         }
-      ]
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-retributive-commercio-2024",
+            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+            "pages": [],
+            "published_on": "2024-03-28",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Tabella retributiva — livello 1",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-08-30T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2024-04-01",
+          "effective_until": null,
+          "back_calculation": null
+        },
+        "note": null
+      }
     },
     {
       "code": "2",
@@ -316,27 +828,167 @@
           {
             "valid_from": "2024-04-01",
             "valid_until": "2025-03-01",
-            "value": "1613.11"
+            "value": "1613.11",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 2, tranche dal 2024-04-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2024-04-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-03-01",
             "valid_until": "2025-11-01",
-            "value": "1653.69"
+            "value": "1653.69",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 2, tranche dal 2025-03-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-03-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-11-01",
             "valid_until": "2026-11-01",
-            "value": "1701.04"
+            "value": "1701.04",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 2, tranche dal 2025-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2026-11-01",
             "valid_until": "2027-02-01",
-            "value": "1748.39"
+            "value": "1748.39",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 2, tranche dal 2026-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2027-02-01",
             "valid_until": null,
-            "value": "1802.50"
+            "value": "1802.50",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 2, tranche dal 2027-02-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2027-02-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           }
         ]
       },
@@ -352,6 +1004,34 @@
                 "value": "532.54"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabelle-retributive-commercio-2024",
+                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                "pages": [],
+                "published_on": "2024-03-28",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Contingenza + EDR — colonna tabella retributiva",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
           }
         },
         {
@@ -365,9 +1045,65 @@
                 "value": "2.07"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-commercio-confcommercio-2019",
+                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "kind": "associazione",
+                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
+                "pages": [],
+                "published_on": "2024-03-22",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Art. 215 — Terzo elemento nazionale",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": null
           }
         }
-      ]
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-retributive-commercio-2024",
+            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+            "pages": [],
+            "published_on": "2024-03-28",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Tabella retributiva — livello 2",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-08-30T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2024-04-01",
+          "effective_until": null,
+          "back_calculation": null
+        },
+        "note": null
+      }
     },
     {
       "code": "3",
@@ -378,27 +1114,167 @@
           {
             "valid_from": "2024-04-01",
             "valid_until": "2025-03-01",
-            "value": "1378.78"
+            "value": "1378.78",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 3, tranche dal 2024-04-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2024-04-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-03-01",
             "valid_until": "2025-11-01",
-            "value": "1413.47"
+            "value": "1413.47",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 3, tranche dal 2025-03-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-03-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-11-01",
             "valid_until": "2026-11-01",
-            "value": "1453.94"
+            "value": "1453.94",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 3, tranche dal 2025-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2026-11-01",
             "valid_until": "2027-02-01",
-            "value": "1494.41"
+            "value": "1494.41",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 3, tranche dal 2026-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2027-02-01",
             "valid_until": null,
-            "value": "1540.66"
+            "value": "1540.66",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 3, tranche dal 2027-02-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2027-02-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           }
         ]
       },
@@ -414,6 +1290,34 @@
                 "value": "527.90"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabelle-retributive-commercio-2024",
+                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                "pages": [],
+                "published_on": "2024-03-28",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Contingenza + EDR — colonna tabella retributiva",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
           }
         },
         {
@@ -427,9 +1331,65 @@
                 "value": "2.07"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-commercio-confcommercio-2019",
+                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "kind": "associazione",
+                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
+                "pages": [],
+                "published_on": "2024-03-22",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Art. 215 — Terzo elemento nazionale",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": null
           }
         }
-      ]
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-retributive-commercio-2024",
+            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+            "pages": [],
+            "published_on": "2024-03-28",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Tabella retributiva — livello 3",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-08-30T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2024-04-01",
+          "effective_until": null,
+          "back_calculation": null
+        },
+        "note": null
+      }
     },
     {
       "code": "4",
@@ -440,27 +1400,167 @@
           {
             "valid_from": "2024-04-01",
             "valid_until": "2025-03-01",
-            "value": "1192.46"
+            "value": "1192.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 4, tranche dal 2024-04-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2024-04-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-03-01",
             "valid_until": "2025-11-01",
-            "value": "1222.46"
+            "value": "1222.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 4, tranche dal 2025-03-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-03-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-11-01",
             "valid_until": "2026-11-01",
-            "value": "1257.46"
+            "value": "1257.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 4, tranche dal 2025-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2026-11-01",
             "valid_until": "2027-02-01",
-            "value": "1292.46"
+            "value": "1292.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 4, tranche dal 2026-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2027-02-01",
             "valid_until": null,
-            "value": "1332.46"
+            "value": "1332.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 4, tranche dal 2027-02-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2027-02-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           }
         ]
       },
@@ -476,6 +1576,34 @@
                 "value": "524.22"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabelle-retributive-commercio-2024",
+                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                "pages": [],
+                "published_on": "2024-03-28",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Contingenza + EDR — colonna tabella retributiva",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
           }
         },
         {
@@ -489,9 +1617,65 @@
                 "value": "2.07"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-commercio-confcommercio-2019",
+                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "kind": "associazione",
+                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
+                "pages": [],
+                "published_on": "2024-03-22",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Art. 215 — Terzo elemento nazionale",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": null
           }
         }
-      ]
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-retributive-commercio-2024",
+            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+            "pages": [],
+            "published_on": "2024-03-28",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Tabella retributiva — livello 4",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-08-30T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2024-04-01",
+          "effective_until": null,
+          "back_calculation": null
+        },
+        "note": null
+      }
     },
     {
       "code": "5",
@@ -502,27 +1686,167 @@
           {
             "valid_from": "2024-04-01",
             "valid_until": "2025-03-01",
-            "value": "1077.35"
+            "value": "1077.35",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 5, tranche dal 2024-04-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2024-04-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-03-01",
             "valid_until": "2025-11-01",
-            "value": "1104.45"
+            "value": "1104.45",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 5, tranche dal 2025-03-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-03-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-11-01",
             "valid_until": "2026-11-01",
-            "value": "1136.07"
+            "value": "1136.07",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 5, tranche dal 2025-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2026-11-01",
             "valid_until": "2027-02-01",
-            "value": "1167.69"
+            "value": "1167.69",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 5, tranche dal 2026-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2027-02-01",
             "valid_until": null,
-            "value": "1203.83"
+            "value": "1203.83",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 5, tranche dal 2027-02-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2027-02-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           }
         ]
       },
@@ -538,6 +1862,34 @@
                 "value": "521.94"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabelle-retributive-commercio-2024",
+                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                "pages": [],
+                "published_on": "2024-03-28",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Contingenza + EDR — colonna tabella retributiva",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
           }
         },
         {
@@ -551,9 +1903,65 @@
                 "value": "2.07"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-commercio-confcommercio-2019",
+                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "kind": "associazione",
+                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
+                "pages": [],
+                "published_on": "2024-03-22",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Art. 215 — Terzo elemento nazionale",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": null
           }
         }
-      ]
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-retributive-commercio-2024",
+            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+            "pages": [],
+            "published_on": "2024-03-28",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Tabella retributiva — livello 5",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-08-30T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2024-04-01",
+          "effective_until": null,
+          "back_calculation": null
+        },
+        "note": null
+      }
     },
     {
       "code": "6",
@@ -564,27 +1972,167 @@
           {
             "valid_from": "2024-04-01",
             "valid_until": "2025-03-01",
-            "value": "967.22"
+            "value": "967.22",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 6, tranche dal 2024-04-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2024-04-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-03-01",
             "valid_until": "2025-11-01",
-            "value": "991.55"
+            "value": "991.55",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 6, tranche dal 2025-03-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-03-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-11-01",
             "valid_until": "2026-11-01",
-            "value": "1019.94"
+            "value": "1019.94",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 6, tranche dal 2025-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2026-11-01",
             "valid_until": "2027-02-01",
-            "value": "1048.33"
+            "value": "1048.33",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 6, tranche dal 2026-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2027-02-01",
             "valid_until": null,
-            "value": "1080.77"
+            "value": "1080.77",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 6, tranche dal 2027-02-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2027-02-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           }
         ]
       },
@@ -600,6 +2148,34 @@
                 "value": "519.76"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabelle-retributive-commercio-2024",
+                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                "pages": [],
+                "published_on": "2024-03-28",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Contingenza + EDR — colonna tabella retributiva",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
           }
         },
         {
@@ -613,9 +2189,65 @@
                 "value": "2.07"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-commercio-confcommercio-2019",
+                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "kind": "associazione",
+                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
+                "pages": [],
+                "published_on": "2024-03-22",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Art. 215 — Terzo elemento nazionale",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": null
           }
         }
-      ]
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-retributive-commercio-2024",
+            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+            "pages": [],
+            "published_on": "2024-03-28",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Tabella retributiva — livello 6",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-08-30T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2024-04-01",
+          "effective_until": null,
+          "back_calculation": null
+        },
+        "note": null
+      }
     },
     {
       "code": "7",
@@ -626,27 +2258,167 @@
           {
             "valid_from": "2024-04-01",
             "valid_until": "2025-03-01",
-            "value": "828.08"
+            "value": "828.08",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 7, tranche dal 2024-04-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2024-04-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-03-01",
             "valid_until": "2025-11-01",
-            "value": "848.91"
+            "value": "848.91",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 7, tranche dal 2025-03-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-03-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2025-11-01",
             "valid_until": "2026-11-01",
-            "value": "873.22"
+            "value": "873.22",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 7, tranche dal 2025-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2025-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2026-11-01",
             "valid_until": "2027-02-01",
-            "value": "897.53"
+            "value": "897.53",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 7, tranche dal 2026-11-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-11-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           },
           {
             "valid_from": "2027-02-01",
             "valid_until": null,
-            "value": "925.31"
+            "value": "925.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabelle-retributive-commercio-2024",
+                  "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                  "pages": [],
+                  "published_on": "2024-03-28",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — livello 7, tranche dal 2027-02-01",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-08-30T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2027-02-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
           }
         ]
       },
@@ -662,6 +2434,34 @@
                 "value": "517.51"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabelle-retributive-commercio-2024",
+                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                "pages": [],
+                "published_on": "2024-03-28",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Contingenza + EDR — colonna tabella retributiva",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": "Contingenza conglobata e bloccata dal 01/11/1993 (L. 438/1992) + EDR 10,33 (Accordo 31/07/1992)"
           }
         },
         {
@@ -675,6 +2475,34 @@
                 "value": "2.07"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-commercio-confcommercio-2019",
+                "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019 (rinnovo 22/03/2024)",
+                "kind": "associazione",
+                "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
+                "pages": [],
+                "published_on": "2024-03-22",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Art. 215 — Terzo elemento nazionale",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "1993-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": null
           }
         },
         {
@@ -688,9 +2516,65 @@
                 "value": "5.16"
               }
             ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabelle-retributive-commercio-2024",
+                "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+                "pages": [],
+                "published_on": "2024-03-28",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Altri el. — colonna tabella retributiva livello VII",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-08-30T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "2024-04-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": "Già ITL 10.000; attuale importo EUR 5,16"
           }
         }
-      ]
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabelle-retributive-commercio-2024",
+            "title": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+            "pages": [],
+            "published_on": "2024-03-28",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Tabella retributiva — livello 7",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-08-30T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2024-04-01",
+          "effective_until": null,
+          "back_calculation": null
+        },
+        "note": null
+      }
     }
   ],
   "apprenticeship": [
@@ -743,12 +2627,12 @@
   ],
   "ruleset": {
     "id": "ccnl/commercio-confcommercio",
-    "version": "2026.1",
+    "version": "2026.2",
     "effective_from": "1993-11-01",
     "effective_until": null,
     "published_at": "2026-09-07",
     "source": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
     "verification_status": "unverified",
-    "source_hash": "3802a95348a2c97b3b27bd26547f74f3f233842f96aee3b76c77079363687dd3"
+    "source_hash": "4e44a534371ff02b018c614cd75ee87c221aed9d8f8738a858d5fe758b643050"
   }
 }
