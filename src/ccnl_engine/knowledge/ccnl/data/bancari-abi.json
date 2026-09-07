@@ -1,1275 +1,1275 @@
 {
-    "schema_version": "0.5",
-    "meta": {
-        "ccnl_id": "bancari-abi",
-        "name": "CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)",
-        "cnel_code": "J241",
-        "sector": "credito",
-        "tax_sector": "credito",
-        "signatories": [
-            "ABI",
-            "FABI",
-            "FIRST-CISL",
-            "FISAC-CGIL",
-            "UILCA",
-            "UNISIN"
-        ],
-        "sources": [
-            {
-                "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
-                "type": "text",
-                "agreement_date": "2023-11-23"
-            },
-            {
-                "url": "https://www.ccnlbancari.it/",
-                "type": "table",
-                "agreement_date": null
-            }
-        ],
-        "extraction": {
-            "method": "ai_assisted",
-            "model": null,
-            "timestamp": "2026-09-01",
-            "human_reviewed": false
-        }
-    },
-    "coverage": {
-        "layer_1": "implemented",
-        "layer_2": "implemented",
-        "notes": [
-            {
-                "kind": "info",
-                "text": "Hourly divisor 162 for the 37.5h/week period (2023-11-23 to 2024-06-30) and 160 from 2024-07-01 (37h/week)."
-            },
-            {
-                "kind": "info",
-                "text": "Seniority: first scatto after 48 months, then every 36 months; maximum 8 scatti for the Aree Professionali and 7 for QD3/QD4 (maximum_count_by_level)."
-            },
-            {
-                "kind": "simplification",
-                "text": "Apprenticeship (Art. 35, rinnovo 23-11-2023) targets the 3ª area professionale without naming the level; modelled for destination levels 3A2, 3A3 and 3A4 with 18 months one level below, then the destination level. 3A1 is excluded because the level below (Area Unificata 1ª e 2ª area) is not an apprenticeship classification."
-            },
-            {
-                "kind": "simplification",
-                "text": "INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); the Fondo di solidarietà del credito (bilateral) is presumed included in the aggregate rate. Verify against the annual INPS circular."
-            },
-            {
-                "kind": "source",
-                "text": "Apprenticeship: https://www.ccnlbancari.it/ Art. 35, post-rinnovo 2023-11-23."
-            }
-        ]
-    },
-    "parameters": {
-        "hourly_divisor": {
-            "periods": [
-                {
-                    "valid_from": "2023-11-23",
-                    "valid_until": "2024-07-01",
-                    "value": "162"
-                },
-                {
-                    "valid_from": "2024-07-01",
-                    "valid_until": null,
-                    "value": "160"
-                }
-            ]
-        },
-        "additional_months": {
-            "periods": [
-                {
-                    "valid_from": "2023-11-23",
-                    "valid_until": null,
-                    "value": "13"
-                }
-            ]
-        },
-        "seniority_increments": {
-            "cadence_months": 36,
-            "maximum_count": 8,
-            "amount_by_level": {
-                "QD4": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-11-23",
-                            "valid_until": null,
-                            "value": "95.31"
-                        }
-                    ]
-                },
-                "QD3": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-11-23",
-                            "valid_until": null,
-                            "value": "95.31"
-                        }
-                    ]
-                },
-                "QD2": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-11-23",
-                            "valid_until": null,
-                            "value": "41.55"
-                        }
-                    ]
-                },
-                "QD1": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-11-23",
-                            "valid_until": null,
-                            "value": "41.55"
-                        }
-                    ]
-                },
-                "3A4": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-11-23",
-                            "valid_until": null,
-                            "value": "41.55"
-                        }
-                    ]
-                },
-                "3A3": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-11-23",
-                            "valid_until": null,
-                            "value": "41.55"
-                        }
-                    ]
-                },
-                "3A2": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-11-23",
-                            "valid_until": null,
-                            "value": "41.55"
-                        }
-                    ]
-                },
-                "3A1": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-11-23",
-                            "valid_until": null,
-                            "value": "41.55"
-                        }
-                    ]
-                },
-                "1e2A": {
-                    "periods": [
-                        {
-                            "valid_from": "2023-11-23",
-                            "valid_until": null,
-                            "value": "29.07"
-                        }
-                    ]
-                }
-            },
-            "first_cadence_months": 48,
-            "maximum_count_by_level": {
-                "QD3": 7,
-                "QD4": 7
-            },
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "bancari-abi",
-                        "title": "bancari-abi",
-                        "kind": "altro",
-                        "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                    },
-                    "section": "Scatti di anzianità"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        }
-    },
-    "levels": [
-        {
-            "code": "QD4",
-            "order": 9,
-            "description": "Executive Managers - 4th level",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-11-23",
-                        "valid_until": "2024-09-01",
-                        "value": "4911.48",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-09-01",
-                        "valid_until": "2025-06-01",
-                        "value": "5045.85",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2026-03-01",
-                        "value": "5113.03",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-03-01",
-                        "valid_until": null,
-                        "value": "5160.06",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "category": "quadro",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "bancari-abi",
-                        "title": "bancari-abi",
-                        "kind": "altro",
-                        "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "QD3",
-            "order": 8,
-            "description": "Executive Managers - 3rd level",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-11-23",
-                        "valid_until": "2024-09-01",
-                        "value": "4180.89",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-09-01",
-                        "valid_until": "2025-06-01",
-                        "value": "4297.64",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2026-03-01",
-                        "value": "4356.02",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-03-01",
-                        "valid_until": null,
-                        "value": "4396.88",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "category": "quadro",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "bancari-abi",
-                        "title": "bancari-abi",
-                        "kind": "altro",
-                        "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "QD2",
-            "order": 7,
-            "description": "Executive Managers - 2nd level",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-11-23",
-                        "valid_until": "2024-09-01",
-                        "value": "3760.45",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-09-01",
-                        "valid_until": "2025-06-01",
-                        "value": "3871.28",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2026-03-01",
-                        "value": "3926.69",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-03-01",
-                        "valid_until": null,
-                        "value": "3965.48",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "category": "quadro",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "bancari-abi",
-                        "title": "bancari-abi",
-                        "kind": "altro",
-                        "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "QD1",
-            "order": 6,
-            "description": "Executive Managers - 1st level",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-11-23",
-                        "valid_until": "2024-09-01",
-                        "value": "3547.80",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-09-01",
-                        "valid_until": "2025-06-01",
-                        "value": "3653.43",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2026-03-01",
-                        "value": "3706.24",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-03-01",
-                        "valid_until": null,
-                        "value": "3743.21",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "category": "quadro",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "bancari-abi",
-                        "title": "bancari-abi",
-                        "kind": "altro",
-                        "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "3A4",
-            "order": 5,
-            "description": "3rd Professional Area - 4th level",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-11-23",
-                        "valid_until": "2024-09-01",
-                        "value": "3156.90",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-09-01",
-                        "valid_until": "2025-06-01",
-                        "value": "3256.90",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2026-03-01",
-                        "value": "3306.90",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-03-01",
-                        "valid_until": null,
-                        "value": "3341.90",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "category": "impiegato",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "bancari-abi",
-                        "title": "bancari-abi",
-                        "kind": "altro",
-                        "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "3A3",
-            "order": 4,
-            "description": "3rd Professional Area - 3rd level",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-11-23",
-                        "valid_until": "2024-09-01",
-                        "value": "2899.88",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-09-01",
-                        "valid_until": "2025-06-01",
-                        "value": "2986.15",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2026-03-01",
-                        "value": "3029.29",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-03-01",
-                        "valid_until": null,
-                        "value": "3059.49",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "category": "impiegato",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "bancari-abi",
-                        "title": "bancari-abi",
-                        "kind": "altro",
-                        "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "3A2",
-            "order": 3,
-            "description": "3rd Professional Area - 2nd level",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-11-23",
-                        "valid_until": "2024-09-01",
-                        "value": "2739.63",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-09-01",
-                        "valid_until": "2025-06-01",
-                        "value": "2821.13",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2026-03-01",
-                        "value": "2861.88",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-03-01",
-                        "valid_until": null,
-                        "value": "2890.41",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "category": "impiegato",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "bancari-abi",
-                        "title": "bancari-abi",
-                        "kind": "altro",
-                        "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "3A1",
-            "order": 2,
-            "description": "3rd Professional Area - 1st level",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-11-23",
-                        "valid_until": "2024-09-01",
-                        "value": "2599.29",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-09-01",
-                        "valid_until": "2025-06-01",
-                        "value": "2676.62",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2026-03-01",
-                        "value": "2715.28",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-03-01",
-                        "valid_until": null,
-                        "value": "2742.34",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "category": "impiegato",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "bancari-abi",
-                        "title": "bancari-abi",
-                        "kind": "altro",
-                        "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "1e2A",
-            "order": 1,
-            "description": "1st and 2nd Professional Area (Unified Area)",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2023-11-23",
-                        "valid_until": "2024-09-01",
-                        "value": "2350.10",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-09-01",
-                        "valid_until": "2025-06-01",
-                        "value": "2420.02",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-06-01",
-                        "valid_until": "2026-03-01",
-                        "value": "2454.98",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-03-01",
-                        "valid_until": null,
-                        "value": "2479.45",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "bancari-abi",
-                                    "title": "bancari-abi",
-                                    "kind": "altro",
-                                    "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "category": "impiegato",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "bancari-abi",
-                        "title": "bancari-abi",
-                        "kind": "altro",
-                        "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        }
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "bancari-abi",
+    "name": "CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)",
+    "cnel_code": "J241",
+    "sector": "credito",
+    "tax_sector": "credito",
+    "signatories": [
+      "ABI",
+      "FABI",
+      "FIRST-CISL",
+      "FISAC-CGIL",
+      "UILCA",
+      "UNISIN"
     ],
-    "apprenticeship": [
-        {
-            "type": "under_classification",
-            "name": "terza_area",
-            "destination_levels": [
-                "3A2",
-                "3A3",
-                "3A4"
-            ],
-            "periods": [
-                {
-                    "months_from": 0,
-                    "months_until": 18,
-                    "levels_below": 1
-                },
-                {
-                    "months_from": 18,
-                    "months_until": null,
-                    "levels_below": 0
-                }
-            ]
-        }
+    "sources": [
+      {
+        "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
+        "type": "text",
+        "agreement_date": "2023-11-23"
+      },
+      {
+        "url": "https://www.ccnlbancari.it/",
+        "type": "table",
+        "agreement_date": null
+      }
     ],
-    "ruleset": {
-        "id": "ccnl/bancari-abi",
-        "version": "2026.2",
-        "effective_from": "2023-11-23",
-        "effective_until": null,
-        "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
-        "verification_status": "unverified",
-        "source_hash": "f2f979b66177fa02df92060e451d86d2d1310040ba15e5927d19df1023997222",
-        "published_at": "2026-09-07"
+    "extraction": {
+      "method": "ai_assisted",
+      "model": null,
+      "timestamp": "2026-09-01",
+      "human_reviewed": false
     }
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Hourly divisor 162 for the 37.5h/week period (2023-11-23 to 2024-06-30) and 160 from 2024-07-01 (37h/week)."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: first scatto after 48 months, then every 36 months; maximum 8 scatti for the Aree Professionali and 7 for QD3/QD4 (maximum_count_by_level)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Apprenticeship (Art. 35, rinnovo 23-11-2023) targets the 3ª area professionale without naming the level; modelled for destination levels 3A2, 3A3 and 3A4 with 18 months one level below, then the destination level. 3A1 is excluded because the level below (Area Unificata 1ª e 2ª area) is not an apprenticeship classification."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); the Fondo di solidarietà del credito (bilateral) is presumed included in the aggregate rate. Verify against the annual INPS circular."
+      },
+      {
+        "kind": "source",
+        "text": "Apprenticeship: https://www.ccnlbancari.it/ Art. 35, post-rinnovo 2023-11-23."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2023-11-23",
+          "valid_until": "2024-07-01",
+          "value": "162"
+        },
+        {
+          "valid_from": "2024-07-01",
+          "valid_until": null,
+          "value": "160"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2023-11-23",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 8,
+      "amount_by_level": {
+        "QD4": {
+          "periods": [
+            {
+              "valid_from": "2023-11-23",
+              "valid_until": null,
+              "value": "95.31"
+            }
+          ]
+        },
+        "QD3": {
+          "periods": [
+            {
+              "valid_from": "2023-11-23",
+              "valid_until": null,
+              "value": "95.31"
+            }
+          ]
+        },
+        "QD2": {
+          "periods": [
+            {
+              "valid_from": "2023-11-23",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "QD1": {
+          "periods": [
+            {
+              "valid_from": "2023-11-23",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "3A4": {
+          "periods": [
+            {
+              "valid_from": "2023-11-23",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "3A3": {
+          "periods": [
+            {
+              "valid_from": "2023-11-23",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "3A2": {
+          "periods": [
+            {
+              "valid_from": "2023-11-23",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "3A1": {
+          "periods": [
+            {
+              "valid_from": "2023-11-23",
+              "valid_until": null,
+              "value": "41.55"
+            }
+          ]
+        },
+        "1e2A": {
+          "periods": [
+            {
+              "valid_from": "2023-11-23",
+              "valid_until": null,
+              "value": "29.07"
+            }
+          ]
+        }
+      },
+      "first_cadence_months": 48,
+      "maximum_count_by_level": {
+        "QD3": 7,
+        "QD4": 7
+      },
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "bancari-abi",
+            "title": "bancari-abi",
+            "kind": "associazione",
+            "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+          },
+          "section": "Scatti di anzianità"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "QD4",
+      "order": 9,
+      "description": "Executive Managers - 4th level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-11-23",
+            "valid_until": "2024-09-01",
+            "value": "4911.48",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-06-01",
+            "value": "5045.85",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-03-01",
+            "value": "5113.03",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": null,
+            "value": "5160.06",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "quadro",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "bancari-abi",
+            "title": "bancari-abi",
+            "kind": "associazione",
+            "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "QD3",
+      "order": 8,
+      "description": "Executive Managers - 3rd level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-11-23",
+            "valid_until": "2024-09-01",
+            "value": "4180.89",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-06-01",
+            "value": "4297.64",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-03-01",
+            "value": "4356.02",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": null,
+            "value": "4396.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "quadro",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "bancari-abi",
+            "title": "bancari-abi",
+            "kind": "associazione",
+            "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "QD2",
+      "order": 7,
+      "description": "Executive Managers - 2nd level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-11-23",
+            "valid_until": "2024-09-01",
+            "value": "3760.45",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-06-01",
+            "value": "3871.28",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-03-01",
+            "value": "3926.69",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": null,
+            "value": "3965.48",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "quadro",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "bancari-abi",
+            "title": "bancari-abi",
+            "kind": "associazione",
+            "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "QD1",
+      "order": 6,
+      "description": "Executive Managers - 1st level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-11-23",
+            "valid_until": "2024-09-01",
+            "value": "3547.80",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-06-01",
+            "value": "3653.43",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-03-01",
+            "value": "3706.24",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": null,
+            "value": "3743.21",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "quadro",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "bancari-abi",
+            "title": "bancari-abi",
+            "kind": "associazione",
+            "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "3A4",
+      "order": 5,
+      "description": "3rd Professional Area - 4th level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-11-23",
+            "valid_until": "2024-09-01",
+            "value": "3156.90",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-06-01",
+            "value": "3256.90",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-03-01",
+            "value": "3306.90",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": null,
+            "value": "3341.90",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "bancari-abi",
+            "title": "bancari-abi",
+            "kind": "associazione",
+            "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "3A3",
+      "order": 4,
+      "description": "3rd Professional Area - 3rd level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-11-23",
+            "valid_until": "2024-09-01",
+            "value": "2899.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-06-01",
+            "value": "2986.15",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-03-01",
+            "value": "3029.29",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": null,
+            "value": "3059.49",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "bancari-abi",
+            "title": "bancari-abi",
+            "kind": "associazione",
+            "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "3A2",
+      "order": 3,
+      "description": "3rd Professional Area - 2nd level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-11-23",
+            "valid_until": "2024-09-01",
+            "value": "2739.63",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-06-01",
+            "value": "2821.13",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-03-01",
+            "value": "2861.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": null,
+            "value": "2890.41",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "bancari-abi",
+            "title": "bancari-abi",
+            "kind": "associazione",
+            "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "3A1",
+      "order": 2,
+      "description": "3rd Professional Area - 1st level",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-11-23",
+            "valid_until": "2024-09-01",
+            "value": "2599.29",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-06-01",
+            "value": "2676.62",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-03-01",
+            "value": "2715.28",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": null,
+            "value": "2742.34",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "bancari-abi",
+            "title": "bancari-abi",
+            "kind": "associazione",
+            "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "1e2A",
+      "order": 1,
+      "description": "1st and 2nd Professional Area (Unified Area)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-11-23",
+            "valid_until": "2024-09-01",
+            "value": "2350.10",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-09-01",
+            "valid_until": "2025-06-01",
+            "value": "2420.02",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-03-01",
+            "value": "2454.98",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-03-01",
+            "valid_until": null,
+            "value": "2479.45",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "bancari-abi",
+                  "title": "bancari-abi",
+                  "kind": "associazione",
+                  "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "bancari-abi",
+            "title": "bancari-abi",
+            "kind": "associazione",
+            "url": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "terza_area",
+      "destination_levels": [
+        "3A2",
+        "3A3",
+        "3A4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 1
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/bancari-abi",
+    "version": "2026.2",
+    "effective_from": "2023-11-23",
+    "effective_until": null,
+    "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
+    "verification_status": "unverified",
+    "source_hash": "8c3ffdfe5d0f0721527134dc80bf16dd87d11d58ea0b2918bad8d76d82032726",
+    "published_at": "2026-09-07"
+  }
 }

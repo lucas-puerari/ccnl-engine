@@ -12,6 +12,7 @@ from ccnl_engine.engine.provenance.domain.extraction import (
     ExtractionTrace,
 )
 from ccnl_engine.engine.provenance.domain.source import (
+    SourceAuthority,
     SourceDocument,
     SourceKind,
     SourceLocation,
@@ -22,6 +23,7 @@ __all__ = [
     "ExtractionMethod",
     "ExtractionTrace",
     "RuleProvenance",
+    "SourceAuthority",
     "SourceDocument",
     "SourceKind",
     "SourceLocation",

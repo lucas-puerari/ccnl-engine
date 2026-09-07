@@ -477,6 +477,19 @@ class TestCoverage:
         with pytest.raises(ValidationError, match="but apprenticeship tracks exist"):
             _validate(data)
 
+    def test_verification_status_defaults_to_unverified(self) -> None:
+        """verification_status defaults to 'unverified' when absent from JSON."""
+        data = make_ccnl_dict()
+        result = _validate(data)
+        assert result.coverage.verification_status == "unverified"
+
+    def test_verification_status_accepted(self) -> None:
+        """An explicit verification_status is stored as-is."""
+        data = make_ccnl_dict()
+        data["coverage"]["verification_status"] = "needs_review"
+        result = _validate(data)
+        assert result.coverage.verification_status == "needs_review"
+
 
 # ---------------------------------------------------------------------------
 # Employer funds and allowances

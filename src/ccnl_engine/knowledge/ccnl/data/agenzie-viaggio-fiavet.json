@@ -1,1859 +1,1859 @@
 {
-    "schema_version": "0.5",
-    "meta": {
-        "ccnl_id": "agenzie-viaggio-fiavet",
-        "name": "CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio",
-        "cnel_code": "H052",
-        "sector": "Turismo (agenzie di viaggio)",
-        "tax_sector": "terziario",
-        "signatories": [
-            "Fiavet (Federazione Italiana Associazioni Imprese Viaggi e Turismo)",
-            "Federviaggio",
-            "Filcams-CGIL",
-            "Fisascat-CISL",
-            "Uiltucs-UIL"
-        ],
-        "sources": [
-            {
-                "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
-                "type": "ccnl_pdf",
-                "agreement_date": "2019-07-11",
-                "notes": "Base CCNL 2019 — Art. 146 (hourly divisor 172), Art. 64 (apprendistato 80/85/90%), Art. 156 (scatti di anzianita triennali)"
-            },
-            {
-                "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20108.pdf",
-                "type": "ccnl_pdf",
-                "agreement_date": "2024-07-26",
-                "notes": "Rinnovo 2024 — tabelle retributive tutti i livelli e tutte le tranche 2024-2027, Art. 157 tredicesima, Art. 158 quattordicesima"
-            }
-        ],
-        "extraction": {
-            "method": "ai_assisted",
-            "model": null,
-            "timestamp": "2026-09-03",
-            "human_reviewed": false
-        },
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "agenzie-viaggio-fiavet",
+    "name": "CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio",
+    "cnel_code": "H052",
+    "sector": "Turismo (agenzie di viaggio)",
+    "tax_sector": "terziario",
+    "signatories": [
+      "Fiavet (Federazione Italiana Associazioni Imprese Viaggi e Turismo)",
+      "Federviaggio",
+      "Filcams-CGIL",
+      "Fisascat-CISL",
+      "Uiltucs-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
+        "type": "ccnl_pdf",
+        "agreement_date": "2019-07-11",
+        "notes": "Base CCNL 2019 — Art. 146 (hourly divisor 172), Art. 64 (apprendistato 80/85/90%), Art. 156 (scatti di anzianita triennali)"
+      },
+      {
+        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20108.pdf",
+        "type": "ccnl_pdf",
         "agreement_date": "2024-07-26",
-        "validity": {
-            "valid_from": "2024-07-01",
-            "valid_until": "2027-12-31"
-        }
-    },
-    "parameters": {
-        "hourly_divisor": {
-            "periods": [
-                {
-                    "valid_from": "2024-06-01",
-                    "valid_until": null,
-                    "value": "172"
-                }
-            ]
-        },
-        "additional_months": {
-            "periods": [
-                {
-                    "valid_from": "2024-06-01",
-                    "valid_until": null,
-                    "value": "14"
-                }
-            ]
-        },
-        "seniority_increments": {
-            "cadence_months": 36,
-            "maximum_count": 6,
-            "amount_by_level": {
-                "QA": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-01",
-                            "valid_until": null,
-                            "value": "40.80"
-                        }
-                    ]
-                },
-                "QB": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-01",
-                            "valid_until": null,
-                            "value": "39.25"
-                        }
-                    ]
-                },
-                "1": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-01",
-                            "valid_until": null,
-                            "value": "37.70"
-                        }
-                    ]
-                },
-                "2": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-01",
-                            "valid_until": null,
-                            "value": "36.15"
-                        }
-                    ]
-                },
-                "3": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-01",
-                            "valid_until": null,
-                            "value": "34.86"
-                        }
-                    ]
-                },
-                "4": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-01",
-                            "valid_until": null,
-                            "value": "33.05"
-                        }
-                    ]
-                },
-                "5": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-01",
-                            "valid_until": null,
-                            "value": "32.54"
-                        }
-                    ]
-                },
-                "6S": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-01",
-                            "valid_until": null,
-                            "value": "31.25"
-                        }
-                    ]
-                },
-                "6": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-01",
-                            "valid_until": null,
-                            "value": "30.99"
-                        }
-                    ]
-                },
-                "7": {
-                    "periods": [
-                        {
-                            "valid_from": "2024-06-01",
-                            "valid_until": null,
-                            "value": "30.47"
-                        }
-                    ]
-                }
-            },
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "20108-pdf",
-                        "title": "20108-pdf",
-                        "kind": "altro",
-                        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                    },
-                    "section": "Scatti di anzianità"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        }
-    },
-    "levels": [
-        {
-            "code": "QA",
-            "order": 10,
-            "description": "Quadro A — Top management function",
-            "category": "quadro",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2024-07-01",
-                        "value": "2210.16",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-07-01",
-                        "valid_until": "2025-09-01",
-                        "value": "2281.42",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-09-01",
-                        "valid_until": "2026-09-01",
-                        "value": "2338.43",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-09-01",
-                        "valid_until": "2027-06-01",
-                        "value": "2395.44",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-06-01",
-                        "valid_until": "2027-12-01",
-                        "value": "2438.20",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-12-01",
-                        "valid_until": null,
-                        "value": "2495.21",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "20108-pdf",
-                        "title": "20108-pdf",
-                        "kind": "altro",
-                        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "QB",
-            "order": 9,
-            "description": "Quadro B — Management function",
-            "category": "quadro",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2024-07-01",
-                        "value": "2046.20",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-07-01",
-                        "valid_until": "2025-09-01",
-                        "value": "2112.18",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-09-01",
-                        "valid_until": "2026-09-01",
-                        "value": "2164.96",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-09-01",
-                        "valid_until": "2027-06-01",
-                        "value": "2217.74",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-06-01",
-                        "valid_until": "2027-12-01",
-                        "value": "2257.33",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-12-01",
-                        "valid_until": null,
-                        "value": "2310.11",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "20108-pdf",
-                        "title": "20108-pdf",
-                        "kind": "altro",
-                        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "1",
-            "order": 8,
-            "description": "Level 1 — Conceptual employee with managerial functions",
-            "category": "impiegato",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2024-07-01",
-                        "value": "1906.44",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-07-01",
-                        "valid_until": "2025-09-01",
-                        "value": "1967.91",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-09-01",
-                        "valid_until": "2026-09-01",
-                        "value": "2017.09",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-09-01",
-                        "valid_until": "2027-06-01",
-                        "value": "2066.27",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-06-01",
-                        "valid_until": "2027-12-01",
-                        "value": "2103.15",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-12-01",
-                        "valid_until": null,
-                        "value": "2152.33",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "20108-pdf",
-                        "title": "20108-pdf",
-                        "kind": "altro",
-                        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "2",
-            "order": 7,
-            "description": "Level 2 — Conceptual employee",
-            "category": "impiegato",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2024-07-01",
-                        "value": "1742.47",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-07-01",
-                        "valid_until": "2025-09-01",
-                        "value": "1798.65",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-09-01",
-                        "valid_until": "2026-09-01",
-                        "value": "1843.60",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-09-01",
-                        "valid_until": "2027-06-01",
-                        "value": "1888.55",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-06-01",
-                        "valid_until": "2027-12-01",
-                        "value": "1922.26",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-12-01",
-                        "valid_until": null,
-                        "value": "1967.21",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "20108-pdf",
-                        "title": "20108-pdf",
-                        "kind": "altro",
-                        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "3",
-            "order": 6,
-            "description": "Level 3 — Qualified employee",
-            "category": "impiegato",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2024-07-01",
-                        "value": "1643.37",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-07-01",
-                        "valid_until": "2025-09-01",
-                        "value": "1696.36",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-09-01",
-                        "valid_until": "2026-09-01",
-                        "value": "1738.75",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-09-01",
-                        "valid_until": "2027-06-01",
-                        "value": "1781.14",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-06-01",
-                        "valid_until": "2027-12-01",
-                        "value": "1812.93",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-12-01",
-                        "valid_until": null,
-                        "value": "1855.32",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "20108-pdf",
-                        "title": "20108-pdf",
-                        "kind": "altro",
-                        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "4",
-            "order": 5,
-            "description": "Level 4 — Employee",
-            "category": "impiegato",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2024-07-01",
-                        "value": "1550.69",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-07-01",
-                        "valid_until": "2025-09-01",
-                        "value": "1600.69",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-09-01",
-                        "valid_until": "2026-09-01",
-                        "value": "1640.69",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-09-01",
-                        "valid_until": "2027-06-01",
-                        "value": "1680.69",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-06-01",
-                        "valid_until": "2027-12-01",
-                        "value": "1710.69",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-12-01",
-                        "valid_until": null,
-                        "value": "1750.69",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "20108-pdf",
-                        "title": "20108-pdf",
-                        "kind": "altro",
-                        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "5",
-            "order": 4,
-            "description": "Level 5 — Qualified clerical employee",
-            "category": "impiegato",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2024-07-01",
-                        "value": "1454.28",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-07-01",
-                        "valid_until": "2025-09-01",
-                        "value": "1501.17",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-09-01",
-                        "valid_until": "2026-09-01",
-                        "value": "1538.68",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-09-01",
-                        "valid_until": "2027-06-01",
-                        "value": "1576.19",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-06-01",
-                        "valid_until": "2027-12-01",
-                        "value": "1604.32",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-12-01",
-                        "valid_until": null,
-                        "value": "1641.83",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "20108-pdf",
-                        "title": "20108-pdf",
-                        "kind": "altro",
-                        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "6S",
-            "order": 3,
-            "description": "Level 6S — Super clerical employee",
-            "category": "impiegato",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2024-07-01",
-                        "value": "1398.37",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-07-01",
-                        "valid_until": "2025-09-01",
-                        "value": "1443.46",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-09-01",
-                        "valid_until": "2026-09-01",
-                        "value": "1479.53",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-09-01",
-                        "valid_until": "2027-06-01",
-                        "value": "1515.60",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-06-01",
-                        "valid_until": "2027-12-01",
-                        "value": "1542.65",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-12-01",
-                        "valid_until": null,
-                        "value": "1578.72",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "20108-pdf",
-                        "title": "20108-pdf",
-                        "kind": "altro",
-                        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "6",
-            "order": 2,
-            "description": "Level 6 — Clerical employee",
-            "category": "impiegato",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2024-07-01",
-                        "value": "1378.55",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-07-01",
-                        "valid_until": "2025-09-01",
-                        "value": "1423.00",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-09-01",
-                        "valid_until": "2026-09-01",
-                        "value": "1458.56",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-09-01",
-                        "valid_until": "2027-06-01",
-                        "value": "1494.12",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-06-01",
-                        "valid_until": "2027-12-01",
-                        "value": "1520.79",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-12-01",
-                        "valid_until": null,
-                        "value": "1556.35",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "20108-pdf",
-                        "title": "20108-pdf",
-                        "kind": "altro",
-                        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "7",
-            "order": 1,
-            "description": "Level 7 — Auxiliary staff",
-            "category": "operaio",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2024-06-01",
-                        "valid_until": "2024-07-01",
-                        "value": "1291.81",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2024-07-01",
-                        "valid_until": "2025-09-01",
-                        "value": "1333.46",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2025-09-01",
-                        "valid_until": "2026-09-01",
-                        "value": "1366.78",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-09-01",
-                        "valid_until": "2027-06-01",
-                        "value": "1400.10",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-06-01",
-                        "valid_until": "2027-12-01",
-                        "value": "1425.09",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-12-01",
-                        "valid_until": null,
-                        "value": "1458.41",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "20108-pdf",
-                                    "title": "20108-pdf",
-                                    "kind": "altro",
-                                    "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "20108-pdf",
-                        "title": "20108-pdf",
-                        "kind": "altro",
-                        "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        }
+        "notes": "Rinnovo 2024 — tabelle retributive tutti i livelli e tutte le tranche 2024-2027, Art. 157 tredicesima, Art. 158 quattordicesima"
+      }
     ],
-    "apprenticeship": [
-        {
-            "type": "percentage",
-            "name": "standard",
-            "destination_levels": [
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6S",
-                "6",
-                "7"
-            ],
-            "reference_level": null,
-            "periods": [
-                {
-                    "months_from": 0,
-                    "months_until": 12,
-                    "percentage": "0.80"
-                },
-                {
-                    "months_from": 12,
-                    "months_until": 24,
-                    "percentage": "0.85"
-                },
-                {
-                    "months_from": 24,
-                    "months_until": null,
-                    "percentage": "0.90"
-                }
-            ]
-        }
-    ],
-    "coverage": {
-        "layer_1": "implemented",
-        "layer_2": "implemented",
-        "notes": [
-            {
-                "kind": "source",
-                "text": "Salary tables 2024-2027 from CCNL renewal of 26 July 2024 (CNEL PDF). Six tranches: Jun-24, Jul-24, Sep-25, Sep-26, Jun-27, Dec-27."
-            },
-            {
-                "kind": "source",
-                "text": "Hourly divisor 172 from Art. 146 CCNL base 2019 (CNEL PDF doc 20108). Same basis as the Confcommercio tourism sector."
-            },
-            {
-                "kind": "source",
-                "text": "14 additional monthly payments from Art. 157 (thirteenth month) and Art. 158 (fourteenth month) of the 2024 renewal."
-            },
-            {
-                "kind": "source",
-                "text": "Triennial seniority increments (Art. 156 CCNL 2019): 36-month cadence, maximum 6 increments. Per-level amounts from the table attached to the 2024 renewal."
-            },
-            {
-                "kind": "source",
-                "text": "Percentage-based apprenticeship from Art. 64 CCNL 2019 (OCR pages 32-33): first year 80%, second year 85%, third year 90%."
-            },
-            {
-                "kind": "source",
-                "text": "CNEL code H052 confirmed from kitech.it CodiceCateg=81 (Confcommercio tourism sector, travel agencies included)."
-            },
-            {
-                "kind": "simplification",
-                "text": "Levels QA and QB (Quadri) excluded from the apprenticeship track (apprenticeship not applicable to Quadri by law)."
-            },
-            {
-                "kind": "simplification",
-                "text": "Layer 3 (overtime, night shifts, public holidays) out of scope."
-            }
-        ]
+    "extraction": {
+      "method": "ai_assisted",
+      "model": null,
+      "timestamp": "2026-09-03",
+      "human_reviewed": false
     },
-    "ruleset": {
-        "id": "ccnl/agenzie-viaggio-fiavet",
-        "version": "2026.2",
-        "effective_from": "2024-07-01",
-        "effective_until": "2027-12-31",
-        "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
-        "verification_status": "unverified",
-        "source_hash": "4091f903c9b123d6ea9d3effc865f7f39fffe40e9753f0f652f316ff95c17977",
-        "published_at": "2026-09-07"
+    "agreement_date": "2024-07-26",
+    "validity": {
+      "valid_from": "2024-07-01",
+      "valid_until": "2027-12-31"
     }
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-06-01",
+          "valid_until": null,
+          "value": "172"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-06-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 6,
+      "amount_by_level": {
+        "QA": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "40.80"
+            }
+          ]
+        },
+        "QB": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "39.25"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "37.70"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "36.15"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "34.86"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "33.05"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "32.54"
+            }
+          ]
+        },
+        "6S": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "31.25"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "30.99"
+            }
+          ]
+        },
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": null,
+              "value": "30.47"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "20108-pdf",
+            "title": "20108-pdf",
+            "kind": "cnel",
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+          },
+          "section": "Scatti di anzianità"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "QA",
+      "order": 10,
+      "description": "Quadro A — Top management function",
+      "category": "quadro",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "2210.16",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "2281.42",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "2338.43",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "2395.44",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "2438.20",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2495.21",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "20108-pdf",
+            "title": "20108-pdf",
+            "kind": "cnel",
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "QB",
+      "order": 9,
+      "description": "Quadro B — Management function",
+      "category": "quadro",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "2046.20",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "2112.18",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "2164.96",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "2217.74",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "2257.33",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2310.11",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "20108-pdf",
+            "title": "20108-pdf",
+            "kind": "cnel",
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "order": 8,
+      "description": "Level 1 — Conceptual employee with managerial functions",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1906.44",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1967.91",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "2017.09",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "2066.27",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "2103.15",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "2152.33",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "20108-pdf",
+            "title": "20108-pdf",
+            "kind": "cnel",
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "order": 7,
+      "description": "Level 2 — Conceptual employee",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1742.47",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1798.65",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1843.60",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1888.55",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1922.26",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1967.21",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "20108-pdf",
+            "title": "20108-pdf",
+            "kind": "cnel",
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "order": 6,
+      "description": "Level 3 — Qualified employee",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1643.37",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1696.36",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1738.75",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1781.14",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1812.93",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1855.32",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "20108-pdf",
+            "title": "20108-pdf",
+            "kind": "cnel",
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "order": 5,
+      "description": "Level 4 — Employee",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1550.69",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1600.69",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1640.69",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1680.69",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1710.69",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1750.69",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "20108-pdf",
+            "title": "20108-pdf",
+            "kind": "cnel",
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "order": 4,
+      "description": "Level 5 — Qualified clerical employee",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1454.28",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1501.17",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1538.68",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1576.19",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1604.32",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1641.83",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "20108-pdf",
+            "title": "20108-pdf",
+            "kind": "cnel",
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "6S",
+      "order": 3,
+      "description": "Level 6S — Super clerical employee",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1398.37",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1443.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1479.53",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1515.60",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1542.65",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1578.72",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "20108-pdf",
+            "title": "20108-pdf",
+            "kind": "cnel",
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "order": 2,
+      "description": "Level 6 — Clerical employee",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1378.55",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1423.00",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1458.56",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1494.12",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1520.79",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1556.35",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "20108-pdf",
+            "title": "20108-pdf",
+            "kind": "cnel",
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "7",
+      "order": 1,
+      "description": "Level 7 — Auxiliary staff",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2024-07-01",
+            "value": "1291.81",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-09-01",
+            "value": "1333.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": "2026-09-01",
+            "value": "1366.78",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-09-01",
+            "valid_until": "2027-06-01",
+            "value": "1400.10",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2027-12-01",
+            "value": "1425.09",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-12-01",
+            "valid_until": null,
+            "value": "1458.41",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "20108-pdf",
+                  "title": "20108-pdf",
+                  "kind": "cnel",
+                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "20108-pdf",
+            "title": "20108-pdf",
+            "kind": "cnel",
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "standard",
+      "destination_levels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6S",
+        "6",
+        "7"
+      ],
+      "reference_level": null,
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.90"
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "source",
+        "text": "Salary tables 2024-2027 from CCNL renewal of 26 July 2024 (CNEL PDF). Six tranches: Jun-24, Jul-24, Sep-25, Sep-26, Jun-27, Dec-27."
+      },
+      {
+        "kind": "source",
+        "text": "Hourly divisor 172 from Art. 146 CCNL base 2019 (CNEL PDF doc 20108). Same basis as the Confcommercio tourism sector."
+      },
+      {
+        "kind": "source",
+        "text": "14 additional monthly payments from Art. 157 (thirteenth month) and Art. 158 (fourteenth month) of the 2024 renewal."
+      },
+      {
+        "kind": "source",
+        "text": "Triennial seniority increments (Art. 156 CCNL 2019): 36-month cadence, maximum 6 increments. Per-level amounts from the table attached to the 2024 renewal."
+      },
+      {
+        "kind": "source",
+        "text": "Percentage-based apprenticeship from Art. 64 CCNL 2019 (OCR pages 32-33): first year 80%, second year 85%, third year 90%."
+      },
+      {
+        "kind": "source",
+        "text": "CNEL code H052 confirmed from kitech.it CodiceCateg=81 (Confcommercio tourism sector, travel agencies included)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Levels QA and QB (Quadri) excluded from the apprenticeship track (apprenticeship not applicable to Quadri by law)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Layer 3 (overtime, night shifts, public holidays) out of scope."
+      }
+    ]
+  },
+  "ruleset": {
+    "id": "ccnl/agenzie-viaggio-fiavet",
+    "version": "2026.2",
+    "effective_from": "2024-07-01",
+    "effective_until": "2027-12-31",
+    "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
+    "verification_status": "unverified",
+    "source_hash": "03919517163fcbe69ea35f1e4a964456746e4cebdecc928a8bfa2c457c71a1c5",
+    "published_at": "2026-09-07"
+  }
 }

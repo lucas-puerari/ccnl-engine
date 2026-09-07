@@ -1,1893 +1,1893 @@
 {
-    "schema_version": "0.5",
-    "meta": {
-        "ccnl_id": "edilizia-artigianato-cna",
-        "name": "CCNL Edilizia e Affini Artigianato",
-        "cnel_code": "F015",
-        "sector": "edilizia",
-        "tax_sector": "artigianato",
-        "validity": {
-            "valid_from": "2025-05-01",
-            "valid_until": "2028-09-30"
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "edilizia-artigianato-cna",
+    "name": "CCNL Edilizia e Affini Artigianato",
+    "cnel_code": "F015",
+    "sector": "edilizia",
+    "tax_sector": "artigianato",
+    "validity": {
+      "valid_from": "2025-05-01",
+      "valid_until": "2028-09-30"
+    },
+    "signatories": [
+      "CNA Costruzioni",
+      "ANAEPA-Confartigianato",
+      "FIAE-Casartigiani",
+      "Feneal-UIL",
+      "Filca-CISL",
+      "Fillea-CGIL"
+    ],
+    "extraction": {
+      "method": "ai_assisted",
+      "model": null,
+      "timestamp": "2026-09-02",
+      "human_reviewed": false
+    },
+    "sources": [
+      {
+        "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
+        "type": "sector_association",
+        "agreement_date": "2025-05-20",
+        "notes": "Apprenticeship Allegato D — semester percentages by group, standard professionalizzante and specialistico tracks"
+      },
+      {
+        "url": "https://www.ilccnl.it/ccnl-edilizia-artigianato/",
+        "type": "sector_association",
+        "agreement_date": "2025-05-20",
+        "notes": "Hourly divisor 173, additional months 13 (tredicesima 173 ore), salary tranches"
+      },
+      {
+        "url": "https://www.kitech.it/ccnl/edilizia-artigianato",
+        "type": "payroll_reference",
+        "agreement_date": "2026-01-01",
+        "notes": "January 2026 paga base per level and seniority (scatti) amounts"
+      },
+      {
+        "url": "https://lexplain.it/ccnl-edilizia-artigianato-tabelle-retributive/",
+        "type": "payroll_reference",
+        "agreement_date": "2023-07-01",
+        "notes": "Contingenza frozen values per level"
+      }
+    ]
+  },
+  "coverage": {
+    "layer_1": "implemented",
+    "layer_2": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Split salary model: paga base (TimeSeries, 4 tranches May 2025/Jan 2026/Jan 2027/Jan 2028) + contingenza (frozen since July 1992 Protocol) + EDR (frozen EUR 10.33 since 1992)."
+      },
+      {
+        "kind": "info",
+        "text": "Paga base May 2025 and Jan 2026 verified directly against published salary tables (ilccnl.it, kitech.it). Jan 2026 cross-checked across all 8 levels."
+      },
+      {
+        "kind": "simplification",
+        "text": "Jan 2027 and Jan 2028 paga base values derived from parametro system (L1=100, L2=115, L3=130, L4=139, L5=150, L6=180, L7=L7Q=205) applied to the May 2025 base. Tranche increments at level 1: May 2025 +75, Jan 2026 +35, Jan 2027 +35, Jan 2028 +33. All parametro-derived values cross-checked against Jan 2026 published figures; deviation < 0.01 EUR."
+      },
+      {
+        "kind": "info",
+        "text": "Level 7Q has the same paga base as level 7, plus a fixed indennita di funzione of EUR 140.00/month (F015 Art. on Quadri, L. 190/1985). Modelled at order 8 (above level 7 order 7)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Seniority increment cadence (24 months) and maximum count (5) taken from general CCNL Edilizia Artigianato provisions; F015-specific text not independently confirmed. Level 1 scatto = EUR 0.00 as published in kitech.it."
+      },
+      {
+        "kind": "simplification",
+        "text": "For blue-collar workers in construction the Cassa Edile / EPR bilateral system provides additional accrual benefits (annual leave, Christmas bonus, seniority) that are separate from INPS seniority increments. These are not modelled; only the tabular seniority increments are implemented."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship standard professionalizzante Group 4 (Art. 7, Allegato D, renewal May 2025): 36 months / 6 semesters, destination level 4, 74/76/79/86/91/96% per semester, track 'standard_gruppo_4'. Source: ediltecnico.it citing F015 Allegato D."
+      },
+      {
+        "kind": "info",
+        "text": "INPS contribution rates from 2026-artigianato.json (artigianato sector). No Cassa Edile contribution substitution modelled in the INPS rate; employer Cassa Edile contributions are additional and are out of scope."
+      },
+      {
+        "kind": "info",
+        "text": "Layer 3 (overtime, Cassa Edile contributions, holiday/night premiums, accruals managed bilaterally) is out of scope."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship specialistico tracks (Allegato D, verbale 05/09/2023, Art. 9): 1 Sp (54m, livelli 4-5): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%, 42-54=96%. 3 Sp (42m, livello 3): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%. SIMPLIFICATION: 2 Sp (45m, livelli 3-4): last 8th sem.=3m (not 6m) to reach 45m (the exact boundary of the last period is not published in textual form by any secondary source; total duration of 45m is confirmed). Source: studiodalmaschio.it; fareapprendistato.it; cdltorino.it."
+      }
+    ]
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-05-01",
+          "valid_until": null,
+          "value": "173"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-05-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
         },
-        "signatories": [
-            "CNA Costruzioni",
-            "ANAEPA-Confartigianato",
-            "FIAE-Casartigiani",
-            "Feneal-UIL",
-            "Filca-CISL",
-            "Fillea-CGIL"
-        ],
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "9.86"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "10.78"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "11.54"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "12.55"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "15.92"
+            }
+          ]
+        },
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "16.73"
+            }
+          ]
+        },
+        "7Q": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "16.73"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "edilizia-artigianato-cna",
+            "title": "edilizia-artigianato-cna",
+            "kind": "rivista",
+            "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+          },
+          "section": "Scatti di anzianità"
+        },
         "extraction": {
-            "method": "ai_assisted",
-            "model": null,
-            "timestamp": "2026-09-02",
-            "human_reviewed": false
-        },
-        "sources": [
-            {
-                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
-                "type": "sector_association",
-                "agreement_date": "2025-05-20",
-                "notes": "Apprenticeship Allegato D — semester percentages by group, standard professionalizzante and specialistico tracks"
-            },
-            {
-                "url": "https://www.ilccnl.it/ccnl-edilizia-artigianato/",
-                "type": "sector_association",
-                "agreement_date": "2025-05-20",
-                "notes": "Hourly divisor 173, additional months 13 (tredicesima 173 ore), salary tranches"
-            },
-            {
-                "url": "https://www.kitech.it/ccnl/edilizia-artigianato",
-                "type": "payroll_reference",
-                "agreement_date": "2026-01-01",
-                "notes": "January 2026 paga base per level and seniority (scatti) amounts"
-            },
-            {
-                "url": "https://lexplain.it/ccnl-edilizia-artigianato-tabelle-retributive/",
-                "type": "payroll_reference",
-                "agreement_date": "2023-07-01",
-                "notes": "Contingenza frozen values per level"
-            }
-        ]
-    },
-    "coverage": {
-        "layer_1": "implemented",
-        "layer_2": "implemented",
-        "notes": [
-            {
-                "kind": "info",
-                "text": "Split salary model: paga base (TimeSeries, 4 tranches May 2025/Jan 2026/Jan 2027/Jan 2028) + contingenza (frozen since July 1992 Protocol) + EDR (frozen EUR 10.33 since 1992)."
-            },
-            {
-                "kind": "info",
-                "text": "Paga base May 2025 and Jan 2026 verified directly against published salary tables (ilccnl.it, kitech.it). Jan 2026 cross-checked across all 8 levels."
-            },
-            {
-                "kind": "simplification",
-                "text": "Jan 2027 and Jan 2028 paga base values derived from parametro system (L1=100, L2=115, L3=130, L4=139, L5=150, L6=180, L7=L7Q=205) applied to the May 2025 base. Tranche increments at level 1: May 2025 +75, Jan 2026 +35, Jan 2027 +35, Jan 2028 +33. All parametro-derived values cross-checked against Jan 2026 published figures; deviation < 0.01 EUR."
-            },
-            {
-                "kind": "info",
-                "text": "Level 7Q has the same paga base as level 7, plus a fixed indennita di funzione of EUR 140.00/month (F015 Art. on Quadri, L. 190/1985). Modelled at order 8 (above level 7 order 7)."
-            },
-            {
-                "kind": "simplification",
-                "text": "Seniority increment cadence (24 months) and maximum count (5) taken from general CCNL Edilizia Artigianato provisions; F015-specific text not independently confirmed. Level 1 scatto = EUR 0.00 as published in kitech.it."
-            },
-            {
-                "kind": "simplification",
-                "text": "For blue-collar workers in construction the Cassa Edile / EPR bilateral system provides additional accrual benefits (annual leave, Christmas bonus, seniority) that are separate from INPS seniority increments. These are not modelled; only the tabular seniority increments are implemented."
-            },
-            {
-                "kind": "info",
-                "text": "Apprenticeship standard professionalizzante Group 4 (Art. 7, Allegato D, renewal May 2025): 36 months / 6 semesters, destination level 4, 74/76/79/86/91/96% per semester, track 'standard_gruppo_4'. Source: ediltecnico.it citing F015 Allegato D."
-            },
-            {
-                "kind": "info",
-                "text": "INPS contribution rates from 2026-artigianato.json (artigianato sector). No Cassa Edile contribution substitution modelled in the INPS rate; employer Cassa Edile contributions are additional and are out of scope."
-            },
-            {
-                "kind": "info",
-                "text": "Layer 3 (overtime, Cassa Edile contributions, holiday/night premiums, accruals managed bilaterally) is out of scope."
-            },
-            {
-                "kind": "info",
-                "text": "Apprenticeship specialistico tracks (Allegato D, verbale 05/09/2023, Art. 9): 1 Sp (54m, livelli 4-5): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%, 42-54=96%. 3 Sp (42m, livello 3): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%. SIMPLIFICATION: 2 Sp (45m, livelli 3-4): last 8th sem.=3m (not 6m) to reach 45m (the exact boundary of the last period is not published in textual form by any secondary source; total duration of 45m is confirmed). Source: studiodalmaschio.it; fareapprendistato.it; cdltorino.it."
-            }
-        ]
-    },
-    "parameters": {
-        "hourly_divisor": {
-            "periods": [
-                {
-                    "valid_from": "2025-05-01",
-                    "valid_until": null,
-                    "value": "173"
-                }
-            ]
-        },
-        "additional_months": {
-            "periods": [
-                {
-                    "valid_from": "2025-05-01",
-                    "valid_until": null,
-                    "value": "13"
-                }
-            ]
-        },
-        "seniority_increments": {
-            "cadence_months": 24,
-            "maximum_count": 5,
-            "amount_by_level": {
-                "1": {
-                    "periods": [
-                        {
-                            "valid_from": "2025-05-01",
-                            "valid_until": null,
-                            "value": "0.00"
-                        }
-                    ]
-                },
-                "2": {
-                    "periods": [
-                        {
-                            "valid_from": "2025-05-01",
-                            "valid_until": null,
-                            "value": "9.86"
-                        }
-                    ]
-                },
-                "3": {
-                    "periods": [
-                        {
-                            "valid_from": "2025-05-01",
-                            "valid_until": null,
-                            "value": "10.78"
-                        }
-                    ]
-                },
-                "4": {
-                    "periods": [
-                        {
-                            "valid_from": "2025-05-01",
-                            "valid_until": null,
-                            "value": "11.54"
-                        }
-                    ]
-                },
-                "5": {
-                    "periods": [
-                        {
-                            "valid_from": "2025-05-01",
-                            "valid_until": null,
-                            "value": "12.55"
-                        }
-                    ]
-                },
-                "6": {
-                    "periods": [
-                        {
-                            "valid_from": "2025-05-01",
-                            "valid_until": null,
-                            "value": "15.92"
-                        }
-                    ]
-                },
-                "7": {
-                    "periods": [
-                        {
-                            "valid_from": "2025-05-01",
-                            "valid_until": null,
-                            "value": "16.73"
-                        }
-                    ]
-                },
-                "7Q": {
-                    "periods": [
-                        {
-                            "valid_from": "2025-05-01",
-                            "valid_until": null,
-                            "value": "16.73"
-                        }
-                    ]
-                }
-            },
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "edilizia-artigianato-cna",
-                        "title": "edilizia-artigianato-cna",
-                        "kind": "altro",
-                        "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                    },
-                    "section": "Scatti di anzianità"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
         }
-    },
-    "levels": [
-        {
-            "code": "1",
-            "order": 1,
-            "description": "Common worker — unskilled construction worker",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2025-05-01",
-                        "valid_until": "2026-01-01",
-                        "value": "1062.30",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "1097.30",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": "2028-01-01",
-                        "value": "1132.30",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2028-01-01",
-                        "valid_until": null,
-                        "value": "1165.30",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [
-                {
-                    "code": "CONTINGENZA",
-                    "description": "Contingenza — frozen since July 1992 Protocol",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "512.58"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                },
-                {
-                    "code": "EDR",
-                    "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "10.33"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                }
-            ],
-            "category": "operaio",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "edilizia-artigianato-cna",
-                        "title": "edilizia-artigianato-cna",
-                        "kind": "altro",
-                        "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "2",
-            "order": 2,
-            "description": "Second-category worker — semi-skilled worker",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2025-05-01",
-                        "valid_until": "2026-01-01",
-                        "value": "1239.90",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "1280.15",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": "2028-01-01",
-                        "value": "1320.40",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2028-01-01",
-                        "valid_until": null,
-                        "value": "1358.35",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [
-                {
-                    "code": "CONTINGENZA",
-                    "description": "Contingenza — frozen since July 1992 Protocol",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "515.27"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                },
-                {
-                    "code": "EDR",
-                    "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "10.33"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                }
-            ],
-            "category": "operaio",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "edilizia-artigianato-cna",
-                        "title": "edilizia-artigianato-cna",
-                        "kind": "altro",
-                        "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "3",
-            "order": 3,
-            "description": "First-category worker — skilled worker",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2025-05-01",
-                        "valid_until": "2026-01-01",
-                        "value": "1381.22",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "1426.72",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": "2028-01-01",
-                        "value": "1472.22",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2028-01-01",
-                        "valid_until": null,
-                        "value": "1515.12",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [
-                {
-                    "code": "CONTINGENZA",
-                    "description": "Contingenza — frozen since July 1992 Protocol",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "517.85"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                },
-                {
-                    "code": "EDR",
-                    "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "10.33"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                }
-            ],
-            "category": "operaio",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "edilizia-artigianato-cna",
-                        "title": "edilizia-artigianato-cna",
-                        "kind": "altro",
-                        "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "4",
-            "order": 4,
-            "description": "Specialised worker — specialized construction worker",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2025-05-01",
-                        "valid_until": "2026-01-01",
-                        "value": "1485.23",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "1533.88",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": "2028-01-01",
-                        "value": "1582.53",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2028-01-01",
-                        "valid_until": null,
-                        "value": "1628.40",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [
-                {
-                    "code": "CONTINGENZA",
-                    "description": "Contingenza — frozen since July 1992 Protocol",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "520.12"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                },
-                {
-                    "code": "EDR",
-                    "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "10.33"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                }
-            ],
-            "category": "operaio",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "edilizia-artigianato-cna",
-                        "title": "edilizia-artigianato-cna",
-                        "kind": "altro",
-                        "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "5",
-            "order": 5,
-            "description": "Highly specialised worker — highly specialized worker",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2025-05-01",
-                        "valid_until": "2026-01-01",
-                        "value": "1593.54",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "1646.04",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": "2028-01-01",
-                        "value": "1698.54",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2028-01-01",
-                        "valid_until": null,
-                        "value": "1748.04",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [
-                {
-                    "code": "CONTINGENZA",
-                    "description": "Contingenza — frozen since July 1992 Protocol",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "522.92"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                },
-                {
-                    "code": "EDR",
-                    "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "10.33"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                }
-            ],
-            "category": "operaio",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "edilizia-artigianato-cna",
-                        "title": "edilizia-artigianato-cna",
-                        "kind": "altro",
-                        "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "6",
-            "order": 6,
-            "description": "Technical employee / worker with supervisory duties — technical staff or team leader",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2025-05-01",
-                        "valid_until": "2026-01-01",
-                        "value": "1912.08",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "1975.08",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": "2028-01-01",
-                        "value": "2038.08",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2028-01-01",
-                        "valid_until": null,
-                        "value": "2097.48",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [
-                {
-                    "code": "CONTINGENZA",
-                    "description": "Contingenza — frozen since July 1992 Protocol",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "529.12"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                },
-                {
-                    "code": "EDR",
-                    "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "10.33"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                }
-            ],
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "edilizia-artigianato-cna",
-                        "title": "edilizia-artigianato-cna",
-                        "kind": "altro",
-                        "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "7",
-            "order": 7,
-            "description": "Senior executive employee / site manager — site manager / senior technical staff",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2025-05-01",
-                        "valid_until": "2026-01-01",
-                        "value": "2147.21",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "2218.96",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": "2028-01-01",
-                        "value": "2290.71",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2028-01-01",
-                        "valid_until": null,
-                        "value": "2358.36",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [
-                {
-                    "code": "CONTINGENZA",
-                    "description": "Contingenza — frozen since July 1992 Protocol",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "534.28"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                },
-                {
-                    "code": "EDR",
-                    "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "10.33"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                }
-            ],
-            "category": "impiegato",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "edilizia-artigianato-cna",
-                        "title": "edilizia-artigianato-cna",
-                        "kind": "altro",
-                        "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        },
-        {
-            "code": "7Q",
-            "order": 8,
-            "description": "Quadro — manager with statutory Quadro status (Art. 2095 c.c., L. 190/1985)",
-            "base_salary": {
-                "periods": [
-                    {
-                        "valid_from": "2025-05-01",
-                        "valid_until": "2026-01-01",
-                        "value": "2147.21",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2026-01-01",
-                        "valid_until": "2027-01-01",
-                        "value": "2218.96",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2027-01-01",
-                        "valid_until": "2028-01-01",
-                        "value": "2290.71",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    },
-                    {
-                        "valid_from": "2028-01-01",
-                        "valid_until": null,
-                        "value": "2358.36",
-                        "provenance": {
-                            "location": {
-                                "source_document": {
-                                    "document_id": "edilizia-artigianato-cna",
-                                    "title": "edilizia-artigianato-cna",
-                                    "kind": "altro",
-                                    "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                                },
-                                "section": "Tabella retributiva"
-                            },
-                            "extraction": {
-                                "method": "manual",
-                                "extraction_timestamp": "2026-09-07T15:03:36",
-                                "verification_status": "unverified",
-                                "effective_from": "2020-01-01"
-                            }
-                        }
-                    }
-                ]
-            },
-            "fixed_allowances": [
-                {
-                    "code": "CONTINGENZA",
-                    "description": "Contingenza — frozen since July 1992 Protocol",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "534.28"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                },
-                {
-                    "code": "EDR",
-                    "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "10.33"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                },
-                {
-                    "code": "IND_FUN",
-                    "description": "Function allowance — fixed monthly supplement for Quadro designation (F015 Art. on Quadri)",
-                    "monthly": {
-                        "periods": [
-                            {
-                                "valid_from": "2025-05-01",
-                                "valid_until": null,
-                                "value": "140.00"
-                            }
-                        ]
-                    },
-                    "provenance": {
-                        "location": {
-                            "source_document": {
-                                "document_id": "edilizia-artigianato-cna",
-                                "title": "edilizia-artigianato-cna",
-                                "kind": "altro",
-                                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                            },
-                            "section": "Tabella retributiva"
-                        },
-                        "extraction": {
-                            "method": "manual",
-                            "extraction_timestamp": "2026-09-07T15:03:36",
-                            "verification_status": "unverified",
-                            "effective_from": "2020-01-01"
-                        }
-                    }
-                }
-            ],
-            "category": "quadro",
-            "provenance": {
-                "location": {
-                    "source_document": {
-                        "document_id": "edilizia-artigianato-cna",
-                        "title": "edilizia-artigianato-cna",
-                        "kind": "altro",
-                        "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
-                    },
-                    "section": "Livelli contrattuali"
-                },
-                "extraction": {
-                    "method": "manual",
-                    "extraction_timestamp": "2026-09-07T15:03:36",
-                    "verification_status": "unverified",
-                    "effective_from": "2020-01-01"
-                }
-            }
-        }
-    ],
-    "apprenticeship": [
-        {
-            "type": "percentage",
-            "name": "standard_gruppo_4",
-            "destination_levels": [
-                "4"
-            ],
-            "periods": [
-                {
-                    "months_from": 0,
-                    "months_until": 6,
-                    "percentage": "0.74"
-                },
-                {
-                    "months_from": 6,
-                    "months_until": 12,
-                    "percentage": "0.76"
-                },
-                {
-                    "months_from": 12,
-                    "months_until": 18,
-                    "percentage": "0.79"
-                },
-                {
-                    "months_from": 18,
-                    "months_until": 24,
-                    "percentage": "0.86"
-                },
-                {
-                    "months_from": 24,
-                    "months_until": 30,
-                    "percentage": "0.91"
-                },
-                {
-                    "months_from": 30,
-                    "months_until": 36,
-                    "percentage": "0.96"
-                },
-                {
-                    "months_from": 36,
-                    "months_until": null,
-                    "percentage": "1.00"
-                }
-            ]
-        },
-        {
-            "type": "percentage",
-            "name": "standard_gruppi_1_3",
-            "destination_levels": [
-                "3",
-                "4",
-                "5"
-            ],
-            "periods": [
-                {
-                    "months_from": 0,
-                    "months_until": 6,
-                    "percentage": "0.74"
-                },
-                {
-                    "months_from": 6,
-                    "months_until": 12,
-                    "percentage": "0.76"
-                },
-                {
-                    "months_from": 12,
-                    "months_until": 18,
-                    "percentage": "0.79"
-                },
-                {
-                    "months_from": 18,
-                    "months_until": 24,
-                    "percentage": "0.79"
-                },
-                {
-                    "months_from": 24,
-                    "months_until": 30,
-                    "percentage": "0.86"
-                },
-                {
-                    "months_from": 30,
-                    "months_until": 36,
-                    "percentage": "0.86"
-                },
-                {
-                    "months_from": 36,
-                    "months_until": 42,
-                    "percentage": "0.91"
-                },
-                {
-                    "months_from": 42,
-                    "months_until": 48,
-                    "percentage": "0.91"
-                },
-                {
-                    "months_from": 48,
-                    "months_until": null,
-                    "percentage": "1.00"
-                }
-            ]
-        },
-        {
-            "type": "percentage",
-            "name": "specialistico_1sp",
-            "destination_levels": [
-                "4",
-                "5"
-            ],
-            "periods": [
-                {
-                    "months_from": 0,
-                    "months_until": 12,
-                    "percentage": "0.78"
-                },
-                {
-                    "months_from": 12,
-                    "months_until": 24,
-                    "percentage": "0.80"
-                },
-                {
-                    "months_from": 24,
-                    "months_until": 36,
-                    "percentage": "0.86"
-                },
-                {
-                    "months_from": 36,
-                    "months_until": 42,
-                    "percentage": "0.91"
-                },
-                {
-                    "months_from": 42,
-                    "months_until": 48,
-                    "percentage": "0.96"
-                },
-                {
-                    "months_from": 48,
-                    "months_until": 54,
-                    "percentage": "0.96"
-                },
-                {
-                    "months_from": 54,
-                    "months_until": null,
-                    "percentage": "1.00"
-                }
-            ]
-        },
-        {
-            "type": "percentage",
-            "name": "specialistico_2sp",
-            "destination_levels": [
-                "3",
-                "4"
-            ],
-            "periods": [
-                {
-                    "months_from": 0,
-                    "months_until": 12,
-                    "percentage": "0.78"
-                },
-                {
-                    "months_from": 12,
-                    "months_until": 24,
-                    "percentage": "0.80"
-                },
-                {
-                    "months_from": 24,
-                    "months_until": 36,
-                    "percentage": "0.86"
-                },
-                {
-                    "months_from": 36,
-                    "months_until": 42,
-                    "percentage": "0.91"
-                },
-                {
-                    "months_from": 42,
-                    "months_until": 45,
-                    "percentage": "0.96"
-                },
-                {
-                    "months_from": 45,
-                    "months_until": null,
-                    "percentage": "1.00"
-                }
-            ]
-        },
-        {
-            "type": "percentage",
-            "name": "specialistico_3sp",
-            "destination_levels": [
-                "3"
-            ],
-            "periods": [
-                {
-                    "months_from": 0,
-                    "months_until": 12,
-                    "percentage": "0.78"
-                },
-                {
-                    "months_from": 12,
-                    "months_until": 24,
-                    "percentage": "0.80"
-                },
-                {
-                    "months_from": 24,
-                    "months_until": 36,
-                    "percentage": "0.86"
-                },
-                {
-                    "months_from": 36,
-                    "months_until": 42,
-                    "percentage": "0.91"
-                },
-                {
-                    "months_from": 42,
-                    "months_until": null,
-                    "percentage": "1.00"
-                }
-            ]
-        }
-    ],
-    "ruleset": {
-        "id": "ccnl/edilizia-artigianato-cna",
-        "version": "2026.2",
-        "effective_from": "2025-05-01",
-        "effective_until": "2028-09-30",
-        "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
-        "verification_status": "unverified",
-        "source_hash": "847522ed2c18ab9d304ee975a180b30ad0157a4eb5b488e644f80e00ae8344fb",
-        "published_at": "2026-09-07"
+      }
     }
+  },
+  "levels": [
+    {
+      "code": "1",
+      "order": 1,
+      "description": "Common worker — unskilled construction worker",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-01-01",
+            "value": "1062.30",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1097.30",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1132.30",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1165.30",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingenza — frozen since July 1992 Protocol",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "512.58"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        }
+      ],
+      "category": "operaio",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "edilizia-artigianato-cna",
+            "title": "edilizia-artigianato-cna",
+            "kind": "rivista",
+            "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "order": 2,
+      "description": "Second-category worker — semi-skilled worker",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-01-01",
+            "value": "1239.90",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1280.15",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1320.40",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1358.35",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingenza — frozen since July 1992 Protocol",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "515.27"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        }
+      ],
+      "category": "operaio",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "edilizia-artigianato-cna",
+            "title": "edilizia-artigianato-cna",
+            "kind": "rivista",
+            "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "order": 3,
+      "description": "First-category worker — skilled worker",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-01-01",
+            "value": "1381.22",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1426.72",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1472.22",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1515.12",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingenza — frozen since July 1992 Protocol",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "517.85"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        }
+      ],
+      "category": "operaio",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "edilizia-artigianato-cna",
+            "title": "edilizia-artigianato-cna",
+            "kind": "rivista",
+            "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "order": 4,
+      "description": "Specialised worker — specialized construction worker",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-01-01",
+            "value": "1485.23",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1533.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1582.53",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1628.40",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingenza — frozen since July 1992 Protocol",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "520.12"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        }
+      ],
+      "category": "operaio",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "edilizia-artigianato-cna",
+            "title": "edilizia-artigianato-cna",
+            "kind": "rivista",
+            "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "order": 5,
+      "description": "Highly specialised worker — highly specialized worker",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-01-01",
+            "value": "1593.54",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1646.04",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1698.54",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1748.04",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingenza — frozen since July 1992 Protocol",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "522.92"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        }
+      ],
+      "category": "operaio",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "edilizia-artigianato-cna",
+            "title": "edilizia-artigianato-cna",
+            "kind": "rivista",
+            "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "order": 6,
+      "description": "Technical employee / worker with supervisory duties — technical staff or team leader",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-01-01",
+            "value": "1912.08",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1975.08",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2038.08",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2097.48",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingenza — frozen since July 1992 Protocol",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "529.12"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "edilizia-artigianato-cna",
+            "title": "edilizia-artigianato-cna",
+            "kind": "rivista",
+            "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "7",
+      "order": 7,
+      "description": "Senior executive employee / site manager — site manager / senior technical staff",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-01-01",
+            "value": "2147.21",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2218.96",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2290.71",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2358.36",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingenza — frozen since July 1992 Protocol",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "534.28"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        }
+      ],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "edilizia-artigianato-cna",
+            "title": "edilizia-artigianato-cna",
+            "kind": "rivista",
+            "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    {
+      "code": "7Q",
+      "order": 8,
+      "description": "Quadro — manager with statutory Quadro status (Art. 2095 c.c., L. 190/1985)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-01-01",
+            "value": "2147.21",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2218.96",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2290.71",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2358.36",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-artigianato-cna",
+                  "title": "edilizia-artigianato-cna",
+                  "kind": "rivista",
+                  "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-07T15:03:36",
+                "verification_status": "unverified",
+                "effective_from": "2020-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Contingenza — frozen since July 1992 Protocol",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "534.28"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Distinct Remuneration Element — frozen at EUR 10.33 since 1992",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "IND_FUN",
+          "description": "Function allowance — fixed monthly supplement for Quadro designation (F015 Art. on Quadri)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "140.00"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "edilizia-artigianato-cna",
+                "title": "edilizia-artigianato-cna",
+                "kind": "rivista",
+                "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-07T15:03:36",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        }
+      ],
+      "category": "quadro",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "edilizia-artigianato-cna",
+            "title": "edilizia-artigianato-cna",
+            "kind": "rivista",
+            "url": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/"
+          },
+          "section": "Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-07T15:03:36",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "standard_gruppo_4",
+      "destination_levels": [
+        "4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.74"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.76"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.79"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.86"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.91"
+        },
+        {
+          "months_from": 30,
+          "months_until": 36,
+          "percentage": "0.96"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "standard_gruppi_1_3",
+      "destination_levels": [
+        "3",
+        "4",
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.74"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.76"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.79"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.79"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.86"
+        },
+        {
+          "months_from": 30,
+          "months_until": 36,
+          "percentage": "0.86"
+        },
+        {
+          "months_from": 36,
+          "months_until": 42,
+          "percentage": "0.91"
+        },
+        {
+          "months_from": 42,
+          "months_until": 48,
+          "percentage": "0.91"
+        },
+        {
+          "months_from": 48,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "specialistico_1sp",
+      "destination_levels": [
+        "4",
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.78"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.86"
+        },
+        {
+          "months_from": 36,
+          "months_until": 42,
+          "percentage": "0.91"
+        },
+        {
+          "months_from": 42,
+          "months_until": 48,
+          "percentage": "0.96"
+        },
+        {
+          "months_from": 48,
+          "months_until": 54,
+          "percentage": "0.96"
+        },
+        {
+          "months_from": 54,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "specialistico_2sp",
+      "destination_levels": [
+        "3",
+        "4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.78"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.86"
+        },
+        {
+          "months_from": 36,
+          "months_until": 42,
+          "percentage": "0.91"
+        },
+        {
+          "months_from": 42,
+          "months_until": 45,
+          "percentage": "0.96"
+        },
+        {
+          "months_from": 45,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "specialistico_3sp",
+      "destination_levels": [
+        "3"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.78"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.86"
+        },
+        {
+          "months_from": 36,
+          "months_until": 42,
+          "percentage": "0.91"
+        },
+        {
+          "months_from": 42,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/edilizia-artigianato-cna",
+    "version": "2026.2",
+    "effective_from": "2025-05-01",
+    "effective_until": "2028-09-30",
+    "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
+    "verification_status": "unverified",
+    "source_hash": "ac6616aa5e97116b4d65a4233902596814fd7cafd397d7fb64b89c152a51d97d",
+    "published_at": "2026-09-07"
+  }
 }

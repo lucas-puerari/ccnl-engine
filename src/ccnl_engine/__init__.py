@@ -40,6 +40,7 @@ from __future__ import annotations
 from ccnl_engine.engine.contract import CCNL, load_ccnl
 from ccnl_engine.engine.contract.domain.ccnl import (
     Allowance,
+    CCNLCoverage,
     CCNLMeta,
     CCNLParameters,
     EmployerFund,
@@ -75,6 +76,7 @@ from ccnl_engine.engine.payroll.domain.employment import (
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
 from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.provenance import SourceAuthority
 from ccnl_engine.engine.surtax import SurtaxRules, load_surtax_rules
 from ccnl_engine.engine.tax import YearRules, load_year_rules
 from ccnl_engine.version import __version__ as engine_version
@@ -83,6 +85,7 @@ __all__ = [
     "CCNL",
     "Allowance",
     "Apprentice",
+    "CCNLCoverage",
     "CCNLMeta",
     "CCNLParameters",
     "Calculation",
@@ -107,6 +110,7 @@ __all__ = [
     "SeniorityByCount",
     "SeniorityByMonths",
     "SeniorityIncrements",
+    "SourceAuthority",
     "SupplementaryAllowance",
     "SurtaxRules",
     "TaxProfile",
