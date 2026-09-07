@@ -5,7 +5,13 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.payroll.domain.calculation import Calculation, InputSnapshot
+from ccnl_engine.engine.payroll.domain.calculation import (
+    Calculation,
+    CalculationTrace,
+    InputSnapshot,
+    TraceCategory,
+    TraceStep,
+)
 from ccnl_engine.engine.payroll.domain.employee import (
     DestinationRalOverride,
     RalOverride,
@@ -435,6 +441,96 @@ def _compute_addizionali(
     return addizionale_regionale, addizionale_comunale, frozenset(sfs)
 
 
+def _build_trace(
+    ccnl_id: str,
+    level: Level,
+    chain: MonthlyPayChain,
+    seniority_count: int,
+    ad_personam: Decimal,
+    scaled_second_level: list[tuple[Decimal, SupplementaryAllowance]],
+    gross_monthly: Decimal,
+) -> CalculationTrace:
+    """Build the step-by-step gross computation trace, post-scaling.
+
+    All amounts are taken from already-scaled values (part-time and
+    apprenticeship percentages already applied), so the trace faithfully
+    represents the actual contribution of each component.
+
+    Returns:
+        A :class:`CalculationTrace` whose non-GROSS steps sum to
+        ``gross_monthly``.
+    """
+    steps: list[TraceStep] = [
+        TraceStep(
+            category=TraceCategory.BASE_SALARY,
+            label="Base retributiva",
+            amount=chain.base,
+            detail=f"{level.code}@{ccnl_id}",
+        ),
+        TraceStep(
+            category=TraceCategory.SENIORITY,
+            label="Scatti di anzianità",
+            amount=chain.seniority,
+            detail=f"scatti={seniority_count}",
+        ),
+    ]
+
+    for allowance, amount in chain.allowances:
+        steps.append(
+            TraceStep(
+                category=TraceCategory.ALLOWANCE,
+                label=allowance.description,
+                amount=amount,
+                detail=allowance.code,
+            )
+        )
+
+    if ad_personam > _ZERO:
+        steps.append(
+            TraceStep(
+                category=TraceCategory.AD_PERSONAM,
+                label="Ad personam",
+                amount=ad_personam,
+            )
+        )
+
+    for scaled, sl in scaled_second_level:
+        if scaled > _ZERO:
+            steps.append(
+                TraceStep(
+                    category=TraceCategory.SECOND_LEVEL,
+                    label=sl.description,
+                    amount=scaled,
+                    detail=sl.code,
+                )
+            )
+
+    # When a negotiated RAL overrides the component sum (e.g. DestinationRalOverride
+    # or a plain RalOverride), the gross_monthly differs from the sum of components.
+    # A RAL_OVERRIDE step bridges the gap so the invariant always holds:
+    #   sum(non-GROSS steps) == GROSS step amount
+    component_sum = money(sum((s.amount for s in steps), _ZERO))
+    ral_delta = money(gross_monthly - component_sum)
+    if ral_delta != _ZERO:
+        steps.append(
+            TraceStep(
+                category=TraceCategory.RAL_OVERRIDE,
+                label="Rettifica RAL concordata",
+                amount=ral_delta,
+            )
+        )
+
+    steps.append(
+        TraceStep(
+            category=TraceCategory.GROSS,
+            label="Lordo mensile",
+            amount=gross_monthly,
+        )
+    )
+
+    return CalculationTrace(steps=tuple(steps))
+
+
 def compute(
     ccnl: CCNL,
     rules: YearRules,
@@ -697,6 +793,15 @@ def compute(
         ruleset_version=_ruleset_versions(ccnl, rules, surtax),
         input_snapshot=snapshot,
         result=result,
+        trace=_build_trace(
+            ccnl_id=ccnl.meta.ccnl_id,
+            level=level,
+            chain=chain,
+            seniority_count=count,
+            ad_personam=ad_personam,
+            scaled_second_level=scaled_second_level,
+            gross_monthly=gross_monthly,
+        ),
     )
 
 

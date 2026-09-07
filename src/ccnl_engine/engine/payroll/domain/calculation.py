@@ -17,7 +17,7 @@ import typing
 from dataclasses import dataclass, fields
 from datetime import date as _date
 from decimal import Decimal
-from enum import Enum
+from enum import Enum, StrEnum
 from types import UnionType
 from typing import TYPE_CHECKING, Any, cast, get_origin
 
@@ -273,6 +273,121 @@ def _materialise(
 
 
 # ---------------------------------------------------------------------------
+# Calculation trace
+# ---------------------------------------------------------------------------
+
+
+class TraceCategory(StrEnum):
+    """Semantic category of a single payroll computation step."""
+
+    BASE_SALARY = "base_salary"
+    SENIORITY = "seniority"
+    ALLOWANCE = "allowance"
+    AD_PERSONAM = "ad_personam"
+    SECOND_LEVEL = "second_level"
+    RAL_OVERRIDE = "ral_override"
+    GROSS = "gross"
+
+
+@dataclass(frozen=True)
+class TraceStep:
+    """One step in the monthly gross computation chain.
+
+    Attributes:
+        category: Semantic category of the step.
+        label: Human-readable label (e.g. allowance description or
+            ``"Base retributiva"``).
+        amount: Monthly amount contributed by this step, post-scaling.
+        detail: Optional machine-readable reference (e.g. allowance code,
+            ``"scatti=3"``, ``"IV@H011"``).
+    """
+
+    category: TraceCategory
+    label: str
+    amount: Decimal
+    detail: str | None = None
+
+    def to_dict(self) -> dict[str, object]:
+        """Serialise to a JSON-native dict.
+
+        Returns:
+            A dict with ``str``/``None`` values; ``amount`` as its string
+            form to avoid floating-point loss.
+        """
+        return {
+            "category": self.category.value,
+            "label": self.label,
+            "amount": str(self.amount),
+            "detail": self.detail,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict[str, object]) -> TraceStep:
+        """Reconstruct from a :meth:`to_dict` dict.
+
+        Args:
+            data: A dict as produced by :meth:`to_dict`.
+
+        Returns:
+            A new :class:`TraceStep` equal to the original.
+        """
+        raw_detail = data.get("detail")
+        return cls(
+            category=TraceCategory(str(data["category"])),
+            label=str(data["label"]),
+            amount=Decimal(str(data["amount"])),
+            detail=str(raw_detail) if raw_detail is not None else None,
+        )
+
+
+@dataclass(frozen=True)
+class CalculationTrace:
+    """Ordered record of the monthly gross computation steps.
+
+    Steps cover the gross-side chain only: base salary, seniority,
+    allowances, ad-personam, second-level allowances, and the gross
+    total. The fiscal side (IRPEF, contributions, net) will be added
+    in a future iteration.
+
+    The ``GROSS`` step is always the last entry and equals the sum of
+    all preceding steps — this invariant is enforced by the engine at
+    construction time.
+
+    Attributes:
+        steps: Ordered computation steps, ending with the ``GROSS``
+            summary.
+    """
+
+    steps: tuple[TraceStep, ...]
+
+    def to_dict(self) -> dict[str, object]:
+        """Serialise to a JSON-native dict.
+
+        Returns:
+            A dict with a ``steps`` list of serialised
+            :class:`TraceStep` dicts.
+        """
+        return {"steps": [s.to_dict() for s in self.steps]}
+
+    @classmethod
+    def from_dict(cls, data: dict[str, object]) -> CalculationTrace:
+        """Reconstruct from a :meth:`to_dict` dict.
+
+        Args:
+            data: A dict as produced by :meth:`to_dict`.
+
+        Returns:
+            A new :class:`CalculationTrace` equal to the original.
+        """
+        return cls(
+            steps=tuple(
+                TraceStep.from_dict(cast(dict[str, object], s))
+                for s in cast(list[object], data.get("steps", []))
+            )
+        )
+
+
+# ---------------------------------------------------------------------------
 # Public snapshot and calculation records
 # ---------------------------------------------------------------------------
 
@@ -400,12 +515,18 @@ class Calculation:
             to the ``id@version`` identity of the ruleset that was used.
         input_snapshot: Lossless copy of the raw inputs.
         result: The resulting :class:`PayrollResult`.
+        trace: Step-by-step record of the monthly gross computation chain.
+            An empty trace signals that the calculation was produced by an
+            older engine version that did not emit one.
     """
 
     engine_version: str
     ruleset_version: dict[str, str]
     input_snapshot: InputSnapshot
     result: PayrollResult
+    trace: CalculationTrace = dataclasses.field(
+        default_factory=lambda: CalculationTrace(steps=())
+    )
 
     def __getattr__(self, name: str) -> Any:  # ruff: ignore[any-type] - delegation
         """Forward unknown attribute reads to ``result`` (the PayrollResult).
@@ -459,19 +580,24 @@ class Calculation:
         """Serialise the full calculation to a JSON-native dict.
 
         Returns:
-            A dictionary with the provenance fields, the input snapshot and
-            the payroll result.
+            A dictionary with the provenance fields, the input snapshot,
+            the payroll result, and the computation trace.
         """
         return {
             "engine_version": self.engine_version,
             "ruleset_version": dict(sorted(self.ruleset_version.items())),
             "input_snapshot": self.input_snapshot.to_dict(),
             "result": self.result.to_dict(),
+            "trace": self.trace.to_dict(),
         }
 
     @classmethod
     def from_dict(cls, data: dict[str, object]) -> Calculation:
         """Reconstruct a calculation from a dictionary (see :meth:`to_dict`).
+
+        Older serialised calculations that pre-date the trace field are
+        accepted: a missing ``trace`` key yields an empty
+        :class:`CalculationTrace`.
 
         Args:
             data: A dictionary as produced by :meth:`to_dict`.
@@ -479,6 +605,7 @@ class Calculation:
         Returns:
             A new :class:`Calculation` equal to the original.
         """
+        raw_trace = data.get("trace")
         return cls(
             engine_version=str(data["engine_version"]),
             ruleset_version={
@@ -489,6 +616,11 @@ class Calculation:
                 cast(dict[str, object], data["input_snapshot"])
             ),
             result=PayrollResult.from_dict(cast(dict[str, object], data["result"])),
+            trace=(
+                CalculationTrace.from_dict(cast(dict[str, object], raw_trace))
+                if raw_trace is not None
+                else CalculationTrace(steps=())
+            ),
         )
 
     def to_json(self) -> str:
