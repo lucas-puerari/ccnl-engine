@@ -8,4 +8,4 @@ class TestKnowledgeVersion:
 
     def test_version_exported(self) -> None:
         """__version__ is exposed at ccnl_engine.knowledge level."""
-        assert __version__ == "2026.1"
+        assert __version__ == "2026.2"

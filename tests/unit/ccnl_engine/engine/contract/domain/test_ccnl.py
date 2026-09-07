@@ -14,6 +14,7 @@ from pydantic import ValidationError
 
 from ccnl_engine.engine.contract.domain.ccnl import (
     CCNL,
+    CCNLMeta,
     EmployerFund,
     SeniorityIncrements,
 )
@@ -22,6 +23,8 @@ from ccnl_engine.engine.payroll.service.seniority import (
     seniority_first_cadence,
     seniority_maximum,
 )
+from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
+from ccnl_engine.engine.provenance.domain.source import SourceKind
 from tests.helpers import make_ccnl_dict
 
 _SERIES = {"periods": [{"valid_from": "2020-01-01", "valid_until": None, "value": "1"}]}
@@ -68,6 +71,73 @@ class TestStrictSchema:
         ccnl = _validate(data)
         assert ccnl.meta.validity is not None
         assert ccnl.meta.validity.valid_until is None
+
+
+# ---------------------------------------------------------------------------
+# Legacy schema 0.4 coercion
+# ---------------------------------------------------------------------------
+
+
+class TestMetaLegacyCoercion:
+    """meta.sources/extraction are coerced from schema 0.4 to StructuredProvenance."""
+
+    def test_non_dict_input_passes_through(self) -> None:
+        """A non-dict value is returned untouched by the before-validator."""
+        with pytest.raises(ValidationError):
+            CCNLMeta.model_validate("not-a-dict")
+
+    def test_structured_sources_are_not_coerced(self) -> None:
+        """Sources already carrying a document_id pass through unchanged."""
+        data = make_ccnl_dict()
+        data["meta"]["sources"] = [
+            {
+                "document_id": "doc-1",
+                "title": "T",
+                "kind": "gazzetta",
+                "url": "https://example.com",
+            }
+        ]
+        ccnl = _validate(data)
+        assert ccnl.meta.sources[0].document_id == "doc-1"
+        assert ccnl.meta.sources[0].kind == SourceKind.GAZZETTA
+        assert isinstance(ccnl.meta.extraction, ExtractionTrace)
+
+    def test_structured_extraction_is_not_coerced(self) -> None:
+        """Extraction traces already carrying a timestamp pass through."""
+        data = make_ccnl_dict()
+        data["meta"]["extraction"] = {
+            "method": "manual",
+            "model": None,
+            "extraction_timestamp": "2026-01-01T00:00:00",
+            "effective_from": "2026-01-01",
+            "verification_status": "unverified",
+        }
+        ccnl = _validate(data)
+        assert ccnl.meta.extraction.method.value == "manual"
+        assert ccnl.meta.extraction.effective_from == date(2026, 1, 1)
+
+    @pytest.mark.parametrize(
+        ("source_type", "expected"),
+        [
+            ("tabella retributiva", SourceKind.TABELLA_RETRIBUTIVA),
+            ("gazzetta ufficiale", SourceKind.GAZZETTA),
+            ("cnel", SourceKind.CNEL),
+            ("circolare inps", SourceKind.INPS_CIRCOLARE),
+            ("legge 81", SourceKind.LEGGE),
+            ("dpr", SourceKind.DPR),
+            ("decreto", SourceKind.DL),
+            ("associazione", SourceKind.ASSOCIAZIONE),
+            ("ccnl", SourceKind.ALTRO),
+        ],
+    )
+    def test_legacy_source_type_casts_to_kind(
+        self, source_type: str, expected: SourceKind
+    ) -> None:
+        """Legacy 0.4 source type strings map to the matching SourceKind."""
+        data = make_ccnl_dict()
+        data["meta"]["sources"] = [{"url": "https://example.com", "type": source_type}]
+        ccnl = _validate(data)
+        assert ccnl.meta.sources[0].kind == expected
 
 
 # ---------------------------------------------------------------------------

@@ -9,6 +9,9 @@ from pydantic import BaseModel, ConfigDict, model_validator
 
 from ccnl_engine.engine.metadata import RulesetIdentity
 from ccnl_engine.engine.primitives import Bracket
+from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
+from ccnl_engine.engine.provenance.domain.source import SourceDocument
 
 #: One marginal bracket in a surtax rate schedule.
 #: Shares the same structure as :class:`~ccnl_engine.engine.tax.models.IrpefBracket`
@@ -30,6 +33,7 @@ class RegionaleEntry(BaseModel):
 
     notes: str = ""
     """Free-form note (e.g. reference to the regional law)."""
+    provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _check_brackets(self) -> Self:
@@ -58,6 +62,7 @@ class ComunaleEntry(BaseModel):
 
     exemption_threshold: Decimal = Decimal(0)
     """Exemption threshold: if taxable income ≤ threshold, the surtax is zero."""
+    provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _check_brackets(self) -> Self:
@@ -75,6 +80,8 @@ class RegionaleRaw(BaseModel):
     ruleset: RulesetIdentity | None = None
     notes: list[str] = []
     rates: dict[str, RegionaleEntry]
+    sources: list[SourceDocument] = []
+    extraction: ExtractionTrace | None = None
 
 
 class ComunaleRaw(BaseModel):
@@ -85,6 +92,8 @@ class ComunaleRaw(BaseModel):
     ruleset: RulesetIdentity | None = None
     notes: list[str] = []
     rates: dict[str, ComunaleEntry]
+    sources: list[SourceDocument] = []
+    extraction: ExtractionTrace | None = None
 
 
 class SurtaxRules(BaseModel):

@@ -1,9 +1,9 @@
 """CCNL domain models."""
 
-from datetime import date
+from datetime import UTC, date, datetime
 from decimal import Decimal
 from enum import StrEnum
-from typing import Literal, Self
+from typing import Any, Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -14,6 +14,9 @@ from ccnl_engine.engine.contract.domain.apprenticeship import (
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries
 from ccnl_engine.engine.metadata import RulesetIdentity
+from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
+from ccnl_engine.engine.provenance.domain.source import SourceDocument, SourceKind
 
 CoverageStatus = Literal["implemented", "partial", "out_of_scope"]
 LevelCategory = Literal["operaio", "impiegato", "quadro", "dirigente"]
@@ -85,6 +88,7 @@ class Allowance(BaseModel):
     contribution_relevant: bool = True
     apprenticeship_pct_relevant: bool = True
     service_months_threshold: int | None = Field(default=None, ge=0)
+    provenance: RuleProvenance | None = None
 
 
 class SupplementaryAllowance(BaseModel):
@@ -140,6 +144,7 @@ class SeniorityTier(BaseModel):
     cadence_months: int = Field(gt=0)
     maximum_count: int = Field(gt=0)
     amount_by_level: dict[str, TimeSeries]
+    provenance: RuleProvenance | None = None
 
 
 class SeniorityIncrements(BaseModel):
@@ -178,6 +183,7 @@ class SeniorityIncrements(BaseModel):
     amount_by_level_by_category: dict[LevelCategory, dict[str, TimeSeries]] = {}
     maximum_count_by_category: dict[LevelCategory, int] = {}
     first_cadence_months_by_category: dict[LevelCategory, int] = {}
+    provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _check_cadence(self) -> Self:
@@ -236,6 +242,7 @@ class EmployerFund(BaseModel):
     description: str
     rate: TimeSeries
     applies_to_categories: list[LevelCategory] | None = None
+    provenance: RuleProvenance | None = None
 
 
 class CCNLParameters(BaseModel):
@@ -274,6 +281,7 @@ class Level(BaseModel):
     base_salary: TimeSeries
     fixed_allowances: list[Allowance] = []
     category: LevelCategory | None = None
+    provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _check_salary_non_decreasing(self) -> Self:
@@ -314,17 +322,6 @@ class CCNLCoverage(BaseModel):
         return self
 
 
-class CCNLSource(BaseModel):
-    """A primary source reference for a CCNL data file."""
-
-    model_config = ConfigDict(extra="forbid")
-
-    url: str
-    type: str
-    agreement_date: str | None = None
-    notes: str | None = None
-
-
 class CCNLValidity(BaseModel):
     """Contractual validity window of the modelled agreement."""
 
@@ -332,17 +329,6 @@ class CCNLValidity(BaseModel):
 
     valid_from: date
     valid_until: date | None = None
-
-
-class CCNLExtraction(BaseModel):
-    """Metadata about how the CCNL data was extracted."""
-
-    model_config = ConfigDict(extra="forbid")
-
-    method: str
-    model: str | None = None
-    timestamp: str
-    human_reviewed: bool
 
 
 class CCNLMeta(BaseModel):
@@ -359,7 +345,7 @@ class CCNLMeta(BaseModel):
             file. Pass this to ``load_year_rules``.
         signatories: List of employer associations and unions that signed the agreement.
         sources: Primary source references (official gazette, CNEL,
-            association websites).
+            association websites) as :class:`SourceDocument` objects.
         extraction: Metadata about how the data file was produced.
         agreement_date: Date of the most recent renewal agreement, ISO 8601 string.
             ``None`` if not yet modelled.
@@ -379,11 +365,26 @@ class CCNLMeta(BaseModel):
     sector: str
     tax_sector: TaxSector
     signatories: list[str]
-    sources: list[CCNLSource]
-    extraction: CCNLExtraction
+    sources: list[SourceDocument]
+    extraction: ExtractionTrace
     agreement_date: str | None = None
     validity: CCNLValidity | None = None
     withholding_exempt: bool = False
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_legacy_meta(cls, data: Any) -> Any:  # noqa: ANN401
+        if not isinstance(data, dict):
+            return data
+        sources = data.get("sources")
+        if isinstance(sources, list) and any(
+            isinstance(s, dict) and "document_id" not in s for s in sources
+        ):
+            data = {**data, "sources": [_coerce_legacy_source(s) for s in sources]}
+        extraction = data.get("extraction")
+        if isinstance(extraction, dict) and "extraction_timestamp" not in extraction:
+            data = {**data, "extraction": _coerce_legacy_extraction(extraction, data)}
+        return data
 
 
 class CCNL(BaseModel):
@@ -404,7 +405,7 @@ class CCNL(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    schema_version: Literal["0.4"]
+    schema_version: Literal["0.4", "0.5"]
     ruleset: RulesetIdentity | None = None
     meta: CCNLMeta
     parameters: CCNLParameters
@@ -635,3 +636,83 @@ def _collect_transition_dates(levels: list[Level]) -> set[date]:
     for lv in levels:
         all_dates.update(period.valid_from for period in lv.base_salary.periods)
     return all_dates
+
+
+def _coerce_legacy_source(source: dict[str, Any]) -> dict[str, Any]:
+    """Shape a legacy ``meta.sources`` entry (schema 0.4) into a SourceDocument.
+
+    Returns:
+        A dict shaped for :class:`SourceDocument`.
+    """
+    url = source.get("url", "")
+    doc_id = _slugify_url(url) or "source"
+    kind = _legacy_source_kind(source.get("type"))
+    return {
+        "document_id": doc_id,
+        "title": source.get("notes") or url or doc_id,
+        "kind": kind,
+        "url": url,
+        "pages": [],
+        "published_on": (
+            source["agreement_date"] if source.get("agreement_date") else None
+        ),
+    }
+
+
+def _slugify_url(url: str) -> str:
+    slug = (
+        url
+        .strip()
+        .lower()
+        .replace("https://", "")
+        .replace("http://", "")
+        .replace("www.", "")
+    )
+    keep: list[str] = [ch if ch.isalnum() or ch in "-_" else "-" for ch in slug]
+    squashed = "".join(keep).strip("-").strip("_")
+    return squashed[:80]
+
+
+def _legacy_source_kind(raw: str | None) -> SourceKind:  # noqa: PLR0911
+    value = (raw or "").lower()
+    if any(token in value for token in ("tabella", "table", "salary", "wage")):
+        return SourceKind.TABELLA_RETRIBUTIVA
+    if "gazzetta" in value:
+        return SourceKind.GAZZETTA
+    if "cnel" in value:
+        return SourceKind.CNEL
+    if any(token in value for token in ("circolar", "circular")):
+        return SourceKind.INPS_CIRCOLARE
+    if "legge" in value:
+        return SourceKind.LEGGE
+    if "dpr" in value:
+        return SourceKind.DPR
+    if any(token in value for token in ("dl ", "decreto")):
+        return SourceKind.DL
+    if any(token in value for token in ("associazion", "aggregator")):
+        return SourceKind.ASSOCIAZIONE
+    return SourceKind.ALTRO
+
+
+def _coerce_legacy_extraction(
+    extraction: dict[str, Any], meta: dict[str, Any]
+) -> dict[str, Any]:
+    """Shape a legacy ``meta.extraction`` block (schema 0.4) into an ExtractionTrace.
+
+    ``effective_from`` is inferred from ``meta.validity`` when present, else
+    set to a pre-agreement epoch so the trace always carries a date.
+
+    Returns:
+        A dict shaped for :class:`ExtractionTrace`.
+    """
+    human_reviewed = bool(extraction.get("human_reviewed"))
+    raw_validity = meta.get("validity")
+    validity: dict[str, Any] = raw_validity if isinstance(raw_validity, dict) else {}
+    timestamp = extraction.get("timestamp") or datetime.now(tz=UTC).isoformat()
+    return {
+        "method": extraction.get("method") or "manual",
+        "model": extraction.get("model"),
+        "extraction_timestamp": timestamp,
+        "verification_status": "verified" if human_reviewed else "unverified",
+        "effective_from": validity.get("valid_from") or "1970-01-01",
+    }

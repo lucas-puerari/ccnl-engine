@@ -10,6 +10,9 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from ccnl_engine.engine.contract.domain.ccnl import TaxSector
 from ccnl_engine.engine.metadata import RulesetIdentity
 from ccnl_engine.engine.primitives import Bracket, assert_ivs_le_total
+from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
+from ccnl_engine.engine.provenance.domain.source import SourceDocument
 
 #: A single IRPEF marginal tax bracket (Art. 11 TUIR).
 IrpefBracket = Bracket
@@ -22,6 +25,7 @@ class DeductionBreakpoint(BaseModel):
 
     income_up_to: Decimal | None
     deduction: Decimal
+    provenance: RuleProvenance | None = None
 
 
 class InpsRates(BaseModel):
@@ -54,6 +58,7 @@ class InpsRates(BaseModel):
     employer_ivs_rate: Decimal
     ceiling: Decimal | None
     employer_rate_by_category: dict[str, Decimal] = {}
+    provenance: RuleProvenance | None = None
 
 
 class ApprenticeRates(BaseModel):
@@ -81,6 +86,7 @@ class ApprenticeRates(BaseModel):
     employer_ivs_rate_months_12_23: Decimal
     employer_rate_after: Decimal
     employer_ivs_rate_after: Decimal
+    provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _check_ivs_rates(self) -> Self:
@@ -130,6 +136,7 @@ class InpsEmployerTier(BaseModel):
     rate: Decimal
     ivs_rate: Decimal
     rate_by_category: dict[str, Decimal] = {}
+    provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _check_ivs_rate(self) -> Self:
@@ -158,6 +165,7 @@ class InpsEmployeeTier(BaseModel):
     max_employees: int | None
     rate: Decimal
     ivs_rate: Decimal
+    provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _check_ivs_rate(self) -> Self:
@@ -192,6 +200,7 @@ class DomesticInpsWageBracket(BaseModel):
     employee_per_hour: Decimal
     employer_per_hour: Decimal
     employer_per_hour_fixed_term: Decimal
+    provenance: RuleProvenance | None = None
 
 
 class DomesticInpsRates(BaseModel):
@@ -212,6 +221,7 @@ class DomesticInpsRates(BaseModel):
     weekly_hours_threshold: int
     hours_bracket: DomesticInpsHoursBracket
     wage_brackets: list[DomesticInpsWageBracket]
+    provenance: RuleProvenance | None = None
 
 
 class InpsRawRates(BaseModel):
@@ -222,6 +232,7 @@ class InpsRawRates(BaseModel):
     employee_tiers: list[InpsEmployeeTier]
     employer_tiers: list[InpsEmployerTier]
     ceiling: Decimal | None
+    provenance: RuleProvenance | None = None
 
 
 class ApprenticeRawRates(BaseModel):
@@ -238,6 +249,7 @@ class ApprenticeRawRates(BaseModel):
     small_firm_employer_ivs_rate_months_0_11: Decimal
     small_firm_employer_rate_months_12_23: Decimal
     small_firm_employer_ivs_rate_months_12_23: Decimal
+    provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _check_ivs_rates(self) -> Self:
@@ -278,6 +290,7 @@ class TfrRules(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     accrual_divisor: Decimal
+    provenance: RuleProvenance | None = None
 
 
 class TrattamentoIntegrativoRules(BaseModel):
@@ -298,6 +311,7 @@ class TrattamentoIntegrativoRules(BaseModel):
     threshold_mid: Decimal
     threshold_upper: Decimal
     max_amount: Decimal
+    provenance: RuleProvenance | None = None
 
 
 class YearRulesRaw(BaseModel):
@@ -322,6 +336,10 @@ class YearRulesRaw(BaseModel):
     tfr: TfrRules
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
     notes: list[str] = []
+    sources: list[SourceDocument] = []
+    extraction: ExtractionTrace | None = None
+    inps_sources: list[SourceDocument] = []
+    inps_extraction: ExtractionTrace | None = None
 
     @model_validator(mode="after")
     def _check_contribution_model(self) -> Self:
@@ -359,6 +377,10 @@ class YearRules(BaseModel):
     tfr: TfrRules
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
     notes: list[str] = []
+    sources: list[SourceDocument] = []
+    extraction: ExtractionTrace | None = None
+    inps_sources: list[SourceDocument] = []
+    inps_extraction: ExtractionTrace | None = None
 
     @model_validator(mode="after")
     def _validate_sequences(self) -> Self:

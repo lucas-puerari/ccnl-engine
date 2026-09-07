@@ -6,38 +6,66 @@ import dataclasses
 import json
 import types
 import typing
+from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import date as _date
 from decimal import Decimal
 
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
+from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 
 
-def _coerce(raw: object, hint: type) -> object:
-    """Coerce *raw* to the Python type described by the annotation *hint*.
-
-    Handles ``X | None`` unions, ``Decimal``, ``date``, and
-    ``frozenset[FiscalSimplification]``; everything else is returned as-is.
+def _unwrap_optional(raw: object, hint: type) -> tuple[object, type]:
+    """If *hint* is ``X | None``, return (raw, X) — or (None, hint) when raw is None.
 
     Returns:
-        The coerced value, or *raw* unchanged when no coercion applies.
+        A (raw, concrete_hint) pair with the ``None`` arm stripped.
     """
     origin = typing.get_origin(hint)
     args = typing.get_args(hint)
     if origin in {typing.Union, types.UnionType} and type(None) in args:
         if raw is None:
-            return None
-        hint = next(a for a in args if a is not type(None))
+            return None, hint
+        return raw, next(a for a in args if a is not type(None))
+    return raw, hint
+
+
+def _coerce_scalar(raw: object, hint: type) -> object:
+    """Coerce a non-None *raw* to a scalar *hint* type.
+
+    Returns:
+        The coerced value, or *raw* when no coercion applies.
+    """
     if hint is Decimal:
         return Decimal(str(raw))
     if hint is _date:
         return _date.fromisoformat(raw)  # type: ignore[arg-type]
+    if isinstance(hint, type) and issubclass(hint, RuleProvenance):
+        return RuleProvenance.model_validate(raw)
     if hint == frozenset[FiscalSimplification]:
-        return frozenset(
-            FiscalSimplification(v)
-            for v in raw  # type: ignore[attr-defined]
-        )
+        return frozenset(FiscalSimplification(v) for v in raw)  # type: ignore[attr-defined]
     return raw
+
+
+def _coerce(raw: object, hint: type) -> object:
+    """Coerce *raw* to the Python type described by the annotation *hint*.
+
+    Handles ``X | None`` unions, ``Decimal``, ``date``,
+    ``frozenset[FiscalSimplification]`` and tuples of
+    :class:`RuleProvenance`; everything else is returned as-is.
+
+    Returns:
+        The coerced value, or *raw* unchanged when no coercion applies.
+    """
+    raw, hint = _unwrap_optional(raw, hint)
+    if raw is None:
+        return None
+    origin = typing.get_origin(hint)
+    args = typing.get_args(hint)
+    if origin is tuple and args:
+        items = typing.cast(Iterable[object], raw)
+        return tuple(_coerce(item, args[0]) for item in items)
+    return _coerce_scalar(raw, hint)
 
 
 @dataclass(frozen=True)
@@ -185,6 +213,8 @@ class PayrollResult:
 
     employer_cost_annual: Decimal
 
+    provenance: tuple[RuleProvenance, ...] = ()
+
     def to_dict(self) -> dict[str, object]:
         """Serialise the payroll to a plain Python dictionary.
 
@@ -205,6 +235,8 @@ class PayrollResult:
                 out[field.name] = value.isoformat()
             elif isinstance(value, frozenset):
                 out[field.name] = sorted(str(v) for v in value)
+            elif isinstance(value, tuple):
+                out[field.name] = [v.model_dump(mode="json") for v in value]
             else:
                 out[field.name] = value
         return out

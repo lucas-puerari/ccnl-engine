@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from datetime import date
+from datetime import UTC, date, datetime
 from decimal import Decimal
 
 import pytest
@@ -19,7 +19,47 @@ from ccnl_engine import (
     load_ccnl,
     load_year_rules,
 )
+from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
+from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.engine.provenance.domain.extraction import (
+    ExtractionMethod,
+    ExtractionTrace,
+)
+from ccnl_engine.engine.provenance.domain.source import (
+    SourceDocument,
+    SourceKind,
+    SourceLocation,
+)
+
+
+def _rule_provenance() -> RuleProvenance:
+    """Build a representative RuleProvenance for serialisation tests.
+
+    Returns:
+        A :class:`RuleProvenance` with sample location and extraction data.
+    """
+    return RuleProvenance(
+        location=SourceLocation(
+            source_document=SourceDocument(
+                document_id="doc",
+                title="Document",
+                kind=SourceKind.TABELLA_RETRIBUTIVA,
+                url="https://example.com",
+                pages=["12"],
+                published_on=date(2025, 1, 1),
+            ),
+            page="12",
+            section="Tabella 1",
+        ),
+        extraction=ExtractionTrace(
+            method=ExtractionMethod.MANUAL,
+            extraction_timestamp=datetime(2026, 1, 1, tzinfo=UTC),
+            verification_status=VerificationStatus.UNVERIFIED,
+            effective_from=date(2025, 1, 1),
+        ),
+        note="test provenance",
+    )
 
 
 @pytest.fixture(scope="module")
@@ -174,6 +214,22 @@ class TestFromDict:
         del d["net_annual"]
         with pytest.raises(ValueError, match="Missing field"):
             PayrollResult.from_dict(d)
+
+    def test_provenance_round_trip(self, payroll: PayrollResult) -> None:
+        """RuleProvenance entries in the provenance tuple survive the round-trip."""
+        prov = _rule_provenance()
+        d = payroll.to_dict()
+        d["provenance"] = [prov.model_dump(mode="json")]
+        restored = PayrollResult.from_dict(d)
+        assert restored.provenance == (prov,)
+        assert isinstance(restored.provenance[0], RuleProvenance)
+        assert restored.provenance[0].location.page == "12"
+
+    def test_empty_provenance_round_trip(self, payroll: PayrollResult) -> None:
+        """An empty provenance tuple round-trips to an empty tuple."""
+        restored = PayrollResult.from_dict(payroll.to_dict())
+        assert restored.provenance == payroll.provenance
+        assert isinstance(restored.provenance, tuple)
 
 
 class TestFromJson:
