@@ -76,12 +76,30 @@ as_json = p.to_json()  # compact JSON string
 restored = type(p).from_json(as_json)  # round-trip
 assert restored == p
 
-# --- Provenance ---
-# Every Calculation carries the engine version, the ruleset revisions used
-# and a full snapshot of the inputs, so results are reproducible.
+# --- Calculation metadata ---
+# engine_version and ruleset_version let you reproduce any figure exactly.
 assert calculation.engine_version == "0.5.0"
 assert (
     calculation.ruleset_version["ccnl"] == "ccnl/metalmeccanico-federmeccanica@2026.2"
 )
 pos = cast("dict[str, object]", calculation.input_snapshot.employee["position"])
 assert pos["level_code"] == "C2"
+
+# --- Rule provenance chain ---
+# PayrollResult.provenance is an ordered tuple of RuleProvenance objects — one
+# per rule that actually contributed to the computed pay (level declaration,
+# active salary-period tranche, each applied allowance, seniority rule).
+# Every entry links back to the primary source document and section.
+print("\n=== Rule provenance chain ===")
+for prov in p.provenance:
+    doc = prov.location.source_document
+    section = prov.location.section
+    status = prov.extraction.verification_status.value
+    print(f"  [{doc.kind}] {doc.document_id}")
+    print(f"    section:  {section}")
+    print(f"    url:      {doc.url}")
+    print(f"    status:   {status}")
+
+# Every rule must carry provenance — the engine rejects CCNL files that don't.
+assert len(p.provenance) >= 1
+assert all(prov.location.source_document.url for prov in p.provenance)

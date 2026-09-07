@@ -41,7 +41,14 @@ print(f"Net annual:        {payroll.net_annual} EUR")
 print(f"Net monthly:       {payroll.net_monthly} EUR")
 print(f"Employer cost:     {payroll.employer_cost_annual} EUR")
 
-# The Calculation also records the provenance of the figures above.
+# The Calculation also records the engine/ruleset version and a full input
+# snapshot, so any figure can be reproduced exactly at a later date.
 print(f"Engine version:    {calculation.engine_version}")
 print(f"Ruleset version:   {calculation.ruleset_version}")
-print(f"Input snapshot:    {calculation.input_snapshot}")
+
+# PayrollResult.provenance carries the ordered chain of RuleProvenance objects
+# that contributed to the computed pay — one entry per level, active salary
+# period, applied allowance, and seniority-increment rule.
+for prov in payroll.provenance:
+    doc = prov.location.source_document
+    print(f"  [{doc.kind}] {doc.document_id} — {prov.location.section}")

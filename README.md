@@ -55,6 +55,25 @@ print(calculation.engine_version)      # → '0.5.0'
 print(calculation.ruleset_version)     # → {'ccnl': '…', 'tax': '…', 'inps': '…', 'surtax': '…'}
 ```
 
+## Provenance chain
+
+Every `PayrollResult` carries a `provenance` tuple — an ordered chain of `RuleProvenance` objects, one for each rule that contributed to the computed pay: the level declaration, the active salary-period tranche, each applied allowance, and the seniority-increment rule.
+
+```python
+for prov in calculation.result.provenance:
+    doc = prov.location.source_document
+    print(doc.kind, doc.document_id, prov.location.section)
+    print(doc.url)
+    print(prov.extraction.verification_status)
+```
+
+Each `RuleProvenance` records:
+- **`location.source_document`** — the primary source (kind, stable `document_id`, URL)
+- **`location.section`** — the clause or table within that document
+- **`extraction`** — method (`manual`, `ai_assisted`, `back_calculation`), timestamp, and verification status
+
+The engine rejects any CCNL file where provenance is missing from even one rule, so every figure in the output is traceable to a specific source document and clause.
+
 ## CCNL coverage
 
 Over 100 contracts covering approximately 16 million employees across private and public sectors.
