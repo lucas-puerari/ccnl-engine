@@ -1,967 +1,2429 @@
 {
-  "schema_version": "0.4",
-  "meta": {
-    "ccnl_id": "cemento-calce-gesso-industria",
-    "name": "CCNL Cemento, Calce e Gesso — Industria (Federbeton)",
-    "cnel_code": "F032",
-    "sector": "industria del cemento calce e gesso",
-    "tax_sector": "industria",
-    "signatories": [
-      "Federbeton",
-      "FILLEA-CGIL",
-      "FILCA-CISL",
-      "FENEAL-UIL"
+    "schema_version": "0.5",
+    "meta": {
+        "ccnl_id": "cemento-calce-gesso-industria",
+        "name": "CCNL Cemento, Calce e Gesso — Industria (Federbeton)",
+        "cnel_code": "F032",
+        "sector": "industria del cemento calce e gesso",
+        "tax_sector": "industria",
+        "signatories": [
+            "Federbeton",
+            "FILLEA-CGIL",
+            "FILCA-CISL",
+            "FENEAL-UIL"
+        ],
+        "sources": [
+            {
+                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
+                "type": "pdf",
+                "agreement_date": "2025-05-08"
+            }
+        ],
+        "extraction": {
+            "method": "ai_assisted",
+            "model": null,
+            "timestamp": "2026-09-06T00:00:00",
+            "human_reviewed": true
+        }
+    },
+    "coverage": {
+        "layer_1": "implemented",
+        "layer_2": "implemented",
+        "notes": [
+            {
+                "kind": "info",
+                "text": "CCNL signed 08/05/2025, valid 01/01/2025-31/12/2027 (Federbeton+FILLEA-CGIL+FILCA-CISL+FENEAL-UIL). Source: official PDF 248 pages."
+            },
+            {
+                "kind": "info",
+                "text": "SPLIT model: paga base (Art. 44) + contingenza frozen Nov 1991 (Art. 45) + EDR 10.33 EUR all levels. Three separate components; only paga base changes at each tranche."
+            },
+            {
+                "kind": "info",
+                "text": "PRE-RENEWAL RECOVERY: a +120 EUR recovery (at param 140 reference) was granted in Dec 2024, prior to the May 2025 renewal. The 31/12/2024 column already includes this recovery. Engine models from this base forward."
+            },
+            {
+                "kind": "info",
+                "text": "TRANCHE AMOUNTS (Art. 44): increases proportional to param indices. Reference param=140 (AS3): +60 EUR (01/10/2025), +60 EUR (01/10/2026), +55 EUR (01/10/2027). All-level amounts confirmed from the PDF."
+            },
+            {
+                "kind": "info",
+                "text": "AREA DIRETTIVA 3 (AD3, Quadro): indennita di funzione +41.32 EUR/month (Art. 15). Modelled as INDENNITA_FUNZIONE fixed allowance, months_per_year=13."
+            },
+            {
+                "kind": "info",
+                "text": "AREA ESECUTIVA 1 (AE1): superminimum collettivo di gruppo +7.75 EUR/month treated as paga base for contractual purposes (Art. 44). Added to paga base values in this file."
+            },
+            {
+                "kind": "info",
+                "text": "SENIORITY (Art. 48): 5 biennali (24-month) scatti. Per-level EUR amounts confirmed from Art. 48 of the PDF."
+            },
+            {
+                "kind": "info",
+                "text": "ADDITIONAL MONTHS: 13 (tredicesima only)."
+            },
+            {
+                "kind": "info",
+                "text": "HOURLY DIVISOR: 175."
+            },
+            {
+                "kind": "simplification",
+                "text": "APPRENTICESHIP (Art. 25): under_classification model — period 1 at 2 levels below target, period 2 at 1 level below target, period 3 (where applicable) at target level pay. The engine under_classification schema requires a fixed pay_level_code per period for all destination levels; expressing the level-relative structure requires per-destination-level entries with 9 separate apprenticeship objects. Modelled as 100% passthrough for all eligible levels (AQ2 and above); correct for permanent workers."
+            }
+        ]
+    },
+    "parameters": {
+        "hourly_divisor": {
+            "periods": [
+                {
+                    "valid_from": "2024-12-31",
+                    "valid_until": null,
+                    "value": "175"
+                }
+            ]
+        },
+        "additional_months": {
+            "periods": [
+                {
+                    "valid_from": "2024-12-31",
+                    "valid_until": null,
+                    "value": "13"
+                }
+            ]
+        },
+        "seniority_increments": {
+            "cadence_months": 24,
+            "maximum_count": 5,
+            "amount_by_level": {
+                "AE1": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-12-31",
+                            "valid_until": null,
+                            "value": "7.70"
+                        }
+                    ]
+                },
+                "AQ1": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-12-31",
+                            "valid_until": null,
+                            "value": "8.30"
+                        }
+                    ]
+                },
+                "AQ2": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-12-31",
+                            "valid_until": null,
+                            "value": "8.50"
+                        }
+                    ]
+                },
+                "AS1": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-12-31",
+                            "valid_until": null,
+                            "value": "8.90"
+                        }
+                    ]
+                },
+                "AS2": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-12-31",
+                            "valid_until": null,
+                            "value": "9.10"
+                        }
+                    ]
+                },
+                "AS3": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-12-31",
+                            "valid_until": null,
+                            "value": "9.30"
+                        }
+                    ]
+                },
+                "AC1": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-12-31",
+                            "valid_until": null,
+                            "value": "9.80"
+                        }
+                    ]
+                },
+                "AC2": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-12-31",
+                            "valid_until": null,
+                            "value": "10.70"
+                        }
+                    ]
+                },
+                "AC3": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-12-31",
+                            "valid_until": null,
+                            "value": "11.00"
+                        }
+                    ]
+                },
+                "AD1": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-12-31",
+                            "valid_until": null,
+                            "value": "11.50"
+                        }
+                    ]
+                },
+                "AD2": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-12-31",
+                            "valid_until": null,
+                            "value": "13.00"
+                        }
+                    ]
+                },
+                "AD3": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-12-31",
+                            "valid_until": null,
+                            "value": "14.80"
+                        }
+                    ]
+                }
+            },
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "kind": "altro",
+                        "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                    },
+                    "section": "Scatti di anzianità"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        }
+    },
+    "levels": [
+        {
+            "code": "AE1",
+            "order": 1,
+            "description": "Area Esecutiva 1 — Lavoratori addetti a mansioni esecutive semplici",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-12-31",
+                        "valid_until": "2025-10-01",
+                        "value": "1174.89",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-10-01",
+                        "valid_until": "2026-10-01",
+                        "value": "1217.75",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-10-01",
+                        "valid_until": "2027-10-01",
+                        "value": "1260.61",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-10-01",
+                        "valid_until": null,
+                        "value": "1299.90",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "513.24"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "kind": "altro",
+                        "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "AQ1",
+            "order": 2,
+            "description": "Area Qualificata 1 — Lavoratori con qualifica professionale di base",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-12-31",
+                        "valid_until": "2025-10-01",
+                        "value": "1352.05",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-10-01",
+                        "valid_until": "2026-10-01",
+                        "value": "1401.76",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-10-01",
+                        "valid_until": "2027-10-01",
+                        "value": "1451.47",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-10-01",
+                        "valid_until": null,
+                        "value": "1497.04",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "515.49"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "kind": "altro",
+                        "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "AQ2",
+            "order": 3,
+            "description": "Area Qualificata 2 — Lavoratori con qualifica professionale specializzata",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-12-31",
+                        "valid_until": "2025-10-01",
+                        "value": "1410.36",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-10-01",
+                        "valid_until": "2026-10-01",
+                        "value": "1462.22",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-10-01",
+                        "valid_until": "2027-10-01",
+                        "value": "1514.08",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-10-01",
+                        "valid_until": null,
+                        "value": "1561.62",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "515.49"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "kind": "altro",
+                        "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "AS1",
+            "order": 4,
+            "description": "Area Specialistica 1 — Lavoratori specializzati con competenze tecniche",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-12-31",
+                        "valid_until": "2025-10-01",
+                        "value": "1503.63",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-10-01",
+                        "valid_until": "2026-10-01",
+                        "value": "1558.92",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-10-01",
+                        "valid_until": "2027-10-01",
+                        "value": "1614.21",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-10-01",
+                        "valid_until": null,
+                        "value": "1664.89",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "517.65"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "kind": "altro",
+                        "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "AS2",
+            "order": 5,
+            "description": "Area Specialistica 2 — Lavoratori specializzati con autonomia operativa",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-12-31",
+                        "valid_until": "2025-10-01",
+                        "value": "1561.91",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-10-01",
+                        "valid_until": "2026-10-01",
+                        "value": "1619.34",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-10-01",
+                        "valid_until": "2027-10-01",
+                        "value": "1676.77",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-10-01",
+                        "valid_until": null,
+                        "value": "1729.41",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "517.65"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "kind": "altro",
+                        "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "AS3",
+            "order": 6,
+            "description": "Area Specialistica 3 — Lavoratori altamente specializzati o con funzioni di riferimento",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-12-31",
+                        "valid_until": "2025-10-01",
+                        "value": "1631.82",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-10-01",
+                        "valid_until": "2026-10-01",
+                        "value": "1691.82",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-10-01",
+                        "valid_until": "2027-10-01",
+                        "value": "1751.82",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-10-01",
+                        "valid_until": null,
+                        "value": "1806.82",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "519.46"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "kind": "altro",
+                        "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "AC1",
+            "order": 7,
+            "description": "Area Concettuale 1 — Lavoratori con funzioni di natura concettuale e autonomia decisionale",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-12-31",
+                        "valid_until": "2025-10-01",
+                        "value": "1736.73",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-10-01",
+                        "valid_until": "2026-10-01",
+                        "value": "1800.59",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-10-01",
+                        "valid_until": "2027-10-01",
+                        "value": "1864.45",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-10-01",
+                        "valid_until": null,
+                        "value": "1922.99",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "519.55"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "kind": "altro",
+                        "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "AC2",
+            "order": 8,
+            "description": "Area Concettuale 2 — Lavoratori con elevata autonomia e responsabilita funzionale",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-12-31",
+                        "valid_until": "2025-10-01",
+                        "value": "1830.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-10-01",
+                        "valid_until": "2026-10-01",
+                        "value": "1897.29",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-10-01",
+                        "valid_until": "2027-10-01",
+                        "value": "1964.58",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-10-01",
+                        "valid_until": null,
+                        "value": "2026.26",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "523.11"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "kind": "altro",
+                        "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "AC3",
+            "order": 9,
+            "description": "Area Concettuale 3 — Lavoratori con responsabilita di coordinamento complesso",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-12-31",
+                        "valid_until": "2025-10-01",
+                        "value": "1899.91",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-10-01",
+                        "valid_until": "2026-10-01",
+                        "value": "1969.77",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-10-01",
+                        "valid_until": "2027-10-01",
+                        "value": "2039.63",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-10-01",
+                        "valid_until": null,
+                        "value": "2103.67",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "523.11"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "kind": "altro",
+                        "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "AD1",
+            "order": 10,
+            "description": "Area Direttiva 1 — Lavoratori con funzioni direttive di primo livello",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-12-31",
+                        "valid_until": "2025-10-01",
+                        "value": "2004.78",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-10-01",
+                        "valid_until": "2026-10-01",
+                        "value": "2078.49",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-10-01",
+                        "valid_until": "2027-10-01",
+                        "value": "2152.20",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-10-01",
+                        "valid_until": null,
+                        "value": "2219.77",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "523.11"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "kind": "altro",
+                        "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "AD2",
+            "order": 11,
+            "description": "Area Direttiva 2 — Lavoratori con funzioni direttive di secondo livello",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-12-31",
+                        "valid_until": "2025-10-01",
+                        "value": "2191.28",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-10-01",
+                        "valid_until": "2026-10-01",
+                        "value": "2271.85",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-10-01",
+                        "valid_until": "2027-10-01",
+                        "value": "2352.42",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-10-01",
+                        "valid_until": null,
+                        "value": "2426.28",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "530.24"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "kind": "altro",
+                        "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "AD3",
+            "order": 12,
+            "description": "Area Direttiva 3 — Quadro con responsabilita direttive superiori (Art. 2095 c.c.)",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-12-31",
+                        "valid_until": "2025-10-01",
+                        "value": "2447.73",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-10-01",
+                        "valid_until": "2026-10-01",
+                        "value": "2537.73",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-10-01",
+                        "valid_until": "2027-10-01",
+                        "value": "2627.73",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-10-01",
+                        "valid_until": null,
+                        "value": "2710.23",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "533.43"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Art. 45)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "INDENNITA_FUNZIONE",
+                    "description": "Indennita di funzione Quadro — Area Direttiva 3 (Art. 15)",
+                    "months_per_year": "13",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-12-31",
+                                "valid_until": null,
+                                "value": "41.32"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                                "kind": "altro",
+                                "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "title": "cemento-stampa-ccnl-2025-no-ugl-pdf",
+                        "kind": "altro",
+                        "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        }
     ],
-    "sources": [
-      {
-        "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
-        "type": "pdf",
-        "agreement_date": "2025-05-08"
-      }
+    "apprenticeship": [
+        {
+            "type": "percentage",
+            "name": "professionalizzante",
+            "destination_levels": [
+                "AQ2",
+                "AS1",
+                "AS2",
+                "AS3",
+                "AC1",
+                "AC2",
+                "AC3",
+                "AD1",
+                "AD2"
+            ],
+            "periods": [
+                {
+                    "months_from": 0,
+                    "months_until": null,
+                    "percentage": "1.00"
+                }
+            ]
+        }
     ],
-    "extraction": {
-      "method": "ai_assisted",
-      "model": null,
-      "timestamp": "2026-09-06T00:00:00",
-      "human_reviewed": true
+    "ruleset": {
+        "id": "ccnl/cemento-calce-gesso-industria",
+        "version": "2026.2",
+        "effective_from": "2024-12-31",
+        "effective_until": null,
+        "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
+        "verification_status": "verified",
+        "source_hash": "925cf9e4494cb41eb63c3811bed3240bd2083fd47c527df5e3d0271f620e72c3",
+        "published_at": "2026-09-07"
     }
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
-    "notes": [
-      {
-        "kind": "info",
-        "text": "CCNL signed 08/05/2025, valid 01/01/2025-31/12/2027 (Federbeton+FILLEA-CGIL+FILCA-CISL+FENEAL-UIL). Source: official PDF 248 pages."
-      },
-      {
-        "kind": "info",
-        "text": "SPLIT model: paga base (Art. 44) + contingenza frozen Nov 1991 (Art. 45) + EDR 10.33 EUR all levels. Three separate components; only paga base changes at each tranche."
-      },
-      {
-        "kind": "info",
-        "text": "PRE-RENEWAL RECOVERY: a +120 EUR recovery (at param 140 reference) was granted in Dec 2024, prior to the May 2025 renewal. The 31/12/2024 column already includes this recovery. Engine models from this base forward."
-      },
-      {
-        "kind": "info",
-        "text": "TRANCHE AMOUNTS (Art. 44): increases proportional to param indices. Reference param=140 (AS3): +60 EUR (01/10/2025), +60 EUR (01/10/2026), +55 EUR (01/10/2027). All-level amounts confirmed from the PDF."
-      },
-      {
-        "kind": "info",
-        "text": "AREA DIRETTIVA 3 (AD3, Quadro): indennita di funzione +41.32 EUR/month (Art. 15). Modelled as INDENNITA_FUNZIONE fixed allowance, months_per_year=13."
-      },
-      {
-        "kind": "info",
-        "text": "AREA ESECUTIVA 1 (AE1): superminimum collettivo di gruppo +7.75 EUR/month treated as paga base for contractual purposes (Art. 44). Added to paga base values in this file."
-      },
-      {
-        "kind": "info",
-        "text": "SENIORITY (Art. 48): 5 biennali (24-month) scatti. Per-level EUR amounts confirmed from Art. 48 of the PDF."
-      },
-      {
-        "kind": "info",
-        "text": "ADDITIONAL MONTHS: 13 (tredicesima only)."
-      },
-      {
-        "kind": "info",
-        "text": "HOURLY DIVISOR: 175."
-      },
-      {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP (Art. 25): under_classification model — period 1 at 2 levels below target, period 2 at 1 level below target, period 3 (where applicable) at target level pay. The engine under_classification schema requires a fixed pay_level_code per period for all destination levels; expressing the level-relative structure requires per-destination-level entries with 9 separate apprenticeship objects. Modelled as 100% passthrough for all eligible levels (AQ2 and above); correct for permanent workers."
-      }
-    ]
-  },
-  "parameters": {
-    "hourly_divisor": {
-      "periods": [
-        {
-          "valid_from": "2024-12-31",
-          "valid_until": null,
-          "value": "175"
-        }
-      ]
-    },
-    "additional_months": {
-      "periods": [
-        {
-          "valid_from": "2024-12-31",
-          "valid_until": null,
-          "value": "13"
-        }
-      ]
-    },
-    "seniority_increments": {
-      "cadence_months": 24,
-      "maximum_count": 5,
-      "amount_by_level": {
-        "AE1": {
-          "periods": [
-            {
-              "valid_from": "2024-12-31",
-              "valid_until": null,
-              "value": "7.70"
-            }
-          ]
-        },
-        "AQ1": {
-          "periods": [
-            {
-              "valid_from": "2024-12-31",
-              "valid_until": null,
-              "value": "8.30"
-            }
-          ]
-        },
-        "AQ2": {
-          "periods": [
-            {
-              "valid_from": "2024-12-31",
-              "valid_until": null,
-              "value": "8.50"
-            }
-          ]
-        },
-        "AS1": {
-          "periods": [
-            {
-              "valid_from": "2024-12-31",
-              "valid_until": null,
-              "value": "8.90"
-            }
-          ]
-        },
-        "AS2": {
-          "periods": [
-            {
-              "valid_from": "2024-12-31",
-              "valid_until": null,
-              "value": "9.10"
-            }
-          ]
-        },
-        "AS3": {
-          "periods": [
-            {
-              "valid_from": "2024-12-31",
-              "valid_until": null,
-              "value": "9.30"
-            }
-          ]
-        },
-        "AC1": {
-          "periods": [
-            {
-              "valid_from": "2024-12-31",
-              "valid_until": null,
-              "value": "9.80"
-            }
-          ]
-        },
-        "AC2": {
-          "periods": [
-            {
-              "valid_from": "2024-12-31",
-              "valid_until": null,
-              "value": "10.70"
-            }
-          ]
-        },
-        "AC3": {
-          "periods": [
-            {
-              "valid_from": "2024-12-31",
-              "valid_until": null,
-              "value": "11.00"
-            }
-          ]
-        },
-        "AD1": {
-          "periods": [
-            {
-              "valid_from": "2024-12-31",
-              "valid_until": null,
-              "value": "11.50"
-            }
-          ]
-        },
-        "AD2": {
-          "periods": [
-            {
-              "valid_from": "2024-12-31",
-              "valid_until": null,
-              "value": "13.00"
-            }
-          ]
-        },
-        "AD3": {
-          "periods": [
-            {
-              "valid_from": "2024-12-31",
-              "valid_until": null,
-              "value": "14.80"
-            }
-          ]
-        }
-      }
-    }
-  },
-  "levels": [
-    {
-      "code": "AE1",
-      "order": 1,
-      "description": "Area Esecutiva 1 — Lavoratori addetti a mansioni esecutive semplici",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-12-31",
-            "valid_until": "2025-10-01",
-            "value": "1174.89"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-10-01",
-            "value": "1217.75"
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-10-01",
-            "value": "1260.61"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "1299.90"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "513.24"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "AQ1",
-      "order": 2,
-      "description": "Area Qualificata 1 — Lavoratori con qualifica professionale di base",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-12-31",
-            "valid_until": "2025-10-01",
-            "value": "1352.05"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-10-01",
-            "value": "1401.76"
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-10-01",
-            "value": "1451.47"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "1497.04"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "515.49"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "AQ2",
-      "order": 3,
-      "description": "Area Qualificata 2 — Lavoratori con qualifica professionale specializzata",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-12-31",
-            "valid_until": "2025-10-01",
-            "value": "1410.36"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-10-01",
-            "value": "1462.22"
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-10-01",
-            "value": "1514.08"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "1561.62"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "515.49"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "AS1",
-      "order": 4,
-      "description": "Area Specialistica 1 — Lavoratori specializzati con competenze tecniche",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-12-31",
-            "valid_until": "2025-10-01",
-            "value": "1503.63"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-10-01",
-            "value": "1558.92"
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-10-01",
-            "value": "1614.21"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "1664.89"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "517.65"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "AS2",
-      "order": 5,
-      "description": "Area Specialistica 2 — Lavoratori specializzati con autonomia operativa",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-12-31",
-            "valid_until": "2025-10-01",
-            "value": "1561.91"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-10-01",
-            "value": "1619.34"
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-10-01",
-            "value": "1676.77"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "1729.41"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "517.65"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "AS3",
-      "order": 6,
-      "description": "Area Specialistica 3 — Lavoratori altamente specializzati o con funzioni di riferimento",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-12-31",
-            "valid_until": "2025-10-01",
-            "value": "1631.82"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-10-01",
-            "value": "1691.82"
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-10-01",
-            "value": "1751.82"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "1806.82"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "519.46"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "AC1",
-      "order": 7,
-      "description": "Area Concettuale 1 — Lavoratori con funzioni di natura concettuale e autonomia decisionale",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-12-31",
-            "valid_until": "2025-10-01",
-            "value": "1736.73"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-10-01",
-            "value": "1800.59"
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-10-01",
-            "value": "1864.45"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "1922.99"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "519.55"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "AC2",
-      "order": 8,
-      "description": "Area Concettuale 2 — Lavoratori con elevata autonomia e responsabilita funzionale",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-12-31",
-            "valid_until": "2025-10-01",
-            "value": "1830.00"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-10-01",
-            "value": "1897.29"
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-10-01",
-            "value": "1964.58"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "2026.26"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "523.11"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "AC3",
-      "order": 9,
-      "description": "Area Concettuale 3 — Lavoratori con responsabilita di coordinamento complesso",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-12-31",
-            "valid_until": "2025-10-01",
-            "value": "1899.91"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-10-01",
-            "value": "1969.77"
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-10-01",
-            "value": "2039.63"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "2103.67"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "523.11"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "AD1",
-      "order": 10,
-      "description": "Area Direttiva 1 — Lavoratori con funzioni direttive di primo livello",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-12-31",
-            "valid_until": "2025-10-01",
-            "value": "2004.78"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-10-01",
-            "value": "2078.49"
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-10-01",
-            "value": "2152.20"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "2219.77"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "523.11"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "AD2",
-      "order": 11,
-      "description": "Area Direttiva 2 — Lavoratori con funzioni direttive di secondo livello",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-12-31",
-            "valid_until": "2025-10-01",
-            "value": "2191.28"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-10-01",
-            "value": "2271.85"
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-10-01",
-            "value": "2352.42"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "2426.28"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "530.24"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "AD3",
-      "order": 12,
-      "description": "Area Direttiva 3 — Quadro con responsabilita direttive superiori (Art. 2095 c.c.)",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-12-31",
-            "valid_until": "2025-10-01",
-            "value": "2447.73"
-          },
-          {
-            "valid_from": "2025-10-01",
-            "valid_until": "2026-10-01",
-            "value": "2537.73"
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-10-01",
-            "value": "2627.73"
-          },
-          {
-            "valid_from": "2027-10-01",
-            "valid_until": null,
-            "value": "2710.23"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennita di contingenza congelata al novembre 1991 (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "533.43"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Art. 45)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        },
-        {
-          "code": "INDENNITA_FUNZIONE",
-          "description": "Indennita di funzione Quadro — Area Direttiva 3 (Art. 15)",
-          "months_per_year": "13",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-12-31",
-                "valid_until": null,
-                "value": "41.32"
-              }
-            ]
-          }
-        }
-      ]
-    }
-  ],
-  "apprenticeship": [
-    {
-      "type": "percentage",
-      "name": "professionalizzante",
-      "destination_levels": [
-        "AQ2",
-        "AS1",
-        "AS2",
-        "AS3",
-        "AC1",
-        "AC2",
-        "AC3",
-        "AD1",
-        "AD2"
-      ],
-      "periods": [
-        {
-          "months_from": 0,
-          "months_until": null,
-          "percentage": "1.00"
-        }
-      ]
-    }
-  ],
-  "ruleset": {
-    "id": "ccnl/cemento-calce-gesso-industria",
-    "version": "2026.1",
-    "effective_from": "2024-12-31",
-    "effective_until": null,
-    "published_at": "2026-09-07",
-    "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
-    "verification_status": "verified",
-    "source_hash": "ee3e4a1eb615f052c85ede37670ca12246d9b5b1e9857a9ae855b0a3386c9a8b"
-  }
 }

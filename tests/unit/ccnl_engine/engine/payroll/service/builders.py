@@ -22,7 +22,7 @@ from ccnl_engine.engine.payroll.domain.employment import (
     FixedTerm,
     Permanent,
 )
-from tests.helpers import make_ccnl_dict, make_year_rules
+from tests.helpers import TEST_PROV, make_ccnl_dict, make_year_rules
 
 _DATE = date(2026, 6, 1)
 _D = Decimal
@@ -38,7 +38,13 @@ def _series(value: str) -> dict[str, Any]:
 
 
 def _allowance(code: str, monthly: str, **extra: object) -> dict[str, Any]:
-    return {"code": code, "description": code, "monthly": _series(monthly), **extra}
+    return {
+        "code": code,
+        "description": code,
+        "monthly": _series(monthly),
+        "provenance": TEST_PROV,
+        **extra,
+    }
 
 
 def _build_ccnl(app_type: str = "percentage", /, **mutations: object) -> CCNL:

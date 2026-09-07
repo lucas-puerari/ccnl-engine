@@ -873,11 +873,12 @@ class TestComputeAddizionali:
 class TestProvenanceChain:
     """The PayrollResult carries the provenance of the rules it consumed."""
 
-    def test_default_no_provenance(self) -> None:
-        """A CCNL without provenance yields an empty provenance tuple."""
+    def test_provenance_always_present(self) -> None:
+        """All CCNLs carry provenance; minimal dict yields a non-empty tuple."""
         ccnl = CCNL.model_validate(make_ccnl_dict())
         result = compute(ccnl, make_year_rules(), _req())
-        assert result.provenance == ()
+        # Level 4 has provenance on the level and on its salary period.
+        assert len(result.provenance) >= 1
 
     def test_level_and_period_provenance_collected(self) -> None:
         """Level and per-period base-salary provenance are collected in order."""
@@ -887,6 +888,8 @@ class TestProvenanceChain:
         level = ccnl.level_by_code("4")
         level.provenance = prov_level
         level.base_salary.periods[0].provenance = prov_period
+        # Clear seniority provenance so only level+period appear in the result.
+        ccnl.parameters.seniority_increments.provenance = None
         result = compute(ccnl, make_year_rules(), _req())
         assert result.provenance == (prov_level, prov_period)
 
@@ -926,6 +929,8 @@ class TestProvenanceChain:
         level.provenance = prov_level
         level.base_salary.periods[0].valid_from = date(2025, 1, 1)
         level.base_salary.periods[0].provenance = prov_period
+        # Clear seniority provenance so only level appears in the result.
+        ccnl.parameters.seniority_increments.provenance = None
         # Calling _collect_provenance directly with a date before the period.
         result = _collect_provenance(
             level,

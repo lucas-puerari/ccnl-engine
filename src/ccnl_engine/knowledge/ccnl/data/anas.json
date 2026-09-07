@@ -1,501 +1,1232 @@
 {
-  "schema_version": "0.4",
-  "meta": {
-    "ccnl_id": "anas",
-    "cnel_code": "T511",
-    "name": "CCNL Gruppo ANAS",
-    "sector": "anas spa - personale non dirigente",
-    "tax_sector": "industria",
-    "signatories": [
-      "ANAS SpA",
-      "FILT-CGIL",
-      "FIT-CISL",
-      "UILTRASPORTI",
-      "UGL Viabilità e Logistica"
+    "schema_version": "0.5",
+    "meta": {
+        "ccnl_id": "anas",
+        "cnel_code": "T511",
+        "name": "CCNL Gruppo ANAS",
+        "sector": "anas spa - personale non dirigente",
+        "tax_sector": "industria",
+        "signatories": [
+            "ANAS SpA",
+            "FILT-CGIL",
+            "FIT-CISL",
+            "UILTRASPORTI",
+            "UGL Viabilità e Logistica"
+        ],
+        "agreement_date": "2025-12-18",
+        "sources": [
+            {
+                "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+                "type": "ccnl_pdf",
+                "agreement_date": "2025-12-18"
+            }
+        ],
+        "extraction": {
+            "timestamp": "2026-09-06",
+            "human_reviewed": false,
+            "method": "ai_assisted"
+        }
+    },
+    "coverage": {
+        "layer_1": "implemented",
+        "layer_2": "implemented",
+        "notes": [
+            {
+                "kind": "info",
+                "text": "Split model: minimo tabellare + IIS (Indennita Integrativa Speciale, frozen). 7 levels C1-C-B2-B1-B-A1-A. Divisor 156, 13 months. 4 tranches: 01/03/2026, 01/09/2026, 01/03/2027, 01/07/2027."
+            },
+            {
+                "kind": "simplification",
+                "text": "IIS months_per_year=13 assumed equal to additional_months; verify against contract text."
+            },
+            {
+                "kind": "simplification",
+                "text": "Seniority maximum_count=10 — no explicit cap found in source; verify against art. on scatti di anzianita."
+            },
+            {
+                "kind": "simplification",
+                "text": "Apprenticeship 70/85/92% from contract text; last period open-ended (months_until=null at 92%)."
+            }
+        ]
+    },
+    "levels": [
+        {
+            "code": "C1",
+            "order": 1,
+            "description": "Livello C1",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-03-01",
+                        "valid_until": "2026-09-01",
+                        "value": "1338.68",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-09-01",
+                        "valid_until": "2027-03-01",
+                        "value": "1370.94",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-03-01",
+                        "valid_until": "2027-07-01",
+                        "value": "1409.65",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-07-01",
+                        "valid_until": null,
+                        "value": "1448.36",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "IIS",
+                    "description": "Indennità Integrativa Speciale (frozen)",
+                    "months_per_year": 13,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2026-03-01",
+                                "valid_until": null,
+                                "value": "517.06"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-2025-2027-pdf",
+                                "title": "ccnl-2025-2027-pdf",
+                                "kind": "altro",
+                                "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-2025-2027-pdf",
+                        "title": "ccnl-2025-2027-pdf",
+                        "kind": "altro",
+                        "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "C",
+            "order": 2,
+            "description": "Livello C",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-03-01",
+                        "valid_until": "2026-09-01",
+                        "value": "1539.39",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-09-01",
+                        "valid_until": "2027-03-01",
+                        "value": "1576.49",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-03-01",
+                        "valid_until": "2027-07-01",
+                        "value": "1621.01",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-07-01",
+                        "valid_until": null,
+                        "value": "1665.53",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "IIS",
+                    "description": "Indennità Integrativa Speciale (frozen)",
+                    "months_per_year": 13,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2026-03-01",
+                                "valid_until": null,
+                                "value": "520.24"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-2025-2027-pdf",
+                                "title": "ccnl-2025-2027-pdf",
+                                "kind": "altro",
+                                "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-2025-2027-pdf",
+                        "title": "ccnl-2025-2027-pdf",
+                        "kind": "altro",
+                        "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "B2",
+            "order": 3,
+            "description": "Livello B2",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-03-01",
+                        "valid_until": "2026-09-01",
+                        "value": "1874.01",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-09-01",
+                        "valid_until": "2027-03-01",
+                        "value": "1919.17",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-03-01",
+                        "valid_until": "2027-07-01",
+                        "value": "1973.36",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-07-01",
+                        "valid_until": null,
+                        "value": "2027.55",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "IIS",
+                    "description": "Indennità Integrativa Speciale (frozen)",
+                    "months_per_year": 13,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2026-03-01",
+                                "valid_until": null,
+                                "value": "524.03"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-2025-2027-pdf",
+                                "title": "ccnl-2025-2027-pdf",
+                                "kind": "altro",
+                                "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-2025-2027-pdf",
+                        "title": "ccnl-2025-2027-pdf",
+                        "kind": "altro",
+                        "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "B1",
+            "order": 4,
+            "description": "Livello B1",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-03-01",
+                        "valid_until": "2026-09-01",
+                        "value": "2074.84",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-09-01",
+                        "valid_until": "2027-03-01",
+                        "value": "2124.84",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-03-01",
+                        "valid_until": "2027-07-01",
+                        "value": "2184.84",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-07-01",
+                        "valid_until": null,
+                        "value": "2244.84",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "IIS",
+                    "description": "Indennità Integrativa Speciale (frozen)",
+                    "months_per_year": 13,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2026-03-01",
+                                "valid_until": null,
+                                "value": "527.76"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-2025-2027-pdf",
+                                "title": "ccnl-2025-2027-pdf",
+                                "kind": "altro",
+                                "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-2025-2027-pdf",
+                        "title": "ccnl-2025-2027-pdf",
+                        "kind": "altro",
+                        "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "B",
+            "order": 5,
+            "description": "Livello B",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-03-01",
+                        "valid_until": "2026-09-01",
+                        "value": "2275.69",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-09-01",
+                        "valid_until": "2027-03-01",
+                        "value": "2330.53",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-03-01",
+                        "valid_until": "2027-07-01",
+                        "value": "2396.34",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-07-01",
+                        "valid_until": null,
+                        "value": "2462.15",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "IIS",
+                    "description": "Indennità Integrativa Speciale (frozen)",
+                    "months_per_year": 13,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2026-03-01",
+                                "valid_until": null,
+                                "value": "531.78"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-2025-2027-pdf",
+                                "title": "ccnl-2025-2027-pdf",
+                                "kind": "altro",
+                                "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-2025-2027-pdf",
+                        "title": "ccnl-2025-2027-pdf",
+                        "kind": "altro",
+                        "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "A1",
+            "order": 6,
+            "description": "Livello A1",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-03-01",
+                        "valid_until": "2026-09-01",
+                        "value": "2677.25",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-09-01",
+                        "valid_until": "2027-03-01",
+                        "value": "2741.77",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-03-01",
+                        "valid_until": "2027-07-01",
+                        "value": "2819.19",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-07-01",
+                        "valid_until": null,
+                        "value": "2896.61",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "IIS",
+                    "description": "Indennità Integrativa Speciale (frozen)",
+                    "months_per_year": 13,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2026-03-01",
+                                "valid_until": null,
+                                "value": "545.44"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-2025-2027-pdf",
+                                "title": "ccnl-2025-2027-pdf",
+                                "kind": "altro",
+                                "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-2025-2027-pdf",
+                        "title": "ccnl-2025-2027-pdf",
+                        "kind": "altro",
+                        "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "A",
+            "order": 7,
+            "description": "Livello A",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-03-01",
+                        "valid_until": "2026-09-01",
+                        "value": "3212.69",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-09-01",
+                        "valid_until": "2027-03-01",
+                        "value": "3290.11",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-03-01",
+                        "valid_until": "2027-07-01",
+                        "value": "3383.01",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-07-01",
+                        "valid_until": null,
+                        "value": "3475.91",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-2025-2027-pdf",
+                                    "title": "ccnl-2025-2027-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "IIS",
+                    "description": "Indennità Integrativa Speciale (frozen)",
+                    "months_per_year": 13,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2026-03-01",
+                                "valid_until": null,
+                                "value": "553.45"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-2025-2027-pdf",
+                                "title": "ccnl-2025-2027-pdf",
+                                "kind": "altro",
+                                "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-2025-2027-pdf",
+                        "title": "ccnl-2025-2027-pdf",
+                        "kind": "altro",
+                        "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        }
     ],
-    "agreement_date": "2025-12-18",
-    "sources": [
-      {
-        "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
-        "type": "ccnl_pdf",
-        "agreement_date": "2025-12-18"
-      }
+    "parameters": {
+        "additional_months": {
+            "periods": [
+                {
+                    "valid_from": "2026-03-01",
+                    "valid_until": null,
+                    "value": "13"
+                }
+            ]
+        },
+        "hourly_divisor": {
+            "periods": [
+                {
+                    "valid_from": "2026-03-01",
+                    "valid_until": null,
+                    "value": "156"
+                }
+            ]
+        },
+        "seniority_increments": {
+            "cadence_months": 24,
+            "maximum_count": 10,
+            "amount_by_level": {
+                "C1": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-03-01",
+                            "valid_until": null,
+                            "value": "16.66"
+                        }
+                    ]
+                },
+                "C": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-03-01",
+                            "valid_until": null,
+                            "value": "19.16"
+                        }
+                    ]
+                },
+                "B2": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-03-01",
+                            "valid_until": null,
+                            "value": "23.32"
+                        }
+                    ]
+                },
+                "B1": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-03-01",
+                            "valid_until": null,
+                            "value": "25.82"
+                        }
+                    ]
+                },
+                "B": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-03-01",
+                            "valid_until": null,
+                            "value": "28.30"
+                        }
+                    ]
+                },
+                "A1": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-03-01",
+                            "valid_until": null,
+                            "value": "33.31"
+                        }
+                    ]
+                },
+                "A": {
+                    "periods": [
+                        {
+                            "valid_from": "2026-03-01",
+                            "valid_until": null,
+                            "value": "39.97"
+                        }
+                    ]
+                }
+            },
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-2025-2027-pdf",
+                        "title": "ccnl-2025-2027-pdf",
+                        "kind": "altro",
+                        "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf"
+                    },
+                    "section": "Scatti di anzianità"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        }
+    },
+    "apprenticeship": [
+        {
+            "type": "percentage",
+            "name": "professionalizzante",
+            "destination_levels": [
+                "C1",
+                "C",
+                "B2",
+                "B1",
+                "B",
+                "A1",
+                "A"
+            ],
+            "reference_level": null,
+            "periods": [
+                {
+                    "months_from": 0,
+                    "months_until": 12,
+                    "percentage": "0.70"
+                },
+                {
+                    "months_from": 12,
+                    "months_until": 24,
+                    "percentage": "0.85"
+                },
+                {
+                    "months_from": 24,
+                    "months_until": null,
+                    "percentage": "0.92"
+                }
+            ]
+        }
     ],
-    "extraction": {
-      "timestamp": "2026-09-06",
-      "human_reviewed": false,
-      "method": "ai_assisted"
+    "ruleset": {
+        "id": "ccnl/anas",
+        "version": "2026.2",
+        "effective_from": "2026-03-01",
+        "effective_until": null,
+        "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+        "verification_status": "unverified",
+        "source_hash": "7d3d9a9c88edce1fd987e3ad76631906c55307450cf7acdf7ac8cdf42aeaf9c2",
+        "published_at": "2026-09-07"
     }
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
-    "notes": [
-      {
-        "kind": "info",
-        "text": "Split model: minimo tabellare + IIS (Indennita Integrativa Speciale, frozen). 7 levels C1-C-B2-B1-B-A1-A. Divisor 156, 13 months. 4 tranches: 01/03/2026, 01/09/2026, 01/03/2027, 01/07/2027."
-      },
-      {
-        "kind": "simplification",
-        "text": "IIS months_per_year=13 assumed equal to additional_months; verify against contract text."
-      },
-      {
-        "kind": "simplification",
-        "text": "Seniority maximum_count=10 — no explicit cap found in source; verify against art. on scatti di anzianita."
-      },
-      {
-        "kind": "simplification",
-        "text": "Apprenticeship 70/85/92% from contract text; last period open-ended (months_until=null at 92%)."
-      }
-    ]
-  },
-  "levels": [
-    {
-      "code": "C1",
-      "order": 1,
-      "description": "Livello C1",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-03-01",
-            "valid_until": "2026-09-01",
-            "value": "1338.68"
-          },
-          {
-            "valid_from": "2026-09-01",
-            "valid_until": "2027-03-01",
-            "value": "1370.94"
-          },
-          {
-            "valid_from": "2027-03-01",
-            "valid_until": "2027-07-01",
-            "value": "1409.65"
-          },
-          {
-            "valid_from": "2027-07-01",
-            "valid_until": null,
-            "value": "1448.36"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "IIS",
-          "description": "Indennità Integrativa Speciale (frozen)",
-          "months_per_year": 13,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2026-03-01",
-                "valid_until": null,
-                "value": "517.06"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "C",
-      "order": 2,
-      "description": "Livello C",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-03-01",
-            "valid_until": "2026-09-01",
-            "value": "1539.39"
-          },
-          {
-            "valid_from": "2026-09-01",
-            "valid_until": "2027-03-01",
-            "value": "1576.49"
-          },
-          {
-            "valid_from": "2027-03-01",
-            "valid_until": "2027-07-01",
-            "value": "1621.01"
-          },
-          {
-            "valid_from": "2027-07-01",
-            "valid_until": null,
-            "value": "1665.53"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "IIS",
-          "description": "Indennità Integrativa Speciale (frozen)",
-          "months_per_year": 13,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2026-03-01",
-                "valid_until": null,
-                "value": "520.24"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "B2",
-      "order": 3,
-      "description": "Livello B2",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-03-01",
-            "valid_until": "2026-09-01",
-            "value": "1874.01"
-          },
-          {
-            "valid_from": "2026-09-01",
-            "valid_until": "2027-03-01",
-            "value": "1919.17"
-          },
-          {
-            "valid_from": "2027-03-01",
-            "valid_until": "2027-07-01",
-            "value": "1973.36"
-          },
-          {
-            "valid_from": "2027-07-01",
-            "valid_until": null,
-            "value": "2027.55"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "IIS",
-          "description": "Indennità Integrativa Speciale (frozen)",
-          "months_per_year": 13,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2026-03-01",
-                "valid_until": null,
-                "value": "524.03"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "B1",
-      "order": 4,
-      "description": "Livello B1",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-03-01",
-            "valid_until": "2026-09-01",
-            "value": "2074.84"
-          },
-          {
-            "valid_from": "2026-09-01",
-            "valid_until": "2027-03-01",
-            "value": "2124.84"
-          },
-          {
-            "valid_from": "2027-03-01",
-            "valid_until": "2027-07-01",
-            "value": "2184.84"
-          },
-          {
-            "valid_from": "2027-07-01",
-            "valid_until": null,
-            "value": "2244.84"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "IIS",
-          "description": "Indennità Integrativa Speciale (frozen)",
-          "months_per_year": 13,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2026-03-01",
-                "valid_until": null,
-                "value": "527.76"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "B",
-      "order": 5,
-      "description": "Livello B",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-03-01",
-            "valid_until": "2026-09-01",
-            "value": "2275.69"
-          },
-          {
-            "valid_from": "2026-09-01",
-            "valid_until": "2027-03-01",
-            "value": "2330.53"
-          },
-          {
-            "valid_from": "2027-03-01",
-            "valid_until": "2027-07-01",
-            "value": "2396.34"
-          },
-          {
-            "valid_from": "2027-07-01",
-            "valid_until": null,
-            "value": "2462.15"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "IIS",
-          "description": "Indennità Integrativa Speciale (frozen)",
-          "months_per_year": 13,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2026-03-01",
-                "valid_until": null,
-                "value": "531.78"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "A1",
-      "order": 6,
-      "description": "Livello A1",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-03-01",
-            "valid_until": "2026-09-01",
-            "value": "2677.25"
-          },
-          {
-            "valid_from": "2026-09-01",
-            "valid_until": "2027-03-01",
-            "value": "2741.77"
-          },
-          {
-            "valid_from": "2027-03-01",
-            "valid_until": "2027-07-01",
-            "value": "2819.19"
-          },
-          {
-            "valid_from": "2027-07-01",
-            "valid_until": null,
-            "value": "2896.61"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "IIS",
-          "description": "Indennità Integrativa Speciale (frozen)",
-          "months_per_year": 13,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2026-03-01",
-                "valid_until": null,
-                "value": "545.44"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "A",
-      "order": 7,
-      "description": "Livello A",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2026-03-01",
-            "valid_until": "2026-09-01",
-            "value": "3212.69"
-          },
-          {
-            "valid_from": "2026-09-01",
-            "valid_until": "2027-03-01",
-            "value": "3290.11"
-          },
-          {
-            "valid_from": "2027-03-01",
-            "valid_until": "2027-07-01",
-            "value": "3383.01"
-          },
-          {
-            "valid_from": "2027-07-01",
-            "valid_until": null,
-            "value": "3475.91"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "IIS",
-          "description": "Indennità Integrativa Speciale (frozen)",
-          "months_per_year": 13,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2026-03-01",
-                "valid_until": null,
-                "value": "553.45"
-              }
-            ]
-          }
-        }
-      ]
-    }
-  ],
-  "parameters": {
-    "additional_months": {
-      "periods": [
-        {
-          "valid_from": "2026-03-01",
-          "valid_until": null,
-          "value": "13"
-        }
-      ]
-    },
-    "hourly_divisor": {
-      "periods": [
-        {
-          "valid_from": "2026-03-01",
-          "valid_until": null,
-          "value": "156"
-        }
-      ]
-    },
-    "seniority_increments": {
-      "cadence_months": 24,
-      "maximum_count": 10,
-      "amount_by_level": {
-        "C1": {
-          "periods": [
-            {
-              "valid_from": "2026-03-01",
-              "valid_until": null,
-              "value": "16.66"
-            }
-          ]
-        },
-        "C": {
-          "periods": [
-            {
-              "valid_from": "2026-03-01",
-              "valid_until": null,
-              "value": "19.16"
-            }
-          ]
-        },
-        "B2": {
-          "periods": [
-            {
-              "valid_from": "2026-03-01",
-              "valid_until": null,
-              "value": "23.32"
-            }
-          ]
-        },
-        "B1": {
-          "periods": [
-            {
-              "valid_from": "2026-03-01",
-              "valid_until": null,
-              "value": "25.82"
-            }
-          ]
-        },
-        "B": {
-          "periods": [
-            {
-              "valid_from": "2026-03-01",
-              "valid_until": null,
-              "value": "28.30"
-            }
-          ]
-        },
-        "A1": {
-          "periods": [
-            {
-              "valid_from": "2026-03-01",
-              "valid_until": null,
-              "value": "33.31"
-            }
-          ]
-        },
-        "A": {
-          "periods": [
-            {
-              "valid_from": "2026-03-01",
-              "valid_until": null,
-              "value": "39.97"
-            }
-          ]
-        }
-      }
-    }
-  },
-  "apprenticeship": [
-    {
-      "type": "percentage",
-      "name": "professionalizzante",
-      "destination_levels": [
-        "C1",
-        "C",
-        "B2",
-        "B1",
-        "B",
-        "A1",
-        "A"
-      ],
-      "reference_level": null,
-      "periods": [
-        {
-          "months_from": 0,
-          "months_until": 12,
-          "percentage": "0.70"
-        },
-        {
-          "months_from": 12,
-          "months_until": 24,
-          "percentage": "0.85"
-        },
-        {
-          "months_from": 24,
-          "months_until": null,
-          "percentage": "0.92"
-        }
-      ]
-    }
-  ],
-  "ruleset": {
-    "id": "ccnl/anas",
-    "version": "2026.1",
-    "effective_from": "2026-03-01",
-    "effective_until": null,
-    "published_at": "2026-09-07",
-    "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
-    "verification_status": "unverified",
-    "source_hash": "70a09405a2556c1a8daeb2b30236a5ff6088e75b835debe0cfc3122024f21fcf"
-  }
 }

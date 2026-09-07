@@ -1,636 +1,1350 @@
 {
-  "schema_version": "0.4",
-  "meta": {
-    "ccnl_id": "marittimi-industria-armatoriale",
-    "name": "CCNL Marittimi — Industria Armatoriale (CONFITARMA)",
-    "cnel_code": "I391",
-    "sector": "navigazione marittima — personale di terra",
-    "tax_sector": "industria",
-    "signatories": [
-      "CONFITARMA",
-      "FILT-CGIL",
-      "FIT-CISL",
-      "UILTRASPORTI"
+    "schema_version": "0.5",
+    "meta": {
+        "ccnl_id": "marittimi-industria-armatoriale",
+        "name": "CCNL Marittimi — Industria Armatoriale (CONFITARMA)",
+        "cnel_code": "I391",
+        "sector": "navigazione marittima — personale di terra",
+        "tax_sector": "industria",
+        "signatories": [
+            "CONFITARMA",
+            "FILT-CGIL",
+            "FIT-CISL",
+            "UILTRASPORTI"
+        ],
+        "sources": [
+            {
+                "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                "type": "pdf",
+                "agreement_date": "2024-07-11"
+            }
+        ],
+        "extraction": {
+            "method": "ai_assisted",
+            "model": null,
+            "timestamp": "2026-09-06T00:00:00",
+            "human_reviewed": true
+        }
+    },
+    "coverage": {
+        "layer_1": "implemented",
+        "layer_2": "implemented",
+        "notes": [
+            {
+                "kind": "info",
+                "text": "CCNL 2024-2026 (CONFITARMA/FILT-CGIL/FIT-CISL/UILTRASPORTI), signed 11/07/2024, valid 01/07/2024-31/12/2026. Personale di terra (shore-based staff), Sezione 15 — Allegati 1 and 1bis."
+            },
+            {
+                "kind": "info",
+                "text": "SPLIT model: minimo contrattuale (base_salary) + EAR Elemento Aggiuntivo della Retribuzione (per-level, omnicomprensivo) modelled as fixed_allowance. 3 tranches: 01/07/2024 (40%), 01/07/2025 (30%), 01/07/2026 (30%)."
+            },
+            {
+                "kind": "info",
+                "text": "VIIQ (Quadri): VII minimo + INDENNITA_FUNZIONE EUR 225.00/month fixed (since June 2007, not indexed). Included in TFR, 13th and 14th month, festivity. NOT included in overtime base."
+            },
+            {
+                "kind": "info",
+                "text": "HOURLY DIVISOR: 173 (Art. 10 para 8). Daily divisor: 26. Verified on 3 levels: L1=1509.42/173=8.72, LIV=1989.32/173=11.50, LVII=2800.07/173=16.18."
+            },
+            {
+                "kind": "info",
+                "text": "ADDITIONAL MONTHS: 14 — tredicesima (Christmas) and quattordicesima (Easter/summer). Art. 17: base = minimo + superminimo + scatti + contributo mensa + indennita funzione."
+            },
+            {
+                "kind": "info",
+                "text": "SENIORITY: 24-month cadence (biennale), max 5 for workers hired from 1989 onwards. Per-level EUR from Allegato 1: I=23.74, II=24.41, III=25.76, IV=29.35, V=30.47, VI=34.39, VII=36.07."
+            },
+            {
+                "kind": "info",
+                "text": "APPRENTICESHIP: professionalizzante, eligible levels III-VI only. Months 1-12: 70% of minimo; months 13-36: 80% of minimo. Minimum 6 months, maximum 36 months."
+            },
+            {
+                "kind": "simplification",
+                "text": "PRE-2024 HISTORY: prior CCNL signed 16/12/2020. Values before 01/07/2024 not modelled (primary source covers 2024-2026 renewal only). Engine history starts at 01/07/2024."
+            },
+            {
+                "kind": "simplification",
+                "text": "SENIORITY MAX: the contract provides 10 max increments for workers hired before 31/12/1988; modelled as max=5 (post-1988 hires, the prevailing case for active workforce)."
+            },
+            {
+                "kind": "simplification",
+                "text": "SUPERMINIMO LIVELLO: Art. 18 provides an additional EUR 7/month for L4 workers after 8 years in level, and EUR 7-11/month for L2-L3 workers under specific conditions. These are individual-level amounts tied to personal history — not modelled in base salary."
+            },
+            {
+                "kind": "simplification",
+                "text": "EAR FOR VIIQ: the Allegato 1bis EAR table lists VII (not VIIQ separately). VIIQ receives the same EAR as VII (INDENNITA_FUNZIONE is the distinguishing element)."
+            },
+            {
+                "kind": "simplification",
+                "text": "UNA TANTUM: backpay EUR 200 paid Jul 2024 + EUR 180 paid Jan 2025, uniform all levels. Lump-sum, not recurring — not modelled."
+            }
+        ]
+    },
+    "parameters": {
+        "hourly_divisor": {
+            "periods": [
+                {
+                    "valid_from": "2024-07-01",
+                    "valid_until": null,
+                    "value": "173"
+                }
+            ]
+        },
+        "additional_months": {
+            "periods": [
+                {
+                    "valid_from": "2024-07-01",
+                    "valid_until": null,
+                    "value": "14"
+                }
+            ]
+        },
+        "seniority_increments": {
+            "cadence_months": 24,
+            "maximum_count": 5,
+            "amount_by_level": {
+                "I": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-07-01",
+                            "valid_until": null,
+                            "value": "23.74"
+                        }
+                    ]
+                },
+                "II": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-07-01",
+                            "valid_until": null,
+                            "value": "24.41"
+                        }
+                    ]
+                },
+                "III": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-07-01",
+                            "valid_until": null,
+                            "value": "25.76"
+                        }
+                    ]
+                },
+                "IV": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-07-01",
+                            "valid_until": null,
+                            "value": "29.35"
+                        }
+                    ]
+                },
+                "V": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-07-01",
+                            "valid_until": null,
+                            "value": "30.47"
+                        }
+                    ]
+                },
+                "VI": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-07-01",
+                            "valid_until": null,
+                            "value": "34.39"
+                        }
+                    ]
+                },
+                "VII": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-07-01",
+                            "valid_until": null,
+                            "value": "36.07"
+                        }
+                    ]
+                },
+                "VIIQ": {
+                    "periods": [
+                        {
+                            "valid_from": "2024-07-01",
+                            "valid_until": null,
+                            "value": "36.07"
+                        }
+                    ]
+                }
+            },
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "15-sezione-personale-di-terra-pdf",
+                        "title": "15-sezione-personale-di-terra-pdf",
+                        "kind": "altro",
+                        "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                    },
+                    "section": "Scatti di anzianità"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        }
+    },
+    "levels": [
+        {
+            "code": "I",
+            "order": 1,
+            "description": "Livello I — Lavoratori addetti a mansioni di semplice esecuzione",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-07-01",
+                        "valid_until": "2025-07-01",
+                        "value": "1438.03",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-07-01",
+                        "valid_until": "2026-07-01",
+                        "value": "1473.72",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-07-01",
+                        "valid_until": null,
+                        "value": "1509.42",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "EAR",
+                    "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
+                    "months_per_year": "14",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-07-01",
+                                "valid_until": "2025-07-01",
+                                "value": "18.40"
+                            },
+                            {
+                                "valid_from": "2025-07-01",
+                                "valid_until": "2026-07-01",
+                                "value": "32.20"
+                            },
+                            {
+                                "valid_from": "2026-07-01",
+                                "valid_until": null,
+                                "value": "46.01"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "15-sezione-personale-di-terra-pdf",
+                                "title": "15-sezione-personale-di-terra-pdf",
+                                "kind": "altro",
+                                "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "15-sezione-personale-di-terra-pdf",
+                        "title": "15-sezione-personale-di-terra-pdf",
+                        "kind": "altro",
+                        "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "II",
+            "order": 2,
+            "description": "Livello II — Lavoratori qualificati con mansioni esecutive",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-07-01",
+                        "valid_until": "2025-07-01",
+                        "value": "1513.82",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-07-01",
+                        "valid_until": "2026-07-01",
+                        "value": "1552.53",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-07-01",
+                        "valid_until": null,
+                        "value": "1591.25",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "EAR",
+                    "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
+                    "months_per_year": "14",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-07-01",
+                                "valid_until": "2025-07-01",
+                                "value": "19.35"
+                            },
+                            {
+                                "valid_from": "2025-07-01",
+                                "valid_until": "2026-07-01",
+                                "value": "33.87"
+                            },
+                            {
+                                "valid_from": "2026-07-01",
+                                "valid_until": null,
+                                "value": "48.38"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "15-sezione-personale-di-terra-pdf",
+                                "title": "15-sezione-personale-di-terra-pdf",
+                                "kind": "altro",
+                                "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "15-sezione-personale-di-terra-pdf",
+                        "title": "15-sezione-personale-di-terra-pdf",
+                        "kind": "altro",
+                        "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "III",
+            "order": 3,
+            "description": "Livello III — Lavoratori specializzati con autonomia operativa",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-07-01",
+                        "valid_until": "2025-07-01",
+                        "value": "1668.68",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-07-01",
+                        "valid_until": "2026-07-01",
+                        "value": "1711.84",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-07-01",
+                        "valid_until": null,
+                        "value": "1755.00",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "EAR",
+                    "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
+                    "months_per_year": "14",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-07-01",
+                                "valid_until": "2025-07-01",
+                                "value": "21.32"
+                            },
+                            {
+                                "valid_from": "2025-07-01",
+                                "valid_until": "2026-07-01",
+                                "value": "37.31"
+                            },
+                            {
+                                "valid_from": "2026-07-01",
+                                "valid_until": null,
+                                "value": "53.31"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "15-sezione-personale-di-terra-pdf",
+                                "title": "15-sezione-personale-di-terra-pdf",
+                                "kind": "altro",
+                                "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "15-sezione-personale-di-terra-pdf",
+                        "title": "15-sezione-personale-di-terra-pdf",
+                        "kind": "altro",
+                        "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "IV",
+            "order": 4,
+            "description": "Livello IV — Lavoratori con qualifiche tecniche e responsabilita operative",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-07-01",
+                        "valid_until": "2025-07-01",
+                        "value": "1891.66",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-07-01",
+                        "valid_until": "2026-07-01",
+                        "value": "1940.49",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-07-01",
+                        "valid_until": null,
+                        "value": "1989.32",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "EAR",
+                    "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
+                    "months_per_year": "14",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-07-01",
+                                "valid_until": "2025-07-01",
+                                "value": "24.17"
+                            },
+                            {
+                                "valid_from": "2025-07-01",
+                                "valid_until": "2026-07-01",
+                                "value": "42.30"
+                            },
+                            {
+                                "valid_from": "2026-07-01",
+                                "valid_until": null,
+                                "value": "60.43"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "15-sezione-personale-di-terra-pdf",
+                                "title": "15-sezione-personale-di-terra-pdf",
+                                "kind": "altro",
+                                "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "15-sezione-personale-di-terra-pdf",
+                        "title": "15-sezione-personale-di-terra-pdf",
+                        "kind": "altro",
+                        "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "V",
+            "order": 5,
+            "description": "Livello V — Lavoratori altamente specializzati con coordinamento",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-07-01",
+                        "valid_until": "2025-07-01",
+                        "value": "2004.16",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-07-01",
+                        "valid_until": "2026-07-01",
+                        "value": "2056.55",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-07-01",
+                        "valid_until": null,
+                        "value": "2108.93",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "EAR",
+                    "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
+                    "months_per_year": "14",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-07-01",
+                                "valid_until": "2025-07-01",
+                                "value": "25.60"
+                            },
+                            {
+                                "valid_from": "2025-07-01",
+                                "valid_until": "2026-07-01",
+                                "value": "44.80"
+                            },
+                            {
+                                "valid_from": "2026-07-01",
+                                "valid_until": null,
+                                "value": "64.00"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "15-sezione-personale-di-terra-pdf",
+                                "title": "15-sezione-personale-di-terra-pdf",
+                                "kind": "altro",
+                                "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "15-sezione-personale-di-terra-pdf",
+                        "title": "15-sezione-personale-di-terra-pdf",
+                        "kind": "altro",
+                        "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "VI",
+            "order": 6,
+            "description": "Livello VI — Lavoratori con elevata autonomia e responsabilita gestionale",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-07-01",
+                        "valid_until": "2025-07-01",
+                        "value": "2307.82",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-07-01",
+                        "valid_until": "2026-07-01",
+                        "value": "2368.79",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-07-01",
+                        "valid_until": null,
+                        "value": "2429.76",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "EAR",
+                    "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
+                    "months_per_year": "14",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-07-01",
+                                "valid_until": "2025-07-01",
+                                "value": "29.47"
+                            },
+                            {
+                                "valid_from": "2025-07-01",
+                                "valid_until": "2026-07-01",
+                                "value": "51.57"
+                            },
+                            {
+                                "valid_from": "2026-07-01",
+                                "valid_until": null,
+                                "value": "73.67"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "15-sezione-personale-di-terra-pdf",
+                                "title": "15-sezione-personale-di-terra-pdf",
+                                "kind": "altro",
+                                "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "15-sezione-personale-di-terra-pdf",
+                        "title": "15-sezione-personale-di-terra-pdf",
+                        "kind": "altro",
+                        "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "VII",
+            "order": 7,
+            "description": "Livello VII — Lavoratori con responsabilita direttive di alto livello",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-07-01",
+                        "valid_until": "2025-07-01",
+                        "value": "2646.86",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-07-01",
+                        "valid_until": "2026-07-01",
+                        "value": "2723.46",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-07-01",
+                        "valid_until": null,
+                        "value": "2800.07",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "EAR",
+                    "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
+                    "months_per_year": "14",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-07-01",
+                                "valid_until": "2025-07-01",
+                                "value": "33.68"
+                            },
+                            {
+                                "valid_from": "2025-07-01",
+                                "valid_until": "2026-07-01",
+                                "value": "58.94"
+                            },
+                            {
+                                "valid_from": "2026-07-01",
+                                "valid_until": null,
+                                "value": "84.20"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "15-sezione-personale-di-terra-pdf",
+                                "title": "15-sezione-personale-di-terra-pdf",
+                                "kind": "altro",
+                                "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "15-sezione-personale-di-terra-pdf",
+                        "title": "15-sezione-personale-di-terra-pdf",
+                        "kind": "altro",
+                        "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "VIIQ",
+            "order": 8,
+            "description": "Livello VII Q — Quadri: VII minimo + INDENNITA_FUNZIONE EUR 225.00 (Art. 18 quinquies)",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2024-07-01",
+                        "valid_until": "2025-07-01",
+                        "value": "2646.86",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-07-01",
+                        "valid_until": "2026-07-01",
+                        "value": "2723.46",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-07-01",
+                        "valid_until": null,
+                        "value": "2800.07",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "15-sezione-personale-di-terra-pdf",
+                                    "title": "15-sezione-personale-di-terra-pdf",
+                                    "kind": "altro",
+                                    "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "EAR",
+                    "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
+                    "months_per_year": "14",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-07-01",
+                                "valid_until": "2025-07-01",
+                                "value": "33.68"
+                            },
+                            {
+                                "valid_from": "2025-07-01",
+                                "valid_until": "2026-07-01",
+                                "value": "58.94"
+                            },
+                            {
+                                "valid_from": "2026-07-01",
+                                "valid_until": null,
+                                "value": "84.20"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "15-sezione-personale-di-terra-pdf",
+                                "title": "15-sezione-personale-di-terra-pdf",
+                                "kind": "altro",
+                                "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "INDENNITA_FUNZIONE",
+                    "description": "Indennita di funzione Quadri — fissa dal giugno 2007 (Art. 18 quinquies)",
+                    "months_per_year": "14",
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2024-07-01",
+                                "valid_until": null,
+                                "value": "225.00"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "15-sezione-personale-di-terra-pdf",
+                                "title": "15-sezione-personale-di-terra-pdf",
+                                "kind": "altro",
+                                "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "15-sezione-personale-di-terra-pdf",
+                        "title": "15-sezione-personale-di-terra-pdf",
+                        "kind": "altro",
+                        "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        }
     ],
-    "sources": [
-      {
-        "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
-        "type": "pdf",
-        "agreement_date": "2024-07-11"
-      }
+    "apprenticeship": [
+        {
+            "type": "percentage",
+            "name": "professionalizzante",
+            "destination_levels": [
+                "III",
+                "IV",
+                "V",
+                "VI"
+            ],
+            "periods": [
+                {
+                    "months_from": 0,
+                    "months_until": 12,
+                    "percentage": "0.70"
+                },
+                {
+                    "months_from": 12,
+                    "months_until": 36,
+                    "percentage": "0.80"
+                },
+                {
+                    "months_from": 36,
+                    "months_until": null,
+                    "percentage": "1.00"
+                }
+            ]
+        }
     ],
-    "extraction": {
-      "method": "ai_assisted",
-      "model": null,
-      "timestamp": "2026-09-06T00:00:00",
-      "human_reviewed": true
+    "ruleset": {
+        "id": "ccnl/marittimi-industria-armatoriale",
+        "version": "2026.2",
+        "effective_from": "2024-07-01",
+        "effective_until": null,
+        "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+        "verification_status": "verified",
+        "source_hash": "6ef92c0d7ba82352d0daa14abdd8b63b113996eb804fa6b916b34c8c8dca6ddf",
+        "published_at": "2026-09-07"
     }
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
-    "notes": [
-      {
-        "kind": "info",
-        "text": "CCNL 2024-2026 (CONFITARMA/FILT-CGIL/FIT-CISL/UILTRASPORTI), signed 11/07/2024, valid 01/07/2024-31/12/2026. Personale di terra (shore-based staff), Sezione 15 — Allegati 1 and 1bis."
-      },
-      {
-        "kind": "info",
-        "text": "SPLIT model: minimo contrattuale (base_salary) + EAR Elemento Aggiuntivo della Retribuzione (per-level, omnicomprensivo) modelled as fixed_allowance. 3 tranches: 01/07/2024 (40%), 01/07/2025 (30%), 01/07/2026 (30%)."
-      },
-      {
-        "kind": "info",
-        "text": "VIIQ (Quadri): VII minimo + INDENNITA_FUNZIONE EUR 225.00/month fixed (since June 2007, not indexed). Included in TFR, 13th and 14th month, festivity. NOT included in overtime base."
-      },
-      {
-        "kind": "info",
-        "text": "HOURLY DIVISOR: 173 (Art. 10 para 8). Daily divisor: 26. Verified on 3 levels: L1=1509.42/173=8.72, LIV=1989.32/173=11.50, LVII=2800.07/173=16.18."
-      },
-      {
-        "kind": "info",
-        "text": "ADDITIONAL MONTHS: 14 — tredicesima (Christmas) and quattordicesima (Easter/summer). Art. 17: base = minimo + superminimo + scatti + contributo mensa + indennita funzione."
-      },
-      {
-        "kind": "info",
-        "text": "SENIORITY: 24-month cadence (biennale), max 5 for workers hired from 1989 onwards. Per-level EUR from Allegato 1: I=23.74, II=24.41, III=25.76, IV=29.35, V=30.47, VI=34.39, VII=36.07."
-      },
-      {
-        "kind": "info",
-        "text": "APPRENTICESHIP: professionalizzante, eligible levels III-VI only. Months 1-12: 70% of minimo; months 13-36: 80% of minimo. Minimum 6 months, maximum 36 months."
-      },
-      {
-        "kind": "simplification",
-        "text": "PRE-2024 HISTORY: prior CCNL signed 16/12/2020. Values before 01/07/2024 not modelled (primary source covers 2024-2026 renewal only). Engine history starts at 01/07/2024."
-      },
-      {
-        "kind": "simplification",
-        "text": "SENIORITY MAX: the contract provides 10 max increments for workers hired before 31/12/1988; modelled as max=5 (post-1988 hires, the prevailing case for active workforce)."
-      },
-      {
-        "kind": "simplification",
-        "text": "SUPERMINIMO LIVELLO: Art. 18 provides an additional EUR 7/month for L4 workers after 8 years in level, and EUR 7-11/month for L2-L3 workers under specific conditions. These are individual-level amounts tied to personal history — not modelled in base salary."
-      },
-      {
-        "kind": "simplification",
-        "text": "EAR FOR VIIQ: the Allegato 1bis EAR table lists VII (not VIIQ separately). VIIQ receives the same EAR as VII (INDENNITA_FUNZIONE is the distinguishing element)."
-      },
-      {
-        "kind": "simplification",
-        "text": "UNA TANTUM: backpay EUR 200 paid Jul 2024 + EUR 180 paid Jan 2025, uniform all levels. Lump-sum, not recurring — not modelled."
-      }
-    ]
-  },
-  "parameters": {
-    "hourly_divisor": {
-      "periods": [
-        {
-          "valid_from": "2024-07-01",
-          "valid_until": null,
-          "value": "173"
-        }
-      ]
-    },
-    "additional_months": {
-      "periods": [
-        {
-          "valid_from": "2024-07-01",
-          "valid_until": null,
-          "value": "14"
-        }
-      ]
-    },
-    "seniority_increments": {
-      "cadence_months": 24,
-      "maximum_count": 5,
-      "amount_by_level": {
-        "I": {
-          "periods": [
-            {
-              "valid_from": "2024-07-01",
-              "valid_until": null,
-              "value": "23.74"
-            }
-          ]
-        },
-        "II": {
-          "periods": [
-            {
-              "valid_from": "2024-07-01",
-              "valid_until": null,
-              "value": "24.41"
-            }
-          ]
-        },
-        "III": {
-          "periods": [
-            {
-              "valid_from": "2024-07-01",
-              "valid_until": null,
-              "value": "25.76"
-            }
-          ]
-        },
-        "IV": {
-          "periods": [
-            {
-              "valid_from": "2024-07-01",
-              "valid_until": null,
-              "value": "29.35"
-            }
-          ]
-        },
-        "V": {
-          "periods": [
-            {
-              "valid_from": "2024-07-01",
-              "valid_until": null,
-              "value": "30.47"
-            }
-          ]
-        },
-        "VI": {
-          "periods": [
-            {
-              "valid_from": "2024-07-01",
-              "valid_until": null,
-              "value": "34.39"
-            }
-          ]
-        },
-        "VII": {
-          "periods": [
-            {
-              "valid_from": "2024-07-01",
-              "valid_until": null,
-              "value": "36.07"
-            }
-          ]
-        },
-        "VIIQ": {
-          "periods": [
-            {
-              "valid_from": "2024-07-01",
-              "valid_until": null,
-              "value": "36.07"
-            }
-          ]
-        }
-      }
-    }
-  },
-  "levels": [
-    {
-      "code": "I",
-      "order": 1,
-      "description": "Livello I — Lavoratori addetti a mansioni di semplice esecuzione",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-07-01",
-            "valid_until": "2025-07-01",
-            "value": "1438.03"
-          },
-          {
-            "valid_from": "2025-07-01",
-            "valid_until": "2026-07-01",
-            "value": "1473.72"
-          },
-          {
-            "valid_from": "2026-07-01",
-            "valid_until": null,
-            "value": "1509.42"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "EAR",
-          "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
-          "months_per_year": "14",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-07-01",
-                "valid_until": "2025-07-01",
-                "value": "18.40"
-              },
-              {
-                "valid_from": "2025-07-01",
-                "valid_until": "2026-07-01",
-                "value": "32.20"
-              },
-              {
-                "valid_from": "2026-07-01",
-                "valid_until": null,
-                "value": "46.01"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "II",
-      "order": 2,
-      "description": "Livello II — Lavoratori qualificati con mansioni esecutive",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-07-01",
-            "valid_until": "2025-07-01",
-            "value": "1513.82"
-          },
-          {
-            "valid_from": "2025-07-01",
-            "valid_until": "2026-07-01",
-            "value": "1552.53"
-          },
-          {
-            "valid_from": "2026-07-01",
-            "valid_until": null,
-            "value": "1591.25"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "EAR",
-          "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
-          "months_per_year": "14",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-07-01",
-                "valid_until": "2025-07-01",
-                "value": "19.35"
-              },
-              {
-                "valid_from": "2025-07-01",
-                "valid_until": "2026-07-01",
-                "value": "33.87"
-              },
-              {
-                "valid_from": "2026-07-01",
-                "valid_until": null,
-                "value": "48.38"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "III",
-      "order": 3,
-      "description": "Livello III — Lavoratori specializzati con autonomia operativa",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-07-01",
-            "valid_until": "2025-07-01",
-            "value": "1668.68"
-          },
-          {
-            "valid_from": "2025-07-01",
-            "valid_until": "2026-07-01",
-            "value": "1711.84"
-          },
-          {
-            "valid_from": "2026-07-01",
-            "valid_until": null,
-            "value": "1755.00"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "EAR",
-          "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
-          "months_per_year": "14",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-07-01",
-                "valid_until": "2025-07-01",
-                "value": "21.32"
-              },
-              {
-                "valid_from": "2025-07-01",
-                "valid_until": "2026-07-01",
-                "value": "37.31"
-              },
-              {
-                "valid_from": "2026-07-01",
-                "valid_until": null,
-                "value": "53.31"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "IV",
-      "order": 4,
-      "description": "Livello IV — Lavoratori con qualifiche tecniche e responsabilita operative",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-07-01",
-            "valid_until": "2025-07-01",
-            "value": "1891.66"
-          },
-          {
-            "valid_from": "2025-07-01",
-            "valid_until": "2026-07-01",
-            "value": "1940.49"
-          },
-          {
-            "valid_from": "2026-07-01",
-            "valid_until": null,
-            "value": "1989.32"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "EAR",
-          "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
-          "months_per_year": "14",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-07-01",
-                "valid_until": "2025-07-01",
-                "value": "24.17"
-              },
-              {
-                "valid_from": "2025-07-01",
-                "valid_until": "2026-07-01",
-                "value": "42.30"
-              },
-              {
-                "valid_from": "2026-07-01",
-                "valid_until": null,
-                "value": "60.43"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "V",
-      "order": 5,
-      "description": "Livello V — Lavoratori altamente specializzati con coordinamento",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-07-01",
-            "valid_until": "2025-07-01",
-            "value": "2004.16"
-          },
-          {
-            "valid_from": "2025-07-01",
-            "valid_until": "2026-07-01",
-            "value": "2056.55"
-          },
-          {
-            "valid_from": "2026-07-01",
-            "valid_until": null,
-            "value": "2108.93"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "EAR",
-          "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
-          "months_per_year": "14",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-07-01",
-                "valid_until": "2025-07-01",
-                "value": "25.60"
-              },
-              {
-                "valid_from": "2025-07-01",
-                "valid_until": "2026-07-01",
-                "value": "44.80"
-              },
-              {
-                "valid_from": "2026-07-01",
-                "valid_until": null,
-                "value": "64.00"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "VI",
-      "order": 6,
-      "description": "Livello VI — Lavoratori con elevata autonomia e responsabilita gestionale",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-07-01",
-            "valid_until": "2025-07-01",
-            "value": "2307.82"
-          },
-          {
-            "valid_from": "2025-07-01",
-            "valid_until": "2026-07-01",
-            "value": "2368.79"
-          },
-          {
-            "valid_from": "2026-07-01",
-            "valid_until": null,
-            "value": "2429.76"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "EAR",
-          "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
-          "months_per_year": "14",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-07-01",
-                "valid_until": "2025-07-01",
-                "value": "29.47"
-              },
-              {
-                "valid_from": "2025-07-01",
-                "valid_until": "2026-07-01",
-                "value": "51.57"
-              },
-              {
-                "valid_from": "2026-07-01",
-                "valid_until": null,
-                "value": "73.67"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "VII",
-      "order": 7,
-      "description": "Livello VII — Lavoratori con responsabilita direttive di alto livello",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-07-01",
-            "valid_until": "2025-07-01",
-            "value": "2646.86"
-          },
-          {
-            "valid_from": "2025-07-01",
-            "valid_until": "2026-07-01",
-            "value": "2723.46"
-          },
-          {
-            "valid_from": "2026-07-01",
-            "valid_until": null,
-            "value": "2800.07"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "EAR",
-          "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
-          "months_per_year": "14",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-07-01",
-                "valid_until": "2025-07-01",
-                "value": "33.68"
-              },
-              {
-                "valid_from": "2025-07-01",
-                "valid_until": "2026-07-01",
-                "value": "58.94"
-              },
-              {
-                "valid_from": "2026-07-01",
-                "valid_until": null,
-                "value": "84.20"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "VIIQ",
-      "order": 8,
-      "description": "Livello VII Q — Quadri: VII minimo + INDENNITA_FUNZIONE EUR 225.00 (Art. 18 quinquies)",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2024-07-01",
-            "valid_until": "2025-07-01",
-            "value": "2646.86"
-          },
-          {
-            "valid_from": "2025-07-01",
-            "valid_until": "2026-07-01",
-            "value": "2723.46"
-          },
-          {
-            "valid_from": "2026-07-01",
-            "valid_until": null,
-            "value": "2800.07"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "EAR",
-          "description": "Elemento Aggiuntivo della Retribuzione (Allegato 1bis)",
-          "months_per_year": "14",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-07-01",
-                "valid_until": "2025-07-01",
-                "value": "33.68"
-              },
-              {
-                "valid_from": "2025-07-01",
-                "valid_until": "2026-07-01",
-                "value": "58.94"
-              },
-              {
-                "valid_from": "2026-07-01",
-                "valid_until": null,
-                "value": "84.20"
-              }
-            ]
-          }
-        },
-        {
-          "code": "INDENNITA_FUNZIONE",
-          "description": "Indennita di funzione Quadri — fissa dal giugno 2007 (Art. 18 quinquies)",
-          "months_per_year": "14",
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2024-07-01",
-                "valid_until": null,
-                "value": "225.00"
-              }
-            ]
-          }
-        }
-      ]
-    }
-  ],
-  "apprenticeship": [
-    {
-      "type": "percentage",
-      "name": "professionalizzante",
-      "destination_levels": [
-        "III",
-        "IV",
-        "V",
-        "VI"
-      ],
-      "periods": [
-        {
-          "months_from": 0,
-          "months_until": 12,
-          "percentage": "0.70"
-        },
-        {
-          "months_from": 12,
-          "months_until": 36,
-          "percentage": "0.80"
-        },
-        {
-          "months_from": 36,
-          "months_until": null,
-          "percentage": "1.00"
-        }
-      ]
-    }
-  ],
-  "ruleset": {
-    "id": "ccnl/marittimi-industria-armatoriale",
-    "version": "2026.1",
-    "effective_from": "2024-07-01",
-    "effective_until": null,
-    "published_at": "2026-09-07",
-    "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
-    "verification_status": "verified",
-    "source_hash": "322af5e400a03c6e66020230dbca313949fd0c6f0e516cdb29be75b0335cd271"
-  }
 }

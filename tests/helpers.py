@@ -99,9 +99,47 @@ TRACK_UNDER_CLASSIFICATION: dict[str, Any] = {
 }
 
 
+#: Minimal provenance dict for test fixtures — method "manual", unverified.
+TEST_PROV: dict[str, Any] = {
+    "location": {
+        "source_document": {
+            "document_id": "test-doc",
+            "title": "Test Source",
+            "kind": "tabella_retributiva",
+            "url": "https://example.com",
+        },
+        "section": "Test section",
+    },
+    "extraction": {
+        "method": "manual",
+        "extraction_timestamp": "2026-01-01T00:00:00",
+        "verification_status": "unverified",
+        "effective_from": "2020-01-01",
+    },
+}
+
+
 def _series(value: str, valid_from: str = "2020-01-01") -> dict[str, Any]:
     return {
         "periods": [{"valid_from": valid_from, "valid_until": None, "value": value}]
+    }
+
+
+def _series_with_prov(value: str, valid_from: str = "2020-01-01") -> dict[str, Any]:
+    """Like _series but includes provenance on each period (required by validator).
+
+    Returns:
+        A TimeSeries-compatible dict with a single provenance-bearing period.
+    """
+    return {
+        "periods": [
+            {
+                "valid_from": valid_from,
+                "valid_until": None,
+                "value": value,
+                "provenance": TEST_PROV,
+            }
+        ]
     }
 
 
@@ -110,8 +148,9 @@ def _level(code: str, order: int, salary: str) -> dict[str, Any]:
         "code": code,
         "order": order,
         "description": f"Level {code}",
-        "base_salary": _series(salary),
+        "base_salary": _series_with_prov(salary),
         "fixed_allowances": [],
+        "provenance": TEST_PROV,
     }
 
 
@@ -200,6 +239,7 @@ def make_ccnl_dict(*, app_type: str = "percentage") -> dict[str, Any]:
                 "cadence_months": 36,
                 "maximum_count": 10,
                 "amount_by_level": {"4": _series("20.00")},
+                "provenance": TEST_PROV,
             },
         },
         "levels": [

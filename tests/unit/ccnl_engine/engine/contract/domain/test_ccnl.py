@@ -25,7 +25,7 @@ from ccnl_engine.engine.payroll.service.seniority import (
 )
 from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
 from ccnl_engine.engine.provenance.domain.source import SourceKind
-from tests.helpers import make_ccnl_dict
+from tests.helpers import TEST_PROV, _series_with_prov, make_ccnl_dict
 
 _SERIES = {"periods": [{"valid_from": "2020-01-01", "valid_until": None, "value": "1"}]}
 
@@ -156,8 +156,14 @@ class TestLevelSalaryNonDecreasing:
                 "valid_from": "2019-01-01",
                 "valid_until": "2020-01-01",
                 "value": "900.00",
+                "provenance": TEST_PROV,
             },
-            {"valid_from": "2020-01-01", "valid_until": None, "value": "1000.00"},
+            {
+                "valid_from": "2020-01-01",
+                "valid_until": None,
+                "value": "1000.00",
+                "provenance": TEST_PROV,
+            },
         ]
         assert len(_validate(data).levels[2].base_salary.periods) == 2
 
@@ -169,8 +175,14 @@ class TestLevelSalaryNonDecreasing:
                 "valid_from": "2019-01-01",
                 "valid_until": "2020-01-01",
                 "value": "1200.00",
+                "provenance": TEST_PROV,
             },
-            {"valid_from": "2020-01-01", "valid_until": None, "value": "1000.00"},
+            {
+                "valid_from": "2020-01-01",
+                "valid_until": None,
+                "value": "1000.00",
+                "provenance": TEST_PROV,
+            },
         ]
         with pytest.raises(ValidationError, match="non-decreasing over time"):
             _validate(data)
@@ -201,13 +213,13 @@ class TestCCNLLevels:
     def test_equal_salaries_valid(self) -> None:
         """Equal salaries across levels satisfy the non-decreasing constraint."""
         data = make_ccnl_dict()
-        data["levels"][1]["base_salary"] = _series("1000.00")
+        data["levels"][1]["base_salary"] = _series_with_prov("1000.00")
         assert len(_validate(data).levels) == 3
 
     def test_inverted_order_raises(self) -> None:
         """A higher-order level earning less must raise ValidationError."""
         data = make_ccnl_dict()
-        data["levels"][1]["base_salary"] = _series("1200.00")
+        data["levels"][1]["base_salary"] = _series_with_prov("1200.00")
         with pytest.raises(ValidationError, match="salary ordering violated"):
             _validate(data)
 
@@ -220,7 +232,7 @@ class TestCCNLLevels:
     def test_staggered_start_dates(self) -> None:
         """A level whose series starts after another's is skipped on earlier dates."""
         data = make_ccnl_dict()
-        data["levels"][2]["base_salary"] = _series("1000.00", "2021-01-01")
+        data["levels"][2]["base_salary"] = _series_with_prov("1000.00", "2021-01-01")
         assert len(_validate(data).levels) == 3
 
     def test_level_lookup_helpers(self) -> None:
@@ -504,7 +516,13 @@ class TestEmployerFundsAndAllowances:
         """months_per_year must be >= 1."""
         data = make_ccnl_dict()
         data["levels"][0]["fixed_allowances"] = [
-            {"code": "x", "description": "x", "monthly": _SERIES, "months_per_year": 0}
+            {
+                "code": "x",
+                "description": "x",
+                "monthly": _SERIES,
+                "months_per_year": 0,
+                "provenance": TEST_PROV,
+            }
         ]
         with pytest.raises(ValidationError):
             _validate(data)
@@ -524,6 +542,7 @@ class TestSeniorityTiers:
             "cadence_months": 24,
             "maximum_count": 0,
             "amount_by_level": {},
+            "provenance": TEST_PROV,
             "tiers": [
                 {
                     "cadence_months": 24,
@@ -580,6 +599,7 @@ class TestServiceMonthsThreshold:
                 "description": "X",
                 "monthly": _SERIES,
                 "service_months_threshold": -1,
+                "provenance": TEST_PROV,
             }
         ]
         with pytest.raises(ValidationError):
@@ -594,6 +614,7 @@ class TestServiceMonthsThreshold:
                 "description": "X",
                 "monthly": _SERIES,
                 "service_months_threshold": 0,
+                "provenance": TEST_PROV,
             }
         ]
         _validate(data)
@@ -676,8 +697,11 @@ class TestSchema05ProvenanceRequired:
         with pytest.raises(ValidationError, match="provenance is required"):
             _validate(data)
 
-    def test_schema_04_without_provenance_accepted(self) -> None:
-        """schema_version 0.4 files are not subject to the provenance check."""
+    def test_schema_04_without_provenance_rejected(self) -> None:
+        """schema_version 0.4 files without provenance are also rejected."""
         data = make_ccnl_dict(app_type="")
         assert data["schema_version"] == "0.4"
-        _validate(data)
+        # Strip provenance from seniority_increments to trigger the validator.
+        data["parameters"]["seniority_increments"].pop("provenance", None)
+        with pytest.raises(ValidationError, match="provenance is required"):
+            _validate(data)

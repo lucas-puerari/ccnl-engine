@@ -9,6 +9,7 @@ commonly used fields.
 
 from datetime import date
 from decimal import Decimal
+from typing import cast
 
 from ccnl_engine import (
     ContractPosition,
@@ -79,5 +80,8 @@ assert restored == p
 # Every Calculation carries the engine version, the ruleset revisions used
 # and a full snapshot of the inputs, so results are reproducible.
 assert calculation.engine_version == "0.5.0"
-assert calculation.ruleset_version["ccnl"] == "ccnl/metalmeccanico-federmeccanica@2026.1"
-assert calculation.input_snapshot.employee["position"]["level_code"] == "C2"
+assert (
+    calculation.ruleset_version["ccnl"] == "ccnl/metalmeccanico-federmeccanica@2026.2"
+)
+pos = cast("dict[str, object]", calculation.input_snapshot.employee["position"])
+assert pos["level_code"] == "C2"

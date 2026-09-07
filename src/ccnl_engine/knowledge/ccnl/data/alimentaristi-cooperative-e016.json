@@ -1,863 +1,2104 @@
 {
-  "schema_version": "0.4",
-  "meta": {
-    "ccnl_id": "alimentaristi-cooperative-e016",
-    "cnel_code": "E016",
-    "name": "CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
-    "sector": "industria alimentare — cooperative di produzione e lavoro",
-    "tax_sector": "industria",
-    "signatories": [
-      "Fedagripesca-Confcooperative",
-      "Legacoop Agroalimentare",
-      "AGCI-Agrital",
-      "FLAI-CGIL",
-      "FAI-CISL",
-      "UILA-UIL"
-    ],
-    "agreement_date": "2024-05-14",
-    "sources": [
-      {
-        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
-        "type": "tabella_retributiva",
+    "schema_version": "0.5",
+    "meta": {
+        "ccnl_id": "alimentaristi-cooperative-e016",
+        "cnel_code": "E016",
+        "name": "CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
+        "sector": "industria alimentare — cooperative di produzione e lavoro",
+        "tax_sector": "industria",
+        "signatories": [
+            "Fedagripesca-Confcooperative",
+            "Legacoop Agroalimentare",
+            "AGCI-Agrital",
+            "FLAI-CGIL",
+            "FAI-CISL",
+            "UILA-UIL"
+        ],
         "agreement_date": "2024-05-14",
-        "notes": "Paga base confirmed for all 8 levels at all 5 tranches. Contingenza and EDR confirmed as frozen per standard interconfederal protocol."
-      }
+        "sources": [
+            {
+                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
+                "type": "tabella_retributiva",
+                "agreement_date": "2024-05-14",
+                "notes": "Paga base confirmed for all 8 levels at all 5 tranches. Contingenza and EDR confirmed as frozen per standard interconfederal protocol."
+            }
+        ],
+        "extraction": {
+            "timestamp": "2026-09-06",
+            "human_reviewed": false,
+            "method": "ai_assisted"
+        }
+    },
+    "coverage": {
+        "layer_1": "implemented",
+        "layer_2": "implemented",
+        "notes": [
+            {
+                "kind": "info",
+                "text": "CCNL E016 renewed 14/05/2024, valid 01/12/2023-30/11/2027. Signatories: Fedagripesca-Confcooperative, Legacoop Agroalimentare, AGCI-Agrital + FLAI-CGIL/FAI-CISL/UILA-UIL."
+            },
+            {
+                "kind": "info",
+                "text": "SPLIT model: paga base (time-series, 5 tranches) + CONTINGENZA (frozen, 14 months) + EDR (EUR 10.33, all levels, 13 months) + IAR (Indennita Aggiuntiva dei Redditi, per-level, 14 months, 2 periods)."
+            },
+            {
+                "kind": "info",
+                "text": "8 core levels: 6 (lowest, order 1) to 1A (highest, order 8). Divisor 173, 14 months. Seniority: 24-month cadence, max 5 scatti biennali."
+            },
+            {
+                "kind": "info",
+                "text": "IAR first period from 01/12/2023: 1A=151.11, 1=131.39, 2=108.40, 3A=95.26, 3=85.41, 4=78.84, 5=72.27, 6=65.70. Second period from 01/09/2027."
+            },
+            {
+                "kind": "info",
+                "text": "INPS: uses 2026-industria.json (TaxSector.INDUSTRIA). Alimentaristi cooperative are classified as industria for INPS purposes."
+            },
+            {
+                "kind": "simplification",
+                "text": "Apprenticeship rules involve per-level classification reduction not fully resolvable from available sources. Modeled as 100% passthrough for all levels."
+            },
+            {
+                "kind": "simplification",
+                "text": "Quadri (livello 1A Q) and V.P. variants not modeled. Only the 8 standard levels are implemented."
+            }
+        ]
+    },
+    "levels": [
+        {
+            "code": "6",
+            "order": 1,
+            "description": "Livello 6",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-12-01",
+                        "valid_until": "2024-09-01",
+                        "value": "1091.60",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2024-09-01",
+                        "valid_until": "2025-01-01",
+                        "value": "1117.15",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-01-01",
+                        "valid_until": "2026-01-01",
+                        "value": "1160.94",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1204.74",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": null,
+                        "value": "1233.20",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennità di contingenza (frozen Nov 1991)",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "515.31"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Jul 1992)",
+                    "months_per_year": 13,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "IAR",
+                    "description": "Indennità Aggiuntiva dei Redditi — livello 6",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": "2027-09-01",
+                                "value": "65.70"
+                            },
+                            {
+                                "valid_from": "2027-09-01",
+                                "valid_until": null,
+                                "value": "73.73"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-aspx-c-e016",
+                        "title": "ccnl-aspx-c-e016",
+                        "kind": "altro",
+                        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "5",
+            "order": 2,
+            "description": "Livello 5",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-12-01",
+                        "valid_until": "2024-09-01",
+                        "value": "1200.76",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2024-09-01",
+                        "valid_until": "2025-01-01",
+                        "value": "1228.86",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-01-01",
+                        "valid_until": "2026-01-01",
+                        "value": "1277.04",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1325.21",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": null,
+                        "value": "1356.52",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennità di contingenza (frozen Nov 1991)",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "517.65"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Jul 1992)",
+                    "months_per_year": 13,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "IAR",
+                    "description": "Indennità Aggiuntiva dei Redditi — livello 5",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": "2027-09-01",
+                                "value": "72.27"
+                            },
+                            {
+                                "valid_from": "2027-09-01",
+                                "valid_until": null,
+                                "value": "81.10"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-aspx-c-e016",
+                        "title": "ccnl-aspx-c-e016",
+                        "kind": "altro",
+                        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "4",
+            "order": 3,
+            "description": "Livello 4",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-12-01",
+                        "valid_until": "2024-09-01",
+                        "value": "1309.89",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2024-09-01",
+                        "valid_until": "2025-01-01",
+                        "value": "1340.55",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-01-01",
+                        "valid_until": "2026-01-01",
+                        "value": "1393.10",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1445.65",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": null,
+                        "value": "1479.82",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennità di contingenza (frozen Nov 1991)",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "519.99"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Jul 1992)",
+                    "months_per_year": 13,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "IAR",
+                    "description": "Indennità Aggiuntiva dei Redditi — livello 4",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": "2027-09-01",
+                                "value": "78.84"
+                            },
+                            {
+                                "valid_from": "2027-09-01",
+                                "valid_until": null,
+                                "value": "88.47"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-aspx-c-e016",
+                        "title": "ccnl-aspx-c-e016",
+                        "kind": "altro",
+                        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "3",
+            "order": 4,
+            "description": "Livello 3",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-12-01",
+                        "valid_until": "2024-09-01",
+                        "value": "1419.08",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2024-09-01",
+                        "valid_until": "2025-01-01",
+                        "value": "1452.29",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-01-01",
+                        "valid_until": "2026-01-01",
+                        "value": "1509.22",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1566.16",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": null,
+                        "value": "1603.17",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennità di contingenza (frozen Nov 1991)",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "522.32"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Jul 1992)",
+                    "months_per_year": 13,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "IAR",
+                    "description": "Indennità Aggiuntiva dei Redditi — livello 3",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": "2027-09-01",
+                                "value": "85.41"
+                            },
+                            {
+                                "valid_from": "2027-09-01",
+                                "valid_until": null,
+                                "value": "95.85"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-aspx-c-e016",
+                        "title": "ccnl-aspx-c-e016",
+                        "kind": "altro",
+                        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "3A",
+            "order": 5,
+            "description": "Livello 3A",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-12-01",
+                        "valid_until": "2024-09-01",
+                        "value": "1582.79",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2024-09-01",
+                        "valid_until": "2025-01-01",
+                        "value": "1619.83",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-01-01",
+                        "valid_until": "2026-01-01",
+                        "value": "1683.34",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1746.84",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": null,
+                        "value": "1788.12",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennità di contingenza (frozen Nov 1991)",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "525.83"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Jul 1992)",
+                    "months_per_year": 13,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "IAR",
+                    "description": "Indennità Aggiuntiva dei Redditi — livello 3A",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": "2027-09-01",
+                                "value": "95.26"
+                            },
+                            {
+                                "valid_from": "2027-09-01",
+                                "valid_until": null,
+                                "value": "106.90"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-aspx-c-e016",
+                        "title": "ccnl-aspx-c-e016",
+                        "kind": "altro",
+                        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "2",
+            "order": 6,
+            "description": "Livello 2",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-12-01",
+                        "valid_until": "2024-09-01",
+                        "value": "1801.12",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2024-09-01",
+                        "valid_until": "2025-01-01",
+                        "value": "1843.27",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-01-01",
+                        "valid_until": "2026-01-01",
+                        "value": "1915.53",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "1987.80",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": null,
+                        "value": "2034.77",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennità di contingenza (frozen Nov 1991)",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "530.51"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Jul 1992)",
+                    "months_per_year": 13,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "IAR",
+                    "description": "Indennità Aggiuntiva dei Redditi — livello 2",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": "2027-09-01",
+                                "value": "108.40"
+                            },
+                            {
+                                "valid_from": "2027-09-01",
+                                "valid_until": null,
+                                "value": "121.65"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-aspx-c-e016",
+                        "title": "ccnl-aspx-c-e016",
+                        "kind": "altro",
+                        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "1",
+            "order": 7,
+            "description": "Livello 1",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-12-01",
+                        "valid_until": "2024-09-01",
+                        "value": "2183.13",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2024-09-01",
+                        "valid_until": "2025-01-01",
+                        "value": "2234.22",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-01-01",
+                        "valid_until": "2026-01-01",
+                        "value": "2321.81",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "2409.40",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": null,
+                        "value": "2466.34",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennità di contingenza (frozen Nov 1991)",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "538.70"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Jul 1992)",
+                    "months_per_year": 13,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "IAR",
+                    "description": "Indennità Aggiuntiva dei Redditi — livello 1",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": "2027-09-01",
+                                "value": "131.39"
+                            },
+                            {
+                                "valid_from": "2027-09-01",
+                                "valid_until": null,
+                                "value": "147.45"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-aspx-c-e016",
+                        "title": "ccnl-aspx-c-e016",
+                        "kind": "altro",
+                        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        },
+        {
+            "code": "1A",
+            "order": 8,
+            "description": "Livello 1A",
+            "base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2023-12-01",
+                        "valid_until": "2024-09-01",
+                        "value": "2510.63",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2024-09-01",
+                        "valid_until": "2025-01-01",
+                        "value": "2569.39",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2025-01-01",
+                        "valid_until": "2026-01-01",
+                        "value": "2670.12",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2026-01-01",
+                        "valid_until": "2027-01-01",
+                        "value": "2770.85",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "valid_from": "2027-01-01",
+                        "valid_until": null,
+                        "value": "2836.32",
+                        "provenance": {
+                            "location": {
+                                "source_document": {
+                                    "document_id": "ccnl-aspx-c-e016",
+                                    "title": "ccnl-aspx-c-e016",
+                                    "kind": "altro",
+                                    "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                                },
+                                "section": "Tabella retributiva"
+                            },
+                            "extraction": {
+                                "method": "manual",
+                                "extraction_timestamp": "2026-09-07T15:03:36",
+                                "verification_status": "unverified",
+                                "effective_from": "2020-01-01"
+                            }
+                        }
+                    }
+                ]
+            },
+            "fixed_allowances": [
+                {
+                    "code": "CONTINGENZA",
+                    "description": "Indennità di contingenza (frozen Nov 1991)",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "545.72"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "EDR",
+                    "description": "Elemento Distinto della Retribuzione (Jul 1992)",
+                    "months_per_year": 13,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": null,
+                                "value": "10.33"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                },
+                {
+                    "code": "IAR",
+                    "description": "Indennità Aggiuntiva dei Redditi — livello 1A",
+                    "months_per_year": 14,
+                    "monthly": {
+                        "periods": [
+                            {
+                                "valid_from": "2023-12-01",
+                                "valid_until": "2027-09-01",
+                                "value": "151.11"
+                            },
+                            {
+                                "valid_from": "2027-09-01",
+                                "valid_until": null,
+                                "value": "169.57"
+                            }
+                        ]
+                    },
+                    "provenance": {
+                        "location": {
+                            "source_document": {
+                                "document_id": "ccnl-aspx-c-e016",
+                                "title": "ccnl-aspx-c-e016",
+                                "kind": "altro",
+                                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                            },
+                            "section": "Tabella retributiva"
+                        },
+                        "extraction": {
+                            "method": "manual",
+                            "extraction_timestamp": "2026-09-07T15:03:36",
+                            "verification_status": "unverified",
+                            "effective_from": "2020-01-01"
+                        }
+                    }
+                }
+            ],
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-aspx-c-e016",
+                        "title": "ccnl-aspx-c-e016",
+                        "kind": "altro",
+                        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                    },
+                    "section": "Livelli contrattuali"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        }
     ],
-    "extraction": {
-      "timestamp": "2026-09-06",
-      "human_reviewed": false,
-      "method": "ai_assisted"
+    "parameters": {
+        "additional_months": {
+            "periods": [
+                {
+                    "valid_from": "2023-12-01",
+                    "valid_until": null,
+                    "value": "14"
+                }
+            ]
+        },
+        "hourly_divisor": {
+            "periods": [
+                {
+                    "valid_from": "2023-12-01",
+                    "valid_until": null,
+                    "value": "173"
+                }
+            ]
+        },
+        "seniority_increments": {
+            "cadence_months": 24,
+            "maximum_count": 5,
+            "amount_by_level": {
+                "6": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-12-01",
+                            "valid_until": null,
+                            "value": "22.35"
+                        }
+                    ]
+                },
+                "5": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-12-01",
+                            "valid_until": null,
+                            "value": "24.59"
+                        }
+                    ]
+                },
+                "4": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-12-01",
+                            "valid_until": null,
+                            "value": "26.83"
+                        }
+                    ]
+                },
+                "3": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-12-01",
+                            "valid_until": null,
+                            "value": "29.06"
+                        }
+                    ]
+                },
+                "3A": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-12-01",
+                            "valid_until": null,
+                            "value": "32.42"
+                        }
+                    ]
+                },
+                "2": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-12-01",
+                            "valid_until": null,
+                            "value": "36.89"
+                        }
+                    ]
+                },
+                "1": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-12-01",
+                            "valid_until": null,
+                            "value": "44.71"
+                        }
+                    ]
+                },
+                "1A": {
+                    "periods": [
+                        {
+                            "valid_from": "2023-12-01",
+                            "valid_until": null,
+                            "value": "51.42"
+                        }
+                    ]
+                }
+            },
+            "provenance": {
+                "location": {
+                    "source_document": {
+                        "document_id": "ccnl-aspx-c-e016",
+                        "title": "ccnl-aspx-c-e016",
+                        "kind": "altro",
+                        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016"
+                    },
+                    "section": "Scatti di anzianità"
+                },
+                "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-07T15:03:36",
+                    "verification_status": "unverified",
+                    "effective_from": "2020-01-01"
+                }
+            }
+        }
+    },
+    "apprenticeship": [
+        {
+            "type": "percentage",
+            "name": "professionalizzante",
+            "destination_levels": [
+                "6",
+                "5",
+                "4",
+                "3",
+                "3A",
+                "2",
+                "1",
+                "1A"
+            ],
+            "periods": [
+                {
+                    "months_from": 0,
+                    "months_until": null,
+                    "percentage": "1.00"
+                }
+            ]
+        }
+    ],
+    "ruleset": {
+        "id": "ccnl/alimentaristi-cooperative-e016",
+        "version": "2026.2",
+        "effective_from": "2023-12-01",
+        "effective_until": null,
+        "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
+        "verification_status": "unverified",
+        "source_hash": "3d01e2023c0eac14bc2d7c0b25b4ff97a38052b453518d4e18cbf34c103ade53",
+        "published_at": "2026-09-07"
     }
-  },
-  "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
-    "notes": [
-      {
-        "kind": "info",
-        "text": "CCNL E016 renewed 14/05/2024, valid 01/12/2023-30/11/2027. Signatories: Fedagripesca-Confcooperative, Legacoop Agroalimentare, AGCI-Agrital + FLAI-CGIL/FAI-CISL/UILA-UIL."
-      },
-      {
-        "kind": "info",
-        "text": "SPLIT model: paga base (time-series, 5 tranches) + CONTINGENZA (frozen, 14 months) + EDR (EUR 10.33, all levels, 13 months) + IAR (Indennita Aggiuntiva dei Redditi, per-level, 14 months, 2 periods)."
-      },
-      {
-        "kind": "info",
-        "text": "8 core levels: 6 (lowest, order 1) to 1A (highest, order 8). Divisor 173, 14 months. Seniority: 24-month cadence, max 5 scatti biennali."
-      },
-      {
-        "kind": "info",
-        "text": "IAR first period from 01/12/2023: 1A=151.11, 1=131.39, 2=108.40, 3A=95.26, 3=85.41, 4=78.84, 5=72.27, 6=65.70. Second period from 01/09/2027."
-      },
-      {
-        "kind": "info",
-        "text": "INPS: uses 2026-industria.json (TaxSector.INDUSTRIA). Alimentaristi cooperative are classified as industria for INPS purposes."
-      },
-      {
-        "kind": "simplification",
-        "text": "Apprenticeship rules involve per-level classification reduction not fully resolvable from available sources. Modeled as 100% passthrough for all levels."
-      },
-      {
-        "kind": "simplification",
-        "text": "Quadri (livello 1A Q) and V.P. variants not modeled. Only the 8 standard levels are implemented."
-      }
-    ]
-  },
-  "levels": [
-    {
-      "code": "6",
-      "order": 1,
-      "description": "Livello 6",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-12-01",
-            "valid_until": "2024-09-01",
-            "value": "1091.60"
-          },
-          {
-            "valid_from": "2024-09-01",
-            "valid_until": "2025-01-01",
-            "value": "1117.15"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": "2026-01-01",
-            "value": "1160.94"
-          },
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1204.74"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": null,
-            "value": "1233.20"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennità di contingenza (frozen Nov 1991)",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "515.31"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Jul 1992)",
-          "months_per_year": 13,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        },
-        {
-          "code": "IAR",
-          "description": "Indennità Aggiuntiva dei Redditi — livello 6",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": "2027-09-01",
-                "value": "65.70"
-              },
-              {
-                "valid_from": "2027-09-01",
-                "valid_until": null,
-                "value": "73.73"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "5",
-      "order": 2,
-      "description": "Livello 5",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-12-01",
-            "valid_until": "2024-09-01",
-            "value": "1200.76"
-          },
-          {
-            "valid_from": "2024-09-01",
-            "valid_until": "2025-01-01",
-            "value": "1228.86"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": "2026-01-01",
-            "value": "1277.04"
-          },
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1325.21"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": null,
-            "value": "1356.52"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennità di contingenza (frozen Nov 1991)",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "517.65"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Jul 1992)",
-          "months_per_year": 13,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        },
-        {
-          "code": "IAR",
-          "description": "Indennità Aggiuntiva dei Redditi — livello 5",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": "2027-09-01",
-                "value": "72.27"
-              },
-              {
-                "valid_from": "2027-09-01",
-                "valid_until": null,
-                "value": "81.10"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "4",
-      "order": 3,
-      "description": "Livello 4",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-12-01",
-            "valid_until": "2024-09-01",
-            "value": "1309.89"
-          },
-          {
-            "valid_from": "2024-09-01",
-            "valid_until": "2025-01-01",
-            "value": "1340.55"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": "2026-01-01",
-            "value": "1393.10"
-          },
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1445.65"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": null,
-            "value": "1479.82"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennità di contingenza (frozen Nov 1991)",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "519.99"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Jul 1992)",
-          "months_per_year": 13,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        },
-        {
-          "code": "IAR",
-          "description": "Indennità Aggiuntiva dei Redditi — livello 4",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": "2027-09-01",
-                "value": "78.84"
-              },
-              {
-                "valid_from": "2027-09-01",
-                "valid_until": null,
-                "value": "88.47"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "3",
-      "order": 4,
-      "description": "Livello 3",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-12-01",
-            "valid_until": "2024-09-01",
-            "value": "1419.08"
-          },
-          {
-            "valid_from": "2024-09-01",
-            "valid_until": "2025-01-01",
-            "value": "1452.29"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": "2026-01-01",
-            "value": "1509.22"
-          },
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1566.16"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": null,
-            "value": "1603.17"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennità di contingenza (frozen Nov 1991)",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "522.32"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Jul 1992)",
-          "months_per_year": 13,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        },
-        {
-          "code": "IAR",
-          "description": "Indennità Aggiuntiva dei Redditi — livello 3",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": "2027-09-01",
-                "value": "85.41"
-              },
-              {
-                "valid_from": "2027-09-01",
-                "valid_until": null,
-                "value": "95.85"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "3A",
-      "order": 5,
-      "description": "Livello 3A",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-12-01",
-            "valid_until": "2024-09-01",
-            "value": "1582.79"
-          },
-          {
-            "valid_from": "2024-09-01",
-            "valid_until": "2025-01-01",
-            "value": "1619.83"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": "2026-01-01",
-            "value": "1683.34"
-          },
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1746.84"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": null,
-            "value": "1788.12"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennità di contingenza (frozen Nov 1991)",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "525.83"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Jul 1992)",
-          "months_per_year": 13,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        },
-        {
-          "code": "IAR",
-          "description": "Indennità Aggiuntiva dei Redditi — livello 3A",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": "2027-09-01",
-                "value": "95.26"
-              },
-              {
-                "valid_from": "2027-09-01",
-                "valid_until": null,
-                "value": "106.90"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "2",
-      "order": 6,
-      "description": "Livello 2",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-12-01",
-            "valid_until": "2024-09-01",
-            "value": "1801.12"
-          },
-          {
-            "valid_from": "2024-09-01",
-            "valid_until": "2025-01-01",
-            "value": "1843.27"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": "2026-01-01",
-            "value": "1915.53"
-          },
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "1987.80"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": null,
-            "value": "2034.77"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennità di contingenza (frozen Nov 1991)",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "530.51"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Jul 1992)",
-          "months_per_year": 13,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        },
-        {
-          "code": "IAR",
-          "description": "Indennità Aggiuntiva dei Redditi — livello 2",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": "2027-09-01",
-                "value": "108.40"
-              },
-              {
-                "valid_from": "2027-09-01",
-                "valid_until": null,
-                "value": "121.65"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "1",
-      "order": 7,
-      "description": "Livello 1",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-12-01",
-            "valid_until": "2024-09-01",
-            "value": "2183.13"
-          },
-          {
-            "valid_from": "2024-09-01",
-            "valid_until": "2025-01-01",
-            "value": "2234.22"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": "2026-01-01",
-            "value": "2321.81"
-          },
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "2409.40"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": null,
-            "value": "2466.34"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennità di contingenza (frozen Nov 1991)",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "538.70"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Jul 1992)",
-          "months_per_year": 13,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        },
-        {
-          "code": "IAR",
-          "description": "Indennità Aggiuntiva dei Redditi — livello 1",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": "2027-09-01",
-                "value": "131.39"
-              },
-              {
-                "valid_from": "2027-09-01",
-                "valid_until": null,
-                "value": "147.45"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "code": "1A",
-      "order": 8,
-      "description": "Livello 1A",
-      "base_salary": {
-        "periods": [
-          {
-            "valid_from": "2023-12-01",
-            "valid_until": "2024-09-01",
-            "value": "2510.63"
-          },
-          {
-            "valid_from": "2024-09-01",
-            "valid_until": "2025-01-01",
-            "value": "2569.39"
-          },
-          {
-            "valid_from": "2025-01-01",
-            "valid_until": "2026-01-01",
-            "value": "2670.12"
-          },
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2027-01-01",
-            "value": "2770.85"
-          },
-          {
-            "valid_from": "2027-01-01",
-            "valid_until": null,
-            "value": "2836.32"
-          }
-        ]
-      },
-      "fixed_allowances": [
-        {
-          "code": "CONTINGENZA",
-          "description": "Indennità di contingenza (frozen Nov 1991)",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "545.72"
-              }
-            ]
-          }
-        },
-        {
-          "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (Jul 1992)",
-          "months_per_year": 13,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": null,
-                "value": "10.33"
-              }
-            ]
-          }
-        },
-        {
-          "code": "IAR",
-          "description": "Indennità Aggiuntiva dei Redditi — livello 1A",
-          "months_per_year": 14,
-          "monthly": {
-            "periods": [
-              {
-                "valid_from": "2023-12-01",
-                "valid_until": "2027-09-01",
-                "value": "151.11"
-              },
-              {
-                "valid_from": "2027-09-01",
-                "valid_until": null,
-                "value": "169.57"
-              }
-            ]
-          }
-        }
-      ]
-    }
-  ],
-  "parameters": {
-    "additional_months": {
-      "periods": [
-        {
-          "valid_from": "2023-12-01",
-          "valid_until": null,
-          "value": "14"
-        }
-      ]
-    },
-    "hourly_divisor": {
-      "periods": [
-        {
-          "valid_from": "2023-12-01",
-          "valid_until": null,
-          "value": "173"
-        }
-      ]
-    },
-    "seniority_increments": {
-      "cadence_months": 24,
-      "maximum_count": 5,
-      "amount_by_level": {
-        "6": {
-          "periods": [
-            {
-              "valid_from": "2023-12-01",
-              "valid_until": null,
-              "value": "22.35"
-            }
-          ]
-        },
-        "5": {
-          "periods": [
-            {
-              "valid_from": "2023-12-01",
-              "valid_until": null,
-              "value": "24.59"
-            }
-          ]
-        },
-        "4": {
-          "periods": [
-            {
-              "valid_from": "2023-12-01",
-              "valid_until": null,
-              "value": "26.83"
-            }
-          ]
-        },
-        "3": {
-          "periods": [
-            {
-              "valid_from": "2023-12-01",
-              "valid_until": null,
-              "value": "29.06"
-            }
-          ]
-        },
-        "3A": {
-          "periods": [
-            {
-              "valid_from": "2023-12-01",
-              "valid_until": null,
-              "value": "32.42"
-            }
-          ]
-        },
-        "2": {
-          "periods": [
-            {
-              "valid_from": "2023-12-01",
-              "valid_until": null,
-              "value": "36.89"
-            }
-          ]
-        },
-        "1": {
-          "periods": [
-            {
-              "valid_from": "2023-12-01",
-              "valid_until": null,
-              "value": "44.71"
-            }
-          ]
-        },
-        "1A": {
-          "periods": [
-            {
-              "valid_from": "2023-12-01",
-              "valid_until": null,
-              "value": "51.42"
-            }
-          ]
-        }
-      }
-    }
-  },
-  "apprenticeship": [
-    {
-      "type": "percentage",
-      "name": "professionalizzante",
-      "destination_levels": [
-        "6",
-        "5",
-        "4",
-        "3",
-        "3A",
-        "2",
-        "1",
-        "1A"
-      ],
-      "periods": [
-        {
-          "months_from": 0,
-          "months_until": null,
-          "percentage": "1.00"
-        }
-      ]
-    }
-  ],
-  "ruleset": {
-    "id": "ccnl/alimentaristi-cooperative-e016",
-    "version": "2026.1",
-    "effective_from": "2023-12-01",
-    "effective_until": null,
-    "published_at": "2026-09-07",
-    "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
-    "verification_status": "unverified",
-    "source_hash": "739ea267d294035d945f9885d1142ba6208c5a5bff201f41bef5a3624f7853ff"
-  }
 }
