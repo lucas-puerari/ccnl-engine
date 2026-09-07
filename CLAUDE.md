@@ -50,6 +50,21 @@ Run them in this order. Fix coverage first, then lint, then types.
 
 ---
 
+## Repository layout
+
+The package is split in two namespaces:
+
+- `src/ccnl_engine/engine/` — computation, pydantic schemas, and loaders
+  (`contract`, `tax`, `surtax`, `payroll`, `io`, `primitives`).
+- `src/ccnl_engine/knowledge/` — the versioned data bundle only: CCNL, tax,
+  INPS and surtax JSON under `data/`, plus `__version__`.
+  Loaders read it via `importlib.resources`; it carries no logic.
+
+`ccnl_engine.validation/` hosts model-validation helpers. JSON changes in
+`knowledge/*/data/` are code-level changes: they alter engine behaviour.
+
+---
+
 ## Available commands
 
 | Command | When to use |

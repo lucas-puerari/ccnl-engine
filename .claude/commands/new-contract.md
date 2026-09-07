@@ -197,22 +197,22 @@ Never work directly on `main`. Never push directly to `main`.
 
 ## Step 4 — Check if engine modifications are needed
 
-**TaxSector enum** (`src/ccnl_engine/models/ccnl.py`):
+**TaxSector enum** (`src/ccnl_engine/engine/contract/domain/ccnl.py`):
 - `tax_sector` already in `TaxSector` → no change needed.
 - Not present → add `NEW_SECTOR = "new_sector"` to the enum **before any other file**.
   The loader rejects JSON that references an unknown sector.
 
-**Tax data file** (`src/ccnl_engine/tax/data/{year}-{sector}.json`):
-- File already exists → reuse it (check `load_year_rules` in `src/ccnl_engine/tax/loaders.py`).
+**Tax data file** (`src/ccnl_engine/knowledge/tax/data/{year}-{sector}.json`):
+- File already exists → reuse it (check `load_year_rules` in `src/ccnl_engine/engine/tax/service/loaders.py`).
 - Does not exist → create it by copying the nearest existing tax file and replacing values.
   Branch coverage on a new `TaxSector` value requires both (a) the enum value and (b) the CCNL
-  JSON file in `contracts/data/` — ship both in the same commit or coverage will fail.
+  JSON file in `src/ccnl_engine/knowledge/ccnl/data/` — ship both in the same commit or coverage will fail.
 
 ---
 
 ## Step 5 — Write the CCNL JSON
 
-File: `src/ccnl_engine/contract/data/{id}.json`
+File: `src/ccnl_engine/knowledge/ccnl/data/{id}.json`
 
 Pydantic validators enforce these invariants at load time (violations = immediate error):
 - `valid_from` on the first period = exact CCNL renewal date
@@ -229,7 +229,7 @@ Pydantic validators enforce these invariants at load time (violations = immediat
 
 Validate immediately after writing:
 ```bash
-uv run python -c "from ccnl_engine.contract.service.loaders import load_ccnl; load_ccnl('{id}.json')"
+uv run python -c "from ccnl_engine.engine.contract.service.loaders import load_ccnl; load_ccnl('{id}.json')"
 ```
 Fix all Pydantic errors before continuing. Do not proceed with broken JSON.
 
@@ -241,13 +241,13 @@ Fix all Pydantic errors before continuing. Do not proceed with broken JSON.
 
 ```python
 from datetime import date
-from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.tax.service.loaders import load_year_rules
-from ccnl_engine.payroll.service.orchestrator import compute
-from ccnl_engine.payroll.domain.employee import (
+from ccnl_engine.engine.contract.service.loaders import load_ccnl
+from ccnl_engine.engine.tax.service.loaders import load_year_rules
+from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.domain.employee import (
     ContractPosition, Employee, WorkArrangement,
 )
-from ccnl_engine.payroll.domain.employment import Permanent
+from ccnl_engine.engine.payroll.domain.employment import Permanent
 
 ccnl  = load_ccnl("{id}.json")
 rules = load_year_rules({year}, ccnl.meta.tax_sector, num_employees=50)
@@ -272,15 +272,15 @@ Save to `tests/golden/cases/{id}_{level}_{year}.json`.
 ## Step 7 — Write unit tests
 
 Append class `TestLoad{CamelCaseName}` at the bottom of
-`tests/unit/ccnl_engine/contract/service/test_data_files.py`.
+`tests/unit/ccnl_engine/engine/contract/service/test_data_files.py`.
 
 **Required imports at the top of the file** — add only what is missing (never inside methods):
 ```python
-from ccnl_engine.contract.domain.apprenticeship import (
+from ccnl_engine.engine.contract.domain.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
 )
-from ccnl_engine.contract.domain.ccnl import CCNL, TaxSector
+from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
 ```
 Imports inside test methods trigger ruff PLC0415 and fail CI.
 
@@ -337,7 +337,7 @@ Use this template (fill placeholders from the JSON meta block):
 ## Contract data
 
 ```json
---8<-- "src/ccnl_engine/contract/data/{id}.json"
+--8<-- "src/ccnl_engine/knowledge/ccnl/data/{id}.json"
 ```
 
 ## Usage example
