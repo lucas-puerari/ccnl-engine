@@ -35,10 +35,52 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Jurisdiction,
     PayrollScenario,
 )
+from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 
 _CASES_DIR = Path(__file__).parent / "cases"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
+
+
+def _build_time_supplements(inputs: dict[str, Any]) -> OvertimeHours | None:
+    """Build OvertimeHours from the ``time_supplements`` key in *inputs*.
+
+    Returns:
+        An :class:`OvertimeHours` instance, or ``None`` when the key is absent.
+    """
+    raw = inputs.get("time_supplements")
+    if raw is None:
+        return None
+    return OvertimeHours(
+        weekday_hours=Decimal(str(raw.get("weekday_hours", "0"))),
+        night_hours=Decimal(str(raw.get("night_hours", "0"))),
+        holiday_hours=Decimal(str(raw.get("holiday_hours", "0"))),
+        supplementare_hours=Decimal(str(raw.get("supplementare_hours", "0"))),
+    )
+
+
+def _assert_field(field: str, actual: object, raw_value: object) -> None:
+    """Assert that *actual* matches the stored *raw_value* for *field*.
+
+    Handles ``None``, ``Decimal``, ``frozenset``, ``tuple``, and plain values.
+    """
+    if raw_value is None:
+        assert actual is None, f"{field}: expected None, got {actual!r}"
+    elif isinstance(actual, Decimal):
+        assert actual == Decimal(raw_value), (  # type: ignore[arg-type]
+            f"{field}: expected {raw_value!r}, got {actual!r}"
+        )
+    elif isinstance(actual, frozenset):
+        actual_sorted = sorted(str(v) for v in actual)
+        assert actual_sorted == raw_value, (
+            f"{field}: expected {raw_value!r}, got {actual_sorted!r}"
+        )
+    elif isinstance(actual, tuple):
+        assert list(actual) == raw_value, (
+            f"{field}: expected {raw_value!r}, got {list(actual)!r}"
+        )
+    else:
+        assert actual == raw_value, f"{field}: expected {raw_value!r}, got {actual!r}"
 
 
 def _build_contract(inputs: dict[str, Any]) -> Permanent | FixedTerm | Apprentice:
@@ -97,6 +139,8 @@ class TestReferenceCases:
             else None
         )
 
+        time_supplements = _build_time_supplements(inputs)
+
         scenario = PayrollScenario(
             employee=Employee(
                 level_code=inputs["level_code"],
@@ -119,26 +163,11 @@ class TestReferenceCases:
                 date=as_of,
                 tax_year=tax_year,
             ),
+            time_supplements=time_supplements,
         )
 
         result = compute(scenario)
 
         # Compare each field in expected against the live PayrollResult
         for field, raw_value in expected.items():
-            actual = getattr(result, field)
-            if raw_value is None:
-                assert actual is None, f"{field}: expected None, got {actual!r}"
-            elif isinstance(actual, Decimal):
-                assert actual == Decimal(raw_value), (
-                    f"{field}: expected {raw_value!r}, got {actual!r}"
-                )
-            elif isinstance(actual, frozenset):
-                # Stored in JSON as a sorted list of strings for determinism.
-                actual_sorted = sorted(str(v) for v in actual)
-                assert actual_sorted == raw_value, (
-                    f"{field}: expected {raw_value!r}, got {actual_sorted!r}"
-                )
-            else:
-                assert actual == raw_value, (
-                    f"{field}: expected {raw_value!r}, got {actual!r}"
-                )
+            _assert_field(field, getattr(result, field), raw_value)

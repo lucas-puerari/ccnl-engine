@@ -26,6 +26,7 @@ from ccnl_engine.engine.payroll.service.apprenticeship import _apprentice_chain
 from ccnl_engine.engine.payroll.service.chain import _level_chain
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.seniority import _resolve_seniority_count
+from ccnl_engine.engine.payroll.service.supplements import compute_time_supplements
 from ccnl_engine.engine.payroll.service.types import AnnualisedPay, MonthlyPayChain
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
 from ccnl_engine.engine.tax.service.loaders import load_year_rules
@@ -801,6 +802,37 @@ def compute(scenario: PayrollScenario) -> Calculation:
         gross_annual + inps_employer_annual + employer_funds_annual + tfr_annual
     )
 
+    # --- L3: time supplements ---
+    base_monthly_full_time = chain_full_time.base
+    overtime_supp = _ZERO
+    night_supp = _ZERO
+    holiday_supp = _ZERO
+    supplement_trace: tuple[TraceStep, ...] = ()
+    l3_warnings: list[str] = []
+
+    ts_input = scenario.time_supplements
+    if ts_input is not None:
+        l3_schema = ccnl.layer_3
+        if l3_schema is not None and l3_schema.time_supplements is not None:
+            overtime_supp, night_supp, holiday_supp, supplement_trace = (
+                compute_time_supplements(
+                    supps_input=ts_input,
+                    supplements_schema=l3_schema.time_supplements,
+                    base_monthly_full_time=base_monthly_full_time,
+                    hourly_divisor=hourly_divisor,
+                    as_of=as_of,
+                )
+            )
+        else:
+            l3_warnings.append(
+                "time_supplements requested but not modelled for this CCNL"
+            )
+
+    time_supplements_monthly = money(overtime_supp + night_supp + holiday_supp)
+    time_supplements_annual_projection = money(
+        time_supplements_monthly * additional_months
+    )
+
     result = PayrollResult(
         ccnl_id=ccnl.meta.ccnl_id,
         level_code=scenario.employee.level_code,
@@ -841,6 +873,13 @@ def compute(scenario: PayrollScenario) -> Calculation:
             chain,
             ccnl.parameters.seniority_increments,
         ),
+        warnings=tuple(l3_warnings),
+        base_monthly_full_time=base_monthly_full_time,
+        overtime_supplement_monthly=overtime_supp,
+        night_supplement_monthly=night_supp,
+        holiday_supplement_monthly=holiday_supp,
+        time_supplements_monthly=time_supplements_monthly,
+        time_supplements_annual_projection=time_supplements_annual_projection,
     )
 
     snapshot = InputSnapshot.capture(
@@ -851,19 +890,23 @@ def compute(scenario: PayrollScenario) -> Calculation:
         uses_surtax=surtax is not None,
     )
 
+    gross_trace = _build_trace(
+        ccnl_id=ccnl.meta.ccnl_id,
+        level=level,
+        chain=chain,
+        seniority_count=count,
+        ad_personam=ad_personam,
+        scaled_second_level=scaled_second_level,
+        gross_monthly=gross_monthly,
+    )
     return Calculation(
         engine_version=engine_version,
         ruleset_version=_ruleset_versions(ccnl, rules, surtax),
         input_snapshot=snapshot,
         result=result,
-        trace=_build_trace(
-            ccnl_id=ccnl.meta.ccnl_id,
-            level=level,
-            chain=chain,
-            seniority_count=count,
-            ad_personam=ad_personam,
-            scaled_second_level=scaled_second_level,
-            gross_monthly=gross_monthly,
+        trace=CalculationTrace(
+            steps=gross_trace.steps,
+            supplement_steps=supplement_trace,
         ),
     )
 

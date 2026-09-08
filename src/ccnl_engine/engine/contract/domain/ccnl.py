@@ -29,6 +29,41 @@ class CoverageStatus(StrEnum):
     NOT_IMPLEMENTED = "not_implemented"
 
 
+class L3Feature(StrEnum):
+    """Enumeration of Layer 3 payroll features."""
+
+    OVERTIME = "overtime"
+    NIGHT_WORK = "night_work"
+    HOLIDAY_WORK = "holiday_work"
+    ABSENCE = "absence"
+    SICKNESS = "sickness"
+    LEAVE = "leave"
+    BONUS = "bonus"
+    BENEFITS = "benefits"
+    WELFARE = "welfare"
+    FRINGE_BENEFITS = "fringe_benefits"
+    FAMILY_DEDUCTIONS = "family_deductions"
+    COMPANY_AGREEMENT = "company_agreement"
+    TERRITORIAL_AGREEMENT = "territorial_agreement"
+
+
+class TimeSupplementKind(StrEnum):
+    """How the overtime band rate is applied."""
+
+    PERCENTAGE = "percentage"
+    INDENNITA_PER_SHIFT = "indennita_per_shift"
+    INDENNITA_PER_HOUR = "indennita_per_hour"
+
+
+class WorkKind(StrEnum):
+    """Kind of working time for overtime band matching."""
+
+    WEEKDAY = "weekday"
+    NIGHT = "night"
+    HOLIDAY = "holiday"
+    SUPPLEMENTARE = "supplementare"
+
+
 LevelCategory = Literal["operaio", "impiegato", "quadro", "dirigente"]
 
 
@@ -65,6 +100,61 @@ class TaxSector(StrEnum):
     PUBBLICA_AMMINISTRAZIONE = "pubblica-amministrazione"
     LAVORO_DOMESTICO = "lavoro-domestico"
     AGRICOLTURA = "agricoltura"
+
+
+class OvertimeBand(BaseModel):
+    """One overtime/supplement band: a rate applied to a specific work kind.
+
+    ``kind`` controls how ``rate`` is interpreted:
+
+    * ``percentage``: supplement = rate * full-time hourly base * hours.
+    * ``indennita_per_hour``: supplement = rate * hours (fixed EUR/hour).
+    * ``indennita_per_shift``: supplement = rate * shift count (fixed EUR/shift).
+
+    ``applies_to_kinds`` lists the :class:`WorkKind` values this band covers.
+    ``hour_threshold_per_day`` / ``hour_threshold_per_week`` optionally restrict
+    the band to hours *beyond* that threshold (straordinario, not supplementare).
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    code: str
+    description: str
+    kind: TimeSupplementKind
+    rate: "TimeSeries"
+    hour_threshold_per_day: int | None = None
+    hour_threshold_per_week: int | None = None
+    applies_to_kinds: list[WorkKind]
+    provenance: "RuleProvenance | None" = None
+
+
+class TimeSupplements(BaseModel):
+    """Layer 3 time-supplement rules (overtime, night work, holiday work).
+
+    ``hourly_base_method`` controls which base is used:
+
+    * ``minimo_tabellare``: the CCNL table minimum only (no allowances).
+    * ``gross_incl_allowances``: the full gross including fixed allowances.
+
+    ``overtime_bands`` is an ordered list of :class:`OvertimeBand` entries.
+    All applicable bands accumulate (no "first match wins" truncation) unless
+    a CCNL-specific note says otherwise.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    hourly_base_method: Literal["minimo_tabellare", "gross_incl_allowances"] = (
+        "minimo_tabellare"
+    )
+    overtime_bands: list[OvertimeBand] = []
+
+
+class CCNLLayer3(BaseModel):
+    """Container for Layer 3 rules attached to a CCNL data file."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    time_supplements: TimeSupplements | None = None
 
 
 class Allowance(BaseModel):
@@ -325,8 +415,13 @@ class CCNLCoverage(BaseModel):
     * **Verification** (``verification_status``): how confident we are in the
       data behind that implementation — verified, unverified, or needs review.
 
+    ``layer_3`` is the scalar summary status (for backward compat with the
+    coverage matrix). ``layer_3_features`` is the authoritative per-feature
+    dict; it drives the computed L3 rollup and the per-feature coverage table.
+
     A ``missing`` note documents data the engine supports but the file lacks,
-    and is only allowed while at least one of layer_1 / layer_2 is ``partial``.
+    and is only allowed while at least one of layer_1 / layer_2 is ``partial``
+    or any layer_3 feature is ``partial``.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -334,16 +429,24 @@ class CCNLCoverage(BaseModel):
     layer_1: CoverageStatus
     layer_2: CoverageStatus
     layer_3: CoverageStatus = CoverageStatus.NOT_IMPLEMENTED
+    layer_3_features: dict[L3Feature, CoverageStatus] = {}
     notes: list[CoverageNote]
     verification_status: VerificationStatus = VerificationStatus.UNVERIFIED
 
     @model_validator(mode="after")
     def _check_notes(self) -> Self:
         has_missing = any(n.kind == NoteKind.MISSING for n in self.notes)
-        if has_missing and "partial" not in {self.layer_1, self.layer_2}:
+        any_l3_partial = any(
+            v == CoverageStatus.PARTIAL for v in self.layer_3_features.values()
+        )
+        if (
+            has_missing
+            and "partial" not in {self.layer_1, self.layer_2}
+            and not any_l3_partial
+        ):
             msg = (
                 "coverage has 'missing' notes but neither layer_1 nor layer_2 "
-                "is 'partial'"
+                "is 'partial' and no layer_3 feature is 'partial'"
             )
             raise ValueError(msg)
         return self
@@ -432,6 +535,8 @@ class CCNL(BaseModel):
         apprenticeship: Apprenticeship tracks modelled for this CCNL. Empty
             when apprenticeship is out of scope or not yet modelled.
         coverage: Implementation status flags and notes for the data file.
+        layer_3: Layer 3 rule data (overtime, night work, etc.). ``None``
+            when no L3 rules are modelled for this CCNL.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -449,6 +554,7 @@ class CCNL(BaseModel):
         ),
     )
     coverage: CCNLCoverage
+    layer_3: CCNLLayer3 | None = None
 
     @model_validator(mode="after")
     def _validate_cross_fields(self) -> Self:

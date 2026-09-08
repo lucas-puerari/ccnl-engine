@@ -77,7 +77,7 @@ assert restored == p
 # engine_version and ruleset_version let you reproduce any figure exactly.
 assert calculation.engine_version == "0.5.0"
 assert (
-    calculation.ruleset_version["ccnl"] == "ccnl/metalmeccanico-federmeccanica@2026.2"
+    calculation.ruleset_version["ccnl"] == "ccnl/metalmeccanico-federmeccanica@2026.3"
 )
 snapshot_scenario = calculation.input_snapshot.scenario
 employee_snap = cast("dict[str, object]", snapshot_scenario["employee"])

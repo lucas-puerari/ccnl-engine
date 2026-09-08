@@ -10,9 +10,41 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import date as _date
 from decimal import Decimal
+from typing import Literal
 
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
+
+_ZERO = Decimal(0)
+
+
+def _serialise_tuple_item(v: object) -> object:
+    """Serialise one item from a tuple field for JSON output.
+
+    Pydantic models use ``model_dump``; plain dataclasses use ``asdict``;
+    everything else is returned as-is.
+
+    Returns:
+        A JSON-native representation of *v*.
+    """
+    if hasattr(v, "model_dump"):
+        return v.model_dump(mode="json")
+    if dataclasses.is_dataclass(v):
+        return dataclasses.asdict(v)  # type: ignore[arg-type]
+    return v
+
+
+@dataclass(frozen=True)
+class ScopeItem:
+    """One entry in the calculation scope list.
+
+    Attributes:
+        feature: Engine feature name (e.g. ``"overtime"``, ``"irpef"``).
+        status: Whether it was computed, excluded, or not available.
+    """
+
+    feature: str
+    status: Literal["verified", "excluded", "not_computed"]
 
 
 def _unwrap_optional(raw: object, hint: type) -> tuple[object, type]:
@@ -40,8 +72,13 @@ def _coerce_scalar(raw: object, hint: type) -> object:
         return Decimal(str(raw))
     if hint is _date:
         return _date.fromisoformat(raw)  # type: ignore[arg-type]
-    if isinstance(hint, type) and issubclass(hint, RuleProvenance):
-        return RuleProvenance.model_validate(raw)
+    if isinstance(hint, type) and hasattr(hint, "model_validate"):
+        return hint.model_validate(raw)
+    if hint is ScopeItem and isinstance(raw, dict):
+        return ScopeItem(
+            feature=str(raw["feature"]),
+            status=raw["status"],
+        )
     if hint == frozenset[FiscalSimplification]:
         return frozenset(FiscalSimplification(v) for v in raw)  # type: ignore[attr-defined]
     return raw
@@ -215,6 +252,20 @@ class PayrollResult:
 
     provenance: tuple[RuleProvenance, ...] = ()
 
+    # --- Status and warnings ---
+    status: Literal["partial", "complete"] = "partial"
+    confidence: Literal["low", "medium", "high"] = "medium"
+    calculation_scope: tuple[ScopeItem, ...] = ()
+    warnings: tuple[str, ...] = ()
+
+    # --- L3: time supplements (informational; not in gross_annual/net_annual) ---
+    base_monthly_full_time: Decimal = _ZERO
+    overtime_supplement_monthly: Decimal = _ZERO
+    night_supplement_monthly: Decimal = _ZERO
+    holiday_supplement_monthly: Decimal = _ZERO
+    time_supplements_monthly: Decimal = _ZERO
+    time_supplements_annual_projection: Decimal = _ZERO
+
     def to_dict(self) -> dict[str, object]:
         """Serialise the payroll to a plain Python dictionary.
 
@@ -236,7 +287,7 @@ class PayrollResult:
             elif isinstance(value, frozenset):
                 out[field.name] = sorted(str(v) for v in value)
             elif isinstance(value, tuple):
-                out[field.name] = [v.model_dump(mode="json") for v in value]
+                out[field.name] = [_serialise_tuple_item(v) for v in value]
             else:
                 out[field.name] = value
         return out
@@ -266,12 +317,16 @@ class PayrollResult:
         hints = typing.get_type_hints(cls)
         kwargs: dict[str, object] = {}
         for field in dataclasses.fields(cls):
-            try:
-                raw = data[field.name]
-            except KeyError:
+            if field.name not in data:
+                has_default = (
+                    field.default is not dataclasses.MISSING
+                    or field.default_factory is not dataclasses.MISSING
+                )
+                if has_default:
+                    continue  # let the dataclass constructor supply the default
                 msg = f"Missing field: {field.name!r}"
                 raise ValueError(msg) from None
-            kwargs[field.name] = _coerce(raw, hints[field.name])
+            kwargs[field.name] = _coerce(data[field.name], hints[field.name])
         return cls(**kwargs)  # type: ignore[arg-type]
 
     @classmethod
