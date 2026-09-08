@@ -159,13 +159,23 @@ def make_year_rules(
     deductions: list[dict[str, Any]] | None = None,
     inps: dict[str, Any] | None = None,
     apprentice: dict[str, Any] | None = None,
+    sterilizzazione_detrazioni: dict[str, Any] | None = None,
 ) -> YearRules:
     """Build a YearRules instance for testing. Defaults to the 2026 terziario values.
+
+    Args:
+        brackets: IRPEF bracket list; defaults to 2026 statutory values.
+        deductions: Work-deduction breakpoints; defaults to 2026 values.
+        inps: Raw INPS rates dict; defaults to terziario rates.
+        apprentice: Raw apprentice rates dict; defaults to large-firm values.
+        sterilizzazione_detrazioni: Optional override for sterilizzazione
+            rules (Art. 1 c. 3-4 L. 199/2025). Pass ``{"threshold": ...,
+            "reduction": ...}`` to activate or a custom threshold for tests.
 
     Returns:
         A validated YearRules instance.
     """
-    return YearRules.model_validate({
+    raw: dict[str, Any] = {
         "year": 2026,
         "irpef_brackets": brackets or IRPEF_BRACKETS_2026,
         "work_deduction_breakpoints": deductions or WORK_DEDUCTIONS_2026,
@@ -173,7 +183,10 @@ def make_year_rules(
         "inps": inps or INPS_RATES_TERZIARIO,
         "apprentice": apprentice or APPRENTICE_RATES_LARGE_FIRM,
         "tfr": {"accrual_divisor": "13.5"},
-    })
+    }
+    if sterilizzazione_detrazioni is not None:
+        raw["sterilizzazione_detrazioni"] = sterilizzazione_detrazioni
+    return YearRules.model_validate(raw)
 
 
 def make_domestic_year_rules() -> YearRules:

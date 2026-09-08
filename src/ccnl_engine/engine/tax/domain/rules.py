@@ -314,6 +314,24 @@ class TrattamentoIntegrativoRules(BaseModel):
     provenance: RuleProvenance | None = None
 
 
+class SterilizzazioneDetrazioniRules(BaseModel):
+    """Sterilizzazione detrazioni for high-income earners.
+
+    Per Art. 1 c. 3-4 L. 199/2025 (Legge di Bilancio 2026): for
+    reddito complessivo exceeding ``threshold``, the total detrazioni
+    dall'imposta lorda (Art. 12 + Art. 13 TUIR) is reduced by
+    ``reduction`` EUR. The reduction is the exact clawback of the
+    tax benefit from the 35% to 33% IRPEF bracket change on the
+    EUR 28 000-50 000 slice: 2% x EUR 22 000 = EUR 440.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    threshold: Decimal
+    reduction: Decimal
+    provenance: RuleProvenance | None = None
+
+
 class YearRulesRaw(BaseModel):
     """Full deserialization model for a tax/data/<year>-<sector>.json file.
 
@@ -335,6 +353,7 @@ class YearRulesRaw(BaseModel):
     domestic_contributions: DomesticInpsRates | None = None
     tfr: TfrRules
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
+    sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
     notes: list[str] = []
     sources: list[SourceDocument] = []
     extraction: ExtractionTrace | None = None
@@ -376,6 +395,7 @@ class YearRules(BaseModel):
     domestic_contributions: DomesticInpsRates | None = None
     tfr: TfrRules
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
+    sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
     notes: list[str] = []
     sources: list[SourceDocument] = []
     extraction: ExtractionTrace | None = None

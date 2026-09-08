@@ -1,6 +1,16 @@
 {
   "year": 2026,
   "sector": "credito",
+  "ruleset": {
+    "id": "tax/2026/credito",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "7ee18b8739b335e7fa5062fc12f98b533f74f1d168a23a196a16ba4e49017114"
+  },
   "irpef_brackets": [
     {
       "up_to": "28000.00",
@@ -42,6 +52,10 @@
     "threshold_upper": "28000",
     "max_amount": "1200"
   },
+  "sterilizzazione_detrazioni": {
+    "threshold": "200000.00",
+    "reduction": "440.00"
+  },
   "notes": [
     "IRPEF brackets: three-bracket structure per L. 199/2025 (Legge di Bilancio 2026); second bracket reduced from 35% to 33% effective 2026-01-01.",
     "work_deduction_breakpoints: Art. 13 co. 1 TUIR, as modified by D.Lgs. 216/2023 and confirmed by L. 207/2024.",
@@ -49,16 +63,7 @@
     "fixed_term_additional_rate: NASpI addizionale base rate 1.4% (employer-only) per Art. 2 co. 28 L. 92/2012.",
     "INPS dipendente — employee_rate 9.19% flat confirmed (kitech.it 2026); includes IVS employee share + NASpI employee share. Fondo di solidarietà employee share (if not included in 9.19%) would be an additional ~0.17% — see SIMPLIFICATION note above.",
     "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
-    "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026, Art. 1 L. 335/1995 c. 18). Applies only when ivs_ceiling_applies=True (workers enrolled in INPS on or after 1 Jan 1996)."
-  ],
-  "ruleset": {
-    "id": "tax/2026/credito",
-    "version": "2026.1",
-    "effective_from": "2026-01-01",
-    "effective_until": "2026-12-31",
-    "published_at": "2026-09-07",
-    "source": "unavailable",
-    "verification_status": "unverified",
-    "source_hash": "c9e325825d41d9bacb6ddf77e8b871fabb45878c816ab8d9f56796c2398224fe"
-  }
+    "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026, Art. 1 L. 335/1995 c. 18). Applies only when ivs_ceiling_applies=True (workers enrolled in INPS on or after 1 Jan 1996).",
+    "Sterilizzazione detrazioni: Art. 1 c. 3-4 L. 199/2025 — for reddito complessivo > EUR 200 000, total detrazioni (Art. 12 + Art. 13 TUIR) reduced by EUR 440 (clawback of the 35% -> 33% bracket benefit on the 28 000-50 000 slice)."
+  ]
 }

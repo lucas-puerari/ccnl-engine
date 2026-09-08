@@ -9,12 +9,16 @@ from decimal import Decimal
 from typing import Any
 
 from ccnl_engine.engine.payroll.service.irpef import (
+    apply_sterilizzazione_detrazioni,
     irpef_gross,
     surtax_from_brackets,
     work_income_deduction,
 )
 from ccnl_engine.engine.surtax.domain.rules import SurtaxBracket
-from ccnl_engine.engine.tax.domain.rules import YearRules
+from ccnl_engine.engine.tax.domain.rules import (
+    SterilizzazioneDetrazioniRules,
+    YearRules,
+)
 from tests.helpers import make_year_rules
 
 # ---------------------------------------------------------------------------
@@ -256,3 +260,59 @@ class TestSurtaxFromBrackets:
         """A zero-rate flat bracket yields zero."""
         bs = _brackets((None, "0"))
         assert surtax_from_brackets(Decimal(30000), bs) == Decimal("0.00")
+
+
+# ---------------------------------------------------------------------------
+# apply_sterilizzazione_detrazioni (Art. 1 c. 3-4 L. 199/2025)
+# ---------------------------------------------------------------------------
+
+_STRD_RULES = SterilizzazioneDetrazioniRules(
+    threshold=Decimal("200000.00"),
+    reduction=Decimal("440.00"),
+)
+
+
+class TestApplySterilizzazioneDetrazioni:
+    """Unit tests for apply_sterilizzazione_detrazioni()."""
+
+    def test_below_threshold_unchanged(self) -> None:
+        """Income at or below threshold: deductions returned unchanged."""
+        work, fam = apply_sterilizzazione_detrazioni(
+            Decimal(0), Decimal(1200), Decimal("200000.00"), _STRD_RULES
+        )
+        assert work == Decimal(0)
+        assert fam == Decimal(1200)
+
+    def test_above_threshold_family_reduced(self) -> None:
+        """Income > 200k: family deduction reduced by 440 (work is already 0)."""
+        work, fam = apply_sterilizzazione_detrazioni(
+            Decimal(0), Decimal(1000), Decimal(250000), _STRD_RULES
+        )
+        assert work == Decimal("0.00")
+        assert fam == Decimal("560.00")
+
+    def test_above_threshold_family_floored_at_zero(self) -> None:
+        """Reduction larger than family deduction: family deduction → 0."""
+        work, fam = apply_sterilizzazione_detrazioni(
+            Decimal(0), Decimal(300), Decimal(300000), _STRD_RULES
+        )
+        assert work == Decimal("0.00")
+        assert fam == Decimal("0.00")
+
+    def test_above_threshold_work_absorbed_first(self) -> None:
+        """Reduction absorbed by work deduction before touching family."""
+        # Hypothetical: work=200, family=500, reduction=440 → total=260
+        # work=min(200, 260)=200, family=260-200=60
+        work, fam = apply_sterilizzazione_detrazioni(
+            Decimal(200), Decimal(500), Decimal(250000), _STRD_RULES
+        )
+        assert work == Decimal("200.00")
+        assert fam == Decimal("60.00")
+
+    def test_rules_none_unchanged(self) -> None:
+        """When rules is None, deductions are returned unchanged."""
+        work, fam = apply_sterilizzazione_detrazioni(
+            Decimal(700), Decimal(800), Decimal(250000), None
+        )
+        assert work == Decimal(700)
+        assert fam == Decimal(800)
