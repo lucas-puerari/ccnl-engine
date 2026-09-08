@@ -19,7 +19,16 @@ from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
 from ccnl_engine.engine.provenance.domain.source import SourceDocument, SourceKind
 
-CoverageStatus = Literal["implemented", "partial", "out_of_scope"]
+
+class CoverageStatus(StrEnum):
+    """Implementation status for a CCNL coverage layer."""
+
+    IMPLEMENTED = "implemented"
+    PARTIAL = "partial"
+    OUT_OF_SCOPE = "out_of_scope"
+    NOT_IMPLEMENTED = "not_implemented"
+
+
 LevelCategory = Literal["operaio", "impiegato", "quadro", "dirigente"]
 
 
@@ -303,8 +312,16 @@ class CCNLCoverage(BaseModel):
 
     Two orthogonal axes:
 
-    * **Coverage** (``layer_1`` / ``layer_2``): what the engine implements for
-      this contract — ``implemented``, ``partial``, or ``out_of_scope``.
+    * **Coverage** (``layer_1`` / ``layer_2`` / ``layer_3``): what the engine
+      implements for this contract — ``implemented``, ``partial``, or
+      ``out_of_scope``.
+
+      - L1 — Gross: base salary, seniority, fixed allowances, additional
+        months, hourly rate.
+      - L2 — Net: INPS contributions, TFR, IRPEF, regional/municipal surtax.
+      - L3 — Extended: overtime, sick/injury leave, performance bonuses,
+        welfare/benefits. Defaults to ``not_implemented``.
+
     * **Verification** (``verification_status``): how confident we are in the
       data behind that implementation — verified, unverified, or needs review.
 
@@ -316,6 +333,7 @@ class CCNLCoverage(BaseModel):
 
     layer_1: CoverageStatus
     layer_2: CoverageStatus
+    layer_3: CoverageStatus = CoverageStatus.NOT_IMPLEMENTED
     notes: list[CoverageNote]
     verification_status: VerificationStatus = VerificationStatus.UNVERIFIED
 

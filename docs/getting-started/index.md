@@ -14,7 +14,7 @@ The minimum working example: load a CCNL, describe the employee, compute the
 payroll.
 
 ```python
---8 < --"docs/examples/01_quickstart.py"
+--8<--"docs/examples/01_quickstart.py"
 ```
 
 ## Supported CCNLs

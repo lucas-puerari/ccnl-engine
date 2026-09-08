@@ -26,11 +26,11 @@ Coverage % = percentage of bundled CCNLs that implement the feature (partial = 0
 | IRPEF | 92% | Ritenuta IRPEF (esclusi withholding-exempt per design) |
 | Regional/municipal surtax | 92% | Addizionali -- richiede regione/comune in input |
 
-## Layer 3 -- Not implemented
+## Layer 3 -- Extended (not yet implemented)
 
 | Feature | Coverage | Note |
 |---------|----------|------|
-| Overtime | 0% | Non in scope -- engine layer 3 |
-| Sick/injury leave | 0% | Non in scope -- engine layer 3 |
-| Performance bonuses | 0% | Non in scope -- engine layer 3 |
-| Welfare/benefits | 0% | Non in scope -- engine layer 3 |
+| Overtime | 0% | Not yet implemented -- engine layer 3 |
+| Sick/injury leave | 0% | Not yet implemented -- engine layer 3 |
+| Performance bonuses | 0% | Not yet implemented -- engine layer 3 |
+| Welfare/benefits | 0% | Not yet implemented -- engine layer 3 |

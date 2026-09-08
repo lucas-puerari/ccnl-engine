@@ -24,5 +24,5 @@ from the bundled JSON:
 ## Usage example
 
 ```python
---8 < --"docs/examples/contracts/gomma-plastica-federazione-gomma-plastica.py"
+--8<--"docs/examples/contracts/gomma-plastica-federazione-gomma-plastica.py"
 ```
