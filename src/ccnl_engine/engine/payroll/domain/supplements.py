@@ -79,3 +79,29 @@ class AbsenceDays:
         if self.unpaid_days < _ZERO:
             msg = f"unpaid_days must be >= 0, got {self.unpaid_days}"
             raise ValueError(msg)
+
+
+@dataclass(frozen=True)
+class LeaveInput:
+    """Caller-declared leave days taken in one pay period.
+
+    Represents paid leave days (*ferie* / *permessi*) consumed during the
+    period. The engine computes the monthly accrual from the CCNL annual
+    entitlement and reports the net balance as informational output — it
+    does not alter ``gross_annual`` or ``net_annual``.
+
+    Attributes:
+        taken_days: Leave days consumed in the period. Must be >= 0.
+    """
+
+    taken_days: Decimal = _ZERO
+
+    def __post_init__(self) -> None:
+        """Validate that taken_days is non-negative.
+
+        Raises:
+            ValueError: If taken_days is negative.
+        """
+        if self.taken_days < _ZERO:
+            msg = f"taken_days must be >= 0, got {self.taken_days}"
+            raise ValueError(msg)

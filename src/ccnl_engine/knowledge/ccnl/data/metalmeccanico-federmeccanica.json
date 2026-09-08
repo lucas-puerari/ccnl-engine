@@ -1755,7 +1755,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "11a2e52d148371ee0fa923f8825673b45877162b4f8924b012802ba76bb57270",
+    "source_hash": "cca7edc0cd39cba9b9bdf7e8ec22e2117bcfac8c274dee31d7642bfc17e4829e",
     "published_at": "2026-09-08"
   },
   "layer_3": {
@@ -1881,6 +1881,36 @@
             "url": "https://www.contratticcnl.it/metalmeccanici/"
           },
           "section": "Art. 7 -- Trattamento economico (divisore giornaliero 26)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "20",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "20"
+        },
+        {
+          "service_months_min": 36,
+          "annual_days": "25"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "metalmeccanico-federmeccanica",
+            "title": "CCNL Industria Metalmeccanica e Installazione Impianti",
+            "kind": "tabella_retributiva",
+            "url": "https://www.contratticcnl.it/metalmeccanici/"
+          },
+          "section": "Art. 12 -- Ferie (20 gg/anno < 36 mesi; 25 gg/anno >= 36 mesi)"
         },
         "extraction": {
           "method": "manual",

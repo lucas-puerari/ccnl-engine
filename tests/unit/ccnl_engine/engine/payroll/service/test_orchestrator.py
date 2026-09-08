@@ -15,6 +15,8 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     Allowance,
     CCNLLayer3,
     DailyDivisorMethod,
+    LeaveEntitlementTier,
+    LeaveRules,
     SupplementaryAllowance,
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
@@ -32,7 +34,11 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Jurisdiction,
     PayrollScenario,
 )
-from ccnl_engine.engine.payroll.domain.supplements import AbsenceDays, OvertimeHours
+from ccnl_engine.engine.payroll.domain.supplements import (
+    AbsenceDays,
+    LeaveInput,
+    OvertimeHours,
+)
 from ccnl_engine.engine.payroll.service.orchestrator import _collect_provenance, compute
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.types import MonthlyPayChain
@@ -993,3 +999,89 @@ class TestL3Absence:
         result = compute(scenario).result
         scope = {item.feature: item.status for item in result.calculation_scope}
         assert scope["absence"] == "verified"
+
+
+class TestL3Leave:
+    """Orchestrator behaviour for L3 leave accrual."""
+
+    def test_warning_when_ccnl_has_no_leave_rules(self) -> None:
+        """Emit a warning when leave_input is set but CCNL has no leave_rules."""
+        scenario = dataclasses.replace(
+            _req(),
+            leave_input=LeaveInput(taken_days=_D("3")),
+        )
+        result = compute(scenario).result
+        assert any("leave_input" in w for w in result.warnings), (
+            f"Expected leave_input warning, got: {result.warnings}"
+        )
+        assert result.leave_accrued_days_monthly == _D("0")
+
+    def test_leave_accrual_with_l3_schema(self) -> None:
+        """Compute leave accrual when CCNL has leave_rules (flat, no tiers)."""
+        leave_rules = LeaveRules(default_annual_days=_D("20"))
+        _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
+            update={"layer_3": CCNLLayer3(leave_rules=leave_rules)}
+        )
+        scenario = dataclasses.replace(
+            _req(),
+            leave_input=LeaveInput(taken_days=_D("3")),
+        )
+        result = compute(scenario).result
+        assert not any("leave_input" in w for w in result.warnings)
+        # 20 / 12 = 1.67
+        assert result.leave_accrued_days_monthly == _D("1.67")
+        assert result.leave_taken_days_monthly == _D("3")
+        assert result.leave_balance_days == _D("-1.33")
+
+    def test_leave_accrual_selects_tier_by_service_months(self) -> None:
+        """Tier with highest matching service_months_min is selected."""
+        leave_rules = LeaveRules(
+            default_annual_days=_D("20"),
+            entitlement_tiers=[
+                LeaveEntitlementTier(service_months_min=0, annual_days=_D("20")),
+                LeaveEntitlementTier(service_months_min=36, annual_days=_D("25")),
+            ],
+        )
+        _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
+            update={"layer_3": CCNLLayer3(leave_rules=leave_rules)}
+        )
+        # Employee with 48 months → senior tier (25 days/year → 2.08/month)
+        scenario = dataclasses.replace(
+            _req(seniority_months=48),
+            leave_input=LeaveInput(taken_days=_D("0")),
+        )
+        result = compute(scenario).result
+        assert result.leave_accrued_days_monthly == _D("2.08")
+
+    def test_leave_scope_excluded_when_no_input(self) -> None:
+        """Leave scope item is excluded when no leave_input supplied."""
+        result = compute(_req()).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["leave"] == "excluded"
+
+    def test_leave_scope_not_computed_when_input_but_no_schema(self) -> None:
+        """Leave is not_computed when input given but CCNL has no leave_rules."""
+        scenario = dataclasses.replace(
+            _req(),
+            leave_input=LeaveInput(taken_days=_D("3")),
+        )
+        result = compute(scenario).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["leave"] == "not_computed"
+
+    def test_leave_scope_verified_with_schema(self) -> None:
+        """Leave is verified when input given and CCNL has leave_rules."""
+        _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
+            update={
+                "layer_3": CCNLLayer3(
+                    leave_rules=LeaveRules(default_annual_days=_D("20"))
+                )
+            }
+        )
+        scenario = dataclasses.replace(
+            _req(),
+            leave_input=LeaveInput(taken_days=_D("2")),
+        )
+        result = compute(scenario).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["leave"] == "verified"

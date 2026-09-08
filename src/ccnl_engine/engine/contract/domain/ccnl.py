@@ -180,6 +180,41 @@ class AbsenceRules(BaseModel):
     provenance: "RuleProvenance | None" = None
 
 
+class LeaveEntitlementTier(BaseModel):
+    """One seniority-gated leave entitlement tier.
+
+    When ``service_months_min`` months of service have elapsed, the worker
+    is entitled to ``annual_days`` paid leave days per year. Tiers are
+    evaluated in descending order of ``service_months_min``; the first
+    matching tier wins. Use :class:`LeaveRules.default_annual_days` as
+    the fallback when no tier matches or seniority is unknown.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    service_months_min: int = Field(default=0, ge=0)
+    annual_days: Decimal = Field(gt=Decimal(0))
+
+
+class LeaveRules(BaseModel):
+    """Layer 3 rules for paid leave (ferie / permessi) accrual.
+
+    ``default_annual_days`` is the contractual entitlement when no
+    seniority-gated tier matches or when seniority is unknown.
+    ``entitlement_tiers`` (optional) list tiers in any order; the engine
+    selects the one with the highest ``service_months_min`` that the
+    worker has satisfied.
+
+    ``provenance`` links this rule to its CCNL article.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    default_annual_days: Decimal = Field(gt=Decimal(0))
+    entitlement_tiers: list[LeaveEntitlementTier] = []
+    provenance: "RuleProvenance | None" = None
+
+
 class CCNLLayer3(BaseModel):
     """Container for Layer 3 rules attached to a CCNL data file."""
 
@@ -187,6 +222,7 @@ class CCNLLayer3(BaseModel):
 
     time_supplements: TimeSupplements | None = None
     absence_rules: AbsenceRules | None = None
+    leave_rules: LeaveRules | None = None
 
 
 class Allowance(BaseModel):

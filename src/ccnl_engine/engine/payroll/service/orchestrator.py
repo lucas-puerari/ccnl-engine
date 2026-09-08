@@ -25,6 +25,7 @@ from ccnl_engine.engine.payroll.service import irpef as _irpef
 from ccnl_engine.engine.payroll.service.absence import compute_absence_deduction
 from ccnl_engine.engine.payroll.service.apprenticeship import _apprentice_chain
 from ccnl_engine.engine.payroll.service.chain import _level_chain
+from ccnl_engine.engine.payroll.service.leave import compute_leave
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.seniority import _resolve_seniority_count
 from ccnl_engine.engine.payroll.service.supplements import compute_time_supplements
@@ -51,7 +52,11 @@ if TYPE_CHECKING:
         Permanent,
     )
     from ccnl_engine.engine.payroll.domain.scenario import Employment, PayrollScenario
-    from ccnl_engine.engine.payroll.domain.supplements import AbsenceDays, OvertimeHours
+    from ccnl_engine.engine.payroll.domain.supplements import (
+        AbsenceDays,
+        LeaveInput,
+        OvertimeHours,
+    )
     from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
     from ccnl_engine.engine.tax.domain.rules import DomesticInpsRates, YearRules
@@ -741,6 +746,54 @@ def _absence_feature_status(
     return "verified"
 
 
+def _run_l3_leave(
+    scenario: PayrollScenario,
+    ccnl: CCNL,
+    l3_warnings: list[str],
+) -> tuple[Decimal, Decimal, Decimal, bool]:
+    """Run the L3 leave-accrual block and return its outputs.
+
+    Returns:
+        A 4-tuple of (leave_accrued_days_monthly, leave_taken_days_monthly,
+        leave_balance_days, l3_leave_present).  All day counters are zero
+        when no leave input is supplied; a warning is appended when leave
+        is requested but the CCNL has no leave rules.
+    """
+    leave_input = scenario.leave_input
+    l3_leave_present = ccnl.layer_3 is not None and ccnl.layer_3.leave_rules is not None
+    if leave_input is None:
+        return _ZERO, _ZERO, _ZERO, l3_leave_present
+    if l3_leave_present:
+        assert ccnl.layer_3 is not None  # narrowing for mypy
+        assert ccnl.layer_3.leave_rules is not None
+        service_months = scenario.employee.seniority_months
+        accrued, taken, balance = compute_leave(
+            leave_input=leave_input,
+            leave_rules=ccnl.layer_3.leave_rules,
+            service_months=service_months,
+        )
+        return accrued, taken, balance, l3_leave_present
+    l3_warnings.append("leave_input requested but not modelled for this CCNL")
+    return _ZERO, leave_input.taken_days, _ZERO, l3_leave_present
+
+
+def _leave_feature_status(
+    leave_input: LeaveInput | None, l3_leave_present: bool
+) -> str:
+    """Return a ScopeItem status string for the leave feature.
+
+    Returns:
+        ``"verified"`` when leave days were supplied and the CCNL has
+        leave rules, ``"not_computed"`` when days were supplied but
+        the CCNL has no leave rules, ``"excluded"`` when no input.
+    """
+    if leave_input is None:
+        return "excluded"
+    if not l3_leave_present:
+        return "not_computed"
+    return "verified"
+
+
 def _build_scope(
     employer_withholds_irpef: bool,
     fiscal_simplifications: frozenset[FiscalSimplification],
@@ -748,6 +801,8 @@ def _build_scope(
     l3_schema_present: bool,
     absence_input: AbsenceDays | None,
     l3_absence_present: bool,
+    leave_input: LeaveInput | None,
+    l3_leave_present: bool,
 ) -> tuple[ScopeItem, ...]:
     """Build the calculation scope tuple for a PayrollResult.
 
@@ -824,6 +879,12 @@ def _build_scope(
             feature="absence",
             status=_absence_feature_status(  # type: ignore[arg-type]
                 absence_input, l3_absence_present
+            ),
+        ),
+        ScopeItem(
+            feature="leave",
+            status=_leave_feature_status(  # type: ignore[arg-type]
+                leave_input, l3_leave_present
             ),
         ),
     ]
@@ -1037,8 +1098,17 @@ def compute(scenario: PayrollScenario) -> Calculation:
         )
     )
 
+    # --- L3: leave accrual ---
+    (
+        leave_accrued_days_monthly,
+        leave_taken_days_monthly,
+        leave_balance_days,
+        l3_leave_present,
+    ) = _run_l3_leave(scenario=scenario, ccnl=ccnl, l3_warnings=l3_warnings)
+
     ts_input = scenario.time_supplements
     absence_input = scenario.absence_days
+    leave_input = scenario.leave_input
     calculation_scope = _build_scope(
         employer_withholds_irpef=employer_withholds_irpef,
         fiscal_simplifications=fiscal_simplifications,
@@ -1046,6 +1116,8 @@ def compute(scenario: PayrollScenario) -> Calculation:
         l3_schema_present=l3_schema_present,
         absence_input=absence_input,
         l3_absence_present=l3_absence_present,
+        leave_input=leave_input,
+        l3_leave_present=l3_leave_present,
     )
 
     result = PayrollResult(
@@ -1098,6 +1170,9 @@ def compute(scenario: PayrollScenario) -> Calculation:
         time_supplements_annual_projection=time_supplements_annual_projection,
         absence_deduction_monthly=absence_deduction_monthly,
         effective_gross_monthly=effective_gross_monthly,
+        leave_accrued_days_monthly=leave_accrued_days_monthly,
+        leave_taken_days_monthly=leave_taken_days_monthly,
+        leave_balance_days=leave_balance_days,
     )
 
     snapshot = InputSnapshot.capture(
