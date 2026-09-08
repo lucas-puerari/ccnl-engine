@@ -19,7 +19,7 @@ I never really understood employment contracts or pay slips. The whole system st
 Italian payroll is governed by collective agreements (CCNL) that define base salaries, seniority increments, and allowances as time-series values — they change at negotiated renewal dates. Existing tools either lock this data inside proprietary systems or require a full HRMS. This library treats each CCNL as a validated JSON file and the computation as a pure function:
 
 ```
-compute(ccnl, rules, employee) → Calculation
+compute(PayrollScenario) → Calculation
 ```
 
 The returned `Calculation` is self-describing: along with the `PayrollResult` (`.result`) it records the engine version, the exact CCNL / tax / INPS / surtax ruleset revisions used (`.ruleset_version`), and a snapshot of the inputs (`.input_snapshot`) — so any figure can be traced back to the engine and data that produced it.
@@ -29,21 +29,19 @@ The returned `Calculation` is self-describing: along with the `PayrollResult` (`
 ```python
 from datetime import date
 from ccnl_engine import (
-    ContractPosition, Employee, Permanent,
-    WorkArrangement, compute, load_ccnl, load_year_rules,
+    Employee, Employer, Employment,
+    PayrollScenario, Permanent, compute,
 )
 
-ccnl = load_ccnl("commercio-confcommercio.json")
-rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
-employee = Employee(
-    position=ContractPosition(
-        level_code="4",
-        as_of=date(2026, 9, 1),
-        employment=Permanent(),
+calculation = compute(PayrollScenario(
+    employee=Employee(level_code="4"),
+    employment=Employment(
+        ccnl="commercio-confcommercio.json",
+        contract=Permanent(),
+        employer=Employer(num_employees=50),
+        date=date(2026, 9, 1),
     ),
-    arrangement=WorkArrangement(),
-)
-calculation = compute(ccnl, rules, employee)
+))
 
 payroll = calculation.result  # attributes are also forwarded onto the calculation
 print(payroll.net_annual)              # → Decimal('...')

@@ -3,28 +3,27 @@
 from datetime import date
 
 from ccnl_engine import (
-    ContractPosition,
     Employee,
+    Employer,
+    Employment,
+    PayrollScenario,
     Permanent,
-    WorkArrangement,
     compute,
-    load_ccnl,
-    load_year_rules,
 )
 
-ccnl = load_ccnl("bancari-abi.json")
-rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
-
-employee = Employee(
-    position=ContractPosition(
-        level_code="3A4",
-        as_of=date(2026, 9, 1),
-        employment=Permanent(),
-    ),
-    arrangement=WorkArrangement(),
+p = compute(
+    PayrollScenario(
+        employee=Employee(
+            level_code="3A4",
+        ),
+        employment=Employment(
+            ccnl="bancari-abi.json",
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            date=date(2026, 9, 1),
+        ),
+    )
 )
-
-p = compute(ccnl, rules, employee)
 print(f"Gross monthly: {p.gross_monthly} EUR")
 print(f"Net annual:    {p.net_annual} EUR")
 print(f"Employer cost: {p.employer_cost_annual} EUR")

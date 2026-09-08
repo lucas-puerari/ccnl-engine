@@ -12,7 +12,7 @@ Pass `part_time_pct` (a `Decimal` between 0 and 1 exclusive) to
 proportionally. Individually frozen *ad personam* amounts do not scale.
 
 ```python
---8<-- "docs/examples/04_part_time.py"
+--8 < --"docs/examples/04_part_time.py"
 ```
 
 ## Seniority increments (*scatti di anzianità*)
@@ -24,7 +24,7 @@ Two equivalent ways to specify seniority:
   the CCNL cadence.
 
 ```python
---8<-- "docs/examples/05_seniority.py"
+--8 < --"docs/examples/05_seniority.py"
 ```
 
 ## Individually negotiated salary (*RAL concordata*)
@@ -37,7 +37,7 @@ table.
 This is mutually exclusive with `Employer.second_level_allowances`.
 
 ```python
---8<-- "docs/examples/09_negotiated_ral.py"
+--8 < --"docs/examples/09_negotiated_ral.py"
 ```
 
 **API reference:** [`WorkArrangement`](../api/engine.md),

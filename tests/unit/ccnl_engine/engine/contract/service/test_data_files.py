@@ -14,12 +14,13 @@ from ccnl_engine.engine.contract.domain.apprenticeship import (
 )
 from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
-from ccnl_engine.engine.payroll.domain.employee import (
-    ContractPosition,
-    Employee,
-    WorkArrangement,
-)
 from ccnl_engine.engine.payroll.domain.employment import Apprentice
+from ccnl_engine.engine.payroll.domain.scenario import (
+    Employee,
+    Employer,
+    Employment,
+    PayrollScenario,
+)
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 from ccnl_engine.engine.payroll.service.seniority import seniority_maximum
 from ccnl_engine.engine.tax.domain.rules import YearRules
@@ -1279,19 +1280,16 @@ class TestLoadAlimentariFederalimentare:
 
     def test_alimentari_federalimentare_apprentice_under_classification(self) -> None:
         """Apprentice 5 months elapsed → under level 4 (period 0-9 months)."""
-        ccnl = load_ccnl("alimentari-federalimentare.json")
-        rules = load_year_rules(2026, TaxSector.INDUSTRIA, num_employees=50)
         result = compute(
-            ccnl,
-            rules,
-            Employee(
-                position=ContractPosition(
-                    level_code="3A",
-                    as_of=date(2026, 1, 1),
-                    employment=Apprentice(months_elapsed=5),
+            PayrollScenario(
+                employee=Employee(level_code="3A"),
+                employment=Employment(
+                    ccnl="alimentari-federalimentare.json",
+                    contract=Apprentice(months_elapsed=5),
+                    employer=Employer(num_employees=50),
+                    date=date(2026, 1, 1),
                 ),
-                arrangement=WorkArrangement(),
-            ),
+            )
         )
         assert result.apprenticeship_under_level_code == "4"
         assert result.apprenticeship_pct is None
@@ -2657,19 +2655,16 @@ class TestLoadBccCreditoCooperativo:
 
     def test_bcc_credito_cooperativo_apprentice_compute(self) -> None:
         """Apprentice 12 months elapsed → salary at 2AP2 level."""
-        ccnl = load_ccnl("bcc-credito-cooperativo.json")
-        rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
         result = compute(
-            ccnl,
-            rules,
-            Employee(
-                position=ContractPosition(
-                    level_code="3AP1",
-                    as_of=date(2026, 6, 1),
-                    employment=Apprentice(months_elapsed=12),
+            PayrollScenario(
+                employee=Employee(level_code="3AP1"),
+                employment=Employment(
+                    ccnl="bcc-credito-cooperativo.json",
+                    contract=Apprentice(months_elapsed=12),
+                    employer=Employer(num_employees=50),
+                    date=date(2026, 6, 1),
                 ),
-                arrangement=WorkArrangement(),
-            ),
+            )
         )
         # At 12 months, pay level is 2AP2 (under-classification)
         assert result.apprenticeship_under_level_code == "2AP2"

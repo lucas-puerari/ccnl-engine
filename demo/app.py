@@ -12,35 +12,32 @@ import json
 import operator
 from datetime import UTC, datetime
 from decimal import Decimal
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
 
 from ccnl_engine.engine.contract.domain.ccnl import SupplementaryAllowance
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 from ccnl_engine.engine.io.bundled import read_bundled
 from ccnl_engine.engine.payroll.domain.employee import (
-    ContractPosition,
-    Employee,
     RalOverride,
-    SalaryOverrides,
     SeniorityByCount,
     SeniorityByMonths,
-    TaxProfile,
-    WorkArrangement,
 )
-from ccnl_engine.engine.payroll.domain.employer import Employer
 from ccnl_engine.engine.payroll.domain.employment import (
     Apprentice,
     FixedTerm,
     Permanent,
 )
+from ccnl_engine.engine.payroll.domain.scenario import (
+    Agreement,
+    Employee,
+    Employer,
+    Employment,
+    Jurisdiction,
+    PayrollScenario,
+)
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
-from ccnl_engine.engine.tax.service.loaders import load_year_rules
 
-_DEFAULT_YEAR = 2026
+_DEFAULT_YEAR = datetime.now(UTC).year
 
 
 def list_regioni() -> str:
@@ -125,14 +122,14 @@ def load_ccnl_levels(filename: str) -> str:
     return json.dumps(levels)
 
 
-def _build_employment(
+def _build_contract(
     employment_type: str,
     months_elapsed: int,
 ) -> tuple[Permanent | FixedTerm | Apprentice | None, str]:
-    """Construct an Employment instance or return (None, error_message).
+    """Construct a contract instance or return (None, error_message).
 
     Returns:
-        A ``(employment, "")`` pair on success or ``(None, error)`` on failure.
+        A ``(contract, "")`` pair on success or ``(None, error)`` on failure.
     """
     if employment_type == "permanent":
         return Permanent(), ""
@@ -143,31 +140,24 @@ def _build_employment(
     return None, f"Tipo di contratto non supportato: {employment_type!r}"
 
 
-def _build_locality(
+def _build_jurisdiction(
     regione: str,
     comune_belfiore: str,
     ivs_ceiling_applies: bool,
-) -> tuple[SurtaxRules | None, TaxProfile | None]:
-    """Load surtax rules and build a TaxProfile when locality data is provided.
-
-    A TaxProfile is built whenever regione, comune_belfiore, or
-    ivs_ceiling_applies are set. SurtaxRules are loaded only when at least one
-    of regione or comune_belfiore is non-empty.
+) -> Jurisdiction | None:
+    """Build a Jurisdiction when locality data or IVS flag is provided.
 
     Returns:
-        ``(surtax, tax)`` pair. ``surtax`` is ``None`` when no locality key
-        is given; ``tax`` is ``None`` when no locality or ceiling flag is set.
+        A :class:`Jurisdiction` instance, or ``None`` when no locality keys
+        are given and IVS ceiling does not apply.
     """
     has_locality = bool(regione or comune_belfiore)
     if not has_locality and not ivs_ceiling_applies:
-        return None, None
-    surtax = load_surtax_rules(_DEFAULT_YEAR) if has_locality else None
-    tax = TaxProfile(
+        return None
+    return Jurisdiction(
         regione=regione or None,
         comune_belfiore=comune_belfiore or None,
-        ivs_ceiling_applies=ivs_ceiling_applies,
     )
-    return surtax, tax
 
 
 def _build_seniority(
@@ -195,8 +185,8 @@ def _build_seniority(
 def _build_agreement(
     ad_personam_monthly: float,
     ral_override: float,
-) -> SalaryOverrides | None:
-    """Build a SalaryOverrides from optional ad-personam and RAL inputs.
+) -> Agreement | None:
+    """Build an Agreement from optional ad-personam and RAL inputs.
 
     Args:
         ad_personam_monthly: Individual frozen monthly supplement in EUR.
@@ -205,11 +195,11 @@ def _build_agreement(
             Zero means use the CCNL tables.
 
     Returns:
-        A :class:`SalaryOverrides` instance, or ``None`` when both are zero.
+        An :class:`Agreement` instance, or ``None`` when both are zero.
     """
     if ad_personam_monthly <= 0 and ral_override <= 0:
         return None
-    return SalaryOverrides(
+    return Agreement(
         ral_override=RalOverride(value=Decimal(str(ral_override)))
         if ral_override > 0
         else None,
@@ -219,59 +209,31 @@ def _build_agreement(
     )
 
 
-def _build_employer(second_level_monthly: float) -> Employer | None:
-    """Build an Employer with a single second-level allowance when amount > 0.
+def _build_employer(
+    num_employees: int,
+    second_level_monthly: float,
+) -> Employer:
+    """Build an Employer, optionally with a single second-level allowance.
 
     Args:
+        num_employees: Employer headcount.
         second_level_monthly: Monthly amount from the territorial or company
             second-level agreement in EUR. Zero means no second-level.
 
     Returns:
-        An :class:`Employer` instance, or ``None`` when amount is zero.
+        An :class:`Employer` instance.
     """
     if second_level_monthly <= 0:
-        return None
+        return Employer(num_employees=num_employees)
     return Employer(
+        num_employees=num_employees,
         second_level_allowances=(
             SupplementaryAllowance(
                 code="SL",
                 description="Second-level agreement",
                 monthly=Decimal(str(second_level_monthly)),
             ),
-        )
-    )
-
-
-def _build_employee(
-    ccnl: object,
-    level_code: str,
-    employment: Permanent | FixedTerm | Apprentice,
-    part_time_pct: float,
-    seniority: SeniorityByCount | SeniorityByMonths | None,
-    tax: TaxProfile | None,
-    agreement: SalaryOverrides | None,
-) -> Employee:
-    """Construct an :class:`Employee` from the form parameters.
-
-    Returns:
-        A fully initialised :class:`Employee` ready for :func:`compute`.
-    """
-    is_domestic = getattr(getattr(ccnl, "meta", None), "tax_sector", "") == (
-        "lavoro-domestico"
-    )
-    return Employee(
-        position=ContractPosition(
-            level_code=level_code,
-            as_of=datetime.now(tz=UTC).date(),
-            employment=employment,
         ),
-        arrangement=WorkArrangement(
-            part_time_pct=Decimal(str(round(part_time_pct, 4))),
-            seniority=seniority,
-            weekly_hours=Decimal(40) if is_domestic else None,
-        ),
-        tax=tax,
-        agreement=agreement,
     )
 
 
@@ -322,22 +284,41 @@ def compute_salary(
     Returns:
         JSON-encoded result dict or ``{"error": "..."}`` on failure.
     """
-    employment, err = _build_employment(employment_type, months_elapsed)
-    if employment is None:
+    contract, err = _build_contract(employment_type, months_elapsed)
+    if contract is None:
         return json.dumps({"error": err})
 
     seniority = _build_seniority(seniority_mode, seniority_value)
-    surtax, tax = _build_locality(regione, comune_belfiore, ivs_ceiling_applies)
+    jurisdiction = _build_jurisdiction(regione, comune_belfiore, ivs_ceiling_applies)
     agreement = _build_agreement(ad_personam_monthly, ral_override)
-    employer = _build_employer(second_level_monthly)
+    employer = _build_employer(num_employees, second_level_monthly)
+
+    # Detect lavoro domestico to auto-supply weekly_hours.
+    try:
+        ccnl_meta = load_ccnl(filename).meta
+        is_domestic = getattr(ccnl_meta, "tax_sector", "") == "lavoro-domestico"
+    except Exception:  # ruff: ignore[blind-except]
+        is_domestic = False
 
     try:
-        ccnl = load_ccnl(filename)
-        rules = load_year_rules(_DEFAULT_YEAR, ccnl.meta.tax_sector, num_employees)
-        employee = _build_employee(
-            ccnl, level_code, employment, part_time_pct, seniority, tax, agreement
+        scenario = PayrollScenario(
+            employee=Employee(
+                level_code=level_code,
+                seniority=seniority,
+                part_time_pct=Decimal(str(round(part_time_pct, 4))),
+                weekly_hours=Decimal(40) if is_domestic else None,
+                ivs_ceiling_applies=ivs_ceiling_applies,
+                jurisdiction=jurisdiction,
+                agreement=agreement,
+            ),
+            employment=Employment(
+                ccnl=filename,
+                contract=contract,
+                employer=employer,
+                date=datetime.now(tz=UTC).date(),
+            ),
         )
-        calculation = compute(ccnl, rules, employee, employer=employer, surtax=surtax)
+        calculation = compute(scenario)
         payroll = calculation.result
     except Exception as exc:  # ruff: ignore[blind-except]
         return json.dumps({"error": str(exc)})

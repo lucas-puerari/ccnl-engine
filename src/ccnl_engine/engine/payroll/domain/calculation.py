@@ -1,8 +1,8 @@
 """Calculation provenance: what a payroll computation used and how to replay it.
 
 A :class:`Calculation` wraps the
-:class:`~ccnl_engine.engine.payroll.domain.payroll_result.PayrollResult` with everything
-needed to reproduce it later: the engine version that ran it, the
+:class:`~ccnl_engine.engine.payroll.domain.payroll_result.PayrollResult` with
+everything needed to reproduce it later: the engine version that ran it, the
 identity/version of every ruleset it consumed, and a serialisable snapshot of
 the raw inputs. The snapshot can be serialised to JSON and, given the same
 (possibly re-loaded) knowledge-base rulesets, replayed through ``compute`` to
@@ -21,14 +21,11 @@ from enum import Enum, StrEnum
 from types import UnionType
 from typing import TYPE_CHECKING, Any, cast, get_origin
 
-from ccnl_engine.engine.payroll.domain.employee import Employee
-from ccnl_engine.engine.payroll.domain.employer import Employer
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
+from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
-    from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
-    from ccnl_engine.engine.tax.domain.rules import YearRules
+    from ccnl_engine.engine.contract.domain.ccnl import TaxSector
 
 # ---------------------------------------------------------------------------
 # JSON-native serialisation of the frozen input dataclasses
@@ -74,8 +71,8 @@ def _dump(value: object) -> object:  # ruff: ignore[too-many-return-statements]
     """Convert an input value to a JSON-native object (lossless round-trip).
 
     Any key named ``source_hash`` is not special here; this helper only shapes
-    values for :class:`InputSnapshot`, mirroring :meth:`PayrollResult.to_dict` for
-    the richer input dataclasses.
+    values for :class:`InputSnapshot`, mirroring :meth:`PayrollResult.to_dict`
+    for the richer input dataclasses.
 
     Returns:
         A JSON-native value: ``str``/``int``/``bool``/``None`` scalars pass
@@ -256,20 +253,14 @@ def _load_dataclass(dc: type, raw: object) -> object:
 
 
 def _materialise(
-    employee_data: dict[str, object],
-    employer_data: dict[str, object] | None,
-) -> tuple[Employee, Employer | None]:
-    """Rebuild the :class:`Employee` and :class:`Employer` from the snapshot.
+    scenario_data: dict[str, object],
+) -> PayrollScenario:
+    """Rebuild the :class:`PayrollScenario` from the snapshot.
 
     Returns:
-        The reconstructed (employee, employer) pair.
+        The reconstructed :class:`PayrollScenario`.
     """
-    employee = cast(Employee, _load_by_hint(Employee, employee_data))
-    employer = cast(
-        Employer | None,
-        _load_by_hint(Employer, employer_data) if employer_data else None,
-    )
-    return employee, employer
+    return cast(PayrollScenario, _load_by_hint(PayrollScenario, scenario_data))
 
 
 # ---------------------------------------------------------------------------
@@ -401,67 +392,57 @@ class InputSnapshot:
         tax_sector: INPS tax-sector classification used to load tax rules.
         year: Fiscal/tax year of the computation (from ``YearRules.year``).
         uses_surtax: ``True`` when addizionale rules were applied.
-        employee: JSON-native serialisation of the :class:`Employee`.
-        employer: JSON-native serialisation of the :class:`Employer`, or
-            ``None`` when no employer-side inputs were given.
+        scenario: JSON-native serialisation of the :class:`PayrollScenario`.
     """
 
     ccnl_id: str
     tax_sector: str
     year: int
     uses_surtax: bool
-    employee: dict[str, object]
-    employer: dict[str, object] | None = None
+    scenario: dict[str, object]
 
     @classmethod
     def capture(
         cls,
-        employee: Employee,
-        employer: Employer | None,
+        scenario: PayrollScenario,
         ccnl_id: str,
         tax_sector: TaxSector,
         year: int,
         uses_surtax: bool,
     ) -> InputSnapshot:
-        """Build a snapshot from live input objects.
+        """Build a snapshot from a live :class:`PayrollScenario`.
 
         Returns:
-            A new snapshot carrying the JSON-native copies of the inputs.
+            A new snapshot carrying the JSON-native copy of the scenario.
         """
         return cls(
             ccnl_id=ccnl_id,
             tax_sector=str(tax_sector),
             year=year,
             uses_surtax=uses_surtax,
-            employee=cast(dict[str, object], _dump(employee)),
-            employer=(
-                cast(dict[str, object], _dump(employer))
-                if employer is not None
-                else None
-            ),
+            scenario=cast(dict[str, object], _dump(scenario)),
         )
 
-    def materialise(self) -> tuple[Employee, Employer | None]:
-        """Rebuild the :class:`Employee` and :class:`Employer` objects.
+    def materialise(self) -> PayrollScenario:
+        """Rebuild the :class:`PayrollScenario` from the snapshot.
 
         Returns:
-            The tuple ``(employee, employer)`` restored from the snapshot.
+            The reconstructed :class:`PayrollScenario`.
         """
-        return _materialise(self.employee, self.employer)
+        return _materialise(self.scenario)
 
     def to_dict(self) -> dict[str, object]:
         """Serialise the snapshot to a JSON-native dict.
 
         Returns:
-            A dictionary with ``str``/``int``/``bool``/``dict``/``None`` values.
+            A dictionary with ``str``/``int``/``bool``/``dict`` values.
         """
         return {
             "ccnl_id": self.ccnl_id,
             "tax_sector": self.tax_sector,
             "year": self.year,
             "uses_surtax": self.uses_surtax,
-            "employee": self.employee,
-            "employer": self.employer,
+            "scenario": self.scenario,
         }
 
     @classmethod
@@ -479,8 +460,7 @@ class InputSnapshot:
             tax_sector=str(data["tax_sector"]),
             year=int(str(data["year"])),
             uses_surtax=bool(data["uses_surtax"]),
-            employee=cast(dict[str, object], data["employee"]),
-            employer=cast(dict[str, object] | None, data.get("employer")),
+            scenario=cast(dict[str, object], data["scenario"]),
         )
 
     def to_json(self) -> str:
@@ -540,25 +520,14 @@ class Calculation:
         """
         return getattr(self.result, name)
 
-    def reproduce(
-        self,
-        ccnl: CCNL,
-        rules: YearRules,
-        surtax: SurtaxRules | None = None,
-    ) -> Calculation:
-        """Replay this calculation against the given (re-loaded) rulesets.
+    def reproduce(self) -> Calculation:
+        """Replay this calculation using the scenario stored in the snapshot.
 
-        ``ccnl``, ``rules`` and ``surtax`` must be loaded from the knowledge
-        base at the versions recorded in :attr:`ruleset_version`; the
-        :class:`Employee` and :class:`Employer` are rebuilt from the snapshot.
-        The returned :class:`Calculation` will carry the same inputs and an
-        identical :attr:`result`.
-
-        Args:
-            ccnl: The CCNL ruleset to replay against.
-            rules: The tax/INPS ruleset to replay against.
-            surtax: The surtax ruleset to replay against, or ``None`` if the
-                original calculation did not use one.
+        The :class:`PayrollScenario` is rebuilt from the snapshot and passed
+        back through :func:`~ccnl_engine.engine.payroll.service.orchestrator\
+.compute`, which re-loads the rulesets from the currently installed knowledge
+        base. The returned :class:`Calculation` will carry the same inputs and
+        an identical :attr:`result` when the knowledge base has not changed.
 
         Returns:
             A new :class:`Calculation` equal to the original.
@@ -567,14 +536,8 @@ class Calculation:
             compute,
         )
 
-        employee, employer = self.input_snapshot.materialise()
-        return compute(
-            ccnl,
-            rules,
-            employee,
-            employer=employer,
-            surtax=surtax,
-        )
+        scenario = self.input_snapshot.materialise()
+        return compute(scenario)
 
     def to_dict(self) -> dict[str, object]:
         """Serialise the full calculation to a JSON-native dict.

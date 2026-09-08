@@ -8,38 +8,37 @@ to a permanent contract.
 from datetime import date
 
 from ccnl_engine import (
-    ContractPosition,
     Employee,
+    Employer,
+    Employment,
     FixedTerm,
+    PayrollScenario,
     Permanent,
-    WorkArrangement,
     compute,
-    load_ccnl,
-    load_year_rules,
 )
 
-ccnl = load_ccnl("commercio-confcommercio.json")
-rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
-
-base_employee = Employee(
-    position=ContractPosition(
-        level_code="4",
-        as_of=date(2026, 1, 1),
-        employment=Permanent(),
-    ),
-    arrangement=WorkArrangement(),
+permanent = compute(
+    PayrollScenario(
+        employee=Employee(level_code="4"),
+        employment=Employment(
+            ccnl="commercio-confcommercio.json",
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            date=date(2026, 1, 1),
+        ),
+    )
 )
-ft_employee = Employee(
-    position=ContractPosition(
-        level_code="4",
-        as_of=date(2026, 1, 1),
-        employment=FixedTerm(),
-    ),
-    arrangement=WorkArrangement(),
+fixed_term = compute(
+    PayrollScenario(
+        employee=Employee(level_code="4"),
+        employment=Employment(
+            ccnl="commercio-confcommercio.json",
+            contract=FixedTerm(),
+            employer=Employer(num_employees=50),
+            date=date(2026, 1, 1),
+        ),
+    )
 )
-
-permanent = compute(ccnl, rules, base_employee)
-fixed_term = compute(ccnl, rules, ft_employee)
 
 print(f"Employer INPS — permanent:   {permanent.inps_employer_annual} EUR")
 print(f"Employer INPS — fixed-term:  {fixed_term.inps_employer_annual} EUR")

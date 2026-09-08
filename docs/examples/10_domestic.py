@@ -4,36 +4,36 @@ Domestic work uses a different contribution system: flat per-hour INPS
 rates (not percentage-based), and the employer does NOT withhold IRPEF
 (employer_withholds_irpef = False).
 
-Required: pass weekly_hours in WorkArrangement.
+Required: pass weekly_hours in Employee.
 """
 
 from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
-    ContractPosition,
     Employee,
+    Employer,
+    Employment,
+    PayrollScenario,
     Permanent,
-    WorkArrangement,
     compute,
-    load_ccnl,
-    load_year_rules,
 )
 
 # Convivente (live-in) domestic worker, super-minimum level, 40h/week.
-ccnl = load_ccnl("lavoro-domestico-convivente.json")
-rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=1)
-
-employee = Employee(
-    position=ContractPosition(
-        level_code="CS",  # convivente super-minimum
-        as_of=date(2026, 1, 1),
-        employment=Permanent(),
-    ),
-    arrangement=WorkArrangement(weekly_hours=Decimal(40)),
+p = compute(
+    PayrollScenario(
+        employee=Employee(
+            level_code="CS",  # convivente super-minimum
+            weekly_hours=Decimal(40),
+        ),
+        employment=Employment(
+            ccnl="lavoro-domestico-convivente.json",
+            contract=Permanent(),
+            employer=Employer(num_employees=1),
+            date=date(2026, 1, 1),
+        ),
+    )
 )
-
-p = compute(ccnl, rules, employee)
 
 print(f"Gross monthly:         {p.gross_monthly} EUR")
 print(f"INPS employee annual:  {p.inps_employee_annual} EUR")

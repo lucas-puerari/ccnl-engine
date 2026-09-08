@@ -7,7 +7,7 @@ from enum import Enum
 
 import pytest
 
-from ccnl_engine.engine.contract.domain.ccnl import TaxSector
+from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
 from ccnl_engine.engine.payroll.domain.calculation import (
     Calculation,
     InputSnapshot,
@@ -16,27 +16,63 @@ from ccnl_engine.engine.payroll.domain.calculation import (
     _load_dataclass,
     _load_union,
 )
-from ccnl_engine.engine.payroll.domain.employee import (
-    ContractPosition,
-    Employee,
-    SeniorityByCount,
-    TaxProfile,
-    WorkArrangement,
-)
+from ccnl_engine.engine.payroll.domain.employee import SeniorityByCount
 from ccnl_engine.engine.payroll.domain.employment import Permanent
+from ccnl_engine.engine.payroll.domain.scenario import (
+    Employee,
+    Employer,
+    Employment,
+    PayrollScenario,
+)
 from ccnl_engine.engine.payroll.service.orchestrator import _ruleset_versions, compute
 from tests.helpers import make_minimal_ccnl, make_year_rules
+from tests.unit.ccnl_engine.engine.payroll.service.builders import (
+    _CCNL_FILENAME,
+    _req,
+)
+
+# ---------------------------------------------------------------------------
+# Module-level mutable mock state (reset per-test by the autouse fixture)
+# ---------------------------------------------------------------------------
+
+_DEFAULT_CCNL = make_minimal_ccnl()
+_DEFAULT_RULES = make_year_rules()
+
+_mock_ccnl: list[CCNL] = [_DEFAULT_CCNL]
+_mock_rules: list[object] = [_DEFAULT_RULES]
 
 
-def _employee() -> Employee:
-    return Employee(
-        position=ContractPosition(
+@pytest.fixture(autouse=True)
+def _patch_loaders(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Patch the three loaders in orchestrator and reset mock state."""
+    _mock_ccnl[:] = [_DEFAULT_CCNL]
+    _mock_rules[:] = [_DEFAULT_RULES]
+    monkeypatch.setattr(
+        "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl",
+        lambda _: _mock_ccnl[0],
+    )
+    monkeypatch.setattr(
+        "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
+        lambda *_: _mock_rules[0],
+    )
+    monkeypatch.setattr(
+        "ccnl_engine.engine.payroll.service.orchestrator.load_surtax_rules",
+        lambda _: None,
+    )
+
+
+def _scenario() -> PayrollScenario:
+    return PayrollScenario(
+        employee=Employee(
             level_code="4",
-            as_of=date(2026, 6, 1),
-            employment=Permanent(),
+            seniority=SeniorityByCount(2),
         ),
-        arrangement=WorkArrangement(seniority=SeniorityByCount(2)),
-        tax=TaxProfile(regione="Lombardia", comune_belfiore="F205"),
+        employment=Employment(
+            ccnl=_CCNL_FILENAME,
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            date=date(2026, 6, 1),
+        ),
     )
 
 
@@ -44,27 +80,47 @@ class TestInputSnapshot:
     """InputSnapshot captures and materialises raw inputs losslessly."""
 
     def test_capture_and_materialise(self) -> None:
-        """capture()->materialise() rebuilds the same Employee."""
+        """capture()->materialise() rebuilds the same PayrollScenario."""
         snapshot = InputSnapshot.capture(
-            employee=_employee(),
-            employer=None,
+            scenario=_scenario(),
             ccnl_id="test",
             tax_sector=TaxSector.TERZIARIO,
             year=2026,
             uses_surtax=True,
         )
-        employee, employer = snapshot.materialise()
-        assert isinstance(employee, Employee)
-        assert employer is None
+        recovered = snapshot.materialise()
+        assert isinstance(recovered, PayrollScenario)
         assert snapshot.ccnl_id == "test"
         assert snapshot.year == 2026
         assert snapshot.uses_surtax is True
 
+    def test_materialise_preserves_tax_year_override(self) -> None:
+        """materialise() round-trips Optional[int] tax_year when non-None."""
+        scenario = PayrollScenario(
+            employee=Employee(level_code="4"),
+            employment=Employment(
+                ccnl=_CCNL_FILENAME,
+                contract=Permanent(),
+                employer=Employer(num_employees=50),
+                date=date(2025, 11, 1),
+                tax_year=2026,
+            ),
+        )
+        snapshot = InputSnapshot.capture(
+            scenario=scenario,
+            ccnl_id="test",
+            tax_sector=TaxSector.TERZIARIO,
+            year=2026,
+            uses_surtax=False,
+        )
+        recovered = snapshot.materialise()
+        assert recovered.employment.tax_year == 2026
+        assert recovered.employment.date.year == 2025
+
     def test_roundtrip_dict_json(self) -> None:
         """to_dict/from_dict and to_json/from_json round-trip."""
         snapshot = InputSnapshot.capture(
-            employee=_employee(),
-            employer=None,
+            scenario=_scenario(),
             ccnl_id="test",
             tax_sector=TaxSector.TERZIARIO,
             year=2026,
@@ -76,8 +132,7 @@ class TestInputSnapshot:
     def test_missing_key_raises(self) -> None:
         """from_dict raises KeyError when a required key is absent."""
         snapshot = InputSnapshot.capture(
-            employee=_employee(),
-            employer=None,
+            scenario=_scenario(),
             ccnl_id="test",
             tax_sector=TaxSector.TERZIARIO,
             year=2026,
@@ -94,7 +149,7 @@ class TestCalculation:
 
     def test_compute_returns_calculation(self) -> None:
         """Compute returns a Calculation with engine version and rulesets."""
-        calc = compute(make_minimal_ccnl(), make_year_rules(), _employee())
+        calc = compute(_req())
         assert isinstance(calc, Calculation)
         assert calc.engine_version == "0.5.0"
         assert calc.ruleset_version["ccnl"] == "test@2026.2"
@@ -105,14 +160,14 @@ class TestCalculation:
 
     def test_result_delegation(self) -> None:
         """Unknown attributes read through to the PayrollResult result."""
-        calc = compute(make_minimal_ccnl(), make_year_rules(), _employee())
+        calc = compute(_req())
         assert calc.net_annual == calc.result.net_annual
         assert calc.gross_annual == calc.result.gross_annual
         assert calc.level_code == calc.result.level_code
 
     def test_to_dict_from_dict_roundtrip(self) -> None:
         """to_dict/from_dict round-trips the full calculation."""
-        calc = compute(make_minimal_ccnl(), make_year_rules(), _employee())
+        calc = compute(_req())
         restored = Calculation.from_dict(calc.to_dict())
         assert restored == calc
         assert restored.engine_version == calc.engine_version
@@ -121,31 +176,27 @@ class TestCalculation:
 
     def test_to_json_from_json_roundtrip(self) -> None:
         """to_json/from_json round-trips through a JSON string."""
-        calc = compute(make_minimal_ccnl(), make_year_rules(), _employee())
+        calc = compute(_req())
         restored = Calculation.from_json(calc.to_json())
         assert restored == calc
 
     def test_reproduce_identical_result(self) -> None:
-        """reproduce() with the same rulesets yields the identical result."""
-        ccnl = make_minimal_ccnl()
-        rules = make_year_rules()
-        calc = compute(ccnl, rules, _employee())
-        replayed = calc.reproduce(ccnl, rules)
+        """reproduce() yields the identical result without external args."""
+        calc = compute(_req())
+        replayed = calc.reproduce()
         assert replayed.result == calc.result
         assert replayed.input_snapshot == calc.input_snapshot
         assert replayed.engine_version == calc.engine_version
 
     def test_reproduce_preserves_seniority_variant(self) -> None:
         """Union member type is preserved through snapshot/reproduce."""
-        ccnl = make_minimal_ccnl()
-        rules = make_year_rules()
-        calc = compute(ccnl, rules, _employee())
-        replayed = calc.reproduce(ccnl, rules)
+        calc = compute(_req(seniority_count=2))
+        replayed = calc.reproduce()
         assert isinstance(replayed.input_snapshot, InputSnapshot)
         # The materialised seniority should still be by-count.
-        employee, _ = replayed.input_snapshot.materialise()
-        assert isinstance(employee.arrangement.seniority, SeniorityByCount)
-        assert employee.arrangement.seniority.value == 2
+        scenario = replayed.input_snapshot.materialise()
+        assert isinstance(scenario.employee.seniority, SeniorityByCount)
+        assert scenario.employee.seniority.value == 2
 
 
 class TestDumpLoadPrimitives:

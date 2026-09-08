@@ -69,6 +69,7 @@ ignore = [
     "D213",    # multi-line-summary-second-line (incompatible with D212)
     "D413",    # missing-blank-line-after-last-section
     "PLR0913", # too-many-arguments
+    "PLR0915", # too-many-statements (compute() orchestrates many steps)
     "PLR0917", # too-many-positional-arguments
     "PLR0914", # too-many-locals
     "PLC2701", # import-private-name
@@ -76,7 +77,9 @@ ignore = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**" = ["S", "ARG", "SLF001", "PLR6301"]  # PLR6301: pytest methods don't need self
+# PLR6301: pytest methods don't need self
+# pytest-fixture-autouse: autouse is intentional for per-test loader mocking
+"tests/**" = ["S", "ARG", "SLF001", "PLR6301", "pytest-fixture-autouse"]
 # Examples are doc scripts: print is intentional, late imports are illustrative, line length is secondary.
 "docs/examples/**" = ["T201", "E402", "RUF100", "I001", "E501", "N999", "RUF010"]
 # Pydantic needs runtime access to annotated types; TCH001-TCH003 would move

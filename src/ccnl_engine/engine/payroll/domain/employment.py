@@ -42,7 +42,7 @@ class Apprentice(BaseModel):
 
 
 #: Discriminated union of all supported employment contract types.
-Employment = Annotated[
+Contract = Annotated[
     Permanent | FixedTerm | Apprentice,
     Field(discriminator="type"),
 ]

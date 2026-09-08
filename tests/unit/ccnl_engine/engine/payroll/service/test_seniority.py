@@ -4,20 +4,13 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+import pytest
+
 from ccnl_engine.engine.contract.domain.ccnl import CCNL
-from ccnl_engine.engine.payroll.domain.employee import (
-    ContractPosition,
-    Employee,
-    SeniorityByCount,
-    SeniorityByMonths,
-    WorkArrangement,
-)
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 from tests.helpers import TEST_PROV, make_ccnl_dict
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _D,
-    _DATE,
-    _PERMANENT,
     _RULES,
     _build_ccnl,
     _req,
@@ -26,6 +19,37 @@ from tests.unit.ccnl_engine.engine.payroll.service.builders import (
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
+    from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
+
+# ---------------------------------------------------------------------------
+# Module-level mutable mock state (reset per-test by the autouse fixture)
+# ---------------------------------------------------------------------------
+
+_DEFAULT_CCNL = _build_ccnl()
+
+_mock_ccnl: list[CCNL] = [_DEFAULT_CCNL]
+_mock_rules: list[object] = [_RULES]
+_mock_surtax: list[SurtaxRules | None] = [None]
+
+
+@pytest.fixture(autouse=True)
+def _patch_loaders(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Patch the three loaders in orchestrator and reset mock state."""
+    _mock_ccnl[:] = [_DEFAULT_CCNL]
+    _mock_rules[:] = [_RULES]
+    _mock_surtax[:] = [None]
+    monkeypatch.setattr(
+        "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl",
+        lambda _: _mock_ccnl[0],
+    )
+    monkeypatch.setattr(
+        "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
+        lambda *_: _mock_rules[0],
+    )
+    monkeypatch.setattr(
+        "ccnl_engine.engine.payroll.service.orchestrator.load_surtax_rules",
+        lambda _: _mock_surtax[0],
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -67,7 +91,7 @@ def _tiered_ccnl() -> CCNL:
 class TestTieredSeniority:
     """Tests for tiered-cadence seniority resolution."""
 
-    _CCNL = _tiered_ccnl()
+    _TIERED_CCNL = _tiered_ccnl()
 
     def _compute(
         self,
@@ -75,20 +99,13 @@ class TestTieredSeniority:
         seniority_count: int | None = None,
         level_code: str = "4",
     ) -> PayrollResult:
-        seniority: SeniorityByCount | SeniorityByMonths | None = None
-        if seniority_count is not None:
-            seniority = SeniorityByCount(seniority_count)
-        elif seniority_months is not None:
-            seniority = SeniorityByMonths(seniority_months)
+        _mock_ccnl[0] = self._TIERED_CCNL
         return compute(
-            self._CCNL,
-            _RULES,
-            Employee(
-                position=ContractPosition(
-                    level_code=level_code, as_of=_DATE, employment=_PERMANENT
-                ),
-                arrangement=WorkArrangement(seniority=seniority),
-            ),
+            _req(
+                level_code=level_code,
+                seniority_months=seniority_months,
+                seniority_count=seniority_count,
+            )
         ).result
 
     def test_no_seniority(self) -> None:
@@ -156,11 +173,11 @@ class TestExcludedCategories:
 
     def test_excluded_category_zeroes_seniority(self) -> None:
         """Workers with category in excluded_categories accrue no scatti."""
-        ccnl = _build_ccnl(**{
+        _mock_ccnl[0] = _build_ccnl(**{
             "levels.2.category": "operaio",
             "parameters.seniority_increments.excluded_categories": ["operaio"],
         })
-        r = compute(ccnl, _RULES, _req(seniority_months=120))
+        r = compute(_req(seniority_months=120))
         assert r.seniority_count == 0
         assert r.seniority_monthly == _D("0.00")
 
@@ -210,27 +227,19 @@ def _service_gated_ccnl() -> CCNL:
 class TestServiceGatedAllowances:
     """Tests for Allowance.service_months_threshold gating."""
 
-    _CCNL = _service_gated_ccnl()
+    _GATED_CCNL = _service_gated_ccnl()
 
     def _compute(
         self,
         seniority_months: int | None = None,
         seniority_count: int | None = None,
     ) -> PayrollResult:
-        seniority: SeniorityByCount | SeniorityByMonths | None = None
-        if seniority_count is not None:
-            seniority = SeniorityByCount(seniority_count)
-        elif seniority_months is not None:
-            seniority = SeniorityByMonths(seniority_months)
+        _mock_ccnl[0] = self._GATED_CCNL
         return compute(
-            self._CCNL,
-            _RULES,
-            Employee(
-                position=ContractPosition(
-                    level_code="4", as_of=_DATE, employment=_PERMANENT
-                ),
-                arrangement=WorkArrangement(seniority=seniority),
-            ),
+            _req(
+                seniority_months=seniority_months,
+                seniority_count=seniority_count,
+            )
         ).result
 
     def test_below_threshold_no_allowance(self) -> None:
@@ -239,9 +248,8 @@ class TestServiceGatedAllowances:
         assert r.allowances_monthly == _D(0)
 
     def test_at_first_threshold(self) -> None:
-        """At 60 months the 5yr premio (50 EUR/year = 50/14 monthly) is active."""
+        """At 60 months the 5yr premio (50 EUR) is active."""
         r = self._compute(seniority_months=60)
-        # allowances_monthly is the raw monthly value from chain.allowances_total
         assert r.allowances_monthly == _D("50.00")
 
     def test_at_second_threshold(self) -> None:
