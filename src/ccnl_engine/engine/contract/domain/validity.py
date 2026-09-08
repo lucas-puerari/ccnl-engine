@@ -53,6 +53,19 @@ class TimeSeries(BaseModel):
         )
         return self
 
+    def period_at(self, day: date) -> "ValidityPeriod | None":
+        """Return the ValidityPeriod active on day, or None if before series start.
+
+        Returns:
+            The active period, or ``None`` if *day* precedes the series start.
+        """
+        for period in self.periods:
+            if period.valid_from <= day and (
+                period.valid_until is None or day < period.valid_until
+            ):
+                return period
+        return None
+
     def value_at(self, day: date) -> Decimal:
         """Return the value in effect on day.
 

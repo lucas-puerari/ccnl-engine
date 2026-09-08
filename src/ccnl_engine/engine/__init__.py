@@ -6,6 +6,6 @@ loaders that read the versioned Knowledge Base datasets from
 namespaces are coupled only through passive JSON resource directories.
 """
 
-from ccnl_engine.engine import contract, payroll, surtax, tax
+from ccnl_engine.engine import contract, diff, payroll, surtax, tax
 
-__all__ = ["contract", "payroll", "surtax", "tax"]
+__all__ = ["contract", "diff", "payroll", "surtax", "tax"]
