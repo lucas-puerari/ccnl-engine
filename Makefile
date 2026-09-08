@@ -1,4 +1,4 @@
-.PHONY: setup lint format typecheck test cognitive-complexity
+.PHONY: setup lint format typecheck test cognitive-complexity coverage-matrix
 
 setup:
 	uv pip install -e .
@@ -21,3 +21,6 @@ test:
 
 cognitive-complexity:
 	uv run complexipy src/ && echo "Cognitive Complexity check passed"
+
+coverage-matrix:
+	uv run python docs/scripts/gen_coverage_matrix.py
