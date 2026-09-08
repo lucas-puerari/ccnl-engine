@@ -44,12 +44,12 @@ note (max -20%). work_rules status defaults to not_implemented for most contract
 | 4 | E016 | [CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)](alimentaristi-cooperative-e016.md) | industria alimentare — cooperative di produzione e lavoro | ~15k | 2024 | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 5 | E015 | [CCNL Area Alimentazione e Panificazione — Artigianato (Confartigianato/CNA)](panificazione-artigianato-confartigianato.md) | panificazione e alimentazione artigianato | ~90k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 6 | G016 | [CCNL Area Comunicazione — Artigianato](comunicazione-artigianato-confartigianato.md) | comunicazione grafica editoria stampa artigianato | ~60k | 2024 | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 7 | S025 | [CCNL Area Dirigenza Funzioni Centrali 2022-2024 — ARAN](dirigenza-funzioni-centrali-aran.md) | Pubblica Amministrazione | ~30k | 2025 | 85% | ✅ | ✅ | 🔲 | 🤖 |
-| 8 | S125 | [CCNL Area Dirigenza Funzioni Locali 2022-2024 — ARAN](dirigenza-funzioni-locali-aran.md) | Pubblica Amministrazione | ~13k | 2026 | 85% | ✅ | ✅ | 🔲 | 🤖 |
-| 9 | S325 | [CCNL Area Dirigenza Istruzione e Ricerca 2022-2024 — ARAN](dirigenza-istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~8k | 2026 | 85% | ✅ | ✅ | 🔲 | 🤖 |
+| 7 | S025 | [CCNL Area Dirigenza Funzioni Centrali 2022-2024 — ARAN](dirigenza-funzioni-centrali-aran.md) | Pubblica Amministrazione | ~30k | 2025 | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 8 | S125 | [CCNL Area Dirigenza Funzioni Locali 2022-2024 — ARAN](dirigenza-funzioni-locali-aran.md) | Pubblica Amministrazione | ~13k | 2026 | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 9 | S325 | [CCNL Area Dirigenza Istruzione e Ricerca 2022-2024 — ARAN](dirigenza-istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~8k | 2026 | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 10 | F060 | [CCNL Area Legno-Lapidei — Artigianato](legno-lapidei-artigianato-confartigianato.md) | legno arredamento lapidei artigianato | ~95k | 2024 | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 11 | S225 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Medici e Veterinari SSN)](dirigenza-sanitaria-medico-veterinaria-aran.md) | Pubblica Amministrazione | ~100k | 2026 | 85% | ✅ | ✅ | 🔲 | 🤖 |
-| 12 | S225 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Sanitari: psicologi, farmacisti, biologi, fisici, chimici)](dirigenza-sanitaria-area-sanita-aran.md) | Pubblica Amministrazione | ~37k | 2026 | 85% | ✅ | ✅ | 🔲 | 🤖 |
+| 11 | S225 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Medici e Veterinari SSN)](dirigenza-sanitaria-medico-veterinaria-aran.md) | Pubblica Amministrazione | ~100k | 2026 | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 12 | S225 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Sanitari: psicologi, farmacisti, biologi, fisici, chimici)](dirigenza-sanitaria-area-sanita-aran.md) | Pubblica Amministrazione | ~37k | 2026 | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 13 | V751 | [CCNL Area Tessile-Moda e Chimica-Ceramica — Artigianato](tessile-moda-artigianato-confartigianato.md) | tessile moda chimica ceramica artigianato | ~120k | 2024 | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 14 | A051 | [CCNL Attivita Agromeccaniche (Contoterzismo) CAI Agromec-FAI-FLAI-UILA](contoterzismo-caiagromec.md) | Agricoltura | ~4k | 2024 | 65% | ✅ | 🚫 | ✅ | 🤖 |
 | 15 | I320 | [CCNL Attività Ferroviarie — AGENS](trasporto-ferroviario-agens.md) | trasporto | ~75k | 2025 | 100% | ✅ | ✅ | ✅ | 🤖 |
@@ -85,7 +85,7 @@ note (max -20%). work_rules status defaults to not_implemented for most contract
 | 45 | K321 | [CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas](gas-acqua-utilitalia.md) | gas e acqua | ~65k | 2025 | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 46 | B371 | [CCNL Gomma e Plastica Industria (Federazione Gomma Plastica)](gomma-plastica-federazione-gomma-plastica.md) | gomma-plastica | ~90k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 47 | G011 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | grafica-editoria | ~70k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 48 | T511 | [CCNL Gruppo ANAS](anas.md) | anas spa - personale non dirigente | ~7k | 2025 | 85% | ✅ | ✅ | 🔲 | 🤖 |
+| 48 | T511 | [CCNL Gruppo ANAS](anas.md) | anas spa - personale non dirigente | ~7k | 2025 | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 49 | K540 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | servizi ambientali | ~65k | 2025 | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 50 | A021 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | agricoltura | ~80k | 2024 | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 51 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | 100% | ✅ | ✅ | ✅ | 🤖 |

@@ -32,7 +32,7 @@ Coverage % = percentage of bundled CCNLs that implement the feature (partial = 0
 
 | Feature | Coverage | Note |
 |---------|----------|------|
-| Overtime/night/holiday | 94% | Maggiorazioni orarie da time_supplements CCNL |
-| Sick/injury leave | 94% | Integrazione malattia/infortunio da sickness_rules CCNL |
-| Leave entitlement | 94% | Ferie e permessi da leave_rules CCNL |
-| Absence deduction | 94% | Decurtazione per assenza da absence_rules CCNL |
+| Overtime/night/holiday | 100% | Maggiorazioni orarie da time_supplements CCNL |
+| Sick/injury leave | 100% | Integrazione malattia/infortunio da sickness_rules CCNL |
+| Leave entitlement | 100% | Ferie e permessi da leave_rules CCNL |
+| Absence deduction | 100% | Decurtazione per assenza da absence_rules CCNL |

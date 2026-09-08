@@ -212,10 +212,23 @@
       {
         "kind": "simplification",
         "text": "Un unico livello DIRIGENTE modella dirigenti RAL, PTA e segretari fascia A/B (stesso tabellare 50.005,77€/anno). I segretari fascia C sono esclusi per mancanza di fonte primaria sul tabellare esatto."
+      },
+      {
+        "kind": "simplification",
+        "text": "Nessun straordinario: principio onnicomprensività dirigenti PA. overtime_bands vuoto."
+      },
+      {
+        "kind": "simplification",
+        "text": "Assenza non retribuita: prassi PA by_30 (mensile/30/giorno). Approssimato by_26 — BY_30 non ancora nel motore."
+      },
+      {
+        "kind": "simplification",
+        "text": "Malattia: 90% mesi 10-12, 50% mesi 13-18 non catturati (schema a tasso unico). Comporto 18 mesi = 540 gg."
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "ruleset": {
     "id": "ccnl/dirigenza-funzioni-locali-aran",
@@ -224,7 +237,86 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "c6594c57b4dca4b45f6573ad6f40231e2d41a384c22163c4b3ca74715a6c8f76",
+    "source_hash": "deb5ad6ea3ab22b7da810516d8033f037a40a97e0332f90af173f22d5fd7a19b",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": []
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-fl-2022-2024",
+            "title": "CCNL Area Funzioni Locali Dirigenza 2022-2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_23_AREA-FL-2022-2024.pdf"
+          },
+          "section": "Art. 27 CCNL Area FL — Aspettativa (by_26 approx. di by_30 PA)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "28",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        },
+        {
+          "service_months_min": 36,
+          "annual_days": "28"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-fl-2022-2024",
+            "title": "CCNL Area Funzioni Locali Dirigenza 2022-2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_23_AREA-FL-2022-2024.pdf"
+          },
+          "section": "Art. 10 CCNL FL 23/02/2026 — Ferie"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 540,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-fl-2022-2024",
+            "title": "CCNL Area Funzioni Locali Dirigenza 2022-2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_23_AREA-FL-2022-2024.pdf"
+          },
+          "section": "Art. 20 CCNL 17.12.2020 (vigente) — Malattia"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    }
   }
 }

@@ -255,10 +255,15 @@
       {
         "kind": "simplification",
         "text": "Questo file e 'dirigenza-sanitaria-medico-veterinaria-aran.json' derivano dallo stesso CCNL Area Sanità 27.02.2026 (unico testo contrattuale). La distinzione in due file riflette le diverse indennità di specificità applicabili alle due popolazioni dirigenziali."
+      },
+      {
+        "kind": "simplification",
+        "text": "Sickness rules modelled as carenza=1/full_pay=1/max=540d (comporto 18 mesi). Art. 38 CCNL prevede 100% nei primi 9 mesi, 90% mesi 10-12, 50% mesi 13-18. Il modello SicknessRules cattura solo due tassi; la riduzione progressiva non è rappresentata."
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "ruleset": {
     "id": "ccnl/dirigenza-sanitaria-area-sanita-aran",
@@ -267,7 +272,158 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "b8526d579990b9e2813e92f28d59d2eff15193a69ad5e5ebbc4a62ed95c2b573",
+    "source_hash": "383c3dc0a2250b3e26e0ea29c4a17d8402874493aaee82a5c823ddfee64952e4",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-03-01",
+                "value": "30.72",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-area-sanita-2022-2024",
+                "title": "CCNL Area Sanità 2022-2024",
+                "kind": "tabella_retributiva",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+              },
+              "section": "Art. 8 CCNL 27.02.2026 — Lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2026-03-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno o festivo",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-03-01",
+                "value": "34.73",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-area-sanita-2022-2024",
+                "title": "CCNL Area Sanità 2022-2024",
+                "kind": "tabella_retributiva",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+              },
+              "section": "Art. 8 CCNL 27.02.2026 — Lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2026-03-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_hourly",
+      "daily_hours": "7.6",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-sanita-2022-2024",
+            "title": "CCNL Area Sanità 2022-2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+          },
+          "section": "Art. 28 CCNL 23.01.2024 — Orario di lavoro (7h36'/giorno su 5 giorni)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "28",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        },
+        {
+          "service_months_min": 36,
+          "annual_days": "28"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-sanita-2022-2024",
+            "title": "CCNL Area Sanità 2022-2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+          },
+          "section": "Art. 9 CCNL 27.02.2026 — Ferie (26 gg < 3 anni; 28 gg >= 3 anni, settimana 5 gg)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-03-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 540,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-sanita-2022-2024",
+            "title": "CCNL Area Sanità 2022-2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+          },
+          "section": "Art. 38 CCNL 23.01.2024 — Malattia (comporto 18 mesi; mesi 10-12 al 90%, mesi 13-18 al 50%)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    }
   }
 }
