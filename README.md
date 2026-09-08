@@ -59,6 +59,8 @@ Over 100 contracts covering approximately 16 million employees across private an
 
 → [**Full CCNL coverage table**](https://lucas-puerari.github.io/ccnl-engine/docs/contracts/index.html)
 
+→ [**Coverage & feature matrix**](docs/coverage-matrix.md) — per-contract coverage %, verification status, and feature breakdown across layers 1-3
+
 ## What is not modelled
 
 - Detrazioni per carichi di famiglia (Art. 12 TUIR)

@@ -78,6 +78,9 @@ jobs:
       - name: "Docs: install dependencies"
         run: uv pip install --system -e . "zensical>=0.0.11" "mkdocstrings[python]>=0.27"
 
+      - name: "Docs: generate coverage matrix"
+        run: uv run python docs/scripts/gen_coverage_matrix.py
+
       - name: "Docs: build with Zensical"
         run: uv run zensical build
 
