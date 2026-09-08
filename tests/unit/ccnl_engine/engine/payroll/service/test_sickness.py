@@ -90,9 +90,7 @@ class TestBucketDays:
 
     def test_zero_days(self) -> None:
         """Zero sick days: all buckets are zero."""
-        carenza, bands = _bucket_days(
-            _ZERO, carenza_days=3, bands=[(4, 20), (21, 180)]
-        )
+        carenza, bands = _bucket_days(_ZERO, carenza_days=3, bands=[(4, 20), (21, 180)])
         assert carenza == _ZERO
         assert all(b == _ZERO for b in bands)
 
