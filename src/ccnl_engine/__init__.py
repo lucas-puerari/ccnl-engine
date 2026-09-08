@@ -64,7 +64,7 @@ from ccnl_engine.engine.payroll.domain.employment import (
     Permanent,
 )
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
-from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
+from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult, ScopeItem
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
     Employee,
@@ -101,6 +101,7 @@ __all__ = [
     "RuleChange",
     "RulesDiff",
     "RulesetIdentity",
+    "ScopeItem",
     "SeniorityByCount",
     "SeniorityByMonths",
     "SourceAuthority",

@@ -13,7 +13,7 @@ for the legal background.
 The default. No additional contributions; full INPS rates apply.
 
 ```python
---8<--"docs/examples/01_quickstart.py"
+--8 < --"docs/examples/01_quickstart.py"
 ```
 
 ## Fixed-term (*tempo determinato*)
@@ -22,7 +22,7 @@ The default. No additional contributions; full INPS rates apply.
 Gross and net are unchanged.
 
 ```python
---8<--"docs/examples/03_fixed_term.py"
+--8 < --"docs/examples/03_fixed_term.py"
 ```
 
 ## Apprenticeship (*apprendistato*)
@@ -37,7 +37,7 @@ The `Apprentice` type covers both salary tracks used by Italian CCNLs:
 The engine automatically detects which track the loaded CCNL uses.
 
 ```python
---8<--"docs/examples/06_apprentice.py"
+--8 < --"docs/examples/06_apprentice.py"
 ```
 
 **API reference:** [`Permanent`](../api/models.md), [`FixedTerm`](../api/models.md),
