@@ -27,6 +27,7 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     LevelCategory,
     SupplementaryAllowance,
 )
+from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.employee import (
     DestinationRalOverride,
     RalOverride,
@@ -280,6 +281,14 @@ class PayrollScenario:
             them from ``irpef_net`` (reducing ``net_annual``).  ``None`` means
             no family deductions are applied and
             ``FiscalSimplification.NO_DETRAZIONI_FAMILIARI`` is reported.
+        art15_deductions: Optional Art. 15 TUIR oneri detraibili declared by
+            the worker.  When provided, the engine computes the tax credit
+            (19 % on eligible expenditure up to the statutory ceiling) and
+            subtracts it from ``irpef_net`` (reducing ``net_annual``).
+            ``None`` means no Art. 15 deductions are applied and
+            ``FiscalSimplification.NO_DETRAZIONI_ART15`` is reported.
+            Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply to
+            Art. 15 (it targets only Art. 12 + Art. 13 TUIR).
     """
 
     employee: Employee
@@ -292,3 +301,4 @@ class PayrollScenario:
     welfare_input: WelfareInput | None = None
     bonus_input: BonusInput | None = None
     family: FamilyComposition | None = None
+    art15_deductions: Art15Deductions | None = None

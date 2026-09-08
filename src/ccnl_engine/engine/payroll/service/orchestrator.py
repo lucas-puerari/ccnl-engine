@@ -24,6 +24,9 @@ from ccnl_engine.engine.payroll.service import contributions as _contrib
 from ccnl_engine.engine.payroll.service import irpef as _irpef
 from ccnl_engine.engine.payroll.service.absence import compute_absence_deduction
 from ccnl_engine.engine.payroll.service.apprenticeship import _apprentice_chain
+from ccnl_engine.engine.payroll.service.art15_deductions import (
+    compute_art15_deductions,
+)
 from ccnl_engine.engine.payroll.service.chain import _level_chain
 from ccnl_engine.engine.payroll.service.family_deductions import (
     compute_family_deductions,
@@ -41,6 +44,7 @@ from ccnl_engine.engine.payroll.service.variable_pay import (
 )
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
 from ccnl_engine.engine.tax.service.loaders import (
+    load_art15_deduction_rules,
     load_family_deduction_rules,
     load_sick_pay_rates,
     load_variable_pay_rules,
@@ -61,6 +65,7 @@ if TYPE_CHECKING:
         SeniorityIncrements,
         SupplementaryAllowance,
     )
+    from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
     from ccnl_engine.engine.payroll.domain.employee import RalOverrideMode
     from ccnl_engine.engine.payroll.domain.employment import (
         Permanent,
@@ -507,6 +512,7 @@ def _compute_ti(
             FiscalSimplification.NO_ADDIZIONALE_REGIONALE,
             FiscalSimplification.NO_ADDIZIONALE_COMUNALE,
             FiscalSimplification.NO_DETRAZIONI_FAMILIARI,
+            FiscalSimplification.NO_DETRAZIONI_ART15,
         })
     else:
         trattamento_integrativo = _ZERO
@@ -982,6 +988,51 @@ def _run_l3_family_deductions(
     return spouse, children, other, total, unused
 
 
+def _run_l3_art15_deductions(
+    scenario: PayrollScenario,
+    irpef_gross: Decimal,
+    work_income_deduction: Decimal,
+    fam_total: Decimal,
+    year: int,
+    *,
+    employer_withholds_irpef: bool,
+) -> tuple[Decimal, Decimal]:
+    """Compute Art. 15 TUIR deductions when ``scenario.art15_deductions`` is set.
+
+    Art. 15 deductions are a flat 19 % credit on eligible expenditure up to
+    statutory ceilings.  They reduce the IRPEF actually withheld by the
+    employer and are NOT informational-only (unlike most L3 features).
+
+    Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply here: the
+    EUR 440 clawback is specific to Art. 12 + Art. 13 TUIR.
+
+    Args:
+        scenario: The payroll scenario.
+        irpef_gross: IRPEF before any deductions.
+        work_income_deduction: Art. 13 work-income deduction (post-sterilizzazione).
+        fam_total: Art. 12 family deductions total (post-sterilizzazione).
+        year: Fiscal year for loading rules.
+        employer_withholds_irpef: When ``False``, deductions are still computed
+            but ``irpef_net`` is zero regardless.
+
+    Returns:
+        A 2-tuple of (art15_total, art15_unused).  Both amounts are annual.
+        ``art15_unused`` is the portion that exceeded available IRPEF
+        (incapienza — not refundable).
+    """
+    art15 = scenario.art15_deductions
+    if art15 is None or not art15.has_any_onere:
+        return _ZERO, _ZERO
+    rules = load_art15_deduction_rules(year)
+    total = compute_art15_deductions(art15, rules)
+    if not employer_withholds_irpef:
+        # Deductions computed but irpef_net is always zero here.
+        return total, total
+    available = money(max(_ZERO, irpef_gross - work_income_deduction - fam_total))
+    unused = money(max(_ZERO, total - available))
+    return total, unused
+
+
 def _variable_pay_feature_status(
     input_val: FringeBenefitInput | WelfareInput | BonusInput | None,
 ) -> str:
@@ -1011,6 +1062,7 @@ def _build_scope(
     welfare_input: WelfareInput | None,
     bonus_input: BonusInput | None,
     family_input: FamilyComposition | None,
+    art15_input: Art15Deductions | None,
 ) -> tuple[ScopeItem, ...]:
     """Build the calculation scope tuple for a PayrollResult.
 
@@ -1069,6 +1121,14 @@ def _build_scope(
             status=(
                 "verified"
                 if (family_input is not None and family_input.has_any_dependent)
+                else "excluded"
+            ),
+        ),
+        ScopeItem(
+            feature="art15_deductions",
+            status=(
+                "verified"
+                if (art15_input is not None and art15_input.has_any_onere)
                 else "excluded"
             ),
         ),
@@ -1299,10 +1359,21 @@ def compute(scenario: PayrollScenario) -> Calculation:
         available = money(max(_ZERO, irpef_gross - work_income_deduction))
         fam_unused = money(max(_ZERO, fam_total - available))
 
+    # Art. 15 TUIR deductions (interessi passivi mutuo prima casa, etc.).
+    # Sterilizzazione does NOT apply: EUR 440 clawback targets Art. 12 + Art. 13.
+    art15_total, art15_unused = _run_l3_art15_deductions(
+        scenario=scenario,
+        irpef_gross=irpef_gross,
+        work_income_deduction=work_income_deduction,
+        fam_total=fam_total,
+        year=year,
+        employer_withholds_irpef=employer_withholds_irpef,
+    )
+
     # When the employer is not a sostituto d'imposta, irpef_net is zeroed;
     # irpef_gross and work_income_deduction remain as informational figures.
     irpef_net = (
-        money(max(_ZERO, irpef_gross - work_income_deduction - fam_total))
+        money(max(_ZERO, irpef_gross - work_income_deduction - fam_total - art15_total))
         if employer_withholds_irpef
         else _ZERO
     )
@@ -1315,10 +1386,13 @@ def compute(scenario: PayrollScenario) -> Calculation:
 
     # Remove NO_DETRAZIONI_FAMILIARI when family deductions were computed
     # (use pre-sterilizzazione total: deductions were still computed).
+    # Remove NO_DETRAZIONI_ART15 when Art. 15 deductions were computed.
+    sfs_mut: set[FiscalSimplification] = set(fiscal_simplifications)
     if fam_total_computed > _ZERO:
-        sfs_mut: set[FiscalSimplification] = set(fiscal_simplifications)
         sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_FAMILIARI)
-        fiscal_simplifications = frozenset(sfs_mut)
+    if art15_total > _ZERO:
+        sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_ART15)
+    fiscal_simplifications = frozenset(sfs_mut)
 
     # Addizionale regionale e comunale (Art. 50 TUIR; Art. 1 D.Lgs. 360/1998).
     regione = j.regione if j is not None else None
@@ -1425,6 +1499,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
     welfare_input = scenario.welfare_input
     bonus_input = scenario.bonus_input
     family_input = scenario.family
+    art15_input = scenario.art15_deductions
     calculation_scope = _build_scope(
         employer_withholds_irpef=employer_withholds_irpef,
         fiscal_simplifications=fiscal_simplifications,
@@ -1440,6 +1515,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
         welfare_input=welfare_input,
         bonus_input=bonus_input,
         family_input=family_input,
+        art15_input=art15_input,
     )
 
     result = PayrollResult(
@@ -1511,6 +1587,8 @@ def compute(scenario: PayrollScenario) -> Calculation:
         family_deduction_other_annual=fam_other,
         family_deduction_annual=fam_total,
         unused_family_deduction_annual=fam_unused,
+        art15_deduction_annual=art15_total,
+        unused_art15_deduction_annual=art15_unused,
     )
 
     snapshot = InputSnapshot.capture(

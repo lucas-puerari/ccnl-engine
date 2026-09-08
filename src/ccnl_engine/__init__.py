@@ -51,6 +51,7 @@ from ccnl_engine.engine.diff import (
     format_diff,
 )
 from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity, VerificationStatus
+from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.calculation import Calculation
 from ccnl_engine.engine.payroll.domain.employee import (
     DestinationRalOverride,
@@ -96,6 +97,7 @@ __all__ = [
     "AgreementKind",
     "Allowance",
     "Apprentice",
+    "Art15Deductions",
     "BonusInput",
     "Calculation",
     "Contract",

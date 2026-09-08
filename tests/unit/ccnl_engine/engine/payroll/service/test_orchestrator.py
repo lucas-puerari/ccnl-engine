@@ -22,6 +22,7 @@ from ccnl_engine.engine.contract.domain.ccnl import (
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
 from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
+from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.employee import (
     DestinationRalOverride,
     RalOverride,
@@ -1432,3 +1433,124 @@ class TestSterilizzazioneDetrazioni:
             with_high_threshold.family_deduction_annual
             == without.family_deduction_annual
         )
+
+
+# ---------------------------------------------------------------------------
+# Art. 15 deductions (interessi passivi mutuo prima casa)
+# ---------------------------------------------------------------------------
+
+
+class TestArt15Deductions:
+    """Art. 15 TUIR deductions — orchestrator integration."""
+
+    _EXEMPT_CCNL = _build_ccnl(**{"meta.withholding_exempt": True})
+
+    def test_no_art15_leaves_irpef_net_unchanged(self) -> None:
+        """Without art15_deductions, irpef_net equals baseline."""
+        baseline = compute(_req()).result
+        with_none = compute(dataclasses.replace(_req(), art15_deductions=None)).result
+        assert with_none.irpef_net == baseline.irpef_net
+        assert with_none.art15_deduction_annual == _D("0")
+
+    def test_mortgage_deduction_reduces_irpef_net(self) -> None:
+        """Art. 15 mortgage credit is subtracted from irpef_net."""
+        baseline = compute(_req()).result
+        with_art15 = compute(
+            dataclasses.replace(
+                _req(),
+                art15_deductions=Art15Deductions(mortgage_interest=_D("3000")),
+            )
+        ).result
+        assert with_art15.art15_deduction_annual == _D("570.00")  # 3000 * 0.19
+        assert with_art15.irpef_net == baseline.irpef_net - _D("570.00")
+
+    def test_ceiling_cap_applied(self) -> None:
+        """Interest above EUR 4 000 ceiling: credit capped at EUR 760."""
+        result = compute(
+            dataclasses.replace(
+                _req(),
+                art15_deductions=Art15Deductions(mortgage_interest=_D("9999")),
+            )
+        ).result
+        assert result.art15_deduction_annual == _D("760.00")  # 4000 * 0.19
+
+    def test_no_detrazioni_art15_tag_removed_when_computed(self) -> None:
+        """NO_DETRAZIONI_ART15 absent from simplifications when Art. 15 applied."""
+        result = compute(
+            dataclasses.replace(
+                _req(),
+                art15_deductions=Art15Deductions(mortgage_interest=_D("1000")),
+            )
+        ).result
+        assert (
+            FiscalSimplification.NO_DETRAZIONI_ART15
+            not in result.fiscal_simplifications
+        )
+
+    def test_no_detrazioni_art15_tag_present_when_not_set(self) -> None:
+        """NO_DETRAZIONI_ART15 present in simplifications when not provided."""
+        result = compute(_req()).result
+        assert FiscalSimplification.NO_DETRAZIONI_ART15 in result.fiscal_simplifications
+
+    def test_exempt_employer_art15_unused_equals_total(self) -> None:
+        """When employer does not withhold IRPEF, unused = total credit."""
+        _mock_ccnl[0] = self._EXEMPT_CCNL
+        result = compute(
+            dataclasses.replace(
+                _req(),
+                art15_deductions=Art15Deductions(mortgage_interest=_D("3000")),
+            )
+        ).result
+        assert result.art15_deduction_annual == _D("570.00")
+        assert result.unused_art15_deduction_annual == result.art15_deduction_annual
+        assert result.irpef_net == _D("0.00")
+
+    def test_zero_interest_has_no_effect(self) -> None:
+        """Art15Deductions with zero mortgage_interest: no deduction, tag kept."""
+        baseline = compute(_req()).result
+        with_zero = compute(
+            dataclasses.replace(
+                _req(),
+                art15_deductions=Art15Deductions(mortgage_interest=_D("0")),
+            )
+        ).result
+        assert with_zero.art15_deduction_annual == _D("0")
+        assert with_zero.irpef_net == baseline.irpef_net
+        assert (
+            FiscalSimplification.NO_DETRAZIONI_ART15 in with_zero.fiscal_simplifications
+        )
+
+    def test_gross_annual_not_mutated_by_art15_deductions(self) -> None:
+        """gross_annual is unchanged by Art. 15 deductions."""
+        baseline = compute(_req()).result
+        with_art15 = compute(
+            dataclasses.replace(
+                _req(),
+                art15_deductions=Art15Deductions(mortgage_interest=_D("2000")),
+            )
+        ).result
+        assert with_art15.gross_annual == baseline.gross_annual
+
+    def test_sterilizzazione_does_not_apply_to_art15(self) -> None:
+        """Sterilizzazione leaves art15_deduction_annual unchanged.
+
+        Even when sterilizzazione fires (income > threshold), the Art. 15
+        credit is not reduced.  Reduction falls only on Art. 12 + Art. 13.
+        """
+        _mock_rules[0] = make_year_rules(
+            sterilizzazione_detrazioni={"threshold": "11000", "reduction": "440"}
+        )
+        with_strd = compute(
+            dataclasses.replace(
+                _req(),
+                art15_deductions=Art15Deductions(mortgage_interest=_D("3000")),
+            )
+        ).result
+        _mock_rules[0] = make_year_rules()
+        without_strd = compute(
+            dataclasses.replace(
+                _req(),
+                art15_deductions=Art15Deductions(mortgage_interest=_D("3000")),
+            )
+        ).result
+        assert with_strd.art15_deduction_annual == without_strd.art15_deduction_annual

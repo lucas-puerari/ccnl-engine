@@ -294,6 +294,12 @@ class PayrollResult:
     family_deduction_annual: Decimal = _ZERO
     unused_family_deduction_annual: Decimal = _ZERO
 
+    # --- L3: Art. 15 deductions (mutates irpef_net/net_annual) ---
+    # NOT informational: the credit reduces irpef_net directly.
+    # Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply here.
+    art15_deduction_annual: Decimal = _ZERO
+    unused_art15_deduction_annual: Decimal = _ZERO
+
     # --- L3: time supplements (informational; not in gross_annual/net_annual) ---
     base_monthly_full_time: Decimal = _ZERO
     overtime_supplement_monthly: Decimal = _ZERO
