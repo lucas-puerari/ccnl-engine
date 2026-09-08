@@ -57,9 +57,7 @@ print(calculation.ruleset_version)     # → {'ccnl': '…', 'tax': '…', 'inps
 
 Over 100 contracts covering approximately 16 million employees across private and public sectors.
 
-→ [**Full CCNL coverage table**](https://lucas-puerari.github.io/ccnl-engine/docs/contracts/index.html)
-
-→ [**Coverage & feature matrix**](docs/coverage-matrix.md) — per-contract coverage %, verification status, and feature breakdown across layers 1-3
+→ [**CCNL coverage table**](https://lucas-puerari.github.io/ccnl-engine/docs/contracts/index.html) — per-contract coverage, verification status, and feature breakdown across layers 1-3
 
 ## What is not modelled
 
