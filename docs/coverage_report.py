@@ -3,12 +3,13 @@
 Aggregate the coverage blocks and data fields from every bundled CCNL
 JSON file into two views:
 
-* Per-CCNL: name, sector, coverage %, verification label, layer status.
+* Per-CCNL: CNEL code, name (linked), sector, workers estimate, coverage %,
+  L1/L2/L3 symbols, verification emoji.
 * Per-feature: engine feature (base salary, seniority, IRPEF, ...),
-  the layer it belongs to, and the percentage of contracts that implement it.
+  grouped by layer, with % of contracts implementing it.
 
 Not part of the engine API -- this is documentation tooling only.
-Regenerate docs/coverage-matrix.md with::
+Regenerate output files with::
 
     uv run python docs/scripts/gen_coverage_matrix.py
 """
@@ -32,8 +33,10 @@ class CCNLCoverageRow:
     """One row in the per-CCNL coverage table."""
 
     ccnl_id: str
+    cnel_code: str
     name: str
     sector: str
+    workers_estimate: str
     coverage_pct: int
     """0-100, within-engine-scope score (layers 1 and 2)."""
     verification_label: str
@@ -97,6 +100,21 @@ def _coverage_pct(ccnl: CCNL) -> int:
     return round((base - penalty) * 100)
 
 
+_LAYER_SYMBOL = {
+    "implemented": "✅",
+    "partial": "⚠️",
+    "out_of_scope": "—",
+    "not_implemented": "—",
+}
+
+_VERIFICATION_EMOJI = {
+    "Machine extracted": "🤖",
+    "Human verified": "🧑",
+    "Expert verified": "🧑✓",
+    "Needs review": "🔍",
+}
+
+
 def _verification_label(ccnl: CCNL) -> str:
     vs = ccnl.coverage.verification_status
     if vs == VerificationStatus.VERIFIED:
@@ -124,8 +142,10 @@ def _has_fixed_allowances(ccnl: CCNL) -> bool:
 def _make_ccnl_row(ccnl: CCNL) -> CCNLCoverageRow:
     return CCNLCoverageRow(
         ccnl_id=ccnl.meta.ccnl_id,
+        cnel_code=ccnl.meta.cnel_code,
         name=ccnl.meta.name,
         sector=ccnl.meta.sector,
+        workers_estimate=ccnl.meta.workers_estimate,
         coverage_pct=_coverage_pct(ccnl),
         verification_label=_verification_label(ccnl),
         layer_1=ccnl.coverage.layer_1,
@@ -266,60 +286,136 @@ def build_coverage_report() -> CoverageReport:
 
 # Markdown rendering
 
-_LAYER_BADGE = {
+_LAYER_TITLES = {
     1: "Layer 1 -- Gross",
     2: "Layer 2 -- Net",
     3: "Layer 3 -- Not implemented",
 }
 
+_CONTRACTS_PREAMBLE = """\
+# CCNL Coverage
 
-def render_markdown(report: CoverageReport) -> str:
-    """Render report as a Markdown document string.
+100+ contract configurations covering approximately **16 million employees** across
+private and public sectors.
+
+The 100+ configurations include 100+ distinct CCNLs -- CCNL Lavoro Domestico is split
+into two variants (convivente / non-convivente) and CCNL Vigilanza Privata FEDERDAT
+into two profiles (GPG / Servizi Fiduciari) -- plus one Presidential Decree (DPR
+53/2025) for Forze di Polizia ad ordinamento civile. They cover 75+ of the ~99
+private-sector CCNLs that CNEL classifies as major (>10,000 employees), plus 10
+public-sector ARAN/DPR contracts covering approximately 2.8 million workers. Per CNEL
+(II semester 2024), the ~99 major private-sector CCNLs together cover 13.4 million
+workers -- 96.9% of Italy's private-sector workforce.
+
+-> [Domain: What is a CCNL](../domain/index.md) -- terminology used in this table.
+
+## Legend
+
+| Symbol | Meaning |
+|---|---|
+| ✅ | Fully implemented in this layer |
+| ⚠️ | Partially implemented; see `coverage.notes` in the contract JSON |
+| — | Not in scope for this layer |
+| 🤖 | Machine extracted (AI-assisted), no manual review |
+| 🧑 | Human reviewed against official source |
+| 🧑✓ | Expert verified (manual extraction) |
+| 🔍 | Flagged for review |
+
+**L1 (gross):** base salary, seniority increments, fixed allowances, additional months,
+hourly rate.
+**L2 (net):** INPS contributions, TFR, IRPEF, regional/municipal surtax.
+**L3:** overtime, sick leave, performance bonuses, welfare benefits --
+always — (not yet in engine).
+**Coverage %:** weighted score (L1 x 60% + L2 x 40%), minus 5% per missing note
+(capped at -20%).
+
+## Matrix
+"""
+
+_CONTRACTS_FOOTER = """
+[^1]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, \
+CCNL renewal communications.
+[^2]: Salary tables were extracted from official CCNL documents using AI-assisted \
+tooling, without manual human review. Verify against the official source before use \
+in production payroll systems.
+[^3]: Compensation for Forze di Polizia ad ordinamento civile is set by Presidential \
+Decree (DPR), not a CNEL-registered agreement. Applicable instrument: D.P.R. \
+24 marzo 2025, n. 53 (GU n. 91, 18 April 2025, SO).
+"""
+
+
+def render_contracts_index(report: CoverageReport) -> str:
+    """Render the contracts/index.md page with per-CCNL data and links.
 
     Returns:
-        Markdown string with per-CCNL and per-feature tables.
+        Markdown string for docs/contracts/index.md.
     """
-    header = (
+    auto_header = (
         "<!-- auto-generated"
-        " -- run: uv run python docs/scripts/gen_coverage_matrix.py -->"
-    )
-    ccnl_header = (
-        "| CCNL | Sector | Coverage | Verification | Layer 1 | Layer 2 | Layer 3 |"
-    )
-    ccnl_sep = (
-        "|------|--------|----------|-------------|---------|---------|---------|"
+        " -- run: uv run python docs/scripts/gen_coverage_matrix.py -->\n"
+        f"<!-- generated: {report.generated_at} -->\n"
     )
     lines: list[str] = [
-        header,
-        f"<!-- generated: {report.generated_at} -->",
+        auto_header,
+        _CONTRACTS_PREAMBLE,
+        (
+            "| # | CNEL | CCNL | Sector | Workers (~)[^1]"
+            " | Coverage | L1 | L2 | L3 | Ext[^2] |"
+        ),
+        "|---|---|---|---|---:|---:|:---:|:---:|:---:|:---:|",
+    ]
+    for i, row in enumerate(report.ccnl_rows, 1):
+        l1 = _LAYER_SYMBOL[row.layer_1]
+        l2 = _LAYER_SYMBOL[row.layer_2]
+        l3 = _LAYER_SYMBOL[row.layer_3]
+        ext = _VERIFICATION_EMOJI[row.verification_label]
+        workers = row.workers_estimate or "—"
+        link = f"[{row.name}]({row.ccnl_id}.md)"
+        lines.append(
+            f"| {i} | {row.cnel_code} | {link} | {row.sector}"
+            f" | {workers} | {row.coverage_pct}%"
+            f" | {l1} | {l2} | {l3} | {ext} |"
+        )
+    lines.append(_CONTRACTS_FOOTER)
+    return "\n".join(lines)
+
+
+def render_feature_matrix(report: CoverageReport) -> str:
+    """Render the feature coverage matrix, one table per layer.
+
+    Returns:
+        Markdown string for docs/coverage-matrix.md.
+    """
+    auto_header = (
+        "<!-- auto-generated"
+        " -- run: uv run python docs/scripts/gen_coverage_matrix.py -->\n"
+        f"<!-- generated: {report.generated_at} -->"
+    )
+    lines: list[str] = [
+        auto_header,
         "",
-        "# Coverage Matrix",
+        "# Feature Coverage Matrix",
         "",
         f"Generated: {report.generated_at} - {len(report.ccnl_rows)} CCNL",
         "",
-        "## Per-CCNL Coverage",
+        (
+            "Coverage % = percentage of bundled CCNLs that implement"
+            " the feature (partial = 0.5)."
+        ),
         "",
-        ccnl_header,
-        ccnl_sep,
     ]
-    lines.extend(
-        f"| {row.name} | {row.sector} | {row.coverage_pct}%"
-        f" | {row.verification_label}"
-        f" | {row.layer_1} | {row.layer_2} | {row.layer_3} |"
-        for row in report.ccnl_rows
-    )
-    lines += [
-        "",
-        "## Feature Coverage",
-        "",
-        "| Feature | Layer | Coverage | Note |",
-        "|---------|-------|----------|------|",
-    ]
-    current_layer = 0
+    by_layer: dict[int, list[FeatureRow]] = {}
     for row in report.feature_rows:
-        if row.layer != current_layer:
-            current_layer = row.layer
-            lines.append(f"| **{_LAYER_BADGE[row.layer]}** | | | |")
-        lines.append(f"| {row.name} | {row.layer} | {row.pct}% | {row.note} |")
-    lines.append("")
+        by_layer.setdefault(row.layer, []).append(row)
+
+    for layer, rows in sorted(by_layer.items()):
+        lines += [
+            f"## {_LAYER_TITLES[layer]}",
+            "",
+            "| Feature | Coverage | Note |",
+            "|---------|----------|------|",
+        ]
+        for row in rows:
+            lines.append(f"| {row.name} | {row.pct}% | {row.note} |")
+        lines.append("")
     return "\n".join(lines)

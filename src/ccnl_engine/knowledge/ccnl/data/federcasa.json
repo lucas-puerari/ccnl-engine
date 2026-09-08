@@ -36,7 +36,8 @@
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~6k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1077,7 +1078,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "88ac4682ba85d4eb3512fb2d78c95d1ccd6087b96d83e7943868200ce618f51d",
+    "source_hash": "3dc4bab136dcf2a7de64aea825bb6a96d7e8de19b2820a772977a7d6cb247392",
     "published_at": "2026-09-07"
   }
 }

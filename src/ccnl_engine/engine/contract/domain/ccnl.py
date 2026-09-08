@@ -364,6 +364,9 @@ class CCNLMeta(BaseModel):
             Art. 4 D.P.R. 600/1973). When ``True``, the engine still computes IRPEF
             figures but sets ``irpef_net`` to zero and marks
             ``PayrollResult.employer_withholds_irpef`` as ``False``.
+        workers_estimate: Approximate number of workers covered by this agreement,
+            as a human-readable string (e.g. ``"~800k"``). Based on CNEL and INPS
+            estimates. Empty string when unknown.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -379,6 +382,7 @@ class CCNLMeta(BaseModel):
     agreement_date: str | None = None
     validity: CCNLValidity | None = None
     withholding_exempt: bool = False
+    workers_estimate: str = ""
 
     @model_validator(mode="before")
     @classmethod

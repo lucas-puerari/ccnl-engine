@@ -1,4 +1,4 @@
-.PHONY: setup lint format typecheck test cognitive-complexity coverage-matrix
+.PHONY: setup lint format typecheck test cognitive-complexity coverage-matrix rehash
 
 setup:
 	uv pip install -e .
@@ -24,3 +24,6 @@ cognitive-complexity:
 
 coverage-matrix:
 	uv run python docs/scripts/gen_coverage_matrix.py
+
+rehash:
+	uv run python docs/scripts/rehash_ccnl.py

@@ -49,7 +49,8 @@
       "model": null,
       "timestamp": "2026-09-02T00:00:00",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~120k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -4957,7 +4958,7 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "baca84b5bd2294632c6801eeade480b4edcaa42987ace92aa7c3cab79594de82",
+    "source_hash": "379a09694a800a871743c2a8b81c8655652259b03e3e3734dfd404d110294d88",
     "published_at": "2026-09-07"
   }
 }

@@ -37,7 +37,8 @@
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~250k"
   },
   "parameters": {
     "hourly_divisor": {
@@ -417,7 +418,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "957a51f7cbebc9b3470e46fd6621e465e2ac6ca5376e698c11be294958579012",
+    "source_hash": "8009e453e35be79ae9f6c3ae0dc0cb1e47a80c3bbe404351129bb55f09bc16ad",
     "published_at": "2026-09-07"
   }
 }

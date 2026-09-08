@@ -37,7 +37,8 @@
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~7k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -705,7 +706,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "2054f6e869f354116b999f2f1a4861c82694ed6dabdb56f3a9cae5c9a89734ca",
+    "source_hash": "e4e89db6f27e6817a0b72954f3905f0aa0c3903387079287ded660e64994e392",
     "published_at": "2026-09-07"
   }
 }

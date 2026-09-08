@@ -31,7 +31,8 @@
       "model": null,
       "timestamp": "2026-09-01",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~270k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1269,7 +1270,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "8c3ffdfe5d0f0721527134dc80bf16dd87d11d58ea0b2918bad8d76d82032726",
+    "source_hash": "0f5ef1656a07335348a6c0a1b2cfbc8421bb79a434287abe190833887a155029",
     "published_at": "2026-09-07"
   }
 }

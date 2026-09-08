@@ -35,7 +35,8 @@
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~22k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1302,7 +1303,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "b5825a2999b3db5e598164f8b322cd66676f70c4912566dc606d8d2067fd58c8",
+    "source_hash": "cd0663f543996aaae352e4ab5e77e9d20cabc68e3d62523a318ef3e4254b8d1f",
     "published_at": "2026-09-07"
   }
 }

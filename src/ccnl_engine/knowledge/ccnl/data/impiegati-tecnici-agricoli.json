@@ -40,7 +40,8 @@
     "validity": {
       "valid_from": "2024-07-01",
       "valid_until": "2027-12-31"
-    }
+    },
+    "workers_estimate": "~80k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -597,7 +598,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.contratticcnl.it/ccnl/a021/",
     "verification_status": "unverified",
-    "source_hash": "fa3b37e5baeca7a1a64dec8418867b848aee02825c22130a766f9c590db4351c",
+    "source_hash": "69462a33542f6a9dda1a11552eb869b0520557f2903565e4b5e21253485d8b2e",
     "published_at": "2026-09-07"
   }
 }

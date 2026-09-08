@@ -43,7 +43,8 @@
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~13k"
   },
   "parameters": {
     "hourly_divisor": {
@@ -223,7 +224,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "fd06e08ddb94fc0da9ad179f0bf7162f47d379a0da63c47874037126a53b5c55",
+    "source_hash": "a1ab7f6f74bca604ad76baedd57f1d9ec6ef2cfc7b79b34484472d2b90fbc68a",
     "published_at": "2026-09-07"
   }
 }

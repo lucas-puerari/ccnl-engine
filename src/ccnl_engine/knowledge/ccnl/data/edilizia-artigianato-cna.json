@@ -49,7 +49,8 @@
         "agreement_date": "2023-07-01",
         "notes": "Contingenza frozen values per level"
       }
-    ]
+    ],
+    "workers_estimate": "~350k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1887,7 +1888,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "ac6616aa5e97116b4d65a4233902596814fd7cafd397d7fb64b89c152a51d97d",
+    "source_hash": "797251efef6fcaafcfa7eed19a038b454490070257632883ff2c1f6506eff466",
     "published_at": "2026-09-07"
   }
 }

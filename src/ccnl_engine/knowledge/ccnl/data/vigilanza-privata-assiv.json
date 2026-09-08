@@ -45,7 +45,8 @@
       "model": null,
       "timestamp": "2026-09-02T10:00:00",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~85k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1343,7 +1344,7 @@
     "effective_until": null,
     "source": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139",
     "verification_status": "unverified",
-    "source_hash": "f2ea416661b5984658eb58eaf71c25a3cbc978b592337691a5a6987ca49f8119",
+    "source_hash": "14f6df1c35c6a357dd05286ac301f9a9f7f7f816c09698ce4345f235c3a47644",
     "published_at": "2026-09-07"
   }
 }

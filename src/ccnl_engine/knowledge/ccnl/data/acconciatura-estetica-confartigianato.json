@@ -37,7 +37,8 @@
       "model": null,
       "timestamp": "2026-09-02T00:00:00",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~95k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -914,7 +915,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "c39b6849af7cbf7fb3c6d0e0a030d67501ddf8e004a1d33c808db8501cb66202",
+    "source_hash": "f1cc39903dcd460dbe84c69c9206b51f997e65f1cd28d5e7823f55585796d17c",
     "published_at": "2026-09-07"
   }
 }

@@ -38,7 +38,8 @@
       "model": null,
       "timestamp": "2026-09-02T00:00:00",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~65k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1843,7 +1844,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "a6b23912dbb4d4d48df60c1494d053f15b4ff9ecd7e3c2f9761e7c7c8e87598b",
+    "source_hash": "cbd663f49cffdec03042e5c4c335b7d763a867691cd8005240cc8715dadbe28f",
     "published_at": "2026-09-07"
   }
 }

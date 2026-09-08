@@ -29,7 +29,8 @@
       "model": null,
       "timestamp": "2026-09-06T00:00:00",
       "human_reviewed": true
-    }
+    },
+    "workers_estimate": "~20k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -2298,7 +2299,7 @@
     "effective_until": null,
     "source": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive",
     "verification_status": "verified",
-    "source_hash": "8140707ce497fa4fcdf5ad4d414d50c24f59820585e530d6d25471e90eb01d84",
+    "source_hash": "32806fd4984c8762499d6751390ef991ddeb971e62d9b9484d70139a70d207e8",
     "published_at": "2026-09-07"
   }
 }

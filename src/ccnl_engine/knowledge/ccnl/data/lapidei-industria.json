@@ -30,7 +30,8 @@
       "model": null,
       "timestamp": "2026-09-06T00:00:00",
       "human_reviewed": true
-    }
+    },
+    "workers_estimate": "~18k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -2177,7 +2178,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria",
     "verification_status": "verified",
-    "source_hash": "cad23a1da485282f799807064c90b57a9999fb03c73450183c3aa50e417b333d",
+    "source_hash": "f46fca4663e4e04313d65d2021d203f878a11835b1d1ce72cfaa6b2dd5940a5f",
     "published_at": "2026-09-07"
   }
 }

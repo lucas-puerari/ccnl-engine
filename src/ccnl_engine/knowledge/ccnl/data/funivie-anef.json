@@ -26,7 +26,8 @@
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~15k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1396,7 +1397,7 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "57255bfa585fa19cb5302dac09becf8affbc63dbf1ec437cf7beb7a31231e488",
+    "source_hash": "62f56099a33955facefee2cf41d821458cd93855a4a9ea77261e96c801cbc92e",
     "published_at": "2026-09-07"
   }
 }

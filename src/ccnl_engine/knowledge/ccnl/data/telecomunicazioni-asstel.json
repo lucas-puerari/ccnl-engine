@@ -30,7 +30,8 @@
       "model": null,
       "timestamp": "2026-09-02T08:00:00",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~110k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1335,7 +1336,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "e0bb86f2f668021c46ab740b4d932e96c9243d31e946e51e880f8dbb5b41300f",
+    "source_hash": "d183e3bb8a70e71fb9f196faa2ec595ad7558def22c792c19007af2ad198c2b8",
     "published_at": "2026-09-07"
   }
 }

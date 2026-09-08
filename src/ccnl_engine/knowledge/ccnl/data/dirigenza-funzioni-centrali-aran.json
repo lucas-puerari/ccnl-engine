@@ -34,7 +34,8 @@
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~30k"
   },
   "parameters": {
     "hourly_divisor": {
@@ -282,7 +283,7 @@
     "effective_until": "2024-12-31",
     "source": "https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf",
     "verification_status": "unverified",
-    "source_hash": "066bef6d6863e79990a50b2326274537ed26ac325d33bc095077e8a14294a550",
+    "source_hash": "bf3cf8d958961258a066cd009b817e50b6ac7b67a4e646609156c9ab9c4a4f74",
     "published_at": "2026-09-07"
   }
 }

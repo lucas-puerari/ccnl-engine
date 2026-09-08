@@ -23,7 +23,8 @@
       "model": null,
       "timestamp": "2026-09-05T00:00:00",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~6k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1705,7 +1706,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "794f13d369f6880493170152ca9d475ce9f08d566f91f2ae5396c3ff5aa93bfb",
+    "source_hash": "f43a4b5b901ace93739a893309ceed10d300836673d58c05efb4fd50dcd78067",
     "published_at": "2026-09-07"
   }
 }

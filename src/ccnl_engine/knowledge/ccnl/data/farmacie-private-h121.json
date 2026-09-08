@@ -25,7 +25,8 @@
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~60k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1325,7 +1326,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "b357642d61c03ef2ba84f779421de15ecd853cd06a69db12ec686f6595b26c61",
+    "source_hash": "241bef273914230e0ce5b0d8b44f55c105522e277cd1f83968c33a0755849f04",
     "published_at": "2026-09-07"
   }
 }

@@ -34,7 +34,8 @@
       "model": null,
       "timestamp": "2026-09-02",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~90k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -2966,7 +2967,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf",
     "verification_status": "unverified",
-    "source_hash": "a9f4f5c4ddba0bd8036a4d126194c2eb9638aca55dd8e21eff953f82a80517be",
+    "source_hash": "b17faff7454e8f4a958a09847fc28e6b89e69647e41dae5c954a1d339259e7d3",
     "published_at": "2026-09-07"
   }
 }

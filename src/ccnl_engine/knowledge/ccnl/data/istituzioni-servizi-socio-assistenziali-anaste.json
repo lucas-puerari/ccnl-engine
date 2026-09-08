@@ -24,7 +24,8 @@
       "model": null,
       "timestamp": "2026-09-06T00:00:00",
       "human_reviewed": true
-    }
+    },
+    "workers_estimate": "~120k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1121,7 +1122,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "828d20c4cb1716e7993273011f6682e9d1e80c5a8a62f8e7aa40bb4d2d02b593",
+    "source_hash": "224304f111c99555ffc4051a4b1c601392a0535dee829b9e0275558bff270249",
     "published_at": "2026-09-07"
   }
 }

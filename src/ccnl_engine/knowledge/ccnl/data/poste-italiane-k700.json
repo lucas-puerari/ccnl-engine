@@ -25,7 +25,8 @@
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~117k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1393,7 +1394,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "33899aaa1344b460a71937c07ab4e52873cb37ae4220bdce28c6ab0e19f31dcf",
+    "source_hash": "a82018e7ecf293756c9ae23c86ad7f77615b43da676fc9d00894859483cfd51d",
     "published_at": "2026-09-07"
   }
 }
