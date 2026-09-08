@@ -2099,7 +2099,188 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
     "verification_status": "unverified",
-    "source_hash": "4042cfd1864e3d1b5584d12f4e0ce6ae71c5917c4339cadded2019b50a0156da",
+    "source_hash": "6060de1ecfb1d4d9da6b227d5ea6384ddfae01dccb2d59c1737229d8bd198f8e",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": "0.40",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "alimentaristi-cooperative-e016",
+                "title": "CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/alimentari---cooperative"
+              },
+              "section": "Straordinario — overtime feriale"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": "0.50",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "alimentaristi-cooperative-e016",
+                "title": "CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/alimentari---cooperative"
+              },
+              "section": "Straordinario notturno"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo / macellazione",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": "0.50",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "alimentaristi-cooperative-e016",
+                "title": "CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/alimentari---cooperative"
+              },
+              "section": "Straordinario — 50% festivo e settori macellazione/pollame"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "alimentaristi-cooperative-e016",
+            "title": "CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/alimentari---cooperative"
+          },
+          "section": "Divisore giornaliero 26 (cooperative alimentari)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "22",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "alimentaristi-cooperative-e016",
+            "title": "CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/alimentari---cooperative"
+          },
+          "section": "Ferie — 22 giorni lavorativi (base 5 gg/settimana)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "alimentaristi-cooperative-e016",
+            "title": "CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/alimentari---cooperative"
+          },
+          "section": "Malattia — integrazione al 100%; max 180 giorni (rinnovo 2024)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    }
   }
 }

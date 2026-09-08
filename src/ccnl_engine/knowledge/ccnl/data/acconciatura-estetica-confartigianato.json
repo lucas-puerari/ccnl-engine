@@ -915,7 +915,192 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "f1cc39903dcd460dbe84c69c9206b51f997e65f1cd28d5e7823f55585796d17c",
+    "source_hash": "c0a2bbbc46196e51cdda6c65d02040ecbf81adb95e0bfad9e5f6243ed8d569f1",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-06-01",
+                "value": "0.25",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "acconciatura-estetica-confartigianato",
+                "title": "CCNL Acconciatura ed Estetica — Confartigianato/CNA",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/acconciatura-ed-estetica"
+              },
+              "section": "Art. 16 — Lavoro straordinario, notturno e festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-06-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Lavoro straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-06-01",
+                "value": "0.50",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "acconciatura-estetica-confartigianato",
+                "title": "CCNL Acconciatura ed Estetica — Confartigianato/CNA",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/acconciatura-ed-estetica"
+              },
+              "section": "Art. 16 — Lavoro straordinario, notturno e festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-06-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Lavoro straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-06-01",
+                "value": "0.50",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "acconciatura-estetica-confartigianato",
+                "title": "CCNL Acconciatura ed Estetica — Confartigianato/CNA",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/acconciatura-ed-estetica"
+              },
+              "section": "Art. 16 — Lavoro straordinario, notturno e festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-06-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "acconciatura-estetica-confartigianato",
+            "title": "CCNL Acconciatura ed Estetica — Confartigianato/CNA",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/acconciatura-ed-estetica"
+          },
+          "section": "Tabella retributiva — divisore giornaliero 26"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-06-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "20",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "20"
+        },
+        {
+          "service_months_min": 60,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "acconciatura-estetica-confartigianato",
+            "title": "CCNL Acconciatura ed Estetica — Confartigianato/CNA",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/acconciatura-ed-estetica"
+          },
+          "section": "Art. 33 — Ferie (20 gg < 5 anni; 22 gg >= 5 anni, su base 5 giorni/settimana)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-06-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "acconciatura-estetica-confartigianato",
+            "title": "CCNL Acconciatura ed Estetica — Confartigianato/CNA",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/acconciatura-ed-estetica"
+          },
+          "section": "Malattia — integrazione al 100% per 180 giorni; conservazione posto 180 gg"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-06-01"
+        }
+      }
+    }
   }
 }

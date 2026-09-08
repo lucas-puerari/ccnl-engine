@@ -4080,7 +4080,224 @@
     "effective_until": null,
     "source": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "ca53d891e9cf4c67eb3119d9d02dca21c0fd63f5d528994819e620ee94483fbb",
+    "source_hash": "1cb8852e49c4871828adbbd7085d4d464adf8518ed8c41a6d24c9bd5f2f756ab",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "value": 0.25,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-multiservizi-pulizie-2021",
+                "title": "CCNL Multiservizi — Servizi di Pulizia (ANIP-Confindustria) 2021-2024",
+                "kind": "tabella_retributiva",
+                "url": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione 25%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-06-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-multiservizi-pulizie-2021",
+                "title": "CCNL Multiservizi — Servizi di Pulizia (ANIP-Confindustria) 2021-2024",
+                "kind": "tabella_retributiva",
+                "url": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf"
+              },
+              "section": "Art. straordinario — notturno 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-06-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "value": 0.65,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-multiservizi-pulizie-2021",
+                "title": "CCNL Multiservizi — Servizi di Pulizia (ANIP-Confindustria) 2021-2024",
+                "kind": "tabella_retributiva",
+                "url": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf"
+              },
+              "section": "Art. straordinario — festivo 65%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-06-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "value": 0.75,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-multiservizi-pulizie-2021",
+                "title": "CCNL Multiservizi — Servizi di Pulizia (ANIP-Confindustria) 2021-2024",
+                "kind": "tabella_retributiva",
+                "url": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf"
+              },
+              "section": "Art. straordinario — notturno festivo 75%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-06-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-multiservizi-pulizie-2021",
+            "title": "CCNL Multiservizi — Servizi di Pulizia (ANIP-Confindustria) 2021-2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-06-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "22",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-multiservizi-pulizie-2021",
+            "title": "CCNL Multiservizi — Servizi di Pulizia (ANIP-Confindustria) 2021-2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf"
+          },
+          "section": "Art. ferie — 22 giorni lavorativi (settimana su 5 giorni)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-06-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-multiservizi-pulizie-2021",
+            "title": "CCNL Multiservizi — Servizi di Pulizia (ANIP-Confindustria) 2021-2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf"
+          },
+          "section": "Art. malattia — integrazione al 100% per 180 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-06-01"
+        }
+      }
+    }
   }
 }

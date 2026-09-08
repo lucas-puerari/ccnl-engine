@@ -443,7 +443,188 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "4c3f56b51350f4e0b5574ab560ab359530071f190274413fc591541838f6e117",
+    "source_hash": "aba557b06ad7010d2069e3dd245b3522321899bd1e0afbde2029e06bd8d3cebd",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-05-01",
+                "value": 0.2,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-florovivaisti-2022",
+                "title": "CCNL Operai Agricoli e Florovivaisti (Confagricoltura / Coldiretti / CIA) 2022-2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/"
+              },
+              "section": "Art. straordinario — maggiorazione 20%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-05-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-05-01",
+                "value": 0.4,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-florovivaisti-2022",
+                "title": "CCNL Operai Agricoli e Florovivaisti (Confagricoltura / Coldiretti / CIA) 2022-2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/"
+              },
+              "section": "Art. straordinario — notturno 40%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-05-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-05-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-florovivaisti-2022",
+                "title": "CCNL Operai Agricoli e Florovivaisti (Confagricoltura / Coldiretti / CIA) 2022-2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/"
+              },
+              "section": "Art. straordinario — festivo 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-05-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-operai-agricoli-florovivaisti-2022",
+            "title": "CCNL Operai Agricoli e Florovivaisti (Confagricoltura / Coldiretti / CIA) 2022-2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/"
+          },
+          "section": "Art. orario — divisore giornaliero per retribuzione operai"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-05-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "26",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-operai-agricoli-florovivaisti-2022",
+            "title": "CCNL Operai Agricoli e Florovivaisti (Confagricoltura / Coldiretti / CIA) 2022-2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/"
+          },
+          "section": "Art. ferie — 26 giornate lavorative per OTI (tempo indeterminato)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-05-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "0",
+      "full_pay_integration_rate": "0",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-operai-agricoli-florovivaisti-2022",
+            "title": "CCNL Operai Agricoli e Florovivaisti (Confagricoltura / Coldiretti / CIA) 2022-2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/"
+          },
+          "section": "Art. malattia — trattamento INPS; nessuna integrazione datoriale a livello nazionale"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-05-01"
+        }
+      }
+    }
   }
 }

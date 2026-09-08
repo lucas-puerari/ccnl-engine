@@ -1640,7 +1640,188 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "ae0762982822d222233f6a42025774395a54fd9866f481e9615aca1000634468",
+    "source_hash": "1b9a886218446a56b6830a58b484fc2f71028f4a0073e540d9baf3168c7ff169",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": 0.25,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-alimentazione-panificazione-artigianato-2023",
+                "title": "CCNL Area Alimentazione e Panificazione — Artigianato (CNA / Confartigianato) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+              },
+              "section": "Art. 33 straordinario — maggiorazione 25%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-alimentazione-panificazione-artigianato-2023",
+                "title": "CCNL Area Alimentazione e Panificazione — Artigianato (CNA / Confartigianato) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+              },
+              "section": "Art. 33 straordinario — notturno 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-alimentazione-panificazione-artigianato-2023",
+                "title": "CCNL Area Alimentazione e Panificazione — Artigianato (CNA / Confartigianato) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+              },
+              "section": "Art. 33 straordinario — festivo 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-alimentazione-panificazione-artigianato-2023",
+            "title": "CCNL Area Alimentazione e Panificazione — Artigianato (CNA / Confartigianato) 2023-2026",
+            "kind": "tabella_retributiva",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "22",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-alimentazione-panificazione-artigianato-2023",
+            "title": "CCNL Area Alimentazione e Panificazione — Artigianato (CNA / Confartigianato) 2023-2026",
+            "kind": "tabella_retributiva",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+          },
+          "section": "Art. ferie — 22 giorni lavorativi (173 ore annue)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-alimentazione-panificazione-artigianato-2023",
+            "title": "CCNL Area Alimentazione e Panificazione — Artigianato (CNA / Confartigianato) 2023-2026",
+            "kind": "tabella_retributiva",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf"
+          },
+          "section": "Art. malattia — integrazione al 100% per 180 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      }
+    }
   }
 }

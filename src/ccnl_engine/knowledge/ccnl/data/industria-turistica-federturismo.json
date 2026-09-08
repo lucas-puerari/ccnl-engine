@@ -1314,7 +1314,224 @@
     "effective_until": null,
     "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B",
     "verification_status": "unverified",
-    "source_hash": "1fc983614268afc04029da43b0a0536e588752f36673d8118fc29dede9d227c4",
+    "source_hash": "47deaf059eecf6c543dc2eb45c8a74448f92de89c5ce211348ad049ac2a72836",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-turistica-federturismo",
+                "title": "CCNL Industria Turistica (Federturismo Confindustria)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+              },
+              "section": "Art. straordinario — maggiorazione 30%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": 0.6,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-turistica-federturismo",
+                "title": "CCNL Industria Turistica (Federturismo Confindustria)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+              },
+              "section": "Art. straordinario — maggiorazione notturno 60%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-turistica-federturismo",
+                "title": "CCNL Industria Turistica (Federturismo Confindustria)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+              },
+              "section": "Art. straordinario — maggiorazione festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": 0.6,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-industria-turistica-federturismo",
+                "title": "CCNL Industria Turistica (Federturismo Confindustria)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+              },
+              "section": "Art. straordinario — notturno festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-industria-turistica-federturismo",
+            "title": "CCNL Industria Turistica (Federturismo Confindustria)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "26",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-industria-turistica-federturismo",
+            "title": "CCNL Industria Turistica (Federturismo Confindustria)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+          },
+          "section": "Art. ferie — 26 giorni lavorativi annui"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-industria-turistica-federturismo",
+            "title": "CCNL Industria Turistica (Federturismo Confindustria)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B"
+          },
+          "section": "Art. malattia — integrazione al 100% per 180 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      }
+    }
   }
 }

@@ -2299,7 +2299,224 @@
     "effective_until": null,
     "source": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive",
     "verification_status": "verified",
-    "source_hash": "32806fd4984c8762499d6751390ef991ddeb971e62d9b9484d70139a70d207e8",
+    "source_hash": "9287767f66f127ebef5addfa2d30c98ce870a8dd4b522199672eb4f0f55bec87",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": 0.25,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-occhiali-industria-2023",
+                "title": "CCNL Occhiali e Articoli Inerenti l'Occhialeria — Industria (ANFAO) 2023-2025",
+                "kind": "tabella_retributiva",
+                "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+              },
+              "section": "Art. straordinario — maggiorazione 25%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-occhiali-industria-2023",
+                "title": "CCNL Occhiali e Articoli Inerenti l'Occhialeria — Industria (ANFAO) 2023-2025",
+                "kind": "tabella_retributiva",
+                "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+              },
+              "section": "Art. straordinario — notturno 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-occhiali-industria-2023",
+                "title": "CCNL Occhiali e Articoli Inerenti l'Occhialeria — Industria (ANFAO) 2023-2025",
+                "kind": "tabella_retributiva",
+                "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+              },
+              "section": "Art. straordinario — festivo 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": 0.65,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-occhiali-industria-2023",
+                "title": "CCNL Occhiali e Articoli Inerenti l'Occhialeria — Industria (ANFAO) 2023-2025",
+                "kind": "tabella_retributiva",
+                "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+              },
+              "section": "Art. straordinario — notturno festivo 65%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-occhiali-industria-2023",
+            "title": "CCNL Occhiali e Articoli Inerenti l'Occhialeria — Industria (ANFAO) 2023-2025",
+            "kind": "tabella_retributiva",
+            "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "20",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "20"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-occhiali-industria-2023",
+            "title": "CCNL Occhiali e Articoli Inerenti l'Occhialeria — Industria (ANFAO) 2023-2025",
+            "kind": "tabella_retributiva",
+            "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+          },
+          "section": "Art. ferie — 20 giorni lavorativi (4 settimane)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-occhiali-industria-2023",
+            "title": "CCNL Occhiali e Articoli Inerenti l'Occhialeria — Industria (ANFAO) 2023-2025",
+            "kind": "tabella_retributiva",
+            "url": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive"
+          },
+          "section": "Art. malattia — integrazione al 100% per 180 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      }
+    }
   }
 }

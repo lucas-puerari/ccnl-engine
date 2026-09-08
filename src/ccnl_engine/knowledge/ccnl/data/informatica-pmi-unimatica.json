@@ -1326,7 +1326,224 @@
     "effective_until": null,
     "source": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "afe5727c7f874a7dec3410bf877cad029ddf4022abdce137c8a32dc832f27bcc",
+    "source_hash": "d5af7d6840d38b056a3643fd30c0b0801c1a718c9111a2ad9dc8f28df234b28e",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-07-01",
+                "value": 0.25,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-unigec-unimatica-2018",
+                "title": "CCNL UNIGEC/UNIMATICA — PMI Comunicazione e Informatica 2018",
+                "kind": "tabella_retributiva",
+                "url": "https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione 25%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2018-07-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-07-01",
+                "value": 0.4,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-unigec-unimatica-2018",
+                "title": "CCNL UNIGEC/UNIMATICA — PMI Comunicazione e Informatica 2018",
+                "kind": "tabella_retributiva",
+                "url": "https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione notturno 40%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2018-07-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-07-01",
+                "value": 0.35,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-unigec-unimatica-2018",
+                "title": "CCNL UNIGEC/UNIMATICA — PMI Comunicazione e Informatica 2018",
+                "kind": "tabella_retributiva",
+                "url": "https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione festivo 35%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2018-07-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-07-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-unigec-unimatica-2018",
+                "title": "CCNL UNIGEC/UNIMATICA — PMI Comunicazione e Informatica 2018",
+                "kind": "tabella_retributiva",
+                "url": "https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf"
+              },
+              "section": "Art. straordinario — notturno festivo 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2018-07-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-unigec-unimatica-2018",
+            "title": "CCNL UNIGEC/UNIMATICA — PMI Comunicazione e Informatica 2018",
+            "kind": "tabella_retributiva",
+            "url": "https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2018-07-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "26",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-unigec-unimatica-2018",
+            "title": "CCNL UNIGEC/UNIMATICA — PMI Comunicazione e Informatica 2018",
+            "kind": "tabella_retributiva",
+            "url": "https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf"
+          },
+          "section": "Art. ferie — 26 giorni lavorativi annui"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2018-07-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-unigec-unimatica-2018",
+            "title": "CCNL UNIGEC/UNIMATICA — PMI Comunicazione e Informatica 2018",
+            "kind": "tabella_retributiva",
+            "url": "https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf"
+          },
+          "section": "Art. malattia — integrazione al 100% per 180 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2018-07-01"
+        }
+      }
+    }
   }
 }

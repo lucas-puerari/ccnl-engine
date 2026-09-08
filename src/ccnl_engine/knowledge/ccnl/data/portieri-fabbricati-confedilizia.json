@@ -1289,7 +1289,153 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "b83cd8f721ada30d6c61cff83dea7850f6f2ff1af630c8a6cca4a3281d8c401e",
+    "source_hash": "16293496b2e3639540682cdd57402ee8ad3a7431886afea16dbf3794b719b640",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale (fino alla 9a ora giornaliera)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-10-01",
+                "value": 0.15,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-portieri-custodi-2025",
+                "title": "CCNL Portieri e Custodi (Confedilizia) 2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+              },
+              "section": "Art. straordinario — 15% fino alla 9a ora"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-10-01"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale (dalla 10a ora giornaliera)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-10-01",
+                "value": 0.2,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-portieri-custodi-2025",
+                "title": "CCNL Portieri e Custodi (Confedilizia) 2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+              },
+              "section": "Art. straordinario — 20% dalla 10a ora"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-10-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-portieri-custodi-2025",
+            "title": "CCNL Portieri e Custodi (Confedilizia) 2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+          },
+          "section": "Art. orario — retribuzione 1/26 della mensilità per giorno"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-10-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "26",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-portieri-custodi-2025",
+            "title": "CCNL Portieri e Custodi (Confedilizia) 2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+          },
+          "section": "Art. ferie — 26 giorni lavorativi annui"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-10-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "0",
+      "full_pay_integration_rate": "0.6",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-portieri-custodi-2025",
+            "title": "CCNL Portieri e Custodi (Confedilizia) 2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/"
+          },
+          "section": "Art. malattia — carenza 2 giorni (0%); gg3-20: 60%, gg21-60: 68%, gg61-180: 73%"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-10-01"
+        }
+      }
+    }
   }
 }

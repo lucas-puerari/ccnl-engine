@@ -2095,7 +2095,293 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/",
     "verification_status": "unverified",
-    "source_hash": "d288f7bcac7617ffab502778d30e026b7a8356b8ea2e3e667b7852adaf418f84",
+    "source_hash": "c17b92765afbdda3857ebfd1d1ffc964b73d783a139576aa02077ed65ea6af6a",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale (41-48h sett.)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.18,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-gomma-plastica-industria",
+                "title": "CCNL Gomma e Plastica — Industria (Federazione Gomma Plastica)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/gomma-plastica/"
+              },
+              "section": "Art. straordinario — 18% fascia 41-48h"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale (49a ora sett.)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.25,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-gomma-plastica-industria",
+                "title": "CCNL Gomma e Plastica — Industria (Federazione Gomma Plastica)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/gomma-plastica/"
+              },
+              "section": "Art. straordinario — 25% 49a ora"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale (oltre 49h sett.)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.35,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-gomma-plastica-industria",
+                "title": "CCNL Gomma e Plastica — Industria (Federazione Gomma Plastica)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/gomma-plastica/"
+              },
+              "section": "Art. straordinario — 35% oltre 49h"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-gomma-plastica-industria",
+                "title": "CCNL Gomma e Plastica — Industria (Federazione Gomma Plastica)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/gomma-plastica/"
+              },
+              "section": "Art. straordinario — maggiorazione notturno"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo (41-48h sett.)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-gomma-plastica-industria",
+                "title": "CCNL Gomma e Plastica — Industria (Federazione Gomma Plastica)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/gomma-plastica/"
+              },
+              "section": "Art. straordinario — 50% festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo (oltre 48h sett.)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.7,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-gomma-plastica-industria",
+                "title": "CCNL Gomma e Plastica — Industria (Federazione Gomma Plastica)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/gomma-plastica/"
+              },
+              "section": "Art. straordinario — 70% festivo oltre 48h"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-gomma-plastica-industria",
+            "title": "CCNL Gomma e Plastica — Industria (Federazione Gomma Plastica)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.contratticcnl.it/gomma-plastica/"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "20",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "20"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-gomma-plastica-industria",
+            "title": "CCNL Gomma e Plastica — Industria (Federazione Gomma Plastica)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.contratticcnl.it/gomma-plastica/"
+          },
+          "section": "Art. ferie — 20 giorni lavorativi (4 settimane)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-gomma-plastica-industria",
+            "title": "CCNL Gomma e Plastica — Industria (Federazione Gomma Plastica)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.contratticcnl.it/gomma-plastica/"
+          },
+          "section": "Art. malattia — integrazione al 100% per 180 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    }
   }
 }

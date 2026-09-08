@@ -1394,7 +1394,232 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "a82018e7ecf293756c9ae23c86ad7f77615b43da676fc9d00894859483cfd51d",
+    "source_hash": "a4abe4f43beaab93f93b42ec14e01ee47b5fd61532e72998c3a6aaff939c6d11",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "value": 0.15,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-poste-italiane-2024",
+                "title": "CCNL Poste Italiane (non dirigente) 23/07/2024",
+                "kind": "tabella_retributiva",
+                "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf"
+              },
+              "section": "Art. 31 straordinario — maggiorazione feriale 15%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-poste-italiane-2024",
+                "title": "CCNL Poste Italiane (non dirigente) 23/07/2024",
+                "kind": "tabella_retributiva",
+                "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf"
+              },
+              "section": "Art. 31 straordinario — notturno 30%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-poste-italiane-2024",
+                "title": "CCNL Poste Italiane (non dirigente) 23/07/2024",
+                "kind": "tabella_retributiva",
+                "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf"
+              },
+              "section": "Art. 31 straordinario — festivo diurno 30%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-poste-italiane-2024",
+                "title": "CCNL Poste Italiane (non dirigente) 23/07/2024",
+                "kind": "tabella_retributiva",
+                "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf"
+              },
+              "section": "Art. 31 straordinario — notturno festivo 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-poste-italiane-2024",
+            "title": "CCNL Poste Italiane (non dirigente) 23/07/2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "23",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "23"
+        },
+        {
+          "service_months_min": 60,
+          "annual_days": "24"
+        },
+        {
+          "service_months_min": 120,
+          "annual_days": "25"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-poste-italiane-2024",
+            "title": "CCNL Poste Italiane (non dirigente) 23/07/2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf"
+          },
+          "section": "Art. 36 ferie — 23 giorni (5-day week); +1gg a 5 anni, +1gg a 10 anni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 502,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-poste-italiane-2024",
+            "title": "CCNL Poste Italiane (non dirigente) 23/07/2024",
+            "kind": "tabella_retributiva",
+            "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf"
+          },
+          "section": "Art. 41 malattia — piena retribuzione fissa per 502 giorni in 48 mesi (comporto ordinario)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-01"
+        }
+      }
+    }
   }
 }

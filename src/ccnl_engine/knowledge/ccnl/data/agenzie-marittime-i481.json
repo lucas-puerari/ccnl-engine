@@ -1098,7 +1098,224 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "0d70e4c8c261d877828f1c6ddacd0f67f0a13d77287cb3eb68d3eb2a225f5590",
+    "source_hash": "d2ab4817027b42ace44f85c6e218ca9633277335fcd740ed37dd9268d0313200",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "value": "0.25",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "agenzie-marittime-i481",
+                "title": "CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/agenzie-marittime-ed-aeree"
+              },
+              "section": "Straordinario — 25% diurno feriale"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "value": "0.50",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "agenzie-marittime-i481",
+                "title": "CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/agenzie-marittime-ed-aeree"
+              },
+              "section": "Straordinario — 50% notturno feriale"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "value": "0.65",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "agenzie-marittime-i481",
+                "title": "CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/agenzie-marittime-ed-aeree"
+              },
+              "section": "Straordinario — 65% festivo diurno"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "value": "0.75",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "agenzie-marittime-i481",
+                "title": "CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/agenzie-marittime-ed-aeree"
+              },
+              "section": "Straordinario — 75% notturno festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "agenzie-marittime-i481",
+            "title": "CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/agenzie-marittime-ed-aeree"
+          },
+          "section": "Divisore giornaliero 26 (settore terziario)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "22",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "agenzie-marittime-i481",
+            "title": "CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/agenzie-marittime-ed-aeree"
+          },
+          "section": "Ferie — 22 giorni lavorativi annui"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "0",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 270,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "agenzie-marittime-i481",
+            "title": "CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/agenzie-marittime-ed-aeree"
+          },
+          "section": "Malattia — retribuzione intera 4 mesi + meta' 5 mesi (anzianita' < 7 anni); 270 gg totali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    }
   }
 }

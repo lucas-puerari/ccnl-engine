@@ -1402,7 +1402,188 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "5b73f2efe97239f9d9e796336469bfc5549d677e642eac1d7c0cd062cc46469a",
+    "source_hash": "5ef67562b7e006b3bcf02c81d53d617e11b62ed43a86e43ffa8e7b91e9e4cfa1",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-06-19",
+                "value": "0.20",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "contoterzismo-caiagromec",
+                "title": "CCNL Contoterzismo in Agricoltura (CAIAgromec)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/agricoltura---contoterzisti"
+              },
+              "section": "Straordinario diurno feriale (settore agromeccanico)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-06-19"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-06-19",
+                "value": "0.40",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "contoterzismo-caiagromec",
+                "title": "CCNL Contoterzismo in Agricoltura (CAIAgromec)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/agricoltura---contoterzisti"
+              },
+              "section": "Straordinario notturno"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-06-19"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-06-19",
+                "value": "0.50",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "contoterzismo-caiagromec",
+                "title": "CCNL Contoterzismo in Agricoltura (CAIAgromec)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/agricoltura---contoterzisti"
+              },
+              "section": "Straordinario festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-06-19"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "contoterzismo-caiagromec",
+            "title": "CCNL Contoterzismo in Agricoltura (CAIAgromec)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/agricoltura---contoterzisti"
+          },
+          "section": "Divisore giornaliero 26 (settore agromeccanico)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-06-19"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "22",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "contoterzismo-caiagromec",
+            "title": "CCNL Contoterzismo in Agricoltura (CAIAgromec)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/agricoltura---contoterzisti"
+          },
+          "section": "Ferie — 22 giorni (base 5 gg/settimana; 26 su 6 gg)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-06-19"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "0",
+      "full_pay_integration_rate": "0",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "contoterzismo-caiagromec",
+            "title": "CCNL Contoterzismo in Agricoltura (CAIAgromec)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/agricoltura---contoterzisti"
+          },
+          "section": "Malattia — norme di legge INPS; nessuna integrazione datoriale esplicita nel CCNL"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-06-19"
+        }
+      }
+    }
   }
 }

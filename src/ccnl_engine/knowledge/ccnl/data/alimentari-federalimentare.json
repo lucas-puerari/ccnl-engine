@@ -2150,7 +2150,188 @@
     "effective_until": null,
     "source": "https://flaiveneto.it/rinnovato-il-ccnl-industria-alimentare/",
     "verification_status": "unverified",
-    "source_hash": "fbce89ef7d579fe0ad3f5635ac2d589a71639e9fe3b5bbe26b195b25a5882596",
+    "source_hash": "c2ddcc442a8fd4ae68d78ac403b9128eea0d0aec957c32bc12abe929ff8669b5",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": "0.30",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "alimentari-federalimentare",
+                "title": "CCNL per i lavoratori dell'industria alimentare (Federalimentare)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/alimentari-industria-federalimentare"
+              },
+              "section": "Straordinario — 30% diurno feriale"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": "0.37",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "alimentari-federalimentare",
+                "title": "CCNL per i lavoratori dell'industria alimentare (Federalimentare)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/alimentari-industria-federalimentare"
+              },
+              "section": "Straordinario — 37% notturno"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": "0.45",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "alimentari-federalimentare",
+                "title": "CCNL per i lavoratori dell'industria alimentare (Federalimentare)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/alimentari-industria-federalimentare"
+              },
+              "section": "Straordinario — 45% festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "alimentari-federalimentare",
+            "title": "CCNL per i lavoratori dell'industria alimentare (Federalimentare)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/alimentari-industria-federalimentare"
+          },
+          "section": "Divisore giornaliero 26"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "20",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "20"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "alimentari-federalimentare",
+            "title": "CCNL per i lavoratori dell'industria alimentare (Federalimentare)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/alimentari-industria-federalimentare"
+          },
+          "section": "Ferie — 20 giorni lavorativi (4 settimane su base 5 gg/settimana)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "alimentari-federalimentare",
+            "title": "CCNL per i lavoratori dell'industria alimentare (Federalimentare)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/alimentari-industria-federalimentare"
+          },
+          "section": "Malattia — carenza integrata al 100%; integrazione datoriale fino al 100% per 180 gg"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    }
   }
 }

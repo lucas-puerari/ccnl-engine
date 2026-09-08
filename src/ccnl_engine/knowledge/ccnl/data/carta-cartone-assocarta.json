@@ -2123,7 +2123,188 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/",
     "verification_status": "unverified",
-    "source_hash": "7bc11d0a65955e149bf8b01e9d305dd86fe8a9644538bc12fb7a4f9691a77c18",
+    "source_hash": "e21c9869757ad4d4ef13fee012766089d819badcab7141f17e63798a38bfd38c",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-07-28",
+                "value": "0.30",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "carta-cartone-assocarta",
+                "title": "CCNL per i lavoratori dell'industria della carta e cartone (Assocarta)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/carta---industria"
+              },
+              "section": "Straordinario — 30% diurno feriale"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-07-28"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-07-28",
+                "value": "0.55",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "carta-cartone-assocarta",
+                "title": "CCNL per i lavoratori dell'industria della carta e cartone (Assocarta)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/carta---industria"
+              },
+              "section": "Straordinario notturno — 55%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-07-28"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Lavoro domenicale con riposo compensativo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-07-28",
+                "value": "0.80",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "carta-cartone-assocarta",
+                "title": "CCNL per i lavoratori dell'industria della carta e cartone (Assocarta)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/carta---industria"
+              },
+              "section": "Domenicale con riposo compensativo — 80%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-07-28"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "carta-cartone-assocarta",
+            "title": "CCNL per i lavoratori dell'industria della carta e cartone (Assocarta)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/carta---industria"
+          },
+          "section": "Divisore giornaliero 26 (industria carta)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-07-28"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "20",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "20"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "carta-cartone-assocarta",
+            "title": "CCNL per i lavoratori dell'industria della carta e cartone (Assocarta)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/carta---industria"
+          },
+          "section": "Ferie — 20 giorni lavorativi annui (4 settimane)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-07-28"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "carta-cartone-assocarta",
+            "title": "CCNL per i lavoratori dell'industria della carta e cartone (Assocarta)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/carta---industria"
+          },
+          "section": "Malattia — integrazione 100% per 180 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-07-28"
+        }
+      }
+    }
   }
 }

@@ -4958,7 +4958,196 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "379a09694a800a871743c2a8b81c8655652259b03e3e3734dfd404d110294d88",
+    "source_hash": "d88d2a89b7ede669d923526760b2e1e45b69db25ce3c7dcda641f1f4cd3b51ee",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "1976-07-23",
+                "value": "0.10",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoferrotranvieri-internavigatori",
+                "title": "CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/autoferrotranvieri/"
+              },
+              "section": "Straordinario — 10% diurno feriale"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "1976-07-23"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Lavoro notturno (22-05h)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "1976-07-23",
+                "value": "0.15",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoferrotranvieri-internavigatori",
+                "title": "CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/autoferrotranvieri/"
+              },
+              "section": "Notturno non in turni — 15%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "1976-07-23"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Lavoro festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "1976-07-23",
+                "value": "0.20",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoferrotranvieri-internavigatori",
+                "title": "CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/autoferrotranvieri/"
+              },
+              "section": "Festivo — 20% (doppio dello straordinario); cumulabile con notturno"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "1976-07-23"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autoferrotranvieri-internavigatori",
+            "title": "CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.contratticcnl.it/autoferrotranvieri/"
+          },
+          "section": "Divisore giornaliero 26"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "1976-07-23"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "24",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "24"
+        },
+        {
+          "service_months_min": 120,
+          "annual_days": "25"
+        },
+        {
+          "service_months_min": 240,
+          "annual_days": "26"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autoferrotranvieri-internavigatori",
+            "title": "CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.contratticcnl.it/autoferrotranvieri/"
+          },
+          "section": "Ferie — 24 gg (<10aa), 25 gg (11-20aa), 26 gg (>20aa)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "1976-07-23"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autoferrotranvieri-internavigatori",
+            "title": "CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.contratticcnl.it/autoferrotranvieri/"
+          },
+          "section": "Malattia — piena retribuzione; comporto 6 mesi (<3aa), 9 mesi (3-6aa), 12 mesi (>6aa)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "1976-07-23"
+        }
+      }
+    }
   }
 }

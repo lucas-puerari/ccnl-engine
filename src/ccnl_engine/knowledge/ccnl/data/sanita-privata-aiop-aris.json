@@ -1538,7 +1538,224 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "7fb03f345c2f492f37851fecae71fe21edab02757b56bf0467c4dd9c0c9d2edb",
+    "source_hash": "8c56c87ac837a80dd9dcc43c53bfa97b9d063e75bbc89087cfcaea474aafd4e4",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-10-08",
+                "value": 0.15,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-sanita-privata-aiop-aris-2020",
+                "title": "CCNL Case di Cura Private – Personale Non Medico (AIOP-ARIS) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+              },
+              "section": "Art. 59 – lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2020-10-08"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-10-08",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-sanita-privata-aiop-aris-2020",
+                "title": "CCNL Case di Cura Private – Personale Non Medico (AIOP-ARIS) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+              },
+              "section": "Art. 59 – lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2020-10-08"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-10-08",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-sanita-privata-aiop-aris-2020",
+                "title": "CCNL Case di Cura Private – Personale Non Medico (AIOP-ARIS) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+              },
+              "section": "Art. 59 – lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2020-10-08"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-10-08",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-sanita-privata-aiop-aris-2020",
+                "title": "CCNL Case di Cura Private – Personale Non Medico (AIOP-ARIS) 2020",
+                "kind": "tabella_retributiva",
+                "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+              },
+              "section": "Art. 59 – lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2020-10-08"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-sanita-privata-aiop-aris-2020",
+            "title": "CCNL Case di Cura Private – Personale Non Medico (AIOP-ARIS) 2020",
+            "kind": "tabella_retributiva",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Art. orario di lavoro"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2020-10-08"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "30",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "30"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-sanita-privata-aiop-aris-2020",
+            "title": "CCNL Case di Cura Private – Personale Non Medico (AIOP-ARIS) 2020",
+            "kind": "tabella_retributiva",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Art. ferie"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2020-10-08"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "0.5",
+      "full_pay_integration_rate": "0.75",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-sanita-privata-aiop-aris-2020",
+            "title": "CCNL Case di Cura Private – Personale Non Medico (AIOP-ARIS) 2020",
+            "kind": "tabella_retributiva",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf"
+          },
+          "section": "Art. malattia"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2020-10-08"
+        }
+      }
+    }
   }
 }

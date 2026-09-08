@@ -1193,7 +1193,223 @@
     "effective_until": null,
     "source": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
     "verification_status": "unverified",
-    "source_hash": "6150a42de0b7627e0bd8ddcd661e3607b5930508a0a16982e6963f121b70f1c1",
+    "source_hash": "6cd11475e2bc8545b2a2459d7283b903c01b7f22a11c7b958248b7c4d22f5865",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale (41-48h settimanali)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-fiori-recisi-ancef-2023",
+                "title": "CCNL Fiori Recisi e Verde Ornamentale (ANCEF) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=29864"
+              },
+              "section": "Art. straordinario — maggiorazione 30% fascia 41-48h"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale (oltre 48h settimanali)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": 0.55,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-fiori-recisi-ancef-2023",
+                "title": "CCNL Fiori Recisi e Verde Ornamentale (ANCEF) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=29864"
+              },
+              "section": "Art. straordinario — maggiorazione 55% oltre 48h"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-fiori-recisi-ancef-2023",
+                "title": "CCNL Fiori Recisi e Verde Ornamentale (ANCEF) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=29864"
+              },
+              "section": "Art. straordinario — maggiorazione notturno"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-fiori-recisi-ancef-2023",
+                "title": "CCNL Fiori Recisi e Verde Ornamentale (ANCEF) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=29864"
+              },
+              "section": "Art. straordinario — maggiorazione festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-fiori-recisi-ancef-2023",
+            "title": "CCNL Fiori Recisi e Verde Ornamentale (ANCEF) 2023-2026",
+            "kind": "tabella_retributiva",
+            "url": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=29864"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "26",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-fiori-recisi-ancef-2023",
+            "title": "CCNL Fiori Recisi e Verde Ornamentale (ANCEF) 2023-2026",
+            "kind": "tabella_retributiva",
+            "url": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=29864"
+          },
+          "section": "Art. ferie — 26 giorni lavorativi annui"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-fiori-recisi-ancef-2023",
+            "title": "CCNL Fiori Recisi e Verde Ornamentale (ANCEF) 2023-2026",
+            "kind": "tabella_retributiva",
+            "url": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=29864"
+          },
+          "section": "Art. malattia — integrazione al 100% per 180 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      }
+    }
   }
 }

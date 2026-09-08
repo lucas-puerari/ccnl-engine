@@ -1854,7 +1854,188 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "f96e6b6110e684e2009e9e0ccbb1f913595819c0e648f904d431d3b5ffb6214d",
+    "source_hash": "ed984f9fcc9267089ee2459eec0282959e94d36885672dcad9eac685537c44bc",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2019-01-01",
+                "value": "0.30",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "agenzie-viaggio-fiavet",
+                "title": "CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/turismo-confcommercio---agenzie-di-viaggi-minori"
+              },
+              "section": "Straordinario — 30% diurno feriale"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2019-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2019-01-01",
+                "value": "0.50",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "agenzie-viaggio-fiavet",
+                "title": "CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/turismo-confcommercio---agenzie-di-viaggi-minori"
+              },
+              "section": "Straordinario — 50% notturno"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2019-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2019-01-01",
+                "value": "0.40",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "agenzie-viaggio-fiavet",
+                "title": "CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/turismo-confcommercio---agenzie-di-viaggi-minori"
+              },
+              "section": "Straordinario — 40% festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2019-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "agenzie-viaggio-fiavet",
+            "title": "CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/turismo-confcommercio---agenzie-di-viaggi-minori"
+          },
+          "section": "Divisore giornaliero 26 (settore terziario/confcommercio)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2019-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "26",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "agenzie-viaggio-fiavet",
+            "title": "CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/turismo-confcommercio---agenzie-di-viaggi-minori"
+          },
+          "section": "Ferie — 26 giorni lavorativi annui"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2019-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "agenzie-viaggio-fiavet",
+            "title": "CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/turismo-confcommercio---agenzie-di-viaggi-minori"
+          },
+          "section": "Malattia — integrazione al 100%, max 180 giorni per anno civile"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2019-01-01"
+        }
+      }
+    }
   }
 }

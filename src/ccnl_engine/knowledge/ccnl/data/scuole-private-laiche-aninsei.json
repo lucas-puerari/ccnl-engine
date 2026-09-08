@@ -1269,7 +1269,224 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "812ba2313d395fab62c910c25f0e8d5d067ff8f6ab915ed95919fd46108b20e3",
+    "source_hash": "fa84e1462a65948027a4902aa6548aafa6b5e82e92de7936f5f3a7298a8f27c9",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": 0.35,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-scuole-private-laiche-aninsei-2024",
+                "title": "CCNL Scuole Private Laiche ANINSEI 2024-2027",
+                "kind": "tabella_retributiva",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": 0.4,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-scuole-private-laiche-aninsei-2024",
+                "title": "CCNL Scuole Private Laiche ANINSEI 2024-2027",
+                "kind": "tabella_retributiva",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-scuole-private-laiche-aninsei-2024",
+                "title": "CCNL Scuole Private Laiche ANINSEI 2024-2027",
+                "kind": "tabella_retributiva",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": 0.6,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-scuole-private-laiche-aninsei-2024",
+                "title": "CCNL Scuole Private Laiche ANINSEI 2024-2027",
+                "kind": "tabella_retributiva",
+                "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-scuole-private-laiche-aninsei-2024",
+            "title": "CCNL Scuole Private Laiche ANINSEI 2024-2027",
+            "kind": "tabella_retributiva",
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+          },
+          "section": "Art. orario di lavoro"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "30",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "30"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-scuole-private-laiche-aninsei-2024",
+            "title": "CCNL Scuole Private Laiche ANINSEI 2024-2027",
+            "kind": "tabella_retributiva",
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+          },
+          "section": "Art. ferie"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-scuole-private-laiche-aninsei-2024",
+            "title": "CCNL Scuole Private Laiche ANINSEI 2024-2027",
+            "kind": "tabella_retributiva",
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+          },
+          "section": "Art. malattia"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    }
   }
 }

@@ -1122,7 +1122,224 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "224304f111c99555ffc4051a4b1c601392a0535dee829b9e0275558bff270249",
+    "source_hash": "c697bc81b3006d888cc5f676b2bd3cbd86cf3c53e951fdf2817335f419c21541",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "value": 0.25,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-anaste-2025",
+                "title": "CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE) 2025",
+                "kind": "tabella_retributiva",
+                "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione 25%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "value": 0.4,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-anaste-2025",
+                "title": "CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE) 2025",
+                "kind": "tabella_retributiva",
+                "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione notturno 40%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-anaste-2025",
+                "title": "CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE) 2025",
+                "kind": "tabella_retributiva",
+                "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione festivo 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "value": 0.6,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-anaste-2025",
+                "title": "CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE) 2025",
+                "kind": "tabella_retributiva",
+                "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+              },
+              "section": "Art. straordinario — notturno festivo 60%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-anaste-2025",
+            "title": "CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE) 2025",
+            "kind": "tabella_retributiva",
+            "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "26",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-anaste-2025",
+            "title": "CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE) 2025",
+            "kind": "tabella_retributiva",
+            "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+          },
+          "section": "Art. ferie — 26 giorni lavorativi annui"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-anaste-2025",
+            "title": "CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE) 2025",
+            "kind": "tabella_retributiva",
+            "url": "https://snalv.it/docs/anaste25/pdf6.pdf"
+          },
+          "section": "Art. malattia — conservazione posto 180 giorni; integrazione al 100%"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-01-01"
+        }
+      }
+    }
   }
 }

@@ -899,7 +899,224 @@
     "effective_until": null,
     "source": "https://www.idealista.it/news/finanza/lavoro/2025/07/10/251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
     "verification_status": "unverified",
-    "source_hash": "ecfb3e5b6bff1c7b9564789487b93d21072f47895f2a5bc493d89843b5fabc7a",
+    "source_hash": "b102b96ec1455e4faa7c7b0f9ea61c4fa40c0d50416481d14ec14fc54c09f42a",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": 0.35,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria",
+                "title": "CCNL Edilizia - Industria (ANCE)",
+                "kind": "tabella_retributiva",
+                "url": "https://leggeinchiaro.it/ccnl-edilizia-industria-tabelle-retributive/"
+              },
+              "section": "Art. straordinario — maggiorazione 35%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": 0.4,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria",
+                "title": "CCNL Edilizia - Industria (ANCE)",
+                "kind": "tabella_retributiva",
+                "url": "https://leggeinchiaro.it/ccnl-edilizia-industria-tabelle-retributive/"
+              },
+              "section": "Art. straordinario — maggiorazione 40%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": 0.55,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria",
+                "title": "CCNL Edilizia - Industria (ANCE)",
+                "kind": "tabella_retributiva",
+                "url": "https://leggeinchiaro.it/ccnl-edilizia-industria-tabelle-retributive/"
+              },
+              "section": "Art. straordinario — maggiorazione 55%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": 0.7,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria",
+                "title": "CCNL Edilizia - Industria (ANCE)",
+                "kind": "tabella_retributiva",
+                "url": "https://leggeinchiaro.it/ccnl-edilizia-industria-tabelle-retributive/"
+              },
+              "section": "Art. straordinario — maggiorazione 70%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-edilizia-industria",
+            "title": "CCNL Edilizia - Industria (ANCE)",
+            "kind": "tabella_retributiva",
+            "url": "https://leggeinchiaro.it/ccnl-edilizia-industria-tabelle-retributive/"
+          },
+          "section": "Art. orario — divisore giornaliero"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "20",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "20"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-edilizia-industria",
+            "title": "CCNL Edilizia - Industria (ANCE)",
+            "kind": "tabella_retributiva",
+            "url": "https://leggeinchiaro.it/ccnl-edilizia-industria-tabelle-retributive/"
+          },
+          "section": "Art. ferie — 4 settimane (20 giorni lavorativi)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-edilizia-industria",
+            "title": "CCNL Edilizia - Industria (ANCE)",
+            "kind": "tabella_retributiva",
+            "url": "https://leggeinchiaro.it/ccnl-edilizia-industria-tabelle-retributive/"
+          },
+          "section": "Art. malattia — integrazione al 100% per 180 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    }
   }
 }

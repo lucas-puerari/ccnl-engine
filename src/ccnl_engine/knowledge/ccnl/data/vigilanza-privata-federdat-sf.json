@@ -1188,7 +1188,189 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "18f1b0b3a22169fd8ec7610af25fb11474288b8914b48f7c2397127abc2a3c35",
+    "source_hash": "49c9ba7c9d850bbd026540672c99f10d199b23e59a4d9f9e458e0471f5ad5805",
     "published_at": "2026-09-07"
+  },
+  "layer_3": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale oltre 40h settimanali",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-vigilanza-privata-federdat-sf-2024",
+                "title": "CCNL Vigilanza Privata FEDERDAT (Servizi Fiduciari) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-02-16"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario in giorno di riposo settimanale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "value": 0.35,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-vigilanza-privata-federdat-sf-2024",
+                "title": "CCNL Vigilanza Privata FEDERDAT (Servizi Fiduciari) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-02-16"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario festivo nazionali",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "value": 0.4,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-vigilanza-privata-federdat-sf-2024",
+                "title": "CCNL Vigilanza Privata FEDERDAT (Servizi Fiduciari) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-02-16"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-vigilanza-privata-federdat-sf-2024",
+            "title": "CCNL Vigilanza Privata FEDERDAT (Servizi Fiduciari) 2023-2026",
+            "kind": "tabella_retributiva",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+          },
+          "section": "Art. orario di lavoro"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-02-16"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "25",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "25"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-vigilanza-privata-federdat-sf-2024",
+            "title": "CCNL Vigilanza Privata FEDERDAT (Servizi Fiduciari) 2023-2026",
+            "kind": "tabella_retributiva",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+          },
+          "section": "Art. ferie"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-02-16"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "0.75",
+      "full_pay_integration_rate": "0.75",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-vigilanza-privata-federdat-sf-2024",
+            "title": "CCNL Vigilanza Privata FEDERDAT (Servizi Fiduciari) 2023-2026",
+            "kind": "tabella_retributiva",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+          },
+          "section": "Art. malattia"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-02-16"
+        }
+      }
+    }
   }
 }
