@@ -11,7 +11,10 @@ import pytest
 
 from ccnl_engine.engine.contract.domain.ccnl import (
     CCNL,
+    AbsenceRules,
     Allowance,
+    CCNLLayer3,
+    DailyDivisorMethod,
     SupplementaryAllowance,
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
@@ -29,7 +32,7 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Jurisdiction,
     PayrollScenario,
 )
-from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
+from ccnl_engine.engine.payroll.domain.supplements import AbsenceDays, OvertimeHours
 from ccnl_engine.engine.payroll.service.orchestrator import _collect_provenance, compute
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.types import MonthlyPayChain
@@ -914,3 +917,79 @@ class TestL3Warning:
         # Supplement fields must stay zero (no schema → nothing computed).
         assert result.overtime_supplement_monthly == _D("0")
         assert result.time_supplements_monthly == _D("0")
+
+
+class TestL3Absence:
+    """Orchestrator behaviour for L3 absence deduction."""
+
+    def test_warning_when_ccnl_has_no_absence_rules(self) -> None:
+        """Emit a warning when absence_days is set but CCNL has no absence rules."""
+        scenario = dataclasses.replace(
+            _req(),
+            absence_days=AbsenceDays(unpaid_days=_D("2")),
+        )
+        result = compute(scenario).result
+        assert any("absence_days" in w for w in result.warnings), (
+            f"Expected absence_days warning, got: {result.warnings}"
+        )
+        assert result.absence_deduction_monthly == _D("0")
+        # effective_gross_monthly equals gross_monthly when deduction is zero
+        assert result.effective_gross_monthly == result.gross_monthly
+
+    def test_absence_deduction_with_l3_schema(self) -> None:
+        """Compute absence deduction when CCNL has absence_rules (by_26 method)."""
+        absence_rules = AbsenceRules(
+            daily_divisor_method=DailyDivisorMethod.BY_26,
+        )
+        # Inject layer_3 with absence_rules into the mock CCNL.
+        _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
+            update={"layer_3": CCNLLayer3(absence_rules=absence_rules)}
+        )
+        scenario = dataclasses.replace(
+            _req(),
+            absence_days=AbsenceDays(unpaid_days=_D("1")),
+        )
+        result = compute(scenario).result
+        # No warning: schema is present.
+        assert not any("absence_days" in w for w in result.warnings)
+        # Deduction must be > 0 and equals gross / 26.
+        gross = result.gross_monthly
+        expected = (gross / _D("26")).quantize(_D("0.01"))
+        assert result.absence_deduction_monthly == expected
+        # effective_gross = gross - deduction.
+        assert result.effective_gross_monthly == gross - expected
+
+    def test_absence_scope_excluded_when_no_days(self) -> None:
+        """Absence scope item is excluded when no absence_days supplied."""
+        result = compute(_req()).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["absence"] == "excluded"
+
+    def test_absence_scope_not_computed_when_days_but_no_schema(self) -> None:
+        """Absence is not_computed when days given but CCNL has no schema."""
+        scenario = dataclasses.replace(
+            _req(),
+            absence_days=AbsenceDays(unpaid_days=_D("3")),
+        )
+        result = compute(scenario).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["absence"] == "not_computed"
+
+    def test_absence_scope_verified_with_schema(self) -> None:
+        """Absence is verified when days given and CCNL has absence_rules."""
+        _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
+            update={
+                "layer_3": CCNLLayer3(
+                    absence_rules=AbsenceRules(
+                        daily_divisor_method=DailyDivisorMethod.BY_26,
+                    )
+                )
+            }
+        )
+        scenario = dataclasses.replace(
+            _req(),
+            absence_days=AbsenceDays(unpaid_days=_D("2")),
+        )
+        result = compute(scenario).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["absence"] == "verified"

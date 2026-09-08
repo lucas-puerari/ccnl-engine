@@ -35,11 +35,25 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Jurisdiction,
     PayrollScenario,
 )
-from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
+from ccnl_engine.engine.payroll.domain.supplements import AbsenceDays, OvertimeHours
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 
 _CASES_DIR = Path(__file__).parent / "cases"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
+
+
+def _build_absence_days(inputs: dict[str, Any]) -> AbsenceDays | None:
+    """Build AbsenceDays from the ``absence_days`` key in *inputs*.
+
+    Returns:
+        An :class:`AbsenceDays` instance, or ``None`` when the key is absent.
+    """
+    raw = inputs.get("absence_days")
+    if raw is None:
+        return None
+    return AbsenceDays(
+        unpaid_days=Decimal(str(raw.get("unpaid_days", "0"))),
+    )
 
 
 def _build_time_supplements(inputs: dict[str, Any]) -> OvertimeHours | None:
@@ -140,6 +154,7 @@ class TestReferenceCases:
         )
 
         time_supplements = _build_time_supplements(inputs)
+        absence_days = _build_absence_days(inputs)
 
         scenario = PayrollScenario(
             employee=Employee(
@@ -164,6 +179,7 @@ class TestReferenceCases:
                 tax_year=tax_year,
             ),
             time_supplements=time_supplements,
+            absence_days=absence_days,
         )
 
         result = compute(scenario)

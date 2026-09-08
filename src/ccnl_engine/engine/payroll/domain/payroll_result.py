@@ -266,6 +266,14 @@ class PayrollResult:
     time_supplements_monthly: Decimal = _ZERO
     time_supplements_annual_projection: Decimal = _ZERO
 
+    # --- L3: absence (informational; gross_annual/net_annual not mutated) ---
+    # absence_deduction_monthly: computed gross reduction for unpaid days.
+    # effective_gross_monthly: gross_monthly minus absence_deduction_monthly.
+    # Both default to zero for backward compatibility with serialised dicts
+    # that pre-date this feature.
+    absence_deduction_monthly: Decimal = _ZERO
+    effective_gross_monthly: Decimal = _ZERO
+
     def to_dict(self) -> dict[str, object]:
         """Serialise the payroll to a plain Python dictionary.
 
