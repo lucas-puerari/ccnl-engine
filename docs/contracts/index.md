@@ -23,9 +23,16 @@ Covers 75+ of the ~99 major private-sector CCNLs (>10,000 workers, CNEL II/2024)
 
 **L1 — Gross:** base salary, seniority, fixed allowances,
 additional months, hourly rate.
-**L2 — Net:** INPS contributions, TFR, IRPEF, regional/municipal surtax.
-**Work rules:** overtime, sick/injury leave, performance bonuses, welfare/benefits.
-**Coverage %:** (L1 x 50% + L2 x 35% + work rules x 15%) - 5% per missing data note (max -20%).
+
+**L2 — Net:** INPS contributions, TFR, IRPEF, regional/municipal surtax,
+family deductions (Art. 12), mortgage interest deduction (Art. 15).
+
+**L3 — Work rules:** overtime/night/holiday supplements, sick/injury leave,
+leave entitlement, absence deduction.
+
+**Coverage %:** (L1 x 50% + L2 x 35% + work_rules x 15%) - 5% per missing data
+note (max -20%). work_rules status defaults to not_implemented for most contracts
+(data exists but coverage block not yet updated); current maximum is 85%.
 
 ## Matrix
 
@@ -98,7 +105,7 @@ additional months, hourly rate.
 | 65 | C016 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | metalmeccanico cooperativo | ~28k | — | 85% | ✅ | ✅ | 🔲 | 🤖 |
 | 66 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | — | 85% | ✅ | ✅ | 🔲 | 🤖 |
 | 67 | C018 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | metalmeccanico | ~350k | — | 85% | ✅ | ✅ | 🔲 | 🤖 |
-| 68 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | — | 85% | ✅ | ✅ | 🔲 | 🤖 |
+| 68 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | — | 92% | ✅ | ✅ | ⚠️ | 🤖 |
 | 69 | D271 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | industria occhialeria e ottica | ~20k | — | 85% | ✅ | ✅ | 🔲 | 🤖 |
 | 70 | A011 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | agricoltura | ~600k | — | 85% | ✅ | ✅ | 🔲 | 🤖 |
 | 71 | A221 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | Agricoltura | ~2k | 2024 | 50% | ✅ | 🚫 | 🔲 | 🤖 |

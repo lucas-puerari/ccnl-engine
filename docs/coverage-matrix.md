@@ -25,12 +25,14 @@ Coverage % = percentage of bundled CCNLs that implement the feature (partial = 0
 | TFR | 94% | Trattamento fine rapporto Art. 2120 c.c. |
 | IRPEF | 92% | Ritenuta IRPEF (esclusi withholding-exempt per design) |
 | Regional/municipal surtax | 92% | Addizionali -- richiede regione/comune in input |
+| Family deductions (Art. 12) | 100% | Detrazioni familiari a carico -- obbligatorie per schema |
+| Mortgage interest deduction (Art. 15) | 100% | Interessi passivi mutuo prima casa -- obbligatorio per schema |
 
-## Layer 3 -- Extended (not yet implemented)
+## Layer 3 -- Work rules
 
 | Feature | Coverage | Note |
 |---------|----------|------|
-| Overtime | 0% | Not yet implemented -- engine layer 3 |
-| Sick/injury leave | 0% | Not yet implemented -- engine layer 3 |
-| Performance bonuses | 0% | Not yet implemented -- engine layer 3 |
-| Welfare/benefits | 0% | Not yet implemented -- engine layer 3 |
+| Overtime/night/holiday | 94% | Maggiorazioni orarie da time_supplements CCNL |
+| Sick/injury leave | 94% | Integrazione malattia/infortunio da sickness_rules CCNL |
+| Leave entitlement | 94% | Ferie e permessi da leave_rules CCNL |
+| Absence deduction | 94% | Decurtazione per assenza da absence_rules CCNL |
