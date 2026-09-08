@@ -43,8 +43,6 @@
     "workers_estimate": "~350k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -82,7 +80,9 @@
         "kind": "info",
         "text": "INPS: uses 2026-industria.json. Standard industry rates; verify whether Confapi PMI provides differentiated contributions compared to Federmeccanica for CIG/FIS."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1285,7 +1285,224 @@
     "effective_until": null,
     "source": "https://www.studiotuscano.it/news/nuovi-minimi-retributivi-per-il-ccnl-metalmeccanica-piccola-industria-confapi",
     "verification_status": "unverified",
-    "source_hash": "2838bb37354628c1cbcf0acacc5576485e146039c88bd27b685eb976c0000fc5",
+    "source_hash": "3a6a7576450aeba6053cd1fc4f41f4818cb2ae7470b65b57accd535ceaf15fac",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.15,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-metalmeccanica-pmi-confapi",
+                "title": "CCNL Metalmeccanica PMI — Piccola Industria (CONFAPI)",
+                "kind": "tabella_retributiva",
+                "url": "https://leggeinchiaro.it/ccnl-metalmeccanica-confapi-pmi-tabelle-retributive/"
+              },
+              "section": "Art. straordinario — maggiorazione 15%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.4,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-metalmeccanica-pmi-confapi",
+                "title": "CCNL Metalmeccanica PMI — Piccola Industria (CONFAPI)",
+                "kind": "tabella_retributiva",
+                "url": "https://leggeinchiaro.it/ccnl-metalmeccanica-confapi-pmi-tabelle-retributive/"
+              },
+              "section": "Art. straordinario — notturno 40%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-metalmeccanica-pmi-confapi",
+                "title": "CCNL Metalmeccanica PMI — Piccola Industria (CONFAPI)",
+                "kind": "tabella_retributiva",
+                "url": "https://leggeinchiaro.it/ccnl-metalmeccanica-confapi-pmi-tabelle-retributive/"
+              },
+              "section": "Art. straordinario — festivo 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.6,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-metalmeccanica-pmi-confapi",
+                "title": "CCNL Metalmeccanica PMI — Piccola Industria (CONFAPI)",
+                "kind": "tabella_retributiva",
+                "url": "https://leggeinchiaro.it/ccnl-metalmeccanica-confapi-pmi-tabelle-retributive/"
+              },
+              "section": "Art. straordinario — notturno festivo 60%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-metalmeccanica-pmi-confapi",
+            "title": "CCNL Metalmeccanica PMI — Piccola Industria (CONFAPI)",
+            "kind": "tabella_retributiva",
+            "url": "https://leggeinchiaro.it/ccnl-metalmeccanica-confapi-pmi-tabelle-retributive/"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "22",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-metalmeccanica-pmi-confapi",
+            "title": "CCNL Metalmeccanica PMI — Piccola Industria (CONFAPI)",
+            "kind": "tabella_retributiva",
+            "url": "https://leggeinchiaro.it/ccnl-metalmeccanica-confapi-pmi-tabelle-retributive/"
+          },
+          "section": "Art. ferie — 22 giorni lavorativi (settimana su 5 giorni)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "0.6",
+      "full_pay_integration_rate": "0.75",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-metalmeccanica-pmi-confapi",
+            "title": "CCNL Metalmeccanica PMI — Piccola Industria (CONFAPI)",
+            "kind": "tabella_retributiva",
+            "url": "https://leggeinchiaro.it/ccnl-metalmeccanica-confapi-pmi-tabelle-retributive/"
+          },
+          "section": "Art. malattia — 60% gg1-3 (max 4 eventi/anno), 75% gg4-45; 100% per patologie gravi (max 180gg)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    }
   }
 }

@@ -34,8 +34,6 @@
     "workers_estimate": "~110k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -73,7 +71,9 @@
         "kind": "simplification",
         "text": "INPS: reuses 2026-industria.json (Confindustria/CIGO). SIMPLIFICATION: tax_sector='industria' is a modelling choice. Supporting facts: (a) Asstel is a Confindustria federation; (b) large TLC operators (Telecom Italia, etc.) have historically accessed CIGO/CIGS; (c) the CCNL itself (Art. 58 rinnovo 11/11/2025) describes the Fondo di Solidarietà Bilaterale TLC as 'in aggiunta' (supplementary), not as a CIG substitute. Counterargument: D.Lgs. 148/2015 Art. 26 bilateral funds are formally for sectors without CIG coverage; this was not verified against an INPS circular. If TERZIARIO rates apply instead, employer contribution at ≤50 employees would be 28.98% vs. 30.20% modelled here (difference ~1.2 pp). The Fondo di Solidarietà Bilaterale (0.20% datore + 0.10% lavoratore) is NOT modelled in either case."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1336,7 +1336,228 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "d183e3bb8a70e71fb9f196faa2ec595ad7558def22c792c19007af2ad198c2b8",
+    "source_hash": "5358c47ca1a58743f90f438ef754515622fd0c00e330902e30817c783cf694d2",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-01-01",
+                "value": 0.25,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-telecomunicazioni-asstel-2017",
+                "title": "CCNL Telecomunicazioni ASSTEL",
+                "kind": "tabella_retributiva",
+                "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-telecomunicazioni-asstel-2017",
+                "title": "CCNL Telecomunicazioni ASSTEL",
+                "kind": "tabella_retributiva",
+                "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-telecomunicazioni-asstel-2017",
+                "title": "CCNL Telecomunicazioni ASSTEL",
+                "kind": "tabella_retributiva",
+                "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-01-01",
+                "value": 0.7,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-telecomunicazioni-asstel-2017",
+                "title": "CCNL Telecomunicazioni ASSTEL",
+                "kind": "tabella_retributiva",
+                "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2020-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-telecomunicazioni-asstel-2017",
+            "title": "CCNL Telecomunicazioni ASSTEL",
+            "kind": "tabella_retributiva",
+            "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+          },
+          "section": "Art. orario di lavoro"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "24",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "24"
+        },
+        {
+          "service_months_min": 120,
+          "annual_days": "25"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-telecomunicazioni-asstel-2017",
+            "title": "CCNL Telecomunicazioni ASSTEL",
+            "kind": "tabella_retributiva",
+            "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+          },
+          "section": "Art. ferie"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-telecomunicazioni-asstel-2017",
+            "title": "CCNL Telecomunicazioni ASSTEL",
+            "kind": "tabella_retributiva",
+            "url": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/"
+          },
+          "section": "Art. malattia"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2020-01-01"
+        }
+      }
+    }
   }
 }

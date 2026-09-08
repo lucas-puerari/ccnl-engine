@@ -35,8 +35,6 @@
     "workers_estimate": "~33k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -66,7 +64,9 @@
         "kind": "info",
         "text": "INPS rates from 2026-credito.json (same sector as bancari-abi). IRPEF 2026 brackets applied (L. 199/2025)."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1284,7 +1284,224 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "9d3cdee7aa537c019425e886b11075f4b710a28d512c969bc24120f7eb4e5dcd",
+    "source_hash": "10a3d56916054934983d0060a37406eb713fa5c145b0a59844070b176623c867",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-09",
+                "value": "0.25",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "bcc-credito-cooperativo",
+                "title": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/banche-di-credito-cooperativo---casse-rurali-ed-artigiane"
+              },
+              "section": "Straordinario — 25% feriale diurno"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-09"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno (22-06h)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-09",
+                "value": "0.55",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "bcc-credito-cooperativo",
+                "title": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/banche-di-credito-cooperativo---casse-rurali-ed-artigiane"
+              },
+              "section": "Straordinario — 55% notturno (22-06h)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-09"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario sabato",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-09",
+                "value": "0.30",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "bcc-credito-cooperativo",
+                "title": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/banche-di-credito-cooperativo---casse-rurali-ed-artigiane"
+              },
+              "section": "Straordinario sabato — 30%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-09"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-09",
+                "value": "0.65",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "bcc-credito-cooperativo",
+                "title": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/banche-di-credito-cooperativo---casse-rurali-ed-artigiane"
+              },
+              "section": "Straordinario notturno festivo — 65%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-09"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "bcc-credito-cooperativo",
+            "title": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/banche-di-credito-cooperativo---casse-rurali-ed-artigiane"
+          },
+          "section": "Divisore giornaliero 26 (settore credito cooperativo)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-09"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "24",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "24"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "bcc-credito-cooperativo",
+            "title": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/banche-di-credito-cooperativo---casse-rurali-ed-artigiane"
+          },
+          "section": "Ferie — 24 giorni lavorativi annui (stima su settore credito cooperativo)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-09"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "bcc-credito-cooperativo",
+            "title": "CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/banche-di-credito-cooperativo---casse-rurali-ed-artigiane"
+          },
+          "section": "Malattia — conservazione trattamento economico; 6 mesi senza riduzione ferie"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-09"
+        }
+      }
+    }
   }
 }

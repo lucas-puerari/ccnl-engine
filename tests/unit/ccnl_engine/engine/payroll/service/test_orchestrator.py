@@ -13,7 +13,7 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     CCNL,
     AbsenceRules,
     Allowance,
-    CCNLLayer3,
+    CCNLWorkRules,
     DailyDivisorMethod,
     LeaveEntitlementTier,
     LeaveRules,
@@ -917,7 +917,7 @@ class TestL3Warning:
 
     def test_warning_emitted_when_ccnl_has_no_l3(self) -> None:
         """Emit a warning when time_supplements is set but CCNL has no L3 data."""
-        # The test CCNL (built by _build_ccnl / _req) has no layer_3 block.
+        # The test CCNL (built by _build_ccnl / _req) has no work_rules block.
         # dataclasses.replace adds time_supplements without touching other fields.
         scenario = dataclasses.replace(
             _req(),
@@ -949,14 +949,14 @@ class TestL3Absence:
         # effective_gross_monthly equals gross_monthly when deduction is zero
         assert result.effective_gross_monthly == result.gross_monthly
 
-    def test_absence_deduction_with_l3_schema(self) -> None:
+    def test_absence_deduction_with_wr_schema(self) -> None:
         """Compute absence deduction when CCNL has absence_rules (by_26 method)."""
         absence_rules = AbsenceRules(
             daily_divisor_method=DailyDivisorMethod.BY_26,
         )
-        # Inject layer_3 with absence_rules into the mock CCNL.
+        # Inject work_rules with absence_rules into the mock CCNL.
         _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
-            update={"layer_3": CCNLLayer3(absence_rules=absence_rules)}
+            update={"work_rules": CCNLWorkRules(absence_rules=absence_rules)}
         )
         scenario = dataclasses.replace(
             _req(),
@@ -992,7 +992,7 @@ class TestL3Absence:
         """Absence is verified when days given and CCNL has absence_rules."""
         _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
             update={
-                "layer_3": CCNLLayer3(
+                "work_rules": CCNLWorkRules(
                     absence_rules=AbsenceRules(
                         daily_divisor_method=DailyDivisorMethod.BY_26,
                     )
@@ -1023,11 +1023,11 @@ class TestL3Leave:
         )
         assert result.leave_accrued_days_monthly == _D("0")
 
-    def test_leave_accrual_with_l3_schema(self) -> None:
+    def test_leave_accrual_with_wr_schema(self) -> None:
         """Compute leave accrual when CCNL has leave_rules (flat, no tiers)."""
         leave_rules = LeaveRules(default_annual_days=_D("20"))
         _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
-            update={"layer_3": CCNLLayer3(leave_rules=leave_rules)}
+            update={"work_rules": CCNLWorkRules(leave_rules=leave_rules)}
         )
         scenario = dataclasses.replace(
             _req(),
@@ -1050,7 +1050,7 @@ class TestL3Leave:
             ],
         )
         _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
-            update={"layer_3": CCNLLayer3(leave_rules=leave_rules)}
+            update={"work_rules": CCNLWorkRules(leave_rules=leave_rules)}
         )
         # Employee with 48 months → senior tier (25 days/year → 2.08/month)
         scenario = dataclasses.replace(
@@ -1080,7 +1080,7 @@ class TestL3Leave:
         """Leave is verified when input given and CCNL has leave_rules."""
         _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
             update={
-                "layer_3": CCNLLayer3(
+                "work_rules": CCNLWorkRules(
                     leave_rules=LeaveRules(default_annual_days=_D("20"))
                 )
             }
@@ -1109,11 +1109,11 @@ class TestL3Sickness:
         )
         assert result.sick_days_monthly == _D("0")
 
-    def test_sickness_computed_with_l3_schema(self) -> None:
+    def test_sickness_computed_with_wr_schema(self) -> None:
         """Compute sick-leave indemnity when CCNL has sickness_rules."""
         _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
             update={
-                "layer_3": CCNLLayer3(
+                "work_rules": CCNLWorkRules(
                     sickness_rules=SicknessRules(
                         carenza_integration_rate=_D("1"),
                         full_pay_integration_rate=_D("1"),
@@ -1151,7 +1151,7 @@ class TestL3Sickness:
         """Sickness is verified when input given and CCNL has sickness_rules."""
         _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
             update={
-                "layer_3": CCNLLayer3(
+                "work_rules": CCNLWorkRules(
                     sickness_rules=SicknessRules(
                         carenza_integration_rate=_D("1"),
                         full_pay_integration_rate=_D("1"),

@@ -29,8 +29,8 @@ class CoverageStatus(StrEnum):
     NOT_IMPLEMENTED = "not_implemented"
 
 
-class L3Feature(StrEnum):
-    """Enumeration of Layer 3 payroll features."""
+class WorkRuleFeature(StrEnum):
+    """Enumeration of work-rules payroll features."""
 
     OVERTIME = "overtime"
     NIGHT_WORK = "night_work"
@@ -245,8 +245,8 @@ class SicknessRules(BaseModel):
     provenance: "RuleProvenance | None" = None
 
 
-class CCNLLayer3(BaseModel):
-    """Container for Layer 3 rules attached to a CCNL data file."""
+class CCNLWorkRules(BaseModel):
+    """Container for work rules attached to a CCNL data file."""
 
     model_config = ConfigDict(extra="forbid")
 
@@ -518,51 +518,52 @@ class CCNLCoverage(BaseModel):
 
     Two orthogonal axes:
 
-    * **Coverage** (``layer_1`` / ``layer_2`` / ``layer_3``): what the engine
+    * **Coverage** (``gross`` / ``net`` / ``work_rules``): what the engine
       implements for this contract — ``implemented``, ``partial``, or
       ``out_of_scope``.
 
       - L1 — Gross: base salary, seniority, fixed allowances, additional
         months, hourly rate.
       - L2 — Net: INPS contributions, TFR, IRPEF, regional/municipal surtax.
-      - L3 — Extended: overtime, sick/injury leave, performance bonuses,
+      - Work rules — Extended: overtime, sick/injury leave, performance bonuses,
         welfare/benefits. Defaults to ``not_implemented``.
 
     * **Verification** (``verification_status``): how confident we are in the
       data behind that implementation — verified, unverified, or needs review.
 
-    ``layer_3`` is the scalar summary status (for backward compat with the
-    coverage matrix). ``layer_3_features`` is the authoritative per-feature
-    dict; it drives the computed L3 rollup and the per-feature coverage table.
+    ``work_rules`` is the scalar summary status (for backward compat with the
+    coverage matrix). ``work_rules_features`` is the authoritative per-feature
+    dict; it drives the computed work-rules rollup and the per-feature coverage
+    table.
 
     A ``missing`` note documents data the engine supports but the file lacks,
-    and is only allowed while at least one of layer_1 / layer_2 is ``partial``
-    or any layer_3 feature is ``partial``.
+    and is only allowed while at least one of gross / net is ``partial``
+    or any work_rules feature is ``partial``.
     """
 
     model_config = ConfigDict(extra="forbid")
 
-    layer_1: CoverageStatus
-    layer_2: CoverageStatus
-    layer_3: CoverageStatus = CoverageStatus.NOT_IMPLEMENTED
-    layer_3_features: dict[L3Feature, CoverageStatus] = {}
+    gross: CoverageStatus
+    net: CoverageStatus
+    work_rules: CoverageStatus = CoverageStatus.NOT_IMPLEMENTED
+    work_rules_features: dict[WorkRuleFeature, CoverageStatus] = {}
     notes: list[CoverageNote]
     verification_status: VerificationStatus = VerificationStatus.UNVERIFIED
 
     @model_validator(mode="after")
     def _check_notes(self) -> Self:
         has_missing = any(n.kind == NoteKind.MISSING for n in self.notes)
-        any_l3_partial = any(
-            v == CoverageStatus.PARTIAL for v in self.layer_3_features.values()
+        any_wr_partial = any(
+            v == CoverageStatus.PARTIAL for v in self.work_rules_features.values()
         )
         if (
             has_missing
-            and "partial" not in {self.layer_1, self.layer_2}
-            and not any_l3_partial
+            and "partial" not in {self.gross, self.net}
+            and not any_wr_partial
         ):
             msg = (
-                "coverage has 'missing' notes but neither layer_1 nor layer_2 "
-                "is 'partial' and no layer_3 feature is 'partial'"
+                "coverage has 'missing' notes but neither gross nor net "
+                "is 'partial' and no work_rules feature is 'partial'"
             )
             raise ValueError(msg)
         return self
@@ -651,8 +652,8 @@ class CCNL(BaseModel):
         apprenticeship: Apprenticeship tracks modelled for this CCNL. Empty
             when apprenticeship is out of scope or not yet modelled.
         coverage: Implementation status flags and notes for the data file.
-        layer_3: Layer 3 rule data (overtime, night work, etc.). ``None``
-            when no L3 rules are modelled for this CCNL.
+        work_rules: Work-rules data (overtime, leave, sickness, absence). ``None``
+            when no work rules are modelled for this CCNL.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -670,7 +671,7 @@ class CCNL(BaseModel):
         ),
     )
     coverage: CCNLCoverage
-    layer_3: CCNLLayer3 | None = None
+    work_rules: CCNLWorkRules | None = None
 
     @model_validator(mode="after")
     def _validate_cross_fields(self) -> Self:
@@ -835,9 +836,9 @@ class CCNL(BaseModel):
 
     def _assert_coverage_consistency(self) -> None:
         has_tracks = bool(self.apprenticeship)
-        status = self.coverage.layer_2
+        status = self.coverage.net
         if status == "out_of_scope" and has_tracks:
-            msg = "coverage.layer_2 is 'out_of_scope' but apprenticeship tracks exist"
+            msg = "coverage.net is 'out_of_scope' but apprenticeship tracks exist"
             raise ValueError(msg)
 
 

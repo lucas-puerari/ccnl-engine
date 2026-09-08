@@ -34,8 +34,6 @@
     "workers_estimate": "~41k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -85,7 +83,9 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: Apprenticeship article numbers from 2019 CCNL may have changed in the current consolidated text (Art. numbering in 2025 verbale differs from 2019 PDF). The 85/90/95 percentage structure is from the 2019 source and is assumed unchanged."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -2782,7 +2782,224 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "c6a37b6a12b4184a64ee378cdf5e725dea56608544171dd0604fece49e85f66d",
+    "source_hash": "3f7ef3324670351cd5334a907651351a7f416cd600eef946aafeeedaae34f642",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-12-15",
+                "value": "0.25",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autorimesse-ic35",
+                "title": "CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/noleggio---autorimesse"
+              },
+              "section": "Straordinario — 25% diurno feriale"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-12-15"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-12-15",
+                "value": "0.50",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autorimesse-ic35",
+                "title": "CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/noleggio---autorimesse"
+              },
+              "section": "Straordinario — 50% notturno"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-12-15"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-12-15",
+                "value": "0.65",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autorimesse-ic35",
+                "title": "CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/noleggio---autorimesse"
+              },
+              "section": "Straordinario — 65% festivo diurno"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-12-15"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-12-15",
+                "value": "0.75",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autorimesse-ic35",
+                "title": "CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/noleggio---autorimesse"
+              },
+              "section": "Straordinario — 75% notturno festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-12-15"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autorimesse-ic35",
+            "title": "CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/noleggio---autorimesse"
+          },
+          "section": "Divisore giornaliero 26 (settore terziario/trasporti)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-12-15"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "22",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autorimesse-ic35",
+            "title": "CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/noleggio---autorimesse"
+          },
+          "section": "Ferie — 22 giorni lavorativi (settimana corta 5 gg)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-12-15"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autorimesse-ic35",
+            "title": "CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/noleggio---autorimesse"
+          },
+          "section": "Malattia — integrazione al 100%; max 180 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-12-15"
+        }
+      }
+    }
   }
 }

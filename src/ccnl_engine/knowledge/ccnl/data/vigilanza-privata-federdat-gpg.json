@@ -29,8 +29,6 @@
     "workers_estimate": "~45k"
   },
   "coverage": {
-    "layer_1": "partial",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -48,7 +46,9 @@
         "kind": "info",
         "text": "Level VI salary at 01/06/2024 (1185.44) is anomalously high vs prior tranche (1108.06) — confirmed by source as conventional riallineamento for level VI."
       }
-    ]
+    ],
+    "gross": "partial",
+    "net": "implemented"
   },
   "levels": [
     {
@@ -1300,7 +1300,189 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "88d7006df550c072718afb063b478ee4c742881dea9d82f2fadf69d750b1acf6",
+    "source_hash": "33fe061a2617ff0cc200d024e6b2b0fc374d2678cdf7d09e0c4a12ccaa338824",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale (pers. tec.-operativo) e oltre 40h",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-vigilanza-privata-federdat-gpg-2024",
+                "title": "CCNL Vigilanza Privata FEDERDAT (GPG) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-02-16"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario in giorno di riposo settimanale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "value": 0.35,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-vigilanza-privata-federdat-gpg-2024",
+                "title": "CCNL Vigilanza Privata FEDERDAT (GPG) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-02-16"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario festivo (nazionali e infraset.)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "value": 0.4,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-vigilanza-privata-federdat-gpg-2024",
+                "title": "CCNL Vigilanza Privata FEDERDAT (GPG) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-02-16"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-vigilanza-privata-federdat-gpg-2024",
+            "title": "CCNL Vigilanza Privata FEDERDAT (GPG) 2023-2026",
+            "kind": "tabella_retributiva",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+          },
+          "section": "Art. orario di lavoro"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-02-16"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "25",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "25"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-vigilanza-privata-federdat-gpg-2024",
+            "title": "CCNL Vigilanza Privata FEDERDAT (GPG) 2023-2026",
+            "kind": "tabella_retributiva",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+          },
+          "section": "Art. ferie"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-02-16"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "0.75",
+      "full_pay_integration_rate": "0.75",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-vigilanza-privata-federdat-gpg-2024",
+            "title": "CCNL Vigilanza Privata FEDERDAT (GPG) 2023-2026",
+            "kind": "tabella_retributiva",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf"
+          },
+          "section": "Art. malattia"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-02-16"
+        }
+      }
+    }
   }
 }

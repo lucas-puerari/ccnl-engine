@@ -56,8 +56,6 @@
     "workers_estimate": "~120k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -111,7 +109,9 @@
         "kind": "info",
         "text": "INPS: reuses 2026-artigianato.json (ARTIGIANATO sector)."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1161,7 +1161,267 @@
     "effective_until": null,
     "source": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato",
     "verification_status": "unverified",
-    "source_hash": "66508edbe45ba1c822c1b7618c43fea10f5c4333ca6d2713707ff04b245de107",
+    "source_hash": "5dea4a7f494c7c818423cf88f16ca58865052510d315edfb0ee98a913566b30b",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno prime 4h settimanali",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-09-07",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-tessile-moda-artigianato-confartigianato-2022",
+                "title": "CCNL Moda Artigianato – Tessile, Abbigliamento e Affini (Confartigianato) 2022",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-09-07"
+            }
+          }
+        },
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno ore successive",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-09-07",
+                "value": 0.35,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-tessile-moda-artigianato-confartigianato-2022",
+                "title": "CCNL Moda Artigianato – Tessile, Abbigliamento e Affini (Confartigianato) 2022",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-09-07"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-09-07",
+                "value": 0.33,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-tessile-moda-artigianato-confartigianato-2022",
+                "title": "CCNL Moda Artigianato – Tessile, Abbigliamento e Affini (Confartigianato) 2022",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-09-07"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario domenicale e festivo diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-09-07",
+                "value": 0.35,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-tessile-moda-artigianato-confartigianato-2022",
+                "title": "CCNL Moda Artigianato – Tessile, Abbigliamento e Affini (Confartigianato) 2022",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-09-07"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-09-07",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-tessile-moda-artigianato-confartigianato-2022",
+                "title": "CCNL Moda Artigianato – Tessile, Abbigliamento e Affini (Confartigianato) 2022",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+              },
+              "section": "Art. lavoro straordinario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-09-07"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-tessile-moda-artigianato-confartigianato-2022",
+            "title": "CCNL Moda Artigianato – Tessile, Abbigliamento e Affini (Confartigianato) 2022",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+          },
+          "section": "Art. orario di lavoro"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-09-07"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "20",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "20"
+        },
+        {
+          "service_months_min": 120,
+          "annual_days": "22"
+        },
+        {
+          "service_months_min": 180,
+          "annual_days": "23"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-tessile-moda-artigianato-confartigianato-2022",
+            "title": "CCNL Moda Artigianato – Tessile, Abbigliamento e Affini (Confartigianato) 2022",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+          },
+          "section": "Art. ferie"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-09-07"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "0",
+      "full_pay_integration_rate": "0.8",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-tessile-moda-artigianato-confartigianato-2022",
+            "title": "CCNL Moda Artigianato – Tessile, Abbigliamento e Affini (Confartigianato) 2022",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato"
+          },
+          "section": "Art. malattia — 80% integrazione, carenza 3gg per <8gg morboso"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-09-07"
+        }
+      }
+    }
   }
 }

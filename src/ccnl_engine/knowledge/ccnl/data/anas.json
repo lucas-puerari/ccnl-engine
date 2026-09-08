@@ -29,8 +29,6 @@
     "workers_estimate": "~7k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -48,7 +46,9 @@
         "kind": "simplification",
         "text": "Apprenticeship 70/85/92% from contract text; last period open-ended (months_until=null at 92%)."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "levels": [
     {
@@ -1227,7 +1227,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "d124e199607a6ca50dc2b1d95e93b2dd86941604c9adefc2a1a4fcf36cb8b513",
+    "source_hash": "832059d40cc32a500c52c44d72435631b84c4d67d6bdad63d68ab02c1e45c5c8",
     "published_at": "2026-09-07"
   }
 }

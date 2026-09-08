@@ -39,8 +39,6 @@
     "workers_estimate": "~22k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "partial",
     "notes": [
       {
         "kind": "info",
@@ -86,7 +84,9 @@
         "kind": "simplification",
         "text": "INPS terziario rates reused from 2026-terziario.json (same sector as H016). Verify against annual INPS circular for exact H601 sub-sector rate."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "partial"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1303,7 +1303,188 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "cd0663f543996aaae352e4ab5e77e9d20cabc68e3d62523a318ef3e4254b8d1f",
+    "source_hash": "c2991eaf44642ae736a78214367c65c65acfa8c0e364424382ed5e7f5d64493b",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-03-09",
+                "value": "0.30",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ced-assoced",
+                "title": "CCNL CED, ICT, Professioni Digitali e STP (ASSOCED)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/"
+              },
+              "section": "Straordinario festivo — 30% (anche feriale)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-03-09"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-03-09",
+                "value": "0.50",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ced-assoced",
+                "title": "CCNL CED, ICT, Professioni Digitali e STP (ASSOCED)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/"
+              },
+              "section": "Straordinario notturno — 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-03-09"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-03-09",
+                "value": "0.30",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ced-assoced",
+                "title": "CCNL CED, ICT, Professioni Digitali e STP (ASSOCED)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/"
+              },
+              "section": "Straordinario festivo — 30%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-03-09"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ced-assoced",
+            "title": "CCNL CED, ICT, Professioni Digitali e STP (ASSOCED)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/"
+          },
+          "section": "Divisore giornaliero 26 (settore terziario/ICT)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-03-09"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "26",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ced-assoced",
+            "title": "CCNL CED, ICT, Professioni Digitali e STP (ASSOCED)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/"
+          },
+          "section": "Ferie — 26 giorni lavorativi annui"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-03-09"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ced-assoced",
+            "title": "CCNL CED, ICT, Professioni Digitali e STP (ASSOCED)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/"
+          },
+          "section": "Malattia — integrazione al 100% per 180 giorni (settore ICT/terziario)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-03-09"
+        }
+      }
+    }
   }
 }

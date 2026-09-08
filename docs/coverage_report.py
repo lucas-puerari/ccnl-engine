@@ -40,11 +40,11 @@ class CCNLCoverageRow:
     agreement_year: str
     """4-digit renewal year, e.g. '2024'. Empty string when not recorded."""
     coverage_pct: int
-    """0-100, score across layers 1-3 (L1*50% + L2*35% + L3*15% - penalty)."""
+    """0-100 score: L1 x 50% + L2 x 35% + work_rules x 15% - penalty."""
     verification_label: str
-    layer_1: str
-    layer_2: str
-    layer_3: str
+    gross: str
+    net: str
+    work_rules: str
 
 
 @dataclass(frozen=True)
@@ -81,15 +81,15 @@ def _layer_score(status: str) -> float:
 
 
 def _coverage_pct(ccnl: CCNL) -> int:
-    """0-100 score across layers 1-3.
+    """0-100 score: L1 x 50% + L2 x 35% + work_rules x 15% - penalty.
 
     Formula:
-        base = L1 * 0.50 + L2 * 0.35 + L3 * 0.15
+        base = L1 * 0.50 + L2 * 0.35 + work_rules * 0.15
         penalty = min(missing_note_count * 0.05, 0.20)
         result = round((base - penalty) * 100)
 
-    L3 defaults to 'not_implemented' for all current contracts, so the
-    effective maximum is 85 until a contract implements extended features.
+    work_rules defaults to 'not_implemented' for most contracts, so the
+    effective maximum is 85 until a contract implements work-rules features.
 
     If meta.withholding_exempt=True and layer_2='out_of_scope', the employer
     not withholding IRPEF is by design -- layer_2 is not penalised.
@@ -97,14 +97,14 @@ def _coverage_pct(ccnl: CCNL) -> int:
     Returns:
         Coverage percentage as an integer in [0, 100].
     """
-    l1 = _layer_score(ccnl.coverage.layer_1)
-    l2_status = ccnl.coverage.layer_2
+    l1 = _layer_score(ccnl.coverage.gross)
+    l2_status = ccnl.coverage.net
     if ccnl.meta.withholding_exempt and l2_status == "out_of_scope":
         l2 = 1.0
     else:
         l2 = _layer_score(l2_status)
-    l3 = _layer_score(ccnl.coverage.layer_3)
-    base = l1 * 0.50 + l2 * 0.35 + l3 * 0.15
+    wr = _layer_score(ccnl.coverage.work_rules)
+    base = l1 * 0.50 + l2 * 0.35 + wr * 0.15
     missing_count = sum(1 for n in ccnl.coverage.notes if n.kind == NoteKind.MISSING)
     penalty = min(missing_count * 0.05, 0.20)
     return round((base - penalty) * 100)
@@ -160,9 +160,9 @@ def _make_ccnl_row(ccnl: CCNL) -> CCNLCoverageRow:
         agreement_year=year,
         coverage_pct=_coverage_pct(ccnl),
         verification_label=_verification_label(ccnl),
-        layer_1=ccnl.coverage.layer_1,
-        layer_2=ccnl.coverage.layer_2,
-        layer_3=ccnl.coverage.layer_3,
+        gross=ccnl.coverage.gross,
+        net=ccnl.coverage.net,
+        work_rules=ccnl.coverage.work_rules,
     )
 
 
@@ -175,9 +175,9 @@ def _pct(score: float, total: int) -> int:
 def _inps_score(ccnl: CCNL) -> float:
     if ccnl.meta.withholding_exempt:
         return 1.0
-    if ccnl.coverage.layer_2 == "implemented":
+    if ccnl.coverage.net == "implemented":
         return 1.0
-    if ccnl.coverage.layer_2 == "partial":
+    if ccnl.coverage.net == "partial":
         return 0.5
     return 0.0
 
@@ -190,9 +190,9 @@ def _irpef_score(ccnl: CCNL) -> float:
     """
     if ccnl.meta.withholding_exempt:
         return 0.0
-    if ccnl.coverage.layer_2 == "implemented":
+    if ccnl.coverage.net == "implemented":
         return 1.0
-    if ccnl.coverage.layer_2 == "partial":
+    if ccnl.coverage.net == "partial":
         return 0.5
     return 0.0
 
@@ -203,8 +203,8 @@ def _make_feature_rows(ccnls: list[CCNL]) -> list[FeatureRow]:
     # Layer 1 -- gross
     base_salary = sum(
         1.0
-        if c.coverage.layer_1 == "implemented"
-        else (0.5 if c.coverage.layer_1 == "partial" else 0.0)
+        if c.coverage.gross == "implemented"
+        else (0.5 if c.coverage.gross == "partial" else 0.0)
         for c in ccnls
     )
     seniority = sum(1.0 if _has_seniority(c) else 0.0 for c in ccnls)
@@ -327,8 +327,11 @@ Covers 75+ of the ~99 major private-sector CCNLs (>10,000 workers, CNEL II/2024)
 
 **L1 — Gross:** base salary, seniority, fixed allowances,
 additional months, hourly rate.
+
 **L2 — Net:** INPS contributions, TFR, IRPEF, regional/municipal surtax.
+
 **L3 — Extended:** overtime, sick/injury leave, performance bonuses, welfare/benefits.
+
 **Coverage %:** (L1 x 50% + L2 x 35% + L3 x 15%) - 5% per missing data note (max -20%).
 L3 defaults to not yet implemented; current contracts score a maximum of 85%.
 
@@ -368,9 +371,9 @@ def render_contracts_index(report: CoverageReport) -> str:
         "|---|---|---|---|---:|:---:|---:|:---:|:---:|:---:|:---:|",
     ]
     for i, row in enumerate(report.ccnl_rows, 1):
-        l1 = _LAYER_SYMBOL[row.layer_1]
-        l2 = _LAYER_SYMBOL[row.layer_2]
-        l3 = _LAYER_SYMBOL[row.layer_3]
+        l1 = _LAYER_SYMBOL[row.gross]
+        l2 = _LAYER_SYMBOL[row.net]
+        l3 = _LAYER_SYMBOL[row.work_rules]
         ext = _VERIFICATION_EMOJI[row.verification_label]
         workers = row.workers_estimate or "—"
         renewal = row.agreement_year or "—"

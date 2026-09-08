@@ -658,103 +658,103 @@ def _build_trace(
     return CalculationTrace(steps=tuple(steps))
 
 
-def _run_l3_supplements(
+def _run_wr_supplements(
     scenario: PayrollScenario,
     ccnl: CCNL,
     base_monthly_full_time: Decimal,
     hourly_divisor: Decimal,
     as_of: date,
-    l3_warnings: list[str],
+    wr_warnings: list[str],
 ) -> tuple[Decimal, Decimal, Decimal, tuple[TraceStep, ...], bool]:
-    """Run the L3 time-supplement block and return its outputs.
+    """Run the work-rules time-supplement block and return its outputs.
 
     Returns:
         A 5-tuple of (overtime_supp, night_supp, holiday_supp, supplement_trace,
-        l3_schema_present).  All supplement amounts are zero when the CCNL has no
-        L3 data or no hours were supplied; a warning is appended to ``l3_warnings``
-        in the latter case.
+        wr_schema_present).  All supplement amounts are zero when the CCNL has no
+        work-rules data or no hours were supplied; a warning is appended to
+        ``wr_warnings`` in the latter case.
     """
     ts_input = scenario.time_supplements
-    l3_schema_present = (
-        ccnl.layer_3 is not None and ccnl.layer_3.time_supplements is not None
+    wr_schema_present = (
+        ccnl.work_rules is not None and ccnl.work_rules.time_supplements is not None
     )
     overtime_supp = _ZERO
     night_supp = _ZERO
     holiday_supp = _ZERO
     supplement_trace: tuple[TraceStep, ...] = ()
     if ts_input is not None:
-        if l3_schema_present:
-            assert ccnl.layer_3 is not None  # narrowing for mypy
-            assert ccnl.layer_3.time_supplements is not None
+        if wr_schema_present:
+            assert ccnl.work_rules is not None  # narrowing for mypy
+            assert ccnl.work_rules.time_supplements is not None
             overtime_supp, night_supp, holiday_supp, supplement_trace = (
                 compute_time_supplements(
                     supps_input=ts_input,
-                    supplements_schema=ccnl.layer_3.time_supplements,
+                    supplements_schema=ccnl.work_rules.time_supplements,
                     base_monthly_full_time=base_monthly_full_time,
                     hourly_divisor=hourly_divisor,
                     as_of=as_of,
                 )
             )
         else:
-            l3_warnings.append(
+            wr_warnings.append(
                 "time_supplements requested but not modelled for this CCNL"
             )
-    return overtime_supp, night_supp, holiday_supp, supplement_trace, l3_schema_present
+    return overtime_supp, night_supp, holiday_supp, supplement_trace, wr_schema_present
 
 
-def _run_l3_absence(
+def _run_wr_absence(
     scenario: PayrollScenario,
     ccnl: CCNL,
     gross_monthly: Decimal,
     hourly_rate: Decimal,
-    l3_warnings: list[str],
+    wr_warnings: list[str],
 ) -> tuple[Decimal, Decimal, bool]:
-    """Run the L3 absence-deduction block and return its outputs.
+    """Run the work-rules absence-deduction block and return its outputs.
 
     Returns:
         A 3-tuple of (absence_deduction_monthly, effective_gross_monthly,
-        l3_absence_present).  Both amounts are zero and effective_gross equals
+        wr_absence_present).  Both amounts are zero and effective_gross equals
         gross when no absence is supplied or the CCNL has no absence rules; a
-        warning is appended to ``l3_warnings`` in the latter case.
+        warning is appended to ``wr_warnings`` in the latter case.
     """
     absence_input = scenario.absence_days
-    l3_absence_present = (
-        ccnl.layer_3 is not None and ccnl.layer_3.absence_rules is not None
+    wr_absence_present = (
+        ccnl.work_rules is not None and ccnl.work_rules.absence_rules is not None
     )
     absence_deduction_monthly = _ZERO
     if absence_input is not None:
-        if l3_absence_present:
-            assert ccnl.layer_3 is not None  # narrowing for mypy
-            assert ccnl.layer_3.absence_rules is not None
+        if wr_absence_present:
+            assert ccnl.work_rules is not None  # narrowing for mypy
+            assert ccnl.work_rules.absence_rules is not None
             absence_deduction_monthly = compute_absence_deduction(
                 absence_input=absence_input,
-                absence_rules=ccnl.layer_3.absence_rules,
+                absence_rules=ccnl.work_rules.absence_rules,
                 gross_monthly=gross_monthly,
                 hourly_rate=hourly_rate,
             )
         else:
-            l3_warnings.append("absence_days requested but not modelled for this CCNL")
+            wr_warnings.append("absence_days requested but not modelled for this CCNL")
     effective_gross_monthly = money(gross_monthly - absence_deduction_monthly)
-    return absence_deduction_monthly, effective_gross_monthly, l3_absence_present
+    return absence_deduction_monthly, effective_gross_monthly, wr_absence_present
 
 
-def _l3_feature_status(ts_input_given: bool, l3_schema_present: bool) -> str:
-    """Return a ScopeItem status string for one L3 time-supplement feature.
+def _wr_feature_status(ts_input_given: bool, wr_schema_present: bool) -> str:
+    """Return a ScopeItem status string for one work-rules time-supplement feature.
 
     Returns:
-        ``"verified"`` when hours were supplied and the CCNL has L3 data,
-        ``"not_computed"`` when hours were supplied but the CCNL has no L3 data,
+        ``"verified"`` when hours were supplied and the CCNL has work-rules data,
+        ``"not_computed"`` when hours were supplied but the CCNL has no work-rules data,
         ``"excluded"`` when no hours were supplied for this period.
     """
     if not ts_input_given:
         return "excluded"
-    if not l3_schema_present:
+    if not wr_schema_present:
         return "not_computed"
     return "verified"
 
 
 def _absence_feature_status(
-    absence_input: AbsenceDays | None, l3_absence_present: bool
+    absence_input: AbsenceDays | None, wr_absence_present: bool
 ) -> str:
     """Return a ScopeItem status string for the absence feature.
 
@@ -766,44 +766,46 @@ def _absence_feature_status(
     """
     if absence_input is None or absence_input.unpaid_days == _ZERO:
         return "excluded"
-    if not l3_absence_present:
+    if not wr_absence_present:
         return "not_computed"
     return "verified"
 
 
-def _run_l3_leave(
+def _run_wr_leave(
     scenario: PayrollScenario,
     ccnl: CCNL,
-    l3_warnings: list[str],
+    wr_warnings: list[str],
 ) -> tuple[Decimal, Decimal, Decimal, bool]:
-    """Run the L3 leave-accrual block and return its outputs.
+    """Run the work-rules leave-accrual block and return its outputs.
 
     Returns:
         A 4-tuple of (leave_accrued_days_monthly, leave_taken_days_monthly,
-        leave_balance_days, l3_leave_present).  All day counters are zero
+        leave_balance_days, wr_leave_present).  All day counters are zero
         when no leave input is supplied or when the CCNL has no leave rules;
         a warning is appended in the latter case.
     """
     leave_input = scenario.leave_input
-    l3_leave_present = ccnl.layer_3 is not None and ccnl.layer_3.leave_rules is not None
+    wr_leave_present = (
+        ccnl.work_rules is not None and ccnl.work_rules.leave_rules is not None
+    )
     if leave_input is None:
-        return _ZERO, _ZERO, _ZERO, l3_leave_present
-    if l3_leave_present:
-        assert ccnl.layer_3 is not None  # narrowing for mypy
-        assert ccnl.layer_3.leave_rules is not None
+        return _ZERO, _ZERO, _ZERO, wr_leave_present
+    if wr_leave_present:
+        assert ccnl.work_rules is not None  # narrowing for mypy
+        assert ccnl.work_rules.leave_rules is not None
         service_months = scenario.employee.seniority_months
         accrued, taken, balance = compute_leave(
             leave_input=leave_input,
-            leave_rules=ccnl.layer_3.leave_rules,
+            leave_rules=ccnl.work_rules.leave_rules,
             service_months=service_months,
         )
-        return accrued, taken, balance, l3_leave_present
-    l3_warnings.append("leave_input requested but not modelled for this CCNL")
-    return _ZERO, _ZERO, _ZERO, l3_leave_present
+        return accrued, taken, balance, wr_leave_present
+    wr_warnings.append("leave_input requested but not modelled for this CCNL")
+    return _ZERO, _ZERO, _ZERO, wr_leave_present
 
 
 def _leave_feature_status(
-    leave_input: LeaveInput | None, l3_leave_present: bool
+    leave_input: LeaveInput | None, wr_leave_present: bool
 ) -> str:
     """Return a ScopeItem status string for the leave feature.
 
@@ -814,49 +816,49 @@ def _leave_feature_status(
     """
     if leave_input is None:
         return "excluded"
-    if not l3_leave_present:
+    if not wr_leave_present:
         return "not_computed"
     return "verified"
 
 
-def _run_l3_sickness(
+def _run_wr_sickness(
     scenario: PayrollScenario,
     ccnl: CCNL,
     sick_pay_rates: InpsSickPayRates,
     gross_monthly: Decimal,
-    l3_warnings: list[str],
+    wr_warnings: list[str],
 ) -> tuple[Decimal, Decimal, Decimal, Decimal, bool]:
-    """Run the L3 sickness block and return its outputs.
+    """Run the work-rules sickness block and return its outputs.
 
     Returns:
         A 5-tuple of (sick_days_monthly, sick_carenza_days_monthly,
         sick_inps_indemnity_monthly, sick_company_integration_monthly,
-        l3_sickness_present).  All amounts are zero when no sick input
+        wr_sickness_present).  All amounts are zero when no sick input
         is supplied or when the CCNL has no sickness rules; a warning is
         appended in the latter case.
     """
     sick_input = scenario.sick_input
-    l3_sickness_present = (
-        ccnl.layer_3 is not None and ccnl.layer_3.sickness_rules is not None
+    wr_sickness_present = (
+        ccnl.work_rules is not None and ccnl.work_rules.sickness_rules is not None
     )
     if sick_input is None:
-        return _ZERO, _ZERO, _ZERO, _ZERO, l3_sickness_present
-    if l3_sickness_present:
-        assert ccnl.layer_3 is not None  # narrowing for mypy
-        assert ccnl.layer_3.sickness_rules is not None
+        return _ZERO, _ZERO, _ZERO, _ZERO, wr_sickness_present
+    if wr_sickness_present:
+        assert ccnl.work_rules is not None  # narrowing for mypy
+        assert ccnl.work_rules.sickness_rules is not None
         sick_days, carenza, inps_indemnity, company_integration = compute_sickness(
             sick_input=sick_input,
-            sickness_rules=ccnl.layer_3.sickness_rules,
+            sickness_rules=ccnl.work_rules.sickness_rules,
             sick_pay_rates=sick_pay_rates,
             gross_monthly=gross_monthly,
         )
         return sick_days, carenza, inps_indemnity, company_integration, True
-    l3_warnings.append("sick_input requested but not modelled for this CCNL")
-    return _ZERO, _ZERO, _ZERO, _ZERO, l3_sickness_present
+    wr_warnings.append("sick_input requested but not modelled for this CCNL")
+    return _ZERO, _ZERO, _ZERO, _ZERO, wr_sickness_present
 
 
 def _sickness_feature_status(
-    sick_input: SickInput | None, l3_sickness_present: bool
+    sick_input: SickInput | None, wr_sickness_present: bool
 ) -> str:
     """Return a ScopeItem status string for the sickness feature.
 
@@ -867,18 +869,18 @@ def _sickness_feature_status(
     """
     if sick_input is None:
         return "excluded"
-    if not l3_sickness_present:
+    if not wr_sickness_present:
         return "not_computed"
     return "verified"
 
 
-def _run_l3_variable_pay(
+def _run_wr_variable_pay(
     scenario: PayrollScenario,
     gross_annual: Decimal,
     year: int,
-    l3_warnings: list[str],
+    wr_warnings: list[str],
 ) -> tuple[Decimal, Decimal, Decimal, Decimal, Decimal, Decimal, Decimal]:
-    """Run the L3 variable-pay block (fringe benefits, welfare, bonus/PdR).
+    """Run the work-rules variable-pay block (fringe benefits, welfare, bonus/PdR).
 
     Variable-pay rules are statutory (not CCNL-specific): the rules file is
     always present for the fiscal year.  Each sub-feature is computed only
@@ -928,7 +930,7 @@ def _run_l3_variable_pay(
 
     if bonus_input is not None:
         bonus_annual, pdr_flat_tax, bonus_ordinary = compute_bonus(
-            bonus_input, var_pay_rules.pdr, gross_annual, l3_warnings
+            bonus_input, var_pay_rules.pdr, gross_annual, wr_warnings
         )
 
     return (
@@ -942,7 +944,7 @@ def _run_l3_variable_pay(
     )
 
 
-def _run_l3_family_deductions(
+def _run_wr_family_deductions(
     scenario: PayrollScenario,
     gross_annual: Decimal,
     irpef_gross: Decimal,
@@ -954,7 +956,7 @@ def _run_l3_family_deductions(
     """Compute Art. 12 TUIR family deductions when ``scenario.family`` is set.
 
     Family deductions reduce the IRPEF actually withheld by the employer; they
-    are NOT informational-only (unlike all other L3 features).  The total is
+    are NOT informational-only (unlike all other work-rules features).  The total is
     subtracted from ``irpef_gross - work_income_deduction`` (floored at zero)
     to obtain ``irpef_net``.
 
@@ -988,7 +990,7 @@ def _run_l3_family_deductions(
     return spouse, children, other, total, unused
 
 
-def _run_l3_art15_deductions(
+def _run_wr_art15_deductions(
     scenario: PayrollScenario,
     irpef_gross: Decimal,
     work_income_deduction: Decimal,
@@ -1001,7 +1003,7 @@ def _run_l3_art15_deductions(
 
     Art. 15 deductions are a flat 19 % credit on eligible expenditure up to
     statutory ceilings.  They reduce the IRPEF actually withheld by the
-    employer and are NOT informational-only (unlike most L3 features).
+    employer and are NOT informational-only (unlike most work-rules features).
 
     Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply here: the
     EUR 440 clawback is specific to Art. 12 + Art. 13 TUIR.
@@ -1051,13 +1053,13 @@ def _build_scope(
     employer_withholds_irpef: bool,
     fiscal_simplifications: frozenset[FiscalSimplification],
     ts_input: OvertimeHours | None,
-    l3_schema_present: bool,
+    wr_schema_present: bool,
     absence_input: AbsenceDays | None,
-    l3_absence_present: bool,
+    wr_absence_present: bool,
     leave_input: LeaveInput | None,
-    l3_leave_present: bool,
+    wr_leave_present: bool,
     sick_input: SickInput | None,
-    l3_sickness_present: bool,
+    wr_sickness_present: bool,
     fringe_benefit_input: FringeBenefitInput | None,
     welfare_input: WelfareInput | None,
     bonus_input: BonusInput | None,
@@ -1134,38 +1136,38 @@ def _build_scope(
         ),
         ScopeItem(
             feature="overtime",
-            status=_l3_feature_status(  # type: ignore[arg-type]
-                ot_hours > _ZERO, l3_schema_present
+            status=_wr_feature_status(  # type: ignore[arg-type]
+                ot_hours > _ZERO, wr_schema_present
             ),
         ),
         ScopeItem(
             feature="night_work",
-            status=_l3_feature_status(  # type: ignore[arg-type]
-                night_hours > _ZERO, l3_schema_present
+            status=_wr_feature_status(  # type: ignore[arg-type]
+                night_hours > _ZERO, wr_schema_present
             ),
         ),
         ScopeItem(
             feature="holiday_work",
-            status=_l3_feature_status(  # type: ignore[arg-type]
-                holiday_hours > _ZERO, l3_schema_present
+            status=_wr_feature_status(  # type: ignore[arg-type]
+                holiday_hours > _ZERO, wr_schema_present
             ),
         ),
         ScopeItem(
             feature="absence",
             status=_absence_feature_status(  # type: ignore[arg-type]
-                absence_input, l3_absence_present
+                absence_input, wr_absence_present
             ),
         ),
         ScopeItem(
             feature="leave",
             status=_leave_feature_status(  # type: ignore[arg-type]
-                leave_input, l3_leave_present
+                leave_input, wr_leave_present
             ),
         ),
         ScopeItem(
             feature="sickness",
             status=_sickness_feature_status(  # type: ignore[arg-type]
-                sick_input, l3_sickness_present
+                sick_input, wr_sickness_present
             ),
         ),
         ScopeItem(
@@ -1325,7 +1327,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
     employer_withholds_irpef = not ccnl.meta.withholding_exempt
 
     # Family deductions (Art. 12 TUIR): computed when scenario.family is set.
-    # These are the only L3 feature that mutates irpef_net / net_annual.
+    # These are the only work-rules feature that mutates irpef_net / net_annual.
     # Trattamento integrativo eligibility (Art. 1 D.L. 3/2020) depends only on
     # the Art. 13 work-income deduction, not on Art. 12 family deductions.
     (
@@ -1334,7 +1336,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
         fam_other,
         fam_total,
         fam_unused,
-    ) = _run_l3_family_deductions(
+    ) = _run_wr_family_deductions(
         scenario=scenario,
         gross_annual=gross_annual,
         irpef_gross=irpef_gross,
@@ -1361,7 +1363,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
 
     # Art. 15 TUIR deductions (interessi passivi mutuo prima casa, etc.).
     # Sterilizzazione does NOT apply: EUR 440 clawback targets Art. 12 + Art. 13.
-    art15_total, art15_unused = _run_l3_art15_deductions(
+    art15_total, art15_unused = _run_wr_art15_deductions(
         scenario=scenario,
         irpef_gross=irpef_gross,
         work_income_deduction=work_income_deduction,
@@ -1422,15 +1424,15 @@ def compute(scenario: PayrollScenario) -> Calculation:
 
     # --- L3: time supplements ---
     base_monthly_full_time = chain_full_time.base
-    l3_warnings: list[str] = []
-    overtime_supp, night_supp, holiday_supp, supplement_trace, l3_schema_present = (
-        _run_l3_supplements(
+    wr_warnings: list[str] = []
+    overtime_supp, night_supp, holiday_supp, supplement_trace, wr_schema_present = (
+        _run_wr_supplements(
             scenario=scenario,
             ccnl=ccnl,
             base_monthly_full_time=base_monthly_full_time,
             hourly_divisor=hourly_divisor,
             as_of=as_of,
-            l3_warnings=l3_warnings,
+            wr_warnings=wr_warnings,
         )
     )
 
@@ -1441,13 +1443,13 @@ def compute(scenario: PayrollScenario) -> Calculation:
 
     # --- L3: absence deduction ---
     hourly_rate = money(gross_monthly / hourly_divisor)
-    absence_deduction_monthly, effective_gross_monthly, l3_absence_present = (
-        _run_l3_absence(
+    absence_deduction_monthly, effective_gross_monthly, wr_absence_present = (
+        _run_wr_absence(
             scenario=scenario,
             ccnl=ccnl,
             gross_monthly=gross_monthly,
             hourly_rate=hourly_rate,
-            l3_warnings=l3_warnings,
+            wr_warnings=wr_warnings,
         )
     )
 
@@ -1456,8 +1458,8 @@ def compute(scenario: PayrollScenario) -> Calculation:
         leave_accrued_days_monthly,
         leave_taken_days_monthly,
         leave_balance_days,
-        l3_leave_present,
-    ) = _run_l3_leave(scenario=scenario, ccnl=ccnl, l3_warnings=l3_warnings)
+        wr_leave_present,
+    ) = _run_wr_leave(scenario=scenario, ccnl=ccnl, wr_warnings=wr_warnings)
 
     # --- L3: sickness ---
     sick_pay_rates = load_sick_pay_rates()
@@ -1466,13 +1468,13 @@ def compute(scenario: PayrollScenario) -> Calculation:
         sick_carenza_days_monthly,
         sick_inps_indemnity_monthly,
         sick_company_integration_monthly,
-        l3_sickness_present,
-    ) = _run_l3_sickness(
+        wr_sickness_present,
+    ) = _run_wr_sickness(
         scenario=scenario,
         ccnl=ccnl,
         sick_pay_rates=sick_pay_rates,
         gross_monthly=gross_monthly,
-        l3_warnings=l3_warnings,
+        wr_warnings=wr_warnings,
     )
 
     # --- L3: variable pay (fringe benefits, welfare, bonus/PdR) ---
@@ -1484,11 +1486,11 @@ def compute(scenario: PayrollScenario) -> Calculation:
         bonus_annual,
         bonus_pdr_flat_tax_annual,
         bonus_ordinary_taxable_annual,
-    ) = _run_l3_variable_pay(
+    ) = _run_wr_variable_pay(
         scenario=scenario,
         gross_annual=gross_annual,
         year=year,
-        l3_warnings=l3_warnings,
+        wr_warnings=wr_warnings,
     )
 
     ts_input = scenario.time_supplements
@@ -1504,13 +1506,13 @@ def compute(scenario: PayrollScenario) -> Calculation:
         employer_withholds_irpef=employer_withholds_irpef,
         fiscal_simplifications=fiscal_simplifications,
         ts_input=ts_input,
-        l3_schema_present=l3_schema_present,
+        wr_schema_present=wr_schema_present,
         absence_input=absence_input,
-        l3_absence_present=l3_absence_present,
+        wr_absence_present=wr_absence_present,
         leave_input=leave_input,
-        l3_leave_present=l3_leave_present,
+        wr_leave_present=wr_leave_present,
         sick_input=sick_input,
-        l3_sickness_present=l3_sickness_present,
+        wr_sickness_present=wr_sickness_present,
         fringe_benefit_input=fringe_benefit_input,
         welfare_input=welfare_input,
         bonus_input=bonus_input,
@@ -1559,7 +1561,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
             ccnl.parameters.seniority_increments,
         ),
         calculation_scope=calculation_scope,
-        warnings=tuple(l3_warnings),
+        warnings=tuple(wr_warnings),
         base_monthly_full_time=base_monthly_full_time,
         overtime_supplement_monthly=overtime_supp,
         night_supplement_monthly=night_supp,

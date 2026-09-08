@@ -24,9 +24,8 @@ Covers 75+ of the ~99 major private-sector CCNLs (>10,000 workers, CNEL II/2024)
 **L1 — Gross:** base salary, seniority, fixed allowances,
 additional months, hourly rate.
 **L2 — Net:** INPS contributions, TFR, IRPEF, regional/municipal surtax.
-**L3 — Extended:** overtime, sick/injury leave, performance bonuses, welfare/benefits.
-**Coverage %:** (L1 x 50% + L2 x 35% + L3 x 15%) - 5% per missing data note (max -20%).
-L3 defaults to not yet implemented; current contracts score a maximum of 85%.
+**Work rules:** overtime, sick/injury leave, performance bonuses, welfare/benefits.
+**Coverage %:** (L1 x 50% + L2 x 35% + work rules x 15%) - 5% per missing data note (max -20%).
 
 ## Matrix
 

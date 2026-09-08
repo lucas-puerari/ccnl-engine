@@ -29,8 +29,6 @@
     "workers_estimate": "~15k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -56,7 +54,9 @@
         "kind": "simplification",
         "text": "Apprenticeship: CCNL provides under-classification 2 levels below (engine schema requires static pay_level_code). Modeled as 100% passthrough."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "levels": [
     {
@@ -3984,7 +3984,224 @@
     "effective_until": null,
     "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
     "verification_status": "unverified",
-    "source_hash": "7e16d49c119ce7210a7acc5abbc119c991a97a9f8b552b800ab81f347c6304d3",
+    "source_hash": "cd236f3db1daf91b2b8a27d766c860a70d9fd9182e444464a494b9452c9a673e",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-07-18",
+                "value": "0.30",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autostrade-trafori",
+                "title": "CCNL Autostrade e Trafori Concessionari",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/autostrade-e-trafori"
+              },
+              "section": "Straordinario — 30% diurno feriale"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-07-18"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-07-18",
+                "value": "0.50",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autostrade-trafori",
+                "title": "CCNL Autostrade e Trafori Concessionari",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/autostrade-e-trafori"
+              },
+              "section": "Straordinario — 50% notturno feriale"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-07-18"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-07-18",
+                "value": "0.65",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autostrade-trafori",
+                "title": "CCNL Autostrade e Trafori Concessionari",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/autostrade-e-trafori"
+              },
+              "section": "Straordinario — 65% festivo diurno"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-07-18"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-07-18",
+                "value": "0.85",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autostrade-trafori",
+                "title": "CCNL Autostrade e Trafori Concessionari",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/autostrade-e-trafori"
+              },
+              "section": "Straordinario — 85% notturno festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-07-18"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autostrade-trafori",
+            "title": "CCNL Autostrade e Trafori Concessionari",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/autostrade-e-trafori"
+          },
+          "section": "Divisore giornaliero 26"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-07-18"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "20",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "20"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autostrade-trafori",
+            "title": "CCNL Autostrade e Trafori Concessionari",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/autostrade-e-trafori"
+          },
+          "section": "Ferie — 20 giorni lavorativi annui"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-07-18"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autostrade-trafori",
+            "title": "CCNL Autostrade e Trafori Concessionari",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/autostrade-e-trafori"
+          },
+          "section": "Malattia — integrazione al 100% per 180 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-07-18"
+        }
+      }
+    }
   }
 }

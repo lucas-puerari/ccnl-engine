@@ -34,8 +34,6 @@
     "workers_estimate": "~35k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "out_of_scope",
     "notes": [
       {
         "kind": "info",
@@ -77,7 +75,9 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: EGR (elemento di garanzia retributiva) increase of EUR 10 at parametro 137 from 01/01/2027 not modeled — amount per level not yet in a confirmed per-level table."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "out_of_scope"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1401,7 +1401,188 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "54c752f84a5f000f67bbc51d985093f0cbd893531761f5ca362a6ad0d96c8a3b",
+    "source_hash": "02fcc4ca698e4ba5eea81523b4b5e4ce4fb2f776390aa5fd8fef59b08f9ff01b",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno (>40h/settimana)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "value": "0.40",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "alimentari-pmi-unionalimentari",
+                "title": "CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/alimentari---piccola-industria"
+              },
+              "section": "Straordinario — 40% oltre 40 ore settimanali"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-06-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "value": "0.45",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "alimentari-pmi-unionalimentari",
+                "title": "CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/alimentari---piccola-industria"
+              },
+              "section": "Straordinario notturno (stima su standard settore)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-06-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario oltre 48h/festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "value": "0.50",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "alimentari-pmi-unionalimentari",
+                "title": "CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/alimentari---piccola-industria"
+              },
+              "section": "Straordinario — 50% oltre 48 ore settimanali o festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-06-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "alimentari-pmi-unionalimentari",
+            "title": "CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/alimentari---piccola-industria"
+          },
+          "section": "Divisore giornaliero 26 (settore industria alimentare)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-06-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "22",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "alimentari-pmi-unionalimentari",
+            "title": "CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/alimentari---piccola-industria"
+          },
+          "section": "Ferie — 22 giorni lavorativi (base 5 gg/settimana)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-06-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "alimentari-pmi-unionalimentari",
+            "title": "CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/alimentari---piccola-industria"
+          },
+          "section": "Malattia — conservazione posto 180 giorni; integrazione al 100%"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-06-01"
+        }
+      }
+    }
   }
 }

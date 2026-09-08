@@ -31,8 +31,6 @@
     "workers_estimate": "~60k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "partial",
     "notes": [
       {
         "kind": "info",
@@ -50,7 +48,9 @@
         "kind": "simplification",
         "text": "Apprendistato: regola non reperita nel PDF 2024. Modellato come 100% passthrough."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "partial"
   },
   "levels": [
     {
@@ -1193,7 +1193,188 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "9d48eb928648d6387b74aff36a39bd11651448b6bf8d9eade7bc84e484652733",
+    "source_hash": "2d2c68008a4035d692f5589cec1aba40677d84b1a38e40226624ced3d66c6977",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-19",
+                "value": "0.20",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "cooperative-consorzi-agricoli",
+                "title": "CCNL Cooperative e Consorzi Agricoli (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/agricoltura---cooperative-dal-010706"
+              },
+              "section": "Straordinario diurno feriale (cooperative agricole)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-19"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Lavoro notturno in turni",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-19",
+                "value": "0.15",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "cooperative-consorzi-agricoli",
+                "title": "CCNL Cooperative e Consorzi Agricoli (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/agricoltura---cooperative-dal-010706"
+              },
+              "section": "Lavoro notturno in turni regolari — 15%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-19"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-19",
+                "value": "0.40",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "cooperative-consorzi-agricoli",
+                "title": "CCNL Cooperative e Consorzi Agricoli (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/agricoltura---cooperative-dal-010706"
+              },
+              "section": "Straordinario festivo — 40% (vigore dal 01/08/2024)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-19"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cooperative-consorzi-agricoli",
+            "title": "CCNL Cooperative e Consorzi Agricoli (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/agricoltura---cooperative-dal-010706"
+          },
+          "section": "Divisore giornaliero 26 (cooperative agricole)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-19"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "22",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cooperative-consorzi-agricoli",
+            "title": "CCNL Cooperative e Consorzi Agricoli (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/agricoltura---cooperative-dal-010706"
+          },
+          "section": "Ferie — 22 giorni lavorativi (5 gg/settimana; 26 su 6 gg)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-19"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "0",
+      "full_pay_integration_rate": "0",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cooperative-consorzi-agricoli",
+            "title": "CCNL Cooperative e Consorzi Agricoli (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/agricoltura---cooperative-dal-010706"
+          },
+          "section": "Malattia — norme di legge; per patologie oncologiche gravi: conservazione posto 12 mesi in 18"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-19"
+        }
+      }
+    }
   }
 }

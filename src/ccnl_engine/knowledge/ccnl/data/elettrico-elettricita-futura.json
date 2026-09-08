@@ -38,8 +38,6 @@
     "workers_estimate": "~60k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -73,7 +71,9 @@
         "kind": "info",
         "text": "INPS rates from 2026-industria.json (industria sector, 50 employees tier). IRPEF 2026 brackets applied (L. 199/2025)."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -2384,7 +2384,224 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/elettrico/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "4f238e181447753ef52ee45974cc282bc7f8eb890c37eb3bc3d1855f0c907c09",
+    "source_hash": "dd7a3813fd492ef74a7cd3e11042292bcaa24e4ec20c38bbae383aefe7f00c59",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno (>38h settimanali)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-elettrici",
+                "title": "CCNL Elettrici (Elettricità Futura / Utilitalia)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/elettrico/"
+              },
+              "section": "Art. straordinario — maggiorazione 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "value": 0.6,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-elettrici",
+                "title": "CCNL Elettrici (Elettricità Futura / Utilitalia)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/elettrico/"
+              },
+              "section": "Art. straordinario — maggiorazione 60%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-elettrici",
+                "title": "CCNL Elettrici (Elettricità Futura / Utilitalia)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/elettrico/"
+              },
+              "section": "Art. straordinario — maggiorazione festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "value": 0.75,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-elettrici",
+                "title": "CCNL Elettrici (Elettricità Futura / Utilitalia)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.contratticcnl.it/elettrico/"
+              },
+              "section": "Art. straordinario — maggiorazione 75%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-elettrici",
+            "title": "CCNL Elettrici (Elettricità Futura / Utilitalia)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.contratticcnl.it/elettrico/"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "26",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-elettrici",
+            "title": "CCNL Elettrici (Elettricità Futura / Utilitalia)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.contratticcnl.it/elettrico/"
+          },
+          "section": "Art. ferie — 26 giorni lavorativi annui"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 365,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-elettrici",
+            "title": "CCNL Elettrici (Elettricità Futura / Utilitalia)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.contratticcnl.it/elettrico/"
+          },
+          "section": "Art. malattia — copertura retributiva piena per 12 mesi consecutivi"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-01-01"
+        }
+      }
+    }
   }
 }

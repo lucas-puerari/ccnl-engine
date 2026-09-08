@@ -36,8 +36,6 @@
     "workers_estimate": "~45k"
   },
   "coverage": {
-    "layer_1": "partial",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -99,7 +97,9 @@
         "kind": "source",
         "text": "Class cadence: Art. 113 CCNL + column 'Anni serv.' Allegato 2/B."
       }
-    ]
+    ],
+    "gross": "partial",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1081,7 +1081,188 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "b1ab43733f15d9b01bbd970b2d81a0a85c27954b146c20294e9e8de45843ab61",
+    "source_hash": "90f2fbd17e64447c7abd50de49948df7c3675d5279d8f9eb8fb492143feeff45",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": "0.25",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "assicurazioni-ania",
+                "title": "CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/assicurazioni---personale-amministrativo"
+              },
+              "section": "Straordinario — 25% diurno feriale"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": "0.45",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "assicurazioni-ania",
+                "title": "CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/assicurazioni---personale-amministrativo"
+              },
+              "section": "Straordinario — 45% notturno"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "value": "0.30",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "assicurazioni-ania",
+                "title": "CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/assicurazioni---personale-amministrativo"
+              },
+              "section": "Straordinario — 30% festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "assicurazioni-ania",
+            "title": "CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/assicurazioni---personale-amministrativo"
+          },
+          "section": "Divisore giornaliero 26 (ANIA)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "25",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "25"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "assicurazioni-ania",
+            "title": "CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/assicurazioni---personale-amministrativo"
+          },
+          "section": "Ferie — 25 giorni lavorativi annui"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 360,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "assicurazioni-ania",
+            "title": "CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/assicurazioni---personale-amministrativo"
+          },
+          "section": "Malattia — piena retribuzione; conservazione posto 12 mesi (<10 anni anzianita')"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        }
+      }
+    }
   }
 }

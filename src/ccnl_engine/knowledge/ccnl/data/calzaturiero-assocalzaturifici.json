@@ -38,8 +38,6 @@
     "workers_estimate": "~75k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "simplification",
@@ -69,7 +67,9 @@
         "kind": "info",
         "text": "APPRENTICESHIP (professionalizzante): 80/90/100% in three periods. Total duration 36 months per Art. apprendistato. Period splits by level group: L6-L8=10/10/16m, L3-L5=11/11/14m, L2-L2S=12/12/12m. L1 not eligible as destination. Source: CCNL 2024-07-17 Assocalzaturifici (D121), circolare apprendistato; businessonline.it article 2024; kitech.it scheda D121."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1245,7 +1245,188 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "a9674a8a9c2591ca4331db0054ba83536396e708fe1ce5715b83e9dd93c057df",
+    "source_hash": "35c2ac7311185690ee7bc39c3f12032ec354171dc9b845ad91a6564276be4256",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": "0.15",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "calzaturiero-assocalzaturifici",
+                "title": "CCNL per i lavoratori addetti all'industria delle calzature",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/calzature---industria"
+              },
+              "section": "Straordinario diurno feriale (standard industria manifatturiera)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": "0.30",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "calzaturiero-assocalzaturifici",
+                "title": "CCNL per i lavoratori addetti all'industria delle calzature",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/calzature---industria"
+              },
+              "section": "Straordinario notturno (standard industria manifatturiera)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": "0.30",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "calzaturiero-assocalzaturifici",
+                "title": "CCNL per i lavoratori addetti all'industria delle calzature",
+                "kind": "tabella_retributiva",
+                "url": "https://ilccnl.it/contratto/ccnl/calzature---industria"
+              },
+              "section": "Straordinario festivo — 30%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "calzaturiero-assocalzaturifici",
+            "title": "CCNL per i lavoratori addetti all'industria delle calzature",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/calzature---industria"
+          },
+          "section": "Divisore giornaliero 26 (settore industria manifatturiera)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "20",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "20"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "calzaturiero-assocalzaturifici",
+            "title": "CCNL per i lavoratori addetti all'industria delle calzature",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/calzature---industria"
+          },
+          "section": "Ferie — 20 giorni lavorativi (4 settimane, <= 17aa anzianita' operai/intermedi)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 270,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "calzaturiero-assocalzaturifici",
+            "title": "CCNL per i lavoratori addetti all'industria delle calzature",
+            "kind": "tabella_retributiva",
+            "url": "https://ilccnl.it/contratto/ccnl/calzature---industria"
+          },
+          "section": "Malattia — integrazione al 100%; comporto 13 mesi (390 giorni); usato 270 giorni come stima conservativa"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    }
   }
 }

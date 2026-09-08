@@ -237,8 +237,8 @@ def make_ccnl_dict(*, app_type: str = "percentage") -> dict[str, Any]:
             },
         },
         "coverage": {
-            "layer_1": "implemented",
-            "layer_2": "implemented" if tracks else "partial",
+            "gross": "implemented",
+            "net": "implemented" if tracks else "partial",
             "notes": (
                 []
                 if tracks

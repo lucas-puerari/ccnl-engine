@@ -47,8 +47,6 @@
     "workers_estimate": "~95k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -102,7 +100,9 @@
         "kind": "info",
         "text": "INPS: reuses 2026-artigianato.json (ARTIGIANATO sector)."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1328,7 +1328,192 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "c8e3a5189b670a4f27cc41f26930714a52ec1be6bf3dabfe7cdffcfd84ba9c96",
+    "source_hash": "094397c9ca3ab37967e3437eb83290da91180eb42e96928e5c4a79f02ef773f2",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.25,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
+                "title": "CCNL Legno e Lapidei — Artigianato (CNA / Confartigianato) 2022",
+                "kind": "tabella_retributiva",
+                "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione 25%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
+                "title": "CCNL Legno e Lapidei — Artigianato (CNA / Confartigianato) 2022",
+                "kind": "tabella_retributiva",
+                "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+              },
+              "section": "Art. straordinario — notturno 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
+                "title": "CCNL Legno e Lapidei — Artigianato (CNA / Confartigianato) 2022",
+                "kind": "tabella_retributiva",
+                "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+              },
+              "section": "Art. straordinario — festivo 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
+            "title": "CCNL Legno e Lapidei — Artigianato (CNA / Confartigianato) 2022",
+            "kind": "tabella_retributiva",
+            "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "20",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "20"
+        },
+        {
+          "service_months_min": 60,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
+            "title": "CCNL Legno e Lapidei — Artigianato (CNA / Confartigianato) 2022",
+            "kind": "tabella_retributiva",
+            "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+          },
+          "section": "Art. ferie — 20 giorni (4 settimane); 22 giorni dopo 5 anni di anzianità"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
+            "title": "CCNL Legno e Lapidei — Artigianato (CNA / Confartigianato) 2022",
+            "kind": "tabella_retributiva",
+            "url": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf"
+          },
+          "section": "Art. malattia — integrazione al 100% per 180 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      }
+    }
   }
 }

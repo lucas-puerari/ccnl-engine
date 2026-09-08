@@ -29,8 +29,6 @@
     "workers_estimate": "~17k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -64,7 +62,9 @@
         "kind": "info",
         "text": "LEVEL 6Q: not present in the CCNL table of the CNEL PDF (August 2023). Excluded from the model."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1127,7 +1127,228 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "82844a7e85f2c809817346aab38bc80a628ac02ebe11d7331e73f899f495ee92",
+    "source_hash": "1186ec172b24b7c0a294e44d4d5a6cf5947abe62ba8987447cf05552926e2e5e",
     "published_at": "2026-09-07"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "value": 0.25,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-pelli-cuoio-industria-2023",
+                "title": "CCNL Pelli, Cuoio, Ombrelli — Industria (Assopellettieri) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+              },
+              "section": "Art. straordinario — maggiorazione 25%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-04-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-pelli-cuoio-industria-2023",
+                "title": "CCNL Pelli, Cuoio, Ombrelli — Industria (Assopellettieri) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+              },
+              "section": "Art. straordinario — notturno 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-04-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "value": 0.6,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-pelli-cuoio-industria-2023",
+                "title": "CCNL Pelli, Cuoio, Ombrelli — Industria (Assopellettieri) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+              },
+              "section": "Art. straordinario — festivo 60%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-04-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "value": 0.7,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-pelli-cuoio-industria-2023",
+                "title": "CCNL Pelli, Cuoio, Ombrelli — Industria (Assopellettieri) 2023-2026",
+                "kind": "tabella_retributiva",
+                "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+              },
+              "section": "Art. straordinario — notturno festivo 70%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2023-04-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-pelli-cuoio-industria-2023",
+            "title": "CCNL Pelli, Cuoio, Ombrelli — Industria (Assopellettieri) 2023-2026",
+            "kind": "tabella_retributiva",
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-04-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "20",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "20"
+        },
+        {
+          "service_months_min": 96,
+          "annual_days": "25"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-pelli-cuoio-industria-2023",
+            "title": "CCNL Pelli, Cuoio, Ombrelli — Industria (Assopellettieri) 2023-2026",
+            "kind": "tabella_retributiva",
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+          },
+          "section": "Art. ferie — 20 giorni (<8 anni), 25 giorni (>8 anni = 96 mesi)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-04-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-pelli-cuoio-industria-2023",
+            "title": "CCNL Pelli, Cuoio, Ombrelli — Industria (Assopellettieri) 2023-2026",
+            "kind": "tabella_retributiva",
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf"
+          },
+          "section": "Art. malattia — integrazione al 100% per 180 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-04-01"
+        }
+      }
+    }
   }
 }
