@@ -58,7 +58,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1270,7 +1271,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "ade8e7f422fa25ec34055b968492958675a50e5531d04a63ab6ec77f50677f99",
+    "source_hash": "28868dd26f375d8bba3c01c4e43bf416f899759d442e6ead238096b16da4de20",
     "published_at": "2026-09-07"
   },
   "work_rules": {

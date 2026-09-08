@@ -66,7 +66,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1706,7 +1707,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "196837005acb7ee1cdabfc5cb2253ae12f6500baa32b17fd17a74eda45065365",
+    "source_hash": "a914b81227fe57fc14ee76d496419c354ea9976257fd6fe122cb8cc3f997f27a",
     "published_at": "2026-09-07"
   },
   "work_rules": {

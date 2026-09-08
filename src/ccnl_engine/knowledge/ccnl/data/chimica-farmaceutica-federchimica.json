@@ -82,7 +82,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -2553,7 +2554,7 @@
     "effective_until": null,
     "source": "https://informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "8c9330f2f0dfffa837ab647a11ccc2d78334cfb61e7438463e05cc6d8dc6c2ca",
+    "source_hash": "dc3e2228054524ab750495b009410a12a0cd0a4e42888327f2499bac552f07c7",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -87,7 +87,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -676,7 +677,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "d96530d8e02f3644e39e1d66b7c858e5bb1ed05aa44549d52eb3fcdcec030a15",
+    "source_hash": "4d7f2708998e3f63454243f6bd15868df341534b746e69cccff3d8587d7c6410",
     "published_at": "2026-09-07"
   },
   "work_rules": {

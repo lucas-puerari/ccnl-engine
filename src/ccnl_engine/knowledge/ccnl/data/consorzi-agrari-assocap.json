@@ -83,7 +83,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "out_of_scope"
+    "net": "out_of_scope",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1227,7 +1228,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "81b1604367629eb8aa67a9698b6321472d4b2aeffb1913fc5befc2fe14c5ca4b",
+    "source_hash": "044092342db6e00257d2991bed92889ed275f147d2f14eca9b599124a2bd78ed",
     "published_at": "2026-09-07"
   },
   "work_rules": {

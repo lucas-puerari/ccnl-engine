@@ -80,7 +80,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1446,7 +1447,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "e03ecc7df872991eb13b48c9f5235dab688de0f65a8c5e106b82fcbb9a5ccbdd",
+    "source_hash": "3a7ffeb092b961193b04edb889f74d7375b5c8225de46cacda8d8d177ccb7bcb",
     "published_at": "2026-09-07"
   },
   "work_rules": {

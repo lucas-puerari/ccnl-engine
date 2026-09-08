@@ -67,7 +67,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1122,7 +1123,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "26d607bd866102f04186e43bfc65080b52dec76da5b1c37d0149fc92d36f8dbf",
+    "source_hash": "9815cbf1aa3ab25c595158cd039ae38df18d587408b1704d0f6dd788ff6fa2ac",
     "published_at": "2026-09-07"
   },
   "work_rules": {

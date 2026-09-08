@@ -1699,7 +1699,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "ruleset": {
     "id": "ccnl/terziario-confesercenti",
@@ -1708,7 +1709,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "a64cd40b3025eeb0f585c59e5b661b85049d2a7fff53482fc687cc78bb193fe5",
+    "source_hash": "c902991df753fe1776241f846cbd5111bb5affb0ac78fd509cfa163037512ecf",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -90,7 +90,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -4080,7 +4081,7 @@
     "effective_until": null,
     "source": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "644df5c4a96f730eecb9c9f03bc553a35a88c79867e9415625f02a3c7cbc2580",
+    "source_hash": "2309e8efedb75f28e60467a65549212da573f8b94ad5cece621139d023f48629",
     "published_at": "2026-09-07"
   },
   "work_rules": {

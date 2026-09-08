@@ -68,7 +68,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -2295,7 +2296,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "1c0387b2b96ddbe578c01ea0c5f86a14ee4edfd48af9d22c92f23aa6006fb69b",
+    "source_hash": "356d43154ec63824e29556061a4f9fd838ab5389def91fe1599ae8475b22b07e",
     "published_at": "2026-09-07"
   },
   "work_rules": {

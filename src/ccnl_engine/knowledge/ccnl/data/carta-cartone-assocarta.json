@@ -81,7 +81,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -2123,7 +2124,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/",
     "verification_status": "unverified",
-    "source_hash": "6d70eb953c264aaa9c38569ec040dad5bffe0ec8413413269d956d11fae349c3",
+    "source_hash": "cf71ddf302aaecfb592fc2693cf92ae89b549056199409df0c7b317b4fb939b6",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -85,7 +85,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1098,7 +1099,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "ebe273827ceb9a5b78d63d7fad9c12827b4f93211bba4b9c29959971bf917fee",
+    "source_hash": "ddd13a69b2be8bef727af247eecd7eac5ddcd0b20ab1b9d0e06ea57fbc5e690d",
     "published_at": "2026-09-07"
   },
   "work_rules": {

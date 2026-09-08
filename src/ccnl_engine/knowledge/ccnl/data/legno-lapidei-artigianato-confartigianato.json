@@ -102,7 +102,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1328,7 +1329,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "094397c9ca3ab37967e3437eb83290da91180eb42e96928e5c4a79f02ef773f2",
+    "source_hash": "6bc1c85b5fe4ecca592e2779bffca2a0524daa79b73170688fe608e64a4076cb",
     "published_at": "2026-09-07"
   },
   "work_rules": {

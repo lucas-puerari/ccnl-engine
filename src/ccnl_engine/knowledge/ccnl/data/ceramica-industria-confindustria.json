@@ -55,7 +55,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "levels": [
     {
@@ -1901,7 +1902,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "8955fd5d6c3c806619474d1c1891f30dc1ce9280c86844eb07291cbc853457c3",
+    "source_hash": "119202b9409dbd5ffa3413fcd221c0f6de7c69a620e47c87d1fb4591cadc9d51",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -96,7 +96,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -915,7 +916,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "04e60f7b7ea5690436c8870a21f4704e69f653cf44ff5102f7c628a489723002",
+    "source_hash": "e22d3b93783ba8d8b8cf69999c654ebbac77bb604c38995fa5bdac3de0ae0bd6",
     "published_at": "2026-09-07"
   },
   "work_rules": {

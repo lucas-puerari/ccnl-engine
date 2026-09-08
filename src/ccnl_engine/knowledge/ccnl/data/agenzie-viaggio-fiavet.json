@@ -1845,7 +1845,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "ruleset": {
     "id": "ccnl/agenzie-viaggio-fiavet",
@@ -1854,7 +1855,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "95c259df19a5752b61f1e33427531c8da32c3aa2d1fa49dac9bdf13f6109e668",
+    "source_hash": "8ca5d7faae1268e8f8be42495711ed71f2996340d32aee51ab5e93181579fe20",
     "published_at": "2026-09-07"
   },
   "work_rules": {

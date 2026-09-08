@@ -490,7 +490,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "ruleset": {
     "id": "ccnl/sanita-aran",
@@ -499,7 +500,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "0d1e7b9ec4de26001d840149b2104d39874023291c1f8a96c20ae3fe6520f286",
+    "source_hash": "ae48f021123f7a83f43d5db294cccec656b6b0d1fb1a7393b2b8eb617bee212d",
     "published_at": "2026-09-07"
   },
   "work_rules": {

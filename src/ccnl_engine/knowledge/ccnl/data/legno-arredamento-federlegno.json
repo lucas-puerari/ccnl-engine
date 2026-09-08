@@ -81,7 +81,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -2967,7 +2968,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf",
     "verification_status": "unverified",
-    "source_hash": "daf6964037e7a8a3a9ba2e9ae3519c7eba5310b4dede1aadc1435f8939dcd03e",
+    "source_hash": "e899c81f39ea4f1f2440e8e26651fe3f3850d9d3e527ee34eabdfd87f4d71c3b",
     "published_at": "2026-09-07"
   },
   "work_rules": {

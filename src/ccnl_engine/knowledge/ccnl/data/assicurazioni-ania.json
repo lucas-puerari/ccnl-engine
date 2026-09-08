@@ -99,7 +99,8 @@
       }
     ],
     "gross": "partial",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1081,7 +1082,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "90f2fbd17e64447c7abd50de49948df7c3675d5279d8f9eb8fb492143feeff45",
+    "source_hash": "eb33b43b0795b7ad830da3fbe6ec585e376230fc06bcc32bd306bfbf127a0253",
     "published_at": "2026-09-07"
   },
   "work_rules": {

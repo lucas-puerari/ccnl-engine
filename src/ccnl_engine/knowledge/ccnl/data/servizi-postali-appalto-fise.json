@@ -73,7 +73,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1543,7 +1544,7 @@
     "effective_until": null,
     "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
     "verification_status": "unverified",
-    "source_hash": "0b83ed310fa687e5a359b9a95e187f09acc74d62b2c4625037b5eb13589bb219",
+    "source_hash": "bcabafa1549bd64c2406cfecaebb187922b7adf19f04dd882d05c82ecf4bd78e",
     "published_at": "2026-09-07"
   },
   "work_rules": {

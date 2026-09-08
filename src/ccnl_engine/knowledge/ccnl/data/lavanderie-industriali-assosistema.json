@@ -98,7 +98,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1314,7 +1315,7 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "e8b80544e3c1a57e6589e5dfce9b9d06b1d2b9c104067e5defeeda3e0ebd4633",
+    "source_hash": "e3024b32ab4853307915f58f57af3366c1e7299d595710127b6bd3773a1e8293",
     "published_at": "2026-09-07"
   },
   "work_rules": {

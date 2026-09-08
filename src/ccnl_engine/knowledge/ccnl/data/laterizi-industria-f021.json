@@ -88,7 +88,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -2726,7 +2727,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "1a0763de08cbf73d52fefaebba0384fc5e09d8d87378db7d9383ace25048aab8",
+    "source_hash": "e4b13055405c57d409aec72824281432dd266dcaca861d05ba9e946d1a5cb4a4",
     "published_at": "2026-09-07"
   },
   "work_rules": {

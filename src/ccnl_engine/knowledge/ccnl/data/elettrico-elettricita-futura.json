@@ -73,7 +73,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -2384,7 +2385,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/elettrico/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "dd7a3813fd492ef74a7cd3e11042292bcaa24e4ec20c38bbae383aefe7f00c59",
+    "source_hash": "0aab354dd786a996f11abaa467462322f2041c0e8890f876246663bb42a0440a",
     "published_at": "2026-09-07"
   },
   "work_rules": {

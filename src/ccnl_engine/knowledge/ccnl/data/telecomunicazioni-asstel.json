@@ -73,7 +73,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1336,7 +1337,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "5358c47ca1a58743f90f438ef754515622fd0c00e330902e30817c783cf694d2",
+    "source_hash": "4776d8f68c1b22f5b6be53e892fc26b125100e97cbba8c85ca50b451d33c31a2",
     "published_at": "2026-09-07"
   },
   "work_rules": {

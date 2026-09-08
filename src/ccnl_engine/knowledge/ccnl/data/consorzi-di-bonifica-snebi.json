@@ -82,7 +82,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "out_of_scope"
+    "net": "out_of_scope",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -2631,7 +2632,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "eb8978f38e2b38a8bca42dcc80ed2cda54ba3deabc0becb9f965d75f14b93c2f",
+    "source_hash": "2a25d6dfe75b3e54ac3deeee1cbc58e7afd2fc3982e4662a69e2a83f7deb0e46",
     "published_at": "2026-09-07"
   },
   "work_rules": {

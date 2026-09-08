@@ -409,7 +409,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "ruleset": {
     "id": "ccnl/funzioni-centrali-aran",
@@ -418,7 +419,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "18f218f658e63dd6e833f71343811a665e7cd1e8555c0d19ba2ae98987e349b4",
+    "source_hash": "db7a06b525962fdf6ab9184d64c17eb8e42a701eb7d7804ee1180b682b0ae931",
     "published_at": "2026-09-07"
   },
   "work_rules": {

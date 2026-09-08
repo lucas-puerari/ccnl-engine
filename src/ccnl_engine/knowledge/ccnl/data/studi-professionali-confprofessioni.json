@@ -72,7 +72,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1246,7 +1247,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "f0ee18d06e2e516a4124aad5081436223b50139107a6785a68d9c85de765ce20",
+    "source_hash": "f2415bd7be1ad79b32d49308cadf57361975cc053597f8f8dab462bb8f22d876",
     "published_at": "2026-09-07"
   },
   "work_rules": {

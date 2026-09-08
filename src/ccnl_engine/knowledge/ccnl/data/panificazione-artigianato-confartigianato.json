@@ -91,7 +91,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1640,7 +1641,7 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "84a26d9b935e02ecfeaf3bbc4f0886c5332da61488c9aae5b37bb6acdba1a9ad",
+    "source_hash": "c00f52304203ee209cda97d1c7ff0e49d0db66d02e9be3f4ee710561c0909a99",
     "published_at": "2026-09-07"
   },
   "work_rules": {

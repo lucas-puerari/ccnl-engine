@@ -50,7 +50,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "partial"
+    "net": "partial",
+    "work_rules": "implemented"
   },
   "levels": [
     {
@@ -1193,7 +1194,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "2d2c68008a4035d692f5589cec1aba40677d84b1a38e40226624ced3d66c6977",
+    "source_hash": "593957c3ee20a5fa47416fb114d9bc28c9c4a064339ca421ac069fc689ef1e71",
     "published_at": "2026-09-07"
   },
   "work_rules": {

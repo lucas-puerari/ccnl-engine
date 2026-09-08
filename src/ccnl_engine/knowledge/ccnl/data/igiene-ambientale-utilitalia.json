@@ -78,7 +78,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -3328,7 +3329,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "e360f5f428a13bd05a1cce413e82aa9e2cba4501bd3eb55e8d337707f39852e8",
+    "source_hash": "d7c1a36f8b349a58b18b6fee3c1d78f192b5651ea566c3ed1604c29ed7efbebe",
     "published_at": "2026-09-07"
   },
   "work_rules": {

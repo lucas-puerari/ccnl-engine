@@ -86,7 +86,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1193,7 +1194,7 @@
     "effective_until": null,
     "source": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
     "verification_status": "unverified",
-    "source_hash": "4e3108ba0202f236ee517134463cf6f979c1dc6d5e206ed043d6712b714ca4fd",
+    "source_hash": "0c00a66869de549eea527cf7cad1140fc9f59d35261bdf7899038eeb72017c6c",
     "published_at": "2026-09-07"
   },
   "work_rules": {

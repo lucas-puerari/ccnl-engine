@@ -88,7 +88,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -706,7 +707,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "4a04e2b9a1c9cc720eef7a26e0963233043b1f9f4c31e699b59ba7eaa8b38020",
+    "source_hash": "a35f9b7237ec81137c697d260134584add683b90c2d9e6494f230286f7bd37d3",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -73,7 +73,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1978,7 +1979,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/",
     "verification_status": "unverified",
-    "source_hash": "d0dbae277463d35939c10e68a1944082b76512b1868c1e256f35d27a08d1a34c",
+    "source_hash": "416a54fcd3b115b6dc9e7344412cd89ce8913e53bbf2094dc954cfd63a07de35",
     "published_at": "2026-09-07"
   },
   "work_rules": {

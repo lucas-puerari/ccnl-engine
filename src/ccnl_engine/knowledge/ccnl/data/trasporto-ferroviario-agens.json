@@ -104,7 +104,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1869,7 +1870,7 @@
     "effective_until": "2026-12-31",
     "source": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive",
     "verification_status": "unverified",
-    "source_hash": "074b41543297725ecd9885edcdba18a3f747f6ad7963f2a72cc280d8d5806007",
+    "source_hash": "e62567e98a362f56cb6ac71fddaad88a36ce4ce19b82b3f37b5f7deb154b4cec",
     "published_at": "2026-09-07"
   },
   "work_rules": {

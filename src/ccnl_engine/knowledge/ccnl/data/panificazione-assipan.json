@@ -79,7 +79,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1274,7 +1275,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "62ee24812031a43a4f976f717fcea6301c6d464c3605a706e79700f69d7c2e97",
+    "source_hash": "eae27bd6b9f4f85357285a44831bc425a1127be77234626bbe12e26a5a51e11f",
     "published_at": "2026-09-07"
   },
   "work_rules": {

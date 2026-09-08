@@ -75,7 +75,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1688,7 +1689,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "e87bc2cf60da47bfa40cc071026413079fd97a310cd50043a5631401f6959e97",
+    "source_hash": "8033d6963393fa5bd6e04f1db50ca2f890cbd4b0be054dcb4979ecea1822962c",
     "published_at": "2026-09-07"
   },
   "work_rules": {

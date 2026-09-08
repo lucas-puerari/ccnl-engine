@@ -1861,7 +1861,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "ruleset": {
     "id": "ccnl/turismo-federalberghi",
@@ -1870,7 +1871,7 @@
     "effective_until": null,
     "source": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
     "verification_status": "unverified",
-    "source_hash": "9136fb814a7e1a2a60cf2bda9237227e3311966f4107b39ea5e75729c2840f4f",
+    "source_hash": "2ec08bdbc3b55084f158fa9278fc59aef3c2c97a6ba4c06607b55850da6b19bd",
     "published_at": "2026-09-07"
   },
   "work_rules": {

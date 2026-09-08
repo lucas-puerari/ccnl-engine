@@ -76,7 +76,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1326,7 +1327,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "17124c62d4b86a3c237811486e01d7f9a26363b410e242be1817daaab04e8fdc",
+    "source_hash": "410cc1ab6f7043bb5dd4d76037c1da6bbda844abb2b19876a4814d29df3f61fa",
     "published_at": "2026-09-07"
   },
   "work_rules": {

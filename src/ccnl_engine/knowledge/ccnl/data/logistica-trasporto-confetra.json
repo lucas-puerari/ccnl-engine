@@ -93,7 +93,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "implemented"
+    "net": "implemented",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1296,7 +1297,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "975fc404530e663647f36beff946482274cc19ba3d2fe8b7f17e5947624393f7",
+    "source_hash": "9da935d6abb6c4c92cb86381255661a83d243c3d76eee3f31aefb38f2365f9d9",
     "published_at": "2026-09-07"
   },
   "work_rules": {
