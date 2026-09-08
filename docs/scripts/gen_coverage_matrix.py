@@ -11,7 +11,7 @@ from pathlib import Path
 # docs/ is the parent of this script's directory
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from coverage_report import build_coverage_report, render_markdown  # noqa: E402
+from coverage_report import build_coverage_report, render_markdown
 
 report = build_coverage_report()
 out = Path(__file__).parent.parent / "coverage-matrix.md"

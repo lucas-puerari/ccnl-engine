@@ -52,8 +52,6 @@ dev = [
 target-version = "py312"
 line-length = 88
 preview = true
-extend-exclude = ["docs/"]
-force-exclude = true
 
 [tool.ruff.lint]
 select = ["ALL"]
@@ -82,8 +80,12 @@ ignore = [
 # PLR6301: pytest methods don't need self
 # pytest-fixture-autouse: autouse is intentional for per-test loader mocking
 "tests/**" = ["S", "ARG", "SLF001", "PLR6301", "pytest-fixture-autouse"]
-# Examples are doc scripts: print is intentional, late imports are illustrative, line length is secondary.
+# Examples and demo: print is intentional, late imports are illustrative, line length is secondary.
 "docs/examples/**" = ["T201", "E402", "RUF100", "I001", "E501", "N999", "RUF010"]
+"demo/**" = ["T201", "E402", "RUF100", "I001", "E501", "N999", "RUF010", "INP001"]
+# Doc tooling: not a package (INP001); scripts print progress (T201).
+"docs/*.py" = ["INP001"]
+"docs/scripts/*.py" = ["INP001", "T201"]
 # Pydantic needs runtime access to annotated types; TCH001-TCH003 would move
 # them to TYPE_CHECKING blocks, breaking model_validate and field resolution.
 # Applies to Pydantic model files and primitives.py (Bracket is a dataclass
