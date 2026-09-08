@@ -105,3 +105,29 @@ class LeaveInput:
         if self.taken_days < _ZERO:
             msg = f"taken_days must be >= 0, got {self.taken_days}"
             raise ValueError(msg)
+
+
+@dataclass(frozen=True)
+class SickInput:
+    """Caller-declared sick days for one pay period (malattia ordinaria).
+
+    The engine computes the INPS statutory indemnity and the CCNL
+    integration top-up based on the bundled sick-pay rate table and the
+    CCNL sickness rules.  All output fields are informational: neither
+    ``gross_annual`` nor ``net_annual`` is mutated.
+
+    Attributes:
+        sick_days: Calendar days of illness in the period. Must be >= 0.
+    """
+
+    sick_days: Decimal = _ZERO
+
+    def __post_init__(self) -> None:
+        """Validate that sick_days is non-negative.
+
+        Raises:
+            ValueError: If sick_days is negative.
+        """
+        if self.sick_days < _ZERO:
+            msg = f"sick_days must be >= 0, got {self.sick_days}"
+            raise ValueError(msg)

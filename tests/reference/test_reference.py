@@ -40,6 +40,7 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
     LeaveInput,
     OvertimeHours,
+    SickInput,
 )
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 
@@ -71,6 +72,18 @@ def _build_leave_input(inputs: dict[str, Any]) -> LeaveInput | None:
     if raw is None:
         return None
     return LeaveInput(taken_days=Decimal(str(raw.get("taken_days", "0"))))
+
+
+def _build_sick_input(inputs: dict[str, Any]) -> SickInput | None:
+    """Build SickInput from the ``sick_input`` key in *inputs*.
+
+    Returns:
+        A :class:`SickInput` instance, or ``None`` when the key is absent.
+    """
+    raw = inputs.get("sick_input")
+    if raw is None:
+        return None
+    return SickInput(sick_days=Decimal(str(raw.get("sick_days", "0"))))
 
 
 def _build_time_supplements(inputs: dict[str, Any]) -> OvertimeHours | None:
@@ -179,6 +192,7 @@ class TestReferenceCases:
         time_supplements = _build_time_supplements(inputs)
         absence_days = _build_absence_days(inputs)
         leave_input = _build_leave_input(inputs)
+        sick_input = _build_sick_input(inputs)
 
         scenario = PayrollScenario(
             employee=Employee(
@@ -205,6 +219,7 @@ class TestReferenceCases:
             time_supplements=time_supplements,
             absence_days=absence_days,
             leave_input=leave_input,
+            sick_input=sick_input,
         )
 
         result = compute(scenario)

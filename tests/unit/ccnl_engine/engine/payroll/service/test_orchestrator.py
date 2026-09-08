@@ -17,6 +17,7 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     DailyDivisorMethod,
     LeaveEntitlementTier,
     LeaveRules,
+    SicknessRules,
     SupplementaryAllowance,
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
@@ -38,6 +39,7 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
     LeaveInput,
     OvertimeHours,
+    SickInput,
 )
 from ccnl_engine.engine.payroll.service.orchestrator import _collect_provenance, compute
 from ccnl_engine.engine.payroll.service.rounding import money
@@ -1085,3 +1087,85 @@ class TestL3Leave:
         result = compute(scenario).result
         scope = {item.feature: item.status for item in result.calculation_scope}
         assert scope["leave"] == "verified"
+
+
+class TestL3Sickness:
+    """Orchestrator behaviour for L3 sickness (malattia ordinaria)."""
+
+    def test_warning_when_ccnl_has_no_sickness_rules(self) -> None:
+        """Emit a warning when sick_input is set but CCNL has no sickness_rules."""
+        scenario = dataclasses.replace(
+            _req(),
+            sick_input=SickInput(sick_days=_D("5")),
+        )
+        result = compute(scenario).result
+        assert any("sick_input" in w for w in result.warnings), (
+            f"Expected sick_input warning, got: {result.warnings}"
+        )
+        assert result.sick_days_monthly == _D("0")
+
+    def test_sickness_computed_with_l3_schema(self) -> None:
+        """Compute sick-leave indemnity when CCNL has sickness_rules."""
+        _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
+            update={
+                "layer_3": CCNLLayer3(
+                    sickness_rules=SicknessRules(
+                        carenza_integration_rate=_D("1"),
+                        full_pay_integration_rate=_D("1"),
+                    )
+                )
+            }
+        )
+        scenario = dataclasses.replace(
+            _req(),
+            sick_input=SickInput(sick_days=_D("3")),
+        )
+        result = compute(scenario).result
+        assert not any("sick_input" in w for w in result.warnings)
+        # 3 days: only carenza, no INPS indemnity
+        assert result.sick_days_monthly == _D("3")
+        assert result.sick_inps_indemnity_monthly == _D("0")
+
+    def test_sick_scope_excluded_when_no_input(self) -> None:
+        """Sickness is excluded when no sick_input is provided."""
+        result = compute(_req()).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["sickness"] == "excluded"
+
+    def test_sick_scope_not_computed_when_input_but_no_schema(self) -> None:
+        """Sickness is not_computed when input given but CCNL has no sickness_rules."""
+        scenario = dataclasses.replace(
+            _req(),
+            sick_input=SickInput(sick_days=_D("5")),
+        )
+        result = compute(scenario).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["sickness"] == "not_computed"
+
+    def test_sick_scope_verified_with_schema(self) -> None:
+        """Sickness is verified when input given and CCNL has sickness_rules."""
+        _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
+            update={
+                "layer_3": CCNLLayer3(
+                    sickness_rules=SicknessRules(
+                        carenza_integration_rate=_D("1"),
+                        full_pay_integration_rate=_D("1"),
+                    )
+                )
+            }
+        )
+        scenario = dataclasses.replace(
+            _req(),
+            sick_input=SickInput(sick_days=_D("5")),
+        )
+        result = compute(scenario).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["sickness"] == "verified"
+
+    def test_sick_all_zero_when_no_input(self) -> None:
+        """All sickness output fields are zero when no sick_input is provided."""
+        result = compute(_req()).result
+        assert result.sick_days_monthly == _D("0")
+        assert result.sick_carenza_days_monthly == _D("0")
+        assert result.sick_inps_indemnity_monthly == _D("0")
+        assert result.sick_company_integration_monthly == _D("0")
