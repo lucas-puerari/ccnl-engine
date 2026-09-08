@@ -56,8 +56,7 @@ def _check_seniority(ccnl: CCNL, fname: str, sc: dict[str, Any]) -> None:
     )
     ts = si.amount_by_level.get(sc["level_code"])
     assert ts is not None, (
-        f"{fname}: seniority level {sc['level_code']!r} "
-        "not found in amount_by_level"
+        f"{fname}: seniority level {sc['level_code']!r} not found in amount_by_level"
     )
     actual = ts.value_at(as_of)
     assert actual == Decimal(sc["expected_amount"]), (

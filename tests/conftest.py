@@ -32,6 +32,4 @@ def pytest_terminal_summary(
         case = json.loads(path.read_text(encoding="utf-8"))
         if case.get("source"):
             verified += 1
-    terminalreporter.write_sep(
-        "-", f"reference cases: {verified}/{total} with source"
-    )
+    terminalreporter.write_sep("-", f"reference cases: {verified}/{total} with source")
