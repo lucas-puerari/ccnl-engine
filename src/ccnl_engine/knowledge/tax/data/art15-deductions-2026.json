@@ -1,0 +1,9 @@
+{
+  "year": 2026,
+  "description": "Art. 15 TUIR detrazioni per oneri (anno d'imposta 2026) — modelled: interessi passivi mutuo prima casa",
+  "mortgage_interest": {
+    "ceiling": "4000.00",
+    "rate": "0.19",
+    "notes": "Art. 15 c. 1 lett. b TUIR. Ceiling EUR 4 000 per nucleo familiare per year (max credit EUR 760). Applies to interest paid on a mortgage for the acquisition of the abitazione principale. Household ceiling not modelled — full ceiling applied to the declared amount."
+  }
+}

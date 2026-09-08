@@ -7,6 +7,7 @@ from unittest.mock import patch
 import pytest
 
 from ccnl_engine.engine.tax.service.loaders import (
+    load_art15_deduction_rules,
     load_family_deduction_rules,
     load_variable_pay_rules,
 )
@@ -73,3 +74,34 @@ class TestLoadFamilyDeductionRules:
             pytest.raises(ValueError, match="does not match requested year"),
         ):
             load_family_deduction_rules(2026)
+
+
+class TestLoadArt15DeductionRules:
+    """load_art15_deduction_rules validation."""
+
+    def test_correct_year_loads_successfully(self) -> None:
+        """Requesting the bundled 2026 year returns an Art15DeductionRules."""
+        rules = load_art15_deduction_rules(2026)
+        assert rules.year == 2026
+        assert rules.mortgage_interest.ceiling > 0
+        assert rules.mortgage_interest.rate > 0
+
+    def test_year_mismatch_raises(self) -> None:
+        """A tampered file where year != filename year raises ValueError."""
+        tampered_raw = {
+            "year": 9999,
+            "description": "tampered",
+            "mortgage_interest": {
+                "ceiling": "4000.00",
+                "rate": "0.19",
+                "notes": "",
+            },
+        }
+        with (
+            patch(
+                "ccnl_engine.engine.tax.service.loaders._read_json",
+                return_value=tampered_raw,
+            ),
+            pytest.raises(ValueError, match="does not match requested year"),
+        ):
+            load_art15_deduction_rules(2026)

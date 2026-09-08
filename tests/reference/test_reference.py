@@ -18,6 +18,7 @@ from typing import Any
 
 import pytest
 
+from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.employee import (
     RalOverride,
     SeniorityByCount,
@@ -146,6 +147,20 @@ def _build_family(inputs: dict[str, Any]) -> FamilyComposition | None:
         children_21_or_older=int(raw.get("children_21_or_older", 0)),
         children_21_or_older_disabled=int(raw.get("children_21_or_older_disabled", 0)),
         ascendenti_conviventi=int(raw.get("ascendenti_conviventi", 0)),
+    )
+
+
+def _build_art15_deductions(inputs: dict[str, Any]) -> Art15Deductions | None:
+    """Build Art15Deductions from the ``art15_deductions`` key in *inputs*.
+
+    Returns:
+        An :class:`Art15Deductions` instance, or ``None`` when the key is absent.
+    """
+    raw = inputs.get("art15_deductions")
+    if raw is None:
+        return None
+    return Art15Deductions(
+        mortgage_interest=Decimal(str(raw.get("mortgage_interest", "0"))),
     )
 
 
@@ -290,6 +305,7 @@ class TestReferenceCases:
             welfare_input=welfare_input,
             bonus_input=bonus_input,
             family=_build_family(inputs),
+            art15_deductions=_build_art15_deductions(inputs),
         )
 
         result = compute(scenario)

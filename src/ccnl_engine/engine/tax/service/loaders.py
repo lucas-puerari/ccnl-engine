@@ -9,6 +9,10 @@ from typing import TYPE_CHECKING, Any, Protocol
 
 from ccnl_engine.engine.io.bundled import read_bundled
 from ccnl_engine.engine.metadata import RulesetIdentity, source_hash
+from ccnl_engine.engine.tax.domain.art15 import (
+    Art15DeductionRules,
+    MortgageInterestRules,
+)
 from ccnl_engine.engine.tax.domain.family import (
     ChildrenDeductionRules,
     FamilyDeductionRules,
@@ -414,5 +418,44 @@ def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
             amount=Decimal(str(od_raw["amount"])),
             income_ceiling=Decimal(str(od_raw["income_ceiling"])),
             notes=od_raw.get("notes", ""),
+        ),
+    )
+
+
+def load_art15_deduction_rules(year: int) -> Art15DeductionRules:
+    """Load Art. 15 TUIR oneri detraibili rules for *year*.
+
+    The file ``knowledge/tax/data/art15-deductions-{year}.json`` carries
+    mortgage interest ceiling and rate parameters.  These are pure law,
+    not CCNL-specific.
+
+    Args:
+        year: Fiscal year (e.g. ``2026``).
+
+    Returns:
+        An :class:`~ccnl_engine.engine.tax.domain.art15.Art15DeductionRules`
+        with all deduction parameters validated.
+
+    Raises:
+        ValueError: If the file's ``year`` field does not match *year*.
+    """
+    pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
+    filename = f"art15-deductions-{year}.json"
+    raw = _read_json(pkg, filename)
+    if raw.get("year") != year:
+        msg = (
+            f"{filename} year={raw.get('year')!r} "
+            f"does not match requested year={year!r}"
+        )
+        raise ValueError(msg)
+
+    mi_raw = raw["mortgage_interest"]
+    return Art15DeductionRules(
+        year=int(raw["year"]),
+        description=raw.get("description", ""),
+        mortgage_interest=MortgageInterestRules(
+            ceiling=Decimal(str(mi_raw["ceiling"])),
+            rate=Decimal(str(mi_raw["rate"])),
+            notes=mi_raw.get("notes", ""),
         ),
     )

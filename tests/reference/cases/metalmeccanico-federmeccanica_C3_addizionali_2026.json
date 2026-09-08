@@ -50,6 +50,7 @@
     "addizionale_comunale_annual": "173.50",
     "trattamento_integrativo": "0",
     "fiscal_simplifications": [
+      "no_detrazioni_art15",
       "no_detrazioni_familiari"
     ],
     "net_annual": "19766.25",
