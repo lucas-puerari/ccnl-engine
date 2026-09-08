@@ -30,7 +30,8 @@
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~1k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1542,7 +1543,7 @@
     "effective_until": null,
     "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
     "verification_status": "unverified",
-    "source_hash": "4d79cb5c34777e69b5e726e566d899622fac2c25f5123db0f53019fa79e6ac7a",
+    "source_hash": "4de306cab3de48cda0542456b6e9a8355f307915ba0618d5cd99491e03f2eaa1",
     "published_at": "2026-09-07"
   }
 }

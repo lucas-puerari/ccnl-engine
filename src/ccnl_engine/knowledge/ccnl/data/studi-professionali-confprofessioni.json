@@ -29,7 +29,8 @@
       "model": null,
       "timestamp": "2026-09-01T00:00:00",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~350k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1245,7 +1246,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "a51eb1261496636dab5462ec0018523013e2f3edd9f359735dbb7fc0a4351945",
+    "source_hash": "639da54116684112c9aab139b7375caf09538a31a9fae7517cd402075114ca34",
     "published_at": "2026-09-07"
   }
 }

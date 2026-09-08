@@ -37,7 +37,8 @@
       "model": null,
       "timestamp": "2026-09-04T00:00:00",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~40k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -2294,7 +2295,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "2dc4d76bc6f0209470119c39c267f02cbfb184c445715022f903d4010549e80c",
+    "source_hash": "8d15a3fc7f0efa124c38c18408042a74f7773e39832bbd75060fc38038d31eae",
     "published_at": "2026-09-07"
   }
 }

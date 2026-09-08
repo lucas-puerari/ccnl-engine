@@ -29,7 +29,8 @@
       "model": null,
       "timestamp": "2026-09-02T00:00:00",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~130k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1390,7 +1391,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "1f5fdecdcdfc857d238200cef0b39d12de8f5f538aeb47787dba562548789ce4",
+    "source_hash": "8fed804a1fc4a5e9df22a6519561439e0c7989f26b4937ad2af55e3bdb2fcd38",
     "published_at": "2026-09-07"
   }
 }

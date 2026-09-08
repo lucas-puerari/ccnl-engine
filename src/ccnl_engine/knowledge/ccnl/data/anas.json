@@ -25,7 +25,8 @@
       "timestamp": "2026-09-06",
       "human_reviewed": false,
       "method": "ai_assisted"
-    }
+    },
+    "workers_estimate": "~7k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1226,7 +1227,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "843415292b69973ce5469133ae73a98d4f8ee70f03cd99b8f19e237a033afcd7",
+    "source_hash": "d124e199607a6ca50dc2b1d95e93b2dd86941604c9adefc2a1a4fcf36cb8b513",
     "published_at": "2026-09-07"
   }
 }

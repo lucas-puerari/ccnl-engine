@@ -36,7 +36,8 @@
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~400k"
   },
   "parameters": {
     "hourly_divisor": {
@@ -512,7 +513,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "6d2d35a8b1e873e2cb77cd9c107394a32ba34360db3b8011fd28a600b0395ae9",
+    "source_hash": "4941327c1fa54e9be963d1242358a6d76c6305fb7cfa0bacbe53356d1e033f98",
     "published_at": "2026-09-07"
   }
 }

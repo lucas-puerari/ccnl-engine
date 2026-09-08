@@ -43,7 +43,8 @@
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~220k"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1869,7 +1870,7 @@
     "effective_until": null,
     "source": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
     "verification_status": "unverified",
-    "source_hash": "070459c5957a5d807caf9f40221abaf3b2981fcacc5e373d5f09960f141f17f6",
+    "source_hash": "23c17400b5fa86f220bbe4ab442b09b05438f92e600fcaf835a7dc589fff582f",
     "published_at": "2026-09-07"
   }
 }

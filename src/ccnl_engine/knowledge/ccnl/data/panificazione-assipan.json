@@ -32,7 +32,8 @@
     "validity": {
       "valid_from": "2023-01-01",
       "valid_until": "2026-12-31"
-    }
+    },
+    "workers_estimate": "~20k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1273,7 +1274,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "d026863f3eedeafc6cbf9cc37f1a356447d8cee6e3f210c2b00c5a880257ce62",
+    "source_hash": "7fa86038e3b063cc339c7ef56f916393d7987ae9ed96ce25ea93c5d38f4c8ae0",
     "published_at": "2026-09-07"
   }
 }

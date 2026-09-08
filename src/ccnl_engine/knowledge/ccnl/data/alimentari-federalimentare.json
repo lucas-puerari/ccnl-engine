@@ -44,7 +44,8 @@
       "model": null,
       "timestamp": "2026-09-01",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~145k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -2149,7 +2150,7 @@
     "effective_until": null,
     "source": "https://flaiveneto.it/rinnovato-il-ccnl-industria-alimentare/",
     "verification_status": "unverified",
-    "source_hash": "5b896ac98210f457d70d0f02e4ac04c1007dcc7eec53995e20b821dd6bed6763",
+    "source_hash": "fbce89ef7d579fe0ad3f5635ac2d589a71639e9fe3b5bbe26b195b25a5882596",
     "published_at": "2026-09-07"
   }
 }

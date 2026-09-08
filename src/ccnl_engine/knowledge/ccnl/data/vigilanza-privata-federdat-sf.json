@@ -25,7 +25,8 @@
       "timestamp": "2026-09-06",
       "human_reviewed": false,
       "method": "ai_assisted"
-    }
+    },
+    "workers_estimate": "~40k"
   },
   "coverage": {
     "layer_1": "partial",
@@ -1187,7 +1188,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "820593b3d01b1ef6c2513d627c76014cbc875abb96ef46dc30fc3d72f939b34a",
+    "source_hash": "18f1b0b3a22169fd8ec7610af25fb11474288b8914b48f7c2397127abc2a3c35",
     "published_at": "2026-09-07"
   }
 }

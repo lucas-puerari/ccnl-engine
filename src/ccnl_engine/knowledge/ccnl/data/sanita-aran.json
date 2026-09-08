@@ -38,7 +38,8 @@
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~580k"
   },
   "parameters": {
     "hourly_divisor": {
@@ -498,7 +499,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "774b9f215304343ee9e8b4bbbd6ca52c5fc25180bafa43b63167ffa0a4d4373f",
+    "source_hash": "ae50f0f1064cbbec1c212477b1004fe775d34c5768ba4f321ca77ac3b1ad951e",
     "published_at": "2026-09-07"
   }
 }

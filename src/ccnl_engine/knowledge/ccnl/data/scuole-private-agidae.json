@@ -34,7 +34,8 @@
       "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-04T00:00:00",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~50k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1134,7 +1135,7 @@
     "effective_until": null,
     "source": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "592aef9a124855d34aa526e421672b696699ea65cbb2e97c548b34ba4f4bc524",
+    "source_hash": "a2a51ad44bb6b78f96311c26c78eabe8291c1651a73b8bbccfc07b7cdcd1618e",
     "published_at": "2026-09-07"
   }
 }

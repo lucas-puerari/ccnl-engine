@@ -37,7 +37,8 @@
     "validity": {
       "valid_from": "2024-07-01",
       "valid_until": "2027-12-31"
-    }
+    },
+    "workers_estimate": "~25k"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1853,7 +1854,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "03919517163fcbe69ea35f1e4a964456746e4cebdecc928a8bfa2c457c71a1c5",
+    "source_hash": "f96e6b6110e684e2009e9e0ccbb1f913595819c0e648f904d431d3b5ffb6214d",
     "published_at": "2026-09-07"
   }
 }

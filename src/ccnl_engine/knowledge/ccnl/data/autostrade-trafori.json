@@ -25,7 +25,8 @@
       "timestamp": "2026-09-06",
       "human_reviewed": false,
       "method": "ai_assisted"
-    }
+    },
+    "workers_estimate": "~15k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -3983,7 +3984,7 @@
     "effective_until": null,
     "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
     "verification_status": "unverified",
-    "source_hash": "7a542c0503cda87907f9f0d416a7b0bf9281ac180b8c8723f2d6085a64276b91",
+    "source_hash": "7e16d49c119ce7210a7acc5abbc119c991a97a9f8b552b800ab81f347c6304d3",
     "published_at": "2026-09-07"
   }
 }

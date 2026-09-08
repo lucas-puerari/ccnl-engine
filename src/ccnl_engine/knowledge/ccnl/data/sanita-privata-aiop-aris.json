@@ -42,7 +42,8 @@
     "validity": {
       "valid_from": "2020-07-01",
       "valid_until": null
-    }
+    },
+    "workers_estimate": "~150k"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1537,7 +1538,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "2f21699b4b200b1f41182cceb4b09f7993e421100996aea8205da0a2b76d012f",
+    "source_hash": "7fb03f345c2f492f37851fecae71fe21edab02757b56bf0467c4dd9c0c9d2edb",
     "published_at": "2026-09-07"
   }
 }

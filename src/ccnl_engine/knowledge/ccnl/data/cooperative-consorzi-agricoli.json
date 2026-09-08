@@ -27,7 +27,8 @@
       "timestamp": "2026-09-06",
       "human_reviewed": false,
       "method": "ai_assisted"
-    }
+    },
+    "workers_estimate": "~60k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1192,7 +1193,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "2f18b80321bb0bad82c250d59f713bbd7d3b17e5d1dc5e750b7c47ad4328eae4",
+    "source_hash": "9d48eb928648d6387b74aff36a39bd11651448b6bf8d9eade7bc84e484652733",
     "published_at": "2026-09-07"
   }
 }

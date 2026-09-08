@@ -45,7 +45,8 @@
       "model": null,
       "timestamp": "2026-09-04",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~130k"
   },
   "parameters": {
     "hourly_divisor": {
@@ -2135,7 +2136,7 @@
     "effective_until": null,
     "source": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f",
     "verification_status": "unverified",
-    "source_hash": "b922f3c8ef8a82cfad036580d1161e2079fd79c2375b69a85dd880d25cd703cb",
+    "source_hash": "c8c1505feeeafd92972efb87cd78c9c475382534a1eb11acfa87f097956d6a88",
     "published_at": "2026-09-07"
   }
 }

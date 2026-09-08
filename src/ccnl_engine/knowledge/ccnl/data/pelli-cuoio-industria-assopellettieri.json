@@ -25,7 +25,8 @@
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~17k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1126,7 +1127,7 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "6d3c831817f392c285fe3d356a5b60ab92aea312c60aafe9e2bb13e62dab9fc9",
+    "source_hash": "82844a7e85f2c809817346aab38bc80a628ac02ebe11d7331e73f899f495ee92",
     "published_at": "2026-09-07"
   }
 }

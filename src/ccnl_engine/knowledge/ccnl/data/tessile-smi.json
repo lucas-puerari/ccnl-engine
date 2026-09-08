@@ -34,7 +34,8 @@
       "model": null,
       "timestamp": "2026-09-01",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~160k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1555,7 +1556,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "590652234d8958415fc3569c7b4f3aa786f74c183aabd0df6a1f08e2c575490f",
+    "source_hash": "ff1b7100dd04d3ba148a0789af299b08d622824b9114c2aa62b30f0cab7e229a",
     "published_at": "2026-09-07"
   }
 }

@@ -25,7 +25,8 @@
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~6k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1445,7 +1446,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "9277f41ea66814b13138daa683f3dd2ab1c01bd424847eb0b2ccc1e82280e157",
+    "source_hash": "a03909b723b13f05bb0cc94a751feaa7c1cbd7d2f54dccf72dba48fa587ed1d0",
     "published_at": "2026-09-07"
   }
 }

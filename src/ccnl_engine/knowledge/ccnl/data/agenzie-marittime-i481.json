@@ -30,7 +30,8 @@
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~5k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1097,7 +1098,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "115e1fe67ed34103767f9c86475dcae175e6cc483d5d6ed709416454bab2d017",
+    "source_hash": "0d70e4c8c261d877828f1c6ddacd0f67f0a13d77287cb3eb68d3eb2a225f5590",
     "published_at": "2026-09-07"
   }
 }

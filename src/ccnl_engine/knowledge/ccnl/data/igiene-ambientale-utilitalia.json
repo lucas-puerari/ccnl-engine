@@ -47,7 +47,8 @@
       "model": null,
       "timestamp": "2026-09-04T00:00:00",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~65k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -3327,7 +3328,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "c14fab09516fd8e09db31ad9c5cb6945bfc2b121ab7fc72c192a164794752f11",
+    "source_hash": "63d75c170d1d1cb6685bac0fb2a1b32dafd7ab501dc3ab3d8652664f6aec9f74",
     "published_at": "2026-09-07"
   }
 }

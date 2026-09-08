@@ -24,7 +24,8 @@
       "model": null,
       "timestamp": "2026-09-06T00:00:00",
       "human_reviewed": true
-    }
+    },
+    "workers_estimate": "~15k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1344,7 +1345,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "47db92ca85a1bbd2286386cba34145142c8f49ea681d31b71f248e1a41d1ebfb",
+    "source_hash": "67c882123dc039fc0f13f346160effb6f0d9ceaea9bc7431d0d20bd2ff6a5ec9",
     "published_at": "2026-09-07"
   }
 }

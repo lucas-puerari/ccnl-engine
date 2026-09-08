@@ -25,7 +25,8 @@
       "model": null,
       "timestamp": "2026-09-06T00:00:00",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~25k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1268,7 +1269,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "9639e58d54459b6cd56221b7cd1c62abaf52856649e38cae8ac395938d22e959",
+    "source_hash": "812ba2313d395fab62c910c25f0e8d5d067ff8f6ab915ed95919fd46108b20e3",
     "published_at": "2026-09-07"
   }
 }

@@ -46,7 +46,8 @@
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~37k"
   },
   "parameters": {
     "hourly_divisor": {
@@ -266,7 +267,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "9f18ce5f9f50afab9eccb715ccf992982b90b7db9db7e23030e2920197f6325a",
+    "source_hash": "695f720add5feb405bcd910e93b0437d8c27db5034942e011c2eba3637f7cc0d",
     "published_at": "2026-09-07"
   }
 }

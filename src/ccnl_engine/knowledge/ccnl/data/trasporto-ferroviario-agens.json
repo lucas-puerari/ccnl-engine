@@ -57,7 +57,8 @@
     "validity": {
       "valid_from": "2024-01-01",
       "valid_until": "2026-12-31"
-    }
+    },
+    "workers_estimate": "~75k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1868,7 +1869,7 @@
     "effective_until": "2026-12-31",
     "source": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive",
     "verification_status": "unverified",
-    "source_hash": "a8fdc63c3ce8c7e89bcd9471402b0e1bd8d1ed364445137459e4f85b511c279e",
+    "source_hash": "716c30eddd3a1e8d8699d0b93effb4cebba09bc87cd80a68d88363f68a7848d3",
     "published_at": "2026-09-07"
   }
 }

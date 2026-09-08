@@ -39,7 +39,8 @@
       "model": null,
       "timestamp": "2026-09-05T00:00:00",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~17k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1313,7 +1314,7 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "6c03cf20c3a6a6db1efd72e303791d11167ce53c20d8f2214800f5b91d38d5b5",
+    "source_hash": "026707e58b37b92f934d7acfed72086ff8d8de737697d08f1c5289f4b928da24",
     "published_at": "2026-09-07"
   }
 }

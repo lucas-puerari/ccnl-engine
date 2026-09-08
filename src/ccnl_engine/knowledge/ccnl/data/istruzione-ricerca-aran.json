@@ -38,7 +38,8 @@
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~1,2M"
   },
   "parameters": {
     "hourly_divisor": {
@@ -606,7 +607,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "318e759701aa0cf9a3614a8a838b95756940f218082be18ea76045da6254a90b",
+    "source_hash": "0172673050b6fc9858b0ec76a512d02ca5abedb6fb6dd036d7ded92d0cbb3575",
     "published_at": "2026-09-07"
   }
 }

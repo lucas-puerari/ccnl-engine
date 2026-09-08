@@ -42,7 +42,8 @@
       "model": null,
       "timestamp": "2026-09-01T00:00:00",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~350k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -2100,7 +2101,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "ea7e770efb592dfe468bd961b35fda6f3b221c39099e9bddd9887b1a44ed0fe3",
+    "source_hash": "27219a981eec594cc502d920f0a77867b6594c21c5c74b444fe50e2e98530dc8",
     "published_at": "2026-09-07"
   }
 }

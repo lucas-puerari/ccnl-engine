@@ -31,7 +31,8 @@
       "model": null,
       "timestamp": "2026-09-02",
       "human_reviewed": false
-    }
+    },
+    "workers_estimate": "~33k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1283,7 +1284,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "127581c6b20f0ef6d19eb02259b8b047e9f4209673d867d718ed5a2ad8407f04",
+    "source_hash": "9d3cdee7aa537c019425e886b11075f4b710a28d512c969bc24120f7eb4e5dcd",
     "published_at": "2026-09-07"
   }
 }

@@ -30,7 +30,8 @@
       "model": null,
       "timestamp": "2026-09-06T00:00:00",
       "human_reviewed": true
-    }
+    },
+    "workers_estimate": "~30k"
   },
   "coverage": {
     "layer_1": "implemented",
@@ -1309,7 +1310,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "04ffcbeb59d5a28fa87a6af43ff7e5cc22316c781d373c4b2f1cf1e5540e36c2",
+    "source_hash": "fe22a14cab0139ebe81f6e1bf7a2bce2a7a8858641a9de76e5e2c3f5367b0a34",
     "published_at": "2026-09-07"
   }
 }
