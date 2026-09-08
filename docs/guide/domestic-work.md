@@ -32,7 +32,7 @@ Pass `weekly_hours` in `WorkArrangement`. The engine uses it together with the
 flat-rate INPS table to compute contributions.
 
 ```python
---8 < --"docs/examples/10_domestic.py"
+--8<--"docs/examples/10_domestic.py"
 ```
 
 !!! warning

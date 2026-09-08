@@ -34,12 +34,18 @@ The engine models:
 - Second-level bargaining — territorial and company supplementary allowances
 - Domestic work (flat per-hour contributions, non-withholding employer)
 
-**Not modelled:**
+**Outside engine scope (L1/L2 only):**
 
 - Family-dependent deductions (Art. 12 TUIR)
 - Bilateral system contributions (EST, Fon.Te, …)
-- Overtime, night/holiday premiums, leave accruals, sick-pay integrations
 - Preferential 5% tax on *premio di risultato*
+
+**L3 — planned, not yet implemented:**
+
+- Overtime and night/holiday premiums
+- Sick-pay integrations and leave accruals
+- Performance bonuses
+- Welfare/benefits
 
 Each limitation is documented in the relevant contract's `coverage.notes` field.
 

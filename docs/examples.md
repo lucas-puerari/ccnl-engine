@@ -11,7 +11,7 @@ if an API change breaks an example, the build fails.
 Minimal call: load a CCNL, build an `Employee`, call `compute()`.
 
 ```python
---8 < --"docs/examples/01_quickstart.py"
+--8<--"docs/examples/01_quickstart.py"
 ```
 
 ### Reading the PayrollResult
@@ -23,7 +23,7 @@ the inputs (`calculation.input_snapshot`). Attribute reads are forwarded onto
 the `PayrollResult`, so `calculation.net_annual` works too.
 
 ```python
---8 < --"docs/examples/02_payroll_fields.py"
+--8<--"docs/examples/02_payroll_fields.py"
 ```
 
 ## Contract types
@@ -33,7 +33,7 @@ the `PayrollResult`, so `calculation.net_annual` works too.
 `FixedTerm()` adds the 1.40% NASpI *addizionale* to the employer's INPS contribution; gross and net are unchanged.
 
 ```python
---8 < --"docs/examples/03_fixed_term.py"
+--8<--"docs/examples/03_fixed_term.py"
 ```
 
 ### Apprenticeship (apprendistato)
@@ -41,7 +41,7 @@ the `PayrollResult`, so `calculation.net_annual` works too.
 Percentage track: the apprentice's pay is a % of the destination level, increasing with `months_elapsed`.
 
 ```python
---8 < --"docs/examples/06_apprentice.py"
+--8<--"docs/examples/06_apprentice.py"
 ```
 
 ## Pay components
@@ -51,7 +51,7 @@ Percentage track: the apprentice's pay is a % of the destination level, increasi
 `part_time_pct` scales base pay, seniority, and allowances. `ad_personam_monthly` is NOT scaled.
 
 ```python
---8 < --"docs/examples/04_part_time.py"
+--8<--"docs/examples/04_part_time.py"
 ```
 
 ### Seniority increments (scatti di anzianità)
@@ -59,7 +59,7 @@ Percentage track: the apprentice's pay is a % of the destination level, increasi
 Two equivalent ways to express seniority: explicit count or total service months.
 
 ```python
---8 < --"docs/examples/05_seniority.py"
+--8<--"docs/examples/05_seniority.py"
 ```
 
 ### Negotiated RAL
@@ -67,7 +67,7 @@ Two equivalent ways to express seniority: explicit count or total service months
 When the worker's gross is individually agreed above the CCNL minimum, pass `negotiated_ral` to bypass the table.
 
 ```python
---8 < --"docs/examples/09_negotiated_ral.py"
+--8<--"docs/examples/09_negotiated_ral.py"
 ```
 
 ### Second-level bargaining (contrattazione di secondo livello)
@@ -75,7 +75,7 @@ When the worker's gross is individually agreed above the CCNL minimum, pass `neg
 Territorial or company allowances on top of the CCNL minimums, with per-item contribution/TFR/apprenticeship control.
 
 ```python
---8 < --"docs/examples/08_second_level.py"
+--8<--"docs/examples/08_second_level.py"
 ```
 
 ## Fiscal
@@ -85,7 +85,7 @@ Territorial or company allowances on top of the CCNL minimums, with per-item con
 Pass `regione` + `comune_belfiore` and a `SurtaxRules` object to include addizionale regionale and comunale.
 
 ```python
---8 < --"docs/examples/07_addizionali.py"
+--8<--"docs/examples/07_addizionali.py"
 ```
 
 ### Domestic work (lavoro domestico)
@@ -93,5 +93,5 @@ Pass `regione` + `comune_belfiore` and a `SurtaxRules` object to include addizio
 Flat per-hour INPS contributions; the employer does not withhold IRPEF. `weekly_hours` is required.
 
 ```python
---8 < --"docs/examples/10_domestic.py"
+--8<--"docs/examples/10_domestic.py"
 ```
