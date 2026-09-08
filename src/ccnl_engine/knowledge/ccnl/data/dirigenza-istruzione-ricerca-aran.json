@@ -288,11 +288,11 @@
       },
       {
         "kind": "simplification",
-        "text": "Assenza non retribuita: prassi PA by_30 (mensile/30/giorno). Approssimato by_26 — BY_30 non ancora nel motore."
+        "text": "Assenza non retribuita: prassi PA divisore 30 (mensile/30/giorno). Modellato con by_30."
       },
       {
         "kind": "simplification",
-        "text": "Malattia: 90% mesi 10-12, 50% mesi 13-18 non catturati (schema a tasso unico). Comporto 18 mesi = 540 gg."
+        "text": "Malattia: mesi 10-12 al 90%, mesi 13-18 al 50% modellati con SicknessTier. Comporto 18 mesi = 540 gg."
       }
     ],
     "gross": "implemented",
@@ -306,7 +306,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "b7123a7e98f94d6ba7d86a1587cfe821f1a53b193557f8c1d870887ae0cd9e2d",
+    "source_hash": "d4b8106b0b59e5ce9d386a921ec6d4a571455fcdb98c23a2a49516f943e22c16",
     "published_at": "2026-09-07"
   },
   "work_rules": {
@@ -315,7 +315,7 @@
       "overtime_bands": []
     },
     "absence_rules": {
-      "daily_divisor_method": "by_26",
+      "daily_divisor_method": "by_30",
       "daily_hours": null,
       "provenance": {
         "location": {
@@ -385,7 +385,24 @@
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
         }
-      }
+      },
+      "tiers": [
+        {
+          "month_from": 1,
+          "month_until": 10,
+          "integration_rate": "1"
+        },
+        {
+          "month_from": 10,
+          "month_until": 13,
+          "integration_rate": "0.9"
+        },
+        {
+          "month_from": 13,
+          "month_until": null,
+          "integration_rate": "0.5"
+        }
+      ]
     }
   }
 }

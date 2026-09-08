@@ -255,10 +255,6 @@
       {
         "kind": "simplification",
         "text": "Questo file e 'dirigenza-sanitaria-medico-veterinaria-aran.json' derivano dallo stesso CCNL Area Sanità 27.02.2026 (unico testo contrattuale). La distinzione in due file riflette le diverse indennità di specificità applicabili alle due popolazioni dirigenziali."
-      },
-      {
-        "kind": "simplification",
-        "text": "Sickness rules modelled as carenza=1/full_pay=1/max=540d (comporto 18 mesi). Art. 38 CCNL prevede 100% nei primi 9 mesi, 90% mesi 10-12, 50% mesi 13-18. Il modello SicknessRules cattura solo due tassi; la riduzione progressiva non è rappresentata."
       }
     ],
     "gross": "implemented",
@@ -272,7 +268,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "383c3dc0a2250b3e26e0ea29c4a17d8402874493aaee82a5c823ddfee64952e4",
+    "source_hash": "5744bc91331b5bc102c8c880346951ab2bfac17a48ad1bc04d9db9dd1a16f8bd",
     "published_at": "2026-09-07"
   },
   "work_rules": {
@@ -423,7 +419,24 @@
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
         }
-      }
+      },
+      "tiers": [
+        {
+          "month_from": 1,
+          "month_until": 10,
+          "integration_rate": "1"
+        },
+        {
+          "month_from": 10,
+          "month_until": 13,
+          "integration_rate": "0.9"
+        },
+        {
+          "month_from": 13,
+          "month_until": null,
+          "integration_rate": "0.5"
+        }
+      ]
     }
   }
 }

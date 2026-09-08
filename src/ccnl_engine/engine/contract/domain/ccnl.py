@@ -56,11 +56,18 @@ class TimeSupplementKind(StrEnum):
 
 
 class WorkKind(StrEnum):
-    """Kind of working time for overtime band matching."""
+    """Kind of working time for overtime band matching.
+
+    ``NIGHT_HOLIDAY`` represents hours worked at night *on* a public holiday
+    (lavoro straordinario festivo-notturno).  The caller must declare these
+    hours separately in :attr:`OvertimeHours.night_holiday_hours`; they do
+    not overlap with ``night_hours`` or ``holiday_hours``.
+    """
 
     WEEKDAY = "weekday"
     NIGHT = "night"
     HOLIDAY = "holiday"
+    NIGHT_HOLIDAY = "night_holiday"
     SUPPLEMENTARE = "supplementare"
 
 
@@ -153,11 +160,13 @@ class DailyDivisorMethod(StrEnum):
     """How the daily rate is derived for absence deductions.
 
     * ``by_26``: ``gross_monthly / 26`` — the standard industria divisor.
+    * ``by_30``: ``gross_monthly / 30`` — the PA calendar-month divisor.
     * ``by_hourly``: ``hourly_rate * daily_hours`` — for contracts that
       specify a daily working-hours figure.
     """
 
     BY_26 = "by_26"
+    BY_30 = "by_30"
     BY_HOURLY = "by_hourly"
 
 
@@ -167,6 +176,7 @@ class AbsenceRules(BaseModel):
     ``daily_divisor_method`` controls how the daily rate is computed:
 
     * ``by_26``: ``gross_monthly / 26`` (standard industria divisore).
+    * ``by_30``: ``gross_monthly / 30`` (PA calendar-month convention).
     * ``by_hourly``: ``hourly_rate * daily_hours`` — ``daily_hours`` must
       be provided.
 
@@ -215,6 +225,31 @@ class LeaveRules(BaseModel):
     provenance: "RuleProvenance | None" = None
 
 
+class SicknessTier(BaseModel):
+    """One month-gated sick-pay integration tier.
+
+    When the total sick days in the episode fall within
+    ``[month_from, month_until)`` calendar months (30 days each), the
+    ``integration_rate`` applies instead of ``full_pay_integration_rate``.
+    Tiers are evaluated in descending order of ``month_from``; the first
+    matching tier wins.  Use :attr:`SicknessRules.full_pay_integration_rate`
+    as the flat fallback when no tier matches or when cumulative context is
+    not available.
+
+    Attributes:
+        month_from: First month (1-indexed) in which this tier applies.
+        month_until: First month in which this tier no longer applies
+            (exclusive upper bound).  ``None`` means open-ended.
+        integration_rate: Target fraction of gross daily pay for this tier.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    month_from: int = Field(ge=1)
+    month_until: int | None = Field(default=None, ge=2)
+    integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
+
+
 class SicknessRules(BaseModel):
     """Layer 3 rules for sick leave (malattia ordinaria) integration.
 
@@ -222,6 +257,11 @@ class SicknessRules(BaseModel):
     illness.  The engine computes INPS indemnity from the bundled rate
     file; ``carenza_integration_rate`` and ``full_pay_integration_rate``
     determine the company's share on top.
+
+    When ``tiers`` is non-empty and the caller provides
+    :attr:`~ccnl_engine.engine.payroll.domain.supplements.SickInput\
+.cumulative_sick_days`, the engine selects the matching tier's
+    ``integration_rate`` instead of ``full_pay_integration_rate``.
 
     Attributes:
         carenza_integration_rate: Fraction of gross daily pay the company
@@ -231,6 +271,11 @@ class SicknessRules(BaseModel):
             worker should receive during INPS-covered days.  The company
             pays the difference above the INPS indemnity.  ``1.0`` = 100%
             guaranteed by the CCNL (company tops up to full gross).
+            Used as flat fallback when ``tiers`` is empty or cumulative
+            context is unavailable.
+        tiers: Optional list of month-gated integration tiers for CCNLs
+            that reduce the integration rate after several months of
+            sickness (e.g. 100% for months 1-9, 90% for months 10-12).
         max_duration_days: Number of calendar days after which sick leave
             exceeds the comporto period.  Days beyond this limit are not
             modelled by the engine.
@@ -241,6 +286,7 @@ class SicknessRules(BaseModel):
 
     carenza_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
     full_pay_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
+    tiers: list[SicknessTier] = []
     max_duration_days: int = Field(default=180, ge=1)
     provenance: "RuleProvenance | None" = None
 

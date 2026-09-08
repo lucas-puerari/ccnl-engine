@@ -61,6 +61,9 @@ def compute_absence_deduction(
             msg = f"AbsenceRules.daily_hours must be > 0, got {daily_hours}"
             raise ValueError(msg)
         daily_rate = money(hourly_rate * daily_hours)
+    elif absence_rules.daily_divisor_method == DailyDivisorMethod.BY_30:
+        # PA calendar-month convention: gross_monthly / 30
+        daily_rate = money(gross_monthly / Decimal(30))
     else:
         # BY_26: standard industria divisore giornaliero
         daily_rate = money(gross_monthly / _DIVISORE_STANDARD)

@@ -19,11 +19,13 @@ _ZERO = Decimal(0)
 
 # WorkKind → which accumulator bucket it targets.
 # SUPPLEMENTARE counts toward overtime (lavoro supplementare for part-timers).
+# NIGHT_HOLIDAY (festivo-notturno) counts toward the holiday bucket.
 _KIND_BUCKET: dict[WorkKind, str] = {
     WorkKind.WEEKDAY: "overtime",
     WorkKind.SUPPLEMENTARE: "overtime",
     WorkKind.NIGHT: "night",
     WorkKind.HOLIDAY: "holiday",
+    WorkKind.NIGHT_HOLIDAY: "holiday",
 }
 
 
@@ -93,6 +95,7 @@ def compute_time_supplements(
         WorkKind.WEEKDAY: supps_input.weekday_hours,
         WorkKind.NIGHT: supps_input.night_hours,
         WorkKind.HOLIDAY: supps_input.holiday_hours,
+        WorkKind.NIGHT_HOLIDAY: supps_input.night_holiday_hours,
         WorkKind.SUPPLEMENTARE: supps_input.supplementare_hours,
     }
 

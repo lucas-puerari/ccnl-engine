@@ -49,14 +49,6 @@
       {
         "kind": "simplification",
         "text": "Overtime base (Art. 101): la retribuzione oraria include minimo tabellare + contingenza (IIS) + RIA + AEP + EDR. Il modello usa hourly_base_method=minimo_tabellare (sottostima); le voci aggiuntive non sono modellate."
-      },
-      {
-        "kind": "simplification",
-        "text": "Art. 101 prevede OT festivo-notturno al 85%: non modellato (nessun WorkKind combinato night+holiday nello schema)."
-      },
-      {
-        "kind": "simplification",
-        "text": "Malattia (Art. 48): mesi 13-18 al 50% non catturati da SicknessRules (schema a tasso unico)."
       }
     ],
     "gross": "implemented",
@@ -1240,7 +1232,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "059d88fd78ebb36b3f2c1838f45a92d90f250db2cb4b1cfb1d3e31fdfef75da3",
+    "source_hash": "ac2a7e7599c54c01956ebb07e52cd8047b3af8f0dbf9b894b58615bb390bdf4f",
     "published_at": "2026-09-07"
   },
   "work_rules": {
@@ -1351,6 +1343,41 @@
               "effective_from": "2022-01-01"
             }
           }
+        },
+        {
+          "code": "OT_FESTIVO_NOTTURNO",
+          "description": "Straordinario festivo-notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "value": "0.85",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-anas-2022-2024",
+                "title": "CCNL Gruppo ANAS 2022-2024 (vigente normativa per 2025-2027)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.fitcisl-lombardia.com/wp-content/uploads/2024/08/CCNL-Dipendenti-Gruppo-ANAS-2022-2024.pdf"
+              },
+              "section": "Art. 101 — Retribuzione del lavoro straordinario (festivo-notturno +85%)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-08T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2022-01-01"
+            }
+          }
         }
       ]
     },
@@ -1429,7 +1456,19 @@
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
         }
-      }
+      },
+      "tiers": [
+        {
+          "month_from": 1,
+          "month_until": 13,
+          "integration_rate": "1"
+        },
+        {
+          "month_from": 13,
+          "month_until": null,
+          "integration_rate": "0.5"
+        }
+      ]
     }
   }
 }

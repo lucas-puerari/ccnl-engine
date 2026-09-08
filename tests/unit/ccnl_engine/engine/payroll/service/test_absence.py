@@ -52,6 +52,34 @@ class TestComputeAbsenceDeductionBy26:
         assert result == Decimal("230.76")
 
 
+class TestComputeAbsenceDeductionBy30:
+    """compute_absence_deduction with by_30 divisor method (PA calendar month)."""
+
+    def test_one_day_by_30(self) -> None:
+        """One absent day: deduction = round(gross_monthly / 30)."""
+        rules = AbsenceRules(daily_divisor_method=DailyDivisorMethod.BY_30)
+        result = compute_absence_deduction(
+            absence_input=AbsenceDays(unpaid_days=Decimal(1)),
+            absence_rules=rules,
+            gross_monthly=_GROSS_MONTHLY,
+            hourly_rate=_HOURLY_RATE,
+        )
+        # 2000 / 30 = 66.666... → 66.67
+        assert result == Decimal("66.67")
+
+    def test_multiple_days_by_30(self) -> None:
+        """Five absent days: deduction = round(gross/30) * 5."""
+        rules = AbsenceRules(daily_divisor_method=DailyDivisorMethod.BY_30)
+        result = compute_absence_deduction(
+            absence_input=AbsenceDays(unpaid_days=Decimal(5)),
+            absence_rules=rules,
+            gross_monthly=_GROSS_MONTHLY,
+            hourly_rate=_HOURLY_RATE,
+        )
+        # 66.67 * 5 = 333.35
+        assert result == Decimal("333.35")
+
+
 class TestComputeAbsenceDeductionByHourly:
     """compute_absence_deduction with by_hourly divisor method."""
 

@@ -222,6 +222,26 @@ class TestComputeTimeSupplements:
         result = _supplement_for_band(band, _ZERO, _BASE / _DIVISOR, _AS_OF)
         assert result == _ZERO
 
+    def test_night_holiday_counts_toward_holiday_bucket(self) -> None:
+        """night_holiday_hours accumulate into the holiday bucket."""
+        schema_nh = TimeSupplements(
+            overtime_bands=[
+                _band("OT_FEST_NOTT", "percentage", "0.85", ["night_holiday"])
+            ]
+        )
+        ot, ni, ho, steps = compute_time_supplements(
+            OvertimeHours(night_holiday_hours=Decimal(2)),
+            schema_nh,
+            _BASE,
+            _DIVISOR,
+            _AS_OF,
+        )
+        # 2 * 0.85 * (2064.88 / 173) ≈ 20.29
+        assert ho == Decimal("20.29")
+        assert ot == _ZERO
+        assert ni == _ZERO
+        assert steps[-1].category == TraceCategory.SUPPLEMENT_TOTAL
+
     def test_zero_rate_band_is_skipped(self) -> None:
         """A band with rate=0 produces no supplement and no trace step."""
         schema_zero = TimeSupplements(

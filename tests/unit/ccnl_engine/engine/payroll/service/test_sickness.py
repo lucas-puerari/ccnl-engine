@@ -4,9 +4,15 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from ccnl_engine.engine.contract.domain.ccnl import SicknessRules
+import pytest
+
+from ccnl_engine.engine.contract.domain.ccnl import SicknessRules, SicknessTier
 from ccnl_engine.engine.payroll.domain.supplements import SickInput
-from ccnl_engine.engine.payroll.service.sickness import _bucket_days, compute_sickness
+from ccnl_engine.engine.payroll.service.sickness import (
+    _bucket_days,
+    _effective_integration_rate,
+    compute_sickness,
+)
 from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
 
 _ZERO = Decimal(0)
@@ -196,3 +202,115 @@ class TestComputeSickness:
         )
         assert inps == _D("68.83")  # INPS still pays 50% of band1 days
         assert company == _ZERO  # CCNL rate < INPS rate → no integration
+
+    def test_negative_cumulative_sick_days_raises(self) -> None:
+        """Negative cumulative_sick_days raises ValueError."""
+        with pytest.raises(ValueError, match="cumulative_sick_days must be >= 0"):
+            SickInput(sick_days=_D("5"), cumulative_sick_days=_D("-1"))
+
+
+class TestEffectiveIntegrationRate:
+    """_effective_integration_rate tier selection logic."""
+
+    def _rules_with_tiers(self) -> SicknessRules:
+        """SicknessRules with 100%→90%→50% tiers (9/3/6 months).
+
+        Returns:
+            SicknessRules with three progression tiers.
+        """
+        return SicknessRules(
+            carenza_integration_rate=_D("1"),
+            full_pay_integration_rate=_D("1"),
+            tiers=[
+                SicknessTier(month_from=1, month_until=10, integration_rate=_D("1")),
+                SicknessTier(month_from=10, month_until=13, integration_rate=_D("0.9")),
+                SicknessTier(
+                    month_from=13, month_until=None, integration_rate=_D("0.5")
+                ),
+            ],
+        )
+
+    def test_no_tiers_returns_flat_rate(self) -> None:
+        """No tiers → always returns full_pay_integration_rate."""
+        rules = SicknessRules(
+            carenza_integration_rate=_D("1"),
+            full_pay_integration_rate=_D("0.75"),
+        )
+        assert _effective_integration_rate(rules, _D("60")) == _D("0.75")
+
+    def test_no_cumulative_returns_flat_rate(self) -> None:
+        """Tiers present but cumulative=None → falls back to flat rate."""
+        rules = self._rules_with_tiers()
+        assert _effective_integration_rate(rules, None) == _D("1")
+
+    def test_first_tier_month_1(self) -> None:
+        """Day 0 cumulative → month 1 → tier 100%."""
+        rules = self._rules_with_tiers()
+        assert _effective_integration_rate(rules, _D("0")) == _D("1")
+
+    def test_first_tier_month_9(self) -> None:
+        """Day 240 cumulative (month 9) → still tier 100%."""
+        rules = self._rules_with_tiers()
+        assert _effective_integration_rate(rules, _D("240")) == _D("1")
+
+    def test_second_tier_month_10(self) -> None:
+        """Day 270 cumulative (month 10) → tier 90%."""
+        rules = self._rules_with_tiers()
+        assert _effective_integration_rate(rules, _D("270")) == _D("0.9")
+
+    def test_third_tier_month_13(self) -> None:
+        """Day 360 cumulative (month 13) → open-ended tier 50%."""
+        rules = self._rules_with_tiers()
+        assert _effective_integration_rate(rules, _D("360")) == _D("0.5")
+
+    def test_lower_month_from_tier_not_preferred(self) -> None:
+        """A matching tier with lower month_from is not chosen over a better one.
+
+        Tiers are [month_from=5, month_from=10]; both match month 12.
+        The engine should pick the one with higher month_from (10), not 5.
+        """
+        rules = SicknessRules(
+            carenza_integration_rate=_D("1"),
+            full_pay_integration_rate=_D("1"),
+            tiers=[
+                SicknessTier(
+                    month_from=10, month_until=None, integration_rate=_D("0.5")
+                ),
+                SicknessTier(
+                    month_from=5, month_until=None, integration_rate=_D("0.8")
+                ),
+            ],
+        )
+        # month 12: both tiers match; month_from=10 wins over month_from=5
+        assert _effective_integration_rate(rules, _D("330")) == _D("0.5")
+
+    def test_no_matching_tier_falls_back(self) -> None:
+        """Tier list that doesn't cover month 1 → flat fallback rate."""
+        rules = SicknessRules(
+            carenza_integration_rate=_D("1"),
+            full_pay_integration_rate=_D("0.80"),
+            tiers=[
+                SicknessTier(month_from=5, month_until=10, integration_rate=_D("0.6")),
+            ],
+        )
+        # Day 0 = month 1 → no tier covers it → fallback
+        assert _effective_integration_rate(rules, _D("0")) == _D("0.80")
+
+    def test_compute_sickness_uses_tier(self) -> None:
+        """Tier 90% is applied when cumulative puts episode at month 10."""
+        rules = self._rules_with_tiers()
+        # cumulative=270 days → month 10 → 90% integration
+        # 5 sick days: 3 carenza (100%) + 2 band1 (50% INPS)
+        # daily_rate = money(2064.88 / 30) = 68.83
+        # carenza_pay = 3 * 1.0 * 68.83 = 206.49
+        # eff_rate = 0.90; gap = max(0, 0.90 - 0.50) = 0.40
+        # post_carenza = 2 * 0.40 * 68.83 = 55.06
+        # company = 206.49 + 55.06 = 261.55
+        _sd, _cd, inps, company = compute_sickness(
+            SickInput(sick_days=_D("5"), cumulative_sick_days=_D("270")),
+            rules,
+            _standard_sick_pay_rates(),
+            gross_monthly=_D("2064.88"),
+        )
+        assert inps == _D("68.83")
+        assert company == _D("261.55")

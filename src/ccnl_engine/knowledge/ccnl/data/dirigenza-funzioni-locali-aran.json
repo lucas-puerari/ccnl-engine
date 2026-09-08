@@ -219,11 +219,11 @@
       },
       {
         "kind": "simplification",
-        "text": "Assenza non retribuita: prassi PA by_30 (mensile/30/giorno). Approssimato by_26 — BY_30 non ancora nel motore."
+        "text": "Assenza non retribuita: prassi PA divisore 30 (mensile/30/giorno). Modellato con by_30."
       },
       {
         "kind": "simplification",
-        "text": "Malattia: 90% mesi 10-12, 50% mesi 13-18 non catturati (schema a tasso unico). Comporto 18 mesi = 540 gg."
+        "text": "Malattia: mesi 10-12 al 90%, mesi 13-18 al 50% modellati con SicknessTier. Comporto 18 mesi = 540 gg."
       }
     ],
     "gross": "implemented",
@@ -237,7 +237,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "deb5ad6ea3ab22b7da810516d8033f037a40a97e0332f90af173f22d5fd7a19b",
+    "source_hash": "6143f38edca84011d0d42bc403817eae23f771e96d2f601ad0be99b484ed9eab",
     "published_at": "2026-09-07"
   },
   "work_rules": {
@@ -246,7 +246,7 @@
       "overtime_bands": []
     },
     "absence_rules": {
-      "daily_divisor_method": "by_26",
+      "daily_divisor_method": "by_30",
       "daily_hours": null,
       "provenance": {
         "location": {
@@ -316,7 +316,24 @@
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
         }
-      }
+      },
+      "tiers": [
+        {
+          "month_from": 1,
+          "month_until": 10,
+          "integration_rate": "1"
+        },
+        {
+          "month_from": 10,
+          "month_until": 13,
+          "integration_rate": "0.9"
+        },
+        {
+          "month_from": 13,
+          "month_until": null,
+          "integration_rate": "0.5"
+        }
+      ]
     }
   }
 }

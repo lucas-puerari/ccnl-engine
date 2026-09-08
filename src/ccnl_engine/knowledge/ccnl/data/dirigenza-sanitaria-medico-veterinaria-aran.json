@@ -267,10 +267,6 @@
       {
         "kind": "simplification",
         "text": "Questo file modella solo la componente medico-veterinaria del CCNL Area Sanità 27.02.2026. Il medesimo CCNL copre anche altri dirigenti sanitari (psicologi, farmacisti, biologi, fisici, chimici), modellati in 'dirigenza-sanitaria-area-sanita-aran.json'. Entrambi i file condividono codice CNEL S225."
-      },
-      {
-        "kind": "simplification",
-        "text": "Sickness rules modelled as carenza=1/full_pay=1/max=540d (comporto 18 mesi). Art. 38 CCNL prevede 100% nei primi 9 mesi, 90% mesi 10-12, 50% mesi 13-18. Il modello SicknessRules cattura solo due tassi; la riduzione progressiva non è rappresentata."
       }
     ],
     "gross": "implemented",
@@ -284,7 +280,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "adb6b892e544b3b9471ae822b1ed7aea36015e04afaeebedceebcce4b1fdfae9",
+    "source_hash": "9e1bc786597889336e20d48ce59abe39d26e964f72fa466f2d4f0e4e44d4a4a5",
     "published_at": "2026-09-07"
   },
   "work_rules": {
@@ -435,7 +431,24 @@
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
         }
-      }
+      },
+      "tiers": [
+        {
+          "month_from": 1,
+          "month_until": 10,
+          "integration_rate": "1"
+        },
+        {
+          "month_from": 10,
+          "month_until": 13,
+          "integration_rate": "0.9"
+        },
+        {
+          "month_from": 13,
+          "month_until": null,
+          "integration_rate": "0.5"
+        }
+      ]
     }
   }
 }
