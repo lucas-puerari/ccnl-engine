@@ -46,8 +46,6 @@
     "workers_estimate": "~35k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -81,7 +79,9 @@
         "kind": "info",
         "text": "INPS: reuses 2026-industria.json (Confindustria/CIGO). Assocarta is a Confindustria federation; CIGO applicable per D.Lgs. 148/2015."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -2123,10 +2123,10 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/",
     "verification_status": "unverified",
-    "source_hash": "e21c9869757ad4d4ef13fee012766089d819badcab7141f17e63798a38bfd38c",
+    "source_hash": "6d70eb953c264aaa9c38569ec040dad5bffe0ec8413413269d956d11fae349c3",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

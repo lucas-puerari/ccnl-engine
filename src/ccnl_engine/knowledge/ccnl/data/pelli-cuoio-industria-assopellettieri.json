@@ -29,8 +29,6 @@
     "workers_estimate": "~17k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -64,7 +62,9 @@
         "kind": "info",
         "text": "LEVEL 6Q: not present in the CCNL table of the CNEL PDF (August 2023). Excluded from the model."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1127,10 +1127,10 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "44a70a2322cb6bcb557d5de956bfb8f177fdc372415e43fff1505c546ccf1f03",
+    "source_hash": "1186ec172b24b7c0a294e44d4d5a6cf5947abe62ba8987447cf05552926e2e5e",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

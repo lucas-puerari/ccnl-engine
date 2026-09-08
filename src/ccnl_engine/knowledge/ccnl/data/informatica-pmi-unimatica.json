@@ -39,8 +39,6 @@
     "workers_estimate": "~20k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -98,7 +96,9 @@
         "kind": "info",
         "text": "EDR ROLL-UP: rolling EDR (EUR 10.33) into base_salary is safe for G029 because G029 uses under_classification apprenticeship, meaning the apprentice pay is determined by the classified level's base_salary directly. The EDR percentage-of-base exemption (Art. 3 L. 537/1993) does not apply to under_classification."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1326,10 +1326,10 @@
     "effective_until": null,
     "source": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "d5af7d6840d38b056a3643fd30c0b0801c1a718c9111a2ad9dc8f28df234b28e",
+    "source_hash": "3bc2088e0322a90c690ea7ed54b095662e738d51a78a917e8efe62ee7fe53ab1",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

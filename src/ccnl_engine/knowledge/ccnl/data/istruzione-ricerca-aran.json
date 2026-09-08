@@ -519,8 +519,6 @@
   ],
   "apprenticeship": [],
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "source",
@@ -598,7 +596,9 @@
         "kind": "simplification",
         "text": "valid_from period 1 = 2022-01-01 (inizio validità del triennio). Il previgente CCNL 2019-2021 aveva stabilito i valori pre-2024; la data esatta di firma del CCNL 2019-2021 non è disponibile dalla fonte e viene approssimata."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "ruleset": {
     "id": "ccnl/istruzione-ricerca-aran",
@@ -607,10 +607,10 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "acc19975da16a41afdf2d315ff5f33c4a6dd6d4bdf6d149247103d0083c4fab3",
+    "source_hash": "8b148068395f358c5d5d1cf90163cfb47e0595c897980d86d5146a8071cd1793",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

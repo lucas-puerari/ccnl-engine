@@ -28,8 +28,6 @@
     "workers_estimate": "~23k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -55,7 +53,9 @@
         "kind": "info",
         "text": "SUB-SECTORS: CCNL B122 covers Tiles (porcelain and stoneware), Refractory Materials, Sanitary Ceramics and Tableware, and Artistic and Traditional Ceramics. This file models the PIASTRELLE sub-sector (and REFRATTARI, which has identical tables). Sanitary Ceramics has a different pay structure (significantly higher IPO) and is not modelled here."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "levels": [
     {
@@ -1901,10 +1901,10 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "ceb88ec62b3a0a8d86c938fdab67617feb28d3748604b46050d4daeabd163967",
+    "source_hash": "8955fd5d6c3c806619474d1c1891f30dc1ce9280c86844eb07291cbc853457c3",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

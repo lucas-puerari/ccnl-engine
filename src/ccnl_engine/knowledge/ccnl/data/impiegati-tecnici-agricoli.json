@@ -44,8 +44,6 @@
     "workers_estimate": "~80k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -99,7 +97,9 @@
         "kind": "simplification",
         "text": "BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and Agrifondo (supplementary pension) bilateral contributions are not modelled."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -598,10 +598,10 @@
     "effective_until": "2027-12-31",
     "source": "https://www.contratticcnl.it/ccnl/a021/",
     "verification_status": "unverified",
-    "source_hash": "5003cd97f7e73fc42f0b73b99d1a8da957c54bd6804d666dc6a9957d14ac076d",
+    "source_hash": "0841b3f22f617dc8065e61ccc05ef49df8c244186f5fe1023ad8c725d5ebb964",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

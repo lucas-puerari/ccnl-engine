@@ -56,8 +56,6 @@
     "workers_estimate": "~120k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -111,7 +109,9 @@
         "kind": "info",
         "text": "INPS: reuses 2026-artigianato.json (ARTIGIANATO sector)."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1161,10 +1161,10 @@
     "effective_until": null,
     "source": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato",
     "verification_status": "unverified",
-    "source_hash": "c85091fcc8cc20f6a86cd974fa1c1c46de714462b9542f301222abe172af6349",
+    "source_hash": "5dea4a7f494c7c818423cf88f16ca58865052510d315edfb0ee98a913566b30b",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

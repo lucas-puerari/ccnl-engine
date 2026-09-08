@@ -43,8 +43,6 @@
     "workers_estimate": "~17k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -98,7 +96,9 @@
         "kind": "info",
         "text": "SOURCE CAVEAT: previdenza-professionisti.it entry uses a domain-level URL; the exact deep-link page was not captured. Data cross-confirmed by lavoro-economia.it for seniority amounts."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1314,10 +1314,10 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "adda520daa1f340cacae7be9d6fedb75ef75832c80311b13afd3eb72a9770483",
+    "source_hash": "e8b80544e3c1a57e6589e5dfce9b9d06b1d2b9c104067e5defeeda3e0ebd4633",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

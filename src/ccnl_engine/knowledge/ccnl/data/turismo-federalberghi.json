@@ -1818,8 +1818,6 @@
     }
   ],
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "source",
@@ -1861,7 +1859,9 @@
         "kind": "simplification",
         "text": "Layer 3 (overtime, night work, public holidays) out of scope."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "ruleset": {
     "id": "ccnl/turismo-federalberghi",
@@ -1870,10 +1870,10 @@
     "effective_until": null,
     "source": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
     "verification_status": "unverified",
-    "source_hash": "e78553b2e708fc8193fca8c6d56da1c3180780bb843b92e95be4617a8de3fb96",
+    "source_hash": "9136fb814a7e1a2a60cf2bda9237227e3311966f4107b39ea5e75729c2840f4f",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

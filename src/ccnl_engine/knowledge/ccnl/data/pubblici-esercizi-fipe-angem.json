@@ -36,8 +36,6 @@
     "workers_estimate": "~350k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -75,7 +73,9 @@
         "kind": "info",
         "text": "INPS: uses 2026-terziario.json (tax_sector terziario, same as commercio-confcommercio and turismo-confcommercio)."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1688,10 +1688,10 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "fd6db8f7982425cb2942b08dcaa0f1c723ecb5c865e2d31d61c05ef3d3afb9fb",
+    "source_hash": "e87bc2cf60da47bfa40cc071026413079fd97a310cd50043a5631401f6959e97",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

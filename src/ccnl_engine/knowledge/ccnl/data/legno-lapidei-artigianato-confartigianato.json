@@ -47,8 +47,6 @@
     "workers_estimate": "~95k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -102,7 +100,9 @@
         "kind": "info",
         "text": "INPS: reuses 2026-artigianato.json (ARTIGIANATO sector)."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1328,10 +1328,10 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "562b090511f3ae24f750c0669778504935c234f6e5eb7a448d0945c9146be4ba",
+    "source_hash": "094397c9ca3ab37967e3437eb83290da91180eb42e96928e5c4a79f02ef773f2",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

@@ -47,8 +47,6 @@
     "workers_estimate": "~580k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -90,7 +88,9 @@
         "kind": "info",
         "text": "Workers covered: ~403,000 per INPS-UNIEMENS 2025 data; largest uncovered CCNL at time of implementation."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -4080,10 +4080,10 @@
     "effective_until": null,
     "source": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "1cb8852e49c4871828adbbd7085d4d464adf8518ed8c41a6d24c9bd5f2f756ab",
+    "source_hash": "644df5c4a96f730eecb9c9f03bc553a35a88c79867e9415625f02a3c7cbc2580",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

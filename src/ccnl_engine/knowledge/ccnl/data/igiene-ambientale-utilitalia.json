@@ -51,8 +51,6 @@
     "workers_estimate": "~65k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "simplification",
@@ -78,7 +76,9 @@
         "kind": "simplification",
         "text": "BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) and Previambiente supplementary pension fund contributions are not modelled."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -3328,10 +3328,10 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "14aa17ce423f471deb3752acdee05f3c9b4de01afe90683610f463e0b25d8055",
+    "source_hash": "e360f5f428a13bd05a1cce413e82aa9e2cba4501bd3eb55e8d337707f39852e8",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

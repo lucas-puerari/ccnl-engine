@@ -38,8 +38,6 @@
     "workers_estimate": "~50k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "partial",
     "notes": [
       {
         "kind": "info",
@@ -73,7 +71,9 @@
         "kind": "simplification",
         "text": "APPRENTICESHIP (Layer 2): apprendistato professionalizzante not modelled. Governed by Allegato 4 of the CCNL (Art. 25). Allegato 4 is not publicly accessible. Part-time and fixed-term (NASpI addizionale) function via generic engine rules without per-contract data. Layer 2 is therefore partial: apprenticeship gap is the only missing component."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "partial"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1135,10 +1135,10 @@
     "effective_until": null,
     "source": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "bd2968b2b14f39a498420972ca66dfaa96f62908f7b63ed0909ca1f3799ff8d3",
+    "source_hash": "aa8727ea13864849cba2998e8297e69be36d63a403e5bfe259e193e972403813",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

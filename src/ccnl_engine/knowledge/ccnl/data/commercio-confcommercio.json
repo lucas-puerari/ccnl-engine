@@ -46,8 +46,6 @@
     "workers_estimate": "~800k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "source",
@@ -77,7 +75,9 @@
         "kind": "info",
         "text": "CNEL code H011 confirmed by Il Sole 24 Ore / INPS UNIEMENS reference."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -2633,10 +2633,10 @@
     "effective_until": null,
     "source": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
     "verification_status": "unverified",
-    "source_hash": "8e22422b5930d22e738f3817d908b2aa60f4a0582ba7c62e720261d017919fdb",
+    "source_hash": "86ee2e0b9b5ba64ae1433f103b16f6230eeb148cdcb4e5c5bd2103aaf9bb8d93",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

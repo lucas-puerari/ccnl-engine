@@ -39,8 +39,6 @@
     "workers_estimate": "~22k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "partial",
     "notes": [
       {
         "kind": "info",
@@ -86,7 +84,9 @@
         "kind": "simplification",
         "text": "INPS terziario rates reused from 2026-terziario.json (same sector as H016). Verify against annual INPS circular for exact H601 sub-sector rate."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "partial"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1303,10 +1303,10 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "f16d78afcdacd26769354785be82f0f280638e8d378b8ea03af16dd78570828a",
+    "source_hash": "c2991eaf44642ae736a78214367c65c65acfa8c0e364424382ed5e7f5d64493b",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

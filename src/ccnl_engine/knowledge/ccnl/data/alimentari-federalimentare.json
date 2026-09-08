@@ -48,8 +48,6 @@
     "workers_estimate": "~145k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -79,7 +77,9 @@
         "kind": "info",
         "text": "ADDITIONAL MONTHS: 14 (thirteenth + fourteenth month payment). Source: FLAI Veneto, confirmed by lexplain.it."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -2150,10 +2150,10 @@
     "effective_until": null,
     "source": "https://flaiveneto.it/rinnovato-il-ccnl-industria-alimentare/",
     "verification_status": "unverified",
-    "source_hash": "c2ddcc442a8fd4ae68d78ac403b9128eea0d0aec957c32bc12abe929ff8669b5",
+    "source_hash": "8ce2214be5920997025c1a54628ca137e9eddf0d740288339684dfa3678bd783",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

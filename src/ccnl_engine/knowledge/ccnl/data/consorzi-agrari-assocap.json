@@ -44,8 +44,6 @@
     "workers_estimate": "~2k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "out_of_scope",
     "notes": [
       {
         "kind": "info",
@@ -83,7 +81,9 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: FILCOOP SANITARIO bilateral health fund not modeled."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "out_of_scope"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1227,10 +1227,10 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "48540ebe1a8b15c443e4689bebdd42ea4f5603f083e4d39ff07ea4daeabda4a9",
+    "source_hash": "81b1604367629eb8aa67a9698b6321472d4b2aeffb1913fc5befc2fe14c5ca4b",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

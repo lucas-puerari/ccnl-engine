@@ -33,8 +33,6 @@
     "workers_estimate": "~20k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -68,7 +66,9 @@
         "kind": "simplification",
         "text": "APPRENTICESHIP: type (percentage vs under_classification) not confirmed from public sources. Modelled as 100% passthrough for all levels; correct for permanent workers."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -2299,10 +2299,10 @@
     "effective_until": null,
     "source": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive",
     "verification_status": "verified",
-    "source_hash": "9287767f66f127ebef5addfa2d30c98ce870a8dd4b522199672eb4f0f55bec87",
+    "source_hash": "a33b6b5c213b8f81ff5bf108f212edffd9c96830a60ec315e824dc788fb043d3",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

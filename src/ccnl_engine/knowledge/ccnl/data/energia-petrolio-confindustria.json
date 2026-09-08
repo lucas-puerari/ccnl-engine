@@ -38,8 +38,6 @@
     "workers_estimate": "~38k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -101,7 +99,9 @@
         "kind": "simplification",
         "text": "CREA CONSTANCY: CREA amounts assumed constant throughout 2025-2027 (no source indicates time variation). Values from kitech Jul 2026 only."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -5060,10 +5060,10 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "7c89a669f86cb165d3aa28fad3e5887626530c95b3df3d5b34bd7e127c9ab7fe",
+    "source_hash": "3994ec254d13101404f3ffd8b733f06b88a3bf19f6442907eba73e262a902e2c",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

@@ -27,8 +27,6 @@
     "workers_estimate": "~6k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "source",
@@ -66,7 +64,9 @@
         "kind": "info",
         "text": "Workers: 6,427 (ADAPT 18th Report, CNEL aggiornamento 31/12/2023)."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1706,10 +1706,10 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "b3ca0b446d2a9dd3b3f462d9e8da953ce63ef7b0f63b50a88c6ec0bae1109166",
+    "source_hash": "196837005acb7ee1cdabfc5cb2253ae12f6500baa32b17fd17a74eda45065365",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

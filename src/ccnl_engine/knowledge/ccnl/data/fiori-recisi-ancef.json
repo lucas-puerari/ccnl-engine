@@ -39,8 +39,6 @@
     "workers_estimate": "~1.3k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -86,7 +84,9 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: tax_sector=terziario. ANCEF represents importers and wholesalers of flowers. Actual INPS sector code matches terziario (commercial trade). Terziario rates applied."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1193,10 +1193,10 @@
     "effective_until": null,
     "source": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
     "verification_status": "unverified",
-    "source_hash": "6cd11475e2bc8545b2a2459d7283b903c01b7f22a11c7b958248b7c4d22f5865",
+    "source_hash": "4e3108ba0202f236ee517134463cf6f979c1dc6d5e206ed043d6712b714ca4fd",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

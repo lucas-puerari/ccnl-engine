@@ -45,8 +45,6 @@
     "workers_estimate": "~2k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "out_of_scope",
     "notes": [
       {
         "kind": "info",
@@ -84,7 +82,9 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: Indennita di funzione for area 1 Quadri (min 13% monthly) not modeled — variable floor amount, not expressible as fixed allowance."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "out_of_scope"
   },
   "parameters": {
     "hourly_divisor": {
@@ -893,10 +893,10 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "f1912877f75862e44914c2a78cabdf5b4436d33e516b3ca370f2be616256c2b1",
+    "source_hash": "06505e918b80601e834ca550ff0a6d2e25cfd8e940ebc43e3cedfc1476b68ba7",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

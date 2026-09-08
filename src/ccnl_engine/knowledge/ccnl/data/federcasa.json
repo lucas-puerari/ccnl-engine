@@ -40,8 +40,6 @@
     "workers_estimate": "~6k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -95,7 +93,9 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: As of 2026-09-05 the 2022-2024 CCNL has expired (31/12/2024). Art. 4 B.5-8 triggers IVC at 30% of IPCA from ~Mar 2025 and 50% from ~Sep 2025 during the renewal gap. The engine models tabellare only; IVC payable during the gap is not included."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1078,10 +1078,10 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "f000d10c27462d2caaa400628e1432016c95003a9fab8d0ca20f22340e451a6b",
+    "source_hash": "a6b115482895344e92eb6043114a7f6cb25c659112b95fcaf0dba523adbe3a57",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

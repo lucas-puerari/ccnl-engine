@@ -2068,8 +2068,6 @@
   ],
   "apprenticeship": [],
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -2127,7 +2125,9 @@
         "kind": "simplification",
         "text": "valori mensili arrotondati col metodo a due passi (annual = round(param × punto, 2); monthly = round(annual / 12, 2)) per allineamento con le tavole dell'ipotesi di accordo 18/12/2024. Differenza massima da calcolo diretto: 1 centesimo."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "ruleset": {
     "id": "ccnl/forze-polizia-ordinamento-civile",
@@ -2136,10 +2136,10 @@
     "effective_until": null,
     "source": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f",
     "verification_status": "unverified",
-    "source_hash": "4cecd7b24a295019d1c5f01465bf9b86009f616902e56c20c2d63d29d951314c",
+    "source_hash": "40affea94badfbbc5b01c43586eb628b0014a1a3b1ef67ec7595d05186400bec",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

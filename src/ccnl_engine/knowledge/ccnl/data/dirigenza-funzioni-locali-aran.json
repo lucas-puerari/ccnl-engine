@@ -164,8 +164,6 @@
   ],
   "apprenticeship": [],
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "source",
@@ -215,7 +213,9 @@
         "kind": "simplification",
         "text": "Un unico livello DIRIGENTE modella dirigenti RAL, PTA e segretari fascia A/B (stesso tabellare 50.005,77€/anno). I segretari fascia C sono esclusi per mancanza di fonte primaria sul tabellare esatto."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "ruleset": {
     "id": "ccnl/dirigenza-funzioni-locali-aran",
@@ -224,7 +224,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "a1ab7f6f74bca604ad76baedd57f1d9ec6ef2cfc7b79b34484472d2b90fbc68a",
+    "source_hash": "c6594c57b4dca4b45f6573ad6f40231e2d41a384c22163c4b3ca74715a6c8f76",
     "published_at": "2026-09-07"
   }
 }

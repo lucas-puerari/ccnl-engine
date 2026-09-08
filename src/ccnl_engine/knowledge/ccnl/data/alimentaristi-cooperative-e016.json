@@ -31,8 +31,6 @@
     "workers_estimate": "~15k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -62,7 +60,9 @@
         "kind": "simplification",
         "text": "Quadri (livello 1A Q) and V.P. variants not modeled. Only the 8 standard levels are implemented."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "levels": [
     {
@@ -2099,10 +2099,10 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
     "verification_status": "unverified",
-    "source_hash": "6060de1ecfb1d4d9da6b227d5ea6384ddfae01dccb2d59c1737229d8bd198f8e",
+    "source_hash": "ade93339c5c5c5c39acf0e0bb003f3d87a67cc031ccd362a4a6122c1056ba330",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

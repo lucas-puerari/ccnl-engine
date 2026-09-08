@@ -29,8 +29,6 @@
     "workers_estimate": "~25k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -60,7 +58,9 @@
         "kind": "simplification",
         "text": "APPRENTICESHIP (Art. 9.7): percentages 85/90/100% over 36 months confirmed from Art. 9.7 of PDF. Destination level list not extractable from available pages; all nine levels modelled as destinations. Exclude specific levels when primary source (Art. 9 full text) is confirmed."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1269,10 +1269,10 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "fa84e1462a65948027a4902aa6548aafa6b5e82e92de7936f5f3a7298a8f27c9",
+    "source_hash": "63de572d989f2102ca9a4fae5bdd959f7c9d9049a21a0c742543851e804d8574",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

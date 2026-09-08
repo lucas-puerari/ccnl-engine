@@ -1486,8 +1486,6 @@
     }
   ],
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -1529,7 +1527,9 @@
         "kind": "source",
         "text": "CNEL code T011 verified at https://www.contratticcnl.it/ccnl/t011/ (146585 employees, ARIS/AIOP, ATECO 86)."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "ruleset": {
     "id": "ccnl/sanita-privata-aiop-aris",
@@ -1538,10 +1538,10 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "8c56c87ac837a80dd9dcc43c53bfa97b9d063e75bbc89087cfcaea474aafd4e4",
+    "source_hash": "e9456fd8b9dc2745543498f9139ac27d47ecaaadc19794d4af397328e7a36109",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

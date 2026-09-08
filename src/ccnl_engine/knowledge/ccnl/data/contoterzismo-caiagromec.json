@@ -39,8 +39,6 @@
     "workers_estimate": "~4k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "out_of_scope",
     "notes": [
       {
         "kind": "info",
@@ -70,7 +68,9 @@
         "kind": "info",
         "text": "layer_2 out_of_scope: no apprenticeship tracks modeled. The 2024 CCNL text (Art. 13 and Allegati E/F per CAI Agromec contract structure) references apprendistato professionalizzante but no percentage or under-classification table was found in any primary source (ilccnl.it, redigo.info, lavoro-economia.it). If apprenticeship provisions exist, they require the full CCNL PDF to model correctly."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "out_of_scope"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1402,10 +1402,10 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "5ef67562b7e006b3bcf02c81d53d617e11b62ed43a86e43ffa8e7b91e9e4cfa1",
+    "source_hash": "5cf725d9377b4f623606682765e1cbd7d4425f4ef5203ba4343a5d80c099bbc9",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

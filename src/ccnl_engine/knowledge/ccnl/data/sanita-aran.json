@@ -447,8 +447,6 @@
   ],
   "apprenticeship": [],
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "source",
@@ -490,7 +488,9 @@
         "kind": "simplification",
         "text": "Agreement date 2025-10-27 (firma definitiva) per ARAN press release. The PDF used is the Ipotesi from 14.01.2025; salary tables are identical to the final signed version."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "ruleset": {
     "id": "ccnl/sanita-aran",
@@ -499,10 +499,10 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "fd6549d502884189f79f2606210be96b372e1687be82c7e437a4b275cb72bc81",
+    "source_hash": "0d1e7b9ec4de26001d840149b2104d39874023291c1f8a96c20ae3fe6520f286",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

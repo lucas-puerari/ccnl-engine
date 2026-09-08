@@ -59,12 +59,11 @@ Over 100 contracts covering approximately 16 million employees across private an
 
 - **L1 — Gross:** base salary, seniority, fixed allowances, additional months, hourly rate.
 - **L2 — Net:** INPS contributions, TFR, IRPEF, regional/municipal surtax.
-- **L3 — Extended:** overtime, sick/injury leave, performance bonuses, welfare/benefits.
+- **Work rules:** overtime, sick/injury leave, performance bonuses, welfare/benefits.
 
-Coverage % = (L1 × 50% + L2 × 35% + L3 × 15%) − 5% per missing data note (max −20%).
-L3 is not yet implemented; current contracts score a maximum of 85%.
+Coverage % = (L1 × 50% + L2 × 35% + work rules × 15%) − 5% per missing data note (max −20%).
 
-→ [**CCNL coverage table**](https://lucas-puerari.github.io/ccnl-engine/docs/contracts/index.html) — per-contract coverage, verification status, and feature breakdown across layers 1-3
+→ [**CCNL coverage table**](https://lucas-puerari.github.io/ccnl-engine/docs/contracts/index.html) — per-contract coverage, verification status, and feature breakdown
 
 ## What is not modelled
 
@@ -74,7 +73,7 @@ L3 is not yet implemented; current contracts score a maximum of 85%.
 - Bilateral system contributions (EST, Fon.Te, …)
 - Preferential 5% tax on *premio di risultato* (Art. 1 c. 182 L. 208/2015)
 
-**L3 — planned, not yet implemented:**
+**Work rules — partially implemented:**
 
 - Overtime and night/holiday premiums
 - Sick-pay integrations and leave accruals

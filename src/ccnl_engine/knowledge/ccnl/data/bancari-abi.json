@@ -35,8 +35,6 @@
     "workers_estimate": "~270k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -58,7 +56,9 @@
         "kind": "source",
         "text": "Apprenticeship: https://www.ccnlbancari.it/ Art. 35, post-rinnovo 2023-11-23."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1270,10 +1270,10 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "5e671495d1469e73d1d8ee5cfbebd94415f7e7eac2fe5fc5258f1469baee0670",
+    "source_hash": "ade8e7f422fa25ec34055b968492958675a50e5531d04a63ab6ec77f50677f99",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

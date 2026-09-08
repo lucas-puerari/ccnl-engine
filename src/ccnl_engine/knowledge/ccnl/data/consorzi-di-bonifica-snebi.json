@@ -39,8 +39,6 @@
     "workers_estimate": "~4k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "out_of_scope",
     "notes": [
       {
         "kind": "info",
@@ -82,7 +80,9 @@
         "kind": "info",
         "text": "layer_2 out_of_scope: no apprenticeship data found in available public sources. Full CCNL PDF required."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "out_of_scope"
   },
   "parameters": {
     "hourly_divisor": {
@@ -2631,10 +2631,10 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "285ba3987c4fbdcbcd986adc093ed533193162ed075ae217efaef6e285d8ba77",
+    "source_hash": "eb8978f38e2b38a8bca42dcc80ed2cda54ba3deabc0becb9f965d75f14b93c2f",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

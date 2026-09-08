@@ -33,8 +33,6 @@
     "workers_estimate": "~40k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -76,7 +74,9 @@
         "kind": "info",
         "text": "INPS: uses 2026-terziario.json (same tax_sector as commercio-confcommercio and turismo-confcommercio)."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1289,10 +1289,10 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "16293496b2e3639540682cdd57402ee8ad3a7431886afea16dbf3794b719b640",
+    "source_hash": "6c4897598db2719a48d1579cea0a92bba67c48acab920c24e222fdc0537eafb4",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

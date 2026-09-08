@@ -37,8 +37,6 @@
     "workers_estimate": "~600k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -120,7 +118,9 @@
         "kind": "simplification",
         "text": "TERRITORIAL REDUCTIONS. INPS reductions for mountain/disadvantaged zones (75%/68%) are not modelled."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -443,10 +443,10 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "aba557b06ad7010d2069e3dd245b3522321899bd1e0afbde2029e06bd8d3cebd",
+    "source_hash": "5056f3a988858bbe8e0893f66cdfc0ecb5a868081f28c9768dcca6d3f4e70670",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

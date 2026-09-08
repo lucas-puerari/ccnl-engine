@@ -461,8 +461,6 @@
   ],
   "apprenticeship": [],
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "source",
@@ -504,7 +502,9 @@
         "kind": "simplification",
         "text": "Indennità di comparto post-conglobamento (Tabella C col.4) fully charged to Fondo risorse decentrate — not modelled as a fixed_allowance (varies by administration and is not a universal fixed amount)."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "ruleset": {
     "id": "ccnl/funzioni-locali-aran",
@@ -513,10 +513,10 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "f3e3032fe7be39f1547bcb1168bfdbbd6acfb6134e1278f3cc715c5960504925",
+    "source_hash": "9aafbc8085e7686fd4590f9545fa3940adfe07373b13063ca6651407f02f0c66",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

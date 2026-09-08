@@ -207,8 +207,6 @@
   ],
   "apprenticeship": [],
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "source",
@@ -258,7 +256,9 @@
         "kind": "simplification",
         "text": "Questo file e 'dirigenza-sanitaria-medico-veterinaria-aran.json' derivano dallo stesso CCNL Area Sanità 27.02.2026 (unico testo contrattuale). La distinzione in due file riflette le diverse indennità di specificità applicabili alle due popolazioni dirigenziali."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "ruleset": {
     "id": "ccnl/dirigenza-sanitaria-area-sanita-aran",
@@ -267,7 +267,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "695f720add5feb405bcd910e93b0437d8c27db5034942e011c2eba3637f7cc0d",
+    "source_hash": "b8526d579990b9e2813e92f28d59d2eff15193a69ad5e5ebbc4a62ed95c2b573",
     "published_at": "2026-09-07"
   }
 }

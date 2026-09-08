@@ -40,8 +40,6 @@
     "workers_estimate": "~63k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -91,7 +89,9 @@
         "kind": "simplification",
         "text": "PRE-SIGNING TRANCHES: April 2023 (retroactive) and April 2024 tranches not modelled. Coverage starts at 2025-05-01 (first source-confirmed post-signing tranche)."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1881,10 +1881,10 @@
     "effective_until": null,
     "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016",
     "verification_status": "unverified",
-    "source_hash": "32b1d883890d35a1e7e02c34dd432a4d7233276ccef41b92a3f0980ce0ec0fb0",
+    "source_hash": "718a028375c3074cb3d3a872292a2a8b77880de39c1de8393632adb2e30e4ecc",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

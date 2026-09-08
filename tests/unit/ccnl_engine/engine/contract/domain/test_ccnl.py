@@ -439,9 +439,9 @@ class TestCoverage:
         data["coverage"]["notes"] = [{"kind": "missing", "text": "Jan 2027 tranche."}]
         with pytest.raises(ValidationError, match="'missing' notes but neither"):
             _validate(data)
-        data["coverage"]["layer_1"] = "partial"
+        data["coverage"]["gross"] = "partial"
         result = _validate(data)
-        assert result.coverage.layer_1 == "partial"
+        assert result.coverage.gross == "partial"
         assert result.coverage.notes[0].kind.value == "missing"
 
     def test_all_note_kinds_accepted(self) -> None:
@@ -463,17 +463,17 @@ class TestCoverage:
         """
         data = make_ccnl_dict(app_type="none")
         data["coverage"] = {
-            "layer_1": "implemented",
-            "layer_2": "implemented",
+            "gross": "implemented",
+            "net": "implemented",
             "notes": [],
         }
         result = _validate(data)
-        assert result.coverage.layer_2 == "implemented"
+        assert result.coverage.net == "implemented"
 
     def test_out_of_scope_with_tracks_raises(self) -> None:
         """layer_2 out_of_scope is inconsistent with apprenticeship tracks."""
         data = make_ccnl_dict()
-        data["coverage"]["layer_2"] = "out_of_scope"
+        data["coverage"]["net"] = "out_of_scope"
         with pytest.raises(ValidationError, match="but apprenticeship tracks exist"):
             _validate(data)
 

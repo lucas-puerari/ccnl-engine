@@ -173,7 +173,7 @@ class TestComputeApprenticePercentage:
     def test_no_tracks_raises(self) -> None:
         """A CCNL without apprenticeship tracks reports its coverage status."""
         _mock_ccnl[0] = _build_ccnl("none")
-        with pytest.raises(ValueError, match=r"coverage\.layer_2 is partial"):
+        with pytest.raises(ValueError, match=r"coverage.net is partial"):
             compute(_req(contract=Apprentice(months_elapsed=0)))
 
     def test_ambiguous_tracks_require_name(self) -> None:

@@ -32,8 +32,6 @@
     "workers_estimate": "~900k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -83,7 +81,9 @@
         "kind": "info",
         "text": "Livello Unico (hourly 5.83) is a special sub-under-18 level excluded from this model."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -610,10 +610,10 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "1cf5a5c36f921e6f38f73f6ab518ae97a5467606bbdfeadbe8c44b00b4352daa",
+    "source_hash": "5f60a3d0f9785ccf32d75350b7a81c13d94cb3565ab81d110fc41605c0f5a029",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

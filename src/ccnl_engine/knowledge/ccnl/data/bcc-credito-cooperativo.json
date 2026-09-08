@@ -35,8 +35,6 @@
     "workers_estimate": "~33k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -66,7 +64,9 @@
         "kind": "info",
         "text": "INPS rates from 2026-credito.json (same sector as bancari-abi). IRPEF 2026 brackets applied (L. 199/2025)."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1284,10 +1284,10 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "ed401c4d98ece5df0db87e0011455c168fcfa1aa5eab0c30c1cdabd98dac3c30",
+    "source_hash": "10a3d56916054934983d0060a37406eb713fa5c145b0a59844070b176623c867",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

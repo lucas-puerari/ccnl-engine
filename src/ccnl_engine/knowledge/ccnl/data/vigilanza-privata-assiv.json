@@ -49,8 +49,6 @@
     "workers_estimate": "~85k"
   },
   "coverage": {
-    "layer_1": "implemented",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -92,7 +90,9 @@
         "kind": "simplification",
         "text": "INPS: reuses 2026-terziario.json. SIMPLIFICATION: tax_sector='terziario' is a modelling choice. Supporting facts: ASSIV/ANIVP/UNIV are not Confindustria members; private security companies do not access CIGO; the sector uses Ebivip (Ente Bilaterale Vigilanza Privata) for bilateral welfare, not INPS integration schemes. TERZIARIO is the standard classification for non-Confindustria services sector employers in INPS circular IVS rates. Counterargument: some aspects of the sector (24/7 operations, shift work) could suggest INDUSTRIA classification. At ≤50 employees, delta = 28.98% (TERZIARIO) vs 30.20% (INDUSTRIA), difference ~1.22pp employer contribution rate."
       }
-    ]
+    ],
+    "gross": "implemented",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1344,10 +1344,10 @@
     "effective_until": null,
     "source": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139",
     "verification_status": "unverified",
-    "source_hash": "5b57f78587dd989502c7fd168f7b90a4e5aa1301c0bf401081b062d817f5e5f7",
+    "source_hash": "d4d577e7091a5a355be177f7afc047a79858383f01562e21f0ebcad19ca94aa3",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [

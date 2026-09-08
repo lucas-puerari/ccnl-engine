@@ -36,8 +36,6 @@
     "workers_estimate": "~45k"
   },
   "coverage": {
-    "layer_1": "partial",
-    "layer_2": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -99,7 +97,9 @@
         "kind": "source",
         "text": "Class cadence: Art. 113 CCNL + column 'Anni serv.' Allegato 2/B."
       }
-    ]
+    ],
+    "gross": "partial",
+    "net": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
@@ -1081,10 +1081,10 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "5ffb7f81be8fd092b335f848b0614f8be6e774a9239c43cfc28b6050686775b1",
+    "source_hash": "90f2fbd17e64447c7abd50de49948df7c3675d5279d8f9eb8fb492143feeff45",
     "published_at": "2026-09-07"
   },
-  "layer_3": {
+  "work_rules": {
     "time_supplements": {
       "hourly_base_method": "minimo_tabellare",
       "overtime_bands": [
