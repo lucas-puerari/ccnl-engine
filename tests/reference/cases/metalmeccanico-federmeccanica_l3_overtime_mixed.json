@@ -1,0 +1,53 @@
+{
+  "_description": "L3 time supplement — CCNL Metalmeccanico Federmeccanica, C2, 4h weekday + 3h night + 2h holiday, 2026-09-01",
+  "_notes": [
+    "Verifies that multiple supplement bands accumulate correctly.",
+    "weekday: 4 * 0.15 * 11.9357... = 7.16",
+    "night:   3 * 0.20 * 11.9357... = 7.16",
+    "holiday: 2 * 0.30 * 11.9357... = 7.16",
+    "total: 21.48"
+  ],
+  "source": {
+    "document": "CCNL Federmeccanica-Assistal 12/06/2025",
+    "section": "Art. 14 — Lavoro straordinario, notturno e festivo",
+    "verified_by": "lucas.puerari@intella.tech",
+    "verified_on": "2026-09-08",
+    "verification_status": "unverified"
+  },
+  "inputs": {
+    "ccnl_file": "metalmeccanico-federmeccanica.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "C2",
+    "as_of": "2026-09-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null,
+    "months_elapsed": null,
+    "weekly_hours": null,
+    "category": null,
+    "regione": null,
+    "comune_belfiore": null,
+    "ivs_ceiling_applies": false,
+    "time_supplements": {
+      "weekday_hours": "4",
+      "night_hours": "3",
+      "holiday_hours": "2",
+      "supplementare_hours": "0"
+    }
+  },
+  "expected": {
+    "gross_monthly": "2064.88",
+    "gross_annual": "26843.44",
+    "net_annual": "19589.12",
+    "base_monthly_full_time": "2064.88",
+    "overtime_supplement_monthly": "7.16",
+    "night_supplement_monthly": "7.16",
+    "holiday_supplement_monthly": "7.16",
+    "time_supplements_monthly": "21.48",
+    "time_supplements_annual_projection": "279.24",
+    "warnings": []
+  }
+}

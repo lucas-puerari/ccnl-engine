@@ -232,12 +232,15 @@ def _load_union(member_hints: list[type], raw: object) -> object:
 def _load_dataclass(dc: type, raw: object) -> object:
     """Reconstruct a frozen dataclass from a JSON-native *raw* dict.
 
+    Fields with dataclass defaults are skipped when absent from *raw* so that
+    old serialised snapshots remain readable after new defaulted fields are added.
+
     Returns:
         A new instance of *dc* built from the snapshot fields.
 
     Raises:
         TypeError: If *raw* is not a dict.
-        ValueError: If a required field is missing from *raw*.
+        ValueError: If a required field (no default) is missing from *raw*.
     """
     if not isinstance(raw, dict):
         msg = f"Expected dict to build {dc.__name__}, got {type(raw)!r}"
@@ -246,6 +249,12 @@ def _load_dataclass(dc: type, raw: object) -> object:
     kwargs: dict[str, object] = {}
     for f in fields(dc):
         if f.name not in raw:
+            has_default = (
+                f.default is not dataclasses.MISSING
+                or f.default_factory is not dataclasses.MISSING
+            )
+            if has_default:
+                continue
             msg = f"Missing field {f.name!r} in {dc.__name__} snapshot"
             raise ValueError(msg)
         kwargs[f.name] = _load_by_hint(hints[f.name], raw[f.name])
@@ -278,6 +287,9 @@ class TraceCategory(StrEnum):
     SECOND_LEVEL = "second_level"
     RAL_OVERRIDE = "ral_override"
     GROSS = "gross"
+    # Layer 3 supplement steps (sit after GROSS; do not alter its invariant)
+    TIME_SUPPLEMENT = "time_supplement"
+    SUPPLEMENT_TOTAL = "supplement_total"
 
 
 @dataclass(frozen=True)
@@ -340,29 +352,39 @@ class CalculationTrace:
     total. The fiscal side (IRPEF, contributions, net) will be added
     in a future iteration.
 
-    The ``GROSS`` step is always the last entry and equals the sum of
-    all preceding steps — this invariant is enforced by the engine at
+    The ``GROSS`` step is always the last entry in ``steps`` and equals the
+    sum of all preceding entries — this invariant is enforced by the engine at
     construction time.
 
+    L3 supplement steps are in ``supplement_steps``, which follows the gross
+    chain. They do not alter the ``GROSS`` invariant.
+
     Attributes:
-        steps: Ordered computation steps, ending with the ``GROSS``
-            summary.
+        steps: Ordered computation steps, ending with the ``GROSS`` summary.
+        supplement_steps: Optional L3 supplement steps (overtime, night,
+            holiday). Empty when no supplement input is provided.
     """
 
     steps: tuple[TraceStep, ...]
+    supplement_steps: tuple[TraceStep, ...] = ()
 
     def to_dict(self) -> dict[str, object]:
         """Serialise to a JSON-native dict.
 
         Returns:
-            A dict with a ``steps`` list of serialised
-            :class:`TraceStep` dicts.
+            A dict with ``steps`` and ``supplement_steps`` lists.
         """
-        return {"steps": [s.to_dict() for s in self.steps]}
+        out: dict[str, object] = {"steps": [s.to_dict() for s in self.steps]}
+        if self.supplement_steps:
+            out["supplement_steps"] = [s.to_dict() for s in self.supplement_steps]
+        return out
 
     @classmethod
     def from_dict(cls, data: dict[str, object]) -> CalculationTrace:
         """Reconstruct from a :meth:`to_dict` dict.
+
+        Older serialised calculations without ``supplement_steps`` yield an
+        empty tuple for that field.
 
         Args:
             data: A dict as produced by :meth:`to_dict`.
@@ -374,7 +396,11 @@ class CalculationTrace:
             steps=tuple(
                 TraceStep.from_dict(cast(dict[str, object], s))
                 for s in cast(list[object], data.get("steps", []))
-            )
+            ),
+            supplement_steps=tuple(
+                TraceStep.from_dict(cast(dict[str, object], s))
+                for s in cast(list[object], data.get("supplement_steps", []))
+            ),
         )
 
 

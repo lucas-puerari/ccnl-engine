@@ -38,6 +38,7 @@ from ccnl_engine.engine.payroll.domain.employment import (
     FixedTerm,
     Permanent,
 )
+from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
 
 _ZERO: Decimal = Decimal(0)
 _ONE: Decimal = Decimal(1)
@@ -251,7 +252,10 @@ class PayrollScenario:
     Attributes:
         employee: Worker-side inputs.
         employment: Employment relationship inputs.
+        time_supplements: Optional Layer 3 supplement hours for the pay
+            period (overtime, night, holiday). ``None`` when not requested.
     """
 
     employee: Employee
     employment: Employment
+    time_supplements: OvertimeHours | None = None

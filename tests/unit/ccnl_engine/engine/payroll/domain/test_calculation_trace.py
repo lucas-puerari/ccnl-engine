@@ -376,3 +376,68 @@ class TestTraceInvariant:
         )
         calc = compute(scenario)
         self._assert_invariant(calc)
+
+
+class TestSupplementStepsRoundtrip:
+    """CalculationTrace.supplement_steps serialises and round-trips correctly."""
+
+    def test_to_dict_emits_supplement_steps_when_non_empty(self) -> None:
+        """supplement_steps key appears in to_dict output only when non-empty."""
+        supp_step = TraceStep(
+            category=TraceCategory.TIME_SUPPLEMENT,
+            label="OT diurno",
+            amount=Decimal("17.90"),
+            detail="OT_DIURNO/weekday",
+        )
+        total_step = TraceStep(
+            category=TraceCategory.SUPPLEMENT_TOTAL,
+            label="Totale maggiorazioni",
+            amount=Decimal("17.90"),
+        )
+        trace = CalculationTrace(
+            steps=(
+                TraceStep(TraceCategory.BASE_SALARY, "Base", Decimal("2064.88")),
+                TraceStep(TraceCategory.GROSS, "Lordo mensile", Decimal("2064.88")),
+            ),
+            supplement_steps=(supp_step, total_step),
+        )
+        d = trace.to_dict()
+        assert "supplement_steps" in d
+        assert len(d["supplement_steps"]) == 2  # type: ignore[arg-type]
+
+    def test_to_dict_omits_supplement_steps_when_empty(self) -> None:
+        """supplement_steps key is absent when tuple is empty."""
+        trace = CalculationTrace(
+            steps=(TraceStep(TraceCategory.GROSS, "Lordo", Decimal(1000)),),
+        )
+        d = trace.to_dict()
+        assert "supplement_steps" not in d
+
+    def test_from_dict_restores_supplement_steps(self) -> None:
+        """from_dict reconstructs supplement_steps from a serialised dict."""
+        supp = TraceStep(
+            category=TraceCategory.TIME_SUPPLEMENT,
+            label="OT notte",
+            amount=Decimal("11.94"),
+        )
+        total = TraceStep(
+            category=TraceCategory.SUPPLEMENT_TOTAL,
+            label="Totale",
+            amount=Decimal("11.94"),
+        )
+        trace = CalculationTrace(
+            steps=(TraceStep(TraceCategory.GROSS, "Lordo", Decimal("2064.88")),),
+            supplement_steps=(supp, total),
+        )
+        restored = CalculationTrace.from_dict(trace.to_dict())
+        assert restored.supplement_steps == trace.supplement_steps
+
+    def test_from_dict_backward_compat_no_supplement_steps(self) -> None:
+        """from_dict with no supplement_steps key yields an empty tuple."""
+        trace = CalculationTrace(
+            steps=(TraceStep(TraceCategory.GROSS, "Lordo", Decimal("2064.88")),),
+        )
+        d = trace.to_dict()
+        assert "supplement_steps" not in d
+        restored = CalculationTrace.from_dict(d)
+        assert restored.supplement_steps == ()

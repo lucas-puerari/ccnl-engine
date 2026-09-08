@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import dataclasses
 from datetime import UTC, date, datetime
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -28,6 +29,7 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Jurisdiction,
     PayrollScenario,
 )
+from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
 from ccnl_engine.engine.payroll.service.orchestrator import _collect_provenance, compute
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.types import MonthlyPayChain
@@ -892,3 +894,23 @@ class TestProvenanceChain:
             ccnl.parameters.seniority_increments,
         )
         assert result == (prov_level,)
+
+
+class TestL3Warning:
+    """Orchestrator warning path for missing L3 schema."""
+
+    def test_warning_emitted_when_ccnl_has_no_l3(self) -> None:
+        """Emit a warning when time_supplements is set but CCNL has no L3 data."""
+        # The test CCNL (built by _build_ccnl / _req) has no layer_3 block.
+        # dataclasses.replace adds time_supplements without touching other fields.
+        scenario = dataclasses.replace(
+            _req(),
+            time_supplements=OvertimeHours(weekday_hours=_D("5")),
+        )
+        result = compute(scenario).result
+        assert any("time_supplements" in w for w in result.warnings), (
+            f"Expected warning about time_supplements, got: {result.warnings}"
+        )
+        # Supplement fields must stay zero (no schema → nothing computed).
+        assert result.overtime_supplement_monthly == _D("0")
+        assert result.time_supplements_monthly == _D("0")

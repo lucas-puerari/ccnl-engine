@@ -24,6 +24,7 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Employment,
     PayrollScenario,
 )
+from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
 from ccnl_engine.engine.payroll.service.orchestrator import _ruleset_versions, compute
 from tests.helpers import make_minimal_ccnl, make_year_rules
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
@@ -308,3 +309,21 @@ class TestDumpLoadBranches:
         assert versions["tax"] == "tax/2026/terziario@2026.2"
         assert "inps" not in versions
         assert "surtax" not in versions
+
+
+class TestLoadDataclassCompat:
+    """_load_dataclass skips fields with defaults when absent from the dict."""
+
+    def test_missing_defaulted_field_is_skipped(self) -> None:
+        """A dict missing a field with a default does not raise."""
+        # OvertimeHours has all fields defaulted to zero; an empty dict should
+        # reconstruct the instance using the defaults.
+        result = _load_dataclass(OvertimeHours, {})
+        assert result == OvertimeHours()
+
+    def test_partial_dict_uses_defaults_for_absent_fields(self) -> None:
+        """Only provided fields are set; absent defaulted fields use defaults."""
+        result = _load_dataclass(OvertimeHours, {"weekday_hours": "5"})
+        assert isinstance(result, OvertimeHours)
+        assert result.weekday_hours == Decimal(5)
+        assert result.night_hours == Decimal(0)
