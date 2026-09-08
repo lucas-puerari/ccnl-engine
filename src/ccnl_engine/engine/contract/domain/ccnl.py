@@ -215,6 +215,36 @@ class LeaveRules(BaseModel):
     provenance: "RuleProvenance | None" = None
 
 
+class SicknessRules(BaseModel):
+    """Layer 3 rules for sick leave (malattia ordinaria) integration.
+
+    Defines how the CCNL supplements the statutory INPS indemnity during
+    illness.  The engine computes INPS indemnity from the bundled rate
+    file; ``carenza_integration_rate`` and ``full_pay_integration_rate``
+    determine the company's share on top.
+
+    Attributes:
+        carenza_integration_rate: Fraction of gross daily pay the company
+            covers during the waiting period (days 1-``carenza_days``).
+            ``1.0`` = full pay; ``0.0`` = no company coverage.
+        full_pay_integration_rate: Target fraction of gross daily pay the
+            worker should receive during INPS-covered days.  The company
+            pays the difference above the INPS indemnity.  ``1.0`` = 100%
+            guaranteed by the CCNL (company tops up to full gross).
+        max_duration_days: Number of calendar days after which sick leave
+            exceeds the comporto period.  Days beyond this limit are not
+            modelled by the engine.
+        provenance: Links this rule to its CCNL article.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    carenza_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
+    full_pay_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
+    max_duration_days: int = Field(default=180, ge=1)
+    provenance: "RuleProvenance | None" = None
+
+
 class CCNLLayer3(BaseModel):
     """Container for Layer 3 rules attached to a CCNL data file."""
 
@@ -223,6 +253,7 @@ class CCNLLayer3(BaseModel):
     time_supplements: TimeSupplements | None = None
     absence_rules: AbsenceRules | None = None
     leave_rules: LeaveRules | None = None
+    sickness_rules: SicknessRules | None = None
 
 
 class Allowance(BaseModel):

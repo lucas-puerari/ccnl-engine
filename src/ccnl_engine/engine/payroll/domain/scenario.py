@@ -42,6 +42,7 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
     LeaveInput,
     OvertimeHours,
+    SickInput,
 )
 
 _ZERO: Decimal = Decimal(0)
@@ -262,6 +263,8 @@ class PayrollScenario:
             (unpaid days absent). ``None`` when not requested.
         leave_input: Optional Layer 3 leave data for the pay period
             (ferie / permessi taken). ``None`` when not requested.
+        sick_input: Optional Layer 3 sick leave data for the pay period
+            (malattia ordinaria). ``None`` when not requested.
     """
 
     employee: Employee
@@ -269,3 +272,4 @@ class PayrollScenario:
     time_supplements: OvertimeHours | None = None
     absence_days: AbsenceDays | None = None
     leave_input: LeaveInput | None = None
+    sick_input: SickInput | None = None

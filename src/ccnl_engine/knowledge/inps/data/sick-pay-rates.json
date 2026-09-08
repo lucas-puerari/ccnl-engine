@@ -1,0 +1,28 @@
+{
+  "description": "INPS statutory sick-pay indemnity rates (malattia ordinaria)",
+  "carenza_days": 3,
+  "bands": [
+    {
+      "day_from": 4,
+      "day_to": 20,
+      "rate": "0.50",
+      "description": "Days 4-20: INPS pays 50% of daily reference base"
+    },
+    {
+      "day_from": 21,
+      "day_to": 180,
+      "rate": "0.6667",
+      "description": "Days 21-180: INPS pays 2/3 of daily reference base"
+    }
+  ],
+  "ruleset": {
+    "id": "inps/sick-pay-rates",
+    "version": "1.0",
+    "effective_from": "2001-07-26",
+    "effective_until": null,
+    "published_at": "2026-09-08",
+    "source": "D.Lgs. 26 marzo 2001 n. 151, artt. 68-71; D.Lgs. 30 giugno 1995 n. 272",
+    "verification_status": "unverified",
+    "source_hash": "3a0371adaeae3dd301f1c02deeb7db7d59656601f79c17d2b0ecdd8803c21edd"
+  }
+}

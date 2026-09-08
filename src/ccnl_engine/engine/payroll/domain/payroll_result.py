@@ -267,6 +267,12 @@ class PayrollResult:
     leave_taken_days_monthly: Decimal = _ZERO
     leave_balance_days: Decimal = _ZERO
 
+    # --- L3: sickness (informational; gross_annual/net_annual not mutated) ---
+    sick_days_monthly: Decimal = _ZERO
+    sick_carenza_days_monthly: Decimal = _ZERO
+    sick_inps_indemnity_monthly: Decimal = _ZERO
+    sick_company_integration_monthly: Decimal = _ZERO
+
     # --- L3: time supplements (informational; not in gross_annual/net_annual) ---
     base_monthly_full_time: Decimal = _ZERO
     overtime_supplement_monthly: Decimal = _ZERO

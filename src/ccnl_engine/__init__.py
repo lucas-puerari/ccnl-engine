@@ -73,7 +73,11 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Jurisdiction,
     PayrollScenario,
 )
-from ccnl_engine.engine.payroll.domain.supplements import AbsenceDays, LeaveInput
+from ccnl_engine.engine.payroll.domain.supplements import (
+    AbsenceDays,
+    LeaveInput,
+    SickInput,
+)
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 from ccnl_engine.engine.provenance import SourceAuthority
 from ccnl_engine.engine.surtax import SurtaxRules, load_surtax_rules
@@ -107,6 +111,7 @@ __all__ = [
     "ScopeItem",
     "SeniorityByCount",
     "SeniorityByMonths",
+    "SickInput",
     "SourceAuthority",
     "SupplementaryAllowance",
     "SurtaxRules",

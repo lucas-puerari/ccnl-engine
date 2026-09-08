@@ -1,0 +1,37 @@
+{
+  "_description": "Sickness — CCNL Metalmeccanico Federmeccanica, C2, 25 sick days (3 carenza + 17 band1 + 5 band2)",
+  "source": {
+    "document": "CCNL Industria Metalmeccanica e Installazione Impianti (Federmeccanica)",
+    "section": "Art. 6 — Malattia e infortuni",
+    "notes": "Expected values computed by the engine; unverified against a real payslip"
+  },
+  "inputs": {
+    "ccnl_file": "metalmeccanico-federmeccanica.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "C2",
+    "as_of": "2026-09-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "seniority_months": null,
+    "negotiated_ral": null,
+    "months_elapsed": null,
+    "weekly_hours": null,
+    "category": null,
+    "regione": null,
+    "comune_belfiore": null,
+    "ivs_ceiling_applies": false,
+    "sick_input": {
+      "sick_days": "25"
+    }
+  },
+  "expected": {
+    "gross_monthly": "2064.88",
+    "sick_days_monthly": "25",
+    "sick_carenza_days_monthly": "3.00",
+    "sick_inps_indemnity_monthly": "814.50",
+    "sick_company_integration_monthly": "906.25"
+  }
+}
