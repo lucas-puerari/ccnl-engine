@@ -1,7 +1,11 @@
-"""Integration tests: full pipeline output must match pre-recorded cases exactly.
+"""Reference tests: full pipeline output must match pre-recorded cases exactly.
 
 Each case wires the bundle loaders (CCNL, tax/INPS, surtax) into ``compute()``
 and compares every ``PayrollResult`` field against the stored expected values.
+
+An optional ``source`` key on each case JSON records the primary document that
+was used to verify the expected values (payslip, official table, circular).
+The test passes regardless; the source is surfaced in the session summary.
 """
 
 from __future__ import annotations
@@ -56,7 +60,7 @@ def _build_employment(inputs: dict[str, Any]) -> Permanent | FixedTerm | Apprent
     return Apprentice(months_elapsed=months)
 
 
-class TestIntegrationCases:
+class TestReferenceCases:
     """Each case JSON must match compute() output field-by-field."""
 
     @pytest.mark.parametrize("case_file", _CASE_FILES, ids=lambda p: p.stem)

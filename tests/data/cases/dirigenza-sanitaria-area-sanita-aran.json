@@ -1,0 +1,11 @@
+{
+  "_description": "dirigenza-sanitaria-area-sanita-aran — data checks 2026",
+  "ccnl_file": "dirigenza-sanitaria-area-sanita-aran.json",
+  "salary_checks": [
+    {
+      "level_code": "DIRIGENTE",
+      "as_of": "2024-01-01",
+      "expected_monthly": "3846.60"
+    }
+  ]
+}

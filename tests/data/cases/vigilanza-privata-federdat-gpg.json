@@ -1,0 +1,86 @@
+{
+  "_description": "vigilanza-privata-federdat-gpg — data checks 2026",
+  "ccnl_file": "vigilanza-privata-federdat-gpg.json",
+  "salary_checks": [
+    {
+      "level_code": "VI",
+      "as_of": "2026-12-01",
+      "expected_monthly": "1350.44"
+    },
+    {
+      "level_code": "V",
+      "as_of": "2026-12-01",
+      "expected_monthly": "1450.44"
+    },
+    {
+      "level_code": "IV",
+      "as_of": "2026-12-01",
+      "expected_monthly": "1528.88"
+    },
+    {
+      "level_code": "III",
+      "as_of": "2026-12-01",
+      "expected_monthly": "1723.31"
+    },
+    {
+      "level_code": "II",
+      "as_of": "2026-12-01",
+      "expected_monthly": "1946.09"
+    },
+    {
+      "level_code": "I",
+      "as_of": "2026-12-01",
+      "expected_monthly": "2086.89"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2026-12-01",
+      "expected_monthly": "2434.74"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "VI",
+      "as_of": "2023-06-01",
+      "expected_amount": "19.66"
+    },
+    {
+      "level_code": "V",
+      "as_of": "2023-06-01",
+      "expected_amount": "20.52"
+    },
+    {
+      "level_code": "IV",
+      "as_of": "2023-06-01",
+      "expected_amount": "21.13"
+    },
+    {
+      "level_code": "III",
+      "as_of": "2023-06-01",
+      "expected_amount": "22.46"
+    },
+    {
+      "level_code": "II",
+      "as_of": "2023-06-01",
+      "expected_amount": "23.83"
+    },
+    {
+      "level_code": "I",
+      "as_of": "2023-06-01",
+      "expected_amount": "26.12"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2023-06-01",
+      "expected_amount": "31.30"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "VI",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_pct": "1.00"
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "_description": "pubblici-esercizi-fipe-angem — data checks 2026",
+  "ccnl_file": "pubblici-esercizi-fipe-angem.json",
+  "salary_checks": [
+    {
+      "level_code": "7",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1442.45"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1549.78"
+    },
+    {
+      "level_code": "6s",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1574.42"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1643.50"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1762.69"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1877.00"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1999.36"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2027-12-01",
+      "expected_monthly": "2201.85"
+    },
+    {
+      "level_code": "Qb",
+      "as_of": "2027-12-01",
+      "expected_monthly": "2375.56"
+    },
+    {
+      "level_code": "Qa",
+      "as_of": "2027-12-01",
+      "expected_monthly": "2578.07"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Qa",
+      "as_of": "2024-06-01",
+      "expected_amount": "40.80"
+    },
+    {
+      "level_code": "Qb",
+      "as_of": "2024-06-01",
+      "expected_amount": "39.25"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2024-06-01",
+      "expected_amount": "37.70"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2024-06-01",
+      "expected_amount": "36.15"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2024-06-01",
+      "expected_amount": "34.86"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2024-06-01",
+      "expected_amount": "33.05"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2024-06-01",
+      "expected_amount": "32.54"
+    },
+    {
+      "level_code": "6s",
+      "as_of": "2024-06-01",
+      "expected_amount": "31.25"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2024-06-01",
+      "expected_amount": "30.99"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2024-06-01",
+      "expected_amount": "30.47"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 13,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 25,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 37,
+      "expected_pct": "1.00"
+    }
+  ]
+}

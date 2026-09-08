@@ -1,0 +1,172 @@
+{
+  "_description": "metalmeccanico-federmeccanica — data checks 2026",
+  "ccnl_file": "metalmeccanico-federmeccanica.json",
+  "salary_checks": [
+    {
+      "level_code": "D1",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1784.94"
+    },
+    {
+      "level_code": "D2",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1979.37"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2022.12"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2064.88"
+    },
+    {
+      "level_code": "C3",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2211.43"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2370.33"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2542.98"
+    },
+    {
+      "level_code": "B3",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2838.99"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2907.01"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "D1",
+      "as_of": "2021-06-01",
+      "expected_amount": "21.59"
+    },
+    {
+      "level_code": "D2",
+      "as_of": "2021-06-01",
+      "expected_amount": "25.05"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2021-06-01",
+      "expected_amount": "25.05"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2021-06-01",
+      "expected_amount": "26.75"
+    },
+    {
+      "level_code": "C3",
+      "as_of": "2021-06-01",
+      "expected_amount": "29.64"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2021-06-01",
+      "expected_amount": "32.43"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2021-06-01",
+      "expected_amount": "36.41"
+    },
+    {
+      "level_code": "B3",
+      "as_of": "2021-06-01",
+      "expected_amount": "40.96"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2021-06-01",
+      "expected_amount": "40.96"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "D2",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 1,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 13,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 25,
+      "expected_pct": "0.95"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 37,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "professionalizzante_30",
+      "months_elapsed": 1,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "professionalizzante_30",
+      "months_elapsed": 11,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "professionalizzante_30",
+      "months_elapsed": 21,
+      "expected_pct": "0.95"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "professionalizzante_30",
+      "months_elapsed": 31,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "professionalizzante_24",
+      "months_elapsed": 1,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "professionalizzante_24",
+      "months_elapsed": 9,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "professionalizzante_24",
+      "months_elapsed": 17,
+      "expected_pct": "0.95"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "professionalizzante_24",
+      "months_elapsed": 25,
+      "expected_pct": "1.00"
+    }
+  ]
+}

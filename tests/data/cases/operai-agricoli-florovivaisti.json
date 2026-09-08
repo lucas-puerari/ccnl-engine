@@ -1,0 +1,58 @@
+{
+  "_description": "operai-agricoli-florovivaisti — data checks 2026",
+  "ccnl_file": "operai-agricoli-florovivaisti.json",
+  "salary_checks": [
+    {
+      "level_code": "Area3",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1043.00"
+    },
+    {
+      "level_code": "Area2",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1398.86"
+    },
+    {
+      "level_code": "Area1",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1533.84"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Area1",
+      "as_of": "2026-06-01",
+      "expected_amount": "11.36"
+    },
+    {
+      "level_code": "Area2",
+      "as_of": "2026-06-01",
+      "expected_amount": "10.33"
+    },
+    {
+      "level_code": "Area3",
+      "as_of": "2026-06-01",
+      "expected_amount": "8.99"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "Area1",
+      "track_name": "apprendistato_professionalizzante",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "Area1",
+      "track_name": "apprendistato_professionalizzante",
+      "months_elapsed": 13,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "Area1",
+      "track_name": "apprendistato_professionalizzante",
+      "months_elapsed": 25,
+      "expected_levels_below": 0
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "_description": "informatica-pmi-unimatica — data checks 2026",
+  "ccnl_file": "informatica-pmi-unimatica.json",
+  "salary_checks": [
+    {
+      "level_code": "10",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1444.33"
+    },
+    {
+      "level_code": "9",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1575.27"
+    },
+    {
+      "level_code": "8",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1678.58"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1776.03"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1967.68"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2027-01-01",
+      "expected_monthly": "2095.18"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2027-01-01",
+      "expected_monthly": "2218.03"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2027-01-01",
+      "expected_monthly": "2336.94"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2027-01-01",
+      "expected_monthly": "2468.03"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2027-01-01",
+      "expected_monthly": "2827.50"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2027-01-01",
+      "expected_monthly": "2889.92"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2025-01-01",
+      "expected_amount": "16.01"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2025-01-01",
+      "expected_amount": "16.01"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2025-01-01",
+      "expected_amount": "16.01"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2025-01-01",
+      "expected_amount": "14.46"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2025-01-01",
+      "expected_amount": "13.94"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2025-01-01",
+      "expected_amount": "13.43"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2025-01-01",
+      "expected_amount": "13.17"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2025-01-01",
+      "expected_amount": "12.91"
+    },
+    {
+      "level_code": "8",
+      "as_of": "2025-01-01",
+      "expected_amount": "12.39"
+    },
+    {
+      "level_code": "9",
+      "as_of": "2025-01-01",
+      "expected_amount": "11.88"
+    },
+    {
+      "level_code": "10",
+      "as_of": "2025-01-01",
+      "expected_amount": "11.62"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 13,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 25,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "8",
+      "track_name": "automatico_it",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "8",
+      "track_name": "automatico_it",
+      "months_elapsed": 19,
+      "expected_levels_below": 0
+    }
+  ]
+}

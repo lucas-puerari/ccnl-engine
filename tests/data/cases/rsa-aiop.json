@@ -1,0 +1,136 @@
+{
+  "_description": "rsa-aiop — data checks 2026",
+  "ccnl_file": "rsa-aiop.json",
+  "salary_checks": [
+    {
+      "level_code": "A",
+      "as_of": "2023-10-01",
+      "expected_monthly": "1223.57"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2023-10-01",
+      "expected_monthly": "1311.68"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2023-10-01",
+      "expected_monthly": "1419.80"
+    },
+    {
+      "level_code": "D1",
+      "as_of": "2023-10-01",
+      "expected_monthly": "1419.80"
+    },
+    {
+      "level_code": "D2",
+      "as_of": "2023-10-01",
+      "expected_monthly": "1463.33"
+    },
+    {
+      "level_code": "D3",
+      "as_of": "2023-10-01",
+      "expected_monthly": "1496.06"
+    },
+    {
+      "level_code": "E1",
+      "as_of": "2023-10-01",
+      "expected_monthly": "1550.56"
+    },
+    {
+      "level_code": "E2",
+      "as_of": "2023-10-01",
+      "expected_monthly": "1746.00"
+    },
+    {
+      "level_code": "E3",
+      "as_of": "2023-10-01",
+      "expected_monthly": "1806.00"
+    },
+    {
+      "level_code": "F",
+      "as_of": "2023-10-01",
+      "expected_monthly": "2095.50"
+    },
+    {
+      "level_code": "G",
+      "as_of": "2023-10-01",
+      "expected_monthly": "2749.49"
+    },
+    {
+      "level_code": "H",
+      "as_of": "2023-10-01",
+      "expected_monthly": "3294.68"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "A",
+      "as_of": "2012-04-01",
+      "expected_amount": "40.00"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2012-04-01",
+      "expected_amount": "40.00"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2012-04-01",
+      "expected_amount": "40.00"
+    },
+    {
+      "level_code": "D1",
+      "as_of": "2012-04-01",
+      "expected_amount": "40.00"
+    },
+    {
+      "level_code": "D2",
+      "as_of": "2012-04-01",
+      "expected_amount": "40.00"
+    },
+    {
+      "level_code": "D3",
+      "as_of": "2012-04-01",
+      "expected_amount": "40.00"
+    },
+    {
+      "level_code": "E1",
+      "as_of": "2012-04-01",
+      "expected_amount": "40.00"
+    },
+    {
+      "level_code": "E2",
+      "as_of": "2012-04-01",
+      "expected_amount": "40.00"
+    },
+    {
+      "level_code": "E3",
+      "as_of": "2012-04-01",
+      "expected_amount": "40.00"
+    },
+    {
+      "level_code": "F",
+      "as_of": "2012-04-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "G",
+      "as_of": "2012-04-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "H",
+      "as_of": "2012-04-01",
+      "expected_amount": "0.00"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "A",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_pct": "1.00"
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "_description": "telecomunicazioni-asstel — data checks 2026",
+  "ccnl_file": "telecomunicazioni-asstel.json",
+  "salary_checks": [
+    {
+      "level_code": "A1",
+      "as_of": "2028-12-01",
+      "expected_monthly": "1518.96"
+    },
+    {
+      "level_code": "A2",
+      "as_of": "2028-12-01",
+      "expected_monthly": "1701.25"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2028-12-01",
+      "expected_monthly": "1862.81"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2028-12-01",
+      "expected_monthly": "2020.45"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2028-12-01",
+      "expected_monthly": "2186.73"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2028-12-01",
+      "expected_monthly": "2263.82"
+    },
+    {
+      "level_code": "C3",
+      "as_of": "2028-12-01",
+      "expected_monthly": "2559.28"
+    },
+    {
+      "level_code": "C4",
+      "as_of": "2028-12-01",
+      "expected_monthly": "2814.86"
+    },
+    {
+      "level_code": "D1",
+      "as_of": "2028-12-01",
+      "expected_monthly": "2814.86"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "A1",
+      "as_of": "2026-01-01",
+      "expected_amount": "21.54"
+    },
+    {
+      "level_code": "A2",
+      "as_of": "2026-01-01",
+      "expected_amount": "21.54"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2026-01-01",
+      "expected_amount": "23.24"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2026-01-01",
+      "expected_amount": "24.38"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2026-01-01",
+      "expected_amount": "25.56"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2026-01-01",
+      "expected_amount": "25.56"
+    },
+    {
+      "level_code": "C3",
+      "as_of": "2026-01-01",
+      "expected_amount": "28.10"
+    },
+    {
+      "level_code": "C4",
+      "as_of": "2026-01-01",
+      "expected_amount": "30.73"
+    },
+    {
+      "level_code": "D1",
+      "as_of": "2026-01-01",
+      "expected_amount": "30.73"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "B1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "B1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 19,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "B1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 37,
+      "expected_levels_below": 0
+    }
+  ]
+}

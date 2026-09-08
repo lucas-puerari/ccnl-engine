@@ -1,0 +1,116 @@
+{
+  "_description": "agenzie-marittime-i481 — data checks 2026",
+  "ccnl_file": "agenzie-marittime-i481.json",
+  "salary_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2026-09-01",
+      "expected_monthly": "1601.09"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2026-09-01",
+      "expected_monthly": "1841.02"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2026-09-01",
+      "expected_monthly": "1921.32"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2026-09-01",
+      "expected_monthly": "2177.70"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2026-09-01",
+      "expected_monthly": "2305.38"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2026-09-01",
+      "expected_monthly": "2370.23"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2026-09-01",
+      "expected_monthly": "2481.46"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2024-09-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2024-09-01",
+      "expected_amount": "26.50"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2024-09-01",
+      "expected_amount": "27.75"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2024-09-01",
+      "expected_amount": "28.75"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2024-09-01",
+      "expected_amount": "32.00"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2024-09-01",
+      "expected_amount": "32.50"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2024-09-01",
+      "expected_amount": "33.00"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante - dest livello 3",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante - dest livello 3",
+      "months_elapsed": 13,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante - dest livelli 4-5",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante - dest livelli 4-5",
+      "months_elapsed": 16,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "6",
+      "track_name": "professionalizzante - dest livello 6",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "6",
+      "track_name": "professionalizzante - dest livello 6",
+      "months_elapsed": 19,
+      "expected_levels_below": 1
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "_description": "dirigenza-istruzione-ricerca-aran — data checks 2026",
+  "ccnl_file": "dirigenza-istruzione-ricerca-aran.json",
+  "salary_checks": [
+    {
+      "level_code": "SECONDA_FASCIA",
+      "as_of": "2024-01-01",
+      "expected_monthly": "3846.59"
+    },
+    {
+      "level_code": "PRIMA_FASCIA",
+      "as_of": "2024-01-01",
+      "expected_monthly": "4908.30"
+    }
+  ]
+}

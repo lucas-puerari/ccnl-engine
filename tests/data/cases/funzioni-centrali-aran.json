@@ -1,0 +1,26 @@
+{
+  "_description": "funzioni-centrali-aran — data checks 2026",
+  "ccnl_file": "funzioni-centrali-aran.json",
+  "salary_checks": [
+    {
+      "level_code": "OPERATORI",
+      "as_of": "2024-01-01",
+      "expected_monthly": "1653.97"
+    },
+    {
+      "level_code": "ASSISTENTI",
+      "as_of": "2024-01-01",
+      "expected_monthly": "1740.36"
+    },
+    {
+      "level_code": "FUNZIONARI",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2113.59"
+    },
+    {
+      "level_code": "ELEVATE_PROFESSIONALITA",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2886.21"
+    }
+  ]
+}

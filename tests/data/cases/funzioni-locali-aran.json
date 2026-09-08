@@ -1,0 +1,26 @@
+{
+  "_description": "funzioni-locali-aran — data checks 2026",
+  "ccnl_file": "funzioni-locali-aran.json",
+  "salary_checks": [
+    {
+      "level_code": "OPERATORI",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1646.09"
+    },
+    {
+      "level_code": "OPERATORI_ESPERTI",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1715.27"
+    },
+    {
+      "level_code": "ISTRUTTORI",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1928.23"
+    },
+    {
+      "level_code": "FUNZIONARI_EQ",
+      "as_of": "2027-01-01",
+      "expected_monthly": "2092.84"
+    }
+  ]
+}

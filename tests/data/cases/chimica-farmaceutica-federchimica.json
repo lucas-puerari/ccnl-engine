@@ -1,0 +1,95 @@
+{
+  "_description": "chimica-farmaceutica-federchimica — data checks 2026",
+  "ccnl_file": "chimica-farmaceutica-federchimica.json",
+  "salary_checks": [
+    {
+      "level_code": "F",
+      "as_of": "2028-06-01",
+      "expected_monthly": "1891.46"
+    },
+    {
+      "level_code": "E4",
+      "as_of": "2028-06-01",
+      "expected_monthly": "1978.04"
+    },
+    {
+      "level_code": "E3",
+      "as_of": "2028-06-01",
+      "expected_monthly": "2029.29"
+    },
+    {
+      "level_code": "E2",
+      "as_of": "2028-06-01",
+      "expected_monthly": "2105.14"
+    },
+    {
+      "level_code": "E1",
+      "as_of": "2028-06-01",
+      "expected_monthly": "2226.28"
+    },
+    {
+      "level_code": "D3",
+      "as_of": "2028-06-01",
+      "expected_monthly": "2342.76"
+    },
+    {
+      "level_code": "D2",
+      "as_of": "2028-06-01",
+      "expected_monthly": "2409.77"
+    },
+    {
+      "level_code": "D1",
+      "as_of": "2028-06-01",
+      "expected_monthly": "2522.26"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2028-06-01",
+      "expected_monthly": "2603.86"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2028-06-01",
+      "expected_monthly": "2708.65"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2028-06-01",
+      "expected_monthly": "2968.61"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2028-06-01",
+      "expected_monthly": "3080.98"
+    },
+    {
+      "level_code": "A3",
+      "as_of": "2028-06-01",
+      "expected_monthly": "3325.22"
+    },
+    {
+      "level_code": "A2",
+      "as_of": "2028-06-01",
+      "expected_monthly": "3396.59"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2028-06-01",
+      "expected_monthly": "3682.48"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "E3",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "E3",
+      "track_name": "professionalizzante",
+      "months_elapsed": 19,
+      "expected_levels_below": 1
+    }
+  ]
+}

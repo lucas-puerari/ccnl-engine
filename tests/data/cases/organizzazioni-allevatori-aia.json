@@ -1,0 +1,138 @@
+{
+  "_description": "organizzazioni-allevatori-aia — data checks 2026",
+  "ccnl_file": "organizzazioni-allevatori-aia.json",
+  "salary_checks": [
+    {
+      "level_code": "1/2",
+      "as_of": "2025-09-01",
+      "expected_monthly": "2392.51"
+    },
+    {
+      "level_code": "1/3",
+      "as_of": "2025-09-01",
+      "expected_monthly": "2288.35"
+    },
+    {
+      "level_code": "1/4",
+      "as_of": "2025-09-01",
+      "expected_monthly": "2183.71"
+    },
+    {
+      "level_code": "1/5",
+      "as_of": "2025-09-01",
+      "expected_monthly": "2105.96"
+    },
+    {
+      "level_code": "2/1",
+      "as_of": "2025-09-01",
+      "expected_monthly": "2028.26"
+    },
+    {
+      "level_code": "2/2",
+      "as_of": "2025-09-01",
+      "expected_monthly": "1974.23"
+    },
+    {
+      "level_code": "2/3",
+      "as_of": "2025-09-01",
+      "expected_monthly": "1895.67"
+    },
+    {
+      "level_code": "2/4A",
+      "as_of": "2025-09-01",
+      "expected_monthly": "1791.72"
+    },
+    {
+      "level_code": "2/4B",
+      "as_of": "2025-09-01",
+      "expected_monthly": "1757.61"
+    },
+    {
+      "level_code": "2/5",
+      "as_of": "2025-09-01",
+      "expected_monthly": "1737.68"
+    },
+    {
+      "level_code": "2/6",
+      "as_of": "2025-09-01",
+      "expected_monthly": "1659.20"
+    },
+    {
+      "level_code": "3/1",
+      "as_of": "2025-09-01",
+      "expected_monthly": "1500.21"
+    },
+    {
+      "level_code": "3/2",
+      "as_of": "2025-09-01",
+      "expected_monthly": "1372.00"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1/2",
+      "as_of": "2025-01-01",
+      "expected_amount": "53.10"
+    },
+    {
+      "level_code": "1/3",
+      "as_of": "2025-01-01",
+      "expected_amount": "50.36"
+    },
+    {
+      "level_code": "1/4",
+      "as_of": "2025-01-01",
+      "expected_amount": "48.17"
+    },
+    {
+      "level_code": "1/5",
+      "as_of": "2025-01-01",
+      "expected_amount": "45.97"
+    },
+    {
+      "level_code": "2/1",
+      "as_of": "2025-01-01",
+      "expected_amount": "44.34"
+    },
+    {
+      "level_code": "2/2",
+      "as_of": "2025-01-01",
+      "expected_amount": "43.24"
+    },
+    {
+      "level_code": "2/3",
+      "as_of": "2025-01-01",
+      "expected_amount": "41.05"
+    },
+    {
+      "level_code": "2/4A",
+      "as_of": "2025-01-01",
+      "expected_amount": "38.87"
+    },
+    {
+      "level_code": "2/4B",
+      "as_of": "2025-01-01",
+      "expected_amount": "37.77"
+    },
+    {
+      "level_code": "2/5",
+      "as_of": "2025-01-01",
+      "expected_amount": "37.22"
+    },
+    {
+      "level_code": "2/6",
+      "as_of": "2025-01-01",
+      "expected_amount": "35.58"
+    },
+    {
+      "level_code": "3/1",
+      "as_of": "2025-01-01",
+      "expected_amount": "31.74"
+    },
+    {
+      "level_code": "3/2",
+      "as_of": "2025-01-01",
+      "expected_amount": "29.00"
+    }
+  ]
+}

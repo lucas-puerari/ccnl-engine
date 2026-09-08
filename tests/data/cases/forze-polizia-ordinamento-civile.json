@@ -1,0 +1,111 @@
+{
+  "_description": "forze-polizia-ordinamento-civile — data checks 2026",
+  "ccnl_file": "forze-polizia-ordinamento-civile.json",
+  "salary_checks": [
+    {
+      "level_code": "AGENTE",
+      "as_of": "2024-01-01",
+      "expected_monthly": "1714.70"
+    },
+    {
+      "level_code": "AGENTE_SCELTO",
+      "as_of": "2024-01-01",
+      "expected_monthly": "1767.65"
+    },
+    {
+      "level_code": "ASSISTENTE",
+      "as_of": "2024-01-01",
+      "expected_monthly": "1824.67"
+    },
+    {
+      "level_code": "ASSISTENTE_CAPO",
+      "as_of": "2024-01-01",
+      "expected_monthly": "1897.98"
+    },
+    {
+      "level_code": "VICE_SOV",
+      "as_of": "2024-01-01",
+      "expected_monthly": "1902.05"
+    },
+    {
+      "level_code": "ASSISTENTE_CAPO_5A",
+      "as_of": "2024-01-01",
+      "expected_monthly": "1906.13"
+    },
+    {
+      "level_code": "SOVRINTENDENTE",
+      "as_of": "2024-01-01",
+      "expected_monthly": "1979.44"
+    },
+    {
+      "level_code": "ASSISTENTE_CAPO_COORD",
+      "as_of": "2024-01-01",
+      "expected_monthly": "1979.44"
+    },
+    {
+      "level_code": "SOV_CAPO",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2024.24"
+    },
+    {
+      "level_code": "VICE_ISP",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2032.39"
+    },
+    {
+      "level_code": "SOV_CAPO_4A",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2048.68"
+    },
+    {
+      "level_code": "ISPETTORE",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2134.21"
+    },
+    {
+      "level_code": "SOV_CAPO_COORD",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2134.21"
+    },
+    {
+      "level_code": "ISP_CAPO",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2174.94"
+    },
+    {
+      "level_code": "VICE_COMM",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2227.89"
+    },
+    {
+      "level_code": "ISP_SUPERIORE",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2240.10"
+    },
+    {
+      "level_code": "ISP_SUP_8A",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2280.83"
+    },
+    {
+      "level_code": "SOST_COMM",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2337.85"
+    },
+    {
+      "level_code": "COMMISSARIO",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2411.17"
+    },
+    {
+      "level_code": "SOST_COMM_COORD",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2411.17"
+    },
+    {
+      "level_code": "COMM_CAPO",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2451.90"
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "_description": "grafica-editoria-aieg — data checks 2026",
+  "ccnl_file": "grafica-editoria-aieg.json",
+  "salary_checks": [
+    {
+      "level_code": "E",
+      "as_of": "2026-07-01",
+      "expected_monthly": "1460.85"
+    },
+    {
+      "level_code": "D2",
+      "as_of": "2026-07-01",
+      "expected_monthly": "1595.11"
+    },
+    {
+      "level_code": "D1",
+      "as_of": "2026-07-01",
+      "expected_monthly": "1702.44"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2026-07-01",
+      "expected_monthly": "1827.37"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2026-07-01",
+      "expected_monthly": "2002.49"
+    },
+    {
+      "level_code": "B3",
+      "as_of": "2026-07-01",
+      "expected_monthly": "2126.85"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2026-07-01",
+      "expected_monthly": "2252.04"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2026-07-01",
+      "expected_monthly": "2371.11"
+    },
+    {
+      "level_code": "B1S",
+      "as_of": "2026-07-01",
+      "expected_monthly": "2425.41"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2026-07-01",
+      "expected_monthly": "2504.43"
+    },
+    {
+      "level_code": "AS",
+      "as_of": "2026-07-01",
+      "expected_monthly": "2871.24"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2026-07-01",
+      "expected_monthly": "2882.11"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2026-07-01",
+      "expected_amount": "16.01"
+    },
+    {
+      "level_code": "AS",
+      "as_of": "2026-07-01",
+      "expected_amount": "16.01"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2026-07-01",
+      "expected_amount": "16.01"
+    },
+    {
+      "level_code": "B1S",
+      "as_of": "2026-07-01",
+      "expected_amount": "14.46"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2026-07-01",
+      "expected_amount": "14.46"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2026-07-01",
+      "expected_amount": "13.94"
+    },
+    {
+      "level_code": "B3",
+      "as_of": "2026-07-01",
+      "expected_amount": "13.43"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2026-07-01",
+      "expected_amount": "12.91"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2026-07-01",
+      "expected_amount": "12.39"
+    },
+    {
+      "level_code": "D1",
+      "as_of": "2026-07-01",
+      "expected_amount": "11.88"
+    },
+    {
+      "level_code": "D2",
+      "as_of": "2026-07-01",
+      "expected_amount": "11.36"
+    },
+    {
+      "level_code": "E",
+      "as_of": "2026-07-01",
+      "expected_amount": "10.33"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "C2",
+      "track_name": "triennale",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "C2",
+      "track_name": "triennale",
+      "months_elapsed": 7,
+      "expected_pct": "0.75"
+    },
+    {
+      "level_code": "C2",
+      "track_name": "triennale",
+      "months_elapsed": 13,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "C2",
+      "track_name": "triennale",
+      "months_elapsed": 19,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "C2",
+      "track_name": "triennale",
+      "months_elapsed": 25,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "C2",
+      "track_name": "triennale",
+      "months_elapsed": 31,
+      "expected_pct": "0.95"
+    },
+    {
+      "level_code": "C2",
+      "track_name": "triennale",
+      "months_elapsed": 37,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "biennale",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "biennale",
+      "months_elapsed": 5,
+      "expected_pct": "0.75"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "biennale",
+      "months_elapsed": 9,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "biennale",
+      "months_elapsed": 13,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "biennale",
+      "months_elapsed": 17,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "biennale",
+      "months_elapsed": 21,
+      "expected_pct": "0.95"
+    },
+    {
+      "level_code": "D2",
+      "track_name": "biennale",
+      "months_elapsed": 25,
+      "expected_pct": "1.00"
+    }
+  ]
+}

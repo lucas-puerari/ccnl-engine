@@ -1,0 +1,85 @@
+{
+  "_description": "servizi-postali-appalto-fise — data checks 2026",
+  "ccnl_file": "servizi-postali-appalto-fise.json",
+  "salary_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2025-12-01",
+      "expected_monthly": "1875.95"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2025-12-01",
+      "expected_monthly": "1650.74"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2025-12-01",
+      "expected_monthly": "1549.72"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2025-12-01",
+      "expected_monthly": "1509.09"
+    },
+    {
+      "level_code": "4S",
+      "as_of": "2025-12-01",
+      "expected_monthly": "1457.90"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2025-12-01",
+      "expected_monthly": "1409.19"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2025-12-01",
+      "expected_monthly": "1325.69"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante - dest livello 1",
+      "months_elapsed": 1,
+      "expected_levels_below": 3
+    },
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante - dest livello 1",
+      "months_elapsed": 19,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "2",
+      "track_name": "professionalizzante - dest livello 2",
+      "months_elapsed": 1,
+      "expected_levels_below": 4
+    },
+    {
+      "level_code": "2",
+      "track_name": "professionalizzante - dest livello 2",
+      "months_elapsed": 19,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante - dest livello 3",
+      "months_elapsed": 1,
+      "expected_levels_below": 3
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante - dest livello 3",
+      "months_elapsed": 19,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante - dest livello 4",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    }
+  ]
+}

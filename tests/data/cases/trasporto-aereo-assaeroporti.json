@@ -1,0 +1,192 @@
+{
+  "_description": "trasporto-aereo-assaeroporti — data checks 2026",
+  "ccnl_file": "trasporto-aereo-assaeroporti.json",
+  "salary_checks": [
+    {
+      "level_code": "9",
+      "as_of": "2027-07-01",
+      "expected_monthly": "805.38"
+    },
+    {
+      "level_code": "8",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1014.78"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1127.53"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1256.39"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1336.93"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1417.47"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1570.49"
+    },
+    {
+      "level_code": "2B",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1691.30"
+    },
+    {
+      "level_code": "2A",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1804.05"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1973.18"
+    },
+    {
+      "level_code": "1S",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2174.53"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1S",
+      "as_of": "2025-01-01",
+      "expected_amount": "37.29"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2025-01-01",
+      "expected_amount": "34.45"
+    },
+    {
+      "level_code": "2A",
+      "as_of": "2025-01-01",
+      "expected_amount": "32.18"
+    },
+    {
+      "level_code": "2B",
+      "as_of": "2025-01-01",
+      "expected_amount": "30.47"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2025-01-01",
+      "expected_amount": "29.33"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2025-01-01",
+      "expected_amount": "27.42"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2025-01-01",
+      "expected_amount": "26.65"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2025-01-01",
+      "expected_amount": "25.31"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2025-01-01",
+      "expected_amount": "24.22"
+    },
+    {
+      "level_code": "8",
+      "as_of": "2025-01-01",
+      "expected_amount": "22.67"
+    },
+    {
+      "level_code": "9",
+      "as_of": "2025-01-01",
+      "expected_amount": "0.00"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "9",
+      "track_name": "professionalizzante_18m",
+      "months_elapsed": 1,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "9",
+      "track_name": "professionalizzante_18m",
+      "months_elapsed": 7,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "9",
+      "track_name": "professionalizzante_18m",
+      "months_elapsed": 13,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "9",
+      "track_name": "professionalizzante_24m",
+      "months_elapsed": 1,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "9",
+      "track_name": "professionalizzante_24m",
+      "months_elapsed": 7,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "9",
+      "track_name": "professionalizzante_24m",
+      "months_elapsed": 13,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "9",
+      "track_name": "professionalizzante_24m",
+      "months_elapsed": 19,
+      "expected_pct": "0.95"
+    },
+    {
+      "level_code": "9",
+      "track_name": "professionalizzante_36m",
+      "months_elapsed": 1,
+      "expected_pct": "0.75"
+    },
+    {
+      "level_code": "9",
+      "track_name": "professionalizzante_36m",
+      "months_elapsed": 13,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "9",
+      "track_name": "professionalizzante_36m",
+      "months_elapsed": 19,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "9",
+      "track_name": "professionalizzante_36m",
+      "months_elapsed": 25,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "9",
+      "track_name": "professionalizzante_36m",
+      "months_elapsed": 31,
+      "expected_pct": "0.95"
+    }
+  ]
+}

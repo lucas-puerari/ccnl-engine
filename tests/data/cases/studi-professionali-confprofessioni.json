@@ -1,0 +1,108 @@
+{
+  "_description": "studi-professionali-confprofessioni — data checks 2026",
+  "ccnl_file": "studi-professionali-confprofessioni.json",
+  "salary_checks": [
+    {
+      "level_code": "5",
+      "as_of": "2026-12-01",
+      "expected_monthly": "1502.19"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2026-12-01",
+      "expected_monthly": "1614.12"
+    },
+    {
+      "level_code": "4S",
+      "as_of": "2026-12-01",
+      "expected_monthly": "1674.10"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2026-12-01",
+      "expected_monthly": "1726.37"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2026-12-01",
+      "expected_monthly": "1742.20"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2026-12-01",
+      "expected_monthly": "1878.26"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2026-12-01",
+      "expected_monthly": "2156.38"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2026-12-01",
+      "expected_monthly": "2436.76"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2024-02-16",
+      "expected_amount": "30"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2024-02-16",
+      "expected_amount": "26"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2024-02-16",
+      "expected_amount": "23"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2024-02-16",
+      "expected_amount": "22"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2024-02-16",
+      "expected_amount": "22"
+    },
+    {
+      "level_code": "4S",
+      "as_of": "2024-02-16",
+      "expected_amount": "20"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2024-02-16",
+      "expected_amount": "20"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2024-02-16",
+      "expected_amount": "20"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante",
+      "months_elapsed": 13,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante",
+      "months_elapsed": 25,
+      "expected_pct": "0.93"
+    }
+  ]
+}

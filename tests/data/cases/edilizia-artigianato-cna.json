@@ -1,0 +1,294 @@
+{
+  "_description": "edilizia-artigianato-cna — data checks 2026",
+  "ccnl_file": "edilizia-artigianato-cna.json",
+  "salary_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2028-01-01",
+      "expected_monthly": "1165.30"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2028-01-01",
+      "expected_monthly": "1358.35"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2028-01-01",
+      "expected_monthly": "1515.12"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2028-01-01",
+      "expected_monthly": "1628.40"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2028-01-01",
+      "expected_monthly": "1748.04"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2028-01-01",
+      "expected_monthly": "2097.48"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2028-01-01",
+      "expected_monthly": "2358.36"
+    },
+    {
+      "level_code": "7Q",
+      "as_of": "2028-01-01",
+      "expected_monthly": "2358.36"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2025-05-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2025-05-01",
+      "expected_amount": "9.86"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2025-05-01",
+      "expected_amount": "10.78"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2025-05-01",
+      "expected_amount": "11.54"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2025-05-01",
+      "expected_amount": "12.55"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2025-05-01",
+      "expected_amount": "15.92"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2025-05-01",
+      "expected_amount": "16.73"
+    },
+    {
+      "level_code": "7Q",
+      "as_of": "2025-05-01",
+      "expected_amount": "16.73"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "4",
+      "track_name": "standard_gruppo_4",
+      "months_elapsed": 1,
+      "expected_pct": "0.74"
+    },
+    {
+      "level_code": "4",
+      "track_name": "standard_gruppo_4",
+      "months_elapsed": 7,
+      "expected_pct": "0.76"
+    },
+    {
+      "level_code": "4",
+      "track_name": "standard_gruppo_4",
+      "months_elapsed": 13,
+      "expected_pct": "0.79"
+    },
+    {
+      "level_code": "4",
+      "track_name": "standard_gruppo_4",
+      "months_elapsed": 19,
+      "expected_pct": "0.86"
+    },
+    {
+      "level_code": "4",
+      "track_name": "standard_gruppo_4",
+      "months_elapsed": 25,
+      "expected_pct": "0.91"
+    },
+    {
+      "level_code": "4",
+      "track_name": "standard_gruppo_4",
+      "months_elapsed": 31,
+      "expected_pct": "0.96"
+    },
+    {
+      "level_code": "4",
+      "track_name": "standard_gruppo_4",
+      "months_elapsed": 37,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "3",
+      "track_name": "standard_gruppi_1_3",
+      "months_elapsed": 1,
+      "expected_pct": "0.74"
+    },
+    {
+      "level_code": "3",
+      "track_name": "standard_gruppi_1_3",
+      "months_elapsed": 7,
+      "expected_pct": "0.76"
+    },
+    {
+      "level_code": "3",
+      "track_name": "standard_gruppi_1_3",
+      "months_elapsed": 13,
+      "expected_pct": "0.79"
+    },
+    {
+      "level_code": "3",
+      "track_name": "standard_gruppi_1_3",
+      "months_elapsed": 19,
+      "expected_pct": "0.79"
+    },
+    {
+      "level_code": "3",
+      "track_name": "standard_gruppi_1_3",
+      "months_elapsed": 25,
+      "expected_pct": "0.86"
+    },
+    {
+      "level_code": "3",
+      "track_name": "standard_gruppi_1_3",
+      "months_elapsed": 31,
+      "expected_pct": "0.86"
+    },
+    {
+      "level_code": "3",
+      "track_name": "standard_gruppi_1_3",
+      "months_elapsed": 37,
+      "expected_pct": "0.91"
+    },
+    {
+      "level_code": "3",
+      "track_name": "standard_gruppi_1_3",
+      "months_elapsed": 43,
+      "expected_pct": "0.91"
+    },
+    {
+      "level_code": "3",
+      "track_name": "standard_gruppi_1_3",
+      "months_elapsed": 49,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "4",
+      "track_name": "specialistico_1sp",
+      "months_elapsed": 1,
+      "expected_pct": "0.78"
+    },
+    {
+      "level_code": "4",
+      "track_name": "specialistico_1sp",
+      "months_elapsed": 13,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "4",
+      "track_name": "specialistico_1sp",
+      "months_elapsed": 25,
+      "expected_pct": "0.86"
+    },
+    {
+      "level_code": "4",
+      "track_name": "specialistico_1sp",
+      "months_elapsed": 37,
+      "expected_pct": "0.91"
+    },
+    {
+      "level_code": "4",
+      "track_name": "specialistico_1sp",
+      "months_elapsed": 43,
+      "expected_pct": "0.96"
+    },
+    {
+      "level_code": "4",
+      "track_name": "specialistico_1sp",
+      "months_elapsed": 49,
+      "expected_pct": "0.96"
+    },
+    {
+      "level_code": "4",
+      "track_name": "specialistico_1sp",
+      "months_elapsed": 55,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "3",
+      "track_name": "specialistico_2sp",
+      "months_elapsed": 1,
+      "expected_pct": "0.78"
+    },
+    {
+      "level_code": "3",
+      "track_name": "specialistico_2sp",
+      "months_elapsed": 13,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "3",
+      "track_name": "specialistico_2sp",
+      "months_elapsed": 25,
+      "expected_pct": "0.86"
+    },
+    {
+      "level_code": "3",
+      "track_name": "specialistico_2sp",
+      "months_elapsed": 37,
+      "expected_pct": "0.91"
+    },
+    {
+      "level_code": "3",
+      "track_name": "specialistico_2sp",
+      "months_elapsed": 43,
+      "expected_pct": "0.96"
+    },
+    {
+      "level_code": "3",
+      "track_name": "specialistico_2sp",
+      "months_elapsed": 46,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "3",
+      "track_name": "specialistico_3sp",
+      "months_elapsed": 1,
+      "expected_pct": "0.78"
+    },
+    {
+      "level_code": "3",
+      "track_name": "specialistico_3sp",
+      "months_elapsed": 13,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "3",
+      "track_name": "specialistico_3sp",
+      "months_elapsed": 25,
+      "expected_pct": "0.86"
+    },
+    {
+      "level_code": "3",
+      "track_name": "specialistico_3sp",
+      "months_elapsed": 37,
+      "expected_pct": "0.91"
+    },
+    {
+      "level_code": "3",
+      "track_name": "specialistico_3sp",
+      "months_elapsed": 43,
+      "expected_pct": "1.00"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "_description": "commercio-confcommercio — data checks 2026",
+  "ccnl_file": "commercio-confcommercio.json",
+  "salary_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2027-02-01",
+      "expected_monthly": "2313.29"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2027-02-01",
+      "expected_monthly": "2083.84"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1802.50"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1540.66"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1332.46"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1203.83"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1080.77"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2027-02-01",
+      "expected_monthly": "925.31"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2024-04-01",
+      "expected_amount": "25.46"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2024-04-01",
+      "expected_amount": "24.84"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2024-04-01",
+      "expected_amount": "22.83"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2024-04-01",
+      "expected_amount": "21.95"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2024-04-01",
+      "expected_amount": "20.66"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2024-04-01",
+      "expected_amount": "20.30"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2024-04-01",
+      "expected_amount": "19.73"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2024-04-01",
+      "expected_amount": "19.47"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "2",
+      "track_name": "livelli_2_5",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "2",
+      "track_name": "livelli_2_5",
+      "months_elapsed": 19,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "2",
+      "track_name": "livelli_2_5",
+      "months_elapsed": 37,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "6",
+      "track_name": "livello_6",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "6",
+      "track_name": "livello_6",
+      "months_elapsed": 25,
+      "expected_levels_below": 0
+    }
+  ]
+}

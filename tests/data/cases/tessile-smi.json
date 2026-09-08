@@ -1,0 +1,224 @@
+{
+  "_description": "tessile-smi — data checks 2026",
+  "ccnl_file": "tessile-smi.json",
+  "salary_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1560.00"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1803.70"
+    },
+    {
+      "level_code": "2S",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1843.81"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1899.25"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1941.98"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1986.95"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2027-01-01",
+      "expected_monthly": "2088.36"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2027-01-01",
+      "expected_monthly": "2229.13"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2027-01-01",
+      "expected_monthly": "2376.10"
+    },
+    {
+      "level_code": "8",
+      "as_of": "2027-01-01",
+      "expected_monthly": "2518.68"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2024-11-11",
+      "expected_amount": "6.71"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2024-11-11",
+      "expected_amount": "7.23"
+    },
+    {
+      "level_code": "2S",
+      "as_of": "2024-11-11",
+      "expected_amount": "7.23"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2024-11-11",
+      "expected_amount": "7.75"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2024-11-11",
+      "expected_amount": "7.75"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2024-11-11",
+      "expected_amount": "8.26"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2024-11-11",
+      "expected_amount": "9.81"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2024-11-11",
+      "expected_amount": "10.33"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2024-11-11",
+      "expected_amount": "11.88"
+    },
+    {
+      "level_code": "8",
+      "as_of": "2024-11-11",
+      "expected_amount": "12.91"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "6",
+      "track_name": "prof_L6_L8",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "6",
+      "track_name": "prof_L6_L8",
+      "months_elapsed": 16,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "6",
+      "track_name": "prof_L6_L8",
+      "months_elapsed": 31,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "5",
+      "track_name": "prof_L5",
+      "months_elapsed": 1,
+      "expected_levels_below": 3
+    },
+    {
+      "level_code": "5",
+      "track_name": "prof_L5",
+      "months_elapsed": 16,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "5",
+      "track_name": "prof_L5",
+      "months_elapsed": 31,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "4",
+      "track_name": "prof_L4",
+      "months_elapsed": 1,
+      "expected_levels_below": 4
+    },
+    {
+      "level_code": "4",
+      "track_name": "prof_L4",
+      "months_elapsed": 16,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "4",
+      "track_name": "prof_L4",
+      "months_elapsed": 31,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "3S",
+      "track_name": "prof_L3S",
+      "months_elapsed": 1,
+      "expected_levels_below": 4
+    },
+    {
+      "level_code": "3S",
+      "track_name": "prof_L3S",
+      "months_elapsed": 13,
+      "expected_levels_below": 3
+    },
+    {
+      "level_code": "3S",
+      "track_name": "prof_L3S",
+      "months_elapsed": 31,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "3",
+      "track_name": "prof_L3",
+      "months_elapsed": 1,
+      "expected_levels_below": 3
+    },
+    {
+      "level_code": "3",
+      "track_name": "prof_L3",
+      "months_elapsed": 13,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "3",
+      "track_name": "prof_L3",
+      "months_elapsed": 31,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "2S",
+      "track_name": "prof_L2S",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "2S",
+      "track_name": "prof_L2S",
+      "months_elapsed": 13,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "2",
+      "track_name": "prof_L2",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "2",
+      "track_name": "prof_L2",
+      "months_elapsed": 13,
+      "expected_levels_below": 0
+    }
+  ]
+}

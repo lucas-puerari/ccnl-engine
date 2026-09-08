@@ -1,0 +1,96 @@
+{
+  "_description": "cooperative-consorzi-agricoli — data checks 2026",
+  "ccnl_file": "cooperative-consorzi-agricoli.json",
+  "salary_checks": [
+    {
+      "level_code": "np",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1280.82"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1518.40"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1636.55"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1685.38"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1772.31"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1906.06"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2027-02-01",
+      "expected_monthly": "2070.77"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2027-02-01",
+      "expected_monthly": "2303.40"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "np",
+      "as_of": "2024-04-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2024-04-01",
+      "expected_amount": "9.44"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2024-04-01",
+      "expected_amount": "10.85"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2024-04-01",
+      "expected_amount": "11.39"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2024-04-01",
+      "expected_amount": "11.93"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2024-04-01",
+      "expected_amount": "12.20"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2024-04-01",
+      "expected_amount": "29.44"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2024-04-01",
+      "expected_amount": "33.05"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "np",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_pct": "1.00"
+    }
+  ]
+}

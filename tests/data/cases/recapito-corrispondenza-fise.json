@@ -1,0 +1,88 @@
+{
+  "_description": "recapito-corrispondenza-fise — data checks 2026",
+  "ccnl_file": "recapito-corrispondenza-fise.json",
+  "salary_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2224.51"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2006.77"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1791.30"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1687.29"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1600.99"
+    },
+    {
+      "level_code": "5S",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1489.70"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1446.71"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1359.91"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2024-02-01",
+      "expected_amount": "36.15"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2024-02-01",
+      "expected_amount": "33.05"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2024-02-01",
+      "expected_amount": "32.54"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2024-02-01",
+      "expected_amount": "31.50"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2024-02-01",
+      "expected_amount": "30.47"
+    },
+    {
+      "level_code": "5S",
+      "as_of": "2024-02-01",
+      "expected_amount": "29.70"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2024-02-01",
+      "expected_amount": "29.44"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2024-02-01",
+      "expected_amount": "28.41"
+    }
+  ]
+}

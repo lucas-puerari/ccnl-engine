@@ -1,0 +1,118 @@
+{
+  "_description": "metalmeccanico-confapi — data checks 2026",
+  "ccnl_file": "metalmeccanico-confapi.json",
+  "salary_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1639.96"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1811.11"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2009.48"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2096.58"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2245.87"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2407.97"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2583.36"
+    },
+    {
+      "level_code": "8",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2809.37"
+    },
+    {
+      "level_code": "9",
+      "as_of": "2026-06-01",
+      "expected_monthly": "3124.30"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2021-06-01",
+      "expected_amount": "18.49"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2021-06-01",
+      "expected_amount": "21.59"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2021-06-01",
+      "expected_amount": "25.05"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2021-06-01",
+      "expected_amount": "26.75"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2021-06-01",
+      "expected_amount": "29.64"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2021-06-01",
+      "expected_amount": "32.43"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2021-06-01",
+      "expected_amount": "36.41"
+    },
+    {
+      "level_code": "8",
+      "as_of": "2021-06-01",
+      "expected_amount": "40.95"
+    },
+    {
+      "level_code": "9",
+      "as_of": "2021-06-01",
+      "expected_amount": "45.96"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante",
+      "months_elapsed": 13,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante",
+      "months_elapsed": 25,
+      "expected_levels_below": 0
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "_description": "turismo-confcommercio — data checks 2026",
+  "ccnl_file": "turismo-confcommercio.json",
+  "salary_checks": [
+    {
+      "level_code": "7",
+      "as_of": "2027-11-01",
+      "expected_monthly": "1458.42"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2027-11-01",
+      "expected_monthly": "1556.35"
+    },
+    {
+      "level_code": "6S",
+      "as_of": "2027-11-01",
+      "expected_monthly": "1578.72"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2027-11-01",
+      "expected_monthly": "1641.85"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2027-11-01",
+      "expected_monthly": "1750.69"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2027-11-01",
+      "expected_monthly": "1855.32"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2027-11-01",
+      "expected_monthly": "1967.20"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2027-11-01",
+      "expected_monthly": "2152.32"
+    },
+    {
+      "level_code": "QB",
+      "as_of": "2027-11-01",
+      "expected_monthly": "2310.11"
+    },
+    {
+      "level_code": "QA",
+      "as_of": "2027-11-01",
+      "expected_monthly": "2495.22"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "QA",
+      "as_of": "2024-07-01",
+      "expected_amount": "40.80"
+    },
+    {
+      "level_code": "QB",
+      "as_of": "2024-07-01",
+      "expected_amount": "39.25"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2024-07-01",
+      "expected_amount": "37.70"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2024-07-01",
+      "expected_amount": "36.15"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2024-07-01",
+      "expected_amount": "34.86"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2024-07-01",
+      "expected_amount": "33.05"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2024-07-01",
+      "expected_amount": "32.54"
+    },
+    {
+      "level_code": "6S",
+      "as_of": "2024-07-01",
+      "expected_amount": "31.25"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2024-07-01",
+      "expected_amount": "30.99"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2024-07-01",
+      "expected_amount": "30.47"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "5",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 1,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "5",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 13,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "5",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 25,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "5",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 37,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "6",
+      "track_name": "professionalizzante_24",
+      "months_elapsed": 1,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "6",
+      "track_name": "professionalizzante_24",
+      "months_elapsed": 13,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "6",
+      "track_name": "professionalizzante_24",
+      "months_elapsed": 25,
+      "expected_pct": "1.00"
+    }
+  ]
+}

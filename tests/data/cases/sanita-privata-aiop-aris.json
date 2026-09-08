@@ -1,0 +1,160 @@
+{
+  "_description": "sanita-privata-aiop-aris — data checks 2026",
+  "ccnl_file": "sanita-privata-aiop-aris.json",
+  "salary_checks": [
+    {
+      "level_code": "A",
+      "as_of": "2020-07-01",
+      "expected_monthly": "1467.45"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2020-07-01",
+      "expected_monthly": "1506.44"
+    },
+    {
+      "level_code": "A2",
+      "as_of": "2020-07-01",
+      "expected_monthly": "1544.35"
+    },
+    {
+      "level_code": "A3",
+      "as_of": "2020-07-01",
+      "expected_monthly": "1566.67"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2020-07-01",
+      "expected_monthly": "1579.86"
+    },
+    {
+      "level_code": "A4",
+      "as_of": "2020-07-01",
+      "expected_monthly": "1592.19"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2020-07-01",
+      "expected_monthly": "1624.54"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2020-07-01",
+      "expected_monthly": "1669.36"
+    },
+    {
+      "level_code": "B3",
+      "as_of": "2020-07-01",
+      "expected_monthly": "1697.76"
+    },
+    {
+      "level_code": "B4",
+      "as_of": "2020-07-01",
+      "expected_monthly": "1733.54"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2020-07-01",
+      "expected_monthly": "1803.61"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2020-07-01",
+      "expected_monthly": "1857.14"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2020-07-01",
+      "expected_monthly": "1921.25"
+    },
+    {
+      "level_code": "D",
+      "as_of": "2020-07-01",
+      "expected_monthly": "1953.87"
+    },
+    {
+      "level_code": "C3",
+      "as_of": "2020-07-01",
+      "expected_monthly": "1984.10"
+    },
+    {
+      "level_code": "D1",
+      "as_of": "2020-07-01",
+      "expected_monthly": "2022.94"
+    },
+    {
+      "level_code": "C4",
+      "as_of": "2020-07-01",
+      "expected_monthly": "2076.38"
+    },
+    {
+      "level_code": "D2",
+      "as_of": "2020-07-01",
+      "expected_monthly": "2084.77"
+    },
+    {
+      "level_code": "DS",
+      "as_of": "2020-07-01",
+      "expected_monthly": "2101.08"
+    },
+    {
+      "level_code": "D3",
+      "as_of": "2020-07-01",
+      "expected_monthly": "2147.12"
+    },
+    {
+      "level_code": "DS1",
+      "as_of": "2020-07-01",
+      "expected_monthly": "2180.26"
+    },
+    {
+      "level_code": "D4",
+      "as_of": "2020-07-01",
+      "expected_monthly": "2209.98"
+    },
+    {
+      "level_code": "DS2",
+      "as_of": "2020-07-01",
+      "expected_monthly": "2261.56"
+    },
+    {
+      "level_code": "DS3",
+      "as_of": "2020-07-01",
+      "expected_monthly": "2345.38"
+    },
+    {
+      "level_code": "E",
+      "as_of": "2020-07-01",
+      "expected_monthly": "2410.22"
+    },
+    {
+      "level_code": "DS4",
+      "as_of": "2020-07-01",
+      "expected_monthly": "2418.05"
+    },
+    {
+      "level_code": "E1",
+      "as_of": "2020-07-01",
+      "expected_monthly": "2936.33"
+    },
+    {
+      "level_code": "E2",
+      "as_of": "2020-07-01",
+      "expected_monthly": "3554.39"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "A",
+      "track_name": "Apprendistato professionalizzante 36 mesi",
+      "months_elapsed": 1,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "A",
+      "track_name": "Apprendistato professionalizzante 36 mesi",
+      "months_elapsed": 19,
+      "expected_pct": "0.90"
+    }
+  ]
+}

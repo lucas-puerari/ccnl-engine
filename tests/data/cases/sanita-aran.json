@@ -1,0 +1,31 @@
+{
+  "_description": "sanita-aran — data checks 2026",
+  "ccnl_file": "sanita-aran.json",
+  "salary_checks": [
+    {
+      "level_code": "SUPPORTO",
+      "as_of": "2024-01-01",
+      "expected_monthly": "1701.59"
+    },
+    {
+      "level_code": "OPERATORI",
+      "as_of": "2024-01-01",
+      "expected_monthly": "1795.45"
+    },
+    {
+      "level_code": "ASSISTENTI",
+      "as_of": "2024-01-01",
+      "expected_monthly": "1913.48"
+    },
+    {
+      "level_code": "PROFESSIONISTI",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2076.58"
+    },
+    {
+      "level_code": "ELEVATA_QUALIFICAZIONE",
+      "as_of": "2024-01-01",
+      "expected_monthly": "2886.21"
+    }
+  ]
+}

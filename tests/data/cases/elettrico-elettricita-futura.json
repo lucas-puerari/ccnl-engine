@@ -1,0 +1,216 @@
+{
+  "_description": "elettrico-elettricita-futura — data checks 2026",
+  "ccnl_file": "elettrico-elettricita-futura.json",
+  "salary_checks": [
+    {
+      "level_code": "QS",
+      "as_of": "2027-10-01",
+      "expected_monthly": "4399.12"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2027-10-01",
+      "expected_monthly": "3947.60"
+    },
+    {
+      "level_code": "ASS",
+      "as_of": "2027-10-01",
+      "expected_monthly": "3484.42"
+    },
+    {
+      "level_code": "AS",
+      "as_of": "2027-10-01",
+      "expected_monthly": "3261.27"
+    },
+    {
+      "level_code": "A1S",
+      "as_of": "2027-10-01",
+      "expected_monthly": "3124.14"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2027-10-01",
+      "expected_monthly": "2980.96"
+    },
+    {
+      "level_code": "BSS",
+      "as_of": "2027-10-01",
+      "expected_monthly": "2838.72"
+    },
+    {
+      "level_code": "BS",
+      "as_of": "2027-10-01",
+      "expected_monthly": "2717.73"
+    },
+    {
+      "level_code": "B1S",
+      "as_of": "2027-10-01",
+      "expected_monthly": "2589.64"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2027-10-01",
+      "expected_monthly": "2473.33"
+    },
+    {
+      "level_code": "B2S",
+      "as_of": "2027-10-01",
+      "expected_monthly": "2309.87"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2027-10-01",
+      "expected_monthly": "2149.26"
+    },
+    {
+      "level_code": "CS",
+      "as_of": "2027-10-01",
+      "expected_monthly": "1905.68"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2027-10-01",
+      "expected_monthly": "1724.71"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "QS",
+      "as_of": "2025-04-01",
+      "expected_amount": "49.01"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2025-04-01",
+      "expected_amount": "46.33"
+    },
+    {
+      "level_code": "ASS",
+      "as_of": "2025-04-01",
+      "expected_amount": "43.07"
+    },
+    {
+      "level_code": "AS",
+      "as_of": "2025-04-01",
+      "expected_amount": "39.82"
+    },
+    {
+      "level_code": "A1S",
+      "as_of": "2025-04-01",
+      "expected_amount": "37.86"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2025-04-01",
+      "expected_amount": "35.74"
+    },
+    {
+      "level_code": "BSS",
+      "as_of": "2025-04-01",
+      "expected_amount": "33.72"
+    },
+    {
+      "level_code": "BS",
+      "as_of": "2025-04-01",
+      "expected_amount": "31.97"
+    },
+    {
+      "level_code": "B1S",
+      "as_of": "2025-04-01",
+      "expected_amount": "30.16"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2025-04-01",
+      "expected_amount": "28.46"
+    },
+    {
+      "level_code": "B2S",
+      "as_of": "2025-04-01",
+      "expected_amount": "26.13"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2025-04-01",
+      "expected_amount": "23.81"
+    },
+    {
+      "level_code": "CS",
+      "as_of": "2025-04-01",
+      "expected_amount": "20.30"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2025-04-01",
+      "expected_amount": "17.66"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "CS",
+      "track_name": "gruppo_c",
+      "months_elapsed": 1,
+      "expected_pct": "0.86"
+    },
+    {
+      "level_code": "CS",
+      "track_name": "gruppo_c",
+      "months_elapsed": 13,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "CS",
+      "track_name": "gruppo_c",
+      "months_elapsed": 25,
+      "expected_pct": "0.96"
+    },
+    {
+      "level_code": "CS",
+      "track_name": "gruppo_c",
+      "months_elapsed": 37,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "B1",
+      "track_name": "gruppo_b",
+      "months_elapsed": 1,
+      "expected_pct": "0.86"
+    },
+    {
+      "level_code": "B1",
+      "track_name": "gruppo_b",
+      "months_elapsed": 13,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "B1",
+      "track_name": "gruppo_b",
+      "months_elapsed": 25,
+      "expected_pct": "0.96"
+    },
+    {
+      "level_code": "B1",
+      "track_name": "gruppo_b",
+      "months_elapsed": 37,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "BSS",
+      "track_name": "gruppo_a_bss",
+      "months_elapsed": 1,
+      "expected_pct": "0.86"
+    },
+    {
+      "level_code": "BSS",
+      "track_name": "gruppo_a_bss",
+      "months_elapsed": 13,
+      "expected_pct": "0.96"
+    },
+    {
+      "level_code": "BSS",
+      "track_name": "gruppo_a_bss",
+      "months_elapsed": 25,
+      "expected_pct": "1.00"
+    }
+  ]
+}

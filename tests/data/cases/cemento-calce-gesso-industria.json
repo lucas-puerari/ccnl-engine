@@ -1,0 +1,136 @@
+{
+  "_description": "cemento-calce-gesso-industria — data checks 2026",
+  "ccnl_file": "cemento-calce-gesso-industria.json",
+  "salary_checks": [
+    {
+      "level_code": "AE1",
+      "as_of": "2027-10-01",
+      "expected_monthly": "1299.90"
+    },
+    {
+      "level_code": "AQ1",
+      "as_of": "2027-10-01",
+      "expected_monthly": "1497.04"
+    },
+    {
+      "level_code": "AQ2",
+      "as_of": "2027-10-01",
+      "expected_monthly": "1561.62"
+    },
+    {
+      "level_code": "AS1",
+      "as_of": "2027-10-01",
+      "expected_monthly": "1664.89"
+    },
+    {
+      "level_code": "AS2",
+      "as_of": "2027-10-01",
+      "expected_monthly": "1729.41"
+    },
+    {
+      "level_code": "AS3",
+      "as_of": "2027-10-01",
+      "expected_monthly": "1806.82"
+    },
+    {
+      "level_code": "AC1",
+      "as_of": "2027-10-01",
+      "expected_monthly": "1922.99"
+    },
+    {
+      "level_code": "AC2",
+      "as_of": "2027-10-01",
+      "expected_monthly": "2026.26"
+    },
+    {
+      "level_code": "AC3",
+      "as_of": "2027-10-01",
+      "expected_monthly": "2103.67"
+    },
+    {
+      "level_code": "AD1",
+      "as_of": "2027-10-01",
+      "expected_monthly": "2219.77"
+    },
+    {
+      "level_code": "AD2",
+      "as_of": "2027-10-01",
+      "expected_monthly": "2426.28"
+    },
+    {
+      "level_code": "AD3",
+      "as_of": "2027-10-01",
+      "expected_monthly": "2710.23"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "AE1",
+      "as_of": "2024-12-31",
+      "expected_amount": "7.70"
+    },
+    {
+      "level_code": "AQ1",
+      "as_of": "2024-12-31",
+      "expected_amount": "8.30"
+    },
+    {
+      "level_code": "AQ2",
+      "as_of": "2024-12-31",
+      "expected_amount": "8.50"
+    },
+    {
+      "level_code": "AS1",
+      "as_of": "2024-12-31",
+      "expected_amount": "8.90"
+    },
+    {
+      "level_code": "AS2",
+      "as_of": "2024-12-31",
+      "expected_amount": "9.10"
+    },
+    {
+      "level_code": "AS3",
+      "as_of": "2024-12-31",
+      "expected_amount": "9.30"
+    },
+    {
+      "level_code": "AC1",
+      "as_of": "2024-12-31",
+      "expected_amount": "9.80"
+    },
+    {
+      "level_code": "AC2",
+      "as_of": "2024-12-31",
+      "expected_amount": "10.70"
+    },
+    {
+      "level_code": "AC3",
+      "as_of": "2024-12-31",
+      "expected_amount": "11.00"
+    },
+    {
+      "level_code": "AD1",
+      "as_of": "2024-12-31",
+      "expected_amount": "11.50"
+    },
+    {
+      "level_code": "AD2",
+      "as_of": "2024-12-31",
+      "expected_amount": "13.00"
+    },
+    {
+      "level_code": "AD3",
+      "as_of": "2024-12-31",
+      "expected_amount": "14.80"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "AQ2",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_pct": "1.00"
+    }
+  ]
+}

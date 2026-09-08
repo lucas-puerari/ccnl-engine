@@ -1,0 +1,96 @@
+{
+  "_description": "lapidei-industria — data checks 2026",
+  "ccnl_file": "lapidei-industria.json",
+  "salary_checks": [
+    {
+      "level_code": "F",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1290.23"
+    },
+    {
+      "level_code": "E",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1514.52"
+    },
+    {
+      "level_code": "D",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1642.89"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1742.64"
+    },
+    {
+      "level_code": "CS",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1845.14"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1921.76"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2357.34"
+    },
+    {
+      "level_code": "AS",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2562.44"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "F",
+      "as_of": "2022-12-31",
+      "expected_amount": "6.65"
+    },
+    {
+      "level_code": "E",
+      "as_of": "2022-12-31",
+      "expected_amount": "7.69"
+    },
+    {
+      "level_code": "D",
+      "as_of": "2022-12-31",
+      "expected_amount": "8.31"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2022-12-31",
+      "expected_amount": "8.82"
+    },
+    {
+      "level_code": "CS",
+      "as_of": "2022-12-31",
+      "expected_amount": "9.45"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2022-12-31",
+      "expected_amount": "9.80"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2022-12-31",
+      "expected_amount": "11.97"
+    },
+    {
+      "level_code": "AS",
+      "as_of": "2022-12-31",
+      "expected_amount": "13.01"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "F",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_pct": "1.00"
+    }
+  ]
+}

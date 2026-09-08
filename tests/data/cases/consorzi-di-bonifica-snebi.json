@@ -1,0 +1,131 @@
+{
+  "_description": "consorzi-di-bonifica-snebi — data checks 2026",
+  "ccnl_file": "consorzi-di-bonifica-snebi.json",
+  "salary_checks": [
+    {
+      "level_code": "D100",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1534.16"
+    },
+    {
+      "level_code": "D104",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1595.53"
+    },
+    {
+      "level_code": "D107",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1641.56"
+    },
+    {
+      "level_code": "D112",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1718.28"
+    },
+    {
+      "level_code": "D115",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1764.29"
+    },
+    {
+      "level_code": "D116",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1779.62"
+    },
+    {
+      "level_code": "D117",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1794.97"
+    },
+    {
+      "level_code": "C118",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1810.32"
+    },
+    {
+      "level_code": "C122",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1871.68"
+    },
+    {
+      "level_code": "C127",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1948.38"
+    },
+    {
+      "level_code": "B128",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1963.73"
+    },
+    {
+      "level_code": "B128_ex52",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1963.73"
+    },
+    {
+      "level_code": "B132",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2025.10"
+    },
+    {
+      "level_code": "B132_ex51",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2025.10"
+    },
+    {
+      "level_code": "A134",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2055.79"
+    },
+    {
+      "level_code": "A135",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2071.13"
+    },
+    {
+      "level_code": "A157",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2408.65"
+    },
+    {
+      "level_code": "A159",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2439.32"
+    },
+    {
+      "level_code": "A160",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2454.67"
+    },
+    {
+      "level_code": "AQ162",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2485.35"
+    },
+    {
+      "level_code": "AQ164",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2516.04"
+    },
+    {
+      "level_code": "A170",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2608.08"
+    },
+    {
+      "level_code": "A184",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2822.87"
+    },
+    {
+      "level_code": "AQ185",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2838.21"
+    },
+    {
+      "level_code": "AQ187",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2868.89"
+    }
+  ]
+}

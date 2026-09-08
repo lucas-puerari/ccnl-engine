@@ -1,0 +1,110 @@
+{
+  "_description": "panificazione-assipan — data checks 2026",
+  "ccnl_file": "panificazione-assipan.json",
+  "salary_checks": [
+    {
+      "level_code": "VI",
+      "as_of": "2026-09-01",
+      "expected_monthly": "1481.15"
+    },
+    {
+      "level_code": "V",
+      "as_of": "2026-09-01",
+      "expected_monthly": "1664.67"
+    },
+    {
+      "level_code": "IV",
+      "as_of": "2026-09-01",
+      "expected_monthly": "1806.45"
+    },
+    {
+      "level_code": "IIIB",
+      "as_of": "2026-09-01",
+      "expected_monthly": "2046.31"
+    },
+    {
+      "level_code": "IIIA",
+      "as_of": "2026-09-01",
+      "expected_monthly": "2162.35"
+    },
+    {
+      "level_code": "II",
+      "as_of": "2026-09-01",
+      "expected_monthly": "2305.51"
+    },
+    {
+      "level_code": "I",
+      "as_of": "2026-09-01",
+      "expected_monthly": "2458.99"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "I",
+      "as_of": "2024-02-01",
+      "expected_amount": "34.28"
+    },
+    {
+      "level_code": "II",
+      "as_of": "2024-02-01",
+      "expected_amount": "31.67"
+    },
+    {
+      "level_code": "IIIA",
+      "as_of": "2024-02-01",
+      "expected_amount": "29.25"
+    },
+    {
+      "level_code": "IIIB",
+      "as_of": "2024-02-01",
+      "expected_amount": "27.24"
+    },
+    {
+      "level_code": "IV",
+      "as_of": "2024-02-01",
+      "expected_amount": "22.91"
+    },
+    {
+      "level_code": "V",
+      "as_of": "2024-02-01",
+      "expected_amount": "20.27"
+    },
+    {
+      "level_code": "VI",
+      "as_of": "2024-02-01",
+      "expected_amount": "17.14"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "I",
+      "track_name": "panif_track_a",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "I",
+      "track_name": "panif_track_a",
+      "months_elapsed": 13,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "I",
+      "track_name": "panif_track_a",
+      "months_elapsed": 25,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "V",
+      "track_name": "panif_track_b",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "V",
+      "track_name": "panif_track_b",
+      "months_elapsed": 13,
+      "expected_pct": "0.80"
+    }
+  ]
+}

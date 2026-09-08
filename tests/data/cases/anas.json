@@ -1,0 +1,98 @@
+{
+  "_description": "anas — data checks 2026",
+  "ccnl_file": "anas.json",
+  "salary_checks": [
+    {
+      "level_code": "C1",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1448.36"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2027-07-01",
+      "expected_monthly": "1665.53"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2027.55"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2244.84"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2462.15"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2896.61"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2027-07-01",
+      "expected_monthly": "3475.91"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "C1",
+      "as_of": "2026-03-01",
+      "expected_amount": "16.66"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2026-03-01",
+      "expected_amount": "19.16"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2026-03-01",
+      "expected_amount": "23.32"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2026-03-01",
+      "expected_amount": "25.82"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2026-03-01",
+      "expected_amount": "28.30"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2026-03-01",
+      "expected_amount": "33.31"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2026-03-01",
+      "expected_amount": "39.97"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "C1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "C1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 13,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "C1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 25,
+      "expected_pct": "0.92"
+    }
+  ]
+}

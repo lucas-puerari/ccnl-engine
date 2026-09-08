@@ -1,0 +1,164 @@
+{
+  "_description": "calzaturiero-assocalzaturifici — data checks 2026",
+  "ccnl_file": "calzaturiero-assocalzaturifici.json",
+  "salary_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1557.00"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1796.40"
+    },
+    {
+      "level_code": "2S",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1832.71"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1891.45"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1933.07"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1980.50"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2026-08-01",
+      "expected_monthly": "2054.43"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2026-08-01",
+      "expected_monthly": "2163.79"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2026-08-01",
+      "expected_monthly": "2355.70"
+    },
+    {
+      "level_code": "8",
+      "as_of": "2026-08-01",
+      "expected_monthly": "2509.13"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "8",
+      "as_of": "2024-08-01",
+      "expected_amount": "12.24"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2024-08-01",
+      "expected_amount": "12.01"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2024-08-01",
+      "expected_amount": "9.94"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2024-08-01",
+      "expected_amount": "9.19"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2024-08-01",
+      "expected_amount": "8.47"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2024-08-01",
+      "expected_amount": "7.98"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2024-08-01",
+      "expected_amount": "7.98"
+    },
+    {
+      "level_code": "2S",
+      "as_of": "2024-08-01",
+      "expected_amount": "7.41"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2024-08-01",
+      "expected_amount": "7.41"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2024-08-01",
+      "expected_amount": "6.89"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "6",
+      "track_name": "prof_L6_L8",
+      "months_elapsed": 1,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "6",
+      "track_name": "prof_L6_L8",
+      "months_elapsed": 11,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "6",
+      "track_name": "prof_L6_L8",
+      "months_elapsed": 21,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "3",
+      "track_name": "prof_L3_L5",
+      "months_elapsed": 1,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "3",
+      "track_name": "prof_L3_L5",
+      "months_elapsed": 12,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "3",
+      "track_name": "prof_L3_L5",
+      "months_elapsed": 23,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "2",
+      "track_name": "prof_L2",
+      "months_elapsed": 1,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "2",
+      "track_name": "prof_L2",
+      "months_elapsed": 13,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "2",
+      "track_name": "prof_L2",
+      "months_elapsed": 25,
+      "expected_pct": "1.00"
+    }
+  ]
+}

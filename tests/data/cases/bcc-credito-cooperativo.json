@@ -1,0 +1,132 @@
+{
+  "_description": "bcc-credito-cooperativo — data checks 2026",
+  "ccnl_file": "bcc-credito-cooperativo.json",
+  "salary_checks": [
+    {
+      "level_code": "QD4",
+      "as_of": "2026-01-01",
+      "expected_monthly": "5160.06"
+    },
+    {
+      "level_code": "QD3",
+      "as_of": "2026-01-01",
+      "expected_monthly": "4396.88"
+    },
+    {
+      "level_code": "QD2",
+      "as_of": "2026-01-01",
+      "expected_monthly": "3965.48"
+    },
+    {
+      "level_code": "QD1",
+      "as_of": "2026-01-01",
+      "expected_monthly": "3743.21"
+    },
+    {
+      "level_code": "3AP4",
+      "as_of": "2026-01-01",
+      "expected_monthly": "3341.90"
+    },
+    {
+      "level_code": "3AP3",
+      "as_of": "2026-01-01",
+      "expected_monthly": "3059.49"
+    },
+    {
+      "level_code": "3AP2",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2890.41"
+    },
+    {
+      "level_code": "3AP1",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2742.35"
+    },
+    {
+      "level_code": "2AP2",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2572.10"
+    },
+    {
+      "level_code": "2AP1",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2406.80"
+    },
+    {
+      "level_code": "1AP",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2241.53"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "QD4",
+      "as_of": "2024-09-01",
+      "expected_amount": "95.31"
+    },
+    {
+      "level_code": "QD3",
+      "as_of": "2024-09-01",
+      "expected_amount": "95.31"
+    },
+    {
+      "level_code": "QD2",
+      "as_of": "2024-09-01",
+      "expected_amount": "41.55"
+    },
+    {
+      "level_code": "QD1",
+      "as_of": "2024-09-01",
+      "expected_amount": "41.55"
+    },
+    {
+      "level_code": "3AP4",
+      "as_of": "2024-09-01",
+      "expected_amount": "41.55"
+    },
+    {
+      "level_code": "3AP3",
+      "as_of": "2024-09-01",
+      "expected_amount": "41.55"
+    },
+    {
+      "level_code": "3AP2",
+      "as_of": "2024-09-01",
+      "expected_amount": "41.55"
+    },
+    {
+      "level_code": "3AP1",
+      "as_of": "2024-09-01",
+      "expected_amount": "41.55"
+    },
+    {
+      "level_code": "2AP2",
+      "as_of": "2024-09-01",
+      "expected_amount": "35.57"
+    },
+    {
+      "level_code": "2AP1",
+      "as_of": "2024-09-01",
+      "expected_amount": "29.07"
+    },
+    {
+      "level_code": "1AP",
+      "as_of": "2024-09-01",
+      "expected_amount": "20.12"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "3AP1",
+      "track_name": "terza_area",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "3AP1",
+      "track_name": "terza_area",
+      "months_elapsed": 19,
+      "expected_levels_below": 0
+    }
+  ]
+}

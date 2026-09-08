@@ -1,0 +1,314 @@
+{
+  "_description": "legno-arredamento-federlegno — data checks 2026",
+  "ccnl_file": "legno-arredamento-federlegno.json",
+  "salary_checks": [
+    {
+      "level_code": "AE1",
+      "as_of": "2025-01-01",
+      "expected_monthly": "1230.69"
+    },
+    {
+      "level_code": "AE2",
+      "as_of": "2025-01-01",
+      "expected_monthly": "1455.87"
+    },
+    {
+      "level_code": "AE3",
+      "as_of": "2025-01-01",
+      "expected_monthly": "1544.94"
+    },
+    {
+      "level_code": "AE4",
+      "as_of": "2025-01-01",
+      "expected_monthly": "1633.95"
+    },
+    {
+      "level_code": "AS1",
+      "as_of": "2025-01-01",
+      "expected_monthly": "1633.95"
+    },
+    {
+      "level_code": "AC1",
+      "as_of": "2025-01-01",
+      "expected_monthly": "1705.36"
+    },
+    {
+      "level_code": "AS2",
+      "as_of": "2025-01-01",
+      "expected_monthly": "1705.36"
+    },
+    {
+      "level_code": "AS3",
+      "as_of": "2025-01-01",
+      "expected_monthly": "1795.17"
+    },
+    {
+      "level_code": "AC2",
+      "as_of": "2025-01-01",
+      "expected_monthly": "1883.66"
+    },
+    {
+      "level_code": "AC3",
+      "as_of": "2025-01-01",
+      "expected_monthly": "1883.66"
+    },
+    {
+      "level_code": "AS4",
+      "as_of": "2025-01-01",
+      "expected_monthly": "1883.66"
+    },
+    {
+      "level_code": "AC4",
+      "as_of": "2025-01-01",
+      "expected_monthly": "2061.83"
+    },
+    {
+      "level_code": "AC5",
+      "as_of": "2025-01-01",
+      "expected_monthly": "2239.93"
+    },
+    {
+      "level_code": "AD1",
+      "as_of": "2025-01-01",
+      "expected_monthly": "2358.74"
+    },
+    {
+      "level_code": "AD2",
+      "as_of": "2025-01-01",
+      "expected_monthly": "2478.22"
+    },
+    {
+      "level_code": "AD3",
+      "as_of": "2025-01-01",
+      "expected_monthly": "2536.28"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "AE1",
+      "as_of": "2023-07-01",
+      "expected_amount": "7.95"
+    },
+    {
+      "level_code": "AE2",
+      "as_of": "2023-07-01",
+      "expected_amount": "8.53"
+    },
+    {
+      "level_code": "AE3",
+      "as_of": "2023-07-01",
+      "expected_amount": "8.80"
+    },
+    {
+      "level_code": "AE4",
+      "as_of": "2023-07-01",
+      "expected_amount": "9.09"
+    },
+    {
+      "level_code": "AS1",
+      "as_of": "2023-07-01",
+      "expected_amount": "9.09"
+    },
+    {
+      "level_code": "AC1",
+      "as_of": "2023-07-01",
+      "expected_amount": "10.76"
+    },
+    {
+      "level_code": "AS2",
+      "as_of": "2023-07-01",
+      "expected_amount": "9.66"
+    },
+    {
+      "level_code": "AS3",
+      "as_of": "2023-07-01",
+      "expected_amount": "10.22"
+    },
+    {
+      "level_code": "AC2",
+      "as_of": "2023-07-01",
+      "expected_amount": "10.79"
+    },
+    {
+      "level_code": "AC3",
+      "as_of": "2023-07-01",
+      "expected_amount": "10.79"
+    },
+    {
+      "level_code": "AS4",
+      "as_of": "2023-07-01",
+      "expected_amount": "10.79"
+    },
+    {
+      "level_code": "AC4",
+      "as_of": "2023-07-01",
+      "expected_amount": "11.92"
+    },
+    {
+      "level_code": "AC5",
+      "as_of": "2023-07-01",
+      "expected_amount": "13.07"
+    },
+    {
+      "level_code": "AD1",
+      "as_of": "2023-07-01",
+      "expected_amount": "13.92"
+    },
+    {
+      "level_code": "AD2",
+      "as_of": "2023-07-01",
+      "expected_amount": "14.77"
+    },
+    {
+      "level_code": "AD3",
+      "as_of": "2023-07-01",
+      "expected_amount": "14.77"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "AE3",
+      "track_name": "professionalizzante_1",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "AE3",
+      "track_name": "professionalizzante_1",
+      "months_elapsed": 13,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "AE3",
+      "track_name": "professionalizzante_1",
+      "months_elapsed": 25,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "AE3",
+      "track_name": "professionalizzante_1",
+      "months_elapsed": 37,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "AS1",
+      "track_name": "professionalizzante_2",
+      "months_elapsed": 1,
+      "expected_levels_below": 3
+    },
+    {
+      "level_code": "AS1",
+      "track_name": "professionalizzante_2",
+      "months_elapsed": 13,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "AS1",
+      "track_name": "professionalizzante_2",
+      "months_elapsed": 25,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "AS1",
+      "track_name": "professionalizzante_2",
+      "months_elapsed": 37,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "AS2",
+      "track_name": "professionalizzante_3",
+      "months_elapsed": 1,
+      "expected_levels_below": 4
+    },
+    {
+      "level_code": "AS2",
+      "track_name": "professionalizzante_3",
+      "months_elapsed": 13,
+      "expected_levels_below": 3
+    },
+    {
+      "level_code": "AS2",
+      "track_name": "professionalizzante_3",
+      "months_elapsed": 25,
+      "expected_levels_below": 3
+    },
+    {
+      "level_code": "AS2",
+      "track_name": "professionalizzante_3",
+      "months_elapsed": 37,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "AS3",
+      "track_name": "professionalizzante_4",
+      "months_elapsed": 1,
+      "expected_levels_below": 4
+    },
+    {
+      "level_code": "AS3",
+      "track_name": "professionalizzante_4",
+      "months_elapsed": 13,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "AS3",
+      "track_name": "professionalizzante_4",
+      "months_elapsed": 25,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "AS3",
+      "track_name": "professionalizzante_4",
+      "months_elapsed": 37,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "AC2",
+      "track_name": "professionalizzante_5",
+      "months_elapsed": 1,
+      "expected_levels_below": 3
+    },
+    {
+      "level_code": "AC2",
+      "track_name": "professionalizzante_5",
+      "months_elapsed": 13,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "AC2",
+      "track_name": "professionalizzante_5",
+      "months_elapsed": 25,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "AC2",
+      "track_name": "professionalizzante_5",
+      "months_elapsed": 37,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "AS4",
+      "track_name": "professionalizzante_6",
+      "months_elapsed": 1,
+      "expected_levels_below": 5
+    },
+    {
+      "level_code": "AS4",
+      "track_name": "professionalizzante_6",
+      "months_elapsed": 13,
+      "expected_levels_below": 3
+    },
+    {
+      "level_code": "AS4",
+      "track_name": "professionalizzante_6",
+      "months_elapsed": 25,
+      "expected_levels_below": 3
+    },
+    {
+      "level_code": "AS4",
+      "track_name": "professionalizzante_6",
+      "months_elapsed": 37,
+      "expected_levels_below": 0
+    }
+  ]
+}

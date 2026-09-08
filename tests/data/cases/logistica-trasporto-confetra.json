@@ -1,0 +1,118 @@
+{
+  "_description": "logistica-trasporto-confetra — data checks 2026",
+  "ccnl_file": "logistica-trasporto-confetra.json",
+  "salary_checks": [
+    {
+      "level_code": "6",
+      "as_of": "2027-06-01",
+      "expected_monthly": "1841.61"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2027-06-01",
+      "expected_monthly": "1971.13"
+    },
+    {
+      "level_code": "4J",
+      "as_of": "2027-06-01",
+      "expected_monthly": "2018.13"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2027-06-01",
+      "expected_monthly": "2069.62"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2027-06-01",
+      "expected_monthly": "2182.80"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2027-06-01",
+      "expected_monthly": "2240.37"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2027-06-01",
+      "expected_monthly": "2382.07"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2027-06-01",
+      "expected_monthly": "2589.10"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2027-06-01",
+      "expected_monthly": "2754.22"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2025-01-01",
+      "expected_amount": "30.99"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2025-01-01",
+      "expected_amount": "29.44"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2025-01-01",
+      "expected_amount": "26.86"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2025-01-01",
+      "expected_amount": "24.79"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2025-01-01",
+      "expected_amount": "24.27"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2025-01-01",
+      "expected_amount": "23.24"
+    },
+    {
+      "level_code": "4J",
+      "as_of": "2025-01-01",
+      "expected_amount": "22.34"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2025-01-01",
+      "expected_amount": "22.21"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2025-01-01",
+      "expected_amount": "20.66"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "1",
+      "track_name": "standard",
+      "months_elapsed": 1,
+      "expected_pct": "0.75"
+    },
+    {
+      "level_code": "1",
+      "track_name": "standard",
+      "months_elapsed": 13,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "1",
+      "track_name": "standard",
+      "months_elapsed": 25,
+      "expected_pct": "1.00"
+    }
+  ]
+}

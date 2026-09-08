@@ -1,0 +1,138 @@
+{
+  "_description": "farmacie-municipalizzate-assofarm — data checks 2026",
+  "ccnl_file": "farmacie-municipalizzate-assofarm.json",
+  "salary_checks": [
+    {
+      "level_code": "1Q",
+      "as_of": "2024-07-01",
+      "expected_monthly": "2456.91"
+    },
+    {
+      "level_code": "1S",
+      "as_of": "2024-07-01",
+      "expected_monthly": "2372.46"
+    },
+    {
+      "level_code": "1C",
+      "as_of": "2024-07-01",
+      "expected_monthly": "2266.37"
+    },
+    {
+      "level_code": "1_12",
+      "as_of": "2024-07-01",
+      "expected_monthly": "2109.97"
+    },
+    {
+      "level_code": "1_2",
+      "as_of": "2024-07-01",
+      "expected_monthly": "2109.97"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2024-07-01",
+      "expected_monthly": "2109.97"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2024-07-01",
+      "expected_monthly": "1872.16"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2024-07-01",
+      "expected_monthly": "1777.29"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2024-07-01",
+      "expected_monthly": "1652.61"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2024-07-01",
+      "expected_monthly": "1522.17"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2024-07-01",
+      "expected_monthly": "1421.48"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1Q",
+      "as_of": "2022-07-01",
+      "expected_amount": "26.50"
+    },
+    {
+      "level_code": "1S",
+      "as_of": "2022-07-01",
+      "expected_amount": "25.82"
+    },
+    {
+      "level_code": "1C",
+      "as_of": "2022-07-01",
+      "expected_amount": "25.31"
+    },
+    {
+      "level_code": "1_12",
+      "as_of": "2022-07-01",
+      "expected_amount": "25.31"
+    },
+    {
+      "level_code": "1_2",
+      "as_of": "2022-07-01",
+      "expected_amount": "25.31"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2022-07-01",
+      "expected_amount": "25.31"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2022-07-01",
+      "expected_amount": "23.24"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2022-07-01",
+      "expected_amount": "22.72"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2022-07-01",
+      "expected_amount": "20.66"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2022-07-01",
+      "expected_amount": "20.14"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2022-07-01",
+      "expected_amount": "19.63"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "1",
+      "track_name": "farmacista_collaboratore",
+      "months_elapsed": 1,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante",
+      "months_elapsed": 13,
+      "expected_levels_below": 1
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "_description": "poste-italiane-k700 — data checks 2026",
+  "ccnl_file": "poste-italiane-k700.json",
+  "salary_checks": [
+    {
+      "level_code": "F",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1154.49"
+    },
+    {
+      "level_code": "E",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1287.61"
+    },
+    {
+      "level_code": "D",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1452.20"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1522.56"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1652.98"
+    },
+    {
+      "level_code": "A2",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1926.89"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2027-12-01",
+      "expected_monthly": "2169.37"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "B",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    }
+  ]
+}

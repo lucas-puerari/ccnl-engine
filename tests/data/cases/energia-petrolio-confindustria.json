@@ -1,0 +1,159 @@
+{
+  "_description": "energia-petrolio-confindustria — data checks 2026",
+  "ccnl_file": "energia-petrolio-confindustria.json",
+  "salary_checks": [
+    {
+      "level_code": "6-0",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2072.49"
+    },
+    {
+      "level_code": "5-0",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2382.32"
+    },
+    {
+      "level_code": "5-1",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2382.32"
+    },
+    {
+      "level_code": "5-2",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2382.32"
+    },
+    {
+      "level_code": "5-3",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2382.32"
+    },
+    {
+      "level_code": "5-4",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2382.32"
+    },
+    {
+      "level_code": "4-1",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2716.61"
+    },
+    {
+      "level_code": "4-2",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2716.61"
+    },
+    {
+      "level_code": "4-3",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2716.61"
+    },
+    {
+      "level_code": "4-4",
+      "as_of": "2027-07-01",
+      "expected_monthly": "2716.61"
+    },
+    {
+      "level_code": "3-1",
+      "as_of": "2027-07-01",
+      "expected_monthly": "3074.11"
+    },
+    {
+      "level_code": "3-2",
+      "as_of": "2027-07-01",
+      "expected_monthly": "3074.11"
+    },
+    {
+      "level_code": "3-3",
+      "as_of": "2027-07-01",
+      "expected_monthly": "3074.11"
+    },
+    {
+      "level_code": "3-4",
+      "as_of": "2027-07-01",
+      "expected_monthly": "3074.11"
+    },
+    {
+      "level_code": "2-1",
+      "as_of": "2027-07-01",
+      "expected_monthly": "3394.47"
+    },
+    {
+      "level_code": "2-2",
+      "as_of": "2027-07-01",
+      "expected_monthly": "3394.47"
+    },
+    {
+      "level_code": "2-3",
+      "as_of": "2027-07-01",
+      "expected_monthly": "3394.47"
+    },
+    {
+      "level_code": "2-4",
+      "as_of": "2027-07-01",
+      "expected_monthly": "3394.47"
+    },
+    {
+      "level_code": "1-1",
+      "as_of": "2027-07-01",
+      "expected_monthly": "3748.10"
+    },
+    {
+      "level_code": "1-2",
+      "as_of": "2027-07-01",
+      "expected_monthly": "3748.10"
+    },
+    {
+      "level_code": "1-3",
+      "as_of": "2027-07-01",
+      "expected_monthly": "3748.10"
+    },
+    {
+      "level_code": "1-4",
+      "as_of": "2027-07-01",
+      "expected_monthly": "3748.10"
+    },
+    {
+      "level_code": "1-5",
+      "as_of": "2027-07-01",
+      "expected_monthly": "3748.10"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "2-1",
+      "track_name": "livelli_2_3",
+      "months_elapsed": 1,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "2-1",
+      "track_name": "livelli_2_3",
+      "months_elapsed": 13,
+      "expected_pct": "0.95"
+    },
+    {
+      "level_code": "4-1",
+      "track_name": "livello_4",
+      "months_elapsed": 1,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "4-1",
+      "track_name": "livello_4",
+      "months_elapsed": 13,
+      "expected_pct": "0.95"
+    },
+    {
+      "level_code": "5-0",
+      "track_name": "livello_5",
+      "months_elapsed": 1,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "5-0",
+      "track_name": "livello_5",
+      "months_elapsed": 13,
+      "expected_pct": "0.90"
+    }
+  ]
+}

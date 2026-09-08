@@ -1,0 +1,122 @@
+{
+  "_description": "edilizia-ance — data checks 2026",
+  "ccnl_file": "edilizia-ance.json",
+  "salary_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2027-03-01",
+      "expected_monthly": "1690.56"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2027-03-01",
+      "expected_monthly": "1892.57"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2027-03-01",
+      "expected_monthly": "2047.05"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2027-03-01",
+      "expected_monthly": "2165.89"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2027-03-01",
+      "expected_monthly": "2284.70"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2027-03-01",
+      "expected_monthly": "2641.19"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2027-03-01",
+      "expected_monthly": "2878.86"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2025-02-01",
+      "expected_amount": "8.22"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2025-02-01",
+      "expected_amount": "8.22"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2025-02-01",
+      "expected_amount": "8.99"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2025-02-01",
+      "expected_amount": "9.62"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2025-02-01",
+      "expected_amount": "10.46"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2025-02-01",
+      "expected_amount": "12.85"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2025-02-01",
+      "expected_amount": "13.94"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "2",
+      "track_name": "standard",
+      "months_elapsed": 1,
+      "expected_pct": "0.72"
+    },
+    {
+      "level_code": "2",
+      "track_name": "standard",
+      "months_elapsed": 7,
+      "expected_pct": "0.72"
+    },
+    {
+      "level_code": "2",
+      "track_name": "standard",
+      "months_elapsed": 13,
+      "expected_pct": "0.78"
+    },
+    {
+      "level_code": "2",
+      "track_name": "standard",
+      "months_elapsed": 19,
+      "expected_pct": "0.78"
+    },
+    {
+      "level_code": "2",
+      "track_name": "standard",
+      "months_elapsed": 25,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "2",
+      "track_name": "standard",
+      "months_elapsed": 31,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "2",
+      "track_name": "standard",
+      "months_elapsed": 37,
+      "expected_pct": "1.00"
+    }
+  ]
+}

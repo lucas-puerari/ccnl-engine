@@ -1,0 +1,146 @@
+{
+  "_description": "multiservizi-anip — data checks 2026",
+  "ccnl_file": "multiservizi-anip.json",
+  "salary_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2029-03-01",
+      "expected_monthly": "912.12"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2029-03-01",
+      "expected_monthly": "994.21"
+    },
+    {
+      "level_code": "2par115",
+      "as_of": "2029-03-01",
+      "expected_monthly": "1048.93"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2029-03-01",
+      "expected_monthly": "1076.30"
+    },
+    {
+      "level_code": "4par125",
+      "as_of": "2029-03-01",
+      "expected_monthly": "1140.15"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2029-03-01",
+      "expected_monthly": "1167.51"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2029-03-01",
+      "expected_monthly": "1276.96"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2029-03-01",
+      "expected_monthly": "1587.07"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2029-03-01",
+      "expected_monthly": "1833.35"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2029-03-01",
+      "expected_monthly": "2006.64"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2021-07-01",
+      "expected_amount": "51.02"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2021-07-01",
+      "expected_amount": "54.39"
+    },
+    {
+      "level_code": "2par115",
+      "as_of": "2021-07-01",
+      "expected_amount": "55.50"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2021-07-01",
+      "expected_amount": "58.18"
+    },
+    {
+      "level_code": "4par125",
+      "as_of": "2021-07-01",
+      "expected_amount": "62.59"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2021-07-01",
+      "expected_amount": "63.15"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2029-03-01",
+      "expected_amount": "97.29"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2029-03-01",
+      "expected_amount": "116.67"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2029-03-01",
+      "expected_amount": "132.06"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2029-03-01",
+      "expected_amount": "142.89"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "5",
+      "track_name": "destinazione_5",
+      "months_elapsed": 1,
+      "expected_levels_below": 3
+    },
+    {
+      "level_code": "5",
+      "track_name": "destinazione_5",
+      "months_elapsed": 16,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "5",
+      "track_name": "destinazione_5",
+      "months_elapsed": 31,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "4",
+      "track_name": "destinazione_4",
+      "months_elapsed": 1,
+      "expected_levels_below": 4
+    },
+    {
+      "level_code": "4",
+      "track_name": "destinazione_4",
+      "months_elapsed": 16,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "4",
+      "track_name": "destinazione_4",
+      "months_elapsed": 31,
+      "expected_levels_below": 0
+    }
+  ]
+}

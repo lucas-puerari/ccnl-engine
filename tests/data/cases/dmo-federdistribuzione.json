@@ -1,0 +1,114 @@
+{
+  "_description": "dmo-federdistribuzione — data checks 2026",
+  "ccnl_file": "dmo-federdistribuzione.json",
+  "salary_checks": [
+    {
+      "level_code": "VII",
+      "as_of": "2027-02-01",
+      "expected_monthly": "925.31"
+    },
+    {
+      "level_code": "VI",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1080.77"
+    },
+    {
+      "level_code": "V",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1203.83"
+    },
+    {
+      "level_code": "IV",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1332.46"
+    },
+    {
+      "level_code": "III",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1540.66"
+    },
+    {
+      "level_code": "II",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1802.50"
+    },
+    {
+      "level_code": "I",
+      "as_of": "2027-02-01",
+      "expected_monthly": "2083.84"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2027-02-01",
+      "expected_monthly": "2313.29"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2024-04-23",
+      "expected_amount": "25.46"
+    },
+    {
+      "level_code": "I",
+      "as_of": "2024-04-23",
+      "expected_amount": "24.84"
+    },
+    {
+      "level_code": "II",
+      "as_of": "2024-04-23",
+      "expected_amount": "22.83"
+    },
+    {
+      "level_code": "III",
+      "as_of": "2024-04-23",
+      "expected_amount": "21.95"
+    },
+    {
+      "level_code": "IV",
+      "as_of": "2024-04-23",
+      "expected_amount": "20.66"
+    },
+    {
+      "level_code": "V",
+      "as_of": "2024-04-23",
+      "expected_amount": "20.30"
+    },
+    {
+      "level_code": "VI",
+      "as_of": "2024-04-23",
+      "expected_amount": "19.73"
+    },
+    {
+      "level_code": "VII",
+      "as_of": "2024-04-23",
+      "expected_amount": "19.47"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "II",
+      "track_name": "standard_II_V",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "II",
+      "track_name": "standard_II_V",
+      "months_elapsed": 19,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "VI",
+      "track_name": "standard_VI",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "VI",
+      "track_name": "standard_VI",
+      "months_elapsed": 13,
+      "expected_levels_below": 0
+    }
+  ]
+}
