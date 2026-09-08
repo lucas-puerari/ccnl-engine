@@ -75,8 +75,11 @@ from ccnl_engine.engine.payroll.domain.scenario import (
 )
 from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
+    BonusInput,
+    FringeBenefitInput,
     LeaveInput,
     SickInput,
+    WelfareInput,
 )
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 from ccnl_engine.engine.provenance import SourceAuthority
@@ -90,6 +93,7 @@ __all__ = [
     "Agreement",
     "Allowance",
     "Apprentice",
+    "BonusInput",
     "Calculation",
     "Contract",
     "DestinationRalOverride",
@@ -98,6 +102,7 @@ __all__ = [
     "Employment",
     "FiscalSimplification",
     "FixedTerm",
+    "FringeBenefitInput",
     "Jurisdiction",
     "LeaveInput",
     "LevelCategory",
@@ -117,6 +122,7 @@ __all__ = [
     "SurtaxRules",
     "TaxSector",
     "VerificationStatus",
+    "WelfareInput",
     "YearRules",
     "compute",
     "count_affected_scenarios",

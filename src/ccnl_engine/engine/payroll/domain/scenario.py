@@ -40,9 +40,12 @@ from ccnl_engine.engine.payroll.domain.employment import (
 )
 from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
+    BonusInput,
+    FringeBenefitInput,
     LeaveInput,
     OvertimeHours,
     SickInput,
+    WelfareInput,
 )
 
 _ZERO: Decimal = Decimal(0)
@@ -265,6 +268,12 @@ class PayrollScenario:
             (ferie / permessi taken). ``None`` when not requested.
         sick_input: Optional Layer 3 sick leave data for the pay period
             (malattia ordinaria). ``None`` when not requested.
+        fringe_benefit_input: Optional fringe-benefit data for the fiscal
+            year (Art. 51 c. 3 TUIR). ``None`` when not requested.
+        welfare_input: Optional welfare data for the fiscal year
+            (Art. 51 c. 2 TUIR). ``None`` when not requested.
+        bonus_input: Optional bonus / PdR data for the fiscal year.
+            ``None`` when not requested.
     """
 
     employee: Employee
@@ -273,3 +282,6 @@ class PayrollScenario:
     absence_days: AbsenceDays | None = None
     leave_input: LeaveInput | None = None
     sick_input: SickInput | None = None
+    fringe_benefit_input: FringeBenefitInput | None = None
+    welfare_input: WelfareInput | None = None
+    bonus_input: BonusInput | None = None

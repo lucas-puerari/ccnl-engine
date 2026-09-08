@@ -131,3 +131,91 @@ class SickInput:
         if self.sick_days < _ZERO:
             msg = f"sick_days must be >= 0, got {self.sick_days}"
             raise ValueError(msg)
+
+
+@dataclass(frozen=True)
+class FringeBenefitInput:
+    """Caller-declared fringe benefits for the fiscal year (Art. 51 c. 3 TUIR).
+
+    Fringe benefits are exempt below the statutory annual threshold
+    (€1.000 or €2.000 with dependent children).  Amounts above the
+    threshold are taxable income; the engine reports the taxable portion
+    informally without recomputing IRPEF.
+
+    Attributes:
+        annual_amount: Total fringe benefit value for the year. Must be >= 0.
+        has_dependent_children: Whether the worker has at least one child
+            fiscally at charge (figlio fiscalmente a carico).  Determines
+            which threshold applies.
+    """
+
+    annual_amount: Decimal = _ZERO
+    has_dependent_children: bool = False
+
+    def __post_init__(self) -> None:
+        """Validate that annual_amount is non-negative.
+
+        Raises:
+            ValueError: If annual_amount is negative.
+        """
+        if self.annual_amount < _ZERO:
+            msg = f"annual_amount must be >= 0, got {self.annual_amount}"
+            raise ValueError(msg)
+
+
+@dataclass(frozen=True)
+class WelfareInput:
+    """Caller-declared welfare contributions for the fiscal year.
+
+    Welfare structured under Art. 51 c. 2 TUIR is fully exempt from
+    IRPEF and social contributions.  The engine echoes the amount and
+    marks it as tax-exempt without verifying the platform structure.
+
+    Attributes:
+        annual_amount: Total welfare amount for the year. Must be >= 0.
+    """
+
+    annual_amount: Decimal = _ZERO
+
+    def __post_init__(self) -> None:
+        """Validate that annual_amount is non-negative.
+
+        Raises:
+            ValueError: If annual_amount is negative.
+        """
+        if self.annual_amount < _ZERO:
+            msg = f"annual_amount must be >= 0, got {self.annual_amount}"
+            raise ValueError(msg)
+
+
+@dataclass(frozen=True)
+class BonusInput:
+    """Caller-declared bonus / premio di risultato for the fiscal year.
+
+    When ``eligible_for_pdr`` is True and the worker's gross income from
+    employment does not exceed the statutory ceiling, the engine applies
+    the PdR flat tax (imposta sostitutiva) up to the statutory maximum.
+    The amount exceeding the ceiling is reported as ordinarily taxable.
+
+    The engine does *not* recompute IRPEF for the ordinary-tax portion;
+    that would require extending the fiscal chain.  The output is
+    informational only.
+
+    Attributes:
+        annual_amount: Total bonus for the year. Must be >= 0.
+        eligible_for_pdr: Whether the bonus qualifies for the PdR
+            preferential tax regime (union agreement in place).
+    """
+
+    annual_amount: Decimal = _ZERO
+    eligible_for_pdr: bool = False
+
+    def __post_init__(self) -> None:
+        """Validate that annual_amount is non-negative.
+
+        Raises:
+            ValueError: If annual_amount is negative.
+        """
+        if self.annual_amount < _ZERO:
+            msg = f"annual_amount must be >= 0, got {self.annual_amount}"
+            raise ValueError(msg)

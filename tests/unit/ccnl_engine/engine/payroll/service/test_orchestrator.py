@@ -37,9 +37,12 @@ from ccnl_engine.engine.payroll.domain.scenario import (
 )
 from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
+    BonusInput,
+    FringeBenefitInput,
     LeaveInput,
     OvertimeHours,
     SickInput,
+    WelfareInput,
 )
 from ccnl_engine.engine.payroll.service.orchestrator import _collect_provenance, compute
 from ccnl_engine.engine.payroll.service.rounding import money
@@ -1169,3 +1172,107 @@ class TestL3Sickness:
         assert result.sick_carenza_days_monthly == _D("0")
         assert result.sick_inps_indemnity_monthly == _D("0")
         assert result.sick_company_integration_monthly == _D("0")
+
+
+class TestL3VariablePay:
+    """Orchestrator integration tests for the variable-pay L3 features."""
+
+    def test_fringe_benefit_scope_excluded_when_no_input(self) -> None:
+        """fringe_benefit scope is excluded when no fringe_benefit_input."""
+        result = compute(_req()).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["fringe_benefit"] == "excluded"
+
+    def test_welfare_scope_excluded_when_no_input(self) -> None:
+        """Welfare scope is excluded when no welfare_input."""
+        result = compute(_req()).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["welfare"] == "excluded"
+
+    def test_bonus_pdr_scope_excluded_when_no_input(self) -> None:
+        """bonus_pdr scope is excluded when no bonus_input."""
+        result = compute(_req()).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["bonus_pdr"] == "excluded"
+
+    def test_all_variable_pay_fields_zero_when_no_inputs(self) -> None:
+        """All variable-pay output fields are zero when no inputs are provided."""
+        result = compute(_req()).result
+        assert result.fringe_benefit_annual == _D("0")
+        assert result.fringe_benefit_threshold_annual == _D("0")
+        assert result.fringe_benefit_taxable_annual == _D("0")
+        assert result.welfare_annual == _D("0")
+        assert result.bonus_annual == _D("0")
+        assert result.bonus_pdr_flat_tax_annual == _D("0")
+        assert result.bonus_ordinary_taxable_annual == _D("0")
+
+    def test_fringe_benefit_scope_verified_when_input_given(self) -> None:
+        """fringe_benefit scope is verified when input is provided."""
+        scenario = dataclasses.replace(
+            _req(),
+            fringe_benefit_input=FringeBenefitInput(annual_amount=_D("800")),
+        )
+        result = compute(scenario).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["fringe_benefit"] == "verified"
+
+    def test_fringe_benefit_below_threshold_not_taxable(self) -> None:
+        """Fringe benefit below €1.000 threshold: taxable_annual is zero."""
+        scenario = dataclasses.replace(
+            _req(),
+            fringe_benefit_input=FringeBenefitInput(annual_amount=_D("800")),
+        )
+        result = compute(scenario).result
+        assert result.fringe_benefit_annual == _D("800")
+        assert result.fringe_benefit_threshold_annual == _D("1000.00")
+        assert result.fringe_benefit_taxable_annual == _D("0")
+
+    def test_fringe_benefit_above_threshold_taxable(self) -> None:
+        """Fringe benefit above €1.000 threshold: excess is taxable."""
+        scenario = dataclasses.replace(
+            _req(),
+            fringe_benefit_input=FringeBenefitInput(annual_amount=_D("1400")),
+        )
+        result = compute(scenario).result
+        assert result.fringe_benefit_annual == _D("1400")
+        assert result.fringe_benefit_taxable_annual == _D("400.00")
+
+    def test_welfare_scope_verified_when_input_given(self) -> None:
+        """Welfare scope is verified when input is provided."""
+        scenario = dataclasses.replace(
+            _req(),
+            welfare_input=WelfareInput(annual_amount=_D("600")),
+        )
+        result = compute(scenario).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["welfare"] == "verified"
+        assert result.welfare_annual == _D("600")
+
+    def test_bonus_pdr_eligible_applies_flat_tax(self) -> None:
+        """PdR-eligible bonus within ceiling: flat tax computed correctly."""
+        scenario = dataclasses.replace(
+            _req(),
+            bonus_input=BonusInput(annual_amount=_D("2000"), eligible_for_pdr=True),
+        )
+        result = compute(scenario).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["bonus_pdr"] == "verified"
+        assert result.bonus_annual == _D("2000")
+        assert result.bonus_pdr_flat_tax_annual == _D("200.00")
+        assert result.bonus_ordinary_taxable_annual == _D("0")
+
+    def test_gross_annual_not_mutated_by_variable_pay(self) -> None:
+        """gross_annual and net_annual are unchanged with variable-pay inputs."""
+        baseline = compute(_req()).result
+        with_inputs = compute(
+            dataclasses.replace(
+                _req(),
+                fringe_benefit_input=FringeBenefitInput(annual_amount=_D("1400")),
+                welfare_input=WelfareInput(annual_amount=_D("600")),
+                bonus_input=BonusInput(annual_amount=_D("2000"), eligible_for_pdr=True),
+            )
+        ).result
+        assert with_inputs.gross_annual == baseline.gross_annual
+        assert with_inputs.net_annual == baseline.net_annual
+        assert with_inputs.taxable_income == baseline.taxable_income
+        assert with_inputs.irpef_net == baseline.irpef_net

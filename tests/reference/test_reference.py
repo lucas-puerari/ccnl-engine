@@ -38,9 +38,12 @@ from ccnl_engine.engine.payroll.domain.scenario import (
 )
 from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
+    BonusInput,
+    FringeBenefitInput,
     LeaveInput,
     OvertimeHours,
     SickInput,
+    WelfareInput,
 )
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 
@@ -84,6 +87,48 @@ def _build_sick_input(inputs: dict[str, Any]) -> SickInput | None:
     if raw is None:
         return None
     return SickInput(sick_days=Decimal(str(raw.get("sick_days", "0"))))
+
+
+def _build_fringe_benefit_input(inputs: dict[str, Any]) -> FringeBenefitInput | None:
+    """Build FringeBenefitInput from the ``fringe_benefit_input`` key in *inputs*.
+
+    Returns:
+        A :class:`FringeBenefitInput` instance, or ``None`` when the key is absent.
+    """
+    raw = inputs.get("fringe_benefit_input")
+    if raw is None:
+        return None
+    return FringeBenefitInput(
+        annual_amount=Decimal(str(raw.get("annual_amount", "0"))),
+        has_dependent_children=bool(raw.get("has_dependent_children", False)),
+    )
+
+
+def _build_welfare_input(inputs: dict[str, Any]) -> WelfareInput | None:
+    """Build WelfareInput from the ``welfare_input`` key in *inputs*.
+
+    Returns:
+        A :class:`WelfareInput` instance, or ``None`` when the key is absent.
+    """
+    raw = inputs.get("welfare_input")
+    if raw is None:
+        return None
+    return WelfareInput(annual_amount=Decimal(str(raw.get("annual_amount", "0"))))
+
+
+def _build_bonus_input(inputs: dict[str, Any]) -> BonusInput | None:
+    """Build BonusInput from the ``bonus_input`` key in *inputs*.
+
+    Returns:
+        A :class:`BonusInput` instance, or ``None`` when the key is absent.
+    """
+    raw = inputs.get("bonus_input")
+    if raw is None:
+        return None
+    return BonusInput(
+        annual_amount=Decimal(str(raw.get("annual_amount", "0"))),
+        eligible_for_pdr=bool(raw.get("eligible_for_pdr", False)),
+    )
 
 
 def _build_time_supplements(inputs: dict[str, Any]) -> OvertimeHours | None:
@@ -193,6 +238,9 @@ class TestReferenceCases:
         absence_days = _build_absence_days(inputs)
         leave_input = _build_leave_input(inputs)
         sick_input = _build_sick_input(inputs)
+        fringe_benefit_input = _build_fringe_benefit_input(inputs)
+        welfare_input = _build_welfare_input(inputs)
+        bonus_input = _build_bonus_input(inputs)
 
         scenario = PayrollScenario(
             employee=Employee(
@@ -220,6 +268,9 @@ class TestReferenceCases:
             absence_days=absence_days,
             leave_input=leave_input,
             sick_input=sick_input,
+            fringe_benefit_input=fringe_benefit_input,
+            welfare_input=welfare_input,
+            bonus_input=bonus_input,
         )
 
         result = compute(scenario)
