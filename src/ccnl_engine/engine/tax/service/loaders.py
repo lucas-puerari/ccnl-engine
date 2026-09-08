@@ -99,6 +99,7 @@ def load_year_rules(
         domestic_contributions=rules.domestic_contributions,
         tfr=rules.tfr,
         trattamento_integrativo=rules.trattamento_integrativo,
+        sterilizzazione_detrazioni=rules.sterilizzazione_detrazioni,
         notes=rules.notes,
         sources=rules.sources,
         extraction=rules.extraction,

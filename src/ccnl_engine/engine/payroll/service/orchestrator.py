@@ -507,7 +507,6 @@ def _compute_ti(
             FiscalSimplification.NO_ADDIZIONALE_REGIONALE,
             FiscalSimplification.NO_ADDIZIONALE_COMUNALE,
             FiscalSimplification.NO_DETRAZIONI_FAMILIARI,
-            FiscalSimplification.NO_STERILIZZAZIONE_DETRAZIONI,
         })
     else:
         trattamento_integrativo = _ZERO
@@ -1284,6 +1283,22 @@ def compute(scenario: PayrollScenario) -> Calculation:
         employer_withholds_irpef=employer_withholds_irpef,
     )
 
+    # Sterilizzazione detrazioni (Art. 1 c. 3-4 L. 199/2025): for reddito
+    # complessivo > EUR 200 000, reduce total Art. 12 + Art. 13 detrazioni
+    # by EUR 440 (clawback of the 35% → 33% bracket benefit).
+    # Save pre-sterilizzazione fam_total for the NO_DETRAZIONI_FAMILIARI check.
+    fam_total_computed = fam_total
+    work_income_deduction, fam_total = _irpef.apply_sterilizzazione_detrazioni(
+        work_income_deduction,
+        fam_total,
+        gross_annual,
+        rules.sterilizzazione_detrazioni,
+    )
+    # Recompute unused after sterilizzazione (incapienza may change).
+    if fam_total_computed != fam_total:
+        available = money(max(_ZERO, irpef_gross - work_income_deduction))
+        fam_unused = money(max(_ZERO, fam_total - available))
+
     # When the employer is not a sostituto d'imposta, irpef_net is zeroed;
     # irpef_gross and work_income_deduction remain as informational figures.
     irpef_net = (
@@ -1298,8 +1313,9 @@ def compute(scenario: PayrollScenario) -> Calculation:
         gross_annual, irpef_gross, work_income_deduction, rules
     )
 
-    # Remove NO_DETRAZIONI_FAMILIARI when family deductions were computed.
-    if fam_total > _ZERO:
+    # Remove NO_DETRAZIONI_FAMILIARI when family deductions were computed
+    # (use pre-sterilizzazione total: deductions were still computed).
+    if fam_total_computed > _ZERO:
         sfs_mut: set[FiscalSimplification] = set(fiscal_simplifications)
         sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_FAMILIARI)
         fiscal_simplifications = frozenset(sfs_mut)

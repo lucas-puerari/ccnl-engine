@@ -3,13 +3,13 @@
 Implements Art. 11 TUIR brackets and the Art. 13 co. 1 TUIR work-income
 deduction (piecewise-linear schedule as modified by D.Lgs. 216/2023 and
 confirmed by L. 207/2024), the trattamento integrativo (Art. 1 D.L.
-3/2020 as updated by L. 207/2024), and the addizionale regionale e comunale
-IRPEF (Art. 50 TUIR; Art. 1 D.Lgs. 360/1998).
+3/2020 as updated by L. 207/2024), the addizionale regionale e comunale
+IRPEF (Art. 50 TUIR; Art. 1 D.Lgs. 360/1998), and the sterilizzazione
+detrazioni for redditi > EUR 200k (Art. 1 c. 3-4 L. 199/2025).
 
 Not in scope for this module (handled elsewhere in the engine):
-detrazioni per carichi di famiglia (Art. 12 TUIR) — applied by the orchestrator
-when ``PayrollScenario.family`` is set; sterilization of detrazioni for redditi
-> EUR 200k (Art. 1 c. 3-4 L. 199/2025) — out of scope.
+detrazioni per carichi di famiglia (Art. 12 TUIR) — applied by the
+orchestrator when ``PayrollScenario.family`` is set.
 """
 
 from __future__ import annotations
@@ -22,6 +22,7 @@ from ccnl_engine.engine.payroll.service.rounding import money
 if TYPE_CHECKING:
     from ccnl_engine.engine.surtax.domain.rules import SurtaxBracket
     from ccnl_engine.engine.tax.domain.rules import (
+        SterilizzazioneDetrazioniRules,
         TrattamentoIntegrativoRules,
         YearRules,
     )
@@ -147,6 +148,39 @@ def surtax_from_brackets(
         elif taxable_income > prev_limit:
             tax += (taxable_income - prev_limit) * bracket.rate
     return money(tax)
+
+
+def apply_sterilizzazione_detrazioni(
+    work_deduction: Decimal,
+    family_deduction: Decimal,
+    gross_annual: Decimal,
+    rules: SterilizzazioneDetrazioniRules | None,
+) -> tuple[Decimal, Decimal]:
+    """Reduce total detrazioni by the statutory amount for high earners.
+
+    Per Art. 1 c. 3-4 L. 199/2025: when ``gross_annual`` exceeds
+    ``rules.threshold`` (EUR 200 000), the total of Art. 13 work-income
+    deduction and Art. 12 family deductions is reduced by
+    ``rules.reduction`` (EUR 440 -- the exact clawback of the 35% to 33%
+    bracket benefit on the EUR 28 000-50 000 slice).
+
+    The reduction is absorbed first against ``work_deduction``, then
+    against ``family_deduction``.  In practice, for income > EUR 50 000
+    the work deduction is already 0, so the full reduction falls on the
+    family deduction.
+
+    Returns:
+        A 2-tuple of (effective_work_deduction, effective_family_deduction),
+        both floored at zero.  When ``rules`` is ``None`` or income is at or
+        below the threshold, the inputs are returned unchanged.
+    """
+    if rules is None or gross_annual <= rules.threshold:
+        return work_deduction, family_deduction
+    total = work_deduction + family_deduction
+    effective = money(max(_ZERO, total - rules.reduction))
+    new_work = min(work_deduction, effective)
+    new_family = effective - new_work
+    return new_work, new_family
 
 
 def _interpolate_deduction(

@@ -15,4 +15,3 @@ class FiscalSimplification(StrEnum):
     NO_ADDIZIONALE_COMUNALE = "no_addizionale_comunale"
     NO_TRATTAMENTO_INTEGRATIVO = "no_trattamento_integrativo"
     NO_DETRAZIONI_FAMILIARI = "no_detrazioni_familiari"
-    NO_STERILIZZAZIONE_DETRAZIONI = "no_sterilizzazione_detrazioni"

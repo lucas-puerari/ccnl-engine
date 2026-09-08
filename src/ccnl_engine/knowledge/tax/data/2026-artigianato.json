@@ -1,6 +1,16 @@
 {
   "year": 2026,
   "sector": "artigianato",
+  "ruleset": {
+    "id": "tax/2026/artigianato",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "f74a53a389bdffa6143fa35858d0c5d51659716dbceb02c271f79281aafde896"
+  },
   "irpef_brackets": [
     {
       "up_to": "28000.00",
@@ -42,6 +52,10 @@
     "threshold_upper": "28000",
     "max_amount": "1200"
   },
+  "sterilizzazione_detrazioni": {
+    "threshold": "200000.00",
+    "reduction": "440.00"
+  },
   "notes": [
     "IRPEF brackets and work_deduction_breakpoints: statutory, sector-agnostic.",
     "INPS employer — SIMPLIFICATION: rate 26.93% from kitech.it (non-construction crafts sector 2026, source https://www.kitech.it/Contributi-previdenziali.aspx?p=1_1; specific INPS circular not retrieved). Component breakdown is part of the KNOWN GAP noted below: the operai-vs-impiegati difference (26.93% vs 24.71% = 2.22pp) does not reconcile with a malattia-only explanation (~0.83pp), suggesting the sector IVS rate may differ from the generic private-sector 23.81%. No CIGO/CIGS for the crafts sector (art. 3 D.Lgs. 148/2015). FSBA (0.45% employer + 0.15% employee) excluded: bilateral fund contribution, not INPS. No size tier.",
@@ -50,16 +64,7 @@
     "KNOWN GAP: rate_by_category impiegato/quadro = 24.71% confirmed from kitech.it (non-construction crafts sector 2026, employer-only share of 33.90% total; source https://www.kitech.it/Contributi-previdenziali.aspx?p=1_1). The component breakdown of 24.71% is unknown: it does not reconcile with IVS (23.81%) + NASpI (1.61%) = 25.42%, suggesting either the artigianato IVS employer rate for impiegati is lower than the generic private-sector 23.81% (e.g. 23.10% IVS + 1.61% NASpI = 24.71%), or CUAF and/or NASpI differ in this sector. The operai-to-impiegati gap is 2.22pp (26.93% vs 24.71%), not the ~0.83pp malattia-only difference expected if IVS were uniform. IMPORTANT: the tier-level ivs_rate (23.81%) and the IVS ceiling split for impiegati are therefore also approximate until the component breakdown is confirmed from an authoritative INPS circular.",
     "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
     "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026, Art. 1 L. 335/1995 c. 18). Applies only when ivs_ceiling_applies=True (workers enrolled in INPS on or after 1 Jan 1996).",
-    "IVS ceiling and category rates: employer_ivs_rate (23.81%) is a single scalar uniform across all categories in this tier. When ivs_ceiling_applies=True and a category rate override is active (e.g. impiegati 24.71%), the engine assumes the IVS component equals the tier-level ivs_rate (23.81%) and treats the residual (0.90%) as non-IVS. This assumption is unverified for impiegati/quadri; see the KNOWN GAP note above."
-  ],
-  "ruleset": {
-    "id": "tax/2026/artigianato",
-    "version": "2026.1",
-    "effective_from": "2026-01-01",
-    "effective_until": "2026-12-31",
-    "published_at": "2026-09-07",
-    "source": "unavailable",
-    "verification_status": "unverified",
-    "source_hash": "b7ad369aeaf6199b52c0fef1772f0fab760a5be5d0446fd9e93ad953d14bc77b"
-  }
+    "IVS ceiling and category rates: employer_ivs_rate (23.81%) is a single scalar uniform across all categories in this tier. When ivs_ceiling_applies=True and a category rate override is active (e.g. impiegati 24.71%), the engine assumes the IVS component equals the tier-level ivs_rate (23.81%) and treats the residual (0.90%) as non-IVS. This assumption is unverified for impiegati/quadri; see the KNOWN GAP note above.",
+    "Sterilizzazione detrazioni: Art. 1 c. 3-4 L. 199/2025 — for reddito complessivo > EUR 200 000, total detrazioni (Art. 12 + Art. 13 TUIR) reduced by EUR 440 (clawback of the 35% -> 33% bracket benefit on the 28 000-50 000 slice)."
+  ]
 }

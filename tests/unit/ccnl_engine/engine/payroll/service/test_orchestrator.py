@@ -1354,3 +1354,81 @@ class TestL3FamilyDeductions:
             )
         ).result
         assert with_family.gross_annual == baseline.gross_annual
+
+
+# ---------------------------------------------------------------------------
+# Sterilizzazione detrazioni (Art. 1 c. 3-4 L. 199/2025)
+# ---------------------------------------------------------------------------
+
+
+class TestSterilizzazioneDetrazioni:
+    """Sterilizzazione detrazioni — orchestrator integration.
+
+    Uses a low custom threshold to trigger the rule at normal test-CCNL
+    income levels (since with real Art. 12 TUIR rules family deductions
+    phase to zero well below EUR 200 000).
+    """
+
+    # Threshold below test-CCNL gross (12 000) so sterilizzazione fires.
+    _STRD_RULES = {"threshold": "11000", "reduction": "440"}
+
+    def test_sterilizzazione_reduces_family_deduction(self) -> None:
+        """When gross > threshold, family deduction reduced by 440 EUR."""
+        # Test-CCNL gross is 12 000 > threshold 11 000, so
+        # sterilizzazione fires.  Expect family deduction to be reduced
+        # by 440 relative to the baseline without sterilizzazione.
+        _mock_rules[0] = make_year_rules(sterilizzazione_detrazioni=self._STRD_RULES)
+        with_strd = compute(
+            dataclasses.replace(_req(), family=FamilyComposition(spouse_dependent=True))
+        ).result
+        _mock_rules[0] = make_year_rules()
+        baseline = compute(
+            dataclasses.replace(_req(), family=FamilyComposition(spouse_dependent=True))
+        ).result
+        assert (
+            baseline.family_deduction_annual - with_strd.family_deduction_annual
+            == _D("440.00")
+        )
+
+    def test_sterilizzazione_increases_irpef_net(self) -> None:
+        """Reduced family deduction increases irpef_net by 440 EUR."""
+        _mock_rules[0] = make_year_rules(sterilizzazione_detrazioni=self._STRD_RULES)
+        with_strd = compute(
+            dataclasses.replace(_req(), family=FamilyComposition(spouse_dependent=True))
+        ).result
+        _mock_rules[0] = make_year_rules()
+        without_strd = compute(
+            dataclasses.replace(_req(), family=FamilyComposition(spouse_dependent=True))
+        ).result
+        assert with_strd.irpef_net - without_strd.irpef_net == _D("440.00")
+
+    def test_sterilizzazione_no_family_reduces_work_deduction(self) -> None:
+        """Without family, sterilizzazione reduces work deduction by 440 EUR.
+
+        At the test-CCNL income level (EUR 12 000) the Art. 13 work deduction
+        is still positive, so the 440 EUR reduction falls on it first and
+        irpef_net increases by 440.
+        """
+        _mock_rules[0] = make_year_rules(sterilizzazione_detrazioni=self._STRD_RULES)
+        with_strd = compute(_req()).result
+        _mock_rules[0] = make_year_rules()
+        without_strd = compute(_req()).result
+        assert with_strd.irpef_net - without_strd.irpef_net == _D("440.00")
+
+    def test_sterilizzazione_below_threshold_no_effect(self) -> None:
+        """Income <= threshold: deductions unchanged."""
+        # Use a very high threshold so income never crosses it.
+        _mock_rules[0] = make_year_rules(
+            sterilizzazione_detrazioni={"threshold": "9999999", "reduction": "440"}
+        )
+        with_high_threshold = compute(
+            dataclasses.replace(_req(), family=FamilyComposition(spouse_dependent=True))
+        ).result
+        _mock_rules[0] = make_year_rules()
+        without = compute(
+            dataclasses.replace(_req(), family=FamilyComposition(spouse_dependent=True))
+        ).result
+        assert (
+            with_high_threshold.family_deduction_annual
+            == without.family_deduction_annual
+        )

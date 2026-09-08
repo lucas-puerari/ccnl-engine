@@ -1,6 +1,16 @@
 {
   "year": 2026,
   "sector": "agricoltura",
+  "ruleset": {
+    "id": "tax/2026/agricoltura",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-07",
+    "source": "unavailable",
+    "verification_status": "unverified",
+    "source_hash": "df06bc05c2b2bc3a35e0ed4ead97509f5af351e3694614b79b3557f9ef9ac210"
+  },
   "irpef_brackets": [
     {
       "up_to": "28000.00",
@@ -42,6 +52,10 @@
     "threshold_upper": "28000",
     "max_amount": "1200"
   },
+  "sterilizzazione_detrazioni": {
+    "threshold": "200000.00",
+    "reduction": "440.00"
+  },
   "notes": [
     "INPS rates: Gestione Previdenziale Speciale per i Lavoratori Agricoli (OTI, standard agriculture). Employee 8.84%; employer 21.66%; total 30.50%. Source: ciatreviso.it citing INPS 2026 rates (https://ciatreviso.it/contributi-inps-inail-2026-agricoli-aliquote-e-le-scadenze-per-operai-otd-e-oti/); consistent with INPS Circular 46/2025 2025 rates (21.46% employer) adjusted +0.20pp for 2026.",
     "SIMPLIFICATION: Agro-industrial processing variant (23.46% employer, total 32.30%) not modelled — standard agricultural rate 21.66% used throughout.",
@@ -54,16 +68,7 @@
     "IRPEF brackets and work_deduction_breakpoints: statutory 2026 (L. 199/2025). Agricultural employers ARE sostituti d'imposta for OTI workers.",
     "fixed_term_additional_rate: NASpI addizionale 1.4% per Art. 2 co. 28 L. 92/2012.",
     "Apprentice rates: same statutory structure as other sectors per L. 296/2006 and L. 92/2012. Agricultural apprenticeship is governed by Allegato n. 10 CCNL (agreement 23/02/2017).",
-    "IVS ceiling: EUR 122,295 (INPS Circ. 6/2026)."
-  ],
-  "ruleset": {
-    "id": "tax/2026/agricoltura",
-    "version": "2026.1",
-    "effective_from": "2026-01-01",
-    "effective_until": "2026-12-31",
-    "published_at": "2026-09-07",
-    "source": "unavailable",
-    "verification_status": "unverified",
-    "source_hash": "72d2fc8636198594fb010dd0bbaa851359e5ffc3cb16dd628e923323d2344ace"
-  }
+    "IVS ceiling: EUR 122,295 (INPS Circ. 6/2026).",
+    "Sterilizzazione detrazioni: Art. 1 c. 3-4 L. 199/2025 — for reddito complessivo > EUR 200 000, total detrazioni (Art. 12 + Art. 13 TUIR) reduced by EUR 440 (clawback of the 35% -> 33% bracket benefit on the 28 000-50 000 slice)."
+  ]
 }

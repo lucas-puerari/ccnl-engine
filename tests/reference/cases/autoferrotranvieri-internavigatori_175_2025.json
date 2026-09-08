@@ -54,8 +54,7 @@
     "fiscal_simplifications": [
       "no_addizionale_comunale",
       "no_addizionale_regionale",
-      "no_detrazioni_familiari",
-      "no_sterilizzazione_detrazioni"
+      "no_detrazioni_familiari"
     ]
   }
 }

@@ -51,8 +51,7 @@
     "fiscal_simplifications": [
       "no_addizionale_comunale",
       "no_addizionale_regionale",
-      "no_detrazioni_familiari",
-      "no_sterilizzazione_detrazioni"
+      "no_detrazioni_familiari"
     ],
     "net_annual": "17154.03",
     "net_monthly": "1319.54",
