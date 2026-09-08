@@ -18,10 +18,14 @@ class OvertimeHours:
 
     Attributes:
         weekday_hours: Daytime weekday overtime hours (straordinario diurno).
-        night_hours: Hours worked at night (lavoro notturno — the exact
-            window, e.g. 22:00-06:00, is defined per CCNL).
-        holiday_hours: Hours worked on a public holiday or mandatory rest
-            day (lavoro festivo).
+        night_hours: Hours worked at night on a weekday (lavoro notturno —
+            the exact window, e.g. 22:00-06:00, is defined per CCNL).
+        holiday_hours: Hours worked on a public holiday during the day
+            (lavoro festivo diurno).
+        night_holiday_hours: Hours worked at night *on* a public holiday
+            (lavoro festivo-notturno).  These are classified separately
+            because many CCNLs apply a higher rate than either night-only
+            or holiday-only work.
         supplementare_hours: Part-timer extra hours (lavoro supplementare).
             Distinct from straordinario: applies only when part_time_pct < 1.
     """
@@ -29,6 +33,7 @@ class OvertimeHours:
     weekday_hours: Decimal = _ZERO
     night_hours: Decimal = _ZERO
     holiday_hours: Decimal = _ZERO
+    night_holiday_hours: Decimal = _ZERO
     supplementare_hours: Decimal = _ZERO
 
     def __post_init__(self) -> None:
@@ -41,6 +46,7 @@ class OvertimeHours:
             "weekday_hours",
             "night_hours",
             "holiday_hours",
+            "night_holiday_hours",
             "supplementare_hours",
         ):
             value = getattr(self, name)
@@ -121,15 +127,20 @@ class SickInput:
     """
 
     sick_days: Decimal = _ZERO
+    cumulative_sick_days: Decimal | None = None
 
     def __post_init__(self) -> None:
-        """Validate that sick_days is non-negative.
+        """Validate sick day values.
 
         Raises:
-            ValueError: If sick_days is negative.
+            ValueError: If ``sick_days`` or ``cumulative_sick_days`` is
+                negative.
         """
         if self.sick_days < _ZERO:
             msg = f"sick_days must be >= 0, got {self.sick_days}"
+            raise ValueError(msg)
+        if self.cumulative_sick_days is not None and self.cumulative_sick_days < _ZERO:
+            msg = f"cumulative_sick_days must be >= 0, got {self.cumulative_sick_days}"
             raise ValueError(msg)
 
 
