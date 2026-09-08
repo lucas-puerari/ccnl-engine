@@ -1,0 +1,224 @@
+{
+  "_description": "cooperative-sociali — data checks 2026",
+  "ccnl_file": "cooperative-sociali.json",
+  "salary_checks": [
+    {
+      "level_code": "A1",
+      "as_of": "2025-10-01",
+      "expected_monthly": "1359.88"
+    },
+    {
+      "level_code": "A2",
+      "as_of": "2025-10-01",
+      "expected_monthly": "1372.53"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2025-10-01",
+      "expected_monthly": "1436.78"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2025-10-01",
+      "expected_monthly": "1545.21"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2025-10-01",
+      "expected_monthly": "1591.06"
+    },
+    {
+      "level_code": "C3",
+      "as_of": "2025-10-01",
+      "expected_monthly": "1637.56"
+    },
+    {
+      "level_code": "D1",
+      "as_of": "2025-10-01",
+      "expected_monthly": "1637.56"
+    },
+    {
+      "level_code": "D2",
+      "as_of": "2025-10-01",
+      "expected_monthly": "1727.83"
+    },
+    {
+      "level_code": "D3",
+      "as_of": "2025-10-01",
+      "expected_monthly": "1839.16"
+    },
+    {
+      "level_code": "E1",
+      "as_of": "2025-10-01",
+      "expected_monthly": "1839.16"
+    },
+    {
+      "level_code": "E2",
+      "as_of": "2025-10-01",
+      "expected_monthly": "1985.39"
+    },
+    {
+      "level_code": "E2Q",
+      "as_of": "2025-10-01",
+      "expected_monthly": "1985.39"
+    },
+    {
+      "level_code": "F1",
+      "as_of": "2025-10-01",
+      "expected_monthly": "2192.55"
+    },
+    {
+      "level_code": "F1Q",
+      "as_of": "2025-10-01",
+      "expected_monthly": "2192.55"
+    },
+    {
+      "level_code": "F2",
+      "as_of": "2025-10-01",
+      "expected_monthly": "2504.10"
+    },
+    {
+      "level_code": "F2Q",
+      "as_of": "2025-10-01",
+      "expected_monthly": "2504.10"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "A1",
+      "as_of": "2024-02-01",
+      "expected_amount": "11.62"
+    },
+    {
+      "level_code": "A2",
+      "as_of": "2024-02-01",
+      "expected_amount": "13.43"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2024-02-01",
+      "expected_amount": "16.27"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2024-02-01",
+      "expected_amount": "18.59"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2024-02-01",
+      "expected_amount": "19.63"
+    },
+    {
+      "level_code": "C3",
+      "as_of": "2024-02-01",
+      "expected_amount": "20.66"
+    },
+    {
+      "level_code": "D1",
+      "as_of": "2024-02-01",
+      "expected_amount": "20.66"
+    },
+    {
+      "level_code": "D2",
+      "as_of": "2024-02-01",
+      "expected_amount": "23.24"
+    },
+    {
+      "level_code": "D3",
+      "as_of": "2024-02-01",
+      "expected_amount": "26.86"
+    },
+    {
+      "level_code": "E1",
+      "as_of": "2024-02-01",
+      "expected_amount": "26.86"
+    },
+    {
+      "level_code": "E2",
+      "as_of": "2024-02-01",
+      "expected_amount": "31.50"
+    },
+    {
+      "level_code": "E2Q",
+      "as_of": "2024-02-01",
+      "expected_amount": "31.50"
+    },
+    {
+      "level_code": "F1",
+      "as_of": "2024-02-01",
+      "expected_amount": "39.51"
+    },
+    {
+      "level_code": "F1Q",
+      "as_of": "2024-02-01",
+      "expected_amount": "39.51"
+    },
+    {
+      "level_code": "F2",
+      "as_of": "2024-02-01",
+      "expected_amount": "46.48"
+    },
+    {
+      "level_code": "F2Q",
+      "as_of": "2024-02-01",
+      "expected_amount": "46.48"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "A2",
+      "track_name": "professionalizzante_18m",
+      "months_elapsed": 1,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "A2",
+      "track_name": "professionalizzante_18m",
+      "months_elapsed": 10,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "A2",
+      "track_name": "professionalizzante_18m",
+      "months_elapsed": 19,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "B",
+      "track_name": "professionalizzante_24m",
+      "months_elapsed": 1,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "B",
+      "track_name": "professionalizzante_24m",
+      "months_elapsed": 13,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "B",
+      "track_name": "professionalizzante_24m",
+      "months_elapsed": 25,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "D1",
+      "track_name": "professionalizzante_36m",
+      "months_elapsed": 1,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "D1",
+      "track_name": "professionalizzante_36m",
+      "months_elapsed": 19,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "D1",
+      "track_name": "professionalizzante_36m",
+      "months_elapsed": 37,
+      "expected_pct": "1.00"
+    }
+  ]
+}

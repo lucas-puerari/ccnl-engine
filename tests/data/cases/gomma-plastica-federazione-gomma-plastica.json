@@ -1,0 +1,128 @@
+{
+  "_description": "gomma-plastica-federazione-gomma-plastica — data checks 2026",
+  "ccnl_file": "gomma-plastica-federazione-gomma-plastica.json",
+  "salary_checks": [
+    {
+      "level_code": "I",
+      "as_of": "2028-12-01",
+      "expected_monthly": "1722.59"
+    },
+    {
+      "level_code": "H",
+      "as_of": "2028-12-01",
+      "expected_monthly": "1916.08"
+    },
+    {
+      "level_code": "G",
+      "as_of": "2028-12-01",
+      "expected_monthly": "2009.25"
+    },
+    {
+      "level_code": "F",
+      "as_of": "2028-12-01",
+      "expected_monthly": "2156.12"
+    },
+    {
+      "level_code": "E",
+      "as_of": "2028-12-01",
+      "expected_monthly": "2213.42"
+    },
+    {
+      "level_code": "D",
+      "as_of": "2028-12-01",
+      "expected_monthly": "2306.50"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2028-12-01",
+      "expected_monthly": "2335.85"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2028-12-01",
+      "expected_monthly": "2366.94"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2028-12-01",
+      "expected_monthly": "2508.94"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2028-12-01",
+      "expected_monthly": "2664.67"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2023-01-01",
+      "expected_amount": "20.14"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2023-01-01",
+      "expected_amount": "18.59"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2023-01-01",
+      "expected_amount": "16.53"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2023-01-01",
+      "expected_amount": "16.53"
+    },
+    {
+      "level_code": "D",
+      "as_of": "2023-01-01",
+      "expected_amount": "16.53"
+    },
+    {
+      "level_code": "E",
+      "as_of": "2023-01-01",
+      "expected_amount": "13.94"
+    },
+    {
+      "level_code": "F",
+      "as_of": "2023-01-01",
+      "expected_amount": "13.94"
+    },
+    {
+      "level_code": "G",
+      "as_of": "2023-01-01",
+      "expected_amount": "13.43"
+    },
+    {
+      "level_code": "H",
+      "as_of": "2023-01-01",
+      "expected_amount": "11.88"
+    },
+    {
+      "level_code": "I",
+      "as_of": "2023-01-01",
+      "expected_amount": "10.33"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "G",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "G",
+      "track_name": "professionalizzante",
+      "months_elapsed": 13,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "G",
+      "track_name": "professionalizzante",
+      "months_elapsed": 25,
+      "expected_levels_below": 0
+    }
+  ]
+}

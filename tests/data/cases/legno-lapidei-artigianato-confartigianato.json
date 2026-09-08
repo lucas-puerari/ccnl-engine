@@ -1,0 +1,198 @@
+{
+  "_description": "legno-lapidei-artigianato-confartigianato — data checks 2026",
+  "ccnl_file": "legno-lapidei-artigianato-confartigianato.json",
+  "salary_checks": [
+    {
+      "level_code": "F",
+      "as_of": "2026-10-01",
+      "expected_monthly": "1490.13"
+    },
+    {
+      "level_code": "E",
+      "as_of": "2026-10-01",
+      "expected_monthly": "1585.97"
+    },
+    {
+      "level_code": "D",
+      "as_of": "2026-10-01",
+      "expected_monthly": "1674.71"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2026-10-01",
+      "expected_monthly": "1771.64"
+    },
+    {
+      "level_code": "CS",
+      "as_of": "2026-10-01",
+      "expected_monthly": "1856.85"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2026-10-01",
+      "expected_monthly": "1941.22"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2026-10-01",
+      "expected_monthly": "2123.69"
+    },
+    {
+      "level_code": "AS",
+      "as_of": "2026-10-01",
+      "expected_monthly": "2278.43"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "AS",
+      "as_of": "2025-01-01",
+      "expected_amount": "20.49"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2025-01-01",
+      "expected_amount": "18.94"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2025-01-01",
+      "expected_amount": "16.88"
+    },
+    {
+      "level_code": "CS",
+      "as_of": "2025-01-01",
+      "expected_amount": "16.18"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2025-01-01",
+      "expected_amount": "15.33"
+    },
+    {
+      "level_code": "D",
+      "as_of": "2025-01-01",
+      "expected_amount": "14.30"
+    },
+    {
+      "level_code": "E",
+      "as_of": "2025-01-01",
+      "expected_amount": "13.52"
+    },
+    {
+      "level_code": "F",
+      "as_of": "2024-03-01",
+      "expected_amount": "0.00"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "AS",
+      "track_name": "gruppo_1_legno",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "AS",
+      "track_name": "gruppo_1_legno",
+      "months_elapsed": 13,
+      "expected_pct": "0.73"
+    },
+    {
+      "level_code": "AS",
+      "track_name": "gruppo_1_legno",
+      "months_elapsed": 25,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "AS",
+      "track_name": "gruppo_1_legno",
+      "months_elapsed": 37,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "AS",
+      "track_name": "gruppo_1_legno",
+      "months_elapsed": 49,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "AS",
+      "track_name": "gruppo_1_legno",
+      "months_elapsed": 61,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "CS",
+      "track_name": "gruppo_2_legno",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "CS",
+      "track_name": "gruppo_2_legno",
+      "months_elapsed": 13,
+      "expected_pct": "0.75"
+    },
+    {
+      "level_code": "CS",
+      "track_name": "gruppo_2_legno",
+      "months_elapsed": 25,
+      "expected_pct": "0.88"
+    },
+    {
+      "level_code": "CS",
+      "track_name": "gruppo_2_legno",
+      "months_elapsed": 37,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "CS",
+      "track_name": "gruppo_2_legno",
+      "months_elapsed": 49,
+      "expected_pct": "0.95"
+    },
+    {
+      "level_code": "CS",
+      "track_name": "gruppo_2_legno",
+      "months_elapsed": 61,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "E",
+      "track_name": "gruppo_3_legno",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "E",
+      "track_name": "gruppo_3_legno",
+      "months_elapsed": 7,
+      "expected_pct": "0.75"
+    },
+    {
+      "level_code": "E",
+      "track_name": "gruppo_3_legno",
+      "months_elapsed": 13,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "E",
+      "track_name": "gruppo_3_legno",
+      "months_elapsed": 19,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "E",
+      "track_name": "gruppo_3_legno",
+      "months_elapsed": 25,
+      "expected_pct": "0.95"
+    },
+    {
+      "level_code": "E",
+      "track_name": "gruppo_3_legno",
+      "months_elapsed": 31,
+      "expected_pct": "1.00"
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "_description": "distribuzione-cooperativa-ancc — data checks 2026",
+  "ccnl_file": "distribuzione-cooperativa-ancc.json",
+  "salary_checks": [
+    {
+      "level_code": "6",
+      "as_of": "2027-03-01",
+      "expected_monthly": "910.71"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2027-03-01",
+      "expected_monthly": "1183.91"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2027-03-01",
+      "expected_monthly": "1311.43"
+    },
+    {
+      "level_code": "4S",
+      "as_of": "2027-03-01",
+      "expected_monthly": "1411.61"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2027-03-01",
+      "expected_monthly": "1520.91"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2027-03-01",
+      "expected_monthly": "1639.29"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2027-03-01",
+      "expected_monthly": "1839.64"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2027-03-01",
+      "expected_monthly": "2112.86"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2027-03-01",
+      "expected_monthly": "2322.33"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2025-05-01",
+      "expected_amount": "27.82"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2025-05-01",
+      "expected_amount": "26.64"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2025-05-01",
+      "expected_amount": "24.52"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2025-05-01",
+      "expected_amount": "21.79"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2025-05-01",
+      "expected_amount": "21.79"
+    },
+    {
+      "level_code": "4S",
+      "as_of": "2025-05-01",
+      "expected_amount": "19.93"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2025-05-01",
+      "expected_amount": "19.93"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2025-05-01",
+      "expected_amount": "18.84"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2025-05-01",
+      "expected_amount": "16.51"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "1",
+      "track_name": "livelli_1_a_4",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "1",
+      "track_name": "livelli_1_a_4",
+      "months_elapsed": 25,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "5",
+      "track_name": "livello_5",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    }
+  ]
+}

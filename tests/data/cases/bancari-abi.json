@@ -1,0 +1,112 @@
+{
+  "_description": "bancari-abi — data checks 2026",
+  "ccnl_file": "bancari-abi.json",
+  "salary_checks": [
+    {
+      "level_code": "QD4",
+      "as_of": "2026-03-01",
+      "expected_monthly": "5160.06"
+    },
+    {
+      "level_code": "QD3",
+      "as_of": "2026-03-01",
+      "expected_monthly": "4396.88"
+    },
+    {
+      "level_code": "QD2",
+      "as_of": "2026-03-01",
+      "expected_monthly": "3965.48"
+    },
+    {
+      "level_code": "QD1",
+      "as_of": "2026-03-01",
+      "expected_monthly": "3743.21"
+    },
+    {
+      "level_code": "3A4",
+      "as_of": "2026-03-01",
+      "expected_monthly": "3341.90"
+    },
+    {
+      "level_code": "3A3",
+      "as_of": "2026-03-01",
+      "expected_monthly": "3059.49"
+    },
+    {
+      "level_code": "3A2",
+      "as_of": "2026-03-01",
+      "expected_monthly": "2890.41"
+    },
+    {
+      "level_code": "3A1",
+      "as_of": "2026-03-01",
+      "expected_monthly": "2742.34"
+    },
+    {
+      "level_code": "1e2A",
+      "as_of": "2026-03-01",
+      "expected_monthly": "2479.45"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "QD4",
+      "as_of": "2023-11-23",
+      "expected_amount": "95.31"
+    },
+    {
+      "level_code": "QD3",
+      "as_of": "2023-11-23",
+      "expected_amount": "95.31"
+    },
+    {
+      "level_code": "QD2",
+      "as_of": "2023-11-23",
+      "expected_amount": "41.55"
+    },
+    {
+      "level_code": "QD1",
+      "as_of": "2023-11-23",
+      "expected_amount": "41.55"
+    },
+    {
+      "level_code": "3A4",
+      "as_of": "2023-11-23",
+      "expected_amount": "41.55"
+    },
+    {
+      "level_code": "3A3",
+      "as_of": "2023-11-23",
+      "expected_amount": "41.55"
+    },
+    {
+      "level_code": "3A2",
+      "as_of": "2023-11-23",
+      "expected_amount": "41.55"
+    },
+    {
+      "level_code": "3A1",
+      "as_of": "2023-11-23",
+      "expected_amount": "41.55"
+    },
+    {
+      "level_code": "1e2A",
+      "as_of": "2023-11-23",
+      "expected_amount": "29.07"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "3A2",
+      "track_name": "terza_area",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "3A2",
+      "track_name": "terza_area",
+      "months_elapsed": 19,
+      "expected_levels_below": 0
+    }
+  ]
+}

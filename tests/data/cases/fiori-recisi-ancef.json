@@ -1,0 +1,126 @@
+{
+  "_description": "fiori-recisi-ancef — data checks 2026",
+  "ccnl_file": "fiori-recisi-ancef.json",
+  "salary_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2700.25"
+    },
+    {
+      "level_code": "1S",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2460.21"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2185.36"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1920.48"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1792.57"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1655.26"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1576.97"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1478.65"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2023-01-01",
+      "expected_amount": "34.70"
+    },
+    {
+      "level_code": "1S",
+      "as_of": "2023-01-01",
+      "expected_amount": "30.30"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2023-01-01",
+      "expected_amount": "29.50"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2023-01-01",
+      "expected_amount": "26.90"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2023-01-01",
+      "expected_amount": "25.00"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2023-01-01",
+      "expected_amount": "23.70"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2023-01-01",
+      "expected_amount": "23.10"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2023-01-01",
+      "expected_amount": "22.40"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante - dest livelli 1-2",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante - dest livelli 1-2",
+      "months_elapsed": 19,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante - dest livelli 3-4",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante - dest livelli 3-4",
+      "months_elapsed": 16,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "5",
+      "track_name": "professionalizzante - dest livello 5",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "5",
+      "track_name": "professionalizzante - dest livello 5",
+      "months_elapsed": 13,
+      "expected_levels_below": 0
+    }
+  ]
+}

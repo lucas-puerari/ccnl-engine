@@ -1,0 +1,126 @@
+{
+  "_description": "autostrade-trafori — data checks 2026",
+  "ccnl_file": "autostrade-trafori.json",
+  "salary_checks": [
+    {
+      "level_code": "D",
+      "as_of": "2028-01-01",
+      "expected_monthly": "1459.92"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2028-01-01",
+      "expected_monthly": "1970.92"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2028-01-01",
+      "expected_monthly": "2160.70"
+    },
+    {
+      "level_code": "C+",
+      "as_of": "2028-01-01",
+      "expected_monthly": "2262.89"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2028-01-01",
+      "expected_monthly": "2467.30"
+    },
+    {
+      "level_code": "B1+",
+      "as_of": "2028-01-01",
+      "expected_monthly": "2569.52"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2028-01-01",
+      "expected_monthly": "2700.85"
+    },
+    {
+      "level_code": "B+",
+      "as_of": "2028-01-01",
+      "expected_monthly": "2803.04"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2028-01-01",
+      "expected_monthly": "3065.88"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2028-01-01",
+      "expected_monthly": "3430.84"
+    },
+    {
+      "level_code": "AQ",
+      "as_of": "2028-01-01",
+      "expected_monthly": "3430.84"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "D",
+      "as_of": "2023-01-01",
+      "expected_amount": "24.17"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2023-01-01",
+      "expected_amount": "25.49"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2023-01-01",
+      "expected_amount": "26.47"
+    },
+    {
+      "level_code": "C+",
+      "as_of": "2023-01-01",
+      "expected_amount": "26.47"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2023-01-01",
+      "expected_amount": "28.59"
+    },
+    {
+      "level_code": "B1+",
+      "as_of": "2023-01-01",
+      "expected_amount": "28.59"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2023-01-01",
+      "expected_amount": "30.68"
+    },
+    {
+      "level_code": "B+",
+      "as_of": "2023-01-01",
+      "expected_amount": "30.68"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2023-01-01",
+      "expected_amount": "33.58"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2023-01-01",
+      "expected_amount": "36.48"
+    },
+    {
+      "level_code": "AQ",
+      "as_of": "2023-01-01",
+      "expected_amount": "36.48"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "D",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_pct": "1.00"
+    }
+  ]
+}

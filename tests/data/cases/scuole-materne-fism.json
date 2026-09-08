@@ -1,0 +1,96 @@
+{
+  "_description": "scuole-materne-fism — data checks 2026",
+  "ccnl_file": "scuole-materne-fism.json",
+  "salary_checks": [
+    {
+      "level_code": "I",
+      "as_of": "2027-09-01",
+      "expected_monthly": "1517.75"
+    },
+    {
+      "level_code": "II",
+      "as_of": "2027-09-01",
+      "expected_monthly": "1577.20"
+    },
+    {
+      "level_code": "III",
+      "as_of": "2027-09-01",
+      "expected_monthly": "1579.50"
+    },
+    {
+      "level_code": "IV",
+      "as_of": "2027-09-01",
+      "expected_monthly": "1630.03"
+    },
+    {
+      "level_code": "V",
+      "as_of": "2027-09-01",
+      "expected_monthly": "1719.76"
+    },
+    {
+      "level_code": "VI",
+      "as_of": "2027-09-01",
+      "expected_monthly": "1739.55"
+    },
+    {
+      "level_code": "VII",
+      "as_of": "2027-09-01",
+      "expected_monthly": "1912.11"
+    },
+    {
+      "level_code": "VIII",
+      "as_of": "2027-09-01",
+      "expected_monthly": "1955.38"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "I",
+      "as_of": "2023-09-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "II",
+      "as_of": "2023-09-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "III",
+      "as_of": "2023-09-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "IV",
+      "as_of": "2023-09-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "V",
+      "as_of": "2023-09-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "VI",
+      "as_of": "2023-09-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "VII",
+      "as_of": "2023-09-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "VIII",
+      "as_of": "2023-09-01",
+      "expected_amount": "0.00"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "I",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_pct": "1.00"
+    }
+  ]
+}

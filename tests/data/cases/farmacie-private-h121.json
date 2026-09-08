@@ -1,0 +1,118 @@
+{
+  "_description": "farmacie-private-h121 — data checks 2026",
+  "ccnl_file": "farmacie-private-h121.json",
+  "salary_checks": [
+    {
+      "level_code": "Q1",
+      "as_of": "2021-11-01",
+      "expected_monthly": "1668.97"
+    },
+    {
+      "level_code": "Q2",
+      "as_of": "2021-11-01",
+      "expected_monthly": "1499.19"
+    },
+    {
+      "level_code": "Q3",
+      "as_of": "2021-11-01",
+      "expected_monthly": "1429.19"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2021-11-01",
+      "expected_monthly": "1429.19"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2021-11-01",
+      "expected_monthly": "1215.92"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2021-11-01",
+      "expected_monthly": "1130.17"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2021-11-01",
+      "expected_monthly": "1017.02"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2021-11-01",
+      "expected_monthly": "898.97"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2021-11-01",
+      "expected_monthly": "807.81"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q1",
+      "as_of": "2021-11-01",
+      "expected_amount": "25.82"
+    },
+    {
+      "level_code": "Q2",
+      "as_of": "2021-11-01",
+      "expected_amount": "25.30"
+    },
+    {
+      "level_code": "Q3",
+      "as_of": "2021-11-01",
+      "expected_amount": "25.30"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2021-11-01",
+      "expected_amount": "25.30"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2021-11-01",
+      "expected_amount": "23.24"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2021-11-01",
+      "expected_amount": "22.72"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2021-11-01",
+      "expected_amount": "20.65"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2021-11-01",
+      "expected_amount": "20.14"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2021-11-01",
+      "expected_amount": "19.62"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "1",
+      "track_name": "farmacista_collaboratore",
+      "months_elapsed": 1,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante",
+      "months_elapsed": 13,
+      "expected_levels_below": 1
+    }
+  ]
+}

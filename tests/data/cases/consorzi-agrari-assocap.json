@@ -1,0 +1,98 @@
+{
+  "_description": "consorzi-agrari-assocap — data checks 2026",
+  "ccnl_file": "consorzi-agrari-assocap.json",
+  "salary_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2212.99"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2212.99"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2002.97"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1710.74"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1574.42"
+    },
+    {
+      "level_code": "4S",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1468.82"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1375.68"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1233.03"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1070.87"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2025-01-01",
+      "expected_amount": "53.20"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2025-01-01",
+      "expected_amount": "53.20"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2025-01-01",
+      "expected_amount": "50.61"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2025-01-01",
+      "expected_amount": "47.00"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2025-01-01",
+      "expected_amount": "45.19"
+    },
+    {
+      "level_code": "4S",
+      "as_of": "2025-01-01",
+      "expected_amount": "44.16"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2025-01-01",
+      "expected_amount": "43.12"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2025-01-01",
+      "expected_amount": "41.32"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2025-01-01",
+      "expected_amount": "39.51"
+    }
+  ]
+}

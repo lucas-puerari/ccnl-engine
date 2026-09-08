@@ -1,0 +1,88 @@
+{
+  "_description": "lavoro-domestico-convivente — data checks 2026",
+  "ccnl_file": "lavoro-domestico-convivente.json",
+  "salary_checks": [
+    {
+      "level_code": "A",
+      "as_of": "2026-01-01",
+      "expected_monthly": "908.10"
+    },
+    {
+      "level_code": "AS",
+      "as_of": "2026-01-01",
+      "expected_monthly": "958.55"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2026-01-01",
+      "expected_monthly": "983.16"
+    },
+    {
+      "level_code": "BS",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1053.39"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1123.63"
+    },
+    {
+      "level_code": "CS",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1193.84"
+    },
+    {
+      "level_code": "D",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1404.51"
+    },
+    {
+      "level_code": "DS",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1474.73"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "A",
+      "as_of": "2026-01-01",
+      "expected_amount": "36.32"
+    },
+    {
+      "level_code": "AS",
+      "as_of": "2026-01-01",
+      "expected_amount": "38.34"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2026-01-01",
+      "expected_amount": "39.33"
+    },
+    {
+      "level_code": "BS",
+      "as_of": "2026-01-01",
+      "expected_amount": "42.14"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2026-01-01",
+      "expected_amount": "44.95"
+    },
+    {
+      "level_code": "CS",
+      "as_of": "2026-01-01",
+      "expected_amount": "47.75"
+    },
+    {
+      "level_code": "D",
+      "as_of": "2026-01-01",
+      "expected_amount": "56.18"
+    },
+    {
+      "level_code": "DS",
+      "as_of": "2026-01-01",
+      "expected_amount": "58.99"
+    }
+  ]
+}

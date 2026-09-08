@@ -1,0 +1,78 @@
+{
+  "_description": "impiegati-tecnici-agricoli — data checks 2026",
+  "ccnl_file": "impiegati-tecnici-agricoli.json",
+  "salary_checks": [
+    {
+      "level_code": "6",
+      "as_of": "2024-07-01",
+      "expected_monthly": "1217.23"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2024-07-01",
+      "expected_monthly": "1278.60"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2024-07-01",
+      "expected_monthly": "1335.93"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2024-07-01",
+      "expected_monthly": "1417.89"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2024-07-01",
+      "expected_monthly": "1541.41"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2024-07-01",
+      "expected_monthly": "1686.76"
+    },
+    {
+      "level_code": "1Q",
+      "as_of": "2024-07-01",
+      "expected_monthly": "1788.38"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1Q",
+      "as_of": "2024-07-01",
+      "expected_amount": "33.05"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2024-07-01",
+      "expected_amount": "33.05"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2024-07-01",
+      "expected_amount": "29.44"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2024-07-01",
+      "expected_amount": "26.86"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2024-07-01",
+      "expected_amount": "24.79"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2024-07-01",
+      "expected_amount": "23.76"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2024-07-01",
+      "expected_amount": "22.21"
+    }
+  ]
+}

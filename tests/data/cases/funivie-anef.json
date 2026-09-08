@@ -1,0 +1,102 @@
+{
+  "_description": "funivie-anef — data checks 2026",
+  "ccnl_file": "funivie-anef.json",
+  "salary_checks": [
+    {
+      "level_code": "1S",
+      "as_of": "2028-03-01",
+      "expected_monthly": "2410.99"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2028-03-01",
+      "expected_monthly": "2238.88"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2028-03-01",
+      "expected_monthly": "2020.97"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2028-03-01",
+      "expected_monthly": "1836.94"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2028-03-01",
+      "expected_monthly": "1664.59"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2028-03-01",
+      "expected_monthly": "1492.75"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2028-03-01",
+      "expected_monthly": "1377.94"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2028-03-01",
+      "expected_monthly": "1148.35"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1S",
+      "as_of": "2025-05-01",
+      "expected_amount": "70.00"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2025-05-01",
+      "expected_amount": "65.00"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2025-05-01",
+      "expected_amount": "60.00"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2025-05-01",
+      "expected_amount": "55.00"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2025-05-01",
+      "expected_amount": "50.00"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2025-05-01",
+      "expected_amount": "45.00"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2025-05-01",
+      "expected_amount": "40.00"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2025-05-01",
+      "expected_amount": "35.00"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 25,
+      "expected_levels_below": 0
+    }
+  ]
+}

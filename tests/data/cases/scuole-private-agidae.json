@@ -1,0 +1,68 @@
+{
+  "_description": "scuole-private-agidae — data checks 2026",
+  "ccnl_file": "scuole-private-agidae.json",
+  "salary_checks": [
+    {
+      "level_code": "L1",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1731.18"
+    },
+    {
+      "level_code": "L2",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1784.67"
+    },
+    {
+      "level_code": "L3",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1838.95"
+    },
+    {
+      "level_code": "L4",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1896.82"
+    },
+    {
+      "level_code": "L5",
+      "as_of": "2027-12-01",
+      "expected_monthly": "1987.80"
+    },
+    {
+      "level_code": "L6",
+      "as_of": "2027-12-01",
+      "expected_monthly": "2205.27"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "L1",
+      "as_of": "2024-09-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "L2",
+      "as_of": "2024-09-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "L3",
+      "as_of": "2024-09-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "L4",
+      "as_of": "2024-09-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "L5",
+      "as_of": "2024-09-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "L6",
+      "as_of": "2024-09-01",
+      "expected_amount": "0.00"
+    }
+  ]
+}

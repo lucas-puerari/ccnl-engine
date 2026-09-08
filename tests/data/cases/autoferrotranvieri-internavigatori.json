@@ -1,0 +1,346 @@
+{
+  "_description": "autoferrotranvieri-internavigatori — data checks 2026",
+  "ccnl_file": "autoferrotranvieri-internavigatori.json",
+  "salary_checks": [
+    {
+      "level_code": "100",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1346.11"
+    },
+    {
+      "level_code": "110",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1430.01"
+    },
+    {
+      "level_code": "116",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1478.35"
+    },
+    {
+      "level_code": "121",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1518.61"
+    },
+    {
+      "level_code": "123",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1537.35"
+    },
+    {
+      "level_code": "129",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1585.66"
+    },
+    {
+      "level_code": "130",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1593.73"
+    },
+    {
+      "level_code": "135",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1633.99"
+    },
+    {
+      "level_code": "138",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1661.54"
+    },
+    {
+      "level_code": "139",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1669.60"
+    },
+    {
+      "level_code": "140",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1677.65"
+    },
+    {
+      "level_code": "143",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1701.81"
+    },
+    {
+      "level_code": "145",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1717.92"
+    },
+    {
+      "level_code": "151",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1766.25"
+    },
+    {
+      "level_code": "153",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1782.36"
+    },
+    {
+      "level_code": "154",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1790.40"
+    },
+    {
+      "level_code": "155",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1798.44"
+    },
+    {
+      "level_code": "158",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1825.64"
+    },
+    {
+      "level_code": "160",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1841.75"
+    },
+    {
+      "level_code": "165",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1882.02"
+    },
+    {
+      "level_code": "170",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1925.30"
+    },
+    {
+      "level_code": "175",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1965.57"
+    },
+    {
+      "level_code": "178",
+      "as_of": "2026-08-01",
+      "expected_monthly": "1989.72"
+    },
+    {
+      "level_code": "180",
+      "as_of": "2026-08-01",
+      "expected_monthly": "2005.84"
+    },
+    {
+      "level_code": "183",
+      "as_of": "2026-08-01",
+      "expected_monthly": "2030.87"
+    },
+    {
+      "level_code": "188",
+      "as_of": "2026-08-01",
+      "expected_monthly": "2071.18"
+    },
+    {
+      "level_code": "190",
+      "as_of": "2026-08-01",
+      "expected_monthly": "2089.14"
+    },
+    {
+      "level_code": "193",
+      "as_of": "2026-08-01",
+      "expected_monthly": "2113.32"
+    },
+    {
+      "level_code": "202",
+      "as_of": "2026-08-01",
+      "expected_monthly": "2189.81"
+    },
+    {
+      "level_code": "205",
+      "as_of": "2026-08-01",
+      "expected_monthly": "2213.96"
+    },
+    {
+      "level_code": "210",
+      "as_of": "2026-08-01",
+      "expected_monthly": "2254.23"
+    },
+    {
+      "level_code": "230",
+      "as_of": "2026-08-01",
+      "expected_monthly": "2470.97"
+    },
+    {
+      "level_code": "250",
+      "as_of": "2026-08-01",
+      "expected_monthly": "2657.09"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "100",
+      "as_of": "2024-12-11",
+      "expected_amount": "15.33"
+    },
+    {
+      "level_code": "110",
+      "as_of": "2024-12-11",
+      "expected_amount": "16.93"
+    },
+    {
+      "level_code": "116",
+      "as_of": "2024-12-11",
+      "expected_amount": "17.78"
+    },
+    {
+      "level_code": "121",
+      "as_of": "2024-12-11",
+      "expected_amount": "18.54"
+    },
+    {
+      "level_code": "123",
+      "as_of": "2024-12-11",
+      "expected_amount": "19.10"
+    },
+    {
+      "level_code": "129",
+      "as_of": "2024-12-11",
+      "expected_amount": "19.77"
+    },
+    {
+      "level_code": "130",
+      "as_of": "2024-12-11",
+      "expected_amount": "19.92"
+    },
+    {
+      "level_code": "135",
+      "as_of": "2024-12-11",
+      "expected_amount": "20.69"
+    },
+    {
+      "level_code": "138",
+      "as_of": "2024-12-11",
+      "expected_amount": "21.06"
+    },
+    {
+      "level_code": "139",
+      "as_of": "2024-12-11",
+      "expected_amount": "21.06"
+    },
+    {
+      "level_code": "140",
+      "as_of": "2024-12-11",
+      "expected_amount": "21.46"
+    },
+    {
+      "level_code": "143",
+      "as_of": "2024-12-11",
+      "expected_amount": "21.92"
+    },
+    {
+      "level_code": "145",
+      "as_of": "2024-12-11",
+      "expected_amount": "22.22"
+    },
+    {
+      "level_code": "151",
+      "as_of": "2024-12-11",
+      "expected_amount": "23.14"
+    },
+    {
+      "level_code": "153",
+      "as_of": "2024-12-11",
+      "expected_amount": "23.45"
+    },
+    {
+      "level_code": "154",
+      "as_of": "2024-12-11",
+      "expected_amount": "23.60"
+    },
+    {
+      "level_code": "155",
+      "as_of": "2024-12-11",
+      "expected_amount": "23.75"
+    },
+    {
+      "level_code": "158",
+      "as_of": "2024-12-11",
+      "expected_amount": "24.65"
+    },
+    {
+      "level_code": "160",
+      "as_of": "2024-12-11",
+      "expected_amount": "24.65"
+    },
+    {
+      "level_code": "165",
+      "as_of": "2024-12-11",
+      "expected_amount": "25.29"
+    },
+    {
+      "level_code": "170",
+      "as_of": "2024-12-11",
+      "expected_amount": "26.05"
+    },
+    {
+      "level_code": "175",
+      "as_of": "2024-12-11",
+      "expected_amount": "26.85"
+    },
+    {
+      "level_code": "178",
+      "as_of": "2024-12-11",
+      "expected_amount": "27.28"
+    },
+    {
+      "level_code": "180",
+      "as_of": "2024-12-11",
+      "expected_amount": "27.59"
+    },
+    {
+      "level_code": "183",
+      "as_of": "2024-12-11",
+      "expected_amount": "27.83"
+    },
+    {
+      "level_code": "188",
+      "as_of": "2024-12-11",
+      "expected_amount": "28.81"
+    },
+    {
+      "level_code": "190",
+      "as_of": "2024-12-11",
+      "expected_amount": "29.12"
+    },
+    {
+      "level_code": "193",
+      "as_of": "2024-12-11",
+      "expected_amount": "29.58"
+    },
+    {
+      "level_code": "202",
+      "as_of": "2024-12-11",
+      "expected_amount": "30.96"
+    },
+    {
+      "level_code": "205",
+      "as_of": "2024-12-11",
+      "expected_amount": "31.42"
+    },
+    {
+      "level_code": "210",
+      "as_of": "2024-12-11",
+      "expected_amount": "32.18"
+    },
+    {
+      "level_code": "230",
+      "as_of": "2024-12-11",
+      "expected_amount": "35.25"
+    },
+    {
+      "level_code": "250",
+      "as_of": "2024-12-11",
+      "expected_amount": "38.31"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "100",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_pct": "1.00"
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "_description": "trasporto-ferroviario-agens — data checks 2026",
+  "ccnl_file": "trasporto-ferroviario-agens.json",
+  "salary_checks": [
+    {
+      "level_code": "F2",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1633.56"
+    },
+    {
+      "level_code": "F1",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1666.23"
+    },
+    {
+      "level_code": "E3",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1796.91"
+    },
+    {
+      "level_code": "E2",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1829.60"
+    },
+    {
+      "level_code": "E1",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1911.26"
+    },
+    {
+      "level_code": "D3",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1943.94"
+    },
+    {
+      "level_code": "D2",
+      "as_of": "2026-06-01",
+      "expected_monthly": "1976.62"
+    },
+    {
+      "level_code": "D1",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2041.95"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2074.62"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2107.30"
+    },
+    {
+      "level_code": "B3",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2156.31"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2188.97"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2286.99"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2401.34"
+    },
+    {
+      "level_code": "Q2",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2483.02"
+    },
+    {
+      "level_code": "Q1",
+      "as_of": "2026-06-01",
+      "expected_monthly": "2826.07"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q1",
+      "as_of": "2025-06-01",
+      "expected_amount": "47.19"
+    },
+    {
+      "level_code": "Q2",
+      "as_of": "2025-06-01",
+      "expected_amount": "38.27"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2025-06-01",
+      "expected_amount": "35.95"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2025-06-01",
+      "expected_amount": "33.62"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2025-06-01",
+      "expected_amount": "31.77"
+    },
+    {
+      "level_code": "B3",
+      "as_of": "2025-06-01",
+      "expected_amount": "31.30"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2025-06-01",
+      "expected_amount": "29.91"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2025-06-01",
+      "expected_amount": "29.45"
+    },
+    {
+      "level_code": "D1",
+      "as_of": "2025-06-01",
+      "expected_amount": "28.42"
+    },
+    {
+      "level_code": "D2",
+      "as_of": "2025-06-01",
+      "expected_amount": "25.64"
+    },
+    {
+      "level_code": "D3",
+      "as_of": "2025-06-01",
+      "expected_amount": "25.22"
+    },
+    {
+      "level_code": "E1",
+      "as_of": "2025-06-01",
+      "expected_amount": "24.34"
+    },
+    {
+      "level_code": "E2",
+      "as_of": "2025-06-01",
+      "expected_amount": "22.66"
+    },
+    {
+      "level_code": "E3",
+      "as_of": "2025-06-01",
+      "expected_amount": "22.66"
+    },
+    {
+      "level_code": "F1",
+      "as_of": "2025-06-01",
+      "expected_amount": "18.58"
+    },
+    {
+      "level_code": "F2",
+      "as_of": "2025-06-01",
+      "expected_amount": "18.22"
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "_description": "gas-acqua-utilitalia — data checks 2026",
+  "ccnl_file": "gas-acqua-utilitalia.json",
+  "salary_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2026-07-01",
+      "expected_monthly": "1782.14"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2026-07-01",
+      "expected_monthly": "1980.76"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2026-07-01",
+      "expected_monthly": "2191.09"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2026-07-01",
+      "expected_monthly": "2342.01"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2026-07-01",
+      "expected_monthly": "2494.28"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2026-07-01",
+      "expected_monthly": "2738.97"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2026-07-01",
+      "expected_monthly": "2985.08"
+    },
+    {
+      "level_code": "8",
+      "as_of": "2026-07-01",
+      "expected_monthly": "3230.84"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2026-07-01",
+      "expected_monthly": "3577.47"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2022-10-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2022-10-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2022-10-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2022-10-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2022-10-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2022-10-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2022-10-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "8",
+      "as_of": "2022-10-01",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2022-10-01",
+      "expected_amount": "0.00"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "7",
+      "track_name": "professionalizzante_24",
+      "months_elapsed": 1,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "7",
+      "track_name": "professionalizzante_24",
+      "months_elapsed": 9,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "7",
+      "track_name": "professionalizzante_24",
+      "months_elapsed": 17,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "7",
+      "track_name": "professionalizzante_24",
+      "months_elapsed": 25,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "2",
+      "track_name": "professionalizzante_30",
+      "months_elapsed": 1,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "2",
+      "track_name": "professionalizzante_30",
+      "months_elapsed": 11,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "2",
+      "track_name": "professionalizzante_30",
+      "months_elapsed": 21,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "2",
+      "track_name": "professionalizzante_30",
+      "months_elapsed": 31,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 1,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 13,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 25,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 37,
+      "expected_pct": "1.00"
+    }
+  ]
+}

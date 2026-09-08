@@ -1,0 +1,116 @@
+{
+  "_description": "assicurazioni-ania — data checks 2026",
+  "ccnl_file": "assicurazioni-ania.json",
+  "salary_checks": [
+    {
+      "level_code": "L7",
+      "as_of": "2028-01-01",
+      "expected_monthly": "3112.27"
+    },
+    {
+      "level_code": "L6",
+      "as_of": "2028-01-01",
+      "expected_monthly": "2629.37"
+    },
+    {
+      "level_code": "L5",
+      "as_of": "2028-01-01",
+      "expected_monthly": "2463.96"
+    },
+    {
+      "level_code": "L4",
+      "as_of": "2028-01-01",
+      "expected_monthly": "2324.66"
+    },
+    {
+      "level_code": "L3",
+      "as_of": "2028-01-01",
+      "expected_monthly": "2130.75"
+    },
+    {
+      "level_code": "L2",
+      "as_of": "2028-01-01",
+      "expected_monthly": "1946.58"
+    },
+    {
+      "level_code": "L1",
+      "as_of": "2028-01-01",
+      "expected_monthly": "1846.38"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "L7",
+      "as_of": "2028-01-01",
+      "expected_amount": "102.08"
+    },
+    {
+      "level_code": "L6",
+      "as_of": "2028-01-01",
+      "expected_amount": "81.77"
+    },
+    {
+      "level_code": "L5",
+      "as_of": "2028-01-01",
+      "expected_amount": "76.63"
+    },
+    {
+      "level_code": "L4",
+      "as_of": "2028-01-01",
+      "expected_amount": "72.30"
+    },
+    {
+      "level_code": "L3",
+      "as_of": "2028-01-01",
+      "expected_amount": "66.27"
+    },
+    {
+      "level_code": "L2",
+      "as_of": "2028-01-01",
+      "expected_amount": "60.54"
+    },
+    {
+      "level_code": "L1",
+      "as_of": "2028-01-01",
+      "expected_amount": "57.42"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "L3",
+      "track_name": "area_c_l3",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "L3",
+      "track_name": "area_c_l3",
+      "months_elapsed": 13,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "L4",
+      "track_name": "area_b_l4",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "L4",
+      "track_name": "area_b_l4",
+      "months_elapsed": 13,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "L5",
+      "track_name": "area_b_l5",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "L5",
+      "track_name": "area_b_l5",
+      "months_elapsed": 13,
+      "expected_levels_below": 1
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "_description": "alimentari-pmi-unionalimentari — data checks 2026",
+  "ccnl_file": "alimentari-pmi-unionalimentari.json",
+  "salary_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2870.86"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2770.86"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2409.42"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1987.80"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1746.87"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1566.15"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1445.65"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1325.20"
+    },
+    {
+      "level_code": "8",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1204.73"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2025-06-01",
+      "expected_amount": "54.62"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2025-06-01",
+      "expected_amount": "51.42"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2025-06-01",
+      "expected_amount": "44.71"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2025-06-01",
+      "expected_amount": "36.89"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2025-06-01",
+      "expected_amount": "32.42"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2025-06-01",
+      "expected_amount": "29.06"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2025-06-01",
+      "expected_amount": "26.83"
+    },
+    {
+      "level_code": "7",
+      "as_of": "2025-06-01",
+      "expected_amount": "24.59"
+    },
+    {
+      "level_code": "8",
+      "as_of": "2025-06-01",
+      "expected_amount": "22.35"
+    }
+  ]
+}

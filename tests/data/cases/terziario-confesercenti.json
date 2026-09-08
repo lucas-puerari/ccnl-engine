@@ -1,0 +1,114 @@
+{
+  "_description": "terziario-confesercenti — data checks 2026",
+  "ccnl_file": "terziario-confesercenti.json",
+  "salary_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "2027-02-01",
+      "expected_monthly": "3114.47"
+    },
+    {
+      "level_code": "I",
+      "as_of": "2027-02-01",
+      "expected_monthly": "2621.36"
+    },
+    {
+      "level_code": "II",
+      "as_of": "2027-02-01",
+      "expected_monthly": "2335.07"
+    },
+    {
+      "level_code": "III",
+      "as_of": "2027-02-01",
+      "expected_monthly": "2068.56"
+    },
+    {
+      "level_code": "IV",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1856.68"
+    },
+    {
+      "level_code": "V",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1725.77"
+    },
+    {
+      "level_code": "VI",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1600.54"
+    },
+    {
+      "level_code": "VII",
+      "as_of": "2027-02-01",
+      "expected_monthly": "1447.98"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q",
+      "as_of": "1990-01-01",
+      "expected_amount": "25.46"
+    },
+    {
+      "level_code": "I",
+      "as_of": "1990-01-01",
+      "expected_amount": "24.84"
+    },
+    {
+      "level_code": "II",
+      "as_of": "1990-01-01",
+      "expected_amount": "22.83"
+    },
+    {
+      "level_code": "III",
+      "as_of": "1990-01-01",
+      "expected_amount": "21.95"
+    },
+    {
+      "level_code": "IV",
+      "as_of": "1990-01-01",
+      "expected_amount": "20.66"
+    },
+    {
+      "level_code": "V",
+      "as_of": "1990-01-01",
+      "expected_amount": "20.30"
+    },
+    {
+      "level_code": "VI",
+      "as_of": "1990-01-01",
+      "expected_amount": "19.73"
+    },
+    {
+      "level_code": "VII",
+      "as_of": "1990-01-01",
+      "expected_amount": "19.47"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "II",
+      "track_name": "standard",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "II",
+      "track_name": "standard",
+      "months_elapsed": 19,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "VI",
+      "track_name": "sesto-livello",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "VI",
+      "track_name": "sesto-livello",
+      "months_elapsed": 13,
+      "expected_levels_below": 1
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "_description": "chimica-affini-pmi-unionchimica — data checks 2026",
+  "ccnl_file": "chimica-affini-pmi-unionchimica.json",
+  "salary_checks": [
+    {
+      "level_code": "A",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1690.69"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1830.43"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2033.35"
+    },
+    {
+      "level_code": "D",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2267.00"
+    },
+    {
+      "level_code": "E",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2444.03"
+    },
+    {
+      "level_code": "F",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2703.06"
+    },
+    {
+      "level_code": "G",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2973.58"
+    },
+    {
+      "level_code": "H",
+      "as_of": "2026-01-01",
+      "expected_monthly": "3168.51"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "A",
+      "as_of": "2026-01-01",
+      "expected_amount": "10.33"
+    },
+    {
+      "level_code": "B",
+      "as_of": "2026-01-01",
+      "expected_amount": "11.88"
+    },
+    {
+      "level_code": "C",
+      "as_of": "2026-01-01",
+      "expected_amount": "12.91"
+    },
+    {
+      "level_code": "D",
+      "as_of": "2026-01-01",
+      "expected_amount": "13.94"
+    },
+    {
+      "level_code": "E",
+      "as_of": "2026-01-01",
+      "expected_amount": "15.49"
+    },
+    {
+      "level_code": "F",
+      "as_of": "2026-01-01",
+      "expected_amount": "18.08"
+    },
+    {
+      "level_code": "G",
+      "as_of": "2026-01-01",
+      "expected_amount": "20.66"
+    },
+    {
+      "level_code": "H",
+      "as_of": "2026-01-01",
+      "expected_amount": "23.24"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "C",
+      "track_name": "professionalizzante_C_H",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "C",
+      "track_name": "professionalizzante_C_H",
+      "months_elapsed": 11,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "B",
+      "track_name": "professionalizzante_B",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "A",
+      "track_name": "professionalizzante_A",
+      "months_elapsed": 1,
+      "expected_levels_below": 0
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "_description": "pelli-cuoio-industria-assopellettieri — data checks 2026",
+  "ccnl_file": "pelli-cuoio-industria-assopellettieri.json",
+  "salary_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2025-12-01",
+      "expected_monthly": "1379.86"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2025-12-01",
+      "expected_monthly": "1814.00"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2025-12-01",
+      "expected_monthly": "1911.70"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2025-12-01",
+      "expected_monthly": "2000.26"
+    },
+    {
+      "level_code": "4S",
+      "as_of": "2025-12-01",
+      "expected_monthly": "2047.33"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2025-12-01",
+      "expected_monthly": "2185.24"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2025-12-01",
+      "expected_monthly": "2412.21"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2023-04-01",
+      "expected_amount": "6.71"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2023-04-01",
+      "expected_amount": "7.41"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2023-04-01",
+      "expected_amount": "7.95"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2023-04-01",
+      "expected_amount": "8.39"
+    },
+    {
+      "level_code": "4S",
+      "as_of": "2023-04-01",
+      "expected_amount": "8.91"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2023-04-01",
+      "expected_amount": "9.68"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2023-04-01",
+      "expected_amount": "11.88"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "6",
+      "track_name": "dest_6",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "6",
+      "track_name": "dest_6",
+      "months_elapsed": 16,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "6",
+      "track_name": "dest_6",
+      "months_elapsed": 27,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "5",
+      "track_name": "dest_5",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "5",
+      "track_name": "dest_5",
+      "months_elapsed": 15,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "5",
+      "track_name": "dest_5",
+      "months_elapsed": 26,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "4S",
+      "track_name": "dest_4S",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "4S",
+      "track_name": "dest_4S",
+      "months_elapsed": 14,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "4S",
+      "track_name": "dest_4S",
+      "months_elapsed": 26,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "4",
+      "track_name": "dest_4",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "4",
+      "track_name": "dest_4",
+      "months_elapsed": 13,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "4",
+      "track_name": "dest_4",
+      "months_elapsed": 25,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "3",
+      "track_name": "dest_3",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "3",
+      "track_name": "dest_3",
+      "months_elapsed": 12,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "3",
+      "track_name": "dest_3",
+      "months_elapsed": 24,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "2",
+      "track_name": "dest_2",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "2",
+      "track_name": "dest_2",
+      "months_elapsed": 11,
+      "expected_levels_below": 0
+    }
+  ]
+}

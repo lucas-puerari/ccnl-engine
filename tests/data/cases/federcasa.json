@@ -1,0 +1,168 @@
+{
+  "_description": "federcasa — data checks 2026",
+  "ccnl_file": "federcasa.json",
+  "salary_checks": [
+    {
+      "level_code": "Q1",
+      "as_of": "2024-12-01",
+      "expected_monthly": "3483.40"
+    },
+    {
+      "level_code": "Q2",
+      "as_of": "2024-12-01",
+      "expected_monthly": "3001.82"
+    },
+    {
+      "level_code": "As",
+      "as_of": "2024-12-01",
+      "expected_monthly": "2773.72"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2024-12-01",
+      "expected_monthly": "2542.96"
+    },
+    {
+      "level_code": "A2",
+      "as_of": "2024-12-01",
+      "expected_monthly": "2358.35"
+    },
+    {
+      "level_code": "A3",
+      "as_of": "2024-12-01",
+      "expected_monthly": "2169.12"
+    },
+    {
+      "level_code": "Bs",
+      "as_of": "2024-12-01",
+      "expected_monthly": "2143.87"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2024-12-01",
+      "expected_monthly": "2084.39"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2024-12-01",
+      "expected_monthly": "1979.16"
+    },
+    {
+      "level_code": "B3",
+      "as_of": "2024-12-01",
+      "expected_monthly": "1874.51"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2024-12-01",
+      "expected_monthly": "1829.95"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2024-12-01",
+      "expected_monthly": "1762.49"
+    },
+    {
+      "level_code": "C3",
+      "as_of": "2024-12-01",
+      "expected_monthly": "1706.87"
+    },
+    {
+      "level_code": "Ds",
+      "as_of": "2024-12-01",
+      "expected_monthly": "1699.39"
+    },
+    {
+      "level_code": "D1",
+      "as_of": "2024-12-01",
+      "expected_monthly": "1601.65"
+    },
+    {
+      "level_code": "D2",
+      "as_of": "2024-12-01",
+      "expected_monthly": "1548.03"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q1",
+      "as_of": "2024-12-01",
+      "expected_amount": "38.25"
+    },
+    {
+      "level_code": "Q2",
+      "as_of": "2024-12-01",
+      "expected_amount": "31.50"
+    },
+    {
+      "level_code": "As",
+      "as_of": "2024-12-01",
+      "expected_amount": "28.35"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2024-12-01",
+      "expected_amount": "25.20"
+    },
+    {
+      "level_code": "A2",
+      "as_of": "2024-12-01",
+      "expected_amount": "22.05"
+    },
+    {
+      "level_code": "A3",
+      "as_of": "2024-12-01",
+      "expected_amount": "19.35"
+    },
+    {
+      "level_code": "Bs",
+      "as_of": "2024-12-01",
+      "expected_amount": "18.90"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2024-12-01",
+      "expected_amount": "18.45"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2024-12-01",
+      "expected_amount": "16.74"
+    },
+    {
+      "level_code": "B3",
+      "as_of": "2024-12-01",
+      "expected_amount": "15.39"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2024-12-01",
+      "expected_amount": "14.85"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2024-12-01",
+      "expected_amount": "13.95"
+    },
+    {
+      "level_code": "C3",
+      "as_of": "2024-12-01",
+      "expected_amount": "13.05"
+    },
+    {
+      "level_code": "Ds",
+      "as_of": "2024-12-01",
+      "expected_amount": "12.60"
+    },
+    {
+      "level_code": "D1",
+      "as_of": "2024-12-01",
+      "expected_amount": "12.06"
+    },
+    {
+      "level_code": "D2",
+      "as_of": "2024-12-01",
+      "expected_amount": "11.61"
+    }
+  ]
+}

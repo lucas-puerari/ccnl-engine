@@ -1,0 +1,116 @@
+{
+  "_description": "occhiali-occhialeria-industria — data checks 2026",
+  "ccnl_file": "occhiali-occhialeria-industria.json",
+  "salary_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2028-11-01",
+      "expected_monthly": "1712.04"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2028-11-01",
+      "expected_monthly": "1966.32"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2028-11-01",
+      "expected_monthly": "2082.62"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2028-11-01",
+      "expected_monthly": "2125.83"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2028-11-01",
+      "expected_monthly": "2187.96"
+    },
+    {
+      "level_code": "4S",
+      "as_of": "2028-11-01",
+      "expected_monthly": "2280.32"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2028-11-01",
+      "expected_monthly": "2453.48"
+    },
+    {
+      "level_code": "5S",
+      "as_of": "2028-11-01",
+      "expected_monthly": "2540.00"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2028-11-01",
+      "expected_monthly": "2670.80"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2028-11-01",
+      "expected_monthly": "2680.72"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2023-05-01",
+      "expected_amount": "6.84"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2023-05-01",
+      "expected_amount": "7.36"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2023-05-01",
+      "expected_amount": "7.80"
+    },
+    {
+      "level_code": "3S",
+      "as_of": "2023-05-01",
+      "expected_amount": "7.80"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2023-05-01",
+      "expected_amount": "8.26"
+    },
+    {
+      "level_code": "4S",
+      "as_of": "2023-05-01",
+      "expected_amount": "8.26"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2023-05-01",
+      "expected_amount": "9.76"
+    },
+    {
+      "level_code": "5S",
+      "as_of": "2023-05-01",
+      "expected_amount": "9.76"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2023-05-01",
+      "expected_amount": "11.65"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2023-05-01",
+      "expected_amount": "11.65"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_pct": "1.00"
+    }
+  ]
+}

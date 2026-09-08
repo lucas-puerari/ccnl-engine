@@ -1,0 +1,326 @@
+{
+  "_description": "panificazione-artigianato-confartigianato — data checks 2026",
+  "ccnl_file": "panificazione-artigianato-confartigianato.json",
+  "salary_checks": [
+    {
+      "level_code": "B4",
+      "as_of": "2026-04-01",
+      "expected_monthly": "1589.80"
+    },
+    {
+      "level_code": "A4",
+      "as_of": "2026-04-01",
+      "expected_monthly": "1671.86"
+    },
+    {
+      "level_code": "B3",
+      "as_of": "2026-04-01",
+      "expected_monthly": "1676.43"
+    },
+    {
+      "level_code": "B3S",
+      "as_of": "2026-04-01",
+      "expected_monthly": "1732.79"
+    },
+    {
+      "level_code": "A3",
+      "as_of": "2026-04-01",
+      "expected_monthly": "1764.45"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2026-04-01",
+      "expected_monthly": "1779.96"
+    },
+    {
+      "level_code": "A2",
+      "as_of": "2026-04-01",
+      "expected_monthly": "1926.61"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2026-04-01",
+      "expected_monthly": "2056.93"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2026-04-01",
+      "expected_monthly": "2165.67"
+    },
+    {
+      "level_code": "A1S",
+      "as_of": "2026-04-01",
+      "expected_monthly": "2248.73"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "B4",
+      "as_of": "1996-01-01",
+      "expected_amount": "14.46"
+    },
+    {
+      "level_code": "A4",
+      "as_of": "1996-01-01",
+      "expected_amount": "14.46"
+    },
+    {
+      "level_code": "B3",
+      "as_of": "1996-01-01",
+      "expected_amount": "16.01"
+    },
+    {
+      "level_code": "B3S",
+      "as_of": "1996-01-01",
+      "expected_amount": "17.64"
+    },
+    {
+      "level_code": "A3",
+      "as_of": "1996-01-01",
+      "expected_amount": "16.01"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "1996-01-01",
+      "expected_amount": "19.11"
+    },
+    {
+      "level_code": "A2",
+      "as_of": "1996-01-01",
+      "expected_amount": "17.56"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "1996-01-01",
+      "expected_amount": "19.11"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "1996-01-01",
+      "expected_amount": "21.69"
+    },
+    {
+      "level_code": "A1S",
+      "as_of": "1996-01-01",
+      "expected_amount": "21.69"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "A1",
+      "track_name": "gruppo_1_panificatori",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "A1",
+      "track_name": "gruppo_1_panificatori",
+      "months_elapsed": 13,
+      "expected_pct": "0.75"
+    },
+    {
+      "level_code": "A1",
+      "track_name": "gruppo_1_panificatori",
+      "months_elapsed": 25,
+      "expected_pct": "0.84"
+    },
+    {
+      "level_code": "A1",
+      "track_name": "gruppo_1_panificatori",
+      "months_elapsed": 37,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "A1",
+      "track_name": "gruppo_1_panificatori",
+      "months_elapsed": 49,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "A2",
+      "track_name": "gruppo_a2_panificatori",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "A2",
+      "track_name": "gruppo_a2_panificatori",
+      "months_elapsed": 13,
+      "expected_pct": "0.75"
+    },
+    {
+      "level_code": "A2",
+      "track_name": "gruppo_a2_panificatori",
+      "months_elapsed": 25,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "A2",
+      "track_name": "gruppo_a2_panificatori",
+      "months_elapsed": 37,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "A2",
+      "track_name": "gruppo_a2_panificatori",
+      "months_elapsed": 43,
+      "expected_pct": "0.95"
+    },
+    {
+      "level_code": "A2",
+      "track_name": "gruppo_a2_panificatori",
+      "months_elapsed": 55,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "A3",
+      "track_name": "gruppo_a3_panificatori",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "A3",
+      "track_name": "gruppo_a3_panificatori",
+      "months_elapsed": 13,
+      "expected_pct": "0.75"
+    },
+    {
+      "level_code": "A3",
+      "track_name": "gruppo_a3_panificatori",
+      "months_elapsed": 19,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "A3",
+      "track_name": "gruppo_a3_panificatori",
+      "months_elapsed": 25,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "A3",
+      "track_name": "gruppo_a3_panificatori",
+      "months_elapsed": 31,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "A3",
+      "track_name": "gruppo_a3_panificatori",
+      "months_elapsed": 37,
+      "expected_pct": "0.95"
+    },
+    {
+      "level_code": "A3",
+      "track_name": "gruppo_a3_panificatori",
+      "months_elapsed": 49,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "B1",
+      "track_name": "gruppo_b1_addetti",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "B1",
+      "track_name": "gruppo_b1_addetti",
+      "months_elapsed": 13,
+      "expected_pct": "0.75"
+    },
+    {
+      "level_code": "B1",
+      "track_name": "gruppo_b1_addetti",
+      "months_elapsed": 25,
+      "expected_pct": "0.84"
+    },
+    {
+      "level_code": "B1",
+      "track_name": "gruppo_b1_addetti",
+      "months_elapsed": 37,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "B2",
+      "track_name": "gruppo_b2_addetti",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "B2",
+      "track_name": "gruppo_b2_addetti",
+      "months_elapsed": 13,
+      "expected_pct": "0.75"
+    },
+    {
+      "level_code": "B2",
+      "track_name": "gruppo_b2_addetti",
+      "months_elapsed": 25,
+      "expected_pct": "0.88"
+    },
+    {
+      "level_code": "B2",
+      "track_name": "gruppo_b2_addetti",
+      "months_elapsed": 37,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "B3S",
+      "track_name": "gruppo_b3s_addetti",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "B3S",
+      "track_name": "gruppo_b3s_addetti",
+      "months_elapsed": 13,
+      "expected_pct": "0.75"
+    },
+    {
+      "level_code": "B3S",
+      "track_name": "gruppo_b3s_addetti",
+      "months_elapsed": 25,
+      "expected_pct": "0.88"
+    },
+    {
+      "level_code": "B3S",
+      "track_name": "gruppo_b3s_addetti",
+      "months_elapsed": 37,
+      "expected_pct": "0.93"
+    },
+    {
+      "level_code": "B3S",
+      "track_name": "gruppo_b3s_addetti",
+      "months_elapsed": 43,
+      "expected_pct": "0.95"
+    },
+    {
+      "level_code": "B3S",
+      "track_name": "gruppo_b3s_addetti",
+      "months_elapsed": 55,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "B3",
+      "track_name": "gruppo_b4_addetti",
+      "months_elapsed": 1,
+      "expected_pct": "0.70"
+    },
+    {
+      "level_code": "B3",
+      "track_name": "gruppo_b4_addetti",
+      "months_elapsed": 13,
+      "expected_pct": "0.75"
+    },
+    {
+      "level_code": "B3",
+      "track_name": "gruppo_b4_addetti",
+      "months_elapsed": 19,
+      "expected_pct": "0.95"
+    },
+    {
+      "level_code": "B3",
+      "track_name": "gruppo_b4_addetti",
+      "months_elapsed": 37,
+      "expected_pct": "1.00"
+    }
+  ]
+}

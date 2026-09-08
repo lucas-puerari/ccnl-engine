@@ -1,0 +1,120 @@
+{
+  "_description": "alimentari-federalimentare — data checks 2026",
+  "ccnl_file": "alimentari-federalimentare.json",
+  "salary_checks": [
+    {
+      "level_code": "6",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1233.20"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1356.52"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1479.82"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1603.17"
+    },
+    {
+      "level_code": "3A",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1788.12"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2027-01-01",
+      "expected_monthly": "2034.77"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2027-01-01",
+      "expected_monthly": "2466.34"
+    },
+    {
+      "level_code": "1S",
+      "as_of": "2027-01-01",
+      "expected_monthly": "2836.32"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1S",
+      "as_of": "2023-12-01",
+      "expected_amount": "51.42"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2023-12-01",
+      "expected_amount": "44.71"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2023-12-01",
+      "expected_amount": "36.89"
+    },
+    {
+      "level_code": "3A",
+      "as_of": "2023-12-01",
+      "expected_amount": "32.42"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2023-12-01",
+      "expected_amount": "29.06"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2023-12-01",
+      "expected_amount": "26.83"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2023-12-01",
+      "expected_amount": "24.59"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2023-12-01",
+      "expected_amount": "22.35"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 11,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 23,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "5",
+      "track_name": "professionalizzante_24",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "5",
+      "track_name": "professionalizzante_24",
+      "months_elapsed": 11,
+      "expected_levels_below": 0
+    }
+  ]
+}

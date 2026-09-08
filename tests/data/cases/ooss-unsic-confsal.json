@@ -1,0 +1,100 @@
+{
+  "_description": "ooss-unsic-confsal — data checks 2026",
+  "ccnl_file": "ooss-unsic-confsal.json",
+  "salary_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2788.00"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2331.75"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2096.38"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1863.44"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1735.04"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1588.78"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2026-01-01",
+      "expected_amount": "27.88"
+    },
+    {
+      "level_code": "2",
+      "as_of": "2026-01-01",
+      "expected_amount": "23.32"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2026-01-01",
+      "expected_amount": "20.96"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2026-01-01",
+      "expected_amount": "18.63"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2026-01-01",
+      "expected_amount": "17.35"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2026-01-01",
+      "expected_amount": "15.89"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante - dest livello 3",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "3",
+      "track_name": "professionalizzante - dest livello 3",
+      "months_elapsed": 19,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante - dest livello 4",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "4",
+      "track_name": "professionalizzante - dest livello 4",
+      "months_elapsed": 19,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "5",
+      "track_name": "professionalizzante - dest livello 5",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    }
+  ]
+}

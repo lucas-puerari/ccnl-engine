@@ -1,0 +1,138 @@
+{
+  "_description": "autorimesse-ic35 — data checks 2026",
+  "ccnl_file": "autorimesse-ic35.json",
+  "salary_checks": [
+    {
+      "level_code": "C4",
+      "as_of": "2027-11-01",
+      "expected_monthly": "1131.27"
+    },
+    {
+      "level_code": "C3",
+      "as_of": "2027-11-01",
+      "expected_monthly": "1448.04"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2027-11-01",
+      "expected_monthly": "1561.16"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2027-11-01",
+      "expected_monthly": "1753.48"
+    },
+    {
+      "level_code": "B3",
+      "as_of": "2027-11-01",
+      "expected_monthly": "1821.35"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2027-11-01",
+      "expected_monthly": "1900.55"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2027-11-01",
+      "expected_monthly": "1991.05"
+    },
+    {
+      "level_code": "A2",
+      "as_of": "2027-11-01",
+      "expected_monthly": "2183.36"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2027-11-01",
+      "expected_monthly": "2319.11"
+    },
+    {
+      "level_code": "Q2",
+      "as_of": "2027-11-01",
+      "expected_monthly": "2319.11"
+    },
+    {
+      "level_code": "Q1",
+      "as_of": "2027-11-01",
+      "expected_monthly": "2319.11"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "Q1",
+      "as_of": "2025-12-09",
+      "expected_amount": "33.10"
+    },
+    {
+      "level_code": "Q2",
+      "as_of": "2025-12-09",
+      "expected_amount": "33.10"
+    },
+    {
+      "level_code": "A1",
+      "as_of": "2025-12-09",
+      "expected_amount": "33.10"
+    },
+    {
+      "level_code": "A2",
+      "as_of": "2025-12-09",
+      "expected_amount": "32.19"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2025-12-09",
+      "expected_amount": "30.36"
+    },
+    {
+      "level_code": "B2",
+      "as_of": "2025-12-09",
+      "expected_amount": "29.57"
+    },
+    {
+      "level_code": "B3",
+      "as_of": "2025-12-09",
+      "expected_amount": "29.39"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2025-12-09",
+      "expected_amount": "29.23"
+    },
+    {
+      "level_code": "C2",
+      "as_of": "2025-12-09",
+      "expected_amount": "27.17"
+    },
+    {
+      "level_code": "C3",
+      "as_of": "2025-12-09",
+      "expected_amount": "26.61"
+    },
+    {
+      "level_code": "C4",
+      "as_of": "2025-12-09",
+      "expected_amount": "25.35"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "Q1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 1,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "Q1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 13,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "Q1",
+      "track_name": "professionalizzante",
+      "months_elapsed": 25,
+      "expected_pct": "0.95"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "_description": "scuole-private-laiche-aninsei — data checks 2026",
+  "ccnl_file": "scuole-private-laiche-aninsei.json",
+  "salary_checks": [
+    {
+      "level_code": "I",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1347.46"
+    },
+    {
+      "level_code": "II",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1379.61"
+    },
+    {
+      "level_code": "III",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1446.24"
+    },
+    {
+      "level_code": "IV",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1519.52"
+    },
+    {
+      "level_code": "V",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1619.64"
+    },
+    {
+      "level_code": "VI",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1619.64"
+    },
+    {
+      "level_code": "VII",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1646.17"
+    },
+    {
+      "level_code": "VIII_A",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1725.56"
+    },
+    {
+      "level_code": "VIII_B",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1819.62"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "I",
+      "as_of": "2024-06-15",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "II",
+      "as_of": "2024-06-15",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "III",
+      "as_of": "2024-06-15",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "IV",
+      "as_of": "2024-06-15",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "V",
+      "as_of": "2024-06-15",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "VI",
+      "as_of": "2024-06-15",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "VII",
+      "as_of": "2024-06-15",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "VIII_A",
+      "as_of": "2024-06-15",
+      "expected_amount": "0.00"
+    },
+    {
+      "level_code": "VIII_B",
+      "as_of": "2024-06-15",
+      "expected_amount": "0.00"
+    }
+  ],
+  "apprenticeship_pct_checks": [
+    {
+      "level_code": "I",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 1,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "I",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 13,
+      "expected_pct": "0.90"
+    },
+    {
+      "level_code": "I",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 25,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "I",
+      "track_name": "professionalizzante_36",
+      "months_elapsed": 37,
+      "expected_pct": "1.00"
+    }
+  ]
+}
