@@ -28,6 +28,7 @@ from ccnl_engine.engine.payroll.domain.employment import (
     FixedTerm,
     Permanent,
 )
+from ccnl_engine.engine.payroll.domain.family import FamilyComposition
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
     Employee,
@@ -128,6 +129,23 @@ def _build_bonus_input(inputs: dict[str, Any]) -> BonusInput | None:
     return BonusInput(
         annual_amount=Decimal(str(raw.get("annual_amount", "0"))),
         eligible_for_pdr=bool(raw.get("eligible_for_pdr", False)),
+    )
+
+
+def _build_family(inputs: dict[str, Any]) -> FamilyComposition | None:
+    """Build FamilyComposition from the ``family`` key in *inputs*.
+
+    Returns:
+        A :class:`FamilyComposition` instance, or ``None`` when the key is absent.
+    """
+    raw = inputs.get("family")
+    if raw is None:
+        return None
+    return FamilyComposition(
+        spouse_dependent=bool(raw.get("spouse_dependent", False)),
+        children_21_or_older=int(raw.get("children_21_or_older", 0)),
+        children_21_or_older_disabled=int(raw.get("children_21_or_older_disabled", 0)),
+        ascendenti_conviventi=int(raw.get("ascendenti_conviventi", 0)),
     )
 
 
@@ -271,6 +289,7 @@ class TestReferenceCases:
             fringe_benefit_input=fringe_benefit_input,
             welfare_input=welfare_input,
             bonus_input=bonus_input,
+            family=_build_family(inputs),
         )
 
         result = compute(scenario)

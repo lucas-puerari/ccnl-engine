@@ -64,6 +64,7 @@ from ccnl_engine.engine.payroll.domain.employment import (
     FixedTerm,
     Permanent,
 )
+from ccnl_engine.engine.payroll.domain.family import FamilyComposition
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult, ScopeItem
 from ccnl_engine.engine.payroll.domain.scenario import (
@@ -102,6 +103,7 @@ __all__ = [
     "Employee",
     "Employer",
     "Employment",
+    "FamilyComposition",
     "FiscalSimplification",
     "FixedTerm",
     "FringeBenefitInput",

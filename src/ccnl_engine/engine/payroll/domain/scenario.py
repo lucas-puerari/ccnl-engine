@@ -38,6 +38,7 @@ from ccnl_engine.engine.payroll.domain.employment import (
     FixedTerm,
     Permanent,
 )
+from ccnl_engine.engine.payroll.domain.family import FamilyComposition
 from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
     BonusInput,
@@ -274,6 +275,11 @@ class PayrollScenario:
             (Art. 51 c. 2 TUIR). ``None`` when not requested.
         bonus_input: Optional bonus / PdR data for the fiscal year.
             ``None`` when not requested.
+        family: Optional family composition for Art. 12 TUIR deductions.
+            When provided, the engine computes family deductions and subtracts
+            them from ``irpef_net`` (reducing ``net_annual``).  ``None`` means
+            no family deductions are applied and
+            ``FiscalSimplification.NO_DETRAZIONI_FAMILIARI`` is reported.
     """
 
     employee: Employee
@@ -285,3 +291,4 @@ class PayrollScenario:
     fringe_benefit_input: FringeBenefitInput | None = None
     welfare_input: WelfareInput | None = None
     bonus_input: BonusInput | None = None
+    family: FamilyComposition | None = None

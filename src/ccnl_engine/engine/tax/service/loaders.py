@@ -9,9 +9,16 @@ from typing import TYPE_CHECKING, Any, Protocol
 
 from ccnl_engine.engine.io.bundled import read_bundled
 from ccnl_engine.engine.metadata import RulesetIdentity, source_hash
+from ccnl_engine.engine.tax.domain.family import (
+    ChildrenDeductionRules,
+    FamilyDeductionRules,
+    OtherDependentRules,
+    SpouseDeductionRules,
+)
 from ccnl_engine.engine.tax.domain.rules import (
     ApprenticeRates,
     ApprenticeRawRates,
+    DeductionBreakpoint,
     InpsRates,
     InpsRawRates,
     YearRules,
@@ -333,4 +340,78 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
             income_ceiling=Decimal(str(pdr_raw["income_ceiling"])),
         ),
         ruleset=_as_ruleset(raw),
+    )
+
+
+def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
+    """Load Art. 12 TUIR family deduction rules for *year*.
+
+    The file ``knowledge/tax/data/family-deductions-{year}.json`` carries
+    spouse, children and other-dependent deduction parameters.  These are
+    pure law, not CCNL-specific.
+
+    Args:
+        year: Fiscal year (e.g. ``2026``).
+
+    Returns:
+        A :class:`~ccnl_engine.engine.tax.domain.family.FamilyDeductionRules`
+        with all deduction parameters validated.
+
+    Raises:
+        ValueError: If the file's ``year`` field does not match *year*.
+    """
+    pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
+    filename = f"family-deductions-{year}.json"
+    raw = _read_json(pkg, filename)
+    if raw.get("year") != year:
+        msg = (
+            f"{filename} year={raw.get('year')!r} "
+            f"does not match requested year={year!r}"
+        )
+        raise ValueError(msg)
+
+    sp_raw = raw["spouse"]
+    ch_raw = raw["children"]
+    od_raw = raw["other_dependents"]
+
+    bp_list = [
+        DeductionBreakpoint(
+            income_up_to=(
+                Decimal(str(bp["income_up_to"]))
+                if bp["income_up_to"] is not None
+                else None
+            ),
+            deduction=Decimal(str(bp["deduction"])),
+        )
+        for bp in sp_raw["breakpoints"]
+    ]
+
+    return FamilyDeductionRules(
+        year=int(raw["year"]),
+        description=raw.get("description", ""),
+        spouse=SpouseDeductionRules(
+            dependent_income_threshold=Decimal(
+                str(sp_raw["dependent_income_threshold"])
+            ),
+            breakpoints=bp_list,
+            notes=sp_raw.get("notes", ""),
+        ),
+        children=ChildrenDeductionRules(
+            auu_age_cutoff=int(ch_raw["auu_age_cutoff"]),
+            base_amount=Decimal(str(ch_raw["base_amount"])),
+            disabled_amount=Decimal(str(ch_raw["disabled_amount"])),
+            income_ceiling=Decimal(str(ch_raw["income_ceiling"])),
+            income_ceiling_increment_per_child=Decimal(
+                str(ch_raw["income_ceiling_increment_per_child"])
+            ),
+            notes=ch_raw.get("notes", ""),
+        ),
+        other_dependents=OtherDependentRules(
+            dependent_income_threshold=Decimal(
+                str(od_raw["dependent_income_threshold"])
+            ),
+            amount=Decimal(str(od_raw["amount"])),
+            income_ceiling=Decimal(str(od_raw["income_ceiling"])),
+            notes=od_raw.get("notes", ""),
+        ),
     )

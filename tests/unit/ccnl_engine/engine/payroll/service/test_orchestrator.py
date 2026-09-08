@@ -28,6 +28,7 @@ from ccnl_engine.engine.payroll.domain.employee import (
     SeniorityByCount,
     SeniorityByMonths,
 )
+from ccnl_engine.engine.payroll.domain.family import FamilyComposition
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
@@ -1276,3 +1277,80 @@ class TestL3VariablePay:
         assert with_inputs.net_annual == baseline.net_annual
         assert with_inputs.taxable_income == baseline.taxable_income
         assert with_inputs.irpef_net == baseline.irpef_net
+
+
+# ---------------------------------------------------------------------------
+# L3: Family deductions (Art. 12 TUIR)
+# ---------------------------------------------------------------------------
+
+
+class TestL3FamilyDeductions:
+    """Family deductions — orchestrator integration."""
+
+    _EXEMPT_CCNL = _build_ccnl(**{"meta.withholding_exempt": True})
+
+    def test_no_family_leaves_irpef_net_unchanged(self) -> None:
+        """Without family input, irpef_net equals baseline (no deduction)."""
+        baseline = compute(_req()).result
+        with_none = compute(dataclasses.replace(_req(), family=None)).result
+        assert with_none.irpef_net == baseline.irpef_net
+        assert with_none.family_deduction_annual == _D("0")
+
+    def test_spouse_deduction_reduces_irpef_net(self) -> None:
+        """Spouse deduction is subtracted from irpef_net."""
+        baseline = compute(_req()).result
+        with_spouse = compute(
+            dataclasses.replace(
+                _req(),
+                family=FamilyComposition(spouse_dependent=True),
+            )
+        ).result
+        assert with_spouse.family_deduction_spouse_annual > _D("0")
+        assert with_spouse.irpef_net < baseline.irpef_net
+
+    def test_family_deduction_children_and_other_zero_when_not_set(self) -> None:
+        """Children/other fields are zero when only spouse is set."""
+        result = compute(
+            dataclasses.replace(
+                _req(),
+                family=FamilyComposition(spouse_dependent=True),
+            )
+        ).result
+        assert result.family_deduction_children_annual == _D("0")
+        assert result.family_deduction_other_annual == _D("0")
+
+    def test_no_dependents_flags_no_deduction(self) -> None:
+        """Family with no eligible dependents: deduction zero, irpef_net unchanged."""
+        baseline = compute(_req()).result
+        with_empty_family = compute(
+            dataclasses.replace(
+                _req(),
+                family=FamilyComposition(),
+            )
+        ).result
+        assert with_empty_family.family_deduction_annual == _D("0")
+        assert with_empty_family.irpef_net == baseline.irpef_net
+
+    def test_exempt_employer_family_unused_equals_total(self) -> None:
+        """When employer does not withhold IRPEF, unused = total deduction."""
+        _mock_ccnl[0] = self._EXEMPT_CCNL
+        result = compute(
+            dataclasses.replace(
+                _req(),
+                family=FamilyComposition(spouse_dependent=True),
+            )
+        ).result
+        assert result.family_deduction_spouse_annual > _D("0")
+        assert result.unused_family_deduction_annual == result.family_deduction_annual
+        assert result.irpef_net == _D("0.00")
+
+    def test_gross_annual_not_mutated_by_family_deductions(self) -> None:
+        """gross_annual is unchanged by family deductions."""
+        baseline = compute(_req()).result
+        with_family = compute(
+            dataclasses.replace(
+                _req(),
+                family=FamilyComposition(spouse_dependent=True),
+            )
+        ).result
+        assert with_family.gross_annual == baseline.gross_annual

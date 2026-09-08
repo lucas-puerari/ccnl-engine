@@ -286,6 +286,14 @@ class PayrollResult:
     bonus_pdr_flat_tax_annual: Decimal = _ZERO
     bonus_ordinary_taxable_annual: Decimal = _ZERO
 
+    # --- L3: family deductions (Art. 12 TUIR; mutates irpef_net/net_annual) ---
+    # Unlike other L3 features these are NOT informational: they reduce irpef_net.
+    family_deduction_spouse_annual: Decimal = _ZERO
+    family_deduction_children_annual: Decimal = _ZERO
+    family_deduction_other_annual: Decimal = _ZERO
+    family_deduction_annual: Decimal = _ZERO
+    unused_family_deduction_annual: Decimal = _ZERO
+
     # --- L3: time supplements (informational; not in gross_annual/net_annual) ---
     base_monthly_full_time: Decimal = _ZERO
     overtime_supplement_monthly: Decimal = _ZERO
