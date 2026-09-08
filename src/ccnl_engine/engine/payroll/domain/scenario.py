@@ -38,7 +38,7 @@ from ccnl_engine.engine.payroll.domain.employment import (
     FixedTerm,
     Permanent,
 )
-from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
+from ccnl_engine.engine.payroll.domain.supplements import AbsenceDays, OvertimeHours
 
 _ZERO: Decimal = Decimal(0)
 _ONE: Decimal = Decimal(1)
@@ -254,8 +254,11 @@ class PayrollScenario:
         employment: Employment relationship inputs.
         time_supplements: Optional Layer 3 supplement hours for the pay
             period (overtime, night, holiday). ``None`` when not requested.
+        absence_days: Optional Layer 3 absence data for the pay period
+            (unpaid days absent). ``None`` when not requested.
     """
 
     employee: Employee
     employment: Employment
     time_supplements: OvertimeHours | None = None
+    absence_days: AbsenceDays | None = None

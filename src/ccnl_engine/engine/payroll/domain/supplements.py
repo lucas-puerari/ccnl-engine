@@ -47,3 +47,35 @@ class OvertimeHours:
             if value < _ZERO:
                 msg = f"{name} must be >= 0, got {value}"
                 raise ValueError(msg)
+
+
+@dataclass(frozen=True)
+class AbsenceDays:
+    """Caller-declared absent days for one pay period.
+
+    Represents days for which no contractual pay is due
+    (assenza non retribuita). The engine computes the deduction
+    based on the per-CCNL daily divisor method and reports it
+    as :attr:`~ccnl_engine.engine.payroll.domain.payroll_result\
+.PayrollResult.absence_deduction_monthly`.
+
+    The deduction is informational: ``gross_annual`` and ``net_annual``
+    are not mutated. Use
+    :attr:`~ccnl_engine.engine.payroll.domain.payroll_result\
+.PayrollResult.effective_gross_monthly` for the net-of-absence figure.
+
+    Attributes:
+        unpaid_days: Days absent without pay in the period. Must be >= 0.
+    """
+
+    unpaid_days: Decimal = _ZERO
+
+    def __post_init__(self) -> None:
+        """Validate that unpaid_days is non-negative.
+
+        Raises:
+            ValueError: If unpaid_days is negative.
+        """
+        if self.unpaid_days < _ZERO:
+            msg = f"unpaid_days must be >= 0, got {self.unpaid_days}"
+            raise ValueError(msg)

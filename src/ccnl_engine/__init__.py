@@ -73,6 +73,7 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Jurisdiction,
     PayrollScenario,
 )
+from ccnl_engine.engine.payroll.domain.supplements import AbsenceDays
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 from ccnl_engine.engine.provenance import SourceAuthority
 from ccnl_engine.engine.surtax import SurtaxRules, load_surtax_rules
@@ -81,6 +82,7 @@ from ccnl_engine.version import __version__ as engine_version
 
 __all__ = [
     "CCNL",
+    "AbsenceDays",
     "Agreement",
     "Allowance",
     "Apprentice",

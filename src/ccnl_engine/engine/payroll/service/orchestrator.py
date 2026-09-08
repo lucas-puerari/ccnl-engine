@@ -22,6 +22,7 @@ from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult, ScopeItem
 from ccnl_engine.engine.payroll.service import contributions as _contrib
 from ccnl_engine.engine.payroll.service import irpef as _irpef
+from ccnl_engine.engine.payroll.service.absence import compute_absence_deduction
 from ccnl_engine.engine.payroll.service.apprenticeship import _apprentice_chain
 from ccnl_engine.engine.payroll.service.chain import _level_chain
 from ccnl_engine.engine.payroll.service.rounding import money
@@ -50,7 +51,7 @@ if TYPE_CHECKING:
         Permanent,
     )
     from ccnl_engine.engine.payroll.domain.scenario import Employment, PayrollScenario
-    from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
+    from ccnl_engine.engine.payroll.domain.supplements import AbsenceDays, OvertimeHours
     from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
     from ccnl_engine.engine.tax.domain.rules import DomesticInpsRates, YearRules
@@ -627,6 +628,86 @@ def _build_trace(
     return CalculationTrace(steps=tuple(steps))
 
 
+def _run_l3_supplements(
+    scenario: PayrollScenario,
+    ccnl: CCNL,
+    base_monthly_full_time: Decimal,
+    hourly_divisor: Decimal,
+    as_of: date,
+    l3_warnings: list[str],
+) -> tuple[Decimal, Decimal, Decimal, tuple[TraceStep, ...], bool]:
+    """Run the L3 time-supplement block and return its outputs.
+
+    Returns:
+        A 5-tuple of (overtime_supp, night_supp, holiday_supp, supplement_trace,
+        l3_schema_present).  All supplement amounts are zero when the CCNL has no
+        L3 data or no hours were supplied; a warning is appended to ``l3_warnings``
+        in the latter case.
+    """
+    ts_input = scenario.time_supplements
+    l3_schema_present = (
+        ccnl.layer_3 is not None and ccnl.layer_3.time_supplements is not None
+    )
+    overtime_supp = _ZERO
+    night_supp = _ZERO
+    holiday_supp = _ZERO
+    supplement_trace: tuple[TraceStep, ...] = ()
+    if ts_input is not None:
+        if l3_schema_present:
+            assert ccnl.layer_3 is not None  # narrowing for mypy
+            assert ccnl.layer_3.time_supplements is not None
+            overtime_supp, night_supp, holiday_supp, supplement_trace = (
+                compute_time_supplements(
+                    supps_input=ts_input,
+                    supplements_schema=ccnl.layer_3.time_supplements,
+                    base_monthly_full_time=base_monthly_full_time,
+                    hourly_divisor=hourly_divisor,
+                    as_of=as_of,
+                )
+            )
+        else:
+            l3_warnings.append(
+                "time_supplements requested but not modelled for this CCNL"
+            )
+    return overtime_supp, night_supp, holiday_supp, supplement_trace, l3_schema_present
+
+
+def _run_l3_absence(
+    scenario: PayrollScenario,
+    ccnl: CCNL,
+    gross_monthly: Decimal,
+    hourly_rate: Decimal,
+    l3_warnings: list[str],
+) -> tuple[Decimal, Decimal, bool]:
+    """Run the L3 absence-deduction block and return its outputs.
+
+    Returns:
+        A 3-tuple of (absence_deduction_monthly, effective_gross_monthly,
+        l3_absence_present).  Both amounts are zero and effective_gross equals
+        gross when no absence is supplied or the CCNL has no absence rules; a
+        warning is appended to ``l3_warnings`` in the latter case.
+    """
+    absence_input = scenario.absence_days
+    l3_absence_present = (
+        ccnl.layer_3 is not None and ccnl.layer_3.absence_rules is not None
+    )
+    absence_deduction_monthly = _ZERO
+    if absence_input is not None:
+        if l3_absence_present:
+            assert ccnl.layer_3 is not None  # narrowing for mypy
+            assert ccnl.layer_3.absence_rules is not None
+            absence_deduction_monthly = compute_absence_deduction(
+                absence_input=absence_input,
+                absence_rules=ccnl.layer_3.absence_rules,
+                gross_monthly=gross_monthly,
+                hourly_rate=hourly_rate,
+            )
+        else:
+            l3_warnings.append("absence_days requested but not modelled for this CCNL")
+    effective_gross_monthly = money(gross_monthly - absence_deduction_monthly)
+    return absence_deduction_monthly, effective_gross_monthly, l3_absence_present
+
+
 def _l3_feature_status(ts_input_given: bool, l3_schema_present: bool) -> str:
     """Return a ScopeItem status string for one L3 time-supplement feature.
 
@@ -642,11 +723,31 @@ def _l3_feature_status(ts_input_given: bool, l3_schema_present: bool) -> str:
     return "verified"
 
 
+def _absence_feature_status(
+    absence_input: AbsenceDays | None, l3_absence_present: bool
+) -> str:
+    """Return a ScopeItem status string for the absence feature.
+
+    Returns:
+        ``"verified"`` when absence days were supplied and the CCNL has
+        absence rules, ``"not_computed"`` when days were supplied but
+        the CCNL has no absence rules, ``"excluded"`` when no days were
+        supplied.
+    """
+    if absence_input is None or absence_input.unpaid_days == _ZERO:
+        return "excluded"
+    if not l3_absence_present:
+        return "not_computed"
+    return "verified"
+
+
 def _build_scope(
     employer_withholds_irpef: bool,
     fiscal_simplifications: frozenset[FiscalSimplification],
     ts_input: OvertimeHours | None,
     l3_schema_present: bool,
+    absence_input: AbsenceDays | None,
+    l3_absence_present: bool,
 ) -> tuple[ScopeItem, ...]:
     """Build the calculation scope tuple for a PayrollResult.
 
@@ -717,6 +818,12 @@ def _build_scope(
             feature="holiday_work",
             status=_l3_feature_status(  # type: ignore[arg-type]
                 holiday_hours > _ZERO, l3_schema_present
+            ),
+        ),
+        ScopeItem(
+            feature="absence",
+            status=_absence_feature_status(  # type: ignore[arg-type]
+                absence_input, l3_absence_present
             ),
         ),
     ]
@@ -901,44 +1008,44 @@ def compute(scenario: PayrollScenario) -> Calculation:
 
     # --- L3: time supplements ---
     base_monthly_full_time = chain_full_time.base
-    overtime_supp = _ZERO
-    night_supp = _ZERO
-    holiday_supp = _ZERO
-    supplement_trace: tuple[TraceStep, ...] = ()
     l3_warnings: list[str] = []
-
-    ts_input = scenario.time_supplements
-    l3_schema_present = (
-        ccnl.layer_3 is not None and ccnl.layer_3.time_supplements is not None
+    overtime_supp, night_supp, holiday_supp, supplement_trace, l3_schema_present = (
+        _run_l3_supplements(
+            scenario=scenario,
+            ccnl=ccnl,
+            base_monthly_full_time=base_monthly_full_time,
+            hourly_divisor=hourly_divisor,
+            as_of=as_of,
+            l3_warnings=l3_warnings,
+        )
     )
-    if ts_input is not None:
-        if l3_schema_present:
-            assert ccnl.layer_3 is not None  # narrowing for mypy
-            assert ccnl.layer_3.time_supplements is not None
-            overtime_supp, night_supp, holiday_supp, supplement_trace = (
-                compute_time_supplements(
-                    supps_input=ts_input,
-                    supplements_schema=ccnl.layer_3.time_supplements,
-                    base_monthly_full_time=base_monthly_full_time,
-                    hourly_divisor=hourly_divisor,
-                    as_of=as_of,
-                )
-            )
-        else:
-            l3_warnings.append(
-                "time_supplements requested but not modelled for this CCNL"
-            )
 
     time_supplements_monthly = money(overtime_supp + night_supp + holiday_supp)
     time_supplements_annual_projection = money(
         time_supplements_monthly * additional_months
     )
 
+    # --- L3: absence deduction ---
+    hourly_rate = money(gross_monthly / hourly_divisor)
+    absence_deduction_monthly, effective_gross_monthly, l3_absence_present = (
+        _run_l3_absence(
+            scenario=scenario,
+            ccnl=ccnl,
+            gross_monthly=gross_monthly,
+            hourly_rate=hourly_rate,
+            l3_warnings=l3_warnings,
+        )
+    )
+
+    ts_input = scenario.time_supplements
+    absence_input = scenario.absence_days
     calculation_scope = _build_scope(
         employer_withholds_irpef=employer_withholds_irpef,
         fiscal_simplifications=fiscal_simplifications,
         ts_input=ts_input,
         l3_schema_present=l3_schema_present,
+        absence_input=absence_input,
+        l3_absence_present=l3_absence_present,
     )
 
     result = PayrollResult(
@@ -956,7 +1063,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
         second_level_monthly=second_level_monthly_total,
         gross_monthly=gross_monthly,
         gross_annual=gross_annual,
-        hourly_rate=money(gross_monthly / hourly_divisor),
+        hourly_rate=hourly_rate,
         apprenticeship_pct=apprenticeship_pct,
         apprenticeship_under_level_code=under_level_code,
         inps_employee_annual=inps_employee_annual,
@@ -989,6 +1096,8 @@ def compute(scenario: PayrollScenario) -> Calculation:
         holiday_supplement_monthly=holiday_supp,
         time_supplements_monthly=time_supplements_monthly,
         time_supplements_annual_projection=time_supplements_annual_projection,
+        absence_deduction_monthly=absence_deduction_monthly,
+        effective_gross_monthly=effective_gross_monthly,
     )
 
     snapshot = InputSnapshot.capture(

@@ -1755,7 +1755,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "a8a4e9a7d5909cc365cbb28a1a5840a8f9a4477df541ca408420747a156de1ef",
+    "source_hash": "11a2e52d148371ee0fa923f8825673b45877162b4f8924b012802ba76bb57270",
     "published_at": "2026-09-08"
   },
   "layer_3": {
@@ -1868,6 +1868,27 @@
           }
         }
       ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "metalmeccanico-federmeccanica",
+            "title": "CCNL Industria Metalmeccanica e Installazione Impianti",
+            "kind": "tabella_retributiva",
+            "url": "https://www.contratticcnl.it/metalmeccanici/"
+          },
+          "section": "Art. 7 -- Trattamento economico (divisore giornaliero 26)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-08T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-01-01"
+        }
+      }
     }
   }
 }
