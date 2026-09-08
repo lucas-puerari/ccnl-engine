@@ -19,5 +19,5 @@
 ## Usage example
 
 ```python
---8<--"docs/examples/contracts/scuole-materne-fism.py"
+--8 < --"docs/examples/contracts/scuole-materne-fism.py"
 ```

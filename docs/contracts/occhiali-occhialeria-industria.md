@@ -19,5 +19,5 @@
 ## Usage example
 
 ```python
---8<--"docs/examples/contracts/occhiali-occhialeria-industria.py"
+--8 < --"docs/examples/contracts/occhiali-occhialeria-industria.py"
 ```

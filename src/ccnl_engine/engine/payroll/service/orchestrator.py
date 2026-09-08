@@ -19,7 +19,7 @@ from ccnl_engine.engine.payroll.domain.employee import (
 )
 from ccnl_engine.engine.payroll.domain.employment import Apprentice, FixedTerm
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
-from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
+from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult, ScopeItem
 from ccnl_engine.engine.payroll.service import contributions as _contrib
 from ccnl_engine.engine.payroll.service import irpef as _irpef
 from ccnl_engine.engine.payroll.service.apprenticeship import _apprentice_chain
@@ -50,6 +50,7 @@ if TYPE_CHECKING:
         Permanent,
     )
     from ccnl_engine.engine.payroll.domain.scenario import Employment, PayrollScenario
+    from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
     from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
     from ccnl_engine.engine.tax.domain.rules import DomesticInpsRates, YearRules
@@ -626,6 +627,102 @@ def _build_trace(
     return CalculationTrace(steps=tuple(steps))
 
 
+def _l3_feature_status(ts_input_given: bool, l3_schema_present: bool) -> str:
+    """Return a ScopeItem status string for one L3 time-supplement feature.
+
+    Returns:
+        ``"verified"`` when hours were supplied and the CCNL has L3 data,
+        ``"not_computed"`` when hours were supplied but the CCNL has no L3 data,
+        ``"excluded"`` when no hours were supplied for this period.
+    """
+    if not ts_input_given:
+        return "excluded"
+    if not l3_schema_present:
+        return "not_computed"
+    return "verified"
+
+
+def _build_scope(
+    employer_withholds_irpef: bool,
+    fiscal_simplifications: frozenset[FiscalSimplification],
+    ts_input: OvertimeHours | None,
+    l3_schema_present: bool,
+) -> tuple[ScopeItem, ...]:
+    """Build the calculation scope tuple for a PayrollResult.
+
+    Every entry declares whether the feature was computed (``"verified"``),
+    intentionally skipped (``"excluded"``), or requested but unsupported
+    (``"not_computed"``).
+
+    Returns:
+        An ordered tuple of :class:`ScopeItem` entries.
+    """
+    fs = fiscal_simplifications
+    zero = Decimal(0)
+    ot_hours = (
+        (ts_input.weekday_hours + ts_input.supplementare_hours)
+        if (ts_input is not None)
+        else zero
+    )
+    night_hours = ts_input.night_hours if ts_input is not None else zero
+    holiday_hours = ts_input.holiday_hours if ts_input is not None else zero
+    items: list[ScopeItem] = [
+        ScopeItem(feature="base_salary", status="verified"),
+        ScopeItem(feature="seniority", status="verified"),
+        ScopeItem(feature="inps_employee", status="verified"),
+        ScopeItem(feature="inps_employer", status="verified"),
+        ScopeItem(feature="tfr", status="verified"),
+        ScopeItem(
+            feature="irpef",
+            status="verified" if employer_withholds_irpef else "excluded",
+        ),
+        ScopeItem(
+            feature="trattamento_integrativo",
+            status=(
+                "excluded"
+                if FiscalSimplification.NO_TRATTAMENTO_INTEGRATIVO in fs
+                else "verified"
+            ),
+        ),
+        ScopeItem(
+            feature="addizionale_regionale",
+            status=(
+                "excluded"
+                if FiscalSimplification.NO_ADDIZIONALE_REGIONALE in fs
+                else "verified"
+            ),
+        ),
+        ScopeItem(
+            feature="addizionale_comunale",
+            status=(
+                "excluded"
+                if FiscalSimplification.NO_ADDIZIONALE_COMUNALE in fs
+                else "verified"
+            ),
+        ),
+        ScopeItem(feature="family_deductions", status="excluded"),
+        ScopeItem(
+            feature="overtime",
+            status=_l3_feature_status(  # type: ignore[arg-type]
+                ot_hours > _ZERO, l3_schema_present
+            ),
+        ),
+        ScopeItem(
+            feature="night_work",
+            status=_l3_feature_status(  # type: ignore[arg-type]
+                night_hours > _ZERO, l3_schema_present
+            ),
+        ),
+        ScopeItem(
+            feature="holiday_work",
+            status=_l3_feature_status(  # type: ignore[arg-type]
+                holiday_hours > _ZERO, l3_schema_present
+            ),
+        ),
+    ]
+    return tuple(items)
+
+
 def compute(scenario: PayrollScenario) -> Calculation:
     """Compute gross-to-net salary and employer cost for a payroll scenario.
 
@@ -811,13 +908,17 @@ def compute(scenario: PayrollScenario) -> Calculation:
     l3_warnings: list[str] = []
 
     ts_input = scenario.time_supplements
+    l3_schema_present = (
+        ccnl.layer_3 is not None and ccnl.layer_3.time_supplements is not None
+    )
     if ts_input is not None:
-        l3_schema = ccnl.layer_3
-        if l3_schema is not None and l3_schema.time_supplements is not None:
+        if l3_schema_present:
+            assert ccnl.layer_3 is not None  # narrowing for mypy
+            assert ccnl.layer_3.time_supplements is not None
             overtime_supp, night_supp, holiday_supp, supplement_trace = (
                 compute_time_supplements(
                     supps_input=ts_input,
-                    supplements_schema=l3_schema.time_supplements,
+                    supplements_schema=ccnl.layer_3.time_supplements,
                     base_monthly_full_time=base_monthly_full_time,
                     hourly_divisor=hourly_divisor,
                     as_of=as_of,
@@ -831,6 +932,13 @@ def compute(scenario: PayrollScenario) -> Calculation:
     time_supplements_monthly = money(overtime_supp + night_supp + holiday_supp)
     time_supplements_annual_projection = money(
         time_supplements_monthly * additional_months
+    )
+
+    calculation_scope = _build_scope(
+        employer_withholds_irpef=employer_withholds_irpef,
+        fiscal_simplifications=fiscal_simplifications,
+        ts_input=ts_input,
+        l3_schema_present=l3_schema_present,
     )
 
     result = PayrollResult(
@@ -873,6 +981,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
             chain,
             ccnl.parameters.seniority_increments,
         ),
+        calculation_scope=calculation_scope,
         warnings=tuple(l3_warnings),
         base_monthly_full_time=base_monthly_full_time,
         overtime_supplement_monthly=overtime_supp,
