@@ -37,6 +37,7 @@ from __future__ import annotations
 
 from ccnl_engine.engine.contract import CCNL, load_ccnl
 from ccnl_engine.engine.contract.domain.ccnl import (
+    AgreementKind,
     Allowance,
     LevelCategory,
     SupplementaryAllowance,
@@ -91,6 +92,7 @@ __all__ = [
     "CCNL",
     "AbsenceDays",
     "Agreement",
+    "AgreementKind",
     "Allowance",
     "Apprentice",
     "BonusInput",

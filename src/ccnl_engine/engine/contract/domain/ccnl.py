@@ -290,6 +290,17 @@ class Allowance(BaseModel):
     provenance: RuleProvenance | None = None
 
 
+class AgreementKind(StrEnum):
+    """Origin of a second-level agreement (*contrattazione di secondo livello*).
+
+    Distinguishes whether the allowance comes from a company-level
+    (``company``) or territorial (``territorial``) agreement.
+    """
+
+    COMPANY = "company"
+    TERRITORIAL = "territorial"
+
+
 class SupplementaryAllowance(BaseModel):
     """Caller-supplied allowance from a second-level (territorial or company) agreement.
 
@@ -311,6 +322,10 @@ class SupplementaryAllowance(BaseModel):
     The amount is always scaled by ``Scenario.part_time_pct``; the
     ``apprenticeship_pct_relevant`` flag further controls whether the
     apprenticeship percentage is applied on top of that.
+
+    ``kind`` identifies the agreement level (company or territorial); optional
+    but recommended for audit trails.  ``provenance`` carries the source
+    citation for the allowance; caller-supplied, never required by the engine.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -322,6 +337,8 @@ class SupplementaryAllowance(BaseModel):
     tfr_relevant: bool = True
     contribution_relevant: bool = True
     apprenticeship_pct_relevant: bool = True
+    kind: AgreementKind | None = None
+    provenance: RuleProvenance | None = None
 
 
 class SeniorityTier(BaseModel):
