@@ -273,6 +273,19 @@ class PayrollResult:
     sick_inps_indemnity_monthly: Decimal = _ZERO
     sick_company_integration_monthly: Decimal = _ZERO
 
+    # --- L3: fringe benefits (informational; taxable_income not mutated) ---
+    fringe_benefit_annual: Decimal = _ZERO
+    fringe_benefit_threshold_annual: Decimal = _ZERO
+    fringe_benefit_taxable_annual: Decimal = _ZERO
+
+    # --- L3: welfare (informational; always tax-exempt) ---
+    welfare_annual: Decimal = _ZERO
+
+    # --- L3: bonus / PdR (informational; IRPEF chain not extended) ---
+    bonus_annual: Decimal = _ZERO
+    bonus_pdr_flat_tax_annual: Decimal = _ZERO
+    bonus_ordinary_taxable_annual: Decimal = _ZERO
+
     # --- L3: time supplements (informational; not in gross_annual/net_annual) ---
     base_monthly_full_time: Decimal = _ZERO
     overtime_supplement_monthly: Decimal = _ZERO

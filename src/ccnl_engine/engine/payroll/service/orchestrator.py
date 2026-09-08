@@ -31,8 +31,17 @@ from ccnl_engine.engine.payroll.service.seniority import _resolve_seniority_coun
 from ccnl_engine.engine.payroll.service.sickness import compute_sickness
 from ccnl_engine.engine.payroll.service.supplements import compute_time_supplements
 from ccnl_engine.engine.payroll.service.types import AnnualisedPay, MonthlyPayChain
+from ccnl_engine.engine.payroll.service.variable_pay import (
+    compute_bonus,
+    compute_fringe_benefit,
+    compute_welfare,
+)
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
-from ccnl_engine.engine.tax.service.loaders import load_sick_pay_rates, load_year_rules
+from ccnl_engine.engine.tax.service.loaders import (
+    load_sick_pay_rates,
+    load_variable_pay_rules,
+    load_year_rules,
+)
 from ccnl_engine.knowledge.version import __version__ as knowledge_version
 from ccnl_engine.version import __version__ as engine_version
 
@@ -55,9 +64,12 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.scenario import Employment, PayrollScenario
     from ccnl_engine.engine.payroll.domain.supplements import (
         AbsenceDays,
+        BonusInput,
+        FringeBenefitInput,
         LeaveInput,
         OvertimeHours,
         SickInput,
+        WelfareInput,
     )
     from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
@@ -850,6 +862,90 @@ def _sickness_feature_status(
     return "verified"
 
 
+def _run_l3_variable_pay(
+    scenario: PayrollScenario,
+    gross_annual: Decimal,
+    year: int,
+    l3_warnings: list[str],
+) -> tuple[Decimal, Decimal, Decimal, Decimal, Decimal, Decimal, Decimal]:
+    """Run the L3 variable-pay block (fringe benefits, welfare, bonus/PdR).
+
+    Variable-pay rules are statutory (not CCNL-specific): the rules file is
+    always present for the fiscal year.  Each sub-feature is computed only
+    when the caller provides the corresponding input.
+
+    Returns:
+        A 7-tuple of (fringe_benefit_annual, fringe_benefit_threshold_annual,
+        fringe_benefit_taxable_annual, welfare_annual, bonus_annual,
+        bonus_pdr_flat_tax_annual, bonus_ordinary_taxable_annual).
+        Any unset input yields zeros for its slot.
+    """
+    fb_input = scenario.fringe_benefit_input
+    welfare_input = scenario.welfare_input
+    bonus_input = scenario.bonus_input
+
+    any_input = (
+        fb_input is not None or welfare_input is not None or bonus_input is not None
+    )
+    fb_annual = _ZERO
+    fb_threshold = _ZERO
+    fb_taxable = _ZERO
+    welfare_annual = _ZERO
+    bonus_annual = _ZERO
+    pdr_flat_tax = _ZERO
+    bonus_ordinary = _ZERO
+
+    if not any_input:
+        return (
+            fb_annual,
+            fb_threshold,
+            fb_taxable,
+            welfare_annual,
+            bonus_annual,
+            pdr_flat_tax,
+            bonus_ordinary,
+        )
+
+    var_pay_rules = load_variable_pay_rules(year)
+
+    if fb_input is not None:
+        fb_annual, fb_threshold, fb_taxable = compute_fringe_benefit(
+            fb_input, var_pay_rules.fringe_benefit
+        )
+
+    if welfare_input is not None:
+        welfare_annual = compute_welfare(welfare_input)
+
+    if bonus_input is not None:
+        bonus_annual, pdr_flat_tax, bonus_ordinary = compute_bonus(
+            bonus_input, var_pay_rules.pdr, gross_annual, l3_warnings
+        )
+
+    return (
+        fb_annual,
+        fb_threshold,
+        fb_taxable,
+        welfare_annual,
+        bonus_annual,
+        pdr_flat_tax,
+        bonus_ordinary,
+    )
+
+
+def _variable_pay_feature_status(
+    input_val: FringeBenefitInput | WelfareInput | BonusInput | None,
+) -> str:
+    """Return a ScopeItem status string for a variable-pay feature.
+
+    Variable-pay rules are always available (statutory, not CCNL-specific),
+    so the only distinction is whether the caller provided input.
+
+    Returns:
+        ``"verified"`` when input was provided, ``"excluded"`` otherwise.
+    """
+    return "excluded" if input_val is None else "verified"
+
+
 def _build_scope(
     employer_withholds_irpef: bool,
     fiscal_simplifications: frozenset[FiscalSimplification],
@@ -861,6 +957,9 @@ def _build_scope(
     l3_leave_present: bool,
     sick_input: SickInput | None,
     l3_sickness_present: bool,
+    fringe_benefit_input: FringeBenefitInput | None,
+    welfare_input: WelfareInput | None,
+    bonus_input: BonusInput | None,
 ) -> tuple[ScopeItem, ...]:
     """Build the calculation scope tuple for a PayrollResult.
 
@@ -949,6 +1048,24 @@ def _build_scope(
             feature="sickness",
             status=_sickness_feature_status(  # type: ignore[arg-type]
                 sick_input, l3_sickness_present
+            ),
+        ),
+        ScopeItem(
+            feature="fringe_benefit",
+            status=_variable_pay_feature_status(  # type: ignore[arg-type]
+                fringe_benefit_input
+            ),
+        ),
+        ScopeItem(
+            feature="welfare",
+            status=_variable_pay_feature_status(  # type: ignore[arg-type]
+                welfare_input
+            ),
+        ),
+        ScopeItem(
+            feature="bonus_pdr",
+            status=_variable_pay_feature_status(  # type: ignore[arg-type]
+                bonus_input
             ),
         ),
     ]
@@ -1186,10 +1303,29 @@ def compute(scenario: PayrollScenario) -> Calculation:
         l3_warnings=l3_warnings,
     )
 
+    # --- L3: variable pay (fringe benefits, welfare, bonus/PdR) ---
+    (
+        fringe_benefit_annual,
+        fringe_benefit_threshold_annual,
+        fringe_benefit_taxable_annual,
+        welfare_annual,
+        bonus_annual,
+        bonus_pdr_flat_tax_annual,
+        bonus_ordinary_taxable_annual,
+    ) = _run_l3_variable_pay(
+        scenario=scenario,
+        gross_annual=gross_annual,
+        year=year,
+        l3_warnings=l3_warnings,
+    )
+
     ts_input = scenario.time_supplements
     absence_input = scenario.absence_days
     leave_input = scenario.leave_input
     sick_input = scenario.sick_input
+    fringe_benefit_input = scenario.fringe_benefit_input
+    welfare_input = scenario.welfare_input
+    bonus_input = scenario.bonus_input
     calculation_scope = _build_scope(
         employer_withholds_irpef=employer_withholds_irpef,
         fiscal_simplifications=fiscal_simplifications,
@@ -1201,6 +1337,9 @@ def compute(scenario: PayrollScenario) -> Calculation:
         l3_leave_present=l3_leave_present,
         sick_input=sick_input,
         l3_sickness_present=l3_sickness_present,
+        fringe_benefit_input=fringe_benefit_input,
+        welfare_input=welfare_input,
+        bonus_input=bonus_input,
     )
 
     result = PayrollResult(
@@ -1260,6 +1399,13 @@ def compute(scenario: PayrollScenario) -> Calculation:
         sick_carenza_days_monthly=sick_carenza_days_monthly,
         sick_inps_indemnity_monthly=sick_inps_indemnity_monthly,
         sick_company_integration_monthly=sick_company_integration_monthly,
+        fringe_benefit_annual=fringe_benefit_annual,
+        fringe_benefit_threshold_annual=fringe_benefit_threshold_annual,
+        fringe_benefit_taxable_annual=fringe_benefit_taxable_annual,
+        welfare_annual=welfare_annual,
+        bonus_annual=bonus_annual,
+        bonus_pdr_flat_tax_annual=bonus_pdr_flat_tax_annual,
+        bonus_ordinary_taxable_annual=bonus_ordinary_taxable_annual,
     )
 
     snapshot = InputSnapshot.capture(

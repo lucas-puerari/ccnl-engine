@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import importlib.resources
 import json
+from decimal import Decimal
 from typing import TYPE_CHECKING, Any, Protocol
 
 from ccnl_engine.engine.io.bundled import read_bundled
@@ -17,10 +18,14 @@ from ccnl_engine.engine.tax.domain.rules import (
     YearRulesRaw,
 )
 from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
+from ccnl_engine.engine.tax.domain.variable_pay import (
+    FringeBenefitRules,
+    PdRRules,
+    VariablePayRules,
+)
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
-    from decimal import Decimal
     from importlib.abc import Traversable
 
     from ccnl_engine.engine.contract.domain.ccnl import TaxSector
@@ -282,5 +287,50 @@ def load_sick_pay_rates() -> InpsSickPayRates:
         description=raw.get("description", ""),
         carenza_days=int(raw.get("carenza_days", 3)),
         bands=bands,
+        ruleset=_as_ruleset(raw),
+    )
+
+
+def load_variable_pay_rules(year: int) -> VariablePayRules:
+    """Load statutory variable-pay rules (fringe benefits and PdR) for *year*.
+
+    The file ``knowledge/tax/data/variable-pay-rules.json`` is not
+    sector-specific.  It carries Art. 51 c. 3 TUIR thresholds and PdR
+    flat-tax parameters, which vary by fiscal year but not by sector or CCNL.
+
+    Args:
+        year: Fiscal year (e.g. ``2026``).  The filename is looked up as
+            ``variable-pay-rules.json``; the ``year`` field inside the file
+            is validated to match.
+
+    Returns:
+        A :class:`~ccnl_engine.engine.tax.domain.variable_pay.VariablePayRules`
+        with thresholds and PdR parameters already validated.
+
+    Raises:
+        ValueError: If the file's ``year`` field does not match *year*.
+    """
+    pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
+    raw = _read_json(pkg, "variable-pay-rules.json")
+    if raw.get("year") != year:
+        msg = (
+            f"variable-pay-rules.json year={raw.get('year')!r} "
+            f"does not match requested year={year!r}"
+        )
+        raise ValueError(msg)
+    fb_raw = raw["fringe_benefit"]
+    pdr_raw = raw["pdr"]
+    return VariablePayRules(
+        year=int(raw["year"]),
+        description=raw.get("description", ""),
+        fringe_benefit=FringeBenefitRules(
+            threshold_standard=Decimal(str(fb_raw["threshold_standard"])),
+            threshold_with_children=Decimal(str(fb_raw["threshold_with_children"])),
+        ),
+        pdr=PdRRules(
+            max_amount=Decimal(str(pdr_raw["max_amount"])),
+            flat_tax_rate=Decimal(str(pdr_raw["flat_tax_rate"])),
+            income_ceiling=Decimal(str(pdr_raw["income_ceiling"])),
+        ),
         ruleset=_as_ruleset(raw),
     )

@@ -1,0 +1,38 @@
+{
+  "_description": "Bonus PdR eligible — CCNL Metalmeccanico Federmeccanica, C2, €2.000 bonus with PdR regime (10% flat tax, gross_annual well below €80.000 ceiling)",
+  "source": {
+    "document": "L. 208/2015 art. 1 cc. 182-190",
+    "section": "Premio di risultato — imposta sostitutiva 10%",
+    "notes": "Expected values computed by the engine; unverified against a real payslip"
+  },
+  "inputs": {
+    "ccnl_file": "metalmeccanico-federmeccanica.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "C2",
+    "as_of": "2026-09-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "seniority_months": null,
+    "negotiated_ral": null,
+    "months_elapsed": null,
+    "weekly_hours": null,
+    "category": null,
+    "regione": null,
+    "comune_belfiore": null,
+    "ivs_ceiling_applies": false,
+    "bonus_input": {
+      "annual_amount": "2000",
+      "eligible_for_pdr": true
+    }
+  },
+  "expected": {
+    "gross_monthly": "2064.88",
+    "gross_annual": "26843.44",
+    "bonus_annual": "2000",
+    "bonus_pdr_flat_tax_annual": "200.00",
+    "bonus_ordinary_taxable_annual": "0.00"
+  }
+}

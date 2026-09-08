@@ -1,0 +1,25 @@
+{
+  "year": 2026,
+  "description": "Statutory rules for fringe benefits (Art. 51 c. 3 TUIR) and PdR (Art. 1 cc. 182-190 L. 208/2015)",
+  "fringe_benefit": {
+    "threshold_standard": "1000.00",
+    "threshold_with_children": "2000.00",
+    "description": "Art. 51 c. 3 TUIR — Legge di bilancio 2025 (L. 207/2024, art. 1 c. 390)"
+  },
+  "pdr": {
+    "max_amount": "3000.00",
+    "flat_tax_rate": "0.10",
+    "income_ceiling": "80000.00",
+    "description": "Art. 1 cc. 182-190 L. 208/2015 — premio di risultato, imposta sostitutiva 10%"
+  },
+  "ruleset": {
+    "id": "tax/variable-pay-rules/2026",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": "2026-12-31",
+    "published_at": "2026-09-08",
+    "source": "TUIR art. 51 c. 3; L. 207/2024 art. 1 c. 390; L. 208/2015 art. 1 cc. 182-190",
+    "verification_status": "unverified",
+    "source_hash": "dc4ca8126606e75ea7b64990428ff55869fae8ea9ef8b81b373d41691f6a69c4"
+  }
+}
