@@ -27,7 +27,7 @@ To include them, pass:
   of `compute()`.
 
 ```python
---8<-- "docs/examples/07_addizionali.py"
+--8 < --"docs/examples/07_addizionali.py"
 ```
 
 ## FiscalSimplification flags

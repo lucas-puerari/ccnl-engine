@@ -8,37 +8,38 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
-    ContractPosition,
     Employee,
+    Employer,
+    Employment,
+    PayrollScenario,
     Permanent,
-    WorkArrangement,
     compute,
-    load_ccnl,
-    load_year_rules,
 )
 
-ccnl = load_ccnl("commercio-confcommercio.json")
-rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
-
-employee_ft = Employee(
-    position=ContractPosition(
-        level_code="4",
-        as_of=date(2026, 1, 1),
-        employment=Permanent(),
-    ),
-    arrangement=WorkArrangement(),
+full_time = compute(
+    PayrollScenario(
+        employee=Employee(level_code="4"),
+        employment=Employment(
+            ccnl="commercio-confcommercio.json",
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            date=date(2026, 1, 1),
+        ),
+    )
 )
-employee_pt = Employee(
-    position=ContractPosition(
-        level_code="4",
-        as_of=date(2026, 1, 1),
-        employment=Permanent(),
-    ),
-    arrangement=WorkArrangement(part_time_pct=Decimal("0.6")),  # 60% — 3 giorni su 5
+part_time = compute(
+    PayrollScenario(
+        employee=Employee(
+            level_code="4", part_time_pct=Decimal("0.6")
+        ),  # 60% — 3/5 days
+        employment=Employment(
+            ccnl="commercio-confcommercio.json",
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            date=date(2026, 1, 1),
+        ),
+    )
 )
-
-full_time = compute(ccnl, rules, employee_ft)
-part_time = compute(ccnl, rules, employee_pt)
 
 print(f"Gross monthly — full-time:  {full_time.gross_monthly} EUR")
 print(f"Gross monthly — part-time:  {part_time.gross_monthly} EUR")

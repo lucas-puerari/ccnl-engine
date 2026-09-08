@@ -17,29 +17,40 @@ from pathlib import Path
 
 import pytest
 
-from ccnl_engine.engine.contract.domain.ccnl import SupplementaryAllowance, TaxSector
-from ccnl_engine.engine.contract.service.loaders import load_ccnl
+from ccnl_engine.engine.contract.domain.ccnl import (
+    CCNL,
+    SupplementaryAllowance,
+    TaxSector,
+)
+from ccnl_engine.engine.contract.service.loaders import load_ccnl as _real_load_ccnl
 from ccnl_engine.engine.payroll.domain.calculation import (
     Calculation,
     CalculationTrace,
     TraceCategory,
     TraceStep,
 )
-from ccnl_engine.engine.payroll.domain.employee import (
-    ContractPosition,
-    Employee,
-    RalOverride,
-    SalaryOverrides,
-    SeniorityByCount,
-    TaxProfile,
-    WorkArrangement,
-)
-from ccnl_engine.engine.payroll.domain.employer import Employer
+from ccnl_engine.engine.payroll.domain.employee import RalOverride, SeniorityByCount
 from ccnl_engine.engine.payroll.domain.employment import Apprentice, Permanent
+from ccnl_engine.engine.payroll.domain.scenario import (
+    Agreement,
+    Employee,
+    Employer,
+    Employment,
+    Jurisdiction,
+    PayrollScenario,
+)
 from ccnl_engine.engine.payroll.service.orchestrator import compute
-from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
-from ccnl_engine.engine.tax.service.loaders import load_year_rules
+from ccnl_engine.engine.surtax.service.loaders import (
+    load_surtax_rules as _real_load_surtax,
+)
+from ccnl_engine.engine.tax.service.loaders import (
+    load_year_rules as _real_load_year_rules,
+)
 from tests.helpers import make_minimal_ccnl, make_year_rules
+from tests.unit.ccnl_engine.engine.payroll.service.builders import (
+    _D,
+    _req,
+)
 
 _CASES_DIR = Path(__file__).parents[5] / "integration" / "cases"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
@@ -53,15 +64,35 @@ _GROSS_CONTRIBUTOR_CATS = {
     TraceCategory.RAL_OVERRIDE,
 }
 
+# ---------------------------------------------------------------------------
+# Module-level mutable mock state (reset per-test by the autouse fixture)
+# ---------------------------------------------------------------------------
 
-def _employee(*, level_code: str = "4", seniority: int = 2) -> Employee:
-    return Employee(
-        position=ContractPosition(
-            level_code=level_code,
-            as_of=date(2026, 6, 1),
-            employment=Permanent(),
-        ),
-        arrangement=WorkArrangement(seniority=SeniorityByCount(seniority)),
+_DEFAULT_CCNL = make_minimal_ccnl()
+_DEFAULT_RULES = make_year_rules()
+
+_mock_ccnl: list[CCNL] = [_DEFAULT_CCNL]
+_mock_rules: list[object] = [_DEFAULT_RULES]
+_mock_surtax: list[object] = [None]
+
+
+@pytest.fixture(autouse=True)
+def _patch_loaders(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Patch the three loaders in orchestrator and reset mock state."""
+    _mock_ccnl[:] = [_DEFAULT_CCNL]
+    _mock_rules[:] = [_DEFAULT_RULES]
+    _mock_surtax[:] = [None]
+    monkeypatch.setattr(
+        "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl",
+        lambda _: _mock_ccnl[0],
+    )
+    monkeypatch.setattr(
+        "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
+        lambda *_: _mock_rules[0],
+    )
+    monkeypatch.setattr(
+        "ccnl_engine.engine.payroll.service.orchestrator.load_surtax_rules",
+        lambda _: _mock_surtax[0],
     )
 
 
@@ -160,23 +191,23 @@ class TestTraceOnCalculation:
 
     def test_compute_produces_trace(self) -> None:
         """compute() returns a Calculation with a non-empty trace."""
-        calc = compute(make_minimal_ccnl(), make_year_rules(), _employee())
+        calc = compute(_req())
         assert len(calc.trace.steps) > 0
 
     def test_trace_ends_with_gross(self) -> None:
         """The last trace step is always the GROSS summary."""
-        calc = compute(make_minimal_ccnl(), make_year_rules(), _employee())
+        calc = compute(_req())
         assert calc.trace.steps[-1].category == TraceCategory.GROSS
 
     def test_trace_gross_amount_matches_result(self) -> None:
         """The GROSS trace step amount equals result.gross_monthly."""
-        calc = compute(make_minimal_ccnl(), make_year_rules(), _employee())
+        calc = compute(_req())
         gross_step = calc.trace.steps[-1]
         assert gross_step.amount == calc.result.gross_monthly
 
     def test_trace_base_salary_detail_contains_level(self) -> None:
         """BASE_SALARY detail contains the level code."""
-        calc = compute(make_minimal_ccnl(), make_year_rules(), _employee())
+        calc = compute(_req())
         base_step = next(
             s for s in calc.trace.steps if s.category == TraceCategory.BASE_SALARY
         )
@@ -184,19 +215,19 @@ class TestTraceOnCalculation:
 
     def test_calculation_to_dict_from_dict_roundtrip(self) -> None:
         """Calculation.to_dict/from_dict preserves the trace."""
-        calc = compute(make_minimal_ccnl(), make_year_rules(), _employee())
+        calc = compute(_req())
         restored = Calculation.from_dict(calc.to_dict())
         assert restored.trace == calc.trace
 
     def test_calculation_to_json_from_json_roundtrip(self) -> None:
         """Calculation.to_json/from_json preserves the trace."""
-        calc = compute(make_minimal_ccnl(), make_year_rules(), _employee())
+        calc = compute(_req())
         restored = Calculation.from_json(calc.to_json())
         assert restored.trace == calc.trace
 
     def test_backward_compat_from_dict_without_trace(self) -> None:
         """from_dict with no 'trace' key yields an empty CalculationTrace."""
-        calc = compute(make_minimal_ccnl(), make_year_rules(), _employee())
+        calc = compute(_req())
         d = calc.to_dict()
         d.pop("trace")
         restored = Calculation.from_dict(d)
@@ -204,7 +235,7 @@ class TestTraceOnCalculation:
 
     def test_trace_dict_has_steps_key(self) -> None:
         """to_dict includes a 'trace' key with a 'steps' list."""
-        calc = compute(make_minimal_ccnl(), make_year_rules(), _employee())
+        calc = compute(_req())
         d = calc.to_dict()
         assert "trace" in d
         assert isinstance(d["trace"], dict)
@@ -232,50 +263,22 @@ class TestTraceInvariant:
 
     def test_invariant_basic(self) -> None:
         """Invariant holds for a standard full-time employee (no allowances)."""
-        calc = compute(make_minimal_ccnl(), make_year_rules(), _employee())
+        calc = compute(_req())
         self._assert_invariant(calc)
 
     def test_invariant_part_time(self) -> None:
         """Invariant holds for a 50% part-time employee."""
-        employee = Employee(
-            position=ContractPosition(
-                level_code="4",
-                as_of=date(2026, 6, 1),
-                employment=Permanent(),
-            ),
-            arrangement=WorkArrangement(
-                part_time_pct=Decimal("0.5"),
-                seniority=SeniorityByCount(3),
-            ),
-        )
-        calc = compute(make_minimal_ccnl(), make_year_rules(), employee)
+        calc = compute(_req(part_time_pct=_D("0.5"), seniority_count=3))
         self._assert_invariant(calc)
 
     def test_invariant_apprentice(self) -> None:
         """Invariant holds for a percentage-based apprentice."""
-        employee = Employee(
-            position=ContractPosition(
-                level_code="4",
-                as_of=date(2026, 6, 1),
-                employment=Apprentice(months_elapsed=12),
-            ),
-            arrangement=WorkArrangement(seniority=None),
-        )
-        calc = compute(make_minimal_ccnl(), make_year_rules(), employee)
+        calc = compute(_req(contract=Apprentice(months_elapsed=12)))
         self._assert_invariant(calc)
 
     def test_invariant_ral_override(self) -> None:
         """Invariant holds even when a negotiated RAL overrides the gross."""
-        employee = Employee(
-            position=ContractPosition(
-                level_code="4",
-                as_of=date(2026, 6, 1),
-                employment=Permanent(),
-            ),
-            arrangement=WorkArrangement(seniority=SeniorityByCount(0)),
-            agreement=SalaryOverrides(ral_override=RalOverride(Decimal("15000.00"))),
-        )
-        calc = compute(make_minimal_ccnl(), make_year_rules(), employee)
+        calc = compute(_req(negotiated_ral=_D("15000.00")))
         # RAL override → a RAL_OVERRIDE step bridges the delta
         has_ral_step = any(
             s.category == TraceCategory.RAL_OVERRIDE for s in calc.trace.steps
@@ -285,23 +288,17 @@ class TestTraceInvariant:
 
     def test_invariant_zero_seniority(self) -> None:
         """Invariant holds when seniority count is zero (no scatti)."""
-        calc = compute(make_minimal_ccnl(), make_year_rules(), _employee(seniority=0))
+        calc = compute(_req(seniority_count=0))
         self._assert_invariant(calc)
 
     def test_invariant_zero_second_level_skipped(self) -> None:
         """A zero-amount second-level allowance is not emitted as a step."""
-        employer = Employer(
-            second_level_allowances=(
-                SupplementaryAllowance(
-                    code="bonus",
-                    description="Bonus aziendale",
-                    monthly=Decimal("0.00"),
-                ),
-            )
+        sl = SupplementaryAllowance(
+            code="bonus",
+            description="Bonus aziendale",
+            monthly=Decimal("0.00"),
         )
-        calc = compute(
-            make_minimal_ccnl(), make_year_rules(), _employee(), employer=employer
-        )
+        calc = compute(_req(second_level_allowances=(sl,)))
         second_level_steps = [
             s for s in calc.trace.steps if s.category == TraceCategory.SECOND_LEVEL
         ]
@@ -314,59 +311,68 @@ class TestTraceInvariant:
         case = json.loads(case_file.read_text(encoding="utf-8"))
         inputs = case["inputs"]
 
-        ccnl = load_ccnl(inputs["ccnl_file"])
-        rules = load_year_rules(
+        # Load real CCNL and rules and inject into the module-level mocks
+        # so compute(scenario) picks them up via the patched loader.
+        ccnl = _real_load_ccnl(inputs["ccnl_file"])
+        num_employees = int(inputs["num_employees"])
+        rules = _real_load_year_rules(
             inputs["year"],
             TaxSector(inputs["tax_sector"]),
-            int(inputs["num_employees"]),
+            num_employees,
         )
-
-        emp_type = inputs["employment_type"]
-        if emp_type == "permanent":
-            employment: Permanent | Apprentice = Permanent()
-        else:
-            employment = Apprentice(months_elapsed=int(inputs["months_elapsed"]))
-
-        seniority_count = int(inputs["seniority_count"])
-        weekly_hours_raw = inputs.get("weekly_hours")
-        arrangement = WorkArrangement(
-            part_time_pct=Decimal(inputs["part_time_pct"]),
-            seniority=SeniorityByCount(seniority_count) if seniority_count else None,
-            weekly_hours=(
-                Decimal(str(weekly_hours_raw)) if weekly_hours_raw is not None else None
-            ),
-        )
+        _mock_ccnl[0] = ccnl
+        _mock_rules[0] = rules
 
         regione = inputs.get("regione")
         comune = inputs.get("comune_belfiore")
-        surtax = load_surtax_rules(inputs["year"]) if regione or comune else None
-        tax = (
-            TaxProfile(regione=regione, comune_belfiore=comune)
-            if regione or comune
-            else None
+        if regione or comune:
+            _mock_surtax[0] = _real_load_surtax(inputs["year"])
+
+        emp_type = inputs["employment_type"]
+        if emp_type == "permanent":
+            contract: Permanent | Apprentice = Permanent()
+        else:
+            contract = Apprentice(months_elapsed=int(inputs["months_elapsed"]))
+
+        seniority_count = int(inputs["seniority_count"])
+        weekly_hours_raw = inputs.get("weekly_hours")
+        negotiated_ral_raw = inputs.get("negotiated_ral")
+        ivs_ceiling_applies = bool(inputs.get("ivs_ceiling_applies", False))
+        has_jurisdiction = (
+            regione is not None or comune is not None or ivs_ceiling_applies
         )
 
-        negotiated_ral = inputs.get("negotiated_ral")
-        agreement = (
-            SalaryOverrides(ral_override=RalOverride(Decimal(negotiated_ral)))
-            if negotiated_ral is not None
-            else None
-        )
-
-        calc = compute(
-            ccnl,
-            rules,
-            Employee(
-                position=ContractPosition(
-                    level_code=inputs["level_code"],
-                    as_of=date.fromisoformat(inputs["as_of"]),
-                    employment=employment,
-                    category=inputs.get("category"),
+        scenario = PayrollScenario(
+            employee=Employee(
+                level_code=inputs["level_code"],
+                seniority=(
+                    SeniorityByCount(seniority_count) if seniority_count else None
                 ),
-                arrangement=arrangement,
-                tax=tax,
-                agreement=agreement,
+                part_time_pct=Decimal(inputs["part_time_pct"]),
+                weekly_hours=(
+                    Decimal(str(weekly_hours_raw))
+                    if weekly_hours_raw is not None
+                    else None
+                ),
+                category=inputs.get("category"),
+                ivs_ceiling_applies=ivs_ceiling_applies,
+                jurisdiction=(
+                    Jurisdiction(regione=regione, comune_belfiore=comune)
+                    if has_jurisdiction
+                    else None
+                ),
+                agreement=(
+                    Agreement(ral_override=RalOverride(Decimal(negotiated_ral_raw)))
+                    if negotiated_ral_raw is not None
+                    else None
+                ),
             ),
-            surtax=surtax,
+            employment=Employment(
+                ccnl=inputs["ccnl_file"],
+                contract=contract,
+                employer=Employer(num_employees=num_employees),
+                date=date.fromisoformat(inputs["as_of"]),
+            ),
         )
+        calc = compute(scenario)
         self._assert_invariant(calc)

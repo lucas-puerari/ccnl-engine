@@ -5,12 +5,12 @@ from pydantic import TypeAdapter, ValidationError
 
 from ccnl_engine.engine.payroll.domain.employment import (
     Apprentice,
-    Employment,
+    Contract,
     FixedTerm,
     Permanent,
 )
 
-_ta: TypeAdapter[Employment] = TypeAdapter(Employment)
+_ta: TypeAdapter[Contract] = TypeAdapter(Contract)
 
 
 class TestPermanent:

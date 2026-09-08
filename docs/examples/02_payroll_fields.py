@@ -12,29 +12,26 @@ from decimal import Decimal
 from typing import cast
 
 from ccnl_engine import (
-    ContractPosition,
     Employee,
+    Employer,
+    Employment,
     FiscalSimplification,
+    PayrollScenario,
     Permanent,
-    WorkArrangement,
     compute,
-    load_ccnl,
-    load_year_rules,
 )
 
-ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
-rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=200)
-
-employee = Employee(
-    position=ContractPosition(
-        level_code="C2",
-        as_of=date(2026, 6, 1),
-        employment=Permanent(),
-    ),
-    arrangement=WorkArrangement(),
+calculation = compute(
+    PayrollScenario(
+        employee=Employee(level_code="C2"),
+        employment=Employment(
+            ccnl="metalmeccanico-federmeccanica.json",
+            contract=Permanent(),
+            employer=Employer(num_employees=200),
+            date=date(2026, 6, 1),
+        ),
+    )
 )
-
-calculation = compute(ccnl, rules, employee)
 p = calculation.result
 
 # --- Pay components (monthly, already scaled by part_time_pct) ---
@@ -82,8 +79,9 @@ assert calculation.engine_version == "0.5.0"
 assert (
     calculation.ruleset_version["ccnl"] == "ccnl/metalmeccanico-federmeccanica@2026.2"
 )
-pos = cast("dict[str, object]", calculation.input_snapshot.employee["position"])
-assert pos["level_code"] == "C2"
+snapshot_scenario = calculation.input_snapshot.scenario
+employee_snap = cast("dict[str, object]", snapshot_scenario["employee"])
+assert employee_snap["level_code"] == "C2"
 
 # --- Rule provenance chain ---
 # PayrollResult.provenance is an ordered tuple of RuleProvenance objects — one

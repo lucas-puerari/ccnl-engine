@@ -16,22 +16,18 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
-    ContractPosition,
     Employee,
     Employer,
+    Employment,
+    PayrollScenario,
     Permanent,
     SupplementaryAllowance,
-    WorkArrangement,
     compute,
-    load_ccnl,
-    load_year_rules,
 )
-
-ccnl = load_ccnl("commercio-confcommercio.json")
-rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
 
 # A monthly productivity bonus of 150 EUR + an annual prize of 800 EUR.
 employer_2l = Employer(
+    num_employees=50,
     second_level_allowances=(
         SupplementaryAllowance(
             code="PROD",
@@ -47,20 +43,31 @@ employer_2l = Employer(
             contribution_relevant=False,  # excluded from INPS base (common for prizes)
             tfr_relevant=False,
         ),
+    ),
+)
+
+base = compute(
+    PayrollScenario(
+        employee=Employee(level_code="4"),
+        employment=Employment(
+            ccnl="commercio-confcommercio.json",
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            date=date(2026, 1, 1),
+        ),
     )
 )
-
-employee = Employee(
-    position=ContractPosition(
-        level_code="4",
-        as_of=date(2026, 1, 1),
-        employment=Permanent(),
-    ),
-    arrangement=WorkArrangement(),
+with_2l = compute(
+    PayrollScenario(
+        employee=Employee(level_code="4"),
+        employment=Employment(
+            ccnl="commercio-confcommercio.json",
+            contract=Permanent(),
+            employer=employer_2l,
+            date=date(2026, 1, 1),
+        ),
+    )
 )
-
-base = compute(ccnl, rules, employee)
-with_2l = compute(ccnl, rules, employee, employer=employer_2l)
 
 print(f"Second-level monthly:     {with_2l.second_level_monthly} EUR")
 print(f"Gross monthly — base:     {base.gross_monthly} EUR")

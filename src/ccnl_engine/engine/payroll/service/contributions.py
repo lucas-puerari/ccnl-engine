@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from decimal import Decimal
 
     from ccnl_engine.engine.contract.domain.ccnl import EmployerFund, LevelCategory
-    from ccnl_engine.engine.payroll.domain.employment import Employment
+    from ccnl_engine.engine.payroll.domain.employment import Contract as Employment
     from ccnl_engine.engine.tax.domain.rules import (
         ApprenticeRates,
         DomesticInpsRates,

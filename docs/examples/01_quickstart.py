@@ -1,6 +1,6 @@
 """Quickstart: permanent employee, full-time, no seniority.
 
-This is the minimal call: load a CCNL, build an Employee, call compute().
+This is the minimal call: build a PayrollScenario and pass it to compute().
 The returned Calculation wraps the PayrollResult (``calculation.result``) together
 with the engine and ruleset versions that produced it.
 """
@@ -8,29 +8,25 @@ with the engine and ruleset versions that produced it.
 from datetime import date
 
 from ccnl_engine import (
-    ContractPosition,
     Employee,
+    Employer,
+    Employment,
+    PayrollScenario,
     Permanent,
-    WorkArrangement,
     compute,
-    load_ccnl,
-    load_year_rules,
 )
 
-# Load CCNL data and the fiscal/contribution rules for the same year.
-ccnl = load_ccnl("commercio-confcommercio.json")
-rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
-
-employee = Employee(
-    position=ContractPosition(
-        level_code="4",
-        as_of=date(2026, 1, 1),
-        employment=Permanent(),
-    ),
-    arrangement=WorkArrangement(),
+calculation = compute(
+    PayrollScenario(
+        employee=Employee(level_code="4"),
+        employment=Employment(
+            ccnl="commercio-confcommercio.json",
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            date=date(2026, 1, 1),
+        ),
+    )
 )
-
-calculation = compute(ccnl, rules, employee)
 payroll = calculation.result
 
 print(f"CCNL:              {payroll.ccnl_id}")

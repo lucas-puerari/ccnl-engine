@@ -6,21 +6,29 @@ from datetime import date
 from decimal import Decimal
 from typing import Any
 
-from ccnl_engine.engine.contract.domain.ccnl import CCNL, LevelCategory
+from ccnl_engine.engine.contract.domain.ccnl import (
+    CCNL,
+    LevelCategory,
+    SupplementaryAllowance,
+)
 from ccnl_engine.engine.payroll.domain.employee import (
-    ContractPosition,
     DestinationRalOverride,
-    Employee,
     RalOverride,
-    SalaryOverrides,
     SeniorityByCount,
     SeniorityByMonths,
-    WorkArrangement,
 )
 from ccnl_engine.engine.payroll.domain.employment import (
-    Employment,
+    Apprentice,
     FixedTerm,
     Permanent,
+)
+from ccnl_engine.engine.payroll.domain.scenario import (
+    Agreement,
+    Employee,
+    Employer,
+    Employment,
+    Jurisdiction,
+    PayrollScenario,
 )
 from tests.helpers import TEST_PROV, make_ccnl_dict, make_year_rules
 
@@ -29,6 +37,7 @@ _D = Decimal
 _RULES = make_year_rules()
 _PERMANENT = Permanent()
 _FIXED_TERM = FixedTerm()
+_CCNL_FILENAME = "test.json"
 
 
 def _series(value: str) -> dict[str, Any]:
@@ -70,7 +79,8 @@ def _build_ccnl(app_type: str = "percentage", /, **mutations: object) -> CCNL:
 def _req(
     level_code: str = "4",
     as_of: date = _DATE,
-    employment: Employment = _PERMANENT,
+    contract: Permanent | FixedTerm | Apprentice = _PERMANENT,
+    num_employees: int = 50,
     part_time_pct: Decimal = Decimal(1),
     seniority_count: int | None = None,
     seniority_months: int | None = None,
@@ -79,11 +89,15 @@ def _req(
     roles: frozenset[str] = frozenset(),
     ad_personam_monthly: Decimal = Decimal(0),
     category: LevelCategory | None = None,
-) -> Employee:
-    """Build an Employee with test defaults; override any field via kwargs.
+    second_level_allowances: tuple[SupplementaryAllowance, ...] = (),
+    jurisdiction: Jurisdiction | None = None,
+    ivs_ceiling_applies: bool = False,
+    weekly_hours: Decimal | None = None,
+) -> PayrollScenario:
+    """Build a PayrollScenario with test defaults; override any field via kwargs.
 
     Returns:
-        An Employee with the given overrides applied.
+        A PayrollScenario with the given overrides applied.
     """
     seniority: SeniorityByCount | SeniorityByMonths | None = None
     if seniority_count is not None:
@@ -97,24 +111,32 @@ def _req(
     elif negotiated_destination_ral is not None:
         ral_override = DestinationRalOverride(negotiated_destination_ral)
 
-    agreement: SalaryOverrides | None = None
+    agreement: Agreement | None = None
     if ral_override is not None or ad_personam_monthly != Decimal(0):
-        agreement = SalaryOverrides(
+        agreement = Agreement(
             ral_override=ral_override,
             ad_personam_monthly=ad_personam_monthly,
         )
 
-    return Employee(
-        position=ContractPosition(
+    return PayrollScenario(
+        employee=Employee(
             level_code=level_code,
-            as_of=as_of,
-            employment=employment,
+            seniority=seniority,
+            part_time_pct=part_time_pct,
+            weekly_hours=weekly_hours,
             category=category,
             roles=roles,
+            ivs_ceiling_applies=ivs_ceiling_applies,
+            jurisdiction=jurisdiction,
+            agreement=agreement,
         ),
-        arrangement=WorkArrangement(
-            part_time_pct=part_time_pct,
-            seniority=seniority,
+        employment=Employment(
+            ccnl=_CCNL_FILENAME,
+            contract=contract,
+            employer=Employer(
+                num_employees=num_employees,
+                second_level_allowances=second_level_allowances,
+            ),
+            date=as_of,
         ),
-        agreement=agreement,
     )

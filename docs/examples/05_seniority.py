@@ -9,43 +9,48 @@ Two ways to express seniority:
 from datetime import date
 
 from ccnl_engine import (
-    ContractPosition,
     Employee,
+    Employer,
+    Employment,
+    PayrollScenario,
     Permanent,
     SeniorityByCount,
     SeniorityByMonths,
-    WorkArrangement,
     compute,
-    load_ccnl,
-    load_year_rules,
 )
 
-ccnl = load_ccnl("commercio-confcommercio.json")
-rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
-
 # --- Via explicit count ---
-employee_count = Employee(
-    position=ContractPosition(
-        level_code="4",
-        as_of=date(2026, 1, 1),
-        employment=Permanent(),
-    ),
-    arrangement=WorkArrangement(seniority=SeniorityByCount(3)),  # 3 scatti già maturati
+p_count = compute(
+    PayrollScenario(
+        employee=Employee(
+            level_code="4",
+            seniority=SeniorityByCount(3),  # 3 scatti già maturati
+        ),
+        employment=Employment(
+            ccnl="commercio-confcommercio.json",
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            date=date(2026, 1, 1),
+        ),
+    )
 )
 
 # --- Via service months (engine derives the count) ---
 # Commercio cadence is 36 months. 108 months → 3 increments (at months 36, 72, 108).
-employee_months = Employee(
-    position=ContractPosition(
-        level_code="4",
-        as_of=date(2026, 1, 1),
-        employment=Permanent(),
-    ),
-    arrangement=WorkArrangement(seniority=SeniorityByMonths(108)),
+p_months = compute(
+    PayrollScenario(
+        employee=Employee(
+            level_code="4",
+            seniority=SeniorityByMonths(108),
+        ),
+        employment=Employment(
+            ccnl="commercio-confcommercio.json",
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            date=date(2026, 1, 1),
+        ),
+    )
 )
-
-p_count = compute(ccnl, rules, employee_count)
-p_months = compute(ccnl, rules, employee_months)
 
 print(
     f"Via count   — seniority count: {p_count.seniority_count},"

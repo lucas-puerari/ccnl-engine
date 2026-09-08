@@ -22,27 +22,48 @@ from ccnl_engine import (
     # Core function
     compute,
     # Loaders
-    load_ccnl, load_year_rules, load_surtax_rules,
+    load_ccnl,
+    load_year_rules,
+    load_surtax_rules,
     # Employee input
-    Employee, ContractPosition, WorkArrangement, TaxProfile,
+    Employee,
+    ContractPosition,
+    WorkArrangement,
+    TaxProfile,
     # Employer input
     Employer,
     # Employment types
-    Permanent, FixedTerm, Apprentice,
+    Permanent,
+    FixedTerm,
+    Apprentice,
     # Seniority (union type)
-    SeniorityByCount, SeniorityByMonths,
+    SeniorityByCount,
+    SeniorityByMonths,
     # Salary overrides
-    SalaryOverrides, RalOverride, RalOverrideMode, DestinationRalOverride,
+    SalaryOverrides,
+    RalOverride,
+    RalOverrideMode,
+    DestinationRalOverride,
     # Output
-    PayrollResult, FiscalSimplification,
+    PayrollResult,
+    FiscalSimplification,
     # Calculation
-    Calculation, InputSnapshot,
+    Calculation,
+    InputSnapshot,
     # Provenance
-    RulesetIdentity, VerificationStatus, engine_version,
+    RulesetIdentity,
+    VerificationStatus,
+    engine_version,
     # Contract domain
-    CCNL, CCNLMeta, CCNLParameters, Level, TaxSector, TimeSeries,
+    CCNL,
+    CCNLMeta,
+    CCNLParameters,
+    Level,
+    TaxSector,
+    TimeSeries,
     # Tax domain
-    YearRules, SurtaxRules,
+    YearRules,
+    SurtaxRules,
 )
 ```
 

@@ -12,41 +12,40 @@ from datetime import date
 
 from ccnl_engine import (
     Apprentice,
-    ContractPosition,
     Employee,
+    Employer,
+    Employment,
+    PayrollScenario,
     Permanent,
-    WorkArrangement,
     compute,
-    load_ccnl,
-    load_year_rules,
 )
 
 # Metalmeccanico artigianato has an apprenticeship percentage track.
-ccnl = load_ccnl("metalmeccanico-artigianato.json")
-rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=12)
-
 # Destination level: level 3. Apprentice at month 12 → 75% of destination pay.
-employee_apprentice = Employee(
-    position=ContractPosition(
-        level_code="3",
-        as_of=date(2026, 1, 1),
-        employment=Apprentice(months_elapsed=12),
-    ),
-    arrangement=WorkArrangement(),
+apprentice = compute(
+    PayrollScenario(
+        employee=Employee(level_code="3"),
+        employment=Employment(
+            ccnl="metalmeccanico-artigianato.json",
+            contract=Apprentice(months_elapsed=12),
+            employer=Employer(num_employees=12),
+            date=date(2026, 1, 1),
+        ),
+    )
 )
 
 # Compare with the same level at permanent employment.
-employee_permanent = Employee(
-    position=ContractPosition(
-        level_code="3",
-        as_of=date(2026, 1, 1),
-        employment=Permanent(),
-    ),
-    arrangement=WorkArrangement(),
+permanent = compute(
+    PayrollScenario(
+        employee=Employee(level_code="3"),
+        employment=Employment(
+            ccnl="metalmeccanico-artigianato.json",
+            contract=Permanent(),
+            employer=Employer(num_employees=12),
+            date=date(2026, 1, 1),
+        ),
+    )
 )
-
-apprentice = compute(ccnl, rules, employee_apprentice)
-permanent = compute(ccnl, rules, employee_permanent)
 
 print(f"Apprenticeship %:    {apprentice.apprenticeship_pct}")
 print(f"Gross monthly — apprentice:  {apprentice.gross_monthly} EUR")
