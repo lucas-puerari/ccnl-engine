@@ -6,9 +6,10 @@ confirmed by L. 207/2024), the trattamento integrativo (Art. 1 D.L.
 3/2020 as updated by L. 207/2024), and the addizionale regionale e comunale
 IRPEF (Art. 50 TUIR; Art. 1 D.Lgs. 360/1998).
 
-Not in scope for this engine (handled by a separate fiscal library):
-detrazioni per carichi di famiglia (Art. 12 TUIR); sterilization of detrazioni
-for redditi > EUR 200k (Art. 1 c. 3-4 L. 199/2025).
+Not in scope for this module (handled elsewhere in the engine):
+detrazioni per carichi di famiglia (Art. 12 TUIR) — applied by the orchestrator
+when ``PayrollScenario.family`` is set; sterilization of detrazioni for redditi
+> EUR 200k (Art. 1 c. 3-4 L. 199/2025) — out of scope.
 """
 
 from __future__ import annotations

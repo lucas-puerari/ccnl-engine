@@ -25,6 +25,9 @@ from ccnl_engine.engine.payroll.service import irpef as _irpef
 from ccnl_engine.engine.payroll.service.absence import compute_absence_deduction
 from ccnl_engine.engine.payroll.service.apprenticeship import _apprentice_chain
 from ccnl_engine.engine.payroll.service.chain import _level_chain
+from ccnl_engine.engine.payroll.service.family_deductions import (
+    compute_family_deductions,
+)
 from ccnl_engine.engine.payroll.service.leave import compute_leave
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.seniority import _resolve_seniority_count
@@ -38,6 +41,7 @@ from ccnl_engine.engine.payroll.service.variable_pay import (
 )
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
 from ccnl_engine.engine.tax.service.loaders import (
+    load_family_deduction_rules,
     load_sick_pay_rates,
     load_variable_pay_rules,
     load_year_rules,
@@ -61,6 +65,7 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.employment import (
         Permanent,
     )
+    from ccnl_engine.engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.engine.payroll.domain.scenario import Employment, PayrollScenario
     from ccnl_engine.engine.payroll.domain.supplements import (
         AbsenceDays,
@@ -932,6 +937,52 @@ def _run_l3_variable_pay(
     )
 
 
+def _run_l3_family_deductions(
+    scenario: PayrollScenario,
+    gross_annual: Decimal,
+    irpef_gross: Decimal,
+    work_income_deduction: Decimal,
+    year: int,
+    *,
+    employer_withholds_irpef: bool,
+) -> tuple[Decimal, Decimal, Decimal, Decimal, Decimal]:
+    """Compute Art. 12 TUIR family deductions when ``scenario.family`` is set.
+
+    Family deductions reduce the IRPEF actually withheld by the employer; they
+    are NOT informational-only (unlike all other L3 features).  The total is
+    subtracted from ``irpef_gross - work_income_deduction`` (floored at zero)
+    to obtain ``irpef_net``.
+
+    Args:
+        scenario: The payroll scenario.
+        gross_annual: Annual gross pay (proxy for reddito complessivo).
+        irpef_gross: IRPEF before any deductions.
+        work_income_deduction: Art. 13 work-income deduction.
+        year: Fiscal year for loading rules.
+        employer_withholds_irpef: When ``False``, deductions are still computed
+            but ``irpef_net`` is zero regardless.
+
+    Returns:
+        A 5-tuple of (spouse_deduction, children_deduction, other_deduction,
+        total_deduction, unused_deduction).  All amounts are annual.
+        ``unused_deduction`` is the portion that exceeded the available
+        IRPEF (incapienza — not refundable).
+    """
+    family = scenario.family
+    if family is None or not family.has_any_dependent:
+        return _ZERO, _ZERO, _ZERO, _ZERO, _ZERO
+    rules = load_family_deduction_rules(year)
+    spouse, children, other, total = compute_family_deductions(
+        family, gross_annual, rules
+    )
+    if not employer_withholds_irpef:
+        # Deductions computed but irpef_net is always zero here.
+        return spouse, children, other, total, total
+    available = money(max(_ZERO, irpef_gross - work_income_deduction))
+    unused = money(max(_ZERO, total - available))
+    return spouse, children, other, total, unused
+
+
 def _variable_pay_feature_status(
     input_val: FringeBenefitInput | WelfareInput | BonusInput | None,
 ) -> str:
@@ -960,6 +1011,7 @@ def _build_scope(
     fringe_benefit_input: FringeBenefitInput | None,
     welfare_input: WelfareInput | None,
     bonus_input: BonusInput | None,
+    family_input: FamilyComposition | None,
 ) -> tuple[ScopeItem, ...]:
     """Build the calculation scope tuple for a PayrollResult.
 
@@ -1013,7 +1065,14 @@ def _build_scope(
                 else "verified"
             ),
         ),
-        ScopeItem(feature="family_deductions", status="excluded"),
+        ScopeItem(
+            feature="family_deductions",
+            status=(
+                "verified"
+                if (family_input is not None and family_input.has_any_dependent)
+                else "excluded"
+            ),
+        ),
         ScopeItem(
             feature="overtime",
             status=_l3_feature_status(  # type: ignore[arg-type]
@@ -1201,17 +1260,34 @@ def compute(scenario: PayrollScenario) -> Calculation:
     )
     tfr_annual = _contrib.tfr(tfr_base, rules)
 
-    # Not modelled (scope of a separate fiscal layer): detrazioni per carichi
-    # di famiglia (Art. 12 TUIR); sterilization of detrazioni for redditi
-    # > EUR 200k (Art. 1 c. 3-4 L. 199/2025).
     taxable_income = money(gross_annual - inps_employee_annual)
     irpef_gross = _irpef.irpef_gross(taxable_income, rules)
     work_income_deduction = _irpef.work_income_deduction(gross_annual, rules)
+    employer_withholds_irpef = not ccnl.meta.withholding_exempt
+
+    # Family deductions (Art. 12 TUIR): computed when scenario.family is set.
+    # These are the only L3 feature that mutates irpef_net / net_annual.
+    # Trattamento integrativo eligibility (Art. 1 D.L. 3/2020) depends only on
+    # the Art. 13 work-income deduction, not on Art. 12 family deductions.
+    (
+        fam_spouse,
+        fam_children,
+        fam_other,
+        fam_total,
+        fam_unused,
+    ) = _run_l3_family_deductions(
+        scenario=scenario,
+        gross_annual=gross_annual,
+        irpef_gross=irpef_gross,
+        work_income_deduction=work_income_deduction,
+        year=year,
+        employer_withholds_irpef=employer_withholds_irpef,
+    )
+
     # When the employer is not a sostituto d'imposta, irpef_net is zeroed;
     # irpef_gross and work_income_deduction remain as informational figures.
-    employer_withholds_irpef = not ccnl.meta.withholding_exempt
     irpef_net = (
-        money(max(_ZERO, irpef_gross - work_income_deduction))
+        money(max(_ZERO, irpef_gross - work_income_deduction - fam_total))
         if employer_withholds_irpef
         else _ZERO
     )
@@ -1221,6 +1297,12 @@ def compute(scenario: PayrollScenario) -> Calculation:
     trattamento_integrativo, fiscal_simplifications = _compute_ti(
         gross_annual, irpef_gross, work_income_deduction, rules
     )
+
+    # Remove NO_DETRAZIONI_FAMILIARI when family deductions were computed.
+    if fam_total > _ZERO:
+        sfs_mut: set[FiscalSimplification] = set(fiscal_simplifications)
+        sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_FAMILIARI)
+        fiscal_simplifications = frozenset(sfs_mut)
 
     # Addizionale regionale e comunale (Art. 50 TUIR; Art. 1 D.Lgs. 360/1998).
     regione = j.regione if j is not None else None
@@ -1326,6 +1408,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
     fringe_benefit_input = scenario.fringe_benefit_input
     welfare_input = scenario.welfare_input
     bonus_input = scenario.bonus_input
+    family_input = scenario.family
     calculation_scope = _build_scope(
         employer_withholds_irpef=employer_withholds_irpef,
         fiscal_simplifications=fiscal_simplifications,
@@ -1340,6 +1423,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
         fringe_benefit_input=fringe_benefit_input,
         welfare_input=welfare_input,
         bonus_input=bonus_input,
+        family_input=family_input,
     )
 
     result = PayrollResult(
@@ -1406,6 +1490,11 @@ def compute(scenario: PayrollScenario) -> Calculation:
         bonus_annual=bonus_annual,
         bonus_pdr_flat_tax_annual=bonus_pdr_flat_tax_annual,
         bonus_ordinary_taxable_annual=bonus_ordinary_taxable_annual,
+        family_deduction_spouse_annual=fam_spouse,
+        family_deduction_children_annual=fam_children,
+        family_deduction_other_annual=fam_other,
+        family_deduction_annual=fam_total,
+        unused_family_deduction_annual=fam_unused,
     )
 
     snapshot = InputSnapshot.capture(

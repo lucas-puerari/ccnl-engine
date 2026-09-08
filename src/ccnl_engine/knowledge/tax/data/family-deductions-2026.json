@@ -1,0 +1,33 @@
+{
+  "year": 2026,
+  "description": "Art. 12 TUIR detrazioni per carichi di famiglia (anno d'imposta 2026)",
+  "spouse": {
+    "dependent_income_threshold": "2840.51",
+    "breakpoints": [
+      {"income_up_to": "0.00", "deduction": "800.00"},
+      {"income_up_to": "15000.00", "deduction": "690.00"},
+      {"income_up_to": "40000.00", "deduction": "690.00"},
+      {"income_up_to": "80000.00", "deduction": "0.00"},
+      {"income_up_to": null, "deduction": "0.00"}
+    ],
+    "notes": "Sub-band supplements (EUR 10-30 in income range 29001-35200) not modelled; EUR 690 flat assumed in 15001-40000 range"
+  },
+  "children": {
+    "auu_age_cutoff": 21,
+    "base_amount": "950.00",
+    "disabled_amount": "1220.00",
+    "income_ceiling": "95000.00",
+    "income_ceiling_increment_per_child": "15000.00",
+    "notes": "Figli under 21 not eligible (AUU from 2022-03-01, D.Lgs. 230/2021). Figli 21-29 and 30+ with disability are eligible."
+  },
+  "other_dependents": {
+    "dependent_income_threshold": "2840.51",
+    "amount": "750.00",
+    "income_ceiling": "80000.00",
+    "notes": "Post L. 207/2024: only ascendenti conviventi qualify. Other categories (fratelli, sorelle, generi, nuore, suoceri) no longer eligible."
+  },
+  "ruleset": {
+    "id": "tax/family-deductions/2026",
+    "source_hash": "157b7f0668a87b8665647240c780a4b253029730d5614cd57164c280293ce834"
+  }
+}
