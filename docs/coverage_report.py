@@ -149,6 +149,22 @@ def _has_fixed_allowances(ccnl: CCNL) -> bool:
     return any(bool(level.fixed_allowances) for level in ccnl.levels)
 
 
+def _has_time_supplements(ccnl: CCNL) -> bool:
+    return ccnl.work_rules is not None and ccnl.work_rules.time_supplements is not None
+
+
+def _has_sickness_rules(ccnl: CCNL) -> bool:
+    return ccnl.work_rules is not None and ccnl.work_rules.sickness_rules is not None
+
+
+def _has_leave_rules(ccnl: CCNL) -> bool:
+    return ccnl.work_rules is not None and ccnl.work_rules.leave_rules is not None
+
+
+def _has_absence_rules(ccnl: CCNL) -> bool:
+    return ccnl.work_rules is not None and ccnl.work_rules.absence_rules is not None
+
+
 def _make_ccnl_row(ccnl: CCNL) -> CCNLCoverageRow:
     year = (ccnl.meta.agreement_date or "")[:4]
     return CCNLCoverageRow(
@@ -186,7 +202,7 @@ def _irpef_score(ccnl: CCNL) -> float:
     """Compute IRPEF score; 0 for withholding-exempt contracts by design.
 
     Returns:
-        1.0, 0.5, or 0.0 depending on layer_2 status and withholding_exempt.
+        1.0, 0.5, or 0.0 depending on net status and withholding_exempt.
     """
     if ccnl.meta.withholding_exempt:
         return 0.0
@@ -197,24 +213,15 @@ def _irpef_score(ccnl: CCNL) -> float:
     return 0.0
 
 
-def _make_feature_rows(ccnls: list[CCNL]) -> list[FeatureRow]:
-    n = len(ccnls)
+def _bool_sum(flags: list[bool]) -> float:
+    return sum(1.0 for f in flags if f)
 
-    # Layer 1 -- gross
-    base_salary = sum(
-        1.0
-        if c.coverage.gross == "implemented"
-        else (0.5 if c.coverage.gross == "partial" else 0.0)
-        for c in ccnls
-    )
-    seniority = sum(1.0 if _has_seniority(c) else 0.0 for c in ccnls)
-    allowances = sum(1.0 if _has_fixed_allowances(c) else 0.0 for c in ccnls)
 
-    # Layer 2 -- net
-    inps = sum(_inps_score(c) for c in ccnls)
-    irpef = sum(_irpef_score(c) for c in ccnls)
-
-    always_100 = _pct(float(n), n)
+def _l1_rows(ccnls: list[CCNL], n: int, always_100: int) -> list[FeatureRow]:
+    gross_scores = [_layer_score(c.coverage.gross) for c in ccnls]
+    base_salary = sum(gross_scores)
+    seniority = _bool_sum([_has_seniority(c) for c in ccnls])
+    allowances = _bool_sum([_has_fixed_allowances(c) for c in ccnls])
     return [
         FeatureRow(
             "Base salary",
@@ -222,17 +229,9 @@ def _make_feature_rows(ccnls: list[CCNL]) -> list[FeatureRow]:
             _pct(base_salary, n),
             "Minimo contrattuale da tabella CCNL",
         ),
+        FeatureRow("Seniority allowance", 1, _pct(seniority, n), "Scatti di anzianita"),
         FeatureRow(
-            "Seniority allowance",
-            1,
-            _pct(seniority, n),
-            "Scatti di anzianita",
-        ),
-        FeatureRow(
-            "Fixed allowances",
-            1,
-            _pct(allowances, n),
-            "Indennita fisse contrattuali",
+            "Fixed allowances", 1, _pct(allowances, n), "Indennita fisse contrattuali"
         ),
         FeatureRow(
             "Additional months",
@@ -246,18 +245,20 @@ def _make_feature_rows(ccnls: list[CCNL]) -> list[FeatureRow]:
             always_100,
             "Da divisore orario -- obbligatorio per schema",
         ),
+    ]
+
+
+def _l2_rows(ccnls: list[CCNL], n: int, always_100: int) -> list[FeatureRow]:
+    inps = sum(_inps_score(c) for c in ccnls)
+    irpef = sum(_irpef_score(c) for c in ccnls)
+    return [
         FeatureRow(
             "INPS contributions",
             2,
             _pct(inps, n),
             "Contributi INPS dipendente e datore",
         ),
-        FeatureRow(
-            "TFR",
-            2,
-            _pct(inps, n),
-            "Trattamento fine rapporto Art. 2120 c.c.",
-        ),
+        FeatureRow("TFR", 2, _pct(inps, n), "Trattamento fine rapporto Art. 2120 c.c."),
         FeatureRow(
             "IRPEF",
             2,
@@ -270,10 +271,66 @@ def _make_feature_rows(ccnls: list[CCNL]) -> list[FeatureRow]:
             _pct(irpef, n),
             "Addizionali -- richiede regione/comune in input",
         ),
-        FeatureRow("Overtime", 3, 0, "Not yet implemented -- engine layer 3"),
-        FeatureRow("Sick/injury leave", 3, 0, "Not yet implemented -- engine layer 3"),
-        FeatureRow("Performance bonuses", 3, 0, "Not yet implemented -- layer 3"),
-        FeatureRow("Welfare/benefits", 3, 0, "Not yet implemented -- engine layer 3"),
+        FeatureRow(
+            "Family deductions (Art. 12)",
+            2,
+            always_100,
+            "Detrazioni familiari a carico -- obbligatorie per schema",
+        ),
+        FeatureRow(
+            "Mortgage interest deduction (Art. 15)",
+            2,
+            always_100,
+            "Interessi passivi mutuo prima casa -- obbligatorio per schema",
+        ),
+    ]
+
+
+def _l3_rows(ccnls: list[CCNL], n: int) -> list[FeatureRow]:
+    """Layer 3 coverage derived from data presence, not coverage status.
+
+    Returns:
+        List of FeatureRow for work-rules features.
+    """
+    overtime = _bool_sum([_has_time_supplements(c) for c in ccnls])
+    sickness = _bool_sum([_has_sickness_rules(c) for c in ccnls])
+    leave = _bool_sum([_has_leave_rules(c) for c in ccnls])
+    absence = _bool_sum([_has_absence_rules(c) for c in ccnls])
+    return [
+        FeatureRow(
+            "Overtime/night/holiday",
+            3,
+            _pct(overtime, n),
+            "Maggiorazioni orarie da time_supplements CCNL",
+        ),
+        FeatureRow(
+            "Sick/injury leave",
+            3,
+            _pct(sickness, n),
+            "Integrazione malattia/infortunio da sickness_rules CCNL",
+        ),
+        FeatureRow(
+            "Leave entitlement",
+            3,
+            _pct(leave, n),
+            "Ferie e permessi da leave_rules CCNL",
+        ),
+        FeatureRow(
+            "Absence deduction",
+            3,
+            _pct(absence, n),
+            "Decurtazione per assenza da absence_rules CCNL",
+        ),
+    ]
+
+
+def _make_feature_rows(ccnls: list[CCNL]) -> list[FeatureRow]:
+    n = len(ccnls)
+    always_100 = _pct(float(n), n)
+    return [
+        *_l1_rows(ccnls, n, always_100),
+        *_l2_rows(ccnls, n, always_100),
+        *_l3_rows(ccnls, n),
     ]
 
 
@@ -301,7 +358,7 @@ def build_coverage_report() -> CoverageReport:
 _LAYER_TITLES = {
     1: "Layer 1 -- Gross",
     2: "Layer 2 -- Net",
-    3: "Layer 3 -- Extended (not yet implemented)",
+    3: "Layer 3 -- Work rules",
 }
 
 _CONTRACTS_PREAMBLE = """\
@@ -328,12 +385,15 @@ Covers 75+ of the ~99 major private-sector CCNLs (>10,000 workers, CNEL II/2024)
 **L1 — Gross:** base salary, seniority, fixed allowances,
 additional months, hourly rate.
 
-**L2 — Net:** INPS contributions, TFR, IRPEF, regional/municipal surtax.
+**L2 — Net:** INPS contributions, TFR, IRPEF, regional/municipal surtax,
+family deductions (Art. 12), mortgage interest deduction (Art. 15).
 
-**L3 — Extended:** overtime, sick/injury leave, performance bonuses, welfare/benefits.
+**L3 — Work rules:** overtime/night/holiday supplements, sick/injury leave,
+leave entitlement, absence deduction.
 
-**Coverage %:** (L1 x 50% + L2 x 35% + L3 x 15%) - 5% per missing data note (max -20%).
-L3 defaults to not yet implemented; current contracts score a maximum of 85%.
+**Coverage %:** (L1 x 50% + L2 x 35% + work_rules x 15%) - 5% per missing data
+note (max -20%). work_rules status defaults to not_implemented for most contracts
+(data exists but coverage block not yet updated); current maximum is 85%.
 
 ## Matrix
 """
