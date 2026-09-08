@@ -50,7 +50,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "partial"
+    "net": "partial",
+    "work_rules": "implemented"
   },
   "levels": [
     {

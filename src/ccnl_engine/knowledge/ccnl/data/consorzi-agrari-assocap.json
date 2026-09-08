@@ -83,7 +83,8 @@
       }
     ],
     "gross": "implemented",
-    "net": "out_of_scope"
+    "net": "out_of_scope",
+    "work_rules": "implemented"
   },
   "parameters": {
     "hourly_divisor": {
