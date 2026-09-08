@@ -21,6 +21,7 @@ import pytest
 from ccnl_engine.engine.payroll.domain.employee import (
     RalOverride,
     SeniorityByCount,
+    SeniorityByMonths,
 )
 from ccnl_engine.engine.payroll.domain.employment import (
     Apprentice,
@@ -35,7 +36,11 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Jurisdiction,
     PayrollScenario,
 )
-from ccnl_engine.engine.payroll.domain.supplements import AbsenceDays, OvertimeHours
+from ccnl_engine.engine.payroll.domain.supplements import (
+    AbsenceDays,
+    LeaveInput,
+    OvertimeHours,
+)
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 
 _CASES_DIR = Path(__file__).parent / "cases"
@@ -54,6 +59,18 @@ def _build_absence_days(inputs: dict[str, Any]) -> AbsenceDays | None:
     return AbsenceDays(
         unpaid_days=Decimal(str(raw.get("unpaid_days", "0"))),
     )
+
+
+def _build_leave_input(inputs: dict[str, Any]) -> LeaveInput | None:
+    """Build LeaveInput from the ``leave_input`` key in *inputs*.
+
+    Returns:
+        A :class:`LeaveInput` instance, or ``None`` when the key is absent.
+    """
+    raw = inputs.get("leave_input")
+    if raw is None:
+        return None
+    return LeaveInput(taken_days=Decimal(str(raw.get("taken_days", "0"))))
 
 
 def _build_time_supplements(inputs: dict[str, Any]) -> OvertimeHours | None:
@@ -131,12 +148,18 @@ class TestReferenceCases:
         regione = inputs.get("regione")
         comune_belfiore = inputs.get("comune_belfiore")
         seniority_count_raw = int(inputs["seniority_count"])
+        seniority_months_raw = inputs.get("seniority_months")
         negotiated_ral_raw = inputs["negotiated_ral"]
         ivs_ceiling_applies = bool(inputs.get("ivs_ceiling_applies", False))
 
-        seniority = (
-            SeniorityByCount(seniority_count_raw) if seniority_count_raw else None
-        )
+        if seniority_months_raw is not None:
+            seniority: SeniorityByCount | SeniorityByMonths | None = SeniorityByMonths(
+                int(seniority_months_raw)
+            )
+        elif seniority_count_raw:
+            seniority = SeniorityByCount(seniority_count_raw)
+        else:
+            seniority = None
 
         has_jurisdiction = (
             regione is not None or comune_belfiore is not None or ivs_ceiling_applies
@@ -155,6 +178,7 @@ class TestReferenceCases:
 
         time_supplements = _build_time_supplements(inputs)
         absence_days = _build_absence_days(inputs)
+        leave_input = _build_leave_input(inputs)
 
         scenario = PayrollScenario(
             employee=Employee(
@@ -180,6 +204,7 @@ class TestReferenceCases:
             ),
             time_supplements=time_supplements,
             absence_days=absence_days,
+            leave_input=leave_input,
         )
 
         result = compute(scenario)

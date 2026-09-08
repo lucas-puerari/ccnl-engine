@@ -1,0 +1,37 @@
+{
+  "_description": "Leave accrual — CCNL Metalmeccanico Federmeccanica, C2, 48 months seniority, 5 days taken (>= 36 months: 25 gg/anno)",
+  "source": {
+    "document": "CCNL Industria Metalmeccanica e Installazione Impianti (Federmeccanica)",
+    "section": "Art. 12 — Ferie",
+    "verified_by": "lucas.puerari@intella.tech",
+    "verified_on": "2026-09-08"
+  },
+  "inputs": {
+    "ccnl_file": "metalmeccanico-federmeccanica.json",
+    "year": 2026,
+    "tax_sector": "industria",
+    "num_employees": 50,
+    "level_code": "C2",
+    "as_of": "2026-09-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "seniority_months": 48,
+    "negotiated_ral": null,
+    "months_elapsed": null,
+    "weekly_hours": null,
+    "category": null,
+    "regione": null,
+    "comune_belfiore": null,
+    "ivs_ceiling_applies": false,
+    "leave_input": {
+      "taken_days": "5"
+    }
+  },
+  "expected": {
+    "gross_monthly": "2118.38",
+    "leave_accrued_days_monthly": "2.08",
+    "leave_taken_days_monthly": "5",
+    "leave_balance_days": "-2.92"
+  }
+}
