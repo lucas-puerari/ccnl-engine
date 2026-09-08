@@ -42,6 +42,13 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     SupplementaryAllowance,
     TaxSector,
 )
+from ccnl_engine.engine.diff import (
+    RuleChange,
+    RulesDiff,
+    count_affected_scenarios,
+    diff_ccnl,
+    format_diff,
+)
 from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity, VerificationStatus
 from ccnl_engine.engine.payroll.domain.calculation import Calculation
 from ccnl_engine.engine.payroll.domain.employee import (
@@ -91,6 +98,8 @@ __all__ = [
     "PayrollScenario",
     "Permanent",
     "RalOverride",
+    "RuleChange",
+    "RulesDiff",
     "RulesetIdentity",
     "SeniorityByCount",
     "SeniorityByMonths",
@@ -101,7 +110,10 @@ __all__ = [
     "VerificationStatus",
     "YearRules",
     "compute",
+    "count_affected_scenarios",
+    "diff_ccnl",
     "engine_version",
+    "format_diff",
     "load_ccnl",
     "load_surtax_rules",
     "load_year_rules",
