@@ -2124,6 +2124,10 @@
       {
         "kind": "simplification",
         "text": "valori mensili arrotondati col metodo a due passi (annual = round(param × punto, 2); monthly = round(annual / 12, 2)) per allineamento con le tavole dell'ipotesi di accordo 18/12/2024. Differenza massima da calcolo diretto: 1 centesimo."
+      },
+      {
+        "kind": "info",
+        "text": "Accordo triennio 2025-2027 (Comparto Sicurezza-Difesa) firmato 2026-07-15 a Palazzo Vidoni. Tre nuovi valori del punto parametrale: 200,90 EUR/anno (decorrenza 2025-01-01), 205,40 EUR/anno (2026-01-01), 207,51 EUR/anno (2027-01-01), da T3=195,50. Incremento totale +12,01 punti pari al +6,14%. Retroattività 2025 e 2026 in forma di arretrati. DPR di recepimento (art. 2 D.Lgs. 195/1995) non ancora emanato al 2026-09-09; firma definitiva sospesa per il nodo della previdenza dedicata. I nuovi periodi non sono modellati in attesa del DPR. Fonte: UIL Polizia (uilpolizia.com), money.it."
       }
     ],
     "gross": "implemented",
@@ -2137,7 +2141,7 @@
     "effective_until": null,
     "source": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f",
     "verification_status": "unverified",
-    "source_hash": "3faca52bbe161aad422887b667b12a7ab595413e16b30e5f912ec2d0d3a4f792",
+    "source_hash": "bb4230efd390585e454a4d81c7874a4831c00181a504cde1ef91b0371c803c58",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -68,7 +68,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: INPS industria rates applied. Poste Italiane is a large private-law employer since 1998; IPOST merged into INPS in 2012. No Poste-specific INPS rate exists in the engine."
+        "text": "SIMPLIFICATION: INPS industria rates applied. Poste Italiane employees are enrolled in the Fondo Quiescenza Poste (INPS special fund, Art. 7 L. 335/1995; merged from IPOST 2012). Correct rates differ from standard industria rates. Verify against INPS Fondo Quiescenza Poste documentation. Verified 2026-09-09: INPS website confirms Fondo Quiescenza Poste exists for Poste Italiane SpA but specific aliquote not publicly listed on INPS portal in machine-readable form."
       },
       {
         "kind": "simplification",
@@ -1395,7 +1395,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "047c7fa877501ea2c9a3b60a1c3ad71dc318f581b0b63d5925760304fdc4e318",
+    "source_hash": "1b7a5244a66fcb8a37ba7c92489a32a8239b77fe054b2788077cf8b0996ff783",
     "published_at": "2026-09-07"
   },
   "work_rules": {
