@@ -152,7 +152,7 @@ class TestCalculation:
         """Compute returns a Calculation with engine version and rulesets."""
         calc = compute(_req())
         assert isinstance(calc, Calculation)
-        assert calc.engine_version == "0.5.0"
+        assert calc.engine_version == "0.5.1"
         assert calc.ruleset_version["ccnl"] == "test@2026.2"
         assert calc.ruleset_version["tax"] == "tax/2026/terziario@2026.2"
         assert "inps" not in calc.ruleset_version
