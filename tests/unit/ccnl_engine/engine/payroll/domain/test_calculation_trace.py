@@ -180,11 +180,6 @@ class TestCalculationTrace:
         )
         assert CalculationTrace.from_dict(trace.to_dict()) == trace
 
-    def test_from_dict_empty_steps_key_missing(self) -> None:
-        """from_dict tolerates a missing 'steps' key (returns empty trace)."""
-        trace = CalculationTrace.from_dict({})
-        assert trace.steps == ()
-
 
 class TestTraceOnCalculation:
     """Calculation.trace is emitted by compute() and round-trips correctly."""
@@ -224,14 +219,6 @@ class TestTraceOnCalculation:
         calc = compute(_req())
         restored = Calculation.from_json(calc.to_json())
         assert restored.trace == calc.trace
-
-    def test_backward_compat_from_dict_without_trace(self) -> None:
-        """from_dict with no 'trace' key yields an empty CalculationTrace."""
-        calc = compute(_req())
-        d = calc.to_dict()
-        d.pop("trace")
-        restored = Calculation.from_dict(d)
-        assert restored.trace == CalculationTrace(steps=())
 
     def test_trace_dict_has_steps_key(self) -> None:
         """to_dict includes a 'trace' key with a 'steps' list."""
@@ -431,17 +418,6 @@ class TestTraceStepPeriod:
         )
         assert TraceStep.from_dict(step.to_dict()) == step
 
-    def test_from_dict_backward_compat_missing_period(self) -> None:
-        """from_dict defaults period to 'monthly' when key is absent."""
-        raw: dict[str, object] = {
-            "category": "base_salary",
-            "label": "Base",
-            "amount": "1000.00",
-            "detail": None,
-        }
-        step = TraceStep.from_dict(raw)
-        assert step.period == "monthly"
-
 
 class TestFiscalStepsRoundtrip:
     """CalculationTrace.fiscal_steps serialises and round-trips correctly."""
@@ -486,8 +462,8 @@ class TestFiscalStepsRoundtrip:
         restored = CalculationTrace.from_dict(trace.to_dict())
         assert restored.fiscal_steps == trace.fiscal_steps
 
-    def test_from_dict_backward_compat_no_fiscal_steps(self) -> None:
-        """from_dict with no fiscal_steps key yields an empty tuple."""
+    def test_from_dict_fiscal_steps_absent_when_empty(self) -> None:
+        """fiscal_steps key is absent in to_dict and restores to () in from_dict."""
         trace = CalculationTrace(
             steps=(TraceStep(TraceCategory.GROSS, "Lordo", Decimal("2000.00")),),
         )

@@ -14,14 +14,14 @@ IRPEF steps are labelled as informational (not actually withheld).
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal
 
 from ccnl_engine.engine.payroll.domain.calculation import TraceCategory, TraceStep
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
-_ANNUAL = "annual"
+_ANNUAL: Literal["annual"] = "annual"
 
 
 def _step(

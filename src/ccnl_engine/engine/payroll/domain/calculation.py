@@ -19,7 +19,7 @@ from datetime import date as _date
 from decimal import Decimal
 from enum import Enum, StrEnum
 from types import UnionType
-from typing import TYPE_CHECKING, Any, cast, get_origin
+from typing import TYPE_CHECKING, Any, Literal, cast, get_origin
 
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
 from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
@@ -331,7 +331,7 @@ class TraceStep:
     label: str
     amount: Decimal
     detail: str | None = None
-    period: str = "monthly"  # Literal["monthly", "annual"]
+    period: Literal["monthly", "annual"] = "monthly"
 
     def to_dict(self) -> dict[str, object]:
         """Serialise to a JSON-native dict.
@@ -352,8 +352,6 @@ class TraceStep:
     def from_dict(cls, data: dict[str, object]) -> TraceStep:
         """Reconstruct from a :meth:`to_dict` dict.
 
-        Older serialised steps without ``period`` default to ``"monthly"``.
-
         Args:
             data: A dict as produced by :meth:`to_dict`.
 
@@ -366,7 +364,7 @@ class TraceStep:
             label=str(data["label"]),
             amount=Decimal(str(data["amount"])),
             detail=str(raw_detail) if raw_detail is not None else None,
-            period=str(data.get("period", "monthly")),
+            period=str(data["period"]),  # type: ignore[arg-type]
         )
 
 
@@ -425,9 +423,6 @@ class CalculationTrace:
     def from_dict(cls, data: dict[str, object]) -> CalculationTrace:
         """Reconstruct from a :meth:`to_dict` dict.
 
-        Older serialised calculations without ``supplement_steps`` or
-        ``fiscal_steps`` yield empty tuples for those fields.
-
         Args:
             data: A dict as produced by :meth:`to_dict`.
 
@@ -437,7 +432,7 @@ class CalculationTrace:
         return cls(
             steps=tuple(
                 TraceStep.from_dict(cast(dict[str, object], s))
-                for s in cast(list[object], data.get("steps", []))
+                for s in cast(list[object], data["steps"])
             ),
             supplement_steps=tuple(
                 TraceStep.from_dict(cast(dict[str, object], s))
@@ -630,17 +625,12 @@ class Calculation:
     def from_dict(cls, data: dict[str, object]) -> Calculation:
         """Reconstruct a calculation from a dictionary (see :meth:`to_dict`).
 
-        Older serialised calculations that pre-date the trace field are
-        accepted: a missing ``trace`` key yields an empty
-        :class:`CalculationTrace`.
-
         Args:
             data: A dictionary as produced by :meth:`to_dict`.
 
         Returns:
             A new :class:`Calculation` equal to the original.
         """
-        raw_trace = data.get("trace")
         return cls(
             engine_version=str(data["engine_version"]),
             ruleset_version={
@@ -651,11 +641,7 @@ class Calculation:
                 cast(dict[str, object], data["input_snapshot"])
             ),
             result=PayrollResult.from_dict(cast(dict[str, object], data["result"])),
-            trace=(
-                CalculationTrace.from_dict(cast(dict[str, object], raw_trace))
-                if raw_trace is not None
-                else CalculationTrace(steps=())
-            ),
+            trace=CalculationTrace.from_dict(cast(dict[str, object], data["trace"])),
         )
 
     def to_json(self) -> str:
