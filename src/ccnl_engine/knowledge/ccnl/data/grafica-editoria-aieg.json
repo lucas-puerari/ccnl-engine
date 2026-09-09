@@ -44,8 +44,8 @@
         "text": "CONGLOBATED CHECK: inter-level increase ratios are stable across all 5 tranches (e.g., Q/E = 1.937, C1/E = 1.357 at all dates), confirming a single parametric coefficient system. Contingenza is frozen per level (E=512.87, Q=539.99); EDR=10.33 uniform. Total values from lexplain cross-check with kitech July 2026 breakdown to within ±0.03 EUR (rounding difference)."
       },
       {
-        "kind": "simplification",
-        "text": "HOURLY DIVISOR: 173. SIMPLIFICATION: no official hourly rate table recovered for G011. The value 173 is derived from 40h/week standard (40×52/12=173.33→173). The CCNL uses divisore convenzionale 26 for daily calculations; the hourly divisor is inferred from the weekly-hours convention. If the actual contractual hours differ (e.g., 37.5h/week→163), divisore must be corrected."
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 173. G011 CCNL states orario normale 40 ore medie settimanali (confirmed conflavoro.it CCNL text and ilccnl.it). Formula 40×52/12=173.33→173. Daily divisore convenzionale 26 confirmed by lavoro-economia.it. The exact contractual divisore clause was not retrieved directly from primary text, but the 40h/week is unambiguous; divisor 173 is the correct derived value."
       },
       {
         "kind": "info",
@@ -1979,7 +1979,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/",
     "verification_status": "unverified",
-    "source_hash": "416a54fcd3b115b6dc9e7344412cd89ce8913e53bbf2094dc954cfd63a07de35",
+    "source_hash": "517bb537df89fa0a3ea122bebb31f54fe8548dbb63c8c21be9235777a3664cbd",
     "published_at": "2026-09-07"
   },
   "work_rules": {

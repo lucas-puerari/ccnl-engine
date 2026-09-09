@@ -74,8 +74,8 @@
         "text": "DERIVED TRANCHES: November 2026 and March 2027 per-level amounts derived from reparametrization of confirmed Dec 2025 L4 increment (35 EUR per tranche); ratios applied proportionally to all levels. Not independently confirmed against official sources."
       },
       {
-        "kind": "simplification",
-        "text": "INDENNITA_FUNZIONE (Q): 250.76 EUR assumed constant throughout 2023-2027 contract. Amount confirmed at Dec 2025 by kitech.it and reported unchanged since at least 2008. No published CCNL text indicates a change in the 2024 renewal."
+        "kind": "info",
+        "text": "INDENNITA_FUNZIONE (Q): 250.76 EUR constant throughout 2023-2027 contract. Confirmed at Dec 2025 by kitech.it, unchanged since at least 2008. The 2024 renewal (IPSOA analysis, lavorofacile.it) modified Arts. 75 and 80-82 but did not alter the Q function allowance. Modelled with valid_from at the earliest salary period."
       },
       {
         "kind": "simplification",
@@ -1882,7 +1882,7 @@
     "effective_until": null,
     "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016",
     "verification_status": "unverified",
-    "source_hash": "a5816e28323f0ccf3d605ec437425ec3bd815d5be6a47011ce5ebbf36eac7fbd",
+    "source_hash": "b3f0ff1b849e871e52e3556b52f8852fb864e314355c67d7a624d6738aad068b",
     "published_at": "2026-09-07"
   },
   "work_rules": {

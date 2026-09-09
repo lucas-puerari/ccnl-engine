@@ -62,7 +62,7 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS RATES. INDUSTRIA rates from 2026-industria.json are used. The waste-management sector may attract a CIGO addizionale (~0.80% employer) that is not modelled. Actual INPS circular for K540 was not retrieved."
+        "text": "INPS RATES. INDUSTRIA rates from 2026-industria.json are used as proxy. For K540 (igiene ambientale), the applicable CIGO regime is standard industria (CIGO ordinaria) under D.Lgs. 148/2015, same as Confindustria-affiliate companies. No sector-specific INPS circular for K540 was found in 2026-09 searches. The ~0.80% CIGO addizionale estimate in the original note is unverified; standard industry rates (0.60% ≤50 dipendenti, 0.90% >50) likely apply. This is a structural limitation — the specific company size determines the addizionale."
       },
       {
         "kind": "simplification",
@@ -3329,7 +3329,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "d7c1a36f8b349a58b18b6fee3c1d78f192b5651ea566c3ed1604c29ed7efbebe",
+    "source_hash": "aa230d10f9505d4461649e2a6c6c71cc8cd3e1d4b7a7c729c85db4b6deab1264",
     "published_at": "2026-09-07"
   },
   "work_rules": {
