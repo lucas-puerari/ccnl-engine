@@ -294,9 +294,11 @@ def compute_salary(
     employer = _build_employer(num_employees, second_level_monthly)
 
     # Detect lavoro domestico to auto-supply weekly_hours.
+    ccnl_name: str = filename
     try:
-        ccnl_meta = load_ccnl(filename).meta
-        is_domestic = getattr(ccnl_meta, "tax_sector", "") == "lavoro-domestico"
+        loaded_ccnl = load_ccnl(filename)
+        ccnl_name = loaded_ccnl.meta.name
+        is_domestic = getattr(loaded_ccnl.meta, "tax_sector", "") == "lavoro-domestico"
     except Exception:  # ruff: ignore[blind-except]
         is_domestic = False
 
@@ -326,6 +328,7 @@ def compute_salary(
     return json.dumps({
         # metadata
         "ccnl_id": payroll.ccnl_id,
+        "ccnl_name": ccnl_name,
         "level_code": payroll.level_code,
         "employment_type": payroll.employment_type,
         "year": payroll.year,
@@ -373,4 +376,27 @@ def compute_salary(
         "fiscal_simplifications": sorted(
             str(s) for s in payroll.fiscal_simplifications
         ),
+        # trust — calculation trace
+        "trace": calculation.trace.to_dict(),
+        # trust — sources cited by the engine
+        "provenance": [
+            {
+                "title": p.location.source_document.title,
+                "kind": str(p.location.source_document.kind),
+                "authority": str(p.location.source_document.authority),
+                "url": p.location.source_document.url,
+                "section": p.location.section,
+                "quote": p.location.quote,
+                "method": str(p.extraction.method),
+                "verification_status": str(p.extraction.verification_status),
+            }
+            for p in payroll.provenance
+        ],
+        # trust — result quality signals
+        "confidence": payroll.confidence,
+        "warnings": list(payroll.warnings),
+        "calculation_scope": [
+            {"feature": s.feature, "status": s.status}
+            for s in payroll.calculation_scope
+        ],
     })

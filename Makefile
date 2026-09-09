@@ -1,9 +1,18 @@
-.PHONY: setup lint format typecheck test cognitive-complexity coverage-matrix rehash
+.PHONY: setup demo lint format typecheck test cognitive-complexity coverage-matrix rehash contract-pages
+
+# Dev setup
 
 setup:
 	uv pip install -e .
 	git config core.hooksPath .githooks
 	@echo "Git hooks activated (.githooks)"
+
+demo:
+	uv build --wheel --out-dir demo/wheels --quiet
+	@echo "Wheel built. Serving demo at http://localhost:8080"
+	python3 -m http.server 8080 --directory demo
+
+# Quality gates
 
 lint:
 	uv run ruff check src/
@@ -21,6 +30,8 @@ test:
 
 cognitive-complexity:
 	uv run complexipy src/ && echo "Cognitive Complexity check passed"
+
+# Docs / data scripts
 
 coverage-matrix:
 	uv run python docs/scripts/gen_coverage_matrix.py

@@ -4,121 +4,283 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ccnl-engine · Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ── Design tokens ────────────────────────────────────────────────── */
     :root {
-      --bg: #f8f9fb;
-      --surface: #ffffff;
-      --border: #dde1e7;
-      --text: #1a1d23;
-      --muted: #6b7280;
-      --accent: #2563eb;
-      --accent-hover: #1d4ed8;
-      --green: #16a34a;
-      --red: #dc2626;
-      --amber: #d97706;
-      --radius: 10px;
-      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+      --bg:          #ECF0F7;
+      --surface:     #FFFFFF;
+      --surface-2:   #F4F7FB;
+      --border:      #C8D3E5;
+      --border-strong: #A0B0CC;
+      --text:        #0D1929;
+      --muted:       #5C6F8A;
+      --faint:       #8A9DB8;
+      --accent:      #1B5CB5;
+      --accent-hover:#144CA0;
+      --accent-bg:   #E7EFF9;
+      --green:       #0A7A52;
+      --green-bg:    #EAF9F2;
+      --green-dot:   #22C78C;
+      --amber:       #9A5308;
+      --amber-bg:    #FEF6EA;
+      --amber-dot:   #F59E0B;
+      --red:         #9B1C1C;
+      --red-bg:      #FEF2F2;
+      --red-dot:     #EF4444;
+      --trace-line:  #D4DCF0;
+      --shadow-sm:   0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow:      0 2px 8px rgba(0,0,0,.07), 0 1px 3px rgba(0,0,0,.04);
+      --radius:      8px;
     }
     @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0f1117; --surface: #1c1f27; --border: #2d3140; --text: #e8eaf0;
-        --muted: #9ca3af; --accent: #3b82f6; --accent-hover: #60a5fa;
-        --green: #22c55e; --red: #f87171; --amber: #fbbf24;
+      :root:not([data-theme="light"]) {
+        --bg:          #0B1220;
+        --surface:     #131E30;
+        --surface-2:   #182638;
+        --border:      #223148;
+        --border-strong:#344B68;
+        --text:        #DDE5F2;
+        --muted:       #6E8BAF;
+        --faint:       #496280;
+        --accent:      #4A8FD9;
+        --accent-hover:#5C9FE8;
+        --accent-bg:   #132040;
+        --green:       #2DD4A0;
+        --green-bg:    #082B1F;
+        --green-dot:   #2DD4A0;
+        --amber:       #F6A82A;
+        --amber-bg:    #211600;
+        --amber-dot:   #F59E0B;
+        --red:         #F87171;
+        --red-bg:      #200808;
+        --red-dot:     #EF4444;
+        --trace-line:  #1E3050;
+        --shadow-sm:   0 1px 3px rgba(0,0,0,.2);
+        --shadow:      0 2px 8px rgba(0,0,0,.24);
       }
     }
+    :root[data-theme="dark"] {
+      --bg:          #0B1220;
+      --surface:     #131E30;
+      --surface-2:   #182638;
+      --border:      #223148;
+      --border-strong:#344B68;
+      --text:        #DDE5F2;
+      --muted:       #6E8BAF;
+      --faint:       #496280;
+      --accent:      #4A8FD9;
+      --accent-hover:#5C9FE8;
+      --accent-bg:   #132040;
+      --green:       #2DD4A0;
+      --green-bg:    #082B1F;
+      --green-dot:   #2DD4A0;
+      --amber:       #F6A82A;
+      --amber-bg:    #211600;
+      --amber-dot:   #F59E0B;
+      --red:         #F87171;
+      --red-bg:      #200808;
+      --red-dot:     #EF4444;
+      --trace-line:  #1E3050;
+      --shadow-sm:   0 1px 3px rgba(0,0,0,.2);
+      --shadow:      0 2px 8px rgba(0,0,0,.24);
+    }
 
+    /* ── Base ──────────────────────────────────────────────────────────── */
     body {
-      background: var(--bg); color: var(--text);
-      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-      font-size: 15px; line-height: 1.6; min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "IBM Plex Sans", system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
     }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
 
-    header {
-      background: var(--surface); border-bottom: 1px solid var(--border);
-      padding: 14px 24px; display: flex; align-items: center; gap: 12px;
-    }
-    header .logo { font-weight: 700; font-size: 18px; color: var(--accent); letter-spacing: -.3px; }
-    header .badge {
-      font-size: 11px; font-weight: 600; background: #dbeafe; color: #1d4ed8;
-      border-radius: 4px; padding: 2px 7px;
-    }
-    @media (prefers-color-scheme: dark) { header .badge { background: #1e3a5f; color: #93c5fd; } }
-    header .tagline { margin-left: auto; color: var(--muted); font-size: 13px; }
-
+    /* ── Loading overlay ────────────────────────────────────────────────── */
     #loading {
-      position: fixed; inset: 0; background: rgba(15,17,23,.85);
+      position: fixed; inset: 0;
+      background: rgba(11,18,32,.92);
       display: flex; flex-direction: column; align-items: center;
       justify-content: center; z-index: 100; gap: 16px;
     }
     #loading.hidden { display: none; }
     .spinner {
-      width: 40px; height: 40px; border: 3px solid rgba(255,255,255,.15);
-      border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite;
+      width: 36px; height: 36px;
+      border: 2.5px solid rgba(255,255,255,.12);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-    #loading-msg { color: #e8eaf0; font-size: 14px; text-align: center; }
-    .progress-bar { width: 260px; height: 4px; background: rgba(255,255,255,.1); border-radius: 2px; overflow: hidden; }
-    .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width .4s ease; }
+    #loading-msg { color: #b8c8e0; font-size: 13px; }
+    .progress-bar {
+      width: 240px; height: 3px;
+      background: rgba(255,255,255,.08);
+      border-radius: 2px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; background: var(--accent);
+      border-radius: 2px; transition: width .4s ease;
+    }
 
-    main { max-width: 900px; margin: 0 auto; padding: 32px 16px; display: grid; gap: 24px; }
+    /* ── Header ─────────────────────────────────────────────────────────── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 50px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .header-logo {
+      font-weight: 700; font-size: 15px;
+      color: var(--accent); letter-spacing: -.2px;
+      font-family: "IBM Plex Mono", monospace;
+    }
+    .header-sep {
+      width: 1px; height: 18px;
+      background: var(--border); flex-shrink: 0;
+    }
+    .header-sub { font-size: 12px; color: var(--muted); }
+    .header-badge {
+      margin-left: auto;
+      font-size: 10px; font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase;
+      background: var(--accent-bg); color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 4px; padding: 2px 8px; opacity: .8;
+    }
 
+    /* ── Page layout ─────────────────────────────────────────────────────── */
+    main {
+      max-width: 860px; margin: 0 auto;
+      padding: 28px 16px 48px;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+
+    /* ── Shared card ─────────────────────────────────────────────────────── */
     .card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 22px;
+    }
+    .card-header {
+      display: flex; align-items: baseline; gap: 10px;
+      margin-bottom: 18px;
     }
     .card-title {
-      font-size: 13px; font-weight: 600; letter-spacing: .05em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
+      font-size: 11px; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
     }
+    .card-sub { font-size: 12px; color: var(--faint); }
 
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    /* ── Form elements ───────────────────────────────────────────────────── */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .form-grid .full { grid-column: 1 / -1; }
     @media (max-width: 540px) { .form-grid { grid-template-columns: 1fr; } }
 
-    label { display: block; font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 5px; }
+    label { display: block; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 4px; }
     select, input[type="number"], input[type="text"] {
-      width: 100%; background: var(--bg); border: 1px solid var(--border);
-      border-radius: 6px; color: var(--text); font-size: 14px; padding: 8px 10px;
-      appearance: none; -webkit-appearance: none; outline: none; transition: border-color .15s;
+      width: 100%;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: inherit; font-size: 13px;
+      padding: 7px 10px;
+      appearance: none; -webkit-appearance: none;
+      outline: none; transition: border-color .15s;
     }
-    select:focus, input[type="number"]:focus, input[type="text"]:focus { border-color: var(--accent); }
-    select:disabled, input:disabled { opacity: .5; cursor: not-allowed; }
+    select:focus, input[type="number"]:focus, input[type="text"]:focus {
+      border-color: var(--accent);
+    }
+    select:disabled, input:disabled { opacity: .45; cursor: not-allowed; }
+
+    /* ── Combobox ─────────────────────────────────────────────────────────── */
+    .combobox-wrap { position: relative; }
+    .combobox-input {
+      width: 100%;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: inherit; font-size: 13px;
+      padding: 7px 32px 7px 10px;
+      appearance: none; outline: none;
+      transition: border-color .15s;
+      cursor: default;
+    }
+    .combobox-input:focus { border-color: var(--accent); }
+    .combobox-input.open { border-color: var(--accent); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+    .combobox-input::placeholder { color: var(--faint); }
+    .combobox-input:disabled { opacity: .45; cursor: not-allowed; }
+    .combobox-arrow {
+      position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+      pointer-events: none; color: var(--faint); font-size: 10px;
+    }
+    .combobox-dropdown {
+      position: absolute; top: 100%; left: 0; right: 0; z-index: 50;
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      border-top: none;
+      border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+      max-height: 220px; overflow-y: auto;
+      box-shadow: var(--shadow);
+      display: none;
+    }
+    .combobox-dropdown.open { display: block; }
+    .combobox-option {
+      padding: 7px 11px; font-size: 13px; cursor: pointer;
+      color: var(--text); line-height: 1.4;
+    }
+    .combobox-option:hover,
+    .combobox-option.active { background: var(--accent-bg); color: var(--accent); }
+    .combobox-option.selected { font-weight: 600; }
+    .combobox-empty {
+      padding: 9px 11px; font-size: 12px;
+      color: var(--faint); font-style: italic;
+    }
+
     input[type="range"] {
-      width: 100%; padding: 0; height: 6px; cursor: pointer; accent-color: var(--accent);
+      width: 100%; padding: 0; height: 4px; cursor: pointer;
+      accent-color: var(--accent);
       background: transparent; border: none; outline: none;
     }
     .range-row { display: flex; align-items: center; gap: 10px; }
-    .range-val { font-size: 14px; font-weight: 600; min-width: 42px; text-align: right; color: var(--accent); }
+    .range-val {
+      font-size: 13px; font-weight: 600; min-width: 40px;
+      text-align: right; color: var(--accent);
+      font-family: "IBM Plex Mono", monospace;
+    }
 
-    .radio-row { display: flex; gap: 16px; align-items: center; margin-bottom: 8px; }
-    .radio-row label { margin: 0; display: flex; align-items: center; gap: 5px; cursor: pointer; color: var(--text); font-weight: 400; }
+    .radio-row { display: flex; gap: 14px; align-items: center; margin-bottom: 7px; }
+    .radio-row label {
+      margin: 0; display: flex; align-items: center; gap: 5px;
+      cursor: pointer; color: var(--text); font-weight: 400;
+    }
     .radio-row input[type="radio"] { width: auto; accent-color: var(--accent); }
 
-    .section-toggle {
-      display: flex; align-items: center; gap: 8px; cursor: pointer;
-      font-size: 13px; font-weight: 600; letter-spacing: .05em;
-      text-transform: uppercase; color: var(--muted); margin-top: 8px; user-select: none;
+    .field-hint {
+      font-size: 11px; color: var(--faint); margin-top: 3px; line-height: 1.4;
     }
-    .section-toggle .arrow { transition: transform .2s; display: inline-block; }
-    .section-toggle.open .arrow { transform: rotate(90deg); }
-    .advanced-body { display: none; margin-top: 16px; }
-    .advanced-body.open { display: block; }
+    .field-hint a { color: var(--accent); }
 
-    .hint { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
-    .hint a { color: var(--accent); }
-
-    /* ---- Tooltip ---- */
-    .label-row { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
+    .label-row { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
     .label-row label { margin: 0; }
+
     .tip {
       display: inline-flex; align-items: center; justify-content: center;
-      width: 16px; height: 16px; border-radius: 50%;
+      width: 15px; height: 15px; border-radius: 50%;
       background: var(--border); color: var(--muted);
-      font-size: 10px; font-weight: 700; cursor: default;
-      flex-shrink: 0; position: relative; user-select: none;
-      transition: background .15s;
+      font-size: 9px; font-weight: 700; cursor: default; flex-shrink: 0;
+      position: relative; user-select: none; transition: background .15s;
     }
     .tip:hover, .tip:focus { background: var(--accent); color: #fff; outline: none; }
     .tip::after {
@@ -126,98 +288,366 @@
       position: absolute; bottom: calc(100% + 8px); left: 50%;
       transform: translateX(-50%);
       background: #1a1d23; color: #e8eaf0;
-      font-size: 12px; font-weight: 400; line-height: 1.45;
-      padding: 8px 11px; border-radius: 7px;
-      width: max-content; max-width: 260px;
+      font-size: 11px; font-weight: 400; line-height: 1.45;
+      padding: 8px 11px; border-radius: 6px;
+      width: max-content; max-width: 240px;
       white-space: normal; text-align: left;
-      pointer-events: none; opacity: 0;
-      transition: opacity .15s;
-      z-index: 10;
-      box-shadow: 0 4px 12px rgba(0,0,0,.25);
+      pointer-events: none; opacity: 0; transition: opacity .15s;
+      z-index: 10; box-shadow: 0 4px 12px rgba(0,0,0,.25);
     }
     .tip::before {
       content: ""; position: absolute; bottom: calc(100% + 2px); left: 50%;
       transform: translateX(-50%);
-      border: 5px solid transparent; border-top-color: #1a1d23;
-      pointer-events: none; opacity: 0; transition: opacity .15s;
-      z-index: 10;
+      border: 4px solid transparent; border-top-color: #1a1d23;
+      pointer-events: none; opacity: 0; transition: opacity .15s; z-index: 10;
     }
     .tip:hover::after, .tip:focus::after,
     .tip:hover::before, .tip:focus::before { opacity: 1; }
-    /* Flip tooltip to the right on small screens to avoid clipping */
-    @media (max-width: 400px) {
-      .tip::after { left: 0; transform: none; }
-      .tip::before { left: 8px; transform: none; }
+
+    .section-toggle {
+      display: flex; align-items: center; gap: 7px; cursor: pointer;
+      font-size: 11px; font-weight: 600; letter-spacing: .07em;
+      text-transform: uppercase; color: var(--muted);
+      margin-top: 8px; user-select: none;
     }
+    .section-toggle .arrow { transition: transform .2s; display: inline-block; font-style: normal; }
+    .section-toggle.open .arrow { transform: rotate(90deg); }
+    .advanced-body { display: none; margin-top: 14px; }
+    .advanced-body.open { display: block; }
 
     #calc-btn {
-      margin-top: 8px; width: 100%; padding: 11px 24px;
-      background: var(--accent); color: #fff; border: none; border-radius: 7px;
-      font-size: 15px; font-weight: 600; cursor: pointer; transition: background .15s;
+      margin-top: 10px; width: 100%; padding: 10px 24px;
+      background: var(--accent); color: #fff;
+      border: none; border-radius: 6px;
+      font-family: inherit; font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: background .15s;
+      letter-spacing: .01em;
     }
     #calc-btn:hover:not(:disabled) { background: var(--accent-hover); }
-    #calc-btn:disabled { opacity: .5; cursor: not-allowed; }
+    #calc-btn:disabled { opacity: .45; cursor: not-allowed; }
 
+    /* ── Error box ───────────────────────────────────────────────────────── */
     #error-box {
-      background: #fef2f2; border: 1px solid #fca5a5;
-      border-radius: var(--radius); color: var(--red); padding: 14px 18px; font-size: 14px; display: none;
+      background: var(--red-bg); border: 1px solid var(--red-dot);
+      border-radius: var(--radius); color: var(--red);
+      padding: 13px 16px; font-size: 13px; display: none;
     }
-    @media (prefers-color-scheme: dark) { #error-box { background: #2d1515; border-color: #991b1b; } }
 
-    #results { display: none; }
+    /* ── Results wrapper ─────────────────────────────────────────────────── */
+    #results { display: none; flex-direction: column; gap: 20px; }
 
-    #result-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-    .meta-chip {
-      font-size: 12px; font-weight: 600; background: var(--bg); border: 1px solid var(--border);
-      border-radius: 20px; padding: 3px 10px; color: var(--muted);
+    /* ── Scenario strip ──────────────────────────────────────────────────── */
+    #scenario-strip {
+      display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
     }
-    .meta-chip span { color: var(--text); }
-
-    .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
-    @media (max-width: 620px) { .kpi-grid { grid-template-columns: 1fr; } }
-    .kpi {
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 18px 16px; text-align: center;
+    .s-chip {
+      font-size: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 3px 10px;
+      color: var(--muted); line-height: 1.5;
     }
-    .kpi-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 6px; }
-    .kpi-value { font-size: 26px; font-weight: 700; line-height: 1.1; }
-    .kpi-value.green { color: var(--green); }
-    .kpi-value.amber { color: var(--amber); }
-    .kpi-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .s-chip .val { color: var(--text); font-weight: 500; }
+    .s-arrow { color: var(--faint); font-size: 11px; user-select: none; }
 
-    .breakdown-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    /* ── KPI row ─────────────────────────────────────────────────────────── */
+    .kpi-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    }
+    @media (max-width: 520px) { .kpi-row { grid-template-columns: 1fr 1fr; } }
+    .kpi-tile {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+    }
+    .kpi-label {
+      font-size: 10px; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--faint); margin-bottom: 5px;
+    }
+    .kpi-value {
+      font-size: 24px; font-weight: 700; line-height: 1.1;
+      font-family: "IBM Plex Mono", monospace; letter-spacing: -.02em;
+    }
+    .kpi-value.is-net { color: var(--green); }
+    .kpi-value.is-cost { color: var(--amber); }
+    .kpi-sub { font-size: 11px; color: var(--faint); margin-top: 2px; }
+
+    /* ── Trace panel (Why this number?) ─────────────────────────────────── */
+    #trace-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .trace-header {
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: baseline; gap: 10px;
+    }
+    .trace-title {
+      font-size: 13px; font-weight: 600; color: var(--text);
+    }
+    .trace-sub { font-size: 12px; color: var(--faint); }
+
+    .trace-body { padding: 0; }
+
+    .trace-step {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 0 14px;
+      align-items: start;
+      padding: 13px 22px;
+      border-bottom: 1px solid var(--trace-line);
+      position: relative;
+    }
+    .trace-step:last-child { border-bottom: none; }
+    .trace-step.is-gross {
+      border-top: 2px solid var(--border-strong);
+      background: var(--surface-2);
+    }
+
+    .trace-cat {
+      font-size: 9px; font-weight: 700; letter-spacing: .09em;
+      text-transform: uppercase;
+      padding: 2px 7px; border-radius: 3px;
+      margin-top: 2px; white-space: nowrap;
+      font-family: "IBM Plex Mono", monospace;
+    }
+    .cat-base    { background: var(--accent-bg); color: var(--accent); }
+    .cat-senior  { background: var(--green-bg); color: var(--green); }
+    .cat-allow   { background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
+    .cat-ad      { background: var(--amber-bg); color: var(--amber); }
+    .cat-gross   { background: var(--text); color: var(--surface); }
+
+    .trace-info { min-width: 0; }
+    .trace-label {
+      font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.4;
+    }
+    .trace-detail { font-size: 11px; color: var(--faint); margin-top: 2px; }
+    .trace-cite {
+      font-size: 11px; color: var(--faint);
+      margin-top: 5px; display: flex; flex-wrap: wrap; gap: 5px;
+    }
+    .cite-link {
+      display: inline-flex; align-items: center; gap: 3px;
+      text-decoration: none; color: var(--accent); font-size: 11px;
+      border: 1px solid var(--accent-bg); background: var(--accent-bg);
+      border-radius: 3px; padding: 1px 6px; white-space: nowrap;
+      transition: border-color .15s;
+    }
+    .cite-link:hover { border-color: var(--accent); }
+    .no-cite { color: var(--faint); font-size: 11px; font-style: italic; }
+    .trace-running {
+      font-size: 10px; color: var(--faint); font-weight: 400; margin-top: 2px;
+      font-family: "IBM Plex Mono", monospace;
+    }
+
+    .trace-amount {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 14px; font-weight: 500;
+      text-align: right; white-space: nowrap;
+      padding-top: 2px; color: var(--text);
+    }
+    .trace-step.is-gross .trace-amount {
+      font-size: 16px; font-weight: 700; color: var(--text);
+    }
+    .trace-amount.is-add { color: var(--green); }
+
+    /* ── Sources panel ───────────────────────────────────────────────────── */
+    #sources-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+    }
+    .sources-header {
+      padding: 14px 22px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: baseline; gap: 10px;
+    }
+    .sources-body { padding: 16px 22px; display: flex; flex-direction: column; gap: 20px; }
+
+    .sources-sub-title {
+      font-size: 10px; font-weight: 700; letter-spacing: .09em;
+      text-transform: uppercase; color: var(--faint);
+      margin-bottom: 10px;
+    }
+
+    .ruleset-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ruleset-chip {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px; color: var(--muted);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 3px 9px;
+    }
+    .ruleset-chip .kind {
+      color: var(--faint); font-weight: 400; margin-right: 4px;
+    }
+
+    .source-list { display: flex; flex-direction: column; gap: 10px; }
+    .source-item {
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 10px; align-items: start;
+    }
+    .authority-badge {
+      font-size: 9px; font-weight: 700; letter-spacing: .07em;
+      text-transform: uppercase; padding: 2px 7px; border-radius: 3px;
+      white-space: nowrap; margin-top: 2px;
+    }
+    .auth-official  { background: var(--green-bg); color: var(--green); }
+    .auth-secondary { background: var(--amber-bg); color: var(--amber); }
+    .auth-derived   { background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
+
+    .source-info { min-width: 0; }
+    .source-title {
+      font-size: 13px; font-weight: 500; color: var(--text);
+      line-height: 1.35; text-wrap: balance;
+    }
+    .source-title a { color: var(--text); text-decoration: underline; text-decoration-color: var(--border); }
+    .source-title a:hover { text-decoration-color: var(--accent); color: var(--accent); }
+    .source-meta {
+      font-size: 11px; color: var(--faint); margin-top: 3px; line-height: 1.5;
+    }
+    .verified-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 10px; font-weight: 600; letter-spacing: .05em;
+      text-transform: uppercase; margin-left: 6px;
+    }
+    .verified-badge.unverified { color: var(--amber); }
+    .verified-badge.verified   { color: var(--green); }
+    .dot {
+      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+    }
+    .dot-amber { background: var(--amber-dot); }
+    .dot-green { background: var(--green-dot); }
+
+    /* ── Scope & Confidence ──────────────────────────────────────────────── */
+    #scope-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+    }
+    .scope-header {
+      padding: 14px 22px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .confidence-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 600; letter-spacing: .05em;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 12px;
+    }
+    .conf-high   { background: var(--green-bg); color: var(--green); }
+    .conf-medium { background: var(--amber-bg); color: var(--amber); }
+    .conf-low    { background: var(--red-bg); color: var(--red); }
+    .scope-body { padding: 18px 22px; display: flex; flex-direction: column; gap: 18px; }
+
+    .warnings-list { display: flex; flex-direction: column; gap: 6px; }
+    .warning-item {
+      font-size: 13px; color: var(--amber);
+      display: flex; align-items: start; gap: 8px; line-height: 1.5;
+    }
+    .warning-icon { flex-shrink: 0; font-style: normal; margin-top: 1px; }
+
+    .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    @media (max-width: 520px) { .scope-grid { grid-template-columns: 1fr; } }
+
+    .scope-col-title {
+      font-size: 10px; font-weight: 700; letter-spacing: .09em;
+      text-transform: uppercase; color: var(--faint); margin-bottom: 8px;
+    }
+    .feature-list { display: flex; flex-direction: column; gap: 4px; }
+    .feature-item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 12px; color: var(--text); line-height: 1.4;
+    }
+    .feature-item.excluded { color: var(--faint); }
+    .f-icon { font-style: normal; flex-shrink: 0; font-size: 11px; }
+
+    .simps-note {
+      font-size: 12px; color: var(--amber);
+      background: var(--amber-bg); border: 1px solid var(--amber-dot);
+      border-radius: 6px; padding: 10px 14px; line-height: 1.6;
+    }
+
+    /* ── Full breakdown (collapsible) ─────────────────────────────────────── */
+    #breakdown-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+    }
+    .breakdown-toggle {
+      width: 100%; padding: 14px 22px;
+      background: none; border: none;
+      display: flex; align-items: center; gap: 8px;
+      cursor: pointer; color: var(--muted);
+      font-family: inherit; font-size: 11px; font-weight: 600;
+      letter-spacing: .07em; text-transform: uppercase;
+      text-align: left;
+    }
+    .breakdown-toggle:hover { color: var(--text); }
+    .breakdown-toggle .bd-arrow {
+      transition: transform .2s; display: inline-block; font-style: normal;
+    }
+    .breakdown-toggle.open .bd-arrow { transform: rotate(90deg); }
+    .breakdown-body {
+      display: none; padding: 0 22px 20px;
+      border-top: 1px solid var(--border);
+    }
+    .breakdown-body.open { display: block; }
+
+    .breakdown-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 13px; margin-top: 16px;
+    }
     .breakdown-table th {
-      text-align: left; font-size: 12px; font-weight: 600; color: var(--muted);
-      padding: 0 0 8px; border-bottom: 1px solid var(--border);
+      text-align: left; font-size: 11px; font-weight: 600;
+      color: var(--faint); padding: 0 0 8px;
+      border-bottom: 1px solid var(--border);
     }
     .breakdown-table th:last-child { text-align: right; }
-    .breakdown-table td { padding: 9px 0; border-bottom: 1px solid var(--border); }
-    .breakdown-table td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+    .breakdown-table td { padding: 8px 0; border-bottom: 1px solid var(--trace-line); }
+    .breakdown-table td:last-child {
+      text-align: right; font-family: "IBM Plex Mono", monospace;
+      font-size: 12px; font-variant-numeric: tabular-nums;
+    }
     .breakdown-table tr:last-child td { border-bottom: none; }
     .breakdown-table .section-head td {
-      font-weight: 700; padding-top: 18px; color: var(--muted);
-      font-size: 12px; text-transform: uppercase; letter-spacing: .06em; border-bottom: none;
+      font-weight: 700; padding-top: 16px; color: var(--muted);
+      font-size: 10px; text-transform: uppercase; letter-spacing: .07em;
+      border-bottom: none;
     }
     .breakdown-table .total-row td {
-      font-weight: 700; border-top: 2px solid var(--border); border-bottom: none;
-      padding-top: 10px; font-size: 15px;
+      font-weight: 700; font-size: 14px;
+      border-top: 2px solid var(--border); border-bottom: none;
+      padding-top: 10px;
     }
-    .breakdown-table .sub-row td:first-child { padding-left: 18px; color: var(--muted); font-size: 13px; }
-    .breakdown-table .na-row td { color: var(--muted); font-style: italic; font-size: 13px; }
-
-    .note { font-size: 12px; color: var(--muted); margin-top: 16px; line-height: 1.5; }
-
-    #simplifications-note {
-      background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius);
-      color: #92400e; padding: 12px 16px; font-size: 13px; margin-top: 12px;
-      display: none; line-height: 1.6;
+    .breakdown-table .total-row td:last-child {
+      font-size: 14px;
     }
-    @media (prefers-color-scheme: dark) {
-      #simplifications-note { background: #2d2000; border-color: #78350f; color: #fcd34d; }
+    .breakdown-table .sub-row td:first-child {
+      padding-left: 16px; color: var(--faint); font-size: 12px;
+    }
+    .breakdown-table .na-row td { color: var(--faint); font-style: italic; }
+
+    .breakdown-note {
+      font-size: 11px; color: var(--faint); margin-top: 14px; line-height: 1.5;
     }
 
-    footer { text-align: center; padding: 24px; color: var(--muted); font-size: 12px; }
-    footer a { color: var(--accent); text-decoration: none; }
+    /* ── Footer ─────────────────────────────────────────────────────────── */
+    footer {
+      text-align: center; padding: 20px 16px;
+      color: var(--faint); font-size: 11px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
   </style>
 </head>
 <body>
@@ -225,31 +655,40 @@
 <div id="loading">
   <div class="spinner"></div>
   <div id="loading-msg">Initialising Python runtime…</div>
-  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+  </div>
 </div>
 
 <header>
-  <span class="logo">ccnl-engine</span>
-  <span class="badge">demo</span>
-  <span class="tagline">Italian payroll calculator · Gross-to-net &amp; employer cost · 2026</span>
+  <span class="header-logo">ccnl-engine</span>
+  <div class="header-sep"></div>
+  <span class="header-sub">Italian CCNL payroll · Gross-to-net · Employer cost · Calculation provenance · 2026</span>
+  <span class="header-badge">demo</span>
 </header>
 
 <main>
+
+  <!-- Parameters card -->
   <div class="card">
-    <div class="card-title">Parameters</div>
+    <div class="card-header">
+      <span class="card-title">Employment scenario</span>
+    </div>
     <div class="form-grid">
 
       <div class="full">
         <div class="label-row">
           <label for="sel-ccnl">CCNL (collective agreement)</label>
-          <span class="tip" tabindex="0" data-tip="Contratto Collettivo Nazionale di Lavoro — the collective agreement that governs this employment relationship. It determines base salary tables, seniority cadence, contribution rates, and TFR.">?</span>
+          <span class="tip" tabindex="0" data-tip="Contratto Collettivo Nazionale di Lavoro — the collective agreement governing this employment. It determines salary tables, seniority cadence, contribution rates and TFR.">?</span>
         </div>
-        <select id="sel-ccnl" disabled><option value="">— Loading… —</option></select>
+        <div class="combobox-wrap" id="combo-ccnl-wrap">
+          <select id="sel-ccnl" hidden disabled><option value="">— Loading… —</option></select>
+        </div>
       </div>
       <div class="full">
         <div class="label-row">
-          <label for="sel-level">Pay level</label>
-          <span class="tip" tabindex="0" data-tip="The worker's qualification level (livello di inquadramento) within the CCNL. Higher levels carry a higher base salary and seniority increment amount.">?</span>
+          <label for="sel-level">Pay level (livello di inquadramento)</label>
+          <span class="tip" tabindex="0" data-tip="The worker's qualification level within the CCNL. Higher levels carry a higher base salary and seniority increment amount.">?</span>
         </div>
         <select id="sel-level" disabled><option value="">— Select a CCNL first —</option></select>
       </div>
@@ -257,7 +696,7 @@
       <div>
         <div class="label-row">
           <label for="sel-employment">Contract type</label>
-          <span class="tip" tabindex="0" data-tip="Permanent (tempo indeterminato): standard open-ended contract. Fixed-term (tempo determinato): adds the NASpI 1.4% surcharge. Apprenticeship (apprendistato): under-classification with a progressive pay percentage.">?</span>
+          <span class="tip" tabindex="0" data-tip="Permanent: standard open-ended. Fixed-term: adds NASpI 1.4% surcharge. Apprenticeship: under-classification with a progressive pay percentage.">?</span>
         </div>
         <select id="sel-employment">
           <option value="permanent">Permanent (tempo indeterminato)</option>
@@ -269,37 +708,36 @@
       <div>
         <div class="label-row">
           <label for="inp-employees">Employer headcount</label>
-          <span class="tip" tabindex="0" data-tip="Total employees at this workplace (sede di lavoro). Determines the INPS contribution rate tier — some CCNLs and the NASpI surcharge have different rates for employers with fewer than 15 employees.">?</span>
+          <span class="tip" tabindex="0" data-tip="Total employees at this workplace. Determines the INPS contribution rate tier.">?</span>
         </div>
         <input type="number" id="inp-employees" value="50" min="1" max="10000" />
-        <p class="hint">Drives the INPS contribution rate tier.</p>
       </div>
 
       <div id="div-seniority" class="full">
         <div class="label-row">
-          <label>Seniority</label>
-          <span class="tip" tabindex="0" data-tip="Scatti di anzianità: periodic increments added to the monthly pay after a fixed number of months of service (cadenza). The CCNL sets the cadence, the per-level amount, and the maximum number of increments. Choose 'count' to enter increments directly or 'months' to let the engine derive the count.">?</span>
+          <label>Seniority (scatti di anzianità)</label>
+          <span class="tip" tabindex="0" data-tip="Periodic increments added to monthly pay after a fixed number of months (cadence set by the CCNL). Choose 'count' for explicit increments or 'months' for total service months.">?</span>
         </div>
         <div class="radio-row">
           <label><input type="radio" name="sen-mode" value="count" checked /> Scatti (count)</label>
           <label><input type="radio" name="sen-mode" value="months" /> Months of service</label>
         </div>
         <input type="number" id="inp-seniority" value="0" min="0" max="600" />
-        <p class="hint" id="seniority-hint">Number of seniority increments (scatti di anzianità) accrued.</p>
+        <p class="field-hint" id="seniority-hint">Number of seniority increments accrued.</p>
       </div>
 
       <div id="div-apprentice-months" style="display:none" class="full">
         <div class="label-row">
           <label for="inp-apprentice-months">Months into apprenticeship</label>
-          <span class="tip" tabindex="0" data-tip="How many months have elapsed since the apprenticeship started. The engine uses this to determine the current pay percentage band (e.g. 0–12 months: 80%, 13–24: 85%, …) as defined in the CCNL.">?</span>
+          <span class="tip" tabindex="0" data-tip="Months elapsed since the apprenticeship started. Used to determine the current pay percentage band as defined in the CCNL.">?</span>
         </div>
         <input type="number" id="inp-apprentice-months" value="0" min="0" max="60" />
       </div>
 
       <div class="full">
         <div class="label-row">
-          <label for="inp-parttime">Part-time</label>
-          <span class="tip" tabindex="0" data-tip="Part-time fraction applied to base pay, seniority increments, and most INPS contributions. Ad personam supplements are not scaled. Set to 100% for full-time.">?</span>
+          <label for="inp-parttime">Part-time fraction</label>
+          <span class="tip" tabindex="0" data-tip="Applied to base pay, seniority, and most INPS contributions. Ad personam supplements are not scaled. 100% = full-time.">?</span>
         </div>
         <div class="range-row">
           <input type="range" id="inp-parttime" min="10" max="100" value="100" step="5" />
@@ -310,26 +748,25 @@
       <div>
         <div class="label-row">
           <label for="sel-regione">Region — addizionale regionale</label>
-          <span class="tip" tabindex="0" data-tip="Worker's region of residence (regione di residenza). Required to compute the addizionale regionale IRPEF — a surcharge on top of national income tax, with rates that vary by region. Leave blank to skip this item.">?</span>
+          <span class="tip" tabindex="0" data-tip="Worker's region of residence. Required to compute the addizionale regionale IRPEF. Leave blank to skip.">?</span>
         </div>
-        <select id="sel-regione"><option value="">— not specified —</option></select>
+        <div class="combobox-wrap" id="combo-regione-wrap">
+          <select id="sel-regione" hidden><option value="">— not specified —</option></select>
+        </div>
       </div>
       <div>
         <div class="label-row">
           <label for="inp-comune">Belfiore code — addizionale comunale</label>
-          <span class="tip" tabindex="0" data-tip="Codice catastale del comune di residenza — a 4-character code (e.g. F205 for Milano). Required to compute the addizionale comunale IRPEF. Each municipality sets its own rate. Leave blank to skip this item.">?</span>
+          <span class="tip" tabindex="0" data-tip="Codice catastale del comune di residenza (e.g. F205 for Milano). Required for the addizionale comunale. Leave blank to skip.">?</span>
         </div>
         <input type="text" id="inp-comune" placeholder="e.g. F205 (Milano)" maxlength="4"
                style="text-transform:uppercase" />
-        <p class="hint">
-          Codice catastale del comune di residenza.
-          <a href="https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/guidaarticolo.htm?id=5" target="_blank" rel="noopener">Look up →</a>
-        </p>
+        <p class="field-hint"><a href="https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/guidaarticolo.htm?id=5" target="_blank" rel="noopener">Look up codice catastale →</a></p>
       </div>
 
       <div class="full">
         <div class="section-toggle" id="advanced-toggle">
-          <span class="arrow">▶</span> Advanced options
+          <i class="arrow">▶</i> Advanced options
         </div>
         <div class="advanced-body" id="advanced-body">
           <div class="form-grid" style="margin-top:0">
@@ -337,128 +774,211 @@
             <div>
               <div class="label-row">
                 <label for="inp-ad-personam">Ad personam monthly (€)</label>
-                <span class="tip" tabindex="0" data-tip="Supplemento individuale ad personam — a frozen monthly addition specific to this worker, typically inherited from pre-abolition seniority tiers or individual negotiation. Not scaled by part-time percentage.">?</span>
+                <span class="tip" tabindex="0" data-tip="Frozen individual monthly supplement (e.g. pre-abolition seniority tiers). Not scaled by part-time.">?</span>
               </div>
               <input type="number" id="inp-ad-personam" value="0" min="0" step="1" />
-              <p class="hint">Individual frozen supplement (e.g. pre-abolition seniority). Not scaled by part-time.</p>
             </div>
 
             <div>
               <div class="label-row">
-                <label for="inp-second-level">Second-level monthly allowance (€)</label>
-                <span class="tip" tabindex="0" data-tip="Monthly supplement from a territorial or company-level agreement (contrattazione integrativa di secondo livello). Mutually exclusive with RAL override — setting one disables the other.">?</span>
+                <label for="inp-second-level">Second-level monthly (€)</label>
+                <span class="tip" tabindex="0" data-tip="Monthly supplement from a territorial or company second-level agreement. Mutually exclusive with RAL override.">?</span>
               </div>
               <input type="number" id="inp-second-level" value="0" min="0" step="1" />
-              <p class="hint">Territorial or company agreement supplement. Mutually exclusive with RAL override.</p>
             </div>
 
             <div>
               <div class="label-row">
                 <label for="inp-ral">RAL override — agreed annual gross (€)</label>
-                <span class="tip" tabindex="0" data-tip="Retribuzione Annua Lorda concordata individualmente — replaces the CCNL salary table with a negotiated annual gross. The engine uses this as the gross and still applies statutory contributions. Mutually exclusive with second-level allowance.">?</span>
+                <span class="tip" tabindex="0" data-tip="Replaces the CCNL salary table with a negotiated annual gross. Mutually exclusive with second-level allowance.">?</span>
               </div>
               <input type="number" id="inp-ral" value="0" min="0" step="100" />
-              <p class="hint">Replaces CCNL tables with a negotiated salary. Mutually exclusive with second-level allowance.</p>
             </div>
 
-            <div style="display:flex; align-items:flex-start; gap:10px; padding-top:20px">
+            <div style="display:flex; align-items:flex-start; gap:10px; padding-top:18px">
               <input type="checkbox" id="chk-ivs" style="width:auto; margin-top:3px; accent-color:var(--accent)" />
               <div>
                 <div class="label-row" style="margin:0 0 2px">
                   <label for="chk-ivs" style="margin:0; color:var(--text); font-weight:500">IVS ceiling applies</label>
-                  <span class="tip" tabindex="0" data-tip="When the worker's annual gross exceeds the INPS IVS contribution ceiling (massimale contributivo — ~€113,520 in 2026), only the IVS-specific reduced rate applies on income above the threshold. Check this for high-earning workers.">?</span>
+                  <span class="tip" tabindex="0" data-tip="When annual gross exceeds the INPS IVS ceiling (~€113,520 in 2026), only the IVS-specific reduced rate applies above the threshold.">?</span>
                 </div>
-                <p class="hint" style="margin:0">Worker's gross exceeds the INPS IVS ceiling; only the ceiling-specific contribution rate applies above the threshold.</p>
+                <p class="field-hint" style="margin:0">Worker's gross exceeds the INPS IVS ceiling.</p>
               </div>
             </div>
 
           </div>
         </div>
       </div>
-
     </div>
     <button id="calc-btn" disabled>Calculate</button>
   </div>
 
   <div id="error-box"></div>
 
+  <!-- ── Results ─────────────────────────────────────────────────────── -->
   <div id="results">
-    <div id="result-meta"></div>
 
-    <div class="kpi-grid">
-      <div class="kpi">
+    <!-- Scenario strip -->
+    <div id="scenario-strip"></div>
+
+    <!-- KPI row -->
+    <div class="kpi-row">
+      <div class="kpi-tile">
         <div class="kpi-label">Monthly gross</div>
-        <div class="kpi-value" id="kpi-gross-monthly">—</div>
-        <div class="kpi-sub" id="kpi-gross-annual"></div>
+        <div class="kpi-value" id="kpi-gross">—</div>
+        <div class="kpi-sub" id="kpi-gross-sub"></div>
       </div>
-      <div class="kpi">
+      <div class="kpi-tile">
         <div class="kpi-label">Monthly net</div>
-        <div class="kpi-value green" id="kpi-net-monthly">—</div>
-        <div class="kpi-sub" id="kpi-net-annual"></div>
+        <div class="kpi-value is-net" id="kpi-net">—</div>
+        <div class="kpi-sub" id="kpi-net-sub"></div>
       </div>
-      <div class="kpi">
-        <div class="kpi-label">Annual employer cost</div>
-        <div class="kpi-value amber" id="kpi-cost-annual">—</div>
+      <div class="kpi-tile">
+        <div class="kpi-label">Employer cost — annual</div>
+        <div class="kpi-value is-cost" id="kpi-cost">—</div>
         <div class="kpi-sub">including TFR and contributions</div>
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-title">Breakdown</div>
-      <table class="breakdown-table">
-        <colgroup>
-          <col style="width:60%"/><col style="width:20%"/><col style="width:20%"/>
-        </colgroup>
-        <thead>
-          <tr><th>Item</th><th style="text-align:right">Monthly</th><th style="text-align:right">Annual</th></tr>
-        </thead>
-        <tbody id="breakdown-body"></tbody>
-      </table>
-      <p class="note" id="irpef-note"></p>
-      <div id="simplifications-note"></div>
+    <!-- Trace — Why this number? -->
+    <div id="trace-section">
+      <div class="trace-header">
+        <span class="trace-title">Why this number?</span>
+        <span class="trace-sub">Monthly gross computation — step by step</span>
+      </div>
+      <div class="trace-body" id="trace-body"></div>
     </div>
+
+    <!-- Sources -->
+    <div id="sources-section">
+      <div class="sources-header">
+        <span class="card-title">Sources</span>
+        <span class="card-sub">Documents and rulesets used to produce this calculation</span>
+      </div>
+      <div class="sources-body">
+        <div>
+          <div class="sources-sub-title">Rulesets loaded</div>
+          <div class="ruleset-chips" id="ruleset-chips"></div>
+        </div>
+        <div>
+          <div class="sources-sub-title">Sources cited</div>
+          <div class="source-list" id="source-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scope & Confidence -->
+    <div id="scope-section">
+      <div class="scope-header">
+        <span class="card-title">Reliability</span>
+        <div id="confidence-pill" class="confidence-pill"></div>
+      </div>
+      <div class="scope-body">
+        <div id="warnings-area" style="display:none">
+          <div class="sources-sub-title">Warnings</div>
+          <div class="warnings-list" id="warnings-list"></div>
+        </div>
+        <div>
+          <div class="scope-grid">
+            <div>
+              <div class="scope-col-title">Computed in this estimate</div>
+              <div class="feature-list" id="scope-verified"></div>
+            </div>
+            <div>
+              <div class="scope-col-title">Not in scope — inputs not provided</div>
+              <div class="feature-list" id="scope-excluded"></div>
+            </div>
+          </div>
+        </div>
+        <div id="simps-note" style="display:none" class="simps-note"></div>
+      </div>
+    </div>
+
+    <!-- Full breakdown (collapsible) -->
+    <div id="breakdown-section">
+      <button class="breakdown-toggle" id="breakdown-toggle">
+        <i class="bd-arrow">▶</i> Full breakdown
+      </button>
+      <div class="breakdown-body" id="breakdown-body-wrap">
+        <table class="breakdown-table">
+          <colgroup>
+            <col style="width:60%"/><col style="width:20%"/><col style="width:20%"/>
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th style="text-align:right">Monthly</th>
+              <th style="text-align:right">Annual</th>
+            </tr>
+          </thead>
+          <tbody id="breakdown-table-body"></tbody>
+        </table>
+        <p class="breakdown-note" id="irpef-note"></p>
+      </div>
+    </div>
+
   </div>
 </main>
 
 <footer>
-  <a href="https://github.com/lucas-puerari/ccnl-engine" target="_blank">ccnl-engine</a>
-  by <a href="https://pypi.org/project/ccnl-engine/" target="_blank">Lucas Puerari</a>
-  · <a href="../docs/" target="_blank">API docs</a>
-  · <a href="../docs/contracts/index.html" target="_blank">CCNL coverage</a>
-  · Covers L1 (gross) and L2 (net) · L3 (overtime, leave, bonuses) not yet implemented
-  · Indicative figures for 2026 · Not financial or tax advice
+  <a href="https://github.com/lucas-puerari/ccnl-engine" target="_blank" rel="noopener">ccnl-engine</a>
+  &nbsp;·&nbsp;
+  <a href="../docs/" target="_blank">API docs</a>
+  &nbsp;·&nbsp;
+  <a href="../docs/contracts/index.html" target="_blank">CCNL coverage</a>
+  &nbsp;·&nbsp;
+  Covers CCNL gross pay, net income and employer cost · Overtime, leave and bonuses out of scope
+  &nbsp;·&nbsp;
+  Indicative figures for 2026 · Not financial or tax advice
 </footer>
 
 <script src="https://cdn.jsdelivr.net/pyodide/v0.27.0/full/pyodide.js"></script>
 <script>
-// ---- helpers ---------------------------------------------------------------
+// ── Formatters ──────────────────────────────────────────────────────────────
 
 const fmt  = (v, d = 0) => new Intl.NumberFormat("it-IT", {
   style: "currency", currency: "EUR",
   minimumFractionDigits: d, maximumFractionDigits: d,
 }).format(v);
 const fmtM = v => fmt(v, 2);
+const fmtK = v => fmt(v, 0);
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+}
+
+// ── Loading overlay ─────────────────────────────────────────────────────────
 
 function setProgress(pct, msg) {
   document.getElementById("progress-fill").style.width = pct + "%";
   if (msg) document.getElementById("loading-msg").textContent = msg;
 }
-function hideLoading() { document.getElementById("loading").classList.add("hidden"); }
+function hideLoading() {
+  document.getElementById("loading").classList.add("hidden");
+}
+
+// ── Error ───────────────────────────────────────────────────────────────────
 
 function showError(msg) {
   const box = document.getElementById("error-box");
   box.textContent = msg; box.style.display = "block";
   document.getElementById("results").style.display = "none";
 }
-function clearError() { document.getElementById("error-box").style.display = "none"; }
+function clearError() {
+  document.getElementById("error-box").style.display = "none";
+}
 
-// ---- Part-time slider -------------------------------------------------------
+// ── Part-time slider ─────────────────────────────────────────────────────────
 
 const slider = document.getElementById("inp-parttime");
 const ptVal  = document.getElementById("parttime-val");
 slider.addEventListener("input", () => { ptVal.textContent = slider.value + "%"; });
 
-// ---- Contract-type toggle ---------------------------------------------------
+// ── Contract-type toggle ─────────────────────────────────────────────────────
 
 document.getElementById("sel-employment").addEventListener("change", e => {
   const isApp = e.target.value === "apprentice";
@@ -466,17 +986,26 @@ document.getElementById("sel-employment").addEventListener("change", e => {
   document.getElementById("div-seniority").style.display = isApp ? "none" : "";
 });
 
-// Seniority mode toggle hint is handled inside onCcnlChange() so it can
-// incorporate the per-level max count. Nothing extra needed here.
-
-// ---- Advanced section toggle -----------------------------------------------
+// ── Advanced toggle ──────────────────────────────────────────────────────────
 
 document.getElementById("advanced-toggle").addEventListener("click", () => {
   document.getElementById("advanced-toggle").classList.toggle("open");
   document.getElementById("advanced-body").classList.toggle("open");
 });
 
-// ---- RAL ↔ second-level mutual exclusion -----------------------------------
+// ── Combobox init (before Pyodide loads) ────────────────────────────────────
+
+window._ccnlCombo    = makeCombobox("combo-ccnl-wrap",    "sel-ccnl",    "Search or select a CCNL…");
+window._regioneCombo = makeCombobox("combo-regione-wrap", "sel-regione", "Search region…");
+
+// ── Breakdown collapse ───────────────────────────────────────────────────────
+
+document.getElementById("breakdown-toggle").addEventListener("click", () => {
+  document.getElementById("breakdown-toggle").classList.toggle("open");
+  document.getElementById("breakdown-body-wrap").classList.toggle("open");
+});
+
+// ── RAL ↔ second-level mutual exclusion ─────────────────────────────────────
 
 document.getElementById("inp-ral").addEventListener("input", e => {
   const hasRal = parseFloat(e.target.value) > 0;
@@ -489,7 +1018,159 @@ document.getElementById("inp-second-level").addEventListener("input", e => {
   if (hasSl) document.getElementById("inp-ral").value = "0";
 });
 
-// ---- CCNL / level population -----------------------------------------------
+// ── CCNL / level population ──────────────────────────────────────────────────
+
+// ── Combobox helper ──────────────────────────────────────────────────────────
+
+function makeCombobox(wrapId, selectId, placeholder) {
+  const wrap = document.getElementById(wrapId);
+  const sel  = document.getElementById(selectId);
+
+  // Build DOM
+  const input = document.createElement("input");
+  input.type = "text";
+  input.className = "combobox-input";
+  input.placeholder = placeholder;
+  input.autocomplete = "off";
+  input.setAttribute("role", "combobox");
+  input.setAttribute("aria-expanded", "false");
+  if (sel.disabled) input.disabled = true;
+
+  const arrow = document.createElement("span");
+  arrow.className = "combobox-arrow";
+  arrow.textContent = "▼";
+  arrow.setAttribute("aria-hidden", "true");
+
+  const dropdown = document.createElement("div");
+  dropdown.className = "combobox-dropdown";
+  dropdown.setAttribute("role", "listbox");
+
+  wrap.insertBefore(input, sel);
+  wrap.insertBefore(arrow, sel);
+  wrap.appendChild(dropdown);
+
+  let activeIdx = -1;
+  let isOpen = false;
+
+  function getOptions() {
+    return Array.from(sel.options);
+  }
+
+  function visibleItems() {
+    return Array.from(dropdown.querySelectorAll(".combobox-option"));
+  }
+
+  function renderDropdown(q) {
+    const filter = (q || "").toLowerCase();
+    dropdown.innerHTML = "";
+    activeIdx = -1;
+    const opts = getOptions().filter(o => o.value); // skip placeholder
+    const matched = filter
+      ? opts.filter(o => o.textContent.toLowerCase().includes(filter))
+      : opts;
+
+    if (matched.length === 0) {
+      const empty = document.createElement("div");
+      empty.className = "combobox-empty";
+      empty.textContent = "No results";
+      dropdown.appendChild(empty);
+      return;
+    }
+
+    matched.forEach((opt, i) => {
+      const div = document.createElement("div");
+      div.className = "combobox-option" + (opt.value === sel.value ? " selected" : "");
+      div.textContent = opt.textContent;
+      div.setAttribute("role", "option");
+      div.dataset.value = opt.value;
+      div.addEventListener("mousedown", e => {
+        e.preventDefault();
+        selectValue(opt.value, opt.textContent);
+        close();
+      });
+      dropdown.appendChild(div);
+    });
+  }
+
+  function selectValue(val, label) {
+    sel.value = val;
+    input.value = val ? label : "";
+    sel.dispatchEvent(new Event("change"));
+  }
+
+  function open() {
+    if (input.disabled) return;
+    isOpen = true;
+    wrap.style.zIndex = "200";
+    input.value = "";
+    input.classList.add("open");
+    dropdown.classList.add("open");
+    input.setAttribute("aria-expanded", "true");
+    renderDropdown("");
+  }
+
+  function close() {
+    isOpen = false;
+    wrap.style.zIndex = "";
+    input.classList.remove("open");
+    dropdown.classList.remove("open");
+    input.setAttribute("aria-expanded", "false");
+    // Restore display label of the selected value
+    const selected = getOptions().find(o => o.value === sel.value);
+    input.value = selected ? selected.textContent : "";
+  }
+
+  function setActive(idx) {
+    const items = visibleItems();
+    items.forEach(el => el.classList.remove("active"));
+    activeIdx = Math.max(0, Math.min(idx, items.length - 1));
+    if (items[activeIdx]) {
+      items[activeIdx].classList.add("active");
+      items[activeIdx].scrollIntoView({ block: "nearest" });
+    }
+  }
+
+  input.addEventListener("click", () => isOpen ? close() : open());
+  input.addEventListener("focus", () => { if (!isOpen) open(); });
+
+  input.addEventListener("input", () => {
+    if (!isOpen) { dropdown.classList.add("open"); input.classList.add("open"); isOpen = true; }
+    renderDropdown(input.value);
+  });
+
+  input.addEventListener("keydown", e => {
+    const items = visibleItems();
+    if (e.key === "ArrowDown") { e.preventDefault(); open(); setActive(activeIdx + 1); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); setActive(activeIdx - 1); }
+    else if (e.key === "Enter") {
+      e.preventDefault();
+      if (activeIdx >= 0 && items[activeIdx]) {
+        selectValue(items[activeIdx].dataset.value, items[activeIdx].textContent);
+      }
+      close();
+    }
+    else if (e.key === "Escape") { close(); }
+    else if (e.key === "Tab") { if (isOpen) close(); }
+  });
+
+  document.addEventListener("click", e => {
+    if (isOpen && !wrap.contains(e.target)) close();
+  });
+
+  // Public API: refresh after options are populated
+  return {
+    enable() {
+      input.disabled = false;
+      const selected = getOptions().find(o => o.value === sel.value);
+      input.value = selected ? selected.textContent : "";
+    },
+    setValue(val) {
+      const opt = getOptions().find(o => o.value === val);
+      if (opt) { sel.value = val; input.value = opt.textContent; }
+    },
+    reset() { sel.value = ""; input.value = ""; },
+  };
+}
 
 async function populateCcnls(pyodide) {
   const ccnls = JSON.parse(pyodide.runPython("list_ccnls()"));
@@ -497,9 +1178,11 @@ async function populateCcnls(pyodide) {
   sel.innerHTML = '<option value="">— Select a CCNL —</option>';
   for (const c of ccnls) {
     const opt = document.createElement("option");
-    opt.value = c.file; opt.textContent = c.name; sel.appendChild(opt);
+    opt.value = c.file; opt.textContent = c.name;
+    sel.appendChild(opt);
   }
   sel.disabled = false;
+  window._ccnlCombo.enable();
 }
 
 async function populateRegioni(pyodide) {
@@ -507,8 +1190,10 @@ async function populateRegioni(pyodide) {
   const sel = document.getElementById("sel-regione");
   for (const r of regioni) {
     const opt = document.createElement("option");
-    opt.value = r; opt.textContent = r; sel.appendChild(opt);
+    opt.value = r; opt.textContent = r;
+    sel.appendChild(opt);
   }
+  window._regioneCombo.enable();
 }
 
 async function onCcnlChange(pyodide) {
@@ -519,11 +1204,11 @@ async function onCcnlChange(pyodide) {
   levelSel.disabled = true; btn.disabled = true;
   if (!file) return;
   const levels = JSON.parse(pyodide.runPython(`load_ccnl_levels(${JSON.stringify(file)})`));
-  // Build a map: levelCode → {max_seniority_count, seniority_cadence_months}
   const levelMeta = {};
   for (const lv of levels) {
     const opt = document.createElement("option");
-    opt.value = lv.code; opt.textContent = `${lv.code} — ${lv.description}`;
+    opt.value = lv.code;
+    opt.textContent = `${lv.code} — ${lv.description}`;
     levelSel.appendChild(opt);
     levelMeta[lv.code] = {
       maxCount: lv.max_seniority_count,
@@ -543,12 +1228,12 @@ async function onCcnlChange(pyodide) {
       if (parseInt(senInput.value) > meta.maxCount) senInput.value = meta.maxCount;
       const mode = document.querySelector("input[name='sen-mode']:checked").value;
       senHint.textContent = mode === "months"
-        ? `Months of service elapsed (engine derives increment count from CCNL cadence).`
+        ? "Months of service elapsed — engine derives increment count from CCNL cadence."
         : `Seniority increments accrued — max ${meta.maxCount} for this level`
           + (meta.cadenceMonths ? ` (one every ${meta.cadenceMonths} months).` : ".");
     } else {
       senInput.max = 600;
-      senHint.textContent = "Number of seniority increments (scatti di anzianità) accrued.";
+      senHint.textContent = "Number of seniority increments accrued.";
     }
   }
 
@@ -556,39 +1241,394 @@ async function onCcnlChange(pyodide) {
     btn.disabled = levelSel.value === "";
     updateSeniorityConstraint();
   });
-  // Also re-run when seniority mode changes so the hint stays correct.
   document.querySelectorAll("input[name='sen-mode']").forEach(r => {
     r.addEventListener("change", updateSeniorityConstraint);
   });
 }
 
-// ---- Table helpers ---------------------------------------------------------
+// ── Breakdown table helpers ──────────────────────────────────────────────────
 
-function row(label, monthly, annual, cls = "") {
+function bRow(label, monthly, annual, cls = "") {
   const tr = document.createElement("tr");
   if (cls) tr.className = cls;
   tr.innerHTML =
     `<td>${label}</td>` +
     `<td>${monthly !== null ? fmtM(monthly) : "—"}</td>` +
-    `<td>${annual  !== null ? fmt(annual)   : "—"}</td>`;
+    `<td>${annual  !== null ? fmtK(annual)  : "—"}</td>`;
   return tr;
 }
-const subRow  = (l, m, a)  => row(l, m, a, "sub-row");
-const totalRow = (l, m, a) => row(l, m, a, "total-row");
-function sectionHead(label) {
+const bSub   = (l, m, a) => bRow(l, m, a, "sub-row");
+const bTotal = (l, m, a) => bRow(l, m, a, "total-row");
+function bHead(label) {
   const tr = document.createElement("tr");
   tr.className = "section-head";
   tr.innerHTML = `<td colspan="3">${label}</td>`;
   return tr;
 }
-function naRow(label) {
+function bNa(label) {
   const tr = document.createElement("tr");
   tr.className = "na-row";
   tr.innerHTML = `<td>${label}</td><td>—</td><td>—</td>`;
   return tr;
 }
 
-// ---- Compute ---------------------------------------------------------------
+// ── Trace rendering ──────────────────────────────────────────────────────────
+
+const CAT_META = {
+  base_salary:   { label: "BASE",     cls: "cat-base"   },
+  seniority:     { label: "SCATTI",   cls: "cat-senior"  },
+  allowance:     { label: "ALLOW.",   cls: "cat-allow"   },
+  ad_personam:   { label: "AD PER.",  cls: "cat-ad"     },
+  second_level:  { label: "2° LIV.", cls: "cat-allow"   },
+  ral_override:  { label: "RAL",      cls: "cat-ad"     },
+  gross:         { label: "TOTALE",   cls: "cat-gross"   },
+};
+
+// Match provenance entries to a trace step using heuristic keyword matching.
+function matchProvenance(step, provenanceList) {
+  if (!provenanceList || provenanceList.length === 0) return [];
+  const cat = step.category;
+  const detail = (step.detail || "").toLowerCase();
+  const label  = (step.label  || "").toLowerCase();
+
+  return provenanceList.filter(p => {
+    const sec = (p.section || "").toLowerCase();
+    if (cat === "base_salary") {
+      // Exclude allowance sections (contingenza, EDR, etc.) even if they mention "retributiv"
+      const isAllowanceSection = sec.includes("contingenza") || sec.includes("edr")
+        || sec.includes("allow") || sec.includes("elemento");
+      return !isAllowanceSection && (
+        sec.includes("livell") || sec.includes("minim") ||
+        (sec.includes("retributiv") && !sec.includes("colonna"))
+      );
+    }
+    if (cat === "seniority") {
+      return sec.includes("anzianit") || sec.includes("scatt");
+    }
+    if (cat === "allowance") {
+      // Match detail code keywords against section text
+      const detailWords = detail.split(/[_@\s]+/).filter(w => w.length > 3);
+      return detailWords.some(w => sec.includes(w)) ||
+             (detail.includes("contingenza") && sec.includes("contingenza")) ||
+             (detail.includes("terzo") && (sec.includes("terzo") || sec.includes("215"))) ||
+             (detail.includes("edifil") && sec.includes("edifil")) ||
+             (detail.includes("elementoaggiuntivo") && sec.includes("aggiuntivo"));
+    }
+    return false;
+  });
+}
+
+function renderTrace(traceData, provenanceList) {
+  const body = document.getElementById("trace-body");
+  body.innerHTML = "";
+  const steps = (traceData && traceData.steps) ? traceData.steps : [];
+
+  let runningTotal = 0;
+  const nonGross = steps.filter(s => s.category !== "gross");
+  const grossStep = steps.find(s => s.category === "gross");
+
+  for (let i = 0; i < nonGross.length; i++) {
+    const step = nonGross[i];
+    const amount = parseFloat(step.amount);
+    runningTotal += amount;
+    const isFirst = i === 0;
+    const cat = CAT_META[step.category] || { label: step.category.toUpperCase(), cls: "cat-allow" };
+    const matched = matchProvenance(step, provenanceList);
+
+    // Build citation HTML
+    let citeHtml = "";
+    if (matched.length > 0) {
+      const links = matched.map(p => {
+        const label = p.section || p.title;
+        const url   = p.url && p.url !== "unavailable" ? p.url : null;
+        return url
+          ? `<a class="cite-link" href="${esc(url)}" target="_blank" rel="noopener">↗ ${esc(label)}</a>`
+          : `<span class="cite-link">${esc(label)}</span>`;
+      }).join("");
+      citeHtml = `<div class="trace-cite">${links}</div>`;
+    } else if (step.category !== "gross") {
+      citeHtml = `<div class="trace-cite"><span class="no-cite">No source recorded for this step</span></div>`;
+    }
+
+    const div = document.createElement("div");
+    div.className = "trace-step";
+    div.innerHTML = `
+      <span class="trace-cat ${cat.cls}">${cat.label}</span>
+      <div class="trace-info">
+        <div class="trace-label">${esc(step.label)}</div>
+        ${step.detail && step.category !== "gross"
+          ? `<div class="trace-detail">${esc(step.detail)}</div>` : ""}
+        ${citeHtml}
+      </div>
+      <div class="trace-amount${isFirst ? "" : " is-add"}">
+        ${isFirst ? "" : "+"}${fmtM(amount)}
+        <div class="trace-running">= ${fmtM(runningTotal)}</div>
+      </div>`;
+    body.appendChild(div);
+  }
+
+  if (grossStep) {
+    const amount = parseFloat(grossStep.amount);
+    const div = document.createElement("div");
+    div.className = "trace-step is-gross";
+    div.innerHTML = `
+      <span class="trace-cat cat-gross">LORDO</span>
+      <div class="trace-info">
+        <div class="trace-label" style="font-weight:700">${esc(grossStep.label)}</div>
+      </div>
+      <div class="trace-amount">${fmtM(amount)}</div>`;
+    body.appendChild(div);
+  }
+}
+
+// ── Sources rendering ────────────────────────────────────────────────────────
+
+function renderSources(provenanceList, rulesetVersion) {
+  // Rulesets
+  const chips = document.getElementById("ruleset-chips");
+  chips.innerHTML = "";
+  if (rulesetVersion) {
+    for (const [kind, ver] of Object.entries(rulesetVersion)) {
+      const chip = document.createElement("span");
+      chip.className = "ruleset-chip";
+      chip.innerHTML = `<span class="kind">${esc(kind)}</span>${esc(ver)}`;
+      chips.appendChild(chip);
+    }
+  }
+
+  // Sources cited
+  const list = document.getElementById("source-list");
+  list.innerHTML = "";
+
+  if (!provenanceList || provenanceList.length === 0) {
+    list.innerHTML = `<span style="font-size:12px;color:var(--faint);font-style:italic">No source documents recorded for this contract.</span>`;
+    return;
+  }
+
+  for (const p of provenanceList) {
+    const authCls = p.authority === "official" ? "auth-official"
+                  : p.authority === "derived"  ? "auth-derived"
+                  : "auth-secondary";
+    const authLabel = p.authority.charAt(0).toUpperCase() + p.authority.slice(1);
+    const methodMap = {
+      ai_assisted:     "AI-extracted",
+      manual:          "Manually extracted",
+      back_calculation:"Back-calculated",
+      import:          "Imported",
+    };
+    const statusMap = {
+      verified:      "verified",
+      needs_review:  "needs review",
+      unverified:    "unverified",
+    };
+    const isVerified = p.verification_status === "verified";
+    const methodLabel = methodMap[p.method] || "Extracted";
+    const statusLabel = statusMap[p.verification_status] || p.verification_status;
+    const verLabel = isVerified ? "Verified" : `${methodLabel}, ${statusLabel}`;
+    const verCls   = isVerified ? "verified" : "unverified";
+    const dotCls   = isVerified ? "dot-green" : "dot-amber";
+
+    const hasUrl = p.url && p.url !== "unavailable";
+    const titleHtml = hasUrl
+      ? `<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a>`
+      : esc(p.title);
+
+    const div = document.createElement("div");
+    div.className = "source-item";
+    div.innerHTML = `
+      <span class="authority-badge ${authCls}">${esc(authLabel)}</span>
+      <div class="source-info">
+        <div class="source-title">${titleHtml}</div>
+        <div class="source-meta">
+          ${p.section ? `<span>${esc(p.section)}</span> · ` : ""}
+          <span>${p.kind.replace(/_/g," ")}</span>
+          <span class="verified-badge ${verCls}">
+            <span class="dot ${dotCls}"></span>${verLabel}
+          </span>
+        </div>
+      </div>`;
+    list.appendChild(div);
+  }
+}
+
+// ── Scope & Confidence rendering ─────────────────────────────────────────────
+
+const FEATURE_LABELS = {
+  base_salary:             "Base salary",
+  seniority:               "Seniority increments",
+  inps_employee:           "INPS employee contributions",
+  inps_employer:           "INPS employer contributions",
+  tfr:                     "TFR (severance)",
+  irpef:                   "IRPEF income tax",
+  trattamento_integrativo: "Trattamento integrativo",
+  addizionale_regionale:   "Regional income surtax",
+  addizionale_comunale:    "Municipal income surtax",
+  family_deductions:       "Family-dependent deductions (Art. 12 TUIR)",
+  art15_deductions:        "Work deductions (Art. 15 TUIR)",
+  overtime:                "Overtime pay",
+  night_work:              "Night-work supplement",
+  holiday_work:            "Holiday-work supplement",
+  absence:                 "Absence deductions",
+  leave:                   "Parental leave",
+  sickness:                "Sickness absence",
+  fringe_benefit:          "Fringe benefits",
+  welfare:                 "Welfare benefits",
+  bonus_pdr:               "Production/PDR bonus",
+};
+
+const CONF_LABELS = {
+  high:   { cls: "conf-high",   dot: "dot-green", label: "High confidence" },
+  medium: { cls: "conf-medium", dot: "dot-amber", label: "Medium confidence" },
+  low:    { cls: "conf-low",    dot: "dot-amber", label: "Low confidence" },
+};
+
+const SIMP_LABELS = {
+  no_addizionale_regionale:      "Regional income surtax — select a region above",
+  no_addizionale_comunale:       "Municipal income surtax — enter a Belfiore code above",
+  no_detrazioni_familiari:       "Family-dependent deductions (Art. 12 TUIR)",
+  no_sterilizzazione_detrazioni: "Deduction phase-out (sterilizzazione detrazioni)",
+  no_detrazioni_art15:        "Work deductions — Art. 13 TUIR not applied",
+};
+
+function renderScope(calcScope, confidence, warnings, fiscalSimps) {
+  // Confidence pill
+  const conf = CONF_LABELS[confidence] || CONF_LABELS.medium;
+  const pill = document.getElementById("confidence-pill");
+  pill.className = `confidence-pill ${conf.cls}`;
+  pill.innerHTML = `<span class="dot ${conf.dot}"></span>${conf.label}`;
+
+  // Warnings
+  const warnArea = document.getElementById("warnings-area");
+  const warnList = document.getElementById("warnings-list");
+  warnList.innerHTML = "";
+  const allWarnings = [...(warnings || [])];
+  const simps = (fiscalSimps || []).map(k => SIMP_LABELS[k] || k);
+  if (allWarnings.length > 0) {
+    warnArea.style.display = "block";
+    for (const w of allWarnings) {
+      const div = document.createElement("div");
+      div.className = "warning-item";
+      div.innerHTML = `<i class="warning-icon">⚠</i> ${esc(w)}`;
+      warnList.appendChild(div);
+    }
+  } else {
+    warnArea.style.display = "none";
+  }
+
+  // Scope lists
+  const verified = (calcScope || []).filter(s => s.status === "verified");
+  const excluded = (calcScope || []).filter(s => s.status !== "verified");
+
+  const vEl = document.getElementById("scope-verified");
+  vEl.innerHTML = "";
+  for (const s of verified) {
+    const div = document.createElement("div");
+    div.className = "feature-item";
+    div.innerHTML = `<i class="f-icon" style="color:var(--green)">✓</i> ${esc(FEATURE_LABELS[s.feature] || s.feature)}`;
+    vEl.appendChild(div);
+  }
+
+  const xEl = document.getElementById("scope-excluded");
+  xEl.innerHTML = "";
+  for (const s of excluded) {
+    const div = document.createElement("div");
+    div.className = "feature-item excluded";
+    div.innerHTML = `<i class="f-icon" style="color:var(--faint)">–</i> ${esc(FEATURE_LABELS[s.feature] || s.feature)}`;
+    xEl.appendChild(div);
+  }
+
+  // Simplifications note
+  const simpNote = document.getElementById("simps-note");
+  if (simps.length > 0) {
+    simpNote.innerHTML = "⚠ <strong>Not included in this estimate:</strong> " + simps.map(esc).join("; ") + ".";
+    simpNote.style.display = "block";
+  } else {
+    simpNote.style.display = "none";
+  }
+}
+
+// ── Scenario strip ───────────────────────────────────────────────────────────
+
+function renderScenario(r) {
+  const EMP = { permanent: "Permanent", fixed_term: "Fixed-term", apprentice: "Apprentice" };
+  const ptLabel = r.part_time_pct < 1 ? ` · ${Math.round(r.part_time_pct * 100)}% PT` : "";
+  const items = [
+    { k: "CCNL",     v: r.ccnl_name || r.ccnl_id },
+    { k: "Level",    v: r.level_code },
+    { k: "Contract", v: (EMP[r.employment_type] || r.employment_type) + ptLabel },
+    { k: "Year",     v: String(r.year) },
+    { k: "As of",    v: r.as_of },
+    { k: "Engine",   v: "v" + r.engine_version },
+  ];
+  const strip = document.getElementById("scenario-strip");
+  strip.innerHTML = items.map((item, i) =>
+    (i > 0 ? '<span class="s-arrow">→</span>' : "") +
+    `<span class="s-chip">${esc(item.k)} <span class="val">${esc(item.v)}</span></span>`
+  ).join("");
+}
+
+// ── Breakdown table ──────────────────────────────────────────────────────────
+
+function renderBreakdown(r) {
+  const body = document.getElementById("breakdown-table-body");
+  body.innerHTML = "";
+  const noReg = (r.fiscal_simplifications || []).includes("no_addizionale_regionale");
+  const noCom = (r.fiscal_simplifications || []).includes("no_addizionale_comunale");
+
+  body.appendChild(bHead("Pay components"));
+  body.appendChild(bRow("Base pay", r.base_monthly, r.base_monthly * 13));
+  if (r.seniority_monthly > 0)
+    body.appendChild(bRow(`Seniority increments (×${r.seniority_count})`,
+      r.seniority_monthly, r.seniority_monthly * 13));
+  if (r.allowances_monthly > 0)
+    body.appendChild(bRow("Monthly allowances", r.allowances_monthly, r.allowances_monthly * 13));
+  if (r.ad_personam_monthly > 0)
+    body.appendChild(bRow("Ad personam supplement", r.ad_personam_monthly, r.ad_personam_monthly * 13));
+  if (r.second_level_monthly > 0)
+    body.appendChild(bRow("Second-level agreement", r.second_level_monthly, r.second_level_monthly * 13));
+  if (r.apprenticeship_pct !== null)
+    body.appendChild(bRow(
+      `Apprenticeship ${(r.apprenticeship_pct * 100).toFixed(0)}% of level ${r.apprenticeship_under_level_code || "—"}`,
+      null, null));
+  body.appendChild(bRow("Hourly rate", r.hourly_rate, null));
+  body.appendChild(bTotal("Gross", r.gross_monthly, r.gross_annual));
+
+  body.appendChild(bHead("Employee deductions"));
+  body.appendChild(bRow("INPS employee contributions", null, r.inps_employee_annual));
+  body.appendChild(bSub("Taxable income (IRPEF base)", null, r.taxable_income));
+  body.appendChild(bSub("IRPEF (gross, before deductions)", null, r.irpef_gross));
+  body.appendChild(bSub("↳ Work income deduction (Art. 13 TUIR)", null, -r.work_income_deduction));
+  body.appendChild(bRow("IRPEF (net)", null, r.irpef_net));
+  body.appendChild(noReg
+    ? bNa("Addizionale regionale — not computed")
+    : bRow("Addizionale regionale", null, r.addizionale_regionale_annual));
+  body.appendChild(noCom
+    ? bNa("Addizionale comunale — not computed")
+    : bRow("Addizionale comunale", null, r.addizionale_comunale_annual));
+  if (r.trattamento_integrativo > 0)
+    body.appendChild(bRow("Trattamento integrativo (D.L. 3/2020)", null, -r.trattamento_integrativo));
+  body.appendChild(bTotal("Net pay", r.net_monthly, r.net_annual));
+
+  body.appendChild(bHead("Employer costs"));
+  body.appendChild(bRow("INPS employer contributions", null, r.inps_employer_annual));
+  if (r.employer_funds_annual > 0)
+    body.appendChild(bRow("Contractual funds", null, r.employer_funds_annual));
+  body.appendChild(bRow("TFR (severance)", null, r.tfr_annual));
+  body.appendChild(bTotal("Total employer cost", null, r.employer_cost_annual));
+
+  // IRPEF note
+  const note = document.getElementById("irpef-note");
+  if (!r.employer_withholds_irpef) {
+    note.textContent =
+      "The employer is not a tax withholding agent (e.g. domestic employment). " +
+      "IRPEF figures are informational; the worker files and pays income tax directly.";
+    note.style.display = "block";
+  } else {
+    note.style.display = "none";
+  }
+}
+
+// ── Main compute ─────────────────────────────────────────────────────────────
 
 function doCompute(pyodide) {
   clearError();
@@ -596,16 +1636,16 @@ function doCompute(pyodide) {
   const file        = document.getElementById("sel-ccnl").value;
   const levelCode   = document.getElementById("sel-level").value;
   const empType     = document.getElementById("sel-employment").value;
-  const employees   = parseInt(document.getElementById("inp-employees").value)       || 50;
+  const employees   = parseInt(document.getElementById("inp-employees").value) || 50;
   const ptPct       = parseInt(slider.value) / 100;
-  const senValue    = parseInt(document.getElementById("inp-seniority").value)       || 0;
+  const senValue    = parseInt(document.getElementById("inp-seniority").value) || 0;
   const senMode     = document.querySelector("input[name='sen-mode']:checked").value;
   const appMonths   = parseInt(document.getElementById("inp-apprentice-months").value) || 0;
   const regione     = document.getElementById("sel-regione").value;
   const comune      = document.getElementById("inp-comune").value.trim().toUpperCase();
-  const adPersonam  = parseFloat(document.getElementById("inp-ad-personam").value)   || 0;
-  const secondLevel = parseFloat(document.getElementById("inp-second-level").value)  || 0;
-  const ralOverride = parseFloat(document.getElementById("inp-ral").value)           || 0;
+  const adPersonam  = parseFloat(document.getElementById("inp-ad-personam").value)  || 0;
+  const secondLevel = parseFloat(document.getElementById("inp-second-level").value) || 0;
+  const ralOverride = parseFloat(document.getElementById("inp-ral").value)          || 0;
   const ivsApplies  = document.getElementById("chk-ivs").checked;
 
   const r = JSON.parse(pyodide.runPython(
@@ -618,109 +1658,34 @@ function doCompute(pyodide) {
 
   if (r.error) { showError("Error: " + r.error); return; }
 
-  // ---- KPIs ----------------------------------------------------------------
-  document.getElementById("kpi-gross-monthly").textContent = fmtM(r.gross_monthly);
-  document.getElementById("kpi-gross-annual").textContent  = fmt(r.gross_annual) + " / year";
-  document.getElementById("kpi-net-monthly").textContent   = fmtM(r.net_monthly);
-  document.getElementById("kpi-net-annual").textContent    = fmt(r.net_annual) + " / year";
-  document.getElementById("kpi-cost-annual").textContent   = fmt(r.employer_cost_annual);
+  // KPIs
+  document.getElementById("kpi-gross").textContent   = fmtM(r.gross_monthly);
+  document.getElementById("kpi-gross-sub").textContent = fmtK(r.gross_annual) + " / year";
+  document.getElementById("kpi-net").textContent     = fmtM(r.net_monthly);
+  document.getElementById("kpi-net-sub").textContent = fmtK(r.net_annual) + " / year";
+  document.getElementById("kpi-cost").textContent    = fmtK(r.employer_cost_annual);
 
-  // ---- Metadata strip ------------------------------------------------------
-  const EMP_LABELS = { permanent: "Permanent", fixed_term: "Fixed-term", apprentice: "Apprentice" };
-  const ptLabel = r.part_time_pct < 1 ? ` · ${Math.round(r.part_time_pct * 100)}% part-time` : "";
-  document.getElementById("result-meta").innerHTML = [
-    `<span class="meta-chip">CCNL <span>${r.ccnl_id}</span></span>`,
-    `<span class="meta-chip">Level <span>${r.level_code}</span></span>`,
-    `<span class="meta-chip"><span>${EMP_LABELS[r.employment_type] || r.employment_type}${ptLabel}</span></span>`,
-    `<span class="meta-chip">Year <span>${r.year}</span></span>`,
-    `<span class="meta-chip">As of <span>${r.as_of}</span></span>`,
-    `<span class="meta-chip">Engine <span>v${r.engine_version}</span></span>`,
-    `<span class="meta-chip">Ruleset <span>${r.ruleset_version.ccnl} · ${r.ruleset_version.tax}</span></span>`,
-  ].join("");
+  // Scenario strip
+  renderScenario(r);
 
-  // ---- Breakdown -----------------------------------------------------------
-  const body = document.getElementById("breakdown-body");
-  body.innerHTML = "";
-  const noReg = (r.fiscal_simplifications || []).includes("no_addizionale_regionale");
-  const noCom = (r.fiscal_simplifications || []).includes("no_addizionale_comunale");
+  // Trace
+  renderTrace(r.trace || {}, r.provenance || []);
 
-  // Pay
-  body.appendChild(sectionHead("Pay"));
-  body.appendChild(row("Base pay", r.base_monthly, r.base_monthly * 13));
-  if (r.seniority_monthly > 0)
-    body.appendChild(row(`Seniority increments (×${r.seniority_count})`,
-      r.seniority_monthly, r.seniority_monthly * 13));
-  if (r.allowances_monthly > 0)
-    body.appendChild(row("Monthly allowances", r.allowances_monthly, r.allowances_monthly * 13));
-  if (r.ad_personam_monthly > 0)
-    body.appendChild(row("Ad personam supplement", r.ad_personam_monthly, r.ad_personam_monthly * 13));
-  if (r.second_level_monthly > 0)
-    body.appendChild(row("Second-level agreement", r.second_level_monthly, r.second_level_monthly * 13));
-  if (r.apprenticeship_pct !== null)
-    body.appendChild(row(
-      `Apprenticeship percentage (${(r.apprenticeship_pct * 100).toFixed(0)}% of reference level)`,
-      null, null));
-  if (r.apprenticeship_under_level_code)
-    body.appendChild(row(`Apprentice target level: ${r.apprenticeship_under_level_code}`, null, null));
-  body.appendChild(row("Hourly rate", r.hourly_rate, null));
-  body.appendChild(totalRow("Gross", r.gross_monthly, r.gross_annual));
+  // Sources
+  renderSources(r.provenance || [], r.ruleset_version || {});
 
-  // Employee deductions
-  body.appendChild(sectionHead("Employee deductions"));
-  body.appendChild(row("Social security — INPS (employee)", null, r.inps_employee_annual));
-  body.appendChild(subRow("Taxable income (IRPEF base)", null, r.taxable_income));
-  body.appendChild(subRow("IRPEF (gross, before deductions)", null, r.irpef_gross));
-  body.appendChild(subRow("↳ Work income deduction (art. 13 TUIR)", null, -r.work_income_deduction));
-  body.appendChild(row("Income tax — IRPEF (net)", null, r.irpef_net));
-  body.appendChild(noReg
-    ? naRow("Regional income surtax (addizionale regionale) — not computed")
-    : row("Regional income surtax (addizionale regionale)", null, r.addizionale_regionale_annual));
-  body.appendChild(noCom
-    ? naRow("Municipal income surtax (addizionale comunale) — not computed")
-    : row("Municipal income surtax (addizionale comunale)", null, r.addizionale_comunale_annual));
-  if (r.trattamento_integrativo > 0)
-    body.appendChild(row("Trattamento integrativo (art. 1 D.L. 3/2020)", null, -r.trattamento_integrativo));
-  body.appendChild(totalRow("Net pay", r.net_monthly, r.net_annual));
+  // Scope & confidence
+  renderScope(r.calculation_scope, r.confidence, r.warnings, r.fiscal_simplifications);
 
-  // Employer costs
-  body.appendChild(sectionHead("Employer costs"));
-  body.appendChild(row("Social security — INPS (employer)", null, r.inps_employer_annual));
-  if (r.employer_funds_annual > 0)
-    body.appendChild(row("Contractual funds", null, r.employer_funds_annual));
-  body.appendChild(row("Severance pay — TFR", null, r.tfr_annual));
-  body.appendChild(totalRow("Total employer cost", null, r.employer_cost_annual));
+  // Breakdown (collapsed by default — reset state)
+  document.getElementById("breakdown-toggle").classList.remove("open");
+  document.getElementById("breakdown-body-wrap").classList.remove("open");
+  renderBreakdown(r);
 
-  // Notes
-  const note = document.getElementById("irpef-note");
-  if (!r.employer_withholds_irpef) {
-    note.textContent =
-      "The employer is not a tax withholding agent (e.g. domestic employment). " +
-      "IRPEF figures are informational; the worker files and pays income tax directly.";
-    note.style.display = "block";
-  } else {
-    note.style.display = "none";
-  }
-
-  // Fiscal simplifications
-  const SIMP_LABELS = {
-    no_addizionale_regionale:      "regional income surtax — select a region above",
-    no_addizionale_comunale:       "municipal income surtax — enter a Belfiore code above",
-    no_detrazioni_familiari:       "family-dependent deductions (art. 12 TUIR)",
-    no_sterilizzazione_detrazioni: "deduction phase-out (sterilizzazione detrazioni)",
-  };
-  const simpNote = document.getElementById("simplifications-note");
-  const simps = (r.fiscal_simplifications || []).map(k => SIMP_LABELS[k] || k);
-  if (simps.length > 0) {
-    simpNote.innerHTML = "⚠️ <strong>Not included in this estimate:</strong> " + simps.join("; ") + ".";
-    simpNote.style.display = "block";
-  } else {
-    simpNote.style.display = "none";
-  }
-
-  document.getElementById("results").style.display = "block";
+  document.getElementById("results").style.display = "flex";
 }
 
-// ---- Pyodide boot ----------------------------------------------------------
+// ── Pyodide boot ─────────────────────────────────────────────────────────────
 
 async function main() {
   try {
@@ -730,7 +1695,8 @@ async function main() {
     await pyodide.loadPackage(["pydantic", "micropip"]);
     setProgress(60, "Installing ccnl-engine…");
     const micropip = pyodide.pyimport("micropip");
-    await micropip.install("ccnl-engine");
+    const wheelUrl = new URL("./wheels/ccnl_engine-0.5.0-py3-none-any.whl", window.location.href).href;
+    await micropip.install(wheelUrl);
     setProgress(80, "Loading application…");
     const resp = await fetch("./app.py");
     if (!resp.ok) throw new Error("app.py not found (" + resp.status + ")");
