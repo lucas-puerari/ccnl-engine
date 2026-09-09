@@ -319,33 +319,24 @@ order used by the surrounding rows:
 
 ### 8b. Create `docs/contracts/{id}.md`
 
-Use this template (fill placeholders from the JSON meta block):
+After adding the JSON and example files, run the generator — it will pick up
+the new page automatically because the file now exists:
 
-```markdown
-# {meta.name}
-
-| | |
-|---|---|
-| **CNEL code** | `{meta.cnel_code}` |
-| **Sector** | {meta.sector} |
-| **Tax sector** | `{meta.tax_sector}` |
-| **Layer 1** | ✅ |
-| **Layer 2** | ✅ |
-
-[← Contracts index](index.md)
-
-## Contract data
-
-```json
---8<-- "src/ccnl_engine/knowledge/ccnl/data/{id}.json"
+```bash
+uv run python docs/scripts/gen_contract_pages.py
 ```
 
-## Usage example
+This replaces the old hand-written template. Verify the output looks correct
+by reading `docs/contracts/{id}.md` after running the script.
 
-```python
---8<-- "docs/examples/contracts/{id}.py"
+If the generator has not been run yet (first time for this contract), create
+a minimal stub first so the generator can find it:
+
+```bash
+echo "# {meta.name}" > docs/contracts/{id}.md
 ```
-```
+
+Then run the generator to fill it in.
 
 ### 8c. Create `docs/examples/contracts/{id}.py`
 

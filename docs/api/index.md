@@ -73,8 +73,8 @@ All types above are re-exported from the top-level `ccnl_engine` package.
 
 | Guide | Relevant API |
 |---|---|
-| [Employment types](../guide/employment-types.md) | `ContractPosition`, `Permanent`, `FixedTerm`, `Apprentice` |
-| [Pay components](../guide/pay-components.md) | `WorkArrangement`, `SeniorityByCount`, `SeniorityByMonths`, `SalaryOverrides` |
-| [Second level](../guide/second-level.md) | `Employer`, `SupplementaryAllowance` |
-| [Fiscal](../guide/fiscal.md) | `TaxProfile`, `FiscalSimplification`, `load_surtax_rules` |
-| [Domestic work](../guide/domestic-work.md) | `WorkArrangement.weekly_hours` |
+| [Employment types](../domain/employment-types.md) | `ContractPosition`, `Permanent`, `FixedTerm`, `Apprentice` |
+| [Pay components](../engine/pay-components.md) | `WorkArrangement`, `SeniorityByCount`, `SeniorityByMonths`, `SalaryOverrides` |
+| [Second level](../engine/second-level.md) | `Employer`, `SupplementaryAllowance` |
+| [Fiscal](../engine/fiscal.md) | `TaxProfile`, `FiscalSimplification`, `load_surtax_rules` |
+| [Domestic work](../engine/domestic-work.md) | `WorkArrangement.weekly_hours` |

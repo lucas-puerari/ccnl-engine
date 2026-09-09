@@ -23,11 +23,12 @@ collective labor agreements (CCNL) and statutory contribution rates.
 | Section | Description |
 |---|---|
 | [Get started](getting-started/index.md) | Install, quickstart, and first payroll in 10 lines |
-| [Domain](domain/index.md) | What CCNLs are, how Italian labor law structures them |
-| [Guide](guide/employment-types.md) | How to use every library feature with worked examples |
+| [Domain](domain/index.md) | What CCNLs are, Italian labor law, employment types |
+| [Rules](rules/index.md) | The versioned knowledge base: CCNL JSON schema, INPS, IRPEF, surtax |
+| [Engine](engine/index.md) | How to use `compute()` — pay components, fiscal, domestic work |
+| [Trust](trust/index.md) | Provenance, confidence, scope, versioning, quality gates |
 | [Contracts](contracts/index.md) | All 100+ supported contracts — salary tables, sources, coverage |
 | [API reference](api/index.md) | Full reference for every public type and function |
-| [Governance](governance.md) | Release pipeline and quality gates |
 
 ---
 
