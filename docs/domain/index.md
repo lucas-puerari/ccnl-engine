@@ -65,7 +65,7 @@ Italian labor law recognises a layered system:
    national CCNL but not worsen it (the *favor prestatoris* principle).
 
 The ccnl-engine models the national CCNL layer (1) and company-level supplements
-(3) via [`Employer.second_level_allowances`](../guide/second-level.md).
+(3) via [`Employer.second_level_allowances`](../engine/second-level.md).
 Territorial supplements (2) are not modelled.
 
 ## Next: CCNL components

@@ -7,15 +7,24 @@ nav = [
   { "Home"       = "index.md" },
   { "Get started" = "getting-started/index.md" },
   { "Domain" = [
-    { "What is a CCNL" = "domain/index.md" },
-    { "Components"     = "domain/components.md" },
+    { "What is a CCNL"    = "domain/index.md" },
+    { "Components"        = "domain/components.md" },
+    { "Employment types"  = "domain/employment-types.md" },
   ]},
-  { "Guide" = [
-    { "Employment types" = "guide/employment-types.md" },
-    { "Pay components"   = "guide/pay-components.md" },
-    { "Second level"     = "guide/second-level.md" },
-    { "Fiscal"           = "guide/fiscal.md" },
-    { "Domestic work"    = "guide/domestic-work.md" },
+  { "Rules" = [
+    { "Knowledge base"    = "rules/index.md" },
+  ]},
+  { "Engine" = [
+    { "Computing payroll" = "engine/index.md" },
+    { "Pay components"    = "engine/pay-components.md" },
+    { "Second level"      = "engine/second-level.md" },
+    { "Fiscal"            = "engine/fiscal.md" },
+    { "Domestic work"     = "engine/domestic-work.md" },
+  ]},
+  { "Trust" = [
+    { "Overview"          = "trust/index.md" },
+    { "Provenance"        = "trust/provenance.md" },
+    { "Confidence"        = "trust/confidence.md" },
   ]},
   { "Examples"   = "examples.md" },
   { "Contracts"  = [

@@ -207,5 +207,5 @@ The 5% preferential tax rate on *premi di risultato* (Art. 1 c. 182 L. 208/2015)
 
 ---
 
-→ [Guide: How to use the library](../guide/employment-types.md)  
+→ [Guide: How to use the library](../domain/employment-types.md)  
 → [Contracts: all 85 supported CCNLs](../contracts/index.md)

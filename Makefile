@@ -27,3 +27,6 @@ coverage-matrix:
 
 rehash:
 	uv run python docs/scripts/rehash_ccnl.py
+
+contract-pages:
+	uv run python docs/scripts/gen_contract_pages.py
