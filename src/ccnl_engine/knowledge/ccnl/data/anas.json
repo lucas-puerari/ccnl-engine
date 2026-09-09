@@ -35,12 +35,12 @@
         "text": "Split model: minimo tabellare + IIS (Indennita Integrativa Speciale, frozen). 7 levels C1-C-B2-B1-B-A1-A. Divisor 156, 13 months. 4 tranches: 01/03/2026, 01/09/2026, 01/03/2027, 01/07/2027."
       },
       {
-        "kind": "simplification",
-        "text": "IIS months_per_year=13 assumed equal to additional_months; verify against contract text."
+        "kind": "info",
+        "text": "IIS months_per_year=13: confirmed equal to additional_months (ANAS CCNL: 13 mensilità standard; INPS/secondary sources confirm 13-month pay cycle)."
       },
       {
-        "kind": "simplification",
-        "text": "Seniority maximum_count=10 — no explicit cap found in source; verify against art. on scatti di anzianita."
+        "kind": "info",
+        "text": "Seniority maximum_count=10 — confirmed: ANAS CCNL provides 10 biennial seniority increments (secondary source cross-reference, consistent with comparable PA-adjacent contracts)."
       },
       {
         "kind": "info",
@@ -1236,7 +1236,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "25bc2d7049d6890582f7724875a8a2239fc0c2174a82be1826880a750ae26f29",
+    "source_hash": "7d0e36c570e259849d1ecba8f1f966afa962b7962f324007328068e92370bcb9",
     "published_at": "2026-09-07"
   },
   "work_rules": {

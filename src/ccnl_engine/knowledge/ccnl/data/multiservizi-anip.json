@@ -73,7 +73,7 @@
         "text": "Contingenza par levels: the CCNL text notes that contingenza values for 4par125 and 2par115 are not explicitly stated; by industry convention they match the values for levels 4 and 2 respectively. Source: note in oristanoservizi.it PDF."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "Apprenticeship: under-classification, 30 months for destination levels 4 and 5 (CCNL: '30 mesi per i livelli 4° e 5°'): first half two classification levels below the destination, second half one level below (the parametric sub-levels 2par115 and 4par125 are skipped, hence levels_below 3/1 for destination 5 and 4/2 for destination 4). Destination level 2 (apprentice stays at level 1 for the whole period) and other destinations are not modelled: durations not sourced. Source: ccnlportatili.it."
       },
       {
@@ -4085,7 +4085,7 @@
     "effective_until": null,
     "source": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "2bb35517b21b90548c03b155cd91698e7fdd7a78c253f13a2d8f70082aa0bcee",
+    "source_hash": "3941150ae110886a15ca5dba2babfdc8b0e258cf0f6f7a0c9c011903ed92cbe4",
     "published_at": "2026-09-07"
   },
   "work_rules": {

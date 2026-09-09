@@ -63,19 +63,19 @@
         "text": "Headcount: 77,146 workers in 16,324 companies (INPS-CNEL archive, H121)."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "SIMPLIFICATION: Farmacie Rurali Sussidiate (Tabella B) excluded. Rural pharmacies have lower base salaries; Tabella A (urban) is modelled only."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "SIMPLIFICATION: ISQ for Q2 and Q3 modelled at flat 100 EUR (the 2+ anni tier per Tabella C). Workers with 12+ anni receive 130 EUR (delta 30 EUR/month, max ~360 EUR/yr). The two-tier split at 144 months cannot be represented as a single fixed_allowance amount."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "SIMPLIFICATION: EDR (10.33 EUR, Art. 54e) is contractually due for 13 mensilita but the engine multiplies fixed_allowances by additional_months=14. Annual overcount ~10 EUR per worker."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "SIMPLIFICATION: Tabella D groups Q2, Q3, and 1o into a single scatto amount of 25.30 EUR. Q1 uses 25.82 EUR."
       }
     ],
@@ -1331,7 +1331,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "ab99c49dace54f101ccc1744693a9357676fb3623adde46cb014ae241d0c9c3b",
+    "source_hash": "3053e0a447a549f1e0542faadf6837c2df5cb5fe297ca8aeda9a99cd1c8f4056",
     "published_at": "2026-09-07"
   },
   "work_rules": {

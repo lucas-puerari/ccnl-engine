@@ -71,15 +71,15 @@
         "text": "SIMPLIFICATION: INPS industria rates applied. Poste Italiane employees are enrolled in the Fondo Quiescenza Poste (INPS special fund, Art. 7 L. 335/1995; merged from IPOST 2012). Correct rates differ from standard industria rates. Verify against INPS Fondo Quiescenza Poste documentation. Verified 2026-09-09: INPS website confirms Fondo Quiescenza Poste exists for Poste Italiane SpA but specific aliquote not publicly listed on INPS portal in machine-readable form."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "SIMPLIFICATION: industria CIGO (1.70-2.00%) included in employer INPS rate. Poste Italiane is not a manufacturing firm and is not CIGO-subject; actual employer cost is lower. Verify against INPS circ. for the correct Poste INPS classification."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "SIMPLIFICATION: Legacy retribuzione individuale di anzianità (D.P.R. 335/1990) and posizioni economiche differenziate (CCNL 1997) not modeled."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "SIMPLIFICATION: Salary tranche 01/07/2024–31/08/2025 covered by one-time 'anticipo sui futuri miglioramenti economici' (lump sum, September 2024). Engine carries paga base at 2024-07-23 level (same as pre-renewal) for that window."
       }
     ],
@@ -1395,7 +1395,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "1b7a5244a66fcb8a37ba7c92489a32a8239b77fe054b2788077cf8b0996ff783",
+    "source_hash": "95ba73a9248e435c6b6f029e1067ef0c2c80a587f3eb35dbd2ce4c7d35670bab",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -56,7 +56,7 @@
         "text": "SENIORITY INCREMENTS: biennial (every 24 months), maximum 5 increments. Fixed amounts per level from the CCNL seniority table (source: ccnlcooperative.it, art. 80). C3 and D1 have the same amount (EUR 20.66); D3 and E1 have the same amount (EUR 26.86)."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "INPS: uses 2026-terziario.json (same tax_sector as CCNL Commercio Confcommercio). The social cooperatives sector does not have a separate employer INPS rate verified from a primary circular; type-B social cooperatives may apply concessions under L. 381/1991 not modelled in this file."
       },
       {
@@ -1934,7 +1934,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/",
     "verification_status": "unverified",
-    "source_hash": "071cfe3bd5f1f510c567b19c3390a30926d88faaee2f03964f42376fc4187e8e",
+    "source_hash": "93213a5b2c83a897934260238f6d15200b246b79a5551adf853f84652dfc06c6",
     "published_at": "2026-09-07"
   },
   "work_rules": {

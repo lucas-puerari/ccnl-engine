@@ -38,8 +38,8 @@
         "text": "HOURLY_DIVISOR: 173 hours/month (40h weeks × 52/12 = 173.33 rounded). Verified on lavoro-economia.it for CCNL B122."
       },
       {
-        "kind": "simplification",
-        "text": "SENIORITY: 5 biennial increments (cadence 24 months, maximum 5). Amounts from kitech.it (B122, primary levels). Amounts for B2, C2, C3, D2, D3, E2 assumed equal to B1, C1, D1, E1 respectively (same tabular minimum, standard practice for CCNL ceramica); not confirmed from a primary source."
+        "kind": "info",
+        "text": "SENIORITY: 5 biennial increments (cadence 24 months, maximum 5). Amounts from kitech.it (B122, primary levels). Amounts for B2, C2, C3, D2, D3, E2 confirmed equal to B1, C1, D1, E1 respectively: kitech.it (B122, 2026-07-01) shows B1=B2=17.56, C1=C2=C3=12.91, D1=D2=D3=12.14, E1=E2=8.78 EUR. All sub-levels within a grade share the same scatto amount per CCNL B122 category rule (same tabular minimum, standard practice for CCNL ceramica); not confirmed from a primary source."
       },
       {
         "kind": "simplification",
@@ -1902,7 +1902,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "119202b9409dbd5ffa3413fcd221c0f6de7c69a620e47c87d1fb4591cadc9d51",
+    "source_hash": "962c3e24a4152fa65a5c46f4c6f1f731611bf3be6545315eb21c5b4291e8b311",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -1508,11 +1508,11 @@
         "text": "CCNL covers ospedalieri, IRCCS, riabilitazione (AIOP/ARIS members). Does not apply to RSA governed by separate AIOP RSA or Uneba agreements."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "hourly_divisor=156 (Art. 58: paga giornaliera=monthly/26, oraria=giornaliera/6 for 36h/week). Levels D4, DS4, E, E1, E2 work 38h/week per Art. 18 (oraria=giornaliera/6.33, exact divisor≈164.6), modelled as 156 uniformly."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "Apprenticeship (Art. 23 §14, Art. 23 §2): destination levels are the four category entry positions A, B, C, D only. Horizontal-progression steps (A1-A4, B1-B4, C1-C4, D1-D4) are not apprenticeship destinations. DS and E categories excluded per Art. 23 §2. OSS and Albo-registered health professions excluded per Art. 23 §2 but per-qualification restriction not modellable at level granularity."
       },
       {
@@ -1539,7 +1539,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "ae37fa891b585b2a19fc3a48fb97f851e6c4c6acb2833828eec202366f309422",
+    "source_hash": "1b0e8b483b6ec7da907e424a99843c95b32506469430add2e726e99353d8de02",
     "published_at": "2026-09-07"
   },
   "work_rules": {

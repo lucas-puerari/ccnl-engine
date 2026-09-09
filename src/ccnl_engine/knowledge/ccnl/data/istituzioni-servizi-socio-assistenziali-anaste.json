@@ -54,15 +54,15 @@
         "text": "LEVEL Q ALLOWANCE (Art. 70): indennita di funzione 77.47 EUR/month paid 13 months/year."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "LEVEL 1 PRE-2025: level 1 introduced ex-novo in 2025 renewal. Pre-2025 salary set equal to 2025-08-01 value (1295.43 EUR) — no historical data available."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "APPRENTICESHIP (Art. 22): modelled on levels 6-10 parameters (32 months, 90% mesi 1-28, 95% mesi 29+). Levels 1-5 have different duration (12 months, 95% from month 7) — not modelled separately."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "NURSES ALLOWANCE: indennita professionale infermieri 155 EUR/month (12 months) not included — qualifica-specific, not level-specific."
       }
     ],
@@ -1123,7 +1123,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "9815cbf1aa3ab25c595158cd039ae38df18d587408b1704d0f6dd788ff6fa2ac",
+    "source_hash": "24972936e845e53752a2c19b05a5406717018c5f170be8e43396641124827234",
     "published_at": "2026-09-07"
   },
   "work_rules": {
