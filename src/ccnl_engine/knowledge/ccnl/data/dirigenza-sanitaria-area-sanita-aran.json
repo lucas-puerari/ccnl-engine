@@ -255,6 +255,10 @@
       {
         "kind": "simplification",
         "text": "Questo file e 'dirigenza-sanitaria-medico-veterinaria-aran.json' derivano dallo stesso CCNL Area Sanità 27.02.2026 (unico testo contrattuale). La distinzione in due file riflette le diverse indennità di specificità applicabili alle due popolazioni dirigenziali."
+      },
+      {
+        "kind": "simplification",
+        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il tasso è selezionato in base al cumulative_sick_days all'inizio del periodo; periodi di paga a cavallo di una soglia mensile ricevono un unico tasso. Comporto max 18 mesi = 540 gg."
       }
     ],
     "gross": "implemented",
@@ -268,7 +272,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "5744bc91331b5bc102c8c880346951ab2bfac17a48ad1bc04d9db9dd1a16f8bd",
+    "source_hash": "d4c11ce69508578df10174c62fbff3c1f3ee28298542c7cef0367469386ae9e5",
     "published_at": "2026-09-07"
   },
   "work_rules": {

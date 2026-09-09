@@ -267,6 +267,10 @@
       {
         "kind": "simplification",
         "text": "Questo file modella solo la componente medico-veterinaria del CCNL Area Sanità 27.02.2026. Il medesimo CCNL copre anche altri dirigenti sanitari (psicologi, farmacisti, biologi, fisici, chimici), modellati in 'dirigenza-sanitaria-area-sanita-aran.json'. Entrambi i file condividono codice CNEL S225."
+      },
+      {
+        "kind": "simplification",
+        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il tasso è selezionato in base al cumulative_sick_days all'inizio del periodo; periodi di paga a cavallo di una soglia mensile ricevono un unico tasso. Comporto max 18 mesi = 540 gg."
       }
     ],
     "gross": "implemented",
@@ -280,7 +284,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "9e1bc786597889336e20d48ce59abe39d26e964f72fa466f2d4f0e4e44d4a4a5",
+    "source_hash": "eb24c40b584ad2aa12c6d56a046e6d9031cc8aadf28e150866de02208705f494",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -278,7 +278,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Malattia: mesi 10-12 al 90%, mesi 13-18 al 50% modellati con SicknessTier. Comporto 18 mesi = 540 gg."
+        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il tasso è selezionato in base al cumulative_sick_days all'inizio del periodo; periodi di paga a cavallo di una soglia mensile ricevono un unico tasso. Comporto max 18 mesi = 540 gg."
       }
     ],
     "gross": "implemented",
@@ -292,7 +292,7 @@
     "effective_until": "2024-12-31",
     "source": "https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf",
     "verification_status": "unverified",
-    "source_hash": "15aba7434c5ac3b247c2ec66226e83478afc73b248a3bb3346b4e7af660f4dc0",
+    "source_hash": "79eba3b2054be70a805475c0c1bf2c3bba523bbb3f9fd05ed1a31f47a0e8184f",
     "published_at": "2026-09-07"
   },
   "work_rules": {

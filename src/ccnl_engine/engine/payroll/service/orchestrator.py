@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from decimal import Decimal
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal
 
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 from ccnl_engine.engine.payroll.domain.calculation import (
@@ -1192,6 +1192,24 @@ def _build_scope(
     return tuple(items)
 
 
+def _compute_result_status(
+    scope: tuple[ScopeItem, ...],
+) -> Literal["complete", "partial"]:
+    """Derive the overall result status from the calculation scope.
+
+    Returns ``"complete"`` when every scope item is either ``"verified"``
+    or ``"excluded"`` (nothing was requested but blocked by missing CCNL
+    schema).  Returns ``"partial"`` otherwise.
+
+    Returns:
+        ``"complete"`` or ``"partial"``.
+    """
+    for item in scope:
+        if item.status == "not_computed":
+            return "partial"
+    return "complete"
+
+
 def compute(scenario: PayrollScenario) -> Calculation:
     """Compute gross-to-net salary and employer cost for a payroll scenario.
 
@@ -1560,6 +1578,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
             chain,
             ccnl.parameters.seniority_increments,
         ),
+        status=_compute_result_status(calculation_scope),
         calculation_scope=calculation_scope,
         warnings=tuple(wr_warnings),
         base_monthly_full_time=base_monthly_full_time,

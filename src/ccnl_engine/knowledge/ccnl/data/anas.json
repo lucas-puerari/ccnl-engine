@@ -49,6 +49,10 @@
       {
         "kind": "simplification",
         "text": "Overtime base (Art. 101): la retribuzione oraria include minimo tabellare + contingenza (IIS) + RIA + AEP + EDR. Il modello usa hourly_base_method=minimo_tabellare (sottostima); le voci aggiuntive non sono modellate."
+      },
+      {
+        "kind": "simplification",
+        "text": "Malattia: 100% mesi 1-12, 50% mesi 13+ modellati con SicknessTier. Il tasso è selezionato in base al cumulative_sick_days all'inizio del periodo; periodi di paga a cavallo di una soglia mensile ricevono un unico tasso."
       }
     ],
     "gross": "implemented",
@@ -1232,7 +1236,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "ac2a7e7599c54c01956ebb07e52cd8047b3af8f0dbf9b894b58615bb390bdf4f",
+    "source_hash": "5bb58997be1c00d6d335b3a08916960fc029e2ae579cb8a3f0bc900b5988b84b",
     "published_at": "2026-09-07"
   },
   "work_rules": {
