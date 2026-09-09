@@ -29,11 +29,15 @@ jobs:
         uses: astral-sh/setup-uv@v5
 
       # ── Demo ──────────────────────────────────────────────────────────────
+      - name: "Demo: build wheel"
+        run: uv build --wheel --out-dir demo/wheels/
+
       - name: "Demo: assemble"
         run: |
-          mkdir -p _site/demo
+          mkdir -p _site/demo/wheels
           cp demo/index.html _site/demo/index.html
           cp demo/app.py     _site/demo/app.py
+          cp demo/wheels/*.whl _site/demo/wheels/
           cp _site/demo/index.html _site/index.html  # root redirect placeholder replaced below
           touch _site/.nojekyll
 
