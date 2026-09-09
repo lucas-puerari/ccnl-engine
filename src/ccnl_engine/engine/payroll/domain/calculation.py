@@ -280,6 +280,7 @@ def _materialise(
 class TraceCategory(StrEnum):
     """Semantic category of a single payroll computation step."""
 
+    # --- Gross chain (monthly amounts) ---
     BASE_SALARY = "base_salary"
     SENIORITY = "seniority"
     ALLOWANCE = "allowance"
@@ -291,24 +292,46 @@ class TraceCategory(StrEnum):
     TIME_SUPPLEMENT = "time_supplement"
     SUPPLEMENT_TOTAL = "supplement_total"
 
+    # --- Fiscal chain (annual amounts) ---
+    INPS_EMPLOYEE = "inps_employee"
+    INPS_EMPLOYER = "inps_employer"
+    TFR = "tfr"
+    EMPLOYER_FUNDS = "employer_funds"
+    TAXABLE_INCOME = "taxable_income"
+    IRPEF_GROSS = "irpef_gross"
+    WORK_DEDUCTION = "work_deduction"
+    FAMILY_DEDUCTION = "family_deduction"
+    ART15_DEDUCTION = "art15_deduction"
+    IRPEF_NET = "irpef_net"
+    ADDIZIONALE_REGIONALE = "addizionale_regionale"
+    ADDIZIONALE_COMUNALE = "addizionale_comunale"
+    TRATTAMENTO_INTEGRATIVO = "trattamento_integrativo"
+    NET = "net"
+
 
 @dataclass(frozen=True)
 class TraceStep:
-    """One step in the monthly gross computation chain.
+    """One step in a payroll computation chain.
 
     Attributes:
         category: Semantic category of the step.
-        label: Human-readable label (e.g. allowance description or
-            ``"Base retributiva"``).
-        amount: Monthly amount contributed by this step, post-scaling.
+        label: Human-readable label (e.g. ``"Base retributiva"``,
+            ``"IRPEF netta"``).
+        amount: Amount contributed by this step, post-scaling.
+            Gross-chain steps are monthly; fiscal-chain steps are annual.
+            Check ``period`` to know which applies.
         detail: Optional machine-readable reference (e.g. allowance code,
             ``"scatti=3"``, ``"IV@H011"``).
+        period: Whether ``amount`` is a monthly or annual figure.
+            Defaults to ``"monthly"`` for backward compatibility with
+            serialised gross-chain traces.
     """
 
     category: TraceCategory
     label: str
     amount: Decimal
     detail: str | None = None
+    period: str = "monthly"  # Literal["monthly", "annual"]
 
     def to_dict(self) -> dict[str, object]:
         """Serialise to a JSON-native dict.
@@ -322,11 +345,14 @@ class TraceStep:
             "label": self.label,
             "amount": str(self.amount),
             "detail": self.detail,
+            "period": self.period,
         }
 
     @classmethod
     def from_dict(cls, data: dict[str, object]) -> TraceStep:
         """Reconstruct from a :meth:`to_dict` dict.
+
+        Older serialised steps without ``period`` default to ``"monthly"``.
 
         Args:
             data: A dict as produced by :meth:`to_dict`.
@@ -340,51 +366,67 @@ class TraceStep:
             label=str(data["label"]),
             amount=Decimal(str(data["amount"])),
             detail=str(raw_detail) if raw_detail is not None else None,
+            period=str(data.get("period", "monthly")),
         )
 
 
 @dataclass(frozen=True)
 class CalculationTrace:
-    """Ordered record of the monthly gross computation steps.
+    """Ordered record of the gross and fiscal computation steps.
 
-    Steps cover the gross-side chain only: base salary, seniority,
-    allowances, ad-personam, second-level allowances, and the gross
-    total. The fiscal side (IRPEF, contributions, net) will be added
-    in a future iteration.
+    **Gross chain** (``steps``): monthly amounts from base salary through to
+    the gross total.  The ``GROSS`` step is always last and equals the sum of
+    all preceding entries — the engine enforces this invariant at construction
+    time.  L3 supplement steps sit in ``supplement_steps`` and do not alter
+    the ``GROSS`` invariant.
 
-    The ``GROSS`` step is always the last entry in ``steps`` and equals the
-    sum of all preceding entries — this invariant is enforced by the engine at
-    construction time.
+    **Fiscal chain** (``fiscal_steps``): annual amounts from gross through to
+    net.  This is a *derivation* chain, not a sum: each step shows the
+    derivation formula rather than a contribution. The canonical identity is::
 
-    L3 supplement steps are in ``supplement_steps``, which follows the gross
-    chain. They do not alter the ``GROSS`` invariant.
+        net_annual = gross_annual
+                   - inps_employee_annual
+                   - irpef_net
+                   - addizionale_regionale_annual
+                   - addizionale_comunale_annual
+                   + trattamento_integrativo
+
+    Steps that were omitted (e.g. addizionali when no jurisdiction was
+    supplied) are still emitted with ``amount=0`` so the skeleton is stable
+    across runs and diffs cleanly.
 
     Attributes:
-        steps: Ordered computation steps, ending with the ``GROSS`` summary.
-        supplement_steps: Optional L3 supplement steps (overtime, night,
-            holiday). Empty when no supplement input is provided.
+        steps: Ordered gross-chain steps (monthly), ending with ``GROSS``.
+        supplement_steps: Optional L3 supplement steps (monthly). Empty when
+            no supplement input is provided.
+        fiscal_steps: Ordered fiscal-chain steps (annual). Empty when not
+            yet emitted (pre-2025 serialised calculations).
     """
 
     steps: tuple[TraceStep, ...]
     supplement_steps: tuple[TraceStep, ...] = ()
+    fiscal_steps: tuple[TraceStep, ...] = ()
 
     def to_dict(self) -> dict[str, object]:
         """Serialise to a JSON-native dict.
 
         Returns:
-            A dict with ``steps`` and ``supplement_steps`` lists.
+            A dict with ``steps``, ``supplement_steps``, and ``fiscal_steps``
+            lists.  Empty optional sequences are omitted.
         """
         out: dict[str, object] = {"steps": [s.to_dict() for s in self.steps]}
         if self.supplement_steps:
             out["supplement_steps"] = [s.to_dict() for s in self.supplement_steps]
+        if self.fiscal_steps:
+            out["fiscal_steps"] = [s.to_dict() for s in self.fiscal_steps]
         return out
 
     @classmethod
     def from_dict(cls, data: dict[str, object]) -> CalculationTrace:
         """Reconstruct from a :meth:`to_dict` dict.
 
-        Older serialised calculations without ``supplement_steps`` yield an
-        empty tuple for that field.
+        Older serialised calculations without ``supplement_steps`` or
+        ``fiscal_steps`` yield empty tuples for those fields.
 
         Args:
             data: A dict as produced by :meth:`to_dict`.
@@ -400,6 +442,10 @@ class CalculationTrace:
             supplement_steps=tuple(
                 TraceStep.from_dict(cast(dict[str, object], s))
                 for s in cast(list[object], data.get("supplement_steps", []))
+            ),
+            fiscal_steps=tuple(
+                TraceStep.from_dict(cast(dict[str, object], s))
+                for s in cast(list[object], data.get("fiscal_steps", []))
             ),
         )
 

@@ -37,6 +37,7 @@ from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.seniority import _resolve_seniority_count
 from ccnl_engine.engine.payroll.service.sickness import compute_sickness
 from ccnl_engine.engine.payroll.service.supplements import compute_time_supplements
+from ccnl_engine.engine.payroll.service.trace import build_fiscal_trace
 from ccnl_engine.engine.payroll.service.types import AnnualisedPay, MonthlyPayChain
 from ccnl_engine.engine.payroll.service.variable_pay import (
     compute_bonus,
@@ -1681,6 +1682,24 @@ def compute(scenario: PayrollScenario) -> Calculation:
         scaled_second_level=scaled_second_level,
         gross_monthly=gross_monthly,
     )
+    fiscal_steps = build_fiscal_trace(
+        gross_annual=gross_annual,
+        inps_employee_annual=inps_employee_annual,
+        inps_employer_annual=inps_employer_annual,
+        employer_funds_annual=employer_funds_annual,
+        tfr_annual=tfr_annual,
+        taxable_income=taxable_income,
+        irpef_gross=irpef_gross,
+        work_income_deduction=work_income_deduction,
+        family_deduction_annual=fam_total,
+        art15_deduction_annual=art15_total,
+        irpef_net=irpef_net,
+        addizionale_regionale_annual=addizionale_regionale,
+        addizionale_comunale_annual=addizionale_comunale,
+        trattamento_integrativo=trattamento_integrativo,
+        net_annual=net_annual,
+        employer_withholds_irpef=employer_withholds_irpef,
+    )
     return Calculation(
         engine_version=engine_version,
         ruleset_version=_ruleset_versions(ccnl, rules, surtax),
@@ -1689,6 +1708,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
         trace=CalculationTrace(
             steps=gross_trace.steps,
             supplement_steps=supplement_trace,
+            fiscal_steps=fiscal_steps,
         ),
     )
 

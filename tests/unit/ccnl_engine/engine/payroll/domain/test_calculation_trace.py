@@ -378,6 +378,166 @@ class TestTraceInvariant:
         self._assert_invariant(calc)
 
 
+class TestTraceStepPeriod:
+    """TraceStep.period field: default, explicit values, and round-trip."""
+
+    def test_default_period_is_monthly(self) -> None:
+        """TraceStep defaults to period='monthly' when not supplied."""
+        step = TraceStep(
+            category=TraceCategory.BASE_SALARY,
+            label="Base",
+            amount=Decimal("1000.00"),
+        )
+        assert step.period == "monthly"
+
+    def test_annual_period_stored(self) -> None:
+        """TraceStep stores period='annual' when explicitly set."""
+        step = TraceStep(
+            category=TraceCategory.NET,
+            label="Netto annuale",
+            amount=Decimal("15000.00"),
+            period="annual",
+        )
+        assert step.period == "annual"
+
+    def test_to_dict_includes_period(self) -> None:
+        """to_dict serialises the period field."""
+        step = TraceStep(
+            category=TraceCategory.IRPEF_NET,
+            label="IRPEF netta",
+            amount=Decimal("2500.00"),
+            period="annual",
+        )
+        d = step.to_dict()
+        assert d["period"] == "annual"
+
+    def test_roundtrip_monthly(self) -> None:
+        """to_dict/from_dict preserves period='monthly'."""
+        step = TraceStep(
+            category=TraceCategory.BASE_SALARY,
+            label="Base",
+            amount=Decimal("1000.00"),
+            period="monthly",
+        )
+        assert TraceStep.from_dict(step.to_dict()) == step
+
+    def test_roundtrip_annual(self) -> None:
+        """to_dict/from_dict preserves period='annual'."""
+        step = TraceStep(
+            category=TraceCategory.NET,
+            label="Netto annuale",
+            amount=Decimal("15000.00"),
+            period="annual",
+        )
+        assert TraceStep.from_dict(step.to_dict()) == step
+
+    def test_from_dict_backward_compat_missing_period(self) -> None:
+        """from_dict defaults period to 'monthly' when key is absent."""
+        raw: dict[str, object] = {
+            "category": "base_salary",
+            "label": "Base",
+            "amount": "1000.00",
+            "detail": None,
+        }
+        step = TraceStep.from_dict(raw)
+        assert step.period == "monthly"
+
+
+class TestFiscalStepsRoundtrip:
+    """CalculationTrace.fiscal_steps serialises and round-trips correctly."""
+
+    def _make_fiscal_step(
+        self,
+        category: TraceCategory = TraceCategory.NET,
+        amount: str = "15000.00",
+    ) -> TraceStep:
+        return TraceStep(
+            category=category,
+            label="step",
+            amount=Decimal(amount),
+            period="annual",
+        )
+
+    def test_to_dict_emits_fiscal_steps_when_non_empty(self) -> None:
+        """fiscal_steps key appears in to_dict output when non-empty."""
+        trace = CalculationTrace(
+            steps=(TraceStep(TraceCategory.GROSS, "Lordo", Decimal("2000.00")),),
+            fiscal_steps=(self._make_fiscal_step(),),
+        )
+        d = trace.to_dict()
+        assert "fiscal_steps" in d
+        assert len(d["fiscal_steps"]) == 1  # type: ignore[arg-type]
+
+    def test_to_dict_omits_fiscal_steps_when_empty(self) -> None:
+        """fiscal_steps key is absent when tuple is empty."""
+        trace = CalculationTrace(
+            steps=(TraceStep(TraceCategory.GROSS, "Lordo", Decimal("2000.00")),),
+        )
+        d = trace.to_dict()
+        assert "fiscal_steps" not in d
+
+    def test_from_dict_restores_fiscal_steps(self) -> None:
+        """from_dict reconstructs fiscal_steps from a serialised dict."""
+        step = self._make_fiscal_step(TraceCategory.IRPEF_NET, "3000.00")
+        trace = CalculationTrace(
+            steps=(TraceStep(TraceCategory.GROSS, "Lordo", Decimal("20000.00")),),
+            fiscal_steps=(step,),
+        )
+        restored = CalculationTrace.from_dict(trace.to_dict())
+        assert restored.fiscal_steps == trace.fiscal_steps
+
+    def test_from_dict_backward_compat_no_fiscal_steps(self) -> None:
+        """from_dict with no fiscal_steps key yields an empty tuple."""
+        trace = CalculationTrace(
+            steps=(TraceStep(TraceCategory.GROSS, "Lordo", Decimal("2000.00")),),
+        )
+        d = trace.to_dict()
+        assert "fiscal_steps" not in d
+        restored = CalculationTrace.from_dict(d)
+        assert restored.fiscal_steps == ()
+
+    def test_compute_produces_fiscal_steps(self) -> None:
+        """compute() returns a Calculation with non-empty fiscal_steps."""
+        calc = compute(_req())
+        assert len(calc.trace.fiscal_steps) > 0
+
+    def test_fiscal_steps_all_annual(self) -> None:
+        """Every fiscal step has period='annual'."""
+        calc = compute(_req())
+        for step in calc.trace.fiscal_steps:
+            assert step.period == "annual", (
+                f"step {step.category} has period={step.period!r}"
+            )
+
+    def test_fiscal_trace_contains_net_step(self) -> None:
+        """Fiscal steps include a NET step matching result.net_annual."""
+        calc = compute(_req())
+        net_step = next(
+            s for s in calc.trace.fiscal_steps if s.category == TraceCategory.NET
+        )
+        assert net_step.amount == calc.result.net_annual
+
+    def test_fiscal_trace_contains_gross_step(self) -> None:
+        """Fiscal steps include a GROSS step matching result.gross_annual."""
+        calc = compute(_req())
+        gross_step = next(
+            s for s in calc.trace.fiscal_steps if s.category == TraceCategory.GROSS
+        )
+        assert gross_step.amount == calc.result.gross_annual
+
+    def test_fiscal_steps_roundtrip(self) -> None:
+        """Calculation.to_dict/from_dict preserves fiscal_steps."""
+        calc = compute(_req())
+        restored = Calculation.from_dict(calc.to_dict())
+        assert restored.trace.fiscal_steps == calc.trace.fiscal_steps
+
+    def test_fiscal_steps_json_roundtrip(self) -> None:
+        """Calculation.to_json/from_json preserves fiscal_steps."""
+        calc = compute(_req())
+        restored = Calculation.from_json(calc.to_json())
+        assert restored.trace.fiscal_steps == calc.trace.fiscal_steps
+
+
 class TestSupplementStepsRoundtrip:
     """CalculationTrace.supplement_steps serialises and round-trips correctly."""
 
