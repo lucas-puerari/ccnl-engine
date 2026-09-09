@@ -6,6 +6,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING, Literal
 
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
+from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
 from ccnl_engine.engine.payroll.domain.calculation import (
     Calculation,
     CalculationTrace,
@@ -42,6 +43,7 @@ from ccnl_engine.engine.payroll.service.variable_pay import (
     compute_fringe_benefit,
     compute_welfare,
 )
+from ccnl_engine.engine.provenance.domain.source import SourceKind
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
 from ccnl_engine.engine.tax.service.loaders import (
     load_art15_deduction_rules,
@@ -1210,6 +1212,51 @@ def _compute_result_status(
     return "complete"
 
 
+def _compute_confidence(
+    status: Literal["complete", "partial"],
+    warnings: tuple[str, ...],
+    provenance: tuple[RuleProvenance, ...],
+) -> Literal["low", "medium", "high"]:
+    """Derive a confidence level from result status, warnings, and provenance.
+
+    Three-tier scale:
+
+    ``"low"``
+        Any active warning is present — the engine was asked to compute
+        something it could not handle (missing CCNL schema), so the result
+        is knowingly incomplete in a way the caller cannot quantify.
+
+    ``"high"``
+        The computation is complete, there are no warnings, and every
+        :attr:`~ccnl_engine.engine.provenance.domain.source.SourceKind\
+.TABELLA_RETRIBUTIVA` record in the provenance chain has
+        :attr:`~ccnl_engine.engine.metadata.domain.rules.VerificationStatus\
+.VERIFIED` status.
+
+    ``"medium"``
+        All other cases: unverified salary-table sources, partial computation
+        without active warnings, or features explicitly excluded by the caller.
+
+    The ``fiscal_simplifications`` frozenset is intentionally excluded from
+    this formula — those reflect deliberate caller choices (omitted region,
+    commune, etc.), not engine uncertainty.  They appear in
+    ``calculation_scope`` as ``"excluded"`` items.
+
+    Returns:
+        One of ``"low"``, ``"medium"``, or ``"high"``.
+    """
+    if warnings:
+        return "low"
+    salary_table_unverified = any(
+        p.location.source_document.kind == SourceKind.TABELLA_RETRIBUTIVA
+        and p.extraction.verification_status != VerificationStatus.VERIFIED
+        for p in provenance
+    )
+    if status == "complete" and not salary_table_unverified:
+        return "high"
+    return "medium"
+
+
 def compute(scenario: PayrollScenario) -> Calculation:
     """Compute gross-to-net salary and employer cost for a payroll scenario.
 
@@ -1538,6 +1585,15 @@ def compute(scenario: PayrollScenario) -> Calculation:
         art15_input=art15_input,
     )
 
+    provenance = _collect_provenance(
+        level,
+        as_of,
+        chain,
+        ccnl.parameters.seniority_increments,
+    )
+    result_status = _compute_result_status(calculation_scope)
+    result_warnings = tuple(wr_warnings)
+
     result = PayrollResult(
         ccnl_id=ccnl.meta.ccnl_id,
         level_code=scenario.employee.level_code,
@@ -1572,15 +1628,11 @@ def compute(scenario: PayrollScenario) -> Calculation:
         net_annual=net_annual,
         net_monthly=net_monthly,
         employer_cost_annual=employer_cost_annual,
-        provenance=_collect_provenance(
-            level,
-            as_of,
-            chain,
-            ccnl.parameters.seniority_increments,
-        ),
-        status=_compute_result_status(calculation_scope),
+        provenance=provenance,
+        status=result_status,
+        confidence=_compute_confidence(result_status, result_warnings, provenance),
         calculation_scope=calculation_scope,
-        warnings=tuple(wr_warnings),
+        warnings=result_warnings,
         base_monthly_full_time=base_monthly_full_time,
         overtime_supplement_monthly=overtime_supp,
         night_supplement_monthly=night_supp,

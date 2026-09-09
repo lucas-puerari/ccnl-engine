@@ -49,6 +49,7 @@ from ccnl_engine.engine.payroll.domain.supplements import (
 )
 from ccnl_engine.engine.payroll.service.orchestrator import (
     _collect_provenance,
+    _compute_confidence,
     _compute_result_status,
     compute,
 )
@@ -1603,3 +1604,110 @@ class TestComputeResultStatus:
         # No overtime/leave/sick input: all L3 scope items are 'excluded'.
         # All L1/L2 items are 'verified'.
         assert result.status == "complete"
+
+
+def _verified_provenance() -> RuleProvenance:
+    """Build a TABELLA_RETRIBUTIVA provenance with VERIFIED status.
+
+    Returns:
+        A :class:`RuleProvenance` with verification_status=VERIFIED.
+    """
+    return RuleProvenance(
+        location=SourceLocation(
+            source_document=SourceDocument(
+                document_id="doc-verified",
+                title="Tabella verificata",
+                kind=SourceKind.TABELLA_RETRIBUTIVA,
+                url="https://example.com",
+            ),
+            section="Art. 1",
+        ),
+        extraction=ExtractionTrace(
+            method=ExtractionMethod.MANUAL,
+            extraction_timestamp=datetime(2026, 1, 1, tzinfo=UTC),
+            verification_status=VerificationStatus.VERIFIED,
+            effective_from=date(2025, 1, 1),
+        ),
+    )
+
+
+class TestComputeConfidence:
+    """Unit tests for _compute_confidence helper."""
+
+    def test_warnings_always_returns_low(self) -> None:
+        """Any warning → low, regardless of status or provenance."""
+        prov = (_verified_provenance(),)
+        result = _compute_confidence("complete", ("overtime not modelled",), prov)
+        assert result == "low"
+
+    def test_warnings_override_complete_status(self) -> None:
+        """Complete status + verified provenance does not rescue from low."""
+        prov = (_verified_provenance(),)
+        result = _compute_confidence("complete", ("a warning",), prov)
+        assert result == "low"
+
+    def test_complete_verified_returns_high(self) -> None:
+        """Complete + no warnings + all TABELLA_RETRIBUTIVA verified → high."""
+        prov = (_verified_provenance(),)
+        assert _compute_confidence("complete", (), prov) == "high"
+
+    def test_partial_status_returns_medium(self) -> None:
+        """Partial status with verified provenance and no warnings → medium."""
+        prov = (_verified_provenance(),)
+        assert _compute_confidence("partial", (), prov) == "medium"
+
+    def test_unverified_salary_table_returns_medium(self) -> None:
+        """UNVERIFIED TABELLA_RETRIBUTIVA blocks high confidence."""
+        unverified = _rule_provenance("unverified")  # uses UNVERIFIED by default
+        assert _compute_confidence("complete", (), (unverified,)) == "medium"
+
+    def test_needs_review_salary_table_returns_medium(self) -> None:
+        """NEEDS_REVIEW status is treated as non-verified → medium."""
+        needs_review = RuleProvenance(
+            location=SourceLocation(
+                source_document=SourceDocument(
+                    document_id="doc-nr",
+                    title="Da rivedere",
+                    kind=SourceKind.TABELLA_RETRIBUTIVA,
+                    url="https://example.com",
+                ),
+                section="Art. 1",
+            ),
+            extraction=ExtractionTrace(
+                method=ExtractionMethod.MANUAL,
+                extraction_timestamp=datetime(2026, 1, 1, tzinfo=UTC),
+                verification_status=VerificationStatus.NEEDS_REVIEW,
+                effective_from=date(2025, 1, 1),
+            ),
+        )
+        assert _compute_confidence("complete", (), (needs_review,)) == "medium"
+
+    def test_non_salary_table_unverified_does_not_lower_confidence(self) -> None:
+        """Unverified RIVISTA source does not affect confidence."""
+        rivista = RuleProvenance(
+            location=SourceLocation(
+                source_document=SourceDocument(
+                    document_id="doc-rivista",
+                    title="Rivista non verificata",
+                    kind=SourceKind.RIVISTA,
+                    url="https://example.com",
+                ),
+                section="pag. 12",
+            ),
+            extraction=ExtractionTrace(
+                method=ExtractionMethod.MANUAL,
+                extraction_timestamp=datetime(2026, 1, 1, tzinfo=UTC),
+                verification_status=VerificationStatus.UNVERIFIED,
+                effective_from=date(2025, 1, 1),
+            ),
+        )
+        assert _compute_confidence("complete", (), (rivista,)) == "high"
+
+    def test_empty_provenance_complete_returns_high(self) -> None:
+        """No provenance records + complete + no warnings → high."""
+        assert _compute_confidence("complete", (), ()) == "high"
+
+    def test_compute_result_has_confidence_field(self) -> None:
+        """compute() populates confidence on the result."""
+        result = compute(_req()).result
+        assert result.confidence in {"low", "medium", "high"}
