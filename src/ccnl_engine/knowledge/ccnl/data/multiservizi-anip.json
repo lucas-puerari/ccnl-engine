@@ -81,8 +81,12 @@
         "text": "July 2025 values: the 2021-2024 CCNL included a 5th salary tranche effective July 2025 (e.g. +10 EUR on level 2). This was superseded by the 2025-2028 renewal (signed 13 June 2025, definitive tables per accordo integrativo 6 August 2025, effective retroactively from 1 July 2025 per Art. 73). The JSON models post-renewal July 2025 values (819.21 for level 2) directly. Workers received the higher new-contract amount; the old 5th tranche value (779.21) was never separately operative."
       },
       {
+        "kind": "info",
+        "text": "ANIP CONTRACT STATUS (2025): ANIP-Confindustria abandoned the final stages of the 2025 CCNL renewal negotiations without signing. The 2025 renewal was signed by Legacoop Produzione e Servizi, Unionservizi Confapi, AGCI + Filcams-CGIL/Fisascat-CISL/Uiltrasporti-UIL. ANIP companies continue to apply the previous CCNL (this file). A separate multiservizi-legacoop file would be needed to cover the new 2025-2028 renewal (levels 1-8: 1,296.39-2,256.14 EUR, 14 mensilità)."
+      },
+      {
         "kind": "simplification",
-        "text": "INPS rates: terziario sector — reusing 2026-terziario.json (9.19% employee, tiered employer). SIMPLIFICATION: some sources indicate pulizie sector has a small FISE bilateral contribution; specific INPS circular for this sector was not verified. Use kitech.it proxy rates as label."
+        "text": "INPS RATES PROXY. Terziario sector rates reused from 2026-terziario.json (9.19% employee, tiered employer). Specific INPS circular for multiservizi sector (Gestione Separata or INPS Terziario with FISE bilateral?) not found in public sources. Verified 2026-09-09: no accessible INPS circular identified for this sector specifically. Terziario proxy remains best available."
       },
       {
         "kind": "info",
@@ -4081,7 +4085,7 @@
     "effective_until": null,
     "source": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "2309e8efedb75f28e60467a65549212da573f8b94ad5cece621139d023f48629",
+    "source_hash": "2bb35517b21b90548c03b155cd91698e7fdd7a78c253f13a2d8f70082aa0bcee",
     "published_at": "2026-09-07"
   },
   "work_rules": {
