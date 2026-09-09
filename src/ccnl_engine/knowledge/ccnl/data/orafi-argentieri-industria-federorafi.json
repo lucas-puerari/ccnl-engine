@@ -68,12 +68,12 @@
         "text": "ULTRA-ACTIVITY: the 2026 renewal (signed 10/02/2026) has economic effects from 01/10/2026. The 2021 contract governs economically until 30/09/2026. The 2002 increments (from CCNL 2017 PDF) remain operative throughout the modelled period as neither the 2021 nor the 2026 renewal modified them."
       },
       {
-        "kind": "simplification",
-        "text": "JUNE 2025 TRANCHE from kitech.it (secondary source, category code 51). 10.54% increase consistent across all levels with the IPCA+TEM mechanism. Values: 2=1574.39, 3=1734.59, 4=1804.87, 5=1928.22, 5S=2058.07, 6=2212.40, 7=2405.58, 7Q=2405.58."
+        "kind": "info",
+        "text": "JUNE 2025 TRANCHE: values confirmed by two independent secondary sources — kitech.it (category 51) and ilccnl.it (tabelle retributive page, 2025-06-01 data). Both show identical amounts: 2=1574.39, 3=1734.59, 4=1804.87, 5=1928.22, 5S=2058.07, 6=2212.40, 7=2405.58, 7Q=2405.58. 10.54% increase consistent with IPCA+TEM mechanism in Art. 3 CCNL 2021. Cross-confirmed by FIOM-CGIL announcement (fiom-cgil.it, Jun 2025) citing the same mechanism."
       },
       {
-        "kind": "simplification",
-        "text": "FUNCTION ALLOWANCE levels 7 and 7Q from kitech.it (secondary source). Level 7: 59.39 EUR/month ('ind_funzione'); level 7Q: 114.00 EUR/month ('ind_funzione_quadri'). No accessible primary source found for these amounts."
+        "kind": "info",
+        "text": "FUNCTION ALLOWANCE levels 7 and 7Q: Level 7=59.39 EUR/month, 7Q=114.00 EUR/month. Confirmed stable since 2017 by studiocerbone.com (tabella retributiva page, data from June 2017 onwards) and kitech.it. The 2021 renewal did not modify these allowances (not mentioned in the economic clauses). CCNL 2021 PDF Art. 4 and Annex 9 confirm the 7Q structure but do not re-state the allowance amounts (unchanged since prior contract)."
       },
       {
         "kind": "info",
@@ -1233,7 +1233,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "e4ead5d59e5c9fd9906a30c65b1fd4fed63d89e3f2334344fb76e7ea88117b0d",
+    "source_hash": "d1d02f20cc3fc98cb3c6247d5240ec17b4f8b8575d4c6b48db45d059308f876c",
     "published_at": "2026-09-07"
   },
   "work_rules": {
