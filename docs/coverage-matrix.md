@@ -1,9 +1,9 @@
 <!-- auto-generated -- run: uv run python docs/scripts/gen_coverage_matrix.py -->
-<!-- generated: 2026-09-08 -->
+<!-- generated: 2026-09-09 -->
 
 # Feature Coverage Matrix
 
-Generated: 2026-09-08 - 103 CCNL
+Generated: 2026-09-09 - 103 CCNL
 
 Coverage % = percentage of bundled CCNLs that implement the feature (partial = 0.5).
 
