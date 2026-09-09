@@ -51,8 +51,8 @@
         "text": "Contract expired 31/08/2024 (Art. 102). No successor signed as of 2026-09-09 (INPS-CNEL spreadsheet updated 25/07/2026 shows Periodo finale=null for H121). Tables valid open-ended under ultrattività."
       },
       {
-        "kind": "simplification",
-        "text": "THREE MISSING TRANCHES. The CCNL rinnovo 07/09/2021 established salary increases in three tranches parametrated to L1: +80 EUR in July 2022, +18 EUR in July 2023, +15 EUR in July 2024 (total +113 EUR at L1 to Aug 2024; source: sindacato.it, lavorosi.it, lexplain.it). The file only models the Nov 2021 values. Current engine output understates actual salary by ~113 EUR/month at L1 (and proportionally at other levels). UPDATE REQUIRED: fetch per-level tabelle for Jul 2022, Jul 2023 and Jul 2024 from lexplain.it/tabelle-retributive-ccnl-farmacie-private-2024-e-anni-precedenti/ or kitech.it and add three new salary periods."
+        "kind": "info",
+        "text": "SIMPLIFICATION resolved: The CCNL rinnovo 07/09/2021 (Tabella A confirmed from UILTUCS primary PDF) established ONE salary tranche from 01/11/2021 — not three separate tranches. Increases vs. Dec 2012 base: Q1=+89.97, Q2=+150.00 (incl. 70 Area Q2), Q3=+80.00, L1=+80.00, L2=+70.98, L3=+67.39, L4=+62.65, L5=+57.72, L6=+53.90. These are fully modelled in this file. The '3 tranches / +113 EUR' figure cited in some secondary sources refers to the separate CCNL farmacie speciali/municipalizzate (Assofarm H122), not this contract."
       },
       {
         "kind": "info",
@@ -1331,7 +1331,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "3053e0a447a549f1e0542faadf6837c2df5cb5fe297ca8aeda9a99cd1c8f4056",
+    "source_hash": "e77e8a3417d2ff79d71434065a96dd08d39baed05e7971979aeb68c5af3986f5",
     "published_at": "2026-09-07"
   },
   "work_rules": {
