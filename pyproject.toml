@@ -135,6 +135,7 @@ exclude_dirs = [".venv"]
 [tool.mypy]
 python_version = "3.12"
 strict = true
+mypy_path = ["scripts/docs"]
 warn_unreachable = true
 warn_unused_ignores = true
 show_error_codes = true
