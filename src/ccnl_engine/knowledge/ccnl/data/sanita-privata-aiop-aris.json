@@ -1489,7 +1489,7 @@
     "notes": [
       {
         "kind": "info",
-        "text": "CCNL signed 2020-10-08; nominally covers 2016-2018 (Art. 4). Applied in ultrattività from 2019 onwards. Salary tables (Tabella 1) effective 2020-07-01 per Art. 51. No renewal signed as of 2026-09-03."
+        "text": "CCNL signed 2020-10-08; nominally covers 2016-2018 (Art. 4). Applied in ultrattività from 2019 onwards. Salary tables (Tabella 1) effective 2020-07-01 per Art. 51. No renewal signed as of 2026-09-09. Confirmed 2026-09-09: preintesa June 2020 is the last event; all 2023-2025 bridge agreements found refer to the separate AIOP RSA contract (different CNEL code). The AIOP-ARIS ospedaliero (T011) T011 remains in pure ultrattività."
       },
       {
         "kind": "info",
@@ -1539,7 +1539,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "dc4ed0cc8bc00dd88ad8b67dc15e6c00b9a3a0d26d84777097329c7b487a93b6",
+    "source_hash": "ae37fa891b585b2a19fc3a48fb97f851e6c4c6acb2833828eec202366f309422",
     "published_at": "2026-09-07"
   },
   "work_rules": {
