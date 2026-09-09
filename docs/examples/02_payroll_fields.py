@@ -75,7 +75,7 @@ assert restored == p
 
 # --- Calculation metadata ---
 # engine_version and ruleset_version let you reproduce any figure exactly.
-assert calculation.engine_version == "0.5.0"
+assert calculation.engine_version == "0.5.1"
 assert (
     calculation.ruleset_version["ccnl"] == "ccnl/metalmeccanico-federmeccanica@2026.3"
 )
