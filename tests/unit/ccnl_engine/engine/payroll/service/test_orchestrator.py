@@ -31,6 +31,7 @@ from ccnl_engine.engine.payroll.domain.employee import (
 )
 from ccnl_engine.engine.payroll.domain.family import FamilyComposition
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
+from ccnl_engine.engine.payroll.domain.payroll_result import ScopeItem
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
     Employee,
@@ -46,7 +47,11 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     SickInput,
     WelfareInput,
 )
-from ccnl_engine.engine.payroll.service.orchestrator import _collect_provenance, compute
+from ccnl_engine.engine.payroll.service.orchestrator import (
+    _collect_provenance,
+    _compute_result_status,
+    compute,
+)
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.types import MonthlyPayChain
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
@@ -1554,3 +1559,47 @@ class TestArt15Deductions:
             )
         ).result
         assert with_strd.art15_deduction_annual == without_strd.art15_deduction_annual
+
+
+class TestComputeResultStatus:
+    """Unit tests for _compute_result_status helper."""
+
+    def test_all_verified_returns_complete(self) -> None:
+        """All verified scope items → complete."""
+        scope = (
+            ScopeItem(feature="base_salary", status="verified"),
+            ScopeItem(feature="irpef", status="verified"),
+        )
+        assert _compute_result_status(scope) == "complete"
+
+    def test_excluded_items_do_not_block_complete(self) -> None:
+        """Excluded items are acceptable; result is still complete."""
+        scope = (
+            ScopeItem(feature="base_salary", status="verified"),
+            ScopeItem(feature="overtime", status="excluded"),
+        )
+        assert _compute_result_status(scope) == "complete"
+
+    def test_not_computed_returns_partial(self) -> None:
+        """A single not_computed item forces partial status."""
+        scope = (
+            ScopeItem(feature="base_salary", status="verified"),
+            ScopeItem(feature="overtime", status="not_computed"),
+        )
+        assert _compute_result_status(scope) == "partial"
+
+    def test_empty_scope_returns_complete(self) -> None:
+        """Empty scope (no items) → complete (no blocked requests)."""
+        assert _compute_result_status(()) == "complete"
+
+    def test_compute_sets_status_on_result(self) -> None:
+        """compute() populates status='complete' for a basic scenario."""
+        result = compute(_req()).result
+        assert result.status in {"complete", "partial"}
+
+    def test_compute_status_is_complete_without_work_rules_input(self) -> None:
+        """No L3 inputs and L3 schema present → complete (all excluded)."""
+        result = compute(_req()).result
+        # No overtime/leave/sick input: all L3 scope items are 'excluded'.
+        # All L1/L2 items are 'verified'.
+        assert result.status == "complete"
