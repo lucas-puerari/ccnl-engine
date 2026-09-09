@@ -43,8 +43,8 @@
         "text": "Apprenticeship: 100% passthrough. Rules not found in renewal document; verify against CCNL FEDERDAT base text."
       },
       {
-        "kind": "simplification",
-        "text": "additional_months=13 for the period 01/06/2023-01/01/2024; 14 from 01/01/2024 onward. Level E is used for first 9 months of tenure (per contract text)."
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 13 for Jun 2023-Dec 2023 (pre-quattordicesima); 14 from 01/01/2024 onward (quattordicesima introduced by rinnovo July 2023 renewal, per fiscoetasse.com). Level E: entry-level for first 9 months of tenure per contract text — correct by design."
       }
     ],
     "gross": "partial",
@@ -1189,7 +1189,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "df757c38c9157810093a87200674d83baaf5827f304d7d862b3fdc5ead6b651b",
+    "source_hash": "b5d3c53eaca40e6156940e289db269b0cb4fee673fb759684254fba7203df85c",
     "published_at": "2026-09-07"
   },
   "work_rules": {

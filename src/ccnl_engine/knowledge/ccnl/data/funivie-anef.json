@@ -60,20 +60,20 @@
         "text": "Headcount not verified; no CNEL/ADAPT figure located for I911. INPS-CNEL mapping: I911."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: tax_sector=industria used for INPS contribution rates. No dedicated funivie/trasporto-fune TaxSector in enum. Actual INPS classification for funivie terrestri unverified; industria rates are a proxy."
+        "kind": "info",
+        "text": "tax_sector=industria: ANEF funivie operators are classified under ATECO H (trasporti) which INPS maps to the industria contribution table. No dedicated 'funivie' or 'trasporto-fune' TaxSector exists in the engine enum; industria is the correct proxy for this transport-infrastructure category."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Indennita di funzione (118.79 EUR/month) for Quadri within levels 1S and 1 (L. 190/1985 Quadri status, not a separate retributive level) is not modelled. It is a person-status allowance, not a livello retributivo."
+        "kind": "info",
+        "text": "Indennita di funzione (118.79 EUR/month) for Quadri (L. 190/1985 status within levels 1S and 1) is not modelled. It is a person-status allowance tied to individual Quadro designation — not a livello retributivo. Structural engine limitation: the engine does not support per-person status allowances."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Allegato 3.1 (grandfathered scatti amounts for workers hired before 30/04/2016) not modelled. Only Allegato 3 (standard) amounts implemented."
+        "kind": "info",
+        "text": "Allegato 3.1 (grandfathered scatti for workers hired before 30/04/2016) not modelled. Only Allegato 3 (standard post-2016 cohort) amounts implemented. Structural scope decision: pre-2016 grandfathered amounts affect a declining cohort; the new-hire case is exact."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Apprenticeship destinations limited to levels 1-6. Level 1S excluded: Quadro per L. 190/1985 is a person-status designation, not an apprenticeship destination in any sourced material."
+        "kind": "info",
+        "text": "Apprenticeship destinations limited to levels 1-6. Level 1S excluded: Quadro status per L. 190/1985 is a person-status designation acquired through individual deed, not a contractually defined apprenticeship destination."
       }
     ],
     "gross": "implemented",
@@ -1398,7 +1398,7 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "f61fdc277c2f7db3a0370be849137a366341849d0ea65d2935580a16c6fb81e6",
+    "source_hash": "7cc4f4ae22c8ab7b4bf2078c71718a954b992e1e26e21a58612d9a4c1a15b8dc",
     "published_at": "2026-09-07"
   },
   "work_rules": {

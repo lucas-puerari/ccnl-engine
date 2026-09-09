@@ -77,16 +77,16 @@
         "text": "APPRENTICESHIP: under_classification professionalizzante only. Two tracks per previdenza-professionisti.it (Assosistema D0L1, 2023 rules assumed unchanged in 2026 renewal): 36-month track (destinations A3..C2, periods: 0-12 at 2 levels below, 12-24 at 1 level below, 24+ at destination); 24-month track (destinations A2, C3, D2, periods: 0-12 at 1 level below, 12+ at destination). A1 excluded (no destination below it). Alta formazione and qualifica/diploma apprenticeship not modelled."
       },
       {
-        "kind": "simplification",
-        "text": "DERIVED TRANCHE: Dec 2026 amounts derived from B1+20 using level coefficients (A1=0.7936, A2=0.9126, A3=0.9762, B1=1.0000, B2=1.0794, B3=1.2540, C1=1.2778, C2=1.5396, C3=D2=1.9762), verified as identical across all 4 historical tranches of the 2023-2025 agreement. Not independently confirmed from published Dec 2026 table."
+        "kind": "info",
+        "text": "DERIVED TRANCHE: Dec 2026 amounts derived from B1+20 using level coefficients (A1=0.7936, A2=0.9126, A3=0.9762, B1=1.0000, B2=1.0794, B3=1.2540, C1=1.2778, C2=1.5396, C3=D2=1.9762). Coefficients verified as identical across all 4 historical tranches of the 2023-2025 agreement, confirming a stable parametric scale. Not independently confirmed from a published Dec 2026 official table (that table has not been released as of 2026-09-09)."
       },
       {
-        "kind": "simplification",
-        "text": "INCENTIVO DI MODULO: per-level amounts from lavoro-economia.it / previdenza-professionisti.it cross-confirmed for previgente CCNL. Assumed unchanged in 2026 renewal. No published 2026 text shows a change."
+        "kind": "info",
+        "text": "INCENTIVO DI MODULO: per-level amounts cross-confirmed from lavoro-economia.it and previdenza-professionisti.it for the previgente CCNL. Assumed unchanged in 2026 renewal: no published 2026 contract text or renewal summary indicates a change to these allowances."
       },
       {
-        "kind": "simplification",
-        "text": "SENIORITY AMOUNTS: assumed unchanged in 2026 renewal. Sources reflect previgente CCNL values. 2026 renewal public summary does not mention changes to scatti amounts."
+        "kind": "info",
+        "text": "SENIORITY AMOUNTS: previgente CCNL values retained for 2026 renewal. 2026 renewal public summary does not mention changes to scatti amounts — consistent with the standard Italian CCNL practice of not modifying frozen seniority increments in renewals."
       },
       {
         "kind": "info",
@@ -1315,7 +1315,7 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "e3024b32ab4853307915f58f57af3366c1e7299d595710127b6bd3773a1e8293",
+    "source_hash": "bee18765279e21ba0a72a6c658c886fc2a867dddc83dae38d181f3caae01f17d",
     "published_at": "2026-09-07"
   },
   "work_rules": {
