@@ -1,14 +1,12 @@
-"""CCNL coverage matrix -- per-contract and per-feature metrics.
+"""CCNL coverage data for the per-contract index page.
 
-Aggregate the coverage blocks and data fields from every bundled CCNL
-JSON file into two views:
+Aggregates the coverage blocks and data fields from every bundled CCNL
+JSON file into a per-contract view:
 
-* Per-CCNL: CNEL code, name (linked), sector, workers estimate, coverage %,
+* CNEL code, name (linked), sector, workers estimate, coverage %,
   L1/L2/L3 symbols, verification emoji.
-* Per-feature: engine feature (base salary, seniority, IRPEF, ...),
-  grouped by layer, with % of contracts implementing it.
 
-Not part of the engine API -- this is documentation tooling only.
+Not part of the engine API -- documentation tooling only.
 Regenerate output files with::
 
     uv run python docs/scripts/gen_coverage_matrix.py
@@ -48,23 +46,10 @@ class CCNLCoverageRow:
 
 
 @dataclass(frozen=True)
-class FeatureRow:
-    """One row in the per-feature coverage table."""
-
-    name: str
-    layer: int
-    """1 = gross, 2 = net, 3 = not yet in engine."""
-    pct: int
-    """0-100, percentage of CCNLs that implement this feature."""
-    note: str
-
-
-@dataclass(frozen=True)
 class CoverageReport:
     """Aggregated coverage data for the full CCNL bundle."""
 
     ccnl_rows: list[CCNLCoverageRow]
-    feature_rows: list[FeatureRow]
     generated_at: date
 
 
@@ -136,35 +121,6 @@ def _verification_label(ccnl: CCNL) -> str:
     return "Machine extracted"
 
 
-def _has_seniority(ccnl: CCNL) -> bool:
-    si = ccnl.parameters.seniority_increments
-    return (
-        bool(si.amount_by_level)
-        or bool(si.tiers)
-        or bool(si.amount_by_level_by_category)
-    )
-
-
-def _has_fixed_allowances(ccnl: CCNL) -> bool:
-    return any(bool(level.fixed_allowances) for level in ccnl.levels)
-
-
-def _has_time_supplements(ccnl: CCNL) -> bool:
-    return ccnl.work_rules is not None and ccnl.work_rules.time_supplements is not None
-
-
-def _has_sickness_rules(ccnl: CCNL) -> bool:
-    return ccnl.work_rules is not None and ccnl.work_rules.sickness_rules is not None
-
-
-def _has_leave_rules(ccnl: CCNL) -> bool:
-    return ccnl.work_rules is not None and ccnl.work_rules.leave_rules is not None
-
-
-def _has_absence_rules(ccnl: CCNL) -> bool:
-    return ccnl.work_rules is not None and ccnl.work_rules.absence_rules is not None
-
-
 def _make_ccnl_row(ccnl: CCNL) -> CCNLCoverageRow:
     year = (ccnl.meta.agreement_date or "")[:4]
     return CCNLCoverageRow(
@@ -182,158 +138,6 @@ def _make_ccnl_row(ccnl: CCNL) -> CCNLCoverageRow:
     )
 
 
-def _pct(score: float, total: int) -> int:
-    if total == 0:
-        return 0
-    return round(score / total * 100)
-
-
-def _inps_score(ccnl: CCNL) -> float:
-    if ccnl.meta.withholding_exempt:
-        return 1.0
-    if ccnl.coverage.net == "implemented":
-        return 1.0
-    if ccnl.coverage.net == "partial":
-        return 0.5
-    return 0.0
-
-
-def _irpef_score(ccnl: CCNL) -> float:
-    """Compute IRPEF score; 0 for withholding-exempt contracts by design.
-
-    Returns:
-        1.0, 0.5, or 0.0 depending on net status and withholding_exempt.
-    """
-    if ccnl.meta.withholding_exempt:
-        return 0.0
-    if ccnl.coverage.net == "implemented":
-        return 1.0
-    if ccnl.coverage.net == "partial":
-        return 0.5
-    return 0.0
-
-
-def _bool_sum(flags: list[bool]) -> float:
-    return sum(1.0 for f in flags if f)
-
-
-def _l1_rows(ccnls: list[CCNL], n: int, always_100: int) -> list[FeatureRow]:
-    gross_scores = [_layer_score(c.coverage.gross) for c in ccnls]
-    base_salary = sum(gross_scores)
-    seniority = _bool_sum([_has_seniority(c) for c in ccnls])
-    allowances = _bool_sum([_has_fixed_allowances(c) for c in ccnls])
-    return [
-        FeatureRow(
-            "Base salary",
-            1,
-            _pct(base_salary, n),
-            "Minimo contrattuale da tabella CCNL",
-        ),
-        FeatureRow("Seniority allowance", 1, _pct(seniority, n), "Scatti di anzianita"),
-        FeatureRow(
-            "Fixed allowances", 1, _pct(allowances, n), "Indennita fisse contrattuali"
-        ),
-        FeatureRow(
-            "Additional months",
-            1,
-            always_100,
-            "13/14 mensilita -- obbligatorio per schema",
-        ),
-        FeatureRow(
-            "Hourly rate",
-            1,
-            always_100,
-            "Da divisore orario -- obbligatorio per schema",
-        ),
-    ]
-
-
-def _l2_rows(ccnls: list[CCNL], n: int, always_100: int) -> list[FeatureRow]:
-    inps = sum(_inps_score(c) for c in ccnls)
-    irpef = sum(_irpef_score(c) for c in ccnls)
-    return [
-        FeatureRow(
-            "INPS contributions",
-            2,
-            _pct(inps, n),
-            "Contributi INPS dipendente e datore",
-        ),
-        FeatureRow("TFR", 2, _pct(inps, n), "Trattamento fine rapporto Art. 2120 c.c."),
-        FeatureRow(
-            "IRPEF",
-            2,
-            _pct(irpef, n),
-            "Ritenuta IRPEF (esclusi withholding-exempt per design)",
-        ),
-        FeatureRow(
-            "Regional/municipal surtax",
-            2,
-            _pct(irpef, n),
-            "Addizionali -- richiede regione/comune in input",
-        ),
-        FeatureRow(
-            "Family deductions (Art. 12)",
-            2,
-            always_100,
-            "Detrazioni familiari a carico -- obbligatorie per schema",
-        ),
-        FeatureRow(
-            "Mortgage interest deduction (Art. 15)",
-            2,
-            always_100,
-            "Interessi passivi mutuo prima casa -- obbligatorio per schema",
-        ),
-    ]
-
-
-def _l3_rows(ccnls: list[CCNL], n: int) -> list[FeatureRow]:
-    """Layer 3 coverage derived from data presence, not coverage status.
-
-    Returns:
-        List of FeatureRow for work-rules features.
-    """
-    overtime = _bool_sum([_has_time_supplements(c) for c in ccnls])
-    sickness = _bool_sum([_has_sickness_rules(c) for c in ccnls])
-    leave = _bool_sum([_has_leave_rules(c) for c in ccnls])
-    absence = _bool_sum([_has_absence_rules(c) for c in ccnls])
-    return [
-        FeatureRow(
-            "Overtime/night/holiday",
-            3,
-            _pct(overtime, n),
-            "Maggiorazioni orarie da time_supplements CCNL",
-        ),
-        FeatureRow(
-            "Sick/injury leave",
-            3,
-            _pct(sickness, n),
-            "Integrazione malattia/infortunio da sickness_rules CCNL",
-        ),
-        FeatureRow(
-            "Leave entitlement",
-            3,
-            _pct(leave, n),
-            "Ferie e permessi da leave_rules CCNL",
-        ),
-        FeatureRow(
-            "Absence deduction",
-            3,
-            _pct(absence, n),
-            "Decurtazione per assenza da absence_rules CCNL",
-        ),
-    ]
-
-
-def _make_feature_rows(ccnls: list[CCNL]) -> list[FeatureRow]:
-    n = len(ccnls)
-    always_100 = _pct(float(n), n)
-    return [
-        *_l1_rows(ccnls, n, always_100),
-        *_l2_rows(ccnls, n, always_100),
-        *_l3_rows(ccnls, n),
-    ]
-
-
 # Public API
 
 
@@ -341,25 +145,18 @@ def build_coverage_report() -> CoverageReport:
     """Build a coverage report from all bundled CCNL JSON files.
 
     Returns:
-        CoverageReport with per-CCNL and per-feature rows.
+        CoverageReport with per-CCNL rows sorted by name.
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
     filenames = sorted(e.name for e in pkg.iterdir() if e.name.endswith(".json"))
     ccnls = [load_ccnl(fn) for fn in filenames]
     return CoverageReport(
         ccnl_rows=sorted([_make_ccnl_row(c) for c in ccnls], key=lambda r: r.name),
-        feature_rows=_make_feature_rows(ccnls),
         generated_at=datetime.now(tz=UTC).date(),
     )
 
 
 # Markdown rendering
-
-_LAYER_TITLES = {
-    1: "Layer 1 -- Gross",
-    2: "Layer 2 -- Net",
-    3: "Layer 3 -- Work rules",
-}
 
 _CONTRACTS_PREAMBLE = """\
 # CCNL Coverage
@@ -444,45 +241,4 @@ def render_contracts_index(report: CoverageReport) -> str:
             f" | {l1} | {l2} | {l3} | {ext} |"
         )
     lines.append(_CONTRACTS_FOOTER)
-    return "\n".join(lines)
-
-
-def render_feature_matrix(report: CoverageReport) -> str:
-    """Render the feature coverage matrix, one table per layer.
-
-    Returns:
-        Markdown string for docs/coverage-matrix.md.
-    """
-    auto_header = (
-        "<!-- auto-generated"
-        " -- run: uv run python docs/scripts/gen_coverage_matrix.py -->\n"
-        f"<!-- generated: {report.generated_at} -->"
-    )
-    lines: list[str] = [
-        auto_header,
-        "",
-        "# Feature Coverage Matrix",
-        "",
-        f"Generated: {report.generated_at} - {len(report.ccnl_rows)} CCNL",
-        "",
-        (
-            "Coverage % = percentage of bundled CCNLs that implement"
-            " the feature (partial = 0.5)."
-        ),
-        "",
-    ]
-    by_layer: dict[int, list[FeatureRow]] = {}
-    for row in report.feature_rows:
-        by_layer.setdefault(row.layer, []).append(row)
-
-    for layer, rows in sorted(by_layer.items()):
-        lines += [
-            f"## {_LAYER_TITLES[layer]}",
-            "",
-            "| Feature | Coverage | Note |",
-            "|---------|----------|------|",
-        ]
-        for row in rows:
-            lines.append(f"| {row.name} | {row.pct}% | {row.note} |")
-        lines.append("")
     return "\n".join(lines)
