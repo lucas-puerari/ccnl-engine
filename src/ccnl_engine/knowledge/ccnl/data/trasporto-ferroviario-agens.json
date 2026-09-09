@@ -95,8 +95,8 @@
         "text": "PRE-JUN 2025 PERIOD NOT MODELLED. The CCNL contractual coverage runs 2024-01-01 to 2026-12-31. The Jan 2024 – May 2025 wage gap was compensated by a lump-sum una tantum paid in Aug 2025 (per redigo.info), explicitly stated as having no effect on any contractual institute ('non avranno riflessi su alcun istituto contrattuale'). Salary periods therefore start 01/06/2025. Engine queries with as_of before Jun 2025 will return the Jun 2025 values, which overstate actual pay for that window."
       },
       {
-        "kind": "simplification",
-        "text": "FONDO DI SOLIDARIETA FERROVIE. A 0.20% solidarity fund contribution applies (split approximately 2/3 employer, 1/3 employee) per the bilateral solidarity fund for the railway sector. Not modelled; adds approximately 0.067% to employee cost and 0.133% to employer cost above the standard INDUSTRIA INPS rates."
+        "kind": "info",
+        "text": "FONDO DI SOLIDARIETA FERROVIE. Contribution rate 0.20% confirmed: 2/3 a carico di Ferrovie (datore, ≈0.133%), 1/3 a carico dei lavoratori (≈0.067%). Source: INPS circolare (confirmed by inps.it/fondo-ferrovie-dello-stato and consulenza.it). Not modelled in the engine; adds approximately 0.067% to employee cost and 0.133% to employer cost above the standard INDUSTRIA INPS rates. This is a structural engine limitation, not a data gap."
       },
       {
         "kind": "simplification",
@@ -1870,7 +1870,7 @@
     "effective_until": "2026-12-31",
     "source": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive",
     "verification_status": "unverified",
-    "source_hash": "e62567e98a362f56cb6ac71fddaad88a36ce4ce19b82b3f37b5f7deb154b4cec",
+    "source_hash": "b44678af71347aac543e1b2afa3dc69847bfd453d3f308788ac475e898a4ea78",
     "published_at": "2026-09-07"
   },
   "work_rules": {

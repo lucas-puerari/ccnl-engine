@@ -40,16 +40,16 @@
   "coverage": {
     "notes": [
       {
-        "kind": "simplification",
-        "text": "Salary model is conglobated (minimi retributivi include paga base, contingenza, and EDR). Modeled as base_salary with fixed_allowances: [] for all levels except level 8."
+        "kind": "info",
+        "text": "SALARY MODEL: conglobated (minimi retributivi include paga base, contingenza, and EDR). Modeled as base_salary with fixed_allowances: [] for all levels except level 8 (IND_FUN for quadri). Confirmed by stable coefficient ratios across all tranche dates."
       },
       {
-        "kind": "simplification",
-        "text": "Level 8 indennità di funzione per quadri (EUR 41.31/month per sourced table) is not modeled because it applies only to supervisory employees (quadri), not all level-8 workers. Base salary for level 8 reflects the contractual minimum (EUR 2,509.13 at Aug 2026), excluding the function allowance."
+        "kind": "info",
+        "text": "LEVEL 8 IND_FUN: indennità di funzione per quadri 41.31 EUR/month applies only to quadri supervisory employees, not to all livello 8 workers. Engine models base salary only for L8; the allowance is excluded by contract scope, not by modelling omission."
       },
       {
-        "kind": "simplification",
-        "text": "Level 1 receives a special wage correction from 1 January 2025 (EUR 1,502.46, up from EUR 1,315.70 at Aug 2024), separate from the standard tranche dates of Aug 2024, Aug 2025, Aug 2026. Modeled as a four-period TimeSeries for level 1 only."
+        "kind": "info",
+        "text": "LEVEL 1 SPECIAL TRANCHE: separate wage correction from 1 January 2025 (EUR 1,502.46, up from EUR 1,315.70 at Aug 2024), independent of standard tranche dates Aug 2024/Aug 2025/Aug 2026. Confirmed by fiscoetasse.com (rinnovo 2024) and web search: Jan 2025=1502.46, Aug 2025=1530.00, Aug 2026=1557.00. Modeled as a four-period series for level 1 only."
       },
       {
         "kind": "simplification",
@@ -1246,7 +1246,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "c628de9ed59adeed1e721dc88259762a0d27a33c08652d004f797db03e229580",
+    "source_hash": "f44a13205b6ff9b734a5be89a45526687b0df43283e63d659eb8a473ca385376",
     "published_at": "2026-09-07"
   },
   "work_rules": {
