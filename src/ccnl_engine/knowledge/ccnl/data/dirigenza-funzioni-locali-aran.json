@@ -223,7 +223,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Malattia: mesi 10-12 al 90%, mesi 13-18 al 50% modellati con SicknessTier. Comporto 18 mesi = 540 gg."
+        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il tasso è selezionato in base al cumulative_sick_days all'inizio del periodo; periodi di paga a cavallo di una soglia mensile ricevono un unico tasso. Comporto max 18 mesi = 540 gg."
       }
     ],
     "gross": "implemented",
@@ -237,7 +237,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "6143f38edca84011d0d42bc403817eae23f771e96d2f601ad0be99b484ed9eab",
+    "source_hash": "05f2b8953f3d43675a2a66212a41a8e753dc7ab2c614446f6ad77c740e4f12f2",
     "published_at": "2026-09-07"
   },
   "work_rules": {

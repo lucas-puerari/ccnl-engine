@@ -292,7 +292,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Malattia: mesi 10-12 al 90%, mesi 13-18 al 50% modellati con SicknessTier. Comporto 18 mesi = 540 gg."
+        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il tasso è selezionato in base al cumulative_sick_days all'inizio del periodo; periodi di paga a cavallo di una soglia mensile ricevono un unico tasso. Comporto max 18 mesi = 540 gg."
       }
     ],
     "gross": "implemented",
@@ -306,7 +306,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "d4b8106b0b59e5ce9d386a921ec6d4a571455fcdb98c23a2a49516f943e22c16",
+    "source_hash": "870073e978e3912cb3ce9e018d35d39e845201f31ef9366cb99c09ba01dd9c6f",
     "published_at": "2026-09-07"
   },
   "work_rules": {
