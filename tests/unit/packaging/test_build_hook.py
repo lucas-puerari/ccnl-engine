@@ -1,6 +1,6 @@
 """Tests that the build hook data-directory paths point to real directories.
 
-The build hook (packaging/build_hook.py) lists source directories whose JSON
+The build hook (scripts/packaging/build_hook.py) lists source directories whose JSON
 files it compresses into .json.gz for the wheel.  A typo in any of those
 paths silently produces an empty wheel — no data files are found, no error is
 raised — which breaks all runtime data access without any test failure.
@@ -21,7 +21,7 @@ from pathlib import Path
 import pytest
 
 _PROJECT_ROOT = Path(__file__).resolve().parents[3]
-_BUILD_HOOK = _PROJECT_ROOT / "packaging" / "build_hook.py"
+_BUILD_HOOK = _PROJECT_ROOT / "scripts" / "packaging" / "build_hook.py"
 
 
 def _extract_data_dirs() -> list[tuple[str, str]]:
@@ -71,7 +71,7 @@ class TestBuildHookDataDirs:
         src_dir = _PROJECT_ROOT / src_rel
         assert src_dir.is_dir(), (
             f"Build hook source directory not found: {src_rel!r}. "
-            "Check the _DATA_DIRS entries in packaging/build_hook.py."
+            "Check the _DATA_DIRS entries in scripts/packaging/build_hook.py."
         )
 
     def test_source_dir_has_json_files(self, dist_prefix: str, src_rel: str) -> None:

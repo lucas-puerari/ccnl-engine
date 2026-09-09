@@ -7,7 +7,7 @@ Run with::
 
 Or directly::
 
-    uv run python docs/scripts/rehash_ccnl.py
+    uv run python scripts/docs/rehash_ccnl.py
 """
 
 import json

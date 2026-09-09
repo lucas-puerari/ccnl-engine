@@ -85,7 +85,7 @@ ignore = [
 "demo/**" = ["T201", "E402", "RUF100", "I001", "E501", "N999", "RUF010", "INP001"]
 # Doc tooling: not a package (INP001); scripts print progress (T201).
 "docs/*.py" = ["INP001"]
-"docs/scripts/*.py" = ["INP001", "T201"]
+"scripts/**/*.py" = ["INP001", "T201"]
 # Pydantic needs runtime access to annotated types; TCH001-TCH003 would move
 # them to TYPE_CHECKING blocks, breaking model_validate and field resolution.
 # Applies to Pydantic model files and primitives.py (Bracket is a dataclass
@@ -169,11 +169,11 @@ include = [
     "README.md",
     "LICENSE",
     "Makefile",
-    "packaging/",
+    "scripts/packaging/",
 ]
 
 [tool.hatch.build.hooks.custom]
-path = "packaging/build_hook.py"
+path = "scripts/packaging/build_hook.py"
 
 # ---------------------------------------------------------------------------
 # complexipy — Cognitive Complexity (SonarSource whitepaper v1.7)

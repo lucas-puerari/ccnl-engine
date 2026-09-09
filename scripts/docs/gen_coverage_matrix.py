@@ -2,7 +2,7 @@
 
 Run with::
 
-    uv run python docs/scripts/gen_coverage_matrix.py
+    uv run python scripts/docs/gen_coverage_matrix.py
 
 Or via Make::
 

@@ -43,7 +43,7 @@ jobs:
       - name: Generate rules diff report
         id: diff
         run: |
-          REPORT=$(uv run python scripts/rules_diff_report.py \
+          REPORT=$(uv run python scripts/ci/rules_diff_report.py \
             --base "${{ github.event.pull_request.base.sha }}")
           echo "report<<EOF" >> "$GITHUB_OUTPUT"
           echo "$REPORT" >> "$GITHUB_OUTPUT"

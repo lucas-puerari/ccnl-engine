@@ -323,7 +323,7 @@ After adding the JSON and example files, run the generator — it will pick up
 the new page automatically because the file now exists:
 
 ```bash
-uv run python docs/scripts/gen_contract_pages.py
+uv run python scripts/docs/gen_contract_pages.py
 ```
 
 This replaces the old hand-written template. Verify the output looks correct
