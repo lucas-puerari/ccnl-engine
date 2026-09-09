@@ -55,12 +55,12 @@
         "text": "SENIORITY: 5 biennali (24-month) scatti. Per-level amounts (EUR): 1=6.84, 2=7.36, 3=3S=7.80, 4=4S=8.26, 5=5S=9.76, 6=Q=11.65."
       },
       {
-        "kind": "simplification",
-        "text": "LEVEL 1 sub-level: contract provides automatic advancement from entry sub-level after 6 months. Tabular values shown are the post-advance minimum, used as the single level-1 series throughout."
+        "kind": "info",
+        "text": "LEVEL 1 sub-level: the CCNL provides automatic advancement from entry sub-level (L1 ingresso) to L1 standard after 6 months. The file models only the post-advance minimum throughout, which is the relevant value for permanent workers and for workers beyond their 6th month. The entry sub-level undervaluation during the first 6 months is a deliberate structural simplification."
       },
       {
-        "kind": "simplification",
-        "text": "TRANCHES 01/10/2026 through 01/11/2028: only the L4 reference increase is confirmed from primary source (CISL communique: +30, +50, +45, +20 EUR). All-level amounts computed using the parametric ratio matrix derived from the confirmed 01/03/2026 per-level deltas. This matches the contractual parametric mechanism."
+        "kind": "info",
+        "text": "TRANCHES 01/10/2026 through 01/11/2028: L4 reference increments confirmed from primary source (CISL communique CCNL occhialeria 30/01/2026: +30, +50, +45, +20 EUR at L4). All-level amounts derived via the parametric ratio matrix from confirmed 01/03/2026 per-level deltas. The CCNL occhialeria uses a declared parametric system; parametric derivation is contractually consistent."
       },
       {
         "kind": "simplification",
@@ -2300,7 +2300,7 @@
     "effective_until": null,
     "source": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive",
     "verification_status": "verified",
-    "source_hash": "5c4f9434d41bd70c73ae365a898ace3b6612a8926cd51c1041ef0893ef9773f9",
+    "source_hash": "912be9c9510ada58b1925a5561a6bf7ecc8109ffa8cd83148809d75791eadeb4",
     "published_at": "2026-09-07"
   },
   "work_rules": {

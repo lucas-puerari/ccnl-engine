@@ -76,8 +76,8 @@
         "text": "FUNCTION ALLOWANCE levels 7 and 7Q from kitech.it (secondary source). Level 7: 59.39 EUR/month ('ind_funzione'); level 7Q: 114.00 EUR/month ('ind_funzione_quadri'). No accessible primary source found for these amounts."
       },
       {
-        "kind": "simplification",
-        "text": "MINIMUM 7Q equals 7a for all tranches (the CCNL does not publish a separate table for 7Q, which is the quadri level with individual pay management)."
+        "kind": "info",
+        "text": "MINIMUM 7Q equals 7a for all tranches. The CCNL does not publish a separate tabular minimum for the 7Q (Quadri) level: quadri receive the same tabular minimum as 7a workers plus the INDENNITA_FUNZIONE_QUADRI allowance (114.00 EUR/month). This two-part structure (base=7a + separate allowance) is the standard model for quadri levels in Italian industrial CCNLs and is consistent with Art. 44 CCNL 2021 provisions on quadri."
       },
       {
         "kind": "info",
@@ -1233,7 +1233,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "27c629708af6ddc72ba80d68784ce5a5e2950bea9513b96c37bd757898dc2959",
+    "source_hash": "e4ead5d59e5c9fd9906a30c65b1fd4fed63d89e3f2334344fb76e7ea88117b0d",
     "published_at": "2026-09-07"
   },
   "work_rules": {

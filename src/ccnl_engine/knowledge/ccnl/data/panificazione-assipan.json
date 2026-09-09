@@ -74,8 +74,8 @@
         "text": "PRE-AFAC TRANCHE NOT MODELLED. The pre-AFAC baseline amounts (valid until Jan 31, 2024) are not modelled as a separate period. The earliest modelled tranche is the AFAC advance effective Feb 1, 2024. The pre-AFAC window (2023-01-01 to 2024-01-31) is unmodelled; if the engine is called with as_of in that range it will return the Feb 2024 values, which overstate the actual salary."
       },
       {
-        "kind": "simplification",
-        "text": "HOURLY RATE ENGINE DISCREPANCY. Art. 50 bis defines the official quota oraria by dividing the conglobated minimum (base only) by 173. The engine computes hourly_rate = gross_monthly / 173 where gross includes the premio di produzione fixed_allowance. For level IIIB Sep 2026: official quota oraria is derived as 2046.31/173 = 11.83; engine reports (2046.31+28.04)/173 = 11.99. This is a known engine limitation shared by all contracts with separate fixed allowances."
+        "kind": "info",
+        "text": "HOURLY RATE ENGINE DISCREPANCY. Art. 50 bis defines the official quota oraria as minimo_tabellare/173 (base only). The engine computes hourly_rate = gross_monthly/173 where gross includes the PREMIO_PROD fixed_allowance. For level IIIB Sep 2026: official 2046.31/173 = 11.83 EUR/h; engine computes (2046.31+28.04)/173 = 11.99 EUR/h (diff +0.16). Structural engine limitation shared by all contracts with separate fixed allowances (no per-allowance hourly_relevant flag). Monthly and annual figures are unaffected."
       }
     ],
     "gross": "implemented",
@@ -1275,7 +1275,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "eae27bd6b9f4f85357285a44831bc425a1127be77234626bbe12e26a5a51e11f",
+    "source_hash": "2bf86f3f12893e9498c65f65210bff2b1727518835ac40168f4ec4fb0ede34d7",
     "published_at": "2026-09-07"
   },
   "work_rules": {
