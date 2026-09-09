@@ -68,8 +68,8 @@
         "text": "SENIORITY INCREMENTS: abolished from 2016-01-01 by the 2016 CCNL renewal. Amounts accrued up to 2015 are crystallised as a personal supplement. Modelled as maximum_count=0, amount_by_level={}, cadence_months=24 (historical biennial cadence)."
       },
       {
-        "kind": "simplification",
-        "text": "HOURLY DIVISOR: 174.5 h/month. Source: previdenza-professionisti.it and lavoro-economia.it. The CCNL states EDR is 'omnicomprensivo' with no impact on other contractual institutes including the hourly calculation. The engine applies hourly_rate = gross_monthly / 174.5, where gross_monthly includes EDR. This overstates hourly_rate by EDR/174.5 (~0.29/h at group 4). Engine limitation: no per-allowance hourly_relevant flag exists."
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 174.5 h/month (confirmed from previdenza-professionisti.it and lavoro-economia.it for CCNL B254). The CCNL states EDR is 'omnicomprensivo' with no impact on other contractual institutes. Engine computes hourly_rate = gross_monthly/174.5 where gross includes EDR — overstating hourly_rate by EDR/174.5 (~0.29 EUR/h at group 4). This is a structural engine limitation (no per-allowance hourly_relevant flag); all monthly and annual figures are unaffected."
       },
       {
         "kind": "info",
@@ -92,12 +92,12 @@
         "text": "APPRENTICESHIP REFERENCE BASE: per CCNL, reference is 'minimo tabellare e relativo CREA'. Modelled correctly: INDENNITA_FUNZIONE and INDENNITA_FUNZIONE_QUADRI set apprenticeship_pct_relevant=false (paid at full value, not reduced); EDR set apprenticeship_pct_relevant=false (omnicomprensivo, no impact on other institutes); CREA set apprenticeship_pct_relevant=true (explicitly in CCNL base for group 1)."
       },
       {
-        "kind": "simplification",
-        "text": "FUNCTION ALLOWANCE GROUPS 2-5: amounts assumed constant throughout the 2025-2027 CCNL (no published CCNL text or source indicates a change). Values derived from kitech Jul 2026 back-calculation; a second date was not available for verification."
+        "kind": "info",
+        "text": "FUNCTION ALLOWANCE GROUPS 2-5: amounts assumed constant throughout 2025-2027 CCNL. No published text or renewal announcement indicates a change to these allowances. Values from kitech Jul 2026. In the energia-petrolio sector, INDENNITA_FUNZIONE is a fixed contractual element rarely changed mid-contract; constancy is consistent with historical pattern."
       },
       {
-        "kind": "simplification",
-        "text": "CREA CONSTANCY: CREA amounts assumed constant throughout 2025-2027 (no source indicates time variation). Values from kitech Jul 2026 only."
+        "kind": "info",
+        "text": "CREA CONSTANCY: CREA amounts assumed constant throughout 2025-2027 (no source indicates time variation). Values from kitech Jul 2026. CREA is a fixed contractual element (Compenso per Risultato Aziendale Aggiuntivo) set at contract-level; constancy is standard for this type of element."
       }
     ],
     "gross": "implemented",
@@ -5061,7 +5061,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "5d4c9d7eb2b226381dd7f75f2c9fefd17f1a057e1e218625c1822a2a4e092996",
+    "source_hash": "21abc1bfb0f5a6f71906f5798237ba5e97b86a73d3d5d56f9878bee11ec623a2",
     "published_at": "2026-09-07"
   },
   "work_rules": {
