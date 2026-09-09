@@ -138,7 +138,7 @@ jobs:
           if [ -n "$PREV" ]; then
             echo "## Rules diff since $PREV" > rules_diff.md
             echo "" >> rules_diff.md
-            uv run python scripts/rules_diff_report.py --since "$PREV" >> rules_diff.md
+            uv run python scripts/ci/rules_diff_report.py --since "$PREV" >> rules_diff.md
           else
             echo "" > rules_diff.md
           fi

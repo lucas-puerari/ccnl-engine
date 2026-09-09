@@ -9,7 +9,7 @@ JSON file into a per-contract view:
 Not part of the engine API -- documentation tooling only.
 Regenerate output files with::
 
-    uv run python docs/scripts/gen_coverage_matrix.py
+    uv run python scripts/docs/gen_coverage_matrix.py
 """
 
 from __future__ import annotations
@@ -215,7 +215,7 @@ def render_contracts_index(report: CoverageReport) -> str:
     """
     auto_header = (
         "<!-- auto-generated"
-        " -- run: uv run python docs/scripts/gen_coverage_matrix.py -->\n"
+        " -- run: uv run python scripts/docs/gen_coverage_matrix.py -->\n"
         f"<!-- generated: {report.generated_at} -->\n"
     )
     lines: list[str] = [

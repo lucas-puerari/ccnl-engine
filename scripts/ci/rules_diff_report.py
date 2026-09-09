@@ -233,7 +233,7 @@ def main() -> None:
     group.add_argument("--base", metavar="SHA", help="Base commit SHA (PR mode).")
     group.add_argument("--since", metavar="TAG", help="Git tag to compare against.")
     args = parser.parse_args()
-    print(_report(args.base or args.since))  # noqa: T201
+    print(_report(args.base or args.since))
 
 
 if __name__ == "__main__":

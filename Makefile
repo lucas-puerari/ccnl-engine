@@ -34,10 +34,10 @@ cognitive-complexity:
 # Docs / data scripts
 
 coverage-matrix:
-	uv run python docs/scripts/gen_coverage_matrix.py
+	uv run python scripts/docs/gen_coverage_matrix.py
 
 rehash:
-	uv run python docs/scripts/rehash_ccnl.py
+	uv run python scripts/docs/rehash_ccnl.py
 
 contract-pages:
-	uv run python docs/scripts/gen_contract_pages.py
+	uv run python scripts/docs/gen_contract_pages.py

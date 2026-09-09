@@ -1,7 +1,7 @@
 """Generate one documentation page per CCNL contract from its JSON data.
 
 Run:
-    uv run python docs/scripts/gen_contract_pages.py
+    uv run python scripts/docs/gen_contract_pages.py
 
 Each page replaces the raw JSON dump with a structured layout:
   - Header card: CNEL code, sector, renewal, workers, extraction status
