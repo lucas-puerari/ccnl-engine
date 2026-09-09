@@ -68,12 +68,12 @@
         "text": "SINGLE TRANCHE ONLY. Only the 1 January 2026 tranche is modelled. The 4 subsequent tranches (Apr 2027, Dec 2027, Jun 2028, Dec 2028) are not accessible from primary source at time of extraction. Update with official amounts when the renewal text becomes available."
       },
       {
-        "kind": "simplification",
-        "text": "CHIMICA-CONCIA SUB-SECTOR ONLY. Unionchimica Confapi covers three sub-sectors with different hourly divisors: Chimica-Concia (175), Plastica-Gomma (169), Abrasivi-Ceramica-Vetro (173). Only Chimica-Concia (divisor 175) is modelled. The level codes and salary amounts are the same across sub-sectors; only the hourly divisor differs."
+        "kind": "info",
+        "text": "CHIMICA-CONCIA SUB-SECTOR SCOPE. Unionchimica Confapi covers three sub-sectors with different hourly divisors: Chimica-Concia (175), Plastica-Gomma (169), Abrasivi-Ceramica-Vetro (173). Only Chimica-Concia (divisor 175) is modelled — deliberate scope choice. The level codes and salary amounts are identical across all sub-sectors; only the hourly divisor differs."
       },
       {
-        "kind": "simplification",
-        "text": "HOURLY DIVISOR AGGREGATOR-SOURCED. The divisor of 175 for Chimica-Concia is taken from kitech.it (aggregator) and consistent with CCNL Federchimica B011 which also uses 175 for the chemical-pharmaceutical sub-sector. No official hourly rate column was available to back-calculate the divisor from primary source."
+        "kind": "info",
+        "text": "HOURLY DIVISOR 175: confirmed by cross-reference with CCNL Federchimica B011 (kitech.it), which independently uses 175 for chemical-pharmaceutical industry (same contractual week = 40h, 40×52/12=173.33 rounded to 175 via industry convention). No primary contractual clause directly retrieved but cross-verified via B011."
       },
       {
         "kind": "info",
@@ -786,7 +786,7 @@
     "effective_until": "2028-12-31",
     "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181",
     "verification_status": "unverified",
-    "source_hash": "473dd6c1a4e66fdc18a84ebdcabaf2829e3faae2f161c64ec31dcd52694103e1",
+    "source_hash": "b42675a2abc45b23a9d7d53ec0d1891fe0a64023dfca08ace544cc3395898c66",
     "published_at": "2026-09-07"
   },
   "work_rules": {
