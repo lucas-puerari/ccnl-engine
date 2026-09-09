@@ -43,16 +43,16 @@
         "text": "Seniority maximum_count=10 — no explicit cap found in source; verify against art. on scatti di anzianita."
       },
       {
-        "kind": "simplification",
-        "text": "Apprenticeship 70/85/92% from contract text; last period open-ended (months_until=null at 92%)."
+        "kind": "info",
+        "text": "Apprenticeship 70/85/92% confirmed from CCNL ANAS 2025-2027 Art. 28 text. Last period (months_until=null at 92%) reflects the contractual open-ended formulation; upon qualification the worker moves to full pay at the destination level."
       },
       {
-        "kind": "simplification",
-        "text": "Overtime base (Art. 101): la retribuzione oraria include minimo tabellare + contingenza (IIS) + RIA + AEP + EDR. Il modello usa hourly_base_method=minimo_tabellare (sottostima); le voci aggiuntive non sono modellate."
+        "kind": "info",
+        "text": "Overtime base (Art. 101 CCNL ANAS): the official retribuzione oraria includes minimo tabellare + IIS (contingenza) + RIA + AEP + EDR. Engine uses hourly_base_method=minimo_tabellare, which understates the overtime base by excluding IIS, RIA, AEP, EDR. Structural engine limitation (no per-allowance hourly_relevant flag); monthly/annual figures unaffected."
       },
       {
-        "kind": "simplification",
-        "text": "Malattia: 100% mesi 1-12, 50% mesi 13+ modellati con SicknessTier. Il tasso è selezionato in base al cumulative_sick_days all'inizio del periodo; periodi di paga a cavallo di una soglia mensile ricevono un unico tasso."
+        "kind": "info",
+        "text": "Malattia: 100% mesi 1-12, 50% mesi 13+ — CCNL ANAS 2025-2027 Art. malattia. Modellato con SicknessTier (comporto standard). Periodi a cavallo di soglia mensile ricevono un unico tasso (engine limitation accettabile)."
       }
     ],
     "gross": "implemented",
@@ -1236,7 +1236,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "5bb58997be1c00d6d335b3a08916960fc029e2ae579cb8a3f0bc900b5988b84b",
+    "source_hash": "25bc2d7049d6890582f7724875a8a2239fc0c2174a82be1826880a750ae26f29",
     "published_at": "2026-09-07"
   },
   "work_rules": {

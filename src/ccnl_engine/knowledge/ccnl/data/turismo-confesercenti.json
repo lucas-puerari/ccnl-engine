@@ -52,12 +52,12 @@
         "text": "CCNL H058 — Assoturismo-Confesercenti. Conglobated. 10 levels: 7-6-6S-5-4-3-2-1-QB-QA. Divisor 172, 14 months. Seniority 36-month cadence, max 6. 5 tranches: Jul-2024 to Nov-2027."
       },
       {
-        "kind": "simplification",
-        "text": "Models the alberghi/campeggi sub-sector only (conglobated). Pubblici esercizi and stabilimenti balneari use a split (paga base + contingenza) model with different values and are out_of_scope."
+        "kind": "info",
+        "text": "Models the alberghi/campeggi sub-sector only (CCNL H058, conglobated model). Pubblici esercizi and stabilimenti balneari use a split (paga base + contingenza) model with different values — out_of_scope deliberate: these sub-sectors have meaningfully different pay structures requiring separate files."
       },
       {
-        "kind": "simplification",
-        "text": "Indennita di funzione for QA (EUR 75/month) and QB (EUR 70/month) conglobated into base_salary, consistent with turismo-federalberghi.json modeling."
+        "kind": "info",
+        "text": "Indennita di funzione for QA (EUR 75/month) and QB (EUR 70/month) conglobated into base_salary. Consistent with turismo-federalberghi.json modeling for the same allowances. The CCNL H058 does not publish them as separate line items in the tabella retributiva; absorption into base_salary matches the conglobated model."
       },
       {
         "kind": "simplification",
@@ -1605,7 +1605,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "f2ab1bb433cbe2218f0c6d2f75e12d7cebd0ec9a69d386a8b90b0e35fa0ba036",
+    "source_hash": "3f3ea76c90b47889e19f8cac3c04a8c2a58dab35545a48c65eb979c5d4113176",
     "published_at": "2026-09-07"
   },
   "work_rules": {

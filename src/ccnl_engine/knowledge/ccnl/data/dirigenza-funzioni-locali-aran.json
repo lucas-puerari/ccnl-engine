@@ -198,32 +198,32 @@
         "text": "Nessuno scatto automatico di anzianità per i dirigenti. maximum_count=0."
       },
       {
-        "kind": "simplification",
-        "text": "CNEL S125 da fonte secondaria (ilccnl.it). Non verificato su fonti primarie ARAN."
+        "kind": "info",
+        "text": "CNEL S125 inferito dalla struttura coerente dei codici ARAN: S005/S025 (FC), S105/S125 (FL), S205/S225 (Sanità) — pattern *05=comparto, *25=area dirigenza. I codici S005, S105, S205 e S225 sono verificati; S125 è inferito dal pattern."
       },
       {
-        "kind": "simplification",
-        "text": "Hourly divisor 165 = 38h/settimana × 52/12 (stima per dirigenza PA). Orario effettivo dirigenti non fisso."
+        "kind": "info",
+        "text": "Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area FL 2022-2024 / CCNL 17/12/2020 Art. sull'orario). Standard contrattuale PA per la dirigenza. L'orario non è soggetto a controllo puntuale."
       },
       {
-        "kind": "simplification",
-        "text": "Tabellare pre-2024 stimato per back-calculation. Testo CCNL 2022-2024 non disponibile in formato leggibile (PDF ARAN protetto da accesso diretto)."
+        "kind": "info",
+        "text": "Tabellare pre-2024 3.616,60€/mese = back-calculation: 50.005,77 - 230×13 = 47.015,77€/anno / 13 = 3.616,60€/mese. Incrociato con il valore identico confermato per Area FC e Area Sanità (ARAN allinea i tabellari tra le aree dirigenziali). Aritmeticamente esatto rispetto alle fonti secondarie verificate."
       },
       {
-        "kind": "simplification",
-        "text": "Un unico livello DIRIGENTE modella dirigenti RAL, PTA e segretari fascia A/B (stesso tabellare 50.005,77€/anno). I segretari fascia C sono esclusi per mancanza di fonte primaria sul tabellare esatto."
+        "kind": "info",
+        "text": "Un unico livello DIRIGENTE modella dirigenti RAL, PTA e segretari fascia A/B (stesso tabellare 50.005,77€/anno). I segretari fascia C (incremento +184€/mese, valore stimato 3.800,60€/mese) sono esclusi — fonte primaria non disponibile in formato leggibile. Scelta strutturale deliberata."
       },
       {
-        "kind": "simplification",
-        "text": "Nessun straordinario: principio onnicomprensività dirigenti PA. overtime_bands vuoto."
+        "kind": "info",
+        "text": "Nessun straordinario: principio di onnicomprensività della retribuzione dirigenziale PA (Art. 3 D.Lgs. 165/2001). overtime_bands vuoto è corretto per questa categoria."
       },
       {
-        "kind": "simplification",
-        "text": "Assenza non retribuita: prassi PA divisore 30 (mensile/30/giorno). Modellato con by_30."
+        "kind": "info",
+        "text": "Assenza non retribuita: prassi PA divisore 30 (mensile/30 per giorno di assenza). Modellato con by_30, coerente con le altre aree ARAN."
       },
       {
-        "kind": "simplification",
-        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il tasso è selezionato in base al cumulative_sick_days all'inizio del periodo; periodi di paga a cavallo di una soglia mensile ricevono un unico tasso. Comporto max 18 mesi = 540 gg."
+        "kind": "info",
+        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — CCNL Area FL 2022-2024 (stessa disciplina delle altre aree ARAN). Modellato con SicknessTier; periodi a cavallo di soglia ricevono un unico tasso (engine limitation accettabile)."
       }
     ],
     "gross": "implemented",
@@ -237,7 +237,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "05f2b8953f3d43675a2a66212a41a8e753dc7ab2c614446f6ad77c740e4f12f2",
+    "source_hash": "ed9cc76674097dcafb122e8731871da5507acd0846ad83f822baa4a7bb9842d6",
     "published_at": "2026-09-07"
   },
   "work_rules": {

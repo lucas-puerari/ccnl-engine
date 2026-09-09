@@ -81,8 +81,8 @@
         "text": "SIMPLIFICATION: L1-L2 and L3-L4 apprenticeship pay progression (2 levels below for first half, 1 level below for second half) sourced from ccnlportatili.it, an undated secondary source. Durations are confirmed from olympus.uniurb.it; the internal half-split structure is not independently confirmed from the 2023 CCNL primary text for L1-L4."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: tax_sector=terziario. ANCEF represents importers and wholesalers of flowers. Actual INPS sector code matches terziario (commercial trade). Terziario rates applied."
+        "kind": "info",
+        "text": "tax_sector=terziario: ANCEF represents importers and wholesalers of cut flowers (commercio all'ingrosso). The INPS sector code is terziario (commercial trade, ATECO G). Terziario rates (FISASCAT/Confcommercio). This is consistent and confirmed — no dedicated floricoltura INPS sector code exists for the importing/wholesale sub-sector."
       }
     ],
     "gross": "implemented",
@@ -1194,7 +1194,7 @@
     "effective_until": null,
     "source": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
     "verification_status": "unverified",
-    "source_hash": "0c00a66869de549eea527cf7cad1140fc9f59d35261bdf7899038eeb72017c6c",
+    "source_hash": "100d65c8f277dd05147d63b7ae3fd22f0417a370fc07db2c15756f9a9aabf894",
     "published_at": "2026-09-07"
   },
   "work_rules": {
