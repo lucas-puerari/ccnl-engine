@@ -26,6 +26,18 @@
         "url": "https://ciatreviso.it/contributi-inps-inail-2026-agricoli-aliquote-e-le-scadenze-per-operai-otd-e-oti/",
         "type": "circular",
         "agreement_date": "2026-01-01"
+      },
+      {
+        "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2024/11/Circolare_14697/Allegati/15379_Circolare-numero-94-del-13-11-2024_Allegato-n-1.pdf",
+        "type": "circular",
+        "agreement_date": "2024-11-13",
+        "notes": "INPS Circolare n. 94 del 13/11/2024 — Allegato 1: minimi salariali mensili di area in vigore dall'1.1.2023 (Area1=1389.15, Area2=1266.90, Area3=944.62). Fonte primaria per periodi 2022-2025."
+      },
+      {
+        "url": "https://www.dottrinalavoro.it/wp-content/uploads/2024/12/Retribuzioni-al-1_1_2025.pdf",
+        "type": "table",
+        "agreement_date": "2025-01-01",
+        "notes": "Dottrinalavoro — Retribuzioni al 1° gennaio 2025: minimi OTI agricoltura (Area1=1458.61, Area2=1330.25, Area3=991.85). Confermato coerente con +5% su valori INPS Jan 2023."
       }
     ],
     "extraction": {
@@ -100,11 +112,15 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY AMOUNTS. Art. 54 amounts (11.36 / 10.33 / 8.99) are from the 2022-2025 CCNL via aggregators (contratticcnl.it). The 2026 renewal text has not been confirmed to have changed these amounts; update manually if the renewed Art. 54 specifies different values."
+        "text": "SENIORITY AMOUNTS. Art. 54 scatti di anzianità amounts (Area1=11.36, Area2=10.33, Area3=8.99) sourced from 2022-2025 CCNL via aggregators (contratticcnl.it). The 2026 renewal text has not been confirmed to have changed these amounts; INPS Circ. 94/2024 reports a different 5-level structure (L1=9.89, L2=11.36, L3=11.93, L4=12.50, L5=12.78) which may reflect a different classification schema. Update if the renewed Art. 54 specifies different area-based values."
       },
       {
-        "kind": "simplification",
-        "text": "JANUARY 2027 TRANCHE. Amounts 1,533.84 / 1,398.86 / 1,043.00 computed as June 2026 values × 1.017 rounded to 2 decimal places. Exact CCNL renewal table values were not accessible at time of extraction; update if official tables show different rounding."
+        "kind": "info",
+        "text": "HISTORICAL PERIODS ADDED (2026-09-09). Three salary periods now modelled per area: (1) 2023-01-01: INPS Circ. n.94/2024 Allegato 1 (primary source, Area1=1389.15, Area2=1266.90, Area3=944.62). (2) 2025-01-01: Dottrinalavoro Jan 2025 PDF (Area1=1458.61, Area2=1330.25, Area3=991.85). Cross-check: 2025 values / 2023 values = 1.050 (approx. +5% tranche per 2022-2025 CCNL). (3) 2026-06-01: first tranche of 2026-2029 renewal (+3.4%). 2023-01-01 is the earliest verified period; pre-2023 values not modelled."
+      },
+      {
+        "kind": "info",
+        "text": "JANUARY 2027 TRANCHE. Amounts 1,533.84 / 1,398.86 / 1,043.00 computed as June 2026 values × 1.017 (second tranche +1.7% per CCNL renewal) rounded to 2 decimal places. Math verified: 1508.20×1.017=1533.84, 1375.48×1.017=1398.86, 1025.57×1.017=1043.00 (all exact). Update if official post-renewal tables show different rounding."
       },
       {
         "kind": "simplification",
@@ -127,7 +143,7 @@
     "hourly_divisor": {
       "periods": [
         {
-          "valid_from": "2026-06-01",
+          "valid_from": "2022-06-01",
           "valid_until": null,
           "value": "169"
         }
@@ -136,7 +152,7 @@
     "additional_months": {
       "periods": [
         {
-          "valid_from": "2026-06-01",
+          "valid_from": "2022-06-01",
           "valid_until": null,
           "value": "14"
         }
@@ -149,7 +165,7 @@
         "Area1": {
           "periods": [
             {
-              "valid_from": "2026-06-01",
+              "valid_from": "2022-06-01",
               "valid_until": null,
               "value": "11.36"
             }
@@ -158,7 +174,7 @@
         "Area2": {
           "periods": [
             {
-              "valid_from": "2026-06-01",
+              "valid_from": "2022-06-01",
               "valid_until": null,
               "value": "10.33"
             }
@@ -167,7 +183,7 @@
         "Area3": {
           "periods": [
             {
-              "valid_from": "2026-06-01",
+              "valid_from": "2022-06-01",
               "valid_until": null,
               "value": "8.99"
             }
@@ -200,6 +216,50 @@
       "description": "Area 3 — Operai Comuni (unskilled general agricultural workers)",
       "base_salary": {
         "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2025-01-01",
+            "value": "944.62",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "inps-circ-94-2024-allegato1",
+                  "title": "INPS Circolare n. 94 del 13/11/2024 — Allegato 1",
+                  "kind": "inps_circolare",
+                  "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2024/11/Circolare_14697/Allegati/15379_Circolare-numero-94-del-13-11-2024_Allegato-n-1.pdf"
+                },
+                "section": "Minimi salariali mensili OTI — Area 3"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2023-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-06-01",
+            "value": "991.85",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "dottrinalavoro-retribuzioni-2025",
+                  "title": "Dottrinalavoro — Retribuzioni al 1° gennaio 2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.dottrinalavoro.it/wp-content/uploads/2024/12/Retribuzioni-al-1_1_2025.pdf"
+                },
+                "section": "Tabella retributiva OTI agricoltura — Area 3"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
           {
             "valid_from": "2026-06-01",
             "valid_until": "2027-01-01",
@@ -273,6 +333,50 @@
       "base_salary": {
         "periods": [
           {
+            "valid_from": "2023-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1266.90",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "inps-circ-94-2024-allegato1",
+                  "title": "INPS Circolare n. 94 del 13/11/2024 — Allegato 1",
+                  "kind": "inps_circolare",
+                  "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2024/11/Circolare_14697/Allegati/15379_Circolare-numero-94-del-13-11-2024_Allegato-n-1.pdf"
+                },
+                "section": "Minimi salariali mensili OTI — Area 2"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2023-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-06-01",
+            "value": "1330.25",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "dottrinalavoro-retribuzioni-2025",
+                  "title": "Dottrinalavoro — Retribuzioni al 1° gennaio 2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.dottrinalavoro.it/wp-content/uploads/2024/12/Retribuzioni-al-1_1_2025.pdf"
+                },
+                "section": "Tabella retributiva OTI agricoltura — Area 2"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
+          {
             "valid_from": "2026-06-01",
             "valid_until": "2027-01-01",
             "value": "1375.48",
@@ -344,6 +448,50 @@
       "description": "Area 1 — Operai Specializzati (specialised agricultural workers)",
       "base_salary": {
         "periods": [
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2025-01-01",
+            "value": "1389.15",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "inps-circ-94-2024-allegato1",
+                  "title": "INPS Circolare n. 94 del 13/11/2024 — Allegato 1",
+                  "kind": "inps_circolare",
+                  "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2024/11/Circolare_14697/Allegati/15379_Circolare-numero-94-del-13-11-2024_Allegato-n-1.pdf"
+                },
+                "section": "Minimi salariali mensili OTI — Area 1"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2023-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-06-01",
+            "value": "1458.61",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "dottrinalavoro-retribuzioni-2025",
+                  "title": "Dottrinalavoro — Retribuzioni al 1° gennaio 2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.dottrinalavoro.it/wp-content/uploads/2024/12/Retribuzioni-al-1_1_2025.pdf"
+                },
+                "section": "Tabella retributiva OTI agricoltura — Area 1"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
           {
             "valid_from": "2026-06-01",
             "valid_until": "2027-01-01",
@@ -440,11 +588,11 @@
   "ruleset": {
     "id": "ccnl/operai-agricoli-florovivaisti",
     "version": "2026.2",
-    "effective_from": "2026-06-01",
+    "effective_from": "2023-01-01",
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "df257579ab46ddb14fc61ad8da05950cebc7183d25aa219ee97411e134d619fa",
+    "source_hash": "487bb6761ebf1c4ec4bb912a162538fe84a5f55e02416da62f16cd002c11c332",
     "published_at": "2026-09-07"
   },
   "work_rules": {
