@@ -106,3 +106,37 @@ if calculation.trace.supplement_steps:
     print("\n  Supplement trace:")
     for step in calculation.trace.supplement_steps:
         print(f"  {step.category:<20} {step.label:<30} {step.amount} EUR")
+
+# --- 7. Fiscal trace — annotated gross-to-net derivation ---
+# Each step carries a formula (algebraic derivation), a source (statutory
+# reference), and a rounding descriptor (set only when a rate multiplication
+# or bracket computation is involved; absent for pure additions/subtractions).
+print("\n=== Fiscal trace (gross → net, annual) ===")
+for step in calculation.trace.fiscal_steps:
+    print(f"  {step.category:<25} {step.amount:>12} EUR")
+    if step.formula:
+        print(f"    formula : {step.formula}")
+    if step.source:
+        print(f"    source  : {step.source}")
+    if step.rounding:
+        print(f"    rounding: {step.rounding}")
+
+# The fiscal closure invariant: net can be independently verified from the
+# other steps without trusting the engine's own net_annual field.
+by_cat = {s.category: s for s in calculation.trace.fiscal_steps}
+
+from ccnl_engine.engine.payroll.domain.calculation import TraceCategory  # noqa: E402
+
+gross = by_cat[TraceCategory.GROSS].amount
+inps = by_cat[TraceCategory.INPS_EMPLOYEE].amount
+irpef = by_cat[TraceCategory.IRPEF_NET].amount
+add_reg = by_cat[TraceCategory.ADDIZIONALE_REGIONALE].amount
+add_com = by_cat[TraceCategory.ADDIZIONALE_COMUNALE].amount
+ti = by_cat[TraceCategory.TRATTAMENTO_INTEGRATIVO].amount
+net_from_trace = gross - inps - irpef - add_reg - add_com + ti
+
+print(f"\n  Closure check: {net_from_trace} EUR (from trace steps)")
+print(f"  Result field:  {p.net_annual} EUR (from PayrollResult)")
+assert net_from_trace == p.net_annual, (
+    f"fiscal closure violated: {net_from_trace} != {p.net_annual}"
+)
