@@ -113,7 +113,7 @@
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": "2027-01-01",
+            "valid_until": "2026-01-01",
             "value": "1637.12",
             "provenance": {
               "location": {
@@ -134,7 +134,7 @@
             }
           },
           {
-            "valid_from": "2027-01-01",
+            "valid_from": "2026-01-01",
             "valid_until": null,
             "value": "1646.09",
             "provenance": {
@@ -207,7 +207,7 @@
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": "2027-01-01",
+            "valid_until": "2026-01-01",
             "value": "1704.38",
             "provenance": {
               "location": {
@@ -228,7 +228,7 @@
             }
           },
           {
-            "valid_from": "2027-01-01",
+            "valid_from": "2026-01-01",
             "valid_until": null,
             "value": "1715.27",
             "provenance": {
@@ -301,7 +301,7 @@
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": "2027-01-01",
+            "valid_until": "2026-01-01",
             "value": "1915.55",
             "provenance": {
               "location": {
@@ -322,7 +322,7 @@
             }
           },
           {
-            "valid_from": "2027-01-01",
+            "valid_from": "2026-01-01",
             "valid_until": null,
             "value": "1928.23",
             "provenance": {
@@ -395,7 +395,7 @@
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": "2027-01-01",
+            "valid_until": "2026-01-01",
             "value": "2078.47",
             "provenance": {
               "location": {
@@ -416,7 +416,7 @@
             }
           },
           {
-            "valid_from": "2027-01-01",
+            "valid_from": "2026-01-01",
             "valid_until": null,
             "value": "2092.84",
             "provenance": {
@@ -472,7 +472,7 @@
       },
       {
         "kind": "source",
-        "text": "Tranche 3 (2027-01-01) from parziale conglobamento indennità di comparto (Art. 60): Tabella B col.2 / 12. Effective from 1 January of the year following CCNL signature (2026 → 2027-01-01)."
+        "text": "Tranche 3 (2026-01-01) from parziale conglobamento indennità di comparto (Art. 60): Tabella B col.2 / 12. ARAN announcement explicitly states 'decorrenza retroattiva al 1/1/2026'. DATE CORRECTED 2026-09-09: was incorrectly set to 2027-01-01 in initial extraction; confirmed as 2026-01-01 via ilccnl.it (values match exactly) and ARAN press release."
       },
       {
         "kind": "source",
@@ -491,16 +491,20 @@
         "text": "Seniority via differenziali stipendiali (Art. 14 and Art. 78 CCNL 16.11.2022): selective procedure, not automatic — maximum_count=0."
       },
       {
-        "kind": "simplification",
-        "text": "CNEL code S105 from secondary source (lavoro-economia.it). Not stated in official PDF."
+        "kind": "info",
+        "text": "CNEL code S105 confirmed via multiple secondary sources: kitech.it lists 'CCNL Comparto Funzioni Locali [Cnel: S105]', lavoro-economia.it concurs. Not stated in official ARAN PDF; CNEL archive not separately queried."
       },
       {
         "kind": "simplification",
-        "text": "Pre-2024 base values derived by back-calculation; 2022-2023 anticipation payments (Art. 47-bis D.Lgs. 165/2001) not modelled as intermediate periods."
+        "text": "PRE-2024 BACK-CALCULATED. Nov 2022 values derived by back-calculation (2024 values minus Tabella A col.1 increments). 2022-2023 anticipation payments (Art. 47-bis D.Lgs. 165/2001) not modelled as intermediate periods."
       },
       {
         "kind": "simplification",
         "text": "Indennità di comparto post-conglobamento (Tabella C col.4) fully charged to Fondo risorse decentrate — not modelled as a fixed_allowance (varies by administration and is not a universal fixed amount)."
+      },
+      {
+        "kind": "simplification",
+        "text": "2025-2027 RENEWAL NOT YET MODELLED. ARAN signed an ipotesi di CCNL Funzioni Locali 2025-2027 on 21 July 2026. Retroactive increases from Jan 1, 2025. Pending comitato di settore, Governo, and Corte dei conti certification. Average monthly increase will be around €136.76 from base; exact per-level amounts not yet verified for this file."
       }
     ],
     "gross": "implemented",
@@ -514,7 +518,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "c349e1f96867a4737ac2f018aff61fd799d86f220e87bdfe02c59da22a418b71",
+    "source_hash": "65198105022f679750b0946cb44478683558202e62bb28fbb6108ecd7cf77ccc",
     "published_at": "2026-09-07"
   },
   "work_rules": {

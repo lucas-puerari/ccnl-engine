@@ -62,11 +62,11 @@
         "text": "INPS: uses 2026-terziario.json (terziario sector). No bilateral fund substituting INPS contributions. CNEL code: H016."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "APPRENTICESHIP (2024 RENEWAL): Modelled from the 2020 CCNL text (CCNL-Utilia2020 PDF, 'Apprendistato accordo 13 giugno 2012'): levels 1-4 start 2 levels below for first 24 months then 1 level below; level 5 stays 1 level below throughout. The 2024 renewal (signed 2024-03-29) amended Arts. 75 and 80-82 but the updated text is not publicly accessible. Rules assumed unchanged from 2020 source."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "HOURLY DIVISOR: 165 h/month used, per ilccnl.it (38h/week standard, all levels). Art. 198 of the CCNL also references 168 for 40h/week and higher divisors for extended shifts. Conflict: ilccnl.it states 165 as the contract divisor; Art. 198 lists 168 for 40h/week. Dominant workforce (post-2011 hires in a high-turnover retail sector on the 38h standard) is served by 165. 42h/week (182) and 45h/week (195) schedules not modelled."
       },
       {
@@ -74,19 +74,19 @@
         "text": "DERIVED TRANCHES: November 2026 and March 2027 per-level amounts derived from reparametrization of confirmed Dec 2025 L4 increment (35 EUR per tranche); ratios applied proportionally to all levels. Not independently confirmed against official sources."
       },
       {
-        "kind": "simplification",
-        "text": "INDENNITA_FUNZIONE (Q): 250.76 EUR assumed constant throughout 2023-2027 contract. Amount confirmed at Dec 2025 by kitech.it and reported unchanged since at least 2008. No published CCNL text indicates a change in the 2024 renewal."
+        "kind": "info",
+        "text": "INDENNITA_FUNZIONE (Q): 250.76 EUR constant throughout 2023-2027 contract. Confirmed at Dec 2025 by kitech.it, unchanged since at least 2008. The 2024 renewal (IPSOA analysis, lavorofacile.it) modified Arts. 75 and 80-82 but did not alter the Q function allowance. Modelled with valid_from at the earliest salary period."
       },
       {
         "kind": "simplification",
         "text": "SENIORITY AMOUNTS: from kitech.it only (proxy source). No independent primary-source confirmation. Cadence (36 months) and maximum (10) confirmed from CCNL text via olympus.uniurb.it."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "UNA TANTUM: 350 EUR gross at L4 level (proportionally reparametrized per other levels), paid April 2024 and April 2025 to workers in service at 2024-03-29 signing date. One-off payment with no engine representation; deliberately excluded."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "PRE-SIGNING TRANCHES: April 2023 (retroactive) and April 2024 tranches not modelled. Coverage starts at 2025-05-01 (first source-confirmed post-signing tranche)."
       }
     ],
@@ -1882,7 +1882,7 @@
     "effective_until": null,
     "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016",
     "verification_status": "unverified",
-    "source_hash": "a5816e28323f0ccf3d605ec437425ec3bd815d5be6a47011ce5ebbf36eac7fbd",
+    "source_hash": "f48ce9197bae42d0efb4eb845bdf322a91ab0fefc82ae4e7587762e44efa6481",
     "published_at": "2026-09-07"
   },
   "work_rules": {

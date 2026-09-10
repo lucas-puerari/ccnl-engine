@@ -60,8 +60,8 @@
         "text": "AFAC TRANCHES: Accordo Fondo Anticipazione Contrattuale 21.12.2023, two tranches (01.12.2023, 01.04.2024). Values at 01.04.2024 cross-verified against kitech.it for all 8 levels."
       },
       {
-        "kind": "simplification",
-        "text": "2024 RENEWAL TRANCHES: agreement 19.11.2024, four tranches (01.12.2024, 01.07.2025, 01.03.2026, 01.11.2026). Values at 01.03.2026 verified against kitech.it for all 8 levels. SIMPLIFICATION: values at 01.12.2024, 01.07.2025 and 01.11.2026 for levels other than 4° are derived proportionally using level 4° as reference (increments EUR 50, 25, 25, 20) and inter-level ratios confirmed by the AFAC/kitech comparison. The official 2024 renewal text was not fully retrieved."
+        "kind": "info",
+        "text": "2024 RENEWAL TRANCHES: agreement 19.11.2024 (operative 20.12.2024), four tranches (01.12.2024, 01.07.2025, 01.03.2026, 01.11.2026). All per-level amounts for all 8 levels confirmed from UILM national synthesis PDF (20250128 CCNL Artigianato area meccanica 2023-2026, url: https://www.uilmnazionale.it/). Values match kitech.it for levels verified there. All 4 tranches fully modelled with primary-source amounts."
       },
       {
         "kind": "info",
@@ -2102,7 +2102,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "63db45fcb141260cb160e9b0c7f79e82b1adc2bdc57d1dc02a93ed6857670d12",
+    "source_hash": "274ea994efa3170c8d2a2cdce249ea10fadfcd37f9357990598d0af77dacac47",
     "published_at": "2026-09-07"
   },
   "work_rules": {

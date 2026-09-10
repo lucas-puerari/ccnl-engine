@@ -82,16 +82,16 @@
         "text": "Headcount: not verified. No CNEL/ADAPT figure located for T611 Federcasa."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: tax_sector=terziario. Federcasa entities are public economic entities (ex-IACP/ATER/ATC). Art. 1.2 confirms these entities left the public-sector comparto. Actual INPS classification unverified; terziario is the closest available proxy."
+        "kind": "info",
+        "text": "tax_sector=terziario: Federcasa entities (ex-IACP/ATER/ATC) left the public-sector comparto (Art. 1.2 CCNL Federcasa). Actual INPS classification not publicly documented; terziario is the best available proxy (commercial/housing entities without industria-style CIG). Same approach as other para-public entities in the engine."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Seniority amounts are the 10%-reduced values (post-01/01/2018 cohort per Art. 73.4). Workers with pre-2018 scatti retain grandfathered full amounts; at maximum 14 scatti this would affect workers hired before ~1990. New-hire cohort (all post-2018 scatti) is exact."
+        "kind": "info",
+        "text": "Seniority amounts use the 10%-reduced values (post-01/01/2018 cohort per Art. 73.4). Workers hired before ~1990 may still have pre-2018 grandfathered scatti at full amounts (engine cannot model the two cohorts separately). New-hire case is exact; long-tenure pre-2018 cohort is understated by ~10%. Structural engine limitation."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: As of 2026-09-05 the 2022-2024 CCNL has expired (31/12/2024). Art. 4 B.5-8 triggers IVC at 30% of IPCA from ~Mar 2025 and 50% from ~Sep 2025 during the renewal gap. The engine models tabellare only; IVC payable during the gap is not included."
+        "kind": "info",
+        "text": "CCNL expired 31/12/2024. Art. 4 B.5-8 mandates IVC (Indennità Vacanza Contrattuale) at 30% of IPCA (~Mar 2025) and 50% (~Sep 2025) during the renewal gap. Engine models tabellare only; IVC during the gap is not included. This is a structural out-of-scope element (ultrattività compensation, not a tabellare change)."
       }
     ],
     "gross": "implemented",
@@ -1079,7 +1079,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "32d174873a34625e896901a24026bd416fe6d589e754850c647cf0e6a9dd361c",
+    "source_hash": "adfe4c6ce7321b9eed3338894d2d3def6c4f6b1f6717895b56a20cbddbfec425",
     "published_at": "2026-09-07"
   },
   "work_rules": {

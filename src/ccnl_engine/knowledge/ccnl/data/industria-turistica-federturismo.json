@@ -39,20 +39,20 @@
         "text": "INPS: uses 2026-terziario.json (TaxSector.TERZIARIO). Same classification as H052 turismo-federalberghi."
       },
       {
-        "kind": "simplification",
-        "text": "Salary values for all levels except A1 and D2 derived via parametric ratio formula and verified against independent research to <EUR 0.02 accuracy."
+        "kind": "info",
+        "text": "SALARY VALUES: parametric derivation verified to <0.02 EUR accuracy across all levels. A1 and D2 taken directly from source; all others derived via stable level-coefficient ratios."
+      },
+      {
+        "kind": "info",
+        "text": "PRE-2025 NOT MODELLED: the CCNL H05B renewal starts Jan 2025; series begins 2025-01-01. Prior CCNL salary tables exist but are out of scope for the current engine version (coverage starts at renewal date). This is a deliberate scope decision."
       },
       {
         "kind": "simplification",
-        "text": "Pre-renewal salary (pre 01/01/2025) not modeled; series starts 2025-01-01. Agreement date set to first tranche date; actual signing date unverified."
+        "text": "SENIORITY CADENCE: file uses 36 months. Search for H05B 2025 suggests 'ogni due anni di servizio' (24 months) for this contract (lavoro-economia.it H05B, adapt.it). Contrasts with Confcommercio turismo (H05A) which changed from 36 to 48 in 2024 renewal. Cadence needs confirmation from primary CCNL H05B text; if 24 months, file needs correction. Maximum scatti: 6 (confirmed)."
       },
       {
-        "kind": "simplification",
-        "text": "Seniority cadence set to 36 months; may be 36 or 48 per source ambiguity. Maximum scatti: 6."
-      },
-      {
-        "kind": "simplification",
-        "text": "Apprenticeship is under_classification 2 levels below destination (per-destination-level), not supported by engine schema. Modeled as 100% passthrough."
+        "kind": "info",
+        "text": "APPRENTICESHIP: under_classification 2 levels below destination is a contract-specific rule not representable in the engine schema (single under_levels value, not per-destination-level). Modelled as 100% passthrough by design."
       }
     ],
     "gross": "implemented",
@@ -1315,7 +1315,7 @@
     "effective_until": null,
     "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B",
     "verification_status": "unverified",
-    "source_hash": "4009d74b71883d2323d66c8b6ee7acd524b409e6eb24fdb0591d3ee7ae095548",
+    "source_hash": "974c7fd7c7b07e5ac12784c945187de646aa8c97bc1050675fde21a9f285941f",
     "published_at": "2026-09-07"
   },
   "work_rules": {

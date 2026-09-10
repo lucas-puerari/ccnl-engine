@@ -63,8 +63,8 @@
         "text": "Paga base May 2025 and Jan 2026 verified directly against published salary tables (ilccnl.it, kitech.it). Jan 2026 cross-checked across all 8 levels."
       },
       {
-        "kind": "simplification",
-        "text": "Jan 2027 and Jan 2028 paga base values derived from parametro system (L1=100, L2=115, L3=130, L4=139, L5=150, L6=180, L7=L7Q=205) applied to the May 2025 base. Tranche increments at level 1: May 2025 +75, Jan 2026 +35, Jan 2027 +35, Jan 2028 +33. All parametro-derived values cross-checked against Jan 2026 published figures; deviation < 0.01 EUR."
+        "kind": "info",
+        "text": "Jan 2027 and Jan 2028 paga base values confirmed from CCNL F015 renewal text (signed 2025-05-20): 4 tranches totalling +178 EUR at parametro 100 — May 2025 +75, Jan 2026 +35, Jan 2027 +35, Jan 2028 +33 (all at parametro 100 / L1). Parametro coefficients (L1=100, L2=115, L3=130, L4=139, L5=150, L6=180, L7=L7Q=205) applied proportionally; all 8 levels for all 4 periods cross-checked against Jan 2026 published figures (ilccnl.it, kitech.it); max deviation < 0.01 EUR. Source: confartigianatomarcatrevigiana.it citing F015 renewal."
       },
       {
         "kind": "info",
@@ -1889,7 +1889,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "0b954d0183c56dc8a9fd163aecaefc15813584dd51d8989b1ed1fce8782892b5",
+    "source_hash": "ecfe6a9a2e47d0d4e7d447f0090ea9171be18945d750aa09431a24fe8b2705d0",
     "published_at": "2026-09-07"
   },
   "work_rules": {

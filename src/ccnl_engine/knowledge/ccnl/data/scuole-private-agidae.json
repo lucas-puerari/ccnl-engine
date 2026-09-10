@@ -64,8 +64,8 @@
         "text": "INPS: reuses 2026-terziario.json (TERZIARIO sector). Private religious schools are private-sector employers; employer INPS classification follows the general terziario sector consistent with other private educational and social institutions (cf. UNEBA T141 which uses the same sector)."
       },
       {
-        "kind": "simplification",
-        "text": "HOURLY RATE — TEACHING STAFF: hourly_divisor=164 (38h/week) applies only to ATA/non-teaching staff. L4 docenti (scuola infanzia/primaria) have 24h/week contracted hours; L5 docenti (scuola secondaria) have 18–22h/week; L6 (presidi) contractual duties also differ. hourly_rate computed by the engine for L4, L5, and the docenza component of L6 is therefore incorrect for those roles. Base monthly salary and all annual figures are unaffected."
+        "kind": "info",
+        "text": "HOURLY RATE — TEACHING STAFF: hourly_divisor=164 (38h/week) applies to ATA/non-teaching staff. L4 docenti (scuola infanzia/primaria) have 24h/week; L5 docenti (scuola secondaria) have 18–22h/week; L6 (presidi) differ. The engine hourly_rate for L4, L5, L6 is incorrect for the teaching components; this is a structural engine limitation (single divisor per contract). Base monthly salary and all annual financial figures (gross, net, INPS, TFR, IRPEF) are unaffected."
       },
       {
         "kind": "simplification",
@@ -1136,7 +1136,7 @@
     "effective_until": null,
     "source": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "761501b4297c3546332f0e840a28230abf1b7f811832ac71eee5a74865f03769",
+    "source_hash": "0991ae5a7c4a6d2935d5e6bed0e6585825261de5666fb408625ed6b118714b39",
     "published_at": "2026-09-07"
   },
   "work_rules": {

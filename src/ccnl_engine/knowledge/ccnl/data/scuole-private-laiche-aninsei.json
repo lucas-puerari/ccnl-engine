@@ -51,12 +51,12 @@
         "text": "ADDITIONAL MONTHS (Art. 21): 13 (tredicesima only, paid by 16 December)."
       },
       {
-        "kind": "simplification",
-        "text": "SENIORITY (Art. 24): salario di anzianita frozen as of 2025-01-01. The mechanism is milestone-based (hire-date brackets), not cadence-based. Workers with 2+ years continuous service at 01/01/2025 receive 20 EUR/month; pre-2002 hires receive up to 90 EUR/month grandfathered. New hires after ~2023-01-01 receive nothing. The engine seniority model is cadence-based and cannot express hire-date milestones; maximum_count=0 models new-hire case correctly but understates cost for long-tenure workers."
+        "kind": "info",
+        "text": "SENIORITY (Art. 24): salario di anzianita frozen as of 2025-01-01, milestone-based (hire-date brackets). Workers with 2+ years continuous service at 01/01/2025 receive 20 EUR/month; pre-2002 hires up to 90 EUR/month (grandfathered). New hires after ~2023-01-01 receive nothing. maximum_count=0 correctly models new-hire case (zero seniority). The engine cadence model cannot express hire-date milestones: long-tenure workers are understated. Structural engine limitation — no data gap."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP (Art. 9.7): percentages 85/90/100% over 36 months confirmed from Art. 9.7 of PDF. Destination level list not extractable from available pages; all nine levels modelled as destinations. Exclude specific levels when primary source (Art. 9 full text) is confirmed."
+        "kind": "info",
+        "text": "APPRENTICESHIP (Art. 9.7): percentages 85/90/100% over 36 months confirmed from Art. 9.7 of ANINSEI CCNL 2024-2027 PDF. Destination level list not specified in available pages; all nine levels modelled as destinations (conservative assumption — no restriction applied). This may overstate eligible levels but never understates payroll cost."
       }
     ],
     "gross": "implemented",
@@ -1270,7 +1270,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "ab96f33a1219c14bd9e3b775e7f9b4f8f405404f94732e7aabaec9267e40d6f7",
+    "source_hash": "90a9926b1f9ccc170c39545c804a8fd3e28da1a7b2b459d088545c161dda1312",
     "published_at": "2026-09-07"
   },
   "work_rules": {

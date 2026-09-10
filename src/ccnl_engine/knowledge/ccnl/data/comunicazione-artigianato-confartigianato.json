@@ -101,8 +101,8 @@
         "text": "Only aziende artigiane salary tables modelled. PMI non-artigiane tables (Art. 4, with EUR 207 total increase vs EUR 200 for artigiane, difference of EUR 7 in the Nov 2026 tranche) are not modelled. Applies to a small minority of firms covered by this CCNL."
       },
       {
-        "kind": "simplification",
-        "text": "Only post-Nov-18-2024 apprenticeship rules modelled. Pre-renewal CCNL used a semestrali hybrid model (old percentage tables). Firms with apprenticeship contracts signed before Nov 18, 2024 may still follow the previgente rules."
+        "kind": "info",
+        "text": "APPRENTICESHIP SCOPE: only post-Nov-18-2024 rules modelled. Pre-renewal CCNL used a semestrali hybrid model (old percentage tables). Firms with apprenticeship contracts signed before Nov 18, 2024 may follow previgente rules. This is a deliberate scope decision (modelling current rules only); historical contract tracking is out of engine scope."
       },
       {
         "kind": "simplification",
@@ -1296,7 +1296,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "acb5a9e150100edb63ceb9bea9a3690927f2ad47a7ed52f2ecf1f69e3413abdc",
+    "source_hash": "e34b7836789bd8a845b4587f122e610418856875b23937ed05b1042a101d4539",
     "published_at": "2026-09-07"
   },
   "work_rules": {

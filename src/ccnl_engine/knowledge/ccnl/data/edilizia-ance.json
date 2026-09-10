@@ -55,15 +55,15 @@
         "text": "DUAL STRUCTURE: the CCNL distinguishes blue-collar workers (levels 1-4, paid hourly) and white-collar/managerial staff (levels 5-7, paid monthly). The engine works with monthly values only. Monthly minimums for blue-collar workers are the official published tabular values (hourly rate × 173 hours already incorporated in the monthly minimums). hourly_divisor=173 (40h/week × 52/12 ≈ 173.33, rounded to 173 as per the official hourly table)."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "CASSA EDILE: the Cassa Edile manages for blue-collar workers: annual leave (8.5%), Christmas bonus (10%), TFR, APE (Professional Building Seniority). None of these components is modelled by the engine. Consequences: (1) employer_cost_annual is underestimated by ~18.5% of gross for blue-collar workers; (2) tfr_annual is calculated using the standard INPS formula (÷ 13.5) while for blue-collar workers the TFR flows to the Cassa Edile; (3) net_monthly is correct (Cassa Edile does not affect the employee's payslip)."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "BLUE-COLLAR SENIORITY: for blue-collar workers (levels 1-4), the ANCE CCNL provides APE (Professional Building Seniority) through the Cassa Edile instead of standard seniority increments. The engine models the tabular increment amounts for all levels (L1-L2: EUR 8.22, L3: EUR 8.99, L4: EUR 9.62 biennial) as an approximation; the real APE mechanism is managed by the Cassa Edile and is not modelled."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "EVR: the Variable Pay Element (EVR) is a variable provincial/company bonus. It is not modelled (varies by province and year)."
       },
       {
@@ -900,7 +900,7 @@
     "effective_until": null,
     "source": "https://www.idealista.it/news/finanza/lavoro/2025/07/10/251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
     "verification_status": "unverified",
-    "source_hash": "8d29a5ded7dc069a30486f673bd6dce9219b89c860a8faef9d5a5380a4d34495",
+    "source_hash": "8f262f4dbb8ef1a5576c155db4c769c51fe775c347cbd3b6eb0b3966b737b934",
     "published_at": "2026-09-07"
   },
   "work_rules": {

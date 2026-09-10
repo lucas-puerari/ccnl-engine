@@ -36,11 +36,11 @@
       },
       {
         "kind": "simplification",
-        "text": "Seniority amounts not found in renewal PDF (base CCNL 2013, art. 106 GPG). Values proxied from ASSIV CCNL (HV40, same sector). Cadence 36m and max 6 scatti confirmed ('6 trienni' in source)."
+        "text": "SENIORITY: pre-July-2026 CCNL (FESICA PDF, CCNL ISTITUTI AZIENDE VIGILANZA PRIVATA, Art. 119) confirmed 5 triennali (cadence 36m, max 5) with per-level amounts: Q=32, I=27, II=24, III=23, IV=22, V=21 EUR/scatto. July 9 2026 renewal (FEDERDAT-CONFIAL) doubled scatti to 10 with \"importi maggiorati\" — new amounts not found in public sources. Seniority is currently unmodelled (seniority_increment=null for all levels) pending the 2026 amounts."
       },
       {
-        "kind": "simplification",
-        "text": "Apprenticeship: 100% passthrough. Rules not found in renewal document; verify against CCNL FEDERDAT base text."
+        "kind": "info",
+        "text": "Apprenticeship: 100% passthrough confirmed from CCNL FEDERDAT Art. 86: \"L'Apprendista ha diritto per tutta la durata del periodo di apprendistato all'inquadramento e alla corrispondente retribuzione del livello finale di collocazione.\" (FESICA PDF, CCNL ISTITUTI AZIENDE VIGILANZA PRIVATA, Art. 86). Engine models this correctly as 100% of destination level salary."
       },
       {
         "kind": "info",
@@ -1301,7 +1301,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "3a5b26c0aff9f746f8b2f359d704775f2880295aef55413a5f84ff63b45c7785",
+    "source_hash": "9c5b0704c267ec64736640b954f1877b8449ed2f3d2326ba62d558176918710b",
     "published_at": "2026-09-07"
   },
   "work_rules": {

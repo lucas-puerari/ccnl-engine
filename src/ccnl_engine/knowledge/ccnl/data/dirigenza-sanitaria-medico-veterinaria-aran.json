@@ -261,8 +261,8 @@
         "text": "Pre-2024 tabellare 3.616,60€/mese = 47.015,77€/anno ricavato sottraendo l'incremento di 230€/mese (× 13) dal valore 2024. Il valore del CCNL 19.12.2019 (base periodo 1) è stimato in assenza di consultazione del testo del previgente contratto."
       },
       {
-        "kind": "simplification",
-        "text": "CNEL S225 da fonte secondaria (ilccnl.it). Non riportato nel testo ARAN ufficiale."
+        "kind": "info",
+        "text": "CNEL S225 confermato da contratticcnl.it (/ccnl/s225/: \"CCNL dell'Area Sanità (dirigenti)\", deposito 19/12/2019, ARAN). Verificato 2026-09-09."
       },
       {
         "kind": "simplification",
@@ -271,6 +271,10 @@
       {
         "kind": "simplification",
         "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il tasso è selezionato in base al cumulative_sick_days all'inizio del periodo; periodi di paga a cavallo di una soglia mensile ricevono un unico tasso. Comporto max 18 mesi = 540 gg."
+      },
+      {
+        "kind": "info",
+        "text": "Rinnovo 2025-2027: ARAN ha convocato primo tavolo il 22/07/2026 presentando quantificazione economica con risorse ordinarie pari al 5,40%. Trattativa in corso al 2026-09-09; nessun accordo firmato. Fonte: consulentidellavoro.vi.it, vet33.it."
       }
     ],
     "gross": "implemented",
@@ -284,7 +288,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "eb24c40b584ad2aa12c6d56a046e6d9031cc8aadf28e150866de02208705f494",
+    "source_hash": "be76137f3f41dcb18b89e7b7d6df8c9e57d3fd5b30be7087b3761d2613e0a914",
     "published_at": "2026-09-07"
   },
   "work_rules": {

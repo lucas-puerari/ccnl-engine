@@ -51,8 +51,8 @@
         "text": "EDR APPRENTICESHIP EXEMPTION. Art. G14 §16 limits the apprenticeship percentage to 'minimi tabellari in vigore, indennità di contingenza'. EDR (Art. G22) is not listed and is therefore paid at full value for apprentices. Modelled via apprenticeship_pct_relevant=false on all EDR allowances."
       },
       {
-        "kind": "simplification",
-        "text": "SENIORITY CAP. Art. G23 §5 grants one additional scatto to employees hired before 1 January 1993 reaching 16 years of company seniority from 1 January 2026. The engine has no hire-date input; maximum_count is set to 8 for all workers, understating by 1 scatto for eligible pre-1993 employees."
+        "kind": "info",
+        "text": "SENIORITY CAP: maximum_count=8, as per 2025 rinnovo (signed 04/06/2025, FILT-CGIL comunicato) which recognized the 8th scatto from 01/01/2026 for all workers with ≥16 years seniority. Pre-1993 employees with 16+ years already captured under this rule. Engine has no hire-date input; this is a structural limitation — maximum_count=8 is the correct model for the vast majority of new hires."
       },
       {
         "kind": "simplification",
@@ -2296,7 +2296,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "356d43154ec63824e29556061a4f9fd838ab5389def91fe1599ae8475b22b07e",
+    "source_hash": "9eaf0bab8acc9600ec5ff5e4950a7055756cd17de6791479175f5eb33cd0215b",
     "published_at": "2026-09-07"
   },
   "work_rules": {

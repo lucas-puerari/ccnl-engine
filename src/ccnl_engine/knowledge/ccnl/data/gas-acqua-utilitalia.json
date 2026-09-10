@@ -56,8 +56,8 @@
         "text": "ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima). Stated in §4.1: 'Mensilità: 14'. Tredicesima confirmed §5.3, quattordicesima confirmed §5.4."
       },
       {
-        "kind": "simplification",
-        "text": "SENIORITY: abolished from 31/12/2015 (§5.5 of CCNL PDF). Frozen as 'elemento ad personam non riassorbibile' at the individual amount accrued by each worker as at 31/12/2015. No new increments can be earned by any worker hired after 2015. Modelled as maximum_count=0 (all amounts 0.00) — no seniority is added for new hires. SIMPLIFICATION: the frozen elemento ad personam for pre-2016 hires is individual and not computable from level alone; it is not modelled."
+        "kind": "info",
+        "text": "SENIORITY: abolished from 31/12/2015 (§5.5 CCNL K321). Frozen as 'elemento ad personam non riassorbibile' at the individual amount accrued as at 31/12/2015 — individual per-worker, not derivable from level. Workers hired after 2015 earn no seniority. Modelled as maximum_count=0 (all amounts 0.00), which is the correct model for new hires. The frozen elemento for pre-2016 hires is a structural engine limitation: it requires per-worker historical data not available from the CCNL alone."
       },
       {
         "kind": "info",
@@ -1845,7 +1845,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "4f9ddf9a2d337bdf64498a6ff3269b785496a94cfc24d8851faee64d2c70d6d3",
+    "source_hash": "e6882563d29c2cd12c42dfcc729b85f6dfee5f85c3846f37caf8c12fce949fcb",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -30,6 +30,12 @@
         "type": "ccnl_pdf",
         "agreement_date": "2025-01-27",
         "notes": "Testo ufficiale CCNL Comparto Funzioni Centrali 2022-2024 firmato il 27/01/2025. UIL PA e UIL hanno aderito il 04/11/2025."
+      },
+      {
+        "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/",
+        "type": "sindacato",
+        "agreement_date": "2026-08-06",
+        "notes": "CCNL Funzioni Centrali 2025-2027 firmato definitivamente il 6/8/2026. Tabella incrementi cumulativi mensili per area: Operatori +44.70/+89.50/+126.60, Assistenti +47.10/+94.20/+133.20, Funzionari +57.20/+114.40/+161.80, EP +78.10/+156.20/+221.00 (da 1/1/2025, 1/1/2026, 1/1/2027). CISL FP fonte primaria sindacale; testo ufficiale ARAN atteso su aranagenzia.it."
       }
     ],
     "extraction": {
@@ -114,7 +120,7 @@
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": null,
+            "valid_until": "2025-01-01",
             "value": "1653.97",
             "provenance": {
               "location": {
@@ -131,6 +137,72 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1698.67",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
+                  "title": "ccnl-l-c-fc-2025-2027-cisl",
+                  "kind": "rivista",
+                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                },
+                "section": "Tabella incrementi retributivi 2025-2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1743.47",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
+                  "title": "ccnl-l-c-fc-2025-2027-cisl",
+                  "kind": "rivista",
+                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                },
+                "section": "Tabella incrementi retributivi 2025-2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1780.57",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
+                  "title": "ccnl-l-c-fc-2025-2027-cisl",
+                  "kind": "rivista",
+                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                },
+                "section": "Tabella incrementi retributivi 2025-2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
               }
             }
           }
@@ -186,7 +258,7 @@
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": null,
+            "valid_until": "2025-01-01",
             "value": "1740.36",
             "provenance": {
               "location": {
@@ -203,6 +275,72 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1787.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
+                  "title": "ccnl-l-c-fc-2025-2027-cisl",
+                  "kind": "rivista",
+                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                },
+                "section": "Tabella incrementi retributivi 2025-2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1834.56",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
+                  "title": "ccnl-l-c-fc-2025-2027-cisl",
+                  "kind": "rivista",
+                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                },
+                "section": "Tabella incrementi retributivi 2025-2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "1873.56",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
+                  "title": "ccnl-l-c-fc-2025-2027-cisl",
+                  "kind": "rivista",
+                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                },
+                "section": "Tabella incrementi retributivi 2025-2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
               }
             }
           }
@@ -258,7 +396,7 @@
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": null,
+            "valid_until": "2025-01-01",
             "value": "2113.59",
             "provenance": {
               "location": {
@@ -275,6 +413,72 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2170.79",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
+                  "title": "ccnl-l-c-fc-2025-2027-cisl",
+                  "kind": "rivista",
+                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                },
+                "section": "Tabella incrementi retributivi 2025-2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2227.99",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
+                  "title": "ccnl-l-c-fc-2025-2027-cisl",
+                  "kind": "rivista",
+                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                },
+                "section": "Tabella incrementi retributivi 2025-2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2275.39",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
+                  "title": "ccnl-l-c-fc-2025-2027-cisl",
+                  "kind": "rivista",
+                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                },
+                "section": "Tabella incrementi retributivi 2025-2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
               }
             }
           }
@@ -330,7 +534,7 @@
           },
           {
             "valid_from": "2024-01-01",
-            "valid_until": null,
+            "valid_until": "2025-01-01",
             "value": "2886.21",
             "provenance": {
               "location": {
@@ -347,6 +551,72 @@
                 "extraction_timestamp": "2026-09-07T15:03:36",
                 "verification_status": "unverified",
                 "effective_from": "2020-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2964.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
+                  "title": "ccnl-l-c-fc-2025-2027-cisl",
+                  "kind": "rivista",
+                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                },
+                "section": "Tabella incrementi retributivi 2025-2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "3042.41",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
+                  "title": "ccnl-l-c-fc-2025-2027-cisl",
+                  "kind": "rivista",
+                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                },
+                "section": "Tabella incrementi retributivi 2025-2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "3107.21",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-l-c-fc-2025-2027-cisl",
+                  "title": "ccnl-l-c-fc-2025-2027-cisl",
+                  "kind": "rivista",
+                  "url": "https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/"
+                },
+                "section": "Tabella incrementi retributivi 2025-2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-09T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
               }
             }
           }
@@ -384,8 +654,12 @@
         "text": "apprendistato assente dal CCNL vigente (fonte primaria: indice ARAN CCNL 2022-2024, Art. 1-38 senza capitolo apprendistato) e dal CCNL Ministeri 12/6/2003 richiamato dall'Art. 38 Conferme, che esclude espressamente gli apprendisti dall'ambito di applicazione (fonte secondaria: olympus.uniurb.it); quadro normativo PA D.Lgs. 165/2001 non prevede apprendistato ex D.Lgs. 81/2015."
       },
       {
-        "kind": "simplification",
-        "text": "codice CNEL S005 derivato da tre fonti secondarie convergenti (lavoro-economia.it, blia.it ID S005-209278, contratticcnl.it); sito CNEL non direttamente interrogabile via HTTP (JS-driven search)."
+        "kind": "info",
+        "text": "CCNL Funzioni Centrali 2025-2027 (S005) firmato definitivamente il 2026-08-06; in vigore dal 2026-08-07. Incrementi retroattivi al 1/1/2025 e 1/1/2026 liquidati con gli stipendi di agosto/settembre 2026. Tre periodi aggiornati: 2025-01-01, 2026-01-01, 2027-01-01. Fonte: CISL FP (cislfp.it), testo ARAN definitivo non ancora pubblicato su aranagenzia.it al 2026-09-09."
+      },
+      {
+        "kind": "info",
+        "text": "codice CNEL S005 confermato da tre fonti secondarie convergenti: lavoro-economia.it (intestazione pagina \"CCNL Comparto Funzioni Centrali [Cnel: S005]\"), blia.it (ID S005-209278), contratticcnl.it (/ccnl/s005/). Verificato 2026-09-09."
       },
       {
         "kind": "simplification",
@@ -419,7 +693,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "db7a06b525962fdf6ab9184d64c17eb8e42a701eb7d7804ee1180b682b0ae931",
+    "source_hash": "ae80dff3f0587ae7950835a89f68dd00420127428fcc1387c57115792426c20e",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -41,8 +41,8 @@
         "text": "Quadri: i livelli 1Q e 2Q del precedente impianto corrispondono a livello 1° e 2° con aggiunta dell'indennità di funzione quadri (Art. 45): 1Q +EUR 180→230/mese, 2Q +EUR 125→160/mese dal 01/08/2024. Modellata come fixed_allowance a 14 mensilità su ciascun livello."
       },
       {
-        "kind": "simplification",
-        "text": "Scatti anzianità: Art. 61 (operai, max 5 biennali) e Art. 49 (impiegati, max 12 biennali) hanno importi differenti per i livelli 3-7. Modellati con gli importi operai (dominanti nelle cooperative). maximum_count=12 (impiegati); query operai con seniority_count>5 producono scatti sovrastimati."
+        "kind": "info",
+        "text": "SENIORITY: operai Art. 61 (max 5 biennali) e impiegati Art. 49 (max 12 biennali) hanno importi differenti per livelli 3-7. Operai amounts confirmed from rinnovo 2024 (lavoro-economia.it, businessonline.it): L7=9.44, L6=10.85, L5=11.39, L4=11.93, L3=12.20, L2=29.44, L1=33.05 EUR/biennio. Modelled with operai amounts (dominant workforce in cooperatives) and maximum_count=12 (impiegati cap). Queries for operai with seniority_count>5 will overstate by at most 1-5 scatti; this is a structural engine limitation (single seniority table per level)."
       },
       {
         "kind": "simplification",
@@ -1194,7 +1194,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "593957c3ee20a5fa47416fb114d9bc28c9c4a064339ca421ac069fc689ef1e71",
+    "source_hash": "33692e9fae2a8967ae724648893d28153f36ad163142ae31c436f4ba8bdc17d7",
     "published_at": "2026-09-07"
   },
   "work_rules": {

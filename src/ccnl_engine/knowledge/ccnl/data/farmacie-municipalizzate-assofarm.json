@@ -71,12 +71,12 @@
         "text": "SIMPLIFICATION: INPS terziario rates used. ASSOFARM pharmacies operate under commercial pharmacy rules; exact INPS circular for this sub-sector not verified."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Levels 1_12 and 1_2 are automatic time-in-grade progressions for Farmacista Collaboratore (12+ or 2+ years continuous service). Engine cannot model auto-advancement; they are implemented as static level codes distinguishable only by IS allowance amount."
+        "kind": "info",
+        "text": "Levels 1_12 and 1_2 (Farmacista Collaboratore with 12+ or 2+ years continuous service) are automatic time-in-grade progressions under Art. 19bis. Engine cannot model auto-advancement; implemented as static level codes distinguishable by IS allowance amount (1_12=130, 1_2=100 EUR/month). Structural engine limitation — correct payroll calculation requires knowing the worker's actual time-in-grade."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Kitech shows 'Function Allow.' (40.90 for L2, 36.26 for L3 etc.) and 'Tech-Prof Allow.' for quadri sub-levels. These appear in no allegato of the signed CCNL (Art. 17 defines retribuzione di base as Tabelle A+B only). Excluded: for 1Q, base+IQ=2456.91+160=2616.91 vs kitech total 2758.68; the delta 141.77 = 77.47+64.30 matches kitech's two extra lines, confirming they are historical line items outside the contractual minimum."
+        "kind": "info",
+        "text": "Function and Tech-Prof allowances shown in kitech for L2/L3/quadri sub-levels are EXCLUDED. They appear in no allegato of the signed CCNL; Art. 17 defines retribuzione di base as Tabelle A+B only. Verification: 1Q base+IQ=2456.91+160=2616.91 vs kitech 2758.68; delta 141.77 = sum of the two extra kitech lines — confirming they are historical/personal elements outside the contractual minimum. Exclusion is correct."
       }
     ],
     "gross": "implemented",
@@ -1447,7 +1447,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "3a7ffeb092b961193b04edb889f74d7375b5c8225de46cacda8d8d177ccb7bcb",
+    "source_hash": "6f8932e002a77f183586812263907ee68b2ccaf5e0b176021a416019007f4a78",
     "published_at": "2026-09-07"
   },
   "work_rules": {

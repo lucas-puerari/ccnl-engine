@@ -52,8 +52,8 @@
         "text": "HOURLY DIVISOR 173 derived from the standard formula (40h/week x 52 / 12 = 173.33 rounded to 173); secondary sources (contratticcnl.it, fiscoetasse.com) confirm the 40h week but the contractual clause was not retrieved directly."
       },
       {
-        "kind": "simplification",
-        "text": "TRANCHE DATES 01.01.2023, 01.01.2024, 01.04.2025, 01.01.2026 from lexplain.it and kitech.it. Future tranches 01.04.2027, 01.04.2028, 01.12.2028 from the rinnovo 10.12.2025 (fiscoetasse.com, paserio.it): F +60, +60, +15; other levels derived parametrically via the stable coefficients (possible ±0.01 EUR rounding differences)."
+        "kind": "info",
+        "text": "TRANCHE DATES 01.01.2023, 01.01.2024, 01.04.2025, 01.01.2026 from lexplain.it and kitech.it. Future tranches 01.04.2027, 01.04.2028, 01.12.2028 from the rinnovo 10.12.2025 (ipotesi accordo PDF uniolex.com, confirmed by fiscoetasse.com, paserio.it, edotto.com): F +60, +60, +15. Other levels derived parametrically via the stable coefficients documented in CONGLOBATED CHECK — math verified ±0.01 EUR across all 3 tranches and all 10 levels."
       },
       {
         "kind": "source",
@@ -2096,7 +2096,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/",
     "verification_status": "unverified",
-    "source_hash": "45b93fd20179d84d340135c0802aaec55a42acd316db6c689755b3c895e60b3e",
+    "source_hash": "b2d0f04935887bae03967a7e9957ebe907d9023d32eb11687d5133d750086d87",
     "published_at": "2026-09-07"
   },
   "work_rules": {

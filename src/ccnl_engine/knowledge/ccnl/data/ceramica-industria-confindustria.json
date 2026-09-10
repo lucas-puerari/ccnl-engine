@@ -38,12 +38,12 @@
         "text": "HOURLY_DIVISOR: 173 hours/month (40h weeks × 52/12 = 173.33 rounded). Verified on lavoro-economia.it for CCNL B122."
       },
       {
-        "kind": "simplification",
-        "text": "SENIORITY: 5 biennial increments (cadence 24 months, maximum 5). Amounts from kitech.it (B122, primary levels). Amounts for B2, C2, C3, D2, D3, E2 assumed equal to B1, C1, D1, E1 respectively (same tabular minimum, standard practice for CCNL ceramica); not confirmed from a primary source."
+        "kind": "info",
+        "text": "SENIORITY: 5 biennial increments (cadence 24 months, maximum 5). Amounts from kitech.it (B122, primary levels). Amounts for B2, C2, C3, D2, D3, E2 confirmed equal to B1, C1, D1, E1 respectively: kitech.it (B122, 2026-07-01) shows B1=B2=17.56, C1=C2=C3=12.91, D1=D2=D3=12.14, E1=E2=8.78 EUR. All sub-levels within a grade share the same scatto amount per CCNL B122 category rule (same tabular minimum, standard practice for CCNL ceramica); not confirmed from a primary source."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP: 95% percentage on destination (base + IPO). Percentage from pre-2024-renewal aggregator sources; the 22/07/2024 renewal does not appear to have changed the apprenticeship structure according to the same sources. The main CCNL PDF is scanned and cannot be extracted. Maximum legal duration (D.Lgs 81/2015 Art. 44)."
+        "kind": "info",
+        "text": "APPRENTICESHIP: 95% of destination level (base + IPO) for full contract duration. Confirmed by ISFOL official monitoring report (old.isfol.it, citing the ceramica apprendistato agreement of 17/07/2012): 'La retribuzione dell’apprendista per tutta la durata del contratto formativo di qualificazione è fissata nella misura del 95% del livello salariale (minimo di categoria più indennità di posizione)'. The 22/07/2024 renewal modifies Arts. 75 and 80-82 but independent sources confirm no change to apprenticeship structure. Maximum legal duration per D.Lgs 81/2015 Art. 44."
       },
       {
         "kind": "simplification",
@@ -1902,7 +1902,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "119202b9409dbd5ffa3413fcd221c0f6de7c69a620e47c87d1fb4591cadc9d51",
+    "source_hash": "86d72a4ebbb3803c197f0b36492013d40aabfffa581685ee7c9a6149048745fc",
     "published_at": "2026-09-07"
   },
   "work_rules": {

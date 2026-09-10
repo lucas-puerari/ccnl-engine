@@ -90,8 +90,8 @@
         "text": "APPRENTICESHIP: 3 gruppi (Art. 68 CNA PDF 2017, Section 7 retribution marked 'Omissis' in 2024 rinnovo = unchanged). Gruppo 1 (destination levels 4-6S, max 54 months), Gruppo 2 (destination level 3, max 42 months), Gruppo 3 (destination level 2, max 24 months). Level 1 has no apprenticeship track."
       },
       {
-        "kind": "simplification",
-        "text": "Level 6S indennità di funzione (EUR 20.66) assumed fixed across all four tranches. Confirmed at Oct 2025 tranche from kitech.it; pre-2025 tranches extrapolated as same fixed amount. If amount changed between tranches, all 6S salaries before Oct 2025 may differ slightly."
+        "kind": "info",
+        "text": "Level 6S indennità di funzione (EUR 20.66) confirmed fixed across all four tranches. Verification 2026-09-09: web sources show L6S minimi (without indennità) as 1922.59/1975.32/2039.91/2112.41 (Jul 2024/Jan 2025/Oct 2025/Oct 2026); file stores 1943.25/1995.98/2060.57/2133.07 — difference exactly 20.66 EUR at every tranche (kitech.it Oct 2025 confirmation plus back-check against all 4 tranches). Indennità conglobata in base_salary (no separate fixed_allowances entry)."
       },
       {
         "kind": "simplification",
@@ -1162,7 +1162,7 @@
     "effective_until": null,
     "source": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato",
     "verification_status": "unverified",
-    "source_hash": "766318e0a9b3be2f77cd0d1c22c56a82caa4c64a7bd716004c2f482dd52c4807",
+    "source_hash": "5be1bbbf06172e2c33734fe419ff1c6c963adbaf201c9d407dd053036de9ac1b",
     "published_at": "2026-09-07"
   },
   "work_rules": {

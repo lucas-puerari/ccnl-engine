@@ -51,10 +51,12 @@ jobs:
 
       - name: Post PR comment
         uses: actions/github-script@v7
+        env:
+          DIFF_REPORT: ${{ steps.diff.outputs.report }}
         with:
           script: |
             const marker = '<!-- rules-diff -->';
-            const body = `${marker}\n${{ steps.diff.outputs.report }}`;
+            const body = `${marker}\n${process.env.DIFF_REPORT}`;
 
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,

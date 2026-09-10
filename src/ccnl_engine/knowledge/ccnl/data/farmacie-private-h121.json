@@ -48,7 +48,11 @@
       },
       {
         "kind": "info",
-        "text": "Contract expired 31/08/2024 (Art. 102). No successor signed as of 2026-09-05 (INPS-CNEL spreadsheet updated 25/07/2026 shows Periodo finale=null for H121). Tables valid open-ended under ultrattività."
+        "text": "Contract expired 31/08/2024 (Art. 102). No successor signed as of 2026-09-09 (INPS-CNEL spreadsheet updated 25/07/2026 shows Periodo finale=null for H121). Tables valid open-ended under ultrattività."
+      },
+      {
+        "kind": "info",
+        "text": "SIMPLIFICATION resolved: The CCNL rinnovo 07/09/2021 (Tabella A confirmed from UILTUCS primary PDF) established ONE salary tranche from 01/11/2021 — not three separate tranches. Increases vs. Dec 2012 base: Q1=+89.97, Q2=+150.00 (incl. 70 Area Q2), Q3=+80.00, L1=+80.00, L2=+70.98, L3=+67.39, L4=+62.65, L5=+57.72, L6=+53.90. These are fully modelled in this file. The '3 tranches / +113 EUR' figure cited in some secondary sources refers to the separate CCNL farmacie speciali/municipalizzate (Assofarm H122), not this contract."
       },
       {
         "kind": "info",
@@ -59,19 +63,19 @@
         "text": "Headcount: 77,146 workers in 16,324 companies (INPS-CNEL archive, H121)."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "SIMPLIFICATION: Farmacie Rurali Sussidiate (Tabella B) excluded. Rural pharmacies have lower base salaries; Tabella A (urban) is modelled only."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "SIMPLIFICATION: ISQ for Q2 and Q3 modelled at flat 100 EUR (the 2+ anni tier per Tabella C). Workers with 12+ anni receive 130 EUR (delta 30 EUR/month, max ~360 EUR/yr). The two-tier split at 144 months cannot be represented as a single fixed_allowance amount."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "SIMPLIFICATION: EDR (10.33 EUR, Art. 54e) is contractually due for 13 mensilita but the engine multiplies fixed_allowances by additional_months=14. Annual overcount ~10 EUR per worker."
       },
       {
-        "kind": "simplification",
+        "kind": "info",
         "text": "SIMPLIFICATION: Tabella D groups Q2, Q3, and 1o into a single scatto amount of 25.30 EUR. Q1 uses 25.82 EUR."
       }
     ],
@@ -1327,7 +1331,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "410cc1ab6f7043bb5dd4d76037c1da6bbda844abb2b19876a4814d29df3f61fa",
+    "source_hash": "e77e8a3417d2ff79d71434065a96dd08d39baed05e7971979aeb68c5af3986f5",
     "published_at": "2026-09-07"
   },
   "work_rules": {

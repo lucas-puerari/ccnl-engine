@@ -66,12 +66,12 @@
         "text": "D/DS function allowance: not applicable for non-convivente (TABELLA C shows only hourly rates, no separate indennità column). D/DS hourly rates already reflect the seniority grade."
       },
       {
-        "kind": "simplification",
-        "text": "CNEL code H501 sourced from kitech.it page title; unverified against CNEL archive (archive not accessible via HTTP at time of extraction)."
+        "kind": "info",
+        "text": "CNEL code H501 confirmed: lavoro-economia.it explicitly lists 'CCNL Lavoro Domestico (Colf e Badanti) [Cnel: H501]'. Also confirmed via kitech.it. CNEL archive verification not attempted (had returned 404 previously)."
       },
       {
         "kind": "simplification",
-        "text": "Single period 2026-01-01; pre-2026 tranches are out of scope."
+        "text": "SINGLE PERIOD 2026-01-01. Pre-2026 tranches out of scope. Post-2026 CCNL 2025-2028 tranches not yet modelled: +30 on BS from Jan 2027, +15 from Jan 2028, +15 from Sep 2028 (other levels proportional — exact amounts require official ASSINDATCOLF/DOMINA table for those periods)."
       },
       {
         "kind": "simplification",
@@ -611,7 +611,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "8ed9296d1c940190e1de1f193d292fa0fcf0e22971bb8d306c21f10610a7e37a",
+    "source_hash": "0596ae972d9594d2a586878699a0e9d466676f12e0169568447e567650c0f78e",
     "published_at": "2026-09-07"
   },
   "work_rules": {

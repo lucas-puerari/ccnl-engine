@@ -73,7 +73,7 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP: type not confirmed from public sources. Modelled as 100% passthrough for all levels (correct for permanent workers)."
+        "text": "APPRENTICESHIP: type=percentage confirmed by 2022 FILCA-CISL CCNL text (Art. 3d: 'calcolate in percentuale...come da allegata tabella'). Pre-2022 used under-classification (MySolution 2018 synthesis: dest AS→B/A, dest A→CS/B, etc.). Post-2022 percentage values in an attached table not readable (scanned PDF). Modelled as 1.00 passthrough pending actual values."
       }
     ],
     "gross": "implemented",
@@ -2179,7 +2179,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria",
     "verification_status": "verified",
-    "source_hash": "52f8f5c41c5888b8e4f7ade3d5b6b92ee97893502abb2eeb82bd1eee11d37fde",
+    "source_hash": "e49ef9ce7881f84c08741feb885cfaf8733ee6befc4ca38039f2410609895f51",
     "published_at": "2026-09-07"
   },
   "work_rules": {

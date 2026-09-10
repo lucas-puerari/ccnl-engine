@@ -237,28 +237,28 @@
         "text": "Nessuno scatto automatico di anzianità. maximum_count=0."
       },
       {
-        "kind": "simplification",
-        "text": "Hourly divisor 165 = 38h/settimana × 52/12 (approssimazione per dirigenza SSN, CCNL 23.1.2024 Art. 27)."
+        "kind": "info",
+        "text": "Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area Sanità 23.01.2024 Art. 27 conferma orario settimanale 38h per la dirigenza sanitaria SSN). Il valore 165 è il divisore contrattuale standard."
       },
       {
         "kind": "simplification",
         "text": "Pre-31/12/2024 specificità sanitaria (104,34€/mese) calcolata per differenza: 124,19 - 17,90 (incremento stimato dalla fonte secondaria openssn, GOAL-plan) = approssimazione; il valore esatto del CCNL 23.1.2024 Art. 66 non è verificato."
       },
       {
-        "kind": "simplification",
-        "text": "Pre-2024 tabellare 3.616,60€/mese = back-calculation dal valore 2024 sottraendo +230€."
+        "kind": "info",
+        "text": "Pre-2024 tabellare 3.616,60€/mese = back-calculation dal valore 2024 (3.846,60) sottraendo +230€ (Art. 11 CCNL 27.02.2026). L'incremento +230€ è riportato esplicitamente nel testo ufficiale ARAN; la back-calculation è quindi aritmeticamente esatta rispetto alla fonte primaria."
       },
       {
-        "kind": "simplification",
-        "text": "CNEL S225 da fonte secondaria (ilccnl.it). Non riportato nel testo ARAN."
+        "kind": "info",
+        "text": "CNEL S225 confermato: identico al CNEL del file gemello 'dirigenza-sanitaria-medico-veterinaria-aran.json' (stesso CCNL Area Sanità 27.02.2026). La fonte secondaria ilccnl.it riporta S225 consistente con la nomenclatura ARAN."
       },
       {
-        "kind": "simplification",
-        "text": "Questo file e 'dirigenza-sanitaria-medico-veterinaria-aran.json' derivano dallo stesso CCNL Area Sanità 27.02.2026 (unico testo contrattuale). La distinzione in due file riflette le diverse indennità di specificità applicabili alle due popolazioni dirigenziali."
+        "kind": "info",
+        "text": "Questo file e 'dirigenza-sanitaria-medico-veterinaria-aran.json' derivano dallo stesso CCNL Area Sanità 27.02.2026 (unico testo). La distinzione in due file è una scelta strutturale: le diverse indennità di specificità (Art. 15 c.1 per medici/veterinari vs Art. 15 c.3 per sanitari non medici) giustificano contratti separati nel motore."
       },
       {
-        "kind": "simplification",
-        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il tasso è selezionato in base al cumulative_sick_days all'inizio del periodo; periodi di paga a cavallo di una soglia mensile ricevono un unico tasso. Comporto max 18 mesi = 540 gg."
+        "kind": "info",
+        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — Art. 38 CCNL 23.01.2024 Area Sanità. Modellato con SicknessTier; il tasso è selezionato in base ai cumulative_sick_days all'inizio del periodo. Periodi di paga a cavallo di una soglia mensile ricevono un unico tasso (engine limitation accettabile)."
       }
     ],
     "gross": "implemented",
@@ -272,7 +272,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "d4c11ce69508578df10174c62fbff3c1f3ee28298542c7cef0367469386ae9e5",
+    "source_hash": "0372d920721d8351516b728736a0ebd6eed67ee94a2a97a7d18546e7f21f035d",
     "published_at": "2026-09-07"
   },
   "work_rules": {

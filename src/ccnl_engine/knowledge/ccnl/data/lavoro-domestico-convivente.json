@@ -62,12 +62,12 @@
         "text": "D/DS INDENNITÀ DI FUNZIONE: 207.69 EUR/month (Art. 34 CCNL) for levels D and DS only. Modelled as fixed_allowance (no role restriction — applies to all workers at those levels). Confirmed from Domina official table."
       },
       {
-        "kind": "simplification",
-        "text": "CNEL code H501 sourced from kitech.it page title; unverified against CNEL archive (archive not accessible via HTTP at time of extraction). Update if CNEL confirms a different code."
+        "kind": "info",
+        "text": "CNEL code H501 confirmed: lavoro-economia.it explicitly lists 'CCNL Lavoro Domestico (Colf e Badanti) [Cnel: H501]'. Also confirmed via kitech.it. CNEL archive verification not attempted (had returned 404 previously)."
       },
       {
         "kind": "simplification",
-        "text": "Single period 2026-01-01; pre-2026 tranches are out of scope. Prior renewal tranches (2021–2025) exist but are not modelled."
+        "text": "SINGLE PERIOD 2026-01-01. Pre-2026 tranches out of scope. Post-2026 CCNL 2025-2028 tranches not yet modelled: +30 on BS convivente from Jan 2027, +15 from Jan 2028, +15 from Sep 2028 (other levels proportional — exact amounts require official ASSINDATCOLF/DOMINA table for those periods)."
       },
       {
         "kind": "simplification",
@@ -677,7 +677,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "4d7f2708998e3f63454243f6bd15868df341534b746e69cccff3d8587d7c6410",
+    "source_hash": "a6edd1c3924c8c6ff756bcac0351a877c3123dec713e1d824ef97da3dcf96eaa",
     "published_at": "2026-09-07"
   },
   "work_rules": {
