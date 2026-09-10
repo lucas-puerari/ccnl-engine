@@ -62,7 +62,7 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS RATES. INDUSTRIA rates from 2026-industria.json are used as proxy. For K540 (igiene ambientale), the applicable CIGO regime is standard industria (CIGO ordinaria) under D.Lgs. 148/2015, same as Confindustria-affiliate companies. No sector-specific INPS circular for K540 was found in 2026-09 searches. The ~0.80% CIGO addizionale estimate in the original note is unverified; standard industry rates (0.60% ≤50 dipendenti, 0.90% >50) likely apply. This is a structural limitation — the specific company size determines the addizionale."
+        "text": "INPS RATES. INDUSTRIA rates from 2026-industria.json used as proxy (3 size tiers: ≤15, ≤50, >50 employees — selected via Employer.num_employees). For K540 (igiene ambientale), the applicable CIGO regime is standard industria (CIGO ordinaria) under D.Lgs. 148/2015; no sector-specific INPS circular found. The CIGO addizionale (0.60% ≤50 employees, 0.90% >50) is event-driven: charged only when hours are actually in CIG integrazione — correctly excluded from the standing monthly rate. Simplification: industria proxy, not a sector-specific file."
       },
       {
         "kind": "info",
@@ -3329,7 +3329,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "94a07384aca2ff71dc79d9212e0df292eb56c49c938fb199acdc93813355b4ef",
+    "source_hash": "600246105621449e30056a3d905e28e7cfb42fdaf95acbfbc97089bf31032b2d",
     "published_at": "2026-09-07"
   },
   "work_rules": {
