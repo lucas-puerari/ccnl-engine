@@ -70,8 +70,8 @@
         "text": "HOURLY DIVISOR: 165 h/month used, per ilccnl.it (38h/week standard, all levels). Art. 198 of the CCNL also references 168 for 40h/week and higher divisors for extended shifts. Conflict: ilccnl.it states 165 as the contract divisor; Art. 198 lists 168 for 40h/week. Dominant workforce (post-2011 hires in a high-turnover retail sector on the 38h standard) is served by 165. 42h/week (182) and 45h/week (195) schedules not modelled."
       },
       {
-        "kind": "simplification",
-        "text": "DERIVED TRANCHES: November 2026 and March 2027 per-level amounts derived from reparametrization of confirmed Dec 2025 L4 increment (35 EUR per tranche); ratios applied proportionally to all levels. Not independently confirmed against official sources."
+        "kind": "info",
+        "text": "MODELLED TRANCHES (Nov 2026 / Mar 2027): confirmed by studioagostini.org (secondary source, June 2024 commentary on the Mar 2024 renewal). L4 increments: +35.00 EUR (01/11/2026), +40.00 EUR (01/03/2027). L1 increments: +56.39 EUR (01/11/2026), +64.44 EUR (01/03/2027). All per-level values match the reparametrized ratio from confirmed prior tranches. Source: studioagostini.org/ccnl-distribuzione-cooperativa-aumenti-fino-a-240-euro/"
       },
       {
         "kind": "info",
@@ -1882,7 +1882,7 @@
     "effective_until": null,
     "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016",
     "verification_status": "unverified",
-    "source_hash": "f48ce9197bae42d0efb4eb845bdf322a91ab0fefc82ae4e7587762e44efa6481",
+    "source_hash": "2ae3e48d5d421f319b994d8e1cf3a18526314caa51149685fe43f5b1a08badef",
     "published_at": "2026-09-07"
   },
   "work_rules": {

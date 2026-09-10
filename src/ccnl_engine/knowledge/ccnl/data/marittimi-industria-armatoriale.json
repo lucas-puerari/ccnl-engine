@@ -59,7 +59,7 @@
       },
       {
         "kind": "simplification",
-        "text": "PRE-2024 HISTORY: prior CCNL signed 16/12/2020. Values before 01/07/2024 not modelled (primary source covers 2024-2026 renewal only). Engine history starts at 01/07/2024."
+        "text": "PRE-2024 HISTORY: prior CCNL signed 16/12/2020. Values before 01/07/2024 not modelled. From the 2020 contract PDF (usclac.it): terra salary tables were in Allegato 2 (tabelle retributive per il personale di terra, 2021-2023 tranches). Sezione 15 (uffici e terminals) specifically references Allegato 9 \"in formato elettronico\" — a separate electronic file not embedded in the scanned PDF. Neither Allegato 2 (scanned, image-only) nor Allegato 9 (separate file) is machine-readable. Engine history starts at 01/07/2024."
       },
       {
         "kind": "info",
@@ -1346,7 +1346,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "d69917a174febbb17ac15011bfadaac8df9ee39b5930a004f8de535b121ccf7e",
+    "source_hash": "866d10a358d21a46340f1c0ee5b4539629946e0503939eb44213d067e7be338c",
     "published_at": "2026-09-07"
   },
   "work_rules": {
