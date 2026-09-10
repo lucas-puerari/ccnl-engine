@@ -86,7 +86,7 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS RATES PROXY. Terziario sector rates reused from 2026-terziario.json (9.19% employee, tiered employer). Specific INPS circular for multiservizi sector (Gestione Separata or INPS Terziario with FISE bilateral?) not found in public sources. Verified 2026-09-09: no accessible INPS circular identified for this sector specifically. Terziario proxy remains best available."
+        "text": "INPS RATES PROXY. Terziario sector confirmed for multiservizi/pulizie: kitech.it (p=4_129, \"Commercio - terziario Imprese appaltatrici servizi pulizia\") lists rates matching 2026-terziario.json. Simplification: the CIGS threshold for imprese di pulizia is >15 dipendenti (not >50 as in the general terziario tier); for 16-50 employee companies the modeled employee rate (9.19%) understates the actual 9.49%. FIS (Fondo Integrazione Salariale) may also apply for non-CIGS-eligible firms. Source: kitech.it/Contributi-previdenziali.aspx?p=4_129"
       },
       {
         "kind": "info",
@@ -4085,7 +4085,7 @@
     "effective_until": null,
     "source": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "3941150ae110886a15ca5dba2babfdc8b0e258cf0f6f7a0c9c011903ed92cbe4",
+    "source_hash": "c2d38625d714ee2c22a7e5e967628e01af947852e7766ddccfbf55457c718fa0",
     "published_at": "2026-09-07"
   },
   "work_rules": {

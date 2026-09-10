@@ -68,7 +68,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: INPS terziario rates used. ASSOFARM pharmacies operate under commercial pharmacy rules; exact INPS circular for this sub-sector not verified."
+        "text": "INPS RATES. Terziario proxy used. ASSOFARM entities operate as aziende speciali or società di gestione farmacia (private-law entities under municipal control); the contract is registered CNEL H124 and negotiated by UGL Terziario — standard private-sector INPS regime (terziario) is the expected classification. Note: CCNL text references \"INPS Gestione ex INPDAP\" in benefit provisions, suggesting legacy workers transferred from public-sector management may retain the ex-INPDAP pension regime — contribution rates for those workers differ. No sector-specific INPS circular identified; kitech.it does not list a dedicated contribution table for farmacie municipalizzate. Simplification retained."
       },
       {
         "kind": "info",
@@ -1447,7 +1447,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "6f8932e002a77f183586812263907ee68b2ccaf5e0b176021a416019007f4a78",
+    "source_hash": "7ff9d67cfc577219f45aff3409ebecdb47986dadee12a91dee4fbe71560372f3",
     "published_at": "2026-09-07"
   },
   "work_rules": {

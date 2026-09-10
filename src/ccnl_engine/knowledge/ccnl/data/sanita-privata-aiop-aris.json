@@ -1516,8 +1516,8 @@
         "text": "Apprenticeship (Art. 23 §14, Art. 23 §2): destination levels are the four category entry positions A, B, C, D only. Horizontal-progression steps (A1-A4, B1-B4, C1-C4, D1-D4) are not apprenticeship destinations. DS and E categories excluded per Art. 23 §2. OSS and Albo-registered health professions excluded per Art. 23 §2 but per-qualification restriction not modellable at level granularity."
       },
       {
-        "kind": "simplification",
-        "text": "INPS: uses 2026-terziario.json as proxy. Private healthcare (AIOP/ARIS) is classified in the terziario sector for INPS purposes; verify against INPS Circolare n. 6/2026."
+        "kind": "info",
+        "text": "INPS: terziario sector confirmed. Kitech.it (table \"TERZIARIO attività VARIE\", kitech.it/Contributi-previdenziali.aspx?p=4_143) lists operai/impiegati at 9.19% employee contribution and 28.98% employer (≤50 dipendenti) / 29.58% (>50) — matching 2026-terziario.json exactly. Private healthcare (AIOP/ARIS) is classified under terziario standard rates; no healthcare-specific INPS regime applies. INPS Circolare n. 6/2026 confirms 9.19% employee rate for private sector workers."
       },
       {
         "kind": "info",
@@ -1539,7 +1539,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "1b0e8b483b6ec7da907e424a99843c95b32506469430add2e726e99353d8de02",
+    "source_hash": "82991beb8961818e9798472bfb50a9039a3587f4f2c1091176ae9f0834fd3766",
     "published_at": "2026-09-07"
   },
   "work_rules": {
