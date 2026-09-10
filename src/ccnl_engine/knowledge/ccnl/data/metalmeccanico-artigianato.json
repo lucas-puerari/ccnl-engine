@@ -76,8 +76,8 @@
         "text": "APPRENTICESHIP percentage, 10 semesters (60 months max), operai progression (source EBLART, apprenticeship professionalizzante article): 70% (sem. I-II), 75% (III), 78% (IV), 80% (V), 85% (VI), 88% (VII), 92% (VIII), 100% (IX-X); track 'operai' for destinations 5, 4, 3, 2bis. Since the 2015 reform level 6° cannot be used as a destination."
       },
       {
-        "kind": "simplification",
-        "text": "INPS: SIMPLIFICATION — single employer rate 26.93% (proxy source kitech.it; specific INPS circular for artigianato 2026 not retrieved). Estimated components: IVS 23.81% + NASpI 1.61% + CUAF 0.68% + malattia operai ~0.83% = ~26.93%. The rate models operai. SIMPLIFICATION: impiegati and quadri have an effective rate of ~24.71% (source: kitech.it, impiegati category), not modellable under the current employer_tiers schema (worker-category axis absent); the employer cost computed for impiegato levels is overstated by ~2.2pp. No CIGO/CIGS (D.Lgs. 148/2015 art. 3, artigianato sector excluded). FSBA (0.45% employer + 0.15% employee) is a bilateral contribution, not INPS: excluded from the tax file."
+        "kind": "info",
+        "text": "INPS OPERAI/IMPIEGATI: 2026-artigianato.json models both categories via employer_rate_by_category (operai default 26.93%; impiegati/quadri 24.71%). Pass Employee(category='impiegato') or Employee(category='quadro') to receive the lower rate; omitting category routes to operaio rate. Components: IVS 23.81% + NASpI 1.61% + CUAF 0.68% + malattia operai ~0.83% = 26.93%; malattia for impiegati is lower (hence ~24.71%). No CIGO/CIGS (D.Lgs. 148/2015 Art. 3, artigianato excluded). FSBA (0.45% employer + 0.15% employee) is bilateral, excluded from the tax file."
       },
       {
         "kind": "info",
@@ -2102,7 +2102,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "274ea994efa3170c8d2a2cdce249ea10fadfcd37f9357990598d0af77dacac47",
+    "source_hash": "c968c9d25ce0cbcb3fe9116c8d9905630efbd9a3e9d483592c8c321bc07b289d",
     "published_at": "2026-09-07"
   },
   "work_rules": {
