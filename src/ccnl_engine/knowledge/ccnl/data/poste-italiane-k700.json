@@ -48,7 +48,7 @@
       },
       {
         "kind": "info",
-        "text": "A1/A2 levels: paga base and contingenza are identical for staff and produzione; funzione differs (Art. 21 CCNL). Modeled as single levels; funzione uses staff rate as floor (see SIMPLIFICATION)."
+        "text": "A1/A2 levels: paga base and contingenza are identical for staff and produzione; funzione differs (Art. 21 CCNL). Modeled as two-tier allowances: base rate (staff, unconditional) + produzione delta via role=\"produzione\". Pass Employee(roles=frozenset([\"produzione\"])) to add the differential."
       },
       {
         "kind": "info",
@@ -63,8 +63,8 @@
         "text": "SIMPLIFICATION: EDR (elemento distintivo della retribuzione) omitted. Art. 65 I qualifies it as 'ove spettante'; amount not stated in Allegato 9 or CCNL body. Legacy entitlement for pre-privatization workers only."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Indennità di funzione modeled at staff rate (A1: 333.33/mo, A2: 187.50/mo). Produzione rate is higher (A1: 391.67, A2: 233.33); delta of 58.34-46.00 EUR/mo not captured without Scenario.roles."
+        "kind": "info",
+        "text": "INDENNITA DI FUNZIONE — PRODUZIONE DIFFERENTIAL: Staff rate (A1: 333.33/mo, A2: 187.50/mo) is unconditional. Produzione workers receive an additional delta (A1: +58.34, A2: +45.83) via IND_FUNZIONE_A*_PROD_DELTA with role=\"produzione\". Total produzione: A1=391.67, A2=233.33 (Art. 21 CCNL K700). Callers: pass Employee(roles=frozenset(['produzione'])) for the higher rate."
       },
       {
         "kind": "simplification",
@@ -1168,6 +1168,39 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_FUNZIONE_A2_PROD_DELTA",
+          "description": "Indennità di funzione A2 — differenziale produzione",
+          "role": "produzione",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-23",
+                "valid_until": null,
+                "value": "45.83"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
+                "title": "ccnl-posteitaliane-uilposte2024-pdf",
+                "kind": "associazione",
+                "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf"
+              },
+              "section": "Art. 21 Indennità di funzione"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-10T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-23"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1367,6 +1400,39 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_FUNZIONE_A1_PROD_DELTA",
+          "description": "Indennità di funzione A1 — differenziale produzione",
+          "role": "produzione",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-23",
+                "valid_until": null,
+                "value": "58.34"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
+                "title": "ccnl-posteitaliane-uilposte2024-pdf",
+                "kind": "associazione",
+                "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf"
+              },
+              "section": "Art. 21 Indennità di funzione"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-10T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-07-23"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1395,7 +1461,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "95ba73a9248e435c6b6f029e1067ef0c2c80a587f3eb35dbd2ce4c7d35670bab",
+    "source_hash": "90cd840db6ab90fce29eebfec901f4669eb89c09815cc2a9b3dfc244e0d9bed1",
     "published_at": "2026-09-07"
   },
   "work_rules": {
