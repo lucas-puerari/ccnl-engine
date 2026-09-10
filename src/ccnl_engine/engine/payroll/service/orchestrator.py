@@ -1682,8 +1682,17 @@ def compute(scenario: PayrollScenario) -> Calculation:
         scaled_second_level=scaled_second_level,
         gross_monthly=gross_monthly,
     )
+    # Domestic (colf/badanti) contributions use a flat per-hour model rather
+    # than the standard percentage-of-base model; carry the formula string so
+    # the trace step records the correct derivation.
+    domestic_inps_formula = (
+        "tariffa_oraria_INPS * ore_annuali_contratto"
+        if rules.domestic_contributions is not None
+        else None
+    )
     fiscal_steps = build_fiscal_trace(
         gross_annual=gross_annual,
+        contribution_base=contribution_base,
         inps_employee_annual=inps_employee_annual,
         inps_employer_annual=inps_employer_annual,
         employer_funds_annual=employer_funds_annual,
@@ -1699,6 +1708,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
         trattamento_integrativo=trattamento_integrativo,
         net_annual=net_annual,
         employer_withholds_irpef=employer_withholds_irpef,
+        inps_formula=domestic_inps_formula,
     )
     return Calculation(
         engine_version=engine_version,

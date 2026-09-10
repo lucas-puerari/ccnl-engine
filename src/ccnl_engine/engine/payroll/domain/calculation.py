@@ -293,6 +293,7 @@ class TraceCategory(StrEnum):
     SUPPLEMENT_TOTAL = "supplement_total"
 
     # --- Fiscal chain (annual amounts) ---
+    CONTRIBUTION_BASE = "contribution_base"
     INPS_EMPLOYEE = "inps_employee"
     INPS_EMPLOYER = "inps_employer"
     TFR = "tfr"
@@ -332,39 +333,60 @@ class TraceStep:
     amount: Decimal
     detail: str | None = None
     period: Literal["monthly", "annual"] = "monthly"
+    formula: str | None = None
+    source: str | None = None
+    rounding: str | None = None
 
     def to_dict(self) -> dict[str, object]:
         """Serialise to a JSON-native dict.
 
         Returns:
             A dict with ``str``/``None`` values; ``amount`` as its string
-            form to avoid floating-point loss.
+            form to avoid floating-point loss.  Optional fields (``formula``,
+            ``source``, ``rounding``) are omitted when ``None`` so old readers
+            that only check required keys remain compatible.
         """
-        return {
+        out: dict[str, object] = {
             "category": self.category.value,
             "label": self.label,
             "amount": str(self.amount),
             "detail": self.detail,
             "period": self.period,
         }
+        if self.formula is not None:
+            out["formula"] = self.formula
+        if self.source is not None:
+            out["source"] = self.source
+        if self.rounding is not None:
+            out["rounding"] = self.rounding
+        return out
 
     @classmethod
     def from_dict(cls, data: dict[str, object]) -> TraceStep:
         """Reconstruct from a :meth:`to_dict` dict.
 
         Args:
-            data: A dict as produced by :meth:`to_dict`.
+            data: A dict as produced by :meth:`to_dict`.  Keys ``formula``,
+                ``source``, and ``rounding`` are optional for backward
+                compatibility with snapshots serialised by older engine
+                versions.
 
         Returns:
             A new :class:`TraceStep` equal to the original.
         """
         raw_detail = data.get("detail")
+        raw_formula = data.get("formula")
+        raw_source = data.get("source")
+        raw_rounding = data.get("rounding")
         return cls(
             category=TraceCategory(str(data["category"])),
             label=str(data["label"]),
             amount=Decimal(str(data["amount"])),
             detail=str(raw_detail) if raw_detail is not None else None,
             period=str(data["period"]),  # type: ignore[arg-type]
+            formula=str(raw_formula) if raw_formula is not None else None,
+            source=str(raw_source) if raw_source is not None else None,
+            rounding=str(raw_rounding) if raw_rounding is not None else None,
         )
 
 

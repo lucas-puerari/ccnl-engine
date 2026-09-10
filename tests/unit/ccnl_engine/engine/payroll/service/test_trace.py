@@ -3,6 +3,12 @@
 Verifies that the fiscal chain is emitted correctly, that the NET step
 matches the expected derivation, that zero-amount steps are always present,
 and that the employer_withholds_irpef fork labels steps correctly.
+
+Also verifies that each step carries the expected structured metadata
+(formula, source, rounding) and that the fiscal closure invariant holds:
+    net = gross - inps_employee - irpef_net
+          - addizionale_regionale - addizionale_comunale
+          + trattamento_integrativo
 """
 
 from __future__ import annotations
@@ -26,6 +32,7 @@ def _base_kwargs() -> dict[str, object]:
     """
     return {
         "gross_annual": Decimal("19136.00"),
+        "contribution_base": Decimal("19136.00"),
         "inps_employee_annual": Decimal("1758.60"),
         "inps_employer_annual": Decimal("5153.32"),
         "employer_funds_annual": Decimal("0.00"),
@@ -163,6 +170,7 @@ class TestBuildFiscalTrace:
         """All required fiscal categories appear in the trace."""
         required = {
             TraceCategory.GROSS,
+            TraceCategory.CONTRIBUTION_BASE,
             TraceCategory.INPS_EMPLOYEE,
             TraceCategory.TAXABLE_INCOME,
             TraceCategory.IRPEF_GROSS,
@@ -198,3 +206,155 @@ class TestBuildFiscalTrace:
         steps = _build()
         present = {s.category for s in steps}
         assert cat in present
+
+    def test_contribution_base_step_amount(self) -> None:
+        """CONTRIBUTION_BASE step amount matches the supplied contribution_base."""
+        steps = _build(contribution_base=Decimal("18000.00"))
+        cb = _step_by(steps, TraceCategory.CONTRIBUTION_BASE)
+        assert cb.amount == Decimal("18000.00")
+
+
+class TestFiscalStepMetadata:
+    """Structured metadata (formula, source, rounding) on fiscal steps."""
+
+    def test_inps_employee_source(self) -> None:
+        """INPS_EMPLOYEE step carries the statutory INPS source reference."""
+        steps = _build()
+        emp = _step_by(steps, TraceCategory.INPS_EMPLOYEE)
+        assert emp.source is not None
+        assert "335" in emp.source  # L. 335/1995
+
+    def test_inps_employee_formula_default(self) -> None:
+        """INPS_EMPLOYEE step formula describes the percentage model by default."""
+        steps = _build()
+        emp = _step_by(steps, TraceCategory.INPS_EMPLOYEE)
+        assert emp.formula is not None
+        assert "aliquota" in emp.formula
+
+    def test_inps_employee_formula_override_via_inps_formula(self) -> None:
+        """inps_formula kwarg overrides the default INPS_EMPLOYEE formula."""
+        steps = _build(inps_formula="tariffa_oraria_INPS * ore_annuali_contratto")
+        emp = _step_by(steps, TraceCategory.INPS_EMPLOYEE)
+        assert emp.formula == "tariffa_oraria_INPS * ore_annuali_contratto"
+
+    def test_inps_formula_none_uses_default(self) -> None:
+        """When inps_formula is None the default formula is applied."""
+        steps = _build(inps_formula=None)
+        emp = _step_by(steps, TraceCategory.INPS_EMPLOYEE)
+        assert emp.formula is not None  # default from _STEP_META
+
+    def test_irpef_gross_source(self) -> None:
+        """IRPEF_GROSS step carries Art. 11 TUIR as source."""
+        steps = _build()
+        irpef = _step_by(steps, TraceCategory.IRPEF_GROSS)
+        assert irpef.source == "Art. 11 TUIR"
+
+    def test_irpef_gross_rounding(self) -> None:
+        """IRPEF_GROSS step has rounding set (rate computation involved)."""
+        steps = _build()
+        irpef = _step_by(steps, TraceCategory.IRPEF_GROSS)
+        assert irpef.rounding is not None
+
+    def test_taxable_income_formula(self) -> None:
+        """TAXABLE_INCOME step formula describes the derivation."""
+        steps = _build()
+        ti = _step_by(steps, TraceCategory.TAXABLE_INCOME)
+        assert ti.formula is not None
+        assert "INPS" in ti.formula
+
+    def test_taxable_income_no_rounding(self) -> None:
+        """TAXABLE_INCOME is a pure subtraction; rounding is not set."""
+        steps = _build()
+        ti = _step_by(steps, TraceCategory.TAXABLE_INCOME)
+        assert ti.rounding is None
+
+    def test_net_formula(self) -> None:
+        """NET step formula covers the full derivation from gross to net."""
+        steps = _build()
+        net = _step_by(steps, TraceCategory.NET)
+        assert net.formula is not None
+        assert "lordo" in net.formula.lower() or "gross" in net.formula.lower()
+
+    def test_net_no_rounding(self) -> None:
+        """NET is a pure derivation; rounding is not set."""
+        steps = _build()
+        net = _step_by(steps, TraceCategory.NET)
+        assert net.rounding is None
+
+    def test_tfr_source(self) -> None:
+        """TFR step carries Art. 2120 c.c. as source."""
+        steps = _build()
+        tfr = _step_by(steps, TraceCategory.TFR)
+        assert tfr.source == "Art. 2120 c.c."
+
+    def test_tfr_rounding(self) -> None:
+        """TFR step has rounding set (rate computation involved)."""
+        steps = _build()
+        tfr = _step_by(steps, TraceCategory.TFR)
+        assert tfr.rounding is not None
+
+    def test_addizionale_regionale_source(self) -> None:
+        """ADDIZIONALE_REGIONALE step carries Art. 50 TUIR as source."""
+        steps = _build()
+        reg = _step_by(steps, TraceCategory.ADDIZIONALE_REGIONALE)
+        assert reg.source == "Art. 50 TUIR"
+
+    def test_addizionale_comunale_source(self) -> None:
+        """ADDIZIONALE_COMUNALE step carries D.Lgs. 360/1998 as source."""
+        steps = _build()
+        com = _step_by(steps, TraceCategory.ADDIZIONALE_COMUNALE)
+        assert com.source is not None
+        assert "360" in com.source
+
+    def test_trattamento_integrativo_source(self) -> None:
+        """TRATTAMENTO_INTEGRATIVO step carries Art. 1 D.L. 3/2020 as source."""
+        steps = _build()
+        ti_step = _step_by(steps, TraceCategory.TRATTAMENTO_INTEGRATIVO)
+        assert ti_step.source is not None
+        assert "3/2020" in ti_step.source
+
+    def test_work_deduction_source(self) -> None:
+        """WORK_DEDUCTION step carries Art. 13 TUIR as source."""
+        steps = _build()
+        wd = _step_by(steps, TraceCategory.WORK_DEDUCTION)
+        assert wd.source == "Art. 13 TUIR"
+
+    def test_gross_no_formula_no_rounding(self) -> None:
+        """GROSS step has no formula and no rounding (it is the anchor)."""
+        steps = _build()
+        gross = _step_by(steps, TraceCategory.GROSS)
+        assert gross.formula is None
+        assert gross.rounding is None
+
+
+class TestFiscalClosureInvariant:
+    """Fiscal closure: net = gross - inps - irpef - add_reg - add_com + ti."""
+
+    def test_fiscal_closure_basic(self) -> None:
+        """Closure holds for the reference acconciatura-estetica scenario."""
+        steps = _build()
+        gross = _step_by(steps, TraceCategory.GROSS).amount
+        inps = _step_by(steps, TraceCategory.INPS_EMPLOYEE).amount
+        irpef = _step_by(steps, TraceCategory.IRPEF_NET).amount
+        add_reg = _step_by(steps, TraceCategory.ADDIZIONALE_REGIONALE).amount
+        add_com = _step_by(steps, TraceCategory.ADDIZIONALE_COMUNALE).amount
+        ti = _step_by(steps, TraceCategory.TRATTAMENTO_INTEGRATIVO).amount
+        net = _step_by(steps, TraceCategory.NET).amount
+        expected = gross - inps - irpef - add_reg - add_com + ti
+        assert net == expected, f"fiscal closure violated: {net} != {expected}"
+
+    def test_fiscal_closure_with_addizionali(self) -> None:
+        """Closure holds when addizionali are non-zero."""
+        steps = _build(
+            addizionale_regionale_annual=Decimal("200.00"),
+            addizionale_comunale_annual=Decimal("50.00"),
+            net_annual=Decimal("15219.30"),
+        )
+        gross = _step_by(steps, TraceCategory.GROSS).amount
+        inps = _step_by(steps, TraceCategory.INPS_EMPLOYEE).amount
+        irpef = _step_by(steps, TraceCategory.IRPEF_NET).amount
+        add_reg = _step_by(steps, TraceCategory.ADDIZIONALE_REGIONALE).amount
+        add_com = _step_by(steps, TraceCategory.ADDIZIONALE_COMUNALE).amount
+        ti = _step_by(steps, TraceCategory.TRATTAMENTO_INTEGRATIVO).amount
+        net = _step_by(steps, TraceCategory.NET).amount
+        assert net == gross - inps - irpef - add_reg - add_com + ti
