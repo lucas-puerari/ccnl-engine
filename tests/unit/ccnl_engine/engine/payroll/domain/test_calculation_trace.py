@@ -107,6 +107,9 @@ class TestTraceStep:
             amount=Decimal("1000.00"),
         )
         assert step.detail is None
+        assert step.formula is None
+        assert step.source is None
+        assert step.rounding is None
 
     def test_with_detail(self) -> None:
         """TraceStep stores optional detail string."""
@@ -117,6 +120,20 @@ class TestTraceStep:
             detail="edr",
         )
         assert step.detail == "edr"
+
+    def test_with_formula_source_rounding(self) -> None:
+        """TraceStep stores formula, source, and rounding when supplied."""
+        step = TraceStep(
+            category=TraceCategory.INPS_EMPLOYEE,
+            label="INPS dipendente",
+            amount=Decimal("1758.60"),
+            formula="base * aliquota",
+            source="L. 335/1995 Art. 1 c. 18",
+            rounding="ROUND_HALF_UP 0.01",
+        )
+        assert step.formula == "base * aliquota"
+        assert step.source == "L. 335/1995 Art. 1 c. 18"
+        assert step.rounding == "ROUND_HALF_UP 0.01"
 
     def test_to_dict(self) -> None:
         """to_dict produces a JSON-native dict with str amount."""
@@ -131,6 +148,33 @@ class TestTraceStep:
         assert d["label"] == "Scatti di anzianità"
         assert d["amount"] == "82.64"
         assert d["detail"] == "scatti=3"
+
+    def test_to_dict_omits_none_metadata(self) -> None:
+        """to_dict omits formula/source/rounding keys when None."""
+        step = TraceStep(
+            category=TraceCategory.GROSS,
+            label="Lordo",
+            amount=Decimal("1000.00"),
+        )
+        d = step.to_dict()
+        assert "formula" not in d
+        assert "source" not in d
+        assert "rounding" not in d
+
+    def test_to_dict_includes_metadata_when_set(self) -> None:
+        """to_dict includes formula/source/rounding when non-None."""
+        step = TraceStep(
+            category=TraceCategory.IRPEF_GROSS,
+            label="IRPEF lorda",
+            amount=Decimal("3996.80"),
+            formula="scaglioni",
+            source="Art. 11 TUIR",
+            rounding="ROUND_HALF_UP 0.01",
+        )
+        d = step.to_dict()
+        assert d["formula"] == "scaglioni"
+        assert d["source"] == "Art. 11 TUIR"
+        assert d["rounding"] == "ROUND_HALF_UP 0.01"
 
     def test_roundtrip_no_detail(self) -> None:
         """to_dict/from_dict round-trips a step without detail."""
@@ -150,6 +194,33 @@ class TestTraceStep:
             detail="contingenza",
         )
         assert TraceStep.from_dict(step.to_dict()) == step
+
+    def test_roundtrip_with_formula_source_rounding(self) -> None:
+        """to_dict/from_dict round-trips a step with all metadata fields."""
+        step = TraceStep(
+            category=TraceCategory.INPS_EMPLOYEE,
+            label="INPS dipendente",
+            amount=Decimal("1758.60"),
+            period="annual",
+            formula="base * aliquota",
+            source="L. 335/1995",
+            rounding="ROUND_HALF_UP 0.01",
+        )
+        assert TraceStep.from_dict(step.to_dict()) == step
+
+    def test_from_dict_backward_compat_no_metadata(self) -> None:
+        """from_dict with no formula/source/rounding keys yields None fields."""
+        raw: dict[str, object] = {
+            "category": "irpef_gross",
+            "label": "IRPEF lorda",
+            "amount": "3996.80",
+            "detail": None,
+            "period": "annual",
+        }
+        step = TraceStep.from_dict(raw)
+        assert step.formula is None
+        assert step.source is None
+        assert step.rounding is None
 
     def test_amount_preserved_as_decimal(self) -> None:
         """from_dict restores amount as Decimal, not float."""
@@ -512,6 +583,114 @@ class TestFiscalStepsRoundtrip:
         calc = compute(_req())
         restored = Calculation.from_json(calc.to_json())
         assert restored.trace.fiscal_steps == calc.trace.fiscal_steps
+
+    def test_fiscal_steps_carry_formula_and_source(self) -> None:
+        """compute() produces fiscal steps with formula/source populated."""
+        calc = compute(_req())
+        by_cat = {s.category: s for s in calc.trace.fiscal_steps}
+        # INPS step must have both formula and source
+        inps = by_cat[TraceCategory.INPS_EMPLOYEE]
+        assert inps.formula is not None
+        assert inps.source is not None
+        # NET step must have formula
+        net = by_cat[TraceCategory.NET]
+        assert net.formula is not None
+        # TFR step must have source
+        tfr = by_cat[TraceCategory.TFR]
+        assert tfr.source is not None
+
+    def test_contribution_base_step_present(self) -> None:
+        """compute() emits a CONTRIBUTION_BASE fiscal step."""
+        calc = compute(_req())
+        cats = {s.category for s in calc.trace.fiscal_steps}
+        assert TraceCategory.CONTRIBUTION_BASE in cats
+
+    @pytest.mark.parametrize("case_file", _CASE_FILES, ids=lambda p: p.stem)
+    def test_fiscal_closure_integration_cases(self, case_file: Path) -> None:
+        """Fiscal closure invariant holds for every integration case.
+
+        net = gross - inps_employee - irpef_net
+              - addizionale_regionale - addizionale_comunale
+              + trattamento_integrativo
+        """
+        case = json.loads(case_file.read_text(encoding="utf-8"))
+        inputs = case["inputs"]
+
+        ccnl = _real_load_ccnl(inputs["ccnl_file"])
+        num_employees = int(inputs["num_employees"])
+        rules = _real_load_year_rules(
+            inputs["year"],
+            TaxSector(inputs["tax_sector"]),
+            num_employees,
+        )
+        _mock_ccnl[0] = ccnl
+        _mock_rules[0] = rules
+
+        regione = inputs.get("regione")
+        comune = inputs.get("comune_belfiore")
+        if regione or comune:
+            _mock_surtax[0] = _real_load_surtax(inputs["year"])
+
+        emp_type = inputs["employment_type"]
+        if emp_type == "permanent":
+            contract: Permanent | Apprentice = Permanent()
+        else:
+            contract = Apprentice(months_elapsed=int(inputs["months_elapsed"]))
+
+        seniority_count = int(inputs["seniority_count"])
+        weekly_hours_raw = inputs.get("weekly_hours")
+        negotiated_ral_raw = inputs.get("negotiated_ral")
+        ivs_ceiling_applies = bool(inputs.get("ivs_ceiling_applies", False))
+        has_jurisdiction = (
+            regione is not None or comune is not None or ivs_ceiling_applies
+        )
+
+        scenario = PayrollScenario(
+            employee=Employee(
+                level_code=inputs["level_code"],
+                seniority=(
+                    SeniorityByCount(seniority_count) if seniority_count else None
+                ),
+                part_time_pct=Decimal(inputs["part_time_pct"]),
+                weekly_hours=(
+                    Decimal(str(weekly_hours_raw))
+                    if weekly_hours_raw is not None
+                    else None
+                ),
+                category=inputs.get("category"),
+                ivs_ceiling_applies=ivs_ceiling_applies,
+                jurisdiction=(
+                    Jurisdiction(regione=regione, comune_belfiore=comune)
+                    if has_jurisdiction
+                    else None
+                ),
+                agreement=(
+                    Agreement(ral_override=RalOverride(Decimal(negotiated_ral_raw)))
+                    if negotiated_ral_raw is not None
+                    else None
+                ),
+            ),
+            employment=Employment(
+                ccnl=inputs["ccnl_file"],
+                contract=contract,
+                employer=Employer(num_employees=num_employees),
+                date=date.fromisoformat(inputs["as_of"]),
+            ),
+        )
+        calc = compute(scenario)
+
+        by_cat = {s.category: s for s in calc.trace.fiscal_steps}
+        gross = by_cat[TraceCategory.GROSS].amount
+        inps = by_cat[TraceCategory.INPS_EMPLOYEE].amount
+        irpef = by_cat[TraceCategory.IRPEF_NET].amount
+        add_reg = by_cat[TraceCategory.ADDIZIONALE_REGIONALE].amount
+        add_com = by_cat[TraceCategory.ADDIZIONALE_COMUNALE].amount
+        ti = by_cat[TraceCategory.TRATTAMENTO_INTEGRATIVO].amount
+        net = by_cat[TraceCategory.NET].amount
+        expected = gross - inps - irpef - add_reg - add_com + ti
+        assert net == expected, (
+            f"{case_file.stem}: fiscal closure violated: {net} != {expected}"
+        )
 
 
 class TestSupplementStepsRoundtrip:
