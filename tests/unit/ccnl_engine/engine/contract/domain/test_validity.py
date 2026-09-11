@@ -10,7 +10,12 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
+from ccnl_engine.engine.contract.domain.validity import (
+    SalaryGapError,
+    SalaryGapKind,
+    TimeSeries,
+    ValidityPeriod,
+)
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -31,6 +36,23 @@ def _period(
         valid_from=date.fromisoformat(valid_from),
         valid_until=date.fromisoformat(valid_until) if valid_until else None,
         value=Decimal(value),
+    )
+
+
+def _gap_period(
+    valid_from: str,
+    valid_until: str | None,
+    gap_kind: SalaryGapKind,
+) -> ValidityPeriod:
+    """Build a gap ValidityPeriod (no numeric value) from ISO-date strings.
+
+    Returns:
+        A ValidityPeriod with gap_kind set and no value.
+    """
+    return ValidityPeriod(
+        valid_from=date.fromisoformat(valid_from),
+        valid_until=date.fromisoformat(valid_until) if valid_until else None,
+        gap_kind=gap_kind,
     )
 
 
@@ -174,3 +196,109 @@ class TestTimeSeriesValueAt:
         ts = _series(p0, p1)
         with pytest.raises(ValueError, match="series starts"):
             ts.value_at(date(2023, 12, 31))
+
+
+# ---------------------------------------------------------------------------
+# ValidityPeriod — gap periods (SalaryGapKind)
+# ---------------------------------------------------------------------------
+
+
+class TestValidityPeriodGap:
+    """Gap period construction and XOR invariant."""
+
+    def test_gap_missing_valid(self) -> None:
+        """A period with gap_kind='missing' and no value is accepted."""
+        p = _gap_period("2024-01-01", "2025-01-01", SalaryGapKind.MISSING)
+        assert p.is_gap
+        assert p.gap_kind == SalaryGapKind.MISSING
+        assert p.value is None
+
+    def test_gap_not_applicable_valid(self) -> None:
+        """A period with gap_kind='not_applicable' and no value is accepted."""
+        p = _gap_period("2024-01-01", None, SalaryGapKind.NOT_APPLICABLE)
+        assert p.is_gap
+        assert p.gap_kind == SalaryGapKind.NOT_APPLICABLE
+
+    def test_gap_unknown_valid(self) -> None:
+        """A period with gap_kind='unknown' and no value is accepted."""
+        p = _gap_period("2024-01-01", None, SalaryGapKind.UNKNOWN)
+        assert p.is_gap
+        assert p.gap_kind == SalaryGapKind.UNKNOWN
+
+    def test_both_value_and_gap_kind_raises(self) -> None:
+        """Supplying both value and gap_kind must raise ValidationError."""
+        with pytest.raises(ValidationError, match="exactly one"):
+            ValidityPeriod(
+                valid_from=date(2024, 1, 1),
+                valid_until=None,
+                value=Decimal("100.00"),
+                gap_kind=SalaryGapKind.MISSING,
+            )
+
+    def test_neither_value_nor_gap_kind_raises(self) -> None:
+        """Supplying neither value nor gap_kind must raise ValidationError."""
+        with pytest.raises(ValidationError, match="exactly one"):
+            ValidityPeriod(
+                valid_from=date(2024, 1, 1),
+                valid_until=None,
+            )
+
+    def test_non_gap_is_gap_false(self) -> None:
+        """is_gap is False for a regular period with a value."""
+        p = _period("2024-01-01", None, "500.00")
+        assert not p.is_gap
+
+
+# ---------------------------------------------------------------------------
+# TimeSeries.value_at — gap period behaviour
+# ---------------------------------------------------------------------------
+
+
+class TestTimeSeriesValueAtGap:
+    """value_at raises SalaryGapError when the active period is a gap."""
+
+    def test_single_gap_period_raises_salary_gap_error(self) -> None:
+        """value_at on a date within a single gap period raises SalaryGapError."""
+        p = _gap_period("2024-01-01", None, SalaryGapKind.MISSING)
+        ts = _series(p)
+        with pytest.raises(SalaryGapError):
+            ts.value_at(date(2024, 6, 1))
+
+    def test_gap_error_carries_gap_kind(self) -> None:
+        """SalaryGapError.gap_kind equals the period's gap_kind."""
+        p = _gap_period("2024-01-01", None, SalaryGapKind.NOT_APPLICABLE)
+        ts = _series(p)
+        with pytest.raises(SalaryGapError) as exc_info:
+            ts.value_at(date(2025, 1, 1))
+        assert exc_info.value.gap_kind == SalaryGapKind.NOT_APPLICABLE
+
+    def test_gap_error_is_value_error(self) -> None:
+        """SalaryGapError is a subclass of ValueError."""
+        p = _gap_period("2024-01-01", None, SalaryGapKind.UNKNOWN)
+        ts = _series(p)
+        with pytest.raises(ValueError, match="explicit gap"):
+            ts.value_at(date(2024, 3, 1))
+
+    def test_gap_in_middle_raises_for_gap_date(self) -> None:
+        """value_at on the gap range raises SalaryGapError; flanking periods work."""
+        p0 = _period("2023-01-01", "2024-01-01", "1000.00")
+        gap = _gap_period("2024-01-01", "2025-01-01", SalaryGapKind.MISSING)
+        p1 = _period("2025-01-01", None, "1100.00")
+        ts = _series(p0, gap, p1)
+        # Before gap: normal value
+        assert ts.value_at(date(2023, 6, 1)) == Decimal("1000.00")
+        # Inside gap: SalaryGapError
+        with pytest.raises(SalaryGapError) as exc_info:
+            ts.value_at(date(2024, 6, 1))
+        assert exc_info.value.gap_kind == SalaryGapKind.MISSING
+        # After gap: normal value
+        assert ts.value_at(date(2025, 6, 1)) == Decimal("1100.00")
+
+    def test_period_at_returns_gap_period(self) -> None:
+        """period_at returns a gap period and its is_gap flag is True."""
+        gap = _gap_period("2024-01-01", None, SalaryGapKind.NOT_APPLICABLE)
+        ts = _series(gap)
+        p = ts.period_at(date(2024, 6, 1))
+        assert p is not None
+        assert p.is_gap
+        assert p.gap_kind == SalaryGapKind.NOT_APPLICABLE

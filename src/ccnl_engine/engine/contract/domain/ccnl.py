@@ -12,7 +12,7 @@ from ccnl_engine.engine.contract.domain.apprenticeship import (
     ApprenticeshipTrack,
     ApprenticeshipUnderClassification,
 )
-from ccnl_engine.engine.contract.domain.validity import TimeSeries
+from ccnl_engine.engine.contract.domain.validity import SalaryGapError, TimeSeries
 from ccnl_engine.engine.metadata import RulesetIdentity
 from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
@@ -600,13 +600,16 @@ class Level(BaseModel):
 
     @model_validator(mode="after")
     def _check_salary_non_decreasing(self) -> Self:
-        periods = self.base_salary.periods
-        for i in range(len(periods) - 1):
-            if periods[i + 1].value < periods[i].value:
+        # Compare only adjacent non-gap periods; gap periods carry no value.
+        values: list[Decimal] = [
+            p.value for p in self.base_salary.periods if p.value is not None
+        ]
+        for i in range(len(values) - 1):
+            if values[i + 1] < values[i]:
                 msg = (
                     f"base_salary must be non-decreasing over time: "
-                    f"period {i} value {periods[i].value} > "
-                    f"period {i + 1} value {periods[i + 1].value}"
+                    f"period {i} value {values[i]} > "
+                    f"period {i + 1} value {values[i + 1]}"
                 )
                 raise ValueError(msg)
         return self
@@ -940,20 +943,7 @@ class CCNL(BaseModel):
             msg = "seniority_increments.provenance is required"
             raise ValueError(msg)
         for level in self.levels:
-            prefix = f"level {level.code!r}"
-            if level.provenance is None:
-                msg = f"{prefix}: provenance is required"
-                raise ValueError(msg)
-            for i, period in enumerate(level.base_salary.periods):
-                if period.provenance is None:
-                    msg = f"{prefix}: base_salary.periods[{i}].provenance is required"
-                    raise ValueError(msg)
-            for allowance in level.fixed_allowances:
-                if allowance.provenance is None:
-                    msg = (
-                        f"{prefix}: allowance {allowance.code!r}.provenance is required"
-                    )
-                    raise ValueError(msg)
+            _assert_level_provenance(level)
 
     def _assert_coverage_consistency(self) -> None:
         has_tracks = bool(self.apprenticeship)
@@ -976,7 +966,11 @@ def _check_salary_ordering_at_date(
     for lv in sorted_levels:
         try:
             value = lv.base_salary.value_at(check_date)
+        except SalaryGapError:
+            # Explicit gap period — level intentionally absent on this date.
+            continue
         except ValueError:
+            # Series has not started yet on check_date.
             continue
         if prev_value is not None and value < prev_value:
             msg = (
@@ -987,6 +981,31 @@ def _check_salary_ordering_at_date(
             raise ValueError(msg)
         prev_value = value
         prev_code = lv.code
+
+
+def _assert_level_provenance(level: "Level") -> None:
+    """Check that all non-gap salary periods and allowances carry provenance.
+
+    Gap periods are exempt: they hold no source data.
+
+    Raises:
+        ValueError: If provenance is missing on the level itself, any non-gap
+            salary period, or any fixed allowance.
+    """
+    prefix = f"level {level.code!r}"
+    if level.provenance is None:
+        msg = f"{prefix}: provenance is required"
+        raise ValueError(msg)
+    for i, period in enumerate(level.base_salary.periods):
+        if period.is_gap:
+            continue  # gap periods carry no source data; provenance not required
+        if period.provenance is None:
+            msg = f"{prefix}: base_salary.periods[{i}].provenance is required"
+            raise ValueError(msg)
+    for allowance in level.fixed_allowances:
+        if allowance.provenance is None:
+            msg = f"{prefix}: allowance {allowance.code!r}.provenance is required"
+            raise ValueError(msg)
 
 
 def _check_flat_level_codes(existing: set[str], si: "SeniorityIncrements") -> None:

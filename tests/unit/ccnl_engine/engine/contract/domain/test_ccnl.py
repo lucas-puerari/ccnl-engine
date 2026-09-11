@@ -205,6 +205,31 @@ class TestLevelSalaryNonDecreasing:
         with pytest.raises(ValidationError, match="non-decreasing over time"):
             _validate(data)
 
+    def test_gap_between_real_periods_is_skipped(self) -> None:
+        """A gap period flanked by valid values is not compared; no error raised."""
+        data = make_ccnl_dict()
+        data["levels"][2]["base_salary"]["periods"] = [
+            {
+                "valid_from": "2019-01-01",
+                "valid_until": "2020-01-01",
+                "value": "900.00",
+                "provenance": TEST_PROV,
+            },
+            {
+                "valid_from": "2020-01-01",
+                "valid_until": "2021-01-01",
+                "gap_kind": "missing",
+            },
+            {
+                "valid_from": "2021-01-01",
+                "valid_until": None,
+                "value": "1000.00",
+                "provenance": TEST_PROV,
+            },
+        ]
+        ccnl = _validate(data)
+        assert ccnl.levels[2].base_salary.periods[1].is_gap
+
 
 # ---------------------------------------------------------------------------
 # CCNL cross-field: levels
@@ -251,6 +276,43 @@ class TestCCNLLevels:
         """A level whose series starts after another's is skipped on earlier dates."""
         data = make_ccnl_dict()
         data["levels"][2]["base_salary"] = _series_with_prov("1000.00", "2021-01-01")
+        assert len(_validate(data).levels) == 3
+
+    def test_cross_level_gap_not_applicable_is_skipped(self) -> None:
+        """A not_applicable gap on an earlier date is skipped in ordering check."""
+        data = make_ccnl_dict()
+        # Level with order=3 has a not_applicable gap before its real salary.
+        data["levels"][2]["base_salary"]["periods"] = [
+            {
+                "valid_from": "2020-01-01",
+                "valid_until": "2021-01-01",
+                "gap_kind": "not_applicable",
+            },
+            {
+                "valid_from": "2021-01-01",
+                "valid_until": None,
+                "value": "1000.00",
+                "provenance": TEST_PROV,
+            },
+        ]
+        assert len(_validate(data).levels) == 3
+
+    def test_cross_level_gap_missing_is_skipped(self) -> None:
+        """A missing gap on an earlier date is skipped in ordering check."""
+        data = make_ccnl_dict()
+        data["levels"][2]["base_salary"]["periods"] = [
+            {
+                "valid_from": "2020-01-01",
+                "valid_until": "2021-01-01",
+                "gap_kind": "missing",
+            },
+            {
+                "valid_from": "2021-01-01",
+                "valid_until": None,
+                "value": "1000.00",
+                "provenance": TEST_PROV,
+            },
+        ]
         assert len(_validate(data).levels) == 3
 
     def test_level_lookup_helpers(self) -> None:
@@ -838,3 +900,20 @@ class TestSchema05ProvenanceRequired:
         data["parameters"]["seniority_increments"].pop("provenance", None)
         with pytest.raises(ValidationError, match="provenance is required"):
             _validate(data)
+
+    def test_gap_period_needs_no_provenance(self) -> None:
+        """A gap period in a 0.5 file is exempt from the provenance requirement."""
+        data = _make_v5_dict()
+        # Insert a gap before the existing period (all periods have provenance via
+        # _make_v5_dict; the gap has none — this must still pass).
+        original = data["levels"][0]["base_salary"]["periods"][0]
+        data["levels"][0]["base_salary"]["periods"] = [
+            {
+                "valid_from": "2019-01-01",
+                "valid_until": "2020-01-01",
+                "gap_kind": "missing",
+                # deliberately no provenance
+            },
+            {**original, "valid_from": "2020-01-01"},
+        ]
+        _validate(data)  # must not raise
