@@ -450,14 +450,68 @@ class SeniorityIncrements(BaseModel):
     @model_validator(mode="after")
     def _check_cadence(self) -> Self:
         if self.tiers:
-            if self.amount_by_level:
-                msg = (
-                    "seniority_increments.tiers and amount_by_level are mutually "
-                    "exclusive: use tiers for multi-tier ladders, amount_by_level "
-                    "for uniform-cadence contracts"
-                )
-                raise ValueError(msg)
-            return self
+            self._check_tiered_constraints()
+        else:
+            self._check_flat_constraints()
+        return self
+
+    def _check_tiered_constraints(self) -> None:
+        """Validate invariants that apply only when ``tiers`` is non-empty.
+
+        Raises:
+            ValueError: If flat-mode fields are set alongside tiers, or if
+                ``maximum_count`` does not equal the sum of tier capacities.
+        """
+        if self.amount_by_level:
+            msg = (
+                "seniority_increments.tiers and amount_by_level are mutually "
+                "exclusive: use tiers for multi-tier ladders, amount_by_level "
+                "for uniform-cadence contracts"
+            )
+            raise ValueError(msg)
+        flat_only: dict[str, object] = {
+            "first_cadence_months": self.first_cadence_months,
+            "first_cadence_months_by_level": self.first_cadence_months_by_level,
+            "first_cadence_months_by_category": self.first_cadence_months_by_category,
+            "maximum_count_by_level": self.maximum_count_by_level,
+            "maximum_count_by_category": self.maximum_count_by_category,
+            "amount_by_level_by_category": self.amount_by_level_by_category,
+        }
+        set_fields = [k for k, v in flat_only.items() if v]
+        if set_fields:
+            joined = ", ".join(set_fields)
+            msg = (
+                "seniority_increments.tiers is set; the following flat-mode "
+                f"fields are not allowed in tiered mode: {joined}"
+            )
+            raise ValueError(msg)
+        tier_sum = sum(t.maximum_count for t in self.tiers)
+        if self.maximum_count != tier_sum:
+            msg = (
+                f"seniority_increments.maximum_count ({self.maximum_count}) "
+                f"must equal the sum of tier maximum_count values ({tier_sum})"
+            )
+            raise ValueError(msg)
+
+    def _check_flat_constraints(self) -> None:
+        """Validate invariants that apply when ``tiers`` is empty (flat mode).
+
+        Raises:
+            ValueError: If ``maximum_count > 0`` but no amounts are defined,
+                or if a first-cadence override is below ``cadence_months``,
+                or if a per-level/per-category maximum count is negative.
+        """
+        if (
+            self.maximum_count > 0
+            and not self.amount_by_level
+            and not (self.amount_by_level_by_category)
+        ):
+            msg = (
+                "seniority_increments.maximum_count > 0 but neither "
+                "amount_by_level nor amount_by_level_by_category is populated; "
+                "add amounts or set maximum_count to 0 to disable scatti"
+            )
+            raise ValueError(msg)
         candidates = [("first_cadence_months", self.first_cadence_months)]
         candidates += [
             (f"first_cadence_months_by_level[{code!r}]", months)
@@ -482,7 +536,6 @@ class SeniorityIncrements(BaseModel):
             if count < 0:
                 msg = f"maximum_count_by_category[{cat!r}] must be >= 0, got {count}"
                 raise ValueError(msg)
-        return self
 
 
 class EmployerFund(BaseModel):

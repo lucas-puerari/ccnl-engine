@@ -392,7 +392,7 @@ class TestDiffCcnlTieredSeniority:
         data = make_ccnl_dict(app_type="")
         data["parameters"]["seniority_increments"] = {
             "cadence_months": 24,
-            "maximum_count": 0,
+            "maximum_count": 3,  # must equal sum of tier maximum_count values
             "amount_by_level": {},
             "provenance": TEST_PROV,
             "tiers": [
