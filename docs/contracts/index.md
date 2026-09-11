@@ -144,6 +144,7 @@ attainable score is 100%.
 | 104 | N/A | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | Pubblica Sicurezza — Forze di Polizia ad ordinamento civile | ~130k | 2025 | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 105 | H008 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | terziario | ~460k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 106 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | sport | ~35k | 2024 | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 107 | T261 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | formazione professionale | ~19.8k | 2024 | 100% | ✅ | ✅ | ✅ | 🤖 |
 
 [^1]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.
 [^2]: Salary tables extracted from official CCNL documents using AI-assisted tooling, no manual human review. Verify against the official source before use in production.

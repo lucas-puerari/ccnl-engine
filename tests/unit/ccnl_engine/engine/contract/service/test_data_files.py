@@ -8900,3 +8900,69 @@ class TestLoadImpiantiSportiviSport:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 0
+
+
+class TestLoadFormazioneProfessionale:
+    """Unit tests for CCNL Formazione Professionale (T261)."""
+
+    def test_formazione_professionale_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("formazione-professionale.json")
+        assert ccnl.meta.ccnl_id == "formazione-professionale"
+        assert ccnl.meta.cnel_code == "T261"
+
+    def test_formazione_professionale_has_9_levels(self) -> None:
+        """Contract has exactly 9 levels: I through IX."""
+        ccnl = load_ccnl("formazione-professionale.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"}
+
+    def test_formazione_professionale_level_v_salary_tranche1(self) -> None:
+        """Level V base salary at 01/01/2024 (carry-over) is 1957.63 EUR."""
+        ccnl = load_ccnl("formazione-professionale.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "V")
+        assert lv.base_salary.value_at(date(2024, 1, 1)) == Decimal("1957.63")
+
+    def test_formazione_professionale_level_v_salary_tranche2(self) -> None:
+        """Level V base salary at 01/06/2024 (first increase) is 2017.63 EUR."""
+        ccnl = load_ccnl("formazione-professionale.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "V")
+        assert lv.base_salary.value_at(date(2024, 6, 1)) == Decimal("2017.63")
+
+    def test_formazione_professionale_level_ordering(self) -> None:
+        """I is lowest (order 1), IX is highest (order 9)."""
+        ccnl = load_ccnl("formazione-professionale.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "I"
+        assert by_order[-1].code == "IX"
+
+    def test_formazione_professionale_additional_months(self) -> None:
+        """Additional months is 13 (tredicesima only — Art. 27 CCNL)."""
+        ccnl = load_ccnl("formazione-professionale.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_formazione_professionale_hourly_divisor(self) -> None:
+        """Hourly divisor is 156 (36h/week — Art. 29 para 6 CCNL)."""
+        ccnl = load_ccnl("formazione-professionale.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(156)
+
+    def test_formazione_professionale_no_fixed_allowances(self) -> None:
+        """All levels have empty fixed_allowances (conglobated model)."""
+        ccnl = load_ccnl("formazione-professionale.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_formazione_professionale_tax_sector(self) -> None:
+        """Tax sector is terziario."""
+        ccnl = load_ccnl("formazione-professionale.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_formazione_professionale_seniority_cadence(self) -> None:
+        """Seniority: quadrennial cadence (48 months), 5 increments max."""
+        ccnl = load_ccnl("formazione-professionale.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 48
+        assert si.maximum_count == 5

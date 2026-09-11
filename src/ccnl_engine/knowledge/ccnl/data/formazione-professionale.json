@@ -1,0 +1,1239 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "formazione-professionale",
+    "name": "CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)",
+    "cnel_code": "T261",
+    "sector": "formazione professionale",
+    "tax_sector": "terziario",
+    "signatories": [
+      "CNOS-FAP",
+      "CIOFS-FP",
+      "FORMA",
+      "CNF",
+      "FLC-CGIL",
+      "FLC-CISL (CISL Scuola)",
+      "UIL Scuola RUA",
+      "SNALS-CONFSAL",
+      "ANIEF"
+    ],
+    "sources": [
+      {
+        "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
+        "type": "pdf",
+        "agreement_date": "2024-03-01"
+      }
+    ],
+    "extraction": {
+      "method": "ai_assisted",
+      "model": null,
+      "timestamp": "2026-09-11T00:00:00",
+      "human_reviewed": true
+    },
+    "workers_estimate": "~19.8k"
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "RENEWAL: CCNL signed 2024-03-01 (CNEL-registered). Original text drafted 18/12/2023. Validity 01/01/2024-31/12/2027. Biennio economico 01/01/2024-31/12/2025."
+      },
+      {
+        "kind": "info",
+        "text": "CONGLOBATED MINIMUMS (Art. 25): Art. 25-A lists 'stipendio tabellare' as the sole fundamental salary component. No contingenza or EDR column. Art. 29 defines hourly rate as 'retribuzione mensile/156' — the tabellare IS the total conglobated amount. fixed_allowances=[] for all levels."
+      },
+      {
+        "kind": "info",
+        "text": "SALARY TABLE 1 (Art. 20): three tranches from primary CCNL PDF (cislscuola.it, signatory union). Tranche 0: 31/12/2023 carry-over from 01/01/2024. Tranche 1: +01/06/2024. Tranche 2 (secondo biennio): +01/09/2025. Second biennium negotiations collapsed 27/05/2026 — no further increase. valid_until=null on 2025-09-01 period is correct."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR (Art. 29 para 6): 'retribuzione mensile/156'. Art. 29 para 4 states part-time pay is 'tanti trentaseiesimi' (36ths) of full pay, confirming 36h/week. 36x52/12=156. hourly_divisor=156 verified from contract text."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS (Art. 27): tredicesima only, paid by 20 December each year. additional_months=13."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY — P.E.O.I. (Art. 21, Table 2): Progressione Economica Orizzontale Individuale. 5 quadrennial increments (cadence_months=48, maximum_count=5). Monthly amounts by level from Table 2: I=30, II=30, III=30, IV=40, V=55, VI=60, VII=60, VIII=60, IX=60. All from primary PDF."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP (Art. 7): Art. 7 para 3 delegates profile and salary definitions entirely to EBiNFoP within 30 days of signing. No specific salary model (percentage or under-classification) is defined in the CCNL text. apprenticeship=[] is correct — no under-classification or percentage model is established by the contract. SIMPLIFICATION: if EBiNFoP has since issued a framework, it is not captured here."
+      },
+      {
+        "kind": "info",
+        "text": "INDENNITA (Art. 25 F-G): regional-bargaining indennita minima (700/1400 EUR) and sanita integrativa (7 EUR/month 'dalla data di attivazione dell accordo nazionale specifico'). These are not level-attached fixed allowances; excluded from fixed_allowances. No evidence the national sanita agreement has been activated."
+      },
+      {
+        "kind": "info",
+        "text": "OVERTIME (Art. 39): three rates — diurno +15%, notturno or festivo +30%, notturno+festivo +50%. SIMPLIFICATION: the combined notturno+festivo band (50%) requires a multi-condition match not supported by the engine overtime_bands schema; that case is omitted. Art. 41 para 3 (15% supplement for ordinary work at night or on holidays) is not modeled — engine time_supplements captures overtime only."
+      },
+      {
+        "kind": "info",
+        "text": "LEAVE (Art. 43): 32 giorni lavorativi on 6-day week + 4 giorni festività soppresse. SIMPLIFICATION: stored as 26 working days on 5-day-week basis (32/1.2=26.67); festività soppresse 4 giorni are not modeled as a separate tier. Source: Art. 43 para 3-4 CCNL."
+      },
+      {
+        "kind": "info",
+        "text": "SICKNESS (Art. 50 para 4): 100% for 12 months, 75% for months 13-18. SIMPLIFICATION: second tier (75%) is not captured by the single max_duration_days field; stored as max_duration_days=365 (full-pay period only). Source: Art. 50 para 4 CCNL."
+      },
+      {
+        "kind": "info",
+        "text": "DAILY DIVISOR: Art. 37 specifies 156 ore/month and 5-day week but does not state a daily divisor explicitly. SIMPLIFICATION: by_26 applied as standard for terziario contracts."
+      }
+    ],
+    "gross": "implemented",
+    "net": "implemented",
+    "work_rules": "implemented"
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-01-01",
+          "valid_until": null,
+          "value": "156"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-01-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 48,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "I": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "30.00"
+            }
+          ]
+        },
+        "II": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "30.00"
+            }
+          ]
+        },
+        "III": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "30.00"
+            }
+          ]
+        },
+        "IV": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "40.00"
+            }
+          ]
+        },
+        "V": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "55.00"
+            }
+          ]
+        },
+        "VI": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "60.00"
+            }
+          ]
+        },
+        "VII": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "60.00"
+            }
+          ]
+        },
+        "VIII": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "60.00"
+            }
+          ]
+        },
+        "IX": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "60.00"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+            "title": "CCNL Formazione Professionale 2024-2027",
+            "kind": "associazione",
+            "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+          },
+          "section": "Art. 21 — Tabella 2 P.E.O.I."
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "I",
+      "order": 1,
+      "description": "Livello I — personale ausiliario e addetto a mansioni generiche",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-06-01",
+            "value": "1556.48",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1604.19",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "1635.99",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-09-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+            "title": "CCNL Formazione Professionale 2024-2027",
+            "kind": "associazione",
+            "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+          },
+          "section": "Art. 13 — Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "II",
+      "order": 2,
+      "description": "Livello II — operatore qualificato, mansioni esecutive",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-06-01",
+            "value": "1646.60",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1697.07",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "1730.71",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-09-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+            "title": "CCNL Formazione Professionale 2024-2027",
+            "kind": "associazione",
+            "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+          },
+          "section": "Art. 13 — Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "III",
+      "order": 3,
+      "description": "Livello III — operatore specializzato, mansioni tecnico-pratiche",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-06-01",
+            "value": "1745.43",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1798.93",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "1834.59",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-09-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+            "title": "CCNL Formazione Professionale 2024-2027",
+            "kind": "associazione",
+            "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+          },
+          "section": "Art. 13 — Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "IV",
+      "order": 4,
+      "description": "Livello IV — impiegato di concetto o tecnico qualificato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-06-01",
+            "value": "1879.17",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "1936.77",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "1975.16",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-09-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+            "title": "CCNL Formazione Professionale 2024-2027",
+            "kind": "associazione",
+            "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+          },
+          "section": "Art. 13 — Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "V",
+      "order": 5,
+      "description": "Livello V — formatore o tecnico con autonomia operativa",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-06-01",
+            "value": "1957.63",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "2017.63",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "2057.63",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-09-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+            "title": "CCNL Formazione Professionale 2024-2027",
+            "kind": "associazione",
+            "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+          },
+          "section": "Art. 13 — Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "VI",
+      "order": 6,
+      "description": "Livello VI — formatore senior o responsabile di area",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-06-01",
+            "value": "2218.12",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "2286.10",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "2331.43",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-09-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+            "title": "CCNL Formazione Professionale 2024-2027",
+            "kind": "associazione",
+            "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+          },
+          "section": "Art. 13 — Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "VII",
+      "order": 7,
+      "description": "Livello VII — coordinatore didattico o responsabile di progetto complesso",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-06-01",
+            "value": "2321.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "2393.14",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "2440.58",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-09-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+            "title": "CCNL Formazione Professionale 2024-2027",
+            "kind": "associazione",
+            "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+          },
+          "section": "Art. 13 — Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "VIII",
+      "order": 8,
+      "description": "Livello VIII — quadro superiore, direttore di centro o responsabile senior",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-06-01",
+            "value": "2500.00",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "2576.62",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "2627.71",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-09-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+            "title": "CCNL Formazione Professionale 2024-2027",
+            "kind": "associazione",
+            "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+          },
+          "section": "Art. 13 — Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "IX",
+      "order": 9,
+      "description": "Livello IX — dirigente o quadro con massima responsabilita gestionale",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-06-01",
+            "value": "3066.16",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-06-01",
+            "valid_until": "2025-09-01",
+            "value": "3160.14",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2024-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-09-01",
+            "valid_until": null,
+            "value": "3222.79",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+                  "title": "CCNL Formazione Professionale 2024-2027",
+                  "kind": "associazione",
+                  "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+                },
+                "section": "Art. 20 — Tabella 1 stipendi tabellari"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-09-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
+            "title": "CCNL Formazione Professionale 2024-2027",
+            "kind": "associazione",
+            "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+          },
+          "section": "Art. 13 — Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    }
+  ],
+  "apprenticeship": [],
+  "ruleset": {
+    "id": "ccnl/formazione-professionale",
+    "version": "2026.1",
+    "effective_from": "2024-01-01",
+    "effective_until": null,
+    "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
+    "verification_status": "verified",
+    "source_hash": "5bebed0d0ab178bdaeec4aec1d03e6f73a1f46f78daf615452bc85a88f53ef74",
+    "published_at": "2026-09-11"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno — oltre orario settimanale (Art. 39 c.5)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": "0.15",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": ["weekday"],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "formazione-professionale",
+                "title": "CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)",
+                "kind": "associazione",
+                "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+              },
+              "section": "Art. 39 comma 5 — formula stipendio/156 maggiorata del 15%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-11T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno — maggiorazione 30% (Art. 39 c.6)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": "0.30",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": ["night"],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "formazione-professionale",
+                "title": "CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)",
+                "kind": "associazione",
+                "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+              },
+              "section": "Art. 39 comma 6 — notturno o festivo +30%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-11T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo — maggiorazione 30% (Art. 39 c.6)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "value": "0.30",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": ["holiday"],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "formazione-professionale",
+                "title": "CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)",
+                "kind": "associazione",
+                "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+              },
+              "section": "Art. 39 comma 6 — notturno o festivo +30%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-11T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "formazione-professionale",
+            "title": "CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)",
+            "kind": "associazione",
+            "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+          },
+          "section": "Art. 37 — 156 ore/mese; divisore giornaliero by_26 per convenzione terziario"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "26",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "formazione-professionale",
+            "title": "CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)",
+            "kind": "associazione",
+            "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+          },
+          "section": "Art. 43 — 32 gg lavorativi (base 6-gg) = 26.67 su 5-gg; arrotondato a 26"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 365,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "formazione-professionale",
+            "title": "CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)",
+            "kind": "associazione",
+            "url": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/"
+          },
+          "section": "Art. 50 c.4 — 100% per 12 mesi; 75% per ulteriori 6 mesi"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    }
+  }
+}
