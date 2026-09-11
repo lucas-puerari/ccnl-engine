@@ -35,8 +35,8 @@
         "text": "CCNL HV17 FEDERDAT SF (Servizi Fiduciari) section. Conglobated, divisor 173. 5 levels (A-E). 14a mensilita from 01/01/2024; before that 13 months. 8 tranches, last at 01/04/2026 (SF schedule). Level F absent from tables (may be entry/apprenticeship only; verify base CCNL 2013)."
       },
       {
-        "kind": "simplification",
-        "text": "SENIORITY: pre-July-2026 CCNL (FESICA PDF, CCNL ISTITUTI AZIENDE VIGILANZA PRIVATA, Art. 119) confirmed 5 triennali (cadence 36m, max 5) with per-level amounts: A=21, B=19, C=17, D=15 EUR/scatto. July 9 2026 renewal (FEDERDAT-CONFIAL) doubled scatti to 10 with \"importi maggiorati\" — new amounts not found. Seniority is currently unmodelled (seniority_increment=null for all levels) pending the 2026 amounts."
+        "kind": "info",
+        "text": "SENIORITY: amounts from UILTUCS tabelle PDF (Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf), cadence 36m: A=29.00, B=26.00, C=22.00, D=19.00, E=17.50 EUR/scatto. July 9 2026 renewal (FEDERDAT-CONFIAL) increased maximum_count from 6 to 10; per-scatto amounts for SF not independently verifiable from a post-rinnovo public source (ilccnl.it shows Q–III for GPG only; SF behind registration). Values assumed unchanged pending primary source confirmation."
       },
       {
         "kind": "info",
@@ -47,7 +47,7 @@
         "text": "ADDITIONAL MONTHS: 13 for Jun 2023-Dec 2023 (pre-quattordicesima); 14 from 01/01/2024 onward (quattordicesima introduced by rinnovo July 2023 renewal, per fiscoetasse.com). Level E: entry-level for first 9 months of tenure per contract text — correct by design."
       }
     ],
-    "gross": "partial",
+    "gross": "implemented",
     "net": "implemented",
     "work_rules": "implemented"
   },
@@ -1094,7 +1094,7 @@
     },
     "seniority_increments": {
       "cadence_months": 36,
-      "maximum_count": 6,
+      "maximum_count": 10,
       "amount_by_level": {
         "E": {
           "periods": [
@@ -1189,7 +1189,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "656a319a54655b87a55b3cc1c29d153b6b55cf1ccde603984fe6605f5db34115",
+    "source_hash": "f9808efa2fec9a211d9134cddb7e87d32618f8ab2b3a7cbea9ebb1a4f389be22",
     "published_at": "2026-09-07"
   },
   "work_rules": {

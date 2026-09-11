@@ -35,8 +35,8 @@
         "text": "CCNL HV17 FEDERDAT GPG section. Conglobated, 14 months, divisor 173. 7 levels. 6 tranches: 01/06/2023, 01/06/2024, 01/06/2025, 01/12/2025, 01/04/2026, 01/12/2026. Contract validity: 01/06/2023-31/12/2026."
       },
       {
-        "kind": "simplification",
-        "text": "SENIORITY: pre-July-2026 CCNL (FESICA PDF, CCNL ISTITUTI AZIENDE VIGILANZA PRIVATA, Art. 119) confirmed 5 triennali (cadence 36m, max 5) with per-level amounts: Q=32, I=27, II=24, III=23, IV=22, V=21 EUR/scatto. July 9 2026 renewal (FEDERDAT-CONFIAL) doubled scatti to 10 with \"importi maggiorati\" — new amounts not found in public sources. Seniority is currently unmodelled (seniority_increment=null for all levels) pending the 2026 amounts."
+        "kind": "info",
+        "text": "SENIORITY: amounts from UILTUCS tabelle PDF (Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf), cadence 36m: Q=31.30, I=26.12, II=23.83, III=22.46, IV=21.13, V=20.52, VI=19.66 EUR/scatto. July 9 2026 renewal (FEDERDAT-CONFIAL) increased maximum_count from 6 to 10; per-scatto amounts confirmed unchanged post-rinnovo (ilccnl.it shows same Q–III values after rinnovo). Amounts for IV–VI post-rinnovo not independently verified from a post-rinnovo primary source."
       },
       {
         "kind": "info",
@@ -47,7 +47,7 @@
         "text": "Level VI salary at 01/06/2024 (1185.44) is anomalously high vs prior tranche (1108.06) — confirmed by source as conventional riallineamento for level VI."
       }
     ],
-    "gross": "partial",
+    "gross": "implemented",
     "net": "implemented",
     "work_rules": "implemented"
   },
@@ -1187,7 +1187,7 @@
     },
     "seniority_increments": {
       "cadence_months": 36,
-      "maximum_count": 6,
+      "maximum_count": 10,
       "amount_by_level": {
         "VI": {
           "periods": [
@@ -1301,7 +1301,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "9c5b0704c267ec64736640b954f1877b8449ed2f3d2326ba62d558176918710b",
+    "source_hash": "6dbb0be5d42329886697c7c540e56b5fd4a2a5fd10968726d86001adb7cbac74",
     "published_at": "2026-09-07"
   },
   "work_rules": {

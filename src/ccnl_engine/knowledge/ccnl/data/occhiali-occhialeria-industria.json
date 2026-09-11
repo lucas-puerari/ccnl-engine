@@ -64,7 +64,7 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP: type (percentage vs under_classification) not confirmed from public sources. Modelled as 100% passthrough for all levels; correct for permanent workers."
+        "text": "APPRENTICESHIP: 2026 rinnovo (signed 30/01/2026) explicitly 'abroga la ripartizione in percentuale in relazione agli step professionali' (edotto.com). Pre-2026 CCNL used a percentage system. Post-2026 replacement type is not confirmed from a D271 primary source — the cognate piccola industria (ccnlportatili.it) uses sotto-inquadramento (2 levels below for first 12m, 1 level below for next 12m, then destination). Modelled as 100% passthrough for all levels pending primary source confirmation; this is a conservative over-estimate for the 2026-2028 period."
       }
     ],
     "gross": "implemented",
@@ -2300,7 +2300,7 @@
     "effective_until": null,
     "source": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive",
     "verification_status": "verified",
-    "source_hash": "912be9c9510ada58b1925a5561a6bf7ecc8109ffa8cd83148809d75791eadeb4",
+    "source_hash": "44fd53da8463411ea00fbc59f2f8d0daf33b0f06ccaf8e494a4dfccac741b252",
     "published_at": "2026-09-07"
   },
   "work_rules": {
