@@ -523,18 +523,62 @@ class TestCoverage:
         with pytest.raises(ValidationError, match="but apprenticeship tracks exist"):
             _validate(data)
 
-    def test_verification_status_defaults_to_unverified(self) -> None:
-        """verification_status defaults to 'unverified' when absent from JSON."""
-        data = make_ccnl_dict()
-        result = _validate(data)
-        assert result.coverage.verification_status == "unverified"
 
-    def test_verification_status_accepted(self) -> None:
-        """An explicit verification_status is stored as-is."""
+class TestVerification:
+    """CCNLVerification: defaults, field acceptance, and legacy coercion."""
+
+    def test_confidence_defaults_to_unverified(self) -> None:
+        """verification.confidence defaults to 'unverified' when block is absent."""
         data = make_ccnl_dict()
-        data["coverage"]["verification_status"] = "needs_review"
         result = _validate(data)
-        assert result.coverage.verification_status == "needs_review"
+        assert result.verification.confidence == "unverified"
+
+    def test_confidence_accepted(self) -> None:
+        """An explicit confidence value is stored as-is."""
+        data = make_ccnl_dict()
+        data["verification"] = {"confidence": "needs_review"}
+        result = _validate(data)
+        assert result.verification.confidence == "needs_review"
+
+    def test_verified_cases_defaults_to_zero(self) -> None:
+        """verified_cases defaults to 0 when not supplied."""
+        data = make_ccnl_dict()
+        result = _validate(data)
+        assert result.verification.verified_cases == 0
+
+    def test_verified_cases_accepted(self) -> None:
+        """An explicit verified_cases count is stored."""
+        data = make_ccnl_dict()
+        data["verification"] = {"verified_cases": 3}
+        result = _validate(data)
+        assert result.verification.verified_cases == 3
+
+    def test_last_reviewed_defaults_to_none(self) -> None:
+        """last_reviewed defaults to None when not supplied."""
+        data = make_ccnl_dict()
+        result = _validate(data)
+        assert result.verification.last_reviewed is None
+
+    def test_last_reviewed_accepted(self) -> None:
+        """An ISO date string is accepted for last_reviewed."""
+        data = make_ccnl_dict()
+        data["verification"] = {"last_reviewed": "2025-06-01"}
+        result = _validate(data)
+        assert result.verification.last_reviewed is not None
+        assert str(result.verification.last_reviewed) == "2025-06-01"
+
+    def test_human_reviewed_by_defaults_to_none(self) -> None:
+        """human_reviewed_by defaults to None when not supplied."""
+        data = make_ccnl_dict()
+        result = _validate(data)
+        assert result.verification.human_reviewed_by is None
+
+    def test_human_reviewed_by_accepted(self) -> None:
+        """A free-form string is accepted for human_reviewed_by."""
+        data = make_ccnl_dict()
+        data["verification"] = {"human_reviewed_by": "alice@example.com"}
+        result = _validate(data)
+        assert result.verification.human_reviewed_by == "alice@example.com"
 
 
 # ---------------------------------------------------------------------------

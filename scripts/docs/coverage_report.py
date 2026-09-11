@@ -111,7 +111,7 @@ _VERIFICATION_EMOJI = {
 
 
 def _verification_label(ccnl: CCNL) -> str:
-    vs = ccnl.coverage.verification_status
+    vs = ccnl.verification.confidence
     if vs == VerificationStatus.VERIFIED:
         if ccnl.meta.extraction.method == ExtractionMethod.MANUAL:
             return "Expert verified"
