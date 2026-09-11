@@ -39,7 +39,7 @@ calculation = compute(PayrollScenario(
         ccnl="commercio-confcommercio.json",
         contract=Permanent(),
         employer=Employer(num_employees=50),
-        date=date(2026, 9, 1),
+        calculation_date=date(2026, 9, 1),
     ),
 ))
 
@@ -70,9 +70,23 @@ Coverage % = (L1 × 50% + L2 × 35% + L3 × 15%) − 5% per missing data note (m
 
 **Outside engine scope:**
 
-- Detrazioni per carichi di famiglia (Art. 12 TUIR)
 - Bilateral system contributions (EST, Fon.Te, …)
-- Preferential 5% tax on *premio di risultato* (Art. 1 c. 182 L. 208/2015)
+
+**Computed but informational (not folded into `net_annual`):**
+
+L3 outputs (overtime supplements, absence deductions, sick-pay integration,
+bonus/welfare amounts) are reported alongside the payroll but do not mutate
+`gross_annual` or `net_annual`. Treat them as a separate line-item report.
+
+**Opt-in (provide inputs to activate):**
+
+- Family-dependent deductions (Art. 12 TUIR) — set `PayrollScenario.family`
+  with a `FamilyComposition`; reduces `irpef_net` and `net_annual` directly.
+- Art. 15 mortgage-interest deduction — set `PayrollScenario.art15_deductions`
+  with an `Art15Deductions`; reduces `irpef_net` and `net_annual` directly.
+- PdR flat tax (*imposta sostitutiva*) on *premio di risultato* — set
+  `BonusInput.eligible_for_pdr=True`; rate and ceiling are read from the
+  statutory `PdRRules` for the year.
 
 See [API docs](https://lucas-puerari.github.io/ccnl-engine/docs/) for full detail.
 

@@ -8,23 +8,24 @@ produces the same output.
 ## Entry point: `compute()`
 
 ```python
-from ccnl_engine import compute, load_ccnl, load_year_rules
-from ccnl_engine import Employee, ContractPosition, WorkArrangement, Permanent
 from datetime import date
-
-ccnl  = load_ccnl("metalmeccanico-federmeccanica.json")
-rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
-
-employee = Employee(
-    position=ContractPosition(
-        level_code="C3",
-        as_of=date(2026, 1, 1),
-        employment=Permanent(),
-    ),
-    arrangement=WorkArrangement(),
+from ccnl_engine import (
+    Employee, Employer, Employment,
+    OvertimeHours, PayrollScenario, Permanent, compute,
 )
 
-calculation = compute(ccnl, rules, employee)
+calculation = compute(PayrollScenario(
+    employee=Employee(level_code="C3"),
+    employment=Employment(
+        ccnl="metalmeccanico-federmeccanica.json",
+        contract=Permanent(),
+        employer=Employer(num_employees=50),
+        calculation_date=date(2026, 1, 1),
+    ),
+    # L3: optional work-rules inputs (informational — not in net_annual)
+    time_supplements=OvertimeHours(weekday_hours=8),
+))
+
 result = calculation.result
 ```
 
@@ -55,22 +56,36 @@ The engine applies rules in a fixed sequence:
 8. Apply regional + municipal surtax (when jurisdiction is provided)
    ↓
 9. Apply Art. 12 family deductions and Art. 15 mortgage interest deduction
+   (reduce irpef_net / net_annual; only when inputs are provided)
    ↓
-10. Assemble PayrollResult: gross, net, employer cost, scope, warnings, confidence
+10. Compute L3 work-rules supplements (informational — do not mutate gross/net):
+    overtime pay, absence deduction, leave accrual, sick-pay integration,
+    fringe benefits, welfare, PdR bonus
+    ↓
+11. Assemble PayrollResult: gross, net, employer cost, scope, warnings, confidence
 ```
 
 Steps 7–9 are fiscal and can be parameterised heavily. See
-[Fiscal](fiscal.md) for the full reference.
+[Fiscal](fiscal.md) for the full reference. Step 10 is optional — see
+[Work rules](work-rules.md).
 
 ## Input types
 
 | Type | What it describes |
 |---|---|
-| `Employee` | The worker: position, arrangement, tax profile |
-| `ContractPosition` | Level code, reference date, employment type |
-| `WorkArrangement` | Hours, seniority, second-level allowances, salary overrides |
-| `TaxProfile` | Fiscal inputs: region, comune, mortgage interest |
-| `Employer` | Employer-side inputs: headcount tier, second-level supplements |
+| `PayrollScenario` | Top-level container: employee + employment + optional L3 inputs |
+| `Employee` | The worker: level code, seniority, part-time, jurisdiction, agreement |
+| `Employment` | CCNL file, contract type, employer, calculation date |
+| `Employer` | Headcount tier, second-level allowances |
+| `OvertimeHours` | Weekday/night/holiday overtime hours (L3, informational) |
+| `AbsenceDays` | Unpaid absence days in the period (L3, informational) |
+| `LeaveInput` | Leave days consumed (L3, informational) |
+| `SickInput` | Sick-leave calendar days (L3, informational) |
+| `FringeBenefitInput` | Fringe-benefit annual amount and threshold flag (L3, informational) |
+| `WelfareInput` | Welfare annual amount (L3, informational) |
+| `BonusInput` | Annual bonus and PdR eligibility (L3, informational) |
+| `FamilyComposition` | Dependent spouse/children (Art. 12 TUIR; mutates net_annual) |
+| `Art15Deductions` | Mortgage-interest deduction (Art. 15 TUIR; mutates net_annual) |
 
 Full type reference: [API: Engine](../api/engine.md).
 
@@ -98,3 +113,4 @@ confidence score is derived.
 | [Second level](second-level.md) | Territorial and company supplements |
 | [Fiscal](fiscal.md) | IRPEF, surtax, family and Art. 15 deductions |
 | [Domestic work](domestic-work.md) | Flat per-hour contributions, non-withholding employer |
+| [Work rules](work-rules.md) | L3: overtime, absence, leave, sickness, bonus, welfare |

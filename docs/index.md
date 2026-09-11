@@ -76,18 +76,28 @@ full walkthrough of all three layers.
 
 **L3 — Work rules (105/105 contracts):**
 
-- Overtime pay (lavoro straordinario diurno, notturno, festivo)
-- Night and holiday premiums
-- Absence deduction (unpaid days, by_26 or daily-hours method)
-- Leave accrual (ferie entitlement tiers)
-- Sick-pay integration (employer complement over INPS indemnity)
-- Performance bonuses (*premio di risultato*)
-- Welfare and fringe benefits
+L3 outputs are **informational**: they are reported alongside the payroll but
+do not mutate `gross_annual` or `net_annual`. Supply any combination of the
+inputs below to `PayrollScenario`; the engine reports each one as `verified`
+or `not_computed` (when the CCNL does not model it) in `calculation_scope`.
 
-**Explicitly excluded (always reported in `calculation_scope`):**
+- Overtime pay (lavoro straordinario diurno, notturno, festivo) — `OvertimeHours`
+- Night and holiday premiums — `OvertimeHours`
+- Absence deduction (unpaid days, by_26 or daily-hours method) — `AbsenceDays`
+- Leave accrual (ferie entitlement tiers) — `LeaveInput`
+- Sick-pay integration (employer complement over INPS indemnity) — `SickInput`
+- Performance bonuses (*premio di risultato*, incl. PdR flat tax) — `BonusInput`
+- Welfare and fringe benefits — `WelfareInput`, `FringeBenefitInput`
 
-- Family-dependent deductions (Art. 12 TUIR) — `family_deductions: excluded`
+**Opt-in features (activate by providing inputs; mutate `net_annual`):**
+
+- Family-dependent deductions (Art. 12 TUIR) — `FamilyComposition`
+- Art. 15 mortgage-interest deduction — `Art15Deductions`
+
+**Excluded by default (reported in `calculation_scope`):**
+
 - Regional/municipal surtax when jurisdiction is not provided
+- Family/Art. 15 deductions when no inputs are supplied
 
 Each gap is reported in `PayrollResult.warnings` or `calculation_scope` so the
 caller knows exactly what is missing from the net figure.

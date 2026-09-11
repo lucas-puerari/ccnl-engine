@@ -810,6 +810,109 @@
         </div>
       </div>
     </div>
+
+    <!-- L3: Work rules (collapsible) -->
+    <div style="margin-top:12px">
+      <div class="section-toggle" id="l3-toggle" style="cursor:pointer; user-select:none; font-weight:600; color:var(--text); padding:10px 0; display:flex; align-items:center; gap:6px">
+        <i class="arrow">▶</i> Work rules (L3 — informational)
+        <span class="tip" tabindex="0" data-tip="L3 outputs are reported alongside the payroll but do not change gross or net pay. They reflect period events such as overtime worked or days absent.">?</span>
+      </div>
+      <div id="l3-body" style="display:none; padding-top:4px">
+        <p style="font-size:12px; color:var(--faint); margin:0 0 14px">
+          These amounts are <strong>informational</strong> — they do not affect
+          gross or net pay. Supply period-level event data and the engine
+          reports the corresponding supplements and deductions.
+        </p>
+
+        <div class="field-grid">
+          <!-- Overtime -->
+          <div class="field-group">
+            <div class="label-row">
+              <label for="inp-ot-weekday">Weekday overtime (h)</label>
+              <span class="tip" tabindex="0" data-tip="Daytime weekday overtime hours (straordinario diurno).">?</span>
+            </div>
+            <input type="number" id="inp-ot-weekday" value="0" min="0" step="0.5" />
+          </div>
+          <div class="field-group">
+            <div class="label-row">
+              <label for="inp-ot-night">Night overtime (h)</label>
+              <span class="tip" tabindex="0" data-tip="Weekday night hours (lavoro notturno).">?</span>
+            </div>
+            <input type="number" id="inp-ot-night" value="0" min="0" step="0.5" />
+          </div>
+          <div class="field-group">
+            <div class="label-row">
+              <label for="inp-ot-holiday">Holiday overtime (h)</label>
+              <span class="tip" tabindex="0" data-tip="Daytime public-holiday hours.">?</span>
+            </div>
+            <input type="number" id="inp-ot-holiday" value="0" min="0" step="0.5" />
+          </div>
+          <div class="field-group">
+            <div class="label-row">
+              <label for="inp-ot-nightholiday">Night-holiday (h)</label>
+              <span class="tip" tabindex="0" data-tip="Night hours on a public holiday.">?</span>
+            </div>
+            <input type="number" id="inp-ot-nightholiday" value="0" min="0" step="0.5" />
+          </div>
+          <!-- Absence / Leave / Sick -->
+          <div class="field-group">
+            <div class="label-row">
+              <label for="inp-absence-days">Unpaid absence (days)</label>
+              <span class="tip" tabindex="0" data-tip="Days absent without pay in the period.">?</span>
+            </div>
+            <input type="number" id="inp-absence-days" value="0" min="0" step="0.5" />
+          </div>
+          <div class="field-group">
+            <div class="label-row">
+              <label for="inp-leave-days">Leave taken (days)</label>
+              <span class="tip" tabindex="0" data-tip="Paid leave days consumed in the period (ferie).">?</span>
+            </div>
+            <input type="number" id="inp-leave-days" value="0" min="0" step="0.5" />
+          </div>
+          <div class="field-group">
+            <div class="label-row">
+              <label for="inp-sick-days">Sick days (calendar)</label>
+              <span class="tip" tabindex="0" data-tip="Calendar days of illness in the period.">?</span>
+            </div>
+            <input type="number" id="inp-sick-days" value="0" min="0" step="1" />
+          </div>
+          <!-- Benefits / Bonus -->
+          <div class="field-group">
+            <div class="label-row">
+              <label for="inp-fringe">Fringe benefit annual (€)</label>
+              <span class="tip" tabindex="0" data-tip="Total fringe-benefit value for the year (Art. 51 c. 3 TUIR). Amounts below the threshold are tax-exempt.">?</span>
+            </div>
+            <input type="number" id="inp-fringe" value="0" min="0" step="10" />
+          </div>
+          <div class="field-group">
+            <div class="label-row">
+              <label for="inp-welfare">Welfare annual (€)</label>
+              <span class="tip" tabindex="0" data-tip="Welfare contributions for the year (Art. 51 c. 2 TUIR — always tax-exempt).">?</span>
+            </div>
+            <input type="number" id="inp-welfare" value="0" min="0" step="10" />
+          </div>
+          <div class="field-group">
+            <div class="label-row">
+              <label for="inp-bonus">Bonus annual (€)</label>
+              <span class="tip" tabindex="0" data-tip="Total annual bonus. Enable the PdR checkbox to apply the preferential flat tax.">?</span>
+            </div>
+            <input type="number" id="inp-bonus" value="0" min="0" step="100" />
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:flex-start; gap:10px; padding-top:14px">
+          <input type="checkbox" id="chk-pdr" style="width:auto; margin-top:3px; accent-color:var(--accent)" />
+          <div>
+            <div class="label-row" style="margin:0 0 2px">
+              <label for="chk-pdr" style="margin:0; color:var(--text); font-weight:500">Bonus is PdR-eligible</label>
+              <span class="tip" tabindex="0" data-tip="Apply the preferential flat-tax regime (imposta sostitutiva) when a valid union agreement is in place.">?</span>
+            </div>
+            <p class="field-hint" style="margin:0">Premio di risultato — flat-tax rate from statutory rules.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <button id="calc-btn" disabled>Calculate</button>
   </div>
 
@@ -927,7 +1030,7 @@
   &nbsp;·&nbsp;
   <a href="../docs/contracts/index.html" target="_blank">CCNL coverage</a>
   &nbsp;·&nbsp;
-  Covers gross pay, net income, employer cost and L3 work rules (overtime, leave, sick pay, bonuses) · Family deductions not included
+  Covers gross pay (L1), net income (L2), employer cost, and L3 work rules (overtime, absence, leave, sick pay, welfare, bonus) · L3 figures are informational and do not affect net pay
   &nbsp;·&nbsp;
   Indicative figures for 2026 · Not financial or tax advice
 </footer>
@@ -991,6 +1094,17 @@ document.getElementById("sel-employment").addEventListener("change", e => {
 document.getElementById("advanced-toggle").addEventListener("click", () => {
   document.getElementById("advanced-toggle").classList.toggle("open");
   document.getElementById("advanced-body").classList.toggle("open");
+});
+
+// ── L3 toggle ────────────────────────────────────────────────────────────────
+
+document.getElementById("l3-toggle").addEventListener("click", () => {
+  const body = document.getElementById("l3-body");
+  const toggle = document.getElementById("l3-toggle");
+  const arrow = toggle.querySelector(".arrow");
+  const open = body.style.display === "none";
+  body.style.display = open ? "" : "none";
+  arrow.style.transform = open ? "rotate(90deg)" : "";
 });
 
 // ── Combobox init (before Pyodide loads) ────────────────────────────────────
@@ -1616,6 +1730,44 @@ function renderBreakdown(r) {
   body.appendChild(bRow("TFR (severance)", null, r.tfr_annual));
   body.appendChild(bTotal("Total employer cost", null, r.employer_cost_annual));
 
+  // L3 work rules (informational — not in gross/net)
+  const hasL3 = (r.overtime_supplement_monthly || 0) > 0
+    || (r.night_supplement_monthly || 0) > 0
+    || (r.holiday_supplement_monthly || 0) > 0
+    || (r.absence_deduction_monthly || 0) > 0
+    || (r.sick_inps_indemnity_monthly || 0) > 0
+    || (r.fringe_benefit_annual || 0) > 0
+    || (r.welfare_annual || 0) > 0
+    || (r.bonus_annual || 0) > 0;
+  if (hasL3) {
+    body.appendChild(bHead("Work rules (L3 — informational, not in gross/net)"));
+    if ((r.overtime_supplement_monthly || 0) > 0)
+      body.appendChild(bRow("Weekday overtime supplement", r.overtime_supplement_monthly, null));
+    if ((r.night_supplement_monthly || 0) > 0)
+      body.appendChild(bRow("Night supplement", r.night_supplement_monthly, null));
+    if ((r.holiday_supplement_monthly || 0) > 0)
+      body.appendChild(bRow("Holiday supplement", r.holiday_supplement_monthly, null));
+    if ((r.absence_deduction_monthly || 0) > 0) {
+      body.appendChild(bRow("Absence deduction", -r.absence_deduction_monthly, null));
+      body.appendChild(bSub("Effective gross (after absence)", r.effective_gross_monthly, null));
+    }
+    if ((r.leave_accrued_days_monthly || 0) > 0)
+      body.appendChild(bRow(`Leave accrued (${r.leave_accrued_days_monthly?.toFixed(2)} days)`, null, null));
+    if ((r.sick_inps_indemnity_monthly || 0) > 0)
+      body.appendChild(bRow("INPS sick-pay indemnity", r.sick_inps_indemnity_monthly, null));
+    if ((r.sick_company_integration_monthly || 0) > 0)
+      body.appendChild(bRow("Employer sick-pay integration", r.sick_company_integration_monthly, null));
+    if ((r.fringe_benefit_annual || 0) > 0)
+      body.appendChild(bRow("Fringe benefit", null, r.fringe_benefit_annual));
+    if ((r.welfare_annual || 0) > 0)
+      body.appendChild(bRow("Welfare (tax-exempt)", null, r.welfare_annual));
+    if ((r.bonus_annual || 0) > 0) {
+      body.appendChild(bRow("Bonus", null, r.bonus_annual));
+      if ((r.bonus_pdr_flat_tax_annual || 0) > 0)
+        body.appendChild(bSub("↳ PdR flat tax (imposta sostitutiva)", null, r.bonus_pdr_flat_tax_annual));
+    }
+  }
+
   // IRPEF note
   const note = document.getElementById("irpef-note");
   if (!r.employer_withholds_irpef) {
@@ -1648,12 +1800,28 @@ function doCompute(pyodide) {
   const ralOverride = parseFloat(document.getElementById("inp-ral").value)          || 0;
   const ivsApplies  = document.getElementById("chk-ivs").checked;
 
+  // L3 inputs
+  const otWeekday     = parseFloat(document.getElementById("inp-ot-weekday").value)     || 0;
+  const otNight       = parseFloat(document.getElementById("inp-ot-night").value)       || 0;
+  const otHoliday     = parseFloat(document.getElementById("inp-ot-holiday").value)     || 0;
+  const otNightHol    = parseFloat(document.getElementById("inp-ot-nightholiday").value)|| 0;
+  const absenceDays   = parseFloat(document.getElementById("inp-absence-days").value)   || 0;
+  const leaveDays     = parseFloat(document.getElementById("inp-leave-days").value)     || 0;
+  const sickDays      = parseFloat(document.getElementById("inp-sick-days").value)      || 0;
+  const fringeAnnual  = parseFloat(document.getElementById("inp-fringe").value)         || 0;
+  const welfareAnnual = parseFloat(document.getElementById("inp-welfare").value)        || 0;
+  const bonusAnnual   = parseFloat(document.getElementById("inp-bonus").value)          || 0;
+  const bonusPdr      = document.getElementById("chk-pdr").checked;
+
   const r = JSON.parse(pyodide.runPython(
     `compute_salary(` +
     `${JSON.stringify(file)}, ${JSON.stringify(levelCode)}, ${JSON.stringify(empType)}, ` +
     `${employees}, ${ptPct}, ${senValue}, ${JSON.stringify(senMode)}, ` +
     `${appMonths}, ${JSON.stringify(regione)}, ${JSON.stringify(comune)}, ` +
-    `${ivsApplies ? "True" : "False"}, ${adPersonam}, ${ralOverride}, ${secondLevel})`
+    `${ivsApplies ? "True" : "False"}, ${adPersonam}, ${ralOverride}, ${secondLevel}, ` +
+    `${otWeekday}, ${otNight}, ${otHoliday}, ${otNightHol}, ` +
+    `${absenceDays}, ${leaveDays}, ${sickDays}, ` +
+    `${fringeAnnual}, ${welfareAnnual}, ${bonusAnnual}, ${bonusPdr ? "True" : "False"})`
   ));
 
   if (r.error) { showError("Error: " + r.error); return; }
