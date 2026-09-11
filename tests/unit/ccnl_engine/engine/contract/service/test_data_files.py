@@ -8595,11 +8595,11 @@ class TestLoadVigilanzaPrivataFederdatGpg:
         assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
 
     def test_hv17_gpg_seniority_cadence(self) -> None:
-        """Seniority: 36-month cadence, maximum 6 scatti."""
+        """Seniority: 36-month cadence, max 10 scatti (raised by July 2026 rinnovo)."""
         ccnl = load_ccnl("vigilanza-privata-federdat-gpg.json")
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
-        assert si.maximum_count == 6
+        assert si.maximum_count == 10
 
     def test_hv17_gpg_level_q_salary_last_tranche(self) -> None:
         """Level Q base salary at 01/12/2026 is 2434.74 EUR."""
@@ -8682,11 +8682,11 @@ class TestLoadVigilanzaPrivataFederdatSf:
         assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
 
     def test_hv17_sf_seniority_cadence(self) -> None:
-        """Seniority: 36-month cadence, maximum 6 scatti."""
+        """Seniority: 36-month cadence, max 10 scatti (raised by July 2026 rinnovo)."""
         ccnl = load_ccnl("vigilanza-privata-federdat-sf.json")
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
-        assert si.maximum_count == 6
+        assert si.maximum_count == 10
 
     def test_hv17_sf_level_a_salary_mid_tranche(self) -> None:
         """Level A base salary at 01/10/2024 is 1886.32 EUR."""

@@ -73,7 +73,7 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP: type=percentage confirmed by 2022 FILCA-CISL CCNL text (Art. 3d: 'calcolate in percentuale...come da allegata tabella'). Pre-2022 used under-classification (MySolution 2018 synthesis: dest AS→B/A, dest A→CS/B, etc.). Post-2022 percentage values in an attached table not readable (scanned PDF). Modelled as 1.00 passthrough pending actual values."
+        "text": "APPRENTICESHIP: 2022 CCNL Art. 3d changed system from sotto-inquadramento to percentage ('calcolate in percentuale...come da allegata tabella'). Pre-2022 system confirmed from full CCNL 2008 text (integrating Accordo 15/03/2006): 2 levels below destination for first half of apprenticeship, 1 level below for second half, no seniority increments accrued. Post-2022 percentage values from scanned allegata tabella not extractable (OCR-confirmed: image-only PDF). 2025-2028 rinnovo (12-page OCR) does not modify apprenticeship. Modelled as 1.00 passthrough pending actual 2022+ percentage values."
       }
     ],
     "gross": "implemented",
@@ -2179,7 +2179,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria",
     "verification_status": "verified",
-    "source_hash": "e49ef9ce7881f84c08741feb885cfaf8733ee6befc4ca38039f2410609895f51",
+    "source_hash": "0d6d7c866ea0ee3d5bdff4f9e7cf11be8c3967b6a7692395214540b45f21333f",
     "published_at": "2026-09-07"
   },
   "work_rules": {
