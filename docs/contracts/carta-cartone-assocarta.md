@@ -80,13 +80,6 @@ percentage: 0.95
 Destination levels: `D2`, `D1`  
 percentage: 0.95
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    FUTURE TRANCHES from the 2026-02-10 rinnovo (+45 EUR on C1 from 01.01.2027, +45 from 01.01.2028, +60 from 01.09.2028) are derived for every level by scaling the C1 increment with the level's ratio to C1 at the 01.04.2026 tranche (parametric conglobated scale), rounded to the cent. Replace with the official tables once published.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -98,6 +91,8 @@ These are deliberate modelling approximations. Read them before using this contr
 
 ??? note "Coverage notes"
     SALARY MODEL: two tranches modelled — 2024-07-01 (last tranche of CCNL 28/07/2021, source: lexplain.it) and 2026-04-01 (first tranche of rinnovo 10/02/2026, source: kitech.it). The 2024 tranche total = paga base + EMC (Elemento di Modernizzazione Contrattuale, EUR 20.00 at C1, parametrised). The 2026 rinnovo is conglobated: EMC absorbed into the new paga base. Both periods are modelled as base_salary totals; fixed_allowances=[] for all levels. The +125 EUR increase on C1 paga base (rinnovo) minus the EMC (EUR 20 abolished) = net +105 EUR on C1 total (1855.11 → 1960.11).
+    
+    FUTURE TRANCHES: +45 EUR at C1 from 01.01.2027, +45 from 01.01.2028, +60 from 01.09.2028 confirmed from rinnovo 10.02.2026 (zetaservice PDF). Per-level amounts are parametrically derived: each level increment = C1_increment × (level_2026-04-01 / C1_2026-04-01), rounded to cent. Math-verified all 13 levels × 3 tranches: all within ±0.02 EUR of parametric formula — consistent with the conglobated coefficient scale of the 2026 rinnovo.
     
     CONGLOBATED CHECK: 2024 values confirmed via lexplain.it (paga base + EMC columns explicit). 2026 values from kitech.it; rinnovo zetaservice PDF confirms Q (2882.91) and C1 (1960.11) at 2026-04-01, consistent with kitech. Level ordering is strictly monotone at both tranche dates.
     

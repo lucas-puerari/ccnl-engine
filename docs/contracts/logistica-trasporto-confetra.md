@@ -5,7 +5,7 @@
 | **CNEL code** | `I100` |
 | **Sector** | logistica |
 | **Tax sector** | `industria` |
-| **Last renewal** | — |
+| **Last renewal** | 2024-12-06 |
 | **Workers (est.)** | ~430k |
 | **Ruleset version** | `2026.2` |
 | **Extraction** | 🤖 AI-assisted |

@@ -82,6 +82,7 @@ nav = [
     { "CCNL Grafica e Editoria Industria (AIEG-Acigraf)" = "contracts/grafica-editoria-aieg.md" },
     { "CCNL Igiene Ambientale — Servizi Ambientali e di Igiene U…" = "contracts/igiene-ambientale-utilitalia.md" },
     { "CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/C…" = "contracts/impiegati-tecnici-agricoli.md" },
+    { "CCNL Impianti e Attività Sportive Profit e No-profit (CUSI)" = "contracts/impianti-sportivi-sport.md" },
     { "CCNL Comunicazione, Informatica e Servizi Innovativi PMI …" = "contracts/informatica-pmi-unimatica.md" },
     { "CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN" = "contracts/istruzione-ricerca-aran.md" },
     { "CCNL Industria Turistica (Federturismo Confindustria)" = "contracts/industria-turistica-federturismo.md" },

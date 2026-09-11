@@ -1,0 +1,106 @@
+{
+  "_description": "impianti-sportivi-sport \u2014 data checks 2026",
+  "ccnl_file": "impianti-sportivi-sport.json",
+  "salary_checks": [
+    {
+      "level_code": "VI",
+      "as_of": "2024-01-01",
+      "expected_monthly": "1247.94"
+    },
+    {
+      "level_code": "VI",
+      "as_of": "2024-07-01",
+      "expected_monthly": "1283.49"
+    },
+    {
+      "level_code": "VI",
+      "as_of": "2025-07-01",
+      "expected_monthly": "1310.16"
+    },
+    {
+      "level_code": "VI",
+      "as_of": "2026-07-01",
+      "expected_monthly": "1336.82"
+    },
+    {
+      "level_code": "V",
+      "as_of": "2026-07-01",
+      "expected_monthly": "1413.42"
+    },
+    {
+      "level_code": "IV",
+      "as_of": "2026-07-01",
+      "expected_monthly": "1506.82"
+    },
+    {
+      "level_code": "III",
+      "as_of": "2026-07-01",
+      "expected_monthly": "1636.42"
+    },
+    {
+      "level_code": "II",
+      "as_of": "2026-07-01",
+      "expected_monthly": "1807.04"
+    },
+    {
+      "level_code": "I",
+      "as_of": "2026-07-01",
+      "expected_monthly": "1989.04"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2026-07-01",
+      "expected_monthly": "2083.49"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "III",
+      "track_name": "apprendistato_II_III_IV_36mesi",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "III",
+      "track_name": "apprendistato_II_III_IV_36mesi",
+      "months_elapsed": 17,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "III",
+      "track_name": "apprendistato_II_III_IV_36mesi",
+      "months_elapsed": 18,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "III",
+      "track_name": "apprendistato_II_III_IV_36mesi",
+      "months_elapsed": 35,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "V",
+      "track_name": "apprendistato_V_36mesi_semplificato",
+      "months_elapsed": 1,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "V",
+      "track_name": "apprendistato_V_36mesi_semplificato",
+      "months_elapsed": 20,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "VI",
+      "track_name": "apprendistato_VI_24mesi_semplificato",
+      "months_elapsed": 1,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "VI",
+      "track_name": "apprendistato_VI_24mesi_semplificato",
+      "months_elapsed": 20,
+      "expected_levels_below": 0
+    }
+  ]
+}

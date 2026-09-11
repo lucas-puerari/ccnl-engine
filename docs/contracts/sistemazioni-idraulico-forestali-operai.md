@@ -80,9 +80,6 @@ These are deliberate modelling approximations. Read them before using this contr
 !!! warning ""
     Structural rules (Art. 7, 49, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification.
 
-!!! warning ""
-    OVERTIME/LEAVE/ABSENCE (L3): Art. 50 CCNL 2023 — straordinario diurno 24%, notturno straordinario 38%, festivo straordinario 50%. Ferie 22 giorni (5-day week). Malattia: trattamento INPS; nessuna integrazione datoriale a livello CCNL nazionale (Art. 60). Rates sourced from 2023 CCNL PDF (official text); 2025 rinnovo structural rules assumed unchanged (text image-only).
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -95,6 +92,10 @@ These are deliberate modelling approximations. Read them before using this contr
     
     Seniority operai: nessuno scatto di anzianita previsto a livello CCNL nazionale. Gli scatti sono disciplinati dai CIRL (contratti integrativi regionali). Modellati con importo zero e maximum_count=0.
     
+    Apprendistato durate: la tabella Art. 7 elenca livelli 2-6 (scala impiegati). Le durate sono mappate su O3/O4/O5 per corrispondenza di livello; la ripartizione per categoria non e confermata dal testo.
+    
+    OVERTIME/LEAVE/ABSENCE (L3): Art. 50 CCNL 2023 — straordinario diurno 24%, notturno straordinario 38%, festivo straordinario 50%. Ferie 22 giorni (orario su 5 giorni, Art. 12). Malattia: trattamento INPS; nessuna integrazione datoriale a livello CCNL nazionale (Art. 60). Assenza: divisore 26. Rates from 2023 CCNL PDF; 2025 rinnovo structural rules assumed unchanged (text image-only).
+    
 
 ## Raw data
 
@@ -102,3 +103,9 @@ These are deliberate modelling approximations. Read them before using this contr
     ```json
     --8<-- "src/ccnl_engine/knowledge/ccnl/data/sistemazioni-idraulico-forestali-operai.json"
     ```
+
+## Usage example
+
+```python
+--8<-- "docs/examples/contracts/sistemazioni-idraulico-forestali-operai.py"
+```

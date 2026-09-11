@@ -72,19 +72,6 @@ Latest effective values per level (monthly gross, EUR).
 Destination levels: `Q`, `10`, `9`, `8`, `7`, `6`, `5`, `4`, `3S`, `3`, `2`, `1`  
 percentage: 0.95
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    LEVEL 1 PRE-2025: level 1 introduced ex-novo in 2025 renewal. Pre-2025 salary set equal to 2025-08-01 value (1295.43 EUR) — no historical data available.
-
-!!! warning ""
-    APPRENTICESHIP (Art. 22): modelled on levels 6-10 parameters (32 months, 90% mesi 1-28, 95% mesi 29+). Levels 1-5 have different duration (12 months, 95% from month 7) — not modelled separately.
-
-!!! warning ""
-    NURSES ALLOWANCE: indennita professionale infermieri 155 EUR/month (12 months) not included — qualifica-specific, not level-specific.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -103,6 +90,12 @@ These are deliberate modelling approximations. Read them before using this contr
     SENIORITY (Art. 73): scatti triennali, max 10 scatti. Per-level amounts confirmed from Art. 73 table.
     
     LEVEL Q ALLOWANCE (Art. 70): indennita di funzione 77.47 EUR/month paid 13 months/year.
+    
+    LEVEL 1 PRE-2025: level 1 introduced ex-novo in 2025 renewal. Pre-2025 salary set equal to 2025-08-01 value (1295.43 EUR) — no historical data available.
+    
+    APPRENTICESHIP (Art. 22): modelled on levels 6-10 parameters (32 months, 90% mesi 1-28, 95% mesi 29+). Levels 1-5 have different duration (12 months, 95% from month 7) — not modelled separately.
+    
+    NURSES ALLOWANCE: indennita professionale infermieri 155 EUR/month (12 months) not included — qualifica-specific, not level-specific.
     
 
 ## Raw data

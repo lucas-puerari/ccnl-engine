@@ -68,19 +68,6 @@ percentage: 0.90
 Destination levels: `V`  
 percentage: 0.80
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    PREMIO DI PRODUZIONE FREQUENCY. Art. 50 ter states the fixed amounts but does not explicitly confirm whether payment occurs monthly across all 14 mensilita or as a single annual sum. Modelled as monthly (14x), consistent with the quattordicesima structure of this contract. If paid as a single annual sum, gross_annual is overstated by approx. EUR 337/yr at level IIIB. Verify against payroll practice or the company-level regulation.
-
-!!! warning ""
-    PRE-AFAC TRANCHE NOT MODELLED. The pre-AFAC baseline amounts (valid until Jan 31, 2024) are not modelled as a separate period. The earliest modelled tranche is the AFAC advance effective Feb 1, 2024. The pre-AFAC window (2023-01-01 to 2024-01-31) is unmodelled; if the engine is called with as_of in that range it will return the Feb 2024 values, which overstate the actual salary.
-
-!!! warning ""
-    HOURLY RATE ENGINE DISCREPANCY. Art. 50 bis defines the official quota oraria by dividing the conglobated minimum (base only) by 173. The engine computes hourly_rate = gross_monthly / 173 where gross includes the premio di produzione fixed_allowance. For level IIIB Sep 2026: official quota oraria is derived as 2046.31/173 = 11.83; engine reports (2046.31+28.04)/173 = 11.99. This is a known engine limitation shared by all contracts with separate fixed allowances.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -100,7 +87,13 @@ These are deliberate modelling approximations. Read them before using this contr
     
     PREMIO DI PRODUZIONE NAZIONALE: fixed cifra per level, frozen since Aug 1, 1995 (Art. 50 ter). All seven levels receive it. Modelled as fixed_allowance with code PREMIO_PROD.
     
+    PREMIO DI PRODUZIONE FREQUENCY: modelled as monthly (14x). Evidence: (1) the prize is listed as component c) of 'trattamento economico' in Art. 50 bis alongside paga base — all components in that list are monthly recurring pay; (2) the prize amounts are in 'cifra mensile' (no 'annuale' qualifier); (3) the TFR computation clause includes it in the monthly average calculation, consistent with monthly payment; (4) the quattordicesima (Art. 53) uses the 'ultima mensilità percepita' which would include the prize if monthly. No evidence of single-annual-sum treatment found in the primary 2025 Testo Unico.
+    
     APPRENTICESHIP: Art. 28 percentage model. Two tracks: Track A (levels I/II/IIIA/IIIB/IV) periods 0-12m=70%, 12-24m=80%, 24m+=90%; Track B (level V) periods 0-12m=70%, 12m+=80%. Level VI is excluded from apprendistato per Art. 28. Maximum contractual durations: I-IIIB=36m, IV=30m, V=24m — not enforced by engine but documented here. The 95% bracket (Art. 28, months 49+) is unreachable given max durations; omitted from both tracks.
+    
+    PRE-AFAC TRANCHE: now modelled. Confirmed from Testo Unico 2025 (assipan.it PDF, 26/02/2025), column 'Retribuzione al 31/01/2024': I=2102.30, II=1977.36, IIIA=1860.95, IIIB=1766.31, IV=1569.25, V=1452.44, VI=1302.81. These amounts are added as the 2023-01-01 period (valid until 31/01/2024) for all seven levels.
+    
+    HOURLY RATE ENGINE DISCREPANCY. Art. 50 bis defines the official quota oraria as minimo_tabellare/173 (base only). The engine computes hourly_rate = gross_monthly/173 where gross includes the PREMIO_PROD fixed_allowance. For level IIIB Sep 2026: official 2046.31/173 = 11.83 EUR/h; engine computes (2046.31+28.04)/173 = 11.99 EUR/h (diff +0.16). Structural engine limitation shared by all contracts with separate fixed allowances (no per-allowance hourly_relevant flag). Monthly and annual figures are unaffected.
     
 
 ## Raw data

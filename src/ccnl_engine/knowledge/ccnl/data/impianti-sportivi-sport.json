@@ -1,0 +1,1315 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "impianti-sportivi-sport",
+    "cnel_code": "H077",
+    "name": "CCNL Impianti e Attività Sportive Profit e No-profit",
+    "sector": "impianti sportivi, palestre e attività sportive",
+    "tax_sector": "terziario",
+    "signatories": [
+      "CUSI",
+      "FILCAMS-CGIL",
+      "FISASCAT-CISL",
+      "UILTUCS-UIL"
+    ],
+    "agreement_date": "2024-01-12",
+    "sources": [
+      {
+        "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/",
+        "type": "tabella_retributiva",
+        "agreement_date": "2024-01-12",
+        "notes": "Tabella retributiva completa 4 tranche (01/01/2024, 01/07/2024, 01/07/2025, 01/07/2026). Livelli Q–VI. Retribuzione conglobata (contingenza=0, terzo elemento=0). 13 mensilità (tredicesima). Modello confermato da ilccnl.it e kitech.it."
+      },
+      {
+        "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+        "type": "contratto",
+        "agreement_date": "2024-01-12",
+        "notes": "CUSI PDF 2024-2026. Art. 116: retribuzione normale conglobata (componente a). Art. 119: divisore giornaliero 26. Art. 120: divisore orario 173 (40h settimanali) o 195 (45h settimanali) — solo 173 modellato. Art. 121: tabella livelli I–VI più quadro Q. Art. 125: tredicesima mensilità. Art. 30: apprendistato sotto-inquadramento (2 livelli primo semestre, 1 livello secondo semestre). Art. 37: durate apprendistato II–VI. Art. 83: straordinario 15%/20%/30%/50%. Art. 84: notturno ordinario 10%. Art. 85: ferie 26 giorni lavorativi. Art. 102: comporto 180 giorni. Art. 103: integrazione malattia 100%/75%/100%."
+      },
+      {
+        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13",
+        "type": "tabella_retributiva",
+        "agreement_date": "2024-01-12",
+        "notes": "Kitech tabella 01/07/2026: conferma IND_FUN Q = EUR 60.00 (13 mensilità). Scatto anzianità da EUR 21.69 (VI) a EUR 28.92 (Q) — transitional amounts ante-22/12/2015; no new scatti under 2024 CCNL."
+      }
+    ],
+    "extraction": {
+      "timestamp": "2026-09-11",
+      "human_reviewed": true,
+      "method": "ai_assisted"
+    },
+    "workers_estimate": "35533"
+  },
+  "coverage": {
+    "gross": "implemented",
+    "net": "implemented",
+    "work_rules": "partial",
+    "work_rules_features": {
+      "overtime": "partial",
+      "night_work": "implemented",
+      "holiday_work": "implemented",
+      "absence": "implemented",
+      "sickness": "partial",
+      "leave": "implemented"
+    },
+    "notes": [
+      {
+        "kind": "info",
+        "text": "CCNL H077 Impianti Sportivi e Palestre, rinnovo 12/01/2024 (vigenza 01/01/2024-31/12/2026). 7 livelli: Q (quadro) + livelli I-VI. Art. 121 CCNL dice 'sei livelli' perche Q e categoria quadro sopra la scala ordinaria. Conglobato confermato da ilccnl.it (contingenza=0.00, terzo elemento=0.00 su 4 livelli). Divisore orario 173 da Art. 120 (40h settimanali)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Seniority. Il CCNL 2024 non contiene disposizioni su scatti di anzianita (parola 'scatti' assente dall'intero PDF). Regime transitorio: i lavoratori in forza al 22/12/2015 conservano un superminimo personale decrescente fino al 31/10/2029 (Art. 116 norma transitoria). Non modellato: dimensione hire-date non disponibile. Gli importi kitech (EUR 21.69-28.92) si riferiscono agli scatti ante-2015. Modellato: maximum_count=0."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Apprendistato livello V (Art. 30). Il livello V ha ordine 2 e il livello a ordine 0 non esiste; il primo semestre a 2 livelli sotto non e applicabile. SEMPLIFICAZIONE: primo semestre a 1 livello sotto (VI). L'apprendista percepisce piu del previsto contrattualmente nella prima meta. L'intera durata (36 mesi) e al livello VI."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Apprendistato livello VI (Art. 30 + Art. 37). Art. 30 prevedeva il primo semestre al VII livello, che il rinnovo 2024 ha eliminato. SEMPLIFICAZIONE: l'intera durata apprendistato VI (24 mesi) e al livello di destinazione VI (levels_below=0). L'apprendista percepisce piu del previsto contrattualmente."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Straordinario diurno. Art. 83 prevede 15% per ore 41-48 e 20% per ore oltre 48 settimanali. Modellato solo il 15% (caso dominante). Banda 20% (oltre 48h) non modellata."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Integrazione malattia (Art. 103). Struttura contrattuale: giorni 1-3 a carico del datore (100%), giorni 4-20 integrazione al 75%, giorni 21+ integrazione al 100%. La granularita 'giorno' non e modellabile nel schema SicknessRules (usa mesi). Modellato: carenza_integration_rate=1.0, full_pay_integration_rate=1.0 (allineato alla fase finale). La finestra al 75% (gg. 4-20) non e modellata; il motore sovrastima la retribuzione per eventi di malattia breve."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Divisore orario. Art. 120 prevede 173 (40h) e 195 (45h). Solo il divisore 173 e modellato. Le assunzioni a 45h settimanali non sono gestite."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Cumulo notturno. Art. 83 ult. comma: 'Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro' — esclude la cumulabilita tra i soli supplementi interni all'Art. 83 (15%/20%/30%/50%). Il supplemento del 10% di Art. 84 e un articolo separato e non e esplicitamente escluso dalla cumulabilita. Il motore applica entrambi alle ore notturne straordinarie (60% totale). Se le parti intendono il 50% inclusivo del 10%, il motore sovrastima di 10 punti sulle ore OT notturne."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Quattordicesima transitoria. Art. 116 norma transitoria: i lavoratori in forza al 22/12/2015 ricevono un superminimo personale assorbibile equivalente alla quattordicesima folded-in (rata mensile decrescente fino al 31/10/2029). Per la popolazione corrente (post-2015): 13 mensilita. La quattordicesima residuale per i lavoratori ante-2015 non e modellata."
+      }
+    ]
+  },
+  "levels": [
+    {
+      "code": "VI",
+      "order": 1,
+      "description": "Sesto livello",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "sindacato-it-h077",
+            "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+          },
+          "section": "Tabella retributiva livelli Q–VI CCNL H077"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-07-01",
+            "value": "1247.94",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/01/2024"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "1283.49",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2024"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-07-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1310.16",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "1336.82",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-h077",
+                  "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2026 (kitech conferma sindacato.it)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-07-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "V",
+      "order": 2,
+      "description": "Quinto livello",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "sindacato-it-h077",
+            "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+          },
+          "section": "Tabella retributiva livelli Q–VI CCNL H077"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-07-01",
+            "value": "1319.18",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/01/2024"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "1356.87",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2024"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-07-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1385.15",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "1413.42",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-h077",
+                  "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2026 (kitech conferma sindacato.it)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-07-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "IV",
+      "order": 3,
+      "description": "Quarto livello",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "sindacato-it-h077",
+            "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+          },
+          "section": "Tabella retributiva livelli Q–VI CCNL H077"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-07-01",
+            "value": "1406.82",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/01/2024"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "1446.82",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2024"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-07-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1476.82",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "1506.82",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-h077",
+                  "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2026 (kitech conferma sindacato.it)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-07-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "III",
+      "order": 4,
+      "description": "Terzo livello",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "sindacato-it-h077",
+            "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+          },
+          "section": "Tabella retributiva livelli Q–VI CCNL H077"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-07-01",
+            "value": "1527.36",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/01/2024"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "1570.99",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2024"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-07-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1603.71",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "1636.42",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-h077",
+                  "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2026 (kitech conferma sindacato.it)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-07-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "II",
+      "order": 5,
+      "description": "Secondo livello",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "sindacato-it-h077",
+            "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+          },
+          "section": "Tabella retributiva livelli Q–VI CCNL H077"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-07-01",
+            "value": "1686.04",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/01/2024"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "1734.44",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2024"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-07-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1770.74",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "1807.04",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-h077",
+                  "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2026 (kitech conferma sindacato.it)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-07-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "I",
+      "order": 6,
+      "description": "Primo livello",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "sindacato-it-h077",
+            "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+          },
+          "section": "Tabella retributiva livelli Q–VI CCNL H077"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-07-01",
+            "value": "1856.08",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/01/2024"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "1909.26",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2024"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-07-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "1949.15",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "1989.04",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-h077",
+                  "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2026 (kitech conferma sindacato.it)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-07-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "Q",
+      "order": 7,
+      "description": "Quadro",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "sindacato-it-h077",
+            "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+          },
+          "section": "Tabella retributiva livelli Q–VI CCNL H077"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2024-07-01",
+            "value": "1943.93",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/01/2024"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2025-07-01",
+            "value": "1999.76",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2024"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-07-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-07-01",
+            "value": "2041.62",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "sindacato-it-h077",
+                  "title": "sindacato.it — CCNL Impianti Sportivi H077 tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": "2083.49",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-h077",
+                  "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                },
+                "section": "Tabella retributiva — tranche 01/07/2026 (kitech conferma sindacato.it)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-07-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_FUNZIONE",
+          "description": "Indennità di funzione quadri — 60 EUR/mese × 13 mensilità (Art. 121 CCNL)",
+          "months_per_year": 13,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "60.00",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-h077",
+                      "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+                    },
+                    "section": "Livello Q — IND_FUNZIONE EUR 60.00/mese, 13 mensilità"
+                  },
+                  "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-11T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-h077",
+                "title": "kitech.it — CCNL H077 tabella retributiva 01/07/2026",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13"
+              },
+              "section": "Livello Q — IND_FUNZIONE EUR 60.00/mese, 13 mensilità"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-11T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "parameters": {
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-01-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-01-01",
+          "valid_until": null,
+          "value": "173"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 0,
+      "amount_by_level": {},
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cusi-sport-2024",
+            "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
+            "kind": "altro",
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf"
+          },
+          "section": "Intero testo CCNL: la parola 'scatti' e assente; nessuna disposizione su scatti di anzianita. Art. 116 norma transitoria: superminimo personale decrescente per lavoratori ante-22/12/2015."
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "apprendistato_II_III_IV_36mesi",
+      "destination_levels": [
+        "II",
+        "III",
+        "IV"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cusi-sport-2024",
+            "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
+            "kind": "altro",
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf"
+          },
+          "section": "Art. 30: sotto-inquadramento apprendisti (2 livelli primo semestre, 1 livello secondo semestre). Art. 37: durata livelli II/III/IV = 36 mesi."
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-12"
+        }
+      }
+    },
+    {
+      "type": "under_classification",
+      "name": "apprendistato_V_36mesi_semplificato",
+      "destination_levels": [
+        "V"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cusi-sport-2024",
+            "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
+            "kind": "altro",
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf"
+          },
+          "section": "Art. 30 + Art. 37 — livello V, durata 36 mesi. SEMPLIFICAZIONE: il 2 livelli sotto il V (ordine 0) non esiste; l'intera durata e a livello VI (levels_below=1)."
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-12"
+        }
+      }
+    },
+    {
+      "type": "under_classification",
+      "name": "apprendistato_VI_24mesi_semplificato",
+      "destination_levels": [
+        "VI"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cusi-sport-2024",
+            "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
+            "kind": "altro",
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf"
+          },
+          "section": "Art. 30 + Art. 37 — livello VI, durata 24 mesi. SEMPLIFICAZIONE: il VII livello e stato eliminato dal rinnovo 2024; l'intera durata e al livello di destinazione VI (levels_below=0)."
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-12"
+        }
+      }
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/impianti-sportivi-sport",
+    "version": "2024.1",
+    "effective_from": "2024-01-01",
+    "effective_until": null,
+    "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
+    "verification_status": "unverified",
+    "published_at": "2026-09-11",
+    "source_hash": "5a1c111ea75596e7ea36c34a11341bc1c07902070081eb958030f8ee02883b79"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale (Art. 83 — ore 41-48 sett., 15%)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "hour_threshold_per_week": 40,
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-cusi-sport-2024",
+                "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
+                "kind": "altro",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf"
+              },
+              "section": "Art. 83 — straordinario diurno: 15% per ore 41-48 sett. SEMPLIFICAZIONE: banda 20% (oltre 48h) non modellata."
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-11T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo (Art. 83 — 30%)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "hour_threshold_per_week": 40,
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-cusi-sport-2024",
+                "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
+                "kind": "altro",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf"
+              },
+              "section": "Art. 83 — straordinario festivo diurno: 30%."
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-11T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno 23-06 (Art. 83 — 50%)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hour_threshold_per_week": 40,
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-cusi-sport-2024",
+                "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
+                "kind": "altro",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf"
+              },
+              "section": "Art. 83 — straordinario notturno (23:00-06:00): 50%."
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-11T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "LAVORO_NOTTURNO",
+          "description": "Lavoro notturno ordinario 23-06 (Art. 84 — 10%)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-cusi-sport-2024",
+                "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
+                "kind": "altro",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf"
+              },
+              "section": "Art. 84 — indennita lavoro notturno ordinario (non straordinario): 10%."
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-11T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cusi-sport-2024",
+            "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
+            "kind": "altro",
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf"
+          },
+          "section": "Art. 119 — divisore giornaliero 26."
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "26",
+      "entitlement_tiers": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cusi-sport-2024",
+            "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
+            "kind": "altro",
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf"
+          },
+          "section": "Art. 85 — ferie: 26 giorni lavorativi (settimana a 6 giorni lavorativi)."
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1.0",
+      "full_pay_integration_rate": "1.0",
+      "tiers": [],
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cusi-sport-2024",
+            "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
+            "kind": "altro",
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf"
+          },
+          "section": "Art. 103: gg.1-3 a carico datore 100%, gg.4-20 integrazione 75%, gg.21+ integrazione 100%. Art. 102: comporto 180 gg. SEMPLIFICAZIONE: finestra 75% (gg.4-20) non modellata; full_pay_integration_rate=1.0 allineato alla fase finale."
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    }
+  }
+}

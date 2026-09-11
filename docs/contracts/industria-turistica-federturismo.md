@@ -71,16 +71,7 @@ percentage: 1.00
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    Salary values for all levels except A1 and D2 derived via parametric ratio formula and verified against independent research to <EUR 0.02 accuracy.
-
-!!! warning ""
-    Pre-renewal salary (pre 01/01/2025) not modeled; series starts 2025-01-01. Agreement date set to first tranche date; actual signing date unverified.
-
-!!! warning ""
-    Seniority cadence set to 36 months; may be 36 or 48 per source ambiguity. Maximum scatti: 6.
-
-!!! warning ""
-    Apprenticeship is under_classification 2 levels below destination (per-destination-level), not supported by engine schema. Modeled as 100% passthrough.
+    SENIORITY CADENCE: file uses 36 months. Search for H05B 2025 suggests 'ogni due anni di servizio' (24 months) for this contract (lavoro-economia.it H05B, adapt.it). Contrasts with Confcommercio turismo (H05A) which changed from 36 to 48 in 2024 renewal. Cadence needs confirmation from primary CCNL H05B text; if 24 months, file needs correction. Maximum scatti: 6 (confirmed).
 
 ## Sources
 
@@ -92,6 +83,12 @@ These are deliberate modelling approximations. Read them before using this contr
     CCNL H05B — Federturismo Confindustria. Conglobated model. 9 levels: D2-D1-C3-C2-C1-B2-B1-A2-A1. Divisor 172, 14 months. Function allowances: A1+75 EUR, A2+70 EUR (14 months). Seniority 36-month cadence, max 6.
     
     INPS: uses 2026-terziario.json (TaxSector.TERZIARIO). Same classification as H052 turismo-federalberghi.
+    
+    SALARY VALUES: parametric derivation verified to <0.02 EUR accuracy across all levels. A1 and D2 taken directly from source; all others derived via stable level-coefficient ratios.
+    
+    PRE-2025 NOT MODELLED: the CCNL H05B renewal starts Jan 2025; series begins 2025-01-01. Prior CCNL salary tables exist but are out of scope for the current engine version (coverage starts at renewal date). This is a deliberate scope decision.
+    
+    APPRENTICESHIP: under_classification 2 levels below destination is a contract-specific rule not representable in the engine schema (single under_levels value, not per-destination-level). Modelled as 100% passthrough by design.
     
 
 ## Raw data

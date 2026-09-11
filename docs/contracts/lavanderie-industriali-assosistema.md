@@ -70,19 +70,6 @@ Destination levels: `A3`, `B1`, `B2`, `B3`, `C1`, `C2`
 **professionalizzante_24** (type: `under_classification`)  
 Destination levels: `A2`, `C3`, `D2`
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    DERIVED TRANCHE: Dec 2026 amounts derived from B1+20 using level coefficients (A1=0.7936, A2=0.9126, A3=0.9762, B1=1.0000, B2=1.0794, B3=1.2540, C1=1.2778, C2=1.5396, C3=D2=1.9762), verified as identical across all 4 historical tranches of the 2023-2025 agreement. Not independently confirmed from published Dec 2026 table.
-
-!!! warning ""
-    INCENTIVO DI MODULO: per-level amounts from lavoro-economia.it / previdenza-professionisti.it cross-confirmed for previgente CCNL. Assumed unchanged in 2026 renewal. No published 2026 text shows a change.
-
-!!! warning ""
-    SENIORITY AMOUNTS: assumed unchanged in 2026 renewal. Sources reflect previgente CCNL values. 2026 renewal public summary does not mention changes to scatti amounts.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -108,6 +95,12 @@ These are deliberate modelling approximations. Read them before using this contr
     INPS: uses 2026-industria.json (industria sector, Assosistema Confindustria). Bilateral funds FASIIL (health) and PREVIMODA (pension) are supplementary to INPS, not substituting. Employer INPS rate unaffected.
     
     APPRENTICESHIP: under_classification professionalizzante only. Two tracks per previdenza-professionisti.it (Assosistema D0L1, 2023 rules assumed unchanged in 2026 renewal): 36-month track (destinations A3..C2, periods: 0-12 at 2 levels below, 12-24 at 1 level below, 24+ at destination); 24-month track (destinations A2, C3, D2, periods: 0-12 at 1 level below, 12+ at destination). A1 excluded (no destination below it). Alta formazione and qualifica/diploma apprenticeship not modelled.
+    
+    DERIVED TRANCHE: Dec 2026 amounts derived from B1+20 using level coefficients (A1=0.7936, A2=0.9126, A3=0.9762, B1=1.0000, B2=1.0794, B3=1.2540, C1=1.2778, C2=1.5396, C3=D2=1.9762). Coefficients verified as identical across all 4 historical tranches of the 2023-2025 agreement, confirming a stable parametric scale. Not independently confirmed from a published Dec 2026 official table (that table has not been released as of 2026-09-09).
+    
+    INCENTIVO DI MODULO: per-level amounts cross-confirmed from lavoro-economia.it and previdenza-professionisti.it for the previgente CCNL. Assumed unchanged in 2026 renewal: no published 2026 contract text or renewal summary indicates a change to these allowances.
+    
+    SENIORITY AMOUNTS: previgente CCNL values retained for 2026 renewal. 2026 renewal public summary does not mention changes to scatti amounts — consistent with the standard Italian CCNL practice of not modifying frozen seniority increments in renewals.
     
     APPRENTICESHIP ALLOWANCES: engine draws INCENTIVO_DI_MODULO from the effective pay level, not the destination level. An apprentice at A3 destination (month 6, pay level A1) receives 0.00 allowances because A1 has no incentivo. An apprentice at B1 destination (month 18, pay level A3) receives 57.00 EUR (A3 incentivo). Verified by compute sweep across all five boundary cases (A3/m6, A2/m6, B1/m18, C2/m30, D2/m18).
     

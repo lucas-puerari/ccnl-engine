@@ -77,13 +77,7 @@ Destination levels: `4`
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    SIMPLIFICATION: INPS terziario rates used. ASSOFARM pharmacies operate under commercial pharmacy rules; exact INPS circular for this sub-sector not verified.
-
-!!! warning ""
-    SIMPLIFICATION: Levels 1_12 and 1_2 are automatic time-in-grade progressions for Farmacista Collaboratore (12+ or 2+ years continuous service). Engine cannot model auto-advancement; they are implemented as static level codes distinguishable only by IS allowance amount.
-
-!!! warning ""
-    SIMPLIFICATION: Kitech shows 'Function Allow.' (40.90 for L2, 36.26 for L3 etc.) and 'Tech-Prof Allow.' for quadri sub-levels. These appear in no allegato of the signed CCNL (Art. 17 defines retribuzione di base as Tabelle A+B only). Excluded: for 1Q, base+IQ=2456.91+160=2616.91 vs kitech total 2758.68; the delta 141.77 = 77.47+64.30 matches kitech's two extra lines, confirming they are historical line items outside the contractual minimum.
+    INPS RATES. Terziario proxy used. ASSOFARM entities operate as aziende speciali or società di gestione farmacia (private-law entities under municipal control); the contract is registered CNEL H124 and negotiated by UGL Terziario — standard private-sector INPS regime (terziario) is the expected classification. Note: CCNL text references "INPS Gestione ex INPDAP" in benefit provisions, suggesting legacy workers transferred from public-sector management may retain the ex-INPDAP pension regime — contribution rates for those workers differ. No sector-specific INPS circular identified; kitech.it does not list a dedicated contribution table for farmacie municipalizzate. Simplification retained.
 
 ## Sources
 
@@ -109,6 +103,10 @@ These are deliberate modelling approximations. Read them before using this contr
     Contract valid 07/07/2022-31/12/2024, ultrattivo since 01/01/2025 (no successor deposited at CNEL as of 2026-09-05). Third tranche (01/07/2024) modelled open-ended.
     
     Headcount: 6,389 workers, 335 employers (ASSOFARM primary source).
+    
+    Levels 1_12 and 1_2 (Farmacista Collaboratore with 12+ or 2+ years continuous service) are automatic time-in-grade progressions under Art. 19bis. Engine cannot model auto-advancement; implemented as static level codes distinguishable by IS allowance amount (1_12=130, 1_2=100 EUR/month). Structural engine limitation — correct payroll calculation requires knowing the worker's actual time-in-grade.
+    
+    Function and Tech-Prof allowances shown in kitech for L2/L3/quadri sub-levels are EXCLUDED. They appear in no allegato of the signed CCNL; Art. 17 defines retribuzione di base as Tabelle A+B only. Verification: 1Q base+IQ=2456.91+160=2616.91 vs kitech 2758.68; delta 141.77 = sum of the two extra kitech lines — confirming they are historical/personal elements outside the contractual minimum. Exclusion is correct.
     
 
 ## Raw data

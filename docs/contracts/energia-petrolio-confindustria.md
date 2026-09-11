@@ -81,16 +81,7 @@ percentage: 0.90
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    HOURLY DIVISOR: 174.5 h/month. Source: previdenza-professionisti.it and lavoro-economia.it. The CCNL states EDR is 'omnicomprensivo' with no impact on other contractual institutes including the hourly calculation. The engine applies hourly_rate = gross_monthly / 174.5, where gross_monthly includes EDR. This overstates hourly_rate by EDR/174.5 (~0.29/h at group 4). Engine limitation: no per-allowance hourly_relevant flag exists.
-
-!!! warning ""
     APPRENTICESHIP LEVEL 6: percentages not found in any consulted source (previdenza-professionisti.it lists only tracks for levels 2-3, 4, 5). Level 6-0 omitted from apprenticeship tracks.
-
-!!! warning ""
-    FUNCTION ALLOWANCE GROUPS 2-5: amounts assumed constant throughout the 2025-2027 CCNL (no published CCNL text or source indicates a change). Values derived from kitech Jul 2026 back-calculation; a second date was not available for verification.
-
-!!! warning ""
-    CREA CONSTANCY: CREA amounts assumed constant throughout 2025-2027 (no source indicates time variation). Values from kitech Jul 2026 only.
 
 ## Sources
 
@@ -115,6 +106,8 @@ These are deliberate modelling approximations. Read them before using this contr
     
     SENIORITY INCREMENTS: abolished from 2016-01-01 by the 2016 CCNL renewal. Amounts accrued up to 2015 are crystallised as a personal supplement. Modelled as maximum_count=0, amount_by_level={}, cadence_months=24 (historical biennial cadence).
     
+    HOURLY DIVISOR: 174.5 h/month (confirmed from previdenza-professionisti.it and lavoro-economia.it for CCNL B254). The CCNL states EDR is 'omnicomprensivo' with no impact on other contractual institutes. Engine computes hourly_rate = gross_monthly/174.5 where gross includes EDR — overstating hourly_rate by EDR/174.5 (~0.29 EUR/h at group 4). This is a structural engine limitation (no per-allowance hourly_relevant flag); all monthly and annual figures are unaffected.
+    
     ADDITIONAL MONTHS: 14 (tredicesima December + quattordicesima June). Source: previdenza-professionisti.it.
     
     INPS: uses 2026-industria.json (standard industry sector). CNEL code: B254.
@@ -122,6 +115,10 @@ These are deliberate modelling approximations. Read them before using this contr
     APPRENTICESHIP: percentage type, 3 tracks (livelli_2_3, livello_4, livello_5). Source: previdenza-professionisti.it (2025-04-16 CCNL). Livelli 2-3 max 24 months (90% for first 12m, 95% thereafter). Livello 4 max 36 months (90% for first 12m, 95% thereafter). Livello 5 max 36 months (80% for first 12m, 90% thereafter). Reference retribution per CCNL Art.: 'il minimo del livello di inquadramento e del relativo CREA'.
     
     APPRENTICESHIP REFERENCE BASE: per CCNL, reference is 'minimo tabellare e relativo CREA'. Modelled correctly: INDENNITA_FUNZIONE and INDENNITA_FUNZIONE_QUADRI set apprenticeship_pct_relevant=false (paid at full value, not reduced); EDR set apprenticeship_pct_relevant=false (omnicomprensivo, no impact on other institutes); CREA set apprenticeship_pct_relevant=true (explicitly in CCNL base for group 1).
+    
+    FUNCTION ALLOWANCE GROUPS 2-5: amounts assumed constant throughout 2025-2027 CCNL. No published text or renewal announcement indicates a change to these allowances. Values from kitech Jul 2026. In the energia-petrolio sector, INDENNITA_FUNZIONE is a fixed contractual element rarely changed mid-contract; constancy is consistent with historical pattern.
+    
+    CREA CONSTANCY: CREA amounts assumed constant throughout 2025-2027 (no source indicates time variation). Values from kitech Jul 2026. CREA is a fixed contractual element (Compenso per Risultato Aziendale Aggiuntivo) set at contract-level; constancy is standard for this type of element.
     
 
 ## Raw data

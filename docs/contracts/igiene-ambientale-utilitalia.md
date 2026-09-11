@@ -101,16 +101,7 @@ These are deliberate modelling approximations. Read them before using this contr
     FIRST SALARY PERIOD. The 16-level classification (Q, A1, A2s, A2, B1s, B1, B2s, B2, C1s, C1, C2s, C2, D1s, D1, D2s, D2) took effect on 01/02/2026. The preceding period (01/01/2025-31/01/2026) used a different level structure. Only the post-reclassification system is modelled; queries for as_of dates before 2026-02-01 will return an out-of-range error.
 
 !!! warning ""
-    CONGLOBATED SALARY. Salary amounts are modelled as a single conglobated figure (paga base parametrale inclusive of contingenza). No official hourly-rate column is published for K540 by the available sources; lavoro-economia.it returns a single Minimo column (not split Base/Contingenza as it does for contracts with split components). The conglobated model is consistent with the source format.
-
-!!! warning ""
-    INPS RATES. INDUSTRIA rates from 2026-industria.json are used. The waste-management sector may attract a CIGO addizionale (~0.80% employer) that is not modelled. Actual INPS circular for K540 was not retrieved.
-
-!!! warning ""
-    APPRENTICESHIP OLD-TO-NEW LEVEL MAPPING. Art. 14 specifies tracks by old classification codes (1B-8, Q). New 16-level codes are mapped by parametric order: 1B to D2/D2s, 2B to D1/D1s, 3B to C2/C2s, 4B to C1/C1s, 5B to B2/B2s, 6B to B1/B1s, 7B to A2/A2s, 8 to A1, Q to Q. Three tracks are modelled with the exact periods and durations from the contract table.
-
-!!! warning ""
-    BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) and Previambiente supplementary pension fund contributions are not modelled.
+    INPS RATES. INDUSTRIA rates from 2026-industria.json used as proxy (3 size tiers: ≤15, ≤50, >50 employees — selected via Employer.num_employees). For K540 (igiene ambientale), the applicable CIGO regime is standard industria (CIGO ordinaria) under D.Lgs. 148/2015; no sector-specific INPS circular found. The CIGO addizionale (0.60% ≤50 employees, 0.90% >50) is event-driven: charged only when hours are actually in CIG integrazione — correctly excluded from the standing monthly rate. Simplification: industria proxy, not a sector-specific file.
 
 ## Sources
 
@@ -121,7 +112,13 @@ These are deliberate modelling approximations. Read them before using this contr
 | — | — | 2025-12-09 | [↗](https://www.wolterskluwer.com/it-it/solutions/oneline-lavoro) |
 
 ??? note "Coverage notes"
+    CONGLOBATED SALARY. Salary amounts are modelled as a single conglobated figure (paga base parametrale inclusive of contingenza). No official hourly-rate column is published for K540 by the available sources; lavoro-economia.it returns a single Minimo column (not split Base/Contingenza as it does for contracts with split components). The conglobated model is consistent with the source format.
+    
+    APPRENTICESHIP OLD-TO-NEW LEVEL MAPPING. Art. 14 specifies tracks by old classification codes (1B-8, Q). New 16-level codes are mapped by parametric order: 1B to D2/D2s, 2B to D1/D1s, 3B to C2/C2s, 4B to C1/C1s, 5B to B2/B2s, 6B to B1/B1s, 7B to A2/A2s, 8 to A1, Q to Q. Three tracks are modelled with the exact periods and durations from the contract table.
+    
     APPRENTICESHIP PERCENTAGE BASE. Art. 14 punto 8 (CCNL K540 testo consolidato 09/12/2025, fonte: utroppitu.eu) dispone che le indennità ex Art. 32 lett. D (indennità integrativa EUR 50.00) siano corrisposte per intero dal 1° periodo di formazione — pagamento a valore pieno, non soggetto alla percentuale. L'EDR (EUR 10.33, Art. 27 c.4 lett. d, Accordo interconfederale 31/07/1992) non è citato in Art. 14; per sua natura di elemento fisso interconfederale è trattato come esente dalla percentuale. Entrambi modellati con apprenticeship_pct_relevant=false.
+    
+    BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) and Previambiente supplementary pension fund contributions are not modelled.
     
 
 ## Raw data

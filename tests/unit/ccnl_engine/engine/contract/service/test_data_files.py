@@ -8827,3 +8827,76 @@ class TestLoadSistemazioniIdraulicoForestaliOperai:
         ccnl = load_ccnl("sistemazioni-idraulico-forestali-operai.json")
         si = ccnl.parameters.seniority_increments
         assert si.maximum_count == 0
+
+
+class TestLoadImpiantiSportiviSport:
+    """Unit tests for CCNL Impianti e Attività Sportive (H077)."""
+
+    def test_impianti_sportivi_sport_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("impianti-sportivi-sport.json")
+        assert ccnl.meta.ccnl_id == "impianti-sportivi-sport"
+        assert ccnl.meta.cnel_code == "H077"
+
+    def test_impianti_sportivi_sport_has_7_levels(self) -> None:
+        """Contract has exactly 7 levels: VI, V, IV, III, II, I, Q."""
+        ccnl = load_ccnl("impianti-sportivi-sport.json")
+        assert len(ccnl.levels) == 7
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"VI", "V", "IV", "III", "II", "I", "Q"}
+
+    def test_impianti_sportivi_sport_level_vi_salary_tranche1(self) -> None:
+        """Level VI base salary at 01/01/2024 is 1247.94 EUR."""
+        ccnl = load_ccnl("impianti-sportivi-sport.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "VI")
+        assert lv.base_salary.value_at(date(2024, 1, 1)) == Decimal("1247.94")
+
+    def test_impianti_sportivi_sport_level_vi_salary_tranche4(self) -> None:
+        """Level VI base salary at 01/07/2026 is 1336.82 EUR."""
+        ccnl = load_ccnl("impianti-sportivi-sport.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "VI")
+        assert lv.base_salary.value_at(date(2026, 7, 1)) == Decimal("1336.82")
+
+    def test_impianti_sportivi_sport_level_ordering(self) -> None:
+        """VI is lowest (order 1), Q is highest (order 7)."""
+        ccnl = load_ccnl("impianti-sportivi-sport.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "VI"
+        assert by_order[-1].code == "Q"
+
+    def test_impianti_sportivi_sport_additional_months(self) -> None:
+        """Additional months is 13 (tredicesima only — Art. 125 CCNL)."""
+        ccnl = load_ccnl("impianti-sportivi-sport.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 7, 1)) == Decimal(
+            13
+        )
+
+    def test_impianti_sportivi_sport_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (40h/week — Art. 120 CCNL)."""
+        ccnl = load_ccnl("impianti-sportivi-sport.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 7, 1)) == Decimal(173)
+
+    def test_impianti_sportivi_sport_q_has_ind_funzione(self) -> None:
+        """Q level has IND_FUNZIONE of 60.00 EUR/month (13 months); others empty."""
+        ccnl = load_ccnl("impianti-sportivi-sport.json")
+        q = next(lv for lv in ccnl.levels if lv.code == "Q")
+        assert len(q.fixed_allowances) == 1
+        fa = q.fixed_allowances[0]
+        assert fa.code == "IND_FUNZIONE"
+        assert fa.monthly.value_at(date(2026, 7, 1)) == Decimal("60.00")
+        assert fa.months_per_year == 13
+        for lv in ccnl.levels:
+            if lv.code != "Q":
+                assert lv.fixed_allowances == []
+
+    def test_impianti_sportivi_sport_tax_sector(self) -> None:
+        """Tax sector is terziario."""
+        ccnl = load_ccnl("impianti-sportivi-sport.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_impianti_sportivi_sport_seniority_no_new_scatti(self) -> None:
+        """Seniority: maximum_count == 0 (no new scatti in 2024 CCNL)."""
+        ccnl = load_ccnl("impianti-sportivi-sport.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 0

@@ -84,9 +84,6 @@ percentage: 0.95
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    SENIORITY CAP. Art. G23 §5 grants one additional scatto to employees hired before 1 January 1993 reaching 16 years of company seniority from 1 January 2026. The engine has no hire-date input; maximum_count is set to 8 for all workers, understating by 1 scatto for eligible pre-1993 employees.
-
-!!! warning ""
     LEVEL 9 SENIORITY. Art. G23 seniority table lists amounts for levels 1S through 8 only. Level 9 is absent. Modelled as 0.00; not confirmed whether intentional exclusion or typographical omission.
 
 !!! warning ""
@@ -106,6 +103,8 @@ These are deliberate modelling approximations. Read them before using this contr
     APPRENTICESHIP TRACKS. Art. G14 §16 defines three professionalising tracks (18m, 24m, 36m) with percentage tables by semester. All three are implemented. Art. G14 does not restrict which track applies per destination level; employers and workers choose the duration per PFI. When calling compute() with Apprentice for any covered level, set Apprentice.track to 'professionalizzante_18m', 'professionalizzante_24m', or 'professionalizzante_36m'. Source: CCNL Parte Specifica Gestori Aeroportuali (assaeroporti.com, 04/06/2025), Art. G14 §16 table.
     
     EDR APPRENTICESHIP EXEMPTION. Art. G14 §16 limits the apprenticeship percentage to 'minimi tabellari in vigore, indennità di contingenza'. EDR (Art. G22) is not listed and is therefore paid at full value for apprentices. Modelled via apprenticeship_pct_relevant=false on all EDR allowances.
+    
+    SENIORITY CAP: maximum_count=8, as per 2025 rinnovo (signed 04/06/2025, FILT-CGIL comunicato) which recognized the 8th scatto from 01/01/2026 for all workers with ≥16 years seniority. Pre-1993 employees with 16+ years already captured under this rule. Engine has no hire-date input; this is a structural limitation — maximum_count=8 is the correct model for the vast majority of new hires.
     
 
 ## Raw data

@@ -59,9 +59,6 @@ Latest effective values per level (monthly gross, EUR).
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    HOURLY RATE — TEACHING STAFF: hourly_divisor=164 (38h/week) applies only to ATA/non-teaching staff. L4 docenti (scuola infanzia/primaria) have 24h/week contracted hours; L5 docenti (scuola secondaria) have 18–22h/week; L6 (presidi) contractual duties also differ. hourly_rate computed by the engine for L4, L5, and the docenza component of L6 is therefore incorrect for those roles. Base monthly salary and all annual figures are unaffected.
-
-!!! warning ""
     APPRENTICESHIP (Layer 2): apprendistato professionalizzante not modelled. Governed by Allegato 4 of the CCNL (Art. 25). Allegato 4 is not publicly accessible. Part-time and fixed-term (NASpI addizionale) function via generic engine rules without per-contract data. Layer 2 is therefore partial: apprenticeship gap is the only missing component.
 
 ## Sources
@@ -84,6 +81,8 @@ These are deliberate modelling approximations. Read them before using this contr
     SENIORITY: frozen at 31/12/2005. Art. 29 clause 1 of the CCNL 2024 lists 'salario di anzianità maturato al 31/12/2005' as a retributive element. Art. 32 governs this frozen amount. No new scatti di anzianità accrue after 2005. The current progression mechanism is POC (Progressione Orizzontale di Carriera), calculated as 100% of the 3-year average of PAP productivity awards (Art. 38, in force from 31/08/2024), which is merit-conditioned and excluded from Layer 1. Maximum_count set to 0; amount_by_level set to 0.00 EUR for all levels. Cadence_months set to 1 (minimum legal value; maximum_count=0 so no scatti ever apply; historical quinquennial cadence noted here only).
     
     INPS: reuses 2026-terziario.json (TERZIARIO sector). Private religious schools are private-sector employers; employer INPS classification follows the general terziario sector consistent with other private educational and social institutions (cf. UNEBA T141 which uses the same sector).
+    
+    HOURLY RATE — TEACHING STAFF: hourly_divisor=164 (38h/week) applies to ATA/non-teaching staff. L4 docenti (scuola infanzia/primaria) have 24h/week; L5 docenti (scuola secondaria) have 18–22h/week; L6 (presidi) differ. The engine hourly_rate for L4, L5, L6 is incorrect for the teaching components; this is a structural engine limitation (single divisor per contract). Base monthly salary and all annual financial figures (gross, net, INPS, TFR, IRPEF) are unaffected.
     
 
 ## Raw data

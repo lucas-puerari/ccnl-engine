@@ -5,7 +5,7 @@
 | **CNEL code** | `H401` |
 | **Sector** | portieri e custodi di condominio |
 | **Tax sector** | `terziario` |
-| **Last renewal** | — |
+| **Last renewal** | 2025-10-30 |
 | **Workers (est.)** | ~40k |
 | **Ruleset version** | `2026.2` |
 | **Extraction** | 🤖 AI-assisted |

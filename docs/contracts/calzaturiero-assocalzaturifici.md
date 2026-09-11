@@ -81,15 +81,6 @@ percentage: 1.00
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    Salary model is conglobated (minimi retributivi include paga base, contingenza, and EDR). Modeled as base_salary with fixed_allowances: [] for all levels except level 8.
-
-!!! warning ""
-    Level 8 indennità di funzione per quadri (EUR 41.31/month per sourced table) is not modeled because it applies only to supervisory employees (quadri), not all level-8 workers. Base salary for level 8 reflects the contractual minimum (EUR 2,509.13 at Aug 2026), excluding the function allowance.
-
-!!! warning ""
-    Level 1 receives a special wage correction from 1 January 2025 (EUR 1,502.46, up from EUR 1,315.70 at Aug 2024), separate from the standard tranche dates of Aug 2024, Aug 2025, Aug 2026. Modeled as a four-period TimeSeries for level 1 only.
-
-!!! warning ""
     Seniority cadence is triennale (36 months) for all levels; maximum 5 scatti. Scatto amounts derived from businessonline.it article (2025) cross-checked with kitech.it current table.
 
 ## Sources
@@ -101,6 +92,12 @@ These are deliberate modelling approximations. Read them before using this contr
 | — | — | 2024-07-17 | [↗](https://www.businessonline.it/articoli/scatti-anzianita-contratto-calzaturiero-tabella-ogni-quanto-ci-sono-e-stipendio-di-quanto-aumenta.html) |
 
 ??? note "Coverage notes"
+    SALARY MODEL: conglobated (minimi retributivi include paga base, contingenza, and EDR). Modeled as base_salary with fixed_allowances: [] for all levels except level 8 (IND_FUN for quadri). Confirmed by stable coefficient ratios across all tranche dates.
+    
+    LEVEL 8 IND_FUN: indennità di funzione per quadri 41.31 EUR/month applies only to quadri supervisory employees, not to all livello 8 workers. Engine models base salary only for L8; the allowance is excluded by contract scope, not by modelling omission.
+    
+    LEVEL 1 SPECIAL TRANCHE: separate wage correction from 1 January 2025 (EUR 1,502.46, up from EUR 1,315.70 at Aug 2024), independent of standard tranche dates Aug 2024/Aug 2025/Aug 2026. Confirmed by fiscoetasse.com (rinnovo 2024) and web search: Jan 2025=1502.46, Aug 2025=1530.00, Aug 2026=1557.00. Modeled as a four-period series for level 1 only.
+    
     Workers covered: approximately 75,000 (Assocalzaturifici member companies). Agreement signed 2024-07-17; valid 2024-01-01 to 2026-12-31.
     
     INPS rates from 2026-industria.json (same sector as metalmeccanico). IRPEF 2026 brackets applied (L. 199/2025).

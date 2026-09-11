@@ -90,9 +90,6 @@ These are deliberate modelling approximations. Read them before using this contr
 !!! warning ""
     Structural rules (Art. 7, 35, 41, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification.
 
-!!! warning ""
-    OVERTIME/LEAVE/ABSENCE (L3): Art. 37 CCNL 2023 — straordinario 30%, notturno 50%, festivo 50%. Ferie 22 giorni (5-day week). Malattia: integrazione datoriale al 100% per max 180 giorni. Rates sourced from 2023 CCNL PDF (official text); 2025 rinnovo structural rules assumed unchanged (text image-only).
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -105,6 +102,8 @@ These are deliberate modelling approximations. Read them before using this contr
     
     Seniority: Art. 41 CCNL 2021 — 12 scatti biennali. Amounts per level confirmed from 2021 previgente text; carried forward to 2025 rinnovo (structural rules unchanged per summary).
     
+    OVERTIME/LEAVE/ABSENCE (L3): Art. 37 CCNL 2023 — straordinario 30%, notturno 50%, festivo 50%. Ferie 22 giorni (orario su 5 giorni, Art. 12). Malattia: integrazione datoriale al 100% per max 6 mesi (Art. 44). Assenza: divisore 26. Rates from 2023 CCNL PDF; 2025 rinnovo structural rules assumed unchanged (text image-only).
+    
 
 ## Raw data
 
@@ -112,3 +111,9 @@ These are deliberate modelling approximations. Read them before using this contr
     ```json
     --8<-- "src/ccnl_engine/knowledge/ccnl/data/sistemazioni-idraulico-forestali-impiegati.json"
     ```
+
+## Usage example
+
+```python
+--8<-- "docs/examples/contracts/sistemazioni-idraulico-forestali-impiegati.py"
+```

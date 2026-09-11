@@ -40,10 +40,10 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `ELEVATE_PROFESSIONALITA` | Area Elevate Professionalità | € 2,886.21 | — |
-| `FUNZIONARI` | Area Funzionari ed Elevata Qualificazione — Funzionari | € 2,113.59 | — |
-| `ASSISTENTI` | Area Assistenti | € 1,740.36 | — |
-| `OPERATORI` | Area Operatori | € 1,653.97 | — |
+| `ELEVATE_PROFESSIONALITA` | Area Elevate Professionalità | € 3,107.21 | — |
+| `FUNZIONARI` | Area Funzionari ed Elevata Qualificazione — Funzionari | € 2,275.39 | — |
+| `ASSISTENTI` | Area Assistenti | € 1,873.56 | — |
+| `OPERATORI` | Area Operatori | € 1,780.57 | — |
 
 ## Seniority increments
 
@@ -55,9 +55,6 @@ Latest effective values per level (monthly gross, EUR).
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    codice CNEL S005 derivato da tre fonti secondarie convergenti (lavoro-economia.it, blia.it ID S005-209278, contratticcnl.it); sito CNEL non direttamente interrogabile via HTTP (JS-driven search).
-
-!!! warning ""
     aliquote INPS CTPS (ex-INPDAP) — dipendente 8,80%, datore 24,20% — da proxy kitech.it 2026; verificare circolare INPS annuale per valori esatti.
 
 ## Sources
@@ -65,11 +62,16 @@ These are deliberate modelling approximations. Read them before using this contr
 | Document | Kind | Date | URL |
 |---|---|---|---|
 | — | — | 2025-01-27 | [↗](https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf) |
+| — | — | 2026-08-06 | [↗](https://cislfp.it/2026/08/06/ccnl-funzioni-centrali-2025-2027-aumenti-busta-paga/) |
 
 ??? note "Coverage notes"
     Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.
     
     apprendistato assente dal CCNL vigente (fonte primaria: indice ARAN CCNL 2022-2024, Art. 1-38 senza capitolo apprendistato) e dal CCNL Ministeri 12/6/2003 richiamato dall'Art. 38 Conferme, che esclude espressamente gli apprendisti dall'ambito di applicazione (fonte secondaria: olympus.uniurb.it); quadro normativo PA D.Lgs. 165/2001 non prevede apprendistato ex D.Lgs. 81/2015.
+    
+    CCNL Funzioni Centrali 2025-2027 (S005) firmato definitivamente il 2026-08-06; in vigore dal 2026-08-07. Incrementi retroattivi al 1/1/2025 e 1/1/2026 liquidati con gli stipendi di agosto/settembre 2026. Tre periodi aggiornati: 2025-01-01, 2026-01-01, 2027-01-01. Fonte: CISL FP (cislfp.it), testo ARAN definitivo non ancora pubblicato su aranagenzia.it al 2026-09-09.
+    
+    codice CNEL S005 confermato da tre fonti secondarie convergenti: lavoro-economia.it (intestazione pagina "CCNL Comparto Funzioni Centrali [Cnel: S005]"), blia.it (ID S005-209278), contratticcnl.it (/ccnl/s005/). Verificato 2026-09-09.
     
     retribuzione tabellare conglobata dal 1/1/2024 per 13 mensilità (Tabella 2, Art. 30 CCNL 2022-2024); tranche precedente dal 9/5/2022 derivata per sottrazione degli incrementi Tabella 1.
     
