@@ -44,5 +44,5 @@ class InpsSickPayRates(BaseModel):
 
     description: str = ""
     carenza_days: int = Field(default=3, ge=0)
-    bands: list[SickPayBand] = []
+    bands: list[SickPayBand] = Field(default_factory=list)
     ruleset: RulesetIdentity | None = None
