@@ -72,7 +72,7 @@ def _scenario() -> PayrollScenario:
             ccnl=_CCNL_FILENAME,
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            date=date(2026, 6, 1),
+            calculation_date=date(2026, 6, 1),
         ),
     )
 
@@ -103,7 +103,7 @@ class TestInputSnapshot:
                 ccnl=_CCNL_FILENAME,
                 contract=Permanent(),
                 employer=Employer(num_employees=50),
-                date=date(2025, 11, 1),
+                calculation_date=date(2025, 11, 1),
                 tax_year=2026,
             ),
         )
@@ -116,7 +116,7 @@ class TestInputSnapshot:
         )
         recovered = snapshot.materialise()
         assert recovered.employment.tax_year == 2026
-        assert recovered.employment.date.year == 2025
+        assert recovered.employment.calculation_date.year == 2025
 
     def test_roundtrip_dict_json(self) -> None:
         """to_dict/from_dict and to_json/from_json round-trip."""

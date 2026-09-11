@@ -27,7 +27,7 @@ baseline = compute(
             ccnl="commercio-confcommercio.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            date=date(2026, 1, 1),
+            calculation_date=date(2026, 1, 1),
         ),
     )
 )
@@ -47,7 +47,7 @@ p = compute(
             ccnl="commercio-confcommercio.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            date=date(2026, 1, 1),
+            calculation_date=date(2026, 1, 1),
         ),
     )
 )

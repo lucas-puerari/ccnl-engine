@@ -20,7 +20,7 @@ p = compute(
             ccnl="carta-cartone-assocarta.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            date=date(2026, 9, 1),
+            calculation_date=date(2026, 9, 1),
         ),
     )
 )

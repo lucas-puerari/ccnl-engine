@@ -294,7 +294,7 @@ class TestReferenceCases:
                 ccnl=inputs["ccnl_file"],
                 contract=contract,
                 employer=Employer(num_employees=int(inputs["num_employees"])),
-                date=as_of,
+                calculation_date=as_of,
                 tax_year=tax_year,
             ),
             time_supplements=time_supplements,

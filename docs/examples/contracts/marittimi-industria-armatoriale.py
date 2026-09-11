@@ -20,7 +20,7 @@ p = compute(
             ccnl="marittimi-industria-armatoriale.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            date=date(2026, 7, 1),
+            calculation_date=date(2026, 7, 1),
         ),
     )
 )

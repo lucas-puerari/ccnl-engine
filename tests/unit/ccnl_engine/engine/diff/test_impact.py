@@ -34,7 +34,7 @@ def _scenario(
             ccnl=ccnl_file,
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            date=as_of,
+            calculation_date=as_of,
         ),
     )
 

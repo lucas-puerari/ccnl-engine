@@ -20,7 +20,7 @@ p = compute(
             ccnl="istituzioni-servizi-socio-assistenziali-anaste.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            date=date(2026, 8, 1),
+            calculation_date=date(2026, 8, 1),
         ),
     )
 )

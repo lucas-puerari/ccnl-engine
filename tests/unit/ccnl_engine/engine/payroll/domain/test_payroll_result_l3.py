@@ -37,7 +37,7 @@ def payroll() -> PayrollResult:
                 ccnl="metalmeccanico-federmeccanica.json",
                 contract=Permanent(),
                 employer=Employer(num_employees=50),
-                date=date(2026, 9, 1),
+                calculation_date=date(2026, 9, 1),
             ),
         )
     ).result

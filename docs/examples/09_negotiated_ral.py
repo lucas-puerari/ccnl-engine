@@ -30,7 +30,7 @@ ccnl_min = compute(
             ccnl="studi-professionali-confprofessioni.json",
             contract=Permanent(),
             employer=Employer(num_employees=10),
-            date=date(2026, 1, 1),
+            calculation_date=date(2026, 1, 1),
         ),
     )
 )
@@ -46,7 +46,7 @@ negotiated = compute(
             ccnl="studi-professionali-confprofessioni.json",
             contract=Permanent(),
             employer=Employer(num_employees=10),
-            date=date(2026, 1, 1),
+            calculation_date=date(2026, 1, 1),
         ),
     )
 )
