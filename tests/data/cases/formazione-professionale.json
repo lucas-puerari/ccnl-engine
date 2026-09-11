@@ -1,0 +1,51 @@
+{
+  "_description": "formazione-professionale (T261) — salary checks across all three tranches",
+  "ccnl_file": "formazione-professionale.json",
+  "salary_checks": [
+    {
+      "level_code": "V",
+      "as_of": "2024-01-01",
+      "expected_monthly": "1957.63"
+    },
+    {
+      "level_code": "V",
+      "as_of": "2024-06-01",
+      "expected_monthly": "2017.63"
+    },
+    {
+      "level_code": "V",
+      "as_of": "2025-09-01",
+      "expected_monthly": "2057.63"
+    },
+    {
+      "level_code": "I",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1635.99"
+    },
+    {
+      "level_code": "II",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1730.71"
+    },
+    {
+      "level_code": "IV",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1975.16"
+    },
+    {
+      "level_code": "VI",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2331.43"
+    },
+    {
+      "level_code": "VIII",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2627.71"
+    },
+    {
+      "level_code": "IX",
+      "as_of": "2026-01-01",
+      "expected_monthly": "3222.79"
+    }
+  ]
+}
