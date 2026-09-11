@@ -3,11 +3,15 @@
 Public API
 ----------
 The single entry point is :func:`compute`. All types needed to call it
-and interpret its result are re-exported from this module.
+and inspect its result are re-exported from this module.
 
-Data loading (CCNL files, tax/INPS/surtax rules) is handled internally by
-:func:`compute`; :func:`load_ccnl`, :func:`load_year_rules`, and
-:func:`load_surtax_rules` remain public for inspection and tooling.
+Tooling types (CCNL inspection, diff, loaders) are not part of the
+stable API. Use the dedicated sub-namespaces instead:
+
+- CCNL inspection: :mod:`ccnl_engine.engine.contract`
+- Diff operations: :mod:`ccnl_engine.engine.diff`
+- Tax/surtax loaders: :mod:`ccnl_engine.engine.tax`,
+  :mod:`ccnl_engine.engine.surtax`
 
 Usage::
 
@@ -35,28 +39,19 @@ Usage::
 
 from __future__ import annotations
 
-from ccnl_engine.engine.contract import CCNL, load_ccnl
-from ccnl_engine.engine.contract.domain.ccnl import (
-    AgreementKind,
-    Allowance,
-    LevelCategory,
-    SupplementaryAllowance,
-    TaxSector,
-)
-from ccnl_engine.engine.diff import (
-    RuleChange,
-    RulesDiff,
-    count_affected_scenarios,
-    diff_ccnl,
-    format_diff,
-)
-from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity, VerificationStatus
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
-from ccnl_engine.engine.payroll.domain.calculation import Calculation
+from ccnl_engine.engine.payroll.domain.calculation import (
+    Calculation,
+    CalculationTrace,
+    InputSnapshot,
+    TraceCategory,
+    TraceStep,
+)
 from ccnl_engine.engine.payroll.domain.employee import (
     DestinationRalOverride,
     RalOverride,
     SeniorityByCount,
+    SeniorityByDate,
     SeniorityByMonths,
 )
 from ccnl_engine.engine.payroll.domain.employment import (
@@ -81,25 +76,23 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     BonusInput,
     FringeBenefitInput,
     LeaveInput,
+    OvertimeHours,
     SickInput,
     WelfareInput,
 )
+from ccnl_engine.engine.payroll.render import AnnualBreakdown, render_breakdown
 from ccnl_engine.engine.payroll.service.orchestrator import compute
-from ccnl_engine.engine.provenance import SourceAuthority
-from ccnl_engine.engine.surtax import SurtaxRules, load_surtax_rules
-from ccnl_engine.engine.tax import YearRules, load_year_rules
 from ccnl_engine.version import __version__ as engine_version
 
 __all__ = [
-    "CCNL",
     "AbsenceDays",
     "Agreement",
-    "AgreementKind",
-    "Allowance",
+    "AnnualBreakdown",
     "Apprentice",
     "Art15Deductions",
     "BonusInput",
     "Calculation",
+    "CalculationTrace",
     "Contract",
     "DestinationRalOverride",
     "Employee",
@@ -109,33 +102,23 @@ __all__ = [
     "FiscalSimplification",
     "FixedTerm",
     "FringeBenefitInput",
+    "InputSnapshot",
     "Jurisdiction",
     "LeaveInput",
-    "LevelCategory",
+    "OvertimeHours",
     "PayrollResult",
     "PayrollScenario",
     "Permanent",
     "RalOverride",
-    "RuleChange",
-    "RulesDiff",
-    "RulesetIdentity",
     "ScopeItem",
     "SeniorityByCount",
+    "SeniorityByDate",
     "SeniorityByMonths",
     "SickInput",
-    "SourceAuthority",
-    "SupplementaryAllowance",
-    "SurtaxRules",
-    "TaxSector",
-    "VerificationStatus",
+    "TraceCategory",
+    "TraceStep",
     "WelfareInput",
-    "YearRules",
     "compute",
-    "count_affected_scenarios",
-    "diff_ccnl",
     "engine_version",
-    "format_diff",
-    "load_ccnl",
-    "load_surtax_rules",
-    "load_year_rules",
+    "render_breakdown",
 ]
