@@ -12,6 +12,7 @@
       "FISASCAT-CISL",
       "UILTuCS"
     ],
+    "agreement_date": "2025-10-30",
     "sources": [
       {
         "url": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
@@ -1290,7 +1291,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "d112b488542de3b41b74bc997f2c3b53f010765887e142d4b26ff7ab3d5e1163",
+    "source_hash": "4990ef83a8290b805cc9a327b127927216fb10a1171c8df2d69cf7a21669d3bf",
     "published_at": "2026-09-07"
   },
   "work_rules": {
