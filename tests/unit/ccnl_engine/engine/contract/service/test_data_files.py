@@ -8966,3 +8966,114 @@ class TestLoadFormazioneProfessionale:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 48
         assert si.maximum_count == 5
+
+
+class TestLoadConciaUnic:
+    """Unit tests for CCNL Industria Conciaria (UNIC) — B101."""
+
+    def test_concia_unic_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("concia-unic.json")
+        assert ccnl.meta.ccnl_id == "concia-unic"
+        assert ccnl.meta.cnel_code == "B101"
+
+    def test_concia_unic_has_11_levels(self) -> None:
+        """Contract has exactly 11 levels: A, B1, B2, C1, C2, D1, D2, E1, E2, E3, F1."""
+        ccnl = load_ccnl("concia-unic.json")
+        assert len(ccnl.levels) == 11
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {
+            "A",
+            "B1",
+            "B2",
+            "C1",
+            "C2",
+            "D1",
+            "D2",
+            "E1",
+            "E2",
+            "E3",
+            "F1",
+        }
+
+    def test_concia_unic_level_c1_salary_tranche1(self) -> None:
+        """Level C1 minimo tabellare at 01/03/2024 is 2125.21 EUR (Allegato n. 1)."""
+        ccnl = load_ccnl("concia-unic.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C1")
+        assert lv.base_salary.value_at(date(2024, 3, 1)) == Decimal("2125.21")
+
+    def test_concia_unic_level_c1_salary_tranche3(self) -> None:
+        """Level C1 minimo tabellare at 01/01/2026 is 2234.82 EUR (Allegato n. 1)."""
+        ccnl = load_ccnl("concia-unic.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C1")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("2234.82")
+
+    def test_concia_unic_level_ordering(self) -> None:
+        """F1 is lowest (order 1), A is highest (order 11)."""
+        ccnl = load_ccnl("concia-unic.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "F1"
+        assert by_order[-1].code == "A"
+
+    def test_concia_unic_additional_months(self) -> None:
+        """Additional months is 13 (tredicesima only — CCNL art. 50)."""
+        ccnl = load_ccnl("concia-unic.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_concia_unic_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (40h/week — Allegato n. 1)."""
+        ccnl = load_ccnl("concia-unic.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(173)
+
+    def test_concia_unic_level_a_ind_funzione(self) -> None:
+        """Level A has IND_FUNZIONE allowance of 25.82 EUR; B1 has EDR + IPO."""
+        ccnl = load_ccnl("concia-unic.json")
+        lv_a = next(lv for lv in ccnl.levels if lv.code == "A")
+        codes_a = {fa.code for fa in lv_a.fixed_allowances}
+        assert "IND_FUNZIONE" in codes_a
+        ind = next(fa for fa in lv_a.fixed_allowances if fa.code == "IND_FUNZIONE")
+        assert ind.monthly.value_at(date(2026, 1, 1)) == Decimal("25.82")
+        lv_b1 = next(lv for lv in ccnl.levels if lv.code == "B1")
+        codes_b1 = {fa.code for fa in lv_b1.fixed_allowances}
+        assert codes_b1 == {"EDR", "IPO"}
+
+    def test_concia_unic_tax_sector(self) -> None:
+        """Tax sector is industria."""
+        ccnl = load_ccnl("concia-unic.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_concia_unic_seniority_cadence(self) -> None:
+        """Seniority: biennial cadence (24 months), 5 increments maximum."""
+        ccnl = load_ccnl("concia-unic.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_concia_unic_gross_totals_2026(self) -> None:
+        """Level totals at 01/01/2026: C1=2356.47, B1=2726.38, A=2973.75."""
+        ccnl = load_ccnl("concia-unic.json")
+        d = date(2026, 1, 1)
+        expected = {"C1": "2356.47", "B1": "2726.38", "A": "2973.75"}
+        for code, want in expected.items():
+            lv = next(x for x in ccnl.levels if x.code == code)
+            total = lv.base_salary.value_at(d) + sum(
+                (fa.monthly.value_at(d) for fa in lv.fixed_allowances),
+                Decimal(0),
+            )
+            assert total == Decimal(want), f"{code}: {total} != {want}"
+
+    def test_concia_unic_ipo_levels(self) -> None:
+        """IPO on exactly B1/C1/D1/E1/E2; EDR on every level."""
+        ccnl = load_ccnl("concia-unic.json")
+        with_ipo = {
+            lv.code
+            for lv in ccnl.levels
+            if any(fa.code == "IPO" for fa in lv.fixed_allowances)
+        }
+        assert with_ipo == {"B1", "C1", "D1", "E1", "E2"}
+        for lv in ccnl.levels:
+            assert any(fa.code == "EDR" for fa in lv.fixed_allowances), (
+                f"{lv.code} missing EDR"
+            )

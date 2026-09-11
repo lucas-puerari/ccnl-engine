@@ -1,0 +1,113 @@
+{
+  "_description": "concia-unic (B101) — data checks 2026",
+  "ccnl_file": "concia-unic.json",
+  "salary_checks": [
+    {
+      "level_code": "F1",
+      "as_of": "2024-03-01",
+      "expected_monthly": "1616.23"
+    },
+    {
+      "level_code": "E1",
+      "as_of": "2024-03-01",
+      "expected_monthly": "1705.52"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2024-03-01",
+      "expected_monthly": "2125.21"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2024-03-01",
+      "expected_monthly": "2369.81"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2024-03-01",
+      "expected_monthly": "2784.14"
+    },
+    {
+      "level_code": "C1",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2234.82"
+    },
+    {
+      "level_code": "B1",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2494.04"
+    },
+    {
+      "level_code": "A",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2937.60"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "A",
+      "as_of": "2026-01-01",
+      "expected_amount": "19.63"
+    },
+    {
+      "level_code": "D1",
+      "as_of": "2026-01-01",
+      "expected_amount": "13.94"
+    },
+    {
+      "level_code": "F1",
+      "as_of": "2026-01-01",
+      "expected_amount": "10.33"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "C1",
+      "track_name": "professionalizzante_C1_C2",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "C1",
+      "track_name": "professionalizzante_C1_C2",
+      "months_elapsed": 18,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "C1",
+      "track_name": "professionalizzante_C1_C2",
+      "months_elapsed": 35,
+      "expected_levels_below": 0
+    },
+    {
+      "level_code": "D1",
+      "track_name": "professionalizzante_D1",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "D1",
+      "track_name": "professionalizzante_D1",
+      "months_elapsed": 17,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "E2",
+      "track_name": "professionalizzante_E2",
+      "months_elapsed": 1,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "E2",
+      "track_name": "professionalizzante_E2",
+      "months_elapsed": 11,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "E2",
+      "track_name": "professionalizzante_E2",
+      "months_elapsed": 21,
+      "expected_levels_below": 0
+    }
+  ]
+}
