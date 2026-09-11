@@ -16,6 +16,7 @@
       "FIT-CISL",
       "UILTrasporti"
     ],
+    "agreement_date": "2024-12-06",
     "sources": [
       {
         "url": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf",
@@ -1297,7 +1298,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "9da935d6abb6c4c92cb86381255661a83d243c3d76eee3f31aefb38f2365f9d9",
+    "source_hash": "ce1db9a68e52a65591f9473f9665aea50500fecaecc794c6bd224f055367668a",
     "published_at": "2026-09-07"
   },
   "work_rules": {
