@@ -1,0 +1,711 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "sistemazioni-idraulico-forestali-operai",
+    "cnel_code": "A181",
+    "name": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)",
+    "sector": "sistemazioni idraulico-forestali e idraulico-agrarie — operai a tempo indeterminato",
+    "tax_sector": "agricoltura",
+    "signatories": [
+      "AGCI-Agrital",
+      "Confcooperative-Fedagripesca",
+      "Confcooperative-Lavoro-e-Servizi",
+      "Federforeste",
+      "Legacoop-Agroalimentare",
+      "FAI-CISL",
+      "FLAI-CGIL",
+      "UILA-UIL"
+    ],
+    "agreement_date": "2025-12-04",
+    "sources": [
+      {
+        "url": "https://redigo.info/",
+        "type": "tabella_retributiva",
+        "agreement_date": "2025-12-04",
+        "notes": "Tabella retributiva operai OTI CCNL A181 rinnovo 04/12/2025. Tranches 01/01/2026, 01/01/2027, 01/01/2028. Conglobato. Parametri Art. 49 CCNL 2021: L1=100, L2=108, L3=111, L4=116, L5=123."
+      },
+      {
+        "url": "file:ccnl-idraulico-forestali-2021.txt",
+        "type": "contratto",
+        "agreement_date": "2021-01-01",
+        "notes": "CCNL previgente 2021: Art. 49 parametri operai, Art. 7 apprendistato sotto-inquadramento, Art. 52 modello conglobato div=169. Structural rules carried forward to 2025 rinnovo (2025 PDF image-only; full text unavailable)."
+      }
+    ],
+    "extraction": {
+      "timestamp": "2026-09-11",
+      "human_reviewed": true,
+      "method": "ai_assisted"
+    },
+    "workers_estimate": "~430 (operai OTI subset)"
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "CCNL A181 — Sistemazioni Idraulico-Forestali (Operai OTI). Split from impiegati contract: salary bands overlap, requiring separate files for correct engine ordering and under-classification apprenticeship. 5 livelli operai (O1-O5). Conglobato. Divisore 169, 14 mensilita."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority operai: nessuno scatto di anzianita previsto a livello CCNL nazionale. Gli scatti sono disciplinati dai CIRL (contratti integrativi regionali). Modellati con importo zero e maximum_count=0."
+      },
+      {
+        "kind": "simplification",
+        "text": "Serie retributiva starts 01/01/2026 (first tranche with primary-source data). Retroactive 2025 tabella not available in machine-readable form; pre-2026 amounts omitted."
+      },
+      {
+        "kind": "simplification",
+        "text": "Apprendistato: livelli O1 e O2 esclusi da destination_levels (engine requires at least 2 levels below minimum; O2 at order=2 cannot go 2 below). Only O3, O4, O5 supported."
+      },
+      {
+        "kind": "simplification",
+        "text": "Structural rules (Art. 7, 49, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification."
+      },
+      {
+        "kind": "info",
+        "text": "Apprendistato durate: la tabella Art. 7 elenca livelli 2-6 (scala impiegati). Le durate sono mappate su O3/O4/O5 per corrispondenza di livello; la ripartizione per categoria non e confermata dal testo."
+      }
+    ],
+    "gross": "implemented",
+    "net": "partial",
+    "work_rules": "not_implemented"
+  },
+  "levels": [
+    {
+      "code": "O1",
+      "order": 1,
+      "description": "Operaio OTI 1° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1325.73",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "redigo-info-a181-operai",
+                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+                  "kind": "tabella_retributiva",
+                  "url": "https://redigo.info/"
+                },
+                "section": "Tabella retributiva operai OTI — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1358.14",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "redigo-info-a181-operai",
+                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+                  "kind": "tabella_retributiva",
+                  "url": "https://redigo.info/"
+                },
+                "section": "Tabella retributiva operai OTI — 01/01/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1376.66",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "redigo-info-a181-operai",
+                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+                  "kind": "tabella_retributiva",
+                  "url": "https://redigo.info/"
+                },
+                "section": "Tabella retributiva operai OTI — 01/01/2028"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "redigo-info-a181-operai",
+            "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+            "kind": "tabella_retributiva",
+            "url": "https://redigo.info/"
+          },
+          "section": "Livelli contrattuali operai OTI"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    },
+    {
+      "code": "O2",
+      "order": 2,
+      "description": "Operaio OTI 2° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1436.16",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "redigo-info-a181-operai",
+                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+                  "kind": "tabella_retributiva",
+                  "url": "https://redigo.info/"
+                },
+                "section": "Tabella retributiva operai OTI — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1471.16",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "redigo-info-a181-operai",
+                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+                  "kind": "tabella_retributiva",
+                  "url": "https://redigo.info/"
+                },
+                "section": "Tabella retributiva operai OTI — 01/01/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1491.16",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "redigo-info-a181-operai",
+                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+                  "kind": "tabella_retributiva",
+                  "url": "https://redigo.info/"
+                },
+                "section": "Tabella retributiva operai OTI — 01/01/2028"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "redigo-info-a181-operai",
+            "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+            "kind": "tabella_retributiva",
+            "url": "https://redigo.info/"
+          },
+          "section": "Livelli contrattuali operai OTI"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    },
+    {
+      "code": "O3",
+      "order": 3,
+      "description": "Operaio OTI 3° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1471.55",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "redigo-info-a181-operai",
+                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+                  "kind": "tabella_retributiva",
+                  "url": "https://redigo.info/"
+                },
+                "section": "Tabella retributiva operai OTI — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1507.52",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "redigo-info-a181-operai",
+                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+                  "kind": "tabella_retributiva",
+                  "url": "https://redigo.info/"
+                },
+                "section": "Tabella retributiva operai OTI — 01/01/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1528.08",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "redigo-info-a181-operai",
+                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+                  "kind": "tabella_retributiva",
+                  "url": "https://redigo.info/"
+                },
+                "section": "Tabella retributiva operai OTI — 01/01/2028"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "redigo-info-a181-operai",
+            "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+            "kind": "tabella_retributiva",
+            "url": "https://redigo.info/"
+          },
+          "section": "Livelli contrattuali operai OTI"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    },
+    {
+      "code": "O4",
+      "order": 4,
+      "description": "Operaio OTI 4° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1537.91",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "redigo-info-a181-operai",
+                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+                  "kind": "tabella_retributiva",
+                  "url": "https://redigo.info/"
+                },
+                "section": "Tabella retributiva operai OTI — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1575.50",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "redigo-info-a181-operai",
+                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+                  "kind": "tabella_retributiva",
+                  "url": "https://redigo.info/"
+                },
+                "section": "Tabella retributiva operai OTI — 01/01/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1596.98",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "redigo-info-a181-operai",
+                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+                  "kind": "tabella_retributiva",
+                  "url": "https://redigo.info/"
+                },
+                "section": "Tabella retributiva operai OTI — 01/01/2028"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "redigo-info-a181-operai",
+            "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+            "kind": "tabella_retributiva",
+            "url": "https://redigo.info/"
+          },
+          "section": "Livelli contrattuali operai OTI"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    },
+    {
+      "code": "O5",
+      "order": 5,
+      "description": "Operaio OTI 5° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1633.33",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "redigo-info-a181-operai",
+                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+                  "kind": "tabella_retributiva",
+                  "url": "https://redigo.info/"
+                },
+                "section": "Tabella retributiva operai OTI — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1673.19",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "redigo-info-a181-operai",
+                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+                  "kind": "tabella_retributiva",
+                  "url": "https://redigo.info/"
+                },
+                "section": "Tabella retributiva operai OTI — 01/01/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1695.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "redigo-info-a181-operai",
+                  "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+                  "kind": "tabella_retributiva",
+                  "url": "https://redigo.info/"
+                },
+                "section": "Tabella retributiva operai OTI — 01/01/2028"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "redigo-info-a181-operai",
+            "title": "redigo.info CCNL A181 tabella retributiva operai OTI",
+            "kind": "tabella_retributiva",
+            "url": "https://redigo.info/"
+          },
+          "section": "Livelli contrattuali operai OTI"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    }
+  ],
+  "parameters": {
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "169"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 0,
+      "amount_by_level": {
+        "O1": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "O2": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "O3": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "O4": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        },
+        "O5": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.00"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-idraulico-forestali-2021",
+            "title": "CCNL Sistemazioni Idraulico-Forestali 2021 — Art. 49 (operai, nessuno scatto CCNL)",
+            "kind": "altro",
+            "url": "file:ccnl-idraulico-forestali-2021.txt"
+          },
+          "section": "Scatti anzianita operai: non disciplinati dal CCNL nazionale; governati dai CIRL regionali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "apprendistato_O3_22mesi",
+      "destination_levels": [
+        "O3"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 10,
+          "levels_below": 2
+        },
+        {
+          "months_from": 10,
+          "months_until": 16,
+          "levels_below": 1
+        },
+        {
+          "months_from": 16,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "apprendistato_O4_32mesi",
+      "destination_levels": [
+        "O4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "apprendistato_O5_36mesi",
+      "destination_levels": [
+        "O5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/sistemazioni-idraulico-forestali-operai",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": null,
+    "source": "https://redigo.info/",
+    "verification_status": "unverified",
+    "published_at": "2026-09-11",
+    "source_hash": "563f9a19f5a80a8fd98e502b3b6cf8c69f850951e33494f06f218b9ad60de1aa"
+  }
+}

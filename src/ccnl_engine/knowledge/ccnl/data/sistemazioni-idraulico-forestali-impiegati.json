@@ -1,0 +1,953 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "sistemazioni-idraulico-forestali-impiegati",
+    "cnel_code": "A181",
+    "name": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)",
+    "sector": "sistemazioni idraulico-forestali e idraulico-agrarie — impiegati",
+    "tax_sector": "agricoltura",
+    "signatories": [
+      "AGCI-Agrital",
+      "Confcooperative-Fedagripesca",
+      "Confcooperative-Lavoro-e-Servizi",
+      "Federforeste",
+      "Legacoop-Agroalimentare",
+      "FAI-CISL",
+      "FLAI-CGIL",
+      "UILA-UIL"
+    ],
+    "agreement_date": "2025-12-04",
+    "sources": [
+      {
+        "url": "https://www.lavoro-economia.it/?c=9",
+        "type": "tabella_retributiva",
+        "agreement_date": "2025-12-04",
+        "notes": "Tabella retributiva impiegati CCNL A181 rinnovo 04/12/2025. Tranches 01/01/2026, 01/01/2027, 01/01/2028. Conglobato. Parametri Art. 35 CCNL 2021: L1=100, L2=108, L3=115, L4=122, L5=133, L6=152. Pre-2026 amounts not modelled: table not available in machine-readable form."
+      },
+      {
+        "url": "file:ccnl-idraulico-forestali-2021.txt",
+        "type": "contratto",
+        "agreement_date": "2021-01-01",
+        "notes": "CCNL previgente 2021: Art. 35 parametri impiegati, Art. 41 scatti anzianita, Art. 7 apprendistato sotto-inquadramento, Art. 36 IND_FUNZIONE quadri, Art. 52 modello conglobato div=169. Structural rules carried forward to 2025 rinnovo (2025 PDF image-only; full text unavailable)."
+      }
+    ],
+    "extraction": {
+      "timestamp": "2026-09-11",
+      "human_reviewed": true,
+      "method": "ai_assisted"
+    },
+    "workers_estimate": "~430 (impiegati subset)"
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "CCNL A181 — Sistemazioni Idraulico-Forestali (Impiegati). Split from operai contract: salary bands overlap, requiring separate files for correct engine ordering and under-classification apprenticeship. 7 livelli impiegati (I1-I6, I6Q). Conglobated model. Divisore 169, 14 mensilita."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: Art. 41 CCNL 2021 — 12 scatti biennali. Amounts per level confirmed from 2021 previgente text; carried forward to 2025 rinnovo (structural rules unchanged per summary)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Serie retributiva starts 01/01/2026 (first tranche with primary-source data). Retroactive 2025 tabella not available in machine-readable form; pre-2026 amounts omitted."
+      },
+      {
+        "kind": "simplification",
+        "text": "Tranches 01/01/2027 and 01/01/2028 for impiegati derived from confirmed Art. 35 parametri (L1=100, L2=108, L3=115, L4=122, L5=133, L6=152) applied to 01/01/2026 base. Rounding wobble up to 0.15 EUR on L4-L6 compared to rounded CCNL tables."
+      },
+      {
+        "kind": "simplification",
+        "text": "Apprendistato: livelli I1 e I2 esclusi da destination_levels (engine requires at least 2 levels below minimum; I2 at order=2 cannot go 2 below). Only I3, I4, I5, I6, I6Q supported."
+      },
+      {
+        "kind": "simplification",
+        "text": "IND_FUNZIONE quadri: modelled at 120.00 EUR/month from 2026-01-01 (current published value per lavoro-economia.it). The 2021 CCNL shows 103.00 from 01/08/2002; transition date to 120.00 not confirmed from 2025 rinnovo (PDF image-only)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Structural rules (Art. 7, 35, 41, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification."
+      }
+    ],
+    "gross": "implemented",
+    "net": "partial",
+    "work_rules": "not_implemented"
+  },
+  "levels": [
+    {
+      "code": "I1",
+      "order": 1,
+      "description": "Impiegato 1° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1325.73",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1358.14",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2027 (derivata da parametri Art. 35 L1=100)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1376.66",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2028 (derivata da parametri Art. 35 L1=100)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "lavoro-economia-it-a181",
+            "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/?c=9"
+          },
+          "section": "Livelli contrattuali impiegati"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    },
+    {
+      "code": "I2",
+      "order": 2,
+      "description": "Impiegato 2° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1433.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1468.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2027 (derivata da parametri Art. 35 L2=108)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1488.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2028 (derivata da parametri Art. 35 L2=108)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "lavoro-economia-it-a181",
+            "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/?c=9"
+          },
+          "section": "Livelli contrattuali impiegati"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    },
+    {
+      "code": "I3",
+      "order": 3,
+      "description": "Impiegato 3° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1520.99",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1558.26",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2027 (derivata da parametri Art. 35 L3=115)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1579.56",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2028 (derivata da parametri Art. 35 L3=115)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "lavoro-economia-it-a181",
+            "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/?c=9"
+          },
+          "section": "Livelli contrattuali impiegati"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    },
+    {
+      "code": "I4",
+      "order": 4,
+      "description": "Impiegato 4° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1617.94",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1657.43",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2027 (derivata da parametri Art. 35 L4=122)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1679.91",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2028 (derivata da parametri Art. 35 L4=122)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "lavoro-economia-it-a181",
+            "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/?c=9"
+          },
+          "section": "Livelli contrattuali impiegati"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    },
+    {
+      "code": "I5",
+      "order": 5,
+      "description": "Impiegato 5° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1759.47",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1802.44",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2027 (derivata da parametri Art. 35 L5=133)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1827.07",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2028 (derivata da parametri Art. 35 L5=133)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "lavoro-economia-it-a181",
+            "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/?c=9"
+          },
+          "section": "Livelli contrattuali impiegati"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    },
+    {
+      "code": "I6",
+      "order": 6,
+      "description": "Impiegato 6° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2018.65",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2067.91",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2027 (derivata da parametri Art. 35 L6=152)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2095.91",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2028 (derivata da parametri Art. 35 L6=152)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "lavoro-economia-it-a181",
+            "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/?c=9"
+          },
+          "section": "Livelli contrattuali impiegati"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    },
+    {
+      "code": "I6Q",
+      "order": 7,
+      "description": "Impiegato 6° livello — Quadro (Art. 36 CCNL)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2018.65",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2026 (livello 6°, stesso di I6)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2067.91",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2027 (derivata da parametri L6=152)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2095.91",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "lavoro-economia-it-a181",
+                  "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/?c=9"
+                },
+                "section": "Tabella retributiva impiegati — 01/01/2028 (derivata da parametri L6=152)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-11T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_FUNZIONE",
+          "description": "Indennità di funzione quadri (Art. 36 CCNL) — 120 EUR/mese",
+          "months_per_year": 14,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "120.00"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "lavoro-economia-it-a181",
+                "title": "lavoro-economia.it CCNL A181 — indennità funzione quadri",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lavoro-economia.it/?c=9"
+              },
+              "section": "Art. 36 indennità di funzione quadri — 120 EUR/mese (valore corrente)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-11T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2026-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "lavoro-economia-it-a181",
+            "title": "lavoro-economia.it CCNL A181 tabella retributiva impiegati",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/?c=9"
+          },
+          "section": "Livelli contrattuali impiegati — Quadri Art. 36"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    }
+  ],
+  "parameters": {
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "169"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 12,
+      "amount_by_level": {
+        "I1": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "22.21"
+            }
+          ]
+        },
+        "I2": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "23.76"
+            }
+          ]
+        },
+        "I3": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "24.79"
+            }
+          ]
+        },
+        "I4": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "26.86"
+            }
+          ]
+        },
+        "I5": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "29.44"
+            }
+          ]
+        },
+        "I6": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "33.05"
+            }
+          ]
+        },
+        "I6Q": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "33.05"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-idraulico-forestali-2021",
+            "title": "CCNL Sistemazioni Idraulico-Forestali 2021 — Art. 41 scatti di anzianità",
+            "kind": "altro",
+            "url": "file:ccnl-idraulico-forestali-2021.txt"
+          },
+          "section": "Art. 41 scatti di anzianità impiegati — 12 biennali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "apprendistato_I3_22mesi",
+      "destination_levels": [
+        "I3"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 10,
+          "levels_below": 2
+        },
+        {
+          "months_from": 10,
+          "months_until": 16,
+          "levels_below": 1
+        },
+        {
+          "months_from": 16,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "apprendistato_I4_32mesi",
+      "destination_levels": [
+        "I4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "apprendistato_I5I6_36mesi",
+      "destination_levels": [
+        "I5",
+        "I6",
+        "I6Q"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/sistemazioni-idraulico-forestali-impiegati",
+    "version": "2026.1",
+    "effective_from": "2026-01-01",
+    "effective_until": null,
+    "source": "https://www.lavoro-economia.it/?c=9",
+    "verification_status": "unverified",
+    "published_at": "2026-09-11",
+    "source_hash": "fc402f71fbb715b6ba35a0b5d356844b85444b0becd0d7ca1106a1b7d2dad1a4"
+  }
+}

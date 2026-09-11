@@ -8693,3 +8693,137 @@ class TestLoadVigilanzaPrivataFederdatSf:
         ccnl = load_ccnl("vigilanza-privata-federdat-sf.json")
         lv = next(lv for lv in ccnl.levels if lv.code == "A")
         assert lv.base_salary.value_at(date(2024, 10, 1)) == Decimal("1886.32")
+
+
+class TestLoadSistemazioniIdraulicoForestaliImpiegati:
+    """Unit tests for CCNL Sistemazioni Idraulico-Forestali Impiegati (A181)."""
+
+    def test_a181_impiegati_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-impiegati.json")
+        assert ccnl.meta.ccnl_id == "sistemazioni-idraulico-forestali-impiegati"
+        assert ccnl.meta.cnel_code == "A181"
+
+    def test_a181_impiegati_has_7_levels(self) -> None:
+        """Contract has exactly 7 impiegati levels: I1-I6 plus I6Q."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-impiegati.json")
+        assert len(ccnl.levels) == 7
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"I1", "I2", "I3", "I4", "I5", "I6", "I6Q"}
+
+    def test_a181_impiegati_level_i4_salary_tranche1(self) -> None:
+        """Level I4 base salary at 01/01/2026 is 1617.94 EUR."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-impiegati.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "I4")
+        assert lv.base_salary.value_at(date(2026, 6, 1)) == Decimal("1617.94")
+
+    def test_a181_impiegati_level_i4_salary_tranche2(self) -> None:
+        """Level I4 base salary at 01/01/2027 is 1657.43 EUR."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-impiegati.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "I4")
+        assert lv.base_salary.value_at(date(2027, 6, 1)) == Decimal("1657.43")
+
+    def test_a181_impiegati_level_ordering(self) -> None:
+        """I1 is lowest (order 1), I6Q is highest (order 7)."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-impiegati.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "I1"
+        assert by_order[-1].code == "I6Q"
+
+    def test_a181_impiegati_additional_months(self) -> None:
+        """Additional months is 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-impiegati.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            14
+        )
+
+    def test_a181_impiegati_hourly_divisor(self) -> None:
+        """Hourly divisor is 169 (Art. 52 CCNL)."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-impiegati.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(169)
+
+    def test_a181_impiegati_i6q_has_ind_funzione(self) -> None:
+        """I6Q (quadro) has IND_FUNZIONE fixed allowance of 120 EUR."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-impiegati.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "I6Q")
+        codes = [a.code for a in lv.fixed_allowances]
+        assert "IND_FUNZIONE" in codes
+        fa = next(a for a in lv.fixed_allowances if a.code == "IND_FUNZIONE")
+        assert fa.monthly.value_at(date(2026, 1, 1)) == Decimal("120.00")
+
+    def test_a181_impiegati_tax_sector(self) -> None:
+        """Tax sector is agricoltura."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-impiegati.json")
+        assert ccnl.meta.tax_sector == TaxSector.AGRICOLTURA
+
+    def test_a181_impiegati_seniority_cadence(self) -> None:
+        """Seniority: 24-month cadence (biennale), 12 scatti max."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-impiegati.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 12
+
+
+class TestLoadSistemazioniIdraulicoForestaliOperai:
+    """Unit tests for CCNL Sistemazioni Idraulico-Forestali Operai OTI (A181)."""
+
+    def test_a181_operai_loads(self) -> None:
+        """Contract loads with correct id and CNEL code."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-operai.json")
+        assert ccnl.meta.ccnl_id == "sistemazioni-idraulico-forestali-operai"
+        assert ccnl.meta.cnel_code == "A181"
+
+    def test_a181_operai_has_5_levels(self) -> None:
+        """Contract has exactly 5 operai levels: O1-O5."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-operai.json")
+        assert len(ccnl.levels) == 5
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"O1", "O2", "O3", "O4", "O5"}
+
+    def test_a181_operai_level_o3_salary_tranche1(self) -> None:
+        """Level O3 base salary at 01/01/2026 is 1471.55 EUR."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-operai.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "O3")
+        assert lv.base_salary.value_at(date(2026, 6, 1)) == Decimal("1471.55")
+
+    def test_a181_operai_level_o3_salary_tranche2(self) -> None:
+        """Level O3 base salary at 01/01/2027 is 1507.52 EUR."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-operai.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "O3")
+        assert lv.base_salary.value_at(date(2027, 6, 1)) == Decimal("1507.52")
+
+    def test_a181_operai_level_ordering(self) -> None:
+        """O1 is lowest (order 1), O5 is highest (order 5)."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-operai.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "O1"
+        assert by_order[-1].code == "O5"
+
+    def test_a181_operai_additional_months(self) -> None:
+        """Additional months is 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-operai.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            14
+        )
+
+    def test_a181_operai_hourly_divisor(self) -> None:
+        """Hourly divisor is 169 (Art. 52 CCNL)."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-operai.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(169)
+
+    def test_a181_operai_no_fixed_allowances(self) -> None:
+        """All operai levels have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-operai.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == []
+
+    def test_a181_operai_tax_sector(self) -> None:
+        """Tax sector is agricoltura."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-operai.json")
+        assert ccnl.meta.tax_sector == TaxSector.AGRICOLTURA
+
+    def test_a181_operai_seniority_no_scatti(self) -> None:
+        """Operai seniority: 0 scatti (no CCNL-level increments; governed by CIRL)."""
+        ccnl = load_ccnl("sistemazioni-idraulico-forestali-operai.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.maximum_count == 0

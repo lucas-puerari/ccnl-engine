@@ -1,0 +1,57 @@
+{
+  "_description": "Golden case: CCNL Sistemazioni Idraulico-Forestali (Operai OTI), Level O3, 2026-06-01, permanent.",
+  "_notes": [
+    "Conglobated model. Hourly divisor: 169. Additional months: 14.",
+    "Tax sector: agricoltura. 50 employees. No seniority.",
+    "Salary amounts confirmed from primary sources."
+  ],
+  "inputs": {
+    "ccnl_file": "sistemazioni-idraulico-forestali-operai.json",
+    "year": 2026,
+    "tax_sector": "agricoltura",
+    "num_employees": 50,
+    "level_code": "O3",
+    "as_of": "2026-06-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null
+  },
+  "expected": {
+    "ccnl_id": "sistemazioni-idraulico-forestali-operai",
+    "level_code": "O3",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "year": 2026,
+    "seniority_count": 0,
+    "base_monthly": "1471.55",
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "ad_personam_monthly": "0.00",
+    "gross_monthly": "1471.55",
+    "gross_annual": "20601.70",
+    "hourly_rate": "8.71",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "inps_employee_annual": "1821.19",
+    "inps_employer_annual": "4462.33",
+    "employer_funds_annual": "0.00",
+    "tfr_annual": "1526.05",
+    "taxable_income": "18780.51",
+    "irpef_gross": "4319.52",
+    "work_income_deduction": "1176.15",
+    "irpef_net": "3143.37",
+    "net_annual": "16320.06",
+    "net_monthly": "1165.72",
+    "employer_cost_annual": "26590.08",
+    "addizionale_regionale_annual": "0",
+    "addizionale_comunale_annual": "0",
+    "trattamento_integrativo": "682.92",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_art15",
+      "no_detrazioni_familiari"
+    ]
+  }
+}
