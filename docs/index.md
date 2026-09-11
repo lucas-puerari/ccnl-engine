@@ -74,21 +74,20 @@ full walkthrough of all three layers.
 - Second-level bargaining — territorial and company supplementary allowances
 - Domestic work (flat per-hour contributions, non-withholding employer)
 
-**L3 — time supplements (pilot: metalmeccanico):**
+**L3 — Work rules (105/105 contracts):**
 
 - Overtime pay (lavoro straordinario diurno, notturno, festivo)
 - Night and holiday premiums
+- Absence deduction (unpaid days, by_26 or daily-hours method)
+- Leave accrual (ferie entitlement tiers)
+- Sick-pay integration (employer complement over INPS indemnity)
+- Performance bonuses (*premio di risultato*)
+- Welfare and fringe benefits
 
 **Explicitly excluded (always reported in `calculation_scope`):**
 
 - Family-dependent deductions (Art. 12 TUIR) — `family_deductions: excluded`
 - Regional/municipal surtax when jurisdiction is not provided
-
-**Not yet implemented:**
-
-- Sick-pay integrations and leave accruals
-- Performance bonuses
-- Welfare and fringe benefits
 
 Each gap is reported in `PayrollResult.warnings` or `calculation_scope` so the
 caller knows exactly what is missing from the net figure.

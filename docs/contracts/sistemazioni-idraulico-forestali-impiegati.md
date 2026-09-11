@@ -29,7 +29,7 @@
 |---|---|
 | **L1 — Gross** | ✅ implemented |
 | **L2 — Net** | ⚠️ partial |
-| **L3 — Work rules** | 🔲 not_implemented |
+| **L3 — Work rules** | ✅ implemented |
 
 ## Salary table
 
@@ -89,6 +89,9 @@ These are deliberate modelling approximations. Read them before using this contr
 
 !!! warning ""
     Structural rules (Art. 7, 35, 41, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification.
+
+!!! warning ""
+    OVERTIME/LEAVE/ABSENCE (L3): Art. 37 CCNL 2023 — straordinario 30%, notturno 50%, festivo 50%. Ferie 22 giorni (5-day week). Malattia: integrazione datoriale al 100% per max 180 giorni. Rates sourced from 2023 CCNL PDF (official text); 2025 rinnovo structural rules assumed unchanged (text image-only).
 
 ## Sources
 
