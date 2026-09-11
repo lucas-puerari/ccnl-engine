@@ -82,9 +82,6 @@ percentage: 1.00
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    SENIORITY: abolished from 31/12/2015 (§5.5 of CCNL PDF). Frozen as 'elemento ad personam non riassorbibile' at the individual amount accrued by each worker as at 31/12/2015. No new increments can be earned by any worker hired after 2015. Modelled as maximum_count=0 (all amounts 0.00) — no seniority is added for new hires. SIMPLIFICATION: the frozen elemento ad personam for pre-2016 hires is individual and not computable from level alone; it is not modelled.
-
-!!! warning ""
     INPS: reuses 2026-industria.json. Gas and water utilities (aziende private del settore gas-acqua) are classified under 'attività industriali' for INPS contribution purposes. Employer associations Utilitalia and Proxigas are Confindustria-aligned. SIMPLIFICATION: exact INPS circular for this sector not verified; 2026-industria.json rates used as proxy.
 
 ## Sources
@@ -101,6 +98,8 @@ These are deliberate modelling approximations. Read them before using this contr
     HOURLY DIVISOR: 167. Stated explicitly in §4.3 of the PDF scheda riassuntiva: 'Coefficiente orario: 167'. Corresponds to 38h 30min contractual week (§4.4). Back-calculation: L1(2024-09-01)=1677.64/167=10.05 EUR/h.
     
     ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima). Stated in §4.1: 'Mensilità: 14'. Tredicesima confirmed §5.3, quattordicesima confirmed §5.4.
+    
+    SENIORITY: abolished from 31/12/2015 (§5.5 CCNL K321). Frozen as 'elemento ad personam non riassorbibile' at the individual amount accrued as at 31/12/2015 — individual per-worker, not derivable from level. Workers hired after 2015 earn no seniority. Modelled as maximum_count=0 (all amounts 0.00), which is the correct model for new hires. The frozen elemento for pre-2016 hires is a structural engine limitation: it requires per-worker historical data not available from the CCNL alone.
     
     LEVEL Q ALLOWANCE: Indennità di funzione 51.65 EUR/month (12 mensilità) per §2.1 of the CCNL PDF. Shown separately from minimo and EDR in all salary tables.
     

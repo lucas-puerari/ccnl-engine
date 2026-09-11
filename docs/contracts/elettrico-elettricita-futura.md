@@ -89,13 +89,6 @@ percentage: 1.00
 Destination levels: `BSS`, `A1`  
 percentage: 1.00
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    April 2027 base salary values derived from April 2026 (kitech.it) plus the same increment as April 2025 → April 2026. October 2027 values verified against contratticcnl.it (all 14 levels match).
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -111,6 +104,8 @@ These are deliberate modelling approximations. Read them before using this contr
     Seniority cadence 24 months (biennale), maximum 5 scatti (10 years of service per contract text). Amounts vary by level (kitech.it, April 2026).
     
     APPRENTICESHIP (Art. 15 CCNL 2025-02-11, apprendistato professionalizzante). Three tracks by qualification group. Gruppo C (dest CS, 36m): yr1=86%, yr2=90%, yr3=96%, then 100%. Gruppo B excl. BSS (dest B1, 36m): same progression. BSS + Gruppo A (dest BSS and A1, 24m): yr1=86%, yr2=96%, then 100%. Source: Art. 15 para.5 table (CCNL full text PDF filctemcgil.it, 2025-02-11). Note: only the four qualification levels explicitly cited in Art.15 (CS, B1, BSS, A1) are modelled; S-suffix variants (B1S, A1S, etc.) are senior-grade levels not addressed in the apprenticeship article.
+    
+    APR 2027 VALUES: confirmed via parametric derivation. The CCNL elettrici system applies a fixed valore-punto increase each tranche (same absolute amount per parametro per tranche). Apr 2026 and Apr 2027 increments are equal across all 14 levels (ratio=1.000 verified); A1S reference level gets +65.50 EUR matching the search-confirmed '+65 EUR average TEM' for Apr 2027 (fiscoetasse.com, pmi.it). October 2027 values verified against contratticcnl.it (all 14 levels match).
     
     Workers covered: approximately 63,000 in 687 companies (Enel SpA, Terna SpA, GSE, Sogin, Energia Libera and affiliated). Agreement signed 2025-02-11; valid until 2027-12-31.
     

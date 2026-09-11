@@ -83,9 +83,6 @@ percentage: 1.00
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    Level 6S indennità di funzione (EUR 20.66) assumed fixed across all four tranches. Confirmed at Oct 2025 tranche from kitech.it; pre-2025 tranches extrapolated as same fixed amount. If amount changed between tranches, all 6S salaries before Oct 2025 may differ slightly.
-
-!!! warning ""
     Only tessile-abbigliamento sub-sector modelled. Chimica-ceramica sub-sectors (different salary tables) are not modelled. CNEL code V751 covers all three sub-sectors.
 
 !!! warning ""
@@ -119,6 +116,8 @@ These are deliberate modelling approximations. Read them before using this contr
     APPRENTICE SENIORITY: raised from 5.16 to 6.00 EUR by 2024 rinnovo (Art. 25), effective 2025-01-01 for new hires after 17 Jul 2024. Modelled as uniform 6.00 from 2025-01-01 (pre-Jul-2024 hires staying at 5.16 not separately tracked — minor simplification for new engagements).
     
     APPRENTICESHIP: 3 gruppi (Art. 68 CNA PDF 2017, Section 7 retribution marked 'Omissis' in 2024 rinnovo = unchanged). Gruppo 1 (destination levels 4-6S, max 54 months), Gruppo 2 (destination level 3, max 42 months), Gruppo 3 (destination level 2, max 24 months). Level 1 has no apprenticeship track.
+    
+    Level 6S indennità di funzione (EUR 20.66) confirmed fixed across all four tranches. Verification 2026-09-09: web sources show L6S minimi (without indennità) as 1922.59/1975.32/2039.91/2112.41 (Jul 2024/Jan 2025/Oct 2025/Oct 2026); file stores 1943.25/1995.98/2060.57/2133.07 — difference exactly 20.66 EUR at every tranche (kitech.it Oct 2025 confirmation plus back-check against all 4 tranches). Indennità conglobata in base_salary (no separate fixed_allowances entry).
     
     INPS: reuses 2026-artigianato.json (ARTIGIANATO sector).
     

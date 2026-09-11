@@ -69,16 +69,6 @@ Destination levels: `3`, `4`
 **professionalizzante - dest livello 5** (type: `under_classification`)  
 Destination levels: `5`
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    SIMPLIFICATION: L1-L2 and L3-L4 apprenticeship pay progression (2 levels below for first half, 1 level below for second half) sourced from ccnlportatili.it, an undated secondary source. Durations are confirmed from olympus.uniurb.it; the internal half-split structure is not independently confirmed from the 2023 CCNL primary text for L1-L4.
-
-!!! warning ""
-    SIMPLIFICATION: tax_sector=terziario. ANCEF represents importers and wholesalers of flowers. Actual INPS sector code matches terziario (commercial trade). Terziario rates applied.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -105,6 +95,10 @@ These are deliberate modelling approximations. Read them before using this contr
     Apprenticeship (Art. 15): under_classification. Durations by destination group confirmed from olympus.uniurb.it (2023 renewal): L1-L2=36mo, L3-L4=30mo, L5=27mo. L5 structure (12mo at lb=1, then lb=0) confirmed from esterinocafasso.it 2023 renewal coverage.
     
     Headcount: 1,341 workers (ADAPT 18 Rapporto CNEL, 2022 UniEmens data). FISASCAT quotes ~15,000 addetti del settore — this is sector-wide (including florists and growers under other CCNLs); ADAPT figure is INPS code H201 only.
+    
+    SIMPLIFICATION: L1-L2 and L3-L4 apprenticeship pay progression (2 levels below for first half, 1 level below for second half) confirmed from 2023 renewal news (UILTuCS / farecontrattazione.adapt.it): "due livelli inferiori alla mansione per la prima metà, un livello inferiore per la seconda metà." For L5: 12mo at level 6, then level 5 (from olympus.uniurb.it). Engine uses 100% passthrough because schema requires static pay_level_code; dynamic sub-level changes cannot be modelled (structural engine limitation). Durations are confirmed from olympus.uniurb.it; the internal half-split structure is not independently confirmed from the 2023 CCNL primary text for L1-L4.
+    
+    tax_sector=terziario: ANCEF represents importers and wholesalers of cut flowers (commercio all'ingrosso). The INPS sector code is terziario (commercial trade, ATECO G). Terziario rates (FISASCAT/Confcommercio). This is consistent and confirmed — no dedicated floricoltura INPS sector code exists for the importing/wholesale sub-sector.
     
 
 ## Raw data

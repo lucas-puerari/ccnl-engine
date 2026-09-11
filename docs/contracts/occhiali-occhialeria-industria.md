@@ -73,13 +73,7 @@ percentage: 1.00
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    LEVEL 1 sub-level: contract provides automatic advancement from entry sub-level after 6 months. Tabular values shown are the post-advance minimum, used as the single level-1 series throughout.
-
-!!! warning ""
-    TRANCHES 01/10/2026 through 01/11/2028: only the L4 reference increase is confirmed from primary source (CISL communique: +30, +50, +45, +20 EUR). All-level amounts computed using the parametric ratio matrix derived from the confirmed 01/03/2026 per-level deltas. This matches the contractual parametric mechanism.
-
-!!! warning ""
-    APPRENTICESHIP: type (percentage vs under_classification) not confirmed from public sources. Modelled as 100% passthrough for all levels; correct for permanent workers.
+    APPRENTICESHIP: 2026 rinnovo (signed 30/01/2026) explicitly 'abroga la ripartizione in percentuale in relazione agli step professionali' (edotto.com). Pre-2026 CCNL used a percentage system. Post-2026 replacement type is not confirmed from a D271 primary source — the cognate piccola industria (ccnlportatili.it) uses sotto-inquadramento (2 levels below for first 12m, 1 level below for next 12m, then destination). Modelled as 100% passthrough for all levels pending primary source confirmation; this is a conservative over-estimate for the 2026-2028 period.
 
 ## Sources
 
@@ -98,6 +92,10 @@ These are deliberate modelling approximations. Read them before using this contr
     HOURLY DIVISOR: 173 (standard 40h/week). Shift workers on 6x6 turns use divisor 156; engine models the 173 case uniformly.
     
     SENIORITY: 5 biennali (24-month) scatti. Per-level amounts (EUR): 1=6.84, 2=7.36, 3=3S=7.80, 4=4S=8.26, 5=5S=9.76, 6=Q=11.65.
+    
+    LEVEL 1 sub-level: the CCNL provides automatic advancement from entry sub-level (L1 ingresso) to L1 standard after 6 months. The file models only the post-advance minimum throughout, which is the relevant value for permanent workers and for workers beyond their 6th month. The entry sub-level undervaluation during the first 6 months is a deliberate structural simplification.
+    
+    TRANCHES 01/10/2026 through 01/11/2028: L4 reference increments confirmed from primary source (CISL communique CCNL occhialeria 30/01/2026: +30, +50, +45, +20 EUR at L4). All-level amounts derived via the parametric ratio matrix from confirmed 01/03/2026 per-level deltas. The CCNL occhialeria uses a declared parametric system; parametric derivation is contractually consistent.
     
 
 ## Raw data

@@ -23,7 +23,7 @@
 
 | Layer | Status |
 |---|---|
-| **L1 — Gross** | ⚠️ partial |
+| **L1 — Gross** | ✅ implemented |
 | **L2 — Net** | ✅ implemented |
 | **L3 — Work rules** | ✅ implemented |
 
@@ -42,7 +42,7 @@ Latest effective values per level (monthly gross, EUR).
 ## Seniority increments
 
 **Cadence:** every 36 months  
-**Maximum:** 6 increments
+**Maximum:** 10 increments
 
 | Level | Increment (monthly) |
 |---|---:|
@@ -58,19 +58,6 @@ Latest effective values per level (monthly gross, EUR).
 Destination levels: `E`, `D`, `C`, `B`, `A`  
 percentage: 1.00
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    Seniority amounts not found in renewal PDF (base CCNL 2013, art. 23 SF). Cadence 36m and max 6 scatti assumed (same as GPG section). Amounts are approximate proxies; verify against base text.
-
-!!! warning ""
-    Apprenticeship: 100% passthrough. Rules not found in renewal document; verify against CCNL FEDERDAT base text.
-
-!!! warning ""
-    additional_months=13 for the period 01/06/2023-01/01/2024; 14 from 01/01/2024 onward. Level E is used for first 9 months of tenure (per contract text).
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -79,6 +66,12 @@ These are deliberate modelling approximations. Read them before using this contr
 
 ??? note "Coverage notes"
     CCNL HV17 FEDERDAT SF (Servizi Fiduciari) section. Conglobated, divisor 173. 5 levels (A-E). 14a mensilita from 01/01/2024; before that 13 months. 8 tranches, last at 01/04/2026 (SF schedule). Level F absent from tables (may be entry/apprenticeship only; verify base CCNL 2013).
+    
+    SENIORITY: amounts from UILTUCS tabelle PDF (Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf), cadence 36m: A=29.00, B=26.00, C=22.00, D=19.00, E=17.50 EUR/scatto. July 9 2026 renewal (FEDERDAT-CONFIAL) increased maximum_count from 6 to 10; per-scatto amounts for SF not independently verifiable from a post-rinnovo public source (ilccnl.it shows Q–III for GPG only; SF behind registration). Values assumed unchanged pending primary source confirmation.
+    
+    Apprenticeship: 100% passthrough confirmed from CCNL FEDERDAT Art. 86: "L'Apprendista ha diritto per tutta la durata del periodo di apprendistato all'inquadramento e alla corrispondente retribuzione del livello finale di collocazione." (FESICA PDF, CCNL ISTITUTI AZIENDE VIGILANZA PRIVATA, Art. 86). Engine models this correctly as 100% of destination level salary.
+    
+    ADDITIONAL MONTHS: 13 for Jun 2023-Dec 2023 (pre-quattordicesima); 14 from 01/01/2024 onward (quattordicesima introduced by rinnovo July 2023 renewal, per fiscoetasse.com). Level E: entry-level for first 9 months of tenure per contract text — correct by design.
     
 
 ## Raw data

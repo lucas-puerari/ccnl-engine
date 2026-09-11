@@ -51,13 +51,13 @@ Latest effective values per level (monthly gross, EUR).
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    CNEL code S205 from secondary source (lavoro-economia.it). Not stated in official ipotesi PDF.
-
-!!! warning ""
-    Pre-2024 base values derived by back-calculation from CCNL 2.11.2022; 2022-2023 anticipation payments not modelled as intermediate periods.
+    PRE-2024 BACK-CALCULATED. Nov 2022 values derived by subtracting Tabella 1a increments from Jan 2024 amounts (support −115, operatori −120, assistenti −127, collaboratori −127, funzionari −129, elevata qualificazione −185 approx). Primary CCNL 2019-2021 text not verified directly. 2022-2023 anticipation payments not modelled as intermediate periods.
 
 !!! warning ""
     Agreement date 2025-10-27 (firma definitiva) per ARAN press release. The PDF used is the Ipotesi from 14.01.2025; salary tables are identical to the final signed version.
+
+!!! warning ""
+    2025-2027 RENEWAL NOT YET MODELLED. An ipotesi di CCNL 2025-2027 was signed by ARAN on 29 July 2026 with retroactive effect from 1 January 2025. Increases (monthly, 13 mensilità) from Jan 2024 base: support +41.40 (Jan 2025)/+82.80 (Jan 2026)/+106.70 (Jan 2027); operatori +43.70/+87.40/+112.60; assistenti +46.60/+93.20/+120.00; funzionari +50.50/+101.10/+130.20; elevata qualificazione +70.20/+140.50/+181.00. Not yet modelled — ipotesi pending comitato di settore, Governo, and Corte dei conti certification.
 
 ## Sources
 
@@ -72,6 +72,8 @@ These are deliberate modelling approximations. Read them before using this contr
     Seniority via DEP (Differenziali Economici di Professionalità) per Art. 60 Fondo incarichi: selective procedure, not automatic — maximum_count=0.
     
     Indennità di specificità infermieristica (Art. 62, Tabella 3) not modelled as fixed_allowance — applies only to specific nursing profiles (infermieri, ostetriche), not universally to all area members.
+    
+    CNEL code S205 confirmed via multiple secondary sources: lavoro-economia.it lists 'CCNL Comparto Sanità [Cnel: S205]', kitech.it and ilccnl.it concur. Not stated in the official ipotesi PDF text; CNEL archive not separately verified.
     
     Salary tables from Ipotesi CCNL Comparto Sanità 2022-2024 (ARAN, 14.01.2025, definitively signed October 2025). Art. 58 comma 1 (increments from 1.1.2024 per Tabella 1a), Art. 58 comma 2 (annual amounts from Tabella 2a). Monthly values = Tabella 2a / 12.
     

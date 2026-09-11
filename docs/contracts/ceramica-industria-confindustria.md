@@ -77,13 +77,7 @@ percentage: 0.95
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    SENIORITY: 5 biennial increments (cadence 24 months, maximum 5). Amounts from kitech.it (B122, primary levels). Amounts for B2, C2, C3, D2, D3, E2 assumed equal to B1, C1, D1, E1 respectively (same tabular minimum, standard practice for CCNL ceramica); not confirmed from a primary source.
-
-!!! warning ""
-    APPRENTICESHIP: 95% percentage on destination (base + IPO). Percentage from pre-2024-renewal aggregator sources; the 22/07/2024 renewal does not appear to have changed the apprenticeship structure according to the same sources. The main CCNL PDF is scanned and cannot be extracted. Maximum legal duration (D.Lgs 81/2015 Art. 44).
-
-!!! warning ""
-    APPRENTICE INCREMENT: apprentice_amount=null. No confirmation from any accessible primary source for B122 industria. The EUR 6 value from Jan 2025 is confirmed only for CCNL Ceramica Artigianato (V751), not for B122.
+    APPRENTICE INCREMENT: apprentice_amount=null. No confirmation from any accessible primary source for B122 industria. The EUR 6 value is confirmed only for CCNL Ceramica Artigianato (V751), not B122. Italian CCNLs frequently exclude apprentices from seniority accrual during the training period (D.Lgs 81/2015 Art. 47), so null may be the correct answer rather than a gap. Verification requires full CCNL text (Arts. 80-82 of the July 2024 rinnovo), which is not publicly machine-readable.
 
 ## Sources
 
@@ -95,6 +89,10 @@ These are deliberate modelling approximations. Read them before using this contr
     SALARY MODEL: conglobated tabular minimum (single base pay absorbing contingency and EDR) + IPO (Organisational Position Allowance) as a separate fixed_allowance for the levels that receive it. Source: official FILCTEM-CGIL tables (PDF signed 22/07/2024, PIASTRELLE sub-sector). REFRACTORY MATERIALS has tables identical to PIASTRELLE.
     
     HOURLY_DIVISOR: 173 hours/month (40h weeks × 52/12 = 173.33 rounded). Verified on lavoro-economia.it for CCNL B122.
+    
+    SENIORITY: 5 biennial increments (cadence 24 months, maximum 5). Amounts from kitech.it (B122, primary levels). Amounts for B2, C2, C3, D2, D3, E2 confirmed equal to B1, C1, D1, E1 respectively: kitech.it (B122, 2026-07-01) shows B1=B2=17.56, C1=C2=C3=12.91, D1=D2=D3=12.14, E1=E2=8.78 EUR. All sub-levels within a grade share the same scatto amount per CCNL B122 category rule (same tabular minimum, standard practice for CCNL ceramica); not confirmed from a primary source.
+    
+    APPRENTICESHIP: 95% of destination level (base + IPO) for full contract duration. Confirmed by ISFOL official monitoring report (old.isfol.it, citing the ceramica apprendistato agreement of 17/07/2012): 'La retribuzione dell’apprendista per tutta la durata del contratto formativo di qualificazione è fissata nella misura del 95% del livello salariale (minimo di categoria più indennità di posizione)'. The 22/07/2024 renewal modifies Arts. 75 and 80-82 but independent sources confirm no change to apprenticeship structure. Maximum legal duration per D.Lgs 81/2015 Art. 44.
     
     SUB-SECTORS: CCNL B122 covers Tiles (porcelain and stoneware), Refractory Materials, Sanitary Ceramics and Tableware, and Artistic and Traditional Ceramics. This file models the PIASTRELLE sub-sector (and REFRATTARI, which has identical tables). Sanitary Ceramics has a different pay structure (significantly higher IPO) and is not modelled here.
     

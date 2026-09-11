@@ -59,19 +59,7 @@ These are deliberate modelling approximations. Read them before using this contr
     SIMPLIFICATION: EDR (elemento distintivo della retribuzione) omitted. Art. 65 I qualifies it as 'ove spettante'; amount not stated in Allegato 9 or CCNL body. Legacy entitlement for pre-privatization workers only.
 
 !!! warning ""
-    SIMPLIFICATION: Indennità di funzione modeled at staff rate (A1: 333.33/mo, A2: 187.50/mo). Produzione rate is higher (A1: 391.67, A2: 233.33); delta of 58.34-46.00 EUR/mo not captured without Scenario.roles.
-
-!!! warning ""
-    SIMPLIFICATION: INPS industria rates applied. Poste Italiane is a large private-law employer since 1998; IPOST merged into INPS in 2012. No Poste-specific INPS rate exists in the engine.
-
-!!! warning ""
-    SIMPLIFICATION: industria CIGO (1.70-2.00%) included in employer INPS rate. Poste Italiane is not a manufacturing firm and is not CIGO-subject; actual employer cost is lower. Verify against INPS circ. for the correct Poste INPS classification.
-
-!!! warning ""
-    SIMPLIFICATION: Legacy retribuzione individuale di anzianità (D.P.R. 335/1990) and posizioni economiche differenziate (CCNL 1997) not modeled.
-
-!!! warning ""
-    SIMPLIFICATION: Salary tranche 01/07/2024–31/08/2025 covered by one-time 'anticipo sui futuri miglioramenti economici' (lump sum, September 2024). Engine carries paga base at 2024-07-23 level (same as pre-renewal) for that window.
+    SIMPLIFICATION: INPS industria rates applied. Poste Italiane employees are enrolled in the Fondo Quiescenza Poste (INPS special fund, Art. 7 L. 335/1995; merged from IPOST 2012). Correct rates differ from standard industria rates. Verify against INPS Fondo Quiescenza Poste documentation. Verified 2026-09-09: INPS website confirms Fondo Quiescenza Poste exists for Poste Italiane SpA but specific aliquote not publicly listed on INPS portal in machine-readable form.
 
 ## Sources
 
@@ -88,11 +76,19 @@ These are deliberate modelling approximations. Read them before using this contr
     
     Seniority: no traditional scatti di anzianità for new hires. Retribuzione individuale di anzianità (D.P.R. 335/1990) is a legacy element for pre-privatization workers only (Art. 25 CCNL). Model: cadence_months=24, maximum_count=0.
     
-    A1/A2 levels: paga base and contingenza are identical for staff and produzione; funzione differs (Art. 21 CCNL). Modeled as single levels; funzione uses staff rate as floor (see SIMPLIFICATION).
+    A1/A2 levels: paga base and contingenza are identical for staff and produzione; funzione differs (Art. 21 CCNL). Modeled as two-tier allowances: base rate (staff, unconditional) + produzione delta via role="produzione". Pass Employee(roles=frozenset(["produzione"])) to add the differential.
     
     Apprenticeship: Art. 24 CCNL — under_classification, inquadrato al livello immediatamente inferiore per l'intera durata (max 36 mesi). Destinations B, C, D, E. Level A excluded (Quadri e coordinamento/controllo). Level F excluded (lowest, no level below).
     
     Headcount: ~116,801 workers (CNEL/INPS archive, K700).
+    
+    INDENNITA DI FUNZIONE — PRODUZIONE DIFFERENTIAL: Staff rate (A1: 333.33/mo, A2: 187.50/mo) is unconditional. Produzione workers receive an additional delta (A1: +58.34, A2: +45.83) via IND_FUNZIONE_A*_PROD_DELTA with role="produzione". Total produzione: A1=391.67, A2=233.33 (Art. 21 CCNL K700). Callers: pass Employee(roles=frozenset(['produzione'])) for the higher rate.
+    
+    SIMPLIFICATION: industria CIGO (1.70-2.00%) included in employer INPS rate. Poste Italiane is not a manufacturing firm and is not CIGO-subject; actual employer cost is lower. Verify against INPS circ. for the correct Poste INPS classification.
+    
+    SIMPLIFICATION: Legacy retribuzione individuale di anzianità (D.P.R. 335/1990) and posizioni economiche differenziate (CCNL 1997) not modeled.
+    
+    SIMPLIFICATION: Salary tranche 01/07/2024–31/08/2025 covered by one-time 'anticipo sui futuri miglioramenti economici' (lump sum, September 2024). Engine carries paga base at 2024-07-23 level (same as pre-renewal) for that window.
     
 
 ## Raw data

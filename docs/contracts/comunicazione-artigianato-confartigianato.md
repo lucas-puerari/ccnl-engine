@@ -79,9 +79,6 @@ These are deliberate modelling approximations. Read them before using this contr
     Only aziende artigiane salary tables modelled. PMI non-artigiane tables (Art. 4, with EUR 207 total increase vs EUR 200 for artigiane, difference of EUR 7 in the Nov 2026 tranche) are not modelled. Applies to a small minority of firms covered by this CCNL.
 
 !!! warning ""
-    Only post-Nov-18-2024 apprenticeship rules modelled. Pre-renewal CCNL used a semestrali hybrid model (old percentage tables). Firms with apprenticeship contracts signed before Nov 18, 2024 may still follow the previgente rules.
-
-!!! warning ""
     Centraliniste (switchboard operators) have a 2-year apprenticeship track per the 2024 rinnovo. Modelled as the general 3-year amministrativi track (overstates duration by 1 year for that role).
 
 !!! warning ""
@@ -124,6 +121,8 @@ These are deliberate modelling approximations. Read them before using this contr
     APPRENTICESHIP: new rules from 2024-11-18 rinnovo for post-Nov-18-2024 contracts. Track durations confirmed from adapt.it (G016-specific): operai/tecnici max 5 years, amministrativi max 3 years, centraliniste 2 years. Percentage progressions (70/78/85/92/100% for operai/tecnici; 70/80/90% for amministrativi) follow the Confartigianato/CNA artigianato national framework agreement (CCNA); G016-specific source (adapt.it) confirms durations but not the individual percentages. SIMPLIFICATION: percentages assumed from artigianato CCNA framework; not found in a G016-specific primary source (CCNL PDF not fetched).
     
     INPS: reuses 2026-artigianato.json (ARTIGIANATO sector).
+    
+    APPRENTICESHIP SCOPE: only post-Nov-18-2024 rules modelled. Pre-renewal CCNL used a semestrali hybrid model (old percentage tables). Firms with apprenticeship contracts signed before Nov 18, 2024 may follow previgente rules. This is a deliberate scope decision (modelling current rules only); historical contract tracking is out of engine scope.
     
 
 ## Raw data

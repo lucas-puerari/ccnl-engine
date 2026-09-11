@@ -67,16 +67,6 @@ Latest effective values per level (monthly gross, EUR).
 Destination levels: `I`, `II`, `III`, `IV`, `V`, `VI`, `VII`, `VIII_A`, `VIII_B`  
 percentage: 1.00
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    SENIORITY (Art. 24): salario di anzianita frozen as of 2025-01-01. The mechanism is milestone-based (hire-date brackets), not cadence-based. Workers with 2+ years continuous service at 01/01/2025 receive 20 EUR/month; pre-2002 hires receive up to 90 EUR/month grandfathered. New hires after ~2023-01-01 receive nothing. The engine seniority model is cadence-based and cannot express hire-date milestones; maximum_count=0 models new-hire case correctly but understates cost for long-tenure workers.
-
-!!! warning ""
-    APPRENTICESHIP (Art. 9.7): percentages 85/90/100% over 36 months confirmed from Art. 9.7 of PDF. Destination level list not extractable from available pages; all nine levels modelled as destinations. Exclude specific levels when primary source (Art. 9 full text) is confirmed.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -93,6 +83,10 @@ These are deliberate modelling approximations. Read them before using this contr
     HOURLY DIVISOR (Art. 27): 165 h/month for 38h/week full-time. The contract table lists divisors for reduced weekly hours (36h=156, 34h=147, 32h=139, 24h=104, 21h=91, 18h=78); each is 165 scaled by hours/38, matching part_time_pct equivalents. hourly_divisor=165 is exact — no simplification.
     
     ADDITIONAL MONTHS (Art. 21): 13 (tredicesima only, paid by 16 December).
+    
+    SENIORITY (Art. 24): salario di anzianita frozen as of 2025-01-01, milestone-based (hire-date brackets). Workers with 2+ years continuous service at 01/01/2025 receive 20 EUR/month; pre-2002 hires up to 90 EUR/month (grandfathered). New hires after ~2023-01-01 receive nothing. maximum_count=0 correctly models new-hire case (zero seniority). The engine cadence model cannot express hire-date milestones: long-tenure workers are understated. Structural engine limitation — no data gap.
+    
+    APPRENTICESHIP (Art. 9.7): percentages 85/90/100% over 36 months confirmed from Art. 9.7 of ANINSEI CCNL 2024-2027 PDF. Destination level list not specified in available pages; all nine levels modelled as destinations (conservative assumption — no restriction applied). This may overstate eligible levels but never understates payroll cost.
     
 
 ## Raw data

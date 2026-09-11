@@ -65,19 +65,6 @@ Latest effective values per level (monthly gross, EUR).
 Destination levels: `2`, `3`, `4`, `5`, `6`, `7`  
 percentage: 1.00
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    CASSA EDILE: the Cassa Edile manages for blue-collar workers: annual leave (8.5%), Christmas bonus (10%), TFR, APE (Professional Building Seniority). None of these components is modelled by the engine. Consequences: (1) employer_cost_annual is underestimated by ~18.5% of gross for blue-collar workers; (2) tfr_annual is calculated using the standard INPS formula (÷ 13.5) while for blue-collar workers the TFR flows to the Cassa Edile; (3) net_monthly is correct (Cassa Edile does not affect the employee's payslip).
-
-!!! warning ""
-    BLUE-COLLAR SENIORITY: for blue-collar workers (levels 1-4), the ANCE CCNL provides APE (Professional Building Seniority) through the Cassa Edile instead of standard seniority increments. The engine models the tabular increment amounts for all levels (L1-L2: EUR 8.22, L3: EUR 8.99, L4: EUR 9.62 biennial) as an approximation; the real APE mechanism is managed by the Cassa Edile and is not modelled.
-
-!!! warning ""
-    EVR: the Variable Pay Element (EVR) is a variable provincial/company bonus. It is not modelled (varies by province and year).
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -92,6 +79,12 @@ These are deliberate modelling approximations. Read them before using this contr
     CONSOLIDATED MINIMUMS: the base_salary values are the monthly consolidated tabular minimums (base pay + contingency + EDR). Feb 2025 breakdown for reference: L1 = 1067.36 + 512.87 + 10.33; L2 = 1248.81 + 516.43 + 10.33; L3 = 1387.56 + 519.16 + 10.33; L4 = 1494.31 + 521.25 + 10.33; L5 = 1601.02 + 523.35 + 10.33; L6 = 1921.23 + 529.63 + 10.33; L7 = 2134.71 + 533.82 + 10.33. fixed_allowances is empty for all levels. Verification: L1 Feb 2025 = 1590.56 / 173 = EUR 9.19/h (matches the hourly rate on idealista.it).
     
     DUAL STRUCTURE: the CCNL distinguishes blue-collar workers (levels 1-4, paid hourly) and white-collar/managerial staff (levels 5-7, paid monthly). The engine works with monthly values only. Monthly minimums for blue-collar workers are the official published tabular values (hourly rate × 173 hours already incorporated in the monthly minimums). hourly_divisor=173 (40h/week × 52/12 ≈ 173.33, rounded to 173 as per the official hourly table).
+    
+    CASSA EDILE: the Cassa Edile manages for blue-collar workers: annual leave (8.5%), Christmas bonus (10%), TFR, APE (Professional Building Seniority). None of these components is modelled by the engine. Consequences: (1) employer_cost_annual is underestimated by ~18.5% of gross for blue-collar workers; (2) tfr_annual is calculated using the standard INPS formula (÷ 13.5) while for blue-collar workers the TFR flows to the Cassa Edile; (3) net_monthly is correct (Cassa Edile does not affect the employee's payslip).
+    
+    BLUE-COLLAR SENIORITY: for blue-collar workers (levels 1-4), the ANCE CCNL provides APE (Professional Building Seniority) through the Cassa Edile instead of standard seniority increments. The engine models the tabular increment amounts for all levels (L1-L2: EUR 8.22, L3: EUR 8.99, L4: EUR 9.62 biennial) as an approximation; the real APE mechanism is managed by the Cassa Edile and is not modelled.
+    
+    EVR: the Variable Pay Element (EVR) is a variable provincial/company bonus. It is not modelled (varies by province and year).
     
     ADDITIONAL_MONTHS: 13 monthly payments (Christmas bonus). The 14th monthly payment is not provided for in the construction industry CCNL. For blue-collar workers the Christmas bonus is paid through the Cassa Edile — the engine includes it in gross_annual via the ×13 multiplier as an approximation.
     

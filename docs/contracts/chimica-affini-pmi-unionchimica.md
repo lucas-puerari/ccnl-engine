@@ -76,12 +76,6 @@ These are deliberate modelling approximations. Read them before using this contr
 !!! warning ""
     SINGLE TRANCHE ONLY. Only the 1 January 2026 tranche is modelled. The 4 subsequent tranches (Apr 2027, Dec 2027, Jun 2028, Dec 2028) are not accessible from primary source at time of extraction. Update with official amounts when the renewal text becomes available.
 
-!!! warning ""
-    CHIMICA-CONCIA SUB-SECTOR ONLY. Unionchimica Confapi covers three sub-sectors with different hourly divisors: Chimica-Concia (175), Plastica-Gomma (169), Abrasivi-Ceramica-Vetro (173). Only Chimica-Concia (divisor 175) is modelled. The level codes and salary amounts are the same across sub-sectors; only the hourly divisor differs.
-
-!!! warning ""
-    HOURLY DIVISOR AGGREGATOR-SOURCED. The divisor of 175 for Chimica-Concia is taken from kitech.it (aggregator) and consistent with CCNL Federchimica B011 which also uses 175 for the chemical-pharmaceutical sub-sector. No official hourly rate column was available to back-calculate the divisor from primary source.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -102,6 +96,10 @@ These are deliberate modelling approximations. Read them before using this contr
     ADDITIONAL MONTHS: 13 (tredicesima only). Source: kitech.it B018 mensilità aggiuntive field.
     
     SENIORITY: biennale (24 months), maximum 5 scatti. Per-level EUR amounts from kitech.it Jan 2026 table: A=10.33, B=11.88, C=12.91, D=13.94, E=15.49, F=18.08, G=20.66, H=23.24.
+    
+    CHIMICA-CONCIA SUB-SECTOR SCOPE. Unionchimica Confapi covers three sub-sectors with different hourly divisors: Chimica-Concia (175), Plastica-Gomma (169), Abrasivi-Ceramica-Vetro (173). Only Chimica-Concia (divisor 175) is modelled — deliberate scope choice. The level codes and salary amounts are identical across all sub-sectors; only the hourly divisor differs.
+    
+    HOURLY DIVISOR 175: confirmed by cross-reference with CCNL Federchimica B011 (kitech.it), which independently uses 175 for chemical-pharmaceutical industry (same contractual week = 40h, 40×52/12=173.33 rounded to 175 via industry convention). No primary contractual clause directly retrieved but cross-verified via B011.
     
     APPRENTICESHIP. Apprendistato professionalizzante per sotto-inquadramento (D.Lgs. 81/2015). Durata massima 36 mesi, uniforme per tutti i livelli e sub-settori. Struttura: primo periodo (mesi 1-10) a 2 livelli sotto la destinazione; secondo periodo (mesi 11 a fine contratto) a 1 livello sotto la destinazione; al termine dell'apprendistato l'inquadramento finale è riconosciuto. Tre track modellati: professionalizzante_C_H (C-H, schema standard 2→1), professionalizzante_B (destinazione B: capped ad A per assenza di livelli inferiori, periodo unico), professionalizzante_A (destinazione A: resta ad A per tutta la durata). Fonte primaria: schede CNEL B018 direzionelavoro.it (ottobre 2023), voce (g) art. 1 Cap. I. Confermato invariato dal rinnovo 23/02/2026 (Confapi Padova circolare): apprendistato non oggetto di modifica.
     

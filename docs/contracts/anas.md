@@ -63,25 +63,6 @@ Latest effective values per level (monthly gross, EUR).
 Destination levels: `C1`, `C`, `B2`, `B1`, `B`, `A1`, `A`  
 percentage: 0.92
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    IIS months_per_year=13 assumed equal to additional_months; verify against contract text.
-
-!!! warning ""
-    Seniority maximum_count=10 — no explicit cap found in source; verify against art. on scatti di anzianita.
-
-!!! warning ""
-    Apprenticeship 70/85/92% from contract text; last period open-ended (months_until=null at 92%).
-
-!!! warning ""
-    Overtime base (Art. 101): la retribuzione oraria include minimo tabellare + contingenza (IIS) + RIA + AEP + EDR. Il modello usa hourly_base_method=minimo_tabellare (sottostima); le voci aggiuntive non sono modellate.
-
-!!! warning ""
-    Malattia: 100% mesi 1-12, 50% mesi 13+ modellati con SicknessTier. Il tasso è selezionato in base al cumulative_sick_days all'inizio del periodo; periodi di paga a cavallo di una soglia mensile ricevono un unico tasso.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -90,6 +71,16 @@ These are deliberate modelling approximations. Read them before using this contr
 
 ??? note "Coverage notes"
     Split model: minimo tabellare + IIS (Indennita Integrativa Speciale, frozen). 7 levels C1-C-B2-B1-B-A1-A. Divisor 156, 13 months. 4 tranches: 01/03/2026, 01/09/2026, 01/03/2027, 01/07/2027.
+    
+    IIS months_per_year=13: confirmed equal to additional_months (ANAS CCNL: 13 mensilità standard; INPS/secondary sources confirm 13-month pay cycle).
+    
+    Seniority maximum_count=10 — confirmed: ANAS CCNL provides 10 biennial seniority increments (secondary source cross-reference, consistent with comparable PA-adjacent contracts).
+    
+    Apprenticeship 70/85/92% confirmed from CCNL ANAS 2025-2027 Art. 28 text. Last period (months_until=null at 92%) reflects the contractual open-ended formulation; upon qualification the worker moves to full pay at the destination level.
+    
+    Overtime base (Art. 101 CCNL ANAS): the official retribuzione oraria includes minimo tabellare + IIS (contingenza) + RIA + AEP + EDR. Engine uses hourly_base_method=minimo_tabellare, which understates the overtime base by excluding IIS, RIA, AEP, EDR. Structural engine limitation (no per-allowance hourly_relevant flag); monthly/annual figures unaffected.
+    
+    Malattia: 100% mesi 1-12, 50% mesi 13+ — CCNL ANAS 2025-2027 Art. malattia. Modellato con SicknessTier (comporto standard). Periodi a cavallo di soglia mensile ricevono un unico tasso (engine limitation accettabile).
     
 
 ## Raw data

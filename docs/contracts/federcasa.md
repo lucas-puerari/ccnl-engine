@@ -75,19 +75,6 @@ Latest effective values per level (monthly gross, EUR).
 | `D1` | € 12.06 |
 | `D2` | € 11.61 |
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    SIMPLIFICATION: tax_sector=terziario. Federcasa entities are public economic entities (ex-IACP/ATER/ATC). Art. 1.2 confirms these entities left the public-sector comparto. Actual INPS classification unverified; terziario is the closest available proxy.
-
-!!! warning ""
-    SIMPLIFICATION: Seniority amounts are the 10%-reduced values (post-01/01/2018 cohort per Art. 73.4). Workers with pre-2018 scatti retain grandfathered full amounts; at maximum 14 scatti this would affect workers hired before ~1990. New-hire cohort (all post-2018 scatti) is exact.
-
-!!! warning ""
-    SIMPLIFICATION: As of 2026-09-05 the 2022-2024 CCNL has expired (31/12/2024). Art. 4 B.5-8 triggers IVC at 30% of IPCA from ~Mar 2025 and 50% from ~Sep 2025 during the renewal gap. The engine models tabellare only; IVC payable during the gap is not included.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -116,6 +103,12 @@ These are deliberate modelling approximations. Read them before using this contr
     Apprenticeship: Art. 19 defers terms to accordo interconfederale 18/05/2016 and a CCNL-specific agreement within 6 months of signing. No public text of that agreement found.
     
     Headcount: not verified. No CNEL/ADAPT figure located for T611 Federcasa.
+    
+    tax_sector=terziario: Federcasa entities (ex-IACP/ATER/ATC) left the public-sector comparto (Art. 1.2 CCNL Federcasa). Actual INPS classification not publicly documented; terziario is the best available proxy (commercial/housing entities without industria-style CIG). Same approach as other para-public entities in the engine.
+    
+    Seniority amounts use the 10%-reduced values (post-01/01/2018 cohort per Art. 73.4). Workers hired before ~1990 may still have pre-2018 grandfathered scatti at full amounts (engine cannot model the two cohorts separately). New-hire case is exact; long-tenure pre-2018 cohort is understated by ~10%. Structural engine limitation.
+    
+    CCNL expired 31/12/2024. Art. 4 B.5-8 mandates IVC (Indennità Vacanza Contrattuale) at 30% of IPCA (~Mar 2025) and 50% (~Sep 2025) during the renewal gap. Engine models tabellare only; IVC during the gap is not included. This is a structural out-of-scope element (ultrattività compensation, not a tabellare change).
     
 
 ## Raw data

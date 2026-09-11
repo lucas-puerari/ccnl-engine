@@ -71,16 +71,6 @@ percentage: 1.00
 Destination levels: `2`, `1`  
 percentage: 1.00
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    2024 RENEWAL TRANCHES: agreement 19.11.2024, four tranches (01.12.2024, 01.07.2025, 01.03.2026, 01.11.2026). Values at 01.03.2026 verified against kitech.it for all 8 levels. SIMPLIFICATION: values at 01.12.2024, 01.07.2025 and 01.11.2026 for levels other than 4° are derived proportionally using level 4° as reference (increments EUR 50, 25, 25, 20) and inter-level ratios confirmed by the AFAC/kitech comparison. The official 2024 renewal text was not fully retrieved.
-
-!!! warning ""
-    INPS: SIMPLIFICATION — single employer rate 26.93% (proxy source kitech.it; specific INPS circular for artigianato 2026 not retrieved). Estimated components: IVS 23.81% + NASpI 1.61% + CUAF 0.68% + malattia operai ~0.83% = ~26.93%. The rate models operai. SIMPLIFICATION: impiegati and quadri have an effective rate of ~24.71% (source: kitech.it, impiegati category), not modellable under the current employer_tiers schema (worker-category axis absent); the employer cost computed for impiegato levels is overstated by ~2.2pp. No CIGO/CIGS (D.Lgs. 148/2015 art. 3, artigianato sector excluded). FSBA (0.45% employer + 0.15% employee) is a bilateral contribution, not INPS: excluded from the tax file.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -97,11 +87,15 @@ These are deliberate modelling approximations. Read them before using this contr
     
     AFAC TRANCHES: Accordo Fondo Anticipazione Contrattuale 21.12.2023, two tranches (01.12.2023, 01.04.2024). Values at 01.04.2024 cross-verified against kitech.it for all 8 levels.
     
+    2024 RENEWAL TRANCHES: agreement 19.11.2024 (operative 20.12.2024), four tranches (01.12.2024, 01.07.2025, 01.03.2026, 01.11.2026). All per-level amounts for all 8 levels confirmed from UILM national synthesis PDF (20250128 CCNL Artigianato area meccanica 2023-2026, url: https://www.uilmnazionale.it/). Values match kitech.it for levels verified there. All 4 tranches fully modelled with primary-source amounts.
+    
     HOURLY DIVISOR: 173 hours/month (40h/week, Art. 28 CCNL 17.12.2021). Arithmetic monthly/hourly verification did not yield clean integer results on the available values; confirmation is based on the primary CCNL text.
     
     SENIORITY INCREMENTS: biennial (24 months), maximum 5 increments. Per-level amounts from EBLART/Direzionelavoro.it table (tab. 7.1). The effective date of the amounts (01.01.2022) is assumed to coincide with the first salary tranche; the primary source does not report a separate effective date for seniority increments.
     
     APPRENTICESHIP percentage, 10 semesters (60 months max), operai progression (source EBLART, apprenticeship professionalizzante article): 70% (sem. I-II), 75% (III), 78% (IV), 80% (V), 85% (VI), 88% (VII), 92% (VIII), 100% (IX-X); track 'operai' for destinations 5, 4, 3, 2bis. Since the 2015 reform level 6° cannot be used as a destination.
+    
+    INPS OPERAI/IMPIEGATI: 2026-artigianato.json models both categories via employer_rate_by_category (operai default 26.93%; impiegati/quadri 24.71%). Pass Employee(category='impiegato') or Employee(category='quadro') to receive the lower rate; omitting category routes to operaio rate. Components: IVS 23.81% + NASpI 1.61% + CUAF 0.68% + malattia operai ~0.83% = 26.93%; malattia for impiegati is lower (hence ~24.71%). No CIGO/CIGS (D.Lgs. 148/2015 Art. 3, artigianato excluded). FSBA (0.45% employer + 0.15% employee) is bilateral, excluded from the tax file.
     
     ADDITIONAL MONTHS: 13 (tredicesima). A quattordicesima is not provided for by the CCNL Artigianato Metalmeccanico.
     

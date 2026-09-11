@@ -75,16 +75,6 @@ Latest effective values per level (monthly gross, EUR).
 Destination levels: `A`, `B`, `C`, `D1`, `D2`, `D3`, `E1`, `E2`, `E3`, `F`  
 percentage: 1.00
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    Seniority: contract uses a flat EUR 40/month bonus at 5 years of service (levels A-E3 only; F/G/H excluded). Modeled as cadence_months=60, maximum_count=1. The Oct 2023 'premio di anzianita' (EUR 40 for 10+ year workers) is a one-time payment and is out_of_scope.
-
-!!! warning ""
-    Apprenticeship: contract specifies sotto-inquadramento up to 2 levels below destination (levels A-F eligible, 36 months). Engine schema requires a static pay_level_code; modeled as 100% passthrough.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -96,6 +86,10 @@ These are deliberate modelling approximations. Read them before using this contr
     CCNL T091 — AIOP RSA. Conglobated. 12 levels: A-B-C-D1-D2-D3-E1-E2-E3-F-G-H. Divisor 165, 13 months. Original 2012 contract, updated by accordo ponte Oct 2023.
     
     Accordo ponte (Oct 2023) expired June 2024. Contract applied in ultrattività pending renewal. Oct 2023 table modeled as current (valid_until null).
+    
+    Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). Oct 2023 'premio di anzianita' (EUR 40 one-time for 10+ year workers) is a one-time payment, out_of_scope.
+    
+    Apprenticeship: CCNL RSA-AIOP specifies sotto-inquadramento up to 2 levels below destination (levels A-F eligible, 36 months). Engine schema requires a static pay_level_code; cannot express dynamic under-classification tracks; modelled as 100% passthrough (correct for permanent workers, overstates pay for apprentices). Structural engine limitation.
     
 
 ## Raw data

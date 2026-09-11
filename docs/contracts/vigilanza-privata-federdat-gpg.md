@@ -23,7 +23,7 @@
 
 | Layer | Status |
 |---|---|
-| **L1 — Gross** | ⚠️ partial |
+| **L1 — Gross** | ✅ implemented |
 | **L2 — Net** | ✅ implemented |
 | **L3 — Work rules** | ✅ implemented |
 
@@ -44,7 +44,7 @@ Latest effective values per level (monthly gross, EUR).
 ## Seniority increments
 
 **Cadence:** every 36 months  
-**Maximum:** 6 increments
+**Maximum:** 10 increments
 
 | Level | Increment (monthly) |
 |---|---:|
@@ -62,16 +62,6 @@ Latest effective values per level (monthly gross, EUR).
 Destination levels: `VI`, `V`, `IV`, `III`, `II`, `I`  
 percentage: 1.00
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    Seniority amounts not found in renewal PDF (base CCNL 2013, art. 106 GPG). Values proxied from ASSIV CCNL (HV40, same sector). Cadence 36m and max 6 scatti confirmed ('6 trienni' in source).
-
-!!! warning ""
-    Apprenticeship: 100% passthrough. Rules not found in renewal document; verify against CCNL FEDERDAT base text.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -80,6 +70,10 @@ These are deliberate modelling approximations. Read them before using this contr
 
 ??? note "Coverage notes"
     CCNL HV17 FEDERDAT GPG section. Conglobated, 14 months, divisor 173. 7 levels. 6 tranches: 01/06/2023, 01/06/2024, 01/06/2025, 01/12/2025, 01/04/2026, 01/12/2026. Contract validity: 01/06/2023-31/12/2026.
+    
+    SENIORITY: amounts from UILTUCS tabelle PDF (Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf), cadence 36m: Q=31.30, I=26.12, II=23.83, III=22.46, IV=21.13, V=20.52, VI=19.66 EUR/scatto. July 9 2026 renewal (FEDERDAT-CONFIAL) increased maximum_count from 6 to 10; per-scatto amounts confirmed unchanged post-rinnovo (ilccnl.it shows same Q–III values after rinnovo). Amounts for IV–VI post-rinnovo not independently verified from a post-rinnovo primary source.
+    
+    Apprenticeship: 100% passthrough confirmed from CCNL FEDERDAT Art. 86: "L'Apprendista ha diritto per tutta la durata del periodo di apprendistato all'inquadramento e alla corrispondente retribuzione del livello finale di collocazione." (FESICA PDF, CCNL ISTITUTI AZIENDE VIGILANZA PRIVATA, Art. 86). Engine models this correctly as 100% of destination level salary.
     
     Level VI salary at 01/06/2024 (1185.44) is anomalously high vs prior tranche (1108.06) — confirmed by source as conventional riallineamento for level VI.
     

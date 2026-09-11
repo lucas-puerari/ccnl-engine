@@ -71,9 +71,6 @@ Destination levels: `5`
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    IAR tranche September 2027: the CCNL sets +11 EUR at level 4; per-level amounts are derived by scaling +11 with the level's IAR ratio to level 4 (the IAR is parametric), rounded to the cent. Official per-level tables were not published at extraction time.
-
-!!! warning ""
     APPRENTICESHIP under_classification (Art. 21 CCNL, renewal 01/03/2024; period structure from afi-ipl.org): 36-month track for destinations 4, 3, 3A, 2, 1 (0-10 months two levels below, 10-22 one level below, then destination); 24-month track for destination 5 (0-10 months at level 6, then level 5). Level 6 and 1S are not apprenticeship destinations. The 10/22-month boundaries are as reported by the source; the contract text refers to 'first/second/third period'.
 
 ## Sources
@@ -88,6 +85,8 @@ These are deliberate modelling approximations. Read them before using this contr
 
 ??? note "Coverage notes"
     SALARY MODEL: split (base pay/TEM + contingency allowance + EDR + IAR as separate allowances). TEM varies by level and tranche; contingency frozen from 31/07/1992 (Government-social partners Protocol); EDR fixed at 10.33 EUR for all levels (Agreement 31/07/1992). IAR (Additional Pay Increment) remains a separate component of the TEC — not absorbed into TEM (confirmed by FLAI Veneto: 'the CCNL renews and redefines the TEC as the sum of TEM and IAR'). TEM source: sindacato.it (2024 salary tables). IAR source: flaiveneto.it.
+    
+    IAR tranche September 2027: the CCNL sets +11 EUR at level 4; per-level amounts derived by proportional scaling using the same ratio as the Dec-2023 IAR amounts to level 4. Math verified 2026-09-09: L6 delta=9.17 (11×5/6=9.167 ✓), L5=10.08 (11×11/12=10.083 ✓), L3=11.92 (11×13/12=11.917 ✓), L1=18.33 (11×5/3=18.333 ✓), L1S=21.08 (11×23/12=21.083 ✓). All deltas match rounded to cent. Dec-2023 base IAR amounts are published (FLAI Veneto); Sept-2027 per-level table not independently published but mathematically implied by the parametric IAR structure.
     
     CONTINGENCY ALLOWANCE: amounts from lexplain.it and kitech.it — confirmed by two independent sources. Values identical to the previous contracts (frozen since 1993). 1S=545.72, 1=538.70, 2=530.51, 3A=525.83, 3=522.32, 4=519.99, 5=517.65, 6=515.31.
     

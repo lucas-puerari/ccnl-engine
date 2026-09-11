@@ -79,10 +79,7 @@ Destination levels: `4`
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    Apprenticeship: under-classification, 30 months for destination levels 4 and 5 (CCNL: '30 mesi per i livelli 4° e 5°'): first half two classification levels below the destination, second half one level below (the parametric sub-levels 2par115 and 4par125 are skipped, hence levels_below 3/1 for destination 5 and 4/2 for destination 4). Destination level 2 (apprentice stays at level 1 for the whole period) and other destinations are not modelled: durations not sourced. Source: ccnlportatili.it.
-
-!!! warning ""
-    INPS rates: terziario sector — reusing 2026-terziario.json (9.19% employee, tiered employer). SIMPLIFICATION: some sources indicate pulizie sector has a small FISE bilateral contribution; specific INPS circular for this sector was not verified. Use kitech.it proxy rates as label.
+    INPS RATES PROXY. Terziario sector confirmed for multiservizi/pulizie: kitech.it (p=4_129, "Commercio - terziario Imprese appaltatrici servizi pulizia") lists rates matching 2026-terziario.json. Simplification: the CIGS threshold for imprese di pulizia is >15 dipendenti (not >50 as in the general terziario tier); for 16-50 employee companies the modeled employee rate (9.19%) understates the actual 9.49%. FIS (Fondo Integrazione Salariale) may also apply for non-CIGS-eligible firms. Source: kitech.it/Contributi-previdenziali.aspx?p=4_129
 
 ## Sources
 
@@ -106,7 +103,11 @@ These are deliberate modelling approximations. Read them before using this contr
     
     Contingenza par levels: the CCNL text notes that contingenza values for 4par125 and 2par115 are not explicitly stated; by industry convention they match the values for levels 4 and 2 respectively. Source: note in oristanoservizi.it PDF.
     
+    Apprenticeship: under-classification, 30 months for destination levels 4 and 5 (CCNL: '30 mesi per i livelli 4° e 5°'): first half two classification levels below the destination, second half one level below (the parametric sub-levels 2par115 and 4par125 are skipped, hence levels_below 3/1 for destination 5 and 4/2 for destination 4). Destination level 2 (apprentice stays at level 1 for the whole period) and other destinations are not modelled: durations not sourced. Source: ccnlportatili.it.
+    
     July 2025 values: the 2021-2024 CCNL included a 5th salary tranche effective July 2025 (e.g. +10 EUR on level 2). This was superseded by the 2025-2028 renewal (signed 13 June 2025, definitive tables per accordo integrativo 6 August 2025, effective retroactively from 1 July 2025 per Art. 73). The JSON models post-renewal July 2025 values (819.21 for level 2) directly. Workers received the higher new-contract amount; the old 5th tranche value (779.21) was never separately operative.
+    
+    ANIP CONTRACT STATUS (2025): ANIP-Confindustria abandoned the final stages of the 2025 CCNL renewal negotiations without signing. The 2025 renewal was signed by Legacoop Produzione e Servizi, Unionservizi Confapi, AGCI + Filcams-CGIL/Fisascat-CISL/Uiltrasporti-UIL. ANIP companies continue to apply the previous CCNL (this file). A separate multiservizi-legacoop file would be needed to cover the new 2025-2028 renewal (levels 1-8: 1,296.39-2,256.14 EUR, 14 mensilità).
     
     Workers covered: ~403,000 per INPS-UNIEMENS 2025 data; largest uncovered CCNL at time of implementation.
     

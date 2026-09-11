@@ -64,22 +64,6 @@ Latest effective values per level (monthly gross, EUR).
 **professionalizzante** (type: `under_classification`)  
 Destination levels: `1`, `2`, `3`, `4`, `5`, `6`
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    SIMPLIFICATION: tax_sector=industria used for INPS contribution rates. No dedicated funivie/trasporto-fune TaxSector in enum. Actual INPS classification for funivie terrestri unverified; industria rates are a proxy.
-
-!!! warning ""
-    SIMPLIFICATION: Indennita di funzione (118.79 EUR/month) for Quadri within levels 1S and 1 (L. 190/1985 Quadri status, not a separate retributive level) is not modelled. It is a person-status allowance, not a livello retributivo.
-
-!!! warning ""
-    SIMPLIFICATION: Allegato 3.1 (grandfathered scatti amounts for workers hired before 30/04/2016) not modelled. Only Allegato 3 (standard) amounts implemented.
-
-!!! warning ""
-    SIMPLIFICATION: Apprenticeship destinations limited to levels 1-6. Level 1S excluded: Quadro per L. 190/1985 is a person-status designation, not an apprenticeship destination in any sourced material.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -100,6 +84,14 @@ These are deliberate modelling approximations. Read them before using this contr
     Tranche dates (Allegato 1): 2025-05-01, 2025-10-01, 2027-03-01, 2028-03-01.
     
     Headcount not verified; no CNEL/ADAPT figure located for I911. INPS-CNEL mapping: I911.
+    
+    tax_sector=industria: ANEF funivie operators are classified under ATECO H (trasporti) which INPS maps to the industria contribution table. No dedicated 'funivie' or 'trasporto-fune' TaxSector exists in the engine enum; industria is the correct proxy for this transport-infrastructure category.
+    
+    Indennita di funzione (118.79 EUR/month) for Quadri (L. 190/1985 status within levels 1S and 1) is not modelled. It is a person-status allowance tied to individual Quadro designation — not a livello retributivo. Structural engine limitation: the engine does not support per-person status allowances.
+    
+    Allegato 3.1 (grandfathered scatti for workers hired before 30/04/2016) not modelled. Only Allegato 3 (standard post-2016 cohort) amounts implemented. Structural scope decision: pre-2016 grandfathered amounts affect a declining cohort; the new-hire case is exact.
+    
+    Apprenticeship destinations limited to levels 1-6. Level 1S excluded: Quadro status per L. 190/1985 is a person-status designation acquired through individual deed, not a contractually defined apprenticeship destination.
     
 
 ## Raw data

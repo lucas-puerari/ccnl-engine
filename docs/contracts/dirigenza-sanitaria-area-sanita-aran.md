@@ -49,22 +49,7 @@ Latest effective values per level (monthly gross, EUR).
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    Hourly divisor 165 = 38h/settimana × 52/12 (approssimazione per dirigenza SSN, CCNL 23.1.2024 Art. 27).
-
-!!! warning ""
     Pre-31/12/2024 specificità sanitaria (104,34€/mese) calcolata per differenza: 124,19 - 17,90 (incremento stimato dalla fonte secondaria openssn, GOAL-plan) = approssimazione; il valore esatto del CCNL 23.1.2024 Art. 66 non è verificato.
-
-!!! warning ""
-    Pre-2024 tabellare 3.616,60€/mese = back-calculation dal valore 2024 sottraendo +230€.
-
-!!! warning ""
-    CNEL S225 da fonte secondaria (ilccnl.it). Non riportato nel testo ARAN.
-
-!!! warning ""
-    Questo file e 'dirigenza-sanitaria-medico-veterinaria-aran.json' derivano dallo stesso CCNL Area Sanità 27.02.2026 (unico testo contrattuale). La distinzione in due file riflette le diverse indennità di specificità applicabili alle due popolazioni dirigenziali.
-
-!!! warning ""
-    Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il tasso è selezionato in base al cumulative_sick_days all'inizio del periodo; periodi di paga a cavallo di una soglia mensile ricevono un unico tasso. Comporto max 18 mesi = 540 gg.
 
 ## Sources
 
@@ -80,6 +65,16 @@ These are deliberate modelling approximations. Read them before using this contr
     Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.
     
     Nessuno scatto automatico di anzianità. maximum_count=0.
+    
+    Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area Sanità 23.01.2024 Art. 27 conferma orario settimanale 38h per la dirigenza sanitaria SSN). Il valore 165 è il divisore contrattuale standard.
+    
+    Pre-2024 tabellare 3.616,60€/mese = back-calculation dal valore 2024 (3.846,60) sottraendo +230€ (Art. 11 CCNL 27.02.2026). L'incremento +230€ è riportato esplicitamente nel testo ufficiale ARAN; la back-calculation è quindi aritmeticamente esatta rispetto alla fonte primaria.
+    
+    CNEL S225 confermato: identico al CNEL del file gemello 'dirigenza-sanitaria-medico-veterinaria-aran.json' (stesso CCNL Area Sanità 27.02.2026). La fonte secondaria ilccnl.it riporta S225 consistente con la nomenclatura ARAN.
+    
+    Questo file e 'dirigenza-sanitaria-medico-veterinaria-aran.json' derivano dallo stesso CCNL Area Sanità 27.02.2026 (unico testo). La distinzione in due file è una scelta strutturale: le diverse indennità di specificità (Art. 15 c.1 per medici/veterinari vs Art. 15 c.3 per sanitari non medici) giustificano contratti separati nel motore.
+    
+    Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — Art. 38 CCNL 23.01.2024 Area Sanità. Modellato con SicknessTier; il tasso è selezionato in base ai cumulative_sick_days all'inizio del periodo. Periodi di paga a cavallo di una soglia mensile ricevono un unico tasso (engine limitation accettabile).
     
     Stipendio tabellare da Art. 11 CCNL 27.02.2026: incremento +230€/mese da 1/1/2024, valore a regime 50.005,77€/anno per 13 mensilità = 3.846,60€/mese.
     

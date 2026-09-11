@@ -102,11 +102,7 @@ percentage: 1.00
     
     JUN 2021, JUN 2022, JUN 2023 TRANCHES: values retrieved from lexplain.it (metalworking industry pay tables; secondary aggregator source). Cross-check: D1 Jun-2024=1719.67 confirms exact alignment with data already present. Four annual tranches (Jun 2021-2024) based on the IPCA mechanism from the CCNL 05/02/2021.
     
-    OVERTIME/NIGHT/HOLIDAY (L3): percentages modelled per Art. 14 CCNL Federmeccanica 2021
-    (straordinario diurno 15%, lavoro notturno 20%, lavoro festivo 30%). The 2025-11-22 renewal
-    (CCNL 2025-2028) is expected to revise these percentages upward; a dedicated data-correction
-    PR will add time-versioned 2025 rates once the official text is available in machine-readable
-    form. Absence/leave/sickness/fringe-benefit sub-sections verified by reference cases.
+    OVERTIME/NIGHT/HOLIDAY (L3): percentages modelled per Art. 14 CCNL Federmeccanica 2021 (straordinario diurno 15%, lavoro notturno 20%, lavoro festivo 30%). Source: testo contrattuale Art. 14. NOTE: the 2025-11-22 renewal (CCNL 2025-2028) is expected to update these percentages; a dedicated data correction PR will add time-versioned 2025 rates once the official text is available in machine-readable form.
     
 
 ## Raw data

@@ -48,13 +48,13 @@ Latest effective values per level (monthly gross, EUR).
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    CNEL code S105 from secondary source (lavoro-economia.it). Not stated in official PDF.
-
-!!! warning ""
-    Pre-2024 base values derived by back-calculation; 2022-2023 anticipation payments (Art. 47-bis D.Lgs. 165/2001) not modelled as intermediate periods.
+    PRE-2024 BACK-CALCULATED. Nov 2022 values derived by back-calculation (2024 values minus Tabella A col.1 increments). 2022-2023 anticipation payments (Art. 47-bis D.Lgs. 165/2001) not modelled as intermediate periods.
 
 !!! warning ""
     Indennità di comparto post-conglobamento (Tabella C col.4) fully charged to Fondo risorse decentrate — not modelled as a fixed_allowance (varies by administration and is not a universal fixed amount).
+
+!!! warning ""
+    2025-2027 RENEWAL NOT YET MODELLED. ARAN signed an ipotesi di CCNL Funzioni Locali 2025-2027 on 21 July 2026. Retroactive increases from Jan 1, 2025. Pending comitato di settore, Governo, and Corte dei conti certification. Average monthly increase will be around €136.76 from base; exact per-level amounts not yet verified for this file.
 
 ## Sources
 
@@ -68,11 +68,13 @@ These are deliberate modelling approximations. Read them before using this contr
     
     Seniority via differenziali stipendiali (Art. 14 and Art. 78 CCNL 16.11.2022): selective procedure, not automatic — maximum_count=0.
     
+    CNEL code S105 confirmed via multiple secondary sources: kitech.it lists 'CCNL Comparto Funzioni Locali [Cnel: S105]', lavoro-economia.it concurs. Not stated in official ARAN PDF; CNEL archive not separately queried.
+    
     Salary tables from CCNL Comparto Funzioni Locali 2022-2024 (ARAN, 23.02.2026). Art. 56 Tabella A (monthly increments per 13 months) and Tabella B (annual amounts per 12 months + 13th). Monthly values = Tabella B / 12.
     
     Tranche 1 (2022-11-16) values back-calculated from CCNL 16.11.2022 base by subtracting Tabella A col.1 increments from 2024-01-01 values. The 2022 and 2023 anticipation payments (Art. 56, alinea 1-2) are not modelled as separate tabellare periods.
     
-    Tranche 3 (2027-01-01) from parziale conglobamento indennità di comparto (Art. 60): Tabella B col.2 / 12. Effective from 1 January of the year following CCNL signature (2026 → 2027-01-01).
+    Tranche 3 (2026-01-01) from parziale conglobamento indennità di comparto (Art. 60): Tabella B col.2 / 12. ARAN announcement explicitly states 'decorrenza retroattiva al 1/1/2026'. DATE CORRECTED 2026-09-09: was incorrectly set to 2027-01-01 in initial extraction; confirmed as 2026-01-01 via ilccnl.it (values match exactly) and ARAN press release.
     
     Hourly divisor 156 from Art. 74 CCNL 16.11.2022 (36h/week standard working time for comparto Funzioni Locali).
     

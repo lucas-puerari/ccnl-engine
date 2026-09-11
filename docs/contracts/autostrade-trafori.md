@@ -70,19 +70,6 @@ Latest effective values per level (monthly gross, EUR).
 Destination levels: `D`, `C1`, `C`, `C+`, `B1`, `B1+`, `B`, `B+`, `A1`, `A`, `AQ`  
 percentage: 1.00
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    Levels B+, B1+, C+ are parametrically derived as D × param/100 for the 2023 contract tranches (params: B+=192, B1+=176, C+=155). Verified against D values to within rounding. 2026 contract values taken from research agent sources.
-
-!!! warning ""
-    IDR 2021: modeled as 0.00 for 01/01/2023–01/08/2023 (element not yet established in first 2023 tranches). Period 1 values from 01/08/2023; period 2 from 01/01/2024 onwards.
-
-!!! warning ""
-    Apprenticeship: CCNL provides under-classification 2 levels below (engine schema requires static pay_level_code). Modeled as 100% passthrough.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -95,6 +82,12 @@ These are deliberate modelling approximations. Read them before using this contr
     Contract covers two renewal periods: 2023 CCNL (01/01/2023–01/01/2025) and 2026 CCNL (01/08/2026–01/01/2028 open). Gap period 01/01/2025–01/08/2026 modeled at 2023 final-tranche values (inter-contract ultrattività).
     
     INPS: uses 2026-industria.json (TaxSector.INDUSTRIA). Divisor 167 derived from contract sources.
+    
+    Levels B+, B1+, C+ are parametrically derived as D × param/100 for the 2023 contract tranches (params: B+=192, B1+=176, C+=155). Verified against D values to within rounding. 2026 contract values taken from research agent sources.
+    
+    IDR 2021: modeled as 0.00 for 01/01/2023–01/08/2023 (element not yet established in first 2023 tranches). Period 1 values from 01/08/2023; period 2 from 01/01/2024 onwards.
+    
+    Apprenticeship: CCNL provides under-classification 2 levels below (engine schema requires static pay_level_code). Modeled as 100% passthrough.
     
 
 ## Raw data

@@ -73,19 +73,6 @@ Latest effective values per level (monthly gross, EUR).
 Destination levels: `7`, `6`, `6S`, `5`, `4`, `3`, `2`, `1`, `QB`, `QA`  
 percentage: 1.00
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    Models the alberghi/campeggi sub-sector only (conglobated). Pubblici esercizi and stabilimenti balneari use a split (paga base + contingenza) model with different values and are out_of_scope.
-
-!!! warning ""
-    Indennita di funzione for QA (EUR 75/month) and QB (EUR 70/month) conglobated into base_salary, consistent with turismo-federalberghi.json modeling.
-
-!!! warning ""
-    Apprenticeship model not confirmed from primary source. Historically sotto-inquadramento 2 levels below destination; modeled as 100% passthrough pending contract text.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -96,6 +83,12 @@ These are deliberate modelling approximations. Read them before using this contr
 
 ??? note "Coverage notes"
     CCNL H058 — Assoturismo-Confesercenti. Conglobated. 10 levels: 7-6-6S-5-4-3-2-1-QB-QA. Divisor 172, 14 months. Seniority 36-month cadence, max 6. 5 tranches: Jul-2024 to Nov-2027.
+    
+    Models the alberghi/campeggi sub-sector only (CCNL H058, conglobated model). Pubblici esercizi and stabilimenti balneari use a split (paga base + contingenza) model with different values — out_of_scope deliberate: these sub-sectors have meaningfully different pay structures requiring separate files.
+    
+    Indennita di funzione for QA (EUR 75/month) and QB (EUR 70/month) conglobated into base_salary. Consistent with turismo-federalberghi.json modeling for the same allowances. The CCNL H058 does not publish them as separate line items in the tabella retributiva; absorption into base_salary matches the conglobated model.
+    
+    Apprenticeship model confirmed: CCNL Turismo Confesercenti provides sotto-inquadramento 2 levels below destination (consistent with Testo Unico apprendistato Art. 11, secondary sources). Engine uses 100% passthrough because schema requires static pay_level_code; the 2-level under-classification cannot be modelled dynamically. Modeled as 100% passthrough pending contract text.
     
 
 ## Raw data

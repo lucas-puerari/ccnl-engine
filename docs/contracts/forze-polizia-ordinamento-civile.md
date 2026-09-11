@@ -112,6 +112,8 @@ These are deliberate modelling approximations. Read them before using this contr
     
     Firmatari Polizia di Stato: SIULP, SAP, SIAP, FSP Polizia di Stato (ES-LS-CONSAP-M.P.), Federazione COISP-MOSAP, SILP CGIL. Firmatari Polizia Penitenziaria: SAPPE, SINAPPE, OSAPP, UILPA PP, USPP, CISL FNS. Fonte: testo DPR 53/2025.
     
+    Accordo triennio 2025-2027 (Comparto Sicurezza-Difesa) firmato 2026-07-15 a Palazzo Vidoni. Tre nuovi valori del punto parametrale: 200,90 EUR/anno (decorrenza 2025-01-01), 205,40 EUR/anno (2026-01-01), 207,51 EUR/anno (2027-01-01), da T3=195,50. Incremento totale +12,01 punti pari al +6,14%. Retroattività 2025 e 2026 in forma di arretrati. DPR di recepimento (art. 2 D.Lgs. 195/1995) non ancora emanato al 2026-09-09; firma definitiva sospesa per il nodo della previdenza dedicata. I nuovi periodi non sono modellati in attesa del DPR. Fonte: UIL Polizia (uilpolizia.com), money.it.
+    
 
 ## Raw data
 

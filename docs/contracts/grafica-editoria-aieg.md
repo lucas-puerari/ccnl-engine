@@ -82,9 +82,6 @@ percentage: 1.00
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    HOURLY DIVISOR: 173. SIMPLIFICATION: no official hourly rate table recovered for G011. The value 173 is derived from 40h/week standard (40×52/12=173.33→173). The CCNL uses divisore convenzionale 26 for daily calculations; the hourly divisor is inferred from the weekly-hours convention. If the actual contractual hours differ (e.g., 37.5h/week→163), divisore must be corrected.
-
-!!! warning ""
     SENIORITY: 5 scatti biennali (24 months), valid from kitech.it July 2026. SIMPLIFICATION: pre-July 2026 scatto amounts not modelled (prior rinnovo values not recovered). The engine uses July 2026 amounts for all periods — impact negligible for current-date calculations.
 
 ## Sources
@@ -98,6 +95,8 @@ These are deliberate modelling approximations. Read them before using this contr
     SALARY MODEL: the CCNL Grafica e Editoria Industria (G011) uses a split model with separate paga base (TEM), contingenza (frozen since 1992 per Prot. 31/07/1992), and EDR (10.33 EUR, all levels). The base_salary values in this file are the TOTAL (paga base + contingenza + EDR) per level and tranche, sourced from the official lexplain.it table (all 5 tranches) and kitech.it (July 2026 breakdown). Modeling the total as base_salary produces the same gross_monthly as the split representation. fixed_allowances is empty for all levels (no additional fixed components).
     
     CONGLOBATED CHECK: inter-level increase ratios are stable across all 5 tranches (e.g., Q/E = 1.937, C1/E = 1.357 at all dates), confirming a single parametric coefficient system. Contingenza is frozen per level (E=512.87, Q=539.99); EDR=10.33 uniform. Total values from lexplain cross-check with kitech July 2026 breakdown to within ±0.03 EUR (rounding difference).
+    
+    HOURLY DIVISOR: 173. G011 CCNL states orario normale 40 ore medie settimanali (confirmed conflavoro.it CCNL text and ilccnl.it). Formula 40×52/12=173.33→173. Daily divisore convenzionale 26 confirmed by lavoro-economia.it. The exact contractual divisore clause was not retrieved directly from primary text, but the 40h/week is unambiguous; divisor 173 is the correct derived value.
     
     TRANCHE DATES: 01.03.2024, 01.09.2024, 01.05.2025, 01.10.2025, 01.07.2026. Values from rinnovo 20.12.2024 (retroactive application). Fonte: lexplain.it (5 tranches, all 12 Grafici levels) and kitech.it (componenti breakdown July 2026).
     

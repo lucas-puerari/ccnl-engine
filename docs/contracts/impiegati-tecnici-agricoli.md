@@ -64,10 +64,7 @@ Latest effective values per level (monthly gross, EUR).
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    SINGLE TRANCHE. Only one salary tranche (01/07/2024) was found at time of extraction. If the 2024-2027 quadriennio provides additional tranches, update base_salary periods accordingly.
-
-!!! warning ""
-    INPS CONTRIBUTION BASE. INPS contributions for agricultural impiegati OTI are legally computed on the retribuzione convenzionale (set annually by INPS decree, DL 338/1989 Art. 1), not on the actual contractual salary. This engine applies rates to actual gross salary; net INPS figures are indicative only.
+    TWO TRANCHES NOT FULLY MODELLED. The CCNL A021 (signed 18/06/2024) establishes two tranches: +5% retroactive to 01/04/2024 and +1,9% from 01/01/2025 (source: dottrinalavoro.it; FLAI PDF; ilccnl.it). The file models only the first tranche (valid_from 2024-07-01, which likely reflects the 01/04/2024 increase with the official CNEL deposit date). The 01/01/2025 tranche is missing: approximate values are L1~1718.81 (1686.76×1.019) but exact official amounts not yet retrieved. Update valid_from to 2024-04-01 and add 2025-01-01 periods when confirmed from official source.
 
 !!! warning ""
     BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and Agrifondo (supplementary pension) bilateral contributions are not modelled.
@@ -99,6 +96,8 @@ These are deliberate modelling approximations. Read them before using this contr
     APPRENTICESHIP. A021 specifica apprendistato professionalizzante per D.Lgs. 81/2015. Le percentuali retributive sono definite nel Piano Formativo Individuale (PFI) concordato tra le parti del singolo rapporto di lavoro e non pubblicate come tabella contrattuale. Non esiste una tabella fissa di percentuali nel testo del CCNL: l'array apprenticeship è vuoto per struttura contrattuale, non per omissione di modellazione. Analogo ai contratti pubblici dove l'apprendistato è escluso dall'ambito di applicazione. (Fonte: contratticcnl.it/ccnl/a021, leggeinchiaro.it CCNL A021.)
     
     INDENNITA DI FUNZIONE: level 1Q receives +100.00 EUR/month additive to base_salary 1788.38. Modelled as fixed_allowance code IND_FUN. Source: lavoro-economia.it/ccnl/ccnl.aspx?c=3 (total 1888.38 'with function allowance').
+    
+    INPS CONTRIBUTION BASE. The retribuzione convenzionale regime (INPS annual decree) applies to operai agricoli OTD/OTI (braccianti), NOT to impiegati agricoli. For impiegati OTI, contributions are computed on actual contractual salary pursuant to DL 338/1989 Art. 1 minimale (contribution base cannot fall below CCNL minimum). The engine applies rates to actual gross salary, which is correct for impiegati. Source: INPS Circ. 43/2026 covers operai only; standard regime applies to impiegati. (Confirmed by confagricolturapadova.it/wp-content/uploads/2020/02/Contributi_minimi_2020.pdf, laprevidenza.it.)
     
 
 ## Raw data

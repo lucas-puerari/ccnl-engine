@@ -85,13 +85,6 @@ Destination levels: `2S`
 **prof_L2** (type: `under_classification`)  
 Destination levels: `2`
 
-## Known simplifications
-
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
-
-!!! warning ""
-    Seniority increments: amounts from lexplain.it (article on CCNL tessile seniority increments). It was not possible to verify whether the amounts were updated with the 2024 renewal or whether they date from the previous contract. SIMPLIFICATION: the available amounts are used as an estimate for both periods.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -106,6 +99,8 @@ These are deliberate modelling approximations. Read them before using this contr
     Level 8 function allowance: the total ERN published on lexplain.it (2,316.33) includes the function allowance (EUR 51.65). base_salary = ERN - 51.65 = 2,264.68 (pre-Dec 2024) and 2,457.72 (Jan 2026). Source kitech.it reports minimum and total separately for Level 8. Verification: combined increase (Dec2024+Jan2026) at Level 8 = EUR 193.04, expected proportional = 126.74% × 152.24 = EUR 193.12 (delta < 0.1 EUR). Interpretation confirmed.
     
     VV.PP. (Travelling and Area Salespeople): not modelled. Special category with their own rates (1st cat.: 1,932.91/1,932.91 pre-Dec 2024; 2nd cat.: 1,823.07); excluded due to complexity.
+    
+    Seniority increments (Art. 46 CCNL): amounts confirmed via ilccnl.it (updated 2024-11-12, day after renewal signing), which lists per-level hourly increment in the salary table: L1=6.71, L2=7.23, L2S=7.23, L3=7.75 EUR — matching lexplain.it values exactly. L4-L8 values (8.26, 9.81, 10.33, 11.88, 12.91 EUR) from lexplain.it Art. 46 table (published 2024-08-26), consistent with the confirmed lower-level pattern. November 2024 renewal announcements do not mention changes to scatti amounts; Art. 46 specifies a fixed amount "non rinnovato in aumento" per renewal. Verified 2026-09-09.
     
     Source for pre-Dec 2024 tables: lexplain.it, retrieved September 2026. Source for Jan 2026 tables: kitech.it, retrieved September 2026. Source for TEM and effective dates: SMI press release (sistemamodaitalia.com), November 2024.
     

@@ -79,10 +79,7 @@ These are deliberate modelling approximations. Read them before using this contr
     CNEL CODE A011 sourced from ilccnl.it and contratticcnl.it; unverified against CNEL archive (archive returned 404 at time of extraction). Code A014 belongs to a separate expired minority CCNL (ASNALI/FAGRI) — do not confuse.
 
 !!! warning ""
-    SENIORITY AMOUNTS. Art. 54 amounts (11.36 / 10.33 / 8.99) are from the 2022-2025 CCNL via aggregators (contratticcnl.it). The 2026 renewal text has not been confirmed to have changed these amounts; update manually if the renewed Art. 54 specifies different values.
-
-!!! warning ""
-    JANUARY 2027 TRANCHE. Amounts 1,533.84 / 1,398.86 / 1,043.00 computed as June 2026 values × 1.017 rounded to 2 decimal places. Exact CCNL renewal table values were not accessible at time of extraction; update if official tables show different rounding.
+    SENIORITY AMOUNTS. Art. 54 scatti di anzianità amounts (Area1=11.36, Area2=10.33, Area3=8.99) sourced from 2022-2025 CCNL via aggregators (contratticcnl.it). The 2026 renewal text has not been confirmed to have changed these amounts; INPS Circ. 94/2024 reports a different 5-level structure (L1=9.89, L2=11.36, L3=11.93, L4=12.50, L5=12.78) which may reflect a different classification schema. Update if the renewed Art. 54 specifies different area-based values.
 
 !!! warning ""
     APPRENTICESHIP — AREA1 DESTINATION ONLY. Area2 destination under-classification would require 2 levels below Area2, which is below the national floor (Area3), and cannot be modelled in a 3-level system. Area3 destination apprenticeship has no lower level to start from. Only Area1 destination (0-12m at Area3, 12-24m at Area2, 24-36m at Area1) is modelled.
@@ -99,6 +96,8 @@ These are deliberate modelling approximations. Read them before using this contr
 |---|---|---|---|
 | — | — | 2026-05-28 | [↗](https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/) |
 | — | — | 2026-01-01 | [↗](https://ciatreviso.it/contributi-inps-inail-2026-agricoli-aliquote-e-le-scadenze-per-operai-otd-e-oti/) |
+| — | — | 2024-11-13 | [↗](https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2024/11/Circolare_14697/Allegati/15379_Circolare-numero-94-del-13-11-2024_Allegato-n-1.pdf) |
+| — | — | 2025-01-01 | [↗](https://www.dottrinalavoro.it/wp-content/uploads/2024/12/Retribuzioni-al-1_1_2025.pdf) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated retribuzione tabellare minima (paga base + contingenza + EDR merged since 01/01/2009). Contingenza = 0.00 and EDR = 0.00 per ilccnl.it table. Single base_salary per area per period. Source: contratticcnl.it tabelle retributive, confirmed by research from ilccnl.it showing zero contingenza columns.
@@ -118,6 +117,10 @@ These are deliberate modelling approximations. Read them before using this contr
     CNEL CODE: A011. Confirmed from ilccnl.it page header and contratticcnl.it/ccnl/a011/. CNEL archive (cnel.it) returned 404 at time of extraction.
     
     APPRENTICESHIP: sotto-inquadramento (under_classification) per Allegato n. 10 CCNL (23/02/2017 apprenticeship agreement, updated to D.Lgs. 81/2015). Area1 destination only — see SIMPLIFICATION note. Duration 36 months for Area1.
+    
+    HISTORICAL PERIODS ADDED (2026-09-09). Three salary periods now modelled per area: (1) 2023-01-01: INPS Circ. n.94/2024 Allegato 1 (primary source, Area1=1389.15, Area2=1266.90, Area3=944.62). (2) 2025-01-01: Dottrinalavoro Jan 2025 PDF (Area1=1458.61, Area2=1330.25, Area3=991.85). Cross-check: 2025 values / 2023 values = 1.050 (approx. +5% tranche per 2022-2025 CCNL). (3) 2026-06-01: first tranche of 2026-2029 renewal (+3.4%). 2023-01-01 is the earliest verified period; pre-2023 values not modelled.
+    
+    JANUARY 2027 TRANCHE. Amounts 1,533.84 / 1,398.86 / 1,043.00 computed as June 2026 values × 1.017 (second tranche +1.7% per CCNL renewal) rounded to 2 decimal places. Math verified: 1508.20×1.017=1533.84, 1375.48×1.017=1398.86, 1025.57×1.017=1043.00 (all exact). Update if official post-renewal tables show different rounding.
     
 
 ## Raw data
