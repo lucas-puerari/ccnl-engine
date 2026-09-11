@@ -1,8 +1,42 @@
-"""Tests for engine.rounding — money() function."""
+"""Tests for engine.rounding — RoundingPolicy and money()."""
 
-from decimal import Decimal
+from dataclasses import FrozenInstanceError
+from decimal import ROUND_HALF_UP, Decimal
 
-from ccnl_engine.engine.payroll.service.rounding import money
+import pytest
+
+from ccnl_engine.engine.payroll.service.rounding import MONETARY, RoundingPolicy, money
+
+
+class TestRoundingPolicy:
+    """Unit tests for RoundingPolicy."""
+
+    def test_apply_delegates_quantize(self) -> None:
+        """apply() rounds to the declared precision using the declared mode."""
+        policy = RoundingPolicy(
+            precision=Decimal("0.01"), mode=ROUND_HALF_UP, stage="monetary"
+        )
+        assert policy.apply(Decimal("2.345")) == Decimal("2.35")
+
+    def test_str_returns_mode_and_precision(self) -> None:
+        """str() returns '{mode} {precision}' — the trace descriptor format."""
+        policy = RoundingPolicy(
+            precision=Decimal("0.01"), mode=ROUND_HALF_UP, stage="monetary"
+        )
+        assert str(policy) == "ROUND_HALF_UP 0.01"
+
+    def test_monetary_constant_descriptor(self) -> None:
+        """MONETARY stringifies to the exact descriptor used in fiscal traces.
+
+        This assertion is a frozen contract: if precision or mode changes, the
+        trace rounding field changes too, and this test fails loudly.
+        """
+        assert str(MONETARY) == "ROUND_HALF_UP 0.01"
+
+    def test_monetary_is_frozen(self) -> None:
+        """MONETARY is a frozen dataclass — mutation raises FrozenInstanceError."""
+        with pytest.raises(FrozenInstanceError):
+            MONETARY.precision = Decimal("0.001")  # type: ignore[misc]
 
 
 class TestMoney:

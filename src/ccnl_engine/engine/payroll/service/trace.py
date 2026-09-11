@@ -27,6 +27,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Literal
 
 from ccnl_engine.engine.payroll.domain.calculation import TraceCategory, TraceStep
+from ccnl_engine.engine.payroll.service.rounding import MONETARY
 
 if TYPE_CHECKING:
     from decimal import Decimal
@@ -34,7 +35,8 @@ if TYPE_CHECKING:
 _ANNUAL: Literal["annual"] = "annual"
 
 # Standard rounding descriptor used for all money() applications.
-_ROUNDING = "ROUND_HALF_UP 0.01"
+# Derived from MONETARY so trace and implementation stay in sync.
+_ROUNDING = str(MONETARY)
 
 # Static per-category metadata: formula, source, rounding.
 # Only categories with at least one populated field are listed.
