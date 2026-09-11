@@ -5,7 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import Self
 
-from pydantic import BaseModel, ConfigDict, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.engine.metadata import RulesetIdentity
 from ccnl_engine.engine.primitives import Bracket
@@ -78,9 +78,9 @@ class RegionaleRaw(BaseModel):
     model_config = ConfigDict(extra="forbid")
     year: int
     ruleset: RulesetIdentity | None = None
-    notes: list[str] = []
+    notes: list[str] = Field(default_factory=list)
     rates: dict[str, RegionaleEntry]
-    sources: list[SourceDocument] = []
+    sources: list[SourceDocument] = Field(default_factory=list)
     extraction: ExtractionTrace | None = None
 
 

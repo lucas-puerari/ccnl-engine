@@ -153,7 +153,7 @@ class TimeSupplements(BaseModel):
     hourly_base_method: Literal["minimo_tabellare", "gross_incl_allowances"] = (
         "minimo_tabellare"
     )
-    overtime_bands: list[OvertimeBand] = []
+    overtime_bands: list[OvertimeBand] = Field(default_factory=list)
 
 
 class DailyDivisorMethod(StrEnum):
@@ -221,7 +221,7 @@ class LeaveRules(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     default_annual_days: Decimal = Field(gt=Decimal(0))
-    entitlement_tiers: list[LeaveEntitlementTier] = []
+    entitlement_tiers: list[LeaveEntitlementTier] = Field(default_factory=list)
     provenance: "RuleProvenance | None" = None
 
 
@@ -286,7 +286,7 @@ class SicknessRules(BaseModel):
 
     carenza_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
     full_pay_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
-    tiers: list[SicknessTier] = []
+    tiers: list[SicknessTier] = Field(default_factory=list)
     max_duration_days: int = Field(default=180, ge=1)
     provenance: "RuleProvenance | None" = None
 
@@ -436,12 +436,12 @@ class SeniorityIncrements(BaseModel):
     cadence_months: int = Field(gt=0)
     maximum_count: int = Field(ge=0)
     amount_by_level: dict[str, TimeSeries]
-    tiers: list[SeniorityTier] = []
+    tiers: list[SeniorityTier] = Field(default_factory=list)
     first_cadence_months: int | None = Field(default=None, gt=0)
     first_cadence_months_by_level: dict[str, int] = {}
     maximum_count_by_level: dict[str, int] = {}
     apprentice_amount: TimeSeries | None = None
-    excluded_categories: list[LevelCategory] = []
+    excluded_categories: list[LevelCategory] = Field(default_factory=list)
     amount_by_level_by_category: dict[LevelCategory, dict[str, TimeSeries]] = {}
     maximum_count_by_category: dict[LevelCategory, int] = {}
     first_cadence_months_by_category: dict[LevelCategory, int] = {}
@@ -568,7 +568,7 @@ class CCNLParameters(BaseModel):
     hourly_divisor: TimeSeries
     additional_months: TimeSeries
     seniority_increments: SeniorityIncrements
-    employer_funds: list[EmployerFund] = []
+    employer_funds: list[EmployerFund] = Field(default_factory=list)
 
 
 class Level(BaseModel):
@@ -594,7 +594,7 @@ class Level(BaseModel):
     order: int
     description: str
     base_salary: TimeSeries
-    fixed_allowances: list[Allowance] = []
+    fixed_allowances: list[Allowance] = Field(default_factory=list)
     category: LevelCategory | None = None
     provenance: RuleProvenance | None = None
 

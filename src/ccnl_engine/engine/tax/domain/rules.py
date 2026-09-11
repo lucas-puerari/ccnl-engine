@@ -354,10 +354,10 @@ class YearRulesRaw(BaseModel):
     tfr: TfrRules
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
     sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
-    notes: list[str] = []
-    sources: list[SourceDocument] = []
+    notes: list[str] = Field(default_factory=list)
+    sources: list[SourceDocument] = Field(default_factory=list)
     extraction: ExtractionTrace | None = None
-    inps_sources: list[SourceDocument] = []
+    inps_sources: list[SourceDocument] = Field(default_factory=list)
     inps_extraction: ExtractionTrace | None = None
 
     @model_validator(mode="after")
@@ -396,10 +396,10 @@ class YearRules(BaseModel):
     tfr: TfrRules
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
     sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
-    notes: list[str] = []
-    sources: list[SourceDocument] = []
+    notes: list[str] = Field(default_factory=list)
+    sources: list[SourceDocument] = Field(default_factory=list)
     extraction: ExtractionTrace | None = None
-    inps_sources: list[SourceDocument] = []
+    inps_sources: list[SourceDocument] = Field(default_factory=list)
     inps_extraction: ExtractionTrace | None = None
 
     @model_validator(mode="after")
