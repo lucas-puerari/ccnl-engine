@@ -28,7 +28,7 @@ calculation = compute(
             ccnl="metalmeccanico-federmeccanica.json",
             contract=Permanent(),
             employer=Employer(num_employees=200),
-            date=date(2026, 6, 1),
+            calculation_date=date(2026, 6, 1),
         ),
     )
 )

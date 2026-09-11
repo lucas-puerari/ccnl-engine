@@ -429,7 +429,7 @@ class TestTraceInvariant:
                 ccnl=inputs["ccnl_file"],
                 contract=contract,
                 employer=Employer(num_employees=num_employees),
-                date=date.fromisoformat(inputs["as_of"]),
+                calculation_date=date.fromisoformat(inputs["as_of"]),
             ),
         )
         calc = compute(scenario)
@@ -674,7 +674,7 @@ class TestFiscalStepsRoundtrip:
                 ccnl=inputs["ccnl_file"],
                 contract=contract,
                 employer=Employer(num_employees=num_employees),
-                date=date.fromisoformat(inputs["as_of"]),
+                calculation_date=date.fromisoformat(inputs["as_of"]),
             ),
         )
         calc = compute(scenario)

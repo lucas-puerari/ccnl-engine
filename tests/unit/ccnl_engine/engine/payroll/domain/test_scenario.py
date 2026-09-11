@@ -2,7 +2,7 @@
 
 Covers:
 * Employee.__post_init__ — part_time_pct and weekly_hours validation
-* Employee.seniority_count / seniority_months properties
+* Employee.seniority_count / seniority_months / seniority_months_as_of
 * Agreement.__post_init__ — ad_personam_monthly validation
 * Employer.__post_init__ — num_employees validation
 * Employment.tax_year override (None vs explicit year)
@@ -18,6 +18,7 @@ import pytest
 
 from ccnl_engine.engine.payroll.domain.employee import (
     SeniorityByCount,
+    SeniorityByDate,
     SeniorityByMonths,
 )
 from ccnl_engine.engine.payroll.domain.employment import Permanent
@@ -114,6 +115,43 @@ class TestEmployeeSeniorityProperties:
         assert e.seniority_count is None
         assert e.seniority_months is None
 
+    def test_seniority_months_none_for_by_date(self) -> None:
+        """seniority_months returns None when expressed as a date (no as_of)."""
+        e = Employee(level_code="4", seniority=SeniorityByDate(date(2023, 1, 1)))
+        assert e.seniority_months is None
+        assert e.seniority_count is None
+
+
+class TestSeniorityMonthsAsOf:
+    """Employee.seniority_months_as_of resolves all three union variants."""
+
+    def test_by_months_returns_stored_value(self) -> None:
+        """SeniorityByMonths: stored value is returned regardless of as_of."""
+        e = Employee(level_code="4", seniority=SeniorityByMonths(36))
+        assert e.seniority_months_as_of(date(2026, 1, 1)) == 36
+
+    def test_by_date_computes_calendar_months(self) -> None:
+        """SeniorityByDate: months gap between hire and as_of is computed."""
+        # Hired 2023-01-01, calculation 2026-01-01 → 36 months exactly.
+        e = Employee(level_code="4", seniority=SeniorityByDate(date(2023, 1, 1)))
+        assert e.seniority_months_as_of(date(2026, 1, 1)) == 36
+
+    def test_by_date_mid_year_gap(self) -> None:
+        """SeniorityByDate: partial-year gaps computed correctly."""
+        # Hired 2022-03-01, calculation 2026-09-01 → 54 months.
+        e = Employee(level_code="4", seniority=SeniorityByDate(date(2022, 3, 1)))
+        assert e.seniority_months_as_of(date(2026, 9, 1)) == 54
+
+    def test_by_count_returns_none(self) -> None:
+        """SeniorityByCount: months not applicable — None returned."""
+        e = Employee(level_code="4", seniority=SeniorityByCount(3))
+        assert e.seniority_months_as_of(date(2026, 1, 1)) is None
+
+    def test_none_seniority_returns_none(self) -> None:
+        """No seniority: None returned."""
+        e = Employee(level_code="4", seniority=None)
+        assert e.seniority_months_as_of(date(2026, 1, 1)) is None
+
 
 # ---------------------------------------------------------------------------
 # Agreement validation
@@ -182,7 +220,7 @@ class TestEmploymentTaxYear:
             ccnl="test.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            date=_DATE,
+            calculation_date=_DATE,
         )
         assert emp.tax_year is None
 
@@ -192,21 +230,21 @@ class TestEmploymentTaxYear:
             ccnl="test.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            date=_DATE,
+            calculation_date=_DATE,
             tax_year=2026,
         )
         assert emp.tax_year == 2026
 
-    def test_tax_year_can_differ_from_date_year(self) -> None:
-        """tax_year may differ from date.year (cross-year computation)."""
+    def test_tax_year_can_differ_from_calculation_date_year(self) -> None:
+        """tax_year may differ from calculation_date.year (cross-year computation)."""
         emp = Employment(
             ccnl="test.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            date=date(2025, 11, 1),
+            calculation_date=date(2025, 11, 1),
             tax_year=2026,
         )
-        assert emp.date.year == 2025
+        assert emp.calculation_date.year == 2025
         assert emp.tax_year == 2026
 
 
@@ -247,7 +285,7 @@ class TestPayrollScenario:
                 ccnl="test.json",
                 contract=Permanent(),
                 employer=Employer(num_employees=50),
-                date=_DATE,
+                calculation_date=_DATE,
             ),
         )
         assert scenario.employee.level_code == "4"
@@ -262,7 +300,7 @@ class TestPayrollScenario:
                 ccnl="test.json",
                 contract=Permanent(),
                 employer=Employer(num_employees=50),
-                date=_DATE,
+                calculation_date=_DATE,
             ),
         )
         with pytest.raises((AttributeError, TypeError)):

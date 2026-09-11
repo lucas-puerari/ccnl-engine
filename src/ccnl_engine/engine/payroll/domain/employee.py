@@ -9,13 +9,14 @@ in :mod:`ccnl_engine.engine.payroll.domain.scenario`.
 This module retains only the discriminated-union helpers that those top-level
 types reference:
 
-- :class:`SeniorityByCount` / :class:`SeniorityByMonths`
+- :class:`SeniorityByCount` / :class:`SeniorityByMonths` / :class:`SeniorityByDate`
 - :class:`RalOverride` / :class:`DestinationRalOverride`
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import date
 from decimal import Decimal
 
 _ZERO: Decimal = Decimal(0)
@@ -75,8 +76,27 @@ class SeniorityByMonths:
             raise ValueError(msg)
 
 
-#: Union of the two seniority input strategies.
-Seniority = SeniorityByCount | SeniorityByMonths
+@dataclass(frozen=True)
+class SeniorityByDate:
+    """Seniority expressed as a hire or service-start date.
+
+    The engine derives months of service from the gap between this date and
+    :attr:`~ccnl_engine.engine.payroll.domain.scenario.Employment\
+.calculation_date`, then applies the CCNL cadence rules to arrive at an
+    increment count.
+
+    Use this when you track the worker's hire date rather than months or
+    increment count directly.
+
+    Attributes:
+        value: Hire date or continuous-service start date.
+    """
+
+    value: date
+
+
+#: Union of all seniority input strategies.
+Seniority = SeniorityByCount | SeniorityByMonths | SeniorityByDate
 
 
 # ---------------------------------------------------------------------------

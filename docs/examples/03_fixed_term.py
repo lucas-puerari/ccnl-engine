@@ -24,7 +24,7 @@ permanent = compute(
             ccnl="commercio-confcommercio.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            date=date(2026, 1, 1),
+            calculation_date=date(2026, 1, 1),
         ),
     )
 )
@@ -35,7 +35,7 @@ fixed_term = compute(
             ccnl="commercio-confcommercio.json",
             contract=FixedTerm(),
             employer=Employer(num_employees=50),
-            date=date(2026, 1, 1),
+            calculation_date=date(2026, 1, 1),
         ),
     )
 )

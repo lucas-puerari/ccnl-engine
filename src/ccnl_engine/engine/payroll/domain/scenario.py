@@ -32,6 +32,7 @@ from ccnl_engine.engine.payroll.domain.employee import (
     DestinationRalOverride,
     RalOverride,
     SeniorityByCount,
+    SeniorityByDate,
     SeniorityByMonths,
 )
 from ccnl_engine.engine.payroll.domain.employment import (
@@ -113,9 +114,11 @@ class Employee:
             (e.g. ``"D3"``). Must match a level in the applied CCNL.
         seniority: Seniority expressed as an explicit increment count
             (:class:`~ccnl_engine.engine.payroll.domain.employee\
-.SeniorityByCount`) or as months of service
+.SeniorityByCount`), as months of service
             (:class:`~ccnl_engine.engine.payroll.domain.employee\
-.SeniorityByMonths`). ``None`` means no increment applies.
+.SeniorityByMonths`), or as a hire date
+            (:class:`~ccnl_engine.engine.payroll.domain.employee\
+.SeniorityByDate`). ``None`` means no increment applies.
         part_time_pct: Part-time coefficient in the range ``(0, 1]``.
             Full-time workers use the default ``1``.
         weekly_hours: Contractual weekly hours. Required when the tax-rules
@@ -136,7 +139,7 @@ class Employee:
     """
 
     level_code: str
-    seniority: SeniorityByCount | SeniorityByMonths | None = None
+    seniority: SeniorityByCount | SeniorityByMonths | SeniorityByDate | None = None
     part_time_pct: Decimal = _ONE
     weekly_hours: Decimal | None = None
     category: LevelCategory | None = None
@@ -169,12 +172,41 @@ class Employee:
 
     @property
     def seniority_months(self) -> int | None:
-        """Service months elapsed, or ``None`` when expressed as a count."""
+        """Service months elapsed, or ``None`` when expressed as a count or date.
+
+        For date-based seniority, use :meth:`seniority_months_as_of` instead.
+        """
         return (
             self.seniority.value
             if isinstance(self.seniority, SeniorityByMonths)
             else None
         )
+
+    def seniority_months_as_of(self, as_of: date) -> int | None:
+        """Return service months elapsed at *as_of*, resolving all variants.
+
+        - :class:`~ccnl_engine.engine.payroll.domain.employee.SeniorityByMonths`:
+          returns the stored months value directly.
+        - :class:`~ccnl_engine.engine.payroll.domain.employee.SeniorityByDate`:
+          computes the calendar-month gap between the hire date and *as_of*.
+        - :class:`~ccnl_engine.engine.payroll.domain.employee.SeniorityByCount`
+          or ``None``: returns ``None`` (months not applicable).
+
+        Args:
+            as_of: The reference date, typically
+                :attr:`~ccnl_engine.engine.payroll.domain.scenario\
+.Employment.calculation_date`.
+
+        Returns:
+            Months of service, or ``None`` when seniority is expressed as
+            a count or not provided.
+        """
+        if isinstance(self.seniority, SeniorityByMonths):
+            return self.seniority.value
+        if isinstance(self.seniority, SeniorityByDate):
+            hire = self.seniority.value
+            return (as_of.year - hire.year) * 12 + (as_of.month - hire.month)
+        return None
 
 
 @dataclass(frozen=True)
@@ -222,19 +254,22 @@ class Employment:
             or :class:`~ccnl_engine.engine.payroll.domain.employment\
 .Apprentice`.
         employer: Employer-side inputs including headcount.
-        date: Reference date for all time-series lookups (base pay,
-            seniority amounts, allowances, additional months).
+        calculation_date: Reference date for all time-series lookups (base pay,
+            seniority amounts, allowances, additional months). Also the
+            upper bound for deriving months of service when seniority is
+            expressed as a :class:`~ccnl_engine.engine.payroll.domain\
+.employee.SeniorityByDate`.
         tax_year: Override the fiscal year used for tax/INPS rule loading.
-            When ``None`` (default), ``date.year`` is used. Set explicitly
-            when applying a specific year's tax rules to a date in a
-            different calendar year (e.g. computing a late-2025 payslip
-            with 2026 tax rules already in force).
+            When ``None`` (default), ``calculation_date.year`` is used.
+            Set explicitly when applying a specific year's tax rules to a
+            date in a different calendar year (e.g. computing a late-2025
+            payslip with 2026 tax rules already in force).
     """
 
     ccnl: str
     contract: Permanent | FixedTerm | Apprentice
     employer: Employer
-    date: date
+    calculation_date: date
     tax_year: int | None = None
 
 
@@ -255,7 +290,7 @@ class PayrollScenario:
                 ccnl="metalmeccanico-federmeccanica.json",
                 contract=Permanent(),
                 employer=Employer(num_employees=50),
-                date=date(2026, 1, 1),
+                calculation_date=date(2026, 1, 1),
             ),
         ))
 

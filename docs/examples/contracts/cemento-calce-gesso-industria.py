@@ -20,7 +20,7 @@ p = compute(
             ccnl="cemento-calce-gesso-industria.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            date=date(2026, 10, 1),
+            calculation_date=date(2026, 10, 1),
         ),
     )
 )

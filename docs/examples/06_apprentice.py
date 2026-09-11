@@ -29,7 +29,7 @@ apprentice = compute(
             ccnl="metalmeccanico-artigianato.json",
             contract=Apprentice(months_elapsed=12),
             employer=Employer(num_employees=12),
-            date=date(2026, 1, 1),
+            calculation_date=date(2026, 1, 1),
         ),
     )
 )
@@ -42,7 +42,7 @@ permanent = compute(
             ccnl="metalmeccanico-artigianato.json",
             contract=Permanent(),
             employer=Employer(num_employees=12),
-            date=date(2026, 1, 1),
+            calculation_date=date(2026, 1, 1),
         ),
     )
 )

@@ -137,6 +137,6 @@ def _req(
                 num_employees=num_employees,
                 second_level_allowances=second_level_allowances,
             ),
-            date=as_of,
+            calculation_date=as_of,
         ),
     )

@@ -1287,7 +1287,7 @@ class TestLoadAlimentariFederalimentare:
                     ccnl="alimentari-federalimentare.json",
                     contract=Apprentice(months_elapsed=5),
                     employer=Employer(num_employees=50),
-                    date=date(2026, 1, 1),
+                    calculation_date=date(2026, 1, 1),
                 ),
             )
         )
@@ -2662,7 +2662,7 @@ class TestLoadBccCreditoCooperativo:
                     ccnl="bcc-credito-cooperativo.json",
                     contract=Apprentice(months_elapsed=12),
                     employer=Employer(num_employees=50),
-                    date=date(2026, 6, 1),
+                    calculation_date=date(2026, 6, 1),
                 ),
             )
         )

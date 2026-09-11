@@ -5,7 +5,7 @@ assembles a list of :class:`~ccnl_engine.engine.payroll.domain.scenario.\
 PayrollScenario` objects (e.g. by loading the reference JSON cases) and
 passes them to :func:`count_affected_scenarios`.  The function runs each
 scenario twice -- once at *from_date*, once at *to_date* -- by substituting
-``Employment.date``, and returns the count of scenarios whose
+``Employment.calculation_date``, and returns the count of scenarios whose
 :class:`~ccnl_engine.engine.payroll.domain.payroll_result.PayrollResult`
 differs in any field.
 """
@@ -32,8 +32,8 @@ def count_affected_scenarios(
 ) -> int:
     """Count scenarios whose payroll result changes between two dates.
 
-    Each scenario is run twice: once with ``Employment.date`` set to
-    *from_date* and once with *to_date*.  A scenario is *affected* when
+    Each scenario is run twice: once with ``Employment.calculation_date`` set
+    to *from_date* and once with *to_date*.  A scenario is *affected* when
     any :class:`~ccnl_engine.engine.payroll.domain.payroll_result.\
 PayrollResult` field (other than ``as_of``) differs between the two runs.
 
@@ -66,8 +66,12 @@ def _compute_pair(
     Returns:
         A ``(before, after)`` result pair, or ``None`` if either run fails.
     """
-    before_employment = dataclasses.replace(scenario.employment, date=from_date)
-    after_employment = dataclasses.replace(scenario.employment, date=to_date)
+    before_employment = dataclasses.replace(
+        scenario.employment, calculation_date=from_date
+    )
+    after_employment = dataclasses.replace(
+        scenario.employment, calculation_date=to_date
+    )
     before_scenario = dataclasses.replace(scenario, employment=before_employment)
     after_scenario = dataclasses.replace(scenario, employment=after_employment)
     try:

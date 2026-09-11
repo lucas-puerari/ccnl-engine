@@ -104,7 +104,7 @@ def _resolve_tax_year(employment: Employment) -> int:
     """
     if employment.tax_year is not None:
         return employment.tax_year
-    return employment.date.year
+    return employment.calculation_date.year
 
 
 def _resolve_worker_category(
@@ -796,7 +796,9 @@ def _run_wr_leave(
     if wr_leave_present:
         assert ccnl.work_rules is not None  # narrowing for mypy
         assert ccnl.work_rules.leave_rules is not None
-        service_months = scenario.employee.seniority_months
+        service_months = scenario.employee.seniority_months_as_of(
+            scenario.employment.calculation_date
+        )
         accrued, taken, balance = compute_leave(
             leave_input=leave_input,
             leave_rules=ccnl.work_rules.leave_rules,
@@ -1279,7 +1281,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
     """
     # Load rulesets from the knowledge base
     ccnl = load_ccnl(scenario.employment.ccnl)
-    as_of = scenario.employment.date
+    as_of = scenario.employment.calculation_date
     year = _resolve_tax_year(scenario.employment)
     rules = load_year_rules(
         year, ccnl.meta.tax_sector, scenario.employment.employer.num_employees
@@ -1302,7 +1304,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
     worker_category = _resolve_worker_category(scenario, level)
 
     seniority_count_val = scenario.employee.seniority_count
-    seniority_months_val = scenario.employee.seniority_months
+    seniority_months_val = scenario.employee.seniority_months_as_of(as_of)
     count = _resolve_seniority_count(
         ccnl.parameters.seniority_increments,
         scenario.employee.level_code,

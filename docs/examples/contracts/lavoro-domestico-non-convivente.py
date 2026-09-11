@@ -22,7 +22,7 @@ p = compute(
             ccnl="lavoro-domestico-non-convivente.json",
             contract=Permanent(),
             employer=Employer(num_employees=1),
-            date=date(2026, 9, 1),
+            calculation_date=date(2026, 9, 1),
         ),
     )
 )
