@@ -1,0 +1,52 @@
+{
+  "_description": "L3 time supplement — CCNL Sistemazioni Idraulico-Forestali (Impiegati), I4, 10h straordinario diurno, 2026-06-01",
+  "_notes": [
+    "Verifies weekday overtime supplement is computed correctly and does not alter gross_annual/net_annual.",
+    "Maggiorazione straordinario diurno 30% su minimo tabellare per Art. 37 CCNL 2023.",
+    "I4 minimo tabellare 2026-06-01 = 1617.94; divisore orario = 169.",
+    "Supplement = 10h * 0.30 * (1617.94/169) = 10 * 0.30 * 9.5737... = 28.72."
+  ],
+  "source": {
+    "document": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria 2023 (Impiegati)",
+    "section": "Art. 37 — Lavoro straordinario, festivo, notturno (a) lavoro straordinario 30%)",
+    "verified_by": "lucas.puerari@intella.tech",
+    "verified_on": "2026-09-11",
+    "verification_status": "unverified"
+  },
+  "inputs": {
+    "ccnl_file": "sistemazioni-idraulico-forestali-impiegati.json",
+    "year": 2026,
+    "tax_sector": "agricoltura",
+    "num_employees": 50,
+    "level_code": "I4",
+    "as_of": "2026-06-01",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "seniority_count": 0,
+    "negotiated_ral": null,
+    "months_elapsed": null,
+    "weekly_hours": null,
+    "category": null,
+    "regione": null,
+    "comune_belfiore": null,
+    "ivs_ceiling_applies": false,
+    "time_supplements": {
+      "weekday_hours": "10",
+      "night_hours": "0",
+      "holiday_hours": "0",
+      "supplementare_hours": "0"
+    }
+  },
+  "expected": {
+    "gross_monthly": "1617.94",
+    "gross_annual": "22651.16",
+    "net_annual": "17437.57",
+    "base_monthly_full_time": "1617.94",
+    "overtime_supplement_monthly": "28.72",
+    "night_supplement_monthly": "0.00",
+    "holiday_supplement_monthly": "0.00",
+    "time_supplements_monthly": "28.72",
+    "time_supplements_annual_projection": "402.08",
+    "warnings": []
+  }
+}

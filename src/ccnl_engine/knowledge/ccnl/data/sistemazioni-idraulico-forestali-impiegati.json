@@ -67,11 +67,15 @@
       {
         "kind": "simplification",
         "text": "Structural rules (Art. 7, 35, 41, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification."
+      },
+      {
+        "kind": "info",
+        "text": "OVERTIME/LEAVE/ABSENCE (L3): Art. 37 CCNL 2023 — straordinario 30%, notturno 50%, festivo 50%. Ferie 22 giorni (orario su 5 giorni, Art. 12). Malattia: integrazione datoriale al 100% per max 6 mesi (Art. 44). Assenza: divisore 26. Rates from 2023 CCNL PDF; 2025 rinnovo structural rules assumed unchanged (text image-only)."
       }
     ],
     "gross": "implemented",
     "net": "partial",
-    "work_rules": "not_implemented"
+    "work_rules": "implemented"
   },
   "levels": [
     {
@@ -948,6 +952,187 @@
     "source": "https://www.lavoro-economia.it/?c=9",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "fc402f71fbb715b6ba35a0b5d356844b85444b0becd0d7ca1106a1b7d2dad1a4"
+    "source_hash": "a6656b8d506bc02cef0e28cad22543fa664e630d00986fb8e32675928552f73b"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "sistemazioni-idraulico-forestali-impiegati",
+                "title": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lavoro-economia.it/?c=9"
+              },
+              "section": "Art. 37 -- Lavoro straordinario, festivo, notturno (a) lavoro straordinario 30%)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-11T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Lavoro notturno (22:00-06:00)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "sistemazioni-idraulico-forestali-impiegati",
+                "title": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lavoro-economia.it/?c=9"
+              },
+              "section": "Art. 37 -- Lavoro straordinario, festivo, notturno (b) lavoro notturno 50%)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-11T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Lavoro festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "sistemazioni-idraulico-forestali-impiegati",
+                "title": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lavoro-economia.it/?c=9"
+              },
+              "section": "Art. 37 -- Lavoro straordinario, festivo, notturno (c) lavoro festivo 50%)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-11T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "sistemazioni-idraulico-forestali-impiegati",
+            "title": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/?c=9"
+          },
+          "section": "Art. 39 -- Retribuzione (paga giornaliera = mensile / 26; oraria = mensile / 169)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "22",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "sistemazioni-idraulico-forestali-impiegati",
+            "title": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/?c=9"
+          },
+          "section": "Art. 12 -- Ferie (22 giornate se orario distribuito su 5 giorni, escluso sabato)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "sistemazioni-idraulico-forestali-impiegati",
+            "title": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/?c=9"
+          },
+          "section": "Art. 44 -- Malattia ed infortunio (fino a 6 mesi stipendio intero per anzianita' oltre 10 anni)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    }
   }
 }

@@ -30,9 +30,9 @@ family deductions (Art. 12), mortgage interest deduction (Art. 15).
 **L3 — Work rules:** overtime/night/holiday supplements, sick/injury leave,
 leave entitlement, absence deduction.
 
-**Coverage %:** (L1 x 50% + L2 x 35% + work_rules x 15%) - 5% per missing data
-note (max -20%). work_rules status defaults to not_implemented for most contracts
-(data exists but coverage block not yet updated); current maximum is 85%.
+**Coverage %:** (L1 x 50% + L2 x 35% + L3 x 15%) - 5% per missing data
+note (max -20%). All 105 supported contracts have L3 implemented; maximum
+attainable score is 100%.
 
 ## Matrix
 

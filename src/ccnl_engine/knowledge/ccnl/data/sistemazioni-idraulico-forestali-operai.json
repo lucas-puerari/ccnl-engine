@@ -63,11 +63,15 @@
       {
         "kind": "info",
         "text": "Apprendistato durate: la tabella Art. 7 elenca livelli 2-6 (scala impiegati). Le durate sono mappate su O3/O4/O5 per corrispondenza di livello; la ripartizione per categoria non e confermata dal testo."
+      },
+      {
+        "kind": "info",
+        "text": "OVERTIME/LEAVE/ABSENCE (L3): Art. 50 CCNL 2023 — straordinario diurno 24%, notturno straordinario 38%, festivo straordinario 50%. Ferie 22 giorni (orario su 5 giorni, Art. 12). Malattia: trattamento INPS; nessuna integrazione datoriale a livello CCNL nazionale (Art. 60). Assenza: divisore 26. Rates from 2023 CCNL PDF; 2025 rinnovo structural rules assumed unchanged (text image-only)."
       }
     ],
     "gross": "implemented",
     "net": "partial",
-    "work_rules": "not_implemented"
+    "work_rules": "implemented"
   },
   "levels": [
     {
@@ -706,6 +710,187 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "563f9a19f5a80a8fd98e502b3b6cf8c69f850951e33494f06f218b9ad60de1aa"
+    "source_hash": "9ef5c4af2b3a69a8fbbe91b5b0059bf97b80afce24da8c7bbd9ead9d8b3acf19"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "value": 0.24,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "sistemazioni-idraulico-forestali-operai",
+                "title": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)",
+                "kind": "tabella_retributiva",
+                "url": "https://redigo.info/"
+              },
+              "section": "Art. 50 -- Lavoro straordinario, notturno e festivo (1) lavoro straordinario diurno 24%)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-11T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Lavoro notturno straordinario (22:00-06:00)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "value": 0.38,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "sistemazioni-idraulico-forestali-operai",
+                "title": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)",
+                "kind": "tabella_retributiva",
+                "url": "https://redigo.info/"
+              },
+              "section": "Art. 50 -- Lavoro straordinario, notturno e festivo (6) lavoro notturno straordinario 38%)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-11T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Lavoro festivo straordinario",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "sistemazioni-idraulico-forestali-operai",
+                "title": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)",
+                "kind": "tabella_retributiva",
+                "url": "https://redigo.info/"
+              },
+              "section": "Art. 50 -- Lavoro straordinario, notturno e festivo (3) lavoro festivo straordinario 50%)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-11T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "sistemazioni-idraulico-forestali-operai",
+            "title": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)",
+            "kind": "tabella_retributiva",
+            "url": "https://redigo.info/"
+          },
+          "section": "Art. 52 -- Retribuzione (paga giornaliera = mensile / 26; oraria = mensile / 169)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "22",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "sistemazioni-idraulico-forestali-operai",
+            "title": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)",
+            "kind": "tabella_retributiva",
+            "url": "https://redigo.info/"
+          },
+          "section": "Art. 12 -- Ferie (22 giornate se orario distribuito su 5 giorni, escluso sabato)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "0",
+      "full_pay_integration_rate": "0",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "sistemazioni-idraulico-forestali-operai",
+            "title": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)",
+            "kind": "tabella_retributiva",
+            "url": "https://redigo.info/"
+          },
+          "section": "Art. 60 -- Assicurazioni sociali (trattamento INPS; nessuna integrazione datoriale nazionale)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-11T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    }
   }
 }
