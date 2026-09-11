@@ -66,27 +66,15 @@ Coverage % = (L1 × 50% + L2 × 35% + L3 × 15%) − 5% per missing data note (m
 
 → [**CCNL coverage table**](https://lucas-puerari.github.io/ccnl-engine/docs/contracts/index.html) — per-contract coverage, verification status, and feature breakdown
 
-## What is not modelled
+## Scope boundaries
 
-**Outside engine scope:**
-
-- Bilateral system contributions (EST, Fon.Te, …)
-
-**Computed but informational (not folded into `net_annual`):**
-
-L3 outputs (overtime supplements, absence deductions, sick-pay integration,
-bonus/welfare amounts) are reported alongside the payroll but do not mutate
-`gross_annual` or `net_annual`. Treat them as a separate line-item report.
-
-**Opt-in (provide inputs to activate):**
-
-- Family-dependent deductions (Art. 12 TUIR) — set `PayrollScenario.family`
-  with a `FamilyComposition`; reduces `irpef_net` and `net_annual` directly.
-- Art. 15 mortgage-interest deduction — set `PayrollScenario.art15_deductions`
-  with an `Art15Deductions`; reduces `irpef_net` and `net_annual` directly.
-- PdR flat tax (*imposta sostitutiva*) on *premio di risultato* — set
-  `BonusInput.eligible_for_pdr=True`; rate and ceiling are read from the
-  statutory `PdRRules` for the year.
+| Feature | In `net_annual`? | How to activate |
+|---|---|---|
+| L3 work rules — overtime, absence, sick pay, bonus, welfare | No — reported separately | Pass `OvertimeHours`, `AbsenceDays`, etc. to `PayrollScenario` |
+| Family-dependent deductions (Art. 12 TUIR) | Yes | Pass `FamilyComposition` to `PayrollScenario.family` |
+| Art. 15 mortgage-interest deduction | Yes | Pass `Art15Deductions` to `PayrollScenario.art15_deductions` |
+| PdR flat tax on *premio di risultato* | Reported separately | Set `BonusInput.eligible_for_pdr=True` |
+| Bilateral fund contributions (EST, Fon.Te, …) | — | Not modelled |
 
 See [API docs](https://lucas-puerari.github.io/ccnl-engine/docs/) for full detail.
 

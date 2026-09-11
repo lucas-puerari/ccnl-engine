@@ -34,8 +34,9 @@ jobs:
 
       - name: "Demo: assemble"
         run: |
+          WHEEL_VERSION=$(uv version --short)
           mkdir -p _site/demo/wheels
-          cp demo/index.html _site/demo/index.html
+          sed "s/WHEEL_VERSION/${WHEEL_VERSION}/g" demo/index.html > _site/demo/index.html
           cp demo/app.py     _site/demo/app.py
           cp demo/wheels/*.whl _site/demo/wheels/
           cp _site/demo/index.html _site/index.html  # root redirect placeholder replaced below

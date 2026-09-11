@@ -89,18 +89,18 @@ or `not_computed` (when the CCNL does not model it) in `calculation_scope`.
 - Performance bonuses (*premio di risultato*, incl. PdR flat tax) — `BonusInput`
 - Welfare and fringe benefits — `WelfareInput`, `FringeBenefitInput`
 
-**Opt-in features (activate by providing inputs; mutate `net_annual`):**
+**Opt-in (reduce `net_annual` when inputs are provided):**
 
 - Family-dependent deductions (Art. 12 TUIR) — `FamilyComposition`
 - Art. 15 mortgage-interest deduction — `Art15Deductions`
+- Regional/municipal surtax — `Jurisdiction` (omitting it excludes surtax and reports it in `calculation_scope`)
 
-**Excluded by default (reported in `calculation_scope`):**
+**Not modelled:**
 
-- Regional/municipal surtax when jurisdiction is not provided
-- Family/Art. 15 deductions when no inputs are supplied
+- Bilateral fund contributions (EST, Fon.Te, …)
 
-Each gap is reported in `PayrollResult.warnings` or `calculation_scope` so the
-caller knows exactly what is missing from the net figure.
+Every gap is reported in `PayrollResult.warnings` or `calculation_scope` so
+callers are never silently wrong.
 
 ---
 

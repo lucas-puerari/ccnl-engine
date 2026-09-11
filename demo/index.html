@@ -1863,7 +1863,8 @@ async function main() {
     await pyodide.loadPackage(["pydantic", "micropip"]);
     setProgress(60, "Installing ccnl-engine…");
     const micropip = pyodide.pyimport("micropip");
-    const wheelUrl = new URL("./wheels/ccnl_engine-0.5.0-py3-none-any.whl", window.location.href).href;
+    // WHEEL_VERSION is replaced by the pages.yml workflow at build time.
+    const wheelUrl = new URL("./wheels/ccnl_engine-WHEEL_VERSION-py3-none-any.whl", window.location.href).href;
     await micropip.install(wheelUrl);
     setProgress(80, "Loading application…");
     const resp = await fetch("./app.py");
