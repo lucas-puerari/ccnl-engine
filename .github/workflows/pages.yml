@@ -68,7 +68,7 @@ jobs:
 
       # ── Coverage badge ────────────────────────────────────────────────────
       - name: "Badge: install test + badge deps"
-        run: uv pip install --system -e . pytest pytest-cov "genbadge[coverage]"
+        run: uv pip install --system -e . pytest pytest-cov hypothesis "genbadge[coverage]"
 
       - name: "Badge: run tests and collect coverage"
         run: |
