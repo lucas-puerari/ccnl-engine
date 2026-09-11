@@ -18,6 +18,7 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     EmployerFund,
     SeniorityIncrements,
 )
+from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
 from ccnl_engine.engine.payroll.service.contributions import fund_applies_to
 from ccnl_engine.engine.payroll.service.seniority import (
     seniority_first_cadence,
@@ -34,6 +35,23 @@ def _series(value: str, valid_from: str = "2020-01-01") -> dict[str, Any]:
     return {
         "periods": [{"valid_from": valid_from, "valid_until": None, "value": value}]
     }
+
+
+def _ts(value: str) -> TimeSeries:
+    """Return a single-period TimeSeries — typed for use in direct constructors.
+
+    Returns:
+        A TimeSeries with one open-ended period starting 2020-01-01.
+    """
+    return TimeSeries(
+        periods=[
+            ValidityPeriod(
+                valid_from=date(2020, 1, 1),
+                valid_until=None,
+                value=Decimal(value),
+            )
+        ]
+    )
 
 
 def _validate(data: dict[str, Any]) -> CCNL:
@@ -274,7 +292,7 @@ class TestCCNLSeniority:
             SeniorityIncrements(
                 cadence_months=36,
                 maximum_count=5,
-                amount_by_level={},
+                amount_by_level={"4": _ts("1.00")},
                 first_cadence_months=24,
             )
 
@@ -284,7 +302,7 @@ class TestCCNLSeniority:
             SeniorityIncrements(
                 cadence_months=36,
                 maximum_count=5,
-                amount_by_level={},
+                amount_by_level={"4": _ts("1.00")},
                 maximum_count_by_level={"4": -1},
             )
 
@@ -293,7 +311,7 @@ class TestCCNLSeniority:
         si = SeniorityIncrements(
             cadence_months=24,
             maximum_count=5,
-            amount_by_level={},
+            amount_by_level={"3": _ts("1.00"), "4": _ts("1.00")},
             maximum_count_by_level={"4": 1},
             first_cadence_months_by_level={"4": 48},
         )
@@ -304,7 +322,7 @@ class TestCCNLSeniority:
         si_first = SeniorityIncrements(
             cadence_months=36,
             maximum_count=5,
-            amount_by_level={},
+            amount_by_level={"3": _ts("1.00")},
             first_cadence_months=48,
         )
         assert seniority_first_cadence(si_first, "3") == 48
@@ -317,7 +335,7 @@ class TestCCNLSeniority:
             SeniorityIncrements(
                 cadence_months=36,
                 maximum_count=5,
-                amount_by_level={},
+                amount_by_level={"4": _ts("1.00")},
                 first_cadence_months_by_level={"4": 24},
             )
 
@@ -336,7 +354,7 @@ class TestCCNLSeniority:
             SeniorityIncrements(
                 cadence_months=24,
                 maximum_count=10,
-                amount_by_level={},
+                amount_by_level={"2": _ts("1.00")},
                 maximum_count_by_category={"operaio": -1},
             )
 
@@ -354,13 +372,41 @@ class TestCCNLSeniority:
         si = SeniorityIncrements(
             cadence_months=24,
             maximum_count=10,
-            amount_by_level={},
+            amount_by_level={"2": _ts("1.00")},
             first_cadence_months=48,
             first_cadence_months_by_category={"operaio": 24},
         )
         assert seniority_first_cadence(si, "2", "operaio") == 24
         assert seniority_first_cadence(si, "2", "impiegato") == 48
         assert seniority_first_cadence(si, "2") == 48
+
+    def test_flat_no_amounts_with_positive_max_raises(self) -> None:
+        """Flat mode with maximum_count > 0 and no amounts defined is rejected."""
+        with pytest.raises(ValidationError, match="amount_by_level"):
+            SeniorityIncrements(
+                cadence_months=24,
+                maximum_count=5,
+                amount_by_level={},
+            )
+
+    def test_flat_no_amounts_zero_maximum_accepted(self) -> None:
+        """maximum_count=0 with no amounts is valid (seniority disabled)."""
+        si = SeniorityIncrements(
+            cadence_months=24,
+            maximum_count=0,
+            amount_by_level={},
+        )
+        assert si.maximum_count == 0
+
+    def test_flat_category_amounts_without_level_amounts_accepted(self) -> None:
+        """amount_by_level_by_category alone satisfies the amounts requirement."""
+        si = SeniorityIncrements(
+            cadence_months=24,
+            maximum_count=10,
+            amount_by_level={},
+            amount_by_level_by_category={"operaio": {"2": _ts("1.00")}},
+        )
+        assert si.maximum_count == 10
 
 
 # ---------------------------------------------------------------------------
@@ -553,7 +599,7 @@ class TestSeniorityTiers:
         data = make_ccnl_dict(app_type="")
         data["parameters"]["seniority_increments"] = {
             "cadence_months": 24,
-            "maximum_count": 0,
+            "maximum_count": 5,  # must equal sum of tier maximum_count (3 + 2)
             "amount_by_level": {},
             "provenance": TEST_PROV,
             "tiers": [
@@ -598,6 +644,36 @@ class TestSeniorityTiers:
         ccnl = _validate(self._tiered_data())
         si = ccnl.parameters.seniority_increments
         assert seniority_maximum(si, "4") == 5  # 3 + 2
+
+    def test_tiered_maximum_count_mismatch_raises(self) -> None:
+        """maximum_count must equal the sum of tier maximum_count values."""
+        data = self._tiered_data()
+        data["parameters"]["seniority_increments"]["maximum_count"] = 99
+        with pytest.raises(ValidationError, match="must equal the sum of tier"):
+            _validate(data)
+
+    def test_tiered_with_flat_only_field_raises(self) -> None:
+        """Flat-mode fields are rejected when tiers is set."""
+        data = self._tiered_data()
+        data["parameters"]["seniority_increments"]["first_cadence_months"] = 48
+        with pytest.raises(ValidationError, match="not allowed in tiered mode"):
+            _validate(data)
+
+    def test_tiered_with_maximum_count_by_level_raises(self) -> None:
+        """maximum_count_by_level is a flat-mode field; rejected in tiered mode."""
+        data = self._tiered_data()
+        data["parameters"]["seniority_increments"]["maximum_count_by_level"] = {"4": 2}
+        with pytest.raises(ValidationError, match="not allowed in tiered mode"):
+            _validate(data)
+
+    def test_tiered_with_amount_by_level_by_category_raises(self) -> None:
+        """amount_by_level_by_category is flat-mode only; rejected in tiered mode."""
+        data = self._tiered_data()
+        data["parameters"]["seniority_increments"]["amount_by_level_by_category"] = {
+            "operaio": {"4": _series("5.00")}
+        }
+        with pytest.raises(ValidationError, match="not allowed in tiered mode"):
+            _validate(data)
 
 
 class TestServiceMonthsThreshold:
