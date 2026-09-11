@@ -72,6 +72,7 @@ jobs:
 
       - name: "Badge: run tests and collect coverage"
         run: |
+          set -o pipefail
           python -m pytest --cov=ccnl_engine --cov-report=xml:coverage.xml -q \
             --no-header 2>&1 | tail -5
 
