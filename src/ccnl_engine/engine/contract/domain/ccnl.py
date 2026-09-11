@@ -613,9 +613,10 @@ class Level(BaseModel):
 
 
 class CCNLCoverage(BaseModel):
-    """Declares implementation and confidence status for a CCNL data file.
+    """Declares implementation completeness for a CCNL data file.
 
-    Two orthogonal axes:
+    Measures *what* the engine implements, not how trustworthy the values are.
+    For human-review confidence and traceability use :class:`CCNLVerification`.
 
     * **Coverage** (``gross`` / ``net`` / ``work_rules``): what the engine
       implements for this contract — ``implemented``, ``partial``, or
@@ -626,9 +627,6 @@ class CCNLCoverage(BaseModel):
       - L2 — Net: INPS contributions, TFR, IRPEF, regional/municipal surtax.
       - Work rules — Extended: overtime, sick/injury leave, performance bonuses,
         welfare/benefits. Defaults to ``not_implemented``.
-
-    * **Verification** (``verification_status``): how confident we are in the
-      data behind that implementation — verified, unverified, or needs review.
 
     ``work_rules`` is the scalar summary status (for backward compat with the
     coverage matrix). ``work_rules_features`` is the authoritative per-feature
@@ -647,7 +645,6 @@ class CCNLCoverage(BaseModel):
     work_rules: CoverageStatus = CoverageStatus.NOT_IMPLEMENTED
     work_rules_features: dict[WorkRuleFeature, CoverageStatus] = {}
     notes: list[CoverageNote]
-    verification_status: VerificationStatus = VerificationStatus.UNVERIFIED
 
     @model_validator(mode="after")
     def _check_notes(self) -> Self:
@@ -666,6 +663,29 @@ class CCNLCoverage(BaseModel):
             )
             raise ValueError(msg)
         return self
+
+
+class CCNLVerification(BaseModel):
+    """Human-review confidence and traceability for a CCNL data file.
+
+    Measures *how trustworthy* the values are, orthogonal to field completeness.
+    See :class:`CCNLCoverage` for implementation-completeness flags.
+
+    Attributes:
+        confidence: Editorial confidence in the data values — ``verified``,
+            ``unverified``, or ``needs_review``.
+        verified_cases: Number of end-to-end payroll scenarios manually
+            cross-checked against a reference payslip or official source.
+        last_reviewed: ISO date of the most recent human review.
+        human_reviewed_by: Identifier (name or email) of the reviewer.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    confidence: VerificationStatus = VerificationStatus.UNVERIFIED
+    verified_cases: int = 0
+    last_reviewed: date | None = None
+    human_reviewed_by: str | None = None
 
 
 class CCNLValidity(BaseModel):
@@ -750,7 +770,8 @@ class CCNL(BaseModel):
         levels: Ordered list of classification levels from lowest to highest pay.
         apprenticeship: Apprenticeship tracks modelled for this CCNL. Empty
             when apprenticeship is out of scope or not yet modelled.
-        coverage: Implementation status flags and notes for the data file.
+        coverage: Implementation completeness flags and notes for the data file.
+        verification: Human-review confidence and traceability metadata.
         work_rules: Work-rules data (overtime, leave, sickness, absence). ``None``
             when no work rules are modelled for this CCNL.
     """
@@ -770,6 +791,7 @@ class CCNL(BaseModel):
         ),
     )
     coverage: CCNLCoverage
+    verification: CCNLVerification = Field(default_factory=CCNLVerification)
     work_rules: CCNLWorkRules | None = None
 
     @model_validator(mode="after")
