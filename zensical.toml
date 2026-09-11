@@ -48,6 +48,7 @@ nav = [
     { "CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)" = "contracts/ced-assoced.md" },
     { "CCNL Ceramica Industria (Confindustria-Assopiastrelle)" = "contracts/ceramica-industria-confindustria.md" },
     { "CCNL Chimica e Affini PMI — Unionchimica Confapi" = "contracts/chimica-affini-pmi-unionchimica.md" },
+    { "CCNL Conciaria — Industria (UNIC)" = "contracts/concia-unic.md" },
     { "CCNL Industria Chimica e Farmaceutica (Federchimica-Farmi…" = "contracts/chimica-farmaceutica-federchimica.md" },
     { "CCNL Terziario, Distribuzione e Servizi (Confcommercio)" = "contracts/commercio-confcommercio.md" },
     { "CCNL Area Comunicazione — Artigianato" = "contracts/comunicazione-artigianato-confartigianato.md" },
