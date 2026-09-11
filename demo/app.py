@@ -34,6 +34,15 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Jurisdiction,
     PayrollScenario,
 )
+from ccnl_engine.engine.payroll.domain.supplements import (
+    AbsenceDays,
+    BonusInput,
+    FringeBenefitInput,
+    LeaveInput,
+    OvertimeHours,
+    SickInput,
+    WelfareInput,
+)
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
 
@@ -237,6 +246,33 @@ def _build_employer(
     )
 
 
+def _build_time_supplements(
+    weekday_hours: float,
+    night_hours: float,
+    holiday_hours: float,
+    night_holiday_hours: float,
+) -> OvertimeHours | None:
+    """Build OvertimeHours when any overtime input is non-zero.
+
+    Args:
+        weekday_hours: Daytime weekday overtime hours.
+        night_hours: Weekday night hours.
+        holiday_hours: Daytime public-holiday hours.
+        night_holiday_hours: Night hours on a public holiday.
+
+    Returns:
+        An :class:`OvertimeHours` instance, or ``None`` when all are zero.
+    """
+    if not any([weekday_hours, night_hours, holiday_hours, night_holiday_hours]):
+        return None
+    return OvertimeHours(
+        weekday_hours=Decimal(str(weekday_hours)),
+        night_hours=Decimal(str(night_hours)),
+        holiday_hours=Decimal(str(holiday_hours)),
+        night_holiday_hours=Decimal(str(night_holiday_hours)),
+    )
+
+
 def compute_salary(
     filename: str,
     level_code: str,
@@ -252,6 +288,17 @@ def compute_salary(
     ad_personam_monthly: float = 0.0,
     ral_override: float = 0.0,
     second_level_monthly: float = 0.0,
+    overtime_weekday_hours: float = 0.0,
+    overtime_night_hours: float = 0.0,
+    overtime_holiday_hours: float = 0.0,
+    overtime_night_holiday_hours: float = 0.0,
+    absence_unpaid_days: float = 0.0,
+    leave_taken_days: float = 0.0,
+    sick_days: float = 0.0,
+    fringe_benefit_annual: float = 0.0,
+    welfare_annual: float = 0.0,
+    bonus_annual: float = 0.0,
+    bonus_pdr_eligible: bool = False,
 ) -> str:
     """Compute gross-to-net and employer cost.
 
@@ -280,6 +327,17 @@ def compute_salary(
         second_level_monthly: Monthly amount from a territorial or company
             second-level agreement in EUR. Mutually exclusive with
             ral_override.
+        overtime_weekday_hours: Daytime weekday overtime hours (L3).
+        overtime_night_hours: Weekday night hours (L3).
+        overtime_holiday_hours: Daytime public-holiday hours (L3).
+        overtime_night_holiday_hours: Night hours on a public holiday (L3).
+        absence_unpaid_days: Days absent without pay in the period (L3).
+        leave_taken_days: Leave days consumed in the period (L3).
+        sick_days: Calendar days of illness in the period (L3).
+        fringe_benefit_annual: Total fringe-benefit value for the year (L3).
+        welfare_annual: Welfare annual amount (L3, always tax-exempt).
+        bonus_annual: Total annual bonus (L3).
+        bonus_pdr_eligible: Whether the bonus qualifies for PdR flat tax (L3).
 
     Returns:
         JSON-encoded result dict or ``{"error": "..."}`` on failure.
@@ -302,6 +360,42 @@ def compute_salary(
     except Exception:  # ruff: ignore[blind-except]
         is_domestic = False
 
+    time_supplements = _build_time_supplements(
+        overtime_weekday_hours,
+        overtime_night_hours,
+        overtime_holiday_hours,
+        overtime_night_holiday_hours,
+    )
+    absence = (
+        AbsenceDays(unpaid_days=Decimal(str(absence_unpaid_days)))
+        if absence_unpaid_days > 0
+        else None
+    )
+    leave = (
+        LeaveInput(taken_days=Decimal(str(leave_taken_days)))
+        if leave_taken_days > 0
+        else None
+    )
+    sick = SickInput(sick_days=Decimal(str(sick_days))) if sick_days > 0 else None
+    fringe = (
+        FringeBenefitInput(annual_amount=Decimal(str(fringe_benefit_annual)))
+        if fringe_benefit_annual > 0
+        else None
+    )
+    welfare = (
+        WelfareInput(annual_amount=Decimal(str(welfare_annual)))
+        if welfare_annual > 0
+        else None
+    )
+    bonus = (
+        BonusInput(
+            annual_amount=Decimal(str(bonus_annual)),
+            eligible_for_pdr=bonus_pdr_eligible,
+        )
+        if bonus_annual > 0
+        else None
+    )
+
     try:
         scenario = PayrollScenario(
             employee=Employee(
@@ -317,8 +411,15 @@ def compute_salary(
                 ccnl=filename,
                 contract=contract,
                 employer=employer,
-                date=datetime.now(tz=UTC).date(),
+                calculation_date=datetime.now(tz=UTC).date(),
             ),
+            time_supplements=time_supplements,
+            absence_days=absence,
+            leave_input=leave,
+            sick_input=sick,
+            fringe_benefit_input=fringe,
+            welfare_input=welfare,
+            bonus_input=bonus,
         )
         calculation = compute(scenario)
         payroll = calculation.result
@@ -371,6 +472,21 @@ def compute_salary(
         "employer_funds_annual": float(payroll.employer_funds_annual),
         "tfr_annual": float(payroll.tfr_annual),
         "employer_cost_annual": float(payroll.employer_cost_annual),
+        "overtime_supplement_monthly": float(payroll.overtime_supplement_monthly),
+        "night_supplement_monthly": float(payroll.night_supplement_monthly),
+        "holiday_supplement_monthly": float(payroll.holiday_supplement_monthly),
+        "absence_deduction_monthly": float(payroll.absence_deduction_monthly),
+        "effective_gross_monthly": float(payroll.effective_gross_monthly),
+        "leave_accrued_days_monthly": float(payroll.leave_accrued_days_monthly),
+        "leave_balance_days": float(payroll.leave_balance_days),
+        "sick_inps_indemnity_monthly": float(payroll.sick_inps_indemnity_monthly),
+        "sick_company_integration_monthly": float(
+            payroll.sick_company_integration_monthly
+        ),
+        "fringe_benefit_annual": float(payroll.fringe_benefit_annual),
+        "welfare_annual": float(payroll.welfare_annual),
+        "bonus_annual": float(payroll.bonus_annual),
+        "bonus_pdr_flat_tax_annual": float(payroll.bonus_pdr_flat_tax_annual),
         # flags
         "employer_withholds_irpef": payroll.employer_withholds_irpef,
         "fiscal_simplifications": sorted(

@@ -39,7 +39,7 @@ calculation = compute(PayrollScenario(
         ccnl="commercio-confcommercio.json",
         contract=Permanent(),
         employer=Employer(num_employees=50),
-        date=date(2026, 9, 1),
+        calculation_date=date(2026, 9, 1),
     ),
 ))
 
@@ -66,13 +66,15 @@ Coverage % = (L1 × 50% + L2 × 35% + L3 × 15%) − 5% per missing data note (m
 
 → [**CCNL coverage table**](https://lucas-puerari.github.io/ccnl-engine/docs/contracts/index.html) — per-contract coverage, verification status, and feature breakdown
 
-## What is not modelled
+## Scope boundaries
 
-**Outside engine scope:**
-
-- Detrazioni per carichi di famiglia (Art. 12 TUIR)
-- Bilateral system contributions (EST, Fon.Te, …)
-- Preferential 5% tax on *premio di risultato* (Art. 1 c. 182 L. 208/2015)
+| Feature | In `net_annual`? | How to activate |
+|---|---|---|
+| L3 work rules — overtime, absence, sick pay, bonus, welfare | No — reported separately | Pass `OvertimeHours`, `AbsenceDays`, etc. to `PayrollScenario` |
+| Family-dependent deductions (Art. 12 TUIR) | Yes | Pass `FamilyComposition` to `PayrollScenario.family` |
+| Art. 15 mortgage-interest deduction | Yes | Pass `Art15Deductions` to `PayrollScenario.art15_deductions` |
+| PdR flat tax on *premio di risultato* | Reported separately | Set `BonusInput.eligible_for_pdr=True` |
+| Bilateral fund contributions (EST, Fon.Te, …) | — | Not modelled |
 
 See [API docs](https://lucas-puerari.github.io/ccnl-engine/docs/) for full detail.
 
