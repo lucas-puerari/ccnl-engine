@@ -570,6 +570,33 @@ class CCNLParameters(BaseModel):
     seniority_increments: SeniorityIncrements
     employer_funds: list[EmployerFund] = Field(default_factory=list)
 
+    @model_validator(mode="after")
+    def _check_positive_params(self) -> Self:
+        """Reject non-positive hourly_divisor or additional_months values.
+
+        Both parameters appear in the denominator of hourly-rate and monthly
+        pay calculations; a zero or negative value would produce nonsensical
+        results and is always a data-entry error.
+
+        Returns:
+            The validated instance (required by Pydantic model_validator).
+
+        Raises:
+            ValueError: If any non-gap period in either series has value <= 0.
+        """
+        for field_name, series in (
+            ("hourly_divisor", self.hourly_divisor),
+            ("additional_months", self.additional_months),
+        ):
+            for p in series.periods:
+                if p.value is not None and p.value <= 0:
+                    msg = (
+                        f"{field_name} values must be > 0; "
+                        f"period starting {p.valid_from} has value {p.value}"
+                    )
+                    raise ValueError(msg)
+        return self
+
 
 class Level(BaseModel):
     """A single classification level (*livello di inquadramento*).

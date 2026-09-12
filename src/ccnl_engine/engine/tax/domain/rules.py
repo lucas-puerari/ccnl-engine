@@ -376,6 +376,13 @@ class YearRulesRaw(BaseModel):
                 "(standard model) or 'domestic_contributions' (domestic model)"
             )
             raise ValueError(msg)
+        if has_standard and has_domestic:
+            msg = (
+                "tax file must not mix 'inps'+'apprentice' (standard model) "
+                "with 'domestic_contributions' (domestic model): "
+                "the two contribution models are mutually exclusive"
+            )
+            raise ValueError(msg)
         return self
 
 

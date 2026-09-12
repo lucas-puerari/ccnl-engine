@@ -15,6 +15,7 @@ from pydantic import ValidationError
 from ccnl_engine.engine.contract.domain.ccnl import (
     CCNL,
     CCNLMeta,
+    CCNLParameters,
     EmployerFund,
     SeniorityIncrements,
 )
@@ -917,3 +918,52 @@ class TestSchema05ProvenanceRequired:
             {**original, "valid_from": "2020-01-01"},
         ]
         _validate(data)  # must not raise
+
+
+# ---------------------------------------------------------------------------
+# CCNLParameters positive constraints (R21)
+# ---------------------------------------------------------------------------
+
+
+class TestCCNLParametersPositiveConstraints:
+    """CCNLParameters rejects non-positive hourly_divisor or additional_months."""
+
+    def _make_params(
+        self,
+        hourly_divisor: str = "168",
+        additional_months: str = "12",
+    ) -> dict[str, Any]:
+        si = make_ccnl_dict()["parameters"]["seniority_increments"]
+        return {
+            "hourly_divisor": _series(hourly_divisor),
+            "additional_months": _series(additional_months),
+            "seniority_increments": si,
+        }
+
+    def test_zero_hourly_divisor_raises(self) -> None:
+        """R21: hourly_divisor=0 is rejected."""
+        with pytest.raises(ValidationError, match="hourly_divisor"):
+            CCNLParameters.model_validate(self._make_params(hourly_divisor="0"))
+
+    def test_negative_hourly_divisor_raises(self) -> None:
+        """R21: hourly_divisor < 0 is rejected."""
+        with pytest.raises(ValidationError, match="hourly_divisor"):
+            CCNLParameters.model_validate(self._make_params(hourly_divisor="-1"))
+
+    def test_zero_additional_months_raises(self) -> None:
+        """R21: additional_months=0 is rejected."""
+        with pytest.raises(ValidationError, match="additional_months"):
+            CCNLParameters.model_validate(self._make_params(additional_months="0"))
+
+    def test_negative_additional_months_raises(self) -> None:
+        """R21: additional_months < 0 is rejected."""
+        with pytest.raises(ValidationError, match="additional_months"):
+            CCNLParameters.model_validate(self._make_params(additional_months="-14"))
+
+    def test_positive_values_accepted(self) -> None:
+        """Valid positive values pass validation."""
+        params = CCNLParameters.model_validate(
+            self._make_params(hourly_divisor="173", additional_months="14")
+        )
+        assert params.hourly_divisor is not None
+        assert params.additional_months is not None
