@@ -9146,3 +9146,83 @@ class TestLoadConciaUnic:
             assert any(fa.code == "EDR" for fa in lv.fixed_allowances), (
                 f"{lv.code} missing EDR"
             )
+
+
+class TestLoadPuliziaArtigianatoConfartigianato:
+    """Unit tests for CCNL Pulizia Artigianato (Confartigianato) — K521."""
+
+    def test_pulizia_artigianato_confartigianato_loads(self) -> None:
+        """Contract loads with correct id and CNEL code K521."""
+        ccnl = load_ccnl("pulizia-artigianato-confartigianato.json")
+        assert ccnl.meta.ccnl_id == "pulizia-artigianato-confartigianato"
+        assert ccnl.meta.cnel_code == "K521"
+
+    def test_pulizia_artigianato_confartigianato_has_7_levels(self) -> None:
+        """Contract has exactly 7 levels: 1, 2, 3S, 3, 4, 5, 6."""
+        ccnl = load_ccnl("pulizia-artigianato-confartigianato.json")
+        assert len(ccnl.levels) == 7
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3S", "3", "4", "5", "6"}
+
+    def test_pulizia_artigianato_confartigianato_level1_salary_tranche1(
+        self,
+    ) -> None:
+        """Level 1 tabellare at 2022-11-01 is 1534.64 EUR (PDF 2022)."""
+        ccnl = load_ccnl("pulizia-artigianato-confartigianato.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "1")
+        assert lv.base_salary.value_at(date(2022, 11, 1)) == Decimal("1534.64")
+
+    def test_pulizia_artigianato_confartigianato_level1_salary_tranche2(
+        self,
+    ) -> None:
+        """Level 1 tabellare at 2026-07-01 is 1693.84 EUR (kitech verified)."""
+        ccnl = load_ccnl("pulizia-artigianato-confartigianato.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "1")
+        assert lv.base_salary.value_at(date(2026, 7, 1)) == Decimal("1693.84")
+
+    def test_pulizia_artigianato_confartigianato_level_ordering(self) -> None:
+        """Level 6 is lowest (order 1), level 1 is highest (order 7)."""
+        ccnl = load_ccnl("pulizia-artigianato-confartigianato.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "6"
+        assert by_order[-1].code == "1"
+
+    def test_pulizia_artigianato_confartigianato_additional_months(
+        self,
+    ) -> None:
+        """Additional months is 13 (tredicesima only, PDF 2022)."""
+        ccnl = load_ccnl("pulizia-artigianato-confartigianato.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 7, 1)) == Decimal(
+            13
+        )
+
+    def test_pulizia_artigianato_confartigianato_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (PARAMETRI E COEFFICIENTI, PDF 2022)."""
+        ccnl = load_ccnl("pulizia-artigianato-confartigianato.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 7, 1)) == Decimal(173)
+
+    def test_pulizia_artigianato_confartigianato_level1_ind_fun(self) -> None:
+        """Level 1 has IND_FUN allowance of 25.82 EUR; others have none."""
+        ccnl = load_ccnl("pulizia-artigianato-confartigianato.json")
+        lv1 = next(lv for lv in ccnl.levels if lv.code == "1")
+        codes = {fa.code for fa in lv1.fixed_allowances}
+        assert "IND_FUN" in codes
+        ind = next(fa for fa in lv1.fixed_allowances if fa.code == "IND_FUN")
+        assert ind.monthly.value_at(date(2026, 7, 1)) == Decimal("25.82")
+        for lv in ccnl.levels:
+            if lv.code != "1":
+                assert lv.fixed_allowances == []
+
+    def test_pulizia_artigianato_confartigianato_tax_sector(self) -> None:
+        """Tax sector is terziario."""
+        ccnl = load_ccnl("pulizia-artigianato-confartigianato.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_pulizia_artigianato_confartigianato_seniority_cadence(
+        self,
+    ) -> None:
+        """Seniority: biennial cadence (24 months), 5 increments maximum."""
+        ccnl = load_ccnl("pulizia-artigianato-confartigianato.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5

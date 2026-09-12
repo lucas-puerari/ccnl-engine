@@ -1,0 +1,20 @@
+{
+  "inputs": {
+    "ccnl_file": "pulizia-artigianato-confartigianato.json",
+    "level_code": "3",
+    "as_of": "2026-07-01",
+    "employment_type": "permanent",
+    "num_employees": 50,
+    "year": 2026,
+    "tax_sector": "terziario",
+    "seniority_count": 0,
+    "part_time_pct": "1"
+  },
+  "expected": {
+    "gross_monthly": "1453.41",
+    "net_monthly": "1179.86",
+    "net_annual": "15338.16",
+    "employer_cost_annual": "25769.49",
+    "gross_annual": "18894.33"
+  }
+}

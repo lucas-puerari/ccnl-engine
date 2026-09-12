@@ -100,6 +100,7 @@ nav = [
     { "CCNL Metalmeccanica e Installazione di Impianti — Artigia…" = "contracts/metalmeccanico-artigianato.md" },
     { "CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Con…" = "contracts/metalmeccanico-confapi.md" },
     { "CCNL Metalmeccanici e Installatori di Impianti (Federmecc…" = "contracts/metalmeccanico-federmeccanica.md" },
+    { "CCNL Pulizia Artigianato — Confartigianato (K521)" = "contracts/pulizia-artigianato-confartigianato.md" },
     { "CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi …" = "contracts/multiservizi-anip.md" },
     { "CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSI…" = "contracts/ooss-unsic-confsal.md" },
     { "CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagr…" = "contracts/operai-agricoli-florovivaisti.md" },
