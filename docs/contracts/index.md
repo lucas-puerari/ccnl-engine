@@ -115,42 +115,44 @@ note (max -20%). work_rules status defaults to not_implemented for most contract
 | 75 | E023 | [CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)](panificazione-assipan.md) | alimentare | ~20k | 2025 | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 76 | K700 | [CCNL Poste Italiane S.p.A. (personale non dirigente)](poste-italiane-k700.md) | Servizi postali | ~117k | 2024 | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 77 | T091 | [CCNL RSA e Strutture Residenziali Socio-Assistenziali (AIOP)](rsa-aiop.md) | residenze sanitarie assistenziali — personale non medico | ~17k | 2012 | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 78 | K711 | [CCNL Recapito Corrispondenza (FISE-ARE)](recapito-corrispondenza-fise.md) | Recapito corrispondenza e spedizioni | ~1k | 2023 | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 79 | T271 | [CCNL Scuole Materne — FISM](scuole-materne-fism.md) | istruzione privata cattolica per l'infanzia | ~30k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 80 | T231 | [CCNL Scuole Private Laiche (ANINSEI-Assoscuola)](scuole-private-laiche-aninsei.md) | istruzione privata laica | ~25k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 81 | K721 | [CCNL Servizi Postali in Appalto (FISE-ARE)](servizi-postali-appalto-fise.md) | Servizi postali in appalto e recapito | ~1k | 2023 | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 82 | K511 | [CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)](multiservizi-anip.md) | multiservizi | ~580k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 83 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | sistemazioni idraulico-forestali e idraulico-agrarie — impiegati | ~430 (impiegati subset) | 2025 | 82% | ✅ | ⚠️ | ✅ | 🤖 |
-| 84 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | sistemazioni idraulico-forestali e idraulico-agrarie — operai a tempo indeterminato | ~430 (operai OTI subset) | 2025 | 82% | ✅ | ⚠️ | ✅ | 🤖 |
-| 85 | K411 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | telecomunicazioni | ~110k | 2025 | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 86 | H012 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | Terziario distribuzione e servizi | ~230k | 2024 | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 87 | H011 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | terziario | ~800k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 88 | I810 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | trasporto aereo | ~40k | 2025 | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 89 | I911 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | Trasporto a fune | ~15k | 2025 | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 90 | H058 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi | — | 2024 | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 91 | H052 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | Turismo | ~220k | 2024 | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 92 | H052 | [CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)](turismo-confcommercio.md) | turismo | ~300k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 93 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2023 | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 94 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | vigilanza privata — servizi fiduciari (SF) | ~40k | 2023 | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 95 | H0B1 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | agenzie immobiliari | — | 2025 | 85% | ✅ | ✅ | 🔲 | 🤖 |
-| 96 | IC91 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | autoscuole e consulenza automobilistica | — | 2023 | 85% | ✅ | ✅ | 🔲 | 🤖 |
-| 97 | H05Y | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | turismo | ~350k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 98 | H442 | [CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)](studi-professionali-confprofessioni.md) | terziario | ~350k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 99 | K521 | [CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione](pulizia-artigianato-confartigianato.md) | pulizia artigianato | ~84505 | 2025 | 92% | ✅ | ✅ | ⚠️ | 🤖 |
-| 100 | D121 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | industria | ~75k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 101 | C021 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | industria | ~18k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 102 | D111 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | industria | ~17k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 103 | E012 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | industria | ~145k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 104 | B101 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | industria | ~22.6k | — | 92% | ✅ | ✅ | ⚠️ | 🤖 |
-| 105 | F051 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | industria | ~90k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 106 | D014 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | industria | ~160k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 107 | J271 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | credito | ~33k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 108 | K051 | [CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)](elettrico-elettricita-futura.md) | industria | ~60k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 109 | J241 | [CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)](bancari-abi.md) | credito | ~270k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 110 | K461 | [CCNL per i lavoratori dipendenti delle aziende termali](aziende-termali-federterme.md) | turismo termale | — | — | 85% | ✅ | ✅ | 🔲 | 🤖 |
-| 111 | J121 | [CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)](assicurazioni-ania.md) | assicurazioni | ~45k | 2026 | 70% | ⚠️ | ✅ | ✅ | 🤖 |
-| 112 | N/A | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | Pubblica Sicurezza — Forze di Polizia ad ordinamento civile | ~130k | 2025 | 100% | ✅ | ✅ | ✅ | 🤖 |
-| 113 | H008 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | terziario | ~460k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 78 | G091 | [CCNL Radiotelevisivo — Settore Radiofonico](radiotelevisive-radiofonico.md) | radiotelevisione — settore radiofonico | — | 2026 | 85% | ✅ | ✅ | 🔲 | 🤖 |
+| 79 | G091 | [CCNL Radiotelevisivo — Settore Televisivo Multimediale](radiotelevisive-televisivo.md) | radiotelevisione — settore televisivo multimediale | — | 2026 | 85% | ✅ | ✅ | 🔲 | 🤖 |
+| 80 | K711 | [CCNL Recapito Corrispondenza (FISE-ARE)](recapito-corrispondenza-fise.md) | Recapito corrispondenza e spedizioni | ~1k | 2023 | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 81 | T271 | [CCNL Scuole Materne — FISM](scuole-materne-fism.md) | istruzione privata cattolica per l'infanzia | ~30k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 82 | T231 | [CCNL Scuole Private Laiche (ANINSEI-Assoscuola)](scuole-private-laiche-aninsei.md) | istruzione privata laica | ~25k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 83 | K721 | [CCNL Servizi Postali in Appalto (FISE-ARE)](servizi-postali-appalto-fise.md) | Servizi postali in appalto e recapito | ~1k | 2023 | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 84 | K511 | [CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)](multiservizi-anip.md) | multiservizi | ~580k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 85 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | sistemazioni idraulico-forestali e idraulico-agrarie — impiegati | ~430 (impiegati subset) | 2025 | 82% | ✅ | ⚠️ | ✅ | 🤖 |
+| 86 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | sistemazioni idraulico-forestali e idraulico-agrarie — operai a tempo indeterminato | ~430 (operai OTI subset) | 2025 | 82% | ✅ | ⚠️ | ✅ | 🤖 |
+| 87 | K411 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | telecomunicazioni | ~110k | 2025 | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 88 | H012 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | Terziario distribuzione e servizi | ~230k | 2024 | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 89 | H011 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | terziario | ~800k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 90 | I810 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | trasporto aereo | ~40k | 2025 | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 91 | I911 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | Trasporto a fune | ~15k | 2025 | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 92 | H058 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi | — | 2024 | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 93 | H052 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | Turismo | ~220k | 2024 | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 94 | H052 | [CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)](turismo-confcommercio.md) | turismo | ~300k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 95 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2023 | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 96 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | vigilanza privata — servizi fiduciari (SF) | ~40k | 2023 | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 97 | H0B1 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | agenzie immobiliari | — | 2025 | 85% | ✅ | ✅ | 🔲 | 🤖 |
+| 98 | IC91 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | autoscuole e consulenza automobilistica | — | 2023 | 85% | ✅ | ✅ | 🔲 | 🤖 |
+| 99 | H05Y | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | turismo | ~350k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 100 | H442 | [CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)](studi-professionali-confprofessioni.md) | terziario | ~350k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 101 | K521 | [CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione](pulizia-artigianato-confartigianato.md) | pulizia artigianato | ~84505 | 2025 | 92% | ✅ | ✅ | ⚠️ | 🤖 |
+| 102 | D121 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | industria | ~75k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 103 | C021 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | industria | ~18k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 104 | D111 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | industria | ~17k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 105 | E012 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | industria | ~145k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 106 | B101 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | industria | ~22.6k | — | 92% | ✅ | ✅ | ⚠️ | 🤖 |
+| 107 | F051 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | industria | ~90k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 108 | D014 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | industria | ~160k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 109 | J271 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | credito | ~33k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 110 | K051 | [CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)](elettrico-elettricita-futura.md) | industria | ~60k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 111 | J241 | [CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)](bancari-abi.md) | credito | ~270k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 112 | K461 | [CCNL per i lavoratori dipendenti delle aziende termali](aziende-termali-federterme.md) | turismo termale | — | — | 85% | ✅ | ✅ | 🔲 | 🤖 |
+| 113 | J121 | [CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)](assicurazioni-ania.md) | assicurazioni | ~45k | 2026 | 70% | ⚠️ | ✅ | ✅ | 🤖 |
+| 114 | N/A | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | Pubblica Sicurezza — Forze di Polizia ad ordinamento civile | ~130k | 2025 | 100% | ✅ | ✅ | ✅ | 🤖 |
+| 115 | H008 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | terziario | ~460k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
 
 [^1]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.
 [^2]: Salary tables extracted from official CCNL documents using AI-assisted tooling, no manual human review. Verify against the official source before use in production.
