@@ -431,24 +431,9 @@ def compute_fiscal(
         employer_withholds_irpef=employer_withholds_irpef,
     )
 
-    # Sterilizzazione detrazioni (Art. 1 c. 3-4 L. 199/2025): for reddito
-    # complessivo > EUR 200 000, reduce total Art. 12 + Art. 13 detrazioni
-    # by EUR 440 (clawback of the 35% → 33% bracket benefit).
-    # Save pre-sterilizzazione fam_total for the NO_DETRAZIONI_FAMILIARI check.
-    fam_total_computed = fam_total
-    work_income_deduction, fam_total = _irpef.apply_sterilizzazione_detrazioni(
-        work_income_deduction,
-        fam_total,
-        gross.gross_annual,
-        rules.sterilizzazione_detrazioni,
-    )
-    # Recompute unused after sterilizzazione (incapienza may change).
-    if fam_total_computed != fam_total:
-        available = money(max(_ZERO, irpef_gross - work_income_deduction))
-        fam_unused = money(max(_ZERO, fam_total - available))
-
     # Art. 15 TUIR deductions (interessi passivi mutuo prima casa, etc.).
-    # Sterilizzazione does NOT apply: EUR 440 clawback targets Art. 12 + Art. 13.
+    # Sterilizzazione (Art. 1 c. 3-4 L. 199/2025) targets Art. 15 oneri
+    # only — Art. 12 family and Art. 13 work deductions are not affected.
     art15_total, art15_unused = _run_wr_art15_deductions(
         scenario=scenario,
         irpef_gross=irpef_gross,
@@ -457,6 +442,15 @@ def compute_fiscal(
         year=year,
         employer_withholds_irpef=employer_withholds_irpef,
     )
+    # Sterilizzazione detrazioni (Art. 1 c. 3-4 L. 199/2025): for reddito
+    # complessivo > EUR 200 000, reduce Art. 15 oneri deductions by EUR 440
+    # (clawback of the 35% → 33% bracket benefit, R14).
+    art15_total = _irpef.apply_sterilizzazione_detrazioni(
+        art15_total,
+        gross.gross_annual,
+        rules.sterilizzazione_detrazioni,
+    )
+    art15_unused = min(art15_unused, art15_total)
 
     # When the employer is not a sostituto d'imposta, irpef_net is zeroed;
     # irpef_gross and work_income_deduction remain as informational figures.
@@ -482,7 +476,7 @@ def compute_fiscal(
     # (use pre-sterilizzazione total: deductions were still computed).
     # Remove NO_DETRAZIONI_ART15 when Art. 15 deductions were computed.
     sfs_mut: set[FiscalSimplification] = set(fiscal_simplifications)
-    if fam_total_computed > _ZERO:
+    if fam_total > _ZERO:
         sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_FAMILIARI)
     if art15_total > _ZERO:
         sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_ART15)

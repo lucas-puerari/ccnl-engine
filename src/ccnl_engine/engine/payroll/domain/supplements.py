@@ -216,17 +216,31 @@ class BonusInput:
         annual_amount: Total bonus for the year. Must be >= 0.
         eligible_for_pdr: Whether the bonus qualifies for the PdR
             preferential tax regime (union agreement in place).
+        prior_year_gross_annual: Gross employment income from the
+            previous fiscal year. When provided, it is used instead of
+            the current-year gross to check the PdR income ceiling
+            (per L. 207/2024 art. 1 c. 385). ``None`` means the
+            current-year gross is used (pre-2026 behaviour). Must be
+            >= 0 when provided.
     """
 
     annual_amount: Decimal = _ZERO
     eligible_for_pdr: bool = False
+    prior_year_gross_annual: Decimal | None = None
 
     def __post_init__(self) -> None:
-        """Validate that annual_amount is non-negative.
+        """Validate that annual_amount and prior_year_gross_annual are non-negative.
 
         Raises:
-            ValueError: If annual_amount is negative.
+            ValueError: If annual_amount or prior_year_gross_annual is negative.
         """
         if self.annual_amount < _ZERO:
             msg = f"annual_amount must be >= 0, got {self.annual_amount}"
+            raise ValueError(msg)
+        prior = self.prior_year_gross_annual
+        if prior is not None and prior < _ZERO:
+            msg = (
+                f"prior_year_gross_annual must be >= 0, "
+                f"got {self.prior_year_gross_annual}"
+            )
             raise ValueError(msg)

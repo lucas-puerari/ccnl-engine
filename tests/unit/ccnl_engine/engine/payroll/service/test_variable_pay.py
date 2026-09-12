@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from decimal import Decimal
 
+import pytest
+
 from ccnl_engine.engine.payroll.domain.supplements import (
     BonusInput,
     FringeBenefitInput,
@@ -33,14 +35,14 @@ def _standard_fb_rules() -> FringeBenefitRules:
 
 
 def _standard_pdr_rules() -> PdRRules:
-    """2026 PdR parameters: max €3.000, 10% flat tax, ceiling €80.000.
+    """2026 PdR parameters: max €5.000, 1% flat tax, ceiling €80.000 (R16).
 
     Returns:
         A :class:`PdRRules` with the 2026 statutory PdR parameters.
     """
     return PdRRules(
-        max_amount=_D("3000.00"),
-        flat_tax_rate=_D("0.10"),
+        max_amount=_D("5000.00"),
+        flat_tax_rate=_D("0.01"),
         income_ceiling=_D("80000.00"),
     )
 
@@ -59,14 +61,14 @@ class TestComputeFringeBenefit:
         assert taxable == _ZERO
 
     def test_above_standard_threshold(self) -> None:
-        """Amount above €1.000 threshold: excess is taxable."""
+        """R15: Amount above €1.000 threshold: ENTIRE amount is taxable."""
         fb_annual, threshold, taxable = compute_fringe_benefit(
             FringeBenefitInput(annual_amount=_D("1400")),
             _standard_fb_rules(),
         )
         assert fb_annual == _D("1400")
         assert threshold == _D("1000.00")
-        assert taxable == _D("400.00")
+        assert taxable == _D("1400.00")
 
     def test_exactly_at_standard_threshold(self) -> None:
         """Amount equal to threshold: taxable is zero."""
@@ -87,13 +89,13 @@ class TestComputeFringeBenefit:
         assert taxable == _ZERO
 
     def test_with_children_above_threshold(self) -> None:
-        """Amount above €2.000 threshold with children: excess is taxable."""
+        """R15: Amount above €2.000 threshold with children: entire amount taxable."""
         _, threshold, taxable = compute_fringe_benefit(
             FringeBenefitInput(annual_amount=_D("2500"), has_dependent_children=True),
             _standard_fb_rules(),
         )
         assert threshold == _D("2000.00")
-        assert taxable == _D("500.00")
+        assert taxable == _D("2500.00")
 
     def test_zero_amount(self) -> None:
         """Zero amount: all outputs are zero."""
@@ -152,9 +154,9 @@ class TestComputeBonus:
         assert warnings == []
 
     def test_pdr_eligible_below_ceiling_below_max(self) -> None:
-        """PdR eligible, income within ceiling, bonus within max amount.
+        """R16: PdR eligible, income within ceiling, bonus within max amount.
 
-        bonus=2000, flat_tax=2000*0.10=200, ordinary=0.
+        bonus=2000, flat_tax=2000*0.01=20, ordinary=0.
         """
         warnings: list[str] = []
         annual, flat_tax, ordinary = compute_bonus(
@@ -164,24 +166,24 @@ class TestComputeBonus:
             l3_warnings=warnings,
         )
         assert annual == _D("2000")
-        assert flat_tax == _D("200.00")
+        assert flat_tax == _D("20.00")
         assert ordinary == _ZERO
         assert warnings == []
 
     def test_pdr_eligible_bonus_exceeds_max(self) -> None:
-        """PdR eligible, bonus above €3.000 cap: excess is ordinarily taxable.
+        """R16: PdR eligible, bonus above €5.000 cap: excess is ordinarily taxable.
 
-        bonus=4000, pdr_base=3000, flat_tax=300, ordinary=1000.
+        bonus=6000, pdr_base=5000, flat_tax=50, ordinary=1000.
         """
         warnings: list[str] = []
         annual, flat_tax, ordinary = compute_bonus(
-            BonusInput(annual_amount=_D("4000"), eligible_for_pdr=True),
+            BonusInput(annual_amount=_D("6000"), eligible_for_pdr=True),
             _standard_pdr_rules(),
             gross_annual=_D("50000"),
             l3_warnings=warnings,
         )
-        assert annual == _D("4000")
-        assert flat_tax == _D("300.00")
+        assert annual == _D("6000")
+        assert flat_tax == _D("50.00")
         assert ordinary == _D("1000.00")
         assert warnings == []
 
@@ -198,10 +200,10 @@ class TestComputeBonus:
         assert flat_tax == _ZERO
         assert ordinary == _D("2000")
         assert len(warnings) == 1
-        assert "income ceiling" in warnings[0]
+        assert "ceiling" in warnings[0]
 
     def test_pdr_eligible_income_exactly_at_ceiling(self) -> None:
-        """Income exactly at €80.000 ceiling: PdR regime applies (not exceeded)."""
+        """R16: Income exactly at €80.000 ceiling: PdR regime applies (not exceeded)."""
         warnings: list[str] = []
         _, flat_tax, ordinary = compute_bonus(
             BonusInput(annual_amount=_D("1000"), eligible_for_pdr=True),
@@ -209,6 +211,35 @@ class TestComputeBonus:
             gross_annual=_D("80000"),
             l3_warnings=warnings,
         )
-        assert flat_tax == _D("100.00")
+        assert flat_tax == _D("10.00")
         assert ordinary == _ZERO
         assert warnings == []
+
+    def test_prior_year_gross_used_for_ceiling_check(self) -> None:
+        """R16: prior_year_gross_annual overrides gross_annual for ceiling check."""
+        warnings: list[str] = []
+        # Current year gross is 50 000 (within ceiling), but prior year was 90 000
+        # (above ceiling). PdR regime must NOT apply.
+        _, flat_tax, ordinary = compute_bonus(
+            BonusInput(
+                annual_amount=_D("2000"),
+                eligible_for_pdr=True,
+                prior_year_gross_annual=_D("90000"),
+            ),
+            _standard_pdr_rules(),
+            gross_annual=_D("50000"),
+            l3_warnings=warnings,
+        )
+        assert flat_tax == _ZERO
+        assert ordinary == _D("2000")
+        assert len(warnings) == 1
+        assert "ceiling" in warnings[0]
+
+    def test_prior_year_gross_negative_raises(self) -> None:
+        """BonusInput rejects negative prior_year_gross_annual."""
+        with pytest.raises(ValueError, match="prior_year_gross_annual"):
+            BonusInput(
+                annual_amount=_D("2000"),
+                eligible_for_pdr=True,
+                prior_year_gross_annual=_D("-1"),
+            )

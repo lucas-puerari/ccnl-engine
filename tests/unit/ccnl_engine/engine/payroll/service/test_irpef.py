@@ -436,46 +436,37 @@ _STRD_RULES = SterilizzazioneDetrazioniRules(
 
 
 class TestApplySterilizzazioneDetrazioni:
-    """Unit tests for apply_sterilizzazione_detrazioni()."""
+    """Unit tests for apply_sterilizzazione_detrazioni() — targets Art. 15 (R14)."""
 
     def test_below_threshold_unchanged(self) -> None:
-        """Income at or below threshold: deductions returned unchanged."""
-        work, fam = apply_sterilizzazione_detrazioni(
-            Decimal(0), Decimal(1200), Decimal("200000.00"), _STRD_RULES
+        """Income at or below threshold: Art. 15 deduction returned unchanged."""
+        result = apply_sterilizzazione_detrazioni(
+            Decimal(1200), Decimal("200000.00"), _STRD_RULES
         )
-        assert work == Decimal(0)
-        assert fam == Decimal(1200)
+        assert result == Decimal(1200)
 
-    def test_above_threshold_family_reduced(self) -> None:
-        """Income > 200k: family deduction reduced by 440 (work is already 0)."""
-        work, fam = apply_sterilizzazione_detrazioni(
-            Decimal(0), Decimal(1000), Decimal(250000), _STRD_RULES
+    def test_above_threshold_art15_reduced(self) -> None:
+        """Income > 200k: Art. 15 deduction reduced by 440."""
+        result = apply_sterilizzazione_detrazioni(
+            Decimal(1000), Decimal(250000), _STRD_RULES
         )
-        assert work == Decimal("0.00")
-        assert fam == Decimal("560.00")
+        assert result == Decimal("560.00")
 
-    def test_above_threshold_family_floored_at_zero(self) -> None:
-        """Reduction larger than family deduction: family deduction → 0."""
-        work, fam = apply_sterilizzazione_detrazioni(
-            Decimal(0), Decimal(300), Decimal(300000), _STRD_RULES
+    def test_above_threshold_art15_floored_at_zero(self) -> None:
+        """Reduction larger than Art. 15 deduction: result → 0."""
+        result = apply_sterilizzazione_detrazioni(
+            Decimal(300), Decimal(300000), _STRD_RULES
         )
-        assert work == Decimal("0.00")
-        assert fam == Decimal("0.00")
+        assert result == Decimal("0.00")
 
-    def test_above_threshold_work_absorbed_first(self) -> None:
-        """Reduction absorbed by work deduction before touching family."""
-        # Hypothetical: work=200, family=500, reduction=440 → total=260
-        # work=min(200, 260)=200, family=260-200=60
-        work, fam = apply_sterilizzazione_detrazioni(
-            Decimal(200), Decimal(500), Decimal(250000), _STRD_RULES
+    def test_above_threshold_zero_art15_stays_zero(self) -> None:
+        """No Art. 15 deductions: result remains zero regardless of reduction."""
+        result = apply_sterilizzazione_detrazioni(
+            Decimal(0), Decimal(250000), _STRD_RULES
         )
-        assert work == Decimal("200.00")
-        assert fam == Decimal("60.00")
+        assert result == Decimal("0.00")
 
     def test_rules_none_unchanged(self) -> None:
-        """When rules is None, deductions are returned unchanged."""
-        work, fam = apply_sterilizzazione_detrazioni(
-            Decimal(700), Decimal(800), Decimal(250000), None
-        )
-        assert work == Decimal(700)
-        assert fam == Decimal(800)
+        """When rules is None, Art. 15 deduction is returned unchanged."""
+        result = apply_sterilizzazione_detrazioni(Decimal(700), Decimal(250000), None)
+        assert result == Decimal(700)
