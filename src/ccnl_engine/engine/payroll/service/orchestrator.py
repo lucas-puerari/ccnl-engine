@@ -37,8 +37,7 @@ def _resolve_tax_year(employment: Employment) -> int:
     calendar year of the employment date.
 
     Returns:
-        The integer year to use for ``load_year_rules`` and
-        ``load_surtax_rules``.
+        Integer year for ``load_year_rules`` and ``load_surtax_rules``.
     """
     if employment.tax_year is not None:
         return employment.tax_year
@@ -52,19 +51,10 @@ def compute(scenario: PayrollScenario) -> Calculation:
     rules from the bundled knowledge base, then runs the full payroll
     computation chain.
 
-    Args:
-        scenario: The full payroll scenario — worker data and employment
-            relationship — as a :class:`~ccnl_engine.engine.payroll.domain\
-.scenario.PayrollScenario`.
-
     Returns:
-        A :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
-        whose ``result`` is the :class:`PayrollResult` with all gross, net,
-        and cost figures, together with the engine version, the ruleset
-        identities used and a serialisable snapshot of the inputs.
-
+        :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
+        with all gross, net and cost figures plus a serialisable input snapshot.
     """
-    # Load rulesets from the knowledge base
     ccnl = load_ccnl(scenario.employment.ccnl)
     as_of = scenario.employment.calculation_date
     year = _resolve_tax_year(scenario.employment)
@@ -81,9 +71,6 @@ def compute(scenario: PayrollScenario) -> Calculation:
     fiscal = compute_fiscal(scenario, ccnl, rules, surtax, gross, year)
     work = compute_work_rules(scenario, ccnl, gross, year)
     calculation_scope = build_scope(scenario, fiscal, work)
-    # R11: pass ccnl and under_level_code so _collect_provenance can resolve
-    # the effective pay level for under-classification apprentices instead of
-    # always using the destination level.
     provenance = _collect_provenance(
         gross.level,
         as_of,

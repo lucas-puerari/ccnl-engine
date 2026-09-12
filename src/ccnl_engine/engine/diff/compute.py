@@ -55,7 +55,6 @@ def diff_ccnl(ccnl: CCNL, from_date: date, to_date: date) -> RulesDiff:
 
     changes: list[RuleChange] = []
 
-    # --- levels -----------------------------------------------------------
     for level in ccnl.levels:
         _check(
             changes,
@@ -79,7 +78,6 @@ def diff_ccnl(ccnl: CCNL, from_date: date, to_date: date) -> RulesDiff:
                 unit="EUR/month",
             )
 
-    # --- parameters -------------------------------------------------------
     params = ccnl.parameters
     _check(
         changes,
@@ -100,10 +98,8 @@ def diff_ccnl(ccnl: CCNL, from_date: date, to_date: date) -> RulesDiff:
         unit="months",
     )
 
-    # --- seniority increments ---------------------------------------------
     _check_seniority(changes, params.seniority_increments, from_date, to_date)
 
-    # --- employer funds ---------------------------------------------------
     for fund in params.employer_funds:
         _check(
             changes,
@@ -115,9 +111,6 @@ def diff_ccnl(ccnl: CCNL, from_date: date, to_date: date) -> RulesDiff:
             unit="%",
         )
 
-    # --- time-supplement overtime bands -----------------------------------
-    # R8: include per-band rate series so changes to overtime/supplement
-    # rates are not silently omitted from the diff.
     work_rules = ccnl.work_rules
     if work_rules is not None and work_rules.time_supplements is not None:
         for band in work_rules.time_supplements.overtime_bands:
@@ -146,11 +139,6 @@ def diff_ccnl(ccnl: CCNL, from_date: date, to_date: date) -> RulesDiff:
         verification_status=verification_status,
         generated_at=datetime.now(tz=UTC),
     )
-
-
-# ---------------------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------------------
 
 
 def _check(

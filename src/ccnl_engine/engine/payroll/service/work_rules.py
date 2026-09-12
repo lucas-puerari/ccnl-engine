@@ -313,7 +313,6 @@ def compute_work_rules(
     Returns:
         Informational amounts, their trace and missing-rule diagnostics.
     """
-    # --- L3: time supplements ---
     base_monthly_full_time = gross.chain_full_time.base
     wr_warnings: list[str] = []
     overtime_supp, night_supp, holiday_supp, supplement_trace, wr_schema_present = (
@@ -332,7 +331,6 @@ def compute_work_rules(
         time_supplements_monthly * gross.additional_months
     )
 
-    # --- L3: absence deduction ---
     hourly_rate = money(gross.gross_monthly / gross.hourly_divisor)
     absence_deduction_monthly, effective_gross_monthly, wr_absence_present = (
         _run_wr_absence(
@@ -344,7 +342,6 @@ def compute_work_rules(
         )
     )
 
-    # --- L3: leave accrual ---
     (
         leave_accrued_days_monthly,
         leave_taken_days_monthly,
@@ -352,7 +349,6 @@ def compute_work_rules(
         wr_leave_present,
     ) = _run_wr_leave(scenario=scenario, ccnl=ccnl, wr_warnings=wr_warnings)
 
-    # --- L3: sickness ---
     sick_pay_rates = load_sick_pay_rates()
     (
         sick_days_monthly,
@@ -368,7 +364,6 @@ def compute_work_rules(
         wr_warnings=wr_warnings,
     )
 
-    # --- L3: variable pay (fringe benefits, welfare, bonus/PdR) ---
     (
         fringe_benefit_annual,
         fringe_benefit_threshold_annual,
@@ -385,9 +380,6 @@ def compute_work_rules(
     )
     warnings = tuple(wr_warnings)
 
-    # R7: collect identities of rulesets actually consumed in this call.
-    # sick_pay is included when the sickness block was active.
-    # variable_pay is included when at least one variable-pay input was present.
     consumed: dict[str, str] = {}
     if wr_sickness_present:
         consumed["sick_pay"] = (
