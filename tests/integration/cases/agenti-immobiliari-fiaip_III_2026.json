@@ -1,0 +1,20 @@
+{
+  "inputs": {
+    "ccnl_file": "agenti-immobiliari-fiaip.json",
+    "level_code": "III",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "num_employees": 50,
+    "year": 2026,
+    "tax_sector": "terziario",
+    "seniority_count": 0,
+    "part_time_pct": "1"
+  },
+  "expected": {
+    "gross_monthly": "1970.16",
+    "net_monthly": "1432.28",
+    "net_annual": "20051.97",
+    "employer_cost_annual": "37618.70",
+    "gross_annual": "27582.24"
+  }
+}

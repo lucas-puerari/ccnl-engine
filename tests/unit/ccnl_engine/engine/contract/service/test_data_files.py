@@ -9374,3 +9374,69 @@ class TestLoadAutoscuoleUnasca:
         assert tracks is not None
         assert len(tracks) == 5
         assert all(isinstance(t, ApprenticeshipUnderClassification) for t in tracks)
+
+
+class TestLoadAgentiImmobilariFiaip:
+    """Tests for CCNL Agenti Immobiliari Professionali FIAIP (H0B1)."""
+
+    def test_agenti_immobiliari_fiaip_loads(self) -> None:
+        """Loads agenti-immobiliari-fiaip and verifies id and CNEL code H0B1."""
+        ccnl = load_ccnl("agenti-immobiliari-fiaip.json")
+        assert ccnl.meta.ccnl_id == "agenti-immobiliari-fiaip"
+        assert ccnl.meta.cnel_code == "H0B1"
+
+    def test_agenti_immobiliari_fiaip_has_7_levels(self) -> None:
+        """Has exactly 7 levels: Q, I, II, III, IV, V, VI."""
+        ccnl = load_ccnl("agenti-immobiliari-fiaip.json")
+        assert len(ccnl.levels) == 7
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"Q", "I", "II", "III", "IV", "V", "VI"}
+
+    def test_agenti_immobiliari_fiaip_level_iii_salary_tranche1(self) -> None:
+        """Level III conglobated salary at 01/05/2025 is 1925.95 EUR (Art. 163)."""
+        ccnl = load_ccnl("agenti-immobiliari-fiaip.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "III")
+        assert lv.base_salary.value_at(date(2025, 5, 1)) == Decimal("1925.95")
+
+    def test_agenti_immobiliari_fiaip_level_iii_salary_tranche2(self) -> None:
+        """Level III conglobated salary at 01/01/2026 is 1970.16 EUR (Art. 163)."""
+        ccnl = load_ccnl("agenti-immobiliari-fiaip.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "III")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1970.16")
+
+    def test_agenti_immobiliari_fiaip_level_ordering(self) -> None:
+        """Level VI is lowest (order 1), level Q is highest (order 7)."""
+        ccnl = load_ccnl("agenti-immobiliari-fiaip.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "VI"
+        assert by_order[-1].code == "Q"
+
+    def test_agenti_immobiliari_fiaip_additional_months(self) -> None:
+        """Additional months is 14 (Art. 168 tredicesima + Art. 169 quattordicesima)."""
+        ccnl = load_ccnl("agenti-immobiliari-fiaip.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            14
+        )
+
+    def test_agenti_immobiliari_fiaip_hourly_divisor(self) -> None:
+        """Hourly divisor is 168 (Art. 161 explicit text)."""
+        ccnl = load_ccnl("agenti-immobiliari-fiaip.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(168)
+
+    def test_agenti_immobiliari_fiaip_no_fixed_allowances(self) -> None:
+        """Conglobated model: every level has fixed_allowances == [] (Art. 158)."""
+        ccnl = load_ccnl("agenti-immobiliari-fiaip.json")
+        for lv in ccnl.levels:
+            assert lv.fixed_allowances == [], f"{lv.code} has unexpected allowances"
+
+    def test_agenti_immobiliari_fiaip_tax_sector(self) -> None:
+        """Tax sector is terziario (FILCAMS/FISASCAT/UILTUCS signatories)."""
+        ccnl = load_ccnl("agenti-immobiliari-fiaip.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_agenti_immobiliari_fiaip_seniority_cadence(self) -> None:
+        """Seniority: triennial cadence (36 months), 10 increments (Art. 157)."""
+        ccnl = load_ccnl("agenti-immobiliari-fiaip.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 10

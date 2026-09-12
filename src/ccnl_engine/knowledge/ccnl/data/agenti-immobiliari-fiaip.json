@@ -1,0 +1,1114 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "agenti-immobiliari-fiaip",
+    "name": "CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso",
+    "cnel_code": "H0B1",
+    "sector": "agenzie immobiliari",
+    "tax_sector": "terziario",
+    "agreement_date": "2025-05-19",
+    "signatories": [
+      "FIAIP — Federazione Italiana Agenti Immobiliari Professionali",
+      "FILCAMS-CGIL",
+      "FISASCAT-CISL",
+      "UILTUCS-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.ebnaip.it/",
+        "type": "ccnl_text",
+        "agreement_date": "2025-05-19"
+      }
+    ],
+    "extraction": {
+      "method": "ai_assisted",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-12",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: CONGLOBATED. Art. 158 explicitly lists the composition: paga base nazionale conglobata comprising paga base + contingenza ex art. 98 CCNL 11/6/97 + EDR accordo interconfederale 21/07/92 + elemento economico di 2° livello ex art. 95 CCNL 11/6/97. Art. 162 title: 'Paga base nazionale conglobata'. Modelled as base_salary (TimeSeries per level) with fixed_allowances: [] for all levels."
+      },
+      {
+        "kind": "info",
+        "text": "CatA/CatB cross-verification: Art. 164 defines CatA = 90% of level II and CatB = 90% of level III for agencies ≤15 employees with commission-based pay. Cross-check at 01/05/2025: 0.9×2156.50=1940.85 (CatA matches), 0.9×1925.95=1733.355≈1733.36 (CatB matches). This independently confirms all four tranche values for levels II and III."
+      },
+      {
+        "kind": "info",
+        "text": "hourly_divisor: 168 — confirmed from Art. 161 explicit text ('La quota oraria della retribuzione, si ottiene dividendo l'importo mensile per 168'). Also consistent with Art. 67 (hourly divisor = 168) and Art. 103 (standard weekly hours = 40)."
+      },
+      {
+        "kind": "info",
+        "text": "additional_months: 14 — Art. 168 (tredicesima, December) and Art. 169 (quattordicesima, 1 July) both explicit in CCNL. Art. 7 ter also references tredicesima and quattordicesima as separate institutes."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: 10 scatti triennali (cadence_months=36, maximum_count=10). Amounts from Art. 157 CCNL: Q=33.05, I=30.99, II=28.41, III=25.31, IV=23.24, V=22.21, VI=21.17 EUR."
+      },
+      {
+        "kind": "info",
+        "text": "Tranche arithmetic verification: Art. 163 prints four tables. Q: 2500.20+104.63=2604.83, +59.79=2664.62, +59.79=2724.41, +74.73=2799.14. Level IV: 1672.68+70.00=1742.68, +40.00=1782.68, +40.00=1822.68, +50.00=1872.68. Both reconcile exactly. Tabelle retributive values treated as authoritative."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship: apprendistato professionalizzante, under-classification model (Art. 40, 46, 48 CCNL 19/05/2025). Q and I excluded per Art. 46. Levels II-V eligible, all 36 months per Art. 48. Art. 40: first half 2 levels below, second half 1 level below. Special rule for dest=V: 1 level below throughout (Art. 40 'Per l'apprendistato al 5° livello l'inquadramento è di 1 livello inferiore per tutto il periodo formativo'). Source: signed CCNL 19/05/2025, Art. 40, 46, 48."
+      },
+      {
+        "kind": "info",
+        "text": "tax_sector: terziario. Signatories include FILCAMS-CGIL, FISASCAT-CISL and UILTUCS-UIL — the three national federations that represent the commerce/services sector and sign terziario contracts. 2026-terziario.json exists; no new TaxSector needed."
+      },
+      {
+        "kind": "info",
+        "text": "first valid_from is 2025-05-01 (decorrenza del rinnovo per le tabelle retributive). agreement_date 2025-05-19 is the signature date; these differ per precedent (IC91: agreement_date 2023-02-28, first tranche 2021-01-01). April 2025 table from Art. 162 is the previgente table — not modelled as a period."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Q indennità di funzione (Art. 162 footnote) not modelled. Amount: 250 EUR/month × 12 mensilità, for quadri with responsibility over operational or local units ('nei casi di responsabilità di unità operative o di unità locali'). Excluded because: (1) conditional on role attribute, not universal for level Q; (2) 12 mensilità conflicts with additional_months=14; (3) conglobated model requires fixed_allowances: []. employer_cost_annual may be understated by up to 3000 EUR/year for qualifying Q employees."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: QSC and Quota Forfettaria (Art. 11) not modelled. QSC: 1.90% of monthly retribuzione × 14 mensilità (0.30% employee + 1.60% employer), paid to EBNAIP. Quota Forfettaria: 12 EUR/month × 12 mensilità, employer only. Both go to the bilateral entity; the QSC constitutes retribuzione ordinaria for TFR purposes (Art. 11). Modelling would require percentage-based bilateral fund logic not yet implemented. employer_cost_annual understated by (QSC employer portion + 144 EUR/year)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: CatA and CatB (Art. 164) not modelled as levels. These are special mixed-salary categories for agencies with ≤15 employees where workers receive commission income, modelled at 90% of level II and III respectively with mandatory commission minimum and 2% guarantee. Conditional on employer size and pay structure; not standard classification levels."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Apprendistato specialistico (Art. 55) not modelled. Two-year fast-track for workers holding the mediazione immobiliare exam: 24 months starting at 5° and ending at 3°. Intermediate classification not specified in the article. Modelled only under the four standard Art. 40/48 tracks."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Una tantum payments (01/09/2025 and 01/05/2026) for employees hired before 01/01/2024 not modelled. One-time payments only; not part of ongoing monthly retribuzione."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Fondo Fon.Te. supplementary pension (Art. 15) not modelled. Voluntary adhesion. Employee: 0.55% of TFR-eligible retribuzione; employer: 1.55% + 0.05% quota associativa. employer_cost_annual understated by approximately 1.60% of annual retribuzione for adherents."
+      },
+      {
+        "kind": "info",
+        "text": "Source provenance: values extracted from signed CCNL 19/05/2025 PDF distributed by FIAIP/EBNAIP. The direct PDF download URL was not recorded; the homepage https://www.ebnaip.it/ was used as the source anchor. All values verified page-by-page against the original document."
+      }
+    ],
+    "gross": "implemented",
+    "net": "implemented",
+    "work_rules": "not_implemented"
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-05-01",
+          "valid_until": null,
+          "value": "168"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-05-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 36,
+      "maximum_count": 10,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+            "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+            "kind": "associazione",
+            "url": "https://www.ebnaip.it/"
+          },
+          "section": "Art. 157 — Aumenti Periodici di Anzianità"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-05-01"
+        }
+      },
+      "amount_by_level": {
+        "Q": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "33.05"
+            }
+          ]
+        },
+        "I": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "30.99"
+            }
+          ]
+        },
+        "II": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "28.41"
+            }
+          ]
+        },
+        "III": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "25.31"
+            }
+          ]
+        },
+        "IV": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "23.24"
+            }
+          ]
+        },
+        "V": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "22.21"
+            }
+          ]
+        },
+        "VI": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "21.17"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "Q",
+      "order": 7,
+      "description": "Quadri — lavoratori con funzioni direttive e responsabilità di unità operative o locali (legge 190/85)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-01-01",
+            "value": "2604.83",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-05-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2664.62",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-05-01",
+            "value": "2724.41",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": null,
+            "value": "2799.14",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-05-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "quadro",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+            "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+            "kind": "associazione",
+            "url": "https://www.ebnaip.it/"
+          },
+          "section": "Art. 162 — Paga base nazionale conglobata; Art. 163 — Tabelle retributive"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-05-01"
+        }
+      }
+    },
+    {
+      "code": "I",
+      "order": 6,
+      "description": "1° livello — lavoratori con elevata professionalità e autonomia tecnica e gestionale",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-01-01",
+            "value": "2404.16",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-05-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2459.35",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-05-01",
+            "value": "2514.53",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": null,
+            "value": "2583.51",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-05-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+            "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+            "kind": "associazione",
+            "url": "https://www.ebnaip.it/"
+          },
+          "section": "Art. 162 — Paga base nazionale conglobata; Art. 163 — Tabelle retributive"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-05-01"
+        }
+      }
+    },
+    {
+      "code": "II",
+      "order": 5,
+      "description": "2° livello — lavoratori con funzioni di coordinamento e autonomia operativa di rilievo",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-01-01",
+            "value": "2156.50",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-05-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2206.00",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-05-01",
+            "value": "2255.50",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": null,
+            "value": "2317.37",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-05-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+            "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+            "kind": "associazione",
+            "url": "https://www.ebnaip.it/"
+          },
+          "section": "Art. 162 — Paga base nazionale conglobata; Art. 163 — Tabelle retributive"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-05-01"
+        }
+      }
+    },
+    {
+      "code": "III",
+      "order": 4,
+      "description": "3° livello — lavoratori con mansioni qualificate che richiedono specifica preparazione professionale",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-01-01",
+            "value": "1925.95",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-05-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1970.16",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-05-01",
+            "value": "2014.37",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": null,
+            "value": "2069.63",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-05-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+            "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+            "kind": "associazione",
+            "url": "https://www.ebnaip.it/"
+          },
+          "section": "Art. 162 — Paga base nazionale conglobata; Art. 163 — Tabelle retributive"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-05-01"
+        }
+      }
+    },
+    {
+      "code": "IV",
+      "order": 3,
+      "description": "4° livello — lavoratori con mansioni esecutive richiedenti preparazione specifica o pratica acquisita",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-01-01",
+            "value": "1742.68",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-05-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1782.68",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-05-01",
+            "value": "1822.68",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": null,
+            "value": "1872.68",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-05-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+            "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+            "kind": "associazione",
+            "url": "https://www.ebnaip.it/"
+          },
+          "section": "Art. 162 — Paga base nazionale conglobata; Art. 163 — Tabelle retributive"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-05-01"
+        }
+      }
+    },
+    {
+      "code": "V",
+      "order": 2,
+      "description": "5° livello — lavoratori con mansioni esecutive semplici o di supporto operativo",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-01-01",
+            "value": "1629.42",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-05-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1666.82",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-05-01",
+            "value": "1704.22",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": null,
+            "value": "1750.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-05-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+            "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+            "kind": "associazione",
+            "url": "https://www.ebnaip.it/"
+          },
+          "section": "Art. 162 — Paga base nazionale conglobata; Art. 163 — Tabelle retributive"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-05-01"
+        }
+      }
+    },
+    {
+      "code": "VI",
+      "order": 1,
+      "description": "6° livello — lavoratori con mansioni elementari o di ausilio generale",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-05-01",
+            "valid_until": "2026-01-01",
+            "value": "1517.10",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-05-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1549.75",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2027-05-01",
+            "value": "1582.39",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/01/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-05-01",
+            "valid_until": null,
+            "value": "1623.19",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+                  "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+                  "kind": "associazione",
+                  "url": "https://www.ebnaip.it/"
+                },
+                "section": "Art. 163 — Tabelle retributive, tranche 01/05/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-05-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
+            "title": "CCNL Agenti Immobiliari Professionali FIAIP 19/05/2025",
+            "kind": "associazione",
+            "url": "https://www.ebnaip.it/"
+          },
+          "section": "Art. 162 — Paga base nazionale conglobata; Art. 163 — Tabelle retributive"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-05-01"
+        }
+      }
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "II-agenti-immobiliari-36m",
+      "destination_levels": [
+        "II"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": 36,
+          "levels_below": 1
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "III-agenti-immobiliari-36m",
+      "destination_levels": [
+        "III"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": 36,
+          "levels_below": 1
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "IV-agenti-immobiliari-36m",
+      "destination_levels": [
+        "IV"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": 36,
+          "levels_below": 1
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "V-agenti-immobiliari-36m",
+      "destination_levels": [
+        "V"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 36,
+          "levels_below": 1
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    }
+  ]
+}
