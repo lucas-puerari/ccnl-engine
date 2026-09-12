@@ -292,7 +292,7 @@
           "rate": "0.0035"
         },
         {
-          "up_to": "28000.00",
+          "up_to": "50000.00",
           "rate": "0.005"
         },
         {
@@ -831,15 +831,15 @@
       "nome": "Ameno",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.002"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.004"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.006"
         },
         {
@@ -2536,7 +2536,7 @@
           "rate": "0.005"
         },
         {
-          "up_to": "28000.00",
+          "up_to": "50000.00",
           "rate": "0.0055"
         },
         {
@@ -3482,15 +3482,15 @@
       "nome": "Bosnasco",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.004"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.0045"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.0055"
         },
         {
@@ -10294,15 +10294,15 @@
       "nome": "Costa de' Nobili",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.004"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.005"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.006"
         },
         {
@@ -11123,7 +11123,7 @@
       "nome": "Dogliani",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.004"
         },
         {
@@ -11696,15 +11696,15 @@
       "nome": "Fauglia",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.0053"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.0077"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.0078"
         },
         {
@@ -12106,15 +12106,15 @@
       "nome": "Fombio",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.0045"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.0055"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.006"
         },
         {
@@ -12807,15 +12807,15 @@
       "nome": "Gaiole in Chianti",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.005"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.006"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.007"
         },
         {
@@ -12837,15 +12837,15 @@
       "nome": "Galbiate",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.006"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.0062"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.007"
         },
         {
@@ -13588,7 +13588,7 @@
           "rate": "0.0047"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.0065"
         },
         {
@@ -13837,15 +13837,15 @@
       "nome": "Gorle",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.0009"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.001"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.002"
         },
         {
@@ -15141,7 +15141,7 @@
       "nome": "Legnano",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.006"
         },
         {
@@ -16027,7 +16027,7 @@
           "rate": "0.0065"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.007"
         },
         {
@@ -16204,15 +16204,15 @@
       "nome": "Madignano",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.0055"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.0065"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.0075"
         },
         {
@@ -16388,11 +16388,11 @@
           "rate": "0.0075"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.0077"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.0078"
         },
         {
@@ -16915,15 +16915,15 @@
       "nome": "Marnate",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.0076"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.0077"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.0078"
         },
         {
@@ -17862,11 +17862,11 @@
           "rate": "0.0025"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.0035"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.0075"
         },
         {
@@ -17928,15 +17928,15 @@
       "nome": "Molfetta",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.006"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.0065"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.0073"
         },
         {
@@ -18069,15 +18069,15 @@
       "nome": "Momo",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.0035"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.0045"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.0055"
         },
         {
@@ -21721,11 +21721,11 @@
           "rate": "0.003"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.005"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.007"
         },
         {
@@ -21767,7 +21767,7 @@
       "nome": "Pavone Canavese",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.007"
         },
         {
@@ -25804,7 +25804,7 @@
       "nome": "Ronco Scrivia",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.007"
         },
         {
@@ -27171,7 +27171,7 @@
       "nome": "San Giorgio di Nogaro",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.001"
         },
         {
@@ -27523,7 +27523,7 @@
           "rate": "0.0058"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.0068"
         },
         {
@@ -29352,15 +29352,15 @@
       "nome": "Scanno",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.0055"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.006"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.0065"
         },
         {
@@ -30685,7 +30685,7 @@
           "rate": "0.0072"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.0074"
         },
         {
@@ -31242,11 +31242,11 @@
           "rate": "0.003"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.005"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.007"
         },
         {
@@ -32620,7 +32620,7 @@
           "rate": "0.0055"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.007"
         },
         {
@@ -32813,15 +32813,15 @@
       "nome": "Valfabbrica",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.007"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.0075"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.0078"
         },
         {
@@ -33358,15 +33358,15 @@
       "nome": "Vedelago",
       "brackets": [
         {
-          "up_to": null,
+          "up_to": "15000.00",
           "rate": "0.006"
         },
         {
-          "up_to": null,
+          "up_to": "28000.00",
           "rate": "0.008"
         },
         {
-          "up_to": null,
+          "up_to": "50000.00",
           "rate": "0.008"
         },
         {
@@ -35110,6 +35110,6 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "edee7a95d4ff4bb505b890fa75cfd203839ff3ed18aed7c0a7b7211bb8704c23"
+    "source_hash": "5f3a214497813f2ebc1018124f7e7854426a4f07aa0dd7fdecd9453eb946ba16"
   }
 }

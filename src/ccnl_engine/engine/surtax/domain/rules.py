@@ -19,6 +19,42 @@ from ccnl_engine.engine.provenance.domain.source import SourceDocument
 SurtaxBracket = Bracket
 
 
+def _validate_surtax_brackets(brackets: list[SurtaxBracket], label: str) -> None:
+    """Validate that *brackets* form a well-ordered marginal rate schedule.
+
+    Rules (mirrors ``YearRulesRaw._check_irpef_brackets``):
+    - The list must not be empty.
+    - Only the last bracket may have ``up_to=None``.
+    - ``up_to`` values in non-final brackets must be strictly ascending.
+
+    Raises:
+        ValueError: If any rule is violated.
+    """
+    if not brackets:
+        msg = f"{label}.brackets must not be empty"
+        raise ValueError(msg)
+    for i, b in enumerate(brackets[:-1]):
+        if b.up_to is None:
+            msg = (
+                f"{label}: only the last bracket may have up_to=None "
+                f"(bracket {i} of {len(brackets)} is not the last)"
+            )
+            raise ValueError(msg)
+        next_b = brackets[i + 1]
+        if next_b.up_to is not None and next_b.up_to <= b.up_to:
+            msg = (
+                f"{label}: brackets must have strictly ascending up_to; "
+                f"bracket {i} up_to={b.up_to} >= bracket {i + 1} up_to={next_b.up_to}"
+            )
+            raise ValueError(msg)
+    if brackets[-1].up_to is not None:
+        msg = (
+            f"{label}: last bracket must be unbounded (up_to=None), "
+            f"got up_to={brackets[-1].up_to}"
+        )
+        raise ValueError(msg)
+
+
 class RegionaleEntry(BaseModel):
     """Addizionale regionale IRPEF for one region/autonomous province.
 
@@ -37,9 +73,7 @@ class RegionaleEntry(BaseModel):
 
     @model_validator(mode="after")
     def _check_brackets(self) -> Self:
-        if not self.brackets:
-            msg = "RegionaleEntry.brackets must not be empty"
-            raise ValueError(msg)
+        _validate_surtax_brackets(self.brackets, "RegionaleEntry")
         return self
 
 
@@ -66,9 +100,7 @@ class ComunaleEntry(BaseModel):
 
     @model_validator(mode="after")
     def _check_brackets(self) -> Self:
-        if not self.brackets:
-            msg = "ComunaleEntry.brackets must not be empty"
-            raise ValueError(msg)
+        _validate_surtax_brackets(self.brackets, "ComunaleEntry")
         return self
 
 
