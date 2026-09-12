@@ -115,6 +115,22 @@ def diff_ccnl(ccnl: CCNL, from_date: date, to_date: date) -> RulesDiff:
             unit="%",
         )
 
+    # --- time-supplement overtime bands -----------------------------------
+    # R8: include per-band rate series so changes to overtime/supplement
+    # rates are not silently omitted from the diff.
+    work_rules = ccnl.work_rules
+    if work_rules is not None and work_rules.time_supplements is not None:
+        for band in work_rules.time_supplements.overtime_bands:
+            _check(
+                changes,
+                ts=band.rate,
+                from_date=from_date,
+                to_date=to_date,
+                path=(f"work_rules.time_supplements.overtime_bands[{band.code}].rate"),
+                label=f"Overtime/supplement band {band.code} - rate",
+                unit="%",
+            )
+
     ccnl_id = ccnl.meta.ccnl_id
     verification_status = (
         ccnl.ruleset.verification_status if ccnl.ruleset is not None else "unverified"

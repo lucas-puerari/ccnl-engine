@@ -29,7 +29,7 @@ Usage::
             ccnl="metalmeccanico-federmeccanica.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            date=date(2026, 1, 1),
+            calculation_date=date(2026, 1, 1),
         ),
     ))
     print(result.result.net_annual)

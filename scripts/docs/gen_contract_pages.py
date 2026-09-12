@@ -55,7 +55,7 @@ def _latest_value(periods: list[dict[str, Any]]) -> str | None:
     """
     if not periods:
         return None
-    sorted_periods = sorted(periods, key=lambda p: p.get("from", ""))
+    sorted_periods = sorted(periods, key=lambda p: p.get("valid_from", ""))
     last = sorted_periods[-1]
     return last.get("amount") or last.get("value")
 
@@ -64,12 +64,12 @@ def _latest_date(periods: list[dict[str, Any]]) -> str | None:
     """Return the start date of the most recent period.
 
     Returns:
-        ISO-8601 string from the most recent ``from`` key, or ``None``.
+        ISO-8601 string from the most recent ``valid_from`` key, or ``None``.
     """
     if not periods:
         return None
-    sorted_periods = sorted(periods, key=lambda p: p.get("from", ""))
-    return sorted_periods[-1].get("from")
+    sorted_periods = sorted(periods, key=lambda p: p.get("valid_from", ""))
+    return sorted_periods[-1].get("valid_from")
 
 
 def _fmt_eur(amount: str | None) -> str:
@@ -154,8 +154,8 @@ def _track_params_line(periods: list[Any]) -> str:
     parts = []
     if prow.get("percentage"):
         parts.append(f"percentage: {prow['percentage']}")
-    if prow.get("under_level"):
-        parts.append(f"under-level: `{prow['under_level']}`")
+    if prow.get("levels_below"):
+        parts.append(f"under-level: `{prow['levels_below']}`")
     return ", ".join(parts)
 
 
