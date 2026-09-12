@@ -1,28 +1,28 @@
 {
-  "_description": "CCNL Gruppo ANAS (T511) — livello B1, 2026-09-01",
-  "_notes": [
-    "Split model: minimo tabellare 2124.84 + IIS 527.76 = gross_monthly 2652.60.",
-    "Divisor 156, 13 additional months. Seniority_count=0, num_employees=50."
-  ],
-  "inputs": {
-    "ccnl_file": "anas.json",
-    "year": 2026,
-    "tax_sector": "industria",
-    "num_employees": 50,
-    "level_code": "B1",
-    "as_of": "2026-09-01",
-    "employment_type": "permanent",
-    "part_time_pct": "1",
-    "seniority_count": 0,
-    "negotiated_ral": null
-  },
-  "expected": {
-    "base_monthly": "2124.84",
-    "gross_monthly": "2652.60",
-    "gross_annual": "34483.80",
-    "hourly_rate": "17.00",
-    "net_annual": "24205.26",
-    "employer_cost_annual": "47452.27",
-    "trattamento_integrativo": "0"
-  }
+    "_description": "CCNL Gruppo ANAS (T511) — livello B1, 2026-09-01",
+    "_notes": [
+        "Split model: minimo tabellare 2124.84 + IIS 527.76 = gross_monthly 2652.60.",
+        "Divisor 156, 13 additional months. Seniority_count=0, num_employees=50."
+    ],
+    "inputs": {
+        "ccnl_file": "anas.json",
+        "year": 2026,
+        "tax_sector": "industria",
+        "num_employees": 50,
+        "level_code": "B1",
+        "as_of": "2026-09-01",
+        "employment_type": "permanent",
+        "part_time_pct": "1",
+        "seniority_count": 0,
+        "negotiated_ral": null
+    },
+    "expected": {
+        "base_monthly": "2124.84",
+        "gross_monthly": "2652.60",
+        "gross_annual": "34483.80",
+        "hourly_rate": "17.00",
+        "net_annual": "25407.70",
+        "employer_cost_annual": "47452.27",
+        "trattamento_integrativo": "0"
+    }
 }

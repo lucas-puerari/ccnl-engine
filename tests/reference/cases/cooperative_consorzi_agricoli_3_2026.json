@@ -1,28 +1,28 @@
 {
-  "_description": "CCNL Cooperative e Consorzi Agricoli (A016) — livello 3°, 2026-05-01",
-  "_notes": [
-    "Conglobated model. Livello 3° = operaio qualificato.",
-    "No fixed allowances on level 3. Seniority_count=0."
-  ],
-  "inputs": {
-    "ccnl_file": "cooperative-consorzi-agricoli.json",
-    "year": 2026,
-    "tax_sector": "agricoltura",
-    "num_employees": 50,
-    "level_code": "3",
-    "as_of": "2026-05-01",
-    "employment_type": "permanent",
-    "part_time_pct": "1",
-    "seniority_count": 0,
-    "negotiated_ral": null
-  },
-  "expected": {
-    "base_monthly": "1877.79",
-    "gross_monthly": "1877.79",
-    "gross_annual": "26289.06",
-    "hourly_rate": "11.11",
-    "net_annual": "19421.17",
-    "employer_cost_annual": "33930.61",
-    "trattamento_integrativo": "157.93"
-  }
+    "_description": "CCNL Cooperative e Consorzi Agricoli (A016) — livello 3°, 2026-05-01",
+    "_notes": [
+        "Conglobated model. Livello 3° = operaio qualificato.",
+        "No fixed allowances on level 3. Seniority_count=0."
+    ],
+    "inputs": {
+        "ccnl_file": "cooperative-consorzi-agricoli.json",
+        "year": 2026,
+        "tax_sector": "agricoltura",
+        "num_employees": 50,
+        "level_code": "3",
+        "as_of": "2026-05-01",
+        "employment_type": "permanent",
+        "part_time_pct": "1",
+        "seniority_count": 0,
+        "negotiated_ral": null
+    },
+    "expected": {
+        "base_monthly": "1877.79",
+        "gross_monthly": "1877.79",
+        "gross_annual": "26289.06",
+        "hourly_rate": "11.11",
+        "net_annual": "20732.39",
+        "employer_cost_annual": "33930.61",
+        "trattamento_integrativo": "0"
+    }
 }

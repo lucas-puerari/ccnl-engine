@@ -1,52 +1,52 @@
 {
-  "_description": "L3 time supplement — CCNL Sistemazioni Idraulico-Forestali (Operai OTI), O3, 10h straordinario diurno, 2026-06-01",
-  "_notes": [
-    "Verifies weekday overtime supplement is computed correctly and does not alter gross_annual/net_annual.",
-    "Maggiorazione straordinario diurno 24% su minimo tabellare per Art. 50 CCNL 2023.",
-    "O3 minimo tabellare 2026-06-01 = 1471.55; divisore orario = 169.",
-    "Supplement = 10h * 0.24 * (1471.55/169) = 10 * 0.24 * 8.7071... = 20.90."
-  ],
-  "source": {
-    "document": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria 2023 (Operai OTI)",
-    "section": "Art. 50 — Lavoro straordinario, notturno e festivo (1) lavoro straordinario diurno 24%)",
-    "verified_by": "lucas.puerari@intella.tech",
-    "verified_on": "2026-09-11",
-    "verification_status": "unverified"
-  },
-  "inputs": {
-    "ccnl_file": "sistemazioni-idraulico-forestali-operai.json",
-    "year": 2026,
-    "tax_sector": "agricoltura",
-    "num_employees": 50,
-    "level_code": "O3",
-    "as_of": "2026-06-01",
-    "employment_type": "permanent",
-    "part_time_pct": "1",
-    "seniority_count": 0,
-    "negotiated_ral": null,
-    "months_elapsed": null,
-    "weekly_hours": null,
-    "category": null,
-    "regione": null,
-    "comune_belfiore": null,
-    "ivs_ceiling_applies": false,
-    "time_supplements": {
-      "weekday_hours": "10",
-      "night_hours": "0",
-      "holiday_hours": "0",
-      "supplementare_hours": "0"
+    "_description": "L3 time supplement — CCNL Sistemazioni Idraulico-Forestali (Operai OTI), O3, 10h straordinario diurno, 2026-06-01",
+    "_notes": [
+        "Verifies weekday overtime supplement is computed correctly and does not alter gross_annual/net_annual.",
+        "Maggiorazione straordinario diurno 24% su minimo tabellare per Art. 50 CCNL 2023.",
+        "O3 minimo tabellare 2026-06-01 = 1471.55; divisore orario = 169.",
+        "Supplement = 10h * 0.24 * (1471.55/169) = 10 * 0.24 * 8.7071... = 20.90."
+    ],
+    "source": {
+        "document": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria 2023 (Operai OTI)",
+        "section": "Art. 50 — Lavoro straordinario, notturno e festivo (1) lavoro straordinario diurno 24%)",
+        "verified_by": "lucas.puerari@intella.tech",
+        "verified_on": "2026-09-11",
+        "verification_status": "unverified"
+    },
+    "inputs": {
+        "ccnl_file": "sistemazioni-idraulico-forestali-operai.json",
+        "year": 2026,
+        "tax_sector": "agricoltura",
+        "num_employees": 50,
+        "level_code": "O3",
+        "as_of": "2026-06-01",
+        "employment_type": "permanent",
+        "part_time_pct": "1",
+        "seniority_count": 0,
+        "negotiated_ral": null,
+        "months_elapsed": null,
+        "weekly_hours": null,
+        "category": null,
+        "regione": null,
+        "comune_belfiore": null,
+        "ivs_ceiling_applies": false,
+        "time_supplements": {
+            "weekday_hours": "10",
+            "night_hours": "0",
+            "holiday_hours": "0",
+            "supplementare_hours": "0"
+        }
+    },
+    "expected": {
+        "gross_monthly": "1471.55",
+        "gross_annual": "20601.70",
+        "net_annual": "17214.82",
+        "base_monthly_full_time": "1471.55",
+        "overtime_supplement_monthly": "20.90",
+        "night_supplement_monthly": "0.00",
+        "holiday_supplement_monthly": "0.00",
+        "time_supplements_monthly": "20.90",
+        "time_supplements_annual_projection": "292.60",
+        "warnings": []
     }
-  },
-  "expected": {
-    "gross_monthly": "1471.55",
-    "gross_annual": "20601.70",
-    "net_annual": "16320.06",
-    "base_monthly_full_time": "1471.55",
-    "overtime_supplement_monthly": "20.90",
-    "night_supplement_monthly": "0.00",
-    "holiday_supplement_monthly": "0.00",
-    "time_supplements_monthly": "20.90",
-    "time_supplements_annual_projection": "292.60",
-    "warnings": []
-  }
 }

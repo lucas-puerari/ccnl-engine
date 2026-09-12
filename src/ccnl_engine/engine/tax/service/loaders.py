@@ -96,7 +96,6 @@ def load_year_rules(
         ruleset=_as_ruleset(tax_raw),
         inps_ruleset=_as_ruleset(inps_raw),
         irpef_brackets=rules.irpef_brackets,
-        work_deduction_breakpoints=rules.work_deduction_breakpoints,
         fixed_term_additional_rate=rules.fixed_term_additional_rate,
         inps=inps,
         apprentice=apprentice,

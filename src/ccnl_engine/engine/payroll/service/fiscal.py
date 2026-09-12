@@ -157,6 +157,7 @@ def _compute_ti(
     gross_annual: Decimal,
     irpef_gross: Decimal,
     work_income_deduction: Decimal,
+    relevant_deductions: Decimal,
     rules: YearRules,
 ) -> tuple[Decimal, frozenset[FiscalSimplification]]:
     """Return (trattamento_integrativo, fiscal_simplifications) for the scenario.
@@ -166,13 +167,25 @@ def _compute_ti(
     Otherwise, all four ``FiscalSimplification`` members are returned and the
     bonus is zero.
 
+    Args:
+        gross_annual: RAL (proxy for reddito complessivo di riferimento).
+        irpef_gross: IRPEF lorda before deductions.
+        work_income_deduction: Art. 13 co. 1 deduction.
+        relevant_deductions: Sum of Art. 12 + Art. 13 + qualifying Art. 15
+            deductions (used for the 15 000-28 000 requisito check).
+        rules: Resolved tax rules for the year.
+
     Returns:
         Tuple of (ti_amount, fiscal_simplifications_frozenset).
     """
     ti_rules = rules.trattamento_integrativo
     if ti_rules is not None:
         trattamento_integrativo = _irpef.trattamento_integrativo(
-            gross_annual, irpef_gross, work_income_deduction, ti_rules
+            gross_annual,
+            irpef_gross,
+            work_income_deduction,
+            relevant_deductions,
+            ti_rules,
         )
         simplifications: frozenset[FiscalSimplification] = frozenset({
             FiscalSimplification.NO_ADDIZIONALE_REGIONALE,
@@ -396,13 +409,13 @@ def compute_fiscal(
 
     taxable_income = money(gross.gross_annual - inps_employee_annual)
     irpef_gross = _irpef.irpef_gross(taxable_income, rules)
-    work_income_deduction = _irpef.work_income_deduction(gross.gross_annual, rules)
+    work_income_deduction = _irpef.work_income_deduction(taxable_income)
     employer_withholds_irpef = not ccnl.meta.withholding_exempt
 
     # Family deductions (Art. 12 TUIR): computed when scenario.family is set.
     # These are the only work-rules feature that mutates irpef_net / net_annual.
-    # Trattamento integrativo eligibility (Art. 1 D.L. 3/2020) depends only on
-    # the Art. 13 work-income deduction, not on Art. 12 family deductions.
+    # Trattamento integrativo eligibility (Art. 1 D.L. 3/2020) depends on the
+    # sum of Art. 13 + Art. 12 + qualifying Art. 15 deductions, per the statute.
     (
         fam_spouse,
         fam_children,
@@ -455,8 +468,14 @@ def compute_fiscal(
 
     # Trattamento integrativo (Art. 1 D.L. 3/2020): computed when the tax
     # data file carries the required parameters.
+    # relevant_deductions: Art. 12 + Art. 13 + qualifying Art. 15 (statute).
+    relevant_deductions = work_income_deduction + fam_total + art15_total
     trattamento_integrativo, fiscal_simplifications = _compute_ti(
-        gross.gross_annual, irpef_gross, work_income_deduction, rules
+        gross.gross_annual,
+        irpef_gross,
+        work_income_deduction,
+        relevant_deductions,
+        rules,
     )
 
     # Remove NO_DETRAZIONI_FAMILIARI when family deductions were computed

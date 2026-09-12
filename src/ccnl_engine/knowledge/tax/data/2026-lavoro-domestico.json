@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "4084cebb8c353ed061bbe7bd6d03449d09895d8eed8ddcc371f15b55d7afeca1"
+    "source_hash": "c4d584d49f90dd207da02d6b4df9a2b6a76ab9e493f8666658025da251c237a9"
   },
   "irpef_brackets": [
     {
@@ -23,24 +23,6 @@
     {
       "up_to": null,
       "rate": "0.43"
-    }
-  ],
-  "work_deduction_breakpoints": [
-    {
-      "income_up_to": "8500.00",
-      "deduction": "1955.00"
-    },
-    {
-      "income_up_to": "28000.00",
-      "deduction": "700.00"
-    },
-    {
-      "income_up_to": "50000.00",
-      "deduction": "0.00"
-    },
-    {
-      "income_up_to": null,
-      "deduction": "0.00"
     }
   ],
   "fixed_term_additional_rate": "0.014",
