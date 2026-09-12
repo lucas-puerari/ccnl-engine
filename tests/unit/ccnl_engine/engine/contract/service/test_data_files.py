@@ -9440,3 +9440,141 @@ class TestLoadAgentiImmobilariFiaip:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 36
         assert si.maximum_count == 10
+
+
+class TestLoadRadiotelevisiveTelevisivoG091:
+    """Tests for CCNL Radiotelevisivo — Settore Televisivo (G091)."""
+
+    def test_radiotelevisive_televisivo_loads(self) -> None:
+        """Loads radiotelevisive-televisivo and verifies id and CNEL code G091."""
+        ccnl = load_ccnl("radiotelevisive-televisivo.json")
+        assert ccnl.meta.ccnl_id == "radiotelevisive-televisivo"
+        assert ccnl.meta.cnel_code == "G091"
+
+    def test_radiotelevisive_televisivo_has_9_levels(self) -> None:
+        """Has exactly 9 levels: 1 through 9 (Art. 43)."""
+        ccnl = load_ccnl("radiotelevisive-televisivo.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
+
+    def test_radiotelevisive_televisivo_level5_salary_tranche1(self) -> None:
+        """Level 5 paga base at 01/01/2026 is 1571.00 EUR (Art. 43)."""
+        ccnl = load_ccnl("radiotelevisive-televisivo.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "5")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1571.00")
+
+    def test_radiotelevisive_televisivo_level5_salary_tranche2(self) -> None:
+        """Level 5 paga base at 01/06/2027 is 1651.00 EUR (Art. 43)."""
+        ccnl = load_ccnl("radiotelevisive-televisivo.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "5")
+        assert lv.base_salary.value_at(date(2027, 6, 1)) == Decimal("1651.00")
+
+    def test_radiotelevisive_televisivo_level_ordering(self) -> None:
+        """Level 1 is lowest (order 1), level 9 is highest (order 9)."""
+        ccnl = load_ccnl("radiotelevisive-televisivo.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "1"
+        assert by_order[-1].code == "9"
+
+    def test_radiotelevisive_televisivo_additional_months(self) -> None:
+        """Additional months is 13 (Art. 45 — tredicesima only)."""
+        ccnl = load_ccnl("radiotelevisive-televisivo.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_radiotelevisive_televisivo_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (Art. 43)."""
+        ccnl = load_ccnl("radiotelevisive-televisivo.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(173)
+
+    def test_radiotelevisive_televisivo_level5_contingenza(self) -> None:
+        """Level 5 CONTINGENZA allowance is 525.80 EUR/month (Allegato A)."""
+        ccnl = load_ccnl("radiotelevisive-televisivo.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "5")
+        assert len(lv.fixed_allowances) == 1
+        fa = lv.fixed_allowances[0]
+        assert fa.code == "CONTINGENZA"
+        assert fa.monthly.value_at(date(2026, 1, 1)) == Decimal("525.80")
+
+    def test_radiotelevisive_televisivo_tax_sector(self) -> None:
+        """Tax sector is industria (Confindustria Radio TV signatory)."""
+        ccnl = load_ccnl("radiotelevisive-televisivo.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_radiotelevisive_televisivo_seniority_cadence(self) -> None:
+        """Seniority: biennial cadence (24 months), 5 increments (Art. 46)."""
+        ccnl = load_ccnl("radiotelevisive-televisivo.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+
+class TestLoadRadiotelevisiveRadiofonicoG091:
+    """Tests for CCNL Radiotelevisivo — Settore Radiofonico (G091)."""
+
+    def test_radiotelevisive_radiofonico_loads(self) -> None:
+        """Loads radiotelevisive-radiofonico and verifies id and CNEL code G091."""
+        ccnl = load_ccnl("radiotelevisive-radiofonico.json")
+        assert ccnl.meta.ccnl_id == "radiotelevisive-radiofonico"
+        assert ccnl.meta.cnel_code == "G091"
+
+    def test_radiotelevisive_radiofonico_has_6_levels(self) -> None:
+        """Has exactly 6 levels: 1 through 6 (Art. 43 — settore radiofonico)."""
+        ccnl = load_ccnl("radiotelevisive-radiofonico.json")
+        assert len(ccnl.levels) == 6
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3", "4", "5", "6"}
+
+    def test_radiotelevisive_radiofonico_level3_salary_tranche1(self) -> None:
+        """Level 3 paga base at 01/01/2026 is 1028.70 EUR (Art. 43)."""
+        ccnl = load_ccnl("radiotelevisive-radiofonico.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1028.70")
+
+    def test_radiotelevisive_radiofonico_level3_salary_tranche2(self) -> None:
+        """Level 3 paga base at 01/06/2027 is 1103.70 EUR (Art. 43)."""
+        ccnl = load_ccnl("radiotelevisive-radiofonico.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2027, 6, 1)) == Decimal("1103.70")
+
+    def test_radiotelevisive_radiofonico_level_ordering(self) -> None:
+        """Level 1 is lowest (order 1), level 6 is highest (order 6)."""
+        ccnl = load_ccnl("radiotelevisive-radiofonico.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "1"
+        assert by_order[-1].code == "6"
+
+    def test_radiotelevisive_radiofonico_additional_months(self) -> None:
+        """Additional months is 13 (Art. 45 — tredicesima only)."""
+        ccnl = load_ccnl("radiotelevisive-radiofonico.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_radiotelevisive_radiofonico_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (Art. 43)."""
+        ccnl = load_ccnl("radiotelevisive-radiofonico.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(173)
+
+    def test_radiotelevisive_radiofonico_level3_contingenza(self) -> None:
+        """Level 3 CONTINGENZA allowance is 513.11 EUR/month (Allegato A)."""
+        ccnl = load_ccnl("radiotelevisive-radiofonico.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert len(lv.fixed_allowances) == 1
+        fa = lv.fixed_allowances[0]
+        assert fa.code == "CONTINGENZA"
+        assert fa.monthly.value_at(date(2026, 1, 1)) == Decimal("513.11")
+
+    def test_radiotelevisive_radiofonico_tax_sector(self) -> None:
+        """Tax sector is industria (Confindustria Radio TV signatory)."""
+        ccnl = load_ccnl("radiotelevisive-radiofonico.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_radiotelevisive_radiofonico_seniority_cadence(self) -> None:
+        """Seniority: biennial cadence (24 months), 5 increments (Art. 46)."""
+        ccnl = load_ccnl("radiotelevisive-radiofonico.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5

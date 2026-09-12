@@ -1,0 +1,1114 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "radiotelevisive-radiofonico",
+    "name": "CCNL Radiotelevisivo — Settore Radiofonico",
+    "cnel_code": "G091",
+    "sector": "radiotelevisione — settore radiofonico",
+    "tax_sector": "industria",
+    "signatories": [
+      "Confindustria Radio Televisioni",
+      "ANICA",
+      "SLC-CGIL",
+      "FISTEL-CISL",
+      "UIL-COM"
+    ],
+    "agreement_date": "2026-01-08",
+    "sources": [
+      {
+        "url": "https://www.confindustriaradiotv.it/",
+        "type": "associazione",
+        "agreement_date": "2026-01-08"
+      }
+    ],
+    "extraction": {
+      "method": "ai_assisted",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-12T00:00:00",
+      "human_reviewed": true
+    },
+    "workers_estimate": ""
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "CCNL Radiotelevisivo 2026 signed 08/01/2026 in Roma. Employer: Confindustria Radio Televisioni (pres. Antonio Marano) and ANICA (pres. Alessandro Usai). Unions: SLC-CGIL (Sindacato Lavoratori della Comunicazione), FISTEL-CISL (Federazione Informazioni Spettacolo e Telecomunicazioni), UIL-COM (UIL Comunicazione). Signatories sourced from Art. 1, page 7 of CCNL PDF."
+      },
+      {
+        "kind": "info",
+        "text": "Source anchor: https://www.confindustriaradiotv.it/ is the employer association homepage; a direct PDF permalink was not published. PDF read locally as ccnl_radiotv_2026.pdf (81 MB, read 2026-09-12)."
+      },
+      {
+        "kind": "info",
+        "text": "SPLIT model: paga base (minimo tabellare, Art. 43) + contingenza congelata al 1° novembre 1991 (Allegato A). EDR not present in 2026 CCNL."
+      },
+      {
+        "kind": "info",
+        "text": "DUAL-SECTOR contract: Settore Radiofonico (6 livelli) modelled separately from Settore Televisivo Multimediale (9 livelli) in radiotelevisive-televisivo.json because merged file violates the engine monotonicity constraint (see TV file)."
+      },
+      {
+        "kind": "info",
+        "text": "Radio sector has two new tranches only: 01/01/2026 and 01/06/2027. No 01/01/2028 tranche for Radio (TV has three tranches). The pre-2026 CCNL column values (from the 2022 contract) are not modelled."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship (Art. 27): Radio L3+ table on page 43 of the PDF labels both apprenticeship rows as '2° livello CCNL' (apparent typo). Reconciled using Art. 27 page 37 cross-reference: TV L3 <-> Radio L2 (24 months), TV L4 <-> Radio L3, TV L5 <-> Radio L4, TV L6 <-> Radio L5, TV L7 <-> Radio L6. Second row is Radio L3+ (60 months). This is a source-document typo reconciled via Art. 27 intra-document cross-reference."
+      },
+      {
+        "kind": "simplification",
+        "text": "INPS rates reuse existing 2026-industria.json (tax_sector=industria). No bilateral fund substitution for broadcasting sector identified; standard Confindustria INPS rates apply."
+      },
+      {
+        "kind": "info",
+        "text": "Radio L4 scatto (16.01) verified directly from Art. 46 page 75 of CCNL PDF. Does not follow pattern Radio L3=TV L3=15.49, Radio L5=TV L4=18.08; 16.01 is explicitly listed in the Radio sector table as '4° ivello' (PDF typo)."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship open tail: the final period of each track has months_until=null as required by the engine schema (validate_open_sequence enforces open-ended last period). Radio breve track (L2, max 24 months) ends {18, null, 0.90}; esteso track (L3-L6, max 60 months) ends {36, null, 1.00}."
+      }
+    ],
+    "gross": "implemented",
+    "net": "implemented",
+    "work_rules": "not_implemented"
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "173",
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                "kind": "associazione",
+                "url": "https://www.confindustriaradiotv.it/"
+              },
+              "section": "Cap. IX, Art. 43"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "13",
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                "kind": "associazione",
+                "url": "https://www.confindustriaradiotv.it/"
+              },
+              "section": "Cap. IX, Art. 45 — Tredicesima mensilità"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01"
+            }
+          }
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "12.39",
+              "provenance": {
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                    "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                    "kind": "associazione",
+                    "url": "https://www.confindustriaradiotv.it/"
+                  },
+                  "section": "Cap. IX, Art. 46 — Scatti di anzianità"
+                },
+                "extraction": {
+                  "method": "manual",
+                  "extraction_timestamp": "2026-09-12T00:00:00",
+                  "verification_status": "verified",
+                  "effective_from": "2026-01-01"
+                }
+              }
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "12.91",
+              "provenance": {
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                    "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                    "kind": "associazione",
+                    "url": "https://www.confindustriaradiotv.it/"
+                  },
+                  "section": "Cap. IX, Art. 46 — Scatti di anzianità"
+                },
+                "extraction": {
+                  "method": "manual",
+                  "extraction_timestamp": "2026-09-12T00:00:00",
+                  "verification_status": "verified",
+                  "effective_from": "2026-01-01"
+                }
+              }
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "15.49",
+              "provenance": {
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                    "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                    "kind": "associazione",
+                    "url": "https://www.confindustriaradiotv.it/"
+                  },
+                  "section": "Cap. IX, Art. 46 — Scatti di anzianità"
+                },
+                "extraction": {
+                  "method": "manual",
+                  "extraction_timestamp": "2026-09-12T00:00:00",
+                  "verification_status": "verified",
+                  "effective_from": "2026-01-01"
+                }
+              }
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "16.01",
+              "provenance": {
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                    "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                    "kind": "associazione",
+                    "url": "https://www.confindustriaradiotv.it/"
+                  },
+                  "section": "Cap. IX, Art. 46 — Scatti di anzianità"
+                },
+                "extraction": {
+                  "method": "manual",
+                  "extraction_timestamp": "2026-09-12T00:00:00",
+                  "verification_status": "verified",
+                  "effective_from": "2026-01-01"
+                }
+              }
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "18.08",
+              "provenance": {
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                    "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                    "kind": "associazione",
+                    "url": "https://www.confindustriaradiotv.it/"
+                  },
+                  "section": "Cap. IX, Art. 46 — Scatti di anzianità"
+                },
+                "extraction": {
+                  "method": "manual",
+                  "extraction_timestamp": "2026-09-12T00:00:00",
+                  "verification_status": "verified",
+                  "effective_from": "2026-01-01"
+                }
+              }
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "19.63",
+              "provenance": {
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                    "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                    "kind": "associazione",
+                    "url": "https://www.confindustriaradiotv.it/"
+                  },
+                  "section": "Cap. IX, Art. 46 — Scatti di anzianità"
+                },
+                "extraction": {
+                  "method": "manual",
+                  "extraction_timestamp": "2026-09-12T00:00:00",
+                  "verification_status": "verified",
+                  "effective_from": "2026-01-01"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-radiotelevisivo-2026-pdf",
+            "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+            "kind": "associazione",
+            "url": "https://www.confindustriaradiotv.it/"
+          },
+          "section": "Cap. IX, Art. 46 — Scatti di anzianità"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "1",
+      "order": 1,
+      "description": "1° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-06-01",
+            "value": "725.69",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "kind": "associazione",
+                  "url": "https://www.confindustriaradiotv.it/"
+                },
+                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "778.55",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "kind": "associazione",
+                  "url": "https://www.confindustriaradiotv.it/"
+                },
+                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza congelata al 1° novembre 1991 (Allegato A)",
+          "months_per_year": "13",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "506.96",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                      "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                      "kind": "associazione",
+                      "url": "https://www.confindustriaradiotv.it/"
+                    },
+                    "section": "Allegato A — Contingenza"
+                  },
+                  "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-12T00:00:00",
+                    "verification_status": "verified",
+                    "effective_from": "2026-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": true,
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                "kind": "associazione",
+                "url": "https://www.confindustriaradiotv.it/"
+              },
+              "section": "Allegato A — Contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-radiotelevisivo-2026-pdf",
+            "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+            "kind": "associazione",
+            "url": "https://www.confindustriaradiotv.it/"
+          },
+          "section": "Cap. IX, Art. 43 — Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "order": 2,
+      "description": "2° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-06-01",
+            "value": "868.41",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "kind": "associazione",
+                  "url": "https://www.confindustriaradiotv.it/"
+                },
+                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "931.68",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "kind": "associazione",
+                  "url": "https://www.confindustriaradiotv.it/"
+                },
+                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza congelata al 1° novembre 1991 (Allegato A)",
+          "months_per_year": "13",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "509.71",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                      "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                      "kind": "associazione",
+                      "url": "https://www.confindustriaradiotv.it/"
+                    },
+                    "section": "Allegato A — Contingenza"
+                  },
+                  "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-12T00:00:00",
+                    "verification_status": "verified",
+                    "effective_from": "2026-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": true,
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                "kind": "associazione",
+                "url": "https://www.confindustriaradiotv.it/"
+              },
+              "section": "Allegato A — Contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-radiotelevisivo-2026-pdf",
+            "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+            "kind": "associazione",
+            "url": "https://www.confindustriaradiotv.it/"
+          },
+          "section": "Cap. IX, Art. 43 — Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "order": 3,
+      "description": "3° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1028.70",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "kind": "associazione",
+                  "url": "https://www.confindustriaradiotv.it/"
+                },
+                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1103.70",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "kind": "associazione",
+                  "url": "https://www.confindustriaradiotv.it/"
+                },
+                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza congelata al 1° novembre 1991 (Allegato A)",
+          "months_per_year": "13",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "513.11",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                      "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                      "kind": "associazione",
+                      "url": "https://www.confindustriaradiotv.it/"
+                    },
+                    "section": "Allegato A — Contingenza"
+                  },
+                  "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-12T00:00:00",
+                    "verification_status": "verified",
+                    "effective_from": "2026-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": true,
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                "kind": "associazione",
+                "url": "https://www.confindustriaradiotv.it/"
+              },
+              "section": "Allegato A — Contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-radiotelevisivo-2026-pdf",
+            "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+            "kind": "associazione",
+            "url": "https://www.confindustriaradiotv.it/"
+          },
+          "section": "Cap. IX, Art. 43 — Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "order": 4,
+      "description": "4° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1204.53",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "kind": "associazione",
+                  "url": "https://www.confindustriaradiotv.it/"
+                },
+                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1292.26",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "kind": "associazione",
+                  "url": "https://www.confindustriaradiotv.it/"
+                },
+                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza congelata al 1° novembre 1991 (Allegato A)",
+          "months_per_year": "13",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "515.45",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                      "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                      "kind": "associazione",
+                      "url": "https://www.confindustriaradiotv.it/"
+                    },
+                    "section": "Allegato A — Contingenza"
+                  },
+                  "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-12T00:00:00",
+                    "verification_status": "verified",
+                    "effective_from": "2026-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": true,
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                "kind": "associazione",
+                "url": "https://www.confindustriaradiotv.it/"
+              },
+              "section": "Allegato A — Contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-radiotelevisivo-2026-pdf",
+            "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+            "kind": "associazione",
+            "url": "https://www.confindustriaradiotv.it/"
+          },
+          "section": "Cap. IX, Art. 43 — Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "order": 5,
+      "description": "5° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1464.26",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "kind": "associazione",
+                  "url": "https://www.confindustriaradiotv.it/"
+                },
+                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1571.02",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "kind": "associazione",
+                  "url": "https://www.confindustriaradiotv.it/"
+                },
+                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza congelata al 1° novembre 1991 (Allegato A)",
+          "months_per_year": "13",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "520.49",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                      "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                      "kind": "associazione",
+                      "url": "https://www.confindustriaradiotv.it/"
+                    },
+                    "section": "Allegato A — Contingenza"
+                  },
+                  "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-12T00:00:00",
+                    "verification_status": "verified",
+                    "effective_from": "2026-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": true,
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                "kind": "associazione",
+                "url": "https://www.confindustriaradiotv.it/"
+              },
+              "section": "Allegato A — Contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-radiotelevisivo-2026-pdf",
+            "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+            "kind": "associazione",
+            "url": "https://www.confindustriaradiotv.it/"
+          },
+          "section": "Cap. IX, Art. 43 — Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "order": 6,
+      "description": "6° livello",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-06-01",
+            "value": "1632.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "kind": "associazione",
+                  "url": "https://www.confindustriaradiotv.it/"
+                },
+                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": null,
+            "value": "1751.23",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                  "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                  "kind": "associazione",
+                  "url": "https://www.confindustriaradiotv.it/"
+                },
+                "section": "Cap. IX, Art. 43 — Tabella retributiva"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza congelata al 1° novembre 1991 (Allegato A)",
+          "months_per_year": "13",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "524.37",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                      "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                      "kind": "associazione",
+                      "url": "https://www.confindustriaradiotv.it/"
+                    },
+                    "section": "Allegato A — Contingenza"
+                  },
+                  "extraction": {
+                    "method": "manual",
+                    "extraction_timestamp": "2026-09-12T00:00:00",
+                    "verification_status": "verified",
+                    "effective_from": "2026-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "apprenticeship_pct_relevant": true,
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-radiotelevisivo-2026-pdf",
+                "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                "kind": "associazione",
+                "url": "https://www.confindustriaradiotv.it/"
+              },
+              "section": "Allegato A — Contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-radiotelevisivo-2026-pdf",
+            "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+            "kind": "associazione",
+            "url": "https://www.confindustriaradiotv.it/"
+          },
+          "section": "Cap. IX, Art. 43 — Livelli contrattuali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-01-01"
+        }
+      }
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante_breve",
+      "destination_levels": [
+        "2"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "percentage": "0.90"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_esteso",
+      "destination_levels": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 30,
+          "months_until": 36,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    }
+  ]
+}
