@@ -200,12 +200,22 @@ class Employee:
         Returns:
             Months of service, or ``None`` when seniority is expressed as
             a count or not provided.
+
+        Raises:
+            ValueError: If hire_date is after *as_of* (future employee).
         """
         if isinstance(self.seniority, SeniorityByMonths):
             return self.seniority.value
         if isinstance(self.seniority, SeniorityByDate):
             hire = self.seniority.value
-            return (as_of.year - hire.year) * 12 + (as_of.month - hire.month)
+            months = (as_of.year - hire.year) * 12 + (as_of.month - hire.month)
+            if months < 0:
+                msg = (
+                    f"hire_date {hire} is after calculation_date {as_of}: "
+                    "cannot compute seniority for a future employee"
+                )
+                raise ValueError(msg)
+            return months
         return None
 
 

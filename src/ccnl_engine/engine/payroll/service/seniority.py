@@ -193,6 +193,9 @@ def _seniority_amount(
     Returns:
         Rounded monthly seniority amount in EUR.
     """
+    # Excluded categories receive no seniority increment (R18).
+    if worker_category in seniority_rules.excluded_categories:
+        return _ZERO
     # SIMPLIFICATION: apprentices accrue only the CCNL apprentice-specific
     # increment (if any); the level increments start after qualification.
     if is_apprentice:
@@ -203,17 +206,13 @@ def _seniority_amount(
         )
         return money(raw * count)
     if seniority_rules.tiers:
-        if seniority_months is not None:
-            return _resolve_tier_amount(
-                seniority_rules.tiers,
-                level_code,
-                as_of,
-                seniority_months=seniority_months,
-            )
-        # seniority_count was given directly (no months info); distribute
-        # count across tiers sequentially.
+        # Use months-based distribution when available; fall back to count.
         return _resolve_tier_amount(
-            seniority_rules.tiers, level_code, as_of, count_override=count
+            seniority_rules.tiers,
+            level_code,
+            as_of,
+            seniority_months=seniority_months,
+            count_override=count if seniority_months is None else None,
         )
     if worker_category is not None:
         cat_amounts = seniority_rules.amount_by_level_by_category.get(worker_category)
