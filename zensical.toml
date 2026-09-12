@@ -30,6 +30,7 @@ nav = [
   { "Contracts"  = [
     { "Index" = "contracts/index.md" },
     { "CCNL Acconciatura ed Estetica — Confartigianato/CNA" = "contracts/acconciatura-estetica-confartigianato.md" },
+    { "CCNL Agenti Immobiliari Professionali FIAIP (H0B1)" = "contracts/agenti-immobiliari-fiaip.md" },
     { "CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e M…" = "contracts/agenzie-marittime-i481.md" },
     { "CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio" = "contracts/agenzie-viaggio-fiavet.md" },
     { "CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop/AGCI-Agrital)" = "contracts/alimentaristi-cooperative-e016.md" },
