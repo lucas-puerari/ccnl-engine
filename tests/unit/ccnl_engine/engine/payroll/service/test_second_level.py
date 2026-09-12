@@ -256,16 +256,15 @@ class TestSecondLevelApprenticeshipPct:
 
 
 # ---------------------------------------------------------------------------
-# Rounding policy: single-round after combined factors (R22)
+# Rounding policy
 # ---------------------------------------------------------------------------
 
 
 class TestSecondLevelRoundingPolicy:
-    """Single-round after all scaling factors — R22 rounding alignment.
+    """Single-round after all scaling factors.
 
-    Before R22, rounding occurred after part-time and again after
-    apprenticeship: money(money(x * pt) * app). The CCNL chain policy is
-    money(x * pt * app). These diverge at half-cent values.
+    Rounding occurs once after all factors are combined: money(x * pt * app).
+    Double-rounding — money(money(x * pt) * app) — diverges at half-cent values.
 
     The ``0.05 * 0.5 * 0.5`` synthetic probe from the review:
         double-rounding: money(money(0.05 * 0.5) * 0.5)
@@ -286,9 +285,9 @@ class TestSecondLevelRoundingPolicy:
         assert total == _D("0.03")
 
     def test_single_round_half_cent_both_factors(self) -> None:
-        """R22 probe: 0.05 * 0.5 * 0.5 = 0.0125 → rounds to 0.01 (single-round).
+        """0.05 * 0.5 * 0.5 = 0.0125 → rounds to 0.01 (single-round).
 
-        Double-rounding would give money(money(0.025) * 0.5)
+        Double-rounding: money(money(0.025) * 0.5)
         = money(0.03 * 0.5) = money(0.015) = 0.02.
         """
         sl = SupplementaryAllowance(

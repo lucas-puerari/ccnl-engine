@@ -209,7 +209,7 @@ def _scale_second_level(
     All applicable scaling factors (part-time, then apprenticeship when present
     and relevant) are combined *before* a single ``money()`` rounding call.
     This matches the CCNL chain policy: the product of all factors is computed
-    first, then the result is rounded once to the nearest cent (R22).
+    first, then the result is rounded once to the nearest cent.
 
     Returns:
         A tuple of (scaled pairs, monthly total) where scaled pairs are
