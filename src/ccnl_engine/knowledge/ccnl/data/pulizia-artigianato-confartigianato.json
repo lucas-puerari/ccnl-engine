@@ -1,0 +1,3668 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "pulizia-artigianato-confartigianato",
+    "name": "CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione",
+    "cnel_code": "K521",
+    "sector": "pulizia artigianato",
+    "tax_sector": "terziario",
+    "signatories": [
+      "Confartigianato Imprese di Pulizia",
+      "CNA Costruzioni — CNA Imprese di Pulizia",
+      "Casartigiani",
+      "CLAAI",
+      "FILCAMS-CGIL",
+      "FISASCAT-CISL",
+      "UILTRASPORTI-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+        "type": "tabella_retributiva",
+        "agreement_date": "2022-10-27"
+      },
+      {
+        "url": "unavailable",
+        "type": "tabella_retributiva",
+        "agreement_date": "2025-12-17"
+      }
+    ],
+    "extraction": {
+      "method": "ai_assisted",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-12",
+      "human_reviewed": true
+    },
+    "workers_estimate": "~84505",
+    "agreement_date": "2025-12-17"
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: CONGLOBATO. Contingenza=0 e EDR=0 conglobati dal 1.10.2014. Confermato da ilccnl.it luglio 2026: Paga Base 1693.84 | Contingenza 0 | Terzo Elemento 0 | Totale 1693.84 per livello 1."
+      },
+      {
+        "kind": "info",
+        "text": "hourly_divisor: 173 — da sezione PARAMETRI E COEFFICIENTI CONTRATTUALI PDF 2022: 'Divisore orario 173, orario 40 ore su 5 giorni'."
+      },
+      {
+        "kind": "info",
+        "text": "additional_months: 13 (tredicesima, entro 20 dicembre). Quattordicesima non prevista: PDF 2022 sezione parametri: 'Altre mensilità aggiuntive: non previste'."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: 5 scatti biennali (cadence_months=24, maximum_count=5). Importi mensili da PDF 2022: 1=30.47, 2=26.85, 3S=23.76, 3=21.17, 4=18.59, 5=17.04, 6=15.49 EUR. Il rinnovo dic 2025 estende gli scatti agli apprendisti dal 1.1.2026."
+      },
+      {
+        "kind": "info",
+        "text": "Identità CCNL K521: tabella Dec 2024 (PDF direzionelavoro.it 2022) + tranches rinnovo 2025 (Confartigianato) → tabella lug 2026 verificata su tutti e 7 i livelli con kitech CodiceCateg=83 (match al centesimo). Contratto Conflavoro PMI/Fesica Confsal del 26.7.2024 è un CCNL separato non confederale e non corrisponderebbe a questa struttura. FILCAMS dic 2025: livello 1 a regime (dic 2029) = 1884.88 EUR — confermato (ratio Dec2024_L1/Dec2024_L5 a 4 dec = 1.2736)."
+      },
+      {
+        "kind": "info",
+        "text": "Reproportioning: tranche_Li = round(tranche_L5 * round(Dec2024_Li/Dec2024_L5, 4), 2). Nessuna tabella parametri ufficiali per livello nel contratto. Ratios: 1=1.2736, 2=1.1675, 3S=1.1316, 3=1.0928, 4=1.0331, 5=1.0000, 6=0.9633."
+      },
+      {
+        "kind": "info",
+        "text": "Gap 2025: il vecchio CCNL scadeva 31.12.2024; il nuovo decorre economicamente dal 1.1.2026. La serie salariale ha un periodo senza aggiornamento 1.12.2024–31.12.2025 (valore costante). Dec 2029 incluso: accordo rinnovo indica esplicitamente il 7° scatto."
+      },
+      {
+        "kind": "info",
+        "text": "EDAR (Elemento Distinto e Aggiuntivo della Retribuzione): EUR 15.00 flat, 26 mesi da 1.11.2022, soli lavoratori in forza al 27.10.2022. Scaduto dic 2024. Non rientra in nessun istituto contrattuale incl. TFR. Non modellato."
+      },
+      {
+        "kind": "info",
+        "text": "INDENNITÀ SPECIALE (tabella per-livello nel PDF: L1=126.55→131.55 EUR): corrisposta solo al personale addetto alla riscossione con responsabilità di bollette/fatture > EUR 4.648/giorno. Condizionale, non universale. Non modellata. Totale ilccnl.it lug 2026 = Paga Base conferma assenza di elementi obbligatori aggiuntivi."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: IND_FUN (EUR 25.82/mese) — il PDF non specifica il numero di mensilità. months_per_year=null (eredita 13). Impatto: ±25.82 EUR/anno se la risposta vera è 12 mensilità."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Percentuali apprendistato da PDF 2022. Il rinnovo dic 2025 estende scatti anzianità agli apprendisti ma non menziona variazioni alle aliquote. Rischio: basso."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: L2 scatto anzianità = 26.85 EUR (PDF 2022). Kitech lug 2026 riporta 26.86 EUR. Usato PDF come fonte primaria. Impatto: EUR 0.01/mese."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: tax_sector='terziario'. Aliquote INPS artigiane (datoriali) non verificate per 2026. Impatto su employer_cost_annual."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Fondi bilaterali non modellati (Fondo sanitario EUR 10.42*12 + bilateralità EUR 11.65*12). employer_cost_annual sottostimato di ~EUR 267/anno."
+      },
+      {
+        "kind": "info",
+        "text": "Fonte 2022 PDF: ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf — verificata e scaricata il 2026-09-12. Tranches Nov 2022 — Dec 2024 da questo documento."
+      },
+      {
+        "kind": "info",
+        "text": "Fonte accordo rinnovo 2025 (Confartigianato, 17 dic 2025): URL non raggiungibile il 2026-09-12. Tranches Jan 2026 — Dec 2029 verificate incrociatamente con kitech CodiceCateg=83 (Jul 2026, tutti e 7 i livelli, match al centesimo) e ilccnl.it Jul 2026 (L1: Paga Base=Totale=1693.84). Accesso originale: 2026-09-12."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Apprendistato — livelli con doppia appartenenza a gruppi diversi (L5: gruppi 1 e 3; L4: gruppi 3 e 4; L3: gruppi 2 e 4). Il contratto distingue per contenuto professionale, non per livello. Engine usa first-match in ordine di dichiarazione: L5 -> gruppo 1 (70/80/90/100, 4 anni), L4 -> gruppo 3 (65/80/90, 18 mesi), L3 -> gruppo 2 (70/80/90, 3 anni). Rischio: basso (usato solo per scenari apprendistato, non per il test di integrazione)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Soglia settimanale ore straordinarie (OT_DIURNO) non modellata (hour_threshold_per_week=null). Il contratto prevede scatto dopo 40h/settimana e limite annuale 200h. Coverage work_rules gia' marcata partial."
+      }
+    ],
+    "gross": "implemented",
+    "net": "implemented",
+    "work_rules": "partial",
+    "work_rules_features": {
+      "overtime": "implemented",
+      "night_work": "partial",
+      "holiday_work": "partial",
+      "absence": "implemented",
+      "sickness": "partial",
+      "leave": "not_implemented"
+    }
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2022-11-01",
+          "valid_until": null,
+          "value": "173"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2022-11-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2022-11-01",
+              "valid_until": null,
+              "value": "30.47",
+              "provenance": {
+                "location": {
+                  "source_document": {
+                    "document_id": "k521-ccnl-2022-cemu",
+                    "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                    "pages": [],
+                    "published_on": "2022-11-02",
+                    "jurisdiction": "it"
+                  },
+                  "page": null,
+                  "section": "Scatti di anzianità — tabella importi per livello",
+                  "quote": null
+                },
+                "extraction": {
+                  "method": "ai_assisted",
+                  "model": null,
+                  "extraction_timestamp": "2026-09-12T00:00:00",
+                  "verified_by": null,
+                  "verified_at": null,
+                  "verification_status": "unverified",
+                  "effective_from": "2022-11-01",
+                  "effective_until": "2025-12-16",
+                  "back_calculation": null
+                },
+                "note": null
+              }
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2022-11-01",
+              "valid_until": null,
+              "value": "26.85",
+              "provenance": {
+                "location": {
+                  "source_document": {
+                    "document_id": "k521-ccnl-2022-cemu",
+                    "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                    "pages": [],
+                    "published_on": "2022-11-02",
+                    "jurisdiction": "it"
+                  },
+                  "page": null,
+                  "section": "Scatti di anzianità — tabella importi per livello",
+                  "quote": null
+                },
+                "extraction": {
+                  "method": "ai_assisted",
+                  "model": null,
+                  "extraction_timestamp": "2026-09-12T00:00:00",
+                  "verified_by": null,
+                  "verified_at": null,
+                  "verification_status": "unverified",
+                  "effective_from": "2022-11-01",
+                  "effective_until": "2025-12-16",
+                  "back_calculation": null
+                },
+                "note": null
+              }
+            }
+          ]
+        },
+        "3S": {
+          "periods": [
+            {
+              "valid_from": "2022-11-01",
+              "valid_until": null,
+              "value": "23.76",
+              "provenance": {
+                "location": {
+                  "source_document": {
+                    "document_id": "k521-ccnl-2022-cemu",
+                    "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                    "pages": [],
+                    "published_on": "2022-11-02",
+                    "jurisdiction": "it"
+                  },
+                  "page": null,
+                  "section": "Scatti di anzianità — tabella importi per livello",
+                  "quote": null
+                },
+                "extraction": {
+                  "method": "ai_assisted",
+                  "model": null,
+                  "extraction_timestamp": "2026-09-12T00:00:00",
+                  "verified_by": null,
+                  "verified_at": null,
+                  "verification_status": "unverified",
+                  "effective_from": "2022-11-01",
+                  "effective_until": "2025-12-16",
+                  "back_calculation": null
+                },
+                "note": null
+              }
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2022-11-01",
+              "valid_until": null,
+              "value": "21.17",
+              "provenance": {
+                "location": {
+                  "source_document": {
+                    "document_id": "k521-ccnl-2022-cemu",
+                    "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                    "pages": [],
+                    "published_on": "2022-11-02",
+                    "jurisdiction": "it"
+                  },
+                  "page": null,
+                  "section": "Scatti di anzianità — tabella importi per livello",
+                  "quote": null
+                },
+                "extraction": {
+                  "method": "ai_assisted",
+                  "model": null,
+                  "extraction_timestamp": "2026-09-12T00:00:00",
+                  "verified_by": null,
+                  "verified_at": null,
+                  "verification_status": "unverified",
+                  "effective_from": "2022-11-01",
+                  "effective_until": "2025-12-16",
+                  "back_calculation": null
+                },
+                "note": null
+              }
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2022-11-01",
+              "valid_until": null,
+              "value": "18.59",
+              "provenance": {
+                "location": {
+                  "source_document": {
+                    "document_id": "k521-ccnl-2022-cemu",
+                    "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                    "pages": [],
+                    "published_on": "2022-11-02",
+                    "jurisdiction": "it"
+                  },
+                  "page": null,
+                  "section": "Scatti di anzianità — tabella importi per livello",
+                  "quote": null
+                },
+                "extraction": {
+                  "method": "ai_assisted",
+                  "model": null,
+                  "extraction_timestamp": "2026-09-12T00:00:00",
+                  "verified_by": null,
+                  "verified_at": null,
+                  "verification_status": "unverified",
+                  "effective_from": "2022-11-01",
+                  "effective_until": "2025-12-16",
+                  "back_calculation": null
+                },
+                "note": null
+              }
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2022-11-01",
+              "valid_until": null,
+              "value": "17.04",
+              "provenance": {
+                "location": {
+                  "source_document": {
+                    "document_id": "k521-ccnl-2022-cemu",
+                    "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                    "pages": [],
+                    "published_on": "2022-11-02",
+                    "jurisdiction": "it"
+                  },
+                  "page": null,
+                  "section": "Scatti di anzianità — tabella importi per livello",
+                  "quote": null
+                },
+                "extraction": {
+                  "method": "ai_assisted",
+                  "model": null,
+                  "extraction_timestamp": "2026-09-12T00:00:00",
+                  "verified_by": null,
+                  "verified_at": null,
+                  "verification_status": "unverified",
+                  "effective_from": "2022-11-01",
+                  "effective_until": "2025-12-16",
+                  "back_calculation": null
+                },
+                "note": null
+              }
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2022-11-01",
+              "valid_until": null,
+              "value": "15.49",
+              "provenance": {
+                "location": {
+                  "source_document": {
+                    "document_id": "k521-ccnl-2022-cemu",
+                    "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                    "pages": [],
+                    "published_on": "2022-11-02",
+                    "jurisdiction": "it"
+                  },
+                  "page": null,
+                  "section": "Scatti di anzianità — tabella importi per livello",
+                  "quote": null
+                },
+                "extraction": {
+                  "method": "ai_assisted",
+                  "model": null,
+                  "extraction_timestamp": "2026-09-12T00:00:00",
+                  "verified_by": null,
+                  "verified_at": null,
+                  "verification_status": "unverified",
+                  "effective_from": "2022-11-01",
+                  "effective_until": "2025-12-16",
+                  "back_calculation": null
+                },
+                "note": null
+              }
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "k521-ccnl-2022-cemu",
+            "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+            "pages": [],
+            "published_on": "2022-11-02",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Scatti di anzianita: 5 aumenti biennali. Importi mensili per livello: 1=30.47, 2=26.85, 3S=23.76, 3=21.17, 4=18.59, 5=17.04, 6=15.49 EUR.",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2022-11-01",
+          "effective_until": null,
+          "back_calculation": null
+        },
+        "note": null
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "1-gruppo-4anni-L5",
+      "destination_levels": [
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "2-gruppo-3anni-L3S-L3",
+      "destination_levels": [
+        "3S",
+        "3"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.90"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "3-gruppo-18mesi-L4-L5",
+      "destination_levels": [
+        "4",
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.65"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "percentage": "0.90"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "4-gruppo-impiegati-30mesi-L4-L2",
+      "destination_levels": [
+        "4",
+        "3",
+        "2"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.90"
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "1",
+      "order": 7,
+      "description": "Quadri e impiegati direttivi",
+      "category": "quadro",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-11-01",
+            "valid_until": "2023-07-01",
+            "value": "1534.64",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "1572.85",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2024-12-01",
+            "value": "1598.32",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2026-01-01",
+            "value": "1611.06",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "1662.00",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L1/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-02-01",
+            "value": "1693.84",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L1/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": "2027-07-01",
+            "value": "1725.68",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L1/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-02-01",
+            "value": "1770.26",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L1/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2028-02-01",
+            "valid_until": "2028-11-01",
+            "value": "1821.20",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L1/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2028-11-01",
+            "valid_until": "2029-12-01",
+            "value": "1872.14",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L1/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2029-12-01",
+            "valid_until": null,
+            "value": "1884.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L1/Dec2024_L5, 4), 2)"
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "IND_FUN",
+          "description": "Indennità di funzione Quadro — EUR 25.82/mese (PARAMETRI E COEFFICIENTI CONTRATTUALI, CCNL 2022)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": null,
+                "value": "25.82"
+              }
+            ]
+          },
+          "months_per_year": null,
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "k521-ccnl-2022-cemu",
+                "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                "kind": "associazione",
+                "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                "pages": [],
+                "published_on": "2022-11-02",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "PARAMETRI E COEFFICIENTI CONTRATTUALI — Funzione quadro: EUR 25,82",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "2022-11-01",
+              "effective_until": "2025-12-16",
+              "back_calculation": null
+            },
+            "note": null
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "k521-ccnl-2022-cemu",
+            "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+            "pages": [],
+            "published_on": "2022-11-02",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Livelli contrattuali — livello 1",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2022-11-01",
+          "effective_until": "2025-12-16",
+          "back_calculation": null
+        },
+        "note": null
+      }
+    },
+    {
+      "code": "2",
+      "order": 6,
+      "description": "Impiegati di concetto",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-11-01",
+            "valid_until": "2023-07-01",
+            "value": "1406.78",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "1441.80",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2024-12-01",
+            "value": "1465.15",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2026-01-01",
+            "value": "1476.82",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "1523.52",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L2/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-02-01",
+            "value": "1552.71",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L2/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": "2027-07-01",
+            "value": "1581.90",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L2/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-02-01",
+            "value": "1622.76",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L2/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2028-02-01",
+            "valid_until": "2028-11-01",
+            "value": "1669.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L2/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2028-11-01",
+            "valid_until": "2029-12-01",
+            "value": "1716.16",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L2/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2029-12-01",
+            "valid_until": null,
+            "value": "1727.84",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L2/Dec2024_L5, 4), 2)"
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "k521-ccnl-2022-cemu",
+            "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+            "pages": [],
+            "published_on": "2022-11-02",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Livelli contrattuali — livello 2",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2022-11-01",
+          "effective_until": "2025-12-16",
+          "back_calculation": null
+        },
+        "note": null
+      }
+    },
+    {
+      "code": "3S",
+      "order": 5,
+      "description": "Impiegati di concetto (superiore)",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-11-01",
+            "valid_until": "2023-07-01",
+            "value": "1363.51",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "1397.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2024-12-01",
+            "value": "1420.09",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2026-01-01",
+            "value": "1431.41",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "1476.67",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3S/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-02-01",
+            "value": "1504.96",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3S/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": "2027-07-01",
+            "value": "1533.25",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3S/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-02-01",
+            "value": "1572.86",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3S/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2028-02-01",
+            "valid_until": "2028-11-01",
+            "value": "1618.12",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3S/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2028-11-01",
+            "valid_until": "2029-12-01",
+            "value": "1663.38",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3S/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2029-12-01",
+            "valid_until": null,
+            "value": "1674.70",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3S/Dec2024_L5, 4), 2)"
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "k521-ccnl-2022-cemu",
+            "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+            "pages": [],
+            "published_on": "2022-11-02",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Livelli contrattuali — livello 3S",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2022-11-01",
+          "effective_until": "2025-12-16",
+          "back_calculation": null
+        },
+        "note": null
+      }
+    },
+    {
+      "code": "3",
+      "order": 4,
+      "description": "Impiegati d'ordine, operai specializzati",
+      "category": "impiegato",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-11-01",
+            "valid_until": "2023-07-01",
+            "value": "1316.81",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "1349.59",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2024-12-01",
+            "value": "1371.45",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2026-01-01",
+            "value": "1382.38",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "1426.09",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-02-01",
+            "value": "1453.41",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": "2027-07-01",
+            "value": "1480.73",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-02-01",
+            "value": "1518.98",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2028-02-01",
+            "valid_until": "2028-11-01",
+            "value": "1562.69",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2028-11-01",
+            "valid_until": "2029-12-01",
+            "value": "1606.40",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2029-12-01",
+            "valid_until": null,
+            "value": "1617.33",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L3/Dec2024_L5, 4), 2)"
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "k521-ccnl-2022-cemu",
+            "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+            "pages": [],
+            "published_on": "2022-11-02",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Livelli contrattuali — livello 3",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2022-11-01",
+          "effective_until": "2025-12-16",
+          "back_calculation": null
+        },
+        "note": null
+      }
+    },
+    {
+      "code": "4",
+      "order": 3,
+      "description": "Impiegati d'ordine, operai qualificati",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-11-01",
+            "valid_until": "2023-07-01",
+            "value": "1244.80",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "1275.79",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2024-12-01",
+            "value": "1296.45",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2026-01-01",
+            "value": "1306.78",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "1348.10",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L4/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-02-01",
+            "value": "1373.93",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L4/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": "2027-07-01",
+            "value": "1399.76",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L4/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-02-01",
+            "value": "1435.92",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L4/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2028-02-01",
+            "valid_until": "2028-11-01",
+            "value": "1477.24",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L4/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2028-11-01",
+            "valid_until": "2029-12-01",
+            "value": "1518.56",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L4/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2029-12-01",
+            "valid_until": null,
+            "value": "1528.89",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L4/Dec2024_L5, 4), 2)"
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "k521-ccnl-2022-cemu",
+            "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+            "pages": [],
+            "published_on": "2022-11-02",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Livelli contrattuali — livello 4",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2022-11-01",
+          "effective_until": "2025-12-16",
+          "back_calculation": null
+        },
+        "note": null
+      }
+    },
+    {
+      "code": "5",
+      "order": 2,
+      "description": "Operai comuni",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-11-01",
+            "valid_until": "2023-07-01",
+            "value": "1204.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "1234.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2024-12-01",
+            "value": "1254.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2026-01-01",
+            "value": "1264.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "1304.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-02-01",
+            "value": "1329.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": "2027-07-01",
+            "value": "1354.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-02-01",
+            "value": "1389.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2028-02-01",
+            "valid_until": "2028-11-01",
+            "value": "1429.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2028-11-01",
+            "valid_until": "2029-12-01",
+            "value": "1469.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2029-12-01",
+            "valid_until": null,
+            "value": "1479.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": null
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "k521-ccnl-2022-cemu",
+            "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+            "pages": [],
+            "published_on": "2022-11-02",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Livelli contrattuali — livello 5",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2022-11-01",
+          "effective_until": "2025-12-16",
+          "back_calculation": null
+        },
+        "note": null
+      }
+    },
+    {
+      "code": "6",
+      "order": 1,
+      "description": "Guardiani, uscieri, custodi",
+      "category": "operaio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-11-01",
+            "valid_until": "2023-07-01",
+            "value": "1160.74",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2023-07-01",
+            "valid_until": "2024-07-01",
+            "value": "1189.64",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2024-07-01",
+            "valid_until": "2024-12-01",
+            "value": "1208.91",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2024-12-01",
+            "valid_until": "2026-01-01",
+            "value": "1218.54",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-ccnl-2022-cemu",
+                  "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                  "pages": [],
+                  "published_on": "2022-11-02",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2022-11-01",
+                "effective_until": "2025-12-16",
+                "back_calculation": null
+              },
+              "note": null
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "1257.07",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L6/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-02-01",
+            "value": "1281.15",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L6/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": "2027-07-01",
+            "value": "1305.23",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L6/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-02-01",
+            "value": "1338.95",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L6/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2028-02-01",
+            "valid_until": "2028-11-01",
+            "value": "1377.48",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L6/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2028-11-01",
+            "valid_until": "2029-12-01",
+            "value": "1416.01",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L6/Dec2024_L5, 4), 2)"
+            }
+          },
+          {
+            "valid_from": "2029-12-01",
+            "valid_until": null,
+            "value": "1425.64",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "k521-accordo-rinnovo-2025-confartigianato",
+                  "title": "Accordo di rinnovo CCNL Pulizia Artigianato — 17 dicembre 2025",
+                  "kind": "associazione",
+                  "url": "unavailable",
+                  "pages": [],
+                  "published_on": "2025-12-17",
+                  "jurisdiction": "it"
+                },
+                "page": null,
+                "section": "Tabella retributiva — accordo rinnovo 2025",
+                "quote": null
+              },
+              "extraction": {
+                "method": "ai_assisted",
+                "model": null,
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verified_by": null,
+                "verified_at": null,
+                "verification_status": "unverified",
+                "effective_from": "2026-01-01",
+                "effective_until": null,
+                "back_calculation": null
+              },
+              "note": "Riproporzionato: round(tranche_L5 * round(Dec2024_L6/Dec2024_L5, 4), 2)"
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "k521-ccnl-2022-cemu",
+            "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+            "pages": [],
+            "published_on": "2022-11-02",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Livelli contrattuali — livello 6",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2022-11-01",
+          "effective_until": "2025-12-16",
+          "back_calculation": null
+        },
+        "note": null
+      }
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/pulizia-artigianato-confartigianato",
+    "version": "2025.1",
+    "effective_from": "2025-12-17",
+    "effective_until": "2029-12-31",
+    "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+    "verification_status": "unverified",
+    "published_at": "2026-09-12",
+    "source_hash": "8c867c005dadd68ee1c7cc7cc62f2e2cc5fbd92d44eecf3a16f37603b5455b2f"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno (25%)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": null,
+                "value": "0.25"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "k521-ccnl-2022-cemu",
+                "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                "kind": "associazione",
+                "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                "pages": [],
+                "published_on": "2022-11-02",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Art. Straordinari: a. 25% straordinario diurno feriale",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "2022-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": null
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno (50%)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "k521-ccnl-2022-cemu",
+                "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                "kind": "associazione",
+                "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                "pages": [],
+                "published_on": "2022-11-02",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Art. Straordinari: b. 50% straordinario notturno",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "2022-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": null
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo (65%)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "k521-ccnl-2022-cemu",
+                "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                "kind": "associazione",
+                "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                "pages": [],
+                "published_on": "2022-11-02",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Art. Straordinari: c. 65% straordinario festivo",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "2022-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": null
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo (75%)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-11-01",
+                "valid_until": null,
+                "value": "0.75"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "k521-ccnl-2022-cemu",
+                "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+                "kind": "associazione",
+                "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+                "pages": [],
+                "published_on": "2022-11-02",
+                "jurisdiction": "it"
+              },
+              "page": null,
+              "section": "Art. Straordinari: 75% straordinario notturno festivo",
+              "quote": null
+            },
+            "extraction": {
+              "method": "ai_assisted",
+              "model": null,
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verified_by": null,
+              "verified_at": null,
+              "verification_status": "unverified",
+              "effective_from": "2022-11-01",
+              "effective_until": null,
+              "back_calculation": null
+            },
+            "note": null
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "k521-ccnl-2022-cemu",
+            "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+            "pages": [],
+            "published_on": "2022-11-02",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Coefficiente giornaliero 22/26 da PARAMETRI; usato 26 standard",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2022-11-01",
+          "effective_until": null,
+          "back_calculation": null
+        },
+        "note": null
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "1.0",
+      "full_pay_integration_rate": "1.0",
+      "tiers": [],
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "k521-ccnl-2022-cemu",
+            "title": "CCNL Pulizia Artigianato — Accordo di rinnovo 27 ottobre 2022 (ce-mu.it)",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+            "pages": [],
+            "published_on": "2022-11-02",
+            "jurisdiction": "it"
+          },
+          "page": null,
+          "section": "Malattia: integrazione 100% dal 1 giorno, max 180gg/anno; conservazione posto 9 mesi (PDF 2022)",
+          "quote": null
+        },
+        "extraction": {
+          "method": "ai_assisted",
+          "model": null,
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verified_by": null,
+          "verified_at": null,
+          "verification_status": "unverified",
+          "effective_from": "2022-11-01",
+          "effective_until": null,
+          "back_calculation": null
+        },
+        "note": null
+      }
+    }
+  }
+}
