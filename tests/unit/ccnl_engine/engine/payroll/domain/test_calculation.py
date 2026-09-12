@@ -25,7 +25,8 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     PayrollScenario,
 )
 from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
-from ccnl_engine.engine.payroll.service.orchestrator import _ruleset_versions, compute
+from ccnl_engine.engine.payroll.service.audit import _ruleset_versions
+from ccnl_engine.engine.payroll.service.orchestrator import compute
 from tests.helpers import make_minimal_ccnl, make_year_rules
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _CCNL_FILENAME,

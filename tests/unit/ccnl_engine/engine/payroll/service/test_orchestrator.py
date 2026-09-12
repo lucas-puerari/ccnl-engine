@@ -47,13 +47,13 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     SickInput,
     WelfareInput,
 )
-from ccnl_engine.engine.payroll.service.orchestrator import (
-    _collect_provenance,
+from ccnl_engine.engine.payroll.service.audit import _collect_provenance
+from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.rounding import money
+from ccnl_engine.engine.payroll.service.scope import (
     _compute_confidence,
     _compute_result_status,
-    compute,
 )
-from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.types import MonthlyPayChain
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.engine.provenance.domain.extraction import (

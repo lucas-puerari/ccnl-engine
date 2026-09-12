@@ -117,6 +117,8 @@ These are deliberate modelling approximations. Read them before using this contr
     
     first valid_from is 2025-05-01 (decorrenza del rinnovo per le tabelle retributive). agreement_date 2025-05-19 is the signature date; these differ per precedent (IC91: agreement_date 2023-02-28, first tranche 2021-01-01). April 2025 table from Art. 162 is the previgente table — not modelled as a period.
     
+    Source provenance: values extracted from signed CCNL 19/05/2025 PDF distributed by FIAIP/EBNAIP. The direct PDF download URL was not recorded; the homepage https://www.ebnaip.it/ was used as the source anchor. All values verified page-by-page against the original document.
+    
 
 ## Raw data
 
