@@ -65,10 +65,17 @@ def _run_wr_supplements(
         if wr_schema_present:
             assert ccnl.work_rules is not None  # narrowing for mypy
             assert ccnl.work_rules.time_supplements is not None
+            ts_schema = ccnl.work_rules.time_supplements
+            if ts_schema.hourly_base_method == "gross_incl_allowances":
+                wr_warnings.append(
+                    "hourly_base_method='gross_incl_allowances' is not yet"
+                    " implemented; time supplements cannot be computed"
+                )
+                return _ZERO, _ZERO, _ZERO, (), False
             overtime_supp, night_supp, holiday_supp, supplement_trace = (
                 compute_time_supplements(
                     supps_input=ts_input,
-                    supplements_schema=ccnl.work_rules.time_supplements,
+                    supplements_schema=ts_schema,
                     base_monthly_full_time=base_monthly_full_time,
                     hourly_divisor=hourly_divisor,
                     as_of=as_of,
