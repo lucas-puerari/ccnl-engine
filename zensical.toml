@@ -105,6 +105,7 @@ nav = [
     { "CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagr…" = "contracts/operai-agricoli-florovivaisti.md" },
     { "CCNL per i lavoratori addetti all'industria orafa, argent…" = "contracts/orafi-argentieri-industria-federorafi.md" },
     { "CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecni…" = "contracts/organizzazioni-allevatori-aia.md" },
+    { "CCNL Ortofrutticoli ed Agrumari Import-Export (Fruitimprese)" = "contracts/ortofrutticoli-agrumari.md" },
     { "CCNL Area Alimentazione e Panificazione — Artigianato (Co…" = "contracts/panificazione-artigianato-confartigianato.md" },
     { "CCNL Panificazione e Settori Affini — Industria (Assipan/…" = "contracts/panificazione-assipan.md" },
     { "CCNL per i lavoratori addetti alle industrie delle pelli …" = "contracts/pelli-cuoio-industria-assopellettieri.md" },

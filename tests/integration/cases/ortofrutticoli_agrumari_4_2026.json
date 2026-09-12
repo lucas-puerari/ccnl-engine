@@ -1,0 +1,20 @@
+{
+  "inputs": {
+    "ccnl_file": "ortofrutticoli-agrumari.json",
+    "level_code": "4",
+    "as_of": "2026-06-01",
+    "employment_type": "permanent",
+    "num_employees": 50,
+    "year": 2026,
+    "tax_sector": "terziario",
+    "seniority_count": 0,
+    "part_time_pct": "1"
+  },
+  "expected": {
+    "gross_monthly": "1750.00",
+    "net_monthly": "1312.83",
+    "net_annual": "18379.65",
+    "employer_cost_annual": "33414.91",
+    "gross_annual": "24500.00"
+  }
+}

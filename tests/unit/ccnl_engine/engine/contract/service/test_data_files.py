@@ -6097,6 +6097,75 @@ class TestLoadOrganizzazioniAllevatoriAia:
         assert si.maximum_count == 10
 
 
+class TestLoadOrtofrutticoliAgrumari:
+    """Tests for CCNL Ortofrutticoli ed Agrumari Import-Export H341."""
+
+    def test_ortofrutticoli_agrumari_loads(self) -> None:
+        """Contract loads with correct id and CNEL code H341."""
+        ccnl = load_ccnl("ortofrutticoli-agrumari.json")
+        assert ccnl.meta.ccnl_id == "ortofrutticoli-agrumari"
+        assert ccnl.meta.cnel_code == "H341"
+
+    def test_ortofrutticoli_agrumari_has_9_levels(self) -> None:
+        """Contract has exactly 9 levels: Q, 1-5, 6S, 6, 7."""
+        ccnl = load_ccnl("ortofrutticoli-agrumari.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"Q", "1", "2", "3", "4", "5", "6S", "6", "7"}
+
+    def test_ortofrutticoli_agrumari_level6_salary_tranche1(self) -> None:
+        """Level 6 at 2024-09-01 is 1559.53 EUR (confirmed primary source)."""
+        ccnl = load_ccnl("ortofrutticoli-agrumari.json")
+        lv = ccnl.level_by_code("6")
+        assert lv.base_salary.value_at(date(2024, 9, 1)) == Decimal("1559.53")
+
+    def test_ortofrutticoli_agrumari_level_q_salary_tranche3(self) -> None:
+        """Level Q at 2026-06-01 is 2396.59 EUR (confirmed from kitech.it)."""
+        ccnl = load_ccnl("ortofrutticoli-agrumari.json")
+        lv = ccnl.level_by_code("Q")
+        assert lv.base_salary.value_at(date(2026, 6, 1)) == Decimal("2396.59")
+
+    def test_ortofrutticoli_agrumari_level_ordering(self) -> None:
+        """Q is highest-order level; 7 is lowest-order level."""
+        ccnl = load_ccnl("ortofrutticoli-agrumari.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "7"
+        assert by_order[-1].code == "Q"
+
+    def test_ortofrutticoli_agrumari_additional_months(self) -> None:
+        """Additional months is 14 (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("ortofrutticoli-agrumari.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            14
+        )
+
+    def test_ortofrutticoli_agrumari_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (40h/week, lavoro-economia.it quote)."""
+        ccnl = load_ccnl("ortofrutticoli-agrumari.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(173)
+
+    def test_ortofrutticoli_agrumari_level_q_ind_fun(self) -> None:
+        """Level Q has IND_FUN allowance of 154.94 EUR/month."""
+        ccnl = load_ccnl("ortofrutticoli-agrumari.json")
+        lv = ccnl.level_by_code("Q")
+        codes = {fa.code for fa in lv.fixed_allowances}
+        assert "IND_FUN" in codes
+        ind = next(fa for fa in lv.fixed_allowances if fa.code == "IND_FUN")
+        assert ind.monthly.value_at(date(2026, 6, 1)) == Decimal("154.94")
+
+    def test_ortofrutticoli_agrumari_tax_sector(self) -> None:
+        """Tax sector is terziario."""
+        ccnl = load_ccnl("ortofrutticoli-agrumari.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_ortofrutticoli_agrumari_seniority_cadence(self) -> None:
+        """Seniority: 36-month cadence (triennale), 13 increments maximum."""
+        ccnl = load_ccnl("ortofrutticoli-agrumari.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 36
+        assert si.maximum_count == 13
+
+
 class TestLoadAlimentariPmiUnionalimentari:
     """Tests for CCNL PMI Alimentare E018 (Unionalimentari-Confapi)."""
 
