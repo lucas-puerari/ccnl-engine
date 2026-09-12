@@ -11,6 +11,7 @@ yield an identical result years later.
 
 from __future__ import annotations
 
+import copy
 import dataclasses
 import json
 import typing
@@ -168,11 +169,22 @@ def _load_by_hint(hint: type, raw: object) -> object:
 
     Returns:
         The reconstructed value for the given type hint.
+
+    Raises:
+        ValueError: When *raw* is not a member of a ``Literal`` hint.
     """
     hint = _unwrap_annotated(hint)
     origin = get_origin(hint)
     if origin is typing.Union or origin is UnionType:
         return _load_union_hint(hint, raw)
+    if origin is typing.Literal:
+        # Literal carries allowed scalar values — never iterate over raw as a
+        # sequence; validate membership and return the scalar unchanged.
+        allowed = typing.get_args(hint)
+        if raw not in allowed:
+            msg = f"expected one of {allowed!r}, got {raw!r}"
+            raise ValueError(msg)
+        return raw
     if origin is not None:
         return _load_collection_hint(hint, origin, raw)
     if dataclasses.is_dataclass(hint):
@@ -525,13 +537,15 @@ class InputSnapshot:
 
         Returns:
             A dictionary with ``str``/``int``/``bool``/``dict`` values.
+            The ``scenario`` value is a deep copy so mutations of the
+            returned dict cannot alter the stored snapshot.
         """
         return {
             "ccnl_id": self.ccnl_id,
             "tax_sector": self.tax_sector,
             "year": self.year,
             "uses_surtax": self.uses_surtax,
-            "scenario": self.scenario,
+            "scenario": copy.deepcopy(self.scenario),
         }
 
     @classmethod
@@ -549,7 +563,7 @@ class InputSnapshot:
             tax_sector=str(data["tax_sector"]),
             year=int(str(data["year"])),
             uses_surtax=bool(data["uses_surtax"]),
-            scenario=cast(dict[str, object], data["scenario"]),
+            scenario=copy.deepcopy(cast(dict[str, object], data["scenario"])),
         )
 
     def to_json(self) -> str:
@@ -604,10 +618,23 @@ class Calculation:
         ``Calculation.result.net_annual``, keeping call sites that treat the
         output as a :class:`PayrollResult` working unchanged.
 
+        Uses ``object.__getattribute__`` to read ``result`` so that
+        ``__getattr__`` is not called recursively during ``copy.deepcopy``
+        (which constructs the object before populating its attributes).
+
         Returns:
             The attribute value read from :attr:`result`.
+
+        Raises:
+            AttributeError: When ``result`` is not yet initialised (e.g.
+                during deep-copy construction) or when *name* is absent
+                from :class:`PayrollResult`.
         """
-        return getattr(self.result, name)
+        try:
+            result = object.__getattribute__(self, "result")
+        except AttributeError:
+            raise AttributeError(name) from None
+        return getattr(result, name)
 
     def reproduce(self) -> Calculation:
         """Replay this calculation using the scenario stored in the snapshot.
