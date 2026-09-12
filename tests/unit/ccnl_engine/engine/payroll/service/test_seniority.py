@@ -181,6 +181,43 @@ class TestExcludedCategories:
         assert r.seniority_count == 0
         assert r.seniority_monthly == _D("0.00")
 
+    def test_excluded_category_zeroes_tiered_seniority(self) -> None:
+        """R18: excluded_categories zeroes the amount in the tiered path.
+
+        Before the fix, _seniority_amount in the tiered+months branch would
+        bypass the exclusion and compute 40 EUR (2 tiers * 20 EUR) for an
+        operaio with 48 months even though the count was correctly 0.
+        """
+        tier = {
+            "cadence_months": 24,
+            "maximum_count": 5,
+            "amount_by_level": {
+                "4": {
+                    "periods": [
+                        {
+                            "valid_from": "2020-01-01",
+                            "valid_until": None,
+                            "value": "20.00",
+                        }
+                    ]
+                }
+            },
+        }
+        _mock_ccnl[0] = _build_ccnl(**{
+            "levels.2.category": "operaio",
+            "parameters.seniority_increments": {
+                "cadence_months": 24,
+                "maximum_count": 5,
+                "tiers": [tier],
+                "excluded_categories": ["operaio"],
+                "amount_by_level": {},
+                "provenance": TEST_PROV,
+            },
+        })
+        r = compute(_req(seniority_months=48))
+        assert r.seniority_count == 0
+        assert r.seniority_monthly == _D("0.00")
+
 
 # ---------------------------------------------------------------------------
 # Service-gated allowances (Allowance.service_months_threshold)

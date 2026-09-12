@@ -152,6 +152,12 @@ class TestSeniorityMonthsAsOf:
         e = Employee(level_code="4", seniority=None)
         assert e.seniority_months_as_of(date(2026, 1, 1)) is None
 
+    def test_by_date_future_hire_raises(self) -> None:
+        """R17: hire_date after calculation_date raises ValueError."""
+        e = Employee(level_code="4", seniority=SeniorityByDate(date(2026, 10, 1)))
+        with pytest.raises(ValueError, match=r"hire_date.*after.*calculation_date"):
+            e.seniority_months_as_of(date(2026, 9, 1))
+
 
 # ---------------------------------------------------------------------------
 # Agreement validation
