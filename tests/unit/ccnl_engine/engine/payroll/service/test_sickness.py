@@ -297,20 +297,153 @@ class TestEffectiveIntegrationRate:
         assert _effective_integration_rate(rules, _D("0")) == _D("0.80")
 
     def test_compute_sickness_uses_tier(self) -> None:
-        """Tier 90% is applied when cumulative puts episode at month 10."""
+        """Tier 90% is applied when cumulative puts episode at month 10.
+
+        cumulative=270 days: episode days 271-275.  The INPS bands only cover
+        days 4-180; all 5 days are beyond day 180, so INPS pays nothing.
+        Company pays 90% (tier 2) on all 5 post-carenza days (no INPS gap).
+
+        daily_rate = money(2064.88 / 30) = 68.83
+        carenza = 0  (cumulative=270 > carenza_limit=3)
+        INPS = 0  (episode days 271-275 are beyond band2 end of day 180)
+        post_carenza = 5 * 0.90 * 68.83 = 309.74  (eff_rate=0.9, no INPS gap)
+        company = 309.74
+        """
         rules = self._rules_with_tiers()
-        # cumulative=270 days → month 10 → 90% integration
-        # 5 sick days: 3 carenza (100%) + 2 band1 (50% INPS)
-        # daily_rate = money(2064.88 / 30) = 68.83
-        # carenza_pay = 3 * 1.0 * 68.83 = 206.49
-        # eff_rate = 0.90; gap = max(0, 0.90 - 0.50) = 0.40
-        # post_carenza = 2 * 0.40 * 68.83 = 55.06
-        # company = 206.49 + 55.06 = 261.55
         _sd, _cd, inps, company = compute_sickness(
             SickInput(sick_days=_D("5"), cumulative_sick_days=_D("270")),
             rules,
             _standard_sick_pay_rates(),
             gross_monthly=_D("2064.88"),
         )
-        assert inps == _D("68.83")
-        assert company == _D("261.55")
+        assert inps == _D("0.00")
+        assert company == _D("309.74")
+
+    def test_r5_split_equals_single_episode(self) -> None:
+        """R5: splitting one episode into two calls gives the same totals.
+
+        Episode of 20 sick days split as 10+10 must equal a single 20-day call.
+
+        Single call (cumulative=0, sick_days=20):
+          daily_rate = money(2064.88 / 30) = 68.83
+          carenza = 3, band1 = 17, band2 = 0
+          inps = 17 * 0.50 * 68.83 = 584.86 (rounded)
+          company = 3 * 1.0 * 68.83 + 17 * 0.50 * 68.83 = 206.49 + 584.86 = 791.35
+
+        Split call 1 (cumulative=0, sick_days=10):
+          carenza = 3, band1 = 7
+          inps = 7 * 0.50 * 68.83 = 240.91
+          company = 3 * 1.0 * 68.83 + 7 * 0.50 * 68.83 = 206.49 + 240.91 = 447.40
+
+        Split call 2 (cumulative=10, sick_days=10):
+          carenza = 0 (offset=10 > carenza limit 3)
+          band1 days: band1=[4..20] => overlap [10..20) = 10 days
+          inps = 10 * 0.50 * 68.83 = 344.15
+          company = 0 + 10 * 0.50 * 68.83 = 344.15
+
+        Total split: inps = 240.91 + 344.15 = 585.06 != 584.86?
+        Note: rounding is applied per call, so small differences possible.
+        The key invariant is carenza+band1+band2 totals equal the single call.
+        """
+        rules = _full_integration_rules()
+        rates = _standard_sick_pay_rates()
+        gross = _D("2064.88")
+
+        # Single 20-day call
+        _, _, inps_single, co_single = compute_sickness(
+            SickInput(sick_days=_D("20"), cumulative_sick_days=_D("0")),
+            rules,
+            rates,
+            gross_monthly=gross,
+        )
+
+        # Split into two 10-day calls
+        _, _, inps_a, co_a = compute_sickness(
+            SickInput(sick_days=_D("10"), cumulative_sick_days=_D("0")),
+            rules,
+            rates,
+            gross_monthly=gross,
+        )
+        _, _, inps_b, co_b = compute_sickness(
+            SickInput(sick_days=_D("10"), cumulative_sick_days=_D("10")),
+            rules,
+            rates,
+            gross_monthly=gross,
+        )
+
+        # Band-day totals must match (rounding inside money() is per-call, so
+        # small cents differ; we tolerate +-0.02 to account for two rounding ops)
+        tol = _D("0.02")
+        assert abs((inps_a + inps_b) - inps_single) <= tol
+        assert abs((co_a + co_b) - co_single) <= tol
+
+    def test_r6_tier_crossing(self) -> None:
+        """R6: period spanning a tier boundary uses separate rates per segment.
+
+        Tiers: month 1-10 at 100%, month 10-13 at 90%.
+        Tier boundary at day (10-1)*30 = 270.
+
+        cumulative=265, sick_days=10: episode days 265-274 crosses day 270.
+          - Segment 1: days 265-270 (5 days) => month 9 => 100% rate
+          - Segment 2: days 270-275 (5 days) => month 10 => 90% rate
+          All days are beyond INPS bands (>180), so INPS = 0 for both segments.
+
+        daily_rate = 68.83
+        company = 5 * 1.00 * 68.83 + 5 * 0.90 * 68.83
+                = 344.15 + 309.74 = 653.89
+        """
+        rules = self._rules_with_tiers()
+        rates = _standard_sick_pay_rates()
+        gross = _D("2064.88")
+
+        _, _, inps, company = compute_sickness(
+            SickInput(sick_days=_D("10"), cumulative_sick_days=_D("265")),
+            rules,
+            rates,
+            gross_monthly=gross,
+        )
+        assert inps == _D("0.00")
+        assert company == _D("653.89")
+
+    def test_tier_all_days_in_carenza_skips_post_carenza(self) -> None:
+        """Tiers + cumulative, all sick days within carenza: no post-carenza work.
+
+        cumulative=0, sick_days=3, carenza_limit=3: post_carenza_days = 0.
+        The `if post_carenza_days > _ZERO` branch is skipped.
+
+        daily_rate = 68.83
+        company = 3 * 1.0 * 68.83 = 206.49  (carenza pay only)
+        inps = 0
+        """
+        rules = self._rules_with_tiers()
+        _, _, inps, company = compute_sickness(
+            SickInput(sick_days=_D("3"), cumulative_sick_days=_D("0")),
+            rules,
+            _standard_sick_pay_rates(),
+            gross_monthly=_D("2064.88"),
+        )
+        assert inps == _D("0.00")
+        assert company == _D("206.49")
+
+    def test_tier_with_inps_band_overlap(self) -> None:
+        """Tiers + cumulative, segment within INPS band: seg_inps_rate is set.
+
+        cumulative=3, sick_days=5: episode days 4-8, all in band1 (days 4-20, 50%).
+        Offset > carenza_limit so carenza=0.  post_carenza_offset = max(3,3) = 3.
+        All 5 days are at tier 1 (100%) since cumulative=3 is in month 1.
+
+        daily_rate = 68.83
+        carenza = 0  (cumulative=3 >= carenza_limit=3)
+        inps = 5 * 0.50 * 68.83 = 172.08 (rounded)
+        company (tier): seg_inps_rate=0.50, gap=0.50, 5 * 0.50 * 68.83 = 172.08
+        total company = 172.08
+        """
+        rules = self._rules_with_tiers()
+        _, _, inps, company = compute_sickness(
+            SickInput(sick_days=_D("5"), cumulative_sick_days=_D("3")),
+            rules,
+            _standard_sick_pay_rates(),
+            gross_monthly=_D("2064.88"),
+        )
+        assert inps == _D("172.08")
+        assert company == _D("172.08")
