@@ -14,7 +14,7 @@ import pytest
 
 from ccnl_engine.engine.contract.domain.ccnl import CCNL
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
-from ccnl_engine.engine.diff.compute import diff_ccnl
+from ccnl_engine.engine.diff.service.compute import diff_ccnl
 from tests.helpers import TEST_PROV, make_ccnl_dict
 
 # ---------------------------------------------------------------------------

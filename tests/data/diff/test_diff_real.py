@@ -11,7 +11,7 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
-from ccnl_engine.engine.diff.compute import diff_ccnl
+from ccnl_engine.engine.diff.service.compute import diff_ccnl
 
 
 class TestDiffRealMetalmeccanico:

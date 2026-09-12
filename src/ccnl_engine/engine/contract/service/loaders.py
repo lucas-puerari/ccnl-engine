@@ -7,7 +7,7 @@ import json
 from typing import Any
 
 from ccnl_engine.engine.contract.domain.ccnl import CCNL
-from ccnl_engine.engine.io.bundled import read_bundled
+from ccnl_engine.engine.io.service.bundled import read_bundled
 from ccnl_engine.engine.metadata import source_hash
 
 

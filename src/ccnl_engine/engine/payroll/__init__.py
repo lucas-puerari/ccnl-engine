@@ -12,9 +12,13 @@ from ccnl_engine.engine.payroll.domain.calculation import (
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     PayrollResult as PayrollResult,
 )
-from ccnl_engine.engine.payroll.render import AnnualBreakdown as AnnualBreakdown
-from ccnl_engine.engine.payroll.render import render_breakdown as render_breakdown
 from ccnl_engine.engine.payroll.service.orchestrator import compute as compute
+from ccnl_engine.engine.payroll.service.render import (
+    AnnualBreakdown as AnnualBreakdown,
+)
+from ccnl_engine.engine.payroll.service.render import (
+    render_breakdown as render_breakdown,
+)
 
 __all__ = [
     "AnnualBreakdown",
