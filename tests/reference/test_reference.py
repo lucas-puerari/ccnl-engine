@@ -88,7 +88,13 @@ def _build_sick_input(inputs: dict[str, Any]) -> SickInput | None:
     raw = inputs.get("sick_input")
     if raw is None:
         return None
-    return SickInput(sick_days=Decimal(str(raw.get("sick_days", "0"))))
+    cumulative_raw = raw.get("cumulative_sick_days")
+    return SickInput(
+        sick_days=Decimal(str(raw.get("sick_days", "0"))),
+        cumulative_sick_days=(
+            Decimal(str(cumulative_raw)) if cumulative_raw is not None else None
+        ),
+    )
 
 
 def _build_fringe_benefit_input(inputs: dict[str, Any]) -> FringeBenefitInput | None:
@@ -177,6 +183,7 @@ def _build_time_supplements(inputs: dict[str, Any]) -> OvertimeHours | None:
         weekday_hours=Decimal(str(raw.get("weekday_hours", "0"))),
         night_hours=Decimal(str(raw.get("night_hours", "0"))),
         holiday_hours=Decimal(str(raw.get("holiday_hours", "0"))),
+        night_holiday_hours=Decimal(str(raw.get("night_holiday_hours", "0"))),
         supplementare_hours=Decimal(str(raw.get("supplementare_hours", "0"))),
     )
 
