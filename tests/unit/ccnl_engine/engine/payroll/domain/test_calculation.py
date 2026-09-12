@@ -328,3 +328,24 @@ class TestLoadDataclassCompat:
         assert isinstance(result, OvertimeHours)
         assert result.weekday_hours == Decimal(5)
         assert result.night_hours == Decimal(0)
+
+
+class TestR2R19R20Fixes:
+    """Tests for Literal replay (R2), snapshot alias (R19), deepcopy (R20)."""
+
+    def test_literal_valid_value_returned(self) -> None:
+        """_load_by_hint returns a valid Literal value unchanged."""
+        hint: type = typing.Literal["impiegato", "operaio"]  # type: ignore[assignment]
+        assert _load_by_hint(hint, "impiegato") == "impiegato"
+
+    def test_literal_invalid_value_raises(self) -> None:
+        """_load_by_hint rejects a value not in the Literal union."""
+        hint: type = typing.Literal["impiegato", "operaio"]  # type: ignore[assignment]
+        with pytest.raises(ValueError, match="expected one of"):
+            _load_by_hint(hint, "supervisore")
+
+    def test_getattr_missing_result_raises_attribute_error(self) -> None:
+        """__getattr__ raises AttributeError when result is uninitialised."""
+        calc = object.__new__(Calculation)
+        with pytest.raises(AttributeError):
+            _ = calc.net_annual
