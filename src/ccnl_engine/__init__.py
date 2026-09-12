@@ -80,8 +80,11 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     SickInput,
     WelfareInput,
 )
-from ccnl_engine.engine.payroll.render import AnnualBreakdown, render_breakdown
 from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.render import (
+    AnnualBreakdown,
+    render_breakdown,
+)
 from ccnl_engine.version import __version__ as engine_version
 
 __all__ = [

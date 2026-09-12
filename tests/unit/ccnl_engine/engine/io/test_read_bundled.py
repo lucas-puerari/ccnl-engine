@@ -13,7 +13,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.engine.io.bundled import read_bundled
+from ccnl_engine.engine.io.service.bundled import read_bundled
 
 if TYPE_CHECKING:
     from pathlib import Path

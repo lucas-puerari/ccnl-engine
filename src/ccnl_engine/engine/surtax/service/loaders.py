@@ -6,7 +6,7 @@ import importlib.resources
 import json
 from typing import Any
 
-from ccnl_engine.engine.io.bundled import read_bundled
+from ccnl_engine.engine.io.service.bundled import read_bundled
 from ccnl_engine.engine.metadata import source_hash
 from ccnl_engine.engine.surtax.domain.rules import (
     ComunaleRaw,

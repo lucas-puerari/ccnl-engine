@@ -4,7 +4,10 @@ from __future__ import annotations
 
 from datetime import date
 
-from ccnl_engine.engine.diff.impact import _results_differ, count_affected_scenarios
+from ccnl_engine.engine.diff.service.impact import (
+    _results_differ,
+    count_affected_scenarios,
+)
 from ccnl_engine.engine.payroll.domain.employee import SeniorityByCount
 from ccnl_engine.engine.payroll.domain.employment import Permanent
 from ccnl_engine.engine.payroll.domain.scenario import (

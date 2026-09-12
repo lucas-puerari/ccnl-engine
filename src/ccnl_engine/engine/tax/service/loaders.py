@@ -7,7 +7,7 @@ import json
 from decimal import Decimal
 from typing import TYPE_CHECKING, Any, Protocol
 
-from ccnl_engine.engine.io.bundled import read_bundled
+from ccnl_engine.engine.io.service.bundled import read_bundled
 from ccnl_engine.engine.metadata import RulesetIdentity, source_hash
 from ccnl_engine.engine.tax.domain.art15 import (
     Art15DeductionRules,

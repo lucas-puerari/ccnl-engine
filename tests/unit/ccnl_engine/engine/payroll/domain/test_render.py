@@ -12,8 +12,8 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.payroll.render import render_breakdown
 from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.render import render_breakdown
 from tests.helpers import make_minimal_ccnl, make_year_rules
 from tests.unit.ccnl_engine.engine.payroll.service.builders import _req
 
