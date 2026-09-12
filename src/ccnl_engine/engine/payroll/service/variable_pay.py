@@ -65,7 +65,9 @@ def compute_fringe_benefit(
         if fb_input.has_dependent_children
         else fb_rules.threshold_standard
     )
-    taxable = money(max(_ZERO, fb_input.annual_amount - threshold))
+    # R15: once the threshold is breached the *entire* amount is taxable,
+    # not just the excess (Art. 51 c. 3 TUIR — all-or-nothing rule).
+    taxable = fb_input.annual_amount if fb_input.annual_amount > threshold else _ZERO
     return fb_input.annual_amount, threshold, taxable
 
 
@@ -115,10 +117,16 @@ def compute_bonus(
     if not bonus_input.eligible_for_pdr:
         return amount, _ZERO, amount
 
-    if gross_annual > pdr_rules.income_ceiling:
+    # R16: use prior-year gross for the ceiling check when provided.
+    ceiling_income = (
+        bonus_input.prior_year_gross_annual
+        if bonus_input.prior_year_gross_annual is not None
+        else gross_annual
+    )
+    if ceiling_income > pdr_rules.income_ceiling:
         l3_warnings.append(
-            "bonus_input: PdR regime not applicable — gross_annual "
-            f"{gross_annual} exceeds income ceiling {pdr_rules.income_ceiling}"
+            "bonus_input: PdR regime not applicable — income "
+            f"{ceiling_income} exceeds ceiling {pdr_rules.income_ceiling}"
         )
         return amount, _ZERO, amount
 

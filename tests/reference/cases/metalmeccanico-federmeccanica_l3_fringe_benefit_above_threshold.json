@@ -1,5 +1,5 @@
 {
-  "_description": "Fringe benefit above standard threshold — CCNL Metalmeccanico Federmeccanica, C2, €1.400 benefit (no children, standard threshold €1.000)",
+  "_description": "Fringe benefit above standard threshold — CCNL Metalmeccanico Federmeccanica, C2, €1.400 benefit (no children, standard threshold €1.000) — R15: entire amount taxable",
   "source": {
     "document": "Art. 51 c. 3 TUIR",
     "section": "Limite di esenzione fringe benefit — anno d'imposta 2026",
@@ -33,6 +33,6 @@
     "gross_annual": "26843.44",
     "fringe_benefit_annual": "1400",
     "fringe_benefit_threshold_annual": "1000.00",
-    "fringe_benefit_taxable_annual": "400.00"
+    "fringe_benefit_taxable_annual": "1400.00"
   }
 }

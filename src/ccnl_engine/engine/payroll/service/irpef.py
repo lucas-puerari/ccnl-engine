@@ -214,33 +214,23 @@ def surtax_from_brackets(
 
 
 def apply_sterilizzazione_detrazioni(
-    work_deduction: Decimal,
-    family_deduction: Decimal,
+    art15_total: Decimal,
     gross_annual: Decimal,
     rules: SterilizzazioneDetrazioniRules | None,
-) -> tuple[Decimal, Decimal]:
-    """Reduce total detrazioni by the statutory amount for high earners.
+) -> Decimal:
+    """Reduce Art. 15 oneri deductions by the statutory amount for high earners.
 
-    Per Art. 1 c. 3-4 L. 199/2025: when ``gross_annual`` exceeds
-    ``rules.threshold`` (EUR 200 000), the total of Art. 13 work-income
-    deduction and Art. 12 family deductions is reduced by
-    ``rules.reduction`` (EUR 440 -- the exact clawback of the 35% to 33%
-    bracket benefit on the EUR 28 000-50 000 slice).
-
-    The reduction is absorbed first against ``work_deduction``, then
-    against ``family_deduction``.  In practice, for income > EUR 50 000
-    the work deduction is already 0, so the full reduction falls on the
-    family deduction.
+    Per Art. 1 c. 3-4 L. 199/2025 (R14): when ``gross_annual`` exceeds
+    ``rules.threshold`` (EUR 200 000), the Art. 15 TUIR oneri deductions
+    (19% detraibili) are reduced by ``rules.reduction`` (EUR 440).  The
+    reduction targets only Art. 15 deductions; Art. 12 (family) and Art. 13
+    (work-income) deductions are not affected.
 
     Returns:
-        A 2-tuple of (effective_work_deduction, effective_family_deduction),
-        both floored at zero.  When ``rules`` is ``None`` or income is at or
-        below the threshold, the inputs are returned unchanged.
+        Effective Art. 15 deduction, floored at zero.  When ``rules`` is
+        ``None`` or income is at or below the threshold, ``art15_total`` is
+        returned unchanged.
     """
     if rules is None or gross_annual <= rules.threshold:
-        return work_deduction, family_deduction
-    total = work_deduction + family_deduction
-    effective = money(max(_ZERO, total - rules.reduction))
-    new_work = min(work_deduction, effective)
-    new_family = effective - new_work
-    return new_work, new_family
+        return art15_total
+    return money(max(_ZERO, art15_total - rules.reduction))
