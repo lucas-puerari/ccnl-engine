@@ -1,0 +1,63 @@
+{
+  "_description": "autoscuole-unasca (IC91) — data checks across 3 tranches",
+  "ccnl_file": "autoscuole-unasca.json",
+  "salary_checks": [
+    {
+      "level_code": "1",
+      "as_of": "2021-01-01",
+      "expected_monthly": "744.17"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2021-09-01",
+      "expected_monthly": "1193.20"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2022-02-01",
+      "expected_monthly": "987.04"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2022-02-01",
+      "expected_monthly": "1577.20"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "3",
+      "as_of": "2022-02-01",
+      "expected_amount": "14.98"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2022-02-01",
+      "expected_amount": "12.39"
+    },
+    {
+      "level_code": "Q",
+      "as_of": "2022-02-01",
+      "expected_amount": "23.76"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "3",
+      "track_name": "L3-autoscuole-48m",
+      "months_elapsed": 10,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "3",
+      "track_name": "L3-autoscuole-48m",
+      "months_elapsed": 20,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "5",
+      "track_name": "L5-autoscuole-48m",
+      "months_elapsed": 25,
+      "expected_levels_below": 1
+    }
+  ]
+}

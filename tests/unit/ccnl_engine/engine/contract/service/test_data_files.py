@@ -9296,3 +9296,81 @@ class TestLoadAziendeTermaliFederterme:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadAutoscuoleUnasca:
+    """Unit tests for CCNL Autoscuole UNASCA/CONFARCA (IC91)."""
+
+    def test_autoscuole_unasca_loads(self) -> None:
+        """Contract loads with correct id and CNEL code IC91."""
+        ccnl = load_ccnl("autoscuole-unasca.json")
+        assert ccnl.meta.ccnl_id == "autoscuole-unasca"
+        assert ccnl.meta.cnel_code == "IC91"
+
+    def test_autoscuole_unasca_has_6_levels(self) -> None:
+        """Contract has exactly 6 levels: Q, 5, 4, 3, 2, 1."""
+        ccnl = load_ccnl("autoscuole-unasca.json")
+        assert len(ccnl.levels) == 6
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"Q", "5", "4", "3", "2", "1"}
+
+    def test_autoscuole_unasca_level3_salary_tranche1(self) -> None:
+        """Level 3 paga base before 01/09/2021 is 931.48 EUR (verbale rettifica)."""
+        ccnl = load_ccnl("autoscuole-unasca.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2021, 6, 1)) == Decimal("931.48")
+
+    def test_autoscuole_unasca_level5_salary_tranche3(self) -> None:
+        """Level 5 paga base a regime (01/02/2022) is 1227.87 EUR."""
+        ccnl = load_ccnl("autoscuole-unasca.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "5")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1227.87")
+
+    def test_autoscuole_unasca_level_ordering(self) -> None:
+        """Level 1 is lowest (order 1), level Q is highest (order 6)."""
+        ccnl = load_ccnl("autoscuole-unasca.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "1"
+        assert by_order[-1].code == "Q"
+
+    def test_autoscuole_unasca_additional_months(self) -> None:
+        """Additional months is 14 (Art. 18 tredicesima + Art. 19 quattordicesima)."""
+        ccnl = load_ccnl("autoscuole-unasca.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            14
+        )
+
+    def test_autoscuole_unasca_hourly_divisor(self) -> None:
+        """Hourly divisor is 170 (Art. 13 comma 3 CCNL)."""
+        ccnl = load_ccnl("autoscuole-unasca.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(170)
+
+    def test_autoscuole_unasca_fixed_allowances_split(self) -> None:
+        """Split model: every level has CONTINGENZA+EDR; Q adds IND_FUNZIONE_Q."""
+        ccnl = load_ccnl("autoscuole-unasca.json")
+        for lv in ccnl.levels:
+            codes = {fa.code for fa in lv.fixed_allowances}
+            assert "CONTINGENZA" in codes, f"{lv.code} missing CONTINGENZA"
+            assert "EDR" in codes, f"{lv.code} missing EDR"
+        q = next(lv for lv in ccnl.levels if lv.code == "Q")
+        assert any(fa.code == "IND_FUNZIONE_Q" for fa in q.fixed_allowances)
+
+    def test_autoscuole_unasca_tax_sector(self) -> None:
+        """Tax sector is terziario (IC35 autorimesse precedent)."""
+        ccnl = load_ccnl("autoscuole-unasca.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_autoscuole_unasca_seniority_cadence(self) -> None:
+        """Seniority: biennial cadence (24 months), 5 increments maximum."""
+        ccnl = load_ccnl("autoscuole-unasca.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_autoscuole_unasca_apprenticeship_under_classification(self) -> None:
+        """Apprenticeship is under_classification; Q is excluded (5 tracks)."""
+        ccnl = load_ccnl("autoscuole-unasca.json")
+        tracks = ccnl.apprenticeship
+        assert tracks is not None
+        assert len(tracks) == 5
+        assert all(isinstance(t, ApprenticeshipUnderClassification) for t in tracks)
