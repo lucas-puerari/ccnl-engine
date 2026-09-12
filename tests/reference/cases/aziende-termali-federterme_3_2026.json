@@ -1,64 +1,64 @@
 {
-  "_description": "Golden case: CCNL Aziende Termali Federterme (K461), Level 3, 2026-06-01, permanent.",
-  "_notes": [
-    "Split model: paga base (1193.48) + CONTINGENZA (516.42) + EDR (10.33) = 1720.23 EUR/month.",
-    "Tax sector: terziario. 50 employees. No seniority.",
-    "Additional months: 14 (tredicesima + quattordicesima, Art. 37 + Art. 77 VIII).",
-    "Hourly divisor: 173.33 (Art. 35 + Art. 37 PDF).",
-    "INPS employer rate from 2026-terziario.json (terziario sector, 50 employees tier)."
-  ],
-  "source": {
-    "url": "https://ce-mu.it/wp-content/uploads/2024/10/AziendeTermali_CCNL_2024_2027_08102024.pdf",
-    "description": "CCNL Aziende Termali 2024-2027 signed 8 ottobre 2024 — Art. 82 salary table, Art. 35/37 hourly divisor",
-    "verified_at": "2026-09-12"
-  },
-  "inputs": {
-    "ccnl_file": "aziende-termali-federterme.json",
-    "year": 2026,
-    "tax_sector": "terziario",
-    "num_employees": 50,
-    "level_code": "3",
-    "as_of": "2026-06-01",
-    "employment_type": "permanent",
-    "part_time_pct": "1",
-    "seniority_count": 0,
-    "negotiated_ral": null
-  },
-  "expected": {
-    "ccnl_id": "aziende-termali-federterme",
-    "level_code": "3",
-    "employment_type": "permanent",
-    "part_time_pct": "1",
-    "year": 2026,
-    "seniority_count": 0,
-    "base_monthly": "1193.48",
-    "seniority_monthly": "0.00",
-    "allowances_monthly": "526.75",
-    "ad_personam_monthly": "0.00",
-    "gross_monthly": "1720.23",
-    "gross_annual": "24083.22",
-    "hourly_rate": "9.92",
-    "apprenticeship_pct": null,
-    "apprenticeship_under_level_code": null,
-    "inps_employee_annual": "2213.25",
-    "inps_employer_annual": "6979.32",
-    "employer_funds_annual": "0.00",
-    "tfr_annual": "1783.94",
-    "taxable_income": "21869.97",
-    "irpef_gross": "5030.09",
-    "work_income_deduction": "952.08",
-    "irpef_net": "4078.01",
-    "net_annual": "18153.51",
-    "net_monthly": "1296.68",
-    "employer_cost_annual": "32846.48",
-    "addizionale_regionale_annual": "0",
-    "addizionale_comunale_annual": "0",
-    "trattamento_integrativo": "361.55",
-    "fiscal_simplifications": [
-      "no_addizionale_comunale",
-      "no_addizionale_regionale",
-      "no_detrazioni_art15",
-      "no_detrazioni_familiari"
-    ]
-  }
+    "_description": "Golden case: CCNL Aziende Termali Federterme (K461), Level 3, 2026-06-01, permanent.",
+    "_notes": [
+        "Split model: paga base (1193.48) + CONTINGENZA (516.42) + EDR (10.33) = 1720.23 EUR/month.",
+        "Tax sector: terziario. 50 employees. No seniority.",
+        "Additional months: 14 (tredicesima + quattordicesima, Art. 37 + Art. 77 VIII).",
+        "Hourly divisor: 173.33 (Art. 35 + Art. 37 PDF).",
+        "INPS employer rate from 2026-terziario.json (terziario sector, 50 employees tier)."
+    ],
+    "source": {
+        "url": "https://ce-mu.it/wp-content/uploads/2024/10/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+        "description": "CCNL Aziende Termali 2024-2027 signed 8 ottobre 2024 — Art. 82 salary table, Art. 35/37 hourly divisor",
+        "verified_at": "2026-09-12"
+    },
+    "inputs": {
+        "ccnl_file": "aziende-termali-federterme.json",
+        "year": 2026,
+        "tax_sector": "terziario",
+        "num_employees": 50,
+        "level_code": "3",
+        "as_of": "2026-06-01",
+        "employment_type": "permanent",
+        "part_time_pct": "1",
+        "seniority_count": 0,
+        "negotiated_ral": null
+    },
+    "expected": {
+        "ccnl_id": "aziende-termali-federterme",
+        "level_code": "3",
+        "employment_type": "permanent",
+        "part_time_pct": "1",
+        "year": 2026,
+        "seniority_count": 0,
+        "base_monthly": "1193.48",
+        "seniority_monthly": "0.00",
+        "allowances_monthly": "526.75",
+        "ad_personam_monthly": "0.00",
+        "gross_monthly": "1720.23",
+        "gross_annual": "24083.22",
+        "hourly_rate": "9.92",
+        "apprenticeship_pct": null,
+        "apprenticeship_under_level_code": null,
+        "inps_employee_annual": "2213.25",
+        "inps_employer_annual": "6979.32",
+        "employer_funds_annual": "0.00",
+        "tfr_annual": "1783.94",
+        "taxable_income": "21869.97",
+        "irpef_gross": "5030.09",
+        "work_income_deduction": "2471.09",
+        "irpef_net": "2559.00",
+        "net_annual": "19310.97",
+        "net_monthly": "1379.36",
+        "employer_cost_annual": "32846.48",
+        "addizionale_regionale_annual": "0",
+        "addizionale_comunale_annual": "0",
+        "trattamento_integrativo": "0",
+        "fiscal_simplifications": [
+            "no_addizionale_comunale",
+            "no_addizionale_regionale",
+            "no_detrazioni_art15",
+            "no_detrazioni_familiari"
+        ]
+    }
 }

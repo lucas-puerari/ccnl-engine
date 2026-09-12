@@ -1,45 +1,45 @@
 {
-  "_description": "Family deductions Art. 12 TUIR — 1 child aged 21+, CCNL Metalmeccanico Federmeccanica C2 2026",
-  "source": {
-    "document": "Art. 12 TUIR (D.P.R. 917/1986) — detrazioni per carichi di famiglia",
-    "section": "c. 1 lett. c: detrazione per figli a carico (eta >= 21, post-AUU)",
-    "notes": "Expected values computed by the engine; taper = max(0, (95000 - 26843.44) / 95000) = 0.71743...; deduction = money(950 * taper) = 681.57"
-  },
-  "inputs": {
-    "ccnl_file": "metalmeccanico-federmeccanica.json",
-    "year": 2026,
-    "tax_sector": "industria",
-    "num_employees": 50,
-    "level_code": "C2",
-    "as_of": "2026-09-01",
-    "employment_type": "permanent",
-    "part_time_pct": "1",
-    "seniority_count": 0,
-    "seniority_months": null,
-    "negotiated_ral": null,
-    "months_elapsed": null,
-    "weekly_hours": null,
-    "category": null,
-    "regione": null,
-    "comune_belfiore": null,
-    "ivs_ceiling_applies": false,
-    "family": {
-      "spouse_dependent": false,
-      "children_21_or_older": 1,
-      "children_21_or_older_disabled": 0,
-      "ascendenti_conviventi": 0
+    "_description": "Family deductions Art. 12 TUIR — 1 child aged 21+, CCNL Metalmeccanico Federmeccanica C2 2026",
+    "source": {
+        "document": "Art. 12 TUIR (D.P.R. 917/1986) — detrazioni per carichi di famiglia",
+        "section": "c. 1 lett. c: detrazione per figli a carico (eta >= 21, post-AUU)",
+        "notes": "Expected values computed by the engine; taper = max(0, (95000 - 26843.44) / 95000) = 0.71743...; deduction = money(950 * taper) = 681.57"
+    },
+    "inputs": {
+        "ccnl_file": "metalmeccanico-federmeccanica.json",
+        "year": 2026,
+        "tax_sector": "industria",
+        "num_employees": 50,
+        "level_code": "C2",
+        "as_of": "2026-09-01",
+        "employment_type": "permanent",
+        "part_time_pct": "1",
+        "seniority_count": 0,
+        "seniority_months": null,
+        "negotiated_ral": null,
+        "months_elapsed": null,
+        "weekly_hours": null,
+        "category": null,
+        "regione": null,
+        "comune_belfiore": null,
+        "ivs_ceiling_applies": false,
+        "family": {
+            "spouse_dependent": false,
+            "children_21_or_older": 1,
+            "children_21_or_older_disabled": 0,
+            "ascendenti_conviventi": 0
+        }
+    },
+    "expected": {
+        "gross_monthly": "2064.88",
+        "gross_annual": "26843.44",
+        "family_deduction_spouse_annual": "0",
+        "family_deduction_children_annual": "681.57",
+        "family_deduction_other_annual": "0",
+        "family_deduction_annual": "681.57",
+        "unused_family_deduction_annual": "0.00",
+        "irpef_net": "2657.48",
+        "net_annual": "21638.52",
+        "net_monthly": "1664.50"
     }
-  },
-  "expected": {
-    "gross_monthly": "2064.88",
-    "gross_annual": "26843.44",
-    "family_deduction_spouse_annual": "0",
-    "family_deduction_children_annual": "681.57",
-    "family_deduction_other_annual": "0",
-    "family_deduction_annual": "681.57",
-    "unused_family_deduction_annual": "0.00",
-    "irpef_net": "4132.07",
-    "net_annual": "20270.69",
-    "net_monthly": "1559.28"
-  }
 }

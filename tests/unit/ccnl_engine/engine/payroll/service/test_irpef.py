@@ -1,8 +1,10 @@
-"""Tests for engine.irpef — irpef_gross() and work_income_deduction().
+"""Tests for engine.irpef.
 
-Covers every branch: zero/negative income, income in each bracket, spanning
-multiple brackets, income above the last finite breakpoint, and the single-
-open-ended-breakpoint edge case for the fallback return path.
+Covers irpef_gross(), work_income_deduction(), trattamento_integrativo(),
+surtax_from_brackets(), and apply_sterilizzazione_detrazioni().
+
+Every branch is tested: zero/negative income, each statutory band boundary,
+4-decimal truncation, the 65 EUR increment, TI requisito logic, and surtax.
 """
 
 from decimal import Decimal
@@ -12,11 +14,13 @@ from ccnl_engine.engine.payroll.service.irpef import (
     apply_sterilizzazione_detrazioni,
     irpef_gross,
     surtax_from_brackets,
+    trattamento_integrativo,
     work_income_deduction,
 )
 from ccnl_engine.engine.surtax.domain.rules import SurtaxBracket
 from ccnl_engine.engine.tax.domain.rules import (
     SterilizzazioneDetrazioniRules,
+    TrattamentoIntegrativoRules,
     YearRules,
 )
 from tests.helpers import make_year_rules
@@ -31,21 +35,14 @@ _IRPEF_BRACKETS_2026: list[dict[str, Any]] = [
     {"up_to": None, "rate": "0.43"},
 ]
 
-_STANDARD_DEDUCTIONS = [
-    {"income_up_to": "8500.00", "deduction": "1955.00"},
-    {"income_up_to": "28000.00", "deduction": "700.00"},
-    {"income_up_to": "50000.00", "deduction": "0.00"},
-    {"income_up_to": None, "deduction": "0.00"},
-]
 
-
-def _rules(deductions: list[dict[str, Any]] | None = None) -> YearRules:
-    """Minimal YearRules with the 2026 IRPEF brackets and configurable deductions.
+def _rules() -> YearRules:
+    """Minimal YearRules with the 2026 IRPEF brackets.
 
     Returns:
-        A YearRules instance with the specified deduction breakpoints.
+        A YearRules instance with the 2026 bracket schedule.
     """
-    return make_year_rules(brackets=_IRPEF_BRACKETS_2026, deductions=deductions)
+    return make_year_rules(brackets=_IRPEF_BRACKETS_2026)
 
 
 # ---------------------------------------------------------------------------
@@ -102,69 +99,235 @@ class TestIrpefGross:
 
 
 # ---------------------------------------------------------------------------
-# work_income_deduction
+# work_income_deduction — Art. 13 co. 1 TUIR statutory formula (2026)
+# Source: AdE circolare 4/E/2025, p. 6; truncation per Art. 13 co. 6.
 # ---------------------------------------------------------------------------
 
 
 class TestWorkIncomeDeduction:
-    """Unit tests for work_income_deduction()."""
+    """Unit tests for work_income_deduction() using the correct 2026 formula."""
 
     def test_zero_income(self) -> None:
         """Zero income returns zero deduction (early return branch)."""
-        assert work_income_deduction(Decimal(0), _rules()) == Decimal("0.00")
+        assert work_income_deduction(Decimal(0)) == Decimal("0.00")
 
     def test_negative_income(self) -> None:
         """Negative income returns zero deduction."""
-        assert work_income_deduction(Decimal(-1), _rules()) == Decimal("0.00")
+        assert work_income_deduction(Decimal(-1)) == Decimal("0.00")
 
-    def test_income_at_flat_segment_top(self) -> None:
-        """Income exactly at 8,500 returns the flat deduction of EUR 1,955."""
-        assert work_income_deduction(Decimal(8500), _rules()) == Decimal("1955.00")
+    def test_income_below_lo_threshold(self) -> None:
+        """Income < 15 000: flat deduction of EUR 1 955 (REVIEW.md R12 row 1)."""
+        assert work_income_deduction(Decimal(10000)) == Decimal("1955.00")
 
-    def test_income_below_flat_segment(self) -> None:
-        """Income below 8,500 also returns the flat deduction of EUR 1,955."""
-        assert work_income_deduction(Decimal(5000), _rules()) == Decimal("1955.00")
+    def test_income_at_lo_threshold(self) -> None:
+        """Income exactly at 15 000: flat deduction EUR 1 955 (REVIEW.md R12)."""
+        assert work_income_deduction(Decimal(15000)) == Decimal("1955.00")
 
-    def test_income_in_first_tapered_segment(self) -> None:
-        """Income in (8,500, 28,000]: linear interpolation toward EUR 700.
+    def test_income_in_mid_band_no_increment(self) -> None:
+        """Income 20 000 in 15 000-28 000 band, no 65 EUR increment.
 
-        At 18,250 (midpoint): fraction = (18250-8500)/(28000-8500) = 0.5.
-        deduction = 1955 + 0.5*(700-1955) = 1955 - 627.5 = 1327.50.
+        ratio = trunc4((28000-20000)/13000) = trunc4(0.615384...) = 0.6153
+        deduction = 1910 + 1190 * 0.6153 = 1910 + 732.207 = 2642.21
+        Expected 2642.21 (REVIEW.md R12 row 3).
         """
-        result = work_income_deduction(Decimal(18250), _rules())
-        assert result == Decimal("1327.50")
+        assert work_income_deduction(Decimal(20000)) == Decimal("2642.21")
 
-    def test_income_at_segment_boundary_28000(self) -> None:
-        """Income exactly at 28,000 returns EUR 700 (boundary interpolation)."""
-        result = work_income_deduction(Decimal(28000), _rules())
-        assert result == Decimal("700.00")
+    def test_income_at_mid_threshold_with_increment(self) -> None:
+        """Income exactly at 28 000 (mid boundary): 1910 + 0 + 65 = 1975.
 
-    def test_income_in_second_tapered_segment(self) -> None:
-        """Income in (28,000, 50,000]: linear interpolation toward zero.
-
-        At 39,000 (midpoint): fraction = (39000-28000)/(50000-28000) = 0.5.
-        deduction = 700 + 0.5*(0-700) = 350.00.
+        28 000 falls in 25 001-35 000 so the 65 EUR increment applies.
+        Expected 1975.00 (REVIEW.md R12 row 4).
         """
-        result = work_income_deduction(Decimal(39000), _rules())
-        assert result == Decimal("350.00")
+        assert work_income_deduction(Decimal(28000)) == Decimal("1975.00")
 
-    def test_income_above_all_finite_breakpoints(self) -> None:
-        """Income > 50,000 hits the hi_income is None branch, deduction = 0."""
-        result = work_income_deduction(Decimal(55000), _rules())
+    def test_income_in_upper_band_with_increment(self) -> None:
+        """Income 30 000 in 28 000-50 000 band, 65 EUR increment applies.
+
+        ratio = trunc4((50000-30000)/22000) = trunc4(0.909090...) = 0.9090
+        deduction = 1910 * 0.9090 = 1736.19; +65 = 1801.19
+        Expected 1801.19 (REVIEW.md R12 row 5).
+        """
+        assert work_income_deduction(Decimal(30000)) == Decimal("1801.19")
+
+    def test_income_in_upper_band_no_increment(self) -> None:
+        """Income 40 000 in 28 000-50 000 band, beyond 35 000 (no increment).
+
+        ratio = trunc4((50000-40000)/22000) = trunc4(0.454545...) = 0.4545
+        deduction = 1910 * 0.4545 = 868.095 → 868.10 (rounded to 2 dp).
+        """
+        assert work_income_deduction(Decimal(40000)) == Decimal("868.10")
+
+    def test_income_at_high_threshold(self) -> None:
+        """Income exactly at 50 000: deduction is zero (boundary on _DETR_HIGH)."""
+        assert work_income_deduction(Decimal(50000)) == Decimal("0.00")
+
+    def test_income_above_high_threshold(self) -> None:
+        """Income > 50 000: zero deduction."""
+        assert work_income_deduction(Decimal(55000)) == Decimal("0.00")
+
+    def test_increment_lower_boundary(self) -> None:
+        """Income exactly at 25 000 is NOT in increment range (must be > 25 000)."""
+        # ratio = trunc4((28000-25000)/13000) = trunc4(0.230769...) = 0.2307
+        # deduction = 1910 + 1190 * 0.2307 = 1910 + 274.533 = 2184.53
+        assert work_income_deduction(Decimal(25000)) == Decimal("2184.53")
+
+    def test_increment_just_above_lower_boundary(self) -> None:
+        """Income 25 001 is in increment range: 65 EUR added."""
+        # ratio = trunc4((28000-25001)/13000) = trunc4(0.230692...) = 0.2306
+        # deduction = 1910 + 1190 * 0.2306 + 65 = 1910 + 274.414 + 65 = 2249.41
+        assert work_income_deduction(Decimal(25001)) == Decimal("2249.41")
+
+    def test_increment_upper_boundary(self) -> None:
+        """Income exactly at 35 000 is in increment range (inclusive)."""
+        # In 28 000-50 000 band: ratio = trunc4((50000-35000)/22000)
+        # = trunc4(0.681818...) = 0.6818
+        # deduction = 1910 * 0.6818 + 65 = 1302.238 + 65 = 1367.24
+        assert work_income_deduction(Decimal(35000)) == Decimal("1367.24")
+
+    def test_increment_just_above_upper_boundary(self) -> None:
+        """Income 35 001 is NOT in increment range: no 65 EUR."""
+        # In 28 000-50 000 band: ratio = trunc4((50000-35001)/22000)
+        # = trunc4(0.681772...) = 0.6817
+        # deduction = 1910 * 0.6817 = 1302.047 → 1302.05
+        assert work_income_deduction(Decimal(35001)) == Decimal("1302.05")
+
+
+# ---------------------------------------------------------------------------
+# trattamento_integrativo — Art. 1 D.L. 3/2020 as updated by L. 207/2024
+# ---------------------------------------------------------------------------
+
+_TI_RULES = TrattamentoIntegrativoRules(
+    threshold_mid=Decimal(15000),
+    threshold_upper=Decimal(28000),
+    max_amount=Decimal(1200),
+)
+
+
+class TestTrattamentoIntegrativo:
+    """Unit tests for trattamento_integrativo()."""
+
+    # -- RC > 28 000 ----------------------------------------------------------
+
+    def test_above_upper_threshold_zero(self) -> None:
+        """RC > 28 000: bonus is always zero."""
+        result = trattamento_integrativo(
+            Decimal(30000),
+            Decimal(5000),
+            Decimal(1800),
+            Decimal(1800),
+            _TI_RULES,
+        )
         assert result == Decimal("0.00")
 
-    def test_single_open_ended_breakpoint_fallback(self) -> None:
-        """Single open-ended breakpoint: loop is empty, fallback return fires.
+    # -- RC ≤ 15 000 ----------------------------------------------------------
 
-        This covers the ``return money(points[-1].deduction)`` path after the
-        for-loop when the loop body never executes.
+    def test_lower_band_bonus_granted(self) -> None:
+        """RC=8300, IRPEF=1909, detr=1955 (full year): 1909 > 1955-75=1880.
+
+        REVIEW.md R13: was returning zero instead of 1200.
         """
-        single_deduction = [{"income_up_to": None, "deduction": "1955.00"}]
-        rules = _rules(deductions=single_deduction)
-        # first.income_up_to is None → flat-segment if-condition is False;
-        # loop range is empty → falls through to final return
-        result = work_income_deduction(Decimal(10000), rules)
-        assert result == Decimal("1955.00")
+        result = trattamento_integrativo(
+            Decimal(8300),
+            Decimal(1909),
+            Decimal(1955),
+            Decimal(1955),
+            _TI_RULES,
+        )
+        assert result == Decimal("1200.00")
+
+    def test_lower_band_bonus_denied(self) -> None:
+        """RC=10000, IRPEF=300, detr=1955: 300 ≤ 1880 → no bonus."""
+        result = trattamento_integrativo(
+            Decimal(10000),
+            Decimal(300),
+            Decimal(1955),
+            Decimal(1955),
+            _TI_RULES,
+        )
+        assert result == Decimal("0.00")
+
+    def test_lower_band_exactly_at_threshold(self) -> None:
+        """RC=10000, IRPEF=1880, detr=1955: 1880 = 1955-75 → not strictly >."""
+        result = trattamento_integrativo(
+            Decimal(10000),
+            Decimal(1880),
+            Decimal(1955),
+            Decimal(1955),
+            _TI_RULES,
+        )
+        assert result == Decimal("0.00")
+
+    def test_lower_band_one_above_threshold(self) -> None:
+        """RC=10000, IRPEF=1881: 1881 > 1955-75=1880 → bonus = 1200."""
+        result = trattamento_integrativo(
+            Decimal(10000),
+            Decimal(1881),
+            Decimal(1955),
+            Decimal(1955),
+            _TI_RULES,
+        )
+        assert result == Decimal("1200.00")
+
+    # -- 15 000 < RC ≤ 28 000 -------------------------------------------------
+
+    def test_mid_band_requisito_not_met(self) -> None:
+        """RC=20000, IRPEF=4600, relevant=2642.21: IRPEF > deductions → 0.
+
+        REVIEW.md R13: was returning 738.46 (wrong linear taper).
+        """
+        result = trattamento_integrativo(
+            Decimal(20000),
+            Decimal(4600),
+            Decimal("2642.21"),
+            Decimal("2642.21"),
+            _TI_RULES,
+        )
+        assert result == Decimal("0.00")
+
+    def test_mid_band_requisito_met_capped(self) -> None:
+        """RC=20000, relevant_deductions > IRPEF by more than 1200: cap at 1200."""
+        result = trattamento_integrativo(
+            Decimal(20000),
+            Decimal(1000),
+            Decimal(2500),
+            Decimal(3000),
+            _TI_RULES,
+        )
+        assert result == Decimal("1200.00")
+
+    def test_mid_band_requisito_met_partial(self) -> None:
+        """RC=20000, relevant - IRPEF = 500: bonus = 500."""
+        result = trattamento_integrativo(
+            Decimal(20000),
+            Decimal(2000),
+            Decimal(2500),
+            Decimal(2500),
+            _TI_RULES,
+        )
+        assert result == Decimal("500.00")
+
+    def test_mid_band_exactly_at_mid_threshold(self) -> None:
+        """RC exactly at 15000 uses the lower-band check (≤ threshold_mid)."""
+        # IRPEF=1909, detr=1955, corrective=75: 1909 > 1955-75=1880 → 1200
+        result = trattamento_integrativo(
+            Decimal(15000),
+            Decimal(1909),
+            Decimal(1955),
+            Decimal(1955),
+            _TI_RULES,
+        )
+        assert result == Decimal("1200.00")
+
+    def test_mid_band_exactly_at_upper_threshold(self) -> None:
+        """RC exactly at 28000: above upper → zero (> threshold_upper check)."""
+        result = trattamento_integrativo(
+            Decimal(28001),
+            Decimal(3000),
+            Decimal(2000),
+            Decimal(2000),
+            _TI_RULES,
+        )
+        assert result == Decimal("0.00")
 
 
 # ---------------------------------------------------------------------------

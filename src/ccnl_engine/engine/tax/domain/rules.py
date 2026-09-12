@@ -19,7 +19,14 @@ IrpefBracket = Bracket
 
 
 class DeductionBreakpoint(BaseModel):
-    """A single breakpoint in the Art. 13 TUIR work-income deduction schedule."""
+    """A single breakpoint in a piecewise-linear deduction schedule.
+
+    Reused for Art. 12 TUIR family deductions (spouse, children) whose
+    schedules are tabulated as breakpoint lists in the tax data files.
+
+    Note: Art. 13 TUIR work-income deduction uses statutory piecewise
+    formulas in ``irpef.py`` and no longer stores breakpoints here.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
@@ -346,7 +353,6 @@ class YearRulesRaw(BaseModel):
     sector: TaxSector
     ruleset: RulesetIdentity | None = None
     irpef_brackets: list[IrpefBracket]
-    work_deduction_breakpoints: list[DeductionBreakpoint]
     fixed_term_additional_rate: Decimal
     inps: InpsRawRates | None = None
     apprentice: ApprenticeRawRates | None = None
@@ -388,7 +394,6 @@ class YearRules(BaseModel):
     ruleset: RulesetIdentity | None = None
     inps_ruleset: RulesetIdentity | None = None
     irpef_brackets: list[IrpefBracket]
-    work_deduction_breakpoints: list[DeductionBreakpoint]
     fixed_term_additional_rate: Decimal
     inps: InpsRates | None = None
     apprentice: ApprenticeRates | None = None
@@ -405,7 +410,6 @@ class YearRules(BaseModel):
     @model_validator(mode="after")
     def _validate_sequences(self) -> Self:
         self._check_irpef_brackets()
-        self._check_deduction_breakpoints()
         return self
 
     def _check_irpef_brackets(self) -> None:
@@ -432,34 +436,5 @@ class YearRules(BaseModel):
             msg = (
                 "last irpef_bracket must be unbounded (up_to=None), "
                 f"got up_to={brackets[-1].up_to}"
-            )
-            raise ValueError(msg)
-
-    def _check_deduction_breakpoints(self) -> None:
-        points = self.work_deduction_breakpoints
-        if not points:
-            msg = "work_deduction_breakpoints must not be empty"
-            raise ValueError(msg)
-        for i, p in enumerate(points[:-1]):
-            if p.income_up_to is None:
-                msg = (
-                    f"only the last deduction breakpoint may have "
-                    f"income_up_to=None (point {i} is not the last)"
-                )
-                raise ValueError(msg)
-            next_p = points[i + 1]
-            if next_p.income_up_to is not None and (
-                next_p.income_up_to <= p.income_up_to
-            ):
-                msg = (
-                    f"work_deduction_breakpoints must have strictly ascending "
-                    f"income_up_to: point {i} income_up_to={p.income_up_to} >= "
-                    f"point {i + 1} income_up_to={next_p.income_up_to}"
-                )
-                raise ValueError(msg)
-        if points[-1].income_up_to is not None:
-            msg = (
-                "last deduction breakpoint must be unbounded (income_up_to=None), "
-                f"got income_up_to={points[-1].income_up_to}"
             )
             raise ValueError(msg)

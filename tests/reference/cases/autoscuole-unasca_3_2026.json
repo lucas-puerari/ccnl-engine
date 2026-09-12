@@ -1,64 +1,64 @@
 {
-  "_description": "Golden case: CCNL Autoscuole UNASCA/CONFARCA (IC91), Level 3, 2026-06-01, permanent.",
-  "_notes": [
-    "Split model: paga base (987.04 a regime dal 01/02/2022) + CONTINGENZA (439.83) + EDR (10.33) = 1437.20 EUR/month.",
-    "Tax sector: terziario. 50 employees. No seniority.",
-    "Additional months: 14 (tredicesima Art.18 + quattordicesima Art.19).",
-    "Hourly divisor: 170 (Art. 13 comma 3).",
-    "INPS employer rate from 2026-terziario.json (terziario sector, 50 employees tier)."
-  ],
-  "source": {
-    "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
-    "description": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023 (authoritative salary table)",
-    "verified_at": "2026-09-12"
-  },
-  "inputs": {
-    "ccnl_file": "autoscuole-unasca.json",
-    "year": 2026,
-    "tax_sector": "terziario",
-    "num_employees": 50,
-    "level_code": "3",
-    "as_of": "2026-06-01",
-    "employment_type": "permanent",
-    "part_time_pct": "1",
-    "seniority_count": 0,
-    "negotiated_ral": null
-  },
-  "expected": {
-    "ccnl_id": "autoscuole-unasca",
-    "level_code": "3",
-    "employment_type": "permanent",
-    "part_time_pct": "1",
-    "year": 2026,
-    "seniority_count": 0,
-    "base_monthly": "987.04",
-    "seniority_monthly": "0.00",
-    "allowances_monthly": "450.16",
-    "ad_personam_monthly": "0.00",
-    "gross_monthly": "1437.20",
-    "gross_annual": "20120.80",
-    "hourly_rate": "8.45",
-    "apprenticeship_pct": null,
-    "apprenticeship_under_level_code": null,
-    "inps_employee_annual": "1849.10",
-    "inps_employer_annual": "5831.01",
-    "employer_funds_annual": "0.00",
-    "tfr_annual": "1490.43",
-    "taxable_income": "18271.70",
-    "irpef_gross": "4202.49",
-    "work_income_deduction": "1207.10",
-    "irpef_net": "2995.39",
-    "net_annual": "16003.62",
-    "net_monthly": "1143.12",
-    "employer_cost_annual": "27442.24",
-    "addizionale_regionale_annual": "0",
-    "addizionale_comunale_annual": "0",
-    "trattamento_integrativo": "727.31",
-    "fiscal_simplifications": [
-      "no_addizionale_comunale",
-      "no_addizionale_regionale",
-      "no_detrazioni_art15",
-      "no_detrazioni_familiari"
-    ]
-  }
+    "_description": "Golden case: CCNL Autoscuole UNASCA/CONFARCA (IC91), Level 3, 2026-06-01, permanent.",
+    "_notes": [
+        "Split model: paga base (987.04 a regime dal 01/02/2022) + CONTINGENZA (439.83) + EDR (10.33) = 1437.20 EUR/month.",
+        "Tax sector: terziario. 50 employees. No seniority.",
+        "Additional months: 14 (tredicesima Art.18 + quattordicesima Art.19).",
+        "Hourly divisor: 170 (Art. 13 comma 3).",
+        "INPS employer rate from 2026-terziario.json (terziario sector, 50 employees tier)."
+    ],
+    "source": {
+        "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
+        "description": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023 (authoritative salary table)",
+        "verified_at": "2026-09-12"
+    },
+    "inputs": {
+        "ccnl_file": "autoscuole-unasca.json",
+        "year": 2026,
+        "tax_sector": "terziario",
+        "num_employees": 50,
+        "level_code": "3",
+        "as_of": "2026-06-01",
+        "employment_type": "permanent",
+        "part_time_pct": "1",
+        "seniority_count": 0,
+        "negotiated_ral": null
+    },
+    "expected": {
+        "ccnl_id": "autoscuole-unasca",
+        "level_code": "3",
+        "employment_type": "permanent",
+        "part_time_pct": "1",
+        "year": 2026,
+        "seniority_count": 0,
+        "base_monthly": "987.04",
+        "seniority_monthly": "0.00",
+        "allowances_monthly": "450.16",
+        "ad_personam_monthly": "0.00",
+        "gross_monthly": "1437.20",
+        "gross_annual": "20120.80",
+        "hourly_rate": "8.45",
+        "apprenticeship_pct": null,
+        "apprenticeship_under_level_code": null,
+        "inps_employee_annual": "1849.10",
+        "inps_employer_annual": "5831.01",
+        "employer_funds_annual": "0.00",
+        "tfr_annual": "1490.43",
+        "taxable_income": "18271.70",
+        "irpef_gross": "4202.49",
+        "work_income_deduction": "2800.48",
+        "irpef_net": "1402.01",
+        "net_annual": "16869.69",
+        "net_monthly": "1204.98",
+        "employer_cost_annual": "27442.24",
+        "addizionale_regionale_annual": "0",
+        "addizionale_comunale_annual": "0",
+        "trattamento_integrativo": "0",
+        "fiscal_simplifications": [
+            "no_addizionale_comunale",
+            "no_addizionale_regionale",
+            "no_detrazioni_art15",
+            "no_detrazioni_familiari"
+        ]
+    }
 }

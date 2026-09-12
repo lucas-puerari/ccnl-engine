@@ -1,28 +1,28 @@
 {
-  "_description": "CCNL Vigilanza Privata FEDERDAT GPG (HV17) — livello III, 2026-04-01",
-  "_notes": [
-    "Conglobated model, 14 months, divisor 173.",
-    "Seniority_count=0, num_employees=50. Level III at tranche 01/04/2026."
-  ],
-  "inputs": {
-    "ccnl_file": "vigilanza-privata-federdat-gpg.json",
-    "year": 2026,
-    "tax_sector": "terziario",
-    "num_employees": 50,
-    "level_code": "III",
-    "as_of": "2026-04-01",
-    "employment_type": "permanent",
-    "part_time_pct": "1",
-    "seniority_count": 0,
-    "negotiated_ral": null
-  },
-  "expected": {
-    "base_monthly": "1651.31",
-    "gross_monthly": "1651.31",
-    "gross_annual": "23118.34",
-    "hourly_rate": "9.55",
-    "net_annual": "17629.99",
-    "employer_cost_annual": "31530.50",
-    "trattamento_integrativo": "450.61"
-  }
+    "_description": "CCNL Vigilanza Privata FEDERDAT GPG (HV17) — livello III, 2026-04-01",
+    "_notes": [
+        "Conglobated model, 14 months, divisor 173.",
+        "Seniority_count=0, num_employees=50. Level III at tranche 01/04/2026."
+    ],
+    "inputs": {
+        "ccnl_file": "vigilanza-privata-federdat-gpg.json",
+        "year": 2026,
+        "tax_sector": "terziario",
+        "num_employees": 50,
+        "level_code": "III",
+        "as_of": "2026-04-01",
+        "employment_type": "permanent",
+        "part_time_pct": "1",
+        "seniority_count": 0,
+        "negotiated_ral": null
+    },
+    "expected": {
+        "base_monthly": "1651.31",
+        "gross_monthly": "1651.31",
+        "gross_annual": "23118.34",
+        "hourly_rate": "9.55",
+        "net_annual": "18716.49",
+        "employer_cost_annual": "31530.50",
+        "trattamento_integrativo": "0"
+    }
 }

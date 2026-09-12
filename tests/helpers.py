@@ -23,14 +23,6 @@ IRPEF_BRACKETS_2026: list[dict[str, Any]] = [
     {"up_to": None, "rate": "0.43"},
 ]
 
-#: Standard Art. 13 TUIR work-income deduction breakpoints for 2026.
-WORK_DEDUCTIONS_2026: list[dict[str, Any]] = [
-    {"income_up_to": "8500.00", "deduction": "1955.00"},
-    {"income_up_to": "28000.00", "deduction": "700.00"},
-    {"income_up_to": "50000.00", "deduction": "0.00"},
-    {"income_up_to": None, "deduction": "0.00"},
-]
-
 #: INPS rates for terziario sector (no ceiling, simplified).
 INPS_RATES_TERZIARIO: dict[str, Any] = {
     "employee_rate": "0.0919",
@@ -156,7 +148,6 @@ def _level(code: str, order: int, salary: str) -> dict[str, Any]:
 
 def make_year_rules(
     brackets: list[dict[str, Any]] | None = None,
-    deductions: list[dict[str, Any]] | None = None,
     inps: dict[str, Any] | None = None,
     apprentice: dict[str, Any] | None = None,
     sterilizzazione_detrazioni: dict[str, Any] | None = None,
@@ -165,7 +156,6 @@ def make_year_rules(
 
     Args:
         brackets: IRPEF bracket list; defaults to 2026 statutory values.
-        deductions: Work-deduction breakpoints; defaults to 2026 values.
         inps: Raw INPS rates dict; defaults to terziario rates.
         apprentice: Raw apprentice rates dict; defaults to large-firm values.
         sterilizzazione_detrazioni: Optional override for sterilizzazione
@@ -178,7 +168,6 @@ def make_year_rules(
     raw: dict[str, Any] = {
         "year": 2026,
         "irpef_brackets": brackets or IRPEF_BRACKETS_2026,
-        "work_deduction_breakpoints": deductions or WORK_DEDUCTIONS_2026,
         "fixed_term_additional_rate": "0.014",
         "inps": inps or INPS_RATES_TERZIARIO,
         "apprentice": apprentice or APPRENTICE_RATES_LARGE_FIRM,
@@ -198,7 +187,6 @@ def make_domestic_year_rules() -> YearRules:
     return YearRules.model_validate({
         "year": 2026,
         "irpef_brackets": IRPEF_BRACKETS_2026,
-        "work_deduction_breakpoints": WORK_DEDUCTIONS_2026,
         "fixed_term_additional_rate": "0.014",
         "domestic_contributions": DOMESTIC_CONTRIBUTIONS,
         "tfr": {"accrual_divisor": "13.5"},

@@ -1398,7 +1398,13 @@ class TestSterilizzazioneDetrazioni:
         )
 
     def test_sterilizzazione_increases_irpef_net(self) -> None:
-        """Reduced family deduction increases irpef_net by 440 EUR."""
+        """Reduced family deduction increases irpef_net.
+
+        At the test-CCNL income level, spouse deduction + work deduction
+        already exceed irpef_gross, so without sterilizzazione irpef_net is 0.
+        The 440 EUR reduction only partially un-covers the irpef_gross: the
+        increase is less than 440 because the baseline irpef_net is clamped at 0.
+        """
         _mock_rules[0] = make_year_rules(sterilizzazione_detrazioni=self._STRD_RULES)
         with_strd = compute(
             dataclasses.replace(_req(), family=FamilyComposition(spouse_dependent=True))
@@ -1407,7 +1413,9 @@ class TestSterilizzazioneDetrazioni:
         without_strd = compute(
             dataclasses.replace(_req(), family=FamilyComposition(spouse_dependent=True))
         ).result
-        assert with_strd.irpef_net - without_strd.irpef_net == _D("440.00")
+        assert without_strd.irpef_net == _D("0.00")
+        assert with_strd.irpef_net > _D("0.00")
+        assert with_strd.irpef_net < _D("440.00")
 
     def test_sterilizzazione_no_family_reduces_work_deduction(self) -> None:
         """Without family, sterilizzazione reduces work deduction by 440 EUR.
@@ -1459,7 +1467,12 @@ class TestArt15Deductions:
         assert with_none.art15_deduction_annual == _D("0")
 
     def test_mortgage_deduction_reduces_irpef_net(self) -> None:
-        """Art. 15 mortgage credit is subtracted from irpef_net."""
+        """Art. 15 mortgage credit is subtracted from irpef_net, clamped at 0.
+
+        At the test-CCNL income level the credit (570 EUR) exceeds irpef_net
+        (551.36), so irpef_net is floored at 0 — excess credit is lost per
+        Italian tax law.
+        """
         baseline = compute(_req()).result
         with_art15 = compute(
             dataclasses.replace(
@@ -1468,7 +1481,8 @@ class TestArt15Deductions:
             )
         ).result
         assert with_art15.art15_deduction_annual == _D("570.00")  # 3000 * 0.19
-        assert with_art15.irpef_net == baseline.irpef_net - _D("570.00")
+        expected = max(_D("0"), baseline.irpef_net - _D("570.00"))
+        assert with_art15.irpef_net == expected
 
     def test_ceiling_cap_applied(self) -> None:
         """Interest above EUR 4 000 ceiling: credit capped at EUR 760."""

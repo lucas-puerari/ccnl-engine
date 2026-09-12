@@ -37,7 +37,6 @@ from ccnl_engine.engine.tax.service.loaders import (
 from tests.helpers import (
     DOMESTIC_CONTRIBUTIONS,
     IRPEF_BRACKETS_2026,
-    WORK_DEDUCTIONS_2026,
 )
 
 # ---------------------------------------------------------------------------
@@ -48,13 +47,6 @@ _VALID_BRACKETS: list[dict[str, Any]] = [
     {"up_to": "28000.00", "rate": "0.23"},
     {"up_to": "50000.00", "rate": "0.33"},
     {"up_to": None, "rate": "0.43"},
-]
-
-_VALID_DEDUCTIONS: list[dict[str, Any]] = [
-    {"income_up_to": "8500.00", "deduction": "1955.00"},
-    {"income_up_to": "28000.00", "deduction": "700.00"},
-    {"income_up_to": "50000.00", "deduction": "0.00"},
-    {"income_up_to": None, "deduction": "0.00"},
 ]
 
 _VALID_INPS: dict[str, Any] = {
@@ -86,7 +78,6 @@ def _year_rules(overrides: dict[str, Any] | None = None) -> dict[str, Any]:
     base: dict[str, Any] = {
         "year": 2026,
         "irpef_brackets": _VALID_BRACKETS,
-        "work_deduction_breakpoints": _VALID_DEDUCTIONS,
         "fixed_term_additional_rate": "0.014",
         "inps": _VALID_INPS,
         "apprentice": _VALID_APPRENTICE,
@@ -328,70 +319,6 @@ class TestYearRulesIrpefBrackets:
 # ---------------------------------------------------------------------------
 
 
-class TestYearRulesDeductionBreakpoints:
-    """YearRules validation for work_deduction_breakpoints."""
-
-    def test_valid_four_breakpoints(self) -> None:
-        """Four breakpoints with ascending income_up_to are valid."""
-        yr = YearRules.model_validate(_year_rules())
-        assert len(yr.work_deduction_breakpoints) == 4
-        assert yr.work_deduction_breakpoints[-1].income_up_to is None
-
-    def test_empty_breakpoints_raises(self) -> None:
-        """An empty work_deduction_breakpoints list must raise ValidationError."""
-        with pytest.raises(
-            ValidationError, match="work_deduction_breakpoints must not be empty"
-        ):
-            YearRules.model_validate(_year_rules({"work_deduction_breakpoints": []}))
-
-    def test_non_last_breakpoint_open_ended_raises(self) -> None:
-        """An intermediate breakpoint with income_up_to=None must raise."""
-        bad = [
-            {"income_up_to": None, "deduction": "1955.00"},
-            {"income_up_to": None, "deduction": "0.00"},
-        ]
-        with pytest.raises(ValidationError, match="only the last deduction breakpoint"):
-            YearRules.model_validate(_year_rules({"work_deduction_breakpoints": bad}))
-
-    def test_non_ascending_income_up_to_raises(self) -> None:
-        """Non-ascending income_up_to values must raise ValidationError."""
-        bad = [
-            {"income_up_to": "50000.00", "deduction": "1955.00"},
-            {"income_up_to": "28000.00", "deduction": "700.00"},
-            {"income_up_to": None, "deduction": "0.00"},
-        ]
-        with pytest.raises(ValidationError, match="strictly ascending income_up_to"):
-            YearRules.model_validate(_year_rules({"work_deduction_breakpoints": bad}))
-
-    def test_last_breakpoint_not_open_ended_raises(self) -> None:
-        """Last breakpoint with finite income_up_to must raise ValidationError."""
-        bad = [
-            {"income_up_to": "8500.00", "deduction": "1955.00"},
-            {"income_up_to": "50000.00", "deduction": "0.00"},
-        ]
-        with pytest.raises(
-            ValidationError, match="last deduction breakpoint must be unbounded"
-        ):
-            YearRules.model_validate(_year_rules({"work_deduction_breakpoints": bad}))
-
-    def test_single_open_ended_breakpoint_valid(self) -> None:
-        """A single unbounded breakpoint is valid."""
-        single = [{"income_up_to": None, "deduction": "1955.00"}]
-        yr = YearRules.model_validate(
-            _year_rules({"work_deduction_breakpoints": single})
-        )
-        assert len(yr.work_deduction_breakpoints) == 1
-
-    def test_two_breakpoints_second_open_ended_skips_ascending_check(self) -> None:
-        """Ascending check is skipped when next entry is the open-ended last."""
-        two = [
-            {"income_up_to": "8500.00", "deduction": "1955.00"},
-            {"income_up_to": None, "deduction": "0.00"},
-        ]
-        yr = YearRules.model_validate(_year_rules({"work_deduction_breakpoints": two}))
-        assert len(yr.work_deduction_breakpoints) == 2
-
-
 # ---------------------------------------------------------------------------
 # YearRules — 2026.json round-trip
 # ---------------------------------------------------------------------------
@@ -504,7 +431,6 @@ _RAW_BASE: dict[str, Any] = {
     "year": 2026,
     "sector": "terziario",
     "irpef_brackets": IRPEF_BRACKETS_2026,
-    "work_deduction_breakpoints": WORK_DEDUCTIONS_2026,
     "fixed_term_additional_rate": "0.014",
     "tfr": {"accrual_divisor": "13.5"},
 }
