@@ -40,6 +40,7 @@ nav = [
     { "CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)" = "contracts/autoferrotranvieri-internavigatori.md" },
     { "CCNL Autostrade e Trafori Concessionari (AISCAT)" = "contracts/autostrade-trafori.md" },
     { "CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)" = "contracts/autorimesse-ic35.md" },
+    { "CCNL Autoscuole, Scuole Nautiche e Studi di Consulenza Automobilistica (UNASCA/CONFARCA)" = "contracts/autoscuole-unasca.md" },
     { "CCNL per i lavoratori dipendenti dalle aziende di credito…" = "contracts/bancari-abi.md" },
     { "CCNL per i lavoratori dipendenti delle aziende termali (Federterme)" = "contracts/aziende-termali-federterme.md" },
     { "CCNL per i lavoratori delle Banche di Credito Cooperativo…" = "contracts/bcc-credito-cooperativo.md" },

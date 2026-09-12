@@ -1,0 +1,1262 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "autoscuole-unasca",
+    "name": "CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica",
+    "cnel_code": "IC91",
+    "sector": "autoscuole e consulenza automobilistica",
+    "tax_sector": "terziario",
+    "agreement_date": "2023-02-28",
+    "signatories": [
+      "UNASCA — Unione Nazionale Autoscuole Studi Consulenza Automobilistica",
+      "CONFARCA — Confederazione Autoscuole Riunite e Consulenti Automobilistici",
+      "FILT-CGIL",
+      "FIT-CISL",
+      "UILTRASPORTI"
+    ],
+    "sources": [
+      {
+        "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+        "type": "ccnl_text",
+        "agreement_date": "2023-02-28"
+      },
+      {
+        "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
+        "type": "wage_tables",
+        "agreement_date": "2023-03-14"
+      }
+    ],
+    "extraction": {
+      "method": "ai_assisted",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-12",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: SPLIT. Paga base (minimo tabellare) is a time series with 3 tranches (2021-01-01, 2021-09-01, 2022-02-01). Contingenza (frozen) and EDR (10.33) are fixed_allowances per level. Q level additionally carries indennità di funzione 25.82 EUR (Art. 6). Source: verbale di rettifica 14/03/2023 (authoritative; annuls salary table in main CCNL)."
+      },
+      {
+        "kind": "info",
+        "text": "Verbale di rettifica 14/03/2023: level 5 increment per tranche = 34.67 EUR (not 32.67 as printed in first table of both main CCNL and verbale). The second table of the verbale prints derived totals: 1158.53+34.67+34.67+445.84+10.33=1684.04 confirming 34.67. lavoro-economia.it propagated the typo and shows 1680.04 for a-regime; the correct value is 1684.04."
+      },
+      {
+        "kind": "info",
+        "text": "hourly_divisor: 170 — confirmed from Art. 13 comma 3 CCNL ('dividendo la retribuzione mensile per 170'). Consistent with Art. 9 comma 1: weekly hours 39h = 39x52/12 ≈ 169h rounded to 170."
+      },
+      {
+        "kind": "info",
+        "text": "additional_months: 14 — Art. 18 (tredicesima, Natale) and Art. 19 (quattordicesima, luglio) both explicit in CCNL."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: 5 scatti biennali (cadence_months=24, maximum_count=5). Amounts from Art. 17 CCNL: Q=23.76, 5°=18.59, 4°=16.01, 3°=14.98, 2°=14.46, 1°=12.39 EUR."
+      },
+      {
+        "kind": "info",
+        "text": "Contingenza values from Art. 13 CCNL, Art. 4 (frozen since 1993 interconfederale): Q=452.81, 5°=445.84, 4°=442.41, 3°=439.83, 2°=439.83, 1°=437.56 EUR."
+      },
+      {
+        "kind": "info",
+        "text": "EDR: 10.33 EUR/month, uniform all levels. Elemento Distinto della Retribuzione from 1992 interconfederale CGIL/CISL/UIL/Confindustria (ITL 20,000 converted). Confirmed absorbed in verbale totals: per-level Art. 12 EDR amounts do not appear as additive — verbale derived totals match paga base + contingenza + 10.33 + (Q: 25.82) exactly."
+      },
+      {
+        "kind": "info",
+        "text": "Q indennità di funzione: 25.82 EUR/month x 14 mensilità. PRIMARY SOURCE confirmed from Art. 6 CCNL ('Ai dipendenti classificati come quadri spetta un’indennità di funzione pari a euro 25,82 mensili lorde per quattordici mensilità')."
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship: apprendistato professionalizzante, under-classification model (Art. 43 CCNL). Q excluded. Level 1: 24 months all at destination (no levels below available). Level 2: 36 months (0-23 at 1-below, 24-35 at dest). Levels 3-5: 48 months (0-15 at 2-below, 16-31 at 1-below, 32-47 at dest). Source: Art. 43 CCNL 28/02/2023."
+      },
+      {
+        "kind": "info",
+        "text": "tax_sector: terziario. Following IC35 (autorimesse) precedent for transport/services CCNL with UNASCA/CONFARCA. Sector uses standard terziario INPS rates."
+      },
+      {
+        "kind": "info",
+        "text": "Contract in ultra-vigenza since 01/01/2024 (expired 31/12/2023 per Art. 50). Negotiations broke down July 2026. Salary amounts remain operative per Art. 2074 c.c."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Fondo EST (Art. 46) supplementary health fund not modelled. Contribution: 15 EUR/month employer + 2 EUR/month employee. Not an INPS substitute. employer_cost_annual understated by 180 EUR/year."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Ente Bilaterale di settore (Art. 7, from 01/09/2021: 2 EUR/month employer) not modelled. employer_cost_annual understated by 24 EUR/year."
+      }
+    ],
+    "gross": "implemented",
+    "net": "implemented",
+    "work_rules": "not_implemented"
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2021-01-01",
+          "valid_until": null,
+          "value": "170"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2021-01-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autoscuole-unasca-ccnl-2023-pdf",
+            "title": "CCNL Autoscuole UNASCA/CONFARCA 28/02/2023",
+            "kind": "associazione",
+            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf"
+          },
+          "section": "Art. 17 — Aumenti periodici di anzianità"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2021-01-01"
+        }
+      },
+      "amount_by_level": {
+        "Q": {
+          "periods": [
+            {
+              "valid_from": "2021-01-01",
+              "valid_until": null,
+              "value": "23.76"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2021-01-01",
+              "valid_until": null,
+              "value": "18.59"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2021-01-01",
+              "valid_until": null,
+              "value": "16.01"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2021-01-01",
+              "valid_until": null,
+              "value": "14.98"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2021-01-01",
+              "valid_until": null,
+              "value": "14.46"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2021-01-01",
+              "valid_until": null,
+              "value": "12.39"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "Q",
+      "order": 6,
+      "description": "Quadri — dirigenti intermedi con ampia discrezionalità e autonomia decisionale (legge 190/85)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-01-01",
+            "valid_until": "2021-09-01",
+            "value": "1488.32",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare ante 01/09/2021"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2021-09-01",
+            "valid_until": "2022-02-01",
+            "value": "1532.76",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare dal 01/09/2021"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2022-02-01",
+            "valid_until": null,
+            "value": "1577.20",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare a regime dal 01/02/2022"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza (congelata 1993, Art. 13 CCNL)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "452.81"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoscuole-unasca-ccnl-2023-pdf",
+                "title": "CCNL Autoscuole UNASCA/CONFARCA 28/02/2023",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf"
+              },
+              "section": "Art. 13 — Retribuzione, Art. 4 contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (interconfederale 1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+              },
+              "section": "Tabella retributiva — EDR"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "IND_FUNZIONE_Q",
+          "description": "Indennità di funzione per Quadri (Art. 6 CCNL, 14 mensilità)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "25.82"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoscuole-unasca-ccnl-2023-pdf",
+                "title": "CCNL Autoscuole UNASCA/CONFARCA 28/02/2023",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf"
+              },
+              "section": "Art. 6 — Classificazione del personale (Quadri)"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        }
+      ],
+      "category": "quadro",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autoscuole-unasca-ccnl-2023-pdf",
+            "title": "CCNL Autoscuole UNASCA/CONFARCA 28/02/2023",
+            "kind": "associazione",
+            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf"
+          },
+          "section": "Art. 6 — Classificazione del personale; Art. 52 — Tabella retributiva"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "order": 5,
+      "description": "5° livello — impiegati tecnici e amministrativi con autonomia gestionale e responsabilità del proprio settore",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-01-01",
+            "valid_until": "2021-09-01",
+            "value": "1158.53",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare 5° livello"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2021-09-01",
+            "valid_until": "2022-02-01",
+            "value": "1193.20",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare 5° livello dal 01/09/2021"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2022-02-01",
+            "valid_until": null,
+            "value": "1227.87",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare 5° livello a regime 01/02/2022"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza (congelata 1993, Art. 13 CCNL)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "445.84"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoscuole-unasca-ccnl-2023-pdf",
+                "title": "CCNL Autoscuole UNASCA/CONFARCA 28/02/2023",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf"
+              },
+              "section": "Art. 13 — Retribuzione, Art. 4 contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (interconfederale 1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+              },
+              "section": "Tabella retributiva — EDR"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        }
+      ],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autoscuole-unasca-ccnl-2023-pdf",
+            "title": "CCNL Autoscuole UNASCA/CONFARCA 28/02/2023",
+            "kind": "associazione",
+            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf"
+          },
+          "section": "Art. 6 — Classificazione del personale; Art. 52 — Tabella retributiva"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "order": 4,
+      "description": "4° livello — impiegati con funzioni tecnicoamministrative e autonomia di iniziativa entro direttive prestabilite",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-01-01",
+            "valid_until": "2021-09-01",
+            "value": "997.07",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare 4° livello"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2021-09-01",
+            "valid_until": "2022-02-01",
+            "value": "1027.07",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare 4° livello dal 01/09/2021"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2022-02-01",
+            "valid_until": null,
+            "value": "1057.07",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare 4° livello a regime 01/02/2022"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza (congelata 1993, Art. 13 CCNL)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "442.41"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoscuole-unasca-ccnl-2023-pdf",
+                "title": "CCNL Autoscuole UNASCA/CONFARCA 28/02/2023",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf"
+              },
+              "section": "Art. 13 — Retribuzione, Art. 4 contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (interconfederale 1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+              },
+              "section": "Tabella retributiva — EDR"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        }
+      ],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autoscuole-unasca-ccnl-2023-pdf",
+            "title": "CCNL Autoscuole UNASCA/CONFARCA 28/02/2023",
+            "kind": "associazione",
+            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf"
+          },
+          "section": "Art. 6 — Classificazione del personale; Art. 52 — Tabella retributiva"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "order": 3,
+      "description": "3° livello — impiegati con mansioni esecutive richiedenti conoscenze teorico-pratiche (es. insegnante di autoscuola)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-01-01",
+            "valid_until": "2021-09-01",
+            "value": "931.48",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare 3° livello"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2021-09-01",
+            "valid_until": "2022-02-01",
+            "value": "959.26",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare 3° livello dal 01/09/2021"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2022-02-01",
+            "valid_until": null,
+            "value": "987.04",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare 3° livello a regime 01/02/2022"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza (congelata 1993, Art. 13 CCNL)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "439.83"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoscuole-unasca-ccnl-2023-pdf",
+                "title": "CCNL Autoscuole UNASCA/CONFARCA 28/02/2023",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf"
+              },
+              "section": "Art. 13 — Retribuzione, Art. 4 contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (interconfederale 1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+              },
+              "section": "Tabella retributiva — EDR"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        }
+      ],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autoscuole-unasca-ccnl-2023-pdf",
+            "title": "CCNL Autoscuole UNASCA/CONFARCA 28/02/2023",
+            "kind": "associazione",
+            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf"
+          },
+          "section": "Art. 6 — Classificazione del personale; Art. 52 — Tabella retributiva"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "order": 2,
+      "description": "2° livello — impiegati con mansioni esecutive (es. responsabile di segreteria, istruttore di guida)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-01-01",
+            "valid_until": "2021-09-01",
+            "value": "885.53",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare 2° livello"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2021-09-01",
+            "valid_until": "2022-02-01",
+            "value": "911.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare 2° livello dal 01/09/2021"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2022-02-01",
+            "valid_until": null,
+            "value": "938.41",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare 2° livello a regime 01/02/2022"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza (congelata 1993, Art. 13 CCNL)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "439.83"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoscuole-unasca-ccnl-2023-pdf",
+                "title": "CCNL Autoscuole UNASCA/CONFARCA 28/02/2023",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf"
+              },
+              "section": "Art. 13 — Retribuzione, Art. 4 contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (interconfederale 1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+              },
+              "section": "Tabella retributiva — EDR"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        }
+      ],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autoscuole-unasca-ccnl-2023-pdf",
+            "title": "CCNL Autoscuole UNASCA/CONFARCA 28/02/2023",
+            "kind": "associazione",
+            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf"
+          },
+          "section": "Art. 6 — Classificazione del personale; Art. 52 — Tabella retributiva"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "order": 1,
+      "description": "1° livello — lavoratori con mansioni che richiedono semplici capacità pratiche (fattorino, addetto pulizie, usciere)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2021-01-01",
+            "valid_until": "2021-09-01",
+            "value": "744.17",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare 1° livello"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2021-09-01",
+            "valid_until": "2022-02-01",
+            "value": "766.39",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare 1° livello dal 01/09/2021"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2022-02-01",
+            "valid_until": null,
+            "value": "788.61",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                  "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                  "kind": "associazione",
+                  "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+                },
+                "section": "Tabella retributiva — minimo tabellare 1° livello a regime 01/02/2022"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-12T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2021-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza (congelata 1993, Art. 13 CCNL)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "437.56"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoscuole-unasca-ccnl-2023-pdf",
+                "title": "CCNL Autoscuole UNASCA/CONFARCA 28/02/2023",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf"
+              },
+              "section": "Art. 13 — Retribuzione, Art. 4 contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (interconfederale 1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
+                "title": "Verbale di Accordo Rettifica tabelle — CCNL Autoscuole 14/03/2023",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf"
+              },
+              "section": "Tabella retributiva — EDR"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-12T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2021-01-01"
+            }
+          }
+        }
+      ],
+      "category": "impiegato",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "autoscuole-unasca-ccnl-2023-pdf",
+            "title": "CCNL Autoscuole UNASCA/CONFARCA 28/02/2023",
+            "kind": "associazione",
+            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf"
+          },
+          "section": "Art. 6 — Classificazione del personale; Art. 52 — Tabella retributiva"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2021-01-01"
+        }
+      }
+    }
+  ],
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "L1-autoscuole-24m",
+      "destination_levels": ["1"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "L2-autoscuole-36m",
+      "destination_levels": ["2"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "L3-autoscuole-48m",
+      "destination_levels": ["3"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 16,
+          "levels_below": 2
+        },
+        {
+          "months_from": 16,
+          "months_until": 32,
+          "levels_below": 1
+        },
+        {
+          "months_from": 32,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "L4-autoscuole-48m",
+      "destination_levels": ["4"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 16,
+          "levels_below": 2
+        },
+        {
+          "months_from": 16,
+          "months_until": 32,
+          "levels_below": 1
+        },
+        {
+          "months_from": 32,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "L5-autoscuole-48m",
+      "destination_levels": ["5"],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 16,
+          "levels_below": 2
+        },
+        {
+          "months_from": 16,
+          "months_until": 32,
+          "levels_below": 1
+        },
+        {
+          "months_from": 32,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/autoscuole-unasca",
+    "version": "2026.1",
+    "effective_from": "2022-02-01",
+    "effective_until": null,
+    "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
+    "verification_status": "unverified",
+    "source_hash": "f2823a288145bd93a012d865eaa5d2dd896c6ccb8aa73fc5d6db511c968898d1",
+    "published_at": "2026-09-12"
+  },
+  "work_rules": null
+}
