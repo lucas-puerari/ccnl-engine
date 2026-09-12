@@ -125,7 +125,10 @@ def build_scope(
         else zero
     )
     holiday_hours = (
-        scenario.time_supplements.holiday_hours
+        (
+            scenario.time_supplements.holiday_hours
+            + scenario.time_supplements.night_holiday_hours
+        )
         if scenario.time_supplements is not None
         else zero
     )

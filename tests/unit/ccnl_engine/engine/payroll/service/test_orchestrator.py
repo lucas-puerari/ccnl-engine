@@ -19,6 +19,7 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     LeaveRules,
     SicknessRules,
     SupplementaryAllowance,
+    TimeSupplements,
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
 from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
@@ -936,6 +937,61 @@ class TestL3Warning:
         # Supplement fields must stay zero (no schema → nothing computed).
         assert result.overtime_supplement_monthly == _D("0")
         assert result.time_supplements_monthly == _D("0")
+
+    def test_warning_and_not_computed_when_gross_incl_allowances(self) -> None:
+        """R10: hourly_base_method='gross_incl_allowances' emits warning, returns 0.
+
+        The CCNL schema is present but the method is not yet implemented.
+        The scope must show 'not_computed' for overtime/night/holiday work, and
+        the result status must be 'partial' because of the not_computed entries.
+        """
+        ts_schema = TimeSupplements(
+            hourly_base_method="gross_incl_allowances",
+            overtime_bands=[],
+        )
+        _mock_ccnl[0] = _build_ccnl(
+            work_rules={"time_supplements": ts_schema.model_dump()}
+        )
+        scenario = dataclasses.replace(
+            _req(),
+            time_supplements=OvertimeHours(weekday_hours=_D("5")),
+        )
+        try:
+            result = compute(scenario).result
+            assert any("gross_incl_allowances" in w for w in result.warnings), (
+                f"Expected gross_incl_allowances warning, got: {result.warnings}"
+            )
+            assert result.overtime_supplement_monthly == _D("0")
+            assert result.time_supplements_monthly == _D("0")
+            # Scope must show not_computed because method is unsupported
+            ot_scope = next(
+                s for s in result.calculation_scope if s.feature == "overtime"
+            )
+            assert ot_scope.status == "not_computed"
+            assert result.status == "partial"
+        finally:
+            _mock_ccnl[0] = _DEFAULT_CCNL
+
+    def test_night_holiday_hours_contribute_to_holiday_scope(self) -> None:
+        """R9: night_holiday_hours > 0 sets holiday_work to not_computed (no schema).
+
+        Before the fix, night_holiday_hours was not counted toward the holiday
+        scope, so holiday_work would be 'excluded' even when hours were supplied.
+        """
+        # Test CCNL has no work_rules, so schema is absent.
+        scenario = dataclasses.replace(
+            _req(),
+            time_supplements=OvertimeHours(night_holiday_hours=_D("2")),
+        )
+        result = compute(scenario).result
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        # With fix: night_holiday_hours counts toward holiday → not_computed (no schema)
+        assert scope["holiday_work"] == "not_computed", (
+            f"Expected holiday_work not_computed, got: {scope['holiday_work']}"
+        )
+        # Overtime and night must remain excluded (no hours for those buckets)
+        assert scope["overtime"] == "excluded"
+        assert scope["night_work"] == "excluded"
 
 
 class TestL3Absence:
