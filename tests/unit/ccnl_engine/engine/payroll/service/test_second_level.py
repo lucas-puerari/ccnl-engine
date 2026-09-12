@@ -17,6 +17,7 @@ import pytest
 
 from ccnl_engine.engine.contract.domain.ccnl import CCNL, SupplementaryAllowance
 from ccnl_engine.engine.payroll.domain.employment import Apprentice
+from ccnl_engine.engine.payroll.service.gross import _scale_second_level
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 from ccnl_engine.engine.payroll.service.rounding import money
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
@@ -252,3 +253,69 @@ class TestSecondLevelApprenticeshipPct:
         )
         # 100 * 1 (PT) — apprenticeship_pct NOT applied
         assert result.second_level_monthly == _D("100.00")
+
+
+# ---------------------------------------------------------------------------
+# Rounding policy: single-round after combined factors (R22)
+# ---------------------------------------------------------------------------
+
+
+class TestSecondLevelRoundingPolicy:
+    """Single-round after all scaling factors — R22 rounding alignment.
+
+    Before R22, rounding occurred after part-time and again after
+    apprenticeship: money(money(x * pt) * app). The CCNL chain policy is
+    money(x * pt * app). These diverge at half-cent values.
+
+    The ``0.05 * 0.5 * 0.5`` synthetic probe from the review:
+        double-rounding: money(money(0.05 * 0.5) * 0.5)
+            = money(money(0.03) * 0.5) = money(0.015) = 0.02
+        single-rounding: money(0.05 * 0.5 * 0.5) = money(0.0125) = 0.01
+
+    Tests call ``_scale_second_level`` directly to avoid full payroll plumbing.
+    """
+
+    def test_single_round_half_cent_part_time_only(self) -> None:
+        """Half-cent value 0.05 at PT=50%: money(0.025) rounds to 0.03."""
+        sl = SupplementaryAllowance(
+            code="HALF", description="Half-cent probe", monthly=_D("0.05")
+        )
+        pairs, total = _scale_second_level([sl], _D("0.5"), None)
+        # 0.05 * 0.5 = 0.025 → HALF_UP → 0.03
+        assert pairs[0][0] == _D("0.03")
+        assert total == _D("0.03")
+
+    def test_single_round_half_cent_both_factors(self) -> None:
+        """R22 probe: 0.05 * 0.5 * 0.5 = 0.0125 → rounds to 0.01 (single-round).
+
+        Double-rounding would give money(money(0.025) * 0.5)
+        = money(0.03 * 0.5) = money(0.015) = 0.02.
+        """
+        sl = SupplementaryAllowance(
+            code="HALF", description="Half-cent probe", monthly=_D("0.05")
+        )
+        pairs, total = _scale_second_level([sl], _D("0.5"), _D("0.5"))
+        assert pairs[0][0] == _D("0.01")
+        assert total == _D("0.01")
+
+    def test_pct_irrelevant_item_not_double_rounded(self) -> None:
+        """apprenticeship_pct_relevant=False skips app factor; PT rounds once."""
+        sl = SupplementaryAllowance(
+            code="EDR",
+            description="Not app-scaled",
+            monthly=_D("0.05"),
+            apprenticeship_pct_relevant=False,
+        )
+        pairs, total = _scale_second_level([sl], _D("0.5"), _D("0.5"))
+        # app factor skipped; 0.05 * 0.5 = 0.025 → 0.03
+        assert pairs[0][0] == _D("0.03")
+        assert total == _D("0.03")
+
+    def test_multiple_allowances_each_rounded_once(self) -> None:
+        """Each allowance is rounded once after all factors; total is also rounded."""
+        a1 = SupplementaryAllowance(code="A1", description="A1", monthly=_D("0.05"))
+        a2 = SupplementaryAllowance(code="A2", description="A2", monthly=_D("0.05"))
+        pairs, total = _scale_second_level([a1, a2], _D("0.5"), _D("0.5"))
+        assert pairs[0][0] == _D("0.01")
+        assert pairs[1][0] == _D("0.01")
+        assert total == _D("0.02")

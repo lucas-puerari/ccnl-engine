@@ -206,9 +206,10 @@ def _scale_second_level(
 ) -> tuple[list[tuple[Decimal, SupplementaryAllowance]], Decimal]:
     """Scale second-level allowances by part_time_pct and optionally apprenticeship_pct.
 
-    Each item is multiplied by ``part_time_pct``; the apprenticeship percentage
-    is applied on top only when ``apprenticeship_pct`` is not ``None`` and the
-    item's ``apprenticeship_pct_relevant`` flag is ``True``.
+    All applicable scaling factors (part-time, then apprenticeship when present
+    and relevant) are combined *before* a single ``money()`` rounding call.
+    This matches the CCNL chain policy: the product of all factors is computed
+    first, then the result is rounded once to the nearest cent (R22).
 
     Returns:
         A tuple of (scaled pairs, monthly total) where scaled pairs are
@@ -217,9 +218,10 @@ def _scale_second_level(
     result: list[tuple[Decimal, SupplementaryAllowance]] = []
     total = _ZERO
     for sl in allowances:
-        scaled = money(sl.monthly * part_time_pct)
+        raw = sl.monthly * part_time_pct
         if apprenticeship_pct is not None and sl.apprenticeship_pct_relevant:
-            scaled = money(scaled * apprenticeship_pct)
+            raw *= apprenticeship_pct
+        scaled = money(raw)
         result.append((scaled, sl))
         total += scaled
     return result, money(total)
