@@ -81,11 +81,16 @@ def compute(scenario: PayrollScenario) -> Calculation:
     fiscal = compute_fiscal(scenario, ccnl, rules, surtax, gross, year)
     work = compute_work_rules(scenario, ccnl, gross, year)
     calculation_scope = build_scope(scenario, fiscal, work)
+    # R11: pass ccnl and under_level_code so _collect_provenance can resolve
+    # the effective pay level for under-classification apprentices instead of
+    # always using the destination level.
     provenance = _collect_provenance(
         gross.level,
         as_of,
         gross.chain,
         ccnl.parameters.seniority_increments,
+        ccnl=ccnl,
+        under_level_code=gross.under_level_code,
     )
     result_status = _compute_result_status(calculation_scope)
     result_warnings = work.warnings

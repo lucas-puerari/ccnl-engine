@@ -20,6 +20,7 @@ from ccnl_engine.engine.tax.service.loaders import (
     load_sick_pay_rates,
     load_variable_pay_rules,
 )
+from ccnl_engine.knowledge.version import __version__ as _knowledge_version
 
 if TYPE_CHECKING:
     from datetime import date
@@ -298,6 +299,7 @@ class WorkRulesPay:
     wr_sickness_present: bool
     supplement_trace: tuple[TraceStep, ...]
     warnings: tuple[str, ...]
+    consumed_rulesets: dict[str, str]
 
 
 def compute_work_rules(
@@ -383,6 +385,29 @@ def compute_work_rules(
     )
     warnings = tuple(wr_warnings)
 
+    # R7: collect identities of rulesets actually consumed in this call.
+    # sick_pay is included when the sickness block was active.
+    # variable_pay is included when at least one variable-pay input was present.
+    consumed: dict[str, str] = {}
+    if wr_sickness_present:
+        consumed["sick_pay"] = (
+            str(sick_pay_rates.ruleset)
+            if sick_pay_rates.ruleset is not None
+            else f"sick-pay-rates@{_knowledge_version}"
+        )
+    has_var_input = (
+        scenario.fringe_benefit_input is not None
+        or scenario.welfare_input is not None
+        or scenario.bonus_input is not None
+    )
+    if has_var_input:
+        var_pay_id = load_variable_pay_rules(year).ruleset
+        consumed["variable_pay"] = (
+            str(var_pay_id)
+            if var_pay_id is not None
+            else f"variable-pay-rules/{year}@{_knowledge_version}"
+        )
+
     return WorkRulesPay(
         base_monthly_full_time=base_monthly_full_time,
         overtime_supp=overtime_supp,
@@ -413,4 +438,5 @@ def compute_work_rules(
         wr_sickness_present=wr_sickness_present,
         supplement_trace=supplement_trace,
         warnings=warnings,
+        consumed_rulesets=consumed,
     )

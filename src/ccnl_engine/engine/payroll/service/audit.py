@@ -43,13 +43,32 @@ def _collect_provenance(
     as_of: date,
     chain: MonthlyPayChain,
     seniority_increments: SeniorityIncrements,
+    *,
+    ccnl: CCNL | None = None,
+    under_level_code: str | None = None,
 ) -> tuple[RuleProvenance, ...]:
     """Collect the provenance chain of the rules that produced a pay outcome.
 
     Every provenance-bearing item that actually contributed to the computed
-    pay is gathered: the resolved level (plus any per-period base-salary
+    pay is gathered: the effective pay level (plus any per-period base-salary
     override), each applied allowance, and the seniority-increment rule.
     Only non-``None`` entries are kept.
+
+    For apprentices using an under-classification track the ``level`` argument
+    is the destination level (the role the apprentice is training for), but
+    the actual pay is derived from ``under_level_code`` — the classification
+    level below the destination.  When both ``ccnl`` and ``under_level_code``
+    are provided, the effective pay level is resolved and its provenance
+    is recorded instead of the destination level (R11).
+
+    Args:
+        level: The destination level (always the role-level from the scenario).
+        as_of: Calculation date used to select the active base-salary period.
+        chain: The resolved monthly pay chain for the period.
+        seniority_increments: The seniority-increment ruleset.
+        ccnl: The loaded CCNL; required when ``under_level_code`` is set.
+        under_level_code: Code of the effective pay level for under-classification
+            apprentices.  ``None`` for all other employment types.
 
     Returns:
         An ordered tuple of the contributing :class:`RuleProvenance` objects.
@@ -60,8 +79,16 @@ def _collect_provenance(
         if prov is not None:
             out.append(prov)
 
-    _add(level.provenance)
-    for period in level.base_salary.periods:
+    # R11: for under-classification apprentices, record the effective pay level
+    # (the level whose salary table actually drove the computation), not the
+    # destination level the apprentice is contractually training for.
+    effective_level = (
+        ccnl.level_by_code(under_level_code)
+        if ccnl is not None and under_level_code is not None
+        else level
+    )
+    _add(effective_level.provenance)
+    for period in effective_level.base_salary.periods:
         if period.valid_from <= as_of and (
             period.valid_until is None or as_of < period.valid_until
         ):
@@ -167,10 +194,22 @@ def _ruleset_versions(
     ccnl: CCNL,
     rules: YearRules,
     surtax: SurtaxRules | None,
+    sub_rulesets: dict[str, str] | None = None,
 ) -> dict[str, str]:
     """Resolve the ``{kind: id@version}`` identities of the used rulesets.
 
-    Rulesets without a recorded block fall back to the knowledge-base version.
+    Records the identity of every ruleset actually consumed during the
+    computation.  Rulesets without a recorded block fall back to the
+    knowledge-base version.  Optional sub-rulesets (sick pay, variable pay,
+    family deductions, Art. 15) are included only when consumed (R7).
+
+    Args:
+        ccnl: Loaded CCNL; always consumed.
+        rules: Loaded tax/INPS rules; always consumed.
+        surtax: Loaded surtax rules; ``None`` when no jurisdiction was provided.
+        sub_rulesets: Additional ``{kind: id@version}`` entries for rulesets
+            consumed by sub-services (e.g. ``sick_pay``, ``variable_pay``).
+            ``None`` or empty means no sub-rulesets were consumed.
 
     Returns:
         A mapping from ruleset kind to its ``id@version`` identity.
@@ -191,6 +230,8 @@ def _ruleset_versions(
             versions["surtax"] = str(surtax.ruleset)
         else:
             versions["surtax"] = f"surtax/{surtax.year}@{knowledge_version}"
+    if sub_rulesets:
+        versions.update(sub_rulesets)
     return versions
 
 
@@ -233,6 +274,10 @@ def build_calculation(
         if rules.domestic_contributions is not None
         else None
     )
+    # R25: pass the actual TFR divisor and IVS ceiling details to the trace
+    # builder so each branch carries the operands it actually used.
+    ivs_ceiling_applies = scenario.employee.ivs_ceiling_applies
+    ivs_ceiling = rules.inps.ceiling if rules.inps is not None else None
     fiscal_steps = build_fiscal_trace(
         gross_annual=result.gross_annual,
         contribution_base=gross.contribution_base,
@@ -252,10 +297,13 @@ def build_calculation(
         net_annual=result.net_annual,
         employer_withholds_irpef=result.employer_withholds_irpef,
         inps_formula=domestic_inps_formula,
+        tfr_divisor=rules.tfr.accrual_divisor,
+        ivs_ceiling_applies=ivs_ceiling_applies,
+        ivs_ceiling=ivs_ceiling,
     )
     return Calculation(
         engine_version=engine_version,
-        ruleset_version=_ruleset_versions(ccnl, rules, surtax),
+        ruleset_version=_ruleset_versions(ccnl, rules, surtax, work.consumed_rulesets),
         input_snapshot=snapshot,
         result=result,
         trace=CalculationTrace(
