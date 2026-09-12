@@ -33,6 +33,8 @@ from ccnl_engine.engine.tax.service.loaders import (
     _assert_tier_integrity,
     _resolve_tier,
     load_year_rules,
+    read_inps_rules_raw,
+    read_tax_rules_raw,
 )
 from tests.helpers import (
     DOMESTIC_CONTRIBUTIONS,
@@ -510,3 +512,14 @@ class TestYearRulesRawContributionModel:
         """Neither inps+apprentice nor domestic_contributions → ValidationError."""
         with pytest.raises(ValidationError, match="domestic_contributions"):
             YearRulesRaw.model_validate(_RAW_BASE)
+
+    def test_both_models_raises(self) -> None:
+        """R21: having both standard and domestic models is rejected."""
+        # Merge a real standard-sector tax + inps dict (guaranteed parseable),
+        # then also inject domestic_contributions to trigger the
+        # mutual-exclusion guard.
+        tax = read_tax_rules_raw(2026, TaxSector.TERZIARIO)
+        inps = read_inps_rules_raw(2026, TaxSector.TERZIARIO)
+        both = {**tax, **inps, "domestic_contributions": DOMESTIC_CONTRIBUTIONS}
+        with pytest.raises(ValidationError, match="mutually exclusive"):
+            YearRulesRaw.model_validate(both)
