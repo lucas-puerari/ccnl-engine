@@ -9226,3 +9226,73 @@ class TestLoadPuliziaArtigianatoConfartigianato:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadAziendeTermaliFederterme:
+    """Unit tests for CCNL Aziende Termali Federterme (K461)."""
+
+    def test_aziende_termali_federterme_loads(self) -> None:
+        """Contract loads with correct id and CNEL code K461."""
+        ccnl = load_ccnl("aziende-termali-federterme.json")
+        assert ccnl.meta.ccnl_id == "aziende-termali-federterme"
+        assert ccnl.meta.cnel_code == "K461"
+
+    def test_aziende_termali_federterme_has_9_levels(self) -> None:
+        """Contract has exactly 9 levels: 6, 5, 4, 4S, 3, 2, 1, 1SB, 1SA."""
+        ccnl = load_ccnl("aziende-termali-federterme.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"6", "5", "4", "4S", "3", "2", "1", "1SB", "1SA"}
+
+    def test_aziende_termali_federterme_level3_salary_tranche1(self) -> None:
+        """Level 3 paga base at 2024-10-01 is 1078.64 EUR (PDF Art. 82)."""
+        ccnl = load_ccnl("aziende-termali-federterme.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2024, 10, 1)) == Decimal("1078.64")
+
+    def test_aziende_termali_federterme_level3_salary_tranche2(self) -> None:
+        """Level 3 paga base at 2026-06-01 is 1193.48 EUR (PDF Art. 82)."""
+        ccnl = load_ccnl("aziende-termali-federterme.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "3")
+        assert lv.base_salary.value_at(date(2026, 6, 1)) == Decimal("1193.48")
+
+    def test_aziende_termali_federterme_level_ordering(self) -> None:
+        """Level 6 is lowest (order 1), level 1SA is highest (order 9)."""
+        ccnl = load_ccnl("aziende-termali-federterme.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "6"
+        assert by_order[-1].code == "1SA"
+
+    def test_aziende_termali_federterme_additional_months(self) -> None:
+        """Additional months is 14 (tredicesima + quattordicesima, Art. 37)."""
+        ccnl = load_ccnl("aziende-termali-federterme.json")
+        assert ccnl.parameters.additional_months.value_at(date(2025, 1, 1)) == Decimal(
+            14
+        )
+
+    def test_aziende_termali_federterme_hourly_divisor(self) -> None:
+        """Hourly divisor is 173.33 (PDF Art. 35 + Art. 37)."""
+        ccnl = load_ccnl("aziende-termali-federterme.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2025, 1, 1)) == Decimal(
+            "173.33"
+        )
+
+    def test_aziende_termali_federterme_fixed_allowances_split(self) -> None:
+        """Split model: every level has CONTINGENZA and EDR allowances."""
+        ccnl = load_ccnl("aziende-termali-federterme.json")
+        for lv in ccnl.levels:
+            codes = {fa.code for fa in lv.fixed_allowances}
+            assert "CONTINGENZA" in codes, f"{lv.code} missing CONTINGENZA"
+            assert "EDR" in codes, f"{lv.code} missing EDR"
+
+    def test_aziende_termali_federterme_tax_sector(self) -> None:
+        """Tax sector is terziario."""
+        ccnl = load_ccnl("aziende-termali-federterme.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_aziende_termali_federterme_seniority_cadence(self) -> None:
+        """Seniority: biennial cadence (24 months), 5 increments maximum."""
+        ccnl = load_ccnl("aziende-termali-federterme.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5

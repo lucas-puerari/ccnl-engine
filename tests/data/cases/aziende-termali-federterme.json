@@ -1,0 +1,63 @@
+{
+  "_description": "aziende-termali-federterme (K461) — data checks 2024-2026",
+  "ccnl_file": "aziende-termali-federterme.json",
+  "salary_checks": [
+    {
+      "level_code": "6",
+      "as_of": "2024-10-01",
+      "expected_monthly": "770.60"
+    },
+    {
+      "level_code": "3",
+      "as_of": "2025-06-01",
+      "expected_monthly": "1116.92"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2026-12-01",
+      "expected_monthly": "1794.86"
+    },
+    {
+      "level_code": "1SA",
+      "as_of": "2026-12-01",
+      "expected_monthly": "2111.72"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "3",
+      "as_of": "2025-01-01",
+      "expected_amount": "12.13"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2025-01-01",
+      "expected_amount": "16.01"
+    },
+    {
+      "level_code": "6",
+      "as_of": "2025-01-01",
+      "expected_amount": "10.58"
+    }
+  ],
+  "apprenticeship_uc_checks": [
+    {
+      "level_code": "5",
+      "track_name": "L5-terme-18m",
+      "months_elapsed": 3,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "4",
+      "track_name": "L4-L4S-terme-24m",
+      "months_elapsed": 6,
+      "expected_levels_below": 2
+    },
+    {
+      "level_code": "3",
+      "track_name": "L3-terme-36m",
+      "months_elapsed": 20,
+      "expected_levels_below": 1
+    }
+  ]
+}

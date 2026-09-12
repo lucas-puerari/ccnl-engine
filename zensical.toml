@@ -41,6 +41,7 @@ nav = [
     { "CCNL Autostrade e Trafori Concessionari (AISCAT)" = "contracts/autostrade-trafori.md" },
     { "CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)" = "contracts/autorimesse-ic35.md" },
     { "CCNL per i lavoratori dipendenti dalle aziende di credito…" = "contracts/bancari-abi.md" },
+    { "CCNL per i lavoratori dipendenti delle aziende termali (Federterme)" = "contracts/aziende-termali-federterme.md" },
     { "CCNL per i lavoratori delle Banche di Credito Cooperativo…" = "contracts/bcc-credito-cooperativo.md" },
     { "CCNL per i lavoratori addetti all'industria delle calzature" = "contracts/calzaturiero-assocalzaturifici.md" },
     { "CCNL Carta e Cartone — Aziende Industriali (Assocarta)" = "contracts/carta-cartone-assocarta.md" },
