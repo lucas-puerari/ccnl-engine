@@ -358,3 +358,74 @@ class TestFiscalClosureInvariant:
         ti = _step_by(steps, TraceCategory.TRATTAMENTO_INTEGRATIVO).amount
         net = _step_by(steps, TraceCategory.NET).amount
         assert net == gross - inps - irpef - add_reg - add_com + ti
+
+
+class TestR25DynamicFormulas:
+    """R25: dynamic trace formulas for TFR divisor, IVS ceiling, IRPEF incapienza."""
+
+    def test_tfr_formula_contains_default_divisor(self) -> None:
+        """Default TFR formula embeds 13.5 as the divisor."""
+        steps = _build()
+        tfr = _step_by(steps, TraceCategory.TFR)
+        assert tfr.formula is not None
+        assert "13.5" in tfr.formula
+
+    def test_tfr_formula_uses_custom_divisor(self) -> None:
+        """R25: custom TFR divisor is embedded in the formula."""
+        steps = _build(tfr_divisor=Decimal(14))
+        tfr = _step_by(steps, TraceCategory.TFR)
+        assert tfr.formula is not None
+        assert "14" in tfr.formula
+
+    def test_ivs_ceiling_formula_when_applies(self) -> None:
+        """R25: when IVS ceiling applies, INPS formula reflects the split."""
+        steps = _build(
+            ivs_ceiling_applies=True,
+            ivs_ceiling=Decimal(120000),
+        )
+        inps = _step_by(steps, TraceCategory.INPS_EMPLOYEE)
+        assert inps.formula is not None
+        assert "min" in inps.formula
+        assert "120000" in inps.formula
+
+    def test_ivs_ceiling_formula_not_set_when_not_applies(self) -> None:
+        """When IVS ceiling does not apply, INPS formula stays at default."""
+        steps = _build(ivs_ceiling_applies=False, ivs_ceiling=Decimal(120000))
+        inps = _step_by(steps, TraceCategory.INPS_EMPLOYEE)
+        # Default INPS meta formula is "base_imponibile_INPS * aliquota_dipendente"
+        assert inps.formula is not None
+        assert "min" not in inps.formula
+
+    def test_ivs_ceiling_none_ignores_applies_flag(self) -> None:
+        """IVS ceiling formula override requires both flag and ceiling value."""
+        steps = _build(ivs_ceiling_applies=True, ivs_ceiling=None)
+        inps = _step_by(steps, TraceCategory.INPS_EMPLOYEE)
+        assert inps.formula is not None
+        assert "min" not in inps.formula
+
+    def test_irpef_incapienza_formula_when_floored(self) -> None:
+        """R25: IRPEF net floored at 0 by deductions — formula notes incapienza."""
+        # irpef_gross=100, work_deduction=200 → irpef_net floored to 0
+        steps = _build(
+            irpef_gross=Decimal(100),
+            work_income_deduction=Decimal(200),
+            irpef_net=Decimal(0),
+        )
+        irpef_net_step = _step_by(steps, TraceCategory.IRPEF_NET)
+        assert irpef_net_step.formula is not None
+        assert "incapienza" in irpef_net_step.formula
+
+    def test_irpef_formula_none_when_not_incapiente(self) -> None:
+        """When IRPEF net is positive, no incapienza formula override is used."""
+        steps = _build()
+        irpef_net_step = _step_by(steps, TraceCategory.IRPEF_NET)
+        # Default IRPEF_NET formula from _STEP_META is used when not incapiente
+        assert irpef_net_step.formula is not None
+        assert "incapienza" not in irpef_net_step.formula
+
+    def test_irpef_formula_none_when_irpef_gross_is_zero(self) -> None:
+        """When IRPEF gross is 0 and net is 0, incapienza formula does not apply."""
+        steps = _build(irpef_gross=Decimal(0), irpef_net=Decimal(0))
+        irpef_net_step = _step_by(steps, TraceCategory.IRPEF_NET)
+        assert irpef_net_step.formula is not None
+        assert "incapienza" not in irpef_net_step.formula

@@ -919,6 +919,96 @@ class TestProvenanceChain:
         assert result == (prov_level,)
 
 
+class TestR11ApprenticeProvenance:
+    """R11: _collect_provenance uses the effective pay level for apprentices."""
+
+    def test_under_level_provenance_used_when_code_given(self) -> None:
+        """R11: when under_level_code is set, the under level's provenance is used."""
+        ccnl = CCNL.model_validate(make_ccnl_dict())
+        dest_level = ccnl.level_by_code("4")
+        under_level = ccnl.level_by_code("3")
+        prov_dest = _rule_provenance("dest")
+        prov_under = _rule_provenance("under")
+        dest_level.provenance = prov_dest
+        under_level.provenance = prov_under
+        ccnl.parameters.seniority_increments.provenance = None
+        result = _collect_provenance(
+            dest_level,
+            _DATE,
+            MonthlyPayChain(base=_D(0), seniority=_D(0), allowances=()),
+            ccnl.parameters.seniority_increments,
+            ccnl=ccnl,
+            under_level_code="3",
+        )
+        # Under level provenance takes priority; destination provenance not recorded.
+        assert prov_under in result
+        assert prov_dest not in result
+
+    def test_no_ccnl_falls_back_to_destination_level(self) -> None:
+        """When ccnl is None, destination level provenance is used (backward compat)."""
+        ccnl = CCNL.model_validate(make_ccnl_dict())
+        dest_level = ccnl.level_by_code("4")
+        prov_dest = _rule_provenance("dest")
+        dest_level.provenance = prov_dest
+        ccnl.parameters.seniority_increments.provenance = None
+        result = _collect_provenance(
+            dest_level,
+            _DATE,
+            MonthlyPayChain(base=_D(0), seniority=_D(0), allowances=()),
+            ccnl.parameters.seniority_increments,
+        )
+        assert prov_dest in result
+
+    def test_under_level_code_none_uses_destination_level(self) -> None:
+        """When under_level_code is None, destination level provenance is used."""
+        ccnl = CCNL.model_validate(make_ccnl_dict())
+        dest_level = ccnl.level_by_code("4")
+        prov_dest = _rule_provenance("dest")
+        dest_level.provenance = prov_dest
+        ccnl.parameters.seniority_increments.provenance = None
+        result = _collect_provenance(
+            dest_level,
+            _DATE,
+            MonthlyPayChain(base=_D(0), seniority=_D(0), allowances=()),
+            ccnl.parameters.seniority_increments,
+            ccnl=ccnl,
+            under_level_code=None,
+        )
+        assert prov_dest in result
+
+
+class TestR7SubRulesetIdentities:
+    """R7: compute() records sub-ruleset identities in ruleset_version."""
+
+    def test_no_sub_rulesets_when_no_optional_inputs(self) -> None:
+        """Without sick/variable-pay inputs, no sub-ruleset keys appear."""
+        calc = compute(_req())
+        assert "sick_pay" not in calc.ruleset_version
+        assert "variable_pay" not in calc.ruleset_version
+
+    def test_variable_pay_ruleset_present_with_fringe_benefit_input(self) -> None:
+        """R7: fringe benefit input causes variable_pay to appear in ruleset_version."""
+        calc = compute(
+            dataclasses.replace(
+                _req(),
+                fringe_benefit_input=FringeBenefitInput(annual_amount=_D("500")),
+            )
+        )
+        assert "variable_pay" in calc.ruleset_version
+
+    def test_variable_pay_ruleset_present_with_bonus_input(self) -> None:
+        """R7: bonus input causes variable_pay to appear in ruleset_version."""
+        calc = compute(
+            dataclasses.replace(
+                _req(),
+                bonus_input=BonusInput(
+                    annual_amount=_D("1000"), eligible_for_pdr=False
+                ),
+            )
+        )
+        assert "variable_pay" in calc.ruleset_version
+
+
 class TestL3Warning:
     """Orchestrator warning path for missing L3 schema."""
 

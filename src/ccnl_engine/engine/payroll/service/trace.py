@@ -24,13 +24,11 @@ withheld).
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal
+from decimal import Decimal
+from typing import Literal
 
 from ccnl_engine.engine.payroll.domain.calculation import TraceCategory, TraceStep
 from ccnl_engine.engine.payroll.service.rounding import MONETARY
-
-if TYPE_CHECKING:
-    from decimal import Decimal
 
 _ANNUAL: Literal["annual"] = "annual"
 
@@ -104,7 +102,8 @@ _STEP_META: dict[TraceCategory, dict[str, str]] = {
         "rounding": _ROUNDING,
     },
     TraceCategory.TFR: {
-        "formula": "base_TFR ÷ 13.5",
+        # formula is built dynamically from the actual divisor; only source
+        # and rounding are static.
         "source": "Art. 2120 c.c.",
         "rounding": _ROUNDING,
     },
@@ -142,6 +141,9 @@ def _step(
     )
 
 
+_DEFAULT_TFR_DIVISOR = Decimal("13.5")
+
+
 def build_fiscal_trace(
     *,
     gross_annual: Decimal,
@@ -162,6 +164,9 @@ def build_fiscal_trace(
     net_annual: Decimal,
     employer_withholds_irpef: bool,
     inps_formula: str | None = None,
+    tfr_divisor: Decimal = _DEFAULT_TFR_DIVISOR,
+    ivs_ceiling_applies: bool = False,
+    ivs_ceiling: Decimal | None = None,
 ) -> tuple[TraceStep, ...]:
     """Build the ordered fiscal-chain trace from pre-computed annual amounts.
 
@@ -206,6 +211,15 @@ def build_fiscal_trace(
         inps_formula: Override for the INPS employee formula.  Defaults to
             the standard percentage-model string; pass the flat per-hour
             string for the domestic (colf/badanti) contribution model.
+        tfr_divisor: The actual TFR accrual divisor from the fiscal rules
+            (Art. 2120 c.c. standard is 13.5).  Embedded in the TFR formula
+            so the trace records the operand actually used (R25).
+        ivs_ceiling_applies: When ``True`` and ``ivs_ceiling`` is set, the
+            INPS employee contribution was split across an IVS base capped at
+            the massimale retributivo.  The INPS formula is adjusted to reflect
+            this (R25).
+        ivs_ceiling: The massimale retributivo (IVS ceiling) from the tax
+            rules, required when ``ivs_ceiling_applies`` is ``True``.
 
     Returns:
         Ordered tuple of :class:`TraceStep` objects covering the full
@@ -213,6 +227,33 @@ def build_fiscal_trace(
         and ``rounding`` where applicable.
     """
     irpef_suffix = "" if employer_withholds_irpef else " (informativo)"
+
+    # R25: build dynamic formulas reflecting the actual branch taken.
+    # IVS ceiling: when the massimale retributivo caps the IVS base, the
+    # employee INPS is split across two bases (IVS portion vs. non-IVS).
+    if ivs_ceiling_applies and ivs_ceiling is not None and inps_formula is None:
+        inps_formula = (
+            f"min(base_INPS, {ivs_ceiling}) * aliquota_IVS_dipendente"
+            " + base_INPS * aliquota_non_IVS_dipendente"
+        )
+    # TFR: embed the actual divisor so the formula matches the computation.
+    tfr_formula = f"base_TFR ÷ {tfr_divisor}"
+    # IRPEF incapienza: when deductions exceed IRPEF lorda, irpef_net is
+    # floored at zero — annotate the formula to make the floor visible.
+    total_deductions = (
+        work_income_deduction + family_deduction_annual + art15_deduction_annual
+    )
+    irpef_net_formula: str | None = None
+    if (
+        irpef_gross > Decimal(0)
+        and irpef_net == Decimal(0)
+        and (total_deductions >= irpef_gross)
+    ):
+        irpef_net_formula = (
+            "max(0, IRPEF_lorda - detrazione_lavoro"
+            " - detrazioni_familiari - detrazioni_Art15)"
+            " [incapienza: floored at 0]"
+        )
 
     steps: list[TraceStep] = [
         # Gross summary (mirrors the last step of the gross chain, now annual)
@@ -264,11 +305,12 @@ def build_fiscal_trace(
             f"Detrazioni Art. 15 TUIR{irpef_suffix}",
             art15_deduction_annual,
         ),
-        # IRPEF net (deducted from gross)
+        # IRPEF net (deducted from gross); formula is overridden when incapiente
         _step(
             TraceCategory.IRPEF_NET,
             "IRPEF netta",
             irpef_net,
+            formula=irpef_net_formula,
         ),
         # Addizionale regionale — always emitted, zero when no jurisdiction
         _step(
@@ -309,6 +351,7 @@ def build_fiscal_trace(
             TraceCategory.TFR,
             "Accantonamento TFR (informativo)",
             tfr_annual,
+            formula=tfr_formula,
         ),
     ]
 
