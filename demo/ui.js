@@ -1059,6 +1059,173 @@ function doCompute(pyodide) {
   document.getElementById("results").style.display = "flex";
   document.getElementById("results-placeholder").style.display = "none";
   clearStale();
+
+  // Cache for toolbar actions (download, snippet, compare)
+  _lastResult = r;
+  _lastParams = {
+    file, levelCode, empType, employees, ptPct, senValue, senMode, appMonths,
+    regione, comune, adPersonam, secondLevel, ralOverride, ivsApplies,
+    otWeekday, otNight, otHoliday, otNightHol,
+    absenceDays, leaveDays, sickDays,
+    fringeAnnual, welfareAnnual, bonusAnnual, bonusPdr,
+  };
+  // Show toolbar now that we have results; reset sub-panels
+  document.getElementById("snippet-section").style.display = "none";
+  if (!_compareActive) document.getElementById("compare-panel").style.display = "none";
+}
+
+// ── Download / Snippet / Compare ─────────────────────────────────────────────
+
+let _lastResult   = null;  // most recent doCompute() result object
+let _lastParams   = null;  // most recent form params (for snippet)
+let _compareActive = false;
+
+function downloadResult() {
+  if (!_lastResult || !_lastParams) return;
+  const payload = { params: _lastParams, result: _lastResult };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement("a");
+  a.href = url;
+  a.download = `ccnl_result_${_lastResult.as_of || "export"}.json`;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
+}
+
+function generateSnippet(params, r) {
+  const pt = params.ptPct < 1 ? `\n    part_time_pct=${params.ptPct},` : "";
+  const sen = params.senMode === "months"
+    ? `\n    seniority_mode="months", months_elapsed=${params.senValue},`
+    : params.senValue > 0 ? `\n    seniority_value=${params.senValue},` : "";
+  const reg  = params.regione  ? `\n    regione="${params.regione}",` : "";
+  const com  = params.comune   ? `\n    comune_belfiore="${params.comune}",` : "";
+  const ral  = params.ralOverride  > 0 ? `\n    ral_override=${params.ralOverride},`  : "";
+  const sl   = params.secondLevel  > 0 ? `\n    second_level_monthly=${params.secondLevel},` : "";
+  const adp  = params.adPersonam   > 0 ? `\n    ad_personam_monthly=${params.adPersonam},` : "";
+  const emp  = params.empType !== "permanent" ? `\n    employment_type="${params.empType}",` : "";
+  return `from ccnl_engine import compute_salary
+
+result = compute_salary(
+    filename="${params.file}",
+    level_code="${params.levelCode}",${emp}
+    num_employees=${params.employees},${pt}${sen}${reg}${com}${ral}${sl}${adp}
+)
+# Net monthly: ${fmtM(r.net_monthly)}  Gross monthly: ${fmtM(r.gross_monthly)}
+print(f"Netto: {result.net_monthly:.2f}  Lordo: {result.gross_monthly:.2f}")`;
+}
+
+function showSnippet() {
+  const sec = document.getElementById("snippet-section");
+  if (!_lastResult || !_lastParams) return;
+  if (sec.style.display !== "none") { sec.style.display = "none"; return; }
+  document.getElementById("snippet-code").textContent = generateSnippet(_lastParams, _lastResult);
+  sec.style.display = "";
+  sec.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function copySnippet() {
+  if (!_lastParams || !_lastResult) return;
+  navigator.clipboard.writeText(generateSnippet(_lastParams, _lastResult)).then(() => {
+    const btn = document.getElementById("btn-copy-snippet");
+    const orig = btn.textContent;
+    btn.textContent = t("snippet.copied");
+    setTimeout(() => { btn.textContent = orig; }, 1500);
+  });
+}
+
+function toggleComparePanel() {
+  const panel = document.getElementById("compare-panel");
+  _compareActive = !_compareActive;
+  panel.style.display = _compareActive ? "" : "none";
+  if (!_compareActive) {
+    document.getElementById("compare-kpis").style.display = "none";
+  }
+}
+
+function clearCompare() {
+  document.getElementById("compare-kpis").style.display = "none";
+  document.getElementById("cmp-ccnl").value = "";
+  document.getElementById("cmp-level").innerHTML = "<option value=''>—</option>";
+  document.getElementById("cmp-level").disabled = true;
+}
+
+function fmtDelta(val, base) {
+  const d = val - base;
+  if (Math.abs(d) < 0.005) return { text: "=", cls: "neu" };
+  const sign = d > 0 ? "+" : "";
+  return { text: sign + fmtM(d), cls: d > 0 ? "pos" : "neg" };
+}
+
+function setDelta(id, val, base) {
+  const el = document.getElementById(id);
+  const { text, cls } = fmtDelta(val, base);
+  el.textContent = text;
+  el.className = `kpi-delta ${cls}`;
+}
+
+function renderCompareResult(cmpR) {
+  if (!_lastResult) return;
+  const base = _lastResult;
+  document.getElementById("cmp-gross").textContent = fmtM(cmpR.gross_monthly);
+  document.getElementById("cmp-net").textContent   = fmtM(cmpR.net_monthly);
+  document.getElementById("cmp-cost").textContent  = fmtK(cmpR.employer_cost_annual);
+  document.getElementById("cmp-net-label").textContent =
+    t("results.kpi.net_label_template", { nm: cmpR.additional_months || 13 });
+  setDelta("cmp-gross-delta", cmpR.gross_monthly,       base.gross_monthly);
+  setDelta("cmp-net-delta",   cmpR.net_monthly,         base.net_monthly);
+  setDelta("cmp-cost-delta",  cmpR.employer_cost_annual, base.employer_cost_annual);
+  document.getElementById("compare-kpis").style.display = "";
+}
+
+function initCompare(pyodide) {
+  // Populate cmp-ccnl with same options as sel-ccnl
+  const src  = document.getElementById("sel-ccnl");
+  const dest = document.getElementById("cmp-ccnl");
+  dest.innerHTML = "<option value=''>—</option>";
+  Array.from(src.options).filter(o => o.value).forEach(o => {
+    const opt = document.createElement("option");
+    opt.value = o.value; opt.textContent = o.textContent;
+    dest.appendChild(opt);
+  });
+
+  dest.addEventListener("change", async () => {
+    const file = dest.value;
+    const levelSel = document.getElementById("cmp-level");
+    levelSel.innerHTML = "<option value=''>—</option>";
+    levelSel.disabled = true;
+    if (!file) return;
+    const levels = JSON.parse(pyodide.runPython(`load_ccnl_levels(${JSON.stringify(file)})`));
+    for (const lv of levels) {
+      const opt = document.createElement("option");
+      opt.value = lv.code;
+      opt.textContent = `${lv.code} — ${lv.description}`;
+      levelSel.appendChild(opt);
+    }
+    levelSel.disabled = false;
+  });
+
+  document.getElementById("btn-cmp-run").addEventListener("click", () => {
+    if (!_lastParams) return;
+    const file  = document.getElementById("cmp-ccnl").value;
+    const level = document.getElementById("cmp-level").value;
+    if (!file || !level) return;
+    // Inherit all parameters from last computation, swap CCNL + level
+    const p = _lastParams;
+    const r = JSON.parse(pyodide.runPython(
+      `compute_salary(` +
+      `${JSON.stringify(file)}, ${JSON.stringify(level)}, ${JSON.stringify(p.empType)}, ` +
+      `${p.employees}, ${p.ptPct}, ${p.senValue}, ${JSON.stringify(p.senMode)}, ` +
+      `${p.appMonths}, ${JSON.stringify(p.regione)}, ${JSON.stringify(p.comune)}, ` +
+      `${p.ivsApplies ? "True" : "False"}, ${p.adPersonam}, ${p.ralOverride}, ${p.secondLevel}, ` +
+      `${p.otWeekday}, ${p.otNight}, ${p.otHoliday}, ${p.otNightHol}, ` +
+      `${p.absenceDays}, ${p.leaveDays}, ${p.sickDays}, ` +
+      `${p.fringeAnnual}, ${p.welfareAnnual}, ${p.bonusAnnual}, ${p.bonusPdr ? "True" : "False"})`
+    ));
+    if (!r.error) renderCompareResult(r);
+  });
+
+  document.getElementById("btn-cmp-clear").addEventListener("click", clearCompare);
 }
 
 // ── Pyodide boot ─────────────────────────────────────────────────────────────
@@ -1088,6 +1255,11 @@ async function main() {
     _examplePyodide = pyodide;
     document.getElementById("sel-ccnl").addEventListener("change", () => onCcnlChange(pyodide));
     document.getElementById("calc-btn").addEventListener("click", () => doCompute(pyodide));
+    document.getElementById("btn-download").addEventListener("click", downloadResult);
+    document.getElementById("btn-snippet").addEventListener("click", showSnippet);
+    document.getElementById("btn-copy-snippet").addEventListener("click", copySnippet);
+    document.getElementById("btn-compare").addEventListener("click", toggleComparePanel);
+    initCompare(pyodide);
 
     // Mark results as stale whenever any form input changes after the first calculation.
     document.querySelectorAll("input, select").forEach(el => {

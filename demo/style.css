@@ -358,6 +358,31 @@
     #calc-btn:hover:not(:disabled) { background: var(--accent-hover); }
     #calc-btn:disabled { opacity: .45; cursor: not-allowed; }
 
+    /* ── Results toolbar ────────────────────────────────────────────────────── */
+    .results-toolbar {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .toolbar-btn {
+      padding: 6px 14px; font-size: 12px; border-radius: 6px;
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--muted); cursor: pointer; font-family: inherit;
+      font-weight: 500; transition: border-color .15s, color .15s;
+    }
+    .toolbar-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .toolbar-btn.primary {
+      border-color: var(--accent); background: var(--accent-bg); color: var(--accent);
+    }
+    .toolbar-btn.primary:hover { background: var(--accent); color: #fff; }
+
+    /* ── Compare delta ───────────────────────────────────────────────────────── */
+    .kpi-delta {
+      font-size: 11px; font-family: "IBM Plex Mono", monospace;
+      margin-top: 3px; font-weight: 600;
+    }
+    .kpi-delta.pos { color: var(--green); }
+    .kpi-delta.neg { color: var(--red); }
+    .kpi-delta.neu { color: var(--faint); }
+
     /* ── Error box ───────────────────────────────────────────────────────── */
     #error-box {
       background: var(--red-bg); border: 1px solid var(--red-dot);

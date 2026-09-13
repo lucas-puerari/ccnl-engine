@@ -332,6 +332,61 @@
     <!-- Calculation date -->
     <div id="kpi-asof" style="display:none; font-size:11px; color:var(--muted); padding:2px 0 0;"></div>
 
+    <!-- Action toolbar -->
+    <div class="results-toolbar">
+      <button class="toolbar-btn" id="btn-download" data-i18n="results.toolbar.download">Download JSON</button>
+      <button class="toolbar-btn" id="btn-snippet" data-i18n="results.toolbar.snippet">Python snippet</button>
+      <button class="toolbar-btn" id="btn-compare" data-i18n="results.toolbar.compare">Compare variant</button>
+    </div>
+
+    <!-- Compare panel -->
+    <div id="compare-panel" style="display:none" class="card">
+      <div class="form-grid">
+        <div>
+          <label data-i18n="results.compare.ccnl_label">Variant CCNL</label>
+          <select id="cmp-ccnl"></select>
+        </div>
+        <div>
+          <label data-i18n="results.compare.level_label">Variant level</label>
+          <select id="cmp-level" disabled><option value="">—</option></select>
+        </div>
+      </div>
+      <div style="display:flex; gap:8px; margin-top:12px">
+        <button class="toolbar-btn primary" id="btn-cmp-run" data-i18n="results.compare.run_btn">Run comparison</button>
+        <button class="toolbar-btn" id="btn-cmp-clear" data-i18n="results.compare.clear_btn">Clear</button>
+      </div>
+      <!-- Compare KPI row -->
+      <div id="compare-kpis" style="display:none; margin-top:16px">
+        <div class="kpi-row">
+          <div class="kpi-tile">
+            <div class="kpi-label" data-i18n="results.kpi.gross_label">Monthly gross</div>
+            <div class="kpi-value" id="cmp-gross">—</div>
+            <div class="kpi-delta" id="cmp-gross-delta"></div>
+          </div>
+          <div class="kpi-tile kpi-net">
+            <div class="kpi-label" id="cmp-net-label">Netto stimato</div>
+            <div class="kpi-value" id="cmp-net">—</div>
+            <div class="kpi-delta" id="cmp-net-delta"></div>
+          </div>
+          <div class="kpi-tile">
+            <div class="kpi-label" data-i18n="results.kpi.cost_label">Employer cost</div>
+            <div class="kpi-value is-cost" id="cmp-cost">—</div>
+            <div class="kpi-delta" id="cmp-cost-delta"></div>
+          </div>
+        </div>
+        <div style="font-size:11px; color:var(--faint); margin-top:6px" data-i18n="results.compare.delta_label">vs. base scenario</div>
+      </div>
+    </div>
+
+    <!-- Python snippet -->
+    <div id="snippet-section" style="display:none" class="card">
+      <div class="card-header">
+        <span class="card-title" data-i18n="snippet.title">Reproduce this calculation</span>
+        <button class="toolbar-btn" id="btn-copy-snippet" style="margin-left:auto" data-i18n="snippet.copy_btn">Copy</button>
+      </div>
+      <pre id="snippet-code" style="font-family:'IBM Plex Mono',monospace; font-size:11px; line-height:1.6; color:var(--text); background:var(--surface-2); border:1px solid var(--border); border-radius:6px; padding:14px; overflow-x:auto; white-space:pre; margin:0"></pre>
+    </div>
+
     <!-- Trace — Why this number? -->
     <div id="trace-section">
       <div class="trace-header">
