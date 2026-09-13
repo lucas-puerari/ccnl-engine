@@ -369,11 +369,36 @@ label {
 }
 
 /* ── Results wrapper ───────────────────────────────────────────────────────── */
-#results { display: none; flex-direction: column; gap: 20px; }
+#results { display: none; flex-direction: column; gap: 10px; }
 
 #stale-banner { display: none; border-radius: var(--radius-box); }
 #results.stale #stale-banner { display: flex; }
 #results.stale .kpi-tile { opacity: 0.55; }
+
+/* ── Results card — single unified block ──────────────────────────────────── */
+.results-card {
+  background: var(--color-base-100);
+  border: 1px solid var(--color-base-300);
+  border-radius: var(--radius-box);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.results-card-header {
+  padding: 12px 18px;
+  background: var(--color-base-200);
+  border-bottom: 1px solid var(--color-base-300);
+}
+.results-card-body {
+  padding: 20px 18px 16px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.results-card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 9px 18px;
+  border-top: 1px solid var(--color-base-300);
+  background: var(--color-base-200);
+  flex-wrap: wrap; gap: 6px;
+}
 
 /* ── Scenario strip ────────────────────────────────────────────────────────── */
 #scenario-strip { display: flex; flex-direction: column; gap: 6px; }
@@ -397,7 +422,11 @@ label {
 
 /* ── KPI row ───────────────────────────────────────────────────────────────── */
 .kpi-row {
-  display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 12px;
+  display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 1px;
+  background: var(--color-base-300);
+  border: 1px solid var(--color-base-300);
+  border-radius: var(--radius-box);
+  overflow: hidden;
 }
 @media (max-width: 580px) {
   .kpi-row { grid-template-columns: 1fr 1fr; }
@@ -405,13 +434,17 @@ label {
 }
 
 .kpi-tile {
-  background: var(--color-base-100); border: 1px solid var(--color-base-300);
-  border-radius: var(--radius-box); padding: 18px 20px; box-shadow: var(--shadow-sm);
+  background: var(--color-base-100);
+  padding: 18px 20px;
 }
 .kpi-tile.kpi-net {
-  border-color: var(--color-success);
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-success) 20%, transparent),
-              var(--shadow-sm);
+  background: color-mix(in srgb, var(--color-success) 5%, var(--color-base-100));
+  position: relative;
+}
+.kpi-tile.kpi-net::after {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--color-success);
 }
 
 .kpi-label {
@@ -430,11 +463,22 @@ label {
 #kpi-scope-summary, #kpi-asof { font-size: 11px; color: var(--c-muted); }
 #kpi-net-scope { display: none; font-size: 11px; color: var(--color-error); margin-top: 4px; }
 
-/* ── Result tabs ───────────────────────────────────────────────────────────── */
+/* Download action */
+.result-download-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 500; font-family: inherit;
+  padding: 0; border: none; background: none;
+  color: var(--c-muted); cursor: pointer;
+  transition: color .12s; white-space: nowrap;
+}
+.result-download-btn:hover { color: var(--color-primary); }
+
+/* ── Result tabs — inside the card ────────────────────────────────────────── */
 .result-tabs {
   display: flex; align-items: center; gap: 0;
+  border-top: 1px solid var(--color-base-300);
   border-bottom: 1px solid var(--color-base-300);
-  margin: 8px 0 0;
+  background: var(--color-base-200);
 }
 .result-tab {
   display: inline-flex; align-items: center; gap: 5px;
@@ -450,25 +494,11 @@ label {
   color: var(--color-primary);
   border-bottom-color: var(--color-primary);
 }
-/* Meta row: calc date on the left, download action on the right */
-.kpi-meta-row {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 6px 0 2px;
-}
-/* Download action — outside tab bar, no competing border */
-.result-download-btn {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 11px; font-weight: 500; font-family: inherit;
-  padding: 0; border: none; background: none;
-  color: var(--c-muted); cursor: pointer;
-  transition: color .12s;
-  white-space: nowrap;
-}
-.result-download-btn:hover { color: var(--color-primary); }
 
+/* ── Tab panels wrapper ────────────────────────────────────────────────────── */
+.result-tab-panels { /* container for all panels inside the card */ }
 .result-tab-panel {
-  display: flex; flex-direction: column; gap: 20px;
-  /* no padding-top — #results gap:20px handles spacing from tab bar */
+  display: flex; flex-direction: column; gap: 0;
 }
 .result-tab-panel[hidden] { display: none; }
 
@@ -496,20 +526,35 @@ label {
 .kpi-delta.neg { color: var(--color-error); }
 .kpi-delta.neu { color: var(--c-faint); }
 
+/* ── Collapsible sections — internal sections inside results-card ──────────── */
+.collapsible-section {
+  border-top: 1px solid var(--color-base-300);
+}
+.collapsible-section > summary {
+  list-style: none; padding: 12px 18px;
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  cursor: pointer; user-select: none;
+  color: var(--color-base-content);
+  background: var(--color-base-200);
+  transition: background .12s;
+}
+.collapsible-section > summary:hover { background: var(--color-base-300); }
+.collapsible-section > summary::-webkit-details-marker { display: none; }
+.collapsible-section > summary::before {
+  content: "▶"; font-size: 9px; color: var(--c-faint);
+  transition: transform .18s; flex-shrink: 0; margin-top: 1px;
+}
+.collapsible-section[open] > summary::before { transform: rotate(90deg); }
+.collapsible-section[open] > summary {
+  border-bottom: 1px solid var(--color-base-300);
+}
+.collapsible-section > summary .card-title { flex-shrink: 0; }
+.collapsible-section > summary .card-sub { color: var(--c-faint); font-size: 12px; }
+
 /* ── Trace panel ───────────────────────────────────────────────────────────── */
 #trace-section {
-  background: var(--color-base-100); border: 1px solid var(--color-base-300);
-  border-radius: var(--radius-box); box-shadow: var(--shadow-sm); overflow: hidden;
+  /* inherits .collapsible-section card style */
 }
-.trace-header {
-  padding: 14px 20px; border-bottom: 1px solid var(--color-base-300);
-  display: flex; align-items: baseline; gap: 10px;
-}
-.trace-title {
-  font-size: 11px; font-weight: 700; letter-spacing: .05em;
-  text-transform: uppercase; color: var(--c-muted);
-}
-.trace-sub { font-size: 12px; color: var(--c-faint); }
 .trace-body { padding: 0; }
 
 .trace-step {
@@ -569,14 +614,9 @@ label {
 
 /* ── Sources panel ─────────────────────────────────────────────────────────── */
 #sources-section {
-  background: var(--color-base-100); border: 1px solid var(--color-base-300);
-  border-radius: var(--radius-box); box-shadow: var(--shadow-sm); overflow: hidden;
+  /* inherits .collapsible-section card style */
 }
-.sources-header {
-  padding: 14px 20px; border-bottom: 1px solid var(--color-base-300);
-  display: flex; align-items: baseline; gap: 10px;
-}
-.sources-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 20px; }
+.sources-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 20px; }
 .sources-sub-title {
   font-size: 10px; font-weight: 700; letter-spacing: .09em;
   text-transform: uppercase; color: var(--c-faint); margin-bottom: 10px;
@@ -619,12 +659,7 @@ label {
 
 /* ── Scope & Confidence ────────────────────────────────────────────────────── */
 #scope-section {
-  background: var(--color-base-100); border: 1px solid var(--color-base-300);
-  border-radius: var(--radius-box); box-shadow: var(--shadow-sm); overflow: hidden;
-}
-.scope-header {
-  padding: 14px 20px; border-bottom: 1px solid var(--color-base-300);
-  display: flex; align-items: center; gap: 12px;
+  /* inherits .collapsible-section card style */
 }
 .confidence-pill {
   display: inline-flex; align-items: center; gap: 6px;
@@ -635,7 +670,7 @@ label {
 .conf-medium { background: var(--c-warning-bg); color: var(--color-warning); }
 .conf-low    { background: var(--c-error-bg);   color: var(--color-error); }
 
-.scope-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 18px; }
+.scope-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 18px; }
 .warnings-list { display: flex; flex-direction: column; gap: 6px; }
 .warning-item {
   font-size: 13px; color: var(--color-warning);
@@ -661,12 +696,8 @@ label {
   border-radius: 6px; padding: 10px 14px; line-height: 1.6;
 }
 
-/* ── Snippet panel ─────────────────────────────────────────────────────────── */
-/* Code tab panel — wrap in a card */
-#panel-code {
-  background: var(--color-base-100); border: 1px solid var(--color-base-300);
-  border-radius: var(--radius-box); box-shadow: var(--shadow-sm); padding: 20px;
-}
+/* ── Snippet panel — internal section ──────────────────────────────────────── */
+#panel-code { padding: 20px 18px; }
 #snippet-code {
   font-family: "IBM Plex Mono", monospace; font-size: 11px; line-height: 1.6;
   color: var(--color-base-content); background: var(--c-surface-alt);
@@ -675,28 +706,20 @@ label {
   overflow-x: auto; white-space: pre; margin: 0;
 }
 
-/* Compare tab panel — form area gets a subtle card */
-#panel-compare .compare-form {
-  background: var(--color-base-100); border: 1px solid var(--color-base-300);
-  border-radius: var(--radius-box); box-shadow: var(--shadow-sm); padding: 20px;
-}
+/* Compare tab panel — internal section */
+#panel-compare { padding: 20px 18px; display: flex; flex-direction: column; gap: 20px; }
 
-/* ── Full breakdown ────────────────────────────────────────────────────────── */
+/* ── Full breakdown — internal section, always open ────────────────────────── */
 #breakdown-section {
-  background: var(--color-base-100); border: 1px solid var(--color-base-300);
-  border-radius: var(--radius-box); box-shadow: var(--shadow-sm); overflow: hidden;
+  border-top: 1px solid var(--color-base-300);
 }
-.breakdown-toggle {
-  width: 100%; padding: 14px 20px; background: none; border: none;
-  display: flex; align-items: center; gap: 8px; cursor: pointer;
-  color: var(--c-muted); font-family: inherit; font-size: 11px; font-weight: 600;
-  letter-spacing: .07em; text-transform: uppercase; text-align: left; transition: color .15s;
+.section-label {
+  padding: 12px 18px; font-size: 11px; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--c-muted);
+  border-bottom: 1px solid var(--color-base-300);
+  background: var(--color-base-200);
 }
-.breakdown-toggle:hover { color: var(--color-base-content); }
-.breakdown-toggle .bd-arrow { transition: transform .2s; display: inline-block; font-style: normal; }
-.breakdown-toggle.open .bd-arrow { transform: rotate(90deg); }
-.breakdown-body { display: none; padding: 0 20px 20px; border-top: 1px solid var(--color-base-300); }
-.breakdown-body.open { display: block; }
+#breakdown-body-wrap { display: block; padding: 0 18px 20px; }
 
 .breakdown-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 16px; }
 .breakdown-table th {

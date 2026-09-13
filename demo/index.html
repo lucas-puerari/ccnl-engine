@@ -347,188 +347,192 @@
     <!-- Stale banner -->
     <div id="stale-banner" class="alert alert-warning" style="display:none" data-i18n="results.stale_banner">Hai modificato i dati — aggiorna la stima.</div>
 
-    <!-- Scenario strip -->
-    <div id="scenario-strip"></div>
-
-    <!-- KPI row -->
-    <div class="kpi-row">
-      <div class="kpi-tile">
-        <div class="kpi-label" data-i18n="results.kpi.gross_label">Monthly gross</div>
-        <div class="kpi-value" id="kpi-gross">—</div>
-        <div class="kpi-sub" id="kpi-gross-sub"></div>
+    <!-- Results summary card: scenario → KPIs → meta footer -->
+    <div class="results-card">
+      <div class="results-card-header">
+        <div id="scenario-strip"></div>
       </div>
-      <div class="kpi-tile kpi-net">
-        <div class="kpi-label" id="kpi-net-label">Netto medio stimato</div>
-        <div class="kpi-value" id="kpi-net">—</div>
-        <div class="kpi-sub" id="kpi-net-sub"></div>
-        <div id="kpi-net-scope" style="display:none; font-size:11px; color:var(--color-error); margin-top:4px;"></div>
-      </div>
-      <div class="kpi-tile">
-        <div class="kpi-label" data-i18n="results.kpi.cost_label">Employer cost — annual</div>
-        <div class="kpi-value is-cost" id="kpi-cost">—</div>
-        <div class="kpi-sub" data-i18n="results.kpi.cost_sub">including TFR and contributions</div>
-      </div>
-    </div>
-
-    <!-- Scope summary + calc date + download action -->
-    <div id="kpi-scope-summary" style="display:none; font-size:12px; color:var(--c-muted); padding:4px 0 0;"></div>
-    <div class="kpi-meta-row" id="kpi-meta-row" style="display:none">
-      <div id="kpi-asof" style="font-size:11px; color:var(--c-faint);"></div>
-      <button class="result-download-btn" id="btn-download" title="Download JSON">
-        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>
-        <span data-i18n="results.toolbar.download">Scarica JSON</span>
-      </button>
-    </div>
-
-    <!-- Result tab bar -->
-    <div class="result-tabs" role="tablist">
-      <button class="result-tab active" id="tab-detail" role="tab" aria-selected="true" aria-controls="panel-detail">
-        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="2" y="3" width="12" height="10" rx="1.5"/><line x1="5" y1="7" x2="11" y2="7"/><line x1="5" y1="10" x2="9" y2="10"/></svg>
-        <span data-i18n="results.tab.detail">Dettaglio</span>
-      </button>
-      <button class="result-tab" id="tab-compare" role="tab" aria-selected="false" aria-controls="panel-compare">
-        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h12M10 5l3 3-3 3M6 5L3 8l3 3"/></svg>
-        <span data-i18n="results.toolbar.compare">Confronta</span>
-      </button>
-      <button class="result-tab" id="tab-code" role="tab" aria-selected="false" aria-controls="panel-code">
-        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5,4 1,8 5,12"/><polyline points="11,4 15,8 11,12"/></svg>
-        <span data-i18n="results.toolbar.snippet">Codice</span>
-      </button>
-    </div>
-
-    <!-- Tab panel: Dettaglio -->
-    <div id="panel-detail" class="result-tab-panel" role="tabpanel" aria-labelledby="tab-detail">
-
-      <!-- Trace — Why this number? -->
-      <div id="trace-section">
-        <div class="trace-header">
-          <span class="trace-title" data-i18n="trace.title">Why this number?</span>
-          <span class="trace-sub" data-i18n="trace.sub">Monthly gross computation — step by step</span>
-        </div>
-        <div class="trace-body" id="trace-body"></div>
-      </div>
-
-      <!-- Sources -->
-      <div id="sources-section">
-        <div class="sources-header">
-          <span class="card-title" data-i18n="sources.title">Sources</span>
-          <span class="card-sub" data-i18n="sources.sub">Documents and rulesets used to produce this calculation</span>
-        </div>
-        <div class="sources-body">
-          <div>
-            <div class="sources-sub-title" data-i18n="sources.rulesets_title">Rulesets loaded</div>
-            <div class="ruleset-chips" id="ruleset-chips"></div>
-          </div>
-          <div>
-            <div class="sources-sub-title" data-i18n="sources.cited_title">Sources cited</div>
-            <div class="source-list" id="source-list"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Scope & Confidence -->
-      <div id="scope-section">
-        <div class="scope-header">
-          <span class="card-title" data-i18n="scope.title">Reliability</span>
-          <div id="confidence-pill" class="confidence-pill"></div>
-        </div>
-        <div class="scope-body">
-          <div id="warnings-area" style="display:none">
-            <div class="sources-sub-title">Warnings</div>
-            <div class="warnings-list" id="warnings-list"></div>
-          </div>
-          <div>
-            <div class="scope-grid">
-              <div>
-                <div class="scope-col-title" data-i18n="scope.computed_title">Computed in this estimate</div>
-                <div class="feature-list" id="scope-verified"></div>
-              </div>
-              <div>
-                <div class="scope-col-title" data-i18n="scope.excluded_title">Not computed in this estimate</div>
-                <div class="feature-list" id="scope-excluded"></div>
-              </div>
-            </div>
-          </div>
-          <div id="simps-note" style="display:none" class="simps-note"></div>
-        </div>
-      </div>
-
-      <!-- Full breakdown (collapsible) -->
-      <div id="breakdown-section">
-        <button class="breakdown-toggle" id="breakdown-toggle">
-          <i class="bd-arrow">▶</i> <span data-i18n="breakdown.title">Full breakdown</span>
-        </button>
-        <div class="breakdown-body" id="breakdown-body-wrap">
-          <table class="breakdown-table">
-            <colgroup>
-              <col style="width:60%"/><col style="width:20%"/><col style="width:20%"/>
-            </colgroup>
-            <thead>
-              <tr>
-                <th data-i18n="breakdown.col.item">Item</th>
-                <th style="text-align:right" data-i18n="breakdown.col.monthly">Monthly</th>
-                <th style="text-align:right" data-i18n="breakdown.col.annual">Annual</th>
-              </tr>
-            </thead>
-            <tbody id="breakdown-table-body"></tbody>
-          </table>
-          <p class="breakdown-note" id="irpef-note"></p>
-        </div>
-      </div>
-
-    </div><!-- /panel-detail -->
-
-    <!-- Tab panel: Confronta variante -->
-    <div id="panel-compare" class="result-tab-panel" role="tabpanel" aria-labelledby="tab-compare" hidden>
-      <div class="compare-form">
-        <div class="form-grid">
-          <div>
-            <label data-i18n="results.compare.ccnl_label">Variant CCNL</label>
-            <div class="combobox-wrap" id="combo-cmp-ccnl-wrap">
-              <select id="cmp-ccnl" style="display:none"></select>
-            </div>
-          </div>
-          <div>
-            <label data-i18n="results.compare.level_label">Variant level</label>
-            <select id="cmp-level" class="select select-bordered select-sm" disabled><option value="">—</option></select>
-          </div>
-        </div>
-        <div class="compare-form-actions">
-          <button class="btn btn-sm btn-primary" id="btn-cmp-run" data-i18n="results.compare.run_btn">Esegui confronto</button>
-          <button class="btn btn-sm btn-ghost" id="btn-cmp-clear" data-i18n="results.compare.clear_btn">Azzera</button>
-        </div>
-      </div>
-      <!-- Compare KPI row (shown after running) -->
-      <div id="compare-kpis" style="display:none">
-        <div class="compare-kpis-label" data-i18n="results.compare.delta_label">vs. scenario base</div>
+      <div class="results-card-body">
         <div class="kpi-row">
           <div class="kpi-tile">
-            <div class="kpi-label" data-i18n="results.kpi.gross_label">Monthly gross</div>
-            <div class="kpi-value" id="cmp-gross">—</div>
-            <div class="kpi-delta" id="cmp-gross-delta"></div>
+            <div class="kpi-label" data-i18n="results.kpi.gross_label">Lordo mensile</div>
+            <div class="kpi-value" id="kpi-gross">—</div>
+            <div class="kpi-sub" id="kpi-gross-sub"></div>
           </div>
           <div class="kpi-tile kpi-net">
-            <div class="kpi-label" id="cmp-net-label">Netto stimato</div>
-            <div class="kpi-value" id="cmp-net">—</div>
-            <div class="kpi-delta" id="cmp-net-delta"></div>
+            <div class="kpi-label" id="kpi-net-label">Netto medio stimato</div>
+            <div class="kpi-value" id="kpi-net">—</div>
+            <div class="kpi-sub" id="kpi-net-sub"></div>
+            <div id="kpi-net-scope" style="display:none; font-size:11px; color:var(--color-error); margin-top:4px;"></div>
           </div>
           <div class="kpi-tile">
-            <div class="kpi-label" data-i18n="results.kpi.cost_label">Employer cost</div>
-            <div class="kpi-value is-cost" id="cmp-cost">—</div>
-            <div class="kpi-delta" id="cmp-cost-delta"></div>
+            <div class="kpi-label" data-i18n="results.kpi.cost_label">Costo azienda — annuo</div>
+            <div class="kpi-value is-cost" id="kpi-cost">—</div>
+            <div class="kpi-sub" data-i18n="results.kpi.cost_sub">inclusi TFR e contributi</div>
           </div>
         </div>
+        <div id="kpi-scope-summary" style="display:none"></div>
       </div>
-    </div><!-- /panel-compare -->
+      <div class="results-card-footer" id="kpi-meta-row" style="display:none">
+        <div id="kpi-asof"></div>
+        <div id="confidence-pill" class="confidence-pill"></div>
+        <button class="result-download-btn" id="btn-download" title="Download JSON">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>
+          <span data-i18n="results.toolbar.download">Scarica JSON</span>
+        </button>
+      </div>
 
-    <!-- Tab panel: Codice Python -->
-    <div id="panel-code" class="result-tab-panel" role="tabpanel" aria-labelledby="tab-code" hidden>
-      <div class="code-header">
-        <span class="card-title" data-i18n="snippet.title">Riproduci in Python</span>
-        <button class="btn btn-sm btn-ghost" id="btn-copy-snippet" data-i18n="snippet.copy_btn">Copia</button>
+      <!-- Tab bar — inside the card -->
+      <div class="result-tabs" role="tablist">
+        <button class="result-tab active" id="tab-detail" role="tab" aria-selected="true" aria-controls="panel-detail">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="2" y="3" width="12" height="10" rx="1.5"/><line x1="5" y1="7" x2="11" y2="7"/><line x1="5" y1="10" x2="9" y2="10"/></svg>
+          <span data-i18n="results.tab.detail">Dettaglio</span>
+        </button>
+        <button class="result-tab" id="tab-compare" role="tab" aria-selected="false" aria-controls="panel-compare">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h12M10 5l3 3-3 3M6 5L3 8l3 3"/></svg>
+          <span data-i18n="results.toolbar.compare">Confronta</span>
+        </button>
+        <button class="result-tab" id="tab-code" role="tab" aria-selected="false" aria-controls="panel-code">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5,4 1,8 5,12"/><polyline points="11,4 15,8 11,12"/></svg>
+          <span data-i18n="results.toolbar.snippet">Codice</span>
+        </button>
       </div>
-      <pre id="snippet-code"></pre>
-    </div><!-- /panel-code -->
+
+      <!-- Tab panels — inside the card -->
+      <div class="result-tab-panels">
+
+        <!-- Tab panel: Dettaglio -->
+        <div id="panel-detail" class="result-tab-panel" role="tabpanel" aria-labelledby="tab-detail">
+
+          <!-- 1. Trace — collapsible, closed by default -->
+          <details class="collapsible-section" id="trace-section">
+            <summary>
+              <span class="card-title" data-i18n="trace.title">Perché questo numero?</span>
+              <span class="card-sub" data-i18n="trace.sub">Calcolo del lordo mensile — passo dopo passo</span>
+            </summary>
+            <div class="trace-body" id="trace-body"></div>
+          </details>
+
+          <!-- 2. Sources — collapsible, closed by default -->
+          <details class="collapsible-section" id="sources-section">
+            <summary>
+              <span class="card-title" data-i18n="sources.title">Fonti</span>
+              <span class="card-sub" data-i18n="sources.sub">Documenti e set di regole usati per il calcolo</span>
+            </summary>
+            <div class="sources-body">
+              <div>
+                <div class="sources-sub-title" data-i18n="sources.rulesets_title">Set di regole caricati</div>
+                <div class="ruleset-chips" id="ruleset-chips"></div>
+              </div>
+              <div>
+                <div class="sources-sub-title" data-i18n="sources.cited_title">Fonti citate</div>
+                <div class="source-list" id="source-list"></div>
+              </div>
+            </div>
+          </details>
+
+          <!-- 3. Scope & Reliability — collapsible, closed by default -->
+          <details class="collapsible-section" id="scope-section">
+            <summary>
+              <span class="card-title" data-i18n="scope.title">Affidabilità</span>
+              <span class="card-sub" data-i18n="scope.warnings_title" id="scope-summary-hint"></span>
+            </summary>
+            <div class="scope-body">
+              <div id="warnings-area" style="display:none">
+                <div class="sources-sub-title" data-i18n="scope.warnings_title">Avvisi</div>
+                <div class="warnings-list" id="warnings-list"></div>
+              </div>
+              <div class="scope-grid">
+                <div>
+                  <div class="scope-col-title" data-i18n="scope.computed_title">Calcolato in questa stima</div>
+                  <div class="feature-list" id="scope-verified"></div>
+                </div>
+                <div>
+                  <div class="scope-col-title" data-i18n="scope.excluded_title">Non calcolato in questa stima</div>
+                  <div class="feature-list" id="scope-excluded"></div>
+                </div>
+              </div>
+              <div id="simps-note" style="display:none" class="simps-note"></div>
+            </div>
+          </details>
+
+          <!-- 4. Full breakdown — always open -->
+          <div id="breakdown-section">
+            <div class="section-label" data-i18n="breakdown.title">Dettaglio completo</div>
+            <div id="breakdown-body-wrap">
+              <table class="breakdown-table">
+                <colgroup>
+                  <col style="width:60%"/><col style="width:20%"/><col style="width:20%"/>
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th data-i18n="breakdown.col.item">Voce</th>
+                    <th style="text-align:right" data-i18n="breakdown.col.monthly">Mensile</th>
+                    <th style="text-align:right" data-i18n="breakdown.col.annual">Annuale</th>
+                  </tr>
+                </thead>
+                <tbody id="breakdown-table-body"></tbody>
+              </table>
+              <p class="breakdown-note" id="irpef-note"></p>
+            </div>
+          </div>
+
+        </div><!-- /panel-detail -->
+
+        <!-- Tab panel: Confronta variante -->
+        <div id="panel-compare" class="result-tab-panel" role="tabpanel" aria-labelledby="tab-compare" hidden>
+          <div class="compare-form">
+            <div class="form-grid">
+              <div>
+                <label data-i18n="results.compare.ccnl_label">Variant CCNL</label>
+                <div class="combobox-wrap" id="combo-cmp-ccnl-wrap">
+                  <select id="cmp-ccnl" style="display:none"></select>
+                </div>
+              </div>
+              <div>
+                <label data-i18n="results.compare.level_label">Variant level</label>
+                <select id="cmp-level" class="select select-bordered select-sm" disabled><option value="">—</option></select>
+              </div>
+            </div>
+            <div class="compare-form-actions">
+              <button class="btn btn-sm btn-primary" id="btn-cmp-run" data-i18n="results.compare.run_btn">Esegui confronto</button>
+              <button class="btn btn-sm btn-ghost" id="btn-cmp-clear" data-i18n="results.compare.clear_btn">Azzera</button>
+            </div>
+          </div>
+          <div id="compare-kpis" style="display:none">
+            <div class="compare-kpis-label" data-i18n="results.compare.delta_label">vs. scenario base</div>
+            <div class="kpi-row">
+              <div class="kpi-tile">
+                <div class="kpi-label" data-i18n="results.kpi.gross_label">Lordo mensile</div>
+                <div class="kpi-value" id="cmp-gross">—</div>
+                <div class="kpi-delta" id="cmp-gross-delta"></div>
+              </div>
+              <div class="kpi-tile kpi-net">
+                <div class="kpi-label" id="cmp-net-label">Netto stimato</div>
+                <div class="kpi-value" id="cmp-net">—</div>
+                <div class="kpi-delta" id="cmp-net-delta"></div>
+              </div>
+              <div class="kpi-tile">
+                <div class="kpi-label" data-i18n="results.kpi.cost_label">Costo azienda</div>
+                <div class="kpi-value is-cost" id="cmp-cost">—</div>
+                <div class="kpi-delta" id="cmp-cost-delta"></div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /panel-compare -->
+
+        <!-- Tab panel: Codice Python -->
+        <div id="panel-code" class="result-tab-panel" role="tabpanel" aria-labelledby="tab-code" hidden>
+          <div class="code-header">
+            <span class="card-title" data-i18n="snippet.title">Riproduci in Python</span>
+            <button class="btn btn-sm btn-ghost" id="btn-copy-snippet" data-i18n="snippet.copy_btn">Copia</button>
+          </div>
+          <pre id="snippet-code"></pre>
+        </div><!-- /panel-code -->
+
+      </div><!-- /result-tab-panels -->
+
+    </div><!-- /results-card -->
 
   </div><!-- /results -->
 

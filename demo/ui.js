@@ -160,13 +160,6 @@ window._ccnlCombo    = makeCombobox("combo-ccnl-wrap",    "sel-ccnl",    t("form
 window._regioneCombo = makeCombobox("combo-regione-wrap", "sel-regione", t("form.regione.placeholder"));
 window._comuneCombo  = makeCombobox("combo-comune-wrap",  "sel-comune",  t("form.comune.name_placeholder"));
 
-// ── Breakdown collapse ───────────────────────────────────────────────────────
-
-document.getElementById("breakdown-toggle").addEventListener("click", () => {
-  document.getElementById("breakdown-toggle").classList.toggle("open");
-  document.getElementById("breakdown-body-wrap").classList.toggle("open");
-});
-
 // ── RAL ↔ second-level mutual exclusion ─────────────────────────────────────
 
 document.getElementById("inp-ral").addEventListener("input", e => {
@@ -1165,9 +1158,8 @@ function doCompute(pyodide) {
   // Scope & confidence
   renderScope(r.calculation_scope, r.confidence, r.warnings, r.fiscal_simplifications);
 
-  // Breakdown (collapsed by default — reset state)
-  document.getElementById("breakdown-toggle").classList.remove("open");
-  document.getElementById("breakdown-body-wrap").classList.remove("open");
+  // Breakdown (always open — reset collapsible sections)
+  document.querySelectorAll("#panel-detail details.collapsible-section").forEach(d => d.removeAttribute("open"));
   renderBreakdown(r, comune);
 
   document.getElementById("results").style.display = "flex";
