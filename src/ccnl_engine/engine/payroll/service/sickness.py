@@ -273,14 +273,24 @@ def compute_sickness(
         sick_days, carenza_limit, bands, cumulative_offset=offset
     )
 
-    # INPS indemnity (only post-carenza bands)
+    # INPS indemnity (only post-carenza bands; INPS has its own band ceiling)
     inps_indemnity = _ZERO
     for band_obj, bucket in zip(sick_pay_rates.bands, band_buckets, strict=True):
         inps_indemnity += bucket * band_obj.rate * daily_rate
 
-    # Company integration -- split at CCNL tier boundaries when available (R6)
-    carenza_pay = carenza * sickness_rules.carenza_integration_rate * daily_rate
-    post_carenza_days = max(_ZERO, sick_days - carenza)
+    # Company integration is limited to the comporto period (max_duration_days).
+    # Days beyond the comporto are not covered by the CCNL.
+    comporto_limit = Decimal(sickness_rules.max_duration_days)
+    eligible = max(_ZERO, comporto_limit - Decimal(offset))
+    integration_days = min(sick_days, eligible)
+
+    carenza_i, band_buckets_i = _bucket_days(
+        integration_days, carenza_limit, bands, cumulative_offset=offset
+    )
+
+    # Company integration -- split at CCNL tier boundaries when available
+    carenza_pay = carenza_i * sickness_rules.carenza_integration_rate * daily_rate
+    post_carenza_days = max(_ZERO, integration_days - carenza_i)
 
     if cumulative is not None and sickness_rules.tiers and post_carenza_days > _ZERO:
         post_carenza_offset = Decimal(max(offset, carenza_limit))
@@ -295,7 +305,7 @@ def compute_sickness(
         # Simple single-rate integration (no tiers or no cumulative context)
         eff_rate = _effective_integration_rate(sickness_rules, cumulative)
         post_carenza_company = _ZERO
-        for band_obj, bucket in zip(sick_pay_rates.bands, band_buckets, strict=True):
+        for band_obj, bucket in zip(sick_pay_rates.bands, band_buckets_i, strict=True):
             gap = max(_ZERO, eff_rate - band_obj.rate)
             post_carenza_company += bucket * gap * daily_rate
 

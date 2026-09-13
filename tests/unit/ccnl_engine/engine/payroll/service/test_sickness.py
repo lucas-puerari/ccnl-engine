@@ -215,12 +215,16 @@ class TestEffectiveIntegrationRate:
     def _rules_with_tiers(self) -> SicknessRules:
         """SicknessRules with 100%→90%→50% tiers (9/3/6 months).
 
+        ``max_duration_days`` is set to 400 so that tier tests that use high
+        cumulative values (e.g. 265, 270) remain within the comporto period.
+
         Returns:
             SicknessRules with three progression tiers.
         """
         return SicknessRules(
             carenza_integration_rate=_D("1"),
             full_pay_integration_rate=_D("1"),
+            max_duration_days=400,
             tiers=[
                 SicknessTier(month_from=1, month_until=10, integration_rate=_D("1")),
                 SicknessTier(month_from=10, month_until=13, integration_rate=_D("0.9")),
@@ -447,3 +451,51 @@ class TestEffectiveIntegrationRate:
         )
         assert inps == _D("172.08")
         assert company == _D("172.08")
+
+    def test_max_duration_caps_company_integration(self) -> None:
+        """Company integration is capped at max_duration_days; INPS is unaffected.
+
+        max_duration_days=20, cumulative=0, sick_days=25:
+          Comporto covers days 1-20 only (integration_days=20).
+          INPS still covers all 25 days (its own ceiling is 180).
+
+        daily_rate = 68.83
+        inps = 17 * 0.50 * 68.83 + 5 * 0.6667 * 68.83 = 814.50
+        company = 3 * 1.0 * 68.83 + 17 * 0.50 * 68.83 = 206.49 + 585.055 = 791.55
+          (band2 days are beyond max_duration_days; company integration is zero there)
+        """
+        rules = SicknessRules(
+            carenza_integration_rate=_D("1"),
+            full_pay_integration_rate=_D("1"),
+            max_duration_days=20,
+        )
+        _, _, inps, company = compute_sickness(
+            SickInput(sick_days=_D("25"), cumulative_sick_days=_D("0")),
+            rules,
+            _standard_sick_pay_rates(),
+            gross_monthly=_D("2064.88"),
+        )
+        assert inps == _D("814.50")
+        assert company == _D("791.55")
+
+    def test_beyond_max_duration_zeroes_company(self) -> None:
+        """All days beyond comporto: INPS and company are both zero.
+
+        max_duration_days=180 (default), cumulative=180, sick_days=5:
+          eligible = max(0, 180-180) = 0; integration_days=0.
+          All days are also beyond the INPS band ceiling (day 180).
+
+        inps = 0, company = 0
+        """
+        rules = SicknessRules(
+            carenza_integration_rate=_D("1"),
+            full_pay_integration_rate=_D("1"),
+        )
+        _, _, inps, company = compute_sickness(
+            SickInput(sick_days=_D("5"), cumulative_sick_days=_D("180")),
+            rules,
+            _standard_sick_pay_rates(),
+            gross_monthly=_D("2064.88"),
+        )
+        assert inps == _D("0.00")
+        assert company == _D("0.00")
