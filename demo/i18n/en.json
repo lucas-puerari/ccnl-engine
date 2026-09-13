@@ -82,6 +82,7 @@
   "results.kpi.scope_addizionale_regionale": "regional surtax",
   "results.kpi.scope_addizionale_comunale": "municipal surtax",
   "results.kpi.scope_no_irpef": "IRPEF not calculated",
+  "results.scenario.header": "Calculation pipeline",
   "results.calculated_on": "Calculated as of:",
   "results.scenario.ccnl": "CCNL",
   "results.scenario.level": "Level",
