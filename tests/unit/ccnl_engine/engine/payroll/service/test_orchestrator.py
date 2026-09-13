@@ -17,9 +17,12 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     DailyDivisorMethod,
     LeaveEntitlementTier,
     LeaveRules,
+    OvertimeBand,
     SicknessRules,
     SupplementaryAllowance,
+    TimeSupplementKind,
     TimeSupplements,
+    WorkKind,
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
 from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
@@ -1082,6 +1085,54 @@ class TestL3Warning:
         # Overtime and night must remain excluded (no hours for those buckets)
         assert scope["overtime"] == "excluded"
         assert scope["night_work"] == "excluded"
+
+    def test_not_computed_when_schema_present_but_no_kind_band(self) -> None:
+        """Schema present but no band for the requested WorkKind → not_computed.
+
+        A CCNL with only a night band must report 'not_computed' for overtime
+        when weekday_hours are requested, and 'verified' for night_work.
+        Before the fix, scope checked ``wr_schema_present`` (the container) so
+        both would show 'verified', masking missing band coverage.
+        """
+        night_band = OvertimeBand(
+            code="NOTTE",
+            description="Straordinario notturno",
+            kind=TimeSupplementKind("percentage"),
+            rate=TimeSeries(
+                periods=[
+                    ValidityPeriod(
+                        valid_from=date(2020, 1, 1),
+                        valid_until=None,
+                        value=_D("0.30"),
+                    )
+                ]
+            ),
+            applies_to_kinds=[WorkKind.NIGHT],
+        )
+        ts_schema = TimeSupplements(overtime_bands=[night_band])
+        _mock_ccnl[0] = _build_ccnl(
+            work_rules={"time_supplements": ts_schema.model_dump()}
+        )
+        scenario = dataclasses.replace(
+            _req(),
+            time_supplements=OvertimeHours(
+                weekday_hours=_D("5"),
+                night_hours=_D("3"),
+            ),
+        )
+        try:
+            result = compute(scenario).result
+            scope = {item.feature: item.status for item in result.calculation_scope}
+            assert scope["overtime"] == "not_computed", (
+                f"Expected not_computed for overtime (no weekday band), got:"
+                f" {scope['overtime']}"
+            )
+            assert scope["night_work"] == "verified", (
+                f"Expected verified for night_work (band present), got:"
+                f" {scope['night_work']}"
+            )
+        finally:
+            _mock_ccnl[0] = _DEFAULT_CCNL
 
 
 class TestL3Absence:

@@ -203,15 +203,15 @@ def build_scope(
         ),
         ScopeItem(
             feature="overtime",
-            status=_feature_status(ot_hours > _ZERO, work.wr_schema_present),
+            status=_feature_status(ot_hours > _ZERO, work.wr_overtime_supported),
         ),
         ScopeItem(
             feature="night_work",
-            status=_feature_status(night_hours > _ZERO, work.wr_schema_present),
+            status=_feature_status(night_hours > _ZERO, work.wr_night_supported),
         ),
         ScopeItem(
             feature="holiday_work",
-            status=_feature_status(holiday_hours > _ZERO, work.wr_schema_present),
+            status=_feature_status(holiday_hours > _ZERO, work.wr_holiday_supported),
         ),
         ScopeItem(
             feature="absence",
