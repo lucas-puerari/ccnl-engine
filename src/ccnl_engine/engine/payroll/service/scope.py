@@ -151,6 +151,14 @@ def build_scope(
             ),
         ),
         ScopeItem(
+            feature="ulteriore_detrazione_lavoro",
+            status=(
+                "excluded"
+                if FiscalSimplification.NO_ULTERIORE_DETRAZIONE_LAVORO in fs
+                else "verified"
+            ),
+        ),
+        ScopeItem(
             feature="addizionale_regionale",
             status=(
                 "excluded"

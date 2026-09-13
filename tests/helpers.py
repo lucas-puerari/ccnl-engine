@@ -151,6 +151,7 @@ def make_year_rules(
     inps: dict[str, Any] | None = None,
     apprentice: dict[str, Any] | None = None,
     sterilizzazione_detrazioni: dict[str, Any] | None = None,
+    ulteriore_detrazione: dict[str, Any] | None = None,
 ) -> YearRules:
     """Build a YearRules instance for testing. Defaults to the 2026 terziario values.
 
@@ -161,6 +162,9 @@ def make_year_rules(
         sterilizzazione_detrazioni: Optional override for sterilizzazione
             rules (Art. 1 c. 3-4 L. 199/2025). Pass ``{"threshold": ...,
             "reduction": ...}`` to activate or a custom threshold for tests.
+        ulteriore_detrazione: Optional override for ulteriore detrazione
+            rules (Art. 1 c. 6 L. 207/2024). Pass ``{"threshold_low": ...,
+            "threshold_mid": ..., "max_amount": ...}`` to activate.
 
     Returns:
         A validated YearRules instance.
@@ -175,6 +179,8 @@ def make_year_rules(
     }
     if sterilizzazione_detrazioni is not None:
         raw["sterilizzazione_detrazioni"] = sterilizzazione_detrazioni
+    if ulteriore_detrazione is not None:
+        raw["ulteriore_detrazione"] = ulteriore_detrazione
     return YearRules.model_validate(raw)
 
 

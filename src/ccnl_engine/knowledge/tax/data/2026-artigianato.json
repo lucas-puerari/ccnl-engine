@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "509a36c71cc21ad54ec71389dfbb44c2f46c1058223eba398ce828ffcdd9f08d"
+    "source_hash": "aa657c1473632686bf3cdd7d2e8e47c6b98c98c4fae22565149be096cd4425eb"
   },
   "irpef_brackets": [
     {
@@ -33,6 +33,11 @@
     "threshold_mid": "15000",
     "threshold_upper": "28000",
     "max_amount": "1200"
+  },
+  "ulteriore_detrazione": {
+    "threshold_low": "20000",
+    "threshold_mid": "32000",
+    "max_amount": "1000"
   },
   "sterilizzazione_detrazioni": {
     "threshold": "200000.00",

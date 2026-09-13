@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.rules import (
         SterilizzazioneDetrazioniRules,
         TrattamentoIntegrativoRules,
+        UlterioreDetrazioneRules,
         YearRules,
     )
 
@@ -170,6 +171,29 @@ def trattamento_integrativo(
     if relevant_deductions <= irpef_gross:
         return _ZERO
     return money(min(rules.max_amount, relevant_deductions - irpef_gross))
+
+
+def ulteriore_detrazione_lavoro(
+    taxable_income: Decimal,
+    rules: UlterioreDetrazioneRules,
+) -> Decimal:
+    """Compute the ulteriore detrazione del lavoro dipendente (Art. 1 c. 6 L. 207/2024).
+
+    For reddito complessivo in ``(rules.threshold_low, rules.threshold_mid]``:
+    returns ``rules.max_amount`` (full-year figure; pro-rating to the actual
+    work period is the caller's responsibility).
+    Outside that band: zero.
+
+    Args:
+        taxable_income: Reddito complessivo di riferimento.
+        rules: Threshold and amount parameters from the tax data file.
+
+    Returns:
+        The ulteriore detrazione amount (unrounded; full-year).
+    """
+    if taxable_income <= rules.threshold_low or taxable_income > rules.threshold_mid:
+        return _ZERO
+    return rules.max_amount
 
 
 def surtax_from_brackets(

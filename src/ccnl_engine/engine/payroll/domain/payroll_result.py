@@ -242,6 +242,7 @@ class PayrollResult:
     addizionale_regionale_annual: Decimal
     addizionale_comunale_annual: Decimal
 
+    ulteriore_detrazione_lavoro: Decimal
     trattamento_integrativo: Decimal
     fiscal_simplifications: frozenset[FiscalSimplification]
 

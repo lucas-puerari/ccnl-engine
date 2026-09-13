@@ -362,6 +362,7 @@ class FiscalPay:
     fam_unused: Decimal
     art15_total: Decimal
     art15_unused: Decimal
+    ulteriore_detrazione_lavoro: Decimal
     irpef_net: Decimal
     trattamento_integrativo: Decimal
     addizionale_regionale: Decimal
@@ -452,10 +453,29 @@ def compute_fiscal(
     )
     art15_unused = min(art15_unused, art15_total)
 
+    # Ulteriore detrazione del lavoro dipendente (Art. 1 c. 6 L. 207/2024):
+    # flat EUR 1 000 for taxable income in (20 000, 32 000].
+    ud_rules = rules.ulteriore_detrazione
+    if ud_rules is not None:
+        ulteriore_detrazione_lavoro = _irpef.ulteriore_detrazione_lavoro(
+            taxable_income, ud_rules
+        )
+    else:
+        ulteriore_detrazione_lavoro = _ZERO
+
     # When the employer is not a sostituto d'imposta, irpef_net is zeroed;
     # irpef_gross and work_income_deduction remain as informational figures.
     irpef_net = (
-        money(max(_ZERO, irpef_gross - work_income_deduction - fam_total - art15_total))
+        money(
+            max(
+                _ZERO,
+                irpef_gross
+                - work_income_deduction
+                - fam_total
+                - art15_total
+                - ulteriore_detrazione_lavoro,
+            )
+        )
         if employer_withholds_irpef
         else _ZERO
     )
@@ -475,11 +495,14 @@ def compute_fiscal(
     # Remove NO_DETRAZIONI_FAMILIARI when family deductions were computed
     # (use pre-sterilizzazione total: deductions were still computed).
     # Remove NO_DETRAZIONI_ART15 when Art. 15 deductions were computed.
+    # Add NO_ULTERIORE_DETRAZIONE_LAVORO when rules are absent from the file.
     sfs_mut: set[FiscalSimplification] = set(fiscal_simplifications)
     if fam_total > _ZERO:
         sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_FAMILIARI)
     if art15_total > _ZERO:
         sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_ART15)
+    if ud_rules is None:
+        sfs_mut.add(FiscalSimplification.NO_ULTERIORE_DETRAZIONE_LAVORO)
     fiscal_simplifications = frozenset(sfs_mut)
 
     # Addizionale regionale e comunale (Art. 50 TUIR; Art. 1 D.Lgs. 360/1998).
@@ -523,6 +546,7 @@ def compute_fiscal(
         fam_unused=fam_unused,
         art15_total=art15_total,
         art15_unused=art15_unused,
+        ulteriore_detrazione_lavoro=ulteriore_detrazione_lavoro,
         irpef_net=irpef_net,
         trattamento_integrativo=trattamento_integrativo,
         addizionale_regionale=addizionale_regionale,

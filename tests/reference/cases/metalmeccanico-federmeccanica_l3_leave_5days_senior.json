@@ -32,6 +32,16 @@
     "gross_monthly": "2118.38",
     "leave_accrued_days_monthly": "2.08",
     "leave_taken_days_monthly": "5",
-    "leave_balance_days": "-2.92"
+    "leave_balance_days": "-2.92",
+    "net_monthly": "1721.85",
+    "irpef_net": "2541.42",
+    "net_annual": "22384.07",
+    "ulteriore_detrazione_lavoro": "1000",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_art15",
+      "no_detrazioni_familiari"
+    ]
   }
 }
