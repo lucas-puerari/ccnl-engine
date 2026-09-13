@@ -34,6 +34,10 @@ def _count_from_tiers(tiers: list[SeniorityTier], seniority_months: int) -> int:
     for tier in tiers:
         count = min(remaining // tier.cadence_months, tier.maximum_count)
         total += count
+        # Consume the tier's full capacity (not just the months used) so the
+        # remainder correctly reflects when the worker has passed the tier
+        # boundary and entered the next one.  After the break, `remaining` is
+        # negative and intentionally ignored — only `total` is returned.
         remaining -= tier.maximum_count * tier.cadence_months
         if remaining < 0:
             break
@@ -55,6 +59,10 @@ def _resolve_tier_amount(
 
     Returns:
         Rounded total monthly seniority amount for the level.
+
+    Raises:
+        ValueError: If both ``seniority_months`` and ``count_override`` are
+            ``None``.
     """
     if count_override is not None:
         remaining = count_override
@@ -69,7 +77,9 @@ def _resolve_tier_amount(
             remaining -= tier_count
         return money(total)
     # month-based path
-    assert seniority_months is not None
+    if seniority_months is None:
+        msg = "seniority_months is required when count_override is not given"
+        raise ValueError(msg)
     remaining_m = seniority_months
     total = _ZERO
     for tier in tiers:
