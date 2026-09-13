@@ -1160,9 +1160,8 @@ function doCompute(pyodide) {
     absenceDays, leaveDays, sickDays,
     fringeAnnual, welfareAnnual, bonusAnnual, bonusPdr,
   };
-  // Show toolbar now that we have results; reset sub-panels
-  document.getElementById("snippet-section").style.display = "none";
-  if (!_compareActive) document.getElementById("compare-panel").style.display = "none";
+  // After a new calculation, switch to detail tab (unless compare is active)
+  if (!_compareActive) switchTab("detail");
 }
 
 // ── Download / Snippet / Compare ─────────────────────────────────────────────
@@ -1207,12 +1206,8 @@ print(f"Netto: {result.net_monthly:.2f}  Lordo: {result.gross_monthly:.2f}")`;
 }
 
 function showSnippet() {
-  const sec = document.getElementById("snippet-section");
-  if (!_lastResult || !_lastParams) return;
-  if (sec.style.display !== "none") { sec.style.display = "none"; return; }
-  document.getElementById("snippet-code").textContent = generateSnippet(_lastParams, _lastResult);
-  sec.style.display = "";
-  sec.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  // Legacy shim — now handled by switchTab("code")
+  switchTab("code");
 }
 
 function copySnippet() {
@@ -1226,17 +1221,31 @@ function copySnippet() {
 }
 
 function toggleComparePanel() {
-  const panel = document.getElementById("compare-panel");
-  _compareActive = !_compareActive;
-  panel.style.display = _compareActive ? "" : "none";
-  if (!_compareActive) {
-    document.getElementById("compare-kpis").style.display = "none";
+  // Legacy shim — now handled by switchTab
+  switchTab(_compareActive ? "detail" : "compare");
+}
+
+const _TABS = ["detail", "compare", "code"];
+
+function switchTab(id) {
+  if (!_TABS.includes(id)) return;
+  // Populate snippet when switching to code tab
+  if (id === "code" && _lastResult && _lastParams) {
+    document.getElementById("snippet-code").textContent = generateSnippet(_lastParams, _lastResult);
   }
+  // Update _compareActive flag
+  _compareActive = (id === "compare");
+
+  _TABS.forEach(t => {
+    const btn   = document.getElementById("tab-" + t);
+    const panel = document.getElementById("panel-" + t);
+    if (btn)   btn.classList.toggle("active", t === id);
+    if (panel) panel.hidden = (t !== id);
+  });
 }
 
 function clearCompare() {
   document.getElementById("compare-kpis").style.display = "none";
-  // Reset combobox (clears both the hidden select and the visible input)
   if (window._cmpCcnlCombo) {
     window._cmpCcnlCombo.reset();
   } else {
@@ -1360,9 +1369,10 @@ async function main() {
     document.getElementById("sel-ccnl").addEventListener("change", () => onCcnlChange(pyodide));
     document.getElementById("calc-btn").addEventListener("click", () => doCompute(pyodide));
     document.getElementById("btn-download").addEventListener("click", downloadResult);
-    document.getElementById("btn-snippet").addEventListener("click", showSnippet);
     document.getElementById("btn-copy-snippet").addEventListener("click", copySnippet);
-    document.getElementById("btn-compare").addEventListener("click", toggleComparePanel);
+    document.getElementById("tab-detail").addEventListener("click",  () => switchTab("detail"));
+    document.getElementById("tab-compare").addEventListener("click", () => switchTab("compare"));
+    document.getElementById("tab-code").addEventListener("click",    () => switchTab("code"));
     initCompare(pyodide);
 
     // Mark results as stale whenever any form input changes after the first calculation.

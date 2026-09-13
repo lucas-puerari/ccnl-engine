@@ -36,6 +36,7 @@
   "form.comune.name_label": "Municipality — addizionale comunale",
   "form.comune.name_placeholder": "Search municipality…",
   "form.example_placeholder": "Try an example…",
+  "results.tab.detail": "Detail",
   "form.advanced.toggle": "Advanced options",
   "form.ad_personam.label": "Ad personam monthly (€)",
   "form.second_level.label": "Second-level monthly (€)",

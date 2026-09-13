@@ -36,6 +36,7 @@
   "form.comune.name_label": "Comune — addizionale comunale",
   "form.comune.name_placeholder": "Cerca comune…",
   "form.example_placeholder": "Prova un esempio…",
+  "results.tab.detail": "Dettaglio",
   "form.advanced.toggle": "Opzioni avanzate",
   "form.ad_personam.label": "Suppl. ad personam mensile (€)",
   "form.second_level.label": "Secondo livello mensile (€)",
