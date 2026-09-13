@@ -1405,16 +1405,16 @@ async function main() {
   await loadI18n(detectLang());
   applyTranslations();
   try {
-    setProgress(5,  t("loading.init"));
+    setProgress(5,  t("loading.runtime"));
     const pyodide = await loadPyodide();
-    setProgress(30, t("loading.init"));
+    setProgress(30, t("loading.deps"));
     await pyodide.loadPackage(["pydantic", "micropip"]);
-    setProgress(60, t("loading.init"));
+    setProgress(60, t("loading.engine"));
     const micropip = pyodide.pyimport("micropip");
     // WHEEL_VERSION is replaced by the pages.yml workflow at build time.
     const wheelUrl = new URL("./wheels/ccnl_engine-WHEEL_VERSION-py3-none-any.whl", window.location.href).href;
     await micropip.install(wheelUrl);
-    setProgress(80, t("loading.init"));
+    setProgress(80, t("loading.app"));
     const resp = await fetch("./app.py");
     if (!resp.ok) throw new Error("app.py not found (" + resp.status + ")");
     pyodide.runPython(await resp.text());
@@ -1440,8 +1440,6 @@ async function main() {
 
     setTimeout(hideLoading, 300);
   } catch (err) {
-    const spinner = document.getElementById("loading-spinner");
-    if (spinner) spinner.classList.add("hidden");
     document.getElementById("loading-msg").textContent = t("loading.error");
     document.getElementById("retry-btn").style.display = "inline-block";
     document.getElementById("detail-toggle").style.display = "inline";
