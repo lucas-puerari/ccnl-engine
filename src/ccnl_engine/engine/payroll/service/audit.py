@@ -178,12 +178,20 @@ def _ruleset_versions(
     rules: YearRules,
     surtax: SurtaxRules | None,
     sub_rulesets: dict[str, str] | None = None,
+    *,
+    uses_family_deductions: bool = False,
+    uses_art15_deductions: bool = False,
 ) -> dict[str, str]:
     """Return ``{kind: id@version}`` identities for all consumed rulesets.
 
     Falls back to the knowledge-base version for rulesets without a recorded
     identity.  Sub-rulesets (e.g. ``sick_pay``, ``variable_pay``) are merged
     in only when provided.
+
+    When ``uses_family_deductions`` is ``True``, a ``"family_deductions"`` key
+    is added for the ``family-deductions-{year}.json`` data file, which is a
+    separate ruleset from the main tax file.  Likewise for
+    ``uses_art15_deductions`` and ``"art15_deductions"``.
 
     Returns:
         Mapping of ruleset kind to ``id@version`` string.
@@ -204,6 +212,14 @@ def _ruleset_versions(
             versions["surtax"] = str(surtax.ruleset)
         else:
             versions["surtax"] = f"surtax/{surtax.year}@{knowledge_version}"
+    if uses_family_deductions:
+        versions["family_deductions"] = (
+            f"family-deductions/{rules.year}@{knowledge_version}"
+        )
+    if uses_art15_deductions:
+        versions["art15_deductions"] = (
+            f"art15-deductions/{rules.year}@{knowledge_version}"
+        )
     if sub_rulesets:
         versions.update(sub_rulesets)
     return versions
@@ -271,9 +287,21 @@ def build_calculation(
         ivs_ceiling_applies=ivs_ceiling_applies,
         ivs_ceiling=ivs_ceiling,
     )
+    uses_family = scenario.family is not None and scenario.family.has_any_dependent
+    uses_art15 = (
+        scenario.art15_deductions is not None
+        and scenario.art15_deductions.has_any_onere
+    )
     return Calculation(
         engine_version=engine_version,
-        ruleset_version=_ruleset_versions(ccnl, rules, surtax, work.consumed_rulesets),
+        ruleset_version=_ruleset_versions(
+            ccnl,
+            rules,
+            surtax,
+            work.consumed_rulesets,
+            uses_family_deductions=uses_family,
+            uses_art15_deductions=uses_art15,
+        ),
         input_snapshot=snapshot,
         result=result,
         trace=CalculationTrace(
