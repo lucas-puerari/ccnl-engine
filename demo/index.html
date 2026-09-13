@@ -55,7 +55,14 @@
   <div class="app-card app-card-pad">
     <div class="card-header">
       <span class="card-title" data-i18n="form.title">Employment scenario</span>
-      <button id="example-btn" onclick="loadExample()" class="btn btn-xs btn-outline" style="margin-left:auto" data-i18n="form.example_btn">Try an example</button>
+      <select id="example-sel" class="select select-bordered select-xs" style="margin-left:auto;min-width:200px"
+              onchange="if(this.value!==''){loadExample(parseInt(this.value));this.value='';}">
+        <option value="" data-i18n="form.example_placeholder">Prova un esempio…</option>
+        <option value="0">Terziario Confcommercio — Liv. 4, 3 scatti, Lazio/Roma</option>
+        <option value="1">Agenti immobiliari FIAIP — Liv. III</option>
+        <option value="2">Pulizie artigianato Confartigianato — Liv. 3</option>
+        <option value="3">Ortofrutticoli agrumari — Liv. 4</option>
+      </select>
     </div>
 
     <div class="form-grid">
@@ -218,7 +225,7 @@
         <div class="app-collapse collapse collapse-arrow">
           <input type="checkbox" id="l3-toggle" data-no-stale />
           <div class="collapse-title">
-            <span data-i18n="form.l3.toggle">Work rules (L3 — informational)</span>
+            <span data-i18n="form.l3.toggle">Work rules</span>
             <span class="tip" tabindex="0" style="margin-left:6px" data-tip="L3 outputs are reported alongside the payroll but do not change gross or net pay. They reflect period events such as overtime worked or days absent.">?</span>
           </div>
           <div class="collapse-content" id="l3-body">
@@ -374,7 +381,9 @@
       <div class="form-grid">
         <div>
           <label data-i18n="results.compare.ccnl_label">Variant CCNL</label>
-          <select id="cmp-ccnl" class="select select-bordered select-sm"></select>
+          <div class="combobox-wrap" id="combo-cmp-ccnl-wrap">
+            <select id="cmp-ccnl" style="display:none"></select>
+          </div>
         </div>
         <div>
           <label data-i18n="results.compare.level_label">Variant level</label>

@@ -70,6 +70,8 @@ function applyTranslations() {
   document.getElementById("btn-en")?.classList.toggle("active", _currentLang === "en");
   // Update html lang attribute
   document.documentElement.lang = _currentLang;
+  // Refresh example labels
+  _refreshExampleSelect();
 }
 
 async function loadI18n(lang) {
@@ -381,39 +383,124 @@ async function populateComuni(pyodide) {
   });
 }
 
+// ── Examples ─────────────────────────────────────────────────────────────────
+
+// Each entry maps to a test scenario. ccnl_match: exact filename string or
+// RegExp tested against the option label. level_code: exact code or null (4th).
+// part_time_pct: 10–100 (slider units). regione/comune_pattern: optional.
+const EXAMPLES = [
+  {
+    label_it: "Terziario Confcommercio — Liv. 4, 3 scatti, Lazio/Roma",
+    label_en: "Terziario Confcommercio — Lv. 4, 3 increments, Lazio/Rome",
+    ccnl_match: /Terziario.*Confcommercio/i,
+    level_code: null,         // pick 4th option
+    employment_type: "permanent",
+    seniority_count: 3,
+    part_time_pct: 100,
+    num_employees: 50,
+    regione: /Lazio/i,
+    comune_pattern: /^Roma \(/i,
+  },
+  {
+    label_it: "Agenti immobiliari FIAIP — Liv. III",
+    label_en: "Real estate agents FIAIP — Lv. III",
+    ccnl_match: "agenti-immobiliari-fiaip.json",
+    level_code: "III",
+    employment_type: "permanent",
+    seniority_count: 0,
+    part_time_pct: 100,
+    num_employees: 50,
+  },
+  {
+    label_it: "Pulizie artigianato Confartigianato — Liv. 3",
+    label_en: "Cleaning services (craft) Confartigianato — Lv. 3",
+    ccnl_match: "pulizia-artigianato-confartigianato.json",
+    level_code: "3",
+    employment_type: "permanent",
+    seniority_count: 0,
+    part_time_pct: 100,
+    num_employees: 50,
+  },
+  {
+    label_it: "Ortofrutticoli agrumari — Liv. 4",
+    label_en: "Fruit & vegetables (agrumari) — Lv. 4",
+    ccnl_match: "ortofrutticoli-agrumari.json",
+    level_code: "4",
+    employment_type: "permanent",
+    seniority_count: 0,
+    part_time_pct: 100,
+    num_employees: 50,
+  },
+];
+
 let _examplePyodide = null;
-function loadExample() {
+
+function loadExample(idx) {
   if (!_examplePyodide) return;
-  // Example: CCNL Commercio (Confcommercio), first available level, permanent, 3 scatti, Milano
-  const sel = document.getElementById("sel-ccnl");
-  const opts = Array.from(sel.options);
-  const commercio = opts.find(o => /Terziario.*Confcommercio/i.test(o.textContent)) || opts[1];
-  if (!commercio || !commercio.value) return;
-  window._ccnlCombo.setValue(commercio.value);
-  sel.dispatchEvent(new Event("change"));
-  // After levels load (onCcnlChange is async), set a level and trigger compute
+  const ex = EXAMPLES[idx];
+  if (!ex) return;
+
+  // Find CCNL option
+  const ccnlSel = document.getElementById("sel-ccnl");
+  const ccnlOpts = Array.from(ccnlSel.options);
+  const match = typeof ex.ccnl_match === "string"
+    ? ccnlOpts.find(o => o.value === ex.ccnl_match)
+    : ccnlOpts.find(o => ex.ccnl_match.test(o.textContent));
+  if (!match || !match.value) return;
+
+  window._ccnlCombo.setValue(match.value);
+  ccnlSel.dispatchEvent(new Event("change"));
+
   const waitForLevels = () => {
     const levelSel = document.getElementById("sel-level");
     if (levelSel.options.length < 2) { setTimeout(waitForLevels, 100); return; }
-    // Pick the 4th level if available, else first non-empty
+
     const lvOpts = Array.from(levelSel.options).filter(o => o.value);
-    const pick = lvOpts[Math.min(3, lvOpts.length - 1)];
+    const pick = ex.level_code
+      ? (lvOpts.find(o => o.value === ex.level_code) || lvOpts[0])
+      : lvOpts[Math.min(3, lvOpts.length - 1)];
     if (pick) { levelSel.value = pick.value; levelSel.dispatchEvent(new Event("change")); }
-    // Set seniority to 3, comune to Milano
-    document.getElementById("inp-seniority").value = "3";
-    const comuneSel = document.getElementById("sel-comune");
-    // Pick Roma (H501) if available, else first non-empty comune option
-    const comuneOpts = Array.from(comuneSel.options).filter(o => o.value);
-    const romaOpt = comuneOpts.find(o => /^Roma \(/i.test(o.textContent)) || comuneOpts[0];
-    if (romaOpt) {
-      window._comuneCombo.setValue(romaOpt.value);
-      document.getElementById("inp-comune").value = romaOpt.value;
+
+    document.getElementById("inp-seniority").value = String(ex.seniority_count ?? 0);
+    document.getElementById("inp-employees").value = String(ex.num_employees ?? 50);
+
+    const pct = ex.part_time_pct ?? 100;
+    document.getElementById("inp-parttime").value = String(pct);
+    document.getElementById("inp-parttime-pct").value = String(pct);
+
+    const empSel = document.getElementById("sel-employment");
+    empSel.value = ex.employment_type || "permanent";
+    empSel.dispatchEvent(new Event("change"));
+
+    if (ex.regione) {
+      const opt = Array.from(document.getElementById("sel-regione").options)
+        .find(o => ex.regione.test(o.textContent));
+      if (opt) document.getElementById("sel-regione").value = opt.value;
     }
-    const regioneOpt = Array.from(document.getElementById("sel-regione").options).find(o => /Lazio/i.test(o.textContent));
-    if (regioneOpt) { document.getElementById("sel-regione").value = regioneOpt.value; }
+    if (ex.comune_pattern) {
+      const comuneSel = document.getElementById("sel-comune");
+      const opt = Array.from(comuneSel.options).filter(o => o.value)
+        .find(o => ex.comune_pattern.test(o.textContent));
+      if (opt) {
+        window._comuneCombo.setValue(opt.value);
+        document.getElementById("inp-comune").value = opt.value;
+      }
+    }
+
     setTimeout(() => document.getElementById("calc-btn").click(), 150);
   };
   setTimeout(waitForLevels, 300);
+}
+
+// Populate example select labels once i18n is ready
+function _refreshExampleSelect() {
+  const sel = document.getElementById("example-sel");
+  if (!sel) return;
+  const lang = _currentLang === "en" ? "en" : "it";
+  EXAMPLES.forEach((ex, i) => {
+    const opt = sel.options[i + 1]; // skip placeholder at index 0
+    if (opt) opt.textContent = lang === "en" ? ex.label_en : ex.label_it;
+  });
 }
 
 async function onCcnlChange(pyodide) {
@@ -1154,7 +1241,12 @@ function toggleComparePanel() {
 
 function clearCompare() {
   document.getElementById("compare-kpis").style.display = "none";
-  document.getElementById("cmp-ccnl").value = "";
+  // Reset combobox (clears both the hidden select and the visible input)
+  if (window._cmpCcnlCombo) {
+    window._cmpCcnlCombo.reset();
+  } else {
+    document.getElementById("cmp-ccnl").value = "";
+  }
   document.getElementById("cmp-level").innerHTML = "<option value=''>—</option>";
   document.getElementById("cmp-level").disabled = true;
 }
@@ -1197,6 +1289,14 @@ function initCompare(pyodide) {
     opt.value = o.value; opt.textContent = o.textContent;
     dest.appendChild(opt);
   });
+
+  // Initialise searchable combobox for the variant CCNL picker
+  if (!window._cmpCcnlCombo) {
+    window._cmpCcnlCombo = makeCombobox(
+      "combo-cmp-ccnl-wrap", "cmp-ccnl",
+      t("form.ccnl.placeholder")
+    );
+  }
 
   dest.addEventListener("change", async () => {
     const file = dest.value;
