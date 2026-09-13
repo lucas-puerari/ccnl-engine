@@ -1004,7 +1004,7 @@
               <div class="feature-list" id="scope-verified"></div>
             </div>
             <div>
-              <div class="scope-col-title">Not in scope — inputs not provided</div>
+              <div class="scope-col-title">Not computed in this estimate</div>
               <div class="feature-list" id="scope-excluded"></div>
             </div>
           </div>
@@ -1598,26 +1598,27 @@ function renderSources(provenanceList, rulesetVersion) {
 // ── Scope & Confidence rendering ─────────────────────────────────────────────
 
 const FEATURE_LABELS = {
-  base_salary:             "Base salary",
-  seniority:               "Seniority increments",
-  inps_employee:           "INPS employee contributions",
-  inps_employer:           "INPS employer contributions",
-  tfr:                     "TFR (severance)",
-  irpef:                   "IRPEF income tax",
-  trattamento_integrativo: "Trattamento integrativo",
-  addizionale_regionale:   "Regional income surtax",
-  addizionale_comunale:    "Municipal income surtax",
-  family_deductions:       "Family-dependent deductions (Art. 12 TUIR)",
-  art15_deductions:        "Work deductions (Art. 15 TUIR)",
-  overtime:                "Overtime pay",
-  night_work:              "Night-work supplement",
-  holiday_work:            "Holiday-work supplement",
-  absence:                 "Absence deductions",
-  leave:                   "Parental leave",
-  sickness:                "Sickness absence",
-  fringe_benefit:          "Fringe benefits",
-  welfare:                 "Welfare benefits",
-  bonus_pdr:               "Production/PDR bonus",
+  base_salary:                 "Base salary",
+  seniority:                   "Seniority increments",
+  inps_employee:               "INPS employee contributions",
+  inps_employer:               "INPS employer contributions",
+  tfr:                         "TFR (severance)",
+  irpef:                       "IRPEF income tax",
+  trattamento_integrativo:     "Trattamento integrativo",
+  ulteriore_detrazione_lavoro: "Ulteriore detrazione lavoro (D.L. 3/2020)",
+  addizionale_regionale:       "Regional income surtax",
+  addizionale_comunale:        "Municipal income surtax",
+  family_deductions:           "Family-dependent deductions (Art. 12 TUIR)",
+  art15_deductions:            "Personal expense deductions (Art. 15 TUIR)",
+  overtime:                    "Overtime pay",
+  night_work:                  "Night-work supplement",
+  holiday_work:                "Holiday-work supplement",
+  absence:                     "Absence deductions",
+  leave:                       "Leave taken (ferie)",
+  sickness:                    "Sickness absence",
+  fringe_benefit:              "Fringe benefits",
+  welfare:                     "Welfare benefits",
+  bonus_pdr:                   "Production/PDR bonus",
 };
 
 const CONF_LABELS = {
@@ -1629,10 +1630,22 @@ const CONF_LABELS = {
 const SIMP_LABELS = {
   no_addizionale_regionale:      "Regional income surtax — select a region above",
   no_addizionale_comunale:       "Municipal income surtax — enter a Belfiore code above",
+  addizionale_comunale_unknown:  "Municipal income surtax — data not available for this comune",
   no_detrazioni_familiari:       "Family-dependent deductions (Art. 12 TUIR)",
-  no_sterilizzazione_detrazioni: "Deduction phase-out (sterilizzazione detrazioni)",
-  no_detrazioni_art15:        "Work deductions — Art. 13 TUIR not applied",
+  no_sterilizzazione_detrazioni: "Deduction phase-out (progressive reduction)",
+  no_detrazioni_art15:           "Personal expense deductions (Art. 15 TUIR) — not applied",
 };
+
+// Sanitize engine warning strings: replace technical identifiers with readable text.
+function sanitizeWarning(w) {
+  return String(w)
+    .replace(/\baddizionale_comunale_unknown\b/gi, "municipal surtax code not found")
+    .replace(/\baddizionale_regionale_unknown\b/gi, "regional surtax data not found")
+    .replace(/\bno_detrazioni_art15\b/gi, "personal expense deductions (Art. 15 TUIR)")
+    .replace(/\bno_detrazioni_familiari\b/gi, "family deductions (Art. 12 TUIR)")
+    .replace(/\bno_sterilizzazione_detrazioni\b/gi, "progressive reduction")
+    .replace(/_/g, " "); // last-resort: replace underscores in any remaining identifiers
+}
 
 function renderScope(calcScope, confidence, warnings, fiscalSimps) {
   // Confidence pill
@@ -1652,7 +1665,7 @@ function renderScope(calcScope, confidence, warnings, fiscalSimps) {
     for (const w of allWarnings) {
       const div = document.createElement("div");
       div.className = "warning-item";
-      div.innerHTML = `<i class="warning-icon">⚠</i> ${esc(w)}`;
+      div.innerHTML = `<i class="warning-icon">⚠</i> ${esc(sanitizeWarning(w))}`;
       warnList.appendChild(div);
     }
   } else {
@@ -1713,7 +1726,7 @@ function renderScenario(r) {
 
 // ── Breakdown table ──────────────────────────────────────────────────────────
 
-function renderBreakdown(r) {
+function renderBreakdown(r, enteredComune) {
   const body = document.getElementById("breakdown-table-body");
   body.innerHTML = "";
   const noReg = (r.fiscal_simplifications || []).includes("no_addizionale_regionale");
@@ -1750,15 +1763,18 @@ function renderBreakdown(r) {
   body.appendChild(bRow("INPS employee contributions", null, r.inps_employee_annual));
   body.appendChild(bSub("Taxable income (IRPEF base)", null, r.taxable_income));
   body.appendChild(bSub("IRPEF (gross, before deductions)", null, r.irpef_gross));
-  body.appendChild(bSub("↳ Deduction Art. 13 TUIR (work income)", null, -r.work_income_deduction));
-  if ((r.ulteriore_detrazione_lavoro || 0) > 0)
+  if ((r.work_income_deduction || 0) > 0.005)
+    body.appendChild(bSub("↳ Work deductions — Art. 13 TUIR", null, -r.work_income_deduction));
+  if ((r.ulteriore_detrazione_lavoro || 0) > 0.005)
     body.appendChild(bSub("↳ Ulteriore detrazione lavoro (D.L. 3/2020)", null, -r.ulteriore_detrazione_lavoro));
   body.appendChild(bRow("IRPEF (net)", null, r.irpef_net));
   body.appendChild(noReg
     ? bNa("Addizionale regionale — not computed")
     : bRow("Addizionale regionale", null, r.addizionale_regionale_annual));
   body.appendChild(noCom
-    ? bNa("Addizionale comunale — not computed")
+    ? bNa(enteredComune
+        ? `Addizionale comunale — dati non disponibili (${esc(enteredComune)})`
+        : "Addizionale comunale — codice non fornito")
     : bRow("Addizionale comunale", null, r.addizionale_comunale_annual));
   if (r.trattamento_integrativo > 0)
     body.appendChild(bRow("Trattamento integrativo (D.L. 3/2020)", null, -r.trattamento_integrativo));
@@ -1934,7 +1950,7 @@ function doCompute(pyodide) {
   // Breakdown (collapsed by default — reset state)
   document.getElementById("breakdown-toggle").classList.remove("open");
   document.getElementById("breakdown-body-wrap").classList.remove("open");
-  renderBreakdown(r);
+  renderBreakdown(r, comune);
 
   document.getElementById("results").style.display = "flex";
   clearStale();
