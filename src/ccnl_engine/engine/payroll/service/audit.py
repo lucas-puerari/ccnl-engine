@@ -247,9 +247,14 @@ def build_calculation(
         uses_surtax=surtax is not None,
     )
 
+    effective_level = (
+        ccnl.level_by_code(gross.under_level_code)
+        if gross.under_level_code is not None
+        else gross.level
+    )
     gross_trace = _build_trace(
         ccnl_id=ccnl.meta.ccnl_id,
-        level=gross.level,
+        level=effective_level,
         chain=gross.chain,
         seniority_count=gross.count,
         ad_personam=gross.ad_personam,
