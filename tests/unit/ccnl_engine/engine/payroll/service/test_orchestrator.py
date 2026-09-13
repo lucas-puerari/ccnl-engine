@@ -27,12 +27,14 @@ from ccnl_engine.engine.contract.domain.ccnl import (
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
 from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
+from ccnl_engine.engine.payroll.domain.calculation import TraceCategory
 from ccnl_engine.engine.payroll.domain.employee import (
     DestinationRalOverride,
     RalOverride,
     SeniorityByCount,
     SeniorityByMonths,
 )
+from ccnl_engine.engine.payroll.domain.employment import Apprentice
 from ccnl_engine.engine.payroll.domain.family import FamilyComposition
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.payroll_result import ScopeItem
@@ -922,11 +924,11 @@ class TestProvenanceChain:
         assert result == (prov_level,)
 
 
-class TestR11ApprenticeProvenance:
-    """R11: _collect_provenance uses the effective pay level for apprentices."""
+class TestApprenticeProvenance:
+    """_collect_provenance uses the effective pay level for apprentices."""
 
     def test_under_level_provenance_used_when_code_given(self) -> None:
-        """R11: when under_level_code is set, the under level's provenance is used."""
+        """When under_level_code is set, the under level's provenance is used."""
         ccnl = CCNL.model_validate(make_ccnl_dict())
         dest_level = ccnl.level_by_code("4")
         under_level = ccnl.level_by_code("3")
@@ -978,6 +980,47 @@ class TestR11ApprenticeProvenance:
             under_level_code=None,
         )
         assert prov_dest in result
+
+
+class TestApprenticeTrace:
+    """build_calculation uses the effective pay level in the gross trace."""
+
+    def test_trace_shows_under_level_for_under_classification_apprentice(
+        self,
+    ) -> None:
+        """Trace BASE_SALARY detail must reference the under-level, not destination.
+
+        The CCNL has destination level "4" and under-classification one step
+        below, so the effective pay level is "3".  Before the fix, the trace
+        would show "4@test" (destination).  After the fix it must show "3@test".
+        """
+        _mock_ccnl[0] = _DEFAULT_CCNL_UC
+        scenario = dataclasses.replace(
+            _req(level_code="4", contract=Apprentice(months_elapsed=0)),
+        )
+        try:
+            calc = compute(scenario)
+            base_steps = [
+                s for s in calc.trace.steps if s.category == TraceCategory.BASE_SALARY
+            ]
+            assert base_steps, "Expected at least one BASE_SALARY trace step"
+            assert base_steps[0].detail == "3@test", (
+                f"Expected under-level code '3@test' in trace,"
+                f" got: {base_steps[0].detail!r}"
+            )
+        finally:
+            _mock_ccnl[0] = _DEFAULT_CCNL
+
+    def test_trace_shows_destination_level_for_non_apprentice(self) -> None:
+        """For a standard (non-apprentice) employee, trace uses the declared level."""
+        calc = compute(_req(level_code="4"))
+        base_steps = [
+            s for s in calc.trace.steps if s.category == TraceCategory.BASE_SALARY
+        ]
+        assert base_steps, "Expected at least one BASE_SALARY trace step"
+        assert base_steps[0].detail == "4@test", (
+            f"Expected level code '4@test' in trace, got: {base_steps[0].detail!r}"
+        )
 
 
 class TestR7SubRulesetIdentities:
