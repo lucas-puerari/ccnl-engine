@@ -36,6 +36,7 @@ from ccnl_engine.engine.payroll.domain.employee import (
     DestinationRalOverride,
     RalOverride,
     SeniorityByCount,
+    SeniorityByDate,
     SeniorityByMonths,
 )
 from ccnl_engine.engine.payroll.domain.employment import Apprentice
@@ -2364,3 +2365,77 @@ class TestBilateralFunds:
         assert result.employer_cost_annual == money(
             baseline.employer_cost_annual + expected_er
         )
+
+
+# ---------------------------------------------------------------------------
+# IVS ceiling warning (G3)
+# ---------------------------------------------------------------------------
+
+
+class TestIvsCeilingWarning:
+    """Warning is emitted when a post-1996 hire has ivs_ceiling_applies=False."""
+
+    def _scenario_with_hire_date(
+        self,
+        hire_date: date,
+        *,
+        ivs_ceiling_applies: bool = False,
+    ) -> PayrollScenario:
+        base = _req(ivs_ceiling_applies=ivs_ceiling_applies)
+        return dataclasses.replace(
+            base,
+            employee=dataclasses.replace(
+                base.employee,
+                seniority=SeniorityByDate(hire_date),
+            ),
+        )
+
+    def test_post_1996_hire_no_ceiling_emits_warning(self) -> None:
+        """Hire date on or after 1996-01-01 with ivs=False yields a warning."""
+        r = compute(self._scenario_with_hire_date(date(1996, 6, 1))).result
+        assert any("ivs_ceiling_applies" in w for w in r.warnings)
+
+    def test_post_1996_hire_with_ceiling_no_warning(self) -> None:
+        """Hire date after 1996-01-01 with ivs=True produces no warning."""
+        r = compute(
+            self._scenario_with_hire_date(date(2000, 1, 1), ivs_ceiling_applies=True)
+        ).result
+        assert not any("ivs_ceiling_applies" in w for w in r.warnings)
+
+    def test_pre_1996_hire_no_warning(self) -> None:
+        """Hire date before 1996-01-01 produces no warning."""
+        r = compute(self._scenario_with_hire_date(date(1990, 3, 15))).result
+        assert not any("ivs_ceiling_applies" in w for w in r.warnings)
+
+    def test_no_seniority_by_date_no_warning(self) -> None:
+        """SeniorityByMonths input does not trigger the IVS ceiling warning."""
+        r = compute(_req(seniority_months=120)).result
+        assert not any("ivs_ceiling_applies" in w for w in r.warnings)
+
+
+# ---------------------------------------------------------------------------
+# NO_ASSEGNO_UNICO fiscal simplification (G4)
+# ---------------------------------------------------------------------------
+
+
+class TestNoAssegnoUnico:
+    """NO_ASSEGNO_UNICO is always present in fiscal_simplifications."""
+
+    def test_always_present_default_scenario(self) -> None:
+        """Default scenario includes NO_ASSEGNO_UNICO simplification."""
+        r = compute(_req()).result
+        assert FiscalSimplification.NO_ASSEGNO_UNICO in r.fiscal_simplifications
+
+    def test_always_present_with_bilateral_funds(self) -> None:
+        """NO_ASSEGNO_UNICO is present even when bilateral funds are supplied."""
+        scenario = dataclasses.replace(
+            _req(),
+            bilateral_funds=(
+                FlatMonthlyFund(
+                    employee_monthly=_D("10"),
+                    employer_monthly=_D("20"),
+                ),
+            ),
+        )
+        r = compute(scenario).result
+        assert FiscalSimplification.NO_ASSEGNO_UNICO in r.fiscal_simplifications

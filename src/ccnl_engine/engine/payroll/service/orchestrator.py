@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+from datetime import date
 from typing import TYPE_CHECKING
 
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
+from ccnl_engine.engine.payroll.domain.employee import SeniorityByDate
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
 from ccnl_engine.engine.payroll.service.audit import (
     _collect_provenance,
@@ -28,6 +30,35 @@ if TYPE_CHECKING:
         Calculation,
     )
     from ccnl_engine.engine.payroll.domain.scenario import Employment, PayrollScenario
+
+
+_IVS_CEILING_THRESHOLD = date(1996, 1, 1)
+
+
+def _ivs_ceiling_warning(scenario: PayrollScenario) -> str | None:
+    """Return a warning when a post-1996 hire has ivs_ceiling_applies=False.
+
+    Workers hired on or after 1996-01-01 are subject to the INPS IVS
+    contribution ceiling.  When the caller supplies a ``SeniorityByDate`` hire
+    date in that range but leaves ``ivs_ceiling_applies`` at its default
+    ``False``, the ceiling is silently skipped and contributions are
+    understated.
+
+    Returns:
+        A warning string, or ``None`` when no warning is warranted.
+    """
+    seniority = scenario.employee.seniority
+    if (
+        isinstance(seniority, SeniorityByDate)
+        and seniority.value >= _IVS_CEILING_THRESHOLD
+        and not scenario.employee.ivs_ceiling_applies
+    ):
+        return (
+            f"hire date {seniority.value} is on or after "
+            f"{_IVS_CEILING_THRESHOLD}: consider setting "
+            "ivs_ceiling_applies=True"
+        )
+    return None
 
 
 def _resolve_tax_year(employment: Employment) -> int:
@@ -80,7 +111,10 @@ def compute(scenario: PayrollScenario) -> Calculation:
         under_level_code=gross.under_level_code,
     )
     result_status = _compute_result_status(calculation_scope)
-    result_warnings = work.warnings
+    ivs_warn = _ivs_ceiling_warning(scenario)
+    result_warnings = (
+        (*work.warnings, ivs_warn) if ivs_warn is not None else work.warnings
+    )
 
     result = PayrollResult(
         ccnl_id=ccnl.meta.ccnl_id,
