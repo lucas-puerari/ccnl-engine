@@ -31,6 +31,8 @@
     "inps_employer_annual": "9740.64",
     "employer_funds_annual": "0.00",
     "tfr_annual": "2389.17",
+    "bilateral_employee_annual": "0.00",
+    "bilateral_employer_annual": "0.00",
     "taxable_income": "29192.90",
     "irpef_gross": "6833.66",
     "work_income_deduction": "1871.29",
@@ -51,6 +53,7 @@
     "net_annual": "25230.53",
     "net_monthly": "1802.18",
     "employer_cost_annual": "44383.59",
-    "ulteriore_detrazione_lavoro": "1000"
+    "ulteriore_detrazione_lavoro": "1000",
+    "year": 2027
   }
 }
