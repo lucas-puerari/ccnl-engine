@@ -333,3 +333,121 @@ class TestSurtaxIsolation:
             f"inps_a={result_a.inps_employee_annual}, "
             f"inps_b={result_b.inps_employee_annual}"
         )
+
+
+# ---------------------------------------------------------------------------
+# Invariant 6 — net_annual ≤ gross_annual
+# ---------------------------------------------------------------------------
+
+
+class TestNetBelowGross:
+    """net_annual must never exceed gross_annual for any valid input."""
+
+    @settings(max_examples=50)
+    @given(ral=_ral_st, seniority_count=_seniority_st)
+    def test_net_annual_never_exceeds_gross_annual(
+        self, ral: Decimal, seniority_count: int
+    ) -> None:
+        """net_annual is always at most gross_annual.
+
+        Taxes and employee contributions reduce net below gross for every
+        income level.  This invariant should hold across the full IRPEF
+        schedule including trattamento integrativo (which tops-up net for low
+        incomes, but never above gross).
+
+        Invariant: net_annual <= gross_annual
+        """
+        scenario = _req(
+            level_code="4",
+            negotiated_ral=ral,
+            seniority_count=seniority_count,
+        )
+
+        with (
+            patch(_PATCH_CCNL, return_value=_CCNL),
+            patch(_PATCH_RULES, return_value=_RULES),
+            patch(_PATCH_SURTAX, return_value=None),
+        ):
+            result = compute(scenario).result
+
+        assert result.net_annual <= result.gross_annual, (
+            f"net_annual={result.net_annual} exceeded "
+            f"gross_annual={result.gross_annual} "
+            f"(ral={ral}, seniority_count={seniority_count})"
+        )
+
+
+# ---------------------------------------------------------------------------
+# Invariant 7 — employer_cost_annual ≥ gross_annual
+# ---------------------------------------------------------------------------
+
+
+class TestEmployerCostAboveGross:
+    """employer_cost_annual must always be at least gross_annual."""
+
+    @settings(max_examples=50)
+    @given(ral=_ral_st, seniority_count=_seniority_st)
+    def test_employer_cost_at_least_gross(
+        self, ral: Decimal, seniority_count: int
+    ) -> None:
+        """employer_cost_annual is always >= gross_annual.
+
+        Employer cost adds INPS employer contributions, TFR accrual, and
+        contractual fund contributions on top of gross pay — it is never
+        below gross.
+
+        Invariant: employer_cost_annual >= gross_annual
+        """
+        scenario = _req(
+            level_code="4",
+            negotiated_ral=ral,
+            seniority_count=seniority_count,
+        )
+
+        with (
+            patch(_PATCH_CCNL, return_value=_CCNL),
+            patch(_PATCH_RULES, return_value=_RULES),
+            patch(_PATCH_SURTAX, return_value=None),
+        ):
+            result = compute(scenario).result
+
+        assert result.employer_cost_annual >= result.gross_annual, (
+            f"employer_cost_annual={result.employer_cost_annual} is below "
+            f"gross_annual={result.gross_annual} "
+            f"(ral={ral}, seniority_count={seniority_count})"
+        )
+
+
+# ---------------------------------------------------------------------------
+# Invariant 8 — taxable_income = gross_annual - inps_employee_annual
+# ---------------------------------------------------------------------------
+
+
+class TestTaxableIncomeDefinition:
+    """taxable_income equals gross_annual minus inps_employee_annual."""
+
+    @settings(max_examples=50)
+    @given(ral=_ral_st)
+    def test_taxable_income_equals_gross_minus_inps(self, ral: Decimal) -> None:
+        """taxable_income is exactly gross_annual - inps_employee_annual.
+
+        This is the IRPEF taxable base per Art. 51 TUIR; any deviation
+        indicates a computation error in the fiscal chain.
+
+        Invariant: taxable_income == gross_annual - inps_employee_annual
+        """
+        scenario = _req(level_code="4", negotiated_ral=ral, seniority_count=0)
+
+        with (
+            patch(_PATCH_CCNL, return_value=_CCNL),
+            patch(_PATCH_RULES, return_value=_RULES),
+            patch(_PATCH_SURTAX, return_value=None),
+        ):
+            result = compute(scenario).result
+
+        expected = result.gross_annual - result.inps_employee_annual
+        assert result.taxable_income == expected, (
+            f"taxable_income={result.taxable_income} != "
+            f"gross_annual - inps_employee_annual = {expected} "
+            f"(ral={ral})"
+        )
