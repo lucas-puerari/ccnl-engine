@@ -147,6 +147,7 @@
       background: var(--border); flex-shrink: 0;
     }
     .header-sub { font-size: 12px; color: var(--muted); }
+    @media (max-width: 520px) { .header-sub, .header-sep:not(:first-of-type) { display: none; } }
     .header-badge {
       margin-left: auto;
       font-size: 10px; font-weight: 600; letter-spacing: .06em;
@@ -186,8 +187,8 @@
       margin-bottom: 18px;
     }
     .card-title {
-      font-size: 11px; font-weight: 600; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--muted);
+      font-size: 12px; font-weight: 600;
+      color: var(--text);
     }
     .card-sub { font-size: 12px; color: var(--faint); }
 
@@ -372,24 +373,32 @@
 
     /* ── KPI row ─────────────────────────────────────────────────────────── */
     .kpi-row {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      gap: 12px;
     }
-    @media (max-width: 520px) { .kpi-row { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 580px) {
+      .kpi-row { grid-template-columns: 1fr 1fr; }
+      .kpi-tile.kpi-net { grid-column: 1 / -1; }
+    }
     .kpi-tile {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 16px 18px;
     }
+    .kpi-tile.kpi-net {
+      border-color: var(--green);
+    }
     .kpi-label {
-      font-size: 10px; font-weight: 600; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--faint); margin-bottom: 5px;
+      font-size: 11px; font-weight: 500;
+      color: var(--muted); margin-bottom: 5px;
     }
     .kpi-value {
       font-size: 24px; font-weight: 700; line-height: 1.1;
       font-family: "IBM Plex Mono", monospace; letter-spacing: -.02em;
     }
-    .kpi-value.is-net { color: var(--green); }
+    .kpi-tile.kpi-net .kpi-value { font-size: 28px; color: var(--green); }
     .kpi-value.is-cost { color: var(--amber); }
     .kpi-sub { font-size: 11px; color: var(--faint); margin-top: 2px; }
 
@@ -418,9 +427,16 @@
       grid-template-columns: auto 1fr auto;
       gap: 0 14px;
       align-items: start;
-      padding: 13px 22px;
+      padding: 13px 16px;
       border-bottom: 1px solid var(--trace-line);
       position: relative;
+    }
+    @media (max-width: 480px) {
+      .trace-step {
+        grid-template-columns: auto 1fr;
+        padding: 11px 12px;
+      }
+      .trace-amount { grid-column: 2; text-align: left; font-size: 13px; }
     }
     .trace-step:last-child { border-bottom: none; }
     .trace-step.is-gross {
@@ -454,7 +470,8 @@
       display: inline-flex; align-items: center; gap: 3px;
       text-decoration: none; color: var(--accent); font-size: 11px;
       border: 1px solid var(--accent-bg); background: var(--accent-bg);
-      border-radius: 3px; padding: 1px 6px; white-space: nowrap;
+      border-radius: 3px; padding: 1px 6px;
+      overflow-wrap: anywhere; word-break: break-all;
       transition: border-color .15s;
     }
     .cite-link:hover { border-color: var(--accent); }
@@ -966,9 +983,9 @@
         <div class="kpi-value" id="kpi-gross">—</div>
         <div class="kpi-sub" id="kpi-gross-sub"></div>
       </div>
-      <div class="kpi-tile">
+      <div class="kpi-tile kpi-net">
         <div class="kpi-label" id="kpi-net-label">Netto medio stimato</div>
-        <div class="kpi-value is-net" id="kpi-net">—</div>
+        <div class="kpi-value" id="kpi-net">—</div>
         <div class="kpi-sub" id="kpi-net-sub"></div>
         <div id="kpi-net-scope" style="display:none; font-size:11px; color:var(--red,#c0392b); margin-top:4px;"></div>
       </div>
@@ -1702,33 +1719,54 @@ function renderSources(provenanceList, rulesetVersion) {
     return;
   }
 
+  // Group provenance entries by document (title + url)
+  const groups = new Map();
   for (const p of provenanceList) {
-    const authCls = p.authority === "official" ? "auth-official"
-                  : p.authority === "derived"  ? "auth-derived"
-                  : "auth-secondary";
-    const authLabel = p.authority.charAt(0).toUpperCase() + p.authority.slice(1);
-    const methodMap = {
-      ai_assisted:     "AI-extracted",
-      manual:          "Manually extracted",
-      back_calculation:"Back-calculated",
-      import:          "Imported",
-    };
-    const statusMap = {
-      verified:      "verified",
-      needs_review:  "needs review",
-      unverified:    "unverified",
-    };
-    const isVerified = p.verification_status === "verified";
-    const methodLabel = methodMap[p.method] || "Extracted";
-    const statusLabel = statusMap[p.verification_status] || p.verification_status;
-    const verLabel = isVerified ? "Verified" : `${methodLabel}, ${statusLabel}`;
-    const verCls   = isVerified ? "verified" : "unverified";
-    const dotCls   = isVerified ? "dot-green" : "dot-amber";
+    const docKey = (p.title || "") + "|" + (p.url || "");
+    if (!groups.has(docKey)) {
+      groups.set(docKey, { title: p.title, url: p.url, authority: p.authority, entries: [] });
+    }
+    groups.get(docKey).entries.push(p);
+  }
 
-    const hasUrl = p.url && p.url !== "unavailable";
+  const methodMap = {
+    ai_assisted:     "AI-extracted",
+    manual:          "Manually extracted",
+    back_calculation:"Back-calculated",
+    import:          "Imported",
+  };
+  const statusMap = {
+    verified:     "verified",
+    needs_review: "needs review",
+    unverified:   "unverified",
+  };
+
+  for (const [, doc] of groups) {
+    const authCls = doc.authority === "official" ? "auth-official"
+                  : doc.authority === "derived"  ? "auth-derived"
+                  : "auth-secondary";
+    const authLabel = (doc.authority || "").charAt(0).toUpperCase() + (doc.authority || "").slice(1);
+    const hasUrl = doc.url && doc.url !== "unavailable";
     const titleHtml = hasUrl
-      ? `<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a>`
-      : esc(p.title);
+      ? `<a href="${esc(doc.url)}" target="_blank" rel="noopener" style="overflow-wrap:anywhere">${esc(doc.title)}</a>`
+      : esc(doc.title);
+
+    // Build sub-entries (sections/articles)
+    const entriesHtml = doc.entries.map(p => {
+      const isVerified = p.verification_status === "verified";
+      const methodLabel = methodMap[p.method] || "Extracted";
+      const statusLabel = statusMap[p.verification_status] || p.verification_status;
+      const verLabel = isVerified ? "Verified" : `${methodLabel}, ${statusLabel}`;
+      const dotCls = isVerified ? "dot-green" : "dot-amber";
+      const verCls = isVerified ? "verified" : "unverified";
+      return `<div class="source-meta" style="padding-left:4px; border-left:2px solid var(--border); margin-top:4px">
+        ${p.section ? `<span>${esc(p.section)}</span> · ` : ""}
+        <span>${p.kind.replace(/_/g," ")}</span>
+        <span class="verified-badge ${verCls}">
+          <span class="dot ${dotCls}"></span>${verLabel}
+        </span>
+      </div>`;
+    }).join("");
 
     const div = document.createElement("div");
     div.className = "source-item";
@@ -1736,13 +1774,7 @@ function renderSources(provenanceList, rulesetVersion) {
       <span class="authority-badge ${authCls}">${esc(authLabel)}</span>
       <div class="source-info">
         <div class="source-title">${titleHtml}</div>
-        <div class="source-meta">
-          ${p.section ? `<span>${esc(p.section)}</span> · ` : ""}
-          <span>${p.kind.replace(/_/g," ")}</span>
-          <span class="verified-badge ${verCls}">
-            <span class="dot ${dotCls}"></span>${verLabel}
-          </span>
-        </div>
+        ${entriesHtml}
       </div>`;
     list.appendChild(div);
   }
