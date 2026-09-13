@@ -11,6 +11,7 @@ from ccnl_engine.engine.payroll.domain.supplements import SickInput
 from ccnl_engine.engine.payroll.service.sickness import (
     _bucket_days,
     _effective_integration_rate,
+    _tier_rate_segments,
     compute_sickness,
 )
 from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
@@ -320,7 +321,7 @@ class TestEffectiveIntegrationRate:
         assert company == _D("309.74")
 
     def test_r5_split_equals_single_episode(self) -> None:
-        """R5: splitting one episode into two calls gives the same totals.
+        """Splitting one episode into two calls gives the same totals.
 
         Episode of 20 sick days split as 10+10 must equal a single 20-day call.
 
@@ -378,7 +379,7 @@ class TestEffectiveIntegrationRate:
         assert abs((co_a + co_b) - co_single) <= tol
 
     def test_r6_tier_crossing(self) -> None:
-        """R6: period spanning a tier boundary uses separate rates per segment.
+        """Period spanning a tier boundary uses separate rates per segment.
 
         Tiers: month 1-10 at 100%, month 10-13 at 90%.
         Tier boundary at day (10-1)*30 = 270.
@@ -447,3 +448,40 @@ class TestEffectiveIntegrationRate:
         )
         assert inps == _D("172.08")
         assert company == _D("172.08")
+
+    def test_r6_inps_band_boundary_split(self) -> None:
+        """Period crossing an INPS band boundary is split at the boundary.
+
+        cumulative=15, sick_days=10: episode days 15-25 spans the band1/band2
+        boundary at day 20.  The fix adds day 20 as a split point in
+        ``_tier_rate_segments`` so each segment uses the correct INPS rate.
+
+          Segment 1: days 15-20 (5 days), band1 rate=0.50, tier 1 → gap=0.50
+          Segment 2: days 20-25 (5 days), band2 rate=0.6667, tier 1 → gap=0.3333
+
+        daily_rate = 68.83
+        carenza = 0  (cumulative=15 >= carenza_limit=3)
+        inps = 5 * 0.50 * 68.83 + 5 * 0.6667 * 68.83 = 401.52
+        company = 5 * 0.50 * 68.83 + 5 * 0.3333 * 68.83 = 286.78
+        """
+        rules = self._rules_with_tiers()
+        _, _, inps, company = compute_sickness(
+            SickInput(sick_days=_D("10"), cumulative_sick_days=_D("15")),
+            rules,
+            _standard_sick_pay_rates(),
+            gross_monthly=_D("2064.88"),
+        )
+        assert inps == _D("401.52")
+        assert company == _D("286.78")
+
+    def test_tier_rate_segments_no_sick_pay_rates(self) -> None:
+        """_tier_rate_segments with sick_pay_rates=None skips the INPS block.
+
+        With tiers and sick_pay_rates=None the function should still split at
+        CCNL tier boundaries only.  Period within month 1 (no boundary crossed)
+        returns a single segment at the tier-1 rate.
+        """
+        rules = self._rules_with_tiers()
+        segs = _tier_rate_segments(_D("5"), _D("0"), rules, sick_pay_rates=None)
+        assert len(segs) == 1
+        assert segs[0] == (_D("5"), _D("1"))
