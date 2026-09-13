@@ -104,6 +104,8 @@ def compute(scenario: PayrollScenario) -> Calculation:
         inps_employer_annual=fiscal.inps_employer_annual,
         employer_funds_annual=fiscal.employer_funds_annual,
         tfr_annual=fiscal.tfr_annual,
+        bilateral_employee_annual=fiscal.bilateral_employee_annual,
+        bilateral_employer_annual=fiscal.bilateral_employer_annual,
         taxable_income=fiscal.taxable_income,
         irpef_gross=fiscal.irpef_gross,
         work_income_deduction=fiscal.work_income_deduction,

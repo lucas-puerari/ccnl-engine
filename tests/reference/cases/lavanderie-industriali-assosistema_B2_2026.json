@@ -58,6 +58,7 @@
     "fiscal_simplifications": [
       "no_addizionale_comunale",
       "no_addizionale_regionale",
+      "no_bilateral_funds",
       "no_detrazioni_art15_mortgage",
       "no_detrazioni_familiari",
       "partial_detrazioni_art15"

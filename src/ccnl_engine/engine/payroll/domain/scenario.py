@@ -28,6 +28,7 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     SupplementaryAllowance,
 )
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
+from ccnl_engine.engine.payroll.domain.bilateral_funds import BilateralFundInput
 from ccnl_engine.engine.payroll.domain.employee import (
     DestinationRalOverride,
     RalOverride,
@@ -336,6 +337,17 @@ class PayrollScenario:
             reported: only mortgage interest is modelled.
             Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply to
             Art. 15 (it targets only Art. 12 + Art. 13 TUIR).
+        bilateral_funds: Scenario-level bilateral fund contributions (fondi
+            bilaterali). Each entry is either a fixed monthly amount
+            (:class:`~ccnl_engine.engine.payroll.domain.bilateral_funds\
+.FlatMonthlyFund`) or a rate applied to an annual base
+            (:class:`~ccnl_engine.engine.payroll.domain.bilateral_funds\
+.RateFund`). The employee portion reduces ``net_annual``; the employer
+            portion enters ``employer_cost_annual``. Both reductions are
+            post-tax only — the engine does not model any pre-tax deductibility
+            of the employee contribution.
+            ``FiscalSimplification.NO_BILATERAL_FUNDS`` is reported when the
+            tuple is empty.
     """
 
     employee: Employee
@@ -349,3 +361,4 @@ class PayrollScenario:
     bonus_input: BonusInput | None = None
     family: FamilyComposition | None = None
     art15_deductions: Art15Deductions | None = None
+    bilateral_funds: tuple[BilateralFundInput, ...] = ()

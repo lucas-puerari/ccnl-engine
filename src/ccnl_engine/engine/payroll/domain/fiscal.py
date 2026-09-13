@@ -19,6 +19,11 @@ class FiscalSimplification(StrEnum):
     interest (one of ~15 Art. 15 TUIR categories). Medical expenses, life
     insurance, funeral costs, charitable donations and the other categories are
     not computed; a separate fiscal layer must handle them.
+    ``NO_BILATERAL_FUNDS`` — no scenario-level bilateral fund contributions
+    provided (``scenario.bilateral_funds`` is empty); cleared when at least one
+    fund is present. Engine models only the post-tax net reduction; any
+    pre-tax deductibility of the employee contribution must be handled by a
+    separate fiscal layer.
     """
 
     NO_ADDIZIONALE_REGIONALE = "no_addizionale_regionale"
@@ -30,3 +35,4 @@ class FiscalSimplification(StrEnum):
     NO_DETRAZIONI_ART15_MORTGAGE = "no_detrazioni_art15_mortgage"
     PARTIAL_DETRAZIONI_ART15 = "partial_detrazioni_art15"
     NO_ULTERIORE_DETRAZIONE_LAVORO = "no_ulteriore_detrazione_lavoro"
+    NO_BILATERAL_FUNDS = "no_bilateral_funds"

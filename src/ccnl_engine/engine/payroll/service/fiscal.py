@@ -6,6 +6,10 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.payroll.domain.bilateral_funds import (
+    BilateralFundInput,
+    FlatMonthlyFund,
+)
 from ccnl_engine.engine.payroll.domain.employment import Apprentice, FixedTerm
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.service import contributions as _contrib
@@ -140,6 +144,48 @@ def _inps_contributions(
     )
 
 
+_TWELVE = Decimal(12)
+
+
+def _compute_bilateral_funds(
+    bilateral_funds: tuple[BilateralFundInput, ...],
+    tfr_base: Decimal,
+    gross_annual: Decimal,
+) -> tuple[Decimal, Decimal]:
+    """Return (bilateral_employee_annual, bilateral_employer_annual).
+
+    Accumulates contributions from all funds in the tuple.
+
+    - :class:`~ccnl_engine.engine.payroll.domain.bilateral_funds.FlatMonthlyFund`:
+      annualised by multiplying the monthly amount by 12.
+    - :class:`~ccnl_engine.engine.payroll.domain.bilateral_funds.RateFund`:
+      rate applied to the selected annual base (``tfr_base`` or
+      ``gross_annual``).
+
+    Both returned amounts are rounded to two decimal places.
+
+    Args:
+        bilateral_funds: Scenario-level fund contributions.
+        tfr_base: TFR computation base for rate funds that use it.
+        gross_annual: Annual gross pay for rate funds that use it.
+
+    Returns:
+        A 2-tuple of (employee_annual, employer_annual).
+    """
+    employee_total = _ZERO
+    employer_total = _ZERO
+    for fund in bilateral_funds:
+        if isinstance(fund, FlatMonthlyFund):
+            employee_total += money(fund.employee_monthly * _TWELVE)
+            employer_total += money(fund.employer_monthly * _TWELVE)
+        else:
+            # RateFund
+            base = tfr_base if fund.base == "tfr_base" else gross_annual
+            employee_total += money(base * fund.employee_rate)
+            employer_total += money(base * fund.employer_rate)
+    return money(employee_total), money(employer_total)
+
+
 def _employer_funds(
     ccnl: CCNL,
     category: LevelCategory | None,
@@ -193,6 +239,7 @@ def _compute_ti(
             FiscalSimplification.NO_DETRAZIONI_FAMILIARI,
             FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE,
             FiscalSimplification.PARTIAL_DETRAZIONI_ART15,
+            FiscalSimplification.NO_BILATERAL_FUNDS,
         })
     else:
         trattamento_integrativo = _ZERO
@@ -364,6 +411,8 @@ class FiscalPay:
     inps_employer_annual: Decimal
     employer_funds_annual: Decimal
     tfr_annual: Decimal
+    bilateral_employee_annual: Decimal
+    bilateral_employer_annual: Decimal
     taxable_income: Decimal
     irpef_gross: Decimal
     work_income_deduction: Decimal
@@ -420,6 +469,11 @@ def compute_fiscal(
         scenario.employment.calculation_date,
     )
     tfr_annual = _contrib.tfr(gross.tfr_base, rules)
+    bilateral_employee_annual, bilateral_employer_annual = _compute_bilateral_funds(
+        scenario.bilateral_funds,
+        gross.tfr_base,
+        gross.gross_annual,
+    )
 
     taxable_income = money(gross.gross_annual - inps_employee_annual)
     irpef_gross = _irpef.irpef_gross(taxable_income, rules)
@@ -530,6 +584,7 @@ def compute_fiscal(
     # PARTIAL_DETRAZIONI_ART15 is never removed: the engine only models mortgage
     # interest; the other ~14 Art. 15 TUIR categories are always out of scope.
     # Add NO_ULTERIORE_DETRAZIONE_LAVORO when rules are absent from the file.
+    # Remove NO_BILATERAL_FUNDS when at least one fund was provided.
     sfs_mut: set[FiscalSimplification] = set(fiscal_simplifications)
     if scenario.family is not None and scenario.family.has_any_dependent:
         sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_FAMILIARI)
@@ -537,6 +592,8 @@ def compute_fiscal(
         sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE)
     if ud_rules is None:
         sfs_mut.add(FiscalSimplification.NO_ULTERIORE_DETRAZIONE_LAVORO)
+    if scenario.bilateral_funds:
+        sfs_mut.discard(FiscalSimplification.NO_BILATERAL_FUNDS)
     fiscal_simplifications = frozenset(sfs_mut)
 
     # Addizionale regionale e comunale (Art. 50 TUIR; Art. 1 D.Lgs. 360/1998).
@@ -559,10 +616,15 @@ def compute_fiscal(
         - addizionale_regionale
         - addizionale_comunale
         + trattamento_integrativo
+        - bilateral_employee_annual
     )
     net_monthly = money(net_annual / gross.additional_months)
     employer_cost_annual = money(
-        gross.gross_annual + inps_employer_annual + employer_funds_annual + tfr_annual
+        gross.gross_annual
+        + inps_employer_annual
+        + employer_funds_annual
+        + bilateral_employer_annual
+        + tfr_annual
     )
 
     return FiscalPay(
@@ -570,6 +632,8 @@ def compute_fiscal(
         inps_employer_annual=inps_employer_annual,
         employer_funds_annual=employer_funds_annual,
         tfr_annual=tfr_annual,
+        bilateral_employee_annual=bilateral_employee_annual,
+        bilateral_employer_annual=bilateral_employer_annual,
         taxable_income=taxable_income,
         irpef_gross=irpef_gross,
         work_income_deduction=work_income_deduction,

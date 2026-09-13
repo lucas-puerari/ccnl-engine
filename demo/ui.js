@@ -853,7 +853,9 @@ const SIMP_LABELS = {
   addizionale_comunale_unknown:  "Municipal income surtax — data not available for this comune",
   no_detrazioni_familiari:       "Family-dependent deductions (Art. 12 TUIR)",
   no_sterilizzazione_detrazioni: "Deduction phase-out (progressive reduction)",
-  no_detrazioni_art15:           "Personal expense deductions (Art. 15 TUIR) — not applied",
+  no_detrazioni_art15_mortgage:  "Mortgage interest deduction (Art. 15 TUIR, lett. b) — not applied",
+  partial_detrazioni_art15:      "Other Art. 15 TUIR personal expense deductions — not modelled",
+  no_bilateral_funds:            "Bilateral fund contributions (fondi bilaterali) — not provided",
 };
 
 // Sanitize engine warning strings: replace technical identifiers with readable text.
@@ -861,7 +863,9 @@ function sanitizeWarning(w) {
   return String(w)
     .replace(/\baddizionale_comunale_unknown\b/gi, "municipal surtax code not found")
     .replace(/\baddizionale_regionale_unknown\b/gi, "regional surtax data not found")
-    .replace(/\bno_detrazioni_art15\b/gi, "personal expense deductions (Art. 15 TUIR)")
+    .replace(/\bno_detrazioni_art15_mortgage\b/gi, "mortgage interest deduction (Art. 15 TUIR)")
+    .replace(/\bpartial_detrazioni_art15\b/gi, "other Art. 15 personal expense deductions")
+    .replace(/\bno_bilateral_funds\b/gi, "bilateral fund contributions")
     .replace(/\bno_detrazioni_familiari\b/gi, "family deductions (Art. 12 TUIR)")
     .replace(/\bno_sterilizzazione_detrazioni\b/gi, "progressive reduction")
     .replace(/_/g, " "); // last-resort: replace underscores in any remaining identifiers

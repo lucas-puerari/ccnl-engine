@@ -50,6 +50,7 @@
     "addizionale_comunale_annual": "173.50",
     "trattamento_integrativo": "0",
     "fiscal_simplifications": [
+      "no_bilateral_funds",
       "no_detrazioni_art15_mortgage",
       "no_detrazioni_familiari",
       "partial_detrazioni_art15"

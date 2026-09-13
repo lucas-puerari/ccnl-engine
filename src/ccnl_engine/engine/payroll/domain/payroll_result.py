@@ -167,6 +167,13 @@ class PayrollResult:
             (e.g. Cassa Edile, Fondapi) for the year.
         tfr_annual: TFR (*Trattamento di Fine Rapporto*) accrual for the
             year (Art. 2120 c.c.).
+        bilateral_employee_annual: Employee contribution to scenario-level
+            bilateral funds (fondi bilaterali). Zero when
+            ``scenario.bilateral_funds`` is empty. Reduces ``net_annual``
+            post-tax.
+        bilateral_employer_annual: Employer contribution to scenario-level
+            bilateral funds. Zero when ``scenario.bilateral_funds`` is
+            empty. Enters ``employer_cost_annual``.
 
         taxable_income: IRPEF taxable base (``gross_annual``
             minus ``inps_employee_annual``).
@@ -232,6 +239,8 @@ class PayrollResult:
     inps_employer_annual: Decimal
     employer_funds_annual: Decimal
     tfr_annual: Decimal
+    bilateral_employee_annual: Decimal
+    bilateral_employer_annual: Decimal
 
     taxable_income: Decimal
     irpef_gross: Decimal

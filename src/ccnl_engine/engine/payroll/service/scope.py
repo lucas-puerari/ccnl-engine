@@ -245,5 +245,9 @@ def build_scope(
             feature="bonus_pdr",
             status=_feature_status(scenario.bonus_input is not None),
         ),
+        ScopeItem(
+            feature="bilateral_funds",
+            status=_feature_status(len(scenario.bilateral_funds) > 0),
+        ),
     ]
     return tuple(items)
