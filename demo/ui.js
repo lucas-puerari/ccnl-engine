@@ -72,6 +72,11 @@ function applyTranslations() {
   document.documentElement.lang = _currentLang;
   // Refresh example labels
   _refreshExampleSelect();
+  // Refresh combobox placeholders (created before i18n loads, so t() returned the key)
+  window._ccnlCombo?.setPlaceholder(t("form.ccnl.placeholder"));
+  window._regioneCombo?.setPlaceholder(t("form.regione.placeholder"));
+  window._comuneCombo?.setPlaceholder(t("form.comune.name_placeholder"));
+  window._cmpCcnlCombo?.setPlaceholder(t("form.ccnl.placeholder"));
 }
 
 async function loadI18n(lang) {
