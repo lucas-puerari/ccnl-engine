@@ -407,38 +407,15 @@
         <!-- Tab panel: Dettaglio -->
         <div id="panel-detail" class="result-tab-panel" role="tabpanel" aria-labelledby="tab-detail">
 
-          <!-- 1. Full breakdown — collapsible, closed by default -->
-          <details class="collapsible-section" id="breakdown-section">
-            <summary>
-              <span class="card-title" data-i18n="breakdown.title">Prospetto</span>
-            </summary>
-            <div id="breakdown-body-wrap">
-              <table class="breakdown-table">
-                <colgroup>
-                  <col style="width:60%"/><col style="width:20%"/><col style="width:20%"/>
-                </colgroup>
-                <thead>
-                  <tr>
-                    <th data-i18n="breakdown.col.item">Voce</th>
-                    <th style="text-align:right" data-i18n="breakdown.col.monthly">Mensile</th>
-                    <th style="text-align:right" data-i18n="breakdown.col.annual">Annuale</th>
-                  </tr>
-                </thead>
-                <tbody id="breakdown-table-body"></tbody>
-              </table>
-              <p class="breakdown-note" id="irpef-note"></p>
-            </div>
-          </details>
-
-          <!-- 2. Trace — collapsible, closed by default -->
+          <!-- 1. Trace — collapsible, closed by default -->
           <details class="collapsible-section" id="trace-section">
             <summary>
-              <span class="card-title" data-i18n="trace.title">Perché questo numero?</span>
+              <span class="card-title" data-i18n="trace.title">Calcolo</span>
             </summary>
             <div class="trace-body" id="trace-body"></div>
           </details>
 
-          <!-- 3. Sources — collapsible, closed by default -->
+          <!-- 2. Sources — collapsible, closed by default -->
           <details class="collapsible-section" id="sources-section">
             <summary>
               <span class="card-title" data-i18n="sources.title">Fonti</span>
@@ -455,7 +432,7 @@
             </div>
           </details>
 
-          <!-- 4. Scope & Reliability — collapsible, closed by default -->
+          <!-- 3. Scope & Reliability — collapsible, closed by default -->
           <details class="collapsible-section" id="scope-section">
             <summary>
               <span class="card-title" data-i18n="scope.title">Affidabilità</span>
@@ -476,6 +453,29 @@
                 </div>
               </div>
               <div id="simps-note" style="display:none" class="simps-note"></div>
+            </div>
+          </details>
+
+          <!-- 4. Full breakdown — collapsible, closed by default, last -->
+          <details class="collapsible-section" id="breakdown-section">
+            <summary>
+              <span class="card-title" data-i18n="breakdown.title">Prospetto</span>
+            </summary>
+            <div id="breakdown-body-wrap">
+              <table class="breakdown-table">
+                <colgroup>
+                  <col style="width:60%"/><col style="width:20%"/><col style="width:20%"/>
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th data-i18n="breakdown.col.item">Voce</th>
+                    <th style="text-align:right" data-i18n="breakdown.col.monthly">Mensile</th>
+                    <th style="text-align:right" data-i18n="breakdown.col.annual">Annuale</th>
+                  </tr>
+                </thead>
+                <tbody id="breakdown-table-body"></tbody>
+              </table>
+              <p class="breakdown-note" id="irpef-note"></p>
             </div>
           </details>
 

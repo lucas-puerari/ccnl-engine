@@ -94,7 +94,7 @@
   "results.scenario.fixed_term": "Fixed-term",
   "results.scenario.apprentice": "Apprentice",
   "results.scenario.pt_suffix": " · {pct}% PT",
-  "trace.title": "Why this number?",
+  "trace.title": "Calculation",
   "trace.sub": "Monthly gross computation — step by step",
   "trace.no_cite": "No source recorded for this step",
   "sources.title": "Sources",
