@@ -87,6 +87,9 @@ jobs:
       - name: "Docs: generate coverage matrix"
         run: uv run python scripts/docs/gen_coverage_matrix.py
 
+      - name: "Docs: generate contract pages"
+        run: uv run python scripts/docs/gen_contract_pages.py
+
       - name: "Docs: build with Zensical"
         run: uv run zensical build
 
