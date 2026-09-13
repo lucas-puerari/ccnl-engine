@@ -330,8 +330,10 @@ class PayrollScenario:
             the worker.  When provided, the engine computes the tax credit
             (19 % on eligible expenditure up to the statutory ceiling) and
             subtracts it from ``irpef_net`` (reducing ``net_annual``).
-            ``None`` means no Art. 15 deductions are applied and
-            ``FiscalSimplification.NO_DETRAZIONI_ART15`` is reported.
+            ``None`` means no mortgage deductions are applied and
+            ``FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE`` is reported.
+            ``FiscalSimplification.PARTIAL_DETRAZIONI_ART15`` is always
+            reported: only mortgage interest is modelled.
             Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply to
             Art. 15 (it targets only Art. 12 + Art. 13 TUIR).
     """

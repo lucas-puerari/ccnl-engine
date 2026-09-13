@@ -1816,23 +1816,43 @@ class TestArt15Deductions:
         ).result
         assert result.art15_deduction_annual == _D("760.00")  # 4000 * 0.19
 
-    def test_no_detrazioni_art15_tag_removed_when_computed(self) -> None:
-        """NO_DETRAZIONI_ART15 absent from simplifications when Art. 15 applied."""
+    def test_no_detrazioni_art15_mortgage_tag_removed_when_computed(self) -> None:
+        """NO_DETRAZIONI_ART15_MORTGAGE absent when mortgage interest is provided."""
         result = compute(
             dataclasses.replace(
                 _req(),
                 art15_deductions=Art15Deductions(mortgage_interest=_D("1000")),
             )
         ).result
-        assert (
-            FiscalSimplification.NO_DETRAZIONI_ART15
-            not in result.fiscal_simplifications
-        )
+        sfs = result.fiscal_simplifications
+        assert FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE not in sfs
 
-    def test_no_detrazioni_art15_tag_present_when_not_set(self) -> None:
-        """NO_DETRAZIONI_ART15 present in simplifications when not provided."""
+    def test_partial_detrazioni_art15_always_set_when_mortgage_present(self) -> None:
+        """PARTIAL_DETRAZIONI_ART15 stays set even when mortgage is provided.
+
+        Only one of ~15 Art. 15 TUIR categories is modelled; the flag signals
+        that the other categories are always out of scope.
+        """
+        result = compute(
+            dataclasses.replace(
+                _req(),
+                art15_deductions=Art15Deductions(mortgage_interest=_D("1000")),
+            )
+        ).result
+        sfs = result.fiscal_simplifications
+        assert FiscalSimplification.PARTIAL_DETRAZIONI_ART15 in sfs
+
+    def test_no_detrazioni_art15_mortgage_tag_present_when_not_set(self) -> None:
+        """NO_DETRAZIONI_ART15_MORTGAGE present when mortgage not provided."""
         result = compute(_req()).result
-        assert FiscalSimplification.NO_DETRAZIONI_ART15 in result.fiscal_simplifications
+        sfs = result.fiscal_simplifications
+        assert FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE in sfs
+
+    def test_partial_detrazioni_art15_always_set_when_no_art15(self) -> None:
+        """PARTIAL_DETRAZIONI_ART15 always set, even without any Art. 15 input."""
+        result = compute(_req()).result
+        sfs = result.fiscal_simplifications
+        assert FiscalSimplification.PARTIAL_DETRAZIONI_ART15 in sfs
 
     def test_exempt_employer_art15_unused_equals_total(self) -> None:
         """When employer does not withhold IRPEF, unused = total credit."""
@@ -1848,7 +1868,7 @@ class TestArt15Deductions:
         assert result.irpef_net == _D("0.00")
 
     def test_zero_interest_has_no_effect(self) -> None:
-        """Art15Deductions with zero mortgage_interest: no deduction, tag kept."""
+        """Art15Deductions with zero mortgage_interest: no deduction, tags kept."""
         baseline = compute(_req()).result
         with_zero = compute(
             dataclasses.replace(
@@ -1858,9 +1878,9 @@ class TestArt15Deductions:
         ).result
         assert with_zero.art15_deduction_annual == _D("0")
         assert with_zero.irpef_net == baseline.irpef_net
-        assert (
-            FiscalSimplification.NO_DETRAZIONI_ART15 in with_zero.fiscal_simplifications
-        )
+        sfs = with_zero.fiscal_simplifications
+        assert FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE in sfs
+        assert FiscalSimplification.PARTIAL_DETRAZIONI_ART15 in sfs
 
     def test_gross_annual_not_mutated_by_art15_deductions(self) -> None:
         """gross_annual is unchanged by Art. 15 deductions."""

@@ -34,8 +34,10 @@ class Art15DeductionRules(BaseModel):
 
     Only interessi passivi mutuo prima casa (lett. b) is modelled.  Other
     Art. 15 categories (medical expenses, educational expenses, funeral
-    expenses, etc.) are out of scope and reported as
-    ``FiscalSimplification.NO_DETRAZIONI_ART15`` when not provided.
+    expenses, etc.) are out of scope. The engine reports
+    ``FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE`` when mortgage
+    interest is not provided and ``FiscalSimplification.PARTIAL_DETRAZIONI_ART15``
+    always, to signal that the other ~14 Art. 15 categories are not computed.
     """
 
     model_config = ConfigDict(extra="forbid")

@@ -42,8 +42,9 @@
     "fiscal_simplifications": [
       "no_addizionale_comunale",
       "no_addizionale_regionale",
-      "no_detrazioni_art15",
-      "no_detrazioni_familiari"
+      "no_detrazioni_art15_mortgage",
+      "no_detrazioni_familiari",
+      "partial_detrazioni_art15"
     ],
     "net_annual": "23371.35",
     "net_monthly": "1669.38",
