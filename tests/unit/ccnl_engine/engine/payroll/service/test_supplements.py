@@ -14,8 +14,11 @@ from ccnl_engine.engine.contract.domain.ccnl import (
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
 from ccnl_engine.engine.payroll.domain.calculation import TraceCategory
 from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
+from ccnl_engine.engine.payroll.service.rounding import money as _money
 from ccnl_engine.engine.payroll.service.supplements import (
+    _slice_hours_for_band,
     _supplement_for_band,
+    _supplements_for_kind,
     compute_time_supplements,
 )
 
@@ -256,3 +259,161 @@ class TestComputeTimeSupplements:
         )
         assert ot == _ZERO
         assert steps == ()  # zero raw -> skipped, no SUPPLEMENT_TOTAL either
+
+
+def _band_with_threshold(
+    code: str,
+    rate: str,
+    applies_to: list[str],
+    threshold: int | None = None,
+) -> OvertimeBand:
+    """Build an OvertimeBand with an optional weekly hour threshold.
+
+    Returns:
+        An OvertimeBand for unit tests.
+    """
+    return OvertimeBand(
+        code=code,
+        description=code,
+        kind=TimeSupplementKind("percentage"),
+        rate=TimeSeries(
+            periods=[
+                ValidityPeriod(
+                    valid_from=date(2020, 1, 1),
+                    valid_until=None,
+                    value=Decimal(rate),
+                )
+            ]
+        ),
+        applies_to_kinds=[WorkKind(k) for k in applies_to],
+        hour_threshold_per_week=threshold,
+    )
+
+
+class TestSliceHoursForBand:
+    """_slice_hours_for_band partitions hours by weekly threshold."""
+
+    def test_single_band_gets_all_hours(self) -> None:
+        """One band with no threshold receives all hours."""
+        bands = [_band_with_threshold("B1", "0.15", ["weekday"])]
+        result = _slice_hours_for_band(0, bands, Decimal(10))
+        assert result == Decimal(10)
+
+    def test_first_band_capped_at_next_threshold(self) -> None:
+        """First band (threshold=0) receives min(total, next_threshold)."""
+        bands = [
+            _band_with_threshold("B1", "0.15", ["weekday"], threshold=None),
+            _band_with_threshold("B2", "0.20", ["weekday"], threshold=4),
+        ]
+        result = _slice_hours_for_band(0, bands, Decimal(10))
+        assert result == Decimal(4)  # min(10, 4) - 0
+
+    def test_last_band_gets_remainder(self) -> None:
+        """Second band (threshold=4) receives max(0, total - 4)."""
+        bands = [
+            _band_with_threshold("B1", "0.15", ["weekday"], threshold=None),
+            _band_with_threshold("B2", "0.20", ["weekday"], threshold=4),
+        ]
+        result = _slice_hours_for_band(1, bands, Decimal(10))
+        assert result == Decimal(6)  # 10 - 4
+
+    def test_hours_below_last_band_threshold_returns_zero(self) -> None:
+        """Total hours below last band's threshold: last band gets zero."""
+        bands = [
+            _band_with_threshold("B1", "0.15", ["weekday"], threshold=None),
+            _band_with_threshold("B2", "0.20", ["weekday"], threshold=8),
+        ]
+        result = _slice_hours_for_band(1, bands, Decimal(5))
+        assert result == _ZERO  # max(0, 5 - 8) = 0
+
+
+class TestSupplementsForKind:
+    """_supplements_for_kind returns correct (amount, bucket, label, detail) entries."""
+
+    def test_single_band_returns_one_entry(self) -> None:
+        """One band: returns one tuple with correct values."""
+        bands = [_band_with_threshold("OT", "0.15", ["weekday"])]
+        hourly_base = _BASE / _DIVISOR
+        results = _supplements_for_kind(
+            WorkKind.WEEKDAY, bands, Decimal(10), hourly_base, _AS_OF
+        )
+        assert len(results) == 1
+        _amount, bucket, label, detail = results[0]
+        assert bucket == "overtime"
+        assert label == "OT"
+        assert "weekday" in detail
+
+    def test_two_bands_partitioned_by_threshold(self) -> None:
+        """Two bands at 15%/20% with threshold=4: hours are split, not summed.
+
+        10 weekday hours: band1 (15%, hrs 0-4) + band2 (20%, hrs 4-10).
+        hourly_base = 2064.88 / 173
+        band1: 4 * 0.15 * hourly_base
+        band2: 6 * 0.20 * hourly_base
+        Total = (0.60 + 1.20) * hourly_base — not (0.15+0.20)*10*hourly_base.
+        """
+        bands = [
+            _band_with_threshold("B1", "0.15", ["weekday"], threshold=None),
+            _band_with_threshold("B2", "0.20", ["weekday"], threshold=4),
+        ]
+        hourly_base = _BASE / _DIVISOR
+        results = _supplements_for_kind(
+            WorkKind.WEEKDAY, bands, Decimal(10), hourly_base, _AS_OF
+        )
+        assert len(results) == 2
+        amount1 = results[0][0]
+        amount2 = results[1][0]
+        # Verify band2 is larger (6 hrs at 20%) than band1 (4 hrs at 15%)
+        assert amount2 > amount1
+
+    def test_hours_below_threshold_skips_last_band(self) -> None:
+        """Total hours below last band's threshold: last band produces no entry."""
+        bands = [
+            _band_with_threshold("B1", "0.15", ["weekday"], threshold=None),
+            _band_with_threshold("B2", "0.20", ["weekday"], threshold=8),
+        ]
+        hourly_base = _BASE / _DIVISOR
+        results = _supplements_for_kind(
+            WorkKind.WEEKDAY, bands, Decimal(5), hourly_base, _AS_OF
+        )
+        assert len(results) == 1  # only B1 (5 hrs), B2 gets 0 hrs
+
+
+class TestComputeTimeSupplementsTieredBands:
+    """compute_time_supplements with threshold-partitioned weekday bands."""
+
+    def test_two_tiered_weekday_bands_partitioned(self) -> None:
+        """Two weekday bands at 15%/20% with threshold=4: hours partitioned, not summed.
+
+        10 weekday hrs: band1 (15%) gets 4 hrs, band2 (20%) gets 6 hrs.
+        hourly_base = 2064.88 / 173 = 11.9358...
+        band1: 4 * 0.15 * hourly_base = 7.16
+        band2: 6 * 0.20 * hourly_base = 14.32 (approx)
+        total overtime = money(7.16 + 14.32) vs wrong sum = (0.15+0.20)*10*hourly_base
+        """
+        schema = TimeSupplements(
+            hourly_base_method="minimo_tabellare",
+            overtime_bands=[
+                _band_with_threshold("B1", "0.15", ["weekday"], threshold=None),
+                _band_with_threshold("B2", "0.20", ["weekday"], threshold=4),
+            ],
+        )
+        ot, ni, ho, steps = compute_time_supplements(
+            OvertimeHours(weekday_hours=Decimal(10)),
+            schema,
+            _BASE,
+            _DIVISOR,
+            _AS_OF,
+        )
+        # With partitioning: 4*0.15 + 6*0.20 = 0.60+1.20 = 1.80 * hourly_base
+        # Wrong sum: (0.15+0.20)*10 = 3.50 * hourly_base
+        hourly_base = _BASE / _DIVISOR
+        expected = (
+            Decimal(4) * Decimal("0.15") * hourly_base
+            + Decimal(6) * Decimal("0.20") * hourly_base
+        )
+
+        assert ot == _money(expected)
+        assert ni == _ZERO
+        assert ho == _ZERO
+        assert len(steps) == 3  # B1 + B2 + total
