@@ -483,7 +483,17 @@ def compute_fiscal(
     # Trattamento integrativo (Art. 1 D.L. 3/2020): computed when the tax
     # data file carries the required parameters.
     # relevant_deductions: Art. 12 + Art. 13 + qualifying Art. 15 (statute).
-    relevant_deductions = work_income_deduction + fam_total + art15_total
+    # Only pre-1993 mortgage interest qualifies; post-1993 mortgages reduce
+    # IRPEF but are excluded from the TI relevant-deductions sum.
+    art15_pre_1993 = (
+        art15_total
+        if (
+            scenario.art15_deductions is not None
+            and scenario.art15_deductions.mortgage_pre_1993
+        )
+        else _ZERO
+    )
+    relevant_deductions = work_income_deduction + fam_total + art15_pre_1993
     trattamento_integrativo, fiscal_simplifications = _compute_ti(
         taxable_income,
         irpef_gross,

@@ -1742,6 +1742,45 @@ class TestArt15Deductions:
         assert result.unused_art15_deduction_annual == result.art15_deduction_annual
 
 
+class TestArt15MortgagePre1993:
+    """Tests for mortgage_pre_1993 TI qualification gate."""
+
+    def test_post_1993_mortgage_excluded_from_ti_relevant_deductions(self) -> None:
+        """Post-1993 mortgage (default) does not affect trattamento_integrativo."""
+        # Level 2 (base 600/month) puts taxable income in the TI band.
+        baseline = compute(_req(level_code="2")).result
+        with_post_1993 = compute(
+            dataclasses.replace(
+                _req(level_code="2"),
+                art15_deductions=Art15Deductions(
+                    mortgage_interest=_D("3000"), mortgage_pre_1993=False
+                ),
+            )
+        ).result
+        # Art. 15 credit still applied to IRPEF
+        assert with_post_1993.art15_deduction_annual == _D("570.00")
+        # TI unaffected by post-1993 mortgage
+        assert (
+            with_post_1993.trattamento_integrativo == baseline.trattamento_integrativo
+        )
+
+    def test_pre_1993_mortgage_included_in_ti_relevant_deductions(self) -> None:
+        """Pre-1993 mortgage qualifies for TI relevant_deductions."""
+        baseline = compute(_req(level_code="2")).result
+        with_pre_1993 = compute(
+            dataclasses.replace(
+                _req(level_code="2"),
+                art15_deductions=Art15Deductions(
+                    mortgage_interest=_D("3000"), mortgage_pre_1993=True
+                ),
+            )
+        ).result
+        # Art. 15 credit still applied to IRPEF
+        assert with_pre_1993.art15_deduction_annual == _D("570.00")
+        # TI may increase because relevant_deductions grew (or remain at max)
+        assert with_pre_1993.trattamento_integrativo >= baseline.trattamento_integrativo
+
+
 class TestComputeResultStatus:
     """Unit tests for _compute_result_status helper."""
 
