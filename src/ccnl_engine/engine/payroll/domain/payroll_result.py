@@ -300,6 +300,10 @@ class PayrollResult:
     # Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply here.
     art15_deduction_annual: Decimal = _ZERO
     unused_art15_deduction_annual: Decimal = _ZERO
+    # Art. 1 c. 3-4 L. 199/2025 sterilizzazione: EUR 440 clawback on the
+    # combined Art. 12 + Art. 13 deductions when reddito > EUR 200 000.
+    # Zero for most taxpayers (Art. 12 + Art. 13 phase out well below 200k).
+    sterilizzazione_clawback_annual: Decimal = _ZERO
 
     # --- L3: time supplements (informational; not in gross_annual/net_annual) ---
     base_monthly_full_time: Decimal = _ZERO
