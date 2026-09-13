@@ -14,6 +14,9 @@ demo:
 	  sed "s/WHEEL_VERSION/$${WHEEL_VERSION}/g" demo/index.html \
 	    > demo/_build/index.html && \
 	  cp demo/app.py demo/_build/app.py && \
+	  cp demo/style.css demo/_build/style.css && \
+	  sed "s/WHEEL_VERSION/$${WHEEL_VERSION}/g" demo/ui.js \
+	    > demo/_build/ui.js && \
 	  cp demo/wheels/*.whl demo/_build/wheels/ && \
 	  cp demo/i18n/*.json demo/_build/i18n/
 	@echo "Wheel built. Serving demo at http://127.0.0.1:8080"
