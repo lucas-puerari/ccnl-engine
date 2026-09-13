@@ -102,31 +102,51 @@
     a { color: var(--accent); }
     a:hover { color: var(--accent-hover); }
 
-    /* ── Loading overlay ────────────────────────────────────────────────── */
+    /* ── Loading bar (top notification, non-blocking) ───────────────────── */
     #loading {
-      position: fixed; inset: 0;
-      background: rgba(11,18,32,.92);
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; z-index: 100; gap: 16px;
+      position: sticky; top: 0; z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex; flex-direction: column; align-items: stretch;
+      gap: 0;
     }
     #loading.hidden { display: none; }
+    #loading-inner {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 16px;
+    }
     .spinner {
-      width: 36px; height: 36px;
-      border: 2.5px solid rgba(255,255,255,.12);
+      width: 16px; height: 16px;
+      border: 2px solid var(--border);
       border-top-color: var(--accent);
-      border-radius: 50%;
+      border-radius: 50%; flex-shrink: 0;
       animation: spin .7s linear infinite;
     }
+    .spinner.hidden { display: none; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    #loading-msg { color: #b8c8e0; font-size: 13px; }
+    #loading-msg { color: var(--muted); font-size: 13px; flex: 1; }
+    #loading-error-detail {
+      display: none; font-size: 11px; color: var(--faint);
+      padding: 0 16px 8px; font-family: "IBM Plex Mono", monospace;
+    }
+    #retry-btn {
+      display: none;
+      padding: 4px 12px; font-size: 12px; border-radius: 6px;
+      border: 1px solid var(--accent); background: transparent;
+      color: var(--accent); cursor: pointer; font-family: inherit;
+    }
+    #retry-btn:hover { background: var(--accent-bg); }
+    #detail-toggle {
+      display: none;
+      font-size: 11px; color: var(--faint); cursor: pointer;
+      text-decoration: underline; white-space: nowrap;
+    }
     .progress-bar {
-      width: 240px; height: 3px;
-      background: rgba(255,255,255,.08);
-      border-radius: 2px; overflow: hidden;
+      height: 2px; background: var(--border);
     }
     .progress-fill {
       height: 100%; background: var(--accent);
-      border-radius: 2px; transition: width .4s ease;
+      transition: width .4s ease;
     }
 
     /* ── Header ─────────────────────────────────────────────────────────── */
@@ -690,8 +710,13 @@
 <body>
 
 <div id="loading">
-  <div class="spinner"></div>
-  <div id="loading-msg">Initialising Python runtime…</div>
+  <div id="loading-inner">
+    <div class="spinner" id="loading-spinner"></div>
+    <div id="loading-msg">Preparazione del calcolatore…</div>
+    <button id="retry-btn" onclick="location.reload()">↺ Riprova</button>
+    <span id="detail-toggle" onclick="document.getElementById('loading-error-detail').style.display = document.getElementById('loading-error-detail').style.display === 'none' ? 'block' : 'none'">dettagli ▾</span>
+  </div>
+  <div id="loading-error-detail"></div>
   <div class="progress-bar">
     <div class="progress-fill" id="progress-fill" style="width:0%"></div>
   </div>
@@ -968,6 +993,12 @@
   </div>
 
   <div id="error-box"></div>
+
+  <!-- ── Initial placeholder (before first calculation) ───────────────── -->
+  <div id="results-placeholder" style="text-align:center; padding:32px 16px; color:var(--faint); font-size:13px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);">
+    <div style="font-size:28px; margin-bottom:8px">📊</div>
+    <div data-i18n="results.placeholder">Seleziona un CCNL e clicca Calcola per vedere i risultati.</div>
+  </div>
 
   <!-- ── Results ─────────────────────────────────────────────────────── -->
   <div id="results">
@@ -2154,6 +2185,7 @@ function doCompute(pyodide) {
   renderBreakdown(r, comune);
 
   document.getElementById("results").style.display = "flex";
+  document.getElementById("results-placeholder").style.display = "none";
   clearStale();
 }
 
@@ -2164,16 +2196,16 @@ async function main() {
   await loadI18n(detectLang());
   applyTranslations();
   try {
-    setProgress(5,  t("loading.runtime"));
+    setProgress(5,  t("loading.init"));
     const pyodide = await loadPyodide();
-    setProgress(30, t("loading.deps"));
+    setProgress(30, t("loading.init"));
     await pyodide.loadPackage(["pydantic", "micropip"]);
-    setProgress(60, t("loading.engine"));
+    setProgress(60, t("loading.init"));
     const micropip = pyodide.pyimport("micropip");
     // WHEEL_VERSION is replaced by the pages.yml workflow at build time.
     const wheelUrl = new URL("./wheels/ccnl_engine-WHEEL_VERSION-py3-none-any.whl", window.location.href).href;
     await micropip.install(wheelUrl);
-    setProgress(80, t("loading.app"));
+    setProgress(80, t("loading.init"));
     const resp = await fetch("./app.py");
     if (!resp.ok) throw new Error("app.py not found (" + resp.status + ")");
     pyodide.runPython(await resp.text());
@@ -2192,8 +2224,14 @@ async function main() {
 
     setTimeout(hideLoading, 300);
   } catch (err) {
-    document.getElementById("loading-msg").textContent = "Error: " + err.message;
-    document.getElementById("loading").style.background = "rgba(50,10,10,.9)";
+    const spinner = document.getElementById("loading-spinner");
+    if (spinner) spinner.classList.add("hidden");
+    document.getElementById("loading-msg").textContent = t("loading.error");
+    document.getElementById("retry-btn").style.display = "inline-block";
+    document.getElementById("detail-toggle").style.display = "inline";
+    const detail = document.getElementById("loading-error-detail");
+    detail.textContent = String(err);
+    detail.style.display = "none"; // collapsed by default
   }
 }
 
