@@ -133,9 +133,13 @@ def _build_bonus_input(inputs: dict[str, Any]) -> BonusInput | None:
     raw = inputs.get("bonus_input")
     if raw is None:
         return None
+    prior_year_raw = raw.get("prior_year_gross_annual")
     return BonusInput(
         annual_amount=Decimal(str(raw.get("annual_amount", "0"))),
         eligible_for_pdr=bool(raw.get("eligible_for_pdr", False)),
+        prior_year_gross_annual=(
+            Decimal(str(prior_year_raw)) if prior_year_raw is not None else None
+        ),
     )
 
 
@@ -167,6 +171,7 @@ def _build_art15_deductions(inputs: dict[str, Any]) -> Art15Deductions | None:
         return None
     return Art15Deductions(
         mortgage_interest=Decimal(str(raw.get("mortgage_interest", "0"))),
+        mortgage_pre_1993=bool(raw.get("mortgage_pre_1993", False)),
     )
 
 
@@ -320,3 +325,46 @@ class TestReferenceCases:
         # Compare each field in expected against the live PayrollResult
         for field, raw_value in expected.items():
             _assert_field(field, getattr(result, field), raw_value)
+
+
+class TestReferenceBuilders:
+    """Builder functions must forward all fields declared in fixture dicts."""
+
+    def test_build_art15_deductions_passes_mortgage_pre_1993(self) -> None:
+        """_build_art15_deductions must honour the mortgage_pre_1993 flag."""
+        result = _build_art15_deductions({
+            "art15_deductions": {
+                "mortgage_interest": "1000",
+                "mortgage_pre_1993": True,
+            }
+        })
+        assert result is not None
+        assert result.mortgage_pre_1993 is True
+
+    def test_build_art15_deductions_defaults_mortgage_pre_1993_false(self) -> None:
+        """When mortgage_pre_1993 is absent, _build_art15_deductions defaults False."""
+        result = _build_art15_deductions({
+            "art15_deductions": {"mortgage_interest": "500"}
+        })
+        assert result is not None
+        assert result.mortgage_pre_1993 is False
+
+    def test_build_bonus_input_passes_prior_year_gross_annual(self) -> None:
+        """_build_bonus_input must honour prior_year_gross_annual when present."""
+        result = _build_bonus_input({
+            "bonus_input": {
+                "annual_amount": "1000",
+                "eligible_for_pdr": True,
+                "prior_year_gross_annual": "28000",
+            }
+        })
+        assert result is not None
+        assert result.prior_year_gross_annual == Decimal(28000)
+
+    def test_build_bonus_input_defaults_prior_year_gross_annual_none(self) -> None:
+        """When prior_year_gross_annual is absent, _build_bonus_input yields None."""
+        result = _build_bonus_input({
+            "bonus_input": {"annual_amount": "500", "eligible_for_pdr": False}
+        })
+        assert result is not None
+        assert result.prior_year_gross_annual is None
