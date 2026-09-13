@@ -335,6 +335,16 @@
 
     /* ── Results wrapper ─────────────────────────────────────────────────── */
     #results { display: none; flex-direction: column; gap: 20px; }
+    #stale-banner {
+      display: none; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 10px 14px; font-size: 13px;
+      color: var(--muted); text-align: center;
+    }
+    #results.stale #stale-banner { display: block; }
+    #results.stale .kpi-tile { opacity: 0.55; }
+    .field-error {
+      color: var(--red, #c0392b); font-size: 12px; margin-top: 4px; display: none;
+    }
 
     /* ── Scenario strip ──────────────────────────────────────────────────── */
     #scenario-strip {
@@ -711,6 +721,7 @@
           <span class="tip" tabindex="0" data-tip="Total employees at this workplace. Determines the INPS contribution rate tier.">?</span>
         </div>
         <input type="number" id="inp-employees" value="50" min="1" max="10000" />
+        <p id="err-employees" class="field-error">Headcount must be at least 1.</p>
       </div>
 
       <div id="div-seniority" class="full">
@@ -920,6 +931,7 @@
 
   <!-- ── Results ─────────────────────────────────────────────────────── -->
   <div id="results">
+  <div id="stale-banner">Hai modificato i dati — aggiorna la stima.</div>
 
     <!-- Scenario strip -->
     <div id="scenario-strip"></div>
@@ -1244,8 +1256,18 @@ function makeCombobox(wrapId, selectId, placeholder) {
     }
   }
 
-  input.addEventListener("click", () => isOpen ? close() : open());
-  input.addEventListener("focus", () => { if (!isOpen) open(); });
+  // Track whether the dropdown was opened by a focus event so the immediate
+  // click that follows (a mouse click triggers focus then click) does not
+  // toggle the dropdown closed again before the user can type.
+  let _openedByFocus = false;
+  input.addEventListener("focus", () => {
+    if (!isOpen) { _openedByFocus = true; open(); }
+    setTimeout(() => { _openedByFocus = false; }, 200);
+  });
+  input.addEventListener("click", () => {
+    if (_openedByFocus) return; // click follows focus — dropdown already open
+    isOpen ? close() : open();
+  });
 
   input.addEventListener("input", () => {
     if (!isOpen) { dropdown.classList.add("open"); input.classList.add("open"); isOpen = true; }
@@ -1254,8 +1276,8 @@ function makeCombobox(wrapId, selectId, placeholder) {
 
   input.addEventListener("keydown", e => {
     const items = visibleItems();
-    if (e.key === "ArrowDown") { e.preventDefault(); open(); setActive(activeIdx + 1); }
-    else if (e.key === "ArrowUp") { e.preventDefault(); setActive(activeIdx - 1); }
+    if (e.key === "ArrowDown") { e.preventDefault(); if (!isOpen) open(); setActive(activeIdx + 1); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); if (!isOpen) open(); setActive(activeIdx - 1); }
     else if (e.key === "Enter") {
       e.preventDefault();
       if (activeIdx >= 0 && items[activeIdx]) {
@@ -1337,14 +1359,18 @@ async function onCcnlChange(pyodide) {
   function updateSeniorityConstraint() {
     const code = levelSel.value;
     const meta = code ? levelMeta[code] : null;
+    const mode = document.querySelector("input[name='sen-mode']:checked").value;
     if (meta && meta.maxCount > 0) {
-      senInput.max = meta.maxCount;
-      if (parseInt(senInput.value) > meta.maxCount) senInput.value = meta.maxCount;
-      const mode = document.querySelector("input[name='sen-mode']:checked").value;
-      senHint.textContent = mode === "months"
-        ? "Months of service elapsed — engine derives increment count from CCNL cadence."
-        : `Seniority increments accrued — max ${meta.maxCount} for this level`
+      if (mode === "months") {
+        // Months have no per-level cap — keep a generous ceiling.
+        senInput.max = 600;
+        senHint.textContent = "Months of service elapsed — engine derives increment count from CCNL cadence.";
+      } else {
+        senInput.max = meta.maxCount;
+        if (parseInt(senInput.value) > meta.maxCount) senInput.value = meta.maxCount;
+        senHint.textContent = `Seniority increments accrued — max ${meta.maxCount} for this level`
           + (meta.cadenceMonths ? ` (one every ${meta.cadenceMonths} months).` : ".");
+      }
     } else {
       senInput.max = 600;
       senHint.textContent = "Number of seniority increments accrued.";
@@ -1782,13 +1808,30 @@ function renderBreakdown(r) {
 
 // ── Main compute ─────────────────────────────────────────────────────────────
 
+function markStale() {
+  const res = document.getElementById("results");
+  if (res.style.display !== "none") res.classList.add("stale");
+}
+
+function clearStale() {
+  document.getElementById("results").classList.remove("stale");
+}
+
 function doCompute(pyodide) {
   clearError();
 
   const file        = document.getElementById("sel-ccnl").value;
   const levelCode   = document.getElementById("sel-level").value;
   const empType     = document.getElementById("sel-employment").value;
-  const employees   = parseInt(document.getElementById("inp-employees").value) || 50;
+  const employeesRaw = parseInt(document.getElementById("inp-employees").value);
+  const errEmp = document.getElementById("err-employees");
+  if (!employeesRaw || employeesRaw < 1) {
+    errEmp.style.display = "block";
+    document.getElementById("inp-employees").focus();
+    return;
+  }
+  errEmp.style.display = "none";
+  const employees = employeesRaw;
   const ptPct       = parseInt(slider.value) / 100;
   const senValue    = parseInt(document.getElementById("inp-seniority").value) || 0;
   const senMode     = document.querySelector("input[name='sen-mode']:checked").value;
@@ -1851,6 +1894,7 @@ function doCompute(pyodide) {
   renderBreakdown(r);
 
   document.getElementById("results").style.display = "flex";
+  clearStale();
 }
 
 // ── Pyodide boot ─────────────────────────────────────────────────────────────
@@ -1875,6 +1919,12 @@ async function main() {
     await populateRegioni(pyodide);
     document.getElementById("sel-ccnl").addEventListener("change", () => onCcnlChange(pyodide));
     document.getElementById("calc-btn").addEventListener("click", () => doCompute(pyodide));
+
+    // Mark results as stale whenever any form input changes after the first calculation.
+    document.querySelectorAll("input, select").forEach(el => {
+      if (!el.closest("#results")) el.addEventListener("change", markStale);
+    });
+
     setTimeout(hideLoading, 300);
   } catch (err) {
     document.getElementById("loading-msg").textContent = "Error: " + err.message;
