@@ -33,14 +33,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadro | € 2,700.25 | — |
-| `1S` | 1° Super | € 2,460.21 | — |
-| `1` | 1° livello | € 2,185.36 | — |
-| `2` | 2° livello | € 1,920.48 | — |
-| `3` | 3° livello | € 1,792.57 | — |
-| `4` | 4° livello | € 1,655.26 | — |
-| `5` | 5° livello | € 1,576.97 | — |
-| `6` | 6° livello | € 1,478.65 | — |
+| `Q` | Quadro | € 2,700.25 | 2026-01-01 |
+| `1S` | 1° Super | € 2,460.21 | 2026-01-01 |
+| `1` | 1° livello | € 2,185.36 | 2026-01-01 |
+| `2` | 2° livello | € 1,920.48 | 2026-01-01 |
+| `3` | 3° livello | € 1,792.57 | 2026-01-01 |
+| `4` | 4° livello | € 1,655.26 | 2026-01-01 |
+| `5` | 5° livello | € 1,576.97 | 2026-01-01 |
+| `6` | 6° livello | € 1,478.65 | 2026-01-01 |
 
 ## Seniority increments
 
@@ -61,10 +61,12 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **professionalizzante - dest livelli 1-2** (type: `under_classification`)  
-Destination levels: `1`, `2`
+Destination levels: `1`, `2`  
+under-level: `1`
 
 **professionalizzante - dest livelli 3-4** (type: `under_classification`)  
-Destination levels: `3`, `4`
+Destination levels: `3`, `4`  
+under-level: `1`
 
 **professionalizzante - dest livello 5** (type: `under_classification`)  
 Destination levels: `5`

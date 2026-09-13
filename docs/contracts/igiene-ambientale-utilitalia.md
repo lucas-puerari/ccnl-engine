@@ -38,22 +38,22 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Livello Q — Quadri (dirigenti di secondo livello) | € 3,634.41 | — |
-| `A1` | Livello A1 — tecnici e impiegati con responsabilita autonome di primo livello | € 3,314.56 | — |
-| `A2s` | Livello A2S — tecnici e impiegati con responsabilita autonome di secondo livello, posizione superiore | € 3,065.21 | — |
-| `A2` | Livello A2 — tecnici e impiegati con responsabilita autonome di secondo livello | € 2,920.50 | — |
-| `B1s` | Livello B1S — operai e impiegati altamente specializzati di primo livello, posizione superiore | € 2,784.22 | — |
-| `B1` | Livello B1 — operai e impiegati altamente specializzati con mansioni di primo livello | € 2,661.29 | — |
-| `B2s` | Livello B2S — operai e impiegati altamente specializzati di secondo livello, posizione superiore | € 2,535.56 | — |
-| `B2` | Livello B2 — operai e impiegati altamente specializzati con mansioni di secondo livello | € 2,432.73 | — |
-| `C1s` | Livello C1S — operai e impiegati specializzati di primo livello, posizione superiore | € 2,332.13 | — |
-| `C1` | Livello C1 — operai e impiegati specializzati con mansioni di primo livello | € 2,264.77 | — |
-| `C2s` | Livello C2S — operai e impiegati specializzati di secondo livello, posizione superiore | € 2,196.19 | — |
-| `C2` | Livello C2 — operai e impiegati specializzati con mansioni di secondo livello | € 2,147.09 | — |
-| `D1s` | Livello D1S — operai e impiegati qualificati con mansioni esecutive, posizione superiore | € 2,143.89 | — |
-| `D1` | Livello D1 — operai e impiegati qualificati con mansioni esecutive di primo livello | € 1,955.19 | — |
-| `D2s` | Livello D2S — operai e impiegati con mansioni di base non qualificate, posizione superiore | € 1,779.25 | — |
-| `D2` | Livello D2 — operai e impiegati con mansioni di base non qualificate | € 1,555.36 | — |
+| `Q` | Livello Q — Quadri (dirigenti di secondo livello) | € 3,634.41 | 2027-12-01 |
+| `A1` | Livello A1 — tecnici e impiegati con responsabilita autonome di primo livello | € 3,314.56 | 2027-12-01 |
+| `A2s` | Livello A2S — tecnici e impiegati con responsabilita autonome di secondo livello, posizione superiore | € 3,065.21 | 2027-12-01 |
+| `A2` | Livello A2 — tecnici e impiegati con responsabilita autonome di secondo livello | € 2,920.50 | 2027-12-01 |
+| `B1s` | Livello B1S — operai e impiegati altamente specializzati di primo livello, posizione superiore | € 2,784.22 | 2027-12-01 |
+| `B1` | Livello B1 — operai e impiegati altamente specializzati con mansioni di primo livello | € 2,661.29 | 2027-12-01 |
+| `B2s` | Livello B2S — operai e impiegati altamente specializzati di secondo livello, posizione superiore | € 2,535.56 | 2027-12-01 |
+| `B2` | Livello B2 — operai e impiegati altamente specializzati con mansioni di secondo livello | € 2,432.73 | 2027-12-01 |
+| `C1s` | Livello C1S — operai e impiegati specializzati di primo livello, posizione superiore | € 2,332.13 | 2027-12-01 |
+| `C1` | Livello C1 — operai e impiegati specializzati con mansioni di primo livello | € 2,264.77 | 2027-12-01 |
+| `C2s` | Livello C2S — operai e impiegati specializzati di secondo livello, posizione superiore | € 2,196.19 | 2027-12-01 |
+| `C2` | Livello C2 — operai e impiegati specializzati con mansioni di secondo livello | € 2,147.09 | 2027-12-01 |
+| `D1s` | Livello D1S — operai e impiegati qualificati con mansioni esecutive, posizione superiore | € 2,143.89 | 2027-12-01 |
+| `D1` | Livello D1 — operai e impiegati qualificati con mansioni esecutive di primo livello | € 1,955.19 | 2027-12-01 |
+| `D2s` | Livello D2S — operai e impiegati con mansioni di base non qualificate, posizione superiore | € 1,779.25 | 2027-12-01 |
+| `D2` | Livello D2 — operai e impiegati con mansioni di base non qualificate | € 1,555.36 | 2027-12-01 |
 
 ## Seniority increments
 

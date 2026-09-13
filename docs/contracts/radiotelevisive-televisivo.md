@@ -14,10 +14,11 @@
 [← Contracts index](index.md)
 
 ??? note "Signatories"
-    - Confindustria Radio TV
+    - Confindustria Radio Televisioni
+    - ANICA
     - SLC-CGIL
     - FISTEL-CISL
-    - UILCOM-UIL
+    - UIL-COM
 
 ## Coverage
 
@@ -33,15 +34,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `9` | 9° livello | € 2,282.56 | — |
-| `8` | 8° livello | € 2,092.44 | — |
-| `7` | 7° livello | € 1,929.62 | — |
-| `6` | 6° livello | € 1,840.62 | — |
-| `5` | 5° livello | € 1,696.00 | — |
-| `4` | 4° livello | € 1,425.96 | — |
-| `3` | 3° livello | € 1,190.33 | — |
-| `2` | 2° livello | € 1,046.74 | — |
-| `1` | 1° livello | € 902.11 | — |
+| `9` | 9° livello | € 2,282.56 | 2028-01-01 |
+| `8` | 8° livello | € 2,092.44 | 2028-01-01 |
+| `7` | 7° livello | € 1,929.62 | 2028-01-01 |
+| `6` | 6° livello | € 1,840.62 | 2028-01-01 |
+| `5` | 5° livello | € 1,696.00 | 2028-01-01 |
+| `4` | 4° livello | € 1,425.96 | 2028-01-01 |
+| `3` | 3° livello | € 1,190.33 | 2028-01-01 |
+| `2` | 2° livello | € 1,046.74 | 2028-01-01 |
+| `1` | 1° livello | € 902.11 | 2028-01-01 |
 
 ## Seniority increments
 
@@ -84,7 +85,9 @@ These are deliberate modelling approximations. Read them before using this contr
 | — | — | 2026-01-08 | [↗](https://www.confindustriaradiotv.it/) |
 
 ??? note "Coverage notes"
-    CCNL Radiotelevisivo 2026 signed 08/01/2026. Employer: Confindustria Radio TV. Unions: SLC-CGIL, FISTEL-CISL, UILCOM-UIL.
+    CCNL Radiotelevisivo 2026 signed 08/01/2026 in Roma. Employer: Confindustria Radio Televisioni (pres. Antonio Marano) and ANICA (pres. Alessandro Usai). Unions: SLC-CGIL (Sindacato Lavoratori della Comunicazione), FISTEL-CISL (Federazione Informazioni Spettacolo e Telecomunicazioni), UIL-COM (UIL Comunicazione). Signatories sourced from Art. 1, page 7 of CCNL PDF.
+    
+    Source anchor: https://www.confindustriaradiotv.it/ is the employer association homepage; a direct PDF permalink was not published. PDF read locally as ccnl_radiotv_2026.pdf (81 MB, read 2026-09-12).
     
     SPLIT model: paga base (minimo tabellare, Art. 43) + contingenza congelata al 1° novembre 1991 (Allegato A). EDR not present in 2026 CCNL.
     
@@ -96,6 +99,8 @@ These are deliberate modelling approximations. Read them before using this contr
     
     Apprenticeship (Art. 27): professionalizzante, percentage type. TV L3 max 24 months; TV L4-L6 max 48-60 months (same % schedule). Levels L7-L9 not accessible via apprenticeship per Art. 27.
     
+    Apprenticeship open tail: Art. 27 sets 24-month max for L3 (breve track). The final period {18, null, 0.90} cannot be closed to {18, 24, 0.90} because the engine schema requires the last apprenticeship period to be open-ended (validate_open_sequence). A query past month 24 is outside the contract duration and should not arise in normal use.
+    
 
 ## Raw data
 
@@ -103,3 +108,9 @@ These are deliberate modelling approximations. Read them before using this contr
     ```json
     --8<-- "src/ccnl_engine/knowledge/ccnl/data/radiotelevisive-televisivo.json"
     ```
+
+## Usage example
+
+```python
+--8<-- "docs/examples/contracts/radiotelevisive-televisivo.py"
+```

@@ -36,22 +36,22 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q1` | Level Q1 — railway quadri (senior management), with IND_FUN function allowance | € 2,826.07 | — |
-| `Q2` | Level Q2 — railway quadri (middle management), with IND_FUN function allowance | € 2,483.02 | — |
-| `A` | Level A — senior railway managers, strategic operational leadership | € 2,401.34 | — |
-| `B1` | Level B1 — railway department managers, senior management roles | € 2,286.99 | — |
-| `B2` | Level B2 — railway section managers, intermediate management roles | € 2,188.97 | — |
-| `B3` | Level B3 — railway supervisors, operational management duties | € 2,156.31 | — |
-| `C1` | Level C1 — senior railway professionals, team coordination roles | € 2,107.30 | — |
-| `C2` | Level C2 — railway professionals, specialist operational coordination | € 2,074.62 | — |
-| `D1` | Level D1 — senior railway technicians, advanced professional duties | € 2,041.95 | — |
-| `D2` | Level D2 — experienced railway technicians, intermediate professional roles | € 1,976.62 | — |
-| `D3` | Level D3 — qualified railway technicians, standard professional duties | € 1,943.94 | — |
-| `E1` | Level E1 — specialised railway workers, technical operational duties | € 1,911.26 | — |
-| `E2` | Level E2 — skilled railway workers, certified operational roles | € 1,829.60 | — |
-| `E3` | Level E3 — semi-skilled railway workers, qualified operational tasks | € 1,796.91 | — |
-| `F1` | Level F1 — basic railway workers, standard operational tasks | € 1,666.23 | — |
-| `F2` | Level F2 — entry-level railway workers, unskilled support tasks | € 1,633.56 | — |
+| `Q1` | Level Q1 — railway quadri (senior management), with IND_FUN function allowance | € 2,826.07 | 2026-06-01 |
+| `Q2` | Level Q2 — railway quadri (middle management), with IND_FUN function allowance | € 2,483.02 | 2026-06-01 |
+| `A` | Level A — senior railway managers, strategic operational leadership | € 2,401.34 | 2026-06-01 |
+| `B1` | Level B1 — railway department managers, senior management roles | € 2,286.99 | 2026-06-01 |
+| `B2` | Level B2 — railway section managers, intermediate management roles | € 2,188.97 | 2026-06-01 |
+| `B3` | Level B3 — railway supervisors, operational management duties | € 2,156.31 | 2026-06-01 |
+| `C1` | Level C1 — senior railway professionals, team coordination roles | € 2,107.30 | 2026-06-01 |
+| `C2` | Level C2 — railway professionals, specialist operational coordination | € 2,074.62 | 2026-06-01 |
+| `D1` | Level D1 — senior railway technicians, advanced professional duties | € 2,041.95 | 2026-06-01 |
+| `D2` | Level D2 — experienced railway technicians, intermediate professional roles | € 1,976.62 | 2026-06-01 |
+| `D3` | Level D3 — qualified railway technicians, standard professional duties | € 1,943.94 | 2026-06-01 |
+| `E1` | Level E1 — specialised railway workers, technical operational duties | € 1,911.26 | 2026-06-01 |
+| `E2` | Level E2 — skilled railway workers, certified operational roles | € 1,829.60 | 2026-06-01 |
+| `E3` | Level E3 — semi-skilled railway workers, qualified operational tasks | € 1,796.91 | 2026-06-01 |
+| `F1` | Level F1 — basic railway workers, standard operational tasks | € 1,666.23 | 2026-06-01 |
+| `F2` | Level F2 — entry-level railway workers, unskilled support tasks | € 1,633.56 | 2026-06-01 |
 
 ## Seniority increments
 

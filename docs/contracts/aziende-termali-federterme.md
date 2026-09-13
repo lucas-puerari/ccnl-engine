@@ -33,15 +33,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1SA` | Primo livello super A — quadri e impiegati direttivi di massima specializzazione | € 2,111.72 | — |
-| `1SB` | Primo livello super B — quadri e impiegati direttivi di alta specializzazione | € 1,979.64 | — |
-| `1` | Impiegati di ordine superiore e lavoratori con mansioni direttive | € 1,794.86 | — |
-| `2` | Impiegati di concetto e lavoratori con mansioni di concetto | € 1,469.32 | — |
-| `3` | Lavoratori con mansioni qualificate che richiedono adeguata preparazione tecnico-pratica | € 1,231.76 | — |
-| `4S` | Lavoratori specializzati con specifiche capacità superiori (4° Super) | € 1,161.39 | — |
-| `4` | Lavoratori specializzati con specifiche capacità tecniche e pratiche | € 1,126.20 | — |
-| `5` | Lavoratori adibiti a mansioni che richiedono normale pratica e conoscenze | € 1,002.82 | — |
-| `6` | Lavoratori con mansioni elementari e di semplice attesa o custodia | € 879.97 | — |
+| `1SA` | Primo livello super A — quadri e impiegati direttivi di massima specializzazione | € 2,111.72 | 2026-12-01 |
+| `1SB` | Primo livello super B — quadri e impiegati direttivi di alta specializzazione | € 1,979.64 | 2026-12-01 |
+| `1` | Impiegati di ordine superiore e lavoratori con mansioni direttive | € 1,794.86 | 2026-12-01 |
+| `2` | Impiegati di concetto e lavoratori con mansioni di concetto | € 1,469.32 | 2026-12-01 |
+| `3` | Lavoratori con mansioni qualificate che richiedono adeguata preparazione tecnico-pratica | € 1,231.76 | 2026-12-01 |
+| `4S` | Lavoratori specializzati con specifiche capacità superiori (4° Super) | € 1,161.39 | 2026-12-01 |
+| `4` | Lavoratori specializzati con specifiche capacità tecniche e pratiche | € 1,126.20 | 2026-12-01 |
+| `5` | Lavoratori adibiti a mansioni che richiedono normale pratica e conoscenze | € 1,002.82 | 2026-12-01 |
+| `6` | Lavoratori con mansioni elementari e di semplice attesa o custodia | € 879.97 | 2026-12-01 |
 
 ## Seniority increments
 
@@ -63,13 +63,16 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **L5-terme-18m** (type: `under_classification`)  
-Destination levels: `5`
+Destination levels: `5`  
+under-level: `1`
 
 **L4-L4S-terme-24m** (type: `under_classification`)  
-Destination levels: `4S`, `4`
+Destination levels: `4S`, `4`  
+under-level: `1`
 
 **L3-terme-36m** (type: `under_classification`)  
-Destination levels: `3`
+Destination levels: `3`  
+under-level: `1`
 
 ## Known simplifications
 

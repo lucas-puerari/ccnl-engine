@@ -35,12 +35,12 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `FUNZIONARIO_ED_ESPERTO` | ATA: Funzionario ed esperto (ex dsga, direttori servizi generali) | € 1,960.65 | — |
-| `DOCENTE_SECONDARIA` | Docente secondaria I grado (PE/Ed.Fisica) e secondaria II (laurea) | € 1,866.79 | — |
-| `DOCENTE_INFANZIA_PRIMARIA` | Docente scuola dell'infanzia e primaria; docente secondaria II (diploma) | € 1,724.65 | — |
-| `ASSISTENTE` | ATA: Assistente amministrativo, assistente tecnico, cuoco, infermiere | € 1,496.85 | — |
-| `OPERATORE` | ATA: Operatore scolastico (nuovo profilo dal 1/5/2024 CCNL 18/1/2024) | € 1,375.38 | — |
-| `COLLABORATORE_SCOLASTICO` | ATA: Collaboratore scolastico (ex bidello, ex commesso) | € 1,342.82 | — |
+| `FUNZIONARIO_ED_ESPERTO` | ATA: Funzionario ed esperto (ex dsga, direttori servizi generali) | € 1,960.65 | 2024-01-01 |
+| `DOCENTE_SECONDARIA` | Docente secondaria I grado (PE/Ed.Fisica) e secondaria II (laurea) | € 1,866.79 | 2024-01-01 |
+| `DOCENTE_INFANZIA_PRIMARIA` | Docente scuola dell'infanzia e primaria; docente secondaria II (diploma) | € 1,724.65 | 2024-01-01 |
+| `ASSISTENTE` | ATA: Assistente amministrativo, assistente tecnico, cuoco, infermiere | € 1,496.85 | 2024-01-01 |
+| `OPERATORE` | ATA: Operatore scolastico (nuovo profilo dal 1/5/2024 CCNL 18/1/2024) | € 1,375.38 | 2024-01-01 |
+| `COLLABORATORE_SCOLASTICO` | ATA: Collaboratore scolastico (ex bidello, ex commesso) | € 1,342.82 | 2024-01-01 |
 
 ## Seniority increments
 

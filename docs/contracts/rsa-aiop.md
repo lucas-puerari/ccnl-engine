@@ -36,18 +36,18 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `H` | Livello H | € 3,294.68 | — |
-| `G` | Livello G | € 2,749.49 | — |
-| `F` | Livello F | € 2,095.50 | — |
-| `E3` | Livello E3 | € 1,806.00 | — |
-| `E2` | Livello E2 | € 1,746.00 | — |
-| `E1` | Livello E1 | € 1,550.56 | — |
-| `D3` | Livello D3 | € 1,496.06 | — |
-| `D2` | Livello D2 | € 1,463.33 | — |
-| `D1` | Livello D1 | € 1,419.80 | — |
-| `C` | Livello C | € 1,419.80 | — |
-| `B` | Livello B | € 1,311.68 | — |
-| `A` | Livello A | € 1,223.57 | — |
+| `H` | Livello H | € 3,294.68 | 2023-10-01 |
+| `G` | Livello G | € 2,749.49 | 2023-10-01 |
+| `F` | Livello F | € 2,095.50 | 2023-10-01 |
+| `E3` | Livello E3 | € 1,806.00 | 2023-10-01 |
+| `E2` | Livello E2 | € 1,746.00 | 2023-10-01 |
+| `E1` | Livello E1 | € 1,550.56 | 2023-10-01 |
+| `D3` | Livello D3 | € 1,496.06 | 2023-10-01 |
+| `D2` | Livello D2 | € 1,463.33 | 2023-10-01 |
+| `D1` | Livello D1 | € 1,419.80 | 2023-10-01 |
+| `C` | Livello C | € 1,419.80 | 2023-10-01 |
+| `B` | Livello B | € 1,311.68 | 2023-10-01 |
+| `A` | Livello A | € 1,223.57 | 2023-10-01 |
 
 ## Seniority increments
 

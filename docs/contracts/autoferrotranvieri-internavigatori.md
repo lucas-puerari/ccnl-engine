@@ -37,39 +37,39 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `250` | Parameter 250 — senior officials / executive managers | € 2,657.09 | — |
-| `230` | Parameter 230 — officials / principal inspectors | € 2,470.97 | — |
-| `210` | Parameter 210 — operations coordinators | € 2,254.23 | — |
-| `205` | Parameter 205 — senior supervisors | € 2,213.96 | — |
-| `202` | Parameter 202 — operations supervisors | € 2,189.81 | — |
-| `193` | Parameter 193 — operations staff / station masters | € 2,113.32 | — |
-| `190` | Parameter 190 — principal coordinators | € 2,089.14 | — |
-| `188` | Parameter 188 — senior coordinators | € 2,071.18 | — |
-| `183` | Parameter 183 — coordinating agents | € 2,030.87 | — |
-| `180` | Parameter 180 — agents with coordination functions | € 2,005.84 | — |
-| `178` | Parameter 178 — senior clerks | € 1,989.72 | — |
-| `175` | Parameter 175 — office clerks / qualified agents | € 1,965.57 | — |
-| `170` | Parameter 170 — advanced driving agents | € 1,925.30 | — |
-| `165` | Parameter 165 — agents with managerial functions | € 1,882.02 | — |
-| `160` | Parameter 160 — principal operations agents | € 1,841.75 | — |
-| `158` | Parameter 158 — senior operations agents | € 1,825.64 | — |
-| `155` | Parameter 155 — qualified driving agents (III) | € 1,798.44 | — |
-| `154` | Parameter 154 — qualified driving agents (II) | € 1,790.40 | — |
-| `153` | Parameter 153 — qualified driving agents (I) | € 1,782.36 | — |
-| `151` | Parameter 151 — driving agents | € 1,766.25 | — |
-| `145` | Parameter 145 — driving agents (entry) | € 1,717.92 | — |
-| `143` | Parameter 143 — senior agents | € 1,701.81 | — |
-| `140` | Parameter 140 — specialist operations agents | € 1,677.65 | — |
-| `139` | Parameter 139 — specialist operators (II) | € 1,669.60 | — |
-| `138` | Parameter 138 — specialist operators (I) | € 1,661.54 | — |
-| `135` | Parameter 135 — operations agents | € 1,633.99 | — |
-| `130` | Parameter 130 — qualified line agents | € 1,593.73 | — |
-| `129` | Parameter 129 — line agents | € 1,585.66 | — |
-| `123` | Parameter 123 — line agents (first year) | € 1,537.35 | — |
-| `121` | Parameter 121 — qualified operators | € 1,518.61 | — |
-| `116` | Parameter 116 — qualified operators (entry) | € 1,478.35 | — |
-| `110` | Parameter 110 — entry-level operators | € 1,430.01 | — |
-| `100` | Parameter 100 — auxiliary staff and entry-level apprentices | € 1,346.11 | — |
+| `250` | Parameter 250 — senior officials / executive managers | € 2,657.09 | 2026-08-01 |
+| `230` | Parameter 230 — officials / principal inspectors | € 2,470.97 | 2026-08-01 |
+| `210` | Parameter 210 — operations coordinators | € 2,254.23 | 2026-08-01 |
+| `205` | Parameter 205 — senior supervisors | € 2,213.96 | 2026-08-01 |
+| `202` | Parameter 202 — operations supervisors | € 2,189.81 | 2026-08-01 |
+| `193` | Parameter 193 — operations staff / station masters | € 2,113.32 | 2026-08-01 |
+| `190` | Parameter 190 — principal coordinators | € 2,089.14 | 2026-08-01 |
+| `188` | Parameter 188 — senior coordinators | € 2,071.18 | 2026-08-01 |
+| `183` | Parameter 183 — coordinating agents | € 2,030.87 | 2026-08-01 |
+| `180` | Parameter 180 — agents with coordination functions | € 2,005.84 | 2026-08-01 |
+| `178` | Parameter 178 — senior clerks | € 1,989.72 | 2026-08-01 |
+| `175` | Parameter 175 — office clerks / qualified agents | € 1,965.57 | 2026-08-01 |
+| `170` | Parameter 170 — advanced driving agents | € 1,925.30 | 2026-08-01 |
+| `165` | Parameter 165 — agents with managerial functions | € 1,882.02 | 2026-08-01 |
+| `160` | Parameter 160 — principal operations agents | € 1,841.75 | 2026-08-01 |
+| `158` | Parameter 158 — senior operations agents | € 1,825.64 | 2026-08-01 |
+| `155` | Parameter 155 — qualified driving agents (III) | € 1,798.44 | 2026-08-01 |
+| `154` | Parameter 154 — qualified driving agents (II) | € 1,790.40 | 2026-08-01 |
+| `153` | Parameter 153 — qualified driving agents (I) | € 1,782.36 | 2026-08-01 |
+| `151` | Parameter 151 — driving agents | € 1,766.25 | 2026-08-01 |
+| `145` | Parameter 145 — driving agents (entry) | € 1,717.92 | 2026-08-01 |
+| `143` | Parameter 143 — senior agents | € 1,701.81 | 2026-08-01 |
+| `140` | Parameter 140 — specialist operations agents | € 1,677.65 | 2026-08-01 |
+| `139` | Parameter 139 — specialist operators (II) | € 1,669.60 | 2026-08-01 |
+| `138` | Parameter 138 — specialist operators (I) | € 1,661.54 | 2026-08-01 |
+| `135` | Parameter 135 — operations agents | € 1,633.99 | 2026-08-01 |
+| `130` | Parameter 130 — qualified line agents | € 1,593.73 | 2026-08-01 |
+| `129` | Parameter 129 — line agents | € 1,585.66 | 2026-08-01 |
+| `123` | Parameter 123 — line agents (first year) | € 1,537.35 | 2026-08-01 |
+| `121` | Parameter 121 — qualified operators | € 1,518.61 | 2026-08-01 |
+| `116` | Parameter 116 — qualified operators (entry) | € 1,478.35 | 2026-08-01 |
+| `110` | Parameter 110 — entry-level operators | € 1,430.01 | 2026-08-01 |
+| `100` | Parameter 100 — auxiliary staff and entry-level apprentices | € 1,346.11 | 2026-08-01 |
 
 ## Seniority increments
 

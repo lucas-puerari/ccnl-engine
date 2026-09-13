@@ -33,18 +33,18 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A` | Level A — quadri and workers with maximum autonomy and managerial responsibility | € 2,793.96 | — |
-| `B1` | Level B1 — workers with high professional skill or specialisation and full IPO | € 2,515.17 | — |
-| `B2` | Level B2 — workers with high professional skill or specialisation, without IPO | € 2,515.17 | — |
-| `C1` | Level C1 — workers with basic technical or managerial responsibility and full IPO | € 2,194.75 | — |
-| `C2` | Level C2 — workers with basic technical or managerial responsibility and reduced IPO | € 2,194.75 | — |
-| `C3` | Level C3 — workers with basic technical or managerial responsibility, without IPO | € 2,194.75 | — |
-| `D1` | Level D1 — workers with medium-complexity operative functions and full IPO | € 1,972.36 | — |
-| `D2` | Level D2 — workers with medium-complexity operative functions and reduced IPO | € 1,972.36 | — |
-| `D3` | Level D3 — workers with medium-complexity operative functions, without IPO | € 1,972.36 | — |
-| `E1` | Level E1 — workers with executive duties and position IPO allowance (CCNL IPO art.) | € 1,783.43 | — |
-| `E2` | Level E2 — workers with executive duties, standardised operative tasks | € 1,783.43 | — |
-| `F` | Level F — entry-level workers performing basic operations | € 1,666.45 | — |
+| `A` | Level A — quadri and workers with maximum autonomy and managerial responsibility | € 2,793.96 | 2027-06-01 |
+| `B1` | Level B1 — workers with high professional skill or specialisation and full IPO | € 2,515.17 | 2027-06-01 |
+| `B2` | Level B2 — workers with high professional skill or specialisation, without IPO | € 2,515.17 | 2027-06-01 |
+| `C1` | Level C1 — workers with basic technical or managerial responsibility and full IPO | € 2,194.75 | 2027-06-01 |
+| `C2` | Level C2 — workers with basic technical or managerial responsibility and reduced IPO | € 2,194.75 | 2027-06-01 |
+| `C3` | Level C3 — workers with basic technical or managerial responsibility, without IPO | € 2,194.75 | 2027-06-01 |
+| `D1` | Level D1 — workers with medium-complexity operative functions and full IPO | € 1,972.36 | 2027-06-01 |
+| `D2` | Level D2 — workers with medium-complexity operative functions and reduced IPO | € 1,972.36 | 2027-06-01 |
+| `D3` | Level D3 — workers with medium-complexity operative functions, without IPO | € 1,972.36 | 2027-06-01 |
+| `E1` | Level E1 — workers with executive duties and position IPO allowance (CCNL IPO art.) | € 1,783.43 | 2027-06-01 |
+| `E2` | Level E2 — workers with executive duties, standardised operative tasks | € 1,783.43 | 2027-06-01 |
+| `F` | Level F — entry-level workers performing basic operations | € 1,666.45 | 2027-06-01 |
 
 ## Seniority increments
 

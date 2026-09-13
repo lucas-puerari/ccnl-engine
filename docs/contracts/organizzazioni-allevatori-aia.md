@@ -34,19 +34,19 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1/2` | Area 1 Livello 2 (Quadri) | € 2,392.51 | — |
-| `1/3` | Area 1 Livello 3 | € 2,288.35 | — |
-| `1/4` | Area 1 Livello 4 | € 2,183.71 | — |
-| `1/5` | Area 1 Livello 5 | € 2,105.96 | — |
-| `2/1` | Area 2 Livello 1 | € 2,028.26 | — |
-| `2/2` | Area 2 Livello 2 | € 1,974.23 | — |
-| `2/3` | Area 2 Livello 3 | € 1,895.67 | — |
-| `2/4A` | Area 2 Livello 4A | € 1,791.72 | — |
-| `2/4B` | Area 2 Livello 4B | € 1,757.61 | — |
-| `2/5` | Area 2 Livello 5 | € 1,737.68 | — |
-| `2/6` | Area 2 Livello 6 | € 1,659.20 | — |
-| `3/1` | Area 3 Livello 1 | € 1,500.21 | — |
-| `3/2` | Area 3 Livello 2 | € 1,372.00 | — |
+| `1/2` | Area 1 Livello 2 (Quadri) | € 2,392.51 | 2025-09-01 |
+| `1/3` | Area 1 Livello 3 | € 2,288.35 | 2025-09-01 |
+| `1/4` | Area 1 Livello 4 | € 2,183.71 | 2025-09-01 |
+| `1/5` | Area 1 Livello 5 | € 2,105.96 | 2025-09-01 |
+| `2/1` | Area 2 Livello 1 | € 2,028.26 | 2025-09-01 |
+| `2/2` | Area 2 Livello 2 | € 1,974.23 | 2025-09-01 |
+| `2/3` | Area 2 Livello 3 | € 1,895.67 | 2025-09-01 |
+| `2/4A` | Area 2 Livello 4A | € 1,791.72 | 2025-09-01 |
+| `2/4B` | Area 2 Livello 4B | € 1,757.61 | 2025-09-01 |
+| `2/5` | Area 2 Livello 5 | € 1,737.68 | 2025-09-01 |
+| `2/6` | Area 2 Livello 6 | € 1,659.20 | 2025-09-01 |
+| `3/1` | Area 3 Livello 1 | € 1,500.21 | 2025-09-01 |
+| `3/2` | Area 3 Livello 2 | € 1,372.00 | 2025-09-01 |
 
 ## Seniority increments
 

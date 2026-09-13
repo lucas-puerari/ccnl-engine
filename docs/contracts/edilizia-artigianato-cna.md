@@ -35,14 +35,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `7Q` | Quadro — manager with statutory Quadro status (Art. 2095 c.c., L. 190/1985) | € 2,358.36 | — |
-| `7` | Senior executive employee / site manager — site manager / senior technical staff | € 2,358.36 | — |
-| `6` | Technical employee / worker with supervisory duties — technical staff or team leader | € 2,097.48 | — |
-| `5` | Highly specialised worker — highly specialized worker | € 1,748.04 | — |
-| `4` | Specialised worker — specialized construction worker | € 1,628.40 | — |
-| `3` | First-category worker — skilled worker | € 1,515.12 | — |
-| `2` | Second-category worker — semi-skilled worker | € 1,358.35 | — |
-| `1` | Common worker — unskilled construction worker | € 1,165.30 | — |
+| `7Q` | Quadro — manager with statutory Quadro status (Art. 2095 c.c., L. 190/1985) | € 2,358.36 | 2028-01-01 |
+| `7` | Senior executive employee / site manager — site manager / senior technical staff | € 2,358.36 | 2028-01-01 |
+| `6` | Technical employee / worker with supervisory duties — technical staff or team leader | € 2,097.48 | 2028-01-01 |
+| `5` | Highly specialised worker — highly specialized worker | € 1,748.04 | 2028-01-01 |
+| `4` | Specialised worker — specialized construction worker | € 1,628.40 | 2028-01-01 |
+| `3` | First-category worker — skilled worker | € 1,515.12 | 2028-01-01 |
+| `2` | Second-category worker — semi-skilled worker | € 1,358.35 | 2028-01-01 |
+| `1` | Common worker — unskilled construction worker | € 1,165.30 | 2028-01-01 |
 
 ## Seniority increments
 

@@ -33,16 +33,16 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `8` | 8th level - Managers and workers with high-responsibility functions | € 2,509.13 | — |
-| `7` | 7th level - Workers with managerial functions | € 2,355.70 | — |
-| `6` | 6th level - Workers with high specialisation | € 2,163.79 | — |
-| `5` | 5th level - Workers with coordination duties | € 2,054.43 | — |
-| `4` | 4th level - Workers with intermediate duties | € 1,980.50 | — |
-| `3S` | 3rd level Super - Specialist workers with higher-grade duties | € 1,933.07 | — |
-| `3` | 3rd level - Specialist workers | € 1,891.45 | — |
-| `2S` | 2nd level Super - Qualified workers with higher-grade duties | € 1,832.71 | — |
-| `2` | 2nd level - Qualified workers | € 1,796.40 | — |
-| `1` | 1st level - Entry-level workers | € 1,557.00 | — |
+| `8` | 8th level - Managers and workers with high-responsibility functions | € 2,509.13 | 2026-08-01 |
+| `7` | 7th level - Workers with managerial functions | € 2,355.70 | 2026-08-01 |
+| `6` | 6th level - Workers with high specialisation | € 2,163.79 | 2026-08-01 |
+| `5` | 5th level - Workers with coordination duties | € 2,054.43 | 2026-08-01 |
+| `4` | 4th level - Workers with intermediate duties | € 1,980.50 | 2026-08-01 |
+| `3S` | 3rd level Super - Specialist workers with higher-grade duties | € 1,933.07 | 2026-08-01 |
+| `3` | 3rd level - Specialist workers | € 1,891.45 | 2026-08-01 |
+| `2S` | 2nd level Super - Qualified workers with higher-grade duties | € 1,832.71 | 2026-08-01 |
+| `2` | 2nd level - Qualified workers | € 1,796.40 | 2026-08-01 |
+| `1` | 1st level - Entry-level workers | € 1,557.00 | 2026-08-01 |
 
 ## Seniority increments
 

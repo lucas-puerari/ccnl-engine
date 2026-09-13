@@ -34,17 +34,17 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1S` | Livello 1S — Quadri | € 2,174.53 | — |
-| `1` | Livello 1 | € 1,973.18 | — |
-| `2A` | Livello 2A | € 1,804.05 | — |
-| `2B` | Livello 2B | € 1,691.30 | — |
-| `3` | Livello 3 | € 1,570.49 | — |
-| `4` | Livello 4 | € 1,417.47 | — |
-| `5` | Livello 5 | € 1,336.93 | — |
-| `6` | Livello 6 | € 1,256.39 | — |
-| `7` | Livello 7 | € 1,127.53 | — |
-| `8` | Livello 8 | € 1,014.78 | — |
-| `9` | Livello 9 | € 805.38 | — |
+| `1S` | Livello 1S — Quadri | € 2,174.53 | 2027-07-01 |
+| `1` | Livello 1 | € 1,973.18 | 2027-07-01 |
+| `2A` | Livello 2A | € 1,804.05 | 2027-07-01 |
+| `2B` | Livello 2B | € 1,691.30 | 2027-07-01 |
+| `3` | Livello 3 | € 1,570.49 | 2027-07-01 |
+| `4` | Livello 4 | € 1,417.47 | 2027-07-01 |
+| `5` | Livello 5 | € 1,336.93 | 2027-07-01 |
+| `6` | Livello 6 | € 1,256.39 | 2027-07-01 |
+| `7` | Livello 7 | € 1,127.53 | 2027-07-01 |
+| `8` | Livello 8 | € 1,014.78 | 2027-07-01 |
+| `9` | Livello 9 | € 805.38 | 2027-07-01 |
 
 ## Seniority increments
 

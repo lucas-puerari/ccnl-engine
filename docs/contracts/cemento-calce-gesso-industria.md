@@ -33,18 +33,18 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `AD3` | Area Direttiva 3 — Quadro con responsabilita direttive superiori (Art. 2095 c.c.) | € 2,710.23 | — |
-| `AD2` | Area Direttiva 2 — Lavoratori con funzioni direttive di secondo livello | € 2,426.28 | — |
-| `AD1` | Area Direttiva 1 — Lavoratori con funzioni direttive di primo livello | € 2,219.77 | — |
-| `AC3` | Area Concettuale 3 — Lavoratori con responsabilita di coordinamento complesso | € 2,103.67 | — |
-| `AC2` | Area Concettuale 2 — Lavoratori con elevata autonomia e responsabilita funzionale | € 2,026.26 | — |
-| `AC1` | Area Concettuale 1 — Lavoratori con funzioni di natura concettuale e autonomia decisionale | € 1,922.99 | — |
-| `AS3` | Area Specialistica 3 — Lavoratori altamente specializzati o con funzioni di riferimento | € 1,806.82 | — |
-| `AS2` | Area Specialistica 2 — Lavoratori specializzati con autonomia operativa | € 1,729.41 | — |
-| `AS1` | Area Specialistica 1 — Lavoratori specializzati con competenze tecniche | € 1,664.89 | — |
-| `AQ2` | Area Qualificata 2 — Lavoratori con qualifica professionale specializzata | € 1,561.62 | — |
-| `AQ1` | Area Qualificata 1 — Lavoratori con qualifica professionale di base | € 1,497.04 | — |
-| `AE1` | Area Esecutiva 1 — Lavoratori addetti a mansioni esecutive semplici | € 1,299.90 | — |
+| `AD3` | Area Direttiva 3 — Quadro con responsabilita direttive superiori (Art. 2095 c.c.) | € 2,710.23 | 2027-10-01 |
+| `AD2` | Area Direttiva 2 — Lavoratori con funzioni direttive di secondo livello | € 2,426.28 | 2027-10-01 |
+| `AD1` | Area Direttiva 1 — Lavoratori con funzioni direttive di primo livello | € 2,219.77 | 2027-10-01 |
+| `AC3` | Area Concettuale 3 — Lavoratori con responsabilita di coordinamento complesso | € 2,103.67 | 2027-10-01 |
+| `AC2` | Area Concettuale 2 — Lavoratori con elevata autonomia e responsabilita funzionale | € 2,026.26 | 2027-10-01 |
+| `AC1` | Area Concettuale 1 — Lavoratori con funzioni di natura concettuale e autonomia decisionale | € 1,922.99 | 2027-10-01 |
+| `AS3` | Area Specialistica 3 — Lavoratori altamente specializzati o con funzioni di riferimento | € 1,806.82 | 2027-10-01 |
+| `AS2` | Area Specialistica 2 — Lavoratori specializzati con autonomia operativa | € 1,729.41 | 2027-10-01 |
+| `AS1` | Area Specialistica 1 — Lavoratori specializzati con competenze tecniche | € 1,664.89 | 2027-10-01 |
+| `AQ2` | Area Qualificata 2 — Lavoratori con qualifica professionale specializzata | € 1,561.62 | 2027-10-01 |
+| `AQ1` | Area Qualificata 1 — Lavoratori con qualifica professionale di base | € 1,497.04 | 2027-10-01 |
+| `AE1` | Area Esecutiva 1 — Lavoratori addetti a mansioni esecutive semplici | € 1,299.90 | 2027-10-01 |
 
 ## Seniority increments
 

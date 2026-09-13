@@ -33,15 +33,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `D1` | D1 — Quadri, maximum managerial and professional responsibility | € 2,814.86 | — |
-| `C4` | C4 — Grade 7, managerial functions of high organisational complexity | € 2,814.86 | — |
-| `C3` | C3 — Grade 6, high and consolidated professional and managerial expertise | € 2,559.28 | — |
-| `C2` | C2 — Grade 5S, specialist profiles with a high degree of specialisation | € 2,263.82 | — |
-| `C1` | C1 — Grade 5, advanced professional and managerial capabilities with high-level knowledge | € 2,186.73 | — |
-| `B2` | B2 — Grade 4, qualified specialist knowledge | € 2,020.45 | — |
-| `B1` | B1 — Grade 3, theoretical and practical knowledge of medium complexity | € 1,862.81 | — |
-| `A2` | A2 — Grade 2, basic professional knowledge | € 1,701.25 | — |
-| `A1` | A1 — Grade 1, predominantly manual tasks requiring no professional knowledge | € 1,518.96 | — |
+| `D1` | D1 — Quadri, maximum managerial and professional responsibility | € 2,814.86 | 2028-12-01 |
+| `C4` | C4 — Grade 7, managerial functions of high organisational complexity | € 2,814.86 | 2028-12-01 |
+| `C3` | C3 — Grade 6, high and consolidated professional and managerial expertise | € 2,559.28 | 2028-12-01 |
+| `C2` | C2 — Grade 5S, specialist profiles with a high degree of specialisation | € 2,263.82 | 2028-12-01 |
+| `C1` | C1 — Grade 5, advanced professional and managerial capabilities with high-level knowledge | € 2,186.73 | 2028-12-01 |
+| `B2` | B2 — Grade 4, qualified specialist knowledge | € 2,020.45 | 2028-12-01 |
+| `B1` | B1 — Grade 3, theoretical and practical knowledge of medium complexity | € 1,862.81 | 2028-12-01 |
+| `A2` | A2 — Grade 2, basic professional knowledge | € 1,701.25 | 2028-12-01 |
+| `A1` | A1 — Grade 1, predominantly manual tasks requiring no professional knowledge | € 1,518.96 | 2028-12-01 |
 
 ## Seniority increments
 

@@ -33,14 +33,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `7Q` | Level 7Q — top-level quadri | € 2,405.58 | — |
-| `7` | Level 7 — quadri with significant managerial functions | € 2,405.58 | — |
-| `6` | Level 6 — employees with managerial functions or specialist technicians | € 2,212.40 | — |
-| `5S` | Level 5 Superior — workers with qualified executive autonomy | € 2,058.07 | — |
-| `5` | Level 5 — highly specialised workers and white-collar employees | € 1,928.22 | — |
-| `4` | Level 4 — specialist workers and qualified employees | € 1,804.87 | — |
-| `3` | Level 3 — skilled workers and employees | € 1,734.59 | — |
-| `2` | Level 2 — general workers and clerical employees | € 1,574.39 | — |
+| `7Q` | Level 7Q — top-level quadri | € 2,405.58 | 2025-06-01 |
+| `7` | Level 7 — quadri with significant managerial functions | € 2,405.58 | 2025-06-01 |
+| `6` | Level 6 — employees with managerial functions or specialist technicians | € 2,212.40 | 2025-06-01 |
+| `5S` | Level 5 Superior — workers with qualified executive autonomy | € 2,058.07 | 2025-06-01 |
+| `5` | Level 5 — highly specialised workers and white-collar employees | € 1,928.22 | 2025-06-01 |
+| `4` | Level 4 — specialist workers and qualified employees | € 1,804.87 | 2025-06-01 |
+| `3` | Level 3 — skilled workers and employees | € 1,734.59 | 2025-06-01 |
+| `2` | Level 2 — general workers and clerical employees | € 1,574.39 | 2025-06-01 |
 
 ## Seniority increments
 

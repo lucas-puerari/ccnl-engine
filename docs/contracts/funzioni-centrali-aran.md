@@ -40,10 +40,10 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `ELEVATE_PROFESSIONALITA` | Area Elevate Professionalità | € 3,107.21 | — |
-| `FUNZIONARI` | Area Funzionari ed Elevata Qualificazione — Funzionari | € 2,275.39 | — |
-| `ASSISTENTI` | Area Assistenti | € 1,873.56 | — |
-| `OPERATORI` | Area Operatori | € 1,780.57 | — |
+| `ELEVATE_PROFESSIONALITA` | Area Elevate Professionalità | € 3,107.21 | 2027-01-01 |
+| `FUNZIONARI` | Area Funzionari ed Elevata Qualificazione — Funzionari | € 2,275.39 | 2027-01-01 |
+| `ASSISTENTI` | Area Assistenti | € 1,873.56 | 2027-01-01 |
+| `OPERATORI` | Area Operatori | € 1,780.57 | 2027-01-01 |
 
 ## Seniority increments
 

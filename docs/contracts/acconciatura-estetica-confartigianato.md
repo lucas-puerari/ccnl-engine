@@ -36,10 +36,10 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1` | Level 1 — technical director / senior supervisor | € 1,722.76 | — |
-| `2` | Level 2 — specialist worker / technical supervisor | € 1,573.78 | — |
-| `3` | Level 3 — qualified worker (hairdresser/beautician) | € 1,492.00 | — |
-| `4` | Level 4 — auxiliary worker / entry-level apprentice | € 1,406.73 | — |
+| `1` | Level 1 — technical director / senior supervisor | € 1,722.76 | 2026-10-01 |
+| `2` | Level 2 — specialist worker / technical supervisor | € 1,573.78 | 2026-10-01 |
+| `3` | Level 3 — qualified worker (hairdresser/beautician) | € 1,492.00 | 2026-10-01 |
+| `4` | Level 4 — auxiliary worker / entry-level apprentice | € 1,406.73 | 2026-10-01 |
 
 ## Seniority increments
 

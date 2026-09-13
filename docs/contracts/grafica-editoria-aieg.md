@@ -34,18 +34,18 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Q — quadro, highest technical or managerial responsibility | € 2,882.11 | — |
-| `AS` | AS — special grade, senior technical-editorial manager | € 2,871.24 | — |
-| `A` | A — 6th category worker, production manager | € 2,504.43 | — |
-| `B1S` | B1S — upper 5th category worker, technical department head | € 2,425.41 | — |
-| `B1` | B1 — 5th category worker, highly qualified technician | € 2,371.11 | — |
-| `B2` | B2 — upper 4th category worker, complex equipment operator | € 2,252.04 | — |
-| `B3` | B3 — 4th category worker, expert graphic technician | € 2,126.85 | — |
-| `C1` | C1 — 3rd category worker, specialist graphic technician | € 2,002.49 | — |
-| `C2` | C2 — 3rd category worker, general graphic technician | € 1,827.37 | — |
-| `D1` | D1 — upper 2nd category worker, qualified operator | € 1,702.44 | — |
-| `D2` | D2 — 2nd category worker, machine operator | € 1,595.11 | — |
-| `E` | E — 1st category worker, simple and routine tasks | € 1,460.85 | — |
+| `Q` | Q — quadro, highest technical or managerial responsibility | € 2,882.11 | 2026-07-01 |
+| `AS` | AS — special grade, senior technical-editorial manager | € 2,871.24 | 2026-07-01 |
+| `A` | A — 6th category worker, production manager | € 2,504.43 | 2026-07-01 |
+| `B1S` | B1S — upper 5th category worker, technical department head | € 2,425.41 | 2026-07-01 |
+| `B1` | B1 — 5th category worker, highly qualified technician | € 2,371.11 | 2026-07-01 |
+| `B2` | B2 — upper 4th category worker, complex equipment operator | € 2,252.04 | 2026-07-01 |
+| `B3` | B3 — 4th category worker, expert graphic technician | € 2,126.85 | 2026-07-01 |
+| `C1` | C1 — 3rd category worker, specialist graphic technician | € 2,002.49 | 2026-07-01 |
+| `C2` | C2 — 3rd category worker, general graphic technician | € 1,827.37 | 2026-07-01 |
+| `D1` | D1 — upper 2nd category worker, qualified operator | € 1,702.44 | 2026-07-01 |
+| `D2` | D2 — 2nd category worker, machine operator | € 1,595.11 | 2026-07-01 |
+| `E` | E — 1st category worker, simple and routine tasks | € 1,460.85 | 2026-07-01 |
 
 ## Seniority increments
 

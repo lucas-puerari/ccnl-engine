@@ -35,14 +35,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1` | Livello 1° | € 2,303.40 | — |
-| `2` | Livello 2° | € 2,070.77 | — |
-| `3` | Livello 3° | € 1,906.06 | — |
-| `4` | Livello 4° | € 1,772.31 | — |
-| `5` | Livello 5° | € 1,685.38 | — |
-| `6` | Livello 6° | € 1,636.55 | — |
-| `7` | Livello 7° | € 1,518.40 | — |
-| `np` | Area non professionalizzati | € 1,280.82 | — |
+| `1` | Livello 1° | € 2,303.40 | 2027-02-01 |
+| `2` | Livello 2° | € 2,070.77 | 2027-02-01 |
+| `3` | Livello 3° | € 1,906.06 | 2027-02-01 |
+| `4` | Livello 4° | € 1,772.31 | 2027-02-01 |
+| `5` | Livello 5° | € 1,685.38 | 2027-02-01 |
+| `6` | Livello 6° | € 1,636.55 | 2027-02-01 |
+| `7` | Livello 7° | € 1,518.40 | 2027-02-01 |
+| `np` | Area non professionalizzati | € 1,280.82 | 2027-02-01 |
 
 ## Seniority increments
 

@@ -33,14 +33,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `H` | Level H — senior managers, top technical executives (quadri) | € 3,168.51 | — |
-| `G` | Level G — managers, senior professionals, department heads | € 2,973.58 | — |
-| `F` | Level F — senior technical staff, team leaders | € 2,703.06 | — |
-| `E` | Level E — specialist workers, junior technical staff | € 2,444.03 | — |
-| `D` | Level D — highly skilled operai, senior impiegati | € 2,267.00 | — |
-| `C` | Level C — skilled operai, standard impiegati | € 2,033.35 | — |
-| `B` | Level B — semi-skilled operai and lower-grade impiegati | € 1,830.43 | — |
-| `A` | Level A — entry workers, unskilled, first-time employees | € 1,690.69 | — |
+| `H` | Level H — senior managers, top technical executives (quadri) | € 3,168.51 | 2026-01-01 |
+| `G` | Level G — managers, senior professionals, department heads | € 2,973.58 | 2026-01-01 |
+| `F` | Level F — senior technical staff, team leaders | € 2,703.06 | 2026-01-01 |
+| `E` | Level E — specialist workers, junior technical staff | € 2,444.03 | 2026-01-01 |
+| `D` | Level D — highly skilled operai, senior impiegati | € 2,267.00 | 2026-01-01 |
+| `C` | Level C — skilled operai, standard impiegati | € 2,033.35 | 2026-01-01 |
+| `B` | Level B — semi-skilled operai and lower-grade impiegati | € 1,830.43 | 2026-01-01 |
+| `A` | Level A — entry workers, unskilled, first-time employees | € 1,690.69 | 2026-01-01 |
 
 ## Seniority increments
 
@@ -61,10 +61,12 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **professionalizzante_C_H** (type: `under_classification`)  
-Destination levels: `C`, `D`, `E`, `F`, `G`, `H`
+Destination levels: `C`, `D`, `E`, `F`, `G`, `H`  
+under-level: `1`
 
 **professionalizzante_B** (type: `under_classification`)  
-Destination levels: `B`
+Destination levels: `B`  
+under-level: `1`
 
 **professionalizzante_A** (type: `under_classification`)  
 Destination levels: `A`

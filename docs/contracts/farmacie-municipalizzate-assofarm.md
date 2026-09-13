@@ -33,17 +33,17 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1Q` | 1o livello Q - Direttore responsabile e area manager | € 2,456.91 | — |
-| `1S` | 1o livello super - Direttore responsabile con funzioni direttive | € 2,372.46 | — |
-| `1C` | 1o livello C - Farmacista collaboratore con funzioni speciali | € 2,266.37 | — |
-| `1_12` | 1o livello + 12 anni - Farmacista collaboratore con 12+ anni di servizio | € 2,109.97 | — |
-| `1_2` | 1o livello + 2 anni - Farmacista collaboratore con 24+ mesi di servizio | € 2,109.97 | — |
-| `1` | 1o livello - Farmacista collaboratore | € 2,109.97 | — |
-| `2` | 2o livello - Lavoratori con funzioni di coordinamento o tecnico-specialistiche | € 1,872.16 | — |
-| `3` | 3o livello - Lavoratori con conoscenze tecnico-pratiche qualificate | € 1,777.29 | — |
-| `4` | 4o livello - Lavoratori con compiti esecutivi e conoscenze tecnico-pratiche | € 1,652.61 | — |
-| `5` | 5o livello - Lavoratori qualificati con normali conoscenze operative | € 1,522.17 | — |
-| `6` | 6o livello - Lavoratori con mansioni di pulizia e operazioni semplici | € 1,421.48 | — |
+| `1Q` | 1o livello Q - Direttore responsabile e area manager | € 2,456.91 | 2024-07-01 |
+| `1S` | 1o livello super - Direttore responsabile con funzioni direttive | € 2,372.46 | 2024-07-01 |
+| `1C` | 1o livello C - Farmacista collaboratore con funzioni speciali | € 2,266.37 | 2024-07-01 |
+| `1_12` | 1o livello + 12 anni - Farmacista collaboratore con 12+ anni di servizio | € 2,109.97 | 2024-07-01 |
+| `1_2` | 1o livello + 2 anni - Farmacista collaboratore con 24+ mesi di servizio | € 2,109.97 | 2024-07-01 |
+| `1` | 1o livello - Farmacista collaboratore | € 2,109.97 | 2024-07-01 |
+| `2` | 2o livello - Lavoratori con funzioni di coordinamento o tecnico-specialistiche | € 1,872.16 | 2024-07-01 |
+| `3` | 3o livello - Lavoratori con conoscenze tecnico-pratiche qualificate | € 1,777.29 | 2024-07-01 |
+| `4` | 4o livello - Lavoratori con compiti esecutivi e conoscenze tecnico-pratiche | € 1,652.61 | 2024-07-01 |
+| `5` | 5o livello - Lavoratori qualificati con normali conoscenze operative | € 1,522.17 | 2024-07-01 |
+| `6` | 6o livello - Lavoratori con mansioni di pulizia e operazioni semplici | € 1,421.48 | 2024-07-01 |
 
 ## Seniority increments
 
@@ -70,7 +70,8 @@ Latest effective values per level (monthly gross, EUR).
 Destination levels: `1`
 
 **professionalizzante** (type: `under_classification`)  
-Destination levels: `4`
+Destination levels: `4`  
+under-level: `1`
 
 ## Known simplifications
 

@@ -37,7 +37,7 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `DIRIGENTE` | Dirigente medico o veterinario SSN (rapporto esclusivo o non esclusivo) | € 3,846.60 | — |
+| `DIRIGENTE` | Dirigente medico o veterinario SSN (rapporto esclusivo o non esclusivo) | € 3,846.60 | 2024-01-01 |
 
 ## Seniority increments
 

@@ -35,13 +35,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `L7` | 7° livello — Funzionario | € 3,112.27 | — |
-| `L6` | 6° livello — Quadro | € 2,629.37 | — |
-| `L5` | 5° livello — Impiegato | € 2,463.96 | — |
-| `L4` | 4° livello — Impiegato | € 2,324.66 | — |
-| `L3` | 3° livello — Impiegato | € 2,130.75 | — |
-| `L2` | 2° livello — Impiegato | € 1,946.58 | — |
-| `L1` | 1° livello — Impiegato | € 1,846.38 | — |
+| `L7` | 7° livello — Funzionario | € 3,112.27 | 2028-01-01 |
+| `L6` | 6° livello — Quadro | € 2,629.37 | 2028-01-01 |
+| `L5` | 5° livello — Impiegato | € 2,463.96 | 2028-01-01 |
+| `L4` | 4° livello — Impiegato | € 2,324.66 | 2028-01-01 |
+| `L3` | 3° livello — Impiegato | € 2,130.75 | 2028-01-01 |
+| `L2` | 2° livello — Impiegato | € 1,946.58 | 2028-01-01 |
+| `L1` | 1° livello — Impiegato | € 1,846.38 | 2028-01-01 |
 
 ## Seniority increments
 
@@ -61,13 +61,16 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **area_c_l3** (type: `under_classification`)  
-Destination levels: `L3`
+Destination levels: `L3`  
+under-level: `1`
 
 **area_b_l4** (type: `under_classification`)  
-Destination levels: `L4`
+Destination levels: `L4`  
+under-level: `1`
 
 **area_b_l5** (type: `under_classification`)  
-Destination levels: `L5`
+Destination levels: `L5`  
+under-level: `1`
 
 ## Known simplifications
 

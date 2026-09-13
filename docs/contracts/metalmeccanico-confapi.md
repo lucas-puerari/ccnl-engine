@@ -33,15 +33,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `9` | Level 9 — highly qualified quadro | € 3,124.30 | — |
-| `8` | Level 8 — highly specialised technician, quadro | € 2,809.37 | — |
-| `7` | Level 7 — high technical or managerial expertise | € 2,583.36 | — |
-| `6` | Level 6 — specialist technician, department head, senior technical employee | € 2,407.97 | — |
-| `5` | Level 5 — specialist worker 2nd category, senior white-collar employee (CCNL reference level) | € 2,245.87 | — |
-| `4` | Level 4 — specialist worker 1st category, white-collar employee | € 2,096.58 | — |
-| `3` | Level 3 — skilled worker, clerical employee | € 2,009.48 | — |
-| `2` | Level 2 — standardised operations, simple executive duties | € 1,811.11 | — |
-| `1` | Level 1 — auxiliary duties, simple and repetitive operations | € 1,639.96 | — |
+| `9` | Level 9 — highly qualified quadro | € 3,124.30 | 2026-06-01 |
+| `8` | Level 8 — highly specialised technician, quadro | € 2,809.37 | 2026-06-01 |
+| `7` | Level 7 — high technical or managerial expertise | € 2,583.36 | 2026-06-01 |
+| `6` | Level 6 — specialist technician, department head, senior technical employee | € 2,407.97 | 2026-06-01 |
+| `5` | Level 5 — specialist worker 2nd category, senior white-collar employee (CCNL reference level) | € 2,245.87 | 2026-06-01 |
+| `4` | Level 4 — specialist worker 1st category, white-collar employee | € 2,096.58 | 2026-06-01 |
+| `3` | Level 3 — skilled worker, clerical employee | € 2,009.48 | 2026-06-01 |
+| `2` | Level 2 — standardised operations, simple executive duties | € 1,811.11 | 2026-06-01 |
+| `1` | Level 1 — auxiliary duties, simple and repetitive operations | € 1,639.96 | 2026-06-01 |
 
 ## Seniority increments
 

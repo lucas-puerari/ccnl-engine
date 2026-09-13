@@ -33,17 +33,17 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `AQ` | Livello AQ (Quadro) | € 3,430.84 | — |
-| `A` | Livello A | € 3,430.84 | — |
-| `A1` | Livello A1 | € 3,065.88 | — |
-| `B+` | Livello B Superiore | € 2,803.04 | — |
-| `B` | Livello B | € 2,700.85 | — |
-| `B1+` | Livello B1 Superiore | € 2,569.52 | — |
-| `B1` | Livello B1 | € 2,467.30 | — |
-| `C+` | Livello C Superiore | € 2,262.89 | — |
-| `C` | Livello C | € 2,160.70 | — |
-| `C1` | Livello C1 | € 1,970.92 | — |
-| `D` | Livello D | € 1,459.92 | — |
+| `AQ` | Livello AQ (Quadro) | € 3,430.84 | 2028-01-01 |
+| `A` | Livello A | € 3,430.84 | 2028-01-01 |
+| `A1` | Livello A1 | € 3,065.88 | 2028-01-01 |
+| `B+` | Livello B Superiore | € 2,803.04 | 2028-01-01 |
+| `B` | Livello B | € 2,700.85 | 2028-01-01 |
+| `B1+` | Livello B1 Superiore | € 2,569.52 | 2028-01-01 |
+| `B1` | Livello B1 | € 2,467.30 | 2028-01-01 |
+| `C+` | Livello C Superiore | € 2,262.89 | 2028-01-01 |
+| `C` | Livello C | € 2,160.70 | 2028-01-01 |
+| `C1` | Livello C1 | € 1,970.92 | 2028-01-01 |
+| `D` | Livello D | € 1,459.92 | 2028-01-01 |
 
 ## Seniority increments
 

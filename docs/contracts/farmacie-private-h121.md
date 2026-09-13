@@ -33,15 +33,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q1` | Area Q1 - Direttore responsabile di farmacia | € 1,668.97 | — |
-| `Q2` | Area Q2 - Farmacista collaboratore specializzato | € 1,499.19 | — |
-| `Q3` | Area Q3 - Farmacista collaboratore con 24+ mesi in qualifica | € 1,429.19 | — |
-| `1` | 1o livello - Farmacista collaboratore | € 1,429.19 | — |
-| `2` | 2o livello - Lavoratori di concetto con funzioni di coordinamento | € 1,215.92 | — |
-| `3` | 3o livello - Lavoratori di concetto con conoscenze tecniche | € 1,130.17 | — |
-| `4` | 4o livello - Lavoratori con compiti operativi e conoscenze tecnico-pratiche | € 1,017.02 | — |
-| `5` | 5o livello - Lavoratori qualificati con normali conoscenze | € 898.97 | — |
-| `6` | 6o livello - Lavoratori di pulizia e operazioni semplici | € 807.81 | — |
+| `Q1` | Area Q1 - Direttore responsabile di farmacia | € 1,668.97 | 2021-11-01 |
+| `Q2` | Area Q2 - Farmacista collaboratore specializzato | € 1,499.19 | 2021-11-01 |
+| `Q3` | Area Q3 - Farmacista collaboratore con 24+ mesi in qualifica | € 1,429.19 | 2021-11-01 |
+| `1` | 1o livello - Farmacista collaboratore | € 1,429.19 | 2021-11-01 |
+| `2` | 2o livello - Lavoratori di concetto con funzioni di coordinamento | € 1,215.92 | 2021-11-01 |
+| `3` | 3o livello - Lavoratori di concetto con conoscenze tecniche | € 1,130.17 | 2021-11-01 |
+| `4` | 4o livello - Lavoratori con compiti operativi e conoscenze tecnico-pratiche | € 1,017.02 | 2021-11-01 |
+| `5` | 5o livello - Lavoratori qualificati con normali conoscenze | € 898.97 | 2021-11-01 |
+| `6` | 6o livello - Lavoratori di pulizia e operazioni semplici | € 807.81 | 2021-11-01 |
 
 ## Seniority increments
 
@@ -66,7 +66,8 @@ Latest effective values per level (monthly gross, EUR).
 Destination levels: `1`
 
 **professionalizzante** (type: `under_classification`)  
-Destination levels: `4`
+Destination levels: `4`  
+under-level: `1`
 
 ## Sources
 

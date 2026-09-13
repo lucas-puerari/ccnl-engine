@@ -33,13 +33,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1` | Livello 1 (Par. 166) | € 1,875.95 | — |
-| `2` | Livello 2 (Par. 139) | € 1,650.74 | — |
-| `3S` | Livello 3 Super (Par. 127) | € 1,549.72 | — |
-| `3` | Livello 3 (Par. 122) | € 1,509.09 | — |
-| `4S` | Livello 4 Super (Par. 116) | € 1,457.90 | — |
-| `4` | Livello 4 (Par. 110) | € 1,409.19 | — |
-| `5` | Livello 5 (Par. 100) | € 1,325.69 | — |
+| `1` | Livello 1 (Par. 166) | € 1,875.95 | 2025-12-01 |
+| `2` | Livello 2 (Par. 139) | € 1,650.74 | 2025-12-01 |
+| `3S` | Livello 3 Super (Par. 127) | € 1,549.72 | 2025-12-01 |
+| `3` | Livello 3 (Par. 122) | € 1,509.09 | 2025-12-01 |
+| `4S` | Livello 4 Super (Par. 116) | € 1,457.90 | 2025-12-01 |
+| `4` | Livello 4 (Par. 110) | € 1,409.19 | 2025-12-01 |
+| `5` | Livello 5 (Par. 100) | € 1,325.69 | 2025-12-01 |
 
 ## Seniority increments
 
@@ -49,16 +49,20 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **professionalizzante - dest livello 1** (type: `under_classification`)  
-Destination levels: `1`
+Destination levels: `1`  
+under-level: `1`
 
 **professionalizzante - dest livello 2** (type: `under_classification`)  
-Destination levels: `2`
+Destination levels: `2`  
+under-level: `2`
 
 **professionalizzante - dest livello 3** (type: `under_classification`)  
-Destination levels: `3`
+Destination levels: `3`  
+under-level: `2`
 
 **professionalizzante - dest livello 4** (type: `under_classification`)  
-Destination levels: `4`
+Destination levels: `4`  
+under-level: `1`
 
 ## Known simplifications
 

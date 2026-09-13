@@ -14,10 +14,11 @@
 [← Contracts index](index.md)
 
 ??? note "Signatories"
-    - Confindustria Radio TV
+    - Confindustria Radio Televisioni
+    - ANICA
     - SLC-CGIL
     - FISTEL-CISL
-    - UILCOM-UIL
+    - UIL-COM
 
 ## Coverage
 
@@ -33,12 +34,12 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `6` | 6° livello | € 1,751.23 | — |
-| `5` | 5° livello | € 1,571.02 | — |
-| `4` | 4° livello | € 1,292.26 | — |
-| `3` | 3° livello | € 1,103.70 | — |
-| `2` | 2° livello | € 931.68 | — |
-| `1` | 1° livello | € 778.55 | — |
+| `6` | 6° livello | € 1,751.23 | 2027-06-01 |
+| `5` | 5° livello | € 1,571.02 | 2027-06-01 |
+| `4` | 4° livello | € 1,292.26 | 2027-06-01 |
+| `3` | 3° livello | € 1,103.70 | 2027-06-01 |
+| `2` | 2° livello | € 931.68 | 2027-06-01 |
+| `1` | 1° livello | € 778.55 | 2027-06-01 |
 
 ## Seniority increments
 
@@ -78,7 +79,9 @@ These are deliberate modelling approximations. Read them before using this contr
 | — | — | 2026-01-08 | [↗](https://www.confindustriaradiotv.it/) |
 
 ??? note "Coverage notes"
-    CCNL Radiotelevisivo 2026 signed 08/01/2026. Employer: Confindustria Radio TV. Unions: SLC-CGIL, FISTEL-CISL, UILCOM-UIL.
+    CCNL Radiotelevisivo 2026 signed 08/01/2026 in Roma. Employer: Confindustria Radio Televisioni (pres. Antonio Marano) and ANICA (pres. Alessandro Usai). Unions: SLC-CGIL (Sindacato Lavoratori della Comunicazione), FISTEL-CISL (Federazione Informazioni Spettacolo e Telecomunicazioni), UIL-COM (UIL Comunicazione). Signatories sourced from Art. 1, page 7 of CCNL PDF.
+    
+    Source anchor: https://www.confindustriaradiotv.it/ is the employer association homepage; a direct PDF permalink was not published. PDF read locally as ccnl_radiotv_2026.pdf (81 MB, read 2026-09-12).
     
     SPLIT model: paga base (minimo tabellare, Art. 43) + contingenza congelata al 1° novembre 1991 (Allegato A). EDR not present in 2026 CCNL.
     
@@ -88,6 +91,10 @@ These are deliberate modelling approximations. Read them before using this contr
     
     Apprenticeship (Art. 27): Radio L3+ table on page 43 of the PDF labels both apprenticeship rows as '2° livello CCNL' (apparent typo). Reconciled using Art. 27 page 37 cross-reference: TV L3 <-> Radio L2 (24 months), TV L4 <-> Radio L3, TV L5 <-> Radio L4, TV L6 <-> Radio L5, TV L7 <-> Radio L6. Second row is Radio L3+ (60 months). This is a source-document typo reconciled via Art. 27 intra-document cross-reference.
     
+    Radio L4 scatto (16.01) verified directly from Art. 46 page 75 of CCNL PDF. Does not follow pattern Radio L3=TV L3=15.49, Radio L5=TV L4=18.08; 16.01 is explicitly listed in the Radio sector table as '4° ivello' (PDF typo).
+    
+    Apprenticeship open tail: the final period of each track has months_until=null as required by the engine schema (validate_open_sequence enforces open-ended last period). Radio breve track (L2, max 24 months) ends {18, null, 0.90}; esteso track (L3-L6, max 60 months) ends {36, null, 1.00}.
+    
 
 ## Raw data
 
@@ -95,3 +102,9 @@ These are deliberate modelling approximations. Read them before using this contr
     ```json
     --8<-- "src/ccnl_engine/knowledge/ccnl/data/radiotelevisive-radiofonico.json"
     ```
+
+## Usage example
+
+```python
+--8<-- "docs/examples/contracts/radiotelevisive-radiofonico.py"
+```

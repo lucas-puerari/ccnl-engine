@@ -36,14 +36,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1Q` | Level 1Q — quadri: high-responsibility managerial functions | € 2,106.03 | — |
-| `1` | Level 1 — white-collar employees with managerial functions | € 2,106.03 | — |
-| `2` | Level 2 — conceptual tasks or high technical specialisation | € 1,959.57 | — |
-| `2bis` | Level 2 bis — specialised tasks, high operative autonomy | € 1,850.31 | — |
-| `3` | Level 3 — qualified tasks with operative autonomy | € 1,779.22 | — |
-| `4` | Level 4 — qualified operative tasks, partial operative autonomy | € 1,676.98 | — |
-| `5` | Level 5 — simple tasks with minimal operative autonomy | € 1,615.17 | — |
-| `6` | Level 6 — elementary operations without autonomy | € 1,540.21 | — |
+| `1Q` | Level 1Q — quadri: high-responsibility managerial functions | € 2,106.03 | 2026-11-01 |
+| `1` | Level 1 — white-collar employees with managerial functions | € 2,106.03 | 2026-11-01 |
+| `2` | Level 2 — conceptual tasks or high technical specialisation | € 1,959.57 | 2026-11-01 |
+| `2bis` | Level 2 bis — specialised tasks, high operative autonomy | € 1,850.31 | 2026-11-01 |
+| `3` | Level 3 — qualified tasks with operative autonomy | € 1,779.22 | 2026-11-01 |
+| `4` | Level 4 — qualified operative tasks, partial operative autonomy | € 1,676.98 | 2026-11-01 |
+| `5` | Level 5 — simple tasks with minimal operative autonomy | € 1,615.17 | 2026-11-01 |
+| `6` | Level 6 — elementary operations without autonomy | € 1,540.21 | 2026-11-01 |
 
 ## Seniority increments
 

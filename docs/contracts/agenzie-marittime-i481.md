@@ -33,13 +33,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `7` | Livello 7 (Quadro) | € 2,481.46 | — |
-| `6` | Livello 6 | € 2,370.23 | — |
-| `5` | Livello 5 | € 2,305.38 | — |
-| `4` | Livello 4 | € 2,177.70 | — |
-| `3` | Livello 3 | € 1,921.32 | — |
-| `2` | Livello 2 | € 1,841.02 | — |
-| `1` | Livello 1 (operaio comune) | € 1,601.09 | — |
+| `7` | Livello 7 (Quadro) | € 2,481.46 | 2026-09-01 |
+| `6` | Livello 6 | € 2,370.23 | 2026-09-01 |
+| `5` | Livello 5 | € 2,305.38 | 2026-09-01 |
+| `4` | Livello 4 | € 2,177.70 | 2026-09-01 |
+| `3` | Livello 3 | € 1,921.32 | 2026-09-01 |
+| `2` | Livello 2 | € 1,841.02 | 2026-09-01 |
+| `1` | Livello 1 (operaio comune) | € 1,601.09 | 2026-09-01 |
 
 ## Seniority increments
 
@@ -59,13 +59,16 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **professionalizzante - dest livello 3** (type: `under_classification`)  
-Destination levels: `3`
+Destination levels: `3`  
+under-level: `1`
 
 **professionalizzante - dest livelli 4-5** (type: `under_classification`)  
-Destination levels: `4`, `5`
+Destination levels: `4`, `5`  
+under-level: `1`
 
 **professionalizzante - dest livello 6** (type: `under_classification`)  
-Destination levels: `6`
+Destination levels: `6`  
+under-level: `1`
 
 ## Known simplifications
 

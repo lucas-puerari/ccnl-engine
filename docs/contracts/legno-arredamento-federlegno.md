@@ -33,22 +33,22 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `AD3` | Management Area — Level 3 (top management) | € 2,536.28 | — |
-| `AD2` | Management Area — Level 2 | € 2,478.22 | — |
-| `AD1` | Management Area — Level 1 | € 2,358.74 | — |
-| `AC5` | Competency Area — Level 5 (quadri) | € 2,239.93 | — |
-| `AC4` | Competency Area — Level 4 | € 2,061.83 | — |
-| `AS4` | Specialist Area — Level 4 | € 1,883.66 | — |
-| `AC3` | Competency Area — Level 3 | € 1,883.66 | — |
-| `AC2` | Competency Area — Level 2 | € 1,883.66 | — |
-| `AS3` | Specialist Area — Level 3 | € 1,795.17 | — |
-| `AS2` | Specialist Area — Level 2 | € 1,705.36 | — |
-| `AC1` | Competency Area — Level 1 | € 1,705.36 | — |
-| `AS1` | Specialist Area — Level 1 | € 1,633.95 | — |
-| `AE4` | Executive Area — Level 4 (highly skilled workers) | € 1,633.95 | — |
-| `AE3` | Executive Area — Level 3 (skilled workers) | € 1,544.94 | — |
-| `AE2` | Executive Area — Level 2 (qualified workers) | € 1,455.87 | — |
-| `AE1` | Executive Area — Level 1 (general workers) | € 1,230.69 | — |
+| `AD3` | Management Area — Level 3 (top management) | € 2,536.28 | 2025-01-01 |
+| `AD2` | Management Area — Level 2 | € 2,478.22 | 2025-01-01 |
+| `AD1` | Management Area — Level 1 | € 2,358.74 | 2025-01-01 |
+| `AC5` | Competency Area — Level 5 (quadri) | € 2,239.93 | 2025-01-01 |
+| `AC4` | Competency Area — Level 4 | € 2,061.83 | 2025-01-01 |
+| `AS4` | Specialist Area — Level 4 | € 1,883.66 | 2025-01-01 |
+| `AC3` | Competency Area — Level 3 | € 1,883.66 | 2025-01-01 |
+| `AC2` | Competency Area — Level 2 | € 1,883.66 | 2025-01-01 |
+| `AS3` | Specialist Area — Level 3 | € 1,795.17 | 2025-01-01 |
+| `AS2` | Specialist Area — Level 2 | € 1,705.36 | 2025-01-01 |
+| `AC1` | Competency Area — Level 1 | € 1,705.36 | 2025-01-01 |
+| `AS1` | Specialist Area — Level 1 | € 1,633.95 | 2025-01-01 |
+| `AE4` | Executive Area — Level 4 (highly skilled workers) | € 1,633.95 | 2025-01-01 |
+| `AE3` | Executive Area — Level 3 (skilled workers) | € 1,544.94 | 2025-01-01 |
+| `AE2` | Executive Area — Level 2 (qualified workers) | € 1,455.87 | 2025-01-01 |
+| `AE1` | Executive Area — Level 1 (general workers) | € 1,230.69 | 2025-01-01 |
 
 ## Seniority increments
 

@@ -37,11 +37,11 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `O5` | Operaio OTI 5° livello | € 1,695.97 | — |
-| `O4` | Operaio OTI 4° livello | € 1,596.98 | — |
-| `O3` | Operaio OTI 3° livello | € 1,528.08 | — |
-| `O2` | Operaio OTI 2° livello | € 1,491.16 | — |
-| `O1` | Operaio OTI 1° livello | € 1,376.66 | — |
+| `O5` | Operaio OTI 5° livello | € 1,695.97 | 2028-01-01 |
+| `O4` | Operaio OTI 4° livello | € 1,596.98 | 2028-01-01 |
+| `O3` | Operaio OTI 3° livello | € 1,528.08 | 2028-01-01 |
+| `O2` | Operaio OTI 2° livello | € 1,491.16 | 2028-01-01 |
+| `O1` | Operaio OTI 1° livello | € 1,376.66 | 2028-01-01 |
 
 ## Seniority increments
 

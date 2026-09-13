@@ -35,22 +35,22 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `F2Q` | Level F2Q — general director Quadro (with function allowance) | € 2,504.10 | — |
-| `F2` | Level F2 — general director / highest responsibility function | € 2,504.10 | — |
-| `F1Q` | Level F1Q — area director Quadro (with function allowance) | € 2,192.55 | — |
-| `F1` | Level F1 — area director / senior managerial function | € 2,192.55 | — |
-| `E2Q` | Level E2Q — senior manager Quadro (with function allowance) | € 1,985.39 | — |
-| `E2` | Level E2 — senior manager / service director | € 1,985.39 | — |
-| `E1` | Level E1 — junior manager / coordinator | € 1,839.16 | — |
-| `D3` | Level D3 — senior technician | € 1,839.16 | — |
-| `D2` | Level D2 — qualified technician | € 1,727.83 | — |
-| `D1` | Level D1 — junior technician | € 1,637.56 | — |
-| `C3` | Level C3 — specialised care worker | € 1,637.56 | — |
-| `C2` | Level C2 — qualified care worker | € 1,591.06 | — |
-| `C1` | Level C1 — basic care worker (OSS) | € 1,545.21 | — |
-| `B` | Level B — qualified auxiliary worker | € 1,436.78 | — |
-| `A2` | Level A2 — basic auxiliary worker | € 1,372.53 | — |
-| `A1` | Level A1 — generic entry-level worker | € 1,359.88 | — |
+| `F2Q` | Level F2Q — general director Quadro (with function allowance) | € 2,504.10 | 2025-10-01 |
+| `F2` | Level F2 — general director / highest responsibility function | € 2,504.10 | 2025-10-01 |
+| `F1Q` | Level F1Q — area director Quadro (with function allowance) | € 2,192.55 | 2025-10-01 |
+| `F1` | Level F1 — area director / senior managerial function | € 2,192.55 | 2025-10-01 |
+| `E2Q` | Level E2Q — senior manager Quadro (with function allowance) | € 1,985.39 | 2025-10-01 |
+| `E2` | Level E2 — senior manager / service director | € 1,985.39 | 2025-10-01 |
+| `E1` | Level E1 — junior manager / coordinator | € 1,839.16 | 2025-10-01 |
+| `D3` | Level D3 — senior technician | € 1,839.16 | 2025-10-01 |
+| `D2` | Level D2 — qualified technician | € 1,727.83 | 2025-10-01 |
+| `D1` | Level D1 — junior technician | € 1,637.56 | 2025-10-01 |
+| `C3` | Level C3 — specialised care worker | € 1,637.56 | 2025-10-01 |
+| `C2` | Level C2 — qualified care worker | € 1,591.06 | 2025-10-01 |
+| `C1` | Level C1 — basic care worker (OSS) | € 1,545.21 | 2025-10-01 |
+| `B` | Level B — qualified auxiliary worker | € 1,436.78 | 2025-10-01 |
+| `A2` | Level A2 — basic auxiliary worker | € 1,372.53 | 2025-10-01 |
+| `A1` | Level A1 — generic entry-level worker | € 1,359.88 | 2025-10-01 |
 
 ## Seniority increments
 

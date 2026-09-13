@@ -34,14 +34,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `VIII` | Livello VIII — Dirigente scolastico / direttore | € 1,955.38 | — |
-| `VII` | Livello VII — Coordinatore pedagogico / insegnante senior | € 1,912.11 | — |
-| `VI` | Livello VI — Insegnante di scuola dell'infanzia | € 1,739.55 | — |
-| `V` | Livello V — Educatore di nido / personale specializzato | € 1,719.76 | — |
-| `IV` | Livello IV — Educatore / personale qualificato | € 1,630.03 | — |
-| `III` | Livello III — Personale amministrativo / ausiliario specializzato | € 1,579.50 | — |
-| `II` | Livello II — Personale ausiliario qualificato / assistente | € 1,577.20 | — |
-| `I` | Livello I — Personale ausiliario non qualificato | € 1,517.75 | — |
+| `VIII` | Livello VIII — Dirigente scolastico / direttore | € 1,955.38 | 2027-09-01 |
+| `VII` | Livello VII — Coordinatore pedagogico / insegnante senior | € 1,912.11 | 2027-09-01 |
+| `VI` | Livello VI — Insegnante di scuola dell'infanzia | € 1,739.55 | 2027-09-01 |
+| `V` | Livello V — Educatore di nido / personale specializzato | € 1,719.76 | 2027-09-01 |
+| `IV` | Livello IV — Educatore / personale qualificato | € 1,630.03 | 2027-09-01 |
+| `III` | Livello III — Personale amministrativo / ausiliario specializzato | € 1,579.50 | 2027-09-01 |
+| `II` | Livello II — Personale ausiliario qualificato / assistente | € 1,577.20 | 2027-09-01 |
+| `I` | Livello I — Personale ausiliario non qualificato | € 1,517.75 | 2027-09-01 |
 
 ## Seniority increments
 

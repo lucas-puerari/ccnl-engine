@@ -36,14 +36,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1A` | Level 1A — senior manager / department head (+ function allowance EUR 51.65) | € 2,546.29 | — |
-| `1B` | Level 1B — intermediate manager / executive employee | € 2,264.27 | — |
-| `2` | Level 2 — technician / senior white-collar employee | € 2,124.16 | — |
-| `3` | Level 3 — highly specialised worker / white-collar employee | € 1,992.23 | — |
-| `4` | Level 4 — higher-grade specialised worker | € 1,848.56 | — |
-| `5bis` | Level 5 BIS — specialised worker (intermediate between 5 and 4) | € 1,690.94 | — |
-| `5` | Level 5 — qualified worker | € 1,616.72 | — |
-| `6` | Level 6 — common worker, assigned to routine duties | € 1,522.42 | — |
+| `1A` | Level 1A — senior manager / department head (+ function allowance EUR 51.65) | € 2,546.29 | 2026-11-01 |
+| `1B` | Level 1B — intermediate manager / executive employee | € 2,264.27 | 2026-11-01 |
+| `2` | Level 2 — technician / senior white-collar employee | € 2,124.16 | 2026-11-01 |
+| `3` | Level 3 — highly specialised worker / white-collar employee | € 1,992.23 | 2026-11-01 |
+| `4` | Level 4 — higher-grade specialised worker | € 1,848.56 | 2026-11-01 |
+| `5bis` | Level 5 BIS — specialised worker (intermediate between 5 and 4) | € 1,690.94 | 2026-11-01 |
+| `5` | Level 5 — qualified worker | € 1,616.72 | 2026-11-01 |
+| `6` | Level 6 — common worker, assigned to routine duties | € 1,522.42 | 2026-11-01 |
 
 ## Seniority increments
 

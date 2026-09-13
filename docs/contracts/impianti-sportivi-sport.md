@@ -33,13 +33,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadro | € 2,083.49 | — |
-| `I` | Primo livello | € 1,989.04 | — |
-| `II` | Secondo livello | € 1,807.04 | — |
-| `III` | Terzo livello | € 1,636.42 | — |
-| `IV` | Quarto livello | € 1,506.82 | — |
-| `V` | Quinto livello | € 1,413.42 | — |
-| `VI` | Sesto livello | € 1,336.82 | — |
+| `Q` | Quadro | € 2,083.49 | 2026-07-01 |
+| `I` | Primo livello | € 1,989.04 | 2026-07-01 |
+| `II` | Secondo livello | € 1,807.04 | 2026-07-01 |
+| `III` | Terzo livello | € 1,636.42 | 2026-07-01 |
+| `IV` | Quarto livello | € 1,506.82 | 2026-07-01 |
+| `V` | Quinto livello | € 1,413.42 | 2026-07-01 |
+| `VI` | Sesto livello | € 1,336.82 | 2026-07-01 |
 
 ## Seniority increments
 
@@ -49,10 +49,12 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **apprendistato_II_III_IV_36mesi** (type: `under_classification`)  
-Destination levels: `II`, `III`, `IV`
+Destination levels: `II`, `III`, `IV`  
+under-level: `1`
 
 **apprendistato_V_36mesi_semplificato** (type: `under_classification`)  
-Destination levels: `V`
+Destination levels: `V`  
+under-level: `1`
 
 **apprendistato_VI_24mesi_semplificato** (type: `under_classification`)  
 Destination levels: `VI`

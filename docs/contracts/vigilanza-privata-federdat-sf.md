@@ -33,11 +33,11 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A` | Livello A | € 2,032.24 | — |
-| `B` | Livello B | € 1,849.18 | — |
-| `C` | Livello C | € 1,556.29 | — |
-| `D` | Livello D | € 1,300.00 | — |
-| `E` | Livello E (entry, primi 9 mesi) | € 1,207.14 | — |
+| `A` | Livello A | € 2,032.24 | 2026-04-01 |
+| `B` | Livello B | € 1,849.18 | 2026-04-01 |
+| `C` | Livello C | € 1,556.29 | 2026-04-01 |
+| `D` | Livello D | € 1,300.00 | 2026-04-01 |
+| `E` | Livello E (entry, primi 9 mesi) | € 1,207.14 | 2026-04-01 |
 
 ## Seniority increments
 

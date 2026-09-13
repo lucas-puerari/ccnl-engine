@@ -33,18 +33,18 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadro (dirigente di struttura o coordinatore senior) | € 2,130.15 | — |
-| `10` | Livello 10 — Responsabile di area/servizio | € 1,972.13 | — |
-| `9` | Livello 9 — Coordinatore/Professionista senior | € 1,893.48 | — |
-| `8` | Livello 8 — Operatore specializzato senior | € 1,769.59 | — |
-| `7` | Livello 7 — Operatore specializzato | € 1,752.93 | — |
-| `6` | Livello 6 — Operatore qualificato senior | € 1,696.37 | — |
-| `5` | Livello 5 — Operatore qualificato | € 1,637.06 | — |
-| `4` | Livello 4 — Operatore | € 1,562.10 | — |
-| `3S` | Livello 3 Super — Operatore ausiliario specializzato | € 1,525.03 | — |
-| `3` | Livello 3 — Operatore ausiliario | € 1,487.96 | — |
-| `2` | Livello 2 — Addetto generico | € 1,390.12 | — |
-| `1` | Livello 1 — Addetto base (introdotto nel rinnovo 2025) | € 1,295.43 | — |
+| `Q` | Quadro (dirigente di struttura o coordinatore senior) | € 2,130.15 | 2025-08-01 |
+| `10` | Livello 10 — Responsabile di area/servizio | € 1,972.13 | 2025-08-01 |
+| `9` | Livello 9 — Coordinatore/Professionista senior | € 1,893.48 | 2025-08-01 |
+| `8` | Livello 8 — Operatore specializzato senior | € 1,769.59 | 2025-08-01 |
+| `7` | Livello 7 — Operatore specializzato | € 1,752.93 | 2025-08-01 |
+| `6` | Livello 6 — Operatore qualificato senior | € 1,696.37 | 2025-08-01 |
+| `5` | Livello 5 — Operatore qualificato | € 1,637.06 | 2025-08-01 |
+| `4` | Livello 4 — Operatore | € 1,562.10 | 2025-08-01 |
+| `3S` | Livello 3 Super — Operatore ausiliario specializzato | € 1,525.03 | 2025-08-01 |
+| `3` | Livello 3 — Operatore ausiliario | € 1,487.96 | 2025-08-01 |
+| `2` | Livello 2 — Addetto generico | € 1,390.12 | 2025-08-01 |
+| `1` | Livello 1 — Addetto base (introdotto nel rinnovo 2025) | € 1,295.43 | 2023-01-01 |
 
 ## Seniority increments
 

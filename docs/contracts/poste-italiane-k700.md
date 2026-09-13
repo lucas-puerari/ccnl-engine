@@ -33,13 +33,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A1` | Livello A — posizione retributiva A1 | € 2,169.37 | — |
-| `A2` | Livello A — posizione retributiva A2 | € 1,926.89 | — |
-| `B` | Livello B | € 1,652.98 | — |
-| `C` | Livello C | € 1,522.56 | — |
-| `D` | Livello D | € 1,452.20 | — |
-| `E` | Livello E | € 1,287.61 | — |
-| `F` | Livello F | € 1,154.49 | — |
+| `A1` | Livello A — posizione retributiva A1 | € 2,169.37 | 2027-12-01 |
+| `A2` | Livello A — posizione retributiva A2 | € 1,926.89 | 2027-12-01 |
+| `B` | Livello B | € 1,652.98 | 2027-12-01 |
+| `C` | Livello C | € 1,522.56 | 2027-12-01 |
+| `D` | Livello D | € 1,452.20 | 2027-12-01 |
+| `E` | Livello E | € 1,287.61 | 2027-12-01 |
+| `F` | Livello F | € 1,154.49 | 2027-12-01 |
 
 ## Seniority increments
 
@@ -49,7 +49,8 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **professionalizzante** (type: `under_classification`)  
-Destination levels: `B`, `C`, `D`, `E`
+Destination levels: `B`, `C`, `D`, `E`  
+under-level: `1`
 
 ## Known simplifications
 

@@ -33,16 +33,16 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadro — Lavoratori con responsabilita di direzione e coordinamento (Art. 2095 c.c.) | € 2,680.72 | — |
-| `6` | Livello 6 — Lavoratori con autonomia decisionale e competenze trasversali elevate | € 2,670.80 | — |
-| `5S` | Livello 5 Super — Lavoratori con funzioni tecniche o di supervisione avanzata | € 2,540.00 | — |
-| `5` | Livello 5 — Lavoratori con funzioni di controllo o alta specializzazione | € 2,453.48 | — |
-| `4S` | Livello 4 Super — Lavoratori con elevata specializzazione o coordinamento | € 2,280.32 | — |
-| `4` | Livello 4 — Lavoratori polivalenti o con responsabilita tecnica | € 2,187.96 | — |
-| `3S` | Livello 3 Super — Lavoratori specializzati di livello superiore | € 2,125.83 | — |
-| `3` | Livello 3 — Lavoratori specializzati con autonomia operativa | € 2,082.62 | — |
-| `2` | Livello 2 — Lavoratori qualificati con conoscenze specifiche | € 1,966.32 | — |
-| `1` | Livello 1 — Lavoratori addetti a mansioni semplici e ripetitive | € 1,712.04 | — |
+| `Q` | Quadro — Lavoratori con responsabilita di direzione e coordinamento (Art. 2095 c.c.) | € 2,680.72 | 2028-11-01 |
+| `6` | Livello 6 — Lavoratori con autonomia decisionale e competenze trasversali elevate | € 2,670.80 | 2028-11-01 |
+| `5S` | Livello 5 Super — Lavoratori con funzioni tecniche o di supervisione avanzata | € 2,540.00 | 2028-11-01 |
+| `5` | Livello 5 — Lavoratori con funzioni di controllo o alta specializzazione | € 2,453.48 | 2028-11-01 |
+| `4S` | Livello 4 Super — Lavoratori con elevata specializzazione o coordinamento | € 2,280.32 | 2028-11-01 |
+| `4` | Livello 4 — Lavoratori polivalenti o con responsabilita tecnica | € 2,187.96 | 2028-11-01 |
+| `3S` | Livello 3 Super — Lavoratori specializzati di livello superiore | € 2,125.83 | 2028-11-01 |
+| `3` | Livello 3 — Lavoratori specializzati con autonomia operativa | € 2,082.62 | 2028-11-01 |
+| `2` | Livello 2 — Lavoratori qualificati con conoscenze specifiche | € 1,966.32 | 2028-11-01 |
+| `1` | Livello 1 — Lavoratori addetti a mansioni semplici e ripetitive | € 1,712.04 | 2028-11-01 |
 
 ## Seniority increments
 

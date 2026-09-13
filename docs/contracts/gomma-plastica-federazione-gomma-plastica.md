@@ -33,16 +33,16 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Q — senior manager grade (quadro under L. 190/1985), highest responsibility | € 2,664.67 | — |
-| `A` | A — quadro, highly specialised technical or functional expert | € 2,508.94 | — |
-| `B` | B — technical or administrative manager, high professional grade | € 2,366.94 | — |
-| `C` | C — department head, white-collar employee with operational autonomy | € 2,335.85 | — |
-| `D` | D — team leader, qualified technical/administrative employee | € 2,306.50 | — |
-| `E` | E — highly skilled worker, expert technical employee | € 2,213.42 | — |
-| `F` | F — skilled worker, technical employee (CCNL reference level) | € 2,156.12 | — |
-| `G` | G — qualified worker 2nd category, white-collar employee | € 2,009.25 | — |
-| `H` | H — qualified worker 1st category, clerical staff | € 1,916.08 | — |
-| `I` | I — elementary tasks, simple operations with brief training | € 1,722.59 | — |
+| `Q` | Q — senior manager grade (quadro under L. 190/1985), highest responsibility | € 2,664.67 | 2028-12-01 |
+| `A` | A — quadro, highly specialised technical or functional expert | € 2,508.94 | 2028-12-01 |
+| `B` | B — technical or administrative manager, high professional grade | € 2,366.94 | 2028-12-01 |
+| `C` | C — department head, white-collar employee with operational autonomy | € 2,335.85 | 2028-12-01 |
+| `D` | D — team leader, qualified technical/administrative employee | € 2,306.50 | 2028-12-01 |
+| `E` | E — highly skilled worker, expert technical employee | € 2,213.42 | 2028-12-01 |
+| `F` | F — skilled worker, technical employee (CCNL reference level) | € 2,156.12 | 2028-12-01 |
+| `G` | G — qualified worker 2nd category, white-collar employee | € 2,009.25 | 2028-12-01 |
+| `H` | H — qualified worker 1st category, clerical staff | € 1,916.08 | 2028-12-01 |
+| `I` | I — elementary tasks, simple operations with brief training | € 1,722.59 | 2028-12-01 |
 
 ## Seniority increments
 

@@ -39,34 +39,34 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `E2` | Categoria E — progressione orizzontale 2 | € 3,554.39 | — |
-| `E1` | Categoria E — progressione orizzontale 1 | € 2,936.33 | — |
-| `DS4` | Categoria DS — progressione orizzontale 4 | € 2,418.05 | — |
-| `E` | Categoria E — quadro / specialista | € 2,410.22 | — |
-| `DS3` | Categoria DS — progressione orizzontale 3 | € 2,345.38 | — |
-| `DS2` | Categoria DS — progressione orizzontale 2 | € 2,261.56 | — |
-| `D4` | Categoria D — progressione orizzontale 4 | € 2,209.98 | — |
-| `DS1` | Categoria DS — progressione orizzontale 1 | € 2,180.26 | — |
-| `D3` | Categoria D — progressione orizzontale 3 | € 2,147.12 | — |
-| `DS` | Categoria DS — coordinatore | € 2,101.08 | — |
-| `D2` | Categoria D — progressione orizzontale 2 | € 2,084.77 | — |
-| `C4` | Categoria C — progressione orizzontale 4 | € 2,076.38 | — |
-| `D1` | Categoria D — progressione orizzontale 1 | € 2,022.94 | — |
-| `C3` | Categoria C — progressione orizzontale 3 | € 1,984.10 | — |
-| `D` | Categoria D — professionista sanitario | € 1,953.87 | — |
-| `C2` | Categoria C — progressione orizzontale 2 | € 1,921.25 | — |
-| `C1` | Categoria C — progressione orizzontale 1 | € 1,857.14 | — |
-| `C` | Categoria C — operatore qualificato | € 1,803.61 | — |
-| `B4` | Categoria B — progressione orizzontale 4 | € 1,733.54 | — |
-| `B3` | Categoria B — progressione orizzontale 3 | € 1,697.76 | — |
-| `B2` | Categoria B — progressione orizzontale 2 | € 1,669.36 | — |
-| `B1` | Categoria B — progressione orizzontale 1 | € 1,624.54 | — |
-| `A4` | Categoria A — progressione orizzontale 4 | € 1,592.19 | — |
-| `B` | Categoria B — operatore tecnico-pratico | € 1,579.86 | — |
-| `A3` | Categoria A — progressione orizzontale 3 | € 1,566.67 | — |
-| `A2` | Categoria A — progressione orizzontale 2 | € 1,544.35 | — |
-| `A1` | Categoria A — progressione orizzontale 1 | € 1,506.44 | — |
-| `A` | Categoria A — ausiliario generico | € 1,467.45 | — |
+| `E2` | Categoria E — progressione orizzontale 2 | € 3,554.39 | 2020-07-01 |
+| `E1` | Categoria E — progressione orizzontale 1 | € 2,936.33 | 2020-07-01 |
+| `DS4` | Categoria DS — progressione orizzontale 4 | € 2,418.05 | 2020-07-01 |
+| `E` | Categoria E — quadro / specialista | € 2,410.22 | 2020-07-01 |
+| `DS3` | Categoria DS — progressione orizzontale 3 | € 2,345.38 | 2020-07-01 |
+| `DS2` | Categoria DS — progressione orizzontale 2 | € 2,261.56 | 2020-07-01 |
+| `D4` | Categoria D — progressione orizzontale 4 | € 2,209.98 | 2020-07-01 |
+| `DS1` | Categoria DS — progressione orizzontale 1 | € 2,180.26 | 2020-07-01 |
+| `D3` | Categoria D — progressione orizzontale 3 | € 2,147.12 | 2020-07-01 |
+| `DS` | Categoria DS — coordinatore | € 2,101.08 | 2020-07-01 |
+| `D2` | Categoria D — progressione orizzontale 2 | € 2,084.77 | 2020-07-01 |
+| `C4` | Categoria C — progressione orizzontale 4 | € 2,076.38 | 2020-07-01 |
+| `D1` | Categoria D — progressione orizzontale 1 | € 2,022.94 | 2020-07-01 |
+| `C3` | Categoria C — progressione orizzontale 3 | € 1,984.10 | 2020-07-01 |
+| `D` | Categoria D — professionista sanitario | € 1,953.87 | 2020-07-01 |
+| `C2` | Categoria C — progressione orizzontale 2 | € 1,921.25 | 2020-07-01 |
+| `C1` | Categoria C — progressione orizzontale 1 | € 1,857.14 | 2020-07-01 |
+| `C` | Categoria C — operatore qualificato | € 1,803.61 | 2020-07-01 |
+| `B4` | Categoria B — progressione orizzontale 4 | € 1,733.54 | 2020-07-01 |
+| `B3` | Categoria B — progressione orizzontale 3 | € 1,697.76 | 2020-07-01 |
+| `B2` | Categoria B — progressione orizzontale 2 | € 1,669.36 | 2020-07-01 |
+| `B1` | Categoria B — progressione orizzontale 1 | € 1,624.54 | 2020-07-01 |
+| `A4` | Categoria A — progressione orizzontale 4 | € 1,592.19 | 2020-07-01 |
+| `B` | Categoria B — operatore tecnico-pratico | € 1,579.86 | 2020-07-01 |
+| `A3` | Categoria A — progressione orizzontale 3 | € 1,566.67 | 2020-07-01 |
+| `A2` | Categoria A — progressione orizzontale 2 | € 1,544.35 | 2020-07-01 |
+| `A1` | Categoria A — progressione orizzontale 1 | € 1,506.44 | 2020-07-01 |
+| `A` | Categoria A — ausiliario generico | € 1,467.45 | 2020-07-01 |
 
 ## Seniority increments
 

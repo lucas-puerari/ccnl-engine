@@ -37,7 +37,7 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `DIRIGENTE` | Dirigente sanitario SSN (psicologo, farmacista, biologo, fisico, chimico, dirigente professioni sanitarie) | € 3,846.60 | — |
+| `DIRIGENTE` | Dirigente sanitario SSN (psicologo, farmacista, biologo, fisico, chimico, dirigente professioni sanitarie) | € 3,846.60 | 2024-01-01 |
 
 ## Seniority increments
 

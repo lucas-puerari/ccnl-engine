@@ -36,13 +36,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1Q` | Livello 1Q — Quadri (dirigenti intermedi con autonomia gestionale) | € 1,788.38 | — |
-| `1` | Livello 1 — Funzionari e tecnici direttivi con responsabilita di settore | € 1,686.76 | — |
-| `2` | Livello 2 — Tecnici specializzati, impiegati di concetto superiore | € 1,541.41 | — |
-| `3` | Livello 3 — Tecnici e impiegati con funzioni di concetto di grado superiore | € 1,417.89 | — |
-| `4` | Livello 4 — Impiegati con mansioni di concetto o amministrative qualificate | € 1,335.93 | — |
-| `5` | Livello 5 — Impiegati d'ordine con compiti esecutivi | € 1,278.60 | — |
-| `6` | Livello 6 — Impiegati d'ordine di prima nomina, manovalanza di fatica | € 1,217.23 | — |
+| `1Q` | Livello 1Q — Quadri (dirigenti intermedi con autonomia gestionale) | € 1,788.38 | 2024-07-01 |
+| `1` | Livello 1 — Funzionari e tecnici direttivi con responsabilita di settore | € 1,686.76 | 2024-07-01 |
+| `2` | Livello 2 — Tecnici specializzati, impiegati di concetto superiore | € 1,541.41 | 2024-07-01 |
+| `3` | Livello 3 — Tecnici e impiegati con funzioni di concetto di grado superiore | € 1,417.89 | 2024-07-01 |
+| `4` | Livello 4 — Impiegati con mansioni di concetto o amministrative qualificate | € 1,335.93 | 2024-07-01 |
+| `5` | Livello 5 — Impiegati d'ordine con compiti esecutivi | € 1,278.60 | 2024-07-01 |
+| `6` | Livello 6 — Impiegati d'ordine di prima nomina, manovalanza di fatica | € 1,217.23 | 2024-07-01 |
 
 ## Seniority increments
 

@@ -33,15 +33,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A1` | Livello A1 | € 2,500.91 | — |
-| `A2` | Livello A2 | € 2,315.87 | — |
-| `B1` | Livello B1 | € 2,158.18 | — |
-| `B2` | Livello B2 | € 1,973.12 | — |
-| `C1` | Livello C1 | € 1,861.27 | — |
-| `C2` | Livello C2 | € 1,756.59 | — |
-| `C3` | Livello C3 | € 1,647.90 | — |
-| `D1` | Livello D1 | € 1,584.79 | — |
-| `D2` | Livello D2 | € 1,464.57 | — |
+| `A1` | Livello A1 | € 2,500.91 | 2027-04-01 |
+| `A2` | Livello A2 | € 2,315.87 | 2027-04-01 |
+| `B1` | Livello B1 | € 2,158.18 | 2027-04-01 |
+| `B2` | Livello B2 | € 1,973.12 | 2027-04-01 |
+| `C1` | Livello C1 | € 1,861.27 | 2027-04-01 |
+| `C2` | Livello C2 | € 1,756.59 | 2027-04-01 |
+| `C3` | Livello C3 | € 1,647.90 | 2027-04-01 |
+| `D1` | Livello D1 | € 1,584.79 | 2027-04-01 |
+| `D2` | Livello D2 | € 1,464.57 | 2027-04-01 |
 
 ## Seniority increments
 

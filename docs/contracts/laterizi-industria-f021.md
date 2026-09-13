@@ -34,15 +34,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `ASQ` | Quadri AS — Impiegati inquadrati al livello AS con responsabilita di coordinamento e gestione di settori fondamentali | € 2,588.66 | — |
-| `AS` | AS — Impiegati con funzioni direttive e discrezionalita di poteri | € 2,588.66 | — |
-| `A` | A — Impiegati con funzioni autonome di guida e coordinamento | € 2,176.82 | — |
-| `B` | B — Impiegati e Operai con mansioni di concetto o manutenzione impianti con coordinamento | € 1,776.77 | — |
-| `CS` | CS — Operai specializzati con interventi elettrici/elettronici o coordinamento squadra | € 1,681.04 | — |
-| `C` | C — Impiegati e Operai con autonomia esecutiva e conoscenze professionali specifiche | € 1,599.23 | — |
-| `D` | D — Impiegati con mansioni d'ordine e Operai con capacita tecnico-pratiche | € 1,485.67 | — |
-| `E` | E — Impiegati con mansioni esecutive generiche e Operai con capacita pratica di mestiere | € 1,377.67 | — |
-| `F` | F — Operai con semplici conoscenze conseguibili con breve pratica (incl. superminimo 4.13 EUR) | € 1,178.55 | — |
+| `ASQ` | Quadri AS — Impiegati inquadrati al livello AS con responsabilita di coordinamento e gestione di settori fondamentali | € 2,588.66 | 2028-07-01 |
+| `AS` | AS — Impiegati con funzioni direttive e discrezionalita di poteri | € 2,588.66 | 2028-07-01 |
+| `A` | A — Impiegati con funzioni autonome di guida e coordinamento | € 2,176.82 | 2028-07-01 |
+| `B` | B — Impiegati e Operai con mansioni di concetto o manutenzione impianti con coordinamento | € 1,776.77 | 2028-07-01 |
+| `CS` | CS — Operai specializzati con interventi elettrici/elettronici o coordinamento squadra | € 1,681.04 | 2028-07-01 |
+| `C` | C — Impiegati e Operai con autonomia esecutiva e conoscenze professionali specifiche | € 1,599.23 | 2028-07-01 |
+| `D` | D — Impiegati con mansioni d'ordine e Operai con capacita tecnico-pratiche | € 1,485.67 | 2028-07-01 |
+| `E` | E — Impiegati con mansioni esecutive generiche e Operai con capacita pratica di mestiere | € 1,377.67 | 2028-07-01 |
+| `F` | F — Operai con semplici conoscenze conseguibili con breve pratica (incl. superminimo 4.13 EUR) | € 1,178.55 | 2028-07-01 |
 
 ## Seniority increments
 

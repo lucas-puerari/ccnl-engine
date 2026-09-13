@@ -36,15 +36,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Level Q (Quadri) — par. 200.74 — managerial, highest responsibility | € 3,577.47 | — |
-| `8` | Level 8 — par. 181.29 — senior expert, broad managerial-technical responsibility | € 3,230.84 | — |
-| `7` | Level 7 — par. 167.50 — expert, advanced coordination | € 2,985.08 | — |
-| `6` | Level 6 — par. 153.69 — senior specialist, technical-organisational roles | € 2,738.97 | — |
-| `5` | Level 5 — par. 139.96 — highly skilled, broad autonomy | € 2,494.28 | — |
-| `4` | Level 4 — par. 131.42 — specialist, complex tasks requiring expertise | € 2,342.01 | — |
-| `3` | Level 3 — par. 122.95 — skilled operative, autonomous in standard tasks | € 2,191.09 | — |
-| `2` | Level 2 — par. 111.15 — semi-skilled, partial autonomy | € 1,980.76 | — |
-| `1` | Level 1 — par. 100 — unskilled, non-autonomous, routine operations | € 1,782.14 | — |
+| `Q` | Level Q (Quadri) — par. 200.74 — managerial, highest responsibility | € 3,577.47 | 2026-07-01 |
+| `8` | Level 8 — par. 181.29 — senior expert, broad managerial-technical responsibility | € 3,230.84 | 2026-07-01 |
+| `7` | Level 7 — par. 167.50 — expert, advanced coordination | € 2,985.08 | 2026-07-01 |
+| `6` | Level 6 — par. 153.69 — senior specialist, technical-organisational roles | € 2,738.97 | 2026-07-01 |
+| `5` | Level 5 — par. 139.96 — highly skilled, broad autonomy | € 2,494.28 | 2026-07-01 |
+| `4` | Level 4 — par. 131.42 — specialist, complex tasks requiring expertise | € 2,342.01 | 2026-07-01 |
+| `3` | Level 3 — par. 122.95 — skilled operative, autonomous in standard tasks | € 2,191.09 | 2026-07-01 |
+| `2` | Level 2 — par. 111.15 — semi-skilled, partial autonomy | € 1,980.76 | 2026-07-01 |
+| `1` | Level 1 — par. 100 — unskilled, non-autonomous, routine operations | € 1,782.14 | 2026-07-01 |
 
 ## Seniority increments
 

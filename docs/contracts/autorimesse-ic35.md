@@ -33,17 +33,17 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q1` | Livello Q1 (Quadro di primo livello) | € 2,319.11 | — |
-| `Q2` | Livello Q2 (Quadro di secondo livello) | € 2,319.11 | — |
-| `A1` | Livello A1 | € 2,319.11 | — |
-| `A2` | Livello A2 | € 2,183.36 | — |
-| `B1` | Livello B1 | € 1,991.05 | — |
-| `B2` | Livello B2 | € 1,900.55 | — |
-| `B3` | Livello B3 | € 1,821.35 | — |
-| `C1` | Livello C1 | € 1,753.48 | — |
-| `C2` | Livello C2 | € 1,561.16 | — |
-| `C3` | Livello C3 | € 1,448.04 | — |
-| `C4` | Livello C4 | € 1,131.27 | — |
+| `Q1` | Livello Q1 (Quadro di primo livello) | € 2,319.11 | 2027-11-01 |
+| `Q2` | Livello Q2 (Quadro di secondo livello) | € 2,319.11 | 2027-11-01 |
+| `A1` | Livello A1 | € 2,319.11 | 2027-11-01 |
+| `A2` | Livello A2 | € 2,183.36 | 2027-11-01 |
+| `B1` | Livello B1 | € 1,991.05 | 2027-11-01 |
+| `B2` | Livello B2 | € 1,900.55 | 2027-11-01 |
+| `B3` | Livello B3 | € 1,821.35 | 2027-11-01 |
+| `C1` | Livello C1 | € 1,753.48 | 2027-11-01 |
+| `C2` | Livello C2 | € 1,561.16 | 2027-11-01 |
+| `C3` | Livello C3 | € 1,448.04 | 2027-11-01 |
+| `C4` | Livello C4 | € 1,131.27 | 2027-11-01 |
 
 ## Seniority increments
 

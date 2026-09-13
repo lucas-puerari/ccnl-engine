@@ -35,17 +35,17 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `QD4` | Executive Managers - 4th pay level | € 5,160.06 | — |
-| `QD3` | Executive Managers - 3rd pay level | € 4,396.88 | — |
-| `QD2` | Executive Managers - 2nd pay level | € 3,965.48 | — |
-| `QD1` | Executive Managers - 1st pay level | € 3,743.21 | — |
-| `3AP4` | 3rd Professional Area - 4th pay level | € 3,341.90 | — |
-| `3AP3` | 3rd Professional Area - 3rd pay level | € 3,059.49 | — |
-| `3AP2` | 3rd Professional Area - 2nd pay level | € 2,890.41 | — |
-| `3AP1` | 3rd Professional Area - 1st pay level | € 2,742.35 | — |
-| `2AP2` | 2nd Professional Area - 2nd pay level | € 2,572.10 | — |
-| `2AP1` | 2nd Professional Area - 1st pay level | € 2,406.80 | — |
-| `1AP` | 1st Professional Area - single level | € 2,241.53 | — |
+| `QD4` | Executive Managers - 4th pay level | € 5,160.06 | 2026-01-01 |
+| `QD3` | Executive Managers - 3rd pay level | € 4,396.88 | 2026-01-01 |
+| `QD2` | Executive Managers - 2nd pay level | € 3,965.48 | 2026-01-01 |
+| `QD1` | Executive Managers - 1st pay level | € 3,743.21 | 2026-01-01 |
+| `3AP4` | 3rd Professional Area - 4th pay level | € 3,341.90 | 2026-01-01 |
+| `3AP3` | 3rd Professional Area - 3rd pay level | € 3,059.49 | 2026-01-01 |
+| `3AP2` | 3rd Professional Area - 2nd pay level | € 2,890.41 | 2026-01-01 |
+| `3AP1` | 3rd Professional Area - 1st pay level | € 2,742.35 | 2026-01-01 |
+| `2AP2` | 2nd Professional Area - 2nd pay level | € 2,572.10 | 2026-01-01 |
+| `2AP1` | 2nd Professional Area - 1st pay level | € 2,406.80 | 2026-01-01 |
+| `1AP` | 1st Professional Area - single level | € 2,241.53 | 2026-01-01 |
 
 ## Seniority increments
 

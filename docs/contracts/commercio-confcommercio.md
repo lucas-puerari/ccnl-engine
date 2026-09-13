@@ -33,14 +33,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadro | € 2,313.29 | — |
-| `1` | 1st level | € 2,083.84 | — |
-| `2` | 2nd level | € 1,802.50 | — |
-| `3` | 3rd level | € 1,540.66 | — |
-| `4` | 4th level | € 1,332.46 | — |
-| `5` | 5th level | € 1,203.83 | — |
-| `6` | 6th level | € 1,080.77 | — |
-| `7` | 7th level | € 925.31 | — |
+| `Q` | Quadro | € 2,313.29 | 2027-02-01 |
+| `1` | 1st level | € 2,083.84 | 2027-02-01 |
+| `2` | 2nd level | € 1,802.50 | 2027-02-01 |
+| `3` | 3rd level | € 1,540.66 | 2027-02-01 |
+| `4` | 4th level | € 1,332.46 | 2027-02-01 |
+| `5` | 5th level | € 1,203.83 | 2027-02-01 |
+| `6` | 6th level | € 1,080.77 | 2027-02-01 |
+| `7` | 7th level | € 925.31 | 2027-02-01 |
 
 ## Seniority increments
 

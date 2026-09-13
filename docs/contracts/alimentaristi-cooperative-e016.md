@@ -35,14 +35,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1A` | Livello 1A | € 2,836.32 | — |
-| `1` | Livello 1 | € 2,466.34 | — |
-| `2` | Livello 2 | € 2,034.77 | — |
-| `3A` | Livello 3A | € 1,788.12 | — |
-| `3` | Livello 3 | € 1,603.17 | — |
-| `4` | Livello 4 | € 1,479.82 | — |
-| `5` | Livello 5 | € 1,356.52 | — |
-| `6` | Livello 6 | € 1,233.20 | — |
+| `1A` | Livello 1A | € 2,836.32 | 2027-01-01 |
+| `1` | Livello 1 | € 2,466.34 | 2027-01-01 |
+| `2` | Livello 2 | € 2,034.77 | 2027-01-01 |
+| `3A` | Livello 3A | € 1,788.12 | 2027-01-01 |
+| `3` | Livello 3 | € 1,603.17 | 2027-01-01 |
+| `4` | Livello 4 | € 1,479.82 | 2027-01-01 |
+| `5` | Livello 5 | € 1,356.52 | 2027-01-01 |
+| `6` | Livello 6 | € 1,233.20 | 2027-01-01 |
 
 ## Seniority increments
 

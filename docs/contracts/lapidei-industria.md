@@ -34,14 +34,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `AS` | Livello AS — A Super: lavoratori con responsabilita direttive di alto livello | € 2,562.44 | — |
-| `A` | Livello A — Lavoratori con elevata autonomia e responsabilita gestionale | € 2,357.34 | — |
-| `B` | Livello B — Lavoratori altamente specializzati con coordinamento operativo | € 1,921.76 | — |
-| `CS` | Livello CS — C Super: lavoratori specializzati con responsabilita di processo | € 1,845.14 | — |
-| `C` | Livello C — Livello di riferimento parametrico (lavoratori con qualifiche tecniche) | € 1,742.64 | — |
-| `D` | Livello D — Lavoratori specializzati con autonomia operativa | € 1,642.89 | — |
-| `E` | Livello E — Lavoratori qualificati con mansioni esecutive | € 1,514.52 | — |
-| `F` | Livello F — Lavoratori addetti a mansioni semplici (+ superminimum collettivo 7.75 EUR) | € 1,290.23 | — |
+| `AS` | Livello AS — A Super: lavoratori con responsabilita direttive di alto livello | € 2,562.44 | 2027-07-01 |
+| `A` | Livello A — Lavoratori con elevata autonomia e responsabilita gestionale | € 2,357.34 | 2027-07-01 |
+| `B` | Livello B — Lavoratori altamente specializzati con coordinamento operativo | € 1,921.76 | 2027-07-01 |
+| `CS` | Livello CS — C Super: lavoratori specializzati con responsabilita di processo | € 1,845.14 | 2027-07-01 |
+| `C` | Livello C — Livello di riferimento parametrico (lavoratori con qualifiche tecniche) | € 1,742.64 | 2027-07-01 |
+| `D` | Livello D — Lavoratori specializzati con autonomia operativa | € 1,642.89 | 2027-07-01 |
+| `E` | Livello E — Lavoratori qualificati con mansioni esecutive | € 1,514.52 | 2027-07-01 |
+| `F` | Livello F — Lavoratori addetti a mansioni semplici (+ superminimum collettivo 7.75 EUR) | € 1,290.23 | 2027-07-01 |
 
 ## Seniority increments
 

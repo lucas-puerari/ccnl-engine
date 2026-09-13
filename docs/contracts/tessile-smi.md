@@ -33,16 +33,16 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `8` | Grade 8 — department head/supervisor with managerial functions | € 2,518.68 | — |
-| `7` | Grade 7 — managers with managerial responsibility | € 2,376.10 | — |
-| `6` | Grade 6 — managers and technicians with area responsibility | € 2,229.13 | — |
-| `5` | Grade 5 — junior managers and specialist technicians | € 2,088.36 | — |
-| `4` | Grade 4 — highly specialist workers and skilled clerical employees | € 1,986.95 | — |
-| `3S` | Grade 3 super — specialist workers with autonomy and executive clerical employees | € 1,941.98 | — |
-| `3` | Grade 3 — specialist workers and routine clerical employees | € 1,899.25 | — |
-| `2S` | Grade 2 super — qualified workers with executive autonomy | € 1,843.81 | — |
-| `2` | Grade 2 — basic qualified workers | € 1,803.70 | — |
-| `1` | Grade 1 — elementary operations requiring no prior experience | € 1,560.00 | — |
+| `8` | Grade 8 — department head/supervisor with managerial functions | € 2,518.68 | 2027-01-01 |
+| `7` | Grade 7 — managers with managerial responsibility | € 2,376.10 | 2027-01-01 |
+| `6` | Grade 6 — managers and technicians with area responsibility | € 2,229.13 | 2027-01-01 |
+| `5` | Grade 5 — junior managers and specialist technicians | € 2,088.36 | 2027-01-01 |
+| `4` | Grade 4 — highly specialist workers and skilled clerical employees | € 1,986.95 | 2027-01-01 |
+| `3S` | Grade 3 super — specialist workers with autonomy and executive clerical employees | € 1,941.98 | 2027-01-01 |
+| `3` | Grade 3 — specialist workers and routine clerical employees | € 1,899.25 | 2027-01-01 |
+| `2S` | Grade 2 super — qualified workers with executive autonomy | € 1,843.81 | 2027-01-01 |
+| `2` | Grade 2 — basic qualified workers | € 1,803.70 | 2027-01-01 |
+| `1` | Grade 1 — elementary operations requiring no prior experience | € 1,560.00 | 2027-01-01 |
 
 ## Seniority increments
 

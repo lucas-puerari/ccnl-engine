@@ -37,16 +37,16 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadri with high-responsibility managerial duties | € 2,006.64 | — |
-| `7` | Employees with managerial functions | € 1,833.35 | — |
-| `6` | Workers with specialist duties / Senior white-collar employees | € 1,587.07 | — |
-| `5` | Expert workers / White-collar employees | € 1,276.96 | — |
-| `4` | Specialist workers / Junior clerical employees | € 1,167.51 | — |
-| `4par125` | Workers assigned to painting booths and lines employed as of 01/06/2001 (par. 125) | € 1,140.15 | — |
-| `3` | Skilled workers / Clerical employees | € 1,076.30 | — |
-| `2par115` | Workers assigned to auxiliary activities in school/healthcare settings (par. 115) | € 1,048.93 | — |
-| `2` | General workers / Clerical employees (first 18 months) | € 994.21 | — |
-| `1` | General labourers | € 912.12 | — |
+| `Q` | Quadri with high-responsibility managerial duties | € 2,006.64 | 2029-03-01 |
+| `7` | Employees with managerial functions | € 1,833.35 | 2029-03-01 |
+| `6` | Workers with specialist duties / Senior white-collar employees | € 1,587.07 | 2029-03-01 |
+| `5` | Expert workers / White-collar employees | € 1,276.96 | 2029-03-01 |
+| `4` | Specialist workers / Junior clerical employees | € 1,167.51 | 2029-03-01 |
+| `4par125` | Workers assigned to painting booths and lines employed as of 01/06/2001 (par. 125) | € 1,140.15 | 2029-03-01 |
+| `3` | Skilled workers / Clerical employees | € 1,076.30 | 2029-03-01 |
+| `2par115` | Workers assigned to auxiliary activities in school/healthcare settings (par. 115) | € 1,048.93 | 2029-03-01 |
+| `2` | General workers / Clerical employees (first 18 months) | € 994.21 | 2029-03-01 |
+| `1` | General labourers | € 912.12 | 2029-03-01 |
 
 ## Seniority increments
 

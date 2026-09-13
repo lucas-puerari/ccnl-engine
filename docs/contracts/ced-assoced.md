@@ -33,15 +33,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `QDIR` | Quadri di Direzione | € 3,186.49 | — |
-| `Q` | Quadri | € 2,895.91 | — |
-| `1` | 1° livello | € 2,486.32 | — |
-| `2` | 2° livello | € 2,225.94 | — |
-| `3S` | 3° livello Super | € 2,134.17 | — |
-| `3` | 3° livello | € 1,997.93 | — |
-| `4` | 4° livello | € 1,859.01 | — |
-| `5` | 5° livello | € 1,769.98 | — |
-| `6` | 6° livello | € 1,494.74 | — |
+| `QDIR` | Quadri di Direzione | € 3,186.49 | 2028-01-01 |
+| `Q` | Quadri | € 2,895.91 | 2028-01-01 |
+| `1` | 1° livello | € 2,486.32 | 2028-01-01 |
+| `2` | 2° livello | € 2,225.94 | 2028-01-01 |
+| `3S` | 3° livello Super | € 2,134.17 | 2028-01-01 |
+| `3` | 3° livello | € 1,997.93 | 2028-01-01 |
+| `4` | 4° livello | € 1,859.01 | 2028-01-01 |
+| `5` | 5° livello | € 1,769.98 | 2028-01-01 |
+| `6` | 6° livello | € 1,494.74 | 2028-01-01 |
 
 ## Seniority increments
 
@@ -51,10 +51,12 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **professionalizzante_36** (type: `under_classification`)  
-Destination levels: `2`, `3S`, `3`, `4`
+Destination levels: `2`, `3S`, `3`, `4`  
+under-level: `1`
 
 **professionalizzante_24** (type: `under_classification`)  
-Destination levels: `5`
+Destination levels: `5`  
+under-level: `1`
 
 ## Known simplifications
 
