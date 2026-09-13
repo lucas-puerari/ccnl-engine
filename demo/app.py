@@ -59,6 +59,21 @@ def list_regioni() -> str:
     return json.dumps(sorted(surtax.regionale.keys()))
 
 
+def list_comuni() -> str:
+    """Return JSON list of comuni with addizionale comunale data.
+
+    Returns:
+        JSON-encoded sorted list of ``{code, name}`` dicts, one per comune
+        that has a rate in the current year's data, ordered by name.
+    """
+    surtax = load_surtax_rules(_DEFAULT_YEAR)
+    result = sorted(
+        [{"code": code, "name": info.nome} for code, info in surtax.comunale.items()],
+        key=operator.itemgetter("name"),
+    )
+    return json.dumps(result)
+
+
 def list_ccnls() -> str:
     """Return JSON list of all available CCNLs, sorted by name.
 
