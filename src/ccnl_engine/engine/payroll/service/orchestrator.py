@@ -151,5 +151,6 @@ def compute(scenario: PayrollScenario) -> Calculation:
         unused_family_deduction_annual=fiscal.fam_unused,
         art15_deduction_annual=fiscal.art15_total,
         unused_art15_deduction_annual=fiscal.art15_unused,
+        sterilizzazione_clawback_annual=fiscal.sterilizzazione_clawback,
     )
     return build_calculation(scenario, ccnl, rules, surtax, gross, work, result)

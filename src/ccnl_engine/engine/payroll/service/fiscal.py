@@ -362,6 +362,7 @@ class FiscalPay:
     fam_unused: Decimal
     art15_total: Decimal
     art15_unused: Decimal
+    sterilizzazione_clawback: Decimal
     ulteriore_detrazione_lavoro: Decimal
     irpef_net: Decimal
     trattamento_integrativo: Decimal
@@ -432,9 +433,21 @@ def compute_fiscal(
         employer_withholds_irpef=employer_withholds_irpef,
     )
 
+    # Sterilizzazione detrazioni (Art. 1 c. 3-4 L. 199/2025): for reddito
+    # complessivo > EUR 200 000, reduce Art. 12 + Art. 13 deductions by
+    # EUR 440 (clawback of the 35% → 33% bracket benefit on 28k-50k slice).
+    # Art. 15 oneri are not affected.
+    effective_art12_art13 = _irpef.apply_sterilizzazione_detrazioni(
+        fam_total + work_income_deduction,
+        taxable_income,
+        rules.sterilizzazione_detrazioni,
+    )
+    sterilizzazione_clawback = money(
+        (fam_total + work_income_deduction) - effective_art12_art13
+    )
+
     # Art. 15 TUIR deductions (interessi passivi mutuo prima casa, etc.).
-    # Sterilizzazione (Art. 1 c. 3-4 L. 199/2025) targets Art. 15 oneri
-    # only — Art. 12 family and Art. 13 work deductions are not affected.
+    # Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply here.
     art15_total, art15_unused = _run_wr_art15_deductions(
         scenario=scenario,
         irpef_gross=irpef_gross,
@@ -443,15 +456,6 @@ def compute_fiscal(
         year=year,
         employer_withholds_irpef=employer_withholds_irpef,
     )
-    # Sterilizzazione detrazioni (Art. 1 c. 3-4 L. 199/2025): for reddito
-    # complessivo > EUR 200 000, reduce Art. 15 oneri deductions by EUR 440
-    # (clawback of the 35% → 33% bracket benefit, R14).
-    art15_total = _irpef.apply_sterilizzazione_detrazioni(
-        art15_total,
-        taxable_income,
-        rules.sterilizzazione_detrazioni,
-    )
-    art15_unused = min(art15_unused, art15_total)
 
     # Ulteriore detrazione del lavoro dipendente (Art. 1 c. 6 L. 207/2024):
     # flat EUR 1 000 for taxable income in (20 000, 32 000].
@@ -472,6 +476,7 @@ def compute_fiscal(
                 irpef_gross
                 - work_income_deduction
                 - fam_total
+                + sterilizzazione_clawback
                 - art15_total
                 - ulteriore_detrazione_lavoro,
             )
@@ -556,6 +561,7 @@ def compute_fiscal(
         fam_unused=fam_unused,
         art15_total=art15_total,
         art15_unused=art15_unused,
+        sterilizzazione_clawback=sterilizzazione_clawback,
         ulteriore_detrazione_lavoro=ulteriore_detrazione_lavoro,
         irpef_net=irpef_net,
         trattamento_integrativo=trattamento_integrativo,
