@@ -429,3 +429,30 @@ class TestR25DynamicFormulas:
         irpef_net_step = _step_by(steps, TraceCategory.IRPEF_NET)
         assert irpef_net_step.formula is not None
         assert "incapienza" not in irpef_net_step.formula
+
+    def test_inps_employer_formula_default_is_percentage(self) -> None:
+        """INPS_EMPLOYER formula defaults to percentage model when no override."""
+        steps = _build(inps_formula=None)
+        emp = _step_by(steps, TraceCategory.INPS_EMPLOYER)
+        assert emp.formula is not None
+        assert "aliquota" in emp.formula
+
+    def test_inps_employer_formula_overridden_by_inps_formula(self) -> None:
+        """inps_formula kwarg overrides the INPS_EMPLOYER formula (e.g. domestic)."""
+        steps = _build(inps_formula="tariffa_oraria_INPS * ore_annuali_contratto")
+        emp = _step_by(steps, TraceCategory.INPS_EMPLOYER)
+        assert emp.formula == "tariffa_oraria_INPS * ore_annuali_contratto"
+
+    def test_net_formula_describes_esenzione_when_not_withholding(self) -> None:
+        """When employer_withholds_irpef=False, NET formula notes esenzione ritenute."""
+        steps = _build(employer_withholds_irpef=False)
+        net = _step_by(steps, TraceCategory.NET)
+        assert net.formula is not None
+        assert "esenzione" in net.formula
+
+    def test_net_formula_includes_irpef_when_withholding(self) -> None:
+        """When employer_withholds_irpef=True, NET formula includes IRPEF deductions."""
+        steps = _build(employer_withholds_irpef=True)
+        net = _step_by(steps, TraceCategory.NET)
+        assert net.formula is not None
+        assert "IRPEF" in net.formula

@@ -195,6 +195,14 @@ def build_fiscal_trace(
             " + base_INPS * aliquota_non_IVS_dipendente"
         )
     tfr_formula = f"base_TFR ÷ {tfr_divisor}"
+    # When employer doesn't withhold IRPEF, the NET formula reflects only
+    # the employee INPS deduction; IRPEF and addizionali are informational.
+    net_formula: str | None = None
+    if not employer_withholds_irpef:
+        net_formula = (
+            "lordo_annuale - contributi_INPS_dipendente"
+            " [esenzione ritenute: IRPEF e addizionali non trattenute]"
+        )
     # When deductions exceed IRPEF lorda, irpef_net is floored at zero.
     total_deductions = (
         work_income_deduction + family_deduction_annual + art15_deduction_annual
@@ -278,11 +286,13 @@ def build_fiscal_trace(
             TraceCategory.NET,
             "Netto annuale",
             net_annual,
+            formula=net_formula,
         ),
         _step(
             TraceCategory.INPS_EMPLOYER,
             "Contributi INPS datore (informativo)",
             inps_employer_annual,
+            formula=inps_formula,
         ),
         _step(
             TraceCategory.EMPLOYER_FUNDS,
