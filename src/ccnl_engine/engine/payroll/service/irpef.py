@@ -150,7 +150,7 @@ def trattamento_integrativo(
     - RC > ``rules.threshold_upper``: zero.
 
     Args:
-        gross_annual: Reddito complessivo di riferimento (RAL proxy).
+        gross_annual: Reddito complessivo di riferimento (taxable income).
         irpef_gross: IRPEF lorda (Art. 11 TUIR) before any deductions.
         work_deduction: Art. 13 co. 1 work-income deduction.
         relevant_deductions: Sum of Art. 12 + Art. 13 + qualifying Art. 15
