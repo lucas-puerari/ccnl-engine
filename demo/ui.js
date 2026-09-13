@@ -1158,7 +1158,7 @@ function doCompute(pyodide) {
   // Scope & confidence
   renderScope(r.calculation_scope, r.confidence, r.warnings, r.fiscal_simplifications);
 
-  // Breakdown (always open — reset collapsible sections)
+  // Reset all collapsibles to closed
   document.querySelectorAll("#panel-detail details.collapsible-section").forEach(d => d.removeAttribute("open"));
   renderBreakdown(r, comune);
 
