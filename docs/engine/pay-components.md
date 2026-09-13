@@ -43,3 +43,45 @@ This is mutually exclusive with `Employer.second_level_allowances`.
 **API reference:** [`WorkArrangement`](../api/engine.md),
 [`SeniorityByCount`, `SeniorityByMonths`](../api/engine.md),
 [`SalaryOverrides`, `RalOverride`](../api/engine.md)
+
+## Bilateral funds (*fondi bilaterali*)
+
+Many CCNLs require contributions to sector bilateral bodies (health funds,
+training funds, supplementary pension). Pass a tuple of fund inputs on
+`PayrollScenario.bilateral_funds`:
+
+```python
+from decimal import Decimal
+from ccnl_engine import FlatMonthlyFund, RateFund
+
+# A fixed-amount fund: e.g. EST (€2.00/month employee + €13.00/month employer)
+est = FlatMonthlyFund(
+    employee_monthly=Decimal("2.00"),
+    employer_monthly=Decimal("13.00"),
+)
+
+# A rate-based fund applied to the TFR base: e.g. Fon.Te (0.55 % + 1.55 %)
+fon_te = RateFund(
+    employee_rate=Decimal("0.0055"),
+    employer_rate=Decimal("0.0155"),
+    base="tfr_base",          # or "gross_annual"
+)
+
+scenario = PayrollScenario(
+    ...
+    bilateral_funds=(est, fon_te),
+)
+```
+
+The engine annualises flat funds (× 12) and applies rates to the chosen base.
+Results appear in `PayrollResult`:
+
+| Field | Effect |
+|---|---|
+| `bilateral_employee_annual` | Deducted from `net_annual` |
+| `bilateral_employer_annual` | Added to `employer_cost_annual` |
+
+When `bilateral_funds` is empty (the default), both fields are `0` and the
+`NO_BILATERAL_FUNDS` flag appears in `fiscal_simplifications`.
+
+**API reference:** [`FlatMonthlyFund`, `RateFund`](../api/engine.md)

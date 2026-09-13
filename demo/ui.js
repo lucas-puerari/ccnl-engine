@@ -1028,6 +1028,8 @@ function renderBreakdown(r, enteredComune) {
     : bRow(t("breakdown.addizionale_comunale"), null, r.addizionale_comunale_annual));
   if (r.trattamento_integrativo > 0)
     body.appendChild(bRow(t("breakdown.trattamento_integrativo"), null, -r.trattamento_integrativo));
+  if ((r.bilateral_employee_annual || 0) > 0.005)
+    body.appendChild(bRow(t("breakdown.bilateral_employee"), null, r.bilateral_employee_annual));
   body.appendChild(bTotal(t("breakdown.net_pay"), r.net_monthly, r.net_annual));
 
   body.appendChild(bHead(t("breakdown.head.employer")));
@@ -1035,6 +1037,8 @@ function renderBreakdown(r, enteredComune) {
   if (r.employer_funds_annual > 0)
     body.appendChild(bRow(t("breakdown.employer_funds"), null, r.employer_funds_annual));
   body.appendChild(bRow(t("breakdown.tfr"), null, r.tfr_annual));
+  if ((r.bilateral_employer_annual || 0) > 0.005)
+    body.appendChild(bRow(t("breakdown.bilateral_employer"), null, r.bilateral_employer_annual));
   body.appendChild(bTotal(t("breakdown.employer_cost"), null, r.employer_cost_annual));
 
   // L3 work rules (informational — not in gross/net)
