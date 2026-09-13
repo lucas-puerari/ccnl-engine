@@ -34,6 +34,7 @@ Hours worked beyond the standard schedule in the period.
 | `night_hours` | `Decimal` | Weekday night hours (lavoro notturno) |
 | `holiday_hours` | `Decimal` | Daytime public-holiday hours |
 | `night_holiday_hours` | `Decimal` | Night hours on a public holiday |
+| `supplementare_hours` | `Decimal` | Extra hours for part-timers (lavoro supplementare); distinct from straordinario |
 
 All fields default to `0`. At least one must be positive.
 
@@ -159,6 +160,8 @@ corresponding input is not supplied.
 | `welfare_annual` | Welfare amount (always tax-exempt) |
 | `bonus_annual` | Total bonus |
 | `bonus_pdr_flat_tax_annual` | Imposta sostitutiva on PdR-eligible portion |
+| `bilateral_employee_annual` | Annual bilateral fund deduction charged to the employee (reduces net pay) |
+| `bilateral_employer_annual` | Annual bilateral fund cost charged to the employer (added to employer cost) |
 
 ---
 
