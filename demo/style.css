@@ -692,7 +692,7 @@ label {
 }
 .breakdown-table th:last-child,
 .breakdown-table th:nth-child(2) { text-align: right; }
-.breakdown-table td { padding: 8px 0; border-bottom: 1px solid var(--c-trace); }
+.breakdown-table td { padding: 11px 0; border-bottom: 1px solid var(--c-trace); }
 .breakdown-table td:last-child,
 .breakdown-table td:nth-child(2) {
   text-align: right; font-family: "IBM Plex Mono", monospace;
@@ -700,12 +700,13 @@ label {
 }
 .breakdown-table tr:last-child td { border-bottom: none; }
 .breakdown-table .section-head td {
-  font-weight: 700; padding-top: 16px; color: var(--c-muted);
+  font-weight: 700; padding-top: 22px; padding-bottom: 6px; color: var(--c-muted);
   font-size: 10px; text-transform: uppercase; letter-spacing: .07em; border-bottom: none;
 }
 .breakdown-table .total-row td {
   font-weight: 700; font-size: 14px;
-  border-top: 2px solid var(--c-border-strong); border-bottom: none; padding-top: 10px;
+  border-top: 2px solid var(--c-border-strong); border-bottom: none;
+  padding-top: 14px; padding-bottom: 14px;
 }
 .breakdown-table .total-row td:last-child,
 .breakdown-table .total-row td:nth-child(2) { font-size: 14px; }
