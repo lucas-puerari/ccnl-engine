@@ -1715,17 +1715,26 @@ function renderBreakdown(r) {
   const noReg = (r.fiscal_simplifications || []).includes("no_addizionale_regionale");
   const noCom = (r.fiscal_simplifications || []).includes("no_addizionale_comunale");
 
-  body.appendChild(bHead("Pay components"));
-  body.appendChild(bRow("Base pay", r.base_monthly, r.base_monthly * 13));
+  const nm = r.additional_months || 13; // number of salary months (13 or 14)
+  body.appendChild(bHead(`Pay components (${nm} mensilità)`));
+  body.appendChild(bRow("Base pay", r.base_monthly, r.base_monthly * nm));
   if (r.seniority_monthly > 0)
     body.appendChild(bRow(`Seniority increments (×${r.seniority_count})`,
-      r.seniority_monthly, r.seniority_monthly * 13));
+      r.seniority_monthly, r.seniority_monthly * nm));
   if (r.allowances_monthly > 0)
-    body.appendChild(bRow("Monthly allowances", r.allowances_monthly, r.allowances_monthly * 13));
+    body.appendChild(bRow("Monthly allowances", r.allowances_monthly, r.allowances_monthly * nm));
   if (r.ad_personam_monthly > 0)
-    body.appendChild(bRow("Ad personam supplement", r.ad_personam_monthly, r.ad_personam_monthly * 13));
+    body.appendChild(bRow("Ad personam supplement", r.ad_personam_monthly, r.ad_personam_monthly * nm));
   if (r.second_level_monthly > 0)
-    body.appendChild(bRow("Second-level agreement", r.second_level_monthly, r.second_level_monthly * 13));
+    body.appendChild(bRow("Second-level agreement", r.second_level_monthly, r.second_level_monthly * nm));
+  // If a RAL override was applied, the gross_monthly may differ from the sum of
+  // known components. Show the adjustment so the Gross total reconciles.
+  const componentSum = r.base_monthly + (r.seniority_monthly || 0)
+    + (r.allowances_monthly || 0) + (r.ad_personam_monthly || 0)
+    + (r.second_level_monthly || 0);
+  const ralAdj = r.gross_monthly - componentSum;
+  if (Math.abs(ralAdj) > 0.005)
+    body.appendChild(bRow("RAL concordata — rettifica", ralAdj, ralAdj * nm));
   if (r.apprenticeship_pct !== null)
     body.appendChild(bRow(
       `Apprenticeship ${(r.apprenticeship_pct * 100).toFixed(0)}% of level ${r.apprenticeship_under_level_code || "—"}`,
@@ -1737,7 +1746,9 @@ function renderBreakdown(r) {
   body.appendChild(bRow("INPS employee contributions", null, r.inps_employee_annual));
   body.appendChild(bSub("Taxable income (IRPEF base)", null, r.taxable_income));
   body.appendChild(bSub("IRPEF (gross, before deductions)", null, r.irpef_gross));
-  body.appendChild(bSub("↳ Work income deduction (Art. 13 TUIR)", null, -r.work_income_deduction));
+  body.appendChild(bSub("↳ Deduction Art. 13 TUIR (work income)", null, -r.work_income_deduction));
+  if ((r.ulteriore_detrazione_lavoro || 0) > 0)
+    body.appendChild(bSub("↳ Ulteriore detrazione lavoro (D.L. 3/2020)", null, -r.ulteriore_detrazione_lavoro));
   body.appendChild(bRow("IRPEF (net)", null, r.irpef_net));
   body.appendChild(noReg
     ? bNa("Addizionale regionale — not computed")
