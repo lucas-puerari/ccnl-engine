@@ -40,6 +40,8 @@
     "inps_employer_annual": "8817.29",
     "employer_funds_annual": "0.00",
     "tfr_annual": "2162.69",
+    "bilateral_employee_annual": "0.00",
+    "bilateral_employer_annual": "0.00",
     "taxable_income": "26425.58",
     "irpef_gross": "6077.88",
     "work_income_deduction": "2119.11",

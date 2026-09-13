@@ -58,6 +58,32 @@
       "no_detrazioni_art15_mortgage",
       "no_detrazioni_familiari",
       "partial_detrazioni_art15"
-    ]
+    ],
+    "level_code": "C2",
+    "inps_employer_annual": "8106.72",
+    "work_income_deduction": "2249.03",
+    "seniority_count": 0,
+    "base_monthly": "2064.88",
+    "ccnl_id": "metalmeccanico-federmeccanica",
+    "year": 2026,
+    "seniority_monthly": "0.00",
+    "hourly_rate": "11.94",
+    "addizionale_comunale_annual": "0",
+    "employer_cost_annual": "36938.56",
+    "allowances_monthly": "0.00",
+    "trattamento_integrativo": "0",
+    "employer_funds_annual": "0.00",
+    "inps_employee_annual": "2547.44",
+    "irpef_gross": "5588.08",
+    "addizionale_regionale_annual": "0",
+    "bilateral_employee_annual": "0.00",
+    "employment_type": "permanent",
+    "bilateral_employer_annual": "0.00",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "part_time_pct": "1",
+    "taxable_income": "24296.00",
+    "tfr_annual": "1988.40",
+    "ad_personam_monthly": "0.00"
   }
 }

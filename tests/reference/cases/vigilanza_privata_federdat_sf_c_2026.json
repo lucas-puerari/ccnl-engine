@@ -34,6 +34,29 @@
       "no_detrazioni_art15_mortgage",
       "no_detrazioni_familiari",
       "partial_detrazioni_art15"
-    ]
+    ],
+    "level_code": "C",
+    "inps_employer_annual": "6314.18",
+    "work_income_deduction": "2661.84",
+    "seniority_count": 0,
+    "ccnl_id": "vigilanza-privata-federdat-sf",
+    "year": 2026,
+    "seniority_monthly": "0.00",
+    "ulteriore_detrazione_lavoro": "0",
+    "addizionale_comunale_annual": "0",
+    "allowances_monthly": "0.00",
+    "employer_funds_annual": "0.00",
+    "inps_employee_annual": "2002.32",
+    "irpef_gross": "4550.72",
+    "addizionale_regionale_annual": "0",
+    "bilateral_employee_annual": "0.00",
+    "employment_type": "permanent",
+    "bilateral_employer_annual": "0.00",
+    "apprenticeship_pct": null,
+    "apprenticeship_under_level_code": null,
+    "part_time_pct": "1",
+    "taxable_income": "19785.74",
+    "tfr_annual": "1613.93",
+    "ad_personam_monthly": "0.00"
   }
 }

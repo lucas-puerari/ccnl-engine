@@ -20,6 +20,8 @@
     "inps_employee_annual": "2441.54",
     "inps_employer_annual": "6714.22",
     "tfr_annual": "2055.17",
+    "bilateral_employee_annual": "0.00",
+    "bilateral_employer_annual": "0.00",
     "taxable_income": "25303.19",
     "irpef_gross": "5819.73",
     "work_income_deduction": "2221.81",
@@ -41,6 +43,16 @@
       "no_detrazioni_familiari",
       "partial_detrazioni_art15"
     ],
-    "ulteriore_detrazione_lavoro": "1000"
+    "ulteriore_detrazione_lavoro": "1000",
+    "level_code": "ISPETTORE",
+    "seniority_count": 0,
+    "ccnl_id": "forze-polizia-ordinamento-civile",
+    "year": 2026,
+    "seniority_monthly": "0.00",
+    "allowances_monthly": "0.00",
+    "employer_funds_annual": "0.00",
+    "employment_type": "permanent",
+    "part_time_pct": "1",
+    "ad_personam_monthly": "0.00"
   }
 }

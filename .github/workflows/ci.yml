@@ -113,3 +113,33 @@ jobs:
           name: bandit-report
           path: bandit-report.json
           retention-days: 14
+
+  verify-reference-cases:
+    name: Verify reference cases
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.0.1
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version-file: pyproject.toml
+
+      - name: Install dependencies
+        run: uv sync --group dev
+
+      - name: Install package (editable)
+        run: uv pip install -e .
+
+      - name: Verify reference cases are up to date
+        run: >
+          uv run python scripts/ci/update_reference_cases.py --dry-run
+          || (echo "Reference cases are out of date. Run
+          'uv run python scripts/ci/update_reference_cases.py' locally
+          and commit the result." && exit 1)

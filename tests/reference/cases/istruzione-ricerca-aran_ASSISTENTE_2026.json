@@ -40,6 +40,8 @@
     "inps_employer_annual": "4709.09",
     "employer_funds_annual": "0.00",
     "tfr_annual": "1441.41",
+    "bilateral_employee_annual": "0.00",
+    "bilateral_employer_annual": "0.00",
     "taxable_income": "17746.65",
     "irpef_gross": "4081.73",
     "work_income_deduction": "2848.55",
@@ -58,6 +60,7 @@
       "no_detrazioni_art15_mortgage",
       "no_detrazioni_familiari",
       "partial_detrazioni_art15"
-    ]
+    ],
+    "ulteriore_detrazione_lavoro": "0"
   }
 }
