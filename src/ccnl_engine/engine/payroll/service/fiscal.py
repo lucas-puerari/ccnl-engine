@@ -168,7 +168,7 @@ def _compute_ti(
     bonus is zero.
 
     Args:
-        gross_annual: RAL (proxy for reddito complessivo di riferimento).
+        gross_annual: Reddito complessivo di riferimento (taxable income).
         irpef_gross: IRPEF lorda before deductions.
         work_income_deduction: Art. 13 co. 1 deduction.
         relevant_deductions: Sum of Art. 12 + Art. 13 + qualifying Art. 15
@@ -465,7 +465,7 @@ def compute_fiscal(
     # relevant_deductions: Art. 12 + Art. 13 + qualifying Art. 15 (statute).
     relevant_deductions = work_income_deduction + fam_total + art15_total
     trattamento_integrativo, fiscal_simplifications = _compute_ti(
-        gross.gross_annual,
+        taxable_income,
         irpef_gross,
         work_income_deduction,
         relevant_deductions,
