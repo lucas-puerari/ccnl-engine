@@ -1291,7 +1291,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "4990ef83a8290b805cc9a327b127927216fb10a1171c8df2d69cf7a21669d3bf",
+    "source_hash": "b111d7ab0ce964a1d18551cbe481afc8e9cc091c567c8d2556b471759eb9c39d",
     "published_at": "2026-09-07"
   },
   "work_rules": {
@@ -1366,7 +1366,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-10-01"
             }
-          }
+          },
+          "hour_threshold_per_week": 5
         }
       ]
     },

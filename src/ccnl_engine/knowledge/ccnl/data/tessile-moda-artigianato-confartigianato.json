@@ -1162,7 +1162,7 @@
     "effective_until": null,
     "source": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato",
     "verification_status": "unverified",
-    "source_hash": "5be1bbbf06172e2c33734fe419ff1c6c963adbaf201c9d407dd053036de9ac1b",
+    "source_hash": "8523578b36a01e90251ad710f2a21b871ae3df13cc9f5192e7b66b81f77add65",
     "published_at": "2026-09-07"
   },
   "work_rules": {
@@ -1237,7 +1237,8 @@
               "verification_status": "unverified",
               "effective_from": "2022-09-07"
             }
-          }
+          },
+          "hour_threshold_per_week": 4
         },
         {
           "code": "OT_NOTTURNO",

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections import defaultdict
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -58,6 +59,73 @@ def _supplement_for_band(
     return hours * rate
 
 
+def _slice_hours_for_band(
+    band_index: int,
+    sorted_bands: list[OvertimeBand],
+    total_hours: Decimal,
+) -> Decimal:
+    """Return the slice of hours assigned to one band in a threshold-sorted list.
+
+    Bands are partitioned by ``hour_threshold_per_week``: band *i* covers
+    hours from its threshold up to band *i+1*'s threshold (or all remaining
+    hours for the last band).
+
+    Args:
+        band_index: Index of the current band in ``sorted_bands``.
+        sorted_bands: Bands sorted ascending by ``hour_threshold_per_week``.
+        total_hours: Total hours available for this work kind.
+
+    Returns:
+        Hours in the half-open interval assigned to this band.
+    """
+    lo = Decimal(sorted_bands[band_index].hour_threshold_per_week or 0)
+    if band_index + 1 < len(sorted_bands):
+        hi = Decimal(sorted_bands[band_index + 1].hour_threshold_per_week or 0)
+        return max(_ZERO, min(total_hours, hi) - lo)
+    return max(_ZERO, total_hours - lo)
+
+
+def _supplements_for_kind(
+    kind: WorkKind,
+    bands: list[OvertimeBand],
+    total_hours: Decimal,
+    hourly_base: Decimal,
+    as_of: date,
+) -> list[tuple[Decimal, str, str, str]]:
+    """Compute (amount, bucket, label, detail) entries for one work kind.
+
+    When ``bands`` contains multiple entries they are sorted by
+    ``hour_threshold_per_week`` and the total hours are partitioned among them.
+
+    Args:
+        kind: The :class:`WorkKind` being processed.
+        bands: Bands that list ``kind`` in their ``applies_to_kinds``.
+        total_hours: Hours declared for this kind in the pay period.
+        hourly_base: Full-time hourly rate (base / divisor).
+        as_of: Reference date for time-series rate lookups.
+
+    Returns:
+        List of ``(amount, bucket_key, label, detail)`` tuples for non-zero
+        contributions.
+    """
+    sorted_bands = sorted(bands, key=lambda b: b.hour_threshold_per_week or 0)
+    results: list[tuple[Decimal, str, str, str]] = []
+    for i, band in enumerate(sorted_bands):
+        band_hours = _slice_hours_for_band(i, sorted_bands, total_hours)
+        if band_hours <= _ZERO:
+            continue
+        raw = _supplement_for_band(band, band_hours, hourly_base, as_of)
+        if raw <= _ZERO:
+            continue
+        results.append((
+            money(raw),
+            _KIND_BUCKET[kind],
+            band.description,
+            f"{band.code}/{kind.value}",
+        ))
+    return results
+
+
 def compute_time_supplements(
     supps_input: OvertimeHours,
     supplements_schema: TimeSupplements,
@@ -71,8 +139,11 @@ def compute_time_supplements(
     CCNL convention that maggiorazioni apply to the *minimo tabellare* only
     (or the gross, if ``hourly_base_method="gross_incl_allowances"``).
 
-    The function accumulates *all* bands whose ``applies_to_kinds`` matches
-    the caller's input: all matching bands are summed (not first-match-wins).
+    When multiple bands share the same ``applies_to_kinds`` entry they are
+    partitioned by ``hour_threshold_per_week``: bands are sorted by threshold
+    (ascending, ``None`` treated as 0) and each band receives the slice of
+    hours between its threshold and the next band's threshold.  A single band
+    per kind accumulates all hours as before.
 
     Args:
         supps_input: Caller-declared supplement hours for the pay period.
@@ -99,25 +170,29 @@ def compute_time_supplements(
         WorkKind.SUPPLEMENTARE: supps_input.supplementare_hours,
     }
 
+    # Group bands by kind; preserve schema order within each kind.
+    kind_bands: dict[WorkKind, list[OvertimeBand]] = defaultdict(list)
+    for band in supplements_schema.overtime_bands:
+        for kind in band.applies_to_kinds:
+            kind_bands[kind].append(band)
+
     buckets: dict[str, Decimal] = {"overtime": _ZERO, "night": _ZERO, "holiday": _ZERO}
     trace: list[TraceStep] = []
 
-    for band in supplements_schema.overtime_bands:
-        for kind in band.applies_to_kinds:
-            hours = kind_to_hours.get(kind, _ZERO)
-            if hours <= _ZERO:
-                continue
-            raw = _supplement_for_band(band, hours, hourly_base, as_of)
-            if raw <= _ZERO:
-                continue
-            amount = money(raw)
-            buckets[_KIND_BUCKET[kind]] += amount
+    for kind, bands in kind_bands.items():
+        total_hours = kind_to_hours.get(kind, _ZERO)
+        if total_hours <= _ZERO:
+            continue
+        for amount, bucket, label, detail in _supplements_for_kind(
+            kind, bands, total_hours, hourly_base, as_of
+        ):
+            buckets[bucket] += amount
             trace.append(
                 TraceStep(
                     category=TraceCategory.TIME_SUPPLEMENT,
-                    label=band.description,
+                    label=label,
                     amount=amount,
-                    detail=f"{band.code}/{kind.value}",
+                    detail=detail,
                 )
             )
 
