@@ -35,19 +35,19 @@ jobs:
       - name: "Demo: assemble"
         run: |
           WHEEL_VERSION=$(uv version --short)
-          mkdir -p _site/demo/wheels _site/demo/i18n
-          sed "s/WHEEL_VERSION/${WHEEL_VERSION}/g" demo/index.html > _site/demo/index.html
-          cp demo/app.py       _site/demo/app.py
-          cp demo/style.css    _site/demo/style.css
-          sed "s/WHEEL_VERSION/${WHEEL_VERSION}/g" demo/ui.js > _site/demo/ui.js
-          cp demo/wheels/*.whl _site/demo/wheels/
-          cp demo/i18n/*.json  _site/demo/i18n/
-          cp _site/demo/index.html _site/index.html  # root redirect placeholder replaced below
-          touch _site/.nojekyll
+          mkdir -p docs/_build/demo/wheels docs/_build/demo/i18n
+          sed "s/WHEEL_VERSION/${WHEEL_VERSION}/g" demo/index.html > docs/_build/demo/index.html
+          cp demo/app.py       docs/_build/demo/app.py
+          cp demo/style.css    docs/_build/demo/style.css
+          sed "s/WHEEL_VERSION/${WHEEL_VERSION}/g" demo/ui.js > docs/_build/demo/ui.js
+          cp demo/wheels/*.whl docs/_build/demo/wheels/
+          cp demo/i18n/*.json  docs/_build/demo/i18n/
+          cp docs/_build/demo/index.html docs/_build/index.html  # root redirect placeholder replaced below
+          touch docs/_build/.nojekyll
 
       - name: "Root: create landing page"
         run: |
-          cat > _site/index.html << 'EOF'
+          cat > docs/_build/index.html << 'EOF'
           <!DOCTYPE html>
           <html lang="en">
           <head>
@@ -81,7 +81,7 @@ jobs:
             --no-header 2>&1 | tail -5
 
       - name: "Badge: generate SVG"
-        run: genbadge coverage -i coverage.xml -o _site/coverage-badge.svg
+        run: genbadge coverage -i coverage.xml -o docs/_build/coverage-badge.svg
 
       # ── Docs ──────────────────────────────────────────────────────────────
       - name: "Docs: install dependencies"
@@ -99,7 +99,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: docs/_build
 
   deploy:
     needs: build

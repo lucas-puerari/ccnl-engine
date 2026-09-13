@@ -68,7 +68,7 @@ instance/
 # Scrapy stuff:
 .scrapy
 
-# Sphinx documentation
+# Documentation and site build output
 docs/_build/
 
 # PyBuilder
@@ -222,7 +222,6 @@ demo/_build/
 demo/wheels/
 
 # Root-level
-_site/
 .claude/GOAL.md
 .vscode/
 TODO.md

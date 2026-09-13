@@ -1,7 +1,7 @@
 site_name    = "ccnl-engine"
 site_url     = "https://lucas-puerari.github.io/ccnl-engine/docs/"
 docs_dir     = "docs"
-site_dir     = "_site/docs"
+site_dir     = "docs/_build/docs"
 
 nav = [
   { "Home"       = "index.md" },
