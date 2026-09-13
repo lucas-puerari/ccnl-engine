@@ -33,6 +33,16 @@
     "gross_annual": "26843.44",
     "bonus_annual": "2000",
     "bonus_pdr_flat_tax_annual": "20.00",
-    "bonus_ordinary_taxable_annual": "0.00"
+    "bonus_ordinary_taxable_annual": "0.00",
+    "net_monthly": "1689.00",
+    "irpef_net": "2339.05",
+    "net_annual": "21956.95",
+    "ulteriore_detrazione_lavoro": "1000",
+    "fiscal_simplifications": [
+      "no_addizionale_comunale",
+      "no_addizionale_regionale",
+      "no_detrazioni_art15",
+      "no_detrazioni_familiari"
+    ]
   }
 }

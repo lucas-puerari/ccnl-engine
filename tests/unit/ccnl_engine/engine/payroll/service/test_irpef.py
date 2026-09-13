@@ -15,12 +15,14 @@ from ccnl_engine.engine.payroll.service.irpef import (
     irpef_gross,
     surtax_from_brackets,
     trattamento_integrativo,
+    ulteriore_detrazione_lavoro,
     work_income_deduction,
 )
 from ccnl_engine.engine.surtax.domain.rules import SurtaxBracket
 from ccnl_engine.engine.tax.domain.rules import (
     SterilizzazioneDetrazioniRules,
     TrattamentoIntegrativoRules,
+    UlterioreDetrazioneRules,
     YearRules,
 )
 from tests.helpers import make_year_rules
@@ -470,3 +472,48 @@ class TestApplySterilizzazioneDetrazioni:
         """When rules is None, Art. 15 deduction is returned unchanged."""
         result = apply_sterilizzazione_detrazioni(Decimal(700), Decimal(250000), None)
         assert result == Decimal(700)
+
+
+# ---------------------------------------------------------------------------
+# ulteriore_detrazione_lavoro — Art. 1 c. 6 L. 207/2024
+# ---------------------------------------------------------------------------
+
+_UD_RULES = UlterioreDetrazioneRules(
+    threshold_low=Decimal(20000),
+    threshold_mid=Decimal(32000),
+    max_amount=Decimal(1000),
+)
+
+
+class TestUlterioreDedrazioneLavoro:
+    """Unit tests for ulteriore_detrazione_lavoro()."""
+
+    def test_below_threshold_low_returns_zero(self) -> None:
+        """Income at threshold_low: no deduction (band is exclusive on the left)."""
+        assert ulteriore_detrazione_lavoro(Decimal(20000), _UD_RULES) == Decimal(0)
+
+    def test_just_above_threshold_low(self) -> None:
+        """Income just above threshold_low: full max_amount."""
+        assert ulteriore_detrazione_lavoro(Decimal("20000.01"), _UD_RULES) == Decimal(
+            1000
+        )
+
+    def test_mid_band(self) -> None:
+        """Income in the middle of the band: max_amount."""
+        assert ulteriore_detrazione_lavoro(Decimal(27000), _UD_RULES) == Decimal(1000)
+
+    def test_at_threshold_mid(self) -> None:
+        """Income at threshold_mid (inclusive): max_amount."""
+        assert ulteriore_detrazione_lavoro(Decimal(32000), _UD_RULES) == Decimal(1000)
+
+    def test_above_threshold_mid_returns_zero(self) -> None:
+        """Income above threshold_mid: no deduction."""
+        assert ulteriore_detrazione_lavoro(Decimal("32000.01"), _UD_RULES) == Decimal(0)
+
+    def test_well_above_band_returns_zero(self) -> None:
+        """High income: no deduction."""
+        assert ulteriore_detrazione_lavoro(Decimal(80000), _UD_RULES) == Decimal(0)
+
+    def test_zero_income_returns_zero(self) -> None:
+        """Zero income is below threshold_low: no deduction."""
+        assert ulteriore_detrazione_lavoro(Decimal(0), _UD_RULES) == Decimal(0)

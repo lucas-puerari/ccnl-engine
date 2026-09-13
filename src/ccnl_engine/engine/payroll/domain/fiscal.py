@@ -22,3 +22,4 @@ class FiscalSimplification(StrEnum):
     NO_TRATTAMENTO_INTEGRATIVO = "no_trattamento_integrativo"
     NO_DETRAZIONI_FAMILIARI = "no_detrazioni_familiari"
     NO_DETRAZIONI_ART15 = "no_detrazioni_art15"
+    NO_ULTERIORE_DETRAZIONE_LAVORO = "no_ulteriore_detrazione_lavoro"

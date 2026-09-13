@@ -321,6 +321,22 @@ class TrattamentoIntegrativoRules(BaseModel):
     provenance: RuleProvenance | None = None
 
 
+class UlterioreDetrazioneRules(BaseModel):
+    """Ulteriore detrazione del lavoro dipendente (Art. 1 c. 6 L. 207/2024).
+
+    For reddito complessivo in ``(threshold_low, threshold_mid]``:
+    ``max_amount`` (annual, pro-rated to the work period by the caller).
+    Outside that band: zero.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    threshold_low: Decimal
+    threshold_mid: Decimal
+    max_amount: Decimal
+    provenance: RuleProvenance | None = None
+
+
 class SterilizzazioneDetrazioniRules(BaseModel):
     """Sterilizzazione detrazioni for high-income earners.
 
@@ -359,6 +375,7 @@ class YearRulesRaw(BaseModel):
     domestic_contributions: DomesticInpsRates | None = None
     tfr: TfrRules
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
+    ulteriore_detrazione: UlterioreDetrazioneRules | None = None
     sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
     notes: list[str] = Field(default_factory=list)
     sources: list[SourceDocument] = Field(default_factory=list)
@@ -407,6 +424,7 @@ class YearRules(BaseModel):
     domestic_contributions: DomesticInpsRates | None = None
     tfr: TfrRules
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
+    ulteriore_detrazione: UlterioreDetrazioneRules | None = None
     sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
     notes: list[str] = Field(default_factory=list)
     sources: list[SourceDocument] = Field(default_factory=list)
