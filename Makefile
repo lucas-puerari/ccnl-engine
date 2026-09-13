@@ -1,4 +1,4 @@
-.PHONY: setup demo lint format typecheck test cognitive-complexity coverage-matrix rehash contract-pages
+.PHONY: setup demo docs lint format typecheck test cognitive-complexity coverage-matrix rehash contract-pages
 
 # Dev setup
 
@@ -6,6 +6,12 @@ setup:
 	uv pip install -e .
 	git config core.hooksPath .githooks
 	@echo "Git hooks activated (.githooks)"
+
+docs:
+	uv run python scripts/docs/gen_coverage_matrix.py
+	uv run python scripts/docs/gen_contract_pages.py
+	@echo "Serving docs at http://127.0.0.1:8000"
+	uv run zensical serve
 
 demo:
 	uv build --wheel --out-dir demo/wheels --quiet
