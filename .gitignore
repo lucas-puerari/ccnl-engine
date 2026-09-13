@@ -217,7 +217,11 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Project-specific files
+# Demo local build
+demo/_build/
+demo/wheels/
+
+# Root-level
 _site/
 .claude/GOAL.md
 .vscode/
