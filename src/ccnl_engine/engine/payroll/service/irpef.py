@@ -164,7 +164,7 @@ def trattamento_integrativo(
     if gross_annual > rules.threshold_upper:
         return _ZERO
     if gross_annual <= rules.threshold_mid:
-        # Requisito: IRPEF > (detrazione Art. 13 - EUR 75 corrective).
+        # Eligibility condition: IRPEF > (Art. 13 deduction - EUR 75 corrective).
         threshold = money(max(_ZERO, work_deduction - _SEVENTY_FIVE))
         return money(rules.max_amount) if irpef_gross > threshold else _ZERO
     # 15 000 < RC <= 28 000: bonus = min(max_amount, relevant_deductions - IRPEF).

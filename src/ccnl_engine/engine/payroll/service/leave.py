@@ -1,4 +1,4 @@
-"""Leave accrual service — ferie e permessi maturati."""
+"""Leave accrual service — accrued paid leave and time-off entitlements."""
 
 from __future__ import annotations
 

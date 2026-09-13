@@ -65,7 +65,7 @@ def compute_absence_deduction(
         # PA calendar-month convention: gross_monthly / 30
         daily_rate = money(gross_monthly / Decimal(30))
     else:
-        # BY_26: standard industria divisore giornaliero
+        # BY_26: standard industry daily divisor (gross_monthly / 26)
         daily_rate = money(gross_monthly / _DIVISORE_STANDARD)
 
     return money(daily_rate * absence_input.unpaid_days)
