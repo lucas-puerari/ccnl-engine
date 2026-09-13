@@ -240,6 +240,7 @@ def _compute_ti(
             FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE,
             FiscalSimplification.PARTIAL_DETRAZIONI_ART15,
             FiscalSimplification.NO_BILATERAL_FUNDS,
+            FiscalSimplification.NO_ASSEGNO_UNICO,
         })
     else:
         trattamento_integrativo = _ZERO

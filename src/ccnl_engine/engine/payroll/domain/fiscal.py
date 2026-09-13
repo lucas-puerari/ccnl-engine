@@ -24,6 +24,8 @@ class FiscalSimplification(StrEnum):
     fund is present. Engine models only the post-tax net reduction; any
     pre-tax deductibility of the employee contribution must be handled by a
     separate fiscal layer.
+    ``NO_ASSEGNO_UNICO`` — always present; assegno unico e universale
+    (D.Lgs. 230/2021) is handled by INPS directly and is not modelled here.
     """
 
     NO_ADDIZIONALE_REGIONALE = "no_addizionale_regionale"
@@ -36,3 +38,4 @@ class FiscalSimplification(StrEnum):
     PARTIAL_DETRAZIONI_ART15 = "partial_detrazioni_art15"
     NO_ULTERIORE_DETRAZIONE_LAVORO = "no_ulteriore_detrazione_lavoro"
     NO_BILATERAL_FUNDS = "no_bilateral_funds"
+    NO_ASSEGNO_UNICO = "no_assegno_unico"
