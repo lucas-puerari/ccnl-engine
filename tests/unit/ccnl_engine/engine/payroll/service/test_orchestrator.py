@@ -27,6 +27,10 @@ from ccnl_engine.engine.contract.domain.ccnl import (
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
 from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
+from ccnl_engine.engine.payroll.domain.bilateral_funds import (
+    FlatMonthlyFund,
+    RateFund,
+)
 from ccnl_engine.engine.payroll.domain.calculation import TraceCategory
 from ccnl_engine.engine.payroll.domain.employee import (
     DestinationRalOverride,
@@ -2159,3 +2163,204 @@ class TestComputeConfidence:
         """compute() populates confidence on the result."""
         result = compute(_req()).result
         assert result.confidence in {"low", "medium", "high"}
+
+
+# ---------------------------------------------------------------------------
+# Bilateral funds (feat/bilateral-funds)
+# ---------------------------------------------------------------------------
+
+
+class TestBilateralFundsValidation:
+    """Construction-time validation for bilateral fund domain models."""
+
+    def test_flat_monthly_fund_negative_employee_raises(self) -> None:
+        """FlatMonthlyFund with negative employee_monthly must raise."""
+        with pytest.raises(ValueError, match="employee_monthly"):
+            FlatMonthlyFund(employee_monthly=_D("-1"), employer_monthly=_D("5"))
+
+    def test_flat_monthly_fund_negative_employer_raises(self) -> None:
+        """FlatMonthlyFund with negative employer_monthly must raise."""
+        with pytest.raises(ValueError, match="employer_monthly"):
+            FlatMonthlyFund(employee_monthly=_D("5"), employer_monthly=_D("-1"))
+
+    def test_rate_fund_negative_employee_rate_raises(self) -> None:
+        """RateFund with negative employee_rate must raise."""
+        with pytest.raises(ValueError, match="employee_rate"):
+            RateFund(
+                employee_rate=_D("-0.001"),
+                employer_rate=_D("0.01"),
+                base="tfr_base",
+            )
+
+    def test_rate_fund_negative_employer_rate_raises(self) -> None:
+        """RateFund with negative employer_rate must raise."""
+        with pytest.raises(ValueError, match="employer_rate"):
+            RateFund(
+                employee_rate=_D("0.001"),
+                employer_rate=_D("-0.01"),
+                base="gross_annual",
+            )
+
+
+class TestBilateralFunds:
+    """Integration tests for bilateral fund computation via compute()."""
+
+    def test_no_bilateral_funds_flag_present_when_no_funds(self) -> None:
+        """NO_BILATERAL_FUNDS is set when bilateral_funds is empty."""
+        result = compute(_req()).result
+        sfs = result.fiscal_simplifications
+        assert FiscalSimplification.NO_BILATERAL_FUNDS in sfs
+
+    def test_no_bilateral_funds_flag_absent_when_funds_present(self) -> None:
+        """NO_BILATERAL_FUNDS is cleared when at least one fund is provided."""
+        scenario = dataclasses.replace(
+            _req(),
+            bilateral_funds=(
+                FlatMonthlyFund(
+                    employee_monthly=_D("5"),
+                    employer_monthly=_D("10"),
+                ),
+            ),
+        )
+        result = compute(scenario).result
+        sfs = result.fiscal_simplifications
+        assert FiscalSimplification.NO_BILATERAL_FUNDS not in sfs
+
+    def test_flat_monthly_fund_reduces_net_annual(self) -> None:
+        """Employee flat monthly contribution (x 12) is subtracted from net_annual."""
+        baseline = compute(_req()).result
+        scenario = dataclasses.replace(
+            _req(),
+            bilateral_funds=(
+                FlatMonthlyFund(
+                    employee_monthly=_D("20"),
+                    employer_monthly=_D("0"),
+                ),
+            ),
+        )
+        result = compute(scenario).result
+        expected_net = money(baseline.net_annual - _D("20") * 12)
+        assert result.net_annual == expected_net
+
+    def test_flat_monthly_fund_increases_employer_cost(self) -> None:
+        """Employer flat monthly contribution (x 12) enters employer_cost_annual."""
+        baseline = compute(_req()).result
+        scenario = dataclasses.replace(
+            _req(),
+            bilateral_funds=(
+                FlatMonthlyFund(
+                    employee_monthly=_D("0"),
+                    employer_monthly=_D("15"),
+                ),
+            ),
+        )
+        result = compute(scenario).result
+        expected_cost = money(baseline.employer_cost_annual + _D("15") * 12)
+        assert result.employer_cost_annual == expected_cost
+
+    def test_rate_fund_tfr_base_computation(self) -> None:
+        """RateFund with base='tfr_base' is applied and reduces net_annual."""
+        baseline = compute(_req()).result
+        rate = _D("0.01")
+        scenario = dataclasses.replace(
+            _req(),
+            bilateral_funds=(
+                RateFund(employee_rate=rate, employer_rate=_D("0"), base="tfr_base"),
+            ),
+        )
+        result = compute(scenario).result
+        # bilateral_employee_annual must be positive (tfr_base > 0)
+        assert result.bilateral_employee_annual > _D("0")
+        # net_annual decreases by exactly bilateral_employee_annual
+        assert result.net_annual == money(
+            baseline.net_annual - result.bilateral_employee_annual
+        )
+        # employer side unaffected
+        assert result.bilateral_employer_annual == _D("0")
+        assert result.employer_cost_annual == baseline.employer_cost_annual
+
+    def test_rate_fund_gross_annual_computation(self) -> None:
+        """RateFund with base='gross_annual' applies rate to gross_annual."""
+        baseline = compute(_req()).result
+        rate = _D("0.005")
+        scenario = dataclasses.replace(
+            _req(),
+            bilateral_funds=(
+                RateFund(
+                    employee_rate=rate,
+                    employer_rate=rate,
+                    base="gross_annual",
+                ),
+            ),
+        )
+        result = compute(scenario).result
+        expected_employee = money(baseline.gross_annual * rate)
+        expected_employer = money(baseline.gross_annual * rate)
+        assert result.bilateral_employee_annual == expected_employee
+        assert result.bilateral_employer_annual == expected_employer
+        assert result.net_annual == money(baseline.net_annual - expected_employee)
+        assert result.employer_cost_annual == money(
+            baseline.employer_cost_annual + expected_employer
+        )
+
+    def test_gross_annual_not_mutated_by_bilateral_funds(self) -> None:
+        """gross_annual is unchanged when bilateral_funds are provided."""
+        baseline = compute(_req()).result
+        scenario = dataclasses.replace(
+            _req(),
+            bilateral_funds=(
+                FlatMonthlyFund(
+                    employee_monthly=_D("50"),
+                    employer_monthly=_D("50"),
+                ),
+            ),
+        )
+        result = compute(scenario).result
+        assert result.gross_annual == baseline.gross_annual
+
+    def test_bilateral_funds_scope_item_verified_when_present(self) -> None:
+        """bilateral_funds scope item is 'verified' when funds are provided."""
+        scenario = dataclasses.replace(
+            _req(),
+            bilateral_funds=(
+                FlatMonthlyFund(
+                    employee_monthly=_D("10"),
+                    employer_monthly=_D("10"),
+                ),
+            ),
+        )
+        result = compute(scenario).result
+        scope_map = {item.feature: item.status for item in result.calculation_scope}
+        assert scope_map["bilateral_funds"] == "verified"
+
+    def test_bilateral_funds_scope_item_excluded_when_absent(self) -> None:
+        """bilateral_funds scope item is 'excluded' when no funds provided."""
+        result = compute(_req()).result
+        scope_map = {item.feature: item.status for item in result.calculation_scope}
+        assert scope_map["bilateral_funds"] == "excluded"
+
+    def test_multiple_funds_accumulate(self) -> None:
+        """Multiple funds in the tuple accumulate correctly."""
+        baseline = compute(_req()).result
+        scenario = dataclasses.replace(
+            _req(),
+            bilateral_funds=(
+                FlatMonthlyFund(
+                    employee_monthly=_D("10"),
+                    employer_monthly=_D("20"),
+                ),
+                FlatMonthlyFund(
+                    employee_monthly=_D("5"),
+                    employer_monthly=_D("8"),
+                ),
+            ),
+        )
+        result = compute(scenario).result
+        expected_emp = money((_D("10") + _D("5")) * 12)
+        expected_er = money((_D("20") + _D("8")) * 12)
+        assert result.bilateral_employee_annual == expected_emp
+        assert result.bilateral_employer_annual == expected_er
+        assert result.net_annual == money(baseline.net_annual - expected_emp)
+        assert result.employer_cost_annual == money(
+            baseline.employer_cost_annual + expected_er
+        )
