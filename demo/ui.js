@@ -272,8 +272,9 @@ function makeCombobox(wrapId, selectId, placeholder) {
     input.classList.remove("open");
     dropdown.classList.remove("open");
     input.setAttribute("aria-expanded", "false");
-    // Restore display label of the selected value
-    const selected = getOptions().find(o => o.value === sel.value);
+    // Restore display label of the selected value (guard empty value to avoid
+    // showing the placeholder option's text when nothing is selected)
+    const selected = sel.value ? getOptions().find(o => o.value === sel.value) : undefined;
     input.value = selected ? selected.textContent : "";
   }
 
@@ -328,7 +329,7 @@ function makeCombobox(wrapId, selectId, placeholder) {
   return {
     enable() {
       input.disabled = false;
-      const selected = getOptions().find(o => o.value === sel.value);
+      const selected = sel.value ? getOptions().find(o => o.value === sel.value) : undefined;
       input.value = selected ? selected.textContent : "";
     },
     setValue(val) {
