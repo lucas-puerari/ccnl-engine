@@ -33,15 +33,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadro | € 2,212.99 | — |
-| `1` | Livello 1 | € 2,212.99 | — |
-| `2` | Livello 2 | € 2,002.97 | — |
-| `3S` | Livello 3 Super | € 1,710.74 | — |
-| `3` | Livello 3 | € 1,574.42 | — |
-| `4S` | Livello 4 Super | € 1,468.82 | — |
-| `4` | Livello 4 | € 1,375.68 | — |
-| `5` | Livello 5 | € 1,233.03 | — |
-| `6` | Livello 6 | € 1,070.87 | — |
+| `Q` | Quadro | € 2,212.99 | 2026-01-01 |
+| `1` | Livello 1 | € 2,212.99 | 2026-01-01 |
+| `2` | Livello 2 | € 2,002.97 | 2026-01-01 |
+| `3S` | Livello 3 Super | € 1,710.74 | 2026-01-01 |
+| `3` | Livello 3 | € 1,574.42 | 2026-01-01 |
+| `4S` | Livello 4 Super | € 1,468.82 | 2026-01-01 |
+| `4` | Livello 4 | € 1,375.68 | 2026-01-01 |
+| `5` | Livello 5 | € 1,233.03 | 2026-01-01 |
+| `6` | Livello 6 | € 1,070.87 | 2026-01-01 |
 
 ## Seniority increments
 

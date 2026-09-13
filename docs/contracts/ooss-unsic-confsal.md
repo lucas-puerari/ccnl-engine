@@ -40,12 +40,12 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1` | Livello I - Direttore Generale | € 2,788.00 | — |
-| `2` | Livello II - Direttori Nazionali / Coordinatori | € 2,331.75 | — |
-| `3` | Livello III - Responsabili Regionali / Impiegati di concetto | € 2,096.38 | — |
-| `4` | Livello IV - Responsabili Zonali / Operatori servizi | € 1,863.44 | — |
-| `5` | Livello V - Impiegati d'ordine / Addetti | € 1,735.04 | — |
-| `6` | Livello VI - Usciere / Fattorino / Autista / Addetto pulizie | € 1,588.78 | — |
+| `1` | Livello I - Direttore Generale | € 2,788.00 | 2026-01-01 |
+| `2` | Livello II - Direttori Nazionali / Coordinatori | € 2,331.75 | 2026-01-01 |
+| `3` | Livello III - Responsabili Regionali / Impiegati di concetto | € 2,096.38 | 2026-01-01 |
+| `4` | Livello IV - Responsabili Zonali / Operatori servizi | € 1,863.44 | 2026-01-01 |
+| `5` | Livello V - Impiegati d'ordine / Addetti | € 1,735.04 | 2026-01-01 |
+| `6` | Livello VI - Usciere / Fattorino / Autista / Addetto pulizie | € 1,588.78 | 2026-01-01 |
 
 ## Seniority increments
 
@@ -64,13 +64,16 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **professionalizzante - dest livello 3** (type: `under_classification`)  
-Destination levels: `3`
+Destination levels: `3`  
+under-level: `1`
 
 **professionalizzante - dest livello 4** (type: `under_classification`)  
-Destination levels: `4`
+Destination levels: `4`  
+under-level: `1`
 
 **professionalizzante - dest livello 5** (type: `under_classification`)  
-Destination levels: `5`
+Destination levels: `5`  
+under-level: `1`
 
 ## Known simplifications
 

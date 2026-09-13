@@ -33,29 +33,29 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1-5` | Quadro Gruppo 1/5 — manager, fifth CREA tier (highest) | € 3,748.10 | — |
-| `1-4` | Quadro Gruppo 1/4 — manager, fourth CREA tier | € 3,748.10 | — |
-| `1-3` | Quadro Gruppo 1/3 — manager, third CREA tier | € 3,748.10 | — |
-| `1-2` | Quadro Gruppo 1/2 — manager, second CREA tier | € 3,748.10 | — |
-| `1-1` | Quadro Gruppo 1/1 — manager, first CREA tier | € 3,748.10 | — |
-| `2-4` | Gruppo 2/4 — specialist workers, fourth function allowance tier | € 3,394.47 | — |
-| `2-3` | Gruppo 2/3 — specialist workers, third function allowance tier | € 3,394.47 | — |
-| `2-2` | Gruppo 2/2 — specialist workers, second function allowance tier | € 3,394.47 | — |
-| `2-1` | Gruppo 2/1 — specialist workers, first function allowance tier | € 3,394.47 | — |
-| `3-4` | Gruppo 3/4 — senior workers, fourth function allowance tier | € 3,074.11 | — |
-| `3-3` | Gruppo 3/3 — senior workers, third function allowance tier | € 3,074.11 | — |
-| `3-2` | Gruppo 3/2 — senior workers, second function allowance tier | € 3,074.11 | — |
-| `3-1` | Gruppo 3/1 — senior workers, first function allowance tier | € 3,074.11 | — |
-| `4-4` | Gruppo 4/4 — skilled workers, fourth function allowance tier | € 2,716.61 | — |
-| `4-3` | Gruppo 4/3 — skilled workers, third function allowance tier | € 2,716.61 | — |
-| `4-2` | Gruppo 4/2 — skilled workers, second function allowance tier | € 2,716.61 | — |
-| `4-1` | Gruppo 4/1 — skilled workers, first function allowance tier | € 2,716.61 | — |
-| `5-4` | Gruppo 5/4 — standard workers, fourth function allowance tier | € 2,382.32 | — |
-| `5-3` | Gruppo 5/3 — standard workers, third function allowance tier | € 2,382.32 | — |
-| `5-2` | Gruppo 5/2 — standard workers, second function allowance tier | € 2,382.32 | — |
-| `5-1` | Gruppo 5/1 — standard workers, first function allowance tier | € 2,382.32 | — |
-| `5-0` | Gruppo 5/0 — standard workers, base position (no function allowance) | € 2,382.32 | — |
-| `6-0` | Gruppo 6/0 — entry-level workers, basic routine operations | € 2,072.49 | — |
+| `1-5` | Quadro Gruppo 1/5 — manager, fifth CREA tier (highest) | € 3,748.10 | 2027-07-01 |
+| `1-4` | Quadro Gruppo 1/4 — manager, fourth CREA tier | € 3,748.10 | 2027-07-01 |
+| `1-3` | Quadro Gruppo 1/3 — manager, third CREA tier | € 3,748.10 | 2027-07-01 |
+| `1-2` | Quadro Gruppo 1/2 — manager, second CREA tier | € 3,748.10 | 2027-07-01 |
+| `1-1` | Quadro Gruppo 1/1 — manager, first CREA tier | € 3,748.10 | 2027-07-01 |
+| `2-4` | Gruppo 2/4 — specialist workers, fourth function allowance tier | € 3,394.47 | 2027-07-01 |
+| `2-3` | Gruppo 2/3 — specialist workers, third function allowance tier | € 3,394.47 | 2027-07-01 |
+| `2-2` | Gruppo 2/2 — specialist workers, second function allowance tier | € 3,394.47 | 2027-07-01 |
+| `2-1` | Gruppo 2/1 — specialist workers, first function allowance tier | € 3,394.47 | 2027-07-01 |
+| `3-4` | Gruppo 3/4 — senior workers, fourth function allowance tier | € 3,074.11 | 2027-07-01 |
+| `3-3` | Gruppo 3/3 — senior workers, third function allowance tier | € 3,074.11 | 2027-07-01 |
+| `3-2` | Gruppo 3/2 — senior workers, second function allowance tier | € 3,074.11 | 2027-07-01 |
+| `3-1` | Gruppo 3/1 — senior workers, first function allowance tier | € 3,074.11 | 2027-07-01 |
+| `4-4` | Gruppo 4/4 — skilled workers, fourth function allowance tier | € 2,716.61 | 2027-07-01 |
+| `4-3` | Gruppo 4/3 — skilled workers, third function allowance tier | € 2,716.61 | 2027-07-01 |
+| `4-2` | Gruppo 4/2 — skilled workers, second function allowance tier | € 2,716.61 | 2027-07-01 |
+| `4-1` | Gruppo 4/1 — skilled workers, first function allowance tier | € 2,716.61 | 2027-07-01 |
+| `5-4` | Gruppo 5/4 — standard workers, fourth function allowance tier | € 2,382.32 | 2027-07-01 |
+| `5-3` | Gruppo 5/3 — standard workers, third function allowance tier | € 2,382.32 | 2027-07-01 |
+| `5-2` | Gruppo 5/2 — standard workers, second function allowance tier | € 2,382.32 | 2027-07-01 |
+| `5-1` | Gruppo 5/1 — standard workers, first function allowance tier | € 2,382.32 | 2027-07-01 |
+| `5-0` | Gruppo 5/0 — standard workers, base position (no function allowance) | € 2,382.32 | 2027-07-01 |
+| `6-0` | Gruppo 6/0 — entry-level workers, basic routine operations | € 2,072.49 | 2027-07-01 |
 
 ## Seniority increments
 

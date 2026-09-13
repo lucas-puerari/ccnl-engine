@@ -33,13 +33,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Livello Q (Quadro) | € 2,434.74 | — |
-| `I` | Livello I | € 2,086.89 | — |
-| `II` | Livello II | € 1,946.09 | — |
-| `III` | Livello III | € 1,723.31 | — |
-| `IV` | Livello IV | € 1,528.88 | — |
-| `V` | Livello V | € 1,450.44 | — |
-| `VI` | Livello VI (convenzionale) | € 1,350.44 | — |
+| `Q` | Livello Q (Quadro) | € 2,434.74 | 2026-12-01 |
+| `I` | Livello I | € 2,086.89 | 2026-12-01 |
+| `II` | Livello II | € 1,946.09 | 2026-12-01 |
+| `III` | Livello III | € 1,723.31 | 2026-12-01 |
+| `IV` | Livello IV | € 1,528.88 | 2026-12-01 |
+| `V` | Livello V | € 1,450.44 | 2026-12-01 |
+| `VI` | Livello VI (convenzionale) | € 1,350.44 | 2026-12-01 |
 
 ## Seniority increments
 

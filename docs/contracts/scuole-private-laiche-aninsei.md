@@ -34,15 +34,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `VIII_B` | Livello VIII B — quadro superiore con massima responsabilita gestionale | € 1,819.62 | — |
-| `VIII_A` | Livello VIII A — quadro superiore, direttore o responsabile di sede | € 1,725.56 | — |
-| `VII` | Livello VII — quadro intermedio, responsabile di plesso o coordinatore | € 1,646.17 | — |
-| `VI` | Livello VI — docente coordinatore o tecnico senior con responsabilita | € 1,619.64 | — |
-| `V` | Livello V — docente o impiegato di concetto con autonomia operativa | € 1,619.64 | — |
-| `IV` | Livello IV — impiegato o tecnico di concetto | € 1,519.52 | — |
-| `III` | Livello III — operatore specializzato, mansioni tecnico-pratiche | € 1,446.24 | — |
-| `II` | Livello II — operatore qualificato, mansioni esecutive di supporto | € 1,379.61 | — |
-| `I` | Livello I — personale ausiliario e operatore generico | € 1,347.46 | — |
+| `VIII_B` | Livello VIII B — quadro superiore con massima responsabilita gestionale | € 1,819.62 | 2027-01-01 |
+| `VIII_A` | Livello VIII A — quadro superiore, direttore o responsabile di sede | € 1,725.56 | 2027-01-01 |
+| `VII` | Livello VII — quadro intermedio, responsabile di plesso o coordinatore | € 1,646.17 | 2027-01-01 |
+| `VI` | Livello VI — docente coordinatore o tecnico senior con responsabilita | € 1,619.64 | 2027-01-01 |
+| `V` | Livello V — docente o impiegato di concetto con autonomia operativa | € 1,619.64 | 2027-01-01 |
+| `IV` | Livello IV — impiegato o tecnico di concetto | € 1,519.52 | 2027-01-01 |
+| `III` | Livello III — operatore specializzato, mansioni tecnico-pratiche | € 1,446.24 | 2027-01-01 |
+| `II` | Livello II — operatore qualificato, mansioni esecutive di supporto | € 1,379.61 | 2027-01-01 |
+| `I` | Livello I — personale ausiliario e operatore generico | € 1,347.46 | 2027-01-01 |
 
 ## Seniority increments
 

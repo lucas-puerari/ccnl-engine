@@ -34,16 +34,16 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `QA` | Quadro A — Top management function | € 2,495.21 | — |
-| `QB` | Quadro B — Management function | € 2,310.11 | — |
-| `1` | Level 1 — Conceptual employee with managerial functions | € 2,152.33 | — |
-| `2` | Level 2 — Conceptual employee | € 1,967.21 | — |
-| `3` | Level 3 — Qualified employee | € 1,855.32 | — |
-| `4` | Level 4 — Employee | € 1,750.69 | — |
-| `5` | Level 5 — Qualified clerical employee | € 1,641.83 | — |
-| `6S` | Level 6S — Super clerical employee | € 1,578.72 | — |
-| `6` | Level 6 — Clerical employee | € 1,556.35 | — |
-| `7` | Level 7 — Auxiliary staff | € 1,458.41 | — |
+| `QA` | Quadro A — Top management function | € 2,495.21 | 2027-12-01 |
+| `QB` | Quadro B — Management function | € 2,310.11 | 2027-12-01 |
+| `1` | Level 1 — Conceptual employee with managerial functions | € 2,152.33 | 2027-12-01 |
+| `2` | Level 2 — Conceptual employee | € 1,967.21 | 2027-12-01 |
+| `3` | Level 3 — Qualified employee | € 1,855.32 | 2027-12-01 |
+| `4` | Level 4 — Employee | € 1,750.69 | 2027-12-01 |
+| `5` | Level 5 — Qualified clerical employee | € 1,641.83 | 2027-12-01 |
+| `6S` | Level 6S — Super clerical employee | € 1,578.72 | 2027-12-01 |
+| `6` | Level 6 — Clerical employee | € 1,556.35 | 2027-12-01 |
+| `7` | Level 7 — Auxiliary staff | € 1,458.41 | 2027-12-01 |
 
 ## Seniority increments
 

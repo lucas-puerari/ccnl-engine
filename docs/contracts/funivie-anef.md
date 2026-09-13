@@ -34,14 +34,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1S` | 1° livello Super (parametro 210) | € 2,410.99 | — |
-| `1` | 1° livello (parametro 195) | € 2,238.88 | — |
-| `2` | 2° livello (parametro 176) | € 2,020.97 | — |
-| `3` | 3° livello (parametro 160) | € 1,836.94 | — |
-| `4` | 4° livello (parametro 145) | € 1,664.59 | — |
-| `5` | 5° livello (parametro 130) | € 1,492.75 | — |
-| `6` | 6° livello (parametro 120) | € 1,377.94 | — |
-| `7` | 7° livello (parametro 100) | € 1,148.35 | — |
+| `1S` | 1° livello Super (parametro 210) | € 2,410.99 | 2028-03-01 |
+| `1` | 1° livello (parametro 195) | € 2,238.88 | 2028-03-01 |
+| `2` | 2° livello (parametro 176) | € 2,020.97 | 2028-03-01 |
+| `3` | 3° livello (parametro 160) | € 1,836.94 | 2028-03-01 |
+| `4` | 4° livello (parametro 145) | € 1,664.59 | 2028-03-01 |
+| `5` | 5° livello (parametro 130) | € 1,492.75 | 2028-03-01 |
+| `6` | 6° livello (parametro 120) | € 1,377.94 | 2028-03-01 |
+| `7` | 7° livello (parametro 100) | € 1,148.35 | 2028-03-01 |
 
 ## Seniority increments
 

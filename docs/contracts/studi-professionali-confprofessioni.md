@@ -33,14 +33,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Manager (Quadro) — staff with managerial functions (Art. 2095 c.c., L. 190/1985) | € 2,436.76 | — |
-| `1` | 1st Level — staff with directive functions or highly specialised technical role | € 2,156.38 | — |
-| `2` | 2nd Level — senior concept-grade staff / highly specialised technicians | € 1,878.26 | — |
-| `3S` | 3rd Level Super — senior concept-grade staff with specialised expertise | € 1,742.20 | — |
-| `3` | 3rd Level — concept-grade staff with technical or administrative expertise | € 1,726.37 | — |
-| `4S` | 4th Level Super — qualified staff with higher-grade duties | € 1,674.10 | — |
-| `4` | 4th Level — qualified clerical staff | € 1,614.12 | — |
-| `5` | 5th Level — clerical staff performing routine tasks | € 1,502.19 | — |
+| `Q` | Manager (Quadro) — staff with managerial functions (Art. 2095 c.c., L. 190/1985) | € 2,436.76 | 2026-12-01 |
+| `1` | 1st Level — staff with directive functions or highly specialised technical role | € 2,156.38 | 2026-12-01 |
+| `2` | 2nd Level — senior concept-grade staff / highly specialised technicians | € 1,878.26 | 2026-12-01 |
+| `3S` | 3rd Level Super — senior concept-grade staff with specialised expertise | € 1,742.20 | 2026-12-01 |
+| `3` | 3rd Level — concept-grade staff with technical or administrative expertise | € 1,726.37 | 2026-12-01 |
+| `4S` | 4th Level Super — qualified staff with higher-grade duties | € 1,674.10 | 2026-12-01 |
+| `4` | 4th Level — qualified clerical staff | € 1,614.12 | 2026-12-01 |
+| `5` | 5th Level — clerical staff performing routine tasks | € 1,502.19 | 2026-12-01 |
 
 ## Seniority increments
 

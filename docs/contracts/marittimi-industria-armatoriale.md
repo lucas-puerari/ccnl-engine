@@ -33,14 +33,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `VIIQ` | Livello VII Q — Quadri: VII minimo + INDENNITA_FUNZIONE EUR 225.00 (Art. 18 quinquies) | € 2,800.07 | — |
-| `VII` | Livello VII — Lavoratori con responsabilita direttive di alto livello | € 2,800.07 | — |
-| `VI` | Livello VI — Lavoratori con elevata autonomia e responsabilita gestionale | € 2,429.76 | — |
-| `V` | Livello V — Lavoratori altamente specializzati con coordinamento | € 2,108.93 | — |
-| `IV` | Livello IV — Lavoratori con qualifiche tecniche e responsabilita operative | € 1,989.32 | — |
-| `III` | Livello III — Lavoratori specializzati con autonomia operativa | € 1,755.00 | — |
-| `II` | Livello II — Lavoratori qualificati con mansioni esecutive | € 1,591.25 | — |
-| `I` | Livello I — Lavoratori addetti a mansioni di semplice esecuzione | € 1,509.42 | — |
+| `VIIQ` | Livello VII Q — Quadri: VII minimo + INDENNITA_FUNZIONE EUR 225.00 (Art. 18 quinquies) | € 2,800.07 | 2026-07-01 |
+| `VII` | Livello VII — Lavoratori con responsabilita direttive di alto livello | € 2,800.07 | 2026-07-01 |
+| `VI` | Livello VI — Lavoratori con elevata autonomia e responsabilita gestionale | € 2,429.76 | 2026-07-01 |
+| `V` | Livello V — Lavoratori altamente specializzati con coordinamento | € 2,108.93 | 2026-07-01 |
+| `IV` | Livello IV — Lavoratori con qualifiche tecniche e responsabilita operative | € 1,989.32 | 2026-07-01 |
+| `III` | Livello III — Lavoratori specializzati con autonomia operativa | € 1,755.00 | 2026-07-01 |
+| `II` | Livello II — Lavoratori qualificati con mansioni esecutive | € 1,591.25 | 2026-07-01 |
+| `I` | Livello I — Lavoratori addetti a mansioni di semplice esecuzione | € 1,509.42 | 2026-07-01 |
 
 ## Seniority increments
 

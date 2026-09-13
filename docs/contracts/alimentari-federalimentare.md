@@ -33,14 +33,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1S` | 1S level — senior managers and executives (under L. 190/1985 for workers classified as Quadri) | € 2,836.32 | — |
-| `1` | 1st level — managers with significant managerial and directional responsibilities | € 2,466.34 | — |
-| `2` | 2nd level — intermediate managers and workers with coordination responsibilities | € 2,034.77 | — |
-| `3A` | 3A level — specialist workers with significant operational responsibilities | € 1,788.12 | — |
-| `3` | 3rd level — specialist workers with operational autonomy | € 1,603.17 | — |
-| `4` | 4th level — qualified workers with specific tasks and limited responsibilities | € 1,479.82 | — |
-| `5` | 5th level — qualified workers with simple executive tasks | € 1,356.52 | — |
-| `6` | 6th level — entry-level workers, simple operations | € 1,233.20 | — |
+| `1S` | 1S level — senior managers and executives (under L. 190/1985 for workers classified as Quadri) | € 2,836.32 | 2027-01-01 |
+| `1` | 1st level — managers with significant managerial and directional responsibilities | € 2,466.34 | 2027-01-01 |
+| `2` | 2nd level — intermediate managers and workers with coordination responsibilities | € 2,034.77 | 2027-01-01 |
+| `3A` | 3A level — specialist workers with significant operational responsibilities | € 1,788.12 | 2027-01-01 |
+| `3` | 3rd level — specialist workers with operational autonomy | € 1,603.17 | 2027-01-01 |
+| `4` | 4th level — qualified workers with specific tasks and limited responsibilities | € 1,479.82 | 2027-01-01 |
+| `5` | 5th level — qualified workers with simple executive tasks | € 1,356.52 | 2027-01-01 |
+| `6` | 6th level — entry-level workers, simple operations | € 1,233.20 | 2027-01-01 |
 
 ## Seniority increments
 

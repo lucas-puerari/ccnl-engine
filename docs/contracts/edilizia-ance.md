@@ -36,13 +36,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `7` | Quadro / 1st-category employee — managerial function, sector responsibility | € 2,878.86 | — |
-| `6` | Senior technical / administrative employee — surveyor, draughtsperson, chief accountant | € 2,641.19 | — |
-| `5` | Ordinary clerical employee — routine tasks, basic accounting | € 2,284.70 | — |
-| `4` | 4th-category worker — gang leader / highly specialised worker | € 2,165.89 | — |
-| `3` | Specialised worker — bricklayer, carpenter, ironworker, tiler | € 2,047.05 | — |
-| `2` | Qualified worker — directed construction work, use of trade tools | € 1,892.57 | — |
-| `1` | Common worker — general labourer, material handling | € 1,690.56 | — |
+| `7` | Quadro / 1st-category employee — managerial function, sector responsibility | € 2,878.86 | 2027-03-01 |
+| `6` | Senior technical / administrative employee — surveyor, draughtsperson, chief accountant | € 2,641.19 | 2027-03-01 |
+| `5` | Ordinary clerical employee — routine tasks, basic accounting | € 2,284.70 | 2027-03-01 |
+| `4` | 4th-category worker — gang leader / highly specialised worker | € 2,165.89 | 2027-03-01 |
+| `3` | Specialised worker — bricklayer, carpenter, ironworker, tiler | € 2,047.05 | 2027-03-01 |
+| `2` | Qualified worker — directed construction work, use of trade tools | € 1,892.57 | 2027-03-01 |
+| `1` | Common worker — general labourer, material handling | € 1,690.56 | 2027-03-01 |
 
 ## Seniority increments
 

@@ -36,16 +36,16 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Qa` | Quadri A — managerial functions with a high level of management responsibility | € 2,578.07 | — |
-| `Qb` | Quadri B — managerial functions with continuous responsibility over a complex unit | € 2,375.56 | — |
-| `1` | Level 1 — staff with high professional content and operational autonomy | € 2,201.85 | — |
-| `2` | Level 2 — staff with initiative and operational autonomy (coordination) | € 1,999.36 | — |
-| `3` | Level 3 — staff with specialist technical knowledge (conceptual work) | € 1,877.00 | — |
-| `4` | Level 4 — staff with executive autonomy (specialised technical-administrative duties) | € 1,762.69 | — |
-| `5` | Level 5 — staff with qualified technical-practical knowledge and skills | € 1,643.50 | — |
-| `6s` | Level 6 super — staff with adequate technical-practical skills (formerly qualified commis or experienced staff) | € 1,574.42 | — |
-| `6` | Level 6 — staff with standard practical training and basic professional knowledge | € 1,549.78 | — |
-| `7` | Level 7 — general assistants, cleaning staff (simple manual tasks) | € 1,442.45 | — |
+| `Qa` | Quadri A — managerial functions with a high level of management responsibility | € 2,578.07 | 2027-12-01 |
+| `Qb` | Quadri B — managerial functions with continuous responsibility over a complex unit | € 2,375.56 | 2027-12-01 |
+| `1` | Level 1 — staff with high professional content and operational autonomy | € 2,201.85 | 2027-12-01 |
+| `2` | Level 2 — staff with initiative and operational autonomy (coordination) | € 1,999.36 | 2027-12-01 |
+| `3` | Level 3 — staff with specialist technical knowledge (conceptual work) | € 1,877.00 | 2027-12-01 |
+| `4` | Level 4 — staff with executive autonomy (specialised technical-administrative duties) | € 1,762.69 | 2027-12-01 |
+| `5` | Level 5 — staff with qualified technical-practical knowledge and skills | € 1,643.50 | 2027-12-01 |
+| `6s` | Level 6 super — staff with adequate technical-practical skills (formerly qualified commis or experienced staff) | € 1,574.42 | 2027-12-01 |
+| `6` | Level 6 — staff with standard practical training and basic professional knowledge | € 1,549.78 | 2027-12-01 |
+| `7` | Level 7 — general assistants, cleaning staff (simple manual tasks) | € 1,442.45 | 2027-12-01 |
 
 ## Seniority increments
 

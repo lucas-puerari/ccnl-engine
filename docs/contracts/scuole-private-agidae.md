@@ -33,12 +33,12 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `L6` | Livello 6 — Personale direttivo (presidi, coordinatori didattici, direttori amministrativi) | € 2,205.27 | — |
-| `L5` | Livello 5 — Personale docente scuola secondaria, psicologi, psicoterapeuti, responsabili CED e amministrativi senior | € 1,987.80 | — |
-| `L4` | Livello 4 — Personale docente scuola infanzia/primaria, educatrici, assistenti sociali e sanitari, fisioterapisti, logopedisti | € 1,896.82 | — |
-| `L3` | Livello 3 — Personale amministrativo e tecnico specializzato (segretari, addetti amministrativi, capo-cuochi, capi-sala con diploma) | € 1,838.95 | — |
-| `L2` | Livello 2 — Personale tecnico-ausiliario (tecnici caldaie, autisti, centralinisti, cuochi, guardarobieri, camerieri specializzati) | € 1,784.67 | — |
-| `L1` | Livello 1 — Personale ausiliario non specializzato (addetti pulizie, bidelli, portieri, personale di fatica, accompagnatori) | € 1,731.18 | — |
+| `L6` | Livello 6 — Personale direttivo (presidi, coordinatori didattici, direttori amministrativi) | € 2,205.27 | 2027-12-01 |
+| `L5` | Livello 5 — Personale docente scuola secondaria, psicologi, psicoterapeuti, responsabili CED e amministrativi senior | € 1,987.80 | 2027-12-01 |
+| `L4` | Livello 4 — Personale docente scuola infanzia/primaria, educatrici, assistenti sociali e sanitari, fisioterapisti, logopedisti | € 1,896.82 | 2027-12-01 |
+| `L3` | Livello 3 — Personale amministrativo e tecnico specializzato (segretari, addetti amministrativi, capo-cuochi, capi-sala con diploma) | € 1,838.95 | 2027-12-01 |
+| `L2` | Livello 2 — Personale tecnico-ausiliario (tecnici caldaie, autisti, centralinisti, cuochi, guardarobieri, camerieri specializzati) | € 1,784.67 | 2027-12-01 |
+| `L1` | Livello 1 — Personale ausiliario non specializzato (addetti pulizie, bidelli, portieri, personale di fatica, accompagnatori) | € 1,731.18 | 2027-12-01 |
 
 ## Seniority increments
 

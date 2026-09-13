@@ -36,14 +36,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `DS` | Level DS — senior caregiver / household manager with seniority | € 1,724.81 | — |
-| `D` | Level D — senior caregiver / household manager | € 1,655.61 | — |
-| `CS` | Level CS — specialised domestic worker with seniority | € 1,435.90 | — |
-| `C` | Level C — specialised domestic worker / assistant caregiver (badante) | € 1,359.78 | — |
-| `BS` | Level BS — qualified domestic worker with seniority | € 1,288.85 | — |
-| `B` | Level B — qualified domestic worker (colf qualificata) | € 1,212.73 | — |
-| `AS` | Level AS — domestic worker with seniority qualification | € 1,169.48 | — |
-| `A` | Level A — entry-level domestic worker (colf generica) | € 1,126.23 | — |
+| `DS` | Level DS — senior caregiver / household manager with seniority | € 1,724.81 | 2026-01-01 |
+| `D` | Level D — senior caregiver / household manager | € 1,655.61 | 2026-01-01 |
+| `CS` | Level CS — specialised domestic worker with seniority | € 1,435.90 | 2026-01-01 |
+| `C` | Level C — specialised domestic worker / assistant caregiver (badante) | € 1,359.78 | 2026-01-01 |
+| `BS` | Level BS — qualified domestic worker with seniority | € 1,288.85 | 2026-01-01 |
+| `B` | Level B — qualified domestic worker (colf qualificata) | € 1,212.73 | 2026-01-01 |
+| `AS` | Level AS — domestic worker with seniority qualification | € 1,169.48 | 2026-01-01 |
+| `A` | Level A — entry-level domestic worker (colf generica) | € 1,126.23 | 2026-01-01 |
 
 ## Seniority increments
 

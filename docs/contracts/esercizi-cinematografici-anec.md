@@ -32,21 +32,21 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `QA` | Quadro A — Multiplex/Megaplex (parametro 240) | € 2,103.45 | — |
-| `QB` | Quadro B — Multiplex/Megaplex (parametro 220) | € 1,970.12 | — |
-| `Q` | Quadro — Monosala/Multisala (parametro 220) | € 1,970.12 | — |
-| `F` | Livello F — Multiplex/Megaplex (parametro 185) | € 1,736.47 | — |
-| `5S` | V livello superiore — Monosala/Multisala (parametro 185) | € 1,736.47 | — |
-| `5` | V livello — Monosala/Multisala (parametro 176) | € 1,677.32 | — |
-| `E` | Livello E — Multiplex/Megaplex (parametro 165) | € 1,603.17 | — |
-| `4` | IV livello — Monosala/Multisala (parametro 159) | € 1,563.49 | — |
-| `D` | Livello D — Multiplex/Megaplex (parametro 150) | € 1,503.61 | — |
-| `C` | Livello C — Multiplex/Megaplex (parametro 140) | € 1,436.95 | — |
-| `3` | III livello — Monosala/Multisala (parametro 132) | € 1,383.48 | — |
-| `B` | Livello B — Multiplex/Megaplex (parametro 122) | € 1,316.62 | — |
-| `2` | II livello — Monosala/Multisala (parametro 112) | € 1,249.95 | — |
-| `A` | Livello A — Multiplex/Megaplex (parametro 100) | € 1,170.00 | — |
-| `1` | I livello — Monosala/Multisala (parametro 100) | € 1,170.00 | — |
+| `QA` | Quadro A — Multiplex/Megaplex (parametro 240) | € 2,103.45 | 2025-07-01 |
+| `QB` | Quadro B — Multiplex/Megaplex (parametro 220) | € 1,970.12 | 2025-07-01 |
+| `Q` | Quadro — Monosala/Multisala (parametro 220) | € 1,970.12 | 2025-07-01 |
+| `F` | Livello F — Multiplex/Megaplex (parametro 185) | € 1,736.47 | 2025-07-01 |
+| `5S` | V livello superiore — Monosala/Multisala (parametro 185) | € 1,736.47 | 2025-07-01 |
+| `5` | V livello — Monosala/Multisala (parametro 176) | € 1,677.32 | 2025-07-01 |
+| `E` | Livello E — Multiplex/Megaplex (parametro 165) | € 1,603.17 | 2025-07-01 |
+| `4` | IV livello — Monosala/Multisala (parametro 159) | € 1,563.49 | 2025-07-01 |
+| `D` | Livello D — Multiplex/Megaplex (parametro 150) | € 1,503.61 | 2025-07-01 |
+| `C` | Livello C — Multiplex/Megaplex (parametro 140) | € 1,436.95 | 2025-07-01 |
+| `3` | III livello — Monosala/Multisala (parametro 132) | € 1,383.48 | 2025-07-01 |
+| `B` | Livello B — Multiplex/Megaplex (parametro 122) | € 1,316.62 | 2025-07-01 |
+| `2` | II livello — Monosala/Multisala (parametro 112) | € 1,249.95 | 2025-07-01 |
+| `A` | Livello A — Multiplex/Megaplex (parametro 100) | € 1,170.00 | 2025-07-01 |
+| `1` | I livello — Monosala/Multisala (parametro 100) | € 1,170.00 | 2025-07-01 |
 
 ## Seniority increments
 

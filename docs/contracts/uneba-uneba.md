@@ -33,17 +33,17 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Senior Manager (Quadro) — executive / top-level manager (with function allowance) | € 2,057.15 | — |
-| `1` | Level 1 — director / facility manager | € 1,934.70 | — |
-| `2` | Level 2 — service manager / coordinator | € 1,824.49 | — |
-| `3S` | Level 3 Super — professional educator / qualified technician | € 1,689.78 | — |
-| `3` | Level 3 — specialist technical worker / educator | € 1,628.56 | — |
-| `4S` | Level 4 Super — social health care worker (OSS) | € 1,542.86 | — |
-| `4` | Level 4 — social care worker | € 1,493.89 | — |
-| `5S` | Level 5 Super — qualified care worker | € 1,469.42 | — |
-| `5` | Level 5 — basic care worker | € 1,432.66 | — |
-| `6S` | Level 6 Super — qualified auxiliary worker | € 1,395.94 | — |
-| `6` | Level 6 — generic auxiliary worker | € 1,359.20 | — |
+| `Q` | Senior Manager (Quadro) — executive / top-level manager (with function allowance) | € 2,057.15 | 2026-03-01 |
+| `1` | Level 1 — director / facility manager | € 1,934.70 | 2026-03-01 |
+| `2` | Level 2 — service manager / coordinator | € 1,824.49 | 2026-03-01 |
+| `3S` | Level 3 Super — professional educator / qualified technician | € 1,689.78 | 2026-03-01 |
+| `3` | Level 3 — specialist technical worker / educator | € 1,628.56 | 2026-03-01 |
+| `4S` | Level 4 Super — social health care worker (OSS) | € 1,542.86 | 2026-03-01 |
+| `4` | Level 4 — social care worker | € 1,493.89 | 2026-03-01 |
+| `5S` | Level 5 Super — qualified care worker | € 1,469.42 | 2026-03-01 |
+| `5` | Level 5 — basic care worker | € 1,432.66 | 2026-03-01 |
+| `6S` | Level 6 Super — qualified auxiliary worker | € 1,395.94 | 2026-03-01 |
+| `6` | Level 6 — generic auxiliary worker | € 1,359.20 | 2026-03-01 |
 
 ## Seniority increments
 

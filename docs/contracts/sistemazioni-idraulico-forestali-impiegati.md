@@ -37,13 +37,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `I6Q` | Impiegato 6° livello — Quadro (Art. 36 CCNL) | € 2,095.91 | — |
-| `I6` | Impiegato 6° livello | € 2,095.91 | — |
-| `I5` | Impiegato 5° livello | € 1,827.07 | — |
-| `I4` | Impiegato 4° livello | € 1,679.91 | — |
-| `I3` | Impiegato 3° livello | € 1,579.56 | — |
-| `I2` | Impiegato 2° livello | € 1,488.46 | — |
-| `I1` | Impiegato 1° livello | € 1,376.66 | — |
+| `I6Q` | Impiegato 6° livello — Quadro (Art. 36 CCNL) | € 2,095.91 | 2028-01-01 |
+| `I6` | Impiegato 6° livello | € 2,095.91 | 2028-01-01 |
+| `I5` | Impiegato 5° livello | € 1,827.07 | 2028-01-01 |
+| `I4` | Impiegato 4° livello | € 1,679.91 | 2028-01-01 |
+| `I3` | Impiegato 3° livello | € 1,579.56 | 2028-01-01 |
+| `I2` | Impiegato 2° livello | € 1,488.46 | 2028-01-01 |
+| `I1` | Impiegato 1° livello | € 1,376.66 | 2028-01-01 |
 
 ## Seniority increments
 

@@ -37,8 +37,8 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `PRIMA_FASCIA` | Dirigenti di prima fascia (dirigenti generali): ministeri, agenzie | € 4,908.30 | — |
-| `SECONDA_FASCIA` | Dirigenti di seconda fascia (non generali): ministeri, agenzie fiscali, INPS, INAIL | € 3,846.60 | — |
+| `PRIMA_FASCIA` | Dirigenti di prima fascia (dirigenti generali): ministeri, agenzie | € 4,908.30 | 2024-01-01 |
+| `SECONDA_FASCIA` | Dirigenti di seconda fascia (non generali): ministeri, agenzie fiscali, INPS, INAIL | € 3,846.60 | 2024-01-01 |
 
 ## Seniority increments
 

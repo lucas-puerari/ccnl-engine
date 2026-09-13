@@ -33,15 +33,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadro | € 2,486.49 | — |
-| `1` | Primo livello | € 2,372.61 | — |
-| `2` | Secondo livello | € 2,096.50 | — |
-| `3` | Terzo livello | € 2,004.71 | — |
-| `4` | Quarto livello | € 1,815.64 | — |
-| `5` | Quinto livello | € 1,737.47 | — |
-| `6S` | Sesto livello superiore | € 1,700.37 | — |
-| `6` | Sesto livello | € 1,659.53 | — |
-| `7` | Settimo livello | € 1,595.96 | — |
+| `Q` | Quadro | € 2,486.49 | 2027-08-01 |
+| `1` | Primo livello | € 2,372.61 | 2027-08-01 |
+| `2` | Secondo livello | € 2,096.50 | 2027-08-01 |
+| `3` | Terzo livello | € 2,004.71 | 2027-08-01 |
+| `4` | Quarto livello | € 1,815.64 | 2027-08-01 |
+| `5` | Quinto livello | € 1,737.47 | 2027-08-01 |
+| `6S` | Sesto livello superiore | € 1,700.37 | 2027-08-01 |
+| `6` | Sesto livello | € 1,659.53 | 2027-08-01 |
+| `7` | Settimo livello | € 1,595.96 | 2027-08-01 |
 
 ## Seniority increments
 

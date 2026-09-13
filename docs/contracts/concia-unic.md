@@ -33,17 +33,17 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A` | Livello A — quadri, direttivi con elevata autonomia decisionale | € 2,937.60 | — |
-| `B1` | Livello B1 — operai e impiegati con elevata specializzazione | € 2,494.04 | — |
-| `B2` | Livello B2 — operai e impiegati specializzati | € 2,494.04 | — |
-| `C1` | Livello C1 — operai e impiegati qualificati con funzioni di coordinamento | € 2,234.82 | — |
-| `C2` | Livello C2 — operai e impiegati qualificati | € 2,234.82 | — |
-| `D1` | Livello D1 — operai e impiegati con mansioni di concetto specializzate | € 2,041.99 | — |
-| `D2` | Livello D2 — operai e impiegati con mansioni di concetto | € 2,041.99 | — |
-| `E1` | Livello E1 — operai e impiegati qualificati con mansioni operative specializzate | € 1,783.71 | — |
-| `E2` | Livello E2 — operai e impiegati con mansioni operative qualificate | € 1,783.71 | — |
-| `E3` | Livello E3 — operai e impiegati con mansioni operative generiche specializzate | € 1,783.71 | — |
-| `F1` | Livello F1 — lavoratori in periodo di prima formazione (parametro 100) | € 1,689.30 | — |
+| `A` | Livello A — quadri, direttivi con elevata autonomia decisionale | € 2,937.60 | 2026-01-01 |
+| `B1` | Livello B1 — operai e impiegati con elevata specializzazione | € 2,494.04 | 2026-01-01 |
+| `B2` | Livello B2 — operai e impiegati specializzati | € 2,494.04 | 2026-01-01 |
+| `C1` | Livello C1 — operai e impiegati qualificati con funzioni di coordinamento | € 2,234.82 | 2026-01-01 |
+| `C2` | Livello C2 — operai e impiegati qualificati | € 2,234.82 | 2026-01-01 |
+| `D1` | Livello D1 — operai e impiegati con mansioni di concetto specializzate | € 2,041.99 | 2026-01-01 |
+| `D2` | Livello D2 — operai e impiegati con mansioni di concetto | € 2,041.99 | 2026-01-01 |
+| `E1` | Livello E1 — operai e impiegati qualificati con mansioni operative specializzate | € 1,783.71 | 2026-01-01 |
+| `E2` | Livello E2 — operai e impiegati con mansioni operative qualificate | € 1,783.71 | 2026-01-01 |
+| `E3` | Livello E3 — operai e impiegati con mansioni operative generiche specializzate | € 1,783.71 | 2026-01-01 |
+| `F1` | Livello F1 — lavoratori in periodo di prima formazione (parametro 100) | € 1,689.30 | 2026-01-01 |
 
 ## Seniority increments
 

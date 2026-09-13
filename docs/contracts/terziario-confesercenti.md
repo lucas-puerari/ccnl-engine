@@ -33,14 +33,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Senior Manager (Quadro) | € 3,114.47 | — |
-| `I` | First Level | € 2,621.36 | — |
-| `II` | Second Level | € 2,335.07 | — |
-| `III` | Third Level | € 2,068.56 | — |
-| `IV` | Fourth Level | € 1,856.68 | — |
-| `V` | Fifth Level | € 1,725.77 | — |
-| `VI` | Sixth Level | € 1,600.54 | — |
-| `VII` | Seventh Level | € 1,447.98 | — |
+| `Q` | Senior Manager (Quadro) | € 3,114.47 | 2027-02-01 |
+| `I` | First Level | € 2,621.36 | 2027-02-01 |
+| `II` | Second Level | € 2,335.07 | 2027-02-01 |
+| `III` | Third Level | € 2,068.56 | 2027-02-01 |
+| `IV` | Fourth Level | € 1,856.68 | 2027-02-01 |
+| `V` | Fifth Level | € 1,725.77 | 2027-02-01 |
+| `VI` | Sixth Level | € 1,600.54 | 2027-02-01 |
+| `VII` | Seventh Level | € 1,447.98 | 2027-02-01 |
 
 ## Seniority increments
 
@@ -61,10 +61,12 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **standard** (type: `under_classification`)  
-Destination levels: `II`, `III`, `IV`, `V`
+Destination levels: `II`, `III`, `IV`, `V`  
+under-level: `1`
 
 **sesto-livello** (type: `under_classification`)  
-Destination levels: `VI`
+Destination levels: `VI`  
+under-level: `1`
 
 ## Known simplifications
 

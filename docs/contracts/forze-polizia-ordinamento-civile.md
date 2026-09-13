@@ -42,27 +42,27 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `COMM_CAPO` | Commissario Capo (param 150,50) | € 2,451.90 | — |
-| `SOST_COMM_COORD` | Sostituto Commissario Coordinatore (param 148,00) | € 2,411.17 | — |
-| `COMMISSARIO` | Commissario (param 148,00) | € 2,411.17 | — |
-| `SOST_COMM` | Sostituto Commissario (param 143,50) | € 2,337.85 | — |
-| `ISP_SUP_8A` | Ispettore Superiore con 8 anni di qualifica (param 140,00) | € 2,280.83 | — |
-| `ISP_SUPERIORE` | Ispettore Superiore (param 137,50) | € 2,240.10 | — |
-| `VICE_COMM` | Vice Commissario (param 136,75) | € 2,227.89 | — |
-| `ISP_CAPO` | Ispettore Capo (param 133,50) | € 2,174.94 | — |
-| `SOV_CAPO_COORD` | Sovrintendente Capo Coordinatore (param 131,00) | € 2,134.21 | — |
-| `ISPETTORE` | Ispettore (param 131,00) | € 2,134.21 | — |
-| `SOV_CAPO_4A` | Sovrintendente Capo con 4 anni di qualifica (param 125,75) | € 2,048.68 | — |
-| `VICE_ISP` | Vice Ispettore (param 124,75) | € 2,032.39 | — |
-| `SOV_CAPO` | Sovrintendente Capo (param 124,25) | € 2,024.24 | — |
-| `ASSISTENTE_CAPO_COORD` | Assistente Capo Coordinatore (param 121,50) | € 1,979.44 | — |
-| `SOVRINTENDENTE` | Sovrintendente (param 121,50) | € 1,979.44 | — |
-| `ASSISTENTE_CAPO_5A` | Assistente Capo con 5 anni di qualifica (param 117,00) | € 1,906.13 | — |
-| `VICE_SOV` | Vice Sovrintendente (param 116,75) | € 1,902.05 | — |
-| `ASSISTENTE_CAPO` | Assistente Capo (param 116,50) | € 1,897.98 | — |
-| `ASSISTENTE` | Assistente (param 112,00) | € 1,824.67 | — |
-| `AGENTE_SCELTO` | Agente Scelto (param 108,50) | € 1,767.65 | — |
-| `AGENTE` | Agente (param 105,25) | € 1,714.70 | — |
+| `COMM_CAPO` | Commissario Capo (param 150,50) | € 2,451.90 | 2024-01-01 |
+| `SOST_COMM_COORD` | Sostituto Commissario Coordinatore (param 148,00) | € 2,411.17 | 2024-01-01 |
+| `COMMISSARIO` | Commissario (param 148,00) | € 2,411.17 | 2024-01-01 |
+| `SOST_COMM` | Sostituto Commissario (param 143,50) | € 2,337.85 | 2024-01-01 |
+| `ISP_SUP_8A` | Ispettore Superiore con 8 anni di qualifica (param 140,00) | € 2,280.83 | 2024-01-01 |
+| `ISP_SUPERIORE` | Ispettore Superiore (param 137,50) | € 2,240.10 | 2024-01-01 |
+| `VICE_COMM` | Vice Commissario (param 136,75) | € 2,227.89 | 2024-01-01 |
+| `ISP_CAPO` | Ispettore Capo (param 133,50) | € 2,174.94 | 2024-01-01 |
+| `SOV_CAPO_COORD` | Sovrintendente Capo Coordinatore (param 131,00) | € 2,134.21 | 2024-01-01 |
+| `ISPETTORE` | Ispettore (param 131,00) | € 2,134.21 | 2024-01-01 |
+| `SOV_CAPO_4A` | Sovrintendente Capo con 4 anni di qualifica (param 125,75) | € 2,048.68 | 2024-01-01 |
+| `VICE_ISP` | Vice Ispettore (param 124,75) | € 2,032.39 | 2024-01-01 |
+| `SOV_CAPO` | Sovrintendente Capo (param 124,25) | € 2,024.24 | 2024-01-01 |
+| `ASSISTENTE_CAPO_COORD` | Assistente Capo Coordinatore (param 121,50) | € 1,979.44 | 2024-01-01 |
+| `SOVRINTENDENTE` | Sovrintendente (param 121,50) | € 1,979.44 | 2024-01-01 |
+| `ASSISTENTE_CAPO_5A` | Assistente Capo con 5 anni di qualifica (param 117,00) | € 1,906.13 | 2024-01-01 |
+| `VICE_SOV` | Vice Sovrintendente (param 116,75) | € 1,902.05 | 2024-01-01 |
+| `ASSISTENTE_CAPO` | Assistente Capo (param 116,50) | € 1,897.98 | 2024-01-01 |
+| `ASSISTENTE` | Assistente (param 112,00) | € 1,824.67 | 2024-01-01 |
+| `AGENTE_SCELTO` | Agente Scelto (param 108,50) | € 1,767.65 | 2024-01-01 |
+| `AGENTE` | Agente (param 105,25) | € 1,714.70 | 2024-01-01 |
 
 ## Seniority increments
 

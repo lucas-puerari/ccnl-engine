@@ -34,12 +34,12 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadri — dirigenti intermedi con ampia discrezionalità e autonomia decisionale (legge 190/85) | € 1,577.20 | — |
-| `5` | 5° livello — impiegati tecnici e amministrativi con autonomia gestionale e responsabilità del proprio settore | € 1,227.87 | — |
-| `4` | 4° livello — impiegati con funzioni tecnicoamministrative e autonomia di iniziativa entro direttive prestabilite | € 1,057.07 | — |
-| `3` | 3° livello — impiegati con mansioni esecutive richiedenti conoscenze teorico-pratiche (es. insegnante di autoscuola) | € 987.04 | — |
-| `2` | 2° livello — impiegati con mansioni esecutive (es. responsabile di segreteria, istruttore di guida) | € 938.41 | — |
-| `1` | 1° livello — lavoratori con mansioni che richiedono semplici capacità pratiche (fattorino, addetto pulizie, usciere) | € 788.61 | — |
+| `Q` | Quadri — dirigenti intermedi con ampia discrezionalità e autonomia decisionale (legge 190/85) | € 1,577.20 | 2022-02-01 |
+| `5` | 5° livello — impiegati tecnici e amministrativi con autonomia gestionale e responsabilità del proprio settore | € 1,227.87 | 2022-02-01 |
+| `4` | 4° livello — impiegati con funzioni tecnicoamministrative e autonomia di iniziativa entro direttive prestabilite | € 1,057.07 | 2022-02-01 |
+| `3` | 3° livello — impiegati con mansioni esecutive richiedenti conoscenze teorico-pratiche (es. insegnante di autoscuola) | € 987.04 | 2022-02-01 |
+| `2` | 2° livello — impiegati con mansioni esecutive (es. responsabile di segreteria, istruttore di guida) | € 938.41 | 2022-02-01 |
+| `1` | 1° livello — lavoratori con mansioni che richiedono semplici capacità pratiche (fattorino, addetto pulizie, usciere) | € 788.61 | 2022-02-01 |
 
 ## Seniority increments
 

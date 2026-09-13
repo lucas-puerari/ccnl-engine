@@ -33,10 +33,10 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `FUNZIONARI_EQ` | Funzionari ed Elevata Qualificazione (ex Area D) | € 2,092.84 | — |
-| `ISTRUTTORI` | Istruttori (ex Area C) | € 1,928.23 | — |
-| `OPERATORI_ESPERTI` | Operatori Esperti (ex Area B) | € 1,715.27 | — |
-| `OPERATORI` | Operatori (ex Area A) | € 1,646.09 | — |
+| `FUNZIONARI_EQ` | Funzionari ed Elevata Qualificazione (ex Area D) | € 2,092.84 | 2026-01-01 |
+| `ISTRUTTORI` | Istruttori (ex Area C) | € 1,928.23 | 2026-01-01 |
+| `OPERATORI_ESPERTI` | Operatori Esperti (ex Area B) | € 1,715.27 | 2026-01-01 |
+| `OPERATORI` | Operatori (ex Area A) | € 1,646.09 | 2026-01-01 |
 
 ## Seniority increments
 

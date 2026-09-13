@@ -38,15 +38,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `IX` | Livello IX — dirigente o quadro con massima responsabilita gestionale | € 3,222.79 | — |
-| `VIII` | Livello VIII — quadro superiore, direttore di centro o responsabile senior | € 2,627.71 | — |
-| `VII` | Livello VII — coordinatore didattico o responsabile di progetto complesso | € 2,440.58 | — |
-| `VI` | Livello VI — formatore senior o responsabile di area | € 2,331.43 | — |
-| `V` | Livello V — formatore o tecnico con autonomia operativa | € 2,057.63 | — |
-| `IV` | Livello IV — impiegato di concetto o tecnico qualificato | € 1,975.16 | — |
-| `III` | Livello III — operatore specializzato, mansioni tecnico-pratiche | € 1,834.59 | — |
-| `II` | Livello II — operatore qualificato, mansioni esecutive | € 1,730.71 | — |
-| `I` | Livello I — personale ausiliario e addetto a mansioni generiche | € 1,635.99 | — |
+| `IX` | Livello IX — dirigente o quadro con massima responsabilita gestionale | € 3,222.79 | 2025-09-01 |
+| `VIII` | Livello VIII — quadro superiore, direttore di centro o responsabile senior | € 2,627.71 | 2025-09-01 |
+| `VII` | Livello VII — coordinatore didattico o responsabile di progetto complesso | € 2,440.58 | 2025-09-01 |
+| `VI` | Livello VI — formatore senior o responsabile di area | € 2,331.43 | 2025-09-01 |
+| `V` | Livello V — formatore o tecnico con autonomia operativa | € 2,057.63 | 2025-09-01 |
+| `IV` | Livello IV — impiegato di concetto o tecnico qualificato | € 1,975.16 | 2025-09-01 |
+| `III` | Livello III — operatore specializzato, mansioni tecnico-pratiche | € 1,834.59 | 2025-09-01 |
+| `II` | Livello II — operatore qualificato, mansioni esecutive | € 1,730.71 | 2025-09-01 |
+| `I` | Livello I — personale ausiliario e addetto a mansioni generiche | € 1,635.99 | 2025-09-01 |
 
 ## Seniority increments
 

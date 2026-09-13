@@ -33,13 +33,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadri — lavoratori con funzioni direttive e responsabilità di unità operative o locali (legge 190/85) | € 2,799.14 | — |
-| `I` | 1° livello — lavoratori con elevata professionalità e autonomia tecnica e gestionale | € 2,583.51 | — |
-| `II` | 2° livello — lavoratori con funzioni di coordinamento e autonomia operativa di rilievo | € 2,317.37 | — |
-| `III` | 3° livello — lavoratori con mansioni qualificate che richiedono specifica preparazione professionale | € 2,069.63 | — |
-| `IV` | 4° livello — lavoratori con mansioni esecutive richiedenti preparazione specifica o pratica acquisita | € 1,872.68 | — |
-| `V` | 5° livello — lavoratori con mansioni esecutive semplici o di supporto operativo | € 1,750.97 | — |
-| `VI` | 6° livello — lavoratori con mansioni elementari o di ausilio generale | € 1,623.19 | — |
+| `Q` | Quadri — lavoratori con funzioni direttive e responsabilità di unità operative o locali (legge 190/85) | € 2,799.14 | 2027-05-01 |
+| `I` | 1° livello — lavoratori con elevata professionalità e autonomia tecnica e gestionale | € 2,583.51 | 2027-05-01 |
+| `II` | 2° livello — lavoratori con funzioni di coordinamento e autonomia operativa di rilievo | € 2,317.37 | 2027-05-01 |
+| `III` | 3° livello — lavoratori con mansioni qualificate che richiedono specifica preparazione professionale | € 2,069.63 | 2027-05-01 |
+| `IV` | 4° livello — lavoratori con mansioni esecutive richiedenti preparazione specifica o pratica acquisita | € 1,872.68 | 2027-05-01 |
+| `V` | 5° livello — lavoratori con mansioni esecutive semplici o di supporto operativo | € 1,750.97 | 2027-05-01 |
+| `VI` | 6° livello — lavoratori con mansioni elementari o di ausilio generale | € 1,623.19 | 2027-05-01 |
 
 ## Seniority increments
 

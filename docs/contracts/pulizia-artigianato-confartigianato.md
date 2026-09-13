@@ -36,13 +36,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1` | Quadri e impiegati direttivi | € 1,884.88 | — |
-| `2` | Impiegati di concetto | € 1,727.84 | — |
-| `3S` | Impiegati di concetto (superiore) | € 1,674.70 | — |
-| `3` | Impiegati d'ordine, operai specializzati | € 1,617.33 | — |
-| `4` | Impiegati d'ordine, operai qualificati | € 1,528.89 | — |
-| `5` | Operai comuni | € 1,479.97 | — |
-| `6` | Guardiani, uscieri, custodi | € 1,425.64 | — |
+| `1` | Quadri e impiegati direttivi | € 1,884.88 | 2029-12-01 |
+| `2` | Impiegati di concetto | € 1,727.84 | 2029-12-01 |
+| `3S` | Impiegati di concetto (superiore) | € 1,674.70 | 2029-12-01 |
+| `3` | Impiegati d'ordine, operai specializzati | € 1,617.33 | 2029-12-01 |
+| `4` | Impiegati d'ordine, operai qualificati | € 1,528.89 | 2029-12-01 |
+| `5` | Operai comuni | € 1,479.97 | 2029-12-01 |
+| `6` | Guardiani, uscieri, custodi | € 1,425.64 | 2029-12-01 |
 
 ## Seniority increments
 

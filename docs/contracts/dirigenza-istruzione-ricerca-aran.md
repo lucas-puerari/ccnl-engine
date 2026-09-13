@@ -35,8 +35,8 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `PRIMA_FASCIA` | Dirigenti di prima fascia: enti di ricerca (INFN, CNR, ecc.) e ASI | € 4,908.30 | — |
-| `SECONDA_FASCIA` | Dirigenti scolastici, direttori università e AFAM, dir. enti ricerca II fascia | € 3,846.59 | — |
+| `PRIMA_FASCIA` | Dirigenti di prima fascia: enti di ricerca (INFN, CNR, ecc.) e ASI | € 4,908.30 | 2024-01-01 |
+| `SECONDA_FASCIA` | Dirigenti scolastici, direttori università e AFAM, dir. enti ricerca II fascia | € 3,846.59 | 2024-01-01 |
 
 ## Seniority increments
 

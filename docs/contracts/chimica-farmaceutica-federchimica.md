@@ -35,21 +35,21 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A1` | A (Quadri) — QA/HSE/IT manager, senior scientist, plant manager, 1st grade | € 3,682.48 | — |
-| `A2` | A (Quadri) — laboratory manager, complex systems expert, 2nd grade | € 3,396.59 | — |
-| `A3` | A (Quadri) — area coordinator, department head, 3rd grade | € 3,325.22 | — |
-| `B1` | B — ISF, product manager, safety officer, 1st grade | € 3,080.98 | — |
-| `B2` | B — researcher, maintenance manager, senior programmer, 2nd grade | € 2,968.61 | — |
-| `C1` | C — shift supervisor, administrative coordinator, specialist technician, 1st grade | € 2,708.65 | — |
-| `C2` | C — specialist clerk, QC officer, senior accountant, 2nd grade | € 2,603.86 | — |
-| `D1` | D — team leader, senior multi-skilled operator, 1st grade | € 2,522.26 | — |
-| `D2` | D — distribution operator, QA inspector, 2nd grade | € 2,409.77 | — |
-| `D3` | D — clerical employee / multi-skilled worker, 3rd grade | € 2,342.76 | — |
-| `E1` | E — GMP production operator, 1st grade | € 2,226.28 | — |
-| `E2` | E — basic production operator, 2nd grade | € 2,105.14 | — |
-| `E3` | E — generic specialised operator, 3rd grade | € 2,029.29 | — |
-| `E4` | E — generic operator, 4th grade | € 1,978.04 | — |
-| `F` | F — simple executive and service duties | € 1,891.46 | — |
+| `A1` | A (Quadri) — QA/HSE/IT manager, senior scientist, plant manager, 1st grade | € 3,682.48 | 2028-06-01 |
+| `A2` | A (Quadri) — laboratory manager, complex systems expert, 2nd grade | € 3,396.59 | 2028-06-01 |
+| `A3` | A (Quadri) — area coordinator, department head, 3rd grade | € 3,325.22 | 2028-06-01 |
+| `B1` | B — ISF, product manager, safety officer, 1st grade | € 3,080.98 | 2028-06-01 |
+| `B2` | B — researcher, maintenance manager, senior programmer, 2nd grade | € 2,968.61 | 2028-06-01 |
+| `C1` | C — shift supervisor, administrative coordinator, specialist technician, 1st grade | € 2,708.65 | 2028-06-01 |
+| `C2` | C — specialist clerk, QC officer, senior accountant, 2nd grade | € 2,603.86 | 2028-06-01 |
+| `D1` | D — team leader, senior multi-skilled operator, 1st grade | € 2,522.26 | 2028-06-01 |
+| `D2` | D — distribution operator, QA inspector, 2nd grade | € 2,409.77 | 2028-06-01 |
+| `D3` | D — clerical employee / multi-skilled worker, 3rd grade | € 2,342.76 | 2028-06-01 |
+| `E1` | E — GMP production operator, 1st grade | € 2,226.28 | 2028-06-01 |
+| `E2` | E — basic production operator, 2nd grade | € 2,105.14 | 2028-06-01 |
+| `E3` | E — generic specialised operator, 3rd grade | € 2,029.29 | 2028-06-01 |
+| `E4` | E — generic operator, 4th grade | € 1,978.04 | 2028-06-01 |
+| `F` | F — simple executive and service duties | € 1,891.46 | 2028-06-01 |
 
 ## Seniority increments
 
@@ -59,7 +59,8 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **professionalizzante** (type: `under_classification`)  
-Destination levels: `E3`, `E2`, `E1`, `D3`, `D2`, `D1`, `C2`, `C1`, `B2`, `B1`
+Destination levels: `E3`, `E2`, `E1`, `D3`, `D2`, `D1`, `C2`, `C1`, `B2`, `B1`  
+under-level: `1`
 
 ## Sources
 

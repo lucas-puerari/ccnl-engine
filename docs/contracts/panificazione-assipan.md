@@ -35,13 +35,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `I` | Level I — managers, senior professionals, plant directors | € 2,458.99 | — |
-| `II` | Level II — supervisors, senior specialists, department coordinators | € 2,305.51 | — |
-| `IIIA` | Level IIIA — highly skilled workers, senior technicians, team leaders | € 2,162.35 | — |
-| `IIIB` | Level IIIB — specialist workers, master bakers, experienced technicians | € 2,046.31 | — |
-| `IV` | Level IV — skilled workers, qualified bakers and production workers | € 1,806.45 | — |
-| `V` | Level V — semi-skilled workers, basic production tasks under supervision | € 1,664.67 | — |
-| `VI` | Level VI — entry-level workers, no qualification required, unskilled tasks | € 1,481.15 | — |
+| `I` | Level I — managers, senior professionals, plant directors | € 2,458.99 | 2026-09-01 |
+| `II` | Level II — supervisors, senior specialists, department coordinators | € 2,305.51 | 2026-09-01 |
+| `IIIA` | Level IIIA — highly skilled workers, senior technicians, team leaders | € 2,162.35 | 2026-09-01 |
+| `IIIB` | Level IIIB — specialist workers, master bakers, experienced technicians | € 2,046.31 | 2026-09-01 |
+| `IV` | Level IV — skilled workers, qualified bakers and production workers | € 1,806.45 | 2026-09-01 |
+| `V` | Level V — semi-skilled workers, basic production tasks under supervision | € 1,664.67 | 2026-09-01 |
+| `VI` | Level VI — entry-level workers, no qualification required, unskilled tasks | € 1,481.15 | 2026-09-01 |
 
 ## Seniority increments
 

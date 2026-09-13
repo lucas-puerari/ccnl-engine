@@ -38,14 +38,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `AS` | Level AS — quadro / senior technical manager (top level) | € 2,278.43 | — |
-| `A` | Level A — managerial employee / highly specialised technician | € 2,123.69 | — |
-| `B` | Level B — white-collar employees / expert skilled workers | € 1,941.22 | — |
-| `CS` | Level CS — expert skilled worker / senior white-collar employee | € 1,856.85 | — |
-| `C` | Level C — skilled worker / white-collar employee | € 1,771.64 | — |
-| `D` | Level D — qualified worker / employee | € 1,674.71 | — |
-| `E` | Level E — general worker / clerical staff | € 1,585.97 | — |
-| `F` | Level F — entry grade (transitional, max 12 months) | € 1,490.13 | — |
+| `AS` | Level AS — quadro / senior technical manager (top level) | € 2,278.43 | 2026-10-01 |
+| `A` | Level A — managerial employee / highly specialised technician | € 2,123.69 | 2026-10-01 |
+| `B` | Level B — white-collar employees / expert skilled workers | € 1,941.22 | 2026-10-01 |
+| `CS` | Level CS — expert skilled worker / senior white-collar employee | € 1,856.85 | 2026-10-01 |
+| `C` | Level C — skilled worker / white-collar employee | € 1,771.64 | 2026-10-01 |
+| `D` | Level D — qualified worker / employee | € 1,674.71 | 2026-10-01 |
+| `E` | Level E — general worker / clerical staff | € 1,585.97 | 2026-10-01 |
+| `F` | Level F — entry grade (transitional, max 12 months) | € 1,490.13 | 2026-10-01 |
 
 ## Seniority increments
 

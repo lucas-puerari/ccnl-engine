@@ -35,11 +35,11 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `ELEVATA_QUALIFICAZIONE` | Elevata qualificazione (ex area DS dirigenza) | € 2,886.21 | — |
-| `PROFESSIONISTI` | Professionisti della salute e funzionari (ex area D/DS) | € 2,076.58 | — |
-| `ASSISTENTI` | Assistenti (ex area C/C1) | € 1,913.48 | — |
-| `OPERATORI` | Operatori (ex area B/B1) | € 1,795.45 | — |
-| `SUPPORTO` | Personale di supporto (ex area A/A1) | € 1,701.59 | — |
+| `ELEVATA_QUALIFICAZIONE` | Elevata qualificazione (ex area DS dirigenza) | € 2,886.21 | 2024-01-01 |
+| `PROFESSIONISTI` | Professionisti della salute e funzionari (ex area D/DS) | € 2,076.58 | 2024-01-01 |
+| `ASSISTENTI` | Assistenti (ex area C/C1) | € 1,913.48 | 2024-01-01 |
+| `OPERATORI` | Operatori (ex area B/B1) | € 1,795.45 | 2024-01-01 |
+| `SUPPORTO` | Personale di supporto (ex area A/A1) | € 1,701.59 | 2024-01-01 |
 
 ## Seniority increments
 

@@ -35,16 +35,16 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `QA` | Grade QA — senior manager with maximum managerial responsibility | € 2,495.22 | — |
-| `QB` | Grade QB — senior manager with high managerial professionalism | € 2,310.11 | — |
-| `1` | Grade 1 — management function / maître / head receptionist | € 2,152.32 | — |
-| `2` | Grade 2 — junior management function / chef de rang / deputy manager | € 1,967.20 | — |
-| `3` | Grade 3 — senior technician / section chef / senior front-office | € 1,855.32 | — |
-| `4` | Grade 4 — process technician / shift leader / receptionist | € 1,750.69 | — |
-| `5` | Grade 5 — specialist operator (waiter, cook, receptionist) | € 1,641.85 | — |
-| `6S` | Grade 6 super — qualified operator (room attendant, basic bar staff) | € 1,578.72 | — |
-| `6` | Grade 6 — basic operator (dishwasher, porter, commis) | € 1,556.35 | — |
-| `7` | Grade 7 — assigned to general tasks, cleaning and support operations | € 1,458.42 | — |
+| `QA` | Grade QA — senior manager with maximum managerial responsibility | € 2,495.22 | 2027-11-01 |
+| `QB` | Grade QB — senior manager with high managerial professionalism | € 2,310.11 | 2027-11-01 |
+| `1` | Grade 1 — management function / maître / head receptionist | € 2,152.32 | 2027-11-01 |
+| `2` | Grade 2 — junior management function / chef de rang / deputy manager | € 1,967.20 | 2027-11-01 |
+| `3` | Grade 3 — senior technician / section chef / senior front-office | € 1,855.32 | 2027-11-01 |
+| `4` | Grade 4 — process technician / shift leader / receptionist | € 1,750.69 | 2027-11-01 |
+| `5` | Grade 5 — specialist operator (waiter, cook, receptionist) | € 1,641.85 | 2027-11-01 |
+| `6S` | Grade 6 super — qualified operator (room attendant, basic bar staff) | € 1,578.72 | 2027-11-01 |
+| `6` | Grade 6 — basic operator (dishwasher, porter, commis) | € 1,556.35 | 2027-11-01 |
+| `7` | Grade 7 — assigned to general tasks, cleaning and support operations | € 1,458.42 | 2027-11-01 |
 
 ## Seniority increments
 

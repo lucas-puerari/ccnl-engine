@@ -37,15 +37,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadro — quadro with high directional and managerial expertise | € 2,754.22 | — |
-| `1` | Level 1 — management role / area manager | € 2,589.10 | — |
-| `2` | Level 2 — operational unit manager / junior management role | € 2,382.07 | — |
-| `3S` | Level 3 Super — reference technical/operational expert or process manager | € 2,240.37 | — |
-| `3` | Level 3 — highly specialised operator / department coordinator | € 2,182.80 | — |
-| `4` | Level 4 — specialist operator (C/CE licence driver, CED operator) | € 2,069.62 | — |
-| `4J` | Level 4 Junior — recently graded senior operator | € 2,018.13 | — |
-| `5` | Level 5 — qualified operator (cat. B driver, specialist warehouse worker) | € 1,971.13 | — |
-| `6` | Level 6 — worker assigned to generic operational support tasks | € 1,841.61 | — |
+| `Q` | Quadro — quadro with high directional and managerial expertise | € 2,754.22 | 2027-06-01 |
+| `1` | Level 1 — management role / area manager | € 2,589.10 | 2027-06-01 |
+| `2` | Level 2 — operational unit manager / junior management role | € 2,382.07 | 2027-06-01 |
+| `3S` | Level 3 Super — reference technical/operational expert or process manager | € 2,240.37 | 2027-06-01 |
+| `3` | Level 3 — highly specialised operator / department coordinator | € 2,182.80 | 2027-06-01 |
+| `4` | Level 4 — specialist operator (C/CE licence driver, CED operator) | € 2,069.62 | 2027-06-01 |
+| `4J` | Level 4 Junior — recently graded senior operator | € 2,018.13 | 2027-06-01 |
+| `5` | Level 5 — qualified operator (cat. B driver, specialist warehouse worker) | € 1,971.13 | 2027-06-01 |
+| `6` | Level 6 — worker assigned to generic operational support tasks | € 1,841.61 | 2027-06-01 |
 
 ## Seniority increments
 

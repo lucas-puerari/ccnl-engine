@@ -35,15 +35,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadro — middle managers with coordination and responsibility (L. 190/1985) | € 2,322.33 | — |
-| `1` | Livello 1 — senior specialists and team coordinators | € 2,112.86 | — |
-| `2` | Livello 2 — highly qualified workers, responsible for complex processes | € 1,839.64 | — |
-| `3S` | Livello 3S — senior skilled workers, multi-competency roles | € 1,639.29 | — |
-| `3` | Livello 3 — skilled workers, complex tasks requiring specific competencies | € 1,520.91 | — |
-| `4S` | Livello 4S — intermediate between 4 and 3, specialised operations | € 1,411.61 | — |
-| `4` | Livello 4 — qualified workers with autonomous task execution | € 1,311.43 | — |
-| `5` | Livello 5 — semi-skilled workers, routine operations with basic training | € 1,183.91 | — |
-| `6` | Livello 6 — entry-level workers, basic operations | € 910.71 | — |
+| `Q` | Quadro — middle managers with coordination and responsibility (L. 190/1985) | € 2,322.33 | 2027-03-01 |
+| `1` | Livello 1 — senior specialists and team coordinators | € 2,112.86 | 2027-03-01 |
+| `2` | Livello 2 — highly qualified workers, responsible for complex processes | € 1,839.64 | 2027-03-01 |
+| `3S` | Livello 3S — senior skilled workers, multi-competency roles | € 1,639.29 | 2027-03-01 |
+| `3` | Livello 3 — skilled workers, complex tasks requiring specific competencies | € 1,520.91 | 2027-03-01 |
+| `4S` | Livello 4S — intermediate between 4 and 3, specialised operations | € 1,411.61 | 2027-03-01 |
+| `4` | Livello 4 — qualified workers with autonomous task execution | € 1,311.43 | 2027-03-01 |
+| `5` | Livello 5 — semi-skilled workers, routine operations with basic training | € 1,183.91 | 2027-03-01 |
+| `6` | Livello 6 — entry-level workers, basic operations | € 910.71 | 2027-03-01 |
 
 ## Seniority increments
 
@@ -65,10 +65,12 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **livelli_1_a_4** (type: `under_classification`)  
-Destination levels: `1`, `2`, `3S`, `3`, `4S`, `4`
+Destination levels: `1`, `2`, `3S`, `3`, `4S`, `4`  
+under-level: `1`
 
 **livello_5** (type: `under_classification`)  
-Destination levels: `5`
+Destination levels: `5`  
+under-level: `1`
 
 ## Known simplifications
 

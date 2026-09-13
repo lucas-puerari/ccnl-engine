@@ -38,13 +38,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | GPG Senior Manager (Quadro) — maximum operational and managerial responsibility | € 2,434.74 | — |
-| `1` | GPG Grade 1 — security guard with operational responsibilities | € 2,086.89 | — |
-| `2` | GPG Grade 2 — highly specialist security guard | € 1,946.09 | — |
-| `3` | GPG Grade 3 — specialist security guard | € 1,723.31 | — |
-| `4` | GPG Grade 4 — qualified security guard (contractual reference level) | € 1,528.88 | — |
-| `5` | GPG Grade 5 — security guard with specific qualification | € 1,450.44 | — |
-| `6` | GPG Grade 6 — security guard, basic duties | € 1,350.44 | — |
+| `Q` | GPG Senior Manager (Quadro) — maximum operational and managerial responsibility | € 2,434.74 | 2026-12-01 |
+| `1` | GPG Grade 1 — security guard with operational responsibilities | € 2,086.89 | 2026-12-01 |
+| `2` | GPG Grade 2 — highly specialist security guard | € 1,946.09 | 2026-12-01 |
+| `3` | GPG Grade 3 — specialist security guard | € 1,723.31 | 2026-12-01 |
+| `4` | GPG Grade 4 — qualified security guard (contractual reference level) | € 1,528.88 | 2026-12-01 |
+| `5` | GPG Grade 5 — security guard with specific qualification | € 1,450.44 | 2026-12-01 |
+| `6` | GPG Grade 6 — security guard, basic duties | € 1,350.44 | 2026-12-01 |
 
 ## Seniority increments
 

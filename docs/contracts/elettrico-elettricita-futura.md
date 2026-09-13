@@ -38,20 +38,20 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `QS` | Senior Quadro | € 4,399.12 | — |
-| `Q` | Quadro | € 3,947.60 | — |
-| `ASS` | Senior Senior Specialist Area | € 3,484.42 | — |
-| `AS` | Senior Specialist Area | € 3,261.27 | — |
-| `A1S` | Area 1 Senior | € 3,124.14 | — |
-| `A1` | Area 1 | € 2,980.96 | — |
-| `BSS` | Area B Senior Senior | € 2,838.72 | — |
-| `BS` | Area B Senior | € 2,717.73 | — |
-| `B1S` | Area B1 Senior | € 2,589.64 | — |
-| `B1` | Area B1 | € 2,473.33 | — |
-| `B2S` | Area B2 Senior | € 2,309.87 | — |
-| `B2` | Area B2 | € 2,149.26 | — |
-| `CS` | Area C Senior | € 1,905.68 | — |
-| `C1` | Area C1 | € 1,724.71 | — |
+| `QS` | Senior Quadro | € 4,399.12 | 2027-10-01 |
+| `Q` | Quadro | € 3,947.60 | 2027-10-01 |
+| `ASS` | Senior Senior Specialist Area | € 3,484.42 | 2027-10-01 |
+| `AS` | Senior Specialist Area | € 3,261.27 | 2027-10-01 |
+| `A1S` | Area 1 Senior | € 3,124.14 | 2027-10-01 |
+| `A1` | Area 1 | € 2,980.96 | 2027-10-01 |
+| `BSS` | Area B Senior Senior | € 2,838.72 | 2027-10-01 |
+| `BS` | Area B Senior | € 2,717.73 | 2027-10-01 |
+| `B1S` | Area B1 Senior | € 2,589.64 | 2027-10-01 |
+| `B1` | Area B1 | € 2,473.33 | 2027-10-01 |
+| `B2S` | Area B2 Senior | € 2,309.87 | 2027-10-01 |
+| `B2` | Area B2 | € 2,149.26 | 2027-10-01 |
+| `CS` | Area C Senior | € 1,905.68 | 2027-10-01 |
+| `C1` | Area C1 | € 1,724.71 | 2027-10-01 |
 
 ## Seniority increments
 

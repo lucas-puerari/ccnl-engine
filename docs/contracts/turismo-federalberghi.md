@@ -34,16 +34,16 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A` | Level A | € 2,495.22 | — |
-| `B` | Level B | € 2,310.11 | — |
-| `1` | Level 1 | € 2,152.32 | — |
-| `2` | Level 2 | € 1,967.20 | — |
-| `3` | Level 3 | € 1,855.32 | — |
-| `4` | Level 4 | € 1,750.69 | — |
-| `5` | Level 5 | € 1,641.85 | — |
-| `6s` | Level 6 super | € 1,578.72 | — |
-| `6` | Level 6 | € 1,556.35 | — |
-| `7` | Level 7 | € 1,458.42 | — |
+| `A` | Level A | € 2,495.22 | 2027-11-01 |
+| `B` | Level B | € 2,310.11 | 2027-11-01 |
+| `1` | Level 1 | € 2,152.32 | 2027-11-01 |
+| `2` | Level 2 | € 1,967.20 | 2027-11-01 |
+| `3` | Level 3 | € 1,855.32 | 2027-11-01 |
+| `4` | Level 4 | € 1,750.69 | 2027-11-01 |
+| `5` | Level 5 | € 1,641.85 | 2027-11-01 |
+| `6s` | Level 6 super | € 1,578.72 | 2027-11-01 |
+| `6` | Level 6 | € 1,556.35 | 2027-11-01 |
+| `7` | Level 7 | € 1,458.42 | 2027-11-01 |
 
 ## Seniority increments
 

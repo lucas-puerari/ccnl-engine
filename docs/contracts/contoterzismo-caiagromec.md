@@ -33,12 +33,12 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1` | 1° livello | € 2,392.94 | — |
-| `2` | 2° livello | € 2,241.78 | — |
-| `3` | 3° livello | € 2,054.03 | — |
-| `4` | 4° livello | € 1,862.10 | — |
-| `5` | 5° livello | € 1,750.99 | — |
-| `6` | 6° livello | € 1,489.41 | — |
+| `1` | 1° livello | € 2,392.94 | 2027-06-01 |
+| `2` | 2° livello | € 2,241.78 | 2027-06-01 |
+| `3` | 3° livello | € 2,054.03 | 2027-06-01 |
+| `4` | 4° livello | € 1,862.10 | 2027-06-01 |
+| `5` | 5° livello | € 1,750.99 | 2027-06-01 |
+| `6` | 6° livello | € 1,489.41 | 2027-06-01 |
 
 ## Seniority increments
 

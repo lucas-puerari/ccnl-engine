@@ -36,16 +36,16 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A1S` | Level A1 Super — senior executive quadro / top-level manager | € 2,248.73 | — |
-| `B1` | Level B1 — senior operations manager | € 2,165.67 | — |
-| `A1` | Level A1 — production technical manager | € 2,056.93 | — |
-| `A2` | Level A2 — specialist technician / department head | € 1,926.61 | — |
-| `B2` | Level B2 — highly specialised operator | € 1,779.96 | — |
-| `A3` | Level A3 — qualified production technician | € 1,764.45 | — |
-| `B3S` | Level B3 Super — specialist operator with extended duties | € 1,732.79 | — |
-| `B3` | Level B3 — specialist production operator | € 1,676.43 | — |
-| `A4` | Level A4 — qualified support worker | € 1,671.86 | — |
-| `B4` | Level B4 — general worker and first-time hire | € 1,589.80 | — |
+| `A1S` | Level A1 Super — senior executive quadro / top-level manager | € 2,248.73 | 2026-04-01 |
+| `B1` | Level B1 — senior operations manager | € 2,165.67 | 2026-04-01 |
+| `A1` | Level A1 — production technical manager | € 2,056.93 | 2026-04-01 |
+| `A2` | Level A2 — specialist technician / department head | € 1,926.61 | 2026-04-01 |
+| `B2` | Level B2 — highly specialised operator | € 1,779.96 | 2026-04-01 |
+| `A3` | Level A3 — qualified production technician | € 1,764.45 | 2026-04-01 |
+| `B3S` | Level B3 Super — specialist operator with extended duties | € 1,732.79 | 2026-04-01 |
+| `B3` | Level B3 — specialist production operator | € 1,676.43 | 2026-04-01 |
+| `A4` | Level A4 — qualified support worker | € 1,671.86 | 2026-04-01 |
+| `B4` | Level B4 — general worker and first-time hire | € 1,589.80 | 2026-04-01 |
 
 ## Seniority increments
 

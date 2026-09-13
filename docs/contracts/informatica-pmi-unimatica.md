@@ -34,17 +34,17 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadro — manager, exceptional leadership and innovative thinking (PAR 248 + indennità funzione 51.65) | € 2,889.92 | — |
-| `1` | Livello 1 — top professional, full strategic responsibility (PAR 247) | € 2,827.50 | — |
-| `2` | Livello 2 — expert professional, strategic solutions, wide autonomy (PAR 209) | € 2,468.03 | — |
-| `3` | Livello 3 — senior professional, leads in complex environments (PAR 195) | € 2,336.94 | — |
-| `4` | Livello 4 — senior specialist, responsible for team performance (PAR 182) | € 2,218.03 | — |
-| `5` | Livello 5 — reference level (PAR 169); experienced specialist with consultancy role | € 2,095.18 | — |
-| `6` | Livello 6 — senior technician, coordinates others in limited contexts (PAR 150) | € 1,967.68 | — |
-| `7` | Livello 7 — technical specialist, independent in structured contexts (PAR 133) | € 1,776.03 | — |
-| `8` | Livello 8 — qualified technical worker, applies skills to defined problems (PAR 125) | € 1,678.58 | — |
-| `9` | Livello 9 — basic technical tasks, limited autonomy (PAR 114) | € 1,575.27 | — |
-| `10` | Livello 10 — entry-level worker, simple tasks under close supervision (PAR 100) | € 1,444.33 | — |
+| `Q` | Quadro — manager, exceptional leadership and innovative thinking (PAR 248 + indennità funzione 51.65) | € 2,889.92 | 2027-01-01 |
+| `1` | Livello 1 — top professional, full strategic responsibility (PAR 247) | € 2,827.50 | 2027-01-01 |
+| `2` | Livello 2 — expert professional, strategic solutions, wide autonomy (PAR 209) | € 2,468.03 | 2027-01-01 |
+| `3` | Livello 3 — senior professional, leads in complex environments (PAR 195) | € 2,336.94 | 2027-01-01 |
+| `4` | Livello 4 — senior specialist, responsible for team performance (PAR 182) | € 2,218.03 | 2027-01-01 |
+| `5` | Livello 5 — reference level (PAR 169); experienced specialist with consultancy role | € 2,095.18 | 2027-01-01 |
+| `6` | Livello 6 — senior technician, coordinates others in limited contexts (PAR 150) | € 1,967.68 | 2027-01-01 |
+| `7` | Livello 7 — technical specialist, independent in structured contexts (PAR 133) | € 1,776.03 | 2027-01-01 |
+| `8` | Livello 8 — qualified technical worker, applies skills to defined problems (PAR 125) | € 1,678.58 | 2027-01-01 |
+| `9` | Livello 9 — basic technical tasks, limited autonomy (PAR 114) | € 1,575.27 | 2027-01-01 |
+| `10` | Livello 10 — entry-level worker, simple tasks under close supervision (PAR 100) | € 1,444.33 | 2027-01-01 |
 
 ## Seniority increments
 

@@ -33,16 +33,16 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `D2` | Livello D2 — quadri, executive management (L. 190/1985) | € 3,015.43 | — |
-| `C3` | Livello C3 — senior managers, strategic operational responsibility | € 3,015.43 | — |
-| `C2` | Livello C2 — area managers, planning and operational leadership | € 2,566.77 | — |
-| `C1` | Livello C1 — senior specialists, supervisory and quality-control functions | € 2,275.64 | — |
-| `B3` | Livello B3 — highly qualified workers, team coordination and process oversight | € 2,202.14 | — |
-| `B2` | Livello B2 — specialist workers, multi-task roles with technical responsibility | € 2,012.94 | — |
-| `B1` | Livello B1 — skilled workers, complex laundry and sterilisation operations | € 1,917.54 | — |
-| `A3` | Livello A3 — qualified workers, autonomous standard operations | € 1,882.49 | — |
-| `A2` | Livello A2 — semi-skilled workers, assisted operations | € 1,786.94 | — |
-| `A1` | Livello A1 — entry-level workers, basic laundry operations | € 1,579.32 | — |
+| `D2` | Livello D2 — quadri, executive management (L. 190/1985) | € 3,015.43 | 2026-12-01 |
+| `C3` | Livello C3 — senior managers, strategic operational responsibility | € 3,015.43 | 2026-12-01 |
+| `C2` | Livello C2 — area managers, planning and operational leadership | € 2,566.77 | 2026-12-01 |
+| `C1` | Livello C1 — senior specialists, supervisory and quality-control functions | € 2,275.64 | 2026-12-01 |
+| `B3` | Livello B3 — highly qualified workers, team coordination and process oversight | € 2,202.14 | 2026-12-01 |
+| `B2` | Livello B2 — specialist workers, multi-task roles with technical responsibility | € 2,012.94 | 2026-12-01 |
+| `B1` | Livello B1 — skilled workers, complex laundry and sterilisation operations | € 1,917.54 | 2026-12-01 |
+| `A3` | Livello A3 — qualified workers, autonomous standard operations | € 1,882.49 | 2026-12-01 |
+| `A2` | Livello A2 — semi-skilled workers, assisted operations | € 1,786.94 | 2026-12-01 |
+| `A1` | Livello A1 — entry-level workers, basic laundry operations | € 1,579.32 | 2026-12-01 |
 
 ## Seniority increments
 

@@ -33,17 +33,17 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `C3` | C3 — custode qualificato (qualified custodian, senior grade) | € 1,868.50 | — |
-| `B1` | B1 — portiere con mansioni di custodia (senior doorman with custody duties) | € 1,580.47 | — |
-| `C4` | C4 — custode (custodian, 40 h/week without accommodation) | € 1,573.72 | — |
-| `B2` | B2 — portiere (doorman/caretaker, standard profile) | € 1,502.58 | — |
-| `B3` | B3 — portiere part-time (part-time doorman/caretaker) | € 1,500.00 | — |
-| `D1` | D1 — addetto servizi speciali (special services worker) | € 1,498.07 | — |
-| `D2` | D2 — addetto servizi generali (general services worker) | € 1,496.70 | — |
-| `D3` | D3 — addetto servizi generali (general services worker) | € 1,496.70 | — |
-| `D4` | D4 — addetto servizi generali (general services worker) | € 1,496.70 | — |
-| `B4` | B4 — addetto pulizie aree comuni (common areas cleaner) | € 1,396.57 | — |
-| `B5` | B5 — pulitore/lavascale (cleaner/stair cleaner) | € 1,315.60 | — |
+| `C3` | C3 — custode qualificato (qualified custodian, senior grade) | € 1,868.50 | 2028-01-01 |
+| `B1` | B1 — portiere con mansioni di custodia (senior doorman with custody duties) | € 1,580.47 | 2028-01-01 |
+| `C4` | C4 — custode (custodian, 40 h/week without accommodation) | € 1,573.72 | 2028-01-01 |
+| `B2` | B2 — portiere (doorman/caretaker, standard profile) | € 1,502.58 | 2028-01-01 |
+| `B3` | B3 — portiere part-time (part-time doorman/caretaker) | € 1,500.00 | 2028-01-01 |
+| `D1` | D1 — addetto servizi speciali (special services worker) | € 1,498.07 | 2028-01-01 |
+| `D2` | D2 — addetto servizi generali (general services worker) | € 1,496.70 | 2028-01-01 |
+| `D3` | D3 — addetto servizi generali (general services worker) | € 1,496.70 | 2028-01-01 |
+| `D4` | D4 — addetto servizi generali (general services worker) | € 1,496.70 | 2028-01-01 |
+| `B4` | B4 — addetto pulizie aree comuni (common areas cleaner) | € 1,396.57 | 2028-01-01 |
+| `B5` | B5 — pulitore/lavascale (cleaner/stair cleaner) | € 1,315.60 | 2028-01-01 |
 
 ## Seniority increments
 

@@ -35,15 +35,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A1` | Livello A1 — quadro superiore, massima responsabilita gestionale | € 3,177.92 | — |
-| `B3` | Livello B3 — quadro intermedio, caposquadra o coordinatore di gruppo | € 2,883.46 | — |
-| `B2` | Livello B2 — specialista senior o responsabile di funzione | € 2,651.95 | — |
-| `B1` | Livello B1 — specialista o tecnico con responsabilita di progetto | € 2,471.90 | — |
-| `C3` | Livello C3 — tecnico o impiegato di concetto con autonomia operativa | € 2,306.18 | — |
-| `C2` | Livello C2 — operatore polivalente, mansioni di concetto | € 2,153.36 | — |
-| `C1` | Livello C1 — operatore specializzato, mansioni tecnico-pratiche | € 2,108.77 | — |
-| `D2` | Livello D2 — operatore qualificato, mansioni esecutive | € 2,064.18 | — |
-| `D1` | Livello D1 — operatore comune, mansioni semplici e ripetitive | € 1,861.42 | — |
+| `A1` | Livello A1 — quadro superiore, massima responsabilita gestionale | € 3,177.92 | 2028-06-01 |
+| `B3` | Livello B3 — quadro intermedio, caposquadra o coordinatore di gruppo | € 2,883.46 | 2028-06-01 |
+| `B2` | Livello B2 — specialista senior o responsabile di funzione | € 2,651.95 | 2028-06-01 |
+| `B1` | Livello B1 — specialista o tecnico con responsabilita di progetto | € 2,471.90 | 2028-06-01 |
+| `C3` | Livello C3 — tecnico o impiegato di concetto con autonomia operativa | € 2,306.18 | 2028-06-01 |
+| `C2` | Livello C2 — operatore polivalente, mansioni di concetto | € 2,153.36 | 2028-06-01 |
+| `C1` | Livello C1 — operatore specializzato, mansioni tecnico-pratiche | € 2,108.77 | 2028-06-01 |
+| `D2` | Livello D2 — operatore qualificato, mansioni esecutive | € 2,064.18 | 2028-06-01 |
+| `D1` | Livello D1 — operatore comune, mansioni semplici e ripetitive | € 1,861.42 | 2028-06-01 |
 
 ## Seniority increments
 

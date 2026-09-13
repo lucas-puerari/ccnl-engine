@@ -34,13 +34,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `6` | Level 6 — top-level quadri and sector executives | € 2,412.21 | — |
-| `5` | Level 5 — white-collar employees with managerial functions and specialist technicians | € 2,185.24 | — |
-| `4S` | Level 4 Super — technicians and white-collar employees with advanced duties | € 2,047.33 | — |
-| `4` | Level 4 — highly specialised workers | € 2,000.26 | — |
-| `3` | Level 3 — specialist workers | € 1,911.70 | — |
-| `2` | Level 2 — skilled workers | € 1,814.00 | — |
-| `1` | Level 1 — general workers (classification removed from 31/12/2023; table pay retained as apprenticeship reference Art. 55) | € 1,379.86 | — |
+| `6` | Level 6 — top-level quadri and sector executives | € 2,412.21 | 2025-12-01 |
+| `5` | Level 5 — white-collar employees with managerial functions and specialist technicians | € 2,185.24 | 2025-12-01 |
+| `4S` | Level 4 Super — technicians and white-collar employees with advanced duties | € 2,047.33 | 2025-12-01 |
+| `4` | Level 4 — highly specialised workers | € 2,000.26 | 2025-12-01 |
+| `3` | Level 3 — specialist workers | € 1,911.70 | 2025-12-01 |
+| `2` | Level 2 — skilled workers | € 1,814.00 | 2025-12-01 |
+| `1` | Level 1 — general workers (classification removed from 31/12/2023; table pay retained as apprenticeship reference Art. 55) | € 1,379.86 | 2025-12-01 |
 
 ## Seniority increments
 

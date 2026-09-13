@@ -41,13 +41,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `6S` | Level 6S — senior manager / technical director (incl. function allowance EUR 20.66) | € 2,133.07 | — |
-| `6` | Level 6 — skilled technician / senior clerical employee | € 1,978.15 | — |
-| `5` | Level 5 — specialist operator / clerical employee | € 1,813.50 | — |
-| `4` | Level 4 — highly qualified operator | € 1,675.42 | — |
-| `3` | Level 3 — specialist operator | € 1,606.03 | — |
-| `2` | Level 2 — qualified operator | € 1,538.39 | — |
-| `1` | Level 1 — basic operator | € 1,454.41 | — |
+| `6S` | Level 6S — senior manager / technical director (incl. function allowance EUR 20.66) | € 2,133.07 | 2026-10-01 |
+| `6` | Level 6 — skilled technician / senior clerical employee | € 1,978.15 | 2026-10-01 |
+| `5` | Level 5 — specialist operator / clerical employee | € 1,813.50 | 2026-10-01 |
+| `4` | Level 4 — highly qualified operator | € 1,675.42 | 2026-10-01 |
+| `3` | Level 3 — specialist operator | € 1,606.03 | 2026-10-01 |
+| `2` | Level 2 — qualified operator | € 1,538.39 | 2026-10-01 |
+| `1` | Level 1 — basic operator | € 1,454.41 | 2026-10-01 |
 
 ## Seniority increments
 

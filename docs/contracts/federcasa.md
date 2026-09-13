@@ -34,22 +34,22 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q1` | Quadro 1 (parametro 220) | € 3,483.40 | — |
-| `Q2` | Quadro 2 (parametro 190) | € 3,001.82 | — |
-| `As` | Area A Super (parametro 176) | € 2,773.72 | — |
-| `A1` | Area A 1 (parametro 162) | € 2,542.96 | — |
-| `A2` | Area A 2 (parametro 150) | € 2,358.35 | — |
-| `A3` | Area A 3 (parametro 138) | € 2,169.12 | — |
-| `Bs` | Area B Super (parametro 137) | € 2,143.87 | — |
-| `B1` | Area B 1 (parametro 135) | € 2,084.39 | — |
-| `B2` | Area B 2 (parametro 128) | € 1,979.16 | — |
-| `B3` | Area B 3 (parametro 121) | € 1,874.51 | — |
-| `C1` | Area C 1 (parametro 118) | € 1,829.95 | — |
-| `C2` | Area C 2 (parametro 114) | € 1,762.49 | — |
-| `C3` | Area C 3 (parametro 110) | € 1,706.87 | — |
-| `Ds` | Area D Super (parametro 108) | € 1,699.39 | — |
-| `D1` | Area D 1 (parametro 103) | € 1,601.65 | — |
-| `D2` | Area D 2 (parametro 100) | € 1,548.03 | — |
+| `Q1` | Quadro 1 (parametro 220) | € 3,483.40 | 2024-12-01 |
+| `Q2` | Quadro 2 (parametro 190) | € 3,001.82 | 2024-12-01 |
+| `As` | Area A Super (parametro 176) | € 2,773.72 | 2024-12-01 |
+| `A1` | Area A 1 (parametro 162) | € 2,542.96 | 2024-12-01 |
+| `A2` | Area A 2 (parametro 150) | € 2,358.35 | 2024-12-01 |
+| `A3` | Area A 3 (parametro 138) | € 2,169.12 | 2024-12-01 |
+| `Bs` | Area B Super (parametro 137) | € 2,143.87 | 2024-12-01 |
+| `B1` | Area B 1 (parametro 135) | € 2,084.39 | 2024-12-01 |
+| `B2` | Area B 2 (parametro 128) | € 1,979.16 | 2024-12-01 |
+| `B3` | Area B 3 (parametro 121) | € 1,874.51 | 2024-12-01 |
+| `C1` | Area C 1 (parametro 118) | € 1,829.95 | 2024-12-01 |
+| `C2` | Area C 2 (parametro 114) | € 1,762.49 | 2024-12-01 |
+| `C3` | Area C 3 (parametro 110) | € 1,706.87 | 2024-12-01 |
+| `Ds` | Area D Super (parametro 108) | € 1,699.39 | 2024-12-01 |
+| `D1` | Area D 1 (parametro 103) | € 1,601.65 | 2024-12-01 |
+| `D2` | Area D 2 (parametro 100) | € 1,548.03 | 2024-12-01 |
 
 ## Seniority increments
 

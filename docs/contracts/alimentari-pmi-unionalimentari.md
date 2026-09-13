@@ -33,15 +33,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadri (executive staff) | € 2,870.86 | — |
-| `1` | 1st level — senior specialists and team leaders | € 2,770.86 | — |
-| `2` | 2nd level — skilled specialists | € 2,409.42 | — |
-| `3` | 3rd level — intermediate skilled workers | € 1,987.80 | — |
-| `4` | 4th level — qualified workers | € 1,746.87 | — |
-| `5` | 5th level — semi-skilled workers | € 1,566.15 | — |
-| `6` | 6th level — standard production workers | € 1,445.65 | — |
-| `7` | 7th level — basic production workers | € 1,325.20 | — |
-| `8` | 8th level — entry-level workers, simple repetitive tasks | € 1,204.73 | — |
+| `Q` | Quadri (executive staff) | € 2,870.86 | 2026-01-01 |
+| `1` | 1st level — senior specialists and team leaders | € 2,770.86 | 2026-01-01 |
+| `2` | 2nd level — skilled specialists | € 2,409.42 | 2026-01-01 |
+| `3` | 3rd level — intermediate skilled workers | € 1,987.80 | 2026-01-01 |
+| `4` | 4th level — qualified workers | € 1,746.87 | 2026-01-01 |
+| `5` | 5th level — semi-skilled workers | € 1,566.15 | 2026-01-01 |
+| `6` | 6th level — standard production workers | € 1,445.65 | 2026-01-01 |
+| `7` | 7th level — basic production workers | € 1,325.20 | 2026-01-01 |
+| `8` | 8th level — entry-level workers, simple repetitive tasks | € 1,204.73 | 2026-01-01 |
 
 ## Seniority increments
 

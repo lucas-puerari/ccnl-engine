@@ -36,9 +36,9 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Area1` | Area 1 — Operai Specializzati (specialised agricultural workers) | € 1,533.84 | — |
-| `Area2` | Area 2 — Operai Qualificati (qualified agricultural workers) | € 1,398.86 | — |
-| `Area3` | Area 3 — Operai Comuni (unskilled general agricultural workers) | € 1,043.00 | — |
+| `Area1` | Area 1 — Operai Specializzati (specialised agricultural workers) | € 1,533.84 | 2027-01-01 |
+| `Area2` | Area 2 — Operai Qualificati (qualified agricultural workers) | € 1,398.86 | 2027-01-01 |
+| `Area3` | Area 3 — Operai Comuni (unskilled general agricultural workers) | € 1,043.00 | 2027-01-01 |
 
 ## Seniority increments
 

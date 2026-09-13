@@ -35,19 +35,19 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Q — executive manager, maximum technical or managerial responsibility | € 3,103.54 | — |
-| `AS` | AS — special level, senior technical manager | € 3,093.45 | — |
-| `A` | A — 6th category worker, production process supervisor | € 2,714.79 | — |
-| `B1` | B1 — 5th category worker, highly qualified technician | € 2,467.92 | — |
-| `B2S` | B2S — 4th category worker (super), plant-responsible technician | € 2,405.61 | — |
-| `B2` | B2 — 4th category worker, technician with advanced specialisation | € 2,325.19 | — |
-| `C1S` | C1S — 3rd category worker (super), highly specialised operator | € 2,190.60 | — |
-| `C1` | C1 — 3rd category worker (higher grade), specialised operator | € 2,110.11 | — |
-| `C2` | C2 — 3rd category worker, assigned to specialised processing | € 1,966.74 | — |
-| `C3` | C3 — 3rd category worker, assigned to semi-specialised processing | € 1,864.67 | — |
-| `D1` | D1 — 2nd category worker (higher grade), qualified operator | € 1,782.99 | — |
-| `D2` | D2 — 2nd category worker, auxiliary machinery operator | € 1,680.55 | — |
-| `E` | E — 1st category worker, simple and executive tasks | € 1,568.08 | — |
+| `Q` | Q — executive manager, maximum technical or managerial responsibility | € 3,103.54 | 2028-09-01 |
+| `AS` | AS — special level, senior technical manager | € 3,093.45 | 2028-09-01 |
+| `A` | A — 6th category worker, production process supervisor | € 2,714.79 | 2028-09-01 |
+| `B1` | B1 — 5th category worker, highly qualified technician | € 2,467.92 | 2028-09-01 |
+| `B2S` | B2S — 4th category worker (super), plant-responsible technician | € 2,405.61 | 2028-09-01 |
+| `B2` | B2 — 4th category worker, technician with advanced specialisation | € 2,325.19 | 2028-09-01 |
+| `C1S` | C1S — 3rd category worker (super), highly specialised operator | € 2,190.60 | 2028-09-01 |
+| `C1` | C1 — 3rd category worker (higher grade), specialised operator | € 2,110.11 | 2028-09-01 |
+| `C2` | C2 — 3rd category worker, assigned to specialised processing | € 1,966.74 | 2028-09-01 |
+| `C3` | C3 — 3rd category worker, assigned to semi-specialised processing | € 1,864.67 | 2028-09-01 |
+| `D1` | D1 — 2nd category worker (higher grade), qualified operator | € 1,782.99 | 2028-09-01 |
+| `D2` | D2 — 2nd category worker, auxiliary machinery operator | € 1,680.55 | 2028-09-01 |
+| `E` | E — 1st category worker, simple and executive tasks | € 1,568.08 | 2028-09-01 |
 
 ## Seniority increments
 

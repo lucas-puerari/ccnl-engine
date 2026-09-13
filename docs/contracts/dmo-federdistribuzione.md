@@ -33,14 +33,14 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Managers (Quadri) | € 2,313.29 | — |
-| `I` | First level | € 2,083.84 | — |
-| `II` | Second level | € 1,802.50 | — |
-| `III` | Third level | € 1,540.66 | — |
-| `IV` | Fourth level | € 1,332.46 | — |
-| `V` | Fifth level | € 1,203.83 | — |
-| `VI` | Sixth level | € 1,080.77 | — |
-| `VII` | Seventh level | € 925.31 | — |
+| `Q` | Managers (Quadri) | € 2,313.29 | 2027-02-01 |
+| `I` | First level | € 2,083.84 | 2027-02-01 |
+| `II` | Second level | € 1,802.50 | 2027-02-01 |
+| `III` | Third level | € 1,540.66 | 2027-02-01 |
+| `IV` | Fourth level | € 1,332.46 | 2027-02-01 |
+| `V` | Fifth level | € 1,203.83 | 2027-02-01 |
+| `VI` | Sixth level | € 1,080.77 | 2027-02-01 |
+| `VII` | Seventh level | € 925.31 | 2027-02-01 |
 
 ## Seniority increments
 
@@ -61,7 +61,8 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **standard_II_V** (type: `under_classification`)  
-Destination levels: `II`, `III`, `IV`, `V`
+Destination levels: `II`, `III`, `IV`, `V`  
+under-level: `1`
 
 **standard_VI** (type: `under_classification`)  
 Destination levels: `VI`
