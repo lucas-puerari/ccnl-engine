@@ -899,19 +899,35 @@ function renderScenario(r) {
   };
   const ptLabel = r.part_time_pct < 1
     ? t("results.scenario.pt_suffix", { pct: Math.round(r.part_time_pct * 100) }) : "";
+  // Format as_of date DD/MM/YYYY
+  const asofFmt = r.as_of
+    ? r.as_of.replace(/^(\d{4})-(\d{2})-(\d{2})$/, "$3/$2/$1")
+    : r.as_of;
   const items = [
     { k: t("results.scenario.ccnl"),     v: r.ccnl_name || r.ccnl_id },
     { k: t("results.scenario.level"),    v: r.level_code },
     { k: t("results.scenario.contract"), v: (EMP[r.employment_type] || r.employment_type) + ptLabel },
     { k: t("results.scenario.year"),     v: String(r.year) },
-    { k: t("results.scenario.asof"),     v: r.as_of },
+    { k: t("results.scenario.asof"),     v: asofFmt },
     { k: t("results.scenario.engine"),   v: "v" + r.engine_version },
   ];
-  const strip = document.getElementById("scenario-strip");
-  strip.innerHTML = items.map((item, i) =>
-    (i > 0 ? '<span class="s-arrow">→</span>' : "") +
-    `<span class="s-chip">${esc(item.k)} <span class="val">${esc(item.v)}</span></span>`
-  ).join("");
+  // Render as two rows of 3, each chip numbered 01–06
+  function chip(item, idx) {
+    const num = String(idx + 1).padStart(2, "0");
+    return `<span class="s-chip">` +
+      `<span class="s-num">${num}</span>` +
+      `<span class="s-body">${esc(item.k)}<span class="val">${esc(item.v)}</span></span>` +
+      `</span>`;
+  }
+  function arrow() { return '<span class="s-arrow">→</span>'; }
+  function row(from, to) {
+    return '<div class="s-row">' +
+      items.slice(from, to).map((item, i) =>
+        (i > 0 ? arrow() : "") + chip(item, from + i)
+      ).join("") +
+      '</div>';
+  }
+  document.getElementById("scenario-strip").innerHTML = row(0, 3) + row(3, 6);
 }
 
 // ── Breakdown table ──────────────────────────────────────────────────────────
