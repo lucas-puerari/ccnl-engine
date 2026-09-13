@@ -55,9 +55,15 @@
   <div class="app-card app-card-pad">
     <div class="card-header">
       <span class="card-title" data-i18n="form.title">Employment scenario</span>
-      <select id="example-sel" class="select select-bordered select-xs" style="margin-left:auto;min-width:200px"
-              onchange="if(this.value!==''){loadExample(parseInt(this.value));this.value='';}">
-        <option value="" data-i18n="form.example_placeholder">Prova un esempio…</option>
+    </div>
+    <div class="examples-row" id="examples-row">
+      <span class="examples-label" data-i18n="form.example_placeholder">Prova un esempio…</span>
+      <button class="example-chip" onclick="loadExample(0)" data-ex="0">Confcommercio</button>
+      <button class="example-chip" onclick="loadExample(1)" data-ex="1">FIAIP</button>
+      <button class="example-chip" onclick="loadExample(2)" data-ex="2">Pulizie</button>
+      <button class="example-chip" onclick="loadExample(3)" data-ex="3">Ortofrutticoli</button>
+      <!-- hidden select kept for _refreshExampleSelect() i18n -->
+      <select id="example-sel" hidden>
         <option value="0">Terziario Confcommercio — Liv. 4, 3 scatti, Lazio/Roma</option>
         <option value="1">Agenti immobiliari FIAIP — Liv. III</option>
         <option value="2">Pulizie artigianato Confartigianato — Liv. 3</option>

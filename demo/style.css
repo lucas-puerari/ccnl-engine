@@ -34,6 +34,7 @@ body { margin: 0; }
   --c-faint:          color-mix(in oklch, var(--color-base-content) 30%, var(--color-base-200));
   --c-border-strong:  #A1A1AA;         /* zinc-400 */
   --c-surface-alt:    #EFEFEF;
+  --c-input-border:   #D4D4D8;         /* zinc-300 = base-300, explicit for overrides */
   --c-trace:          #EEEEFC;         /* indigo tint */
   --c-primary-hover:  #4338CA;         /* indigo-700 */
   --c-primary-bg:     #EEF2FF;         /* indigo-50 */
@@ -72,7 +73,8 @@ body { margin: 0; }
   --c-muted:          color-mix(in oklch, var(--color-base-content) 52%, var(--color-base-300));
   --c-faint:          color-mix(in oklch, var(--color-base-content) 30%, var(--color-base-300));
   --c-border-strong:  #52525B;         /* zinc-600 */
-  --c-surface-alt:    #1F1F23;
+  --c-surface-alt:    #222225;         /* slightly lighter than card — visible in dark */
+  --c-input-border:   #3F3F46;         /* zinc-700 — more visible than base-300 in dark */
   --c-trace:          #1A1A2E;         /* indigo tint su zinc */
   --c-primary-hover:  #A5B4FC;         /* indigo-300 */
   --c-primary-bg:     #1E1B4B22;       /* indigo-950 trasparente */
@@ -206,7 +208,7 @@ main {
 
 .card-header {
   display: flex; align-items: center; gap: 10px;
-  margin-bottom: 18px; flex-wrap: wrap;
+  margin-bottom: 8px; flex-wrap: wrap;
 }
 .card-title {
   font-size: 11px; font-weight: 700;
@@ -214,6 +216,27 @@ main {
   color: var(--c-muted);
 }
 .card-sub { font-size: 12px; color: var(--c-faint); }
+
+/* Quick-fill example chips */
+.examples-row {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.examples-label {
+  font-size: 11px; color: var(--c-faint); white-space: nowrap; margin-right: 2px;
+}
+.example-chip {
+  font-size: 11px; font-weight: 500; font-family: inherit;
+  padding: 3px 9px; border-radius: 99px;
+  border: 1px solid var(--c-input-border, var(--color-base-300));
+  background: var(--c-surface-alt); color: var(--c-muted);
+  cursor: pointer; transition: border-color .12s, color .12s, background .12s;
+  white-space: nowrap; line-height: 1.5;
+}
+.example-chip:hover {
+  border-color: var(--color-primary); color: var(--color-primary);
+  background: var(--c-primary-bg);
+}
 
 /* ── Form layout ───────────────────────────────────────────────────────────── */
 .form-grid {
@@ -229,7 +252,7 @@ main {
 /* Override daisyUI input/select to match theme */
 .input, .select {
   background: var(--c-surface-alt);
-  border-color: var(--color-base-300);
+  border-color: var(--c-input-border, var(--color-base-300));
   color: var(--color-base-content);
   font-family: inherit;
   font-size: 13px;
@@ -238,10 +261,13 @@ main {
 .input:focus, .select:focus {
   border-color: var(--color-primary);
   outline: none;
-  box-shadow: none;
+  box-shadow: 0 0 0 2px color-mix(in oklch, var(--color-primary) 18%, transparent);
 }
 .input:disabled, .select:disabled { opacity: .45; cursor: not-allowed; }
 .input::placeholder { color: var(--c-faint); }
+
+/* Example select stays compact — prevents width:100% from .select expanding it */
+#example-sel { width: auto; }
 
 /* Form labels */
 label {
@@ -635,14 +661,19 @@ label {
 /* ── Combobox ──────────────────────────────────────────────────────────────── */
 .combobox-wrap { position: relative; }
 .combobox-input {
-  width: 100%; background: var(--c-surface-alt); border: 1px solid var(--color-base-300);
+  width: 100%; background: var(--c-surface-alt);
+  border: 1px solid var(--c-input-border, var(--color-base-300));
   border-radius: var(--radius-btn); color: var(--color-base-content);
   font-family: inherit; font-size: 13px; padding: 7px 32px 7px 10px;
-  appearance: none; outline: none; transition: border-color .15s; cursor: default;
+  appearance: none; outline: none; transition: border-color .15s, box-shadow .15s; cursor: default;
 }
-.combobox-input:focus { border-color: var(--color-primary); }
+.combobox-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px color-mix(in oklch, var(--color-primary) 18%, transparent);
+}
 .combobox-input.open {
   border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px color-mix(in oklch, var(--color-primary) 18%, transparent);
   border-bottom-left-radius: 0; border-bottom-right-radius: 0;
 }
 .combobox-input::placeholder { color: var(--c-faint); }

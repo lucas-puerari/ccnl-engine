@@ -494,13 +494,8 @@ function loadExample(idx) {
 
 // Populate example select labels once i18n is ready
 function _refreshExampleSelect() {
-  const sel = document.getElementById("example-sel");
-  if (!sel) return;
-  const lang = _currentLang === "en" ? "en" : "it";
-  EXAMPLES.forEach((ex, i) => {
-    const opt = sel.options[i + 1]; // skip placeholder at index 0
-    if (opt) opt.textContent = lang === "en" ? ex.label_en : ex.label_it;
-  });
+  // Chip labels are language-agnostic (CCNL names); nothing to translate.
+  // The hidden #example-sel options mirror EXAMPLES[] for programmatic access.
 }
 
 async function onCcnlChange(pyodide) {
