@@ -100,6 +100,27 @@ class TestBucketDays:
         assert carenza == _ZERO
         assert all(b == _ZERO for b in bands)
 
+    def test_fractional_offset_not_truncated(self) -> None:
+        """Decimal offset is preserved exactly; no silent truncation to int.
+
+        With offset=3.5 the period starts at episode day 3.5, so only 0.5 of
+        the remaining carenza days (3-3.5 = negative → 0 carenza) spill into
+        this period, and band1 starts immediately.
+
+        offset=3.5: ep_start=3.5, ep_end=3.5+5=8.5
+        carenza = max(0, min(3, 8.5) - max(0, 3.5)) = max(0, 3 - 3.5) = 0
+        band1 [3, 20): min(20, 8.5) - max(3, 3.5) = 8.5 - 3.5 = 5 days
+        """
+        carenza, bands = _bucket_days(
+            _D("5"),
+            carenza_days=3,
+            bands=[(4, 20), (21, 180)],
+            cumulative_offset=_D("3.5"),
+        )
+        assert carenza == _ZERO
+        assert bands[0] == _D("5")
+        assert bands[1] == _ZERO
+
 
 class TestComputeSickness:
     """compute_sickness output values for the standard INPS rate structure."""
@@ -320,7 +341,7 @@ class TestEffectiveIntegrationRate:
         assert company == _D("309.74")
 
     def test_r5_split_equals_single_episode(self) -> None:
-        """R5: splitting one episode into two calls gives the same totals.
+        """Splitting one episode into two calls gives the same totals.
 
         Episode of 20 sick days split as 10+10 must equal a single 20-day call.
 
@@ -378,7 +399,7 @@ class TestEffectiveIntegrationRate:
         assert abs((co_a + co_b) - co_single) <= tol
 
     def test_r6_tier_crossing(self) -> None:
-        """R6: period spanning a tier boundary uses separate rates per segment.
+        """Period spanning a tier boundary uses separate rates per segment.
 
         Tiers: month 1-10 at 100%, month 10-13 at 90%.
         Tier boundary at day (10-1)*30 = 270.

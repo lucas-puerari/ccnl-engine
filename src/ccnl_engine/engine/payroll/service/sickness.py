@@ -12,7 +12,7 @@ INPS rate structure (statutory -- D.Lgs. 151/2001, artt. 68-71):
 - Days *carenza_days+1* onward: INPS rate bands defined in the bundled
   ``sick-pay-rates.json`` file (50 % for days 4-20, 66.67 % for days 21-180).
 
-Cumulative offset (R5):
+Cumulative offset:
 When ``SickInput.cumulative_sick_days`` is provided it represents the number
 of sick days already elapsed in the same illness episode BEFORE this period.
 The carenza and INPS band positions are computed relative to the episode
@@ -25,8 +25,8 @@ Company integration:
   integration rate and the INPS indemnity for that band (floored at zero).
 - When ``SicknessRules.tiers`` is populated and ``cumulative_sick_days`` is
   provided, the integration rate is selected per 30-day tier month. Periods
-  that cross a tier boundary are split at that boundary so each segment uses
-  the correct rate (R6).
+  that cross a tier or INPS boundary are split so each segment uses the
+  correct rate.
 """
 
 from __future__ import annotations
@@ -84,7 +84,7 @@ def _bucket_days(
     sick_days: Decimal,
     carenza_days: int,
     bands: list[tuple[int, int]],
-    cumulative_offset: int = 0,
+    cumulative_offset: Decimal = _ZERO,
 ) -> tuple[Decimal, list[Decimal]]:
     """Split *sick_days* into the carenza bucket and per-band buckets.
 
@@ -92,7 +92,7 @@ def _bucket_days(
     ``[offset+1, offset+sick_days]`` (1-indexed), so carenza days and INPS
     bands that precede the offset are excluded.  This ensures that splitting
     the same illness episode across multiple calls returns the same totals as
-    a single call (R5).
+    a single call.
 
     Args:
         sick_days: Total sick days in the period.
@@ -100,15 +100,16 @@ def _bucket_days(
         bands: List of ``(day_from, day_to)`` tuples (1-indexed, inclusive)
             for INPS-covered day ranges.  Must be non-overlapping and start
             immediately after the carenza period.
-        cumulative_offset: Episode days already elapsed before this period.
-            Defaults to 0 (period starts at the beginning of the episode).
+        cumulative_offset: Episode days already elapsed before this period
+            as an exact Decimal.  Defaults to zero (period starts at the
+            beginning of the episode).
 
     Returns:
         A 2-tuple of (carenza, [days_in_band_1, days_in_band_2, ...]).
     """
     # Episode position uses 0-based half-open intervals: [ep_start, ep_end).
     # Episode day N (1-indexed) maps to half-open [N-1, N).
-    ep_start = Decimal(cumulative_offset)
+    ep_start = cumulative_offset
     ep_end = ep_start + sick_days
 
     # Carenza covers episode days 1..carenza_days, i.e. [0, carenza_days).
@@ -135,7 +136,7 @@ def _tier_rate_segments(
 
     When the current period spans a CCNL tier boundary (measured in 30-day
     months), the days are split at the boundary and each segment receives the
-    rate for its tier (R6).  When tiers are absent or cumulative context is
+    rate for its tier.  When tiers are absent or cumulative context is
     unavailable, a single segment covering all sick days is returned.
 
     Args:
@@ -264,7 +265,7 @@ def compute_sickness(
         return _ZERO, _ZERO, _ZERO, _ZERO
 
     cumulative = sick_input.cumulative_sick_days
-    offset = int(cumulative) if cumulative is not None else 0
+    offset: Decimal = cumulative if cumulative is not None else _ZERO
 
     daily_rate = money(gross_monthly / _CALENDAR_DAYS)
     carenza_limit = sick_pay_rates.carenza_days
@@ -278,12 +279,12 @@ def compute_sickness(
     for band_obj, bucket in zip(sick_pay_rates.bands, band_buckets, strict=True):
         inps_indemnity += bucket * band_obj.rate * daily_rate
 
-    # Company integration -- split at CCNL tier boundaries when available (R6)
+    # Company integration -- split at tier/INPS boundaries when tiers are available
     carenza_pay = carenza * sickness_rules.carenza_integration_rate * daily_rate
     post_carenza_days = max(_ZERO, sick_days - carenza)
 
     if cumulative is not None and sickness_rules.tiers and post_carenza_days > _ZERO:
-        post_carenza_offset = Decimal(max(offset, carenza_limit))
+        post_carenza_offset = max(offset, Decimal(carenza_limit))
         post_carenza_company = _post_carenza_tier(
             post_carenza_days,
             post_carenza_offset,
