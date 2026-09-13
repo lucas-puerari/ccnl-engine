@@ -452,7 +452,10 @@ label {
 }
 .result-tab-action:hover { color: var(--color-primary); border-color: var(--color-primary); }
 
-.result-tab-panel { padding-top: 20px; }
+.result-tab-panel {
+  display: flex; flex-direction: column; gap: 20px;
+  /* no padding-top — #results gap:20px handles spacing from tab bar */
+}
 .result-tab-panel[hidden] { display: none; }
 
 /* Compare tab panel */
@@ -645,20 +648,24 @@ label {
 }
 
 /* ── Snippet panel ─────────────────────────────────────────────────────────── */
-#snippet-section {
+/* Code tab panel — wrap in a card */
+#panel-code {
   background: var(--color-base-100); border: 1px solid var(--color-base-300);
-  border-radius: var(--radius-box); box-shadow: var(--shadow-sm); overflow: hidden;
-  padding: 20px;
+  border-radius: var(--radius-box); box-shadow: var(--shadow-sm); padding: 20px;
 }
 #snippet-code {
   font-family: "IBM Plex Mono", monospace; font-size: 11px; line-height: 1.6;
   color: var(--color-base-content); background: var(--c-surface-alt);
-  border: 1px solid var(--color-base-300); border-radius: 6px; padding: 14px;
+  border: 1px solid var(--c-input-border, var(--color-base-300));
+  border-radius: 6px; padding: 14px;
   overflow-x: auto; white-space: pre; margin: 0;
 }
 
-/* ── Compare panel ─────────────────────────────────────────────────────────── */
-#compare-panel { padding: 20px; }
+/* Compare tab panel — form area gets a subtle card */
+#panel-compare .compare-form {
+  background: var(--color-base-100); border: 1px solid var(--color-base-300);
+  border-radius: var(--radius-box); box-shadow: var(--shadow-sm); padding: 20px;
+}
 
 /* ── Full breakdown ────────────────────────────────────────────────────────── */
 #breakdown-section {
