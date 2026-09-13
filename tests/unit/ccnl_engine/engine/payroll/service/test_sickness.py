@@ -10,7 +10,10 @@ from ccnl_engine.engine.contract.domain.ccnl import SicknessRules, SicknessTier
 from ccnl_engine.engine.payroll.domain.supplements import SickInput
 from ccnl_engine.engine.payroll.service.sickness import (
     _bucket_days,
+    _ccnl_tier_boundaries_in_period,
     _effective_integration_rate,
+    _inps_boundaries_in_period,
+    _tier_rate_segments,
     compute_sickness,
 )
 from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
@@ -499,3 +502,143 @@ class TestEffectiveIntegrationRate:
         )
         assert inps == _D("0.00")
         assert company == _D("0.00")
+
+
+class TestBucketDaysFractionalOffset:
+    """_bucket_days preserves fractional cumulative offsets without truncation."""
+
+    def test_fractional_offset_not_truncated(self) -> None:
+        """Decimal offset 2.5 is used exactly; int() would round to 2.
+
+        offset=2.5: ep_start=2.5, ep_end=2.5+3=5.5.
+        carenza [0,3): overlap [2.5, 3) = 0.5 days.
+        band1 [3,20): overlap [3, 5.5) = 2.5 days.
+
+        With int(2.5)=2: ep_start=2, ep_end=5, carenza [2,3)=1 day, band1 [3,5)=2 days.
+        """
+        carenza, bands = _bucket_days(
+            _D("3"),
+            carenza_days=3,
+            bands=[(4, 20), (21, 180)],
+            cumulative_offset=_D("2.5"),
+        )
+        assert carenza == _D("0.5")
+        assert bands[0] == _D("2.5")
+        assert bands[1] == _ZERO
+
+
+class TestInpsBoundaryHelpers:
+    """_inps_boundaries_in_period and _ccnl_tier_boundaries_in_period."""
+
+    def _std_bands(self) -> list[SickPayBand]:
+        """Return standard INPS bands: band1 days 4-20, band2 21-180.
+
+        Returns:
+            Two-band list matching the statutory INPS structure.
+        """
+        return [
+            SickPayBand(day_from=4, day_to=20, rate=_D("0.50")),
+            SickPayBand(day_from=21, day_to=180, rate=_D("0.6667")),
+        ]
+
+    def test_inps_boundary_inside_period(self) -> None:
+        """Band2 starts at episode day 20 (day_from=21 → day 20 in 0-based).
+
+        period [17, 24): day 20 is strictly inside → returned as boundary.
+        """
+        result = _inps_boundaries_in_period(self._std_bands(), _D("17"), _D("24"))
+        assert _D("20") in result
+
+    def test_inps_boundary_at_period_edge_excluded(self) -> None:
+        """Boundary exactly at period_start or period_end is not returned."""
+        # band2 boundary at day 20: period [20, 30) → day 20 == period_start
+        result = _inps_boundaries_in_period(self._std_bands(), _D("20"), _D("30"))
+        assert _D("20") not in result
+
+    def test_inps_no_boundary_inside(self) -> None:
+        """Period [4, 19): both boundaries (3 and 20) are outside → empty set."""
+        result = _inps_boundaries_in_period(self._std_bands(), _D("4"), _D("19"))
+        assert result == set()
+
+    def test_ccnl_tier_boundary_inside_period(self) -> None:
+        """CCNL tier boundary at month 10 = day 270 is inside [265, 280)."""
+        rules = SicknessRules(
+            carenza_integration_rate=_D("1"),
+            full_pay_integration_rate=_D("1"),
+            tiers=[
+                SicknessTier(month_from=1, month_until=10, integration_rate=_D("1")),
+                SicknessTier(
+                    month_from=10, month_until=None, integration_rate=_D("0.9")
+                ),
+            ],
+        )
+        result = _ccnl_tier_boundaries_in_period(rules, _D("265"), _D("280"))
+        assert _D("270") in result
+
+    def test_ccnl_tier_boundary_at_edge_excluded(self) -> None:
+        """Tier boundary at day 270 == period_start is not returned."""
+        rules = SicknessRules(
+            carenza_integration_rate=_D("1"),
+            full_pay_integration_rate=_D("1"),
+            tiers=[
+                SicknessTier(month_from=1, month_until=10, integration_rate=_D("1")),
+                SicknessTier(
+                    month_from=10, month_until=None, integration_rate=_D("0.9")
+                ),
+            ],
+        )
+        result = _ccnl_tier_boundaries_in_period(rules, _D("270"), _D("280"))
+        assert _D("270") not in result
+
+
+class TestTierRateSegmentsWithInpsBoundary:
+    """_tier_rate_segments splits at INPS band boundaries when sick_pay_rates given."""
+
+    def test_inps_boundary_split(self) -> None:
+        """Period crossing INPS band1→band2 boundary is split at day 20.
+
+        Tiers: month 1-99 at 100% (no tier crossing in this range).
+        Period: cumulative=17, sick_days=6 → episode days [17, 23).
+        INPS band1→band2 boundary at day 20 (0-based start of band2).
+
+        Expected segments:
+          - [17, 20): 3 days at rate=100%
+          - [20, 23): 3 days at rate=100%
+        Both segments have the same integration rate, but the split confirms
+        that INPS boundary detection fires.  The segment list has length 2.
+        """
+        rules = SicknessRules(
+            carenza_integration_rate=_D("1"),
+            full_pay_integration_rate=_D("1"),
+            tiers=[
+                SicknessTier(month_from=1, month_until=99, integration_rate=_D("1")),
+            ],
+        )
+        rates = InpsSickPayRates(
+            carenza_days=3,
+            bands=[
+                SickPayBand(day_from=4, day_to=20, rate=_D("0.50")),
+                SickPayBand(day_from=21, day_to=180, rate=_D("0.6667")),
+            ],
+        )
+        segments = _tier_rate_segments(_D("6"), _D("17"), rules, sick_pay_rates=rates)
+        assert len(segments) == 2
+        assert segments[0] == (_D("3"), _D("1"))
+        assert segments[1] == (_D("3"), _D("1"))
+
+    def test_no_sick_pay_rates_no_inps_split(self) -> None:
+        """Without sick_pay_rates, INPS boundaries are not added.
+
+        Same period as above: only tier boundaries considered.
+        Single tier covers whole period → one segment returned.
+        """
+        rules = SicknessRules(
+            carenza_integration_rate=_D("1"),
+            full_pay_integration_rate=_D("1"),
+            tiers=[
+                SicknessTier(month_from=1, month_until=99, integration_rate=_D("1")),
+            ],
+        )
+        segments = _tier_rate_segments(_D("6"), _D("17"), rules)
+        assert len(segments) == 1
+        assert segments[0] == (_D("6"), _D("1"))
