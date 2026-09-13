@@ -12,21 +12,22 @@ INPS rate structure (statutory -- D.Lgs. 151/2001, artt. 68-71):
 - Days *carenza_days+1* onward: INPS rate bands defined in the bundled
   ``sick-pay-rates.json`` file (50 % for days 4-20, 66.67 % for days 21-180).
 
-Cumulative offset (R5):
+Cumulative offset:
 When ``SickInput.cumulative_sick_days`` is provided it represents the number
 of sick days already elapsed in the same illness episode BEFORE this period.
 The carenza and INPS band positions are computed relative to the episode
 start, so splitting one episode across multiple periods gives the same totals
-as computing it as a single period.
+as computing it as a single period.  The offset is kept as ``Decimal`` to
+avoid truncating fractional cumulative values.
 
 Company integration:
 - During carenza: company pays ``carenza_integration_rate * daily_rate``.
 - During INPS-covered days: company pays the gap between the effective
   integration rate and the INPS indemnity for that band (floored at zero).
 - When ``SicknessRules.tiers`` is populated and ``cumulative_sick_days`` is
-  provided, the integration rate is selected per 30-day tier month. Periods
-  that cross a tier boundary are split at that boundary so each segment uses
-  the correct rate (R6).
+  provided, the integration rate is selected per 30-day tier month.  Periods
+  that cross a CCNL tier boundary or an INPS band boundary are split so each
+  segment uses the correct rates.
 """
 
 from __future__ import annotations
@@ -39,7 +40,7 @@ from ccnl_engine.engine.payroll.service.rounding import money
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import SicknessRules, SicknessTier
     from ccnl_engine.engine.payroll.domain.supplements import SickInput
-    from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates
+    from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
 
 _ZERO = Decimal(0)
 _CALENDAR_DAYS = Decimal(30)
@@ -84,7 +85,7 @@ def _bucket_days(
     sick_days: Decimal,
     carenza_days: int,
     bands: list[tuple[int, int]],
-    cumulative_offset: int = 0,
+    cumulative_offset: Decimal = _ZERO,
 ) -> tuple[Decimal, list[Decimal]]:
     """Split *sick_days* into the carenza bucket and per-band buckets.
 
@@ -92,7 +93,7 @@ def _bucket_days(
     ``[offset+1, offset+sick_days]`` (1-indexed), so carenza days and INPS
     bands that precede the offset are excluded.  This ensures that splitting
     the same illness episode across multiple calls returns the same totals as
-    a single call (R5).
+    a single call.
 
     Args:
         sick_days: Total sick days in the period.
@@ -100,15 +101,16 @@ def _bucket_days(
         bands: List of ``(day_from, day_to)`` tuples (1-indexed, inclusive)
             for INPS-covered day ranges.  Must be non-overlapping and start
             immediately after the carenza period.
-        cumulative_offset: Episode days already elapsed before this period.
-            Defaults to 0 (period starts at the beginning of the episode).
+        cumulative_offset: Episode days already elapsed before this period
+            as a ``Decimal`` (preserves fractional days).  Defaults to zero
+            (period starts at the beginning of the episode).
 
     Returns:
         A 2-tuple of (carenza, [days_in_band_1, days_in_band_2, ...]).
     """
     # Episode position uses 0-based half-open intervals: [ep_start, ep_end).
     # Episode day N (1-indexed) maps to half-open [N-1, N).
-    ep_start = Decimal(cumulative_offset)
+    ep_start = cumulative_offset
     ep_end = ep_start + sick_days
 
     # Carenza covers episode days 1..carenza_days, i.e. [0, carenza_days).
@@ -126,22 +128,79 @@ def _bucket_days(
     return carenza, band_days
 
 
+def _ccnl_tier_boundaries_in_period(
+    sickness_rules: SicknessRules,
+    period_start: Decimal,
+    period_end: Decimal,
+) -> set[Decimal]:
+    """Return CCNL tier boundary day-positions that fall strictly inside the period.
+
+    Args:
+        sickness_rules: CCNL rules with optional tiers.
+        period_start: Episode day at which the period begins (0-based).
+        period_end: Episode day at which the period ends (exclusive).
+
+    Returns:
+        Set of day positions where the CCNL integration rate changes.
+    """
+    boundaries: set[Decimal] = set()
+    for tier in sickness_rules.tiers:
+        for month in (tier.month_from, tier.month_until):
+            if month is not None:
+                day = Decimal(month - 1) * _DAYS_PER_MONTH
+                if period_start < day < period_end:
+                    boundaries.add(day)
+    return boundaries
+
+
+def _inps_boundaries_in_period(
+    bands: list[SickPayBand],
+    period_start: Decimal,
+    period_end: Decimal,
+) -> set[Decimal]:
+    """Return INPS band boundary day-positions that fall strictly inside the period.
+
+    Each band boundary is at the start of the band (``day_from - 1`` in
+    0-based episode-day space).  Splitting at these points ensures every
+    segment lies entirely within one INPS rate band.
+
+    Args:
+        bands: Statutory INPS rate bands from the bundled rates file.
+        period_start: Episode day at which the period begins (0-based).
+        period_end: Episode day at which the period ends (exclusive).
+
+    Returns:
+        Set of day positions where the INPS rate changes.
+    """
+    boundaries: set[Decimal] = set()
+    for band in bands:
+        day = Decimal(band.day_from - 1)
+        if period_start < day < period_end:
+            boundaries.add(day)
+    return boundaries
+
+
 def _tier_rate_segments(
     sick_days: Decimal,
     cumulative_sick_days: Decimal,
     sickness_rules: SicknessRules,
+    sick_pay_rates: InpsSickPayRates | None = None,
 ) -> list[tuple[Decimal, Decimal]]:
     """Compute (days, rate) segments for company integration across tier boundaries.
 
     When the current period spans a CCNL tier boundary (measured in 30-day
-    months), the days are split at the boundary and each segment receives the
-    rate for its tier (R6).  When tiers are absent or cumulative context is
-    unavailable, a single segment covering all sick days is returned.
+    months) or an INPS band boundary, the days are split at the boundary and
+    each segment receives the rate for its tier.  When tiers are absent or
+    cumulative context is unavailable, a single segment covering all sick days
+    is returned.
 
     Args:
         sick_days: Sick days in this period.
         cumulative_sick_days: Episode days elapsed before this period.
         sickness_rules: CCNL rules with optional tiers.
+        sick_pay_rates: Statutory INPS rate bands; when provided, INPS band
+            boundaries are also used as split points so that each segment
+            lies entirely within one INPS rate band.
 
     Returns:
         List of ``(days, integration_rate)`` tuples covering the full period.
@@ -149,19 +208,17 @@ def _tier_rate_segments(
     if not sickness_rules.tiers:  # pragma: no cover
         return [(sick_days, sickness_rules.full_pay_integration_rate)]
 
-    # Collect all day-based tier boundary points within or around the period.
     period_start = cumulative_sick_days
     period_end = cumulative_sick_days + sick_days
 
-    # Tier boundaries in days.
-    # Month m starts at day (m-1)*30: int(day/30)+1 = m when day = (m-1)*30.
     boundary_set: set[Decimal] = {period_start, period_end}
-    for tier in sickness_rules.tiers:
-        for month in (tier.month_from, tier.month_until):
-            if month is not None:
-                day = Decimal(month - 1) * _DAYS_PER_MONTH
-                if period_start < day < period_end:
-                    boundary_set.add(day)
+    boundary_set |= _ccnl_tier_boundaries_in_period(
+        sickness_rules, period_start, period_end
+    )
+    if sick_pay_rates is not None:
+        boundary_set |= _inps_boundaries_in_period(
+            sick_pay_rates.bands, period_start, period_end
+        )
 
     boundaries = sorted(boundary_set)
 
@@ -225,7 +282,7 @@ def _post_carenza_tier(
         Total company integration contribution for the post-carenza portion.
     """
     segments = _tier_rate_segments(
-        post_carenza_days, post_carenza_offset, sickness_rules
+        post_carenza_days, post_carenza_offset, sickness_rules, sick_pay_rates
     )
     total = _ZERO
     offset = post_carenza_offset
@@ -264,7 +321,7 @@ def compute_sickness(
         return _ZERO, _ZERO, _ZERO, _ZERO
 
     cumulative = sick_input.cumulative_sick_days
-    offset = int(cumulative) if cumulative is not None else 0
+    offset: Decimal = cumulative if cumulative is not None else _ZERO
 
     daily_rate = money(gross_monthly / _CALENDAR_DAYS)
     carenza_limit = sick_pay_rates.carenza_days
@@ -281,7 +338,7 @@ def compute_sickness(
     # Company integration is limited to the comporto period (max_duration_days).
     # Days beyond the comporto are not covered by the CCNL.
     comporto_limit = Decimal(sickness_rules.max_duration_days)
-    eligible = max(_ZERO, comporto_limit - Decimal(offset))
+    eligible = max(_ZERO, comporto_limit - offset)
     integration_days = min(sick_days, eligible)
 
     carenza_i, band_buckets_i = _bucket_days(
@@ -293,7 +350,7 @@ def compute_sickness(
     post_carenza_days = max(_ZERO, integration_days - carenza_i)
 
     if cumulative is not None and sickness_rules.tiers and post_carenza_days > _ZERO:
-        post_carenza_offset = Decimal(max(offset, carenza_limit))
+        post_carenza_offset = max(offset, Decimal(carenza_limit))
         post_carenza_company = _post_carenza_tier(
             post_carenza_days,
             post_carenza_offset,
