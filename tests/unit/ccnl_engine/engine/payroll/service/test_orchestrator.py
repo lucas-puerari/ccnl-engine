@@ -1637,6 +1637,37 @@ class TestL3FamilyDeductions:
         ).result
         assert with_family.gross_annual == baseline.gross_annual
 
+    def test_no_detrazioni_familiari_absent_when_dependents_present(self) -> None:
+        """NO_DETRAZIONI_FAMILIARI is removed when scenario.family has dependents.
+
+        The flag signals that family deductions were NOT computed; it must be
+        absent when the engine ran the Art. 12 computation, regardless of
+        whether fam_total is positive.
+        """
+        result = compute(
+            dataclasses.replace(_req(), family=FamilyComposition(spouse_dependent=True))
+        ).result
+        assert (
+            FiscalSimplification.NO_DETRAZIONI_FAMILIARI
+            not in result.fiscal_simplifications
+        )
+
+    def test_no_detrazioni_familiari_present_when_family_is_none(self) -> None:
+        """NO_DETRAZIONI_FAMILIARI is present when no family data is provided."""
+        result = compute(dataclasses.replace(_req(), family=None)).result
+        sfs = result.fiscal_simplifications
+        assert FiscalSimplification.NO_DETRAZIONI_FAMILIARI in sfs
+
+    def test_no_detrazioni_familiari_present_when_no_dependents(self) -> None:
+        """NO_DETRAZIONI_FAMILIARI is present when family has no eligible dependents.
+
+        FamilyComposition() with no dependents: has_any_dependent is False, so
+        the engine skips the Art. 12 computation and keeps the flag set.
+        """
+        result = compute(dataclasses.replace(_req(), family=FamilyComposition())).result
+        sfs = result.fiscal_simplifications
+        assert FiscalSimplification.NO_DETRAZIONI_FAMILIARI in sfs
+
 
 # ---------------------------------------------------------------------------
 # Sterilizzazione detrazioni (Art. 1 c. 3-4 L. 199/2025)
@@ -1891,6 +1922,33 @@ class TestArt15Deductions:
         # Exempt employer: all art15 is unused (irpef_net stays 0 regardless).
         assert result.unused_art15_deduction_annual == result.art15_deduction_annual
         assert result.irpef_net == _D("0.00")
+
+    def test_ulteriore_detrazione_reduces_art15_available_capacity(self) -> None:
+        """Ulteriore detrazione consumes IRPEF capacity before Art. 15 credits.
+
+        When ulteriore_detrazione_lavoro > 0, the IRPEF available to absorb
+        Art. 15 deductions is reduced accordingly.  With a large UDL (EUR 5 000),
+        all IRPEF is consumed before Art. 15 → unused_art15 equals art15_total.
+        """
+        # Set UDL rules with a large max_amount to exhaust IRPEF capacity.
+        _mock_rules[0] = make_year_rules(
+            ulteriore_detrazione={
+                "threshold_low": "20000",
+                "threshold_mid": "32000",
+                "max_amount": "5000",
+            }
+        )
+        result = compute(
+            dataclasses.replace(
+                _req(negotiated_ral=_D("25000")),
+                art15_deductions=Art15Deductions(mortgage_interest=_D("4000")),
+            )
+        ).result
+        # art15 = min(4000, 4000) * 0.19 = 760 (at EUR 4 000 ceiling).
+        assert result.art15_deduction_annual == _D("760.00")
+        # UDL = 5 000 exhausts all IRPEF before Art. 15 → full credit is unused.
+        assert result.ulteriore_detrazione_lavoro == _D("5000.00")
+        assert result.unused_art15_deduction_annual == _D("760.00")
 
 
 class TestArt15MortgagePre1993:

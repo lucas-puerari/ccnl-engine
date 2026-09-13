@@ -304,6 +304,7 @@ def _run_wr_art15_deductions(
     irpef_gross: Decimal,
     work_income_deduction: Decimal,
     fam_total: Decimal,
+    ulteriore_detrazione_lavoro: Decimal,
     year: int,
     *,
     employer_withholds_irpef: bool,
@@ -322,6 +323,8 @@ def _run_wr_art15_deductions(
         irpef_gross: IRPEF before any deductions.
         work_income_deduction: Art. 13 work-income deduction (post-sterilizzazione).
         fam_total: Art. 12 family deductions total (post-sterilizzazione).
+        ulteriore_detrazione_lavoro: Art. 1 c. 6 L. 207/2024 detrazione; reduces
+            IRPEF capacity available to Art. 15 credits.
         year: Fiscal year for loading rules.
         employer_withholds_irpef: When ``False``, deductions are still computed
             but ``irpef_net`` is zero regardless.
@@ -339,7 +342,15 @@ def _run_wr_art15_deductions(
     if not employer_withholds_irpef:
         # Deductions computed but irpef_net is always zero here.
         return total, total
-    available = money(max(_ZERO, irpef_gross - work_income_deduction - fam_total))
+    available = money(
+        max(
+            _ZERO,
+            irpef_gross
+            - work_income_deduction
+            - fam_total
+            - ulteriore_detrazione_lavoro,
+        )
+    )
     unused = money(max(_ZERO, total - available))
     return total, unused
 
@@ -446,19 +457,10 @@ def compute_fiscal(
         (fam_total + work_income_deduction) - effective_art12_art13
     )
 
-    # Art. 15 TUIR deductions (interessi passivi mutuo prima casa, etc.).
-    # Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply here.
-    art15_total, art15_unused = _run_wr_art15_deductions(
-        scenario=scenario,
-        irpef_gross=irpef_gross,
-        work_income_deduction=work_income_deduction,
-        fam_total=fam_total,
-        year=year,
-        employer_withholds_irpef=employer_withholds_irpef,
-    )
-
     # Ulteriore detrazione del lavoro dipendente (Art. 1 c. 6 L. 207/2024):
     # flat EUR 1 000 for taxable income in (20 000, 32 000].
+    # Must be computed before Art. 15 so it can be deducted from available
+    # IRPEF when computing art15_unused.
     ud_rules = rules.ulteriore_detrazione
     if ud_rules is not None:
         ulteriore_detrazione_lavoro = _irpef.ulteriore_detrazione_lavoro(
@@ -466,6 +468,18 @@ def compute_fiscal(
         )
     else:
         ulteriore_detrazione_lavoro = _ZERO
+
+    # Art. 15 TUIR deductions (interessi passivi mutuo prima casa, etc.).
+    # Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply here.
+    art15_total, art15_unused = _run_wr_art15_deductions(
+        scenario=scenario,
+        irpef_gross=irpef_gross,
+        work_income_deduction=work_income_deduction,
+        fam_total=fam_total,
+        ulteriore_detrazione_lavoro=ulteriore_detrazione_lavoro,
+        year=year,
+        employer_withholds_irpef=employer_withholds_irpef,
+    )
 
     # When the employer is not a sostituto d'imposta, irpef_net is zeroed;
     # irpef_gross and work_income_deduction remain as informational figures.
@@ -507,12 +521,14 @@ def compute_fiscal(
         rules,
     )
 
-    # Remove NO_DETRAZIONI_FAMILIARI when family deductions were computed
-    # (use pre-sterilizzazione total: deductions were still computed).
+    # Remove NO_DETRAZIONI_FAMILIARI when family deductions were computed, i.e.
+    # when the input has dependents — even if fam_total is zero due to incapienza
+    # or income above the Art. 12 phase-out threshold (deductions computed,
+    # just fully unavailable).
     # Remove NO_DETRAZIONI_ART15 when Art. 15 deductions were computed.
     # Add NO_ULTERIORE_DETRAZIONE_LAVORO when rules are absent from the file.
     sfs_mut: set[FiscalSimplification] = set(fiscal_simplifications)
-    if fam_total > _ZERO:
+    if scenario.family is not None and scenario.family.has_any_dependent:
         sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_FAMILIARI)
     if art15_total > _ZERO:
         sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_ART15)
