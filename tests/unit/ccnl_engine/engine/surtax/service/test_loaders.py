@@ -104,3 +104,13 @@ class TestSurtaxModelsValidation:
         """ComunaleEntry with empty brackets raises ValidationError."""
         with pytest.raises(ValidationError, match="must not be empty"):
             ComunaleEntry(nome="Test", brackets=[])
+
+
+class TestLoaderCaching:
+    """@cache: same arguments return the same object identity."""
+
+    def test_load_surtax_rules_is_cached(self) -> None:
+        """Two calls with the same year return the identical SurtaxRules object."""
+        first = load_surtax_rules(2026)
+        second = load_surtax_rules(2026)
+        assert first is second

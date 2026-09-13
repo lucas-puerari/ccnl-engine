@@ -106,6 +106,12 @@ class TestLoadCcnl:
         level4 = next(lv for lv in ccnl.levels if lv.code == "4")
         assert level4.base_salary.value_at(date(2024, 4, 1)) == Decimal("1192.46")
 
+    def test_load_ccnl_is_cached(self) -> None:
+        """Two calls with the same filename return the identical CCNL object."""
+        first = load_ccnl("commercio-confcommercio.json")
+        second = load_ccnl("commercio-confcommercio.json")
+        assert first is second
+
 
 # ---------------------------------------------------------------------------
 # load_year_rules helper
@@ -147,6 +153,12 @@ class TestLoadYearRules:
         """A year with no data file must raise FileNotFoundError."""
         with pytest.raises(FileNotFoundError):
             load_year_rules(1900, TaxSector.TERZIARIO, 50)
+
+    def test_load_year_rules_is_cached(self) -> None:
+        """Two calls with identical arguments return the identical YearRules."""
+        first = load_year_rules(2026, TaxSector.TERZIARIO, 50)
+        second = load_year_rules(2026, TaxSector.TERZIARIO, 50)
+        assert first is second
 
 
 # ---------------------------------------------------------------------------

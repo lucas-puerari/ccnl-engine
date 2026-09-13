@@ -5,6 +5,7 @@ from __future__ import annotations
 import importlib.resources
 import json
 from decimal import Decimal
+from functools import cache
 from typing import TYPE_CHECKING, Any, Protocol
 
 from ccnl_engine.engine.io.service.bundled import read_bundled
@@ -48,6 +49,7 @@ class _Tier(Protocol):
     ivs_rate: Decimal
 
 
+@cache
 def load_year_rules(
     year: int,
     sector: TaxSector,

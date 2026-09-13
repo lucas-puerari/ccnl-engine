@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import importlib.resources
 import json
+from functools import cache
 from typing import Any
 
 from ccnl_engine.engine.io.service.bundled import read_bundled
@@ -15,6 +16,7 @@ from ccnl_engine.engine.surtax.domain.rules import (
 )
 
 
+@cache
 def load_surtax_rules(year: int) -> SurtaxRules:
     """Load addizionale regionale and comunale rates for the given fiscal year.
 
