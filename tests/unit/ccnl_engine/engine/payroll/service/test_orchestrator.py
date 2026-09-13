@@ -1011,6 +1011,41 @@ class TestR7SubRulesetIdentities:
         )
         assert "variable_pay" in calc.ruleset_version
 
+    def test_family_deductions_ruleset_present_when_dependents(self) -> None:
+        """family_deductions appears in ruleset_version when scenario.family is set."""
+        calc = compute(
+            dataclasses.replace(
+                _req(),
+                family=FamilyComposition(children_21_or_older=1),
+            )
+        )
+        assert "family_deductions" in calc.ruleset_version, (
+            f"Expected family_deductions in ruleset_version,"
+            f" got: {calc.ruleset_version}"
+        )
+
+    def test_family_deductions_ruleset_absent_without_dependents(self) -> None:
+        """family_deductions absent when no dependents in the scenario."""
+        calc = compute(_req())
+        assert "family_deductions" not in calc.ruleset_version
+
+    def test_art15_deductions_ruleset_present_when_oneri_set(self) -> None:
+        """art15_deductions appears in ruleset_version when art15_deductions is set."""
+        calc = compute(
+            dataclasses.replace(
+                _req(),
+                art15_deductions=Art15Deductions(mortgage_interest=_D("2000")),
+            )
+        )
+        assert "art15_deductions" in calc.ruleset_version, (
+            f"Expected art15_deductions in ruleset_version, got: {calc.ruleset_version}"
+        )
+
+    def test_art15_deductions_ruleset_absent_without_oneri(self) -> None:
+        """art15_deductions absent when art15_deductions is None."""
+        calc = compute(_req())
+        assert "art15_deductions" not in calc.ruleset_version
+
 
 class TestL3Warning:
     """Orchestrator warning path for missing L3 schema."""
