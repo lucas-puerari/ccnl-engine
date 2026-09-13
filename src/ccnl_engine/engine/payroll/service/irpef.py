@@ -239,22 +239,22 @@ def surtax_from_brackets(
 
 def apply_sterilizzazione_detrazioni(
     art15_total: Decimal,
-    gross_annual: Decimal,
+    taxable_income: Decimal,
     rules: SterilizzazioneDetrazioniRules | None,
 ) -> Decimal:
     """Reduce Art. 15 oneri deductions by the statutory amount for high earners.
 
-    Per Art. 1 c. 3-4 L. 199/2025 (R14): when ``gross_annual`` exceeds
-    ``rules.threshold`` (EUR 200 000), the Art. 15 TUIR oneri deductions
-    (19% detraibili) are reduced by ``rules.reduction`` (EUR 440).  The
-    reduction targets only Art. 15 deductions; Art. 12 (family) and Art. 13
-    (work-income) deductions are not affected.
+    Per Art. 1 c. 3-4 L. 199/2025 (R14): when ``taxable_income`` (reddito
+    complessivo) exceeds ``rules.threshold`` (EUR 200 000), the Art. 15 TUIR
+    oneri deductions (19% detraibili) are reduced by ``rules.reduction``
+    (EUR 440).  The reduction targets only Art. 15 deductions; Art. 12
+    (family) and Art. 13 (work-income) deductions are not affected.
 
     Returns:
         Effective Art. 15 deduction, floored at zero.  When ``rules`` is
         ``None`` or income is at or below the threshold, ``art15_total`` is
         returned unchanged.
     """
-    if rules is None or gross_annual <= rules.threshold:
+    if rules is None or taxable_income <= rules.threshold:
         return art15_total
     return money(max(_ZERO, art15_total - rules.reduction))
