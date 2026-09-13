@@ -388,11 +388,12 @@ async function populateComuni(pyodide) {
 // RegExp tested against the option label. level_code: exact code or null (4th).
 // part_time_pct: 10–100 (slider units). regione/comune_pattern: optional.
 const EXAMPLES = [
+  // ── Top 5 by number of workers covered ──────────────────────────────────
   {
-    label_it: "Terziario Confcommercio — Liv. 4, 3 scatti, Lazio/Roma",
-    label_en: "Terziario Confcommercio — Lv. 4, 3 increments, Lazio/Rome",
-    ccnl_match: /Terziario.*Confcommercio/i,
-    level_code: null,         // pick 4th option
+    label_it: "Confcommercio — Liv. 4, 3 scatti, Lazio/Roma",
+    label_en: "Confcommercio — Lv. 4, 3 increments, Lazio/Rome",
+    ccnl_match: "commercio-confcommercio.json",
+    level_code: "4",
     employment_type: "permanent",
     seniority_count: 3,
     part_time_pct: 100,
@@ -400,6 +401,47 @@ const EXAMPLES = [
     regione: /Lazio/i,
     comune_pattern: /^Roma \(/i,
   },
+  {
+    label_it: "Federmeccanica — Liv. C1 (operaio specializzato)",
+    label_en: "Federmeccanica — Lv. C1 (skilled worker)",
+    ccnl_match: "metalmeccanico-federmeccanica.json",
+    level_code: "C1",
+    employment_type: "permanent",
+    seniority_count: 2,
+    part_time_pct: 100,
+    num_employees: 200,
+  },
+  {
+    label_it: "Edilizia ANCE — Liv. 3 (operaio specializzato)",
+    label_en: "Construction ANCE — Lv. 3 (specialised worker)",
+    ccnl_match: "edilizia-ance.json",
+    level_code: "3",
+    employment_type: "permanent",
+    seniority_count: 1,
+    part_time_pct: 100,
+    num_employees: 30,
+  },
+  {
+    label_it: "Federalberghi — Liv. 3",
+    label_en: "Federalberghi — Lv. 3",
+    ccnl_match: "turismo-federalberghi.json",
+    level_code: "3",
+    employment_type: "permanent",
+    seniority_count: 0,
+    part_time_pct: 100,
+    num_employees: 20,
+  },
+  {
+    label_it: "Bancari ABI — 3ª area professionale, 4° livello",
+    label_en: "Banking ABI — 3rd professional area, 4th level",
+    ccnl_match: "bancari-abi.json",
+    level_code: "3A4",
+    employment_type: "permanent",
+    seniority_count: 2,
+    part_time_pct: 100,
+    num_employees: 500,
+  },
+  // ── Other examples ───────────────────────────────────────────────────────
   {
     label_it: "Agenti immobiliari FIAIP — Liv. III",
     label_en: "Real estate agents FIAIP — Lv. III",
