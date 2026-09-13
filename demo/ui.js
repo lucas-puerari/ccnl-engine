@@ -1,3 +1,29 @@
+// ── Theme ────────────────────────────────────────────────────────────────────
+
+function initTheme() {
+  const saved = localStorage.getItem("ccnl_theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const theme = saved || (prefersDark ? "ccnl-dark" : "ccnl-light");
+  document.documentElement.setAttribute("data-theme", theme);
+  _updateThemeIcon(theme);
+}
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute("data-theme") || "ccnl-light";
+  const next = cur === "ccnl-dark" ? "ccnl-light" : "ccnl-dark";
+  document.documentElement.setAttribute("data-theme", next);
+  localStorage.setItem("ccnl_theme", next);
+  _updateThemeIcon(next);
+}
+function _updateThemeIcon(theme) {
+  const btn = document.getElementById("btn-theme");
+  if (!btn) return;
+  const sun  = btn.querySelector(".icon-sun");
+  const moon = btn.querySelector(".icon-moon");
+  if (sun)  sun.style.display  = theme === "ccnl-dark"  ? "" : "none";
+  if (moon) moon.style.display = theme === "ccnl-light" ? "" : "none";
+}
+initTheme();
+
 // ── i18n ────────────────────────────────────────────────────────────────────
 
 let _i18nStrings = {};
@@ -83,7 +109,8 @@ function esc(s) {
 // ── Loading overlay ─────────────────────────────────────────────────────────
 
 function setProgress(pct, msg) {
-  document.getElementById("progress-fill").style.width = pct + "%";
+  const el = document.getElementById("progress-fill");
+  if (el) el.value = pct;
   if (msg) document.getElementById("loading-msg").textContent = msg;
 }
 function hideLoading() {
@@ -118,24 +145,6 @@ document.getElementById("sel-employment").addEventListener("change", e => {
   const isApp = e.target.value === "apprentice";
   document.getElementById("div-apprentice-months").style.display = isApp ? "" : "none";
   document.getElementById("div-seniority").style.display = isApp ? "none" : "";
-});
-
-// ── Advanced toggle ──────────────────────────────────────────────────────────
-
-document.getElementById("advanced-toggle").addEventListener("click", () => {
-  document.getElementById("advanced-toggle").classList.toggle("open");
-  document.getElementById("advanced-body").classList.toggle("open");
-});
-
-// ── L3 toggle ────────────────────────────────────────────────────────────────
-
-document.getElementById("l3-toggle").addEventListener("click", () => {
-  const body = document.getElementById("l3-body");
-  const toggle = document.getElementById("l3-toggle");
-  const arrow = toggle.querySelector(".arrow");
-  const open = body.style.display === "none";
-  body.style.display = open ? "" : "none";
-  arrow.style.transform = open ? "rotate(90deg)" : "";
 });
 
 // ── Combobox init (before Pyodide loads) ────────────────────────────────────
@@ -618,7 +627,7 @@ function renderSources(provenanceList, rulesetVersion) {
   list.innerHTML = "";
 
   if (!provenanceList || provenanceList.length === 0) {
-    list.innerHTML = `<span style="font-size:12px;color:var(--faint);font-style:italic">${t("sources.no_sources")}</span>`;
+    list.innerHTML = `<span style="font-size:12px;color:var(--c-faint);font-style:italic">${t("sources.no_sources")}</span>`;
     return;
   }
 
@@ -662,7 +671,7 @@ function renderSources(provenanceList, rulesetVersion) {
       const verLabel = isVerified ? "Verified" : `${methodLabel}, ${statusLabel}`;
       const dotCls = isVerified ? "dot-green" : "dot-amber";
       const verCls = isVerified ? "verified" : "unverified";
-      return `<div class="source-meta" style="padding-left:4px; border-left:2px solid var(--border); margin-top:4px">
+      return `<div class="source-meta" style="padding-left:4px; border-left:2px solid var(--color-base-300); margin-top:4px">
         ${p.section ? `<span>${esc(p.section)}</span> · ` : ""}
         <span>${p.kind.replace(/_/g," ")}</span>
         <span class="verified-badge ${verCls}">
@@ -717,7 +726,7 @@ const CONF_LABELS = {
 
 const SIMP_LABELS = {
   no_addizionale_regionale:      "Regional income surtax — select a region above",
-  no_addizionale_comunale:       "Municipal income surtax — enter a Belfiore code above",
+  no_addizionale_comunale:       "Municipal income surtax — select a municipality above",
   addizionale_comunale_unknown:  "Municipal income surtax — data not available for this comune",
   no_detrazioni_familiari:       "Family-dependent deductions (Art. 12 TUIR)",
   no_sterilizzazione_detrazioni: "Deduction phase-out (progressive reduction)",
@@ -769,7 +778,7 @@ function renderScope(calcScope, confidence, warnings, fiscalSimps) {
   for (const s of verified) {
     const div = document.createElement("div");
     div.className = "feature-item";
-    div.innerHTML = `<i class="f-icon" style="color:var(--green)">✓</i> ${esc(FEATURE_LABELS[s.feature] || s.feature)}`;
+    div.innerHTML = `<i class="f-icon" style="color:var(--color-success)">✓</i> ${esc(FEATURE_LABELS[s.feature] || s.feature)}`;
     vEl.appendChild(div);
   }
 
@@ -778,7 +787,7 @@ function renderScope(calcScope, confidence, warnings, fiscalSimps) {
   for (const s of excluded) {
     const div = document.createElement("div");
     div.className = "feature-item excluded";
-    div.innerHTML = `<i class="f-icon" style="color:var(--faint)">–</i> ${esc(FEATURE_LABELS[s.feature] || s.feature)}`;
+    div.innerHTML = `<i class="f-icon" style="color:var(--c-faint)">–</i> ${esc(FEATURE_LABELS[s.feature] || s.feature)}`;
     xEl.appendChild(div);
   }
 
@@ -1263,7 +1272,8 @@ async function main() {
 
     // Mark results as stale whenever any form input changes after the first calculation.
     document.querySelectorAll("input, select").forEach(el => {
-      if (!el.closest("#results")) el.addEventListener("change", markStale);
+      if (!el.closest("#results") && !el.hasAttribute("data-no-stale"))
+        el.addEventListener("change", markStale);
     });
 
     setTimeout(hideLoading, 300);
