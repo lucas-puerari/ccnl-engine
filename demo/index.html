@@ -155,6 +155,16 @@
       border: 1px solid var(--accent);
       border-radius: 4px; padding: 2px 8px; opacity: .8;
     }
+    .lang-selector { display: flex; align-items: center; gap: 4px; }
+    .lang-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: inherit; font-size: 11px; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--faint); padding: 2px 4px; border-radius: 3px;
+      transition: color .15s;
+    }
+    .lang-btn:hover { color: var(--text); }
+    .lang-btn.active { color: var(--accent); }
 
     /* ── Page layout ─────────────────────────────────────────────────────── */
     main {
@@ -673,8 +683,14 @@
 <header>
   <span class="header-logo">ccnl-engine</span>
   <div class="header-sep"></div>
-  <span class="header-sub">Italian CCNL payroll · Gross-to-net · Employer cost · Calculation provenance · 2026</span>
+  <span class="header-sub" data-i18n="header.sub">Italian CCNL payroll · Gross-to-net · Employer cost · Calculation provenance · 2026</span>
   <span class="header-badge">demo</span>
+  <div class="header-sep"></div>
+  <div class="lang-selector" id="lang-selector">
+    <button class="lang-btn" id="btn-it" onclick="setLang('it')">IT</button>
+    <span style="color:var(--border);font-size:12px">/</span>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
 </header>
 
 <main>
@@ -682,13 +698,13 @@
   <!-- Parameters card -->
   <div class="card">
     <div class="card-header">
-      <span class="card-title">Employment scenario</span>
+      <span class="card-title" data-i18n="form.title">Employment scenario</span>
     </div>
     <div class="form-grid">
 
       <div class="full">
         <div class="label-row">
-          <label for="sel-ccnl">CCNL (collective agreement)</label>
+          <label for="sel-ccnl" data-i18n="form.ccnl.label">CCNL (collective agreement)</label>
           <span class="tip" tabindex="0" data-tip="Contratto Collettivo Nazionale di Lavoro — the collective agreement governing this employment. It determines salary tables, seniority cadence, contribution rates and TFR.">?</span>
         </div>
         <div class="combobox-wrap" id="combo-ccnl-wrap">
@@ -697,7 +713,7 @@
       </div>
       <div class="full">
         <div class="label-row">
-          <label for="sel-level">Pay level (livello di inquadramento)</label>
+          <label for="sel-level" data-i18n="form.level.label">Pay level (livello di inquadramento)</label>
           <span class="tip" tabindex="0" data-tip="The worker's qualification level within the CCNL. Higher levels carry a higher base salary and seniority increment amount.">?</span>
         </div>
         <select id="sel-level" disabled><option value="">— Select a CCNL first —</option></select>
@@ -705,41 +721,41 @@
 
       <div>
         <div class="label-row">
-          <label for="sel-employment">Contract type</label>
+          <label for="sel-employment" data-i18n="form.employment.label">Contract type</label>
           <span class="tip" tabindex="0" data-tip="Permanent: standard open-ended. Fixed-term: adds NASpI 1.4% surcharge. Apprenticeship: under-classification with a progressive pay percentage.">?</span>
         </div>
         <select id="sel-employment">
-          <option value="permanent">Permanent (tempo indeterminato)</option>
-          <option value="fixed_term">Fixed-term (tempo determinato)</option>
-          <option value="apprentice">Apprenticeship (apprendistato)</option>
+          <option value="permanent" data-i18n="form.employment.permanent">Permanent (tempo indeterminato)</option>
+          <option value="fixed_term" data-i18n="form.employment.fixed_term">Fixed-term (tempo determinato)</option>
+          <option value="apprentice" data-i18n="form.employment.apprentice">Apprenticeship (apprendistato)</option>
         </select>
       </div>
 
       <div>
         <div class="label-row">
-          <label for="inp-employees">Employer headcount</label>
+          <label for="inp-employees" data-i18n="form.employees.label">Employer headcount</label>
           <span class="tip" tabindex="0" data-tip="Total employees at this workplace. Determines the INPS contribution rate tier.">?</span>
         </div>
         <input type="number" id="inp-employees" value="50" min="1" max="10000" />
-        <p id="err-employees" class="field-error">Headcount must be at least 1.</p>
+        <p id="err-employees" class="field-error" data-i18n="form.employees.error">Headcount must be at least 1.</p>
       </div>
 
       <div id="div-seniority" class="full">
         <div class="label-row">
-          <label>Seniority (scatti di anzianità)</label>
+          <label data-i18n="form.seniority.label">Seniority (scatti di anzianità)</label>
           <span class="tip" tabindex="0" data-tip="Periodic increments added to monthly pay after a fixed number of months (cadence set by the CCNL). Choose 'count' for explicit increments or 'months' for total service months.">?</span>
         </div>
         <div class="radio-row">
-          <label><input type="radio" name="sen-mode" value="count" checked /> Scatti (count)</label>
-          <label><input type="radio" name="sen-mode" value="months" /> Months of service</label>
+          <label><input type="radio" name="sen-mode" value="count" checked /> <span data-i18n="form.seniority.count">Scatti (count)</span></label>
+          <label><input type="radio" name="sen-mode" value="months" /> <span data-i18n="form.seniority.months">Months of service</span></label>
         </div>
         <input type="number" id="inp-seniority" value="0" min="0" max="600" />
-        <p class="field-hint" id="seniority-hint">Number of seniority increments accrued.</p>
+        <p class="field-hint" id="seniority-hint" data-i18n="form.seniority.hint_default">Number of seniority increments accrued.</p>
       </div>
 
       <div id="div-apprentice-months" style="display:none" class="full">
         <div class="label-row">
-          <label for="inp-apprentice-months">Months into apprenticeship</label>
+          <label for="inp-apprentice-months" data-i18n="form.apprentice.months.label">Months into apprenticeship</label>
           <span class="tip" tabindex="0" data-tip="Months elapsed since the apprenticeship started. Used to determine the current pay percentage band as defined in the CCNL.">?</span>
         </div>
         <input type="number" id="inp-apprentice-months" value="0" min="0" max="60" />
@@ -747,7 +763,7 @@
 
       <div class="full">
         <div class="label-row">
-          <label for="inp-parttime">Part-time fraction</label>
+          <label for="inp-parttime" data-i18n="form.parttime.label">Part-time fraction</label>
           <span class="tip" tabindex="0" data-tip="Applied to base pay, seniority, and most INPS contributions. Ad personam supplements are not scaled. 100% = full-time.">?</span>
         </div>
         <div class="range-row">
@@ -758,7 +774,7 @@
 
       <div>
         <div class="label-row">
-          <label for="sel-regione">Region — addizionale regionale</label>
+          <label for="sel-regione" data-i18n="form.regione.label">Region — addizionale regionale</label>
           <span class="tip" tabindex="0" data-tip="Worker's region of residence. Required to compute the addizionale regionale IRPEF. Leave blank to skip.">?</span>
         </div>
         <div class="combobox-wrap" id="combo-regione-wrap">
@@ -767,24 +783,24 @@
       </div>
       <div>
         <div class="label-row">
-          <label for="inp-comune">Belfiore code — addizionale comunale</label>
+          <label for="inp-comune" data-i18n="form.comune.label">Belfiore code — addizionale comunale</label>
           <span class="tip" tabindex="0" data-tip="Codice catastale del comune di residenza (e.g. F205 for Milano). Required for the addizionale comunale. Leave blank to skip.">?</span>
         </div>
         <input type="text" id="inp-comune" placeholder="e.g. F205 (Milano)" maxlength="4"
                style="text-transform:uppercase" />
-        <p class="field-hint"><a href="https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/guidaarticolo.htm?id=5" target="_blank" rel="noopener">Look up codice catastale →</a></p>
+        <p class="field-hint"><a href="https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/guidaarticolo.htm?id=5" target="_blank" rel="noopener" data-i18n="form.comune.lookup">Look up codice catastale →</a></p>
       </div>
 
       <div class="full">
         <div class="section-toggle" id="advanced-toggle">
-          <i class="arrow">▶</i> Advanced options
+          <i class="arrow">▶</i> <span data-i18n="form.advanced.toggle">Advanced options</span>
         </div>
         <div class="advanced-body" id="advanced-body">
           <div class="form-grid" style="margin-top:0">
 
             <div>
               <div class="label-row">
-                <label for="inp-ad-personam">Ad personam monthly (€)</label>
+                <label for="inp-ad-personam" data-i18n="form.ad_personam.label">Ad personam monthly (€)</label>
                 <span class="tip" tabindex="0" data-tip="Frozen individual monthly supplement (e.g. pre-abolition seniority tiers). Not scaled by part-time.">?</span>
               </div>
               <input type="number" id="inp-ad-personam" value="0" min="0" step="1" />
@@ -792,7 +808,7 @@
 
             <div>
               <div class="label-row">
-                <label for="inp-second-level">Second-level monthly (€)</label>
+                <label for="inp-second-level" data-i18n="form.second_level.label">Second-level monthly (€)</label>
                 <span class="tip" tabindex="0" data-tip="Monthly supplement from a territorial or company second-level agreement. Mutually exclusive with RAL override.">?</span>
               </div>
               <input type="number" id="inp-second-level" value="0" min="0" step="1" />
@@ -800,7 +816,7 @@
 
             <div>
               <div class="label-row">
-                <label for="inp-ral">RAL override — agreed annual gross (€)</label>
+                <label for="inp-ral" data-i18n="form.ral.label">RAL override — agreed annual gross (€)</label>
                 <span class="tip" tabindex="0" data-tip="Replaces the CCNL salary table with a negotiated annual gross. Mutually exclusive with second-level allowance.">?</span>
               </div>
               <input type="number" id="inp-ral" value="0" min="0" step="100" />
@@ -810,10 +826,10 @@
               <input type="checkbox" id="chk-ivs" style="width:auto; margin-top:3px; accent-color:var(--accent)" />
               <div>
                 <div class="label-row" style="margin:0 0 2px">
-                  <label for="chk-ivs" style="margin:0; color:var(--text); font-weight:500">IVS ceiling applies</label>
+                  <label for="chk-ivs" style="margin:0; color:var(--text); font-weight:500" data-i18n="form.ivs.label">IVS ceiling applies</label>
                   <span class="tip" tabindex="0" data-tip="When annual gross exceeds the INPS IVS ceiling (~€113,520 in 2026), only the IVS-specific reduced rate applies above the threshold.">?</span>
                 </div>
-                <p class="field-hint" style="margin:0">Worker's gross exceeds the INPS IVS ceiling.</p>
+                <p class="field-hint" style="margin:0" data-i18n="form.ivs.hint">Worker's gross exceeds the INPS IVS ceiling.</p>
               </div>
             </div>
 
@@ -825,11 +841,11 @@
     <!-- L3: Work rules (collapsible) -->
     <div style="margin-top:12px">
       <div class="section-toggle" id="l3-toggle" style="cursor:pointer; user-select:none; font-weight:600; color:var(--text); padding:10px 0; display:flex; align-items:center; gap:6px">
-        <i class="arrow">▶</i> Work rules (L3 — informational)
+        <i class="arrow">▶</i> <span data-i18n="form.l3.toggle">Work rules (L3 — informational)</span>
         <span class="tip" tabindex="0" data-tip="L3 outputs are reported alongside the payroll but do not change gross or net pay. They reflect period events such as overtime worked or days absent.">?</span>
       </div>
       <div id="l3-body" style="display:none; padding-top:4px">
-        <p style="font-size:12px; color:var(--faint); margin:0 0 14px">
+        <p style="font-size:12px; color:var(--faint); margin:0 0 14px" id="l3-note-p" data-i18n-html="form.l3.note">
           These amounts are <strong>informational</strong> — they do not affect
           gross or net pay. Supply period-level event data and the engine
           reports the corresponding supplements and deductions.
@@ -839,28 +855,28 @@
           <!-- Overtime -->
           <div class="field-group">
             <div class="label-row">
-              <label for="inp-ot-weekday">Weekday overtime (h)</label>
+              <label for="inp-ot-weekday" data-i18n="form.l3.ot_weekday.label">Weekday overtime (h)</label>
               <span class="tip" tabindex="0" data-tip="Daytime weekday overtime hours (straordinario diurno).">?</span>
             </div>
             <input type="number" id="inp-ot-weekday" value="0" min="0" step="0.5" />
           </div>
           <div class="field-group">
             <div class="label-row">
-              <label for="inp-ot-night">Night overtime (h)</label>
+              <label for="inp-ot-night" data-i18n="form.l3.ot_night.label">Night overtime (h)</label>
               <span class="tip" tabindex="0" data-tip="Weekday night hours (lavoro notturno).">?</span>
             </div>
             <input type="number" id="inp-ot-night" value="0" min="0" step="0.5" />
           </div>
           <div class="field-group">
             <div class="label-row">
-              <label for="inp-ot-holiday">Holiday overtime (h)</label>
+              <label for="inp-ot-holiday" data-i18n="form.l3.ot_holiday.label">Holiday overtime (h)</label>
               <span class="tip" tabindex="0" data-tip="Daytime public-holiday hours.">?</span>
             </div>
             <input type="number" id="inp-ot-holiday" value="0" min="0" step="0.5" />
           </div>
           <div class="field-group">
             <div class="label-row">
-              <label for="inp-ot-nightholiday">Night-holiday (h)</label>
+              <label for="inp-ot-nightholiday" data-i18n="form.l3.ot_nightholiday.label">Night-holiday (h)</label>
               <span class="tip" tabindex="0" data-tip="Night hours on a public holiday.">?</span>
             </div>
             <input type="number" id="inp-ot-nightholiday" value="0" min="0" step="0.5" />
@@ -868,21 +884,21 @@
           <!-- Absence / Leave / Sick -->
           <div class="field-group">
             <div class="label-row">
-              <label for="inp-absence-days">Unpaid absence (days)</label>
+              <label for="inp-absence-days" data-i18n="form.l3.absence.label">Unpaid absence (days)</label>
               <span class="tip" tabindex="0" data-tip="Days absent without pay in the period.">?</span>
             </div>
             <input type="number" id="inp-absence-days" value="0" min="0" step="0.5" />
           </div>
           <div class="field-group">
             <div class="label-row">
-              <label for="inp-leave-days">Leave taken (days)</label>
+              <label for="inp-leave-days" data-i18n="form.l3.leave.label">Leave taken (days)</label>
               <span class="tip" tabindex="0" data-tip="Paid leave days consumed in the period (ferie).">?</span>
             </div>
             <input type="number" id="inp-leave-days" value="0" min="0" step="0.5" />
           </div>
           <div class="field-group">
             <div class="label-row">
-              <label for="inp-sick-days">Sick days (calendar)</label>
+              <label for="inp-sick-days" data-i18n="form.l3.sick.label">Sick days (calendar)</label>
               <span class="tip" tabindex="0" data-tip="Calendar days of illness in the period.">?</span>
             </div>
             <input type="number" id="inp-sick-days" value="0" min="0" step="1" />
@@ -890,21 +906,21 @@
           <!-- Benefits / Bonus -->
           <div class="field-group">
             <div class="label-row">
-              <label for="inp-fringe">Fringe benefit annual (€)</label>
+              <label for="inp-fringe" data-i18n="form.l3.fringe.label">Fringe benefit annual (€)</label>
               <span class="tip" tabindex="0" data-tip="Total fringe-benefit value for the year (Art. 51 c. 3 TUIR). Amounts below the threshold are tax-exempt.">?</span>
             </div>
             <input type="number" id="inp-fringe" value="0" min="0" step="10" />
           </div>
           <div class="field-group">
             <div class="label-row">
-              <label for="inp-welfare">Welfare annual (€)</label>
+              <label for="inp-welfare" data-i18n="form.l3.welfare.label">Welfare annual (€)</label>
               <span class="tip" tabindex="0" data-tip="Welfare contributions for the year (Art. 51 c. 2 TUIR — always tax-exempt).">?</span>
             </div>
             <input type="number" id="inp-welfare" value="0" min="0" step="10" />
           </div>
           <div class="field-group">
             <div class="label-row">
-              <label for="inp-bonus">Bonus annual (€)</label>
+              <label for="inp-bonus" data-i18n="form.l3.bonus.label">Bonus annual (€)</label>
               <span class="tip" tabindex="0" data-tip="Total annual bonus. Enable the PdR checkbox to apply the preferential flat tax.">?</span>
             </div>
             <input type="number" id="inp-bonus" value="0" min="0" step="100" />
@@ -915,23 +931,23 @@
           <input type="checkbox" id="chk-pdr" style="width:auto; margin-top:3px; accent-color:var(--accent)" />
           <div>
             <div class="label-row" style="margin:0 0 2px">
-              <label for="chk-pdr" style="margin:0; color:var(--text); font-weight:500">Bonus is PdR-eligible</label>
+              <label for="chk-pdr" style="margin:0; color:var(--text); font-weight:500" data-i18n="form.pdr.label">Bonus is PdR-eligible</label>
               <span class="tip" tabindex="0" data-tip="Apply the preferential flat-tax regime (imposta sostitutiva) when a valid union agreement is in place.">?</span>
             </div>
-            <p class="field-hint" style="margin:0">Premio di risultato — flat-tax rate from statutory rules.</p>
+            <p class="field-hint" style="margin:0" data-i18n="form.pdr.hint">Premio di risultato — flat-tax rate from statutory rules.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <button id="calc-btn" disabled>Calculate</button>
+    <button id="calc-btn" disabled data-i18n="form.calculate">Calculate</button>
   </div>
 
   <div id="error-box"></div>
 
   <!-- ── Results ─────────────────────────────────────────────────────── -->
   <div id="results">
-  <div id="stale-banner">Hai modificato i dati — aggiorna la stima.</div>
+  <div id="stale-banner" data-i18n="results.stale_banner">Hai modificato i dati — aggiorna la stima.</div>
 
     <!-- Scenario strip -->
     <div id="scenario-strip"></div>
@@ -939,7 +955,7 @@
     <!-- KPI row -->
     <div class="kpi-row">
       <div class="kpi-tile">
-        <div class="kpi-label">Monthly gross</div>
+        <div class="kpi-label" data-i18n="results.kpi.gross_label">Monthly gross</div>
         <div class="kpi-value" id="kpi-gross">—</div>
         <div class="kpi-sub" id="kpi-gross-sub"></div>
       </div>
@@ -950,9 +966,9 @@
         <div id="kpi-net-scope" style="display:none; font-size:11px; color:var(--red,#c0392b); margin-top:4px;"></div>
       </div>
       <div class="kpi-tile">
-        <div class="kpi-label">Employer cost — annual</div>
+        <div class="kpi-label" data-i18n="results.kpi.cost_label">Employer cost — annual</div>
         <div class="kpi-value is-cost" id="kpi-cost">—</div>
-        <div class="kpi-sub">including TFR and contributions</div>
+        <div class="kpi-sub" data-i18n="results.kpi.cost_sub">including TFR and contributions</div>
       </div>
     </div>
 
@@ -962,8 +978,8 @@
     <!-- Trace — Why this number? -->
     <div id="trace-section">
       <div class="trace-header">
-        <span class="trace-title">Why this number?</span>
-        <span class="trace-sub">Monthly gross computation — step by step</span>
+        <span class="trace-title" data-i18n="trace.title">Why this number?</span>
+        <span class="trace-sub" data-i18n="trace.sub">Monthly gross computation — step by step</span>
       </div>
       <div class="trace-body" id="trace-body"></div>
     </div>
@@ -971,16 +987,16 @@
     <!-- Sources -->
     <div id="sources-section">
       <div class="sources-header">
-        <span class="card-title">Sources</span>
-        <span class="card-sub">Documents and rulesets used to produce this calculation</span>
+        <span class="card-title" data-i18n="sources.title">Sources</span>
+        <span class="card-sub" data-i18n="sources.sub">Documents and rulesets used to produce this calculation</span>
       </div>
       <div class="sources-body">
         <div>
-          <div class="sources-sub-title">Rulesets loaded</div>
+          <div class="sources-sub-title" data-i18n="sources.rulesets_title">Rulesets loaded</div>
           <div class="ruleset-chips" id="ruleset-chips"></div>
         </div>
         <div>
-          <div class="sources-sub-title">Sources cited</div>
+          <div class="sources-sub-title" data-i18n="sources.cited_title">Sources cited</div>
           <div class="source-list" id="source-list"></div>
         </div>
       </div>
@@ -989,7 +1005,7 @@
     <!-- Scope & Confidence -->
     <div id="scope-section">
       <div class="scope-header">
-        <span class="card-title">Reliability</span>
+        <span class="card-title" data-i18n="scope.title">Reliability</span>
         <div id="confidence-pill" class="confidence-pill"></div>
       </div>
       <div class="scope-body">
@@ -1000,11 +1016,11 @@
         <div>
           <div class="scope-grid">
             <div>
-              <div class="scope-col-title">Computed in this estimate</div>
+              <div class="scope-col-title" data-i18n="scope.computed_title">Computed in this estimate</div>
               <div class="feature-list" id="scope-verified"></div>
             </div>
             <div>
-              <div class="scope-col-title">Not computed in this estimate</div>
+              <div class="scope-col-title" data-i18n="scope.excluded_title">Not computed in this estimate</div>
               <div class="feature-list" id="scope-excluded"></div>
             </div>
           </div>
@@ -1016,7 +1032,7 @@
     <!-- Full breakdown (collapsible) -->
     <div id="breakdown-section">
       <button class="breakdown-toggle" id="breakdown-toggle">
-        <i class="bd-arrow">▶</i> Full breakdown
+        <i class="bd-arrow">▶</i> <span data-i18n="breakdown.title">Full breakdown</span>
       </button>
       <div class="breakdown-body" id="breakdown-body-wrap">
         <table class="breakdown-table">
@@ -1025,9 +1041,9 @@
           </colgroup>
           <thead>
             <tr>
-              <th>Item</th>
-              <th style="text-align:right">Monthly</th>
-              <th style="text-align:right">Annual</th>
+              <th data-i18n="breakdown.col.item">Item</th>
+              <th style="text-align:right" data-i18n="breakdown.col.monthly">Monthly</th>
+              <th style="text-align:right" data-i18n="breakdown.col.annual">Annual</th>
             </tr>
           </thead>
           <tbody id="breakdown-table-body"></tbody>
@@ -1042,17 +1058,82 @@
 <footer>
   <a href="https://github.com/lucas-puerari/ccnl-engine" target="_blank" rel="noopener">ccnl-engine</a>
   &nbsp;·&nbsp;
-  <a href="../docs/" target="_blank">API docs</a>
+  <a href="../docs/" target="_blank" data-i18n="footer.api_docs">API docs</a>
   &nbsp;·&nbsp;
-  <a href="../docs/contracts/index.html" target="_blank">CCNL coverage</a>
+  <a href="../docs/contracts/index.html" target="_blank" data-i18n="footer.ccnl_coverage">CCNL coverage</a>
   &nbsp;·&nbsp;
-  Covers gross pay (L1), net income (L2), employer cost, and L3 work rules (overtime, absence, leave, sick pay, welfare, bonus) · L3 figures are informational and do not affect net pay
+  <span data-i18n="footer.covers">Covers gross pay (L1), net income (L2), employer cost, and L3 work rules (overtime, absence, leave, sick pay, welfare, bonus) · L3 figures are informational and do not affect net pay</span>
   &nbsp;·&nbsp;
-  Indicative figures for 2026 · Not financial or tax advice
+  <span data-i18n="footer.disclaimer">Indicative figures for 2026 · Not financial or tax advice</span>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/pyodide/v0.27.0/full/pyodide.js"></script>
 <script>
+// ── i18n ────────────────────────────────────────────────────────────────────
+
+let _i18nStrings = {};
+let _currentLang = "it";
+
+// Detect preferred language from browser; supported: "it", "en".
+function detectLang() {
+  const saved = sessionStorage.getItem("ccnl_lang");
+  if (saved === "it" || saved === "en") return saved;
+  const nav = (navigator.language || navigator.userLanguage || "it").split("-")[0].toLowerCase();
+  return nav === "en" ? "en" : "it";
+}
+
+// Translate key, substituting {var} placeholders from vars object.
+function t(key, vars) {
+  let s = _i18nStrings[key] || key;
+  if (vars) {
+    for (const [k, v] of Object.entries(vars)) {
+      s = s.replace(new RegExp(`\\{${k}\\}`, "g"), v);
+    }
+  }
+  return s;
+}
+
+// Apply translations to all [data-i18n] elements in the document.
+function applyTranslations() {
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    const val = _i18nStrings[key];
+    if (val !== undefined) el.textContent = val;
+  });
+  document.querySelectorAll("[data-i18n-html]").forEach(el => {
+    const key = el.getAttribute("data-i18n-html");
+    const val = _i18nStrings[key];
+    if (val !== undefined) el.innerHTML = val;
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    const val = _i18nStrings[key];
+    if (val !== undefined) el.placeholder = val;
+  });
+  // Update lang buttons
+  document.getElementById("btn-it")?.classList.toggle("active", _currentLang === "it");
+  document.getElementById("btn-en")?.classList.toggle("active", _currentLang === "en");
+  // Update html lang attribute
+  document.documentElement.lang = _currentLang;
+}
+
+async function loadI18n(lang) {
+  try {
+    const resp = await fetch(`./i18n/${lang}.json`);
+    if (!resp.ok) throw new Error(`i18n/${lang}.json not found`);
+    _i18nStrings = await resp.json();
+    _currentLang = lang;
+  } catch (e) {
+    // Fallback: keep whatever strings are loaded (or empty)
+    console.warn("i18n load failed:", e);
+  }
+}
+
+function setLang(lang) {
+  sessionStorage.setItem("ccnl_lang", lang);
+  loadI18n(lang).then(applyTranslations);
+}
+
 // ── Formatters ──────────────────────────────────────────────────────────────
 
 const fmt  = (v, d = 0) => new Intl.NumberFormat("it-IT", {
@@ -1125,8 +1206,8 @@ document.getElementById("l3-toggle").addEventListener("click", () => {
 
 // ── Combobox init (before Pyodide loads) ────────────────────────────────────
 
-window._ccnlCombo    = makeCombobox("combo-ccnl-wrap",    "sel-ccnl",    "Search or select a CCNL…");
-window._regioneCombo = makeCombobox("combo-regione-wrap", "sel-regione", "Search region…");
+window._ccnlCombo    = makeCombobox("combo-ccnl-wrap",    "sel-ccnl",    t("form.ccnl.placeholder"));
+window._regioneCombo = makeCombobox("combo-regione-wrap", "sel-regione", t("form.regione.placeholder"));
 
 // ── Breakdown collapse ───────────────────────────────────────────────────────
 
@@ -1202,7 +1283,7 @@ function makeCombobox(wrapId, selectId, placeholder) {
     if (matched.length === 0) {
       const empty = document.createElement("div");
       empty.className = "combobox-empty";
-      empty.textContent = "No results";
+      empty.textContent = t("form.ccnl.noresult");
       dropdown.appendChild(empty);
       return;
     }
@@ -1315,7 +1396,7 @@ function makeCombobox(wrapId, selectId, placeholder) {
 async function populateCcnls(pyodide) {
   const ccnls = JSON.parse(pyodide.runPython("list_ccnls()"));
   const sel = document.getElementById("sel-ccnl");
-  sel.innerHTML = '<option value="">— Select a CCNL —</option>';
+  sel.innerHTML = `<option value="">— ${t("form.ccnl.loading")} —</option>`;
   for (const c of ccnls) {
     const opt = document.createElement("option");
     opt.value = c.file; opt.textContent = c.name;
@@ -1340,7 +1421,7 @@ async function onCcnlChange(pyodide) {
   const file = document.getElementById("sel-ccnl").value;
   const levelSel = document.getElementById("sel-level");
   const btn = document.getElementById("calc-btn");
-  levelSel.innerHTML = '<option value="">— Select a level —</option>';
+  levelSel.innerHTML = `<option value="">— ${t("form.level.placeholder_select")} —</option>`;
   levelSel.disabled = true; btn.disabled = true;
   if (!file) return;
   const levels = JSON.parse(pyodide.runPython(`load_ccnl_levels(${JSON.stringify(file)})`));
@@ -1368,16 +1449,18 @@ async function onCcnlChange(pyodide) {
       if (mode === "months") {
         // Months have no per-level cap — keep a generous ceiling.
         senInput.max = 600;
-        senHint.textContent = "Months of service elapsed — engine derives increment count from CCNL cadence.";
+        senHint.textContent = t("form.seniority.hint_months");
       } else {
         senInput.max = meta.maxCount;
         if (parseInt(senInput.value) > meta.maxCount) senInput.value = meta.maxCount;
-        senHint.textContent = `Seniority increments accrued — max ${meta.maxCount} for this level`
-          + (meta.cadenceMonths ? ` (one every ${meta.cadenceMonths} months).` : ".");
+        const cadence = meta.cadenceMonths
+          ? t("form.seniority.cadence_template", { n: meta.cadenceMonths }) : "";
+        senHint.textContent = t("form.seniority.hint_count_template",
+          { max: meta.maxCount, cadence });
       }
     } else {
       senInput.max = 600;
-      senHint.textContent = "Number of seniority increments accrued.";
+      senHint.textContent = t("form.seniority.hint_default");
     }
   }
 
@@ -1491,7 +1574,7 @@ function renderTrace(traceData, provenanceList) {
       }).join("");
       citeHtml = `<div class="trace-cite">${links}</div>`;
     } else if (step.category !== "gross") {
-      citeHtml = `<div class="trace-cite"><span class="no-cite">No source recorded for this step</span></div>`;
+      citeHtml = `<div class="trace-cite"><span class="no-cite">${t("trace.no_cite")}</span></div>`;
     }
 
     const div = document.createElement("div");
@@ -1545,7 +1628,7 @@ function renderSources(provenanceList, rulesetVersion) {
   list.innerHTML = "";
 
   if (!provenanceList || provenanceList.length === 0) {
-    list.innerHTML = `<span style="font-size:12px;color:var(--faint);font-style:italic">No source documents recorded for this contract.</span>`;
+    list.innerHTML = `<span style="font-size:12px;color:var(--faint);font-style:italic">${t("sources.no_sources")}</span>`;
     return;
   }
 
@@ -1697,7 +1780,7 @@ function renderScope(calcScope, confidence, warnings, fiscalSimps) {
   // Simplifications note
   const simpNote = document.getElementById("simps-note");
   if (simps.length > 0) {
-    simpNote.innerHTML = "⚠ <strong>Not included in this estimate:</strong> " + simps.map(esc).join("; ") + ".";
+    simpNote.innerHTML = `⚠ <strong>${t("scope.simps_prefix")}</strong> ` + simps.map(esc).join("; ") + ".";
     simpNote.style.display = "block";
   } else {
     simpNote.style.display = "none";
@@ -1707,15 +1790,20 @@ function renderScope(calcScope, confidence, warnings, fiscalSimps) {
 // ── Scenario strip ───────────────────────────────────────────────────────────
 
 function renderScenario(r) {
-  const EMP = { permanent: "Permanent", fixed_term: "Fixed-term", apprentice: "Apprentice" };
-  const ptLabel = r.part_time_pct < 1 ? ` · ${Math.round(r.part_time_pct * 100)}% PT` : "";
+  const EMP = {
+    permanent: t("results.scenario.permanent"),
+    fixed_term: t("results.scenario.fixed_term"),
+    apprentice: t("results.scenario.apprentice"),
+  };
+  const ptLabel = r.part_time_pct < 1
+    ? t("results.scenario.pt_suffix", { pct: Math.round(r.part_time_pct * 100) }) : "";
   const items = [
-    { k: "CCNL",     v: r.ccnl_name || r.ccnl_id },
-    { k: "Level",    v: r.level_code },
-    { k: "Contract", v: (EMP[r.employment_type] || r.employment_type) + ptLabel },
-    { k: "Year",     v: String(r.year) },
-    { k: "As of",    v: r.as_of },
-    { k: "Engine",   v: "v" + r.engine_version },
+    { k: t("results.scenario.ccnl"),     v: r.ccnl_name || r.ccnl_id },
+    { k: t("results.scenario.level"),    v: r.level_code },
+    { k: t("results.scenario.contract"), v: (EMP[r.employment_type] || r.employment_type) + ptLabel },
+    { k: t("results.scenario.year"),     v: String(r.year) },
+    { k: t("results.scenario.asof"),     v: r.as_of },
+    { k: t("results.scenario.engine"),   v: "v" + r.engine_version },
   ];
   const strip = document.getElementById("scenario-strip");
   strip.innerHTML = items.map((item, i) =>
@@ -1733,17 +1821,17 @@ function renderBreakdown(r, enteredComune) {
   const noCom = (r.fiscal_simplifications || []).includes("no_addizionale_comunale");
 
   const nm = r.additional_months || 13; // number of salary months (13 or 14)
-  body.appendChild(bHead(`Pay components (${nm} mensilità)`));
-  body.appendChild(bRow("Base pay", r.base_monthly, r.base_monthly * nm));
+  body.appendChild(bHead(t("breakdown.head.components_template", { nm })));
+  body.appendChild(bRow(t("breakdown.base_pay"), r.base_monthly, r.base_monthly * nm));
   if (r.seniority_monthly > 0)
-    body.appendChild(bRow(`Seniority increments (×${r.seniority_count})`,
+    body.appendChild(bRow(t("breakdown.seniority_template", { n: r.seniority_count }),
       r.seniority_monthly, r.seniority_monthly * nm));
   if (r.allowances_monthly > 0)
-    body.appendChild(bRow("Monthly allowances", r.allowances_monthly, r.allowances_monthly * nm));
+    body.appendChild(bRow(t("breakdown.allowances"), r.allowances_monthly, r.allowances_monthly * nm));
   if (r.ad_personam_monthly > 0)
-    body.appendChild(bRow("Ad personam supplement", r.ad_personam_monthly, r.ad_personam_monthly * nm));
+    body.appendChild(bRow(t("breakdown.ad_personam"), r.ad_personam_monthly, r.ad_personam_monthly * nm));
   if (r.second_level_monthly > 0)
-    body.appendChild(bRow("Second-level agreement", r.second_level_monthly, r.second_level_monthly * nm));
+    body.appendChild(bRow(t("breakdown.second_level"), r.second_level_monthly, r.second_level_monthly * nm));
   // If a RAL override was applied, the gross_monthly may differ from the sum of
   // known components. Show the adjustment so the Gross total reconciles.
   const componentSum = r.base_monthly + (r.seniority_monthly || 0)
@@ -1751,41 +1839,44 @@ function renderBreakdown(r, enteredComune) {
     + (r.second_level_monthly || 0);
   const ralAdj = r.gross_monthly - componentSum;
   if (Math.abs(ralAdj) > 0.005)
-    body.appendChild(bRow("RAL concordata — rettifica", ralAdj, ralAdj * nm));
+    body.appendChild(bRow(t("breakdown.ral_adj"), ralAdj, ralAdj * nm));
   if (r.apprenticeship_pct !== null)
     body.appendChild(bRow(
-      `Apprenticeship ${(r.apprenticeship_pct * 100).toFixed(0)}% of level ${r.apprenticeship_under_level_code || "—"}`,
+      t("breakdown.apprentice_template", {
+        pct: (r.apprenticeship_pct * 100).toFixed(0),
+        level: r.apprenticeship_under_level_code || "—",
+      }),
       null, null));
-  body.appendChild(bRow("Hourly rate", r.hourly_rate, null));
-  body.appendChild(bTotal("Gross", r.gross_monthly, r.gross_annual));
+  body.appendChild(bRow(t("breakdown.hourly_rate"), r.hourly_rate, null));
+  body.appendChild(bTotal(t("breakdown.gross"), r.gross_monthly, r.gross_annual));
 
-  body.appendChild(bHead("Employee deductions"));
-  body.appendChild(bRow("INPS employee contributions", null, r.inps_employee_annual));
-  body.appendChild(bSub("Taxable income (IRPEF base)", null, r.taxable_income));
-  body.appendChild(bSub("IRPEF (gross, before deductions)", null, r.irpef_gross));
+  body.appendChild(bHead(t("breakdown.head.deductions")));
+  body.appendChild(bRow(t("breakdown.inps_employee"), null, r.inps_employee_annual));
+  body.appendChild(bSub(t("breakdown.taxable_income"), null, r.taxable_income));
+  body.appendChild(bSub(t("breakdown.irpef_gross"), null, r.irpef_gross));
   if ((r.work_income_deduction || 0) > 0.005)
-    body.appendChild(bSub("↳ Work deductions — Art. 13 TUIR", null, -r.work_income_deduction));
+    body.appendChild(bSub(t("breakdown.art13"), null, -r.work_income_deduction));
   if ((r.ulteriore_detrazione_lavoro || 0) > 0.005)
-    body.appendChild(bSub("↳ Ulteriore detrazione lavoro (D.L. 3/2020)", null, -r.ulteriore_detrazione_lavoro));
-  body.appendChild(bRow("IRPEF (net)", null, r.irpef_net));
+    body.appendChild(bSub(t("breakdown.ulteriore_detrazione"), null, -r.ulteriore_detrazione_lavoro));
+  body.appendChild(bRow(t("breakdown.irpef_net"), null, r.irpef_net));
   body.appendChild(noReg
-    ? bNa("Addizionale regionale — not computed")
-    : bRow("Addizionale regionale", null, r.addizionale_regionale_annual));
+    ? bNa(t("breakdown.addizionale_regionale_na"))
+    : bRow(t("breakdown.addizionale_regionale"), null, r.addizionale_regionale_annual));
   body.appendChild(noCom
     ? bNa(enteredComune
-        ? `Addizionale comunale — dati non disponibili (${esc(enteredComune)})`
-        : "Addizionale comunale — codice non fornito")
-    : bRow("Addizionale comunale", null, r.addizionale_comunale_annual));
+        ? t("breakdown.addizionale_comunale_na_code_template", { code: esc(enteredComune) })
+        : t("breakdown.addizionale_comunale_na_blank"))
+    : bRow(t("breakdown.addizionale_comunale"), null, r.addizionale_comunale_annual));
   if (r.trattamento_integrativo > 0)
-    body.appendChild(bRow("Trattamento integrativo (D.L. 3/2020)", null, -r.trattamento_integrativo));
-  body.appendChild(bTotal("Net pay", r.net_monthly, r.net_annual));
+    body.appendChild(bRow(t("breakdown.trattamento_integrativo"), null, -r.trattamento_integrativo));
+  body.appendChild(bTotal(t("breakdown.net_pay"), r.net_monthly, r.net_annual));
 
-  body.appendChild(bHead("Employer costs"));
-  body.appendChild(bRow("INPS employer contributions", null, r.inps_employer_annual));
+  body.appendChild(bHead(t("breakdown.head.employer")));
+  body.appendChild(bRow(t("breakdown.inps_employer"), null, r.inps_employer_annual));
   if (r.employer_funds_annual > 0)
-    body.appendChild(bRow("Contractual funds", null, r.employer_funds_annual));
-  body.appendChild(bRow("TFR (severance)", null, r.tfr_annual));
-  body.appendChild(bTotal("Total employer cost", null, r.employer_cost_annual));
+    body.appendChild(bRow(t("breakdown.employer_funds"), null, r.employer_funds_annual));
+  body.appendChild(bRow(t("breakdown.tfr"), null, r.tfr_annual));
+  body.appendChild(bTotal(t("breakdown.employer_cost"), null, r.employer_cost_annual));
 
   // L3 work rules (informational — not in gross/net)
   const hasL3 = (r.overtime_supplement_monthly || 0) > 0
@@ -1797,40 +1888,40 @@ function renderBreakdown(r, enteredComune) {
     || (r.welfare_annual || 0) > 0
     || (r.bonus_annual || 0) > 0;
   if (hasL3) {
-    body.appendChild(bHead("Work rules (L3 — informational, not in gross/net)"));
+    body.appendChild(bHead(t("breakdown.head.l3")));
     if ((r.overtime_supplement_monthly || 0) > 0)
-      body.appendChild(bRow("Weekday overtime supplement", r.overtime_supplement_monthly, null));
+      body.appendChild(bRow(t("breakdown.ot_weekday"), r.overtime_supplement_monthly, null));
     if ((r.night_supplement_monthly || 0) > 0)
-      body.appendChild(bRow("Night supplement", r.night_supplement_monthly, null));
+      body.appendChild(bRow(t("breakdown.ot_night"), r.night_supplement_monthly, null));
     if ((r.holiday_supplement_monthly || 0) > 0)
-      body.appendChild(bRow("Holiday supplement", r.holiday_supplement_monthly, null));
+      body.appendChild(bRow(t("breakdown.ot_holiday"), r.holiday_supplement_monthly, null));
     if ((r.absence_deduction_monthly || 0) > 0) {
-      body.appendChild(bRow("Absence deduction", -r.absence_deduction_monthly, null));
-      body.appendChild(bSub("Effective gross (after absence)", r.effective_gross_monthly, null));
+      body.appendChild(bRow(t("breakdown.absence_deduction"), -r.absence_deduction_monthly, null));
+      body.appendChild(bSub(t("breakdown.effective_gross"), r.effective_gross_monthly, null));
     }
     if ((r.leave_accrued_days_monthly || 0) > 0)
-      body.appendChild(bRow(`Leave accrued (${r.leave_accrued_days_monthly?.toFixed(2)} days)`, null, null));
+      body.appendChild(bRow(
+        t("breakdown.leave_accrued_template", { days: r.leave_accrued_days_monthly?.toFixed(2) }),
+        null, null));
     if ((r.sick_inps_indemnity_monthly || 0) > 0)
-      body.appendChild(bRow("INPS sick-pay indemnity", r.sick_inps_indemnity_monthly, null));
+      body.appendChild(bRow(t("breakdown.sick_inps"), r.sick_inps_indemnity_monthly, null));
     if ((r.sick_company_integration_monthly || 0) > 0)
-      body.appendChild(bRow("Employer sick-pay integration", r.sick_company_integration_monthly, null));
+      body.appendChild(bRow(t("breakdown.sick_company"), r.sick_company_integration_monthly, null));
     if ((r.fringe_benefit_annual || 0) > 0)
-      body.appendChild(bRow("Fringe benefit", null, r.fringe_benefit_annual));
+      body.appendChild(bRow(t("breakdown.fringe_benefit"), null, r.fringe_benefit_annual));
     if ((r.welfare_annual || 0) > 0)
-      body.appendChild(bRow("Welfare (tax-exempt)", null, r.welfare_annual));
+      body.appendChild(bRow(t("breakdown.welfare"), null, r.welfare_annual));
     if ((r.bonus_annual || 0) > 0) {
-      body.appendChild(bRow("Bonus", null, r.bonus_annual));
+      body.appendChild(bRow(t("breakdown.bonus"), null, r.bonus_annual));
       if ((r.bonus_pdr_flat_tax_annual || 0) > 0)
-        body.appendChild(bSub("↳ PdR flat tax (imposta sostitutiva)", null, r.bonus_pdr_flat_tax_annual));
+        body.appendChild(bSub(t("breakdown.bonus_pdr"), null, r.bonus_pdr_flat_tax_annual));
     }
   }
 
   // IRPEF note
   const note = document.getElementById("irpef-note");
   if (!r.employer_withholds_irpef) {
-    note.textContent =
-      "The employer is not a tax withholding agent (e.g. domestic employment). " +
-      "IRPEF figures are informational; the worker files and pays income tax directly.";
+    note.textContent = t("breakdown.irpef_note_domestic");
     note.style.display = "block";
   } else {
     note.style.display = "none";
@@ -1902,19 +1993,18 @@ function doCompute(pyodide) {
 
   // KPIs
   document.getElementById("kpi-gross").textContent   = fmtM(r.gross_monthly);
-  document.getElementById("kpi-gross-sub").textContent = fmtK(r.gross_annual) + " / year";
+  document.getElementById("kpi-gross-sub").textContent = t("results.kpi.gross_sub_template", { annual: fmtK(r.gross_annual) });
   document.getElementById("kpi-net").textContent     = fmtM(r.net_monthly);
   const nm = r.additional_months || 13;
   document.getElementById("kpi-net-label").textContent =
-    `Netto medio stimato (su ${nm} mensilità)`;
+    t("results.kpi.net_label_template", { nm });
   document.getElementById("kpi-net-sub").textContent =
-    fmtK(r.net_annual) + " / anno · media per mensilità";
+    t("results.kpi.net_sub_template", { annual: fmtK(r.net_annual) });
 
   // Fiscal scope note near the net KPI (domestic / no-withholding cases)
   const netScope = document.getElementById("kpi-net-scope");
   if (!r.employer_withholds_irpef) {
-    netScope.textContent =
-      "IRPEF non trattenuta dal datore — cifra al lordo d'imposta sul reddito.";
+    netScope.textContent = t("results.kpi.net_scope_note");
     netScope.style.display = "block";
   } else {
     netScope.style.display = "none";
@@ -1924,11 +2014,11 @@ function doCompute(pyodide) {
   const kpiSummary = document.getElementById("kpi-scope-summary");
   const simps = r.fiscal_simplifications || [];
   const missingItems = [];
-  if (simps.includes("no_addizionale_regionale")) missingItems.push("addizionale regionale");
-  if (simps.includes("no_addizionale_comunale")) missingItems.push("addizionale comunale");
-  if (!r.employer_withholds_irpef) missingItems.push("IRPEF non calcolata");
+  if (simps.includes("no_addizionale_regionale")) missingItems.push(t("results.kpi.scope_addizionale_regionale"));
+  if (simps.includes("no_addizionale_comunale")) missingItems.push(t("results.kpi.scope_addizionale_comunale"));
+  if (!r.employer_withholds_irpef) missingItems.push(t("results.kpi.scope_no_irpef"));
   if (missingItems.length > 0) {
-    kpiSummary.textContent = "Stima parziale — non include: " + missingItems.join(", ") + ".";
+    kpiSummary.textContent = t("results.kpi.scope_partial_template", { items: missingItems.join(", ") });
     kpiSummary.style.display = "block";
   } else {
     kpiSummary.style.display = "none";
@@ -1959,21 +2049,24 @@ function doCompute(pyodide) {
 // ── Pyodide boot ─────────────────────────────────────────────────────────────
 
 async function main() {
+  // Load i18n before Pyodide so loading messages are already translated.
+  await loadI18n(detectLang());
+  applyTranslations();
   try {
-    setProgress(5,  "Loading Pyodide…");
+    setProgress(5,  t("loading.runtime"));
     const pyodide = await loadPyodide();
-    setProgress(30, "Loading Python dependencies…");
+    setProgress(30, t("loading.deps"));
     await pyodide.loadPackage(["pydantic", "micropip"]);
-    setProgress(60, "Installing ccnl-engine…");
+    setProgress(60, t("loading.engine"));
     const micropip = pyodide.pyimport("micropip");
     // WHEEL_VERSION is replaced by the pages.yml workflow at build time.
     const wheelUrl = new URL("./wheels/ccnl_engine-WHEEL_VERSION-py3-none-any.whl", window.location.href).href;
     await micropip.install(wheelUrl);
-    setProgress(80, "Loading application…");
+    setProgress(80, t("loading.app"));
     const resp = await fetch("./app.py");
     if (!resp.ok) throw new Error("app.py not found (" + resp.status + ")");
     pyodide.runPython(await resp.text());
-    setProgress(100, "Ready");
+    setProgress(100, t("loading.ready"));
     await populateCcnls(pyodide);
     await populateRegioni(pyodide);
     document.getElementById("sel-ccnl").addEventListener("change", () => onCcnlChange(pyodide));
