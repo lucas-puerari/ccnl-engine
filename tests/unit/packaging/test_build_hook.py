@@ -116,9 +116,11 @@ class TestDemoGlue:
             importlib.import_module(module)
 
     def test_index_html_has_wheel_version_placeholder(self) -> None:
-        """WHEEL_VERSION must appear in index.html for the pages.yml sed pass."""
+        """WHEEL_VERSION must appear in index.html or ui.js for sed substitution."""
+        ui_js = _PROJECT_ROOT / "demo" / "ui.js"
         html = _INDEX_HTML.read_text(encoding="utf-8")
-        assert "WHEEL_VERSION" in html, (
-            "demo/index.html does not contain the WHEEL_VERSION placeholder. "
-            "The pages.yml sed substitution would silently produce a broken page."
+        js = ui_js.read_text(encoding="utf-8") if ui_js.exists() else ""
+        assert "WHEEL_VERSION" in html or "WHEEL_VERSION" in js, (
+            "Neither demo/index.html nor demo/ui.js contains WHEEL_VERSION. "
+            "The pages.yml sed pass would silently produce a broken page."
         )

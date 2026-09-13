@@ -94,36 +94,47 @@
 
     /* ── Loading bar (top notification, non-blocking) ───────────────────── */
     #loading {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      display: flex; flex-direction: column; align-items: stretch;
-      gap: 0;
+      position: fixed; inset: 0; z-index: 200;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
     }
     #loading.hidden { display: none; }
     #loading-inner {
-      display: flex; align-items: center; gap: 10px;
-      padding: 8px 16px;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      width: 100%; max-width: 320px;
+    }
+    #loading-logo {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 18px; font-weight: 700;
+      color: var(--accent); letter-spacing: -.2px;
+      margin-bottom: 4px;
     }
     .spinner {
-      width: 16px; height: 16px;
-      border: 2px solid var(--border);
+      width: 36px; height: 36px;
+      border: 3px solid var(--border);
       border-top-color: var(--accent);
-      border-radius: 50%; flex-shrink: 0;
+      border-radius: 50%;
       animation: spin .7s linear infinite;
     }
     .spinner.hidden { display: none; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    #loading-msg { color: var(--muted); font-size: 13px; flex: 1; }
+    #loading-msg {
+      color: var(--muted); font-size: 13px; text-align: center;
+    }
     #loading-error-detail {
       display: none; font-size: 11px; color: var(--faint);
-      padding: 0 16px 8px; font-family: "IBM Plex Mono", monospace;
+      font-family: "IBM Plex Mono", monospace;
+      text-align: left; width: 100%;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; padding: 8px; overflow-wrap: break-word;
     }
     #retry-btn {
       display: none;
-      padding: 4px 12px; font-size: 12px; border-radius: 6px;
+      padding: 8px 20px; font-size: 13px; border-radius: 6px;
       border: 1px solid var(--accent); background: transparent;
       color: var(--accent); cursor: pointer; font-family: inherit;
+      font-weight: 600;
     }
     #retry-btn:hover { background: var(--accent-bg); }
     #detail-toggle {
@@ -132,10 +143,10 @@
       text-decoration: underline; white-space: nowrap;
     }
     .progress-bar {
-      height: 2px; background: var(--border);
+      width: 100%; height: 3px; background: var(--border); border-radius: 2px;
     }
     .progress-fill {
-      height: 100%; background: var(--accent);
+      height: 100%; background: var(--accent); border-radius: 2px;
       transition: width .4s ease;
     }
 
@@ -688,10 +699,13 @@
 
     /* ── Footer ─────────────────────────────────────────────────────────── */
     footer {
-      text-align: center; padding: 20px 16px;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      padding: 20px 16px;
       color: var(--faint); font-size: 11px;
       border-top: 1px solid var(--border);
       background: var(--surface);
     }
+    .footer-sub { color: var(--muted); font-weight: 500; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; }
     footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--accent); }

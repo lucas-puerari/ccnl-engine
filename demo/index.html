@@ -13,21 +13,21 @@
 
 <div id="loading">
   <div id="loading-inner">
+    <div id="loading-logo">ccnl-engine</div>
     <div class="spinner" id="loading-spinner"></div>
     <div id="loading-msg">Preparazione del calcolatore…</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
     <button id="retry-btn" onclick="location.reload()">↺ Riprova</button>
     <span id="detail-toggle" onclick="document.getElementById('loading-error-detail').style.display = document.getElementById('loading-error-detail').style.display === 'none' ? 'block' : 'none'">dettagli ▾</span>
-  </div>
-  <div id="loading-error-detail"></div>
-  <div class="progress-bar">
-    <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    <div id="loading-error-detail"></div>
   </div>
 </div>
 
 <header>
   <span class="header-logo">ccnl-engine</span>
-  <span class="header-badge">demo</span>
-  <div class="header-sep"></div>
+  <div class="header-sep" style="margin-left:auto"></div>
   <div class="lang-selector" id="lang-selector">
     <button class="lang-btn" id="btn-it" onclick="setLang('it')">IT</button>
     <span style="color:var(--border);font-size:12px">/</span>
@@ -413,15 +413,15 @@
 </main>
 
 <footer>
-  <span data-i18n="header.sub">Italian CCNL payroll · Gross-to-net · Employer cost · Calculation provenance · 2026</span>
-  &nbsp;·&nbsp;
-  <a href="https://github.com/lucas-puerari/ccnl-engine" target="_blank" rel="noopener">ccnl-engine</a>
-  &nbsp;·&nbsp;
-  <a href="../docs/" target="_blank" data-i18n="footer.api_docs">API docs</a>
-  &nbsp;·&nbsp;
-  <a href="../docs/contracts/index.html" target="_blank" data-i18n="footer.ccnl_coverage">CCNL coverage</a>
-  &nbsp;·&nbsp;
-  <span data-i18n="footer.disclaimer">Indicative figures for 2026 · Not financial or tax advice</span>
+  <div class="footer-sub" data-i18n="header.sub">Italian CCNL payroll · Gross-to-net · Employer cost · Calculation provenance · 2026</div>
+  <div class="footer-links">
+    <a href="https://github.com/lucas-puerari/ccnl-engine" target="_blank" rel="noopener">ccnl-engine</a>
+    &nbsp;·&nbsp;
+    <a href="../docs/" target="_blank" data-i18n="footer.api_docs">API docs</a>
+    &nbsp;·&nbsp;
+    <a href="../docs/contracts/index.html" target="_blank" data-i18n="footer.ccnl_coverage">CCNL coverage</a>
+  </div>
+  <div data-i18n="footer.disclaimer">Indicative figures for 2026 · Not financial or tax advice</div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/pyodide/v0.27.0/full/pyodide.js"></script>
