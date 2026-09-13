@@ -15,7 +15,7 @@ from decimal import Decimal
 
 from ccnl_engine.engine.contract.domain.ccnl import SupplementaryAllowance
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
-from ccnl_engine.engine.io.bundled import read_bundled
+from ccnl_engine.engine.io.service.bundled import read_bundled
 from ccnl_engine.engine.payroll.domain.employee import (
     RalOverride,
     SeniorityByCount,

@@ -9,8 +9,14 @@ setup:
 
 demo:
 	uv build --wheel --out-dir demo/wheels --quiet
-	@echo "Wheel built. Serving demo at http://localhost:8080"
-	python3 -m http.server 8080 --directory demo
+	@WHEEL_VERSION=$$(uv version --short) && \
+	  rm -rf demo/_build && mkdir -p demo/_build/wheels && \
+	  sed "s/WHEEL_VERSION/$${WHEEL_VERSION}/g" demo/index.html \
+	    > demo/_build/index.html && \
+	  cp demo/app.py demo/_build/app.py && \
+	  cp demo/wheels/*.whl demo/_build/wheels/
+	@echo "Wheel built. Serving demo at http://127.0.0.1:8080"
+	python3 -m http.server 8080 --directory demo/_build --bind 127.0.0.1
 
 # Quality gates
 
