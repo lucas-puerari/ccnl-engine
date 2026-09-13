@@ -191,7 +191,8 @@ def _compute_ti(
             FiscalSimplification.NO_ADDIZIONALE_REGIONALE,
             FiscalSimplification.NO_ADDIZIONALE_COMUNALE,
             FiscalSimplification.NO_DETRAZIONI_FAMILIARI,
-            FiscalSimplification.NO_DETRAZIONI_ART15,
+            FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE,
+            FiscalSimplification.PARTIAL_DETRAZIONI_ART15,
         })
     else:
         trattamento_integrativo = _ZERO
@@ -525,13 +526,15 @@ def compute_fiscal(
     # when the input has dependents — even if fam_total is zero due to incapienza
     # or income above the Art. 12 phase-out threshold (deductions computed,
     # just fully unavailable).
-    # Remove NO_DETRAZIONI_ART15 when Art. 15 deductions were computed.
+    # Remove NO_DETRAZIONI_ART15_MORTGAGE when mortgage interest was provided.
+    # PARTIAL_DETRAZIONI_ART15 is never removed: the engine only models mortgage
+    # interest; the other ~14 Art. 15 TUIR categories are always out of scope.
     # Add NO_ULTERIORE_DETRAZIONE_LAVORO when rules are absent from the file.
     sfs_mut: set[FiscalSimplification] = set(fiscal_simplifications)
     if scenario.family is not None and scenario.family.has_any_dependent:
         sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_FAMILIARI)
     if art15_total > _ZERO:
-        sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_ART15)
+        sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE)
     if ud_rules is None:
         sfs_mut.add(FiscalSimplification.NO_ULTERIORE_DETRAZIONE_LAVORO)
     fiscal_simplifications = frozenset(sfs_mut)
