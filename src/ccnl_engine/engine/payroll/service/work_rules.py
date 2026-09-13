@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.contract.domain.ccnl import WorkKind
 from ccnl_engine.engine.payroll.service.absence import compute_absence_deduction
 from ccnl_engine.engine.payroll.service.leave import compute_leave
 from ccnl_engine.engine.payroll.service.rounding import money
@@ -23,10 +24,12 @@ from ccnl_engine.engine.tax.service.loaders import (
 from ccnl_engine.knowledge.version import __version__ as _knowledge_version
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
     from datetime import date
 
     from ccnl_engine.engine.contract.domain.ccnl import (
         CCNL,
+        OvertimeBand,
     )
     from ccnl_engine.engine.payroll.domain.calculation import (
         TraceStep,
@@ -38,6 +41,19 @@ if TYPE_CHECKING:
 _ZERO = Decimal(0)
 
 
+def _kind_supported(bands: Sequence[OvertimeBand], *kinds: WorkKind) -> bool:
+    """Return True when any band in *bands* applies to at least one of *kinds*.
+
+    Args:
+        bands: List of :class:`OvertimeBand` objects from the CCNL schema.
+        kinds: One or more :class:`WorkKind` values to match against.
+
+    Returns:
+        ``True`` if a matching band exists, ``False`` otherwise.
+    """
+    return any(k in b.applies_to_kinds for b in bands for k in kinds)
+
+
 def _run_wr_supplements(
     scenario: PayrollScenario,
     ccnl: CCNL,
@@ -45,14 +61,16 @@ def _run_wr_supplements(
     hourly_divisor: Decimal,
     as_of: date,
     wr_warnings: list[str],
-) -> tuple[Decimal, Decimal, Decimal, tuple[TraceStep, ...], bool]:
+) -> tuple[Decimal, Decimal, Decimal, tuple[TraceStep, ...], bool, bool, bool]:
     """Run the work-rules time-supplement block and return its outputs.
 
     Returns:
-        A 5-tuple of (overtime_supp, night_supp, holiday_supp, supplement_trace,
-        wr_schema_present).  All supplement amounts are zero when the CCNL has no
-        work-rules data or no hours were supplied; a warning is appended to
-        ``wr_warnings`` in the latter case.
+        A 7-tuple of (overtime_supp, night_supp, holiday_supp, supplement_trace,
+        wr_overtime_supported, wr_night_supported, wr_holiday_supported).
+        All supplement amounts are zero when the CCNL has no work-rules data or
+        no hours were supplied; a warning is appended to ``wr_warnings`` in the
+        latter case.  Each per-kind support flag is ``True`` only when the CCNL
+        schema contains at least one band for that work kind.
     """
     ts_input = scenario.time_supplements
     wr_schema_present = (
@@ -62,6 +80,9 @@ def _run_wr_supplements(
     night_supp = _ZERO
     holiday_supp = _ZERO
     supplement_trace: tuple[TraceStep, ...] = ()
+    wr_overtime_supported = False
+    wr_night_supported = False
+    wr_holiday_supported = False
     if ts_input is not None:
         if wr_schema_present:
             assert ccnl.work_rules is not None  # narrowing for mypy
@@ -72,7 +93,15 @@ def _run_wr_supplements(
                     "hourly_base_method='gross_incl_allowances' is not yet"
                     " implemented; time supplements cannot be computed"
                 )
-                return _ZERO, _ZERO, _ZERO, (), False
+                return _ZERO, _ZERO, _ZERO, (), False, False, False
+            bands = ts_schema.overtime_bands
+            wr_overtime_supported = _kind_supported(
+                bands, WorkKind.WEEKDAY, WorkKind.SUPPLEMENTARE
+            )
+            wr_night_supported = _kind_supported(bands, WorkKind.NIGHT)
+            wr_holiday_supported = _kind_supported(
+                bands, WorkKind.HOLIDAY, WorkKind.NIGHT_HOLIDAY
+            )
             overtime_supp, night_supp, holiday_supp, supplement_trace = (
                 compute_time_supplements(
                     supps_input=ts_input,
@@ -86,7 +115,15 @@ def _run_wr_supplements(
             wr_warnings.append(
                 "time_supplements requested but not modelled for this CCNL"
             )
-    return overtime_supp, night_supp, holiday_supp, supplement_trace, wr_schema_present
+    return (
+        overtime_supp,
+        night_supp,
+        holiday_supp,
+        supplement_trace,
+        wr_overtime_supported,
+        wr_night_supported,
+        wr_holiday_supported,
+    )
 
 
 def _run_wr_absence(
@@ -293,7 +330,9 @@ class WorkRulesPay:
     bonus_annual: Decimal
     bonus_pdr_flat_tax_annual: Decimal
     bonus_ordinary_taxable_annual: Decimal
-    wr_schema_present: bool
+    wr_overtime_supported: bool
+    wr_night_supported: bool
+    wr_holiday_supported: bool
     wr_absence_present: bool
     wr_leave_present: bool
     wr_sickness_present: bool
@@ -315,15 +354,21 @@ def compute_work_rules(
     """
     base_monthly_full_time = gross.chain_full_time.base
     wr_warnings: list[str] = []
-    overtime_supp, night_supp, holiday_supp, supplement_trace, wr_schema_present = (
-        _run_wr_supplements(
-            scenario=scenario,
-            ccnl=ccnl,
-            base_monthly_full_time=base_monthly_full_time,
-            hourly_divisor=gross.hourly_divisor,
-            as_of=scenario.employment.calculation_date,
-            wr_warnings=wr_warnings,
-        )
+    (
+        overtime_supp,
+        night_supp,
+        holiday_supp,
+        supplement_trace,
+        wr_overtime_supported,
+        wr_night_supported,
+        wr_holiday_supported,
+    ) = _run_wr_supplements(
+        scenario=scenario,
+        ccnl=ccnl,
+        base_monthly_full_time=base_monthly_full_time,
+        hourly_divisor=gross.hourly_divisor,
+        as_of=scenario.employment.calculation_date,
+        wr_warnings=wr_warnings,
     )
 
     time_supplements_monthly = money(overtime_supp + night_supp + holiday_supp)
@@ -424,7 +469,9 @@ def compute_work_rules(
         bonus_annual=bonus_annual,
         bonus_pdr_flat_tax_annual=bonus_pdr_flat_tax_annual,
         bonus_ordinary_taxable_annual=bonus_ordinary_taxable_annual,
-        wr_schema_present=wr_schema_present,
+        wr_overtime_supported=wr_overtime_supported,
+        wr_night_supported=wr_night_supported,
+        wr_holiday_supported=wr_holiday_supported,
         wr_absence_present=wr_absence_present,
         wr_leave_present=wr_leave_present,
         wr_sickness_present=wr_sickness_present,
