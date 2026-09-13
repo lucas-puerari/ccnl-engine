@@ -817,7 +817,7 @@ class TestComputeAddizionali:
         assert _FS.NO_ADDIZIONALE_REGIONALE not in r.fiscal_simplifications
 
     def test_unknown_comune_produces_zero(self) -> None:
-        """Unknown belfiore code → addizionale comunale zero, no flag."""
+        """Unknown codice catastale → addizionale comunale zero, no flag."""
         r = self._result(comune_belfiore="Z999")
         assert r.addizionale_comunale_annual == Decimal("0.00")
         assert _FS.NO_ADDIZIONALE_COMUNALE not in r.fiscal_simplifications

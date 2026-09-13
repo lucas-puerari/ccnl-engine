@@ -139,7 +139,7 @@ class SurtaxRules(BaseModel):
         regionale: Per-region surtax data, keyed by Italian region name
             (e.g. ``"Lombardia"``).
         comunale: Per-municipality surtax data, keyed by *codice catastale*
-            (belfiore code, e.g. ``"H501"`` for Rome).
+            (e.g. ``"H501"`` for Rome).
     """
 
     model_config = ConfigDict(extra="forbid")

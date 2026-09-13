@@ -5,7 +5,7 @@
     "Dati: 'Elenco aggiornato al 26 gennaio 2026' — aliquote deliberate per l'anno d'imposta 2025,",
     "applicabili come base per il calcolo dell'acconto 2026 (art. 1 comma 751 L. 207/2024).",
     "Comuni con aliquota 0% (non deliberata o zero) sono omessi.",
-    "Chiave: codice catastale (belfiore). Rate decimali (es. 0.008 = 0.8%).",
+    "Chiave: codice catastale. Rate decimali (es. 0.008 = 0.8%).",
     "soglia: esenzione totale se reddito imponibile <= soglia.",
     "brackets: aliquote marginali per scaglione (stesso schema scaglioni IRPEF).",
     "Tipologia 1 (4 scaglioni): 15.000 / 28.000 / 50.000 / illimitato.",
@@ -76654,7 +76654,7 @@
     "effective_until": "2026-12-31",
     "published_at": "2026-09-13",
     "source": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addirpef_newDF/download/tabella.htm",
-    "source_hash": "1e2402a0eca4c8d4466c6b8d0bf5aa99d7864fa3da8064c862a34dfa302e00cc",
+    "source_hash": "2166237c82d5673ef83760507d707b9c5bb8fb5d381c28b8fbe8476c11cdaca1",
     "verification_status": "verified"
   }
 }

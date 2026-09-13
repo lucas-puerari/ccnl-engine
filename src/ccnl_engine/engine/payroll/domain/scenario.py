@@ -64,8 +64,8 @@ class Jurisdiction:
 
     Attributes:
         regione: Italian region name (e.g. ``"Lombardia"``).
-        comune_belfiore: Belfiore (codice catastale) of the worker's
-            municipality of residence (e.g. ``"F205"`` for Milan).
+        comune_belfiore: Codice catastale of the worker's municipality of
+            residence (e.g. ``"F205"`` for Milan).
     """
 
     regione: str | None = None

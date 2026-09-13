@@ -131,4 +131,4 @@ surtax = load_surtax_rules(2026)
 ```
 
 The `SurtaxRules` object covers all Italian regions and ~7 000 comuni
-(identified by their belfiore cadastral code).
+(identified by their codice catastale).

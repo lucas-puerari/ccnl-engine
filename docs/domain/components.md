@@ -180,7 +180,7 @@ in the bundled `surtax/data/regionale/` files.
 ### Addizionale comunale
 
 A municipal surcharge on taxable income, identified by the municipality's *codice
-Belfiore*. Rates are in the bundled `surtax/data/comunale/` files.
+catastale*. Rates are in the bundled `surtax/data/comunale/` files.
 
 ### Domestic work exception
 
