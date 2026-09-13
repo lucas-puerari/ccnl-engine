@@ -8,9 +8,11 @@ import pytest
 
 from ccnl_engine.engine.contract.domain.ccnl import CCNL
 from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.seniority import _resolve_tier_amount
 from tests.helpers import TEST_PROV, make_ccnl_dict
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _D,
+    _DATE,
     _RULES,
     _build_ccnl,
     _req,
@@ -306,3 +308,12 @@ class TestServiceGatedAllowances:
         # Annual difference must be 50x1, not 50x14
         diff = r_with.gross_annual - r_without.gross_annual
         assert diff == _D("50.00")
+
+
+class TestResolveTierAmountValidation:
+    """Guard-clause in _resolve_tier_amount raises when both inputs are None."""
+
+    def test_no_months_and_no_count_raises(self) -> None:
+        """_resolve_tier_amount with neither seniority_months nor count raises."""
+        with pytest.raises(ValueError, match="seniority_months is required"):
+            _resolve_tier_amount([], "4", _DATE)  # both optional args default to None

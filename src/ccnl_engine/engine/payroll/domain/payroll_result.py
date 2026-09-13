@@ -209,6 +209,10 @@ class PayrollResult:
             ``addizionale_regionale_annual`` minus
             ``addizionale_comunale_annual`` plus ``trattamento_integrativo``).
         net_monthly: Monthly net pay (``net_annual / additional_months``).
+            Rounded to two decimal places; for contracts with fractional
+            additional-months divisors (e.g. 13.5 or 14), a sub-cent
+            remainder is absorbed by the rounding — the sum of monthly
+            figures may differ from ``net_annual`` by up to EUR 0.01.
 
         employer_cost_annual: Total annual employer cost
             (``gross_annual`` + ``inps_employer_annual``
