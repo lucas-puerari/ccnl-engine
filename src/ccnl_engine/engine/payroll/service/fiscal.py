@@ -448,7 +448,7 @@ def compute_fiscal(
     # (clawback of the 35% → 33% bracket benefit, R14).
     art15_total = _irpef.apply_sterilizzazione_detrazioni(
         art15_total,
-        gross.gross_annual,
+        taxable_income,
         rules.sterilizzazione_detrazioni,
     )
     art15_unused = min(art15_unused, art15_total)

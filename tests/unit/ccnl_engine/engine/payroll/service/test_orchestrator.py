@@ -1522,8 +1522,8 @@ class TestSterilizzazioneDetrazioni:
     trigger the rule at normal test-CCNL income levels.
     """
 
-    # Threshold below test-CCNL gross (12 000) so sterilizzazione fires.
-    _STRD_RULES = {"threshold": "11000", "reduction": "440"}
+    # Threshold below test-CCNL taxable income (~10 897) so sterilizzazione fires.
+    _STRD_RULES = {"threshold": "10000", "reduction": "440"}
 
     def test_sterilizzazione_does_not_reduce_family_deduction(self) -> None:
         """R14: sterilizzazione does not affect Art. 12 family deduction."""
@@ -1700,7 +1700,7 @@ class TestArt15Deductions:
         credit is reduced by EUR 440.  Art. 12 and Art. 13 are not affected.
         """
         _mock_rules[0] = make_year_rules(
-            sterilizzazione_detrazioni={"threshold": "11000", "reduction": "440"}
+            sterilizzazione_detrazioni={"threshold": "10000", "reduction": "440"}
         )
         with_strd = compute(
             dataclasses.replace(
@@ -1728,7 +1728,7 @@ class TestArt15Deductions:
         """
         _mock_ccnl[0] = self._EXEMPT_CCNL
         _mock_rules[0] = make_year_rules(
-            sterilizzazione_detrazioni={"threshold": "11000", "reduction": "440"}
+            sterilizzazione_detrazioni={"threshold": "10000", "reduction": "440"}
         )
         result = compute(
             dataclasses.replace(
