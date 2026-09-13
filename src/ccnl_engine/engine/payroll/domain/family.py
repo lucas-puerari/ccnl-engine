@@ -28,7 +28,7 @@ class FamilyComposition:
             (D.Lgs. 230/2021 from 2022-03-01) and are NOT eligible.
         children_21_or_older_disabled: Number of eligible children aged 21
             or older with certified disability (Legge 104/92).  These receive
-            a higher deduction (``disabled_amount`` from the rules file).
+            a higher deduction (``disability_supplement`` from the rules file).
         ascendenti_conviventi: Number of fiscally dependent ascendants
             (parents, grandparents) living with the taxpayer.  Post L. 207/2024
             only ascendants qualify; other relatives no longer do.

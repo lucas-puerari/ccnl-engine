@@ -123,9 +123,9 @@ class TestChildrenDeduction:
         assert result == _D("681.57")
 
     def test_one_disabled_child(self) -> None:
-        """One disabled child: taper applied to disabled_amount 1220."""
+        """One disabled child: taper applied to base_amount + disability_supplement."""
         taper = (_D("95000") - _D("26843.44")) / _D("95000")
-        expected = money(_D("1220") * taper)
+        expected = money((_D("950") + _D("400")) * taper)
         result = _children_deduction(_D("26843.44"), _RULES.children, 0, 1)
         assert result == expected
 
@@ -227,7 +227,7 @@ class TestComputeFamilyDeductions:
         assert total == _D("0.00")
 
     def test_disabled_child_only(self) -> None:
-        """Disabled-only child uses disabled_amount for the deduction."""
+        """Disabled-only child uses base_amount + disability_supplement."""
         family = FamilyComposition(children_21_or_older_disabled=1)
         _sp, ch, _ot, total = compute_family_deductions(family, _D("26843.44"), _RULES)
         assert ch > _D("0.00")

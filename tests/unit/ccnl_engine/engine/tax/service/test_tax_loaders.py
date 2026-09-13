@@ -54,7 +54,7 @@ class TestLoadFamilyDeductionRules:
             "children": {
                 "auu_age_cutoff": 21,
                 "base_amount": "950.00",
-                "disabled_amount": "1220.00",
+                "disability_supplement": "400.00",
                 "income_ceiling": "95000.00",
                 "income_ceiling_increment_per_child": "15000.00",
                 "notes": "",

@@ -15,7 +15,7 @@
   "children": {
     "auu_age_cutoff": 21,
     "base_amount": "950.00",
-    "disabled_amount": "1220.00",
+    "disability_supplement": "400.00",
     "income_ceiling": "95000.00",
     "income_ceiling_increment_per_child": "15000.00",
     "notes": "Figli under 21 not eligible (AUU from 2022-03-01, D.Lgs. 230/2021). Figli 21-29 and 30+ with disability are eligible."
@@ -28,6 +28,6 @@
   },
   "ruleset": {
     "id": "tax/family-deductions/2026",
-    "source_hash": "157b7f0668a87b8665647240c780a4b253029730d5614cd57164c280293ce834"
+    "source_hash": "583f1f205f34fb19780160ecdb5612e70c123200ec617f90372e56d0cc46f341"
   }
 }

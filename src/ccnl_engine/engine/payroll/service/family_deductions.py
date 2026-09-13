@@ -128,7 +128,8 @@ def _children_deduction(
 
     taper = max(_ZERO, (effective_ceiling - gross_annual) / effective_ceiling)
     deduction_standard = money(rules.base_amount * taper) * n_standard
-    deduction_disabled = money(rules.disabled_amount * taper) * n_disabled
+    disabled_per_child = rules.base_amount + rules.disability_supplement
+    deduction_disabled = money(disabled_per_child * taper) * n_disabled
     return money(deduction_standard + deduction_disabled)
 
 

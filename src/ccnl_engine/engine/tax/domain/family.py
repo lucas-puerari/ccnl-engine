@@ -43,6 +43,9 @@ class ChildrenDeductionRules(BaseModel):
         deduction = base_amount
             * max(0, (income_ceiling - gross_annual) / income_ceiling)
 
+    Disabled children (``n_disabled``) receive ``base_amount +
+    disability_supplement`` each (Art. 12 c. 1 lett. c second period TUIR).
+
     When there are N children, ``income_ceiling`` increases by
     ``income_ceiling_increment_per_child`` for each child beyond the first.
     """
@@ -51,7 +54,7 @@ class ChildrenDeductionRules(BaseModel):
 
     auu_age_cutoff: int = Field(ge=0)
     base_amount: Decimal = Field(gt=Decimal(0))
-    disabled_amount: Decimal = Field(gt=Decimal(0))
+    disability_supplement: Decimal = Field(ge=Decimal(0))
     income_ceiling: Decimal = Field(gt=Decimal(0))
     income_ceiling_increment_per_child: Decimal = Field(ge=Decimal(0))
     notes: str = ""

@@ -404,7 +404,7 @@ def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
         children=ChildrenDeductionRules(
             auu_age_cutoff=int(ch_raw["auu_age_cutoff"]),
             base_amount=Decimal(str(ch_raw["base_amount"])),
-            disabled_amount=Decimal(str(ch_raw["disabled_amount"])),
+            disability_supplement=Decimal(str(ch_raw["disability_supplement"])),
             income_ceiling=Decimal(str(ch_raw["income_ceiling"])),
             income_ceiling_increment_per_child=Decimal(
                 str(ch_raw["income_ceiling_increment_per_child"])
