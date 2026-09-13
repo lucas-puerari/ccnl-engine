@@ -244,7 +244,7 @@ def _compute_addizionali(
             )
             sfs.discard(FiscalSimplification.NO_ADDIZIONALE_COMUNALE)
         else:
-            # Unknown belfiore code: not_computed, not verified-zero.
+            # Unknown codice catastale: not_computed, not verified-zero.
             sfs.add(FiscalSimplification.ADDIZIONALE_COMUNALE_UNKNOWN)
             sfs.discard(FiscalSimplification.NO_ADDIZIONALE_COMUNALE)
     else:

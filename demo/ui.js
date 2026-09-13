@@ -1,3 +1,29 @@
+// ── Theme ────────────────────────────────────────────────────────────────────
+
+function initTheme() {
+  const saved = localStorage.getItem("ccnl_theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const theme = saved || (prefersDark ? "ccnl-dark" : "ccnl-light");
+  document.documentElement.setAttribute("data-theme", theme);
+  _updateThemeIcon(theme);
+}
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute("data-theme") || "ccnl-light";
+  const next = cur === "ccnl-dark" ? "ccnl-light" : "ccnl-dark";
+  document.documentElement.setAttribute("data-theme", next);
+  localStorage.setItem("ccnl_theme", next);
+  _updateThemeIcon(next);
+}
+function _updateThemeIcon(theme) {
+  const btn = document.getElementById("btn-theme");
+  if (!btn) return;
+  const sun  = btn.querySelector(".icon-sun");
+  const moon = btn.querySelector(".icon-moon");
+  if (sun)  sun.style.display  = theme === "ccnl-dark"  ? "" : "none";
+  if (moon) moon.style.display = theme === "ccnl-light" ? "" : "none";
+}
+initTheme();
+
 // ── i18n ────────────────────────────────────────────────────────────────────
 
 let _i18nStrings = {};
@@ -44,6 +70,13 @@ function applyTranslations() {
   document.getElementById("btn-en")?.classList.toggle("active", _currentLang === "en");
   // Update html lang attribute
   document.documentElement.lang = _currentLang;
+  // Refresh example labels
+  _refreshExampleSelect();
+  // Refresh combobox placeholders (created before i18n loads, so t() returned the key)
+  window._ccnlCombo?.setPlaceholder(t("form.ccnl.placeholder"));
+  window._regioneCombo?.setPlaceholder(t("form.regione.placeholder"));
+  window._comuneCombo?.setPlaceholder(t("form.comune.name_placeholder"));
+  window._cmpCcnlCombo?.setPlaceholder(t("form.ccnl.placeholder"));
 }
 
 async function loadI18n(lang) {
@@ -83,7 +116,8 @@ function esc(s) {
 // ── Loading overlay ─────────────────────────────────────────────────────────
 
 function setProgress(pct, msg) {
-  document.getElementById("progress-fill").style.width = pct + "%";
+  const el = document.getElementById("progress-fill");
+  if (el) el.value = pct;
   if (msg) document.getElementById("loading-msg").textContent = msg;
 }
 function hideLoading() {
@@ -120,36 +154,11 @@ document.getElementById("sel-employment").addEventListener("change", e => {
   document.getElementById("div-seniority").style.display = isApp ? "none" : "";
 });
 
-// ── Advanced toggle ──────────────────────────────────────────────────────────
-
-document.getElementById("advanced-toggle").addEventListener("click", () => {
-  document.getElementById("advanced-toggle").classList.toggle("open");
-  document.getElementById("advanced-body").classList.toggle("open");
-});
-
-// ── L3 toggle ────────────────────────────────────────────────────────────────
-
-document.getElementById("l3-toggle").addEventListener("click", () => {
-  const body = document.getElementById("l3-body");
-  const toggle = document.getElementById("l3-toggle");
-  const arrow = toggle.querySelector(".arrow");
-  const open = body.style.display === "none";
-  body.style.display = open ? "" : "none";
-  arrow.style.transform = open ? "rotate(90deg)" : "";
-});
-
 // ── Combobox init (before Pyodide loads) ────────────────────────────────────
 
 window._ccnlCombo    = makeCombobox("combo-ccnl-wrap",    "sel-ccnl",    t("form.ccnl.placeholder"));
 window._regioneCombo = makeCombobox("combo-regione-wrap", "sel-regione", t("form.regione.placeholder"));
 window._comuneCombo  = makeCombobox("combo-comune-wrap",  "sel-comune",  t("form.comune.name_placeholder"));
-
-// ── Breakdown collapse ───────────────────────────────────────────────────────
-
-document.getElementById("breakdown-toggle").addEventListener("click", () => {
-  document.getElementById("breakdown-toggle").classList.toggle("open");
-  document.getElementById("breakdown-body-wrap").classList.toggle("open");
-});
 
 // ── RAL ↔ second-level mutual exclusion ─────────────────────────────────────
 
@@ -261,8 +270,9 @@ function makeCombobox(wrapId, selectId, placeholder) {
     input.classList.remove("open");
     dropdown.classList.remove("open");
     input.setAttribute("aria-expanded", "false");
-    // Restore display label of the selected value
-    const selected = getOptions().find(o => o.value === sel.value);
+    // Restore display label of the selected value (guard empty value to avoid
+    // showing the placeholder option's text when nothing is selected)
+    const selected = sel.value ? getOptions().find(o => o.value === sel.value) : undefined;
     input.value = selected ? selected.textContent : "";
   }
 
@@ -317,7 +327,7 @@ function makeCombobox(wrapId, selectId, placeholder) {
   return {
     enable() {
       input.disabled = false;
-      const selected = getOptions().find(o => o.value === sel.value);
+      const selected = sel.value ? getOptions().find(o => o.value === sel.value) : undefined;
       input.value = selected ? selected.textContent : "";
     },
     setValue(val) {
@@ -372,39 +382,161 @@ async function populateComuni(pyodide) {
   });
 }
 
+// ── Examples ─────────────────────────────────────────────────────────────────
+
+// Each entry maps to a test scenario. ccnl_match: exact filename string or
+// RegExp tested against the option label. level_code: exact code or null (4th).
+// part_time_pct: 10–100 (slider units). regione/comune_pattern: optional.
+const EXAMPLES = [
+  // ── Top 5 by number of workers covered ──────────────────────────────────
+  {
+    label_it: "Confcommercio — Liv. 4, 3 scatti, Lazio/Roma",
+    label_en: "Confcommercio — Lv. 4, 3 increments, Lazio/Rome",
+    ccnl_match: "commercio-confcommercio.json",
+    level_code: "4",
+    employment_type: "permanent",
+    seniority_count: 3,
+    part_time_pct: 100,
+    num_employees: 50,
+    regione: /Lazio/i,
+    comune_pattern: /^Roma \(/i,
+  },
+  {
+    label_it: "Federmeccanica — Liv. C1 (operaio specializzato)",
+    label_en: "Federmeccanica — Lv. C1 (skilled worker)",
+    ccnl_match: "metalmeccanico-federmeccanica.json",
+    level_code: "C1",
+    employment_type: "permanent",
+    seniority_count: 2,
+    part_time_pct: 100,
+    num_employees: 200,
+  },
+  {
+    label_it: "Edilizia ANCE — Liv. 3 (operaio specializzato)",
+    label_en: "Construction ANCE — Lv. 3 (specialised worker)",
+    ccnl_match: "edilizia-ance.json",
+    level_code: "3",
+    employment_type: "permanent",
+    seniority_count: 1,
+    part_time_pct: 100,
+    num_employees: 30,
+  },
+  {
+    label_it: "Federalberghi — Liv. 3",
+    label_en: "Federalberghi — Lv. 3",
+    ccnl_match: "turismo-federalberghi.json",
+    level_code: "3",
+    employment_type: "permanent",
+    seniority_count: 0,
+    part_time_pct: 100,
+    num_employees: 20,
+  },
+  {
+    label_it: "Bancari ABI — 3ª area professionale, 4° livello",
+    label_en: "Banking ABI — 3rd professional area, 4th level",
+    ccnl_match: "bancari-abi.json",
+    level_code: "3A4",
+    employment_type: "permanent",
+    seniority_count: 2,
+    part_time_pct: 100,
+    num_employees: 500,
+  },
+  // ── Other examples ───────────────────────────────────────────────────────
+  {
+    label_it: "Agenti immobiliari FIAIP — Liv. III",
+    label_en: "Real estate agents FIAIP — Lv. III",
+    ccnl_match: "agenti-immobiliari-fiaip.json",
+    level_code: "III",
+    employment_type: "permanent",
+    seniority_count: 0,
+    part_time_pct: 100,
+    num_employees: 50,
+  },
+  {
+    label_it: "Pulizie artigianato Confartigianato — Liv. 3",
+    label_en: "Cleaning services (craft) Confartigianato — Lv. 3",
+    ccnl_match: "pulizia-artigianato-confartigianato.json",
+    level_code: "3",
+    employment_type: "permanent",
+    seniority_count: 0,
+    part_time_pct: 100,
+    num_employees: 50,
+  },
+  {
+    label_it: "Ortofrutticoli agrumari — Liv. 4",
+    label_en: "Fruit & vegetables (agrumari) — Lv. 4",
+    ccnl_match: "ortofrutticoli-agrumari.json",
+    level_code: "4",
+    employment_type: "permanent",
+    seniority_count: 0,
+    part_time_pct: 100,
+    num_employees: 50,
+  },
+];
+
 let _examplePyodide = null;
-function loadExample() {
+
+function loadExample(idx) {
   if (!_examplePyodide) return;
-  // Example: CCNL Commercio (Confcommercio), first available level, permanent, 3 scatti, Milano
-  const sel = document.getElementById("sel-ccnl");
-  const opts = Array.from(sel.options);
-  const commercio = opts.find(o => /Terziario.*Confcommercio/i.test(o.textContent)) || opts[1];
-  if (!commercio || !commercio.value) return;
-  window._ccnlCombo.setValue(commercio.value);
-  sel.dispatchEvent(new Event("change"));
-  // After levels load (onCcnlChange is async), set a level and trigger compute
+  const ex = EXAMPLES[idx];
+  if (!ex) return;
+
+  // Find CCNL option
+  const ccnlSel = document.getElementById("sel-ccnl");
+  const ccnlOpts = Array.from(ccnlSel.options);
+  const match = typeof ex.ccnl_match === "string"
+    ? ccnlOpts.find(o => o.value === ex.ccnl_match)
+    : ccnlOpts.find(o => ex.ccnl_match.test(o.textContent));
+  if (!match || !match.value) return;
+
+  window._ccnlCombo.setValue(match.value);
+  ccnlSel.dispatchEvent(new Event("change"));
+
   const waitForLevels = () => {
     const levelSel = document.getElementById("sel-level");
     if (levelSel.options.length < 2) { setTimeout(waitForLevels, 100); return; }
-    // Pick the 4th level if available, else first non-empty
+
     const lvOpts = Array.from(levelSel.options).filter(o => o.value);
-    const pick = lvOpts[Math.min(3, lvOpts.length - 1)];
+    const pick = ex.level_code
+      ? (lvOpts.find(o => o.value === ex.level_code) || lvOpts[0])
+      : lvOpts[Math.min(3, lvOpts.length - 1)];
     if (pick) { levelSel.value = pick.value; levelSel.dispatchEvent(new Event("change")); }
-    // Set seniority to 3, comune to Milano
-    document.getElementById("inp-seniority").value = "3";
-    const comuneSel = document.getElementById("sel-comune");
-    // Pick Roma (H501) if available, else first non-empty comune option
-    const comuneOpts = Array.from(comuneSel.options).filter(o => o.value);
-    const romaOpt = comuneOpts.find(o => /^Roma \(/i.test(o.textContent)) || comuneOpts[0];
-    if (romaOpt) {
-      window._comuneCombo.setValue(romaOpt.value);
-      document.getElementById("inp-comune").value = romaOpt.value;
+
+    document.getElementById("inp-seniority").value = String(ex.seniority_count ?? 0);
+    document.getElementById("inp-employees").value = String(ex.num_employees ?? 50);
+
+    const pct = ex.part_time_pct ?? 100;
+    document.getElementById("inp-parttime").value = String(pct);
+    document.getElementById("inp-parttime-pct").value = String(pct);
+
+    const empSel = document.getElementById("sel-employment");
+    empSel.value = ex.employment_type || "permanent";
+    empSel.dispatchEvent(new Event("change"));
+
+    if (ex.regione) {
+      const opt = Array.from(document.getElementById("sel-regione").options)
+        .find(o => ex.regione.test(o.textContent));
+      if (opt) document.getElementById("sel-regione").value = opt.value;
     }
-    const regioneOpt = Array.from(document.getElementById("sel-regione").options).find(o => /Lazio/i.test(o.textContent));
-    if (regioneOpt) { document.getElementById("sel-regione").value = regioneOpt.value; }
+    if (ex.comune_pattern) {
+      const comuneSel = document.getElementById("sel-comune");
+      const opt = Array.from(comuneSel.options).filter(o => o.value)
+        .find(o => ex.comune_pattern.test(o.textContent));
+      if (opt) {
+        window._comuneCombo.setValue(opt.value);
+        document.getElementById("inp-comune").value = opt.value;
+      }
+    }
+
     setTimeout(() => document.getElementById("calc-btn").click(), 150);
   };
   setTimeout(waitForLevels, 300);
+}
+
+// Populate example select labels once i18n is ready
+function _refreshExampleSelect() {
+  // Chip labels are language-agnostic (CCNL names); nothing to translate.
+  // The hidden #example-sel options mirror EXAMPLES[] for programmatic access.
 }
 
 async function onCcnlChange(pyodide) {
@@ -618,7 +750,7 @@ function renderSources(provenanceList, rulesetVersion) {
   list.innerHTML = "";
 
   if (!provenanceList || provenanceList.length === 0) {
-    list.innerHTML = `<span style="font-size:12px;color:var(--faint);font-style:italic">${t("sources.no_sources")}</span>`;
+    list.innerHTML = `<span style="font-size:12px;color:var(--c-faint);font-style:italic">${t("sources.no_sources")}</span>`;
     return;
   }
 
@@ -662,7 +794,7 @@ function renderSources(provenanceList, rulesetVersion) {
       const verLabel = isVerified ? "Verified" : `${methodLabel}, ${statusLabel}`;
       const dotCls = isVerified ? "dot-green" : "dot-amber";
       const verCls = isVerified ? "verified" : "unverified";
-      return `<div class="source-meta" style="padding-left:4px; border-left:2px solid var(--border); margin-top:4px">
+      return `<div class="source-meta" style="padding-left:4px; border-left:2px solid var(--color-base-300); margin-top:4px">
         ${p.section ? `<span>${esc(p.section)}</span> · ` : ""}
         <span>${p.kind.replace(/_/g," ")}</span>
         <span class="verified-badge ${verCls}">
@@ -717,7 +849,7 @@ const CONF_LABELS = {
 
 const SIMP_LABELS = {
   no_addizionale_regionale:      "Regional income surtax — select a region above",
-  no_addizionale_comunale:       "Municipal income surtax — enter a Belfiore code above",
+  no_addizionale_comunale:       "Municipal income surtax — select a municipality above",
   addizionale_comunale_unknown:  "Municipal income surtax — data not available for this comune",
   no_detrazioni_familiari:       "Family-dependent deductions (Art. 12 TUIR)",
   no_sterilizzazione_detrazioni: "Deduction phase-out (progressive reduction)",
@@ -769,7 +901,7 @@ function renderScope(calcScope, confidence, warnings, fiscalSimps) {
   for (const s of verified) {
     const div = document.createElement("div");
     div.className = "feature-item";
-    div.innerHTML = `<i class="f-icon" style="color:var(--green)">✓</i> ${esc(FEATURE_LABELS[s.feature] || s.feature)}`;
+    div.innerHTML = `<i class="f-icon" style="color:var(--color-success)">✓</i> ${esc(FEATURE_LABELS[s.feature] || s.feature)}`;
     vEl.appendChild(div);
   }
 
@@ -778,7 +910,7 @@ function renderScope(calcScope, confidence, warnings, fiscalSimps) {
   for (const s of excluded) {
     const div = document.createElement("div");
     div.className = "feature-item excluded";
-    div.innerHTML = `<i class="f-icon" style="color:var(--faint)">–</i> ${esc(FEATURE_LABELS[s.feature] || s.feature)}`;
+    div.innerHTML = `<i class="f-icon" style="color:var(--c-faint)">–</i> ${esc(FEATURE_LABELS[s.feature] || s.feature)}`;
     xEl.appendChild(div);
   }
 
@@ -802,19 +934,35 @@ function renderScenario(r) {
   };
   const ptLabel = r.part_time_pct < 1
     ? t("results.scenario.pt_suffix", { pct: Math.round(r.part_time_pct * 100) }) : "";
+  // Format as_of date DD/MM/YYYY
+  const asofFmt = r.as_of
+    ? r.as_of.replace(/^(\d{4})-(\d{2})-(\d{2})$/, "$3/$2/$1")
+    : r.as_of;
   const items = [
     { k: t("results.scenario.ccnl"),     v: r.ccnl_name || r.ccnl_id },
     { k: t("results.scenario.level"),    v: r.level_code },
     { k: t("results.scenario.contract"), v: (EMP[r.employment_type] || r.employment_type) + ptLabel },
     { k: t("results.scenario.year"),     v: String(r.year) },
-    { k: t("results.scenario.asof"),     v: r.as_of },
+    { k: t("results.scenario.asof"),     v: asofFmt },
     { k: t("results.scenario.engine"),   v: "v" + r.engine_version },
   ];
-  const strip = document.getElementById("scenario-strip");
-  strip.innerHTML = items.map((item, i) =>
-    (i > 0 ? '<span class="s-arrow">→</span>' : "") +
-    `<span class="s-chip">${esc(item.k)} <span class="val">${esc(item.v)}</span></span>`
-  ).join("");
+  // Render as two rows of 3, each chip numbered 01–06
+  function chip(item, idx) {
+    const num = String(idx + 1).padStart(2, "0");
+    return `<span class="s-chip">` +
+      `<span class="s-num">${num}</span>` +
+      `<span class="s-body">${esc(item.k)}<span class="val">${esc(item.v)}</span></span>` +
+      `</span>`;
+  }
+  function arrow() { return '<span class="s-arrow">→</span>'; }
+  function row(from, to) {
+    return '<div class="s-row">' +
+      items.slice(from, to).map((item, i) =>
+        (i > 0 ? arrow() : "") + chip(item, from + i)
+      ).join("") +
+      '</div>';
+  }
+  document.getElementById("scenario-strip").innerHTML = row(0, 3) + row(3, 6);
 }
 
 // ── Breakdown table ──────────────────────────────────────────────────────────
@@ -1030,13 +1178,14 @@ function doCompute(pyodide) {
   }
   document.getElementById("kpi-cost").textContent    = fmtK(r.employer_cost_annual);
 
-  // Calculation date
-  const asofEl = document.getElementById("kpi-asof");
+  // Calculation date + download row
+  const asofEl   = document.getElementById("kpi-asof");
+  const metaRow  = document.getElementById("kpi-meta-row");
   if (r.as_of) {
     asofEl.textContent = t("results.calculated_on") + " " + r.as_of;
-    asofEl.style.display = "block";
+    if (metaRow) metaRow.style.display = "flex";
   } else {
-    asofEl.style.display = "none";
+    if (metaRow) metaRow.style.display = "none";
   }
 
   // Scenario strip
@@ -1051,9 +1200,8 @@ function doCompute(pyodide) {
   // Scope & confidence
   renderScope(r.calculation_scope, r.confidence, r.warnings, r.fiscal_simplifications);
 
-  // Breakdown (collapsed by default — reset state)
-  document.getElementById("breakdown-toggle").classList.remove("open");
-  document.getElementById("breakdown-body-wrap").classList.remove("open");
+  // Reset all collapsibles to closed
+  document.querySelectorAll("#panel-detail details.collapsible-section").forEach(d => d.removeAttribute("open"));
   renderBreakdown(r, comune);
 
   document.getElementById("results").style.display = "flex";
@@ -1069,9 +1217,8 @@ function doCompute(pyodide) {
     absenceDays, leaveDays, sickDays,
     fringeAnnual, welfareAnnual, bonusAnnual, bonusPdr,
   };
-  // Show toolbar now that we have results; reset sub-panels
-  document.getElementById("snippet-section").style.display = "none";
-  if (!_compareActive) document.getElementById("compare-panel").style.display = "none";
+  // After a new calculation, switch to detail tab (unless compare is active)
+  if (!_compareActive) switchTab("detail");
 }
 
 // ── Download / Snippet / Compare ─────────────────────────────────────────────
@@ -1116,12 +1263,8 @@ print(f"Netto: {result.net_monthly:.2f}  Lordo: {result.gross_monthly:.2f}")`;
 }
 
 function showSnippet() {
-  const sec = document.getElementById("snippet-section");
-  if (!_lastResult || !_lastParams) return;
-  if (sec.style.display !== "none") { sec.style.display = "none"; return; }
-  document.getElementById("snippet-code").textContent = generateSnippet(_lastParams, _lastResult);
-  sec.style.display = "";
-  sec.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  // Legacy shim — now handled by switchTab("code")
+  switchTab("code");
 }
 
 function copySnippet() {
@@ -1135,17 +1278,36 @@ function copySnippet() {
 }
 
 function toggleComparePanel() {
-  const panel = document.getElementById("compare-panel");
-  _compareActive = !_compareActive;
-  panel.style.display = _compareActive ? "" : "none";
-  if (!_compareActive) {
-    document.getElementById("compare-kpis").style.display = "none";
+  // Legacy shim — now handled by switchTab
+  switchTab(_compareActive ? "detail" : "compare");
+}
+
+const _TABS = ["detail", "compare", "code"];
+
+function switchTab(id) {
+  if (!_TABS.includes(id)) return;
+  // Populate snippet when switching to code tab
+  if (id === "code" && _lastResult && _lastParams) {
+    document.getElementById("snippet-code").textContent = generateSnippet(_lastParams, _lastResult);
   }
+  // Update _compareActive flag
+  _compareActive = (id === "compare");
+
+  _TABS.forEach(t => {
+    const btn   = document.getElementById("tab-" + t);
+    const panel = document.getElementById("panel-" + t);
+    if (btn)   btn.classList.toggle("active", t === id);
+    if (panel) panel.hidden = (t !== id);
+  });
 }
 
 function clearCompare() {
   document.getElementById("compare-kpis").style.display = "none";
-  document.getElementById("cmp-ccnl").value = "";
+  if (window._cmpCcnlCombo) {
+    window._cmpCcnlCombo.reset();
+  } else {
+    document.getElementById("cmp-ccnl").value = "";
+  }
   document.getElementById("cmp-level").innerHTML = "<option value=''>—</option>";
   document.getElementById("cmp-level").disabled = true;
 }
@@ -1188,6 +1350,14 @@ function initCompare(pyodide) {
     opt.value = o.value; opt.textContent = o.textContent;
     dest.appendChild(opt);
   });
+
+  // Initialise searchable combobox for the variant CCNL picker
+  if (!window._cmpCcnlCombo) {
+    window._cmpCcnlCombo = makeCombobox(
+      "combo-cmp-ccnl-wrap", "cmp-ccnl",
+      t("form.ccnl.placeholder")
+    );
+  }
 
   dest.addEventListener("change", async () => {
     const file = dest.value;
@@ -1256,14 +1426,16 @@ async function main() {
     document.getElementById("sel-ccnl").addEventListener("change", () => onCcnlChange(pyodide));
     document.getElementById("calc-btn").addEventListener("click", () => doCompute(pyodide));
     document.getElementById("btn-download").addEventListener("click", downloadResult);
-    document.getElementById("btn-snippet").addEventListener("click", showSnippet);
     document.getElementById("btn-copy-snippet").addEventListener("click", copySnippet);
-    document.getElementById("btn-compare").addEventListener("click", toggleComparePanel);
+    document.getElementById("tab-detail").addEventListener("click",  () => switchTab("detail"));
+    document.getElementById("tab-compare").addEventListener("click", () => switchTab("compare"));
+    document.getElementById("tab-code").addEventListener("click",    () => switchTab("code"));
     initCompare(pyodide);
 
     // Mark results as stale whenever any form input changes after the first calculation.
     document.querySelectorAll("input, select").forEach(el => {
-      if (!el.closest("#results")) el.addEventListener("change", markStale);
+      if (!el.closest("#results") && !el.hasAttribute("data-no-stale"))
+        el.addEventListener("change", markStale);
     });
 
     setTimeout(hideLoading, 300);

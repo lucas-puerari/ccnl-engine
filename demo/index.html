@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="ccnl-light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,44 +7,78 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5/daisyui.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+<!-- ── Loading overlay ──────────────────────────────────────────────────────── -->
 <div id="loading">
   <div id="loading-inner">
     <div id="loading-logo">ccnl-engine</div>
-    <div class="spinner" id="loading-spinner"></div>
+    <span class="loading loading-spinner loading-lg text-primary" id="loading-spinner"></span>
     <div id="loading-msg">Preparazione del calcolatore…</div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
-    </div>
+    <progress id="progress-fill" class="progress progress-primary" value="0" max="100"></progress>
     <button id="retry-btn" onclick="location.reload()">↺ Riprova</button>
     <span id="detail-toggle" onclick="document.getElementById('loading-error-detail').style.display = document.getElementById('loading-error-detail').style.display === 'none' ? 'block' : 'none'">dettagli ▾</span>
     <div id="loading-error-detail"></div>
   </div>
 </div>
 
+<!-- ── Header ───────────────────────────────────────────────────────────────── -->
 <header>
   <span class="header-logo">ccnl-engine</span>
+  <div class="header-sep"></div>
+  <span class="header-sub">Italian CCNL payroll calculator</span>
   <div class="header-sep" style="margin-left:auto"></div>
   <div class="lang-selector" id="lang-selector">
     <button class="lang-btn" id="btn-it" onclick="setLang('it')">IT</button>
-    <span style="color:var(--border);font-size:12px">/</span>
+    <span style="color:var(--color-base-300);font-size:12px">/</span>
     <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
   </div>
+  <button id="btn-theme" class="btn btn-ghost btn-sm btn-square" onclick="toggleTheme()" aria-label="Toggle theme">
+    <!-- Sun icon (shown in dark mode) -->
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+    </svg>
+    <!-- Moon icon (shown in light mode) -->
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
 </header>
 
+<!-- ── Main ─────────────────────────────────────────────────────────────────── -->
 <main>
 
   <!-- Parameters card -->
-  <div class="card">
-    <div class="card-header" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap">
+  <div class="app-card app-card-pad">
+    <div class="card-header">
       <span class="card-title" data-i18n="form.title">Employment scenario</span>
-      <button id="example-btn" onclick="loadExample()" style="font-size:12px; padding:4px 12px; border-radius:12px; border:1px solid var(--accent); background:transparent; color:var(--accent); cursor:pointer; margin-left:auto; white-space:nowrap" data-i18n="form.example_btn">Try an example</button>
     </div>
+    <div class="examples-row" id="examples-row">
+      <span class="examples-label" data-i18n="form.example_placeholder">Prova un esempio…</span>
+      <button class="example-chip" onclick="loadExample(0)" data-ex="0">Confcommercio</button>
+      <button class="example-chip" onclick="loadExample(1)" data-ex="1">Federmeccanica</button>
+      <button class="example-chip" onclick="loadExample(2)" data-ex="2">ANCE Edilizia</button>
+      <button class="example-chip" onclick="loadExample(3)" data-ex="3">Federalberghi</button>
+      <button class="example-chip" onclick="loadExample(4)" data-ex="4">Bancari ABI</button>
+      <!-- hidden select kept for _refreshExampleSelect() i18n -->
+      <select id="example-sel" hidden>
+        <option value="0">Confcommercio — Liv. 4, 3 scatti, Lazio/Roma</option>
+        <option value="1">Federmeccanica — Liv. C1 (operaio specializzato)</option>
+        <option value="2">Edilizia ANCE — Liv. 3 (operaio specializzato)</option>
+        <option value="3">Federalberghi — Liv. 3</option>
+        <option value="4">Bancari ABI — 3ª area professionale, 4° livello</option>
+        <option value="5">Agenti immobiliari FIAIP — Liv. III</option>
+        <option value="6">Pulizie artigianato Confartigianato — Liv. 3</option>
+        <option value="7">Ortofrutticoli agrumari — Liv. 4</option>
+      </select>
+    </div>
+
     <div class="form-grid">
 
+      <!-- CCNL -->
       <div class="full">
         <div class="label-row">
           <label for="sel-ccnl" data-i18n="form.ccnl.label">CCNL (collective agreement)</label>
@@ -54,26 +88,45 @@
           <select id="sel-ccnl" hidden disabled><option value="">— Loading… —</option></select>
         </div>
       </div>
+
+      <!-- Level -->
       <div class="full">
         <div class="label-row">
           <label for="sel-level" data-i18n="form.level.label">Pay level (livello di inquadramento)</label>
           <span class="tip" tabindex="0" data-tip="The worker's qualification level within the CCNL. Higher levels carry a higher base salary and seniority increment amount.">?</span>
         </div>
-        <select id="sel-level" disabled><option value="">— Select a CCNL first —</option></select>
+        <select id="sel-level" class="select select-bordered" disabled>
+          <option value="">— Select a CCNL first —</option>
+        </select>
       </div>
 
+      <!-- Contract type -->
       <div>
         <div class="label-row">
           <label for="sel-employment" data-i18n="form.employment.label">Contract type</label>
           <span class="tip" tabindex="0" data-tip="Permanent: standard open-ended. Fixed-term: adds NASpI 1.4% surcharge. Apprenticeship: under-classification with a progressive pay percentage.">?</span>
         </div>
-        <select id="sel-employment">
+        <select id="sel-employment" class="select select-bordered">
           <option value="permanent" data-i18n="form.employment.permanent">Permanent (tempo indeterminato)</option>
           <option value="fixed_term" data-i18n="form.employment.fixed_term">Fixed-term (tempo determinato)</option>
           <option value="apprentice" data-i18n="form.employment.apprentice">Apprenticeship (apprendistato)</option>
         </select>
       </div>
 
+      <!-- Part-time -->
+      <div>
+        <div class="label-row">
+          <label for="inp-parttime" data-i18n="form.parttime.label">Part-time fraction</label>
+          <span class="tip" tabindex="0" data-tip="Applied to base pay, seniority, and most INPS contributions. Ad personam supplements are not scaled. 100% = full-time.">?</span>
+        </div>
+        <div class="range-row">
+          <input type="range" id="inp-parttime" class="range range-primary range-sm" min="10" max="100" value="100" step="5" />
+          <input type="number" id="inp-parttime-pct" class="input input-bordered input-sm" min="10" max="100" value="100" step="1" style="width:70px; text-align:right" />
+          <span style="color:var(--c-muted); font-size:13px">%</span>
+        </div>
+      </div>
+
+      <!-- Seniority -->
       <div id="div-seniority" class="full">
         <div class="label-row">
           <label data-i18n="form.seniority.label">Seniority (scatti di anzianità)</label>
@@ -83,31 +136,20 @@
           <label><input type="radio" name="sen-mode" value="count" checked /> <span data-i18n="form.seniority.count">Scatti (count)</span></label>
           <label><input type="radio" name="sen-mode" value="months" /> <span data-i18n="form.seniority.months">Months of service</span></label>
         </div>
-        <input type="number" id="inp-seniority" value="0" min="0" max="600" />
+        <input type="number" id="inp-seniority" class="input input-bordered input-sm" value="0" min="0" max="600" />
         <p class="field-hint" id="seniority-hint" data-i18n="form.seniority.hint_default">Number of seniority increments accrued.</p>
       </div>
 
+      <!-- Apprentice months (hidden by default) -->
       <div id="div-apprentice-months" style="display:none" class="full">
         <div class="label-row">
           <label for="inp-apprentice-months" data-i18n="form.apprentice.months.label">Months into apprenticeship</label>
           <span class="tip" tabindex="0" data-tip="Months elapsed since the apprenticeship started. Used to determine the current pay percentage band as defined in the CCNL.">?</span>
         </div>
-        <input type="number" id="inp-apprentice-months" value="0" min="0" max="60" />
+        <input type="number" id="inp-apprentice-months" class="input input-bordered input-sm" value="0" min="0" max="60" />
       </div>
 
-      <div class="full">
-        <div class="label-row">
-          <label for="inp-parttime" data-i18n="form.parttime.label">Part-time fraction</label>
-          <span class="tip" tabindex="0" data-tip="Applied to base pay, seniority, and most INPS contributions. Ad personam supplements are not scaled. 100% = full-time.">?</span>
-        </div>
-        <div class="range-row">
-          <input type="range" id="inp-parttime" min="10" max="100" value="100" step="5" />
-          <input type="number" id="inp-parttime-pct" min="10" max="100" value="100" step="1"
-                 style="width:70px; text-align:right" />
-          <span style="color:var(--muted); font-size:13px">%</span>
-        </div>
-      </div>
-
+      <!-- Region -->
       <div>
         <div class="label-row">
           <label for="sel-regione" data-i18n="form.regione.label">Region — addizionale regionale</label>
@@ -117,6 +159,8 @@
           <select id="sel-regione" hidden><option value="">— not specified —</option></select>
         </div>
       </div>
+
+      <!-- Comune -->
       <div>
         <div class="label-row">
           <label for="sel-comune" data-i18n="form.comune.name_label">Municipality — addizionale comunale</label>
@@ -125,346 +169,380 @@
         <div class="combobox-wrap" id="combo-comune-wrap">
           <select id="sel-comune" hidden disabled><option value="">— Loading… —</option></select>
         </div>
-        <!-- Hidden input keeps the Belfiore code for doCompute -->
         <input type="hidden" id="inp-comune" value="" />
       </div>
 
-      <!-- RAL primary field: shown before advanced options -->
+      <!-- RAL override -->
       <div>
         <div class="label-row">
           <label for="inp-ral" data-i18n="form.ral.label">RAL override — agreed annual gross (€)</label>
           <span class="tip" tabindex="0" data-tip="Replaces the CCNL salary table with a negotiated annual gross. Set to 0 to use the contract table. Mutually exclusive with second-level allowance.">?</span>
         </div>
-        <input type="number" id="inp-ral" value="0" min="0" step="100" />
+        <input type="number" id="inp-ral" class="input input-bordered input-sm" value="0" min="0" step="100" />
       </div>
 
-      <!-- Employees: explicit assumption note -->
+      <!-- Employees -->
       <div>
         <div class="label-row">
           <label for="inp-employees" data-i18n="form.employees.label">Employer headcount</label>
           <span class="tip" tabindex="0" data-tip="Total employees at this workplace. Determines the INPS contribution rate tier. Default 50 covers the most common SME bracket.">?</span>
         </div>
-        <input type="number" id="inp-employees" value="50" min="1" max="10000" />
-        <p id="err-employees" class="field-error" data-i18n="form.employees.error">Headcount must be at least 1.</p>
+        <input type="number" id="inp-employees" class="input input-bordered input-sm" value="50" min="1" max="10000" />
+        <p id="err-employees" class="field-error" style="display:none" data-i18n="form.employees.error">Headcount must be at least 1.</p>
       </div>
 
+      <!-- Advanced options (daisyUI collapse) -->
       <div class="full">
-        <div class="section-toggle" id="advanced-toggle">
-          <i class="arrow">▶</i> <span data-i18n="form.advanced.toggle">Advanced options</span>
+        <div class="app-collapse collapse collapse-arrow">
+          <input type="checkbox" id="advanced-toggle" data-no-stale />
+          <div class="collapse-title" data-i18n="form.advanced.toggle">Advanced options</div>
+          <div class="collapse-content" id="advanced-body">
+            <div class="form-grid" style="margin-top:4px">
+
+              <div>
+                <div class="label-row">
+                  <label for="inp-ad-personam" data-i18n="form.ad_personam.label">Ad personam monthly (€)</label>
+                  <span class="tip" tabindex="0" data-tip="Frozen individual monthly supplement (e.g. pre-abolition seniority tiers). Not scaled by part-time.">?</span>
+                </div>
+                <input type="number" id="inp-ad-personam" class="input input-bordered input-sm" value="0" min="0" step="1" />
+              </div>
+
+              <div>
+                <div class="label-row">
+                  <label for="inp-second-level" data-i18n="form.second_level.label">Second-level monthly (€)</label>
+                  <span class="tip" tabindex="0" data-tip="Monthly supplement from a territorial or company second-level agreement. Mutually exclusive with RAL override.">?</span>
+                </div>
+                <input type="number" id="inp-second-level" class="input input-bordered input-sm" value="0" min="0" step="1" />
+              </div>
+
+              <div class="full" style="display:flex; align-items:flex-start; gap:10px; padding-top:4px">
+                <input type="checkbox" id="chk-ivs" class="checkbox checkbox-primary checkbox-sm" style="margin-top:3px" />
+                <div>
+                  <div class="label-row" style="margin:0 0 2px">
+                    <label for="chk-ivs" style="margin:0; color:var(--color-base-content); font-weight:500" data-i18n="form.ivs.label">IVS ceiling applies</label>
+                    <span class="tip" tabindex="0" data-tip="When annual gross exceeds the INPS IVS ceiling (~€113,520 in 2026), only the IVS-specific reduced rate applies above the threshold.">?</span>
+                  </div>
+                  <p class="field-hint" style="margin:0" data-i18n="form.ivs.hint">Worker's gross exceeds the INPS IVS ceiling.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
-        <div class="advanced-body" id="advanced-body">
-          <div class="form-grid" style="margin-top:0">
+      </div>
 
-            <div>
-              <div class="label-row">
-                <label for="inp-ad-personam" data-i18n="form.ad_personam.label">Ad personam monthly (€)</label>
-                <span class="tip" tabindex="0" data-tip="Frozen individual monthly supplement (e.g. pre-abolition seniority tiers). Not scaled by part-time.">?</span>
+      <!-- L3 Work rules (daisyUI collapse) -->
+      <div class="full">
+        <div class="app-collapse collapse collapse-arrow">
+          <input type="checkbox" id="l3-toggle" data-no-stale />
+          <div class="collapse-title">
+            <span data-i18n="form.l3.toggle">Work rules</span>
+            <span class="tip" tabindex="0" style="margin-left:6px" data-tip="L3 outputs are reported alongside the payroll but do not change gross or net pay. They reflect period events such as overtime worked or days absent.">?</span>
+          </div>
+          <div class="collapse-content" id="l3-body">
+            <p style="font-size:12px; color:var(--c-faint); margin:0 0 14px" id="l3-note-p" data-i18n-html="form.l3.note">
+              These amounts are <strong>informational</strong> — they do not affect
+              gross or net pay. Supply period-level event data and the engine
+              reports the corresponding supplements and deductions.
+            </p>
+
+            <div class="field-grid">
+              <div class="field-group">
+                <div class="label-row">
+                  <label for="inp-ot-weekday" data-i18n="form.l3.ot_weekday.label">Weekday overtime (h)</label>
+                  <span class="tip" tabindex="0" data-tip="Daytime weekday overtime hours (straordinario diurno).">?</span>
+                </div>
+                <input type="number" id="inp-ot-weekday" class="input input-bordered input-sm" value="0" min="0" step="0.5" />
               </div>
-              <input type="number" id="inp-ad-personam" value="0" min="0" step="1" />
+              <div class="field-group">
+                <div class="label-row">
+                  <label for="inp-ot-night" data-i18n="form.l3.ot_night.label">Night overtime (h)</label>
+                  <span class="tip" tabindex="0" data-tip="Weekday night hours (lavoro notturno).">?</span>
+                </div>
+                <input type="number" id="inp-ot-night" class="input input-bordered input-sm" value="0" min="0" step="0.5" />
+              </div>
+              <div class="field-group">
+                <div class="label-row">
+                  <label for="inp-ot-holiday" data-i18n="form.l3.ot_holiday.label">Holiday overtime (h)</label>
+                  <span class="tip" tabindex="0" data-tip="Daytime public-holiday hours.">?</span>
+                </div>
+                <input type="number" id="inp-ot-holiday" class="input input-bordered input-sm" value="0" min="0" step="0.5" />
+              </div>
+              <div class="field-group">
+                <div class="label-row">
+                  <label for="inp-ot-nightholiday" data-i18n="form.l3.ot_nightholiday.label">Night-holiday (h)</label>
+                  <span class="tip" tabindex="0" data-tip="Night hours on a public holiday.">?</span>
+                </div>
+                <input type="number" id="inp-ot-nightholiday" class="input input-bordered input-sm" value="0" min="0" step="0.5" />
+              </div>
+              <div class="field-group">
+                <div class="label-row">
+                  <label for="inp-absence-days" data-i18n="form.l3.absence.label">Unpaid absence (days)</label>
+                  <span class="tip" tabindex="0" data-tip="Days absent without pay in the period.">?</span>
+                </div>
+                <input type="number" id="inp-absence-days" class="input input-bordered input-sm" value="0" min="0" step="0.5" />
+              </div>
+              <div class="field-group">
+                <div class="label-row">
+                  <label for="inp-leave-days" data-i18n="form.l3.leave.label">Leave taken (days)</label>
+                  <span class="tip" tabindex="0" data-tip="Paid leave days consumed in the period (ferie).">?</span>
+                </div>
+                <input type="number" id="inp-leave-days" class="input input-bordered input-sm" value="0" min="0" step="0.5" />
+              </div>
+              <div class="field-group">
+                <div class="label-row">
+                  <label for="inp-sick-days" data-i18n="form.l3.sick.label">Sick days (calendar)</label>
+                  <span class="tip" tabindex="0" data-tip="Calendar days of illness in the period.">?</span>
+                </div>
+                <input type="number" id="inp-sick-days" class="input input-bordered input-sm" value="0" min="0" step="1" />
+              </div>
+              <div class="field-group">
+                <div class="label-row">
+                  <label for="inp-fringe" data-i18n="form.l3.fringe.label">Fringe benefit annual (€)</label>
+                  <span class="tip" tabindex="0" data-tip="Total fringe-benefit value for the year (Art. 51 c. 3 TUIR). Amounts below the threshold are tax-exempt.">?</span>
+                </div>
+                <input type="number" id="inp-fringe" class="input input-bordered input-sm" value="0" min="0" step="10" />
+              </div>
+              <div class="field-group">
+                <div class="label-row">
+                  <label for="inp-welfare" data-i18n="form.l3.welfare.label">Welfare annual (€)</label>
+                  <span class="tip" tabindex="0" data-tip="Welfare contributions for the year (Art. 51 c. 2 TUIR — always tax-exempt).">?</span>
+                </div>
+                <input type="number" id="inp-welfare" class="input input-bordered input-sm" value="0" min="0" step="10" />
+              </div>
+              <div class="field-group">
+                <div class="label-row">
+                  <label for="inp-bonus" data-i18n="form.l3.bonus.label">Bonus annual (€)</label>
+                  <span class="tip" tabindex="0" data-tip="Total annual bonus. Enable the PdR checkbox to apply the preferential flat tax.">?</span>
+                </div>
+                <input type="number" id="inp-bonus" class="input input-bordered input-sm" value="0" min="0" step="100" />
+              </div>
             </div>
 
-            <div>
-              <div class="label-row">
-                <label for="inp-second-level" data-i18n="form.second_level.label">Second-level monthly (€)</label>
-                <span class="tip" tabindex="0" data-tip="Monthly supplement from a territorial or company second-level agreement. Mutually exclusive with RAL override.">?</span>
-              </div>
-              <input type="number" id="inp-second-level" value="0" min="0" step="1" />
-            </div>
-
-            <div style="display:flex; align-items:flex-start; gap:10px; padding-top:18px">
-              <input type="checkbox" id="chk-ivs" style="width:auto; margin-top:3px; accent-color:var(--accent)" />
+            <div style="display:flex; align-items:flex-start; gap:10px; padding-top:14px">
+              <input type="checkbox" id="chk-pdr" class="checkbox checkbox-primary checkbox-sm" style="margin-top:3px" />
               <div>
                 <div class="label-row" style="margin:0 0 2px">
-                  <label for="chk-ivs" style="margin:0; color:var(--text); font-weight:500" data-i18n="form.ivs.label">IVS ceiling applies</label>
-                  <span class="tip" tabindex="0" data-tip="When annual gross exceeds the INPS IVS ceiling (~€113,520 in 2026), only the IVS-specific reduced rate applies above the threshold.">?</span>
+                  <label for="chk-pdr" style="margin:0; color:var(--color-base-content); font-weight:500" data-i18n="form.pdr.label">Bonus is PdR-eligible</label>
+                  <span class="tip" tabindex="0" data-tip="Apply the preferential flat-tax regime (imposta sostitutiva) when a valid union agreement is in place.">?</span>
                 </div>
-                <p class="field-hint" style="margin:0" data-i18n="form.ivs.hint">Worker's gross exceeds the INPS IVS ceiling.</p>
+                <p class="field-hint" style="margin:0" data-i18n="form.pdr.hint">Premio di risultato — flat-tax rate from statutory rules.</p>
               </div>
             </div>
-
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- L3: Work rules (collapsible) -->
-    <div style="margin-top:12px">
-      <div class="section-toggle" id="l3-toggle" style="cursor:pointer; user-select:none; font-weight:600; color:var(--text); padding:10px 0; display:flex; align-items:center; gap:6px">
-        <i class="arrow">▶</i> <span data-i18n="form.l3.toggle">Work rules (L3 — informational)</span>
-        <span class="tip" tabindex="0" data-tip="L3 outputs are reported alongside the payroll but do not change gross or net pay. They reflect period events such as overtime worked or days absent.">?</span>
-      </div>
-      <div id="l3-body" style="display:none; padding-top:4px">
-        <p style="font-size:12px; color:var(--faint); margin:0 0 14px" id="l3-note-p" data-i18n-html="form.l3.note">
-          These amounts are <strong>informational</strong> — they do not affect
-          gross or net pay. Supply period-level event data and the engine
-          reports the corresponding supplements and deductions.
-        </p>
+    </div><!-- /form-grid -->
 
-        <div class="field-grid">
-          <!-- Overtime -->
-          <div class="field-group">
-            <div class="label-row">
-              <label for="inp-ot-weekday" data-i18n="form.l3.ot_weekday.label">Weekday overtime (h)</label>
-              <span class="tip" tabindex="0" data-tip="Daytime weekday overtime hours (straordinario diurno).">?</span>
-            </div>
-            <input type="number" id="inp-ot-weekday" value="0" min="0" step="0.5" />
-          </div>
-          <div class="field-group">
-            <div class="label-row">
-              <label for="inp-ot-night" data-i18n="form.l3.ot_night.label">Night overtime (h)</label>
-              <span class="tip" tabindex="0" data-tip="Weekday night hours (lavoro notturno).">?</span>
-            </div>
-            <input type="number" id="inp-ot-night" value="0" min="0" step="0.5" />
-          </div>
-          <div class="field-group">
-            <div class="label-row">
-              <label for="inp-ot-holiday" data-i18n="form.l3.ot_holiday.label">Holiday overtime (h)</label>
-              <span class="tip" tabindex="0" data-tip="Daytime public-holiday hours.">?</span>
-            </div>
-            <input type="number" id="inp-ot-holiday" value="0" min="0" step="0.5" />
-          </div>
-          <div class="field-group">
-            <div class="label-row">
-              <label for="inp-ot-nightholiday" data-i18n="form.l3.ot_nightholiday.label">Night-holiday (h)</label>
-              <span class="tip" tabindex="0" data-tip="Night hours on a public holiday.">?</span>
-            </div>
-            <input type="number" id="inp-ot-nightholiday" value="0" min="0" step="0.5" />
-          </div>
-          <!-- Absence / Leave / Sick -->
-          <div class="field-group">
-            <div class="label-row">
-              <label for="inp-absence-days" data-i18n="form.l3.absence.label">Unpaid absence (days)</label>
-              <span class="tip" tabindex="0" data-tip="Days absent without pay in the period.">?</span>
-            </div>
-            <input type="number" id="inp-absence-days" value="0" min="0" step="0.5" />
-          </div>
-          <div class="field-group">
-            <div class="label-row">
-              <label for="inp-leave-days" data-i18n="form.l3.leave.label">Leave taken (days)</label>
-              <span class="tip" tabindex="0" data-tip="Paid leave days consumed in the period (ferie).">?</span>
-            </div>
-            <input type="number" id="inp-leave-days" value="0" min="0" step="0.5" />
-          </div>
-          <div class="field-group">
-            <div class="label-row">
-              <label for="inp-sick-days" data-i18n="form.l3.sick.label">Sick days (calendar)</label>
-              <span class="tip" tabindex="0" data-tip="Calendar days of illness in the period.">?</span>
-            </div>
-            <input type="number" id="inp-sick-days" value="0" min="0" step="1" />
-          </div>
-          <!-- Benefits / Bonus -->
-          <div class="field-group">
-            <div class="label-row">
-              <label for="inp-fringe" data-i18n="form.l3.fringe.label">Fringe benefit annual (€)</label>
-              <span class="tip" tabindex="0" data-tip="Total fringe-benefit value for the year (Art. 51 c. 3 TUIR). Amounts below the threshold are tax-exempt.">?</span>
-            </div>
-            <input type="number" id="inp-fringe" value="0" min="0" step="10" />
-          </div>
-          <div class="field-group">
-            <div class="label-row">
-              <label for="inp-welfare" data-i18n="form.l3.welfare.label">Welfare annual (€)</label>
-              <span class="tip" tabindex="0" data-tip="Welfare contributions for the year (Art. 51 c. 2 TUIR — always tax-exempt).">?</span>
-            </div>
-            <input type="number" id="inp-welfare" value="0" min="0" step="10" />
-          </div>
-          <div class="field-group">
-            <div class="label-row">
-              <label for="inp-bonus" data-i18n="form.l3.bonus.label">Bonus annual (€)</label>
-              <span class="tip" tabindex="0" data-tip="Total annual bonus. Enable the PdR checkbox to apply the preferential flat tax.">?</span>
-            </div>
-            <input type="number" id="inp-bonus" value="0" min="0" step="100" />
-          </div>
-        </div>
+    <button id="calc-btn" class="btn btn-primary" style="margin-top:14px; width:100%" disabled data-i18n="form.calculate">Calculate</button>
+  </div><!-- /app-card -->
 
-        <div style="display:flex; align-items:flex-start; gap:10px; padding-top:14px">
-          <input type="checkbox" id="chk-pdr" style="width:auto; margin-top:3px; accent-color:var(--accent)" />
-          <div>
-            <div class="label-row" style="margin:0 0 2px">
-              <label for="chk-pdr" style="margin:0; color:var(--text); font-weight:500" data-i18n="form.pdr.label">Bonus is PdR-eligible</label>
-              <span class="tip" tabindex="0" data-tip="Apply the preferential flat-tax regime (imposta sostitutiva) when a valid union agreement is in place.">?</span>
-            </div>
-            <p class="field-hint" style="margin:0" data-i18n="form.pdr.hint">Premio di risultato — flat-tax rate from statutory rules.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- Error box -->
+  <div id="error-box" class="alert alert-error" style="display:none"></div>
 
-    <button id="calc-btn" disabled data-i18n="form.calculate">Calculate</button>
-  </div>
-
-  <div id="error-box"></div>
-
-  <!-- ── Initial placeholder (before first calculation) ───────────────── -->
-  <div id="results-placeholder" style="text-align:center; padding:32px 16px; color:var(--faint); font-size:13px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);">
-    <div style="font-size:28px; margin-bottom:8px">📊</div>
+  <!-- Placeholder (before first calculation) -->
+  <div id="results-placeholder" style="text-align:center; padding:40px 20px; color:var(--c-faint); font-size:13px; background:var(--color-base-100); border:1px dashed var(--color-base-300); border-radius:var(--radius-box);">
     <div data-i18n="results.placeholder">Seleziona un CCNL e clicca Calcola per vedere i risultati.</div>
   </div>
 
-  <!-- ── Results ─────────────────────────────────────────────────────── -->
+  <!-- ── Results ───────────────────────────────────────────────────────────── -->
   <div id="results">
-  <div id="stale-banner" data-i18n="results.stale_banner">Hai modificato i dati — aggiorna la stima.</div>
 
-    <!-- Scenario strip -->
-    <div id="scenario-strip"></div>
+    <!-- Stale banner -->
+    <div id="stale-banner" class="alert alert-warning" style="display:none" data-i18n="results.stale_banner">Hai modificato i dati — aggiorna la stima.</div>
 
-    <!-- KPI row -->
-    <div class="kpi-row">
-      <div class="kpi-tile">
-        <div class="kpi-label" data-i18n="results.kpi.gross_label">Monthly gross</div>
-        <div class="kpi-value" id="kpi-gross">—</div>
-        <div class="kpi-sub" id="kpi-gross-sub"></div>
+    <!-- Results summary card: scenario → KPIs → meta footer -->
+    <div class="results-card">
+      <div class="results-card-header">
+        <div class="scenario-header-label" data-i18n="results.scenario.header">Pipeline di calcolo</div>
+        <div id="scenario-strip"></div>
       </div>
-      <div class="kpi-tile kpi-net">
-        <div class="kpi-label" id="kpi-net-label">Netto medio stimato</div>
-        <div class="kpi-value" id="kpi-net">—</div>
-        <div class="kpi-sub" id="kpi-net-sub"></div>
-        <div id="kpi-net-scope" style="display:none; font-size:11px; color:var(--red,#c0392b); margin-top:4px;"></div>
-      </div>
-      <div class="kpi-tile">
-        <div class="kpi-label" data-i18n="results.kpi.cost_label">Employer cost — annual</div>
-        <div class="kpi-value is-cost" id="kpi-cost">—</div>
-        <div class="kpi-sub" data-i18n="results.kpi.cost_sub">including TFR and contributions</div>
-      </div>
-    </div>
-
-    <!-- Scope summary near KPIs -->
-    <div id="kpi-scope-summary" style="display:none; font-size:12px; color:var(--muted); padding:6px 0 0;"></div>
-    <!-- Calculation date -->
-    <div id="kpi-asof" style="display:none; font-size:11px; color:var(--muted); padding:2px 0 0;"></div>
-
-    <!-- Action toolbar -->
-    <div class="results-toolbar">
-      <button class="toolbar-btn" id="btn-download" data-i18n="results.toolbar.download">Download JSON</button>
-      <button class="toolbar-btn" id="btn-snippet" data-i18n="results.toolbar.snippet">Python snippet</button>
-      <button class="toolbar-btn" id="btn-compare" data-i18n="results.toolbar.compare">Compare variant</button>
-    </div>
-
-    <!-- Compare panel -->
-    <div id="compare-panel" style="display:none" class="card">
-      <div class="form-grid">
-        <div>
-          <label data-i18n="results.compare.ccnl_label">Variant CCNL</label>
-          <select id="cmp-ccnl"></select>
-        </div>
-        <div>
-          <label data-i18n="results.compare.level_label">Variant level</label>
-          <select id="cmp-level" disabled><option value="">—</option></select>
-        </div>
-      </div>
-      <div style="display:flex; gap:8px; margin-top:12px">
-        <button class="toolbar-btn primary" id="btn-cmp-run" data-i18n="results.compare.run_btn">Run comparison</button>
-        <button class="toolbar-btn" id="btn-cmp-clear" data-i18n="results.compare.clear_btn">Clear</button>
-      </div>
-      <!-- Compare KPI row -->
-      <div id="compare-kpis" style="display:none; margin-top:16px">
+      <div class="results-card-body">
         <div class="kpi-row">
           <div class="kpi-tile">
-            <div class="kpi-label" data-i18n="results.kpi.gross_label">Monthly gross</div>
-            <div class="kpi-value" id="cmp-gross">—</div>
-            <div class="kpi-delta" id="cmp-gross-delta"></div>
+            <div class="kpi-label" data-i18n="results.kpi.gross_label">Lordo mensile</div>
+            <div class="kpi-value" id="kpi-gross">—</div>
+            <div class="kpi-sub" id="kpi-gross-sub"></div>
           </div>
           <div class="kpi-tile kpi-net">
-            <div class="kpi-label" id="cmp-net-label">Netto stimato</div>
-            <div class="kpi-value" id="cmp-net">—</div>
-            <div class="kpi-delta" id="cmp-net-delta"></div>
+            <div class="kpi-label" id="kpi-net-label">Netto medio stimato</div>
+            <div class="kpi-value" id="kpi-net">—</div>
+            <div class="kpi-sub" id="kpi-net-sub"></div>
+            <div id="kpi-net-scope" style="display:none; font-size:11px; color:var(--color-error); margin-top:4px;"></div>
           </div>
           <div class="kpi-tile">
-            <div class="kpi-label" data-i18n="results.kpi.cost_label">Employer cost</div>
-            <div class="kpi-value is-cost" id="cmp-cost">—</div>
-            <div class="kpi-delta" id="cmp-cost-delta"></div>
+            <div class="kpi-label" data-i18n="results.kpi.cost_label">Costo azienda — annuo</div>
+            <div class="kpi-value is-cost" id="kpi-cost">—</div>
+            <div class="kpi-sub" data-i18n="results.kpi.cost_sub">inclusi TFR e contributi</div>
           </div>
         </div>
-        <div style="font-size:11px; color:var(--faint); margin-top:6px" data-i18n="results.compare.delta_label">vs. base scenario</div>
+        <div id="kpi-scope-summary" style="display:none"></div>
       </div>
-    </div>
-
-    <!-- Python snippet -->
-    <div id="snippet-section" style="display:none" class="card">
-      <div class="card-header">
-        <span class="card-title" data-i18n="snippet.title">Reproduce this calculation</span>
-        <button class="toolbar-btn" id="btn-copy-snippet" style="margin-left:auto" data-i18n="snippet.copy_btn">Copy</button>
-      </div>
-      <pre id="snippet-code" style="font-family:'IBM Plex Mono',monospace; font-size:11px; line-height:1.6; color:var(--text); background:var(--surface-2); border:1px solid var(--border); border-radius:6px; padding:14px; overflow-x:auto; white-space:pre; margin:0"></pre>
-    </div>
-
-    <!-- Trace — Why this number? -->
-    <div id="trace-section">
-      <div class="trace-header">
-        <span class="trace-title" data-i18n="trace.title">Why this number?</span>
-        <span class="trace-sub" data-i18n="trace.sub">Monthly gross computation — step by step</span>
-      </div>
-      <div class="trace-body" id="trace-body"></div>
-    </div>
-
-    <!-- Sources -->
-    <div id="sources-section">
-      <div class="sources-header">
-        <span class="card-title" data-i18n="sources.title">Sources</span>
-        <span class="card-sub" data-i18n="sources.sub">Documents and rulesets used to produce this calculation</span>
-      </div>
-      <div class="sources-body">
-        <div>
-          <div class="sources-sub-title" data-i18n="sources.rulesets_title">Rulesets loaded</div>
-          <div class="ruleset-chips" id="ruleset-chips"></div>
+      <div class="results-card-footer" id="kpi-meta-row" style="display:none">
+        <div class="meta-left">
+          <div id="kpi-asof"></div>
+          <div id="confidence-pill" class="confidence-pill"></div>
         </div>
-        <div>
-          <div class="sources-sub-title" data-i18n="sources.cited_title">Sources cited</div>
-          <div class="source-list" id="source-list"></div>
-        </div>
+        <button class="result-download-btn" id="btn-download" title="Download JSON">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>
+          <span data-i18n="results.toolbar.download">Scarica JSON</span>
+        </button>
       </div>
-    </div>
 
-    <!-- Scope & Confidence -->
-    <div id="scope-section">
-      <div class="scope-header">
-        <span class="card-title" data-i18n="scope.title">Reliability</span>
-        <div id="confidence-pill" class="confidence-pill"></div>
+      <!-- Tab bar — inside the card -->
+      <div class="result-tabs" role="tablist">
+        <button class="result-tab active" id="tab-detail" role="tab" aria-selected="true" aria-controls="panel-detail">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="2" y="3" width="12" height="10" rx="1.5"/><line x1="5" y1="7" x2="11" y2="7"/><line x1="5" y1="10" x2="9" y2="10"/></svg>
+          <span data-i18n="results.tab.detail">Dettaglio</span>
+        </button>
+        <button class="result-tab" id="tab-compare" role="tab" aria-selected="false" aria-controls="panel-compare">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h12M10 5l3 3-3 3M6 5L3 8l3 3"/></svg>
+          <span data-i18n="results.toolbar.compare">Confronta</span>
+        </button>
+        <button class="result-tab" id="tab-code" role="tab" aria-selected="false" aria-controls="panel-code">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5,4 1,8 5,12"/><polyline points="11,4 15,8 11,12"/></svg>
+          <span data-i18n="results.toolbar.snippet">Codice</span>
+        </button>
       </div>
-      <div class="scope-body">
-        <div id="warnings-area" style="display:none">
-          <div class="sources-sub-title">Warnings</div>
-          <div class="warnings-list" id="warnings-list"></div>
-        </div>
-        <div>
-          <div class="scope-grid">
-            <div>
-              <div class="scope-col-title" data-i18n="scope.computed_title">Computed in this estimate</div>
-              <div class="feature-list" id="scope-verified"></div>
+
+      <!-- Tab panels — inside the card -->
+      <div class="result-tab-panels">
+
+        <!-- Tab panel: Dettaglio -->
+        <div id="panel-detail" class="result-tab-panel" role="tabpanel" aria-labelledby="tab-detail">
+
+          <!-- 1. Trace — collapsible, closed by default -->
+          <details class="collapsible-section" id="trace-section">
+            <summary>
+              <span class="card-title" data-i18n="trace.title">Calcolo</span>
+            </summary>
+            <div class="trace-body" id="trace-body"></div>
+          </details>
+
+          <!-- 2. Sources — collapsible, closed by default -->
+          <details class="collapsible-section" id="sources-section">
+            <summary>
+              <span class="card-title" data-i18n="sources.title">Fonti</span>
+            </summary>
+            <div class="sources-body">
+              <div>
+                <div class="sources-sub-title" data-i18n="sources.rulesets_title">Set di regole caricati</div>
+                <div class="ruleset-chips" id="ruleset-chips"></div>
+              </div>
+              <div>
+                <div class="sources-sub-title" data-i18n="sources.cited_title">Fonti citate</div>
+                <div class="source-list" id="source-list"></div>
+              </div>
             </div>
-            <div>
-              <div class="scope-col-title" data-i18n="scope.excluded_title">Not computed in this estimate</div>
-              <div class="feature-list" id="scope-excluded"></div>
+          </details>
+
+          <!-- 3. Scope & Reliability — collapsible, closed by default -->
+          <details class="collapsible-section" id="scope-section">
+            <summary>
+              <span class="card-title" data-i18n="scope.title">Affidabilità</span>
+            </summary>
+            <div class="scope-body">
+              <div id="warnings-area" style="display:none">
+                <div class="sources-sub-title" data-i18n="scope.warnings_title">Avvisi</div>
+                <div class="warnings-list" id="warnings-list"></div>
+              </div>
+              <div class="scope-grid">
+                <div>
+                  <div class="scope-col-title" data-i18n="scope.computed_title">Calcolato in questa stima</div>
+                  <div class="feature-list" id="scope-verified"></div>
+                </div>
+                <div>
+                  <div class="scope-col-title" data-i18n="scope.excluded_title">Non calcolato in questa stima</div>
+                  <div class="feature-list" id="scope-excluded"></div>
+                </div>
+              </div>
+              <div id="simps-note" style="display:none" class="simps-note"></div>
+            </div>
+          </details>
+
+          <!-- 4. Full breakdown — collapsible, closed by default, last -->
+          <details class="collapsible-section" id="breakdown-section">
+            <summary>
+              <span class="card-title" data-i18n="breakdown.title">Prospetto</span>
+            </summary>
+            <div id="breakdown-body-wrap">
+              <table class="breakdown-table">
+                <colgroup>
+                  <col style="width:60%"/><col style="width:20%"/><col style="width:20%"/>
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th data-i18n="breakdown.col.item">Voce</th>
+                    <th style="text-align:right" data-i18n="breakdown.col.monthly">Mensile</th>
+                    <th style="text-align:right" data-i18n="breakdown.col.annual">Annuale</th>
+                  </tr>
+                </thead>
+                <tbody id="breakdown-table-body"></tbody>
+              </table>
+              <p class="breakdown-note" id="irpef-note"></p>
+            </div>
+          </details>
+
+        </div><!-- /panel-detail -->
+
+        <!-- Tab panel: Confronta variante -->
+        <div id="panel-compare" class="result-tab-panel" role="tabpanel" aria-labelledby="tab-compare" hidden>
+          <div class="compare-form">
+            <div class="form-grid">
+              <div>
+                <label data-i18n="results.compare.ccnl_label">Variant CCNL</label>
+                <div class="combobox-wrap" id="combo-cmp-ccnl-wrap">
+                  <select id="cmp-ccnl" style="display:none"></select>
+                </div>
+              </div>
+              <div>
+                <label data-i18n="results.compare.level_label">Variant level</label>
+                <select id="cmp-level" class="select select-bordered select-sm" disabled><option value="">—</option></select>
+              </div>
+            </div>
+            <div class="compare-form-actions">
+              <button class="btn btn-sm btn-primary" id="btn-cmp-run" data-i18n="results.compare.run_btn">Esegui confronto</button>
+              <button class="btn btn-sm btn-ghost" id="btn-cmp-clear" data-i18n="results.compare.clear_btn">Azzera</button>
             </div>
           </div>
-        </div>
-        <div id="simps-note" style="display:none" class="simps-note"></div>
-      </div>
-    </div>
+          <div id="compare-kpis" style="display:none">
+            <div class="compare-kpis-label" data-i18n="results.compare.delta_label">vs. scenario base</div>
+            <div class="kpi-row">
+              <div class="kpi-tile">
+                <div class="kpi-label" data-i18n="results.kpi.gross_label">Lordo mensile</div>
+                <div class="kpi-value" id="cmp-gross">—</div>
+                <div class="kpi-delta" id="cmp-gross-delta"></div>
+              </div>
+              <div class="kpi-tile kpi-net">
+                <div class="kpi-label" id="cmp-net-label">Netto stimato</div>
+                <div class="kpi-value" id="cmp-net">—</div>
+                <div class="kpi-delta" id="cmp-net-delta"></div>
+              </div>
+              <div class="kpi-tile">
+                <div class="kpi-label" data-i18n="results.kpi.cost_label">Costo azienda</div>
+                <div class="kpi-value is-cost" id="cmp-cost">—</div>
+                <div class="kpi-delta" id="cmp-cost-delta"></div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /panel-compare -->
 
-    <!-- Full breakdown (collapsible) -->
-    <div id="breakdown-section">
-      <button class="breakdown-toggle" id="breakdown-toggle">
-        <i class="bd-arrow">▶</i> <span data-i18n="breakdown.title">Full breakdown</span>
-      </button>
-      <div class="breakdown-body" id="breakdown-body-wrap">
-        <table class="breakdown-table">
-          <colgroup>
-            <col style="width:60%"/><col style="width:20%"/><col style="width:20%"/>
-          </colgroup>
-          <thead>
-            <tr>
-              <th data-i18n="breakdown.col.item">Item</th>
-              <th style="text-align:right" data-i18n="breakdown.col.monthly">Monthly</th>
-              <th style="text-align:right" data-i18n="breakdown.col.annual">Annual</th>
-            </tr>
-          </thead>
-          <tbody id="breakdown-table-body"></tbody>
-        </table>
-        <p class="breakdown-note" id="irpef-note"></p>
-      </div>
-    </div>
+        <!-- Tab panel: Codice Python -->
+        <div id="panel-code" class="result-tab-panel" role="tabpanel" aria-labelledby="tab-code" hidden>
+          <div class="code-header">
+            <span class="card-title" data-i18n="snippet.title">Riproduci in Python</span>
+            <button class="btn btn-sm btn-ghost" id="btn-copy-snippet" data-i18n="snippet.copy_btn">Copia</button>
+          </div>
+          <pre id="snippet-code"></pre>
+        </div><!-- /panel-code -->
 
-  </div>
+      </div><!-- /result-tab-panels -->
+
+    </div><!-- /results-card -->
+
+  </div><!-- /results -->
+
 </main>
 
 <footer>

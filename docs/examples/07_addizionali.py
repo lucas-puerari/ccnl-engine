@@ -32,7 +32,7 @@ baseline = compute(
     )
 )
 
-# Worker resident in Romano di Lombardia (codice belfiore H509), Lombardia.
+# Worker resident in Romano di Lombardia (codice catastale H509), Lombardia.
 # Addizionale comunale: 0.80% with soglia 12 000 EUR.
 p = compute(
     PayrollScenario(
