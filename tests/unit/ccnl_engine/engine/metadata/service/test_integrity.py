@@ -23,7 +23,9 @@ from ccnl_engine.engine.contract.service.loaders import (
     load_ccnl as load_ccnl_from_bundle,
 )
 from ccnl_engine.engine.surtax.service import loaders as surtax_loaders
+from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
 from ccnl_engine.engine.tax.service import loaders as tax_loaders
+from ccnl_engine.engine.tax.service.loaders import load_year_rules
 from tests.helpers import make_ccnl_dict
 
 LOADER_PATHS = (
@@ -31,6 +33,19 @@ LOADER_PATHS = (
     "ccnl_engine.engine.tax.service.loaders",
     "ccnl_engine.engine.surtax.service.loaders",
 )
+
+
+@pytest.fixture(autouse=True)
+def _clear_loader_caches() -> None:
+    """Clear all @cache-decorated loaders before each integrity test.
+
+    Integrity tests monkeypatch the underlying ``read_bundled`` helper to
+    inject tampered payloads. Without cache invalidation, a cached real result
+    is returned and the patch has no effect.
+    """
+    load_ccnl_from_bundle.cache_clear()
+    load_year_rules.cache_clear()
+    load_surtax_rules.cache_clear()
 
 
 def _load_bundled_text(pkg_name: str, filename: str) -> str:
