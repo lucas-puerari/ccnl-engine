@@ -1127,13 +1127,14 @@ function doCompute(pyodide) {
   }
   document.getElementById("kpi-cost").textContent    = fmtK(r.employer_cost_annual);
 
-  // Calculation date
-  const asofEl = document.getElementById("kpi-asof");
+  // Calculation date + download row
+  const asofEl   = document.getElementById("kpi-asof");
+  const metaRow  = document.getElementById("kpi-meta-row");
   if (r.as_of) {
     asofEl.textContent = t("results.calculated_on") + " " + r.as_of;
-    asofEl.style.display = "block";
+    if (metaRow) metaRow.style.display = "flex";
   } else {
-    asofEl.style.display = "none";
+    if (metaRow) metaRow.style.display = "none";
   }
 
   // Scenario strip

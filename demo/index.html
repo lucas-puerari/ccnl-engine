@@ -370,9 +370,15 @@
       </div>
     </div>
 
-    <!-- Scope summary + calc date -->
+    <!-- Scope summary + calc date + download action -->
     <div id="kpi-scope-summary" style="display:none; font-size:12px; color:var(--c-muted); padding:4px 0 0;"></div>
-    <div id="kpi-asof" style="display:none; font-size:11px; color:var(--c-faint); padding:2px 0 0;"></div>
+    <div class="kpi-meta-row" id="kpi-meta-row" style="display:none">
+      <div id="kpi-asof" style="font-size:11px; color:var(--c-faint);"></div>
+      <button class="result-download-btn" id="btn-download" title="Download JSON">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>
+        <span data-i18n="results.toolbar.download">Scarica JSON</span>
+      </button>
+    </div>
 
     <!-- Result tab bar -->
     <div class="result-tabs" role="tablist">
@@ -387,11 +393,6 @@
       <button class="result-tab" id="tab-code" role="tab" aria-selected="false" aria-controls="panel-code">
         <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5,4 1,8 5,12"/><polyline points="11,4 15,8 11,12"/></svg>
         <span data-i18n="results.toolbar.snippet">Codice</span>
-      </button>
-      <!-- Utility action: download, not a tab -->
-      <button class="result-tab-action" id="btn-download" title="Download JSON">
-        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>
-        <span data-i18n="results.toolbar.download">JSON</span>
       </button>
     </div>
 

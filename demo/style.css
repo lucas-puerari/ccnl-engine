@@ -440,18 +440,21 @@ label {
   color: var(--color-primary);
   border-bottom-color: var(--color-primary);
 }
-/* Download utility button — pushed to right, looks like a ghost action, not a tab */
-.result-tab-action {
+/* Meta row: calc date on the left, download action on the right */
+.kpi-meta-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 0 2px;
+}
+/* Download action — outside tab bar, no competing border */
+.result-download-btn {
   display: inline-flex; align-items: center; gap: 5px;
-  font-size: 12px; font-weight: 500; font-family: inherit;
-  padding: 7px 11px; border-radius: var(--radius-btn);
-  border: 1px solid var(--c-input-border, var(--color-base-300));
-  background: none; color: var(--c-muted); cursor: pointer;
-  margin-left: auto; margin-right: 4px; margin-block: 5px;
-  transition: color .12s, border-color .12s;
+  font-size: 11px; font-weight: 500; font-family: inherit;
+  padding: 0; border: none; background: none;
+  color: var(--c-muted); cursor: pointer;
+  transition: color .12s;
   white-space: nowrap;
 }
-.result-tab-action:hover { color: var(--color-primary); border-color: var(--color-primary); }
+.result-download-btn:hover { color: var(--color-primary); }
 
 .result-tab-panel {
   display: flex; flex-direction: column; gap: 20px;
