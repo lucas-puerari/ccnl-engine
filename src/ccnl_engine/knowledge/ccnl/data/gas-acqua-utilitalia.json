@@ -34,7 +34,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-02T00:00:00",
       "human_reviewed": false
@@ -1845,7 +1845,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "e6882563d29c2cd12c42dfcc729b85f6dfee5f85c3846f37caf8c12fce949fcb",
+    "source_hash": "b8d3a38a2e13ef8da4a6ab15adf1c42184710afb1c9be63301ebf7c5a0d11c65",
     "published_at": "2026-09-07"
   },
   "work_rules": {

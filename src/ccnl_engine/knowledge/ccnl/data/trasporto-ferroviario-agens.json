@@ -48,7 +48,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-04T00:00:00",
       "human_reviewed": false
@@ -1870,7 +1870,7 @@
     "effective_until": "2026-12-31",
     "source": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive",
     "verification_status": "unverified",
-    "source_hash": "b44678af71347aac543e1b2afa3dc69847bfd453d3f308788ac475e898a4ea78",
+    "source_hash": "c74b411c295c5f48c683545c83280bc86e3eccfda30bc93a4199ebd161b9c154",
     "published_at": "2026-09-07"
   },
   "work_rules": {

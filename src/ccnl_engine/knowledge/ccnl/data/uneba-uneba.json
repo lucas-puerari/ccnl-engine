@@ -25,7 +25,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-02T00:00:00",
       "human_reviewed": false
@@ -1392,7 +1392,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "f766b1c10fb61d40bb1ab805b61ad0a912b837b42d44bf63524df94ad5d9a55c",
+    "source_hash": "0a7c0e12b7adccc93d9283bacd08b213024ab5c66943df3e7b5b96238327bd62",
     "published_at": "2026-09-07"
   },
   "work_rules": {

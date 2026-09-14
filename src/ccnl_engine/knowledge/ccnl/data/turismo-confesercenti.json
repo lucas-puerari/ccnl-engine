@@ -41,7 +41,7 @@
     "extraction": {
       "timestamp": "2026-09-06",
       "human_reviewed": false,
-      "method": "ai_assisted"
+      "method": "ai"
     },
     "workers_estimate": "—"
   },
@@ -1605,7 +1605,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "62e4cde86d54881f1d00595ad19ceb45e91a137283ccae9a3bf1aad02f321855",
+    "source_hash": "2e6b5b2158c7c7a4deee620fe4977043087c7f801b41cebabc3b1d624c036396",
     "published_at": "2026-09-07"
   },
   "work_rules": {

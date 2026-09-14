@@ -39,7 +39,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
@@ -693,7 +693,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "ae80dff3f0587ae7950835a89f68dd00420127428fcc1387c57115792426c20e",
+    "source_hash": "3fd6028b1ee41247fca7cf8e394ef186c216f2c380a822ae5da73bd73bc18fdd",
     "published_at": "2026-09-07"
   },
   "work_rules": {

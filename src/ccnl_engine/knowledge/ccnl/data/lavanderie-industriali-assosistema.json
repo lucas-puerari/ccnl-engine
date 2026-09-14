@@ -35,7 +35,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-05T00:00:00",
       "human_reviewed": false
@@ -1315,7 +1315,7 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "bee18765279e21ba0a72a6c658c886fc2a867dddc83dae38d181f3caae01f17d",
+    "source_hash": "5a389681ee6c50e412710c8b83546a03887cd662ec47c77be57eb6c33a6bd46c",
     "published_at": "2026-09-07"
   },
   "work_rules": {

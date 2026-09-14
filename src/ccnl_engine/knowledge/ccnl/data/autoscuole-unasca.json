@@ -27,7 +27,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-12",
       "human_reviewed": true
@@ -1155,7 +1155,9 @@
     {
       "type": "under_classification",
       "name": "L1-autoscuole-24m",
-      "destination_levels": ["1"],
+      "destination_levels": [
+        "1"
+      ],
       "periods": [
         {
           "months_from": 0,
@@ -1167,7 +1169,9 @@
     {
       "type": "under_classification",
       "name": "L2-autoscuole-36m",
-      "destination_levels": ["2"],
+      "destination_levels": [
+        "2"
+      ],
       "periods": [
         {
           "months_from": 0,
@@ -1184,7 +1188,9 @@
     {
       "type": "under_classification",
       "name": "L3-autoscuole-48m",
-      "destination_levels": ["3"],
+      "destination_levels": [
+        "3"
+      ],
       "periods": [
         {
           "months_from": 0,
@@ -1206,7 +1212,9 @@
     {
       "type": "under_classification",
       "name": "L4-autoscuole-48m",
-      "destination_levels": ["4"],
+      "destination_levels": [
+        "4"
+      ],
       "periods": [
         {
           "months_from": 0,
@@ -1228,7 +1236,9 @@
     {
       "type": "under_classification",
       "name": "L5-autoscuole-48m",
-      "destination_levels": ["5"],
+      "destination_levels": [
+        "5"
+      ],
       "periods": [
         {
           "months_from": 0,
@@ -1255,7 +1265,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "f2823a288145bd93a012d865eaa5d2dd896c6ccb8aa73fc5d6db511c968898d1",
+    "source_hash": "c1ba3f16f3fc8f3bc10c2d5ec773095caa4099ab8fd90e105312b89fb45fb581",
     "published_at": "2026-09-12"
   },
   "work_rules": null

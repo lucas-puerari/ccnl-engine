@@ -26,7 +26,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
@@ -1099,7 +1099,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "ddd13a69b2be8bef727af247eecd7eac5ddcd0b20ab1b9d0e06ea57fbc5e690d",
+    "source_hash": "79ec2d09c7bec5b1bd38f8ec718de219f2cb9bf6f403ca417c8cc5585d4b8732",
     "published_at": "2026-09-07"
   },
   "work_rules": {

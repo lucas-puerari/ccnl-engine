@@ -28,7 +28,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
@@ -1855,7 +1855,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "8ca5d7faae1268e8f8be42495711ed71f2996340d32aee51ab5e93181579fe20",
+    "source_hash": "17f6d1405a588ba9d9689c7a0b7d3ac02089664e55c1a890a67f2b63b698b7d1",
     "published_at": "2026-09-07"
   },
   "work_rules": {

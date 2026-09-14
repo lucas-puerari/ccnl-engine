@@ -30,7 +30,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-12",
       "human_reviewed": true
@@ -2077,7 +2077,7 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "24bdb0a2f12ca19fa6e4eab1cd6a71e2505665c8c528dda3caf013b0076ba8d1",
+    "source_hash": "dc7222f8ec0dc6c35b7d990ea9058770e29389d5700f0779ffdbe0a0bf4ec189",
     "published_at": "2026-09-12"
   },
   "work_rules": null

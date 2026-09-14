@@ -34,7 +34,7 @@
     "extraction": {
       "timestamp": "2026-09-11",
       "human_reviewed": true,
-      "method": "ai_assisted"
+      "method": "ai"
     },
     "workers_estimate": "~430 (impiegati subset)"
   },
@@ -952,7 +952,7 @@
     "source": "https://www.lavoro-economia.it/?c=9",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "a6656b8d506bc02cef0e28cad22543fa664e630d00986fb8e32675928552f73b"
+    "source_hash": "f3e52e0e4f8b2599e24f933990588725c046bfa0996f93aef0e68ff86ff024c6"
   },
   "work_rules": {
     "time_supplements": {

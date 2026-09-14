@@ -30,7 +30,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-02",
       "human_reviewed": false
@@ -1246,7 +1246,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "f44a13205b6ff9b734a5be89a45526687b0df43283e63d659eb8a473ca385376",
+    "source_hash": "01d9a1c7b055c9d1e6b975d540b46342f9c3f9afe281ff2f2e7199ae00550db9",
     "published_at": "2026-09-07"
   },
   "work_rules": {

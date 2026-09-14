@@ -30,7 +30,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-01T00:00:00",
       "human_reviewed": false
@@ -2096,7 +2096,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/",
     "verification_status": "unverified",
-    "source_hash": "b2d0f04935887bae03967a7e9957ebe907d9023d32eb11687d5133d750086d87",
+    "source_hash": "8f7ff07d8fbc9026b0ae31aff8854ac163df822b3a85e0d03292ca4498cccba1",
     "published_at": "2026-09-07"
   },
   "work_rules": {

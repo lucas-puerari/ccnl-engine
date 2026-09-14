@@ -45,7 +45,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-02T00:00:00",
       "human_reviewed": false
@@ -4959,7 +4959,7 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "e89807ed3424beba34382f393360df23743d3b1d35db969c7313dab9f3dea1ac",
+    "source_hash": "0a257e688719bb607c82b12da97b8e32cb2cc35c8151c296d46227e7e30ddec9",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -30,7 +30,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-01",
       "human_reviewed": false
@@ -1557,7 +1557,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "efa71154283e0830b6505fe8735bf08669158e73defa1984681e618bc9a3e4d3",
+    "source_hash": "1e49209e3b4628e2f4adfe8a535bc14f2a6d9f8afddfbd9309449cb17db906b1",
     "published_at": "2026-09-07"
   },
   "work_rules": {

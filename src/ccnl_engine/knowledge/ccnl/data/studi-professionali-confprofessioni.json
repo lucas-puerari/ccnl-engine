@@ -25,7 +25,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-01T00:00:00",
       "human_reviewed": false
@@ -1247,7 +1247,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "f2415bd7be1ad79b32d49308cadf57361975cc053597f8f8dab462bb8f22d876",
+    "source_hash": "fc9190c77e7a49ee9c9853f68cc7c6797a3686a2c54054aa918014eeb4ddab60",
     "published_at": "2026-09-07"
   },
   "work_rules": {

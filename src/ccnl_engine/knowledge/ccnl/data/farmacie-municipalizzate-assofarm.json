@@ -21,7 +21,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
@@ -1447,7 +1447,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "7ff9d67cfc577219f45aff3409ebecdb47986dadee12a91dee4fbe71560372f3",
+    "source_hash": "7dff440c0347325765b71d12edc764beb7bce5ba9d105ee07f66a113d7da38bf",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -28,7 +28,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
@@ -1082,7 +1082,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "eb33b43b0795b7ad830da3fbe6ec585e376230fc06bcc32bd306bfbf127a0253",
+    "source_hash": "e4a394b6befd1fc57b8c67954ad3ac140a09af0a6d445480024abec50d65dc06",
     "published_at": "2026-09-07"
   },
   "work_rules": {

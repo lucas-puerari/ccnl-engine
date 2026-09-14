@@ -32,7 +32,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
@@ -1709,7 +1709,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "c902991df753fe1776241f846cbd5111bb5affb0ac78fd509cfa163037512ecf",
+    "source_hash": "14ab59eb27616c44d98d6ea28645773d933fa409d232c8a82b5ebed81fba7221",
     "published_at": "2026-09-07"
   },
   "work_rules": {

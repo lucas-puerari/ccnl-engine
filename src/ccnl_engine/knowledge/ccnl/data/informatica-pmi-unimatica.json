@@ -31,7 +31,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-04T00:00:00",
       "human_reviewed": false
@@ -1327,7 +1327,7 @@
     "effective_until": null,
     "source": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "0bc22282bd4a7865e63f58fc694fe9a8ca8e652a5c10bf9eb6cad96bf75ea06f",
+    "source_hash": "c087e2ea160ed2a56f22da6aed6054e17a2676d6ef436660ee86dc7a0e702af8",
     "published_at": "2026-09-07"
   },
   "work_rules": {

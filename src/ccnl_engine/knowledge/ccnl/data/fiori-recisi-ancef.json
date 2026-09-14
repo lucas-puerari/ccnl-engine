@@ -31,7 +31,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
@@ -1194,7 +1194,7 @@
     "effective_until": null,
     "source": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
     "verification_status": "unverified",
-    "source_hash": "788a6c7275dacaedc330aa012987dbfcd71b50aa4fab8594d7574d8492b8a686",
+    "source_hash": "d0b82f5c5e1480507a5b72c01530d82a465e9ba44960c9ef594bbe2cbc209265",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -58,7 +58,6 @@ class TestSourceDocument:
             (SourceKind.LEGGE, SourceAuthority.OFFICIAL),
             (SourceKind.DPR, SourceAuthority.OFFICIAL),
             (SourceKind.DL, SourceAuthority.OFFICIAL),
-            (SourceKind.DPR_DECRETO, SourceAuthority.OFFICIAL),
             (SourceKind.ASSOCIAZIONE, SourceAuthority.SECONDARY),
             (SourceKind.TABELLA_RETRIBUTIVA, SourceAuthority.SECONDARY),
             (SourceKind.RIVISTA, SourceAuthority.SECONDARY),

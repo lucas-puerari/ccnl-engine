@@ -34,7 +34,7 @@
     "extraction": {
       "timestamp": "2026-09-11",
       "human_reviewed": true,
-      "method": "ai_assisted"
+      "method": "ai"
     },
     "workers_estimate": "~430 (operai OTI subset)"
   },
@@ -710,7 +710,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "9ef5c4af2b3a69a8fbbe91b5b0059bf97b80afce24da8c7bbd9ead9d8b3acf19"
+    "source_hash": "02c79c85984dc9b1c4e0870bb84b879115c121ec4aac96409128298fc6feec50"
   },
   "work_rules": {
     "time_supplements": {

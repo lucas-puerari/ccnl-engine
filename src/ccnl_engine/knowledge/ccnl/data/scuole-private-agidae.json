@@ -30,7 +30,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-04T00:00:00",
       "human_reviewed": false
@@ -1136,7 +1136,7 @@
     "effective_until": null,
     "source": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "0991ae5a7c4a6d2935d5e6bed0e6585825261de5666fb408625ed6b118714b39",
+    "source_hash": "a67023b9e197a57a4004243b01fffac69cdecb7810dc2c6b68d3cd8530a9df56",
     "published_at": "2026-09-07"
   },
   "work_rules": {

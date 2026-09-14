@@ -27,7 +27,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-02",
       "human_reviewed": false
@@ -1285,7 +1285,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "785b0096693af8e4190d521718250a120d63b41f9aaf7475686fa0a038350475",
+    "source_hash": "9c01bea7a81ea34589bd2b3d5857a483218ea0843123fdaab34f6046cea677ac",
     "published_at": "2026-09-07"
   },
   "work_rules": {
