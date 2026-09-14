@@ -6,7 +6,11 @@ from datetime import date
 from typing import TYPE_CHECKING
 
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
-from ccnl_engine.engine.payroll.domain.employee import SeniorityByDate
+from ccnl_engine.engine.payroll.domain.employee import (
+    SeniorityByCount,
+    SeniorityByDate,
+    SeniorityByMonths,
+)
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
 from ccnl_engine.engine.payroll.service.audit import (
     _collect_provenance,
@@ -35,28 +39,71 @@ if TYPE_CHECKING:
 _IVS_CEILING_THRESHOLD = date(1996, 1, 1)
 
 
-def _ivs_ceiling_warning(scenario: PayrollScenario) -> str | None:
+def _ivs_date_msg(hire_date: date) -> str | None:
+    """Warning when an explicit hire date is on or after the IVS threshold.
+
+    Returns:
+        Warning string, or ``None`` when hire date is before the threshold.
+    """
+    if hire_date < _IVS_CEILING_THRESHOLD:
+        return None
+    return (
+        f"hire date {hire_date} is on or after "
+        f"{_IVS_CEILING_THRESHOLD}: contributions are overstated; "
+        "consider setting ivs_ceiling_applies=True"
+    )
+
+
+def _ivs_months_msg(months: int, as_of: date) -> str | None:
+    """Warning when implied hire date (from months of service) is post-threshold.
+
+    Returns:
+        Warning string, or ``None`` when the implied hire predates the threshold.
+    """
+    months_since_threshold = (as_of.year - _IVS_CEILING_THRESHOLD.year) * 12 + (
+        as_of.month - _IVS_CEILING_THRESHOLD.month
+    )
+    if months > months_since_threshold:
+        return None  # implied hire date is before the threshold
+    return (
+        f"seniority of {months} months implies hire on or after "
+        f"{_IVS_CEILING_THRESHOLD}: contributions are overstated; "
+        "consider setting ivs_ceiling_applies=True"
+    )
+
+
+def _ivs_ceiling_warning(scenario: PayrollScenario, as_of: date) -> str | None:
     """Return a warning when a post-1996 hire has ivs_ceiling_applies=False.
 
     Workers hired on or after 1996-01-01 are subject to the INPS IVS
-    contribution ceiling.  When the caller supplies a ``SeniorityByDate`` hire
-    date in that range but leaves ``ivs_ceiling_applies`` at its default
-    ``False``, the ceiling is silently skipped and contributions are
-    understated.
+    contribution ceiling.  When the ceiling is skipped, the engine uses a
+    higher contribution base, so computed contributions are overstated.
+
+    Covers all three seniority input types:
+
+    - ``SeniorityByDate``: compare the explicit hire date to the threshold.
+    - ``SeniorityByMonths``: derive an implied hire date from *as_of* and
+      the stored months count; warn when the implied date is on or after
+      the threshold.
+    - ``SeniorityByCount``: hire date is unknowable; always warn so the
+      caller can make an explicit choice.
 
     Returns:
         A warning string, or ``None`` when no warning is warranted.
     """
+    if scenario.employee.ivs_ceiling_applies:
+        return None
     seniority = scenario.employee.seniority
-    if (
-        isinstance(seniority, SeniorityByDate)
-        and seniority.value >= _IVS_CEILING_THRESHOLD
-        and not scenario.employee.ivs_ceiling_applies
-    ):
+    if isinstance(seniority, SeniorityByDate):
+        return _ivs_date_msg(seniority.value)
+    if isinstance(seniority, SeniorityByMonths):
+        return _ivs_months_msg(seniority.value, as_of)
+    if isinstance(seniority, SeniorityByCount):
         return (
-            f"hire date {seniority.value} is on or after "
-            f"{_IVS_CEILING_THRESHOLD}: consider setting "
-            "ivs_ceiling_applies=True"
+            "SeniorityByCount used without ivs_ceiling_applies: "
+            f"if hired on or after {_IVS_CEILING_THRESHOLD}, "
+            "contributions are overstated; "
+            "consider setting ivs_ceiling_applies=True"
         )
     return None
 
@@ -111,7 +158,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
         under_level_code=gross.under_level_code,
     )
     result_status = _compute_result_status(calculation_scope)
-    ivs_warn = _ivs_ceiling_warning(scenario)
+    ivs_warn = _ivs_ceiling_warning(scenario, as_of)
     result_warnings = (
         (*work.warnings, ivs_warn) if ivs_warn is not None else work.warnings
     )
