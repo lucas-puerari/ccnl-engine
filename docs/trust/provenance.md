@@ -28,7 +28,7 @@ the fact is stated:
         "quote": null
       },
       "extraction": {
-        "method": "ai_assisted",
+        "method": "ai",
         "model": null,
         "extraction_timestamp": "2026-08-30T00:00:00",
         "verified_by": null,
@@ -62,7 +62,7 @@ the fact is stated:
 
 | Field | Description |
 |---|---|
-| `method` | `"manual"` or `"ai_assisted"` |
+| `method` | `"ai"` \| `"manual"` \| `"back_calculation"` \| `"import"` |
 | `model` | Model identifier if AI-assisted (null when not recorded) |
 | `extraction_timestamp` | When the fact was extracted |
 | `verified_by` | Name or identifier of human reviewer (null if unverified) |

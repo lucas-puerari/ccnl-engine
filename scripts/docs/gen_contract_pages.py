@@ -42,7 +42,9 @@ VERIFICATION_BADGE: dict[str, str] = {
 
 EXTRACTION_BADGE: dict[str, str] = {
     "manual": "🧑 Manual",
-    "ai_assisted": "🤖 AI-assisted",
+    "ai": "🤖 AI-assisted",
+    "back_calculation": "🔢 Back-calculation",
+    "import": "📥 Import",
 }
 
 
