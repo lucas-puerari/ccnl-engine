@@ -2407,9 +2407,36 @@ class TestIvsCeilingWarning:
         r = compute(self._scenario_with_hire_date(date(1990, 3, 15))).result
         assert not any("ivs_ceiling_applies" in w for w in r.warnings)
 
-    def test_no_seniority_by_date_no_warning(self) -> None:
-        """SeniorityByMonths input does not trigger the IVS ceiling warning."""
+    def test_post_1996_hire_warning_contains_overstated(self) -> None:
+        """Warning for post-1996 hire must mention 'overstated'."""
+        r = compute(self._scenario_with_hire_date(date(2000, 6, 1))).result
+        assert any("overstated" in w for w in r.warnings)
+
+    def test_seniority_by_months_post_1996_emits_warning(self) -> None:
+        """SeniorityByMonths implying post-1996 hire triggers the warning."""
+        # 120 months = 10 years of seniority; implied hire ~2016, post-1996
         r = compute(_req(seniority_months=120)).result
+        assert any("overstated" in w for w in r.warnings)
+
+    def test_seniority_by_months_pre_1996_no_warning(self) -> None:
+        """SeniorityByMonths implying pre-1996 hire produces no warning."""
+        # 480 months = 40 years; implied hire ~1986, pre-1996
+        r = compute(_req(seniority_months=480)).result
+        assert not any("ivs_ceiling_applies" in w for w in r.warnings)
+
+    def test_seniority_by_months_with_ceiling_no_warning(self) -> None:
+        """SeniorityByMonths with ivs_ceiling_applies=True produces no warning."""
+        r = compute(_req(seniority_months=120, ivs_ceiling_applies=True)).result
+        assert not any("ivs_ceiling_applies" in w for w in r.warnings)
+
+    def test_seniority_by_count_emits_warning(self) -> None:
+        """SeniorityByCount with ivs_ceiling_applies=False triggers warning."""
+        r = compute(_req(seniority_count=2)).result
+        assert any("overstated" in w for w in r.warnings)
+
+    def test_seniority_by_count_with_ceiling_no_warning(self) -> None:
+        """SeniorityByCount with ivs_ceiling_applies=True produces no warning."""
+        r = compute(_req(seniority_count=2, ivs_ceiling_applies=True)).result
         assert not any("ivs_ceiling_applies" in w for w in r.warnings)
 
 
