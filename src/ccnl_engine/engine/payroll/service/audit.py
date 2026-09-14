@@ -90,7 +90,7 @@ def _build_trace(
     chain: MonthlyPayChain,
     seniority_count: int,
     ad_personam: Decimal,
-    scaled_second_level: list[tuple[Decimal, SupplementaryAllowance]],
+    scaled_second_level: tuple[tuple[Decimal, SupplementaryAllowance], ...],
     gross_monthly: Decimal,
 ) -> CalculationTrace:
     """Build the step-by-step gross computation trace, post-scaling.
