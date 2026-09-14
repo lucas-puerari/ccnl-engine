@@ -27,7 +27,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-02T08:00:00",
       "human_reviewed": false
     },
@@ -1337,7 +1337,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "4195174540b4dff21ab183ff5d12e68f79644f5e6ee388bcf7a758378902137b",
+    "source_hash": "3edd2e0d86fdeec0d8729e2aeea520cf348693907ba3e686988fd9187756d60e",
     "published_at": "2026-09-07"
   },
   "work_rules": {

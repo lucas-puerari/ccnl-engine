@@ -28,7 +28,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-01",
       "human_reviewed": false
     },
@@ -1271,7 +1271,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "9c8b0a60557f98d5ce89e747a318b0854ad00cbafcce084b16030403456ad536",
+    "source_hash": "8060199c7dde5217115fe032bebeb45a7f9d64def50ce7d8e6c557bc9e9311f5",
     "published_at": "2026-09-07"
   },
   "work_rules": {

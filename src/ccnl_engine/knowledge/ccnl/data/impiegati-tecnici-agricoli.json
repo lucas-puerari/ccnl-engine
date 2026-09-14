@@ -32,7 +32,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-04T00:00:00",
       "human_reviewed": false
     },
@@ -599,7 +599,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.contratticcnl.it/ccnl/a021/",
     "verification_status": "unverified",
-    "source_hash": "35454e3dec9ae9df2f5d2ad5596cd6b797373dd6d006b5e8225e87a7f818ff25",
+    "source_hash": "d4b99abda13d188679e8e47a0fa722c3cabd6b3e8a73d77f498d56fe4fafb513",
     "published_at": "2026-09-07"
   },
   "work_rules": {

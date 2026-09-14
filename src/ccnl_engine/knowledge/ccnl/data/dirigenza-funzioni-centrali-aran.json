@@ -31,7 +31,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-03",
       "human_reviewed": false
     },
@@ -292,7 +292,7 @@
     "effective_until": "2024-12-31",
     "source": "https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf",
     "verification_status": "unverified",
-    "source_hash": "e49f5b8aff96409d653c1048456727f95ca745f12ea73523c76768bc83391c4a",
+    "source_hash": "f675001e6d463da49339a2bb5401e85c347dd36d1e44f712ec284b2ad98ae3ce",
     "published_at": "2026-09-07"
   },
   "work_rules": {

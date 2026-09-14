@@ -28,7 +28,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-08-31T00:00:00",
       "human_reviewed": false
     },
@@ -1650,7 +1650,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "8f526b1c64b4f7470cc5317e112ab8b949951948556f9342286064e7c2bcf055",
+    "source_hash": "bead6a90b9e8a148fa7fd8eb8028f60e5feb3dfcdeccc13899d52726e8db7aad",
     "published_at": "2026-09-07"
   },
   "work_rules": {

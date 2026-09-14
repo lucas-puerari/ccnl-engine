@@ -31,7 +31,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-05T00:00:00",
       "human_reviewed": false
     },
@@ -5061,7 +5061,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "cf6646f7381849e0d2333b0e4aaa7f79ef73fed33547fea710a94f65d124af16",
+    "source_hash": "2aca598b1475f891b31b6d8f79f3b67f98bb5e7c7648885b52d325f865eadef4",
     "published_at": "2026-09-07"
   },
   "work_rules": {

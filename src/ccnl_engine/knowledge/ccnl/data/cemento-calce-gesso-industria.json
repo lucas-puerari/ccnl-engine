@@ -21,7 +21,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-06T00:00:00",
       "human_reviewed": true
     },
@@ -2425,7 +2425,7 @@
     "effective_until": null,
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
     "verification_status": "verified",
-    "source_hash": "7413c1709a8716074354dada9b676f773843c321c728a10146b3ba4c741996ba",
+    "source_hash": "acd201e9fb7dbf582bbdf325fbf0f381f6f86d8b855110b77e95fd77a5150ab0",
     "published_at": "2026-09-07"
   },
   "work_rules": {

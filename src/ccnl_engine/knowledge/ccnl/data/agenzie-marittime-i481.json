@@ -27,7 +27,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-05",
       "human_reviewed": false
     },
@@ -1099,7 +1099,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "79ec2d09c7bec5b1bd38f8ec718de219f2cb9bf6f403ca417c8cc5585d4b8732",
+    "source_hash": "0e301cf7f0b86c79bf87fe0569612d32e8b2275eb2614f05b654077793be1afa",
     "published_at": "2026-09-07"
   },
   "work_rules": {

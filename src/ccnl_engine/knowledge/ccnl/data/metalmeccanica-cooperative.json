@@ -33,7 +33,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-06T00:00:00",
       "human_reviewed": false
     },
@@ -1345,7 +1345,7 @@
     "effective_until": null,
     "source": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/",
     "verification_status": "unverified",
-    "source_hash": "3c13b2ae0693a6f88fd1f13335f7d7445b077d3836e7671bf4324c26359e84ec",
+    "source_hash": "fcab0e019f353a8e6de7818eb1e5c594f78edb38e45b45c8dddd6c1690b41940",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -35,7 +35,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-03",
       "human_reviewed": false
     },
@@ -608,7 +608,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "944f6cadffdc901e2186bc8595bf73e5a9a7c957bda201e785280f962f2a1905",
+    "source_hash": "8f2b7e99f9decda3774abb31f00c716d3adb7ecebca1a2136319ffe3f2fb58cc",
     "published_at": "2026-09-07"
   },
   "work_rules": {

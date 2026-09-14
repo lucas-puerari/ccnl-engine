@@ -34,7 +34,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-02T00:00:00",
       "human_reviewed": false
     },
@@ -916,7 +916,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "bb6971ef78d9a1019e6d58d40a8d8092cb4ff25e9e614f1e142d2edfe19668e4",
+    "source_hash": "e7a9dbda152b6959b822052ec07bf7d7a225f76b16d70cc50f6cabb25bdfdc7e",
     "published_at": "2026-09-07"
   },
   "work_rules": {

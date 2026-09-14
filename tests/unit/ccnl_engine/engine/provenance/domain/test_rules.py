@@ -15,6 +15,7 @@ from ccnl_engine.engine.provenance.domain.extraction import (
     ExtractionTrace,
 )
 from ccnl_engine.engine.provenance.domain.source import (
+    _KIND_TO_AUTHORITY,
     SourceAuthority,
     SourceDocument,
     SourceKind,
@@ -139,6 +140,45 @@ class TestExtractionTrace:
                 back_calculation=[
                     BackCalculationStep(description="x", inputs={}, result=Decimal(1))
                 ],
+            )
+
+    def test_ai_method_without_model_raises(self) -> None:
+        """method='ai' with model=None raises ValidationError."""
+        with pytest.raises(ValueError, match="model"):
+            ExtractionTrace(
+                method=ExtractionMethod.AI,
+                model=None,
+                extraction_timestamp=_TS,
+                effective_from=_DATE,
+            )
+
+    def test_ai_method_with_model_passes(self) -> None:
+        """method='ai' with a model identifier is valid."""
+        trace = ExtractionTrace(
+            method=ExtractionMethod.AI,
+            model="claude-opus-5",
+            extraction_timestamp=_TS,
+            effective_from=_DATE,
+        )
+        assert trace.model == "claude-opus-5"
+        assert trace.method is ExtractionMethod.AI
+
+
+class TestKindToAuthorityExhaustiveness:
+    """_KIND_TO_AUTHORITY must cover every SourceKind member."""
+
+    def test_all_kinds_covered(self) -> None:
+        """Every SourceKind has an entry in _KIND_TO_AUTHORITY."""
+        assert set(_KIND_TO_AUTHORITY) == set(SourceKind)
+
+    def test_assertion_fires_on_missing_entry(self) -> None:
+        """The module-level assertion logic catches a gap if a kind is missing."""
+        partial: dict[SourceKind, SourceAuthority] = dict(_KIND_TO_AUTHORITY)
+        del partial[SourceKind.ALTRO]
+        with pytest.raises(AssertionError):
+            assert set(partial) == set(SourceKind), (
+                f"_KIND_TO_AUTHORITY is missing entries for: "
+                f"{set(SourceKind) - set(partial)}"
             )
 
 

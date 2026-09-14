@@ -19,6 +19,8 @@ import subprocess  # noqa: S404
 from pathlib import Path
 from typing import TYPE_CHECKING
 
+from pydantic import ValidationError
+
 from ccnl_engine.engine.contract.domain.ccnl import CCNL
 
 if TYPE_CHECKING:
@@ -85,7 +87,10 @@ def _git_load_ccnl(git_ref: str, file_path: str) -> CCNL | None:
     if result.returncode != 0:
         return None
     payload = json.loads(result.stdout)
-    return CCNL.model_validate(payload)
+    try:
+        return CCNL.model_validate(payload)
+    except ValidationError:
+        return None
 
 
 # ---------------------------------------------------------------------------

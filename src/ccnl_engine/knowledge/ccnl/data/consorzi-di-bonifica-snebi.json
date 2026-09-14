@@ -32,7 +32,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-05",
       "human_reviewed": false
     },
@@ -2632,7 +2632,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "913af2d5f3a8add2232348d6254720192563b72fd63d03d3aa079921d51a1806",
+    "source_hash": "f69658be3ba47427b79aed6f97a04baa89c8edd28a26e00151a3ea3252d49a21",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -26,7 +26,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-01T00:00:00",
       "human_reviewed": false
     },
@@ -1247,7 +1247,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "fc9190c77e7a49ee9c9853f68cc7c6797a3686a2c54054aa918014eeb4ddab60",
+    "source_hash": "1ef96027dc618ef63d15f447a8f18765e3c13e31b626ebe7a429dd0b3943311c",
     "published_at": "2026-09-07"
   },
   "work_rules": {

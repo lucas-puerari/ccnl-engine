@@ -35,7 +35,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-03",
       "human_reviewed": false
     },
@@ -504,7 +504,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "e211465d20ddde2fbec2ffb0af8e4d59cab2ea5e951781786ae3182ef68c5053",
+    "source_hash": "940f4eccde3a2aed86323382f1a5f3f97a63b0be04cfe9dfd3502d22c26c5d61",
     "published_at": "2026-09-07"
   },
   "work_rules": {
