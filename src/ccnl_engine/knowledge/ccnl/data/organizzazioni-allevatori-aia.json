@@ -37,7 +37,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
@@ -894,7 +894,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "3eea8f058bea0e12c08b985937bb8c1064c16c13c857815674216d033abd262b",
+    "source_hash": "616ed15ecd82b5470cb274f06051782cabeae821652125e3060d132e4fe1f271",
     "published_at": "2026-09-07"
   },
   "work_rules": {

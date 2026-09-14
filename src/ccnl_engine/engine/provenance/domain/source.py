@@ -23,7 +23,6 @@ class SourceKind(StrEnum):
     LEGGE = "legge"
     DPR = "dpr"
     DL = "dl"
-    DPR_DECRETO = "dpr_decreto"
     TABELLA_RETRIBUTIVA = "tabella_retributiva"
     RIVISTA = "rivista"
     ALTRO = "altro"
@@ -55,7 +54,6 @@ _KIND_TO_AUTHORITY: dict[SourceKind, SourceAuthority] = {
     SourceKind.LEGGE: SourceAuthority.OFFICIAL,
     SourceKind.DPR: SourceAuthority.OFFICIAL,
     SourceKind.DL: SourceAuthority.OFFICIAL,
-    SourceKind.DPR_DECRETO: SourceAuthority.OFFICIAL,
     SourceKind.ASSOCIAZIONE: SourceAuthority.SECONDARY,
     SourceKind.TABELLA_RETRIBUTIVA: SourceAuthority.SECONDARY,
     SourceKind.RIVISTA: SourceAuthority.SECONDARY,

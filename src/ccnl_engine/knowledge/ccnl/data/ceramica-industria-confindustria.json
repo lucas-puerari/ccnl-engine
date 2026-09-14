@@ -20,7 +20,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-02T00:00:00",
       "human_reviewed": false
@@ -1902,7 +1902,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "f110e0b534d983c85311d1870bc268f016b8edab482e6248eeb5779aa9b1a0ea",
+    "source_hash": "aae65def93db0c3ca17d25d4e1fb0d2023774d385930a4fcc3125d9c117aaa5b",
     "published_at": "2026-09-07"
   },
   "work_rules": {

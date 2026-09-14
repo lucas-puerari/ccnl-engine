@@ -30,7 +30,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
@@ -292,7 +292,7 @@
     "effective_until": "2024-12-31",
     "source": "https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf",
     "verification_status": "unverified",
-    "source_hash": "f1ffce4f3aa82b6553b804b56c3ade5082037bc8e6e8a55995f21c5c3f6afa03",
+    "source_hash": "e49f5b8aff96409d653c1048456727f95ca745f12ea73523c76768bc83391c4a",
     "published_at": "2026-09-07"
   },
   "work_rules": {

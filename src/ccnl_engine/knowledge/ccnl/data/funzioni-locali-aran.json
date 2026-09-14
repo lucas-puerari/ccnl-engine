@@ -32,7 +32,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
@@ -518,7 +518,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "65198105022f679750b0946cb44478683558202e62bb28fbb6108ecd7cf77ccc",
+    "source_hash": "dd1243a95ded4075f417e2952b0aeea1fbec176569dcd0d7d9d67cf7316eb272",
     "published_at": "2026-09-07"
   },
   "work_rules": {

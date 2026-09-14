@@ -19,7 +19,7 @@
       "Fillea-CGIL"
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-02",
       "human_reviewed": false
@@ -1889,7 +1889,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "ecfe6a9a2e47d0d4e7d447f0090ea9171be18945d750aa09431a24fe8b2705d0",
+    "source_hash": "93a9b079d8cf2d186e8ed155ecfaf1defb1e7935a3168ce86782ba6949253dd1",
     "published_at": "2026-09-07"
   },
   "work_rules": {

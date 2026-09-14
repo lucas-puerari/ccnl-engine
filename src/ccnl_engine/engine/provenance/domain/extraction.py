@@ -19,7 +19,7 @@ from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
 class ExtractionMethod(StrEnum):
     """How a rule was extracted into the domain model."""
 
-    AI_ASSISTED = "ai_assisted"
+    AI = "ai"
     MANUAL = "manual"
     BACK_CALCULATION = "back_calculation"
     IMPORT = "import"
@@ -49,7 +49,7 @@ class ExtractionTrace(BaseModel):
 
     Attributes:
         method: How the value was extracted (see :class:`ExtractionMethod`).
-        model: AI/LLM model used for ``ai_assisted`` extractions.
+        model: AI/LLM model used for ``ai`` extractions.
         extraction_timestamp: When the extraction was performed.
         verified_by: Identifier of the human curator who reviewed the
             extraction; ``None`` until reviewed.

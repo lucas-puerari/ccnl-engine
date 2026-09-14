@@ -21,7 +21,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
@@ -1331,7 +1331,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "e77e8a3417d2ff79d71434065a96dd08d39baed05e7971979aeb68c5af3986f5",
+    "source_hash": "5e84a4016496360c328cdde3736c723254aa9336257ea2780ac3f4561df5baf0",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -31,7 +31,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
@@ -1304,7 +1304,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "559f62177882acb1e95721f5ee8b85b190940f36511a865fc4042648ec33127c",
+    "source_hash": "a21e96487ee63308c718aa167788e0b93e273dbe2a8d93f9a54355551d59f79d",
     "published_at": "2026-09-07"
   },
   "work_rules": {

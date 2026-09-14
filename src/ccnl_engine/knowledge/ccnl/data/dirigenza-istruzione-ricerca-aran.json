@@ -40,7 +40,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
@@ -306,7 +306,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "1f34c8c274384a2e22ecf998214ddc6082e4f71e4aa80364c9d3210f58f2b28f",
+    "source_hash": "641da3b416b301d6eb6557238af9c718acde3ed53468ad6a073c02157584dde7",
     "published_at": "2026-09-07"
   },
   "work_rules": {

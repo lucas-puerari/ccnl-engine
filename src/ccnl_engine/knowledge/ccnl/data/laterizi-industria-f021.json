@@ -41,7 +41,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
@@ -2727,7 +2727,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "e4b13055405c57d409aec72824281432dd266dcaca861d05ba9e946d1a5cb4a4",
+    "source_hash": "34172e7f8a98134f8a71ae7730332157cdf37fc56e336cc81fd5cebe6220d5b0",
     "published_at": "2026-09-07"
   },
   "work_rules": {

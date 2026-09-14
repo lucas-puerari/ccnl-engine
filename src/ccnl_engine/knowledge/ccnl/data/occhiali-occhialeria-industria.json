@@ -25,7 +25,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-06T00:00:00",
       "human_reviewed": true
@@ -2300,7 +2300,7 @@
     "effective_until": null,
     "source": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive",
     "verification_status": "verified",
-    "source_hash": "44fd53da8463411ea00fbc59f2f8d0daf33b0f06ccaf8e494a4dfccac741b252",
+    "source_hash": "7ab3f92fe3da7d70a24d7099d6ea64e493a5e703f2015b3bf109def181c1536a",
     "published_at": "2026-09-07"
   },
   "work_rules": {

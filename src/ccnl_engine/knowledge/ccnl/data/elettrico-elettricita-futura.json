@@ -30,7 +30,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-02",
       "human_reviewed": false
@@ -2385,7 +2385,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/elettrico/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "2511c4d1dd8c6fc8b782ec6854d56c4fa7ef945ec2f7d96db3a22e139a1f76c7",
+    "source_hash": "06a5613fe653709dbca3afd10697138d9c6e8c8a5d0d1ec31ebe929009549525",
     "published_at": "2026-09-07"
   },
   "work_rules": {

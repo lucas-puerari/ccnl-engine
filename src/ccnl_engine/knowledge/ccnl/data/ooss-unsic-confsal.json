@@ -33,7 +33,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
@@ -707,7 +707,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "a35f9b7237ec81137c697d260134584add683b90c2d9e6494f230286f7bd37d3",
+    "source_hash": "628a28704a8bfc885d8028b5dc338f4ecde6232c04a14e53c45394a8292eb084",
     "published_at": "2026-09-07"
   },
   "work_rules": {

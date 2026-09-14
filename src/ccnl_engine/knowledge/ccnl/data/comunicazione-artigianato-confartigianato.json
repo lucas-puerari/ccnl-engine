@@ -43,7 +43,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-02T00:00:00",
       "human_reviewed": false
@@ -1296,7 +1296,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "e34b7836789bd8a845b4587f122e610418856875b23937ed05b1042a101d4539",
+    "source_hash": "58d39b29e340a4cafd876a8ac5fdd91b4fd1ea474aaa540fb0c3c02936d51dab",
     "published_at": "2026-09-07"
   },
   "work_rules": {

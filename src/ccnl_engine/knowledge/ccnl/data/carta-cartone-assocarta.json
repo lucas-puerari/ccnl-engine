@@ -38,7 +38,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-02T00:00:00",
       "human_reviewed": false
@@ -2124,7 +2124,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/",
     "verification_status": "unverified",
-    "source_hash": "c2c7979b238e3c234fd9059b37ff2deca97344ff85114ee81fd671de57787e2f",
+    "source_hash": "542d490e3fad2aaf01b291c1945e8246bae2036a6c95db4ef72cfb529163b2df",
     "published_at": "2026-09-07"
   },
   "work_rules": {

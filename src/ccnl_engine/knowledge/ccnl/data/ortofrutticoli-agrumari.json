@@ -63,7 +63,7 @@
     "extraction": {
       "timestamp": "2026-09-11",
       "human_reviewed": true,
-      "method": "ai_assisted"
+      "method": "ai"
     },
     "workers_estimate": "~60000"
   },
@@ -255,7 +255,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verified_by": null,
@@ -290,7 +290,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verified_by": null,
@@ -324,7 +324,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -357,7 +357,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -390,7 +390,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -423,7 +423,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -456,7 +456,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -500,7 +500,7 @@
               "quote": null
             },
             "extraction": {
-              "method": "ai_assisted",
+              "method": "ai",
               "model": null,
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verified_by": null,
@@ -536,7 +536,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verified_by": null,
@@ -570,7 +570,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -603,7 +603,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -636,7 +636,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -669,7 +669,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -702,7 +702,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -740,7 +740,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verified_by": null,
@@ -774,7 +774,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -807,7 +807,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -840,7 +840,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -873,7 +873,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -906,7 +906,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -944,7 +944,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verified_by": null,
@@ -978,7 +978,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1011,7 +1011,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1044,7 +1044,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1077,7 +1077,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1110,7 +1110,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1148,7 +1148,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verified_by": null,
@@ -1182,7 +1182,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1215,7 +1215,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1248,7 +1248,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1281,7 +1281,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1314,7 +1314,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1352,7 +1352,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verified_by": null,
@@ -1386,7 +1386,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1419,7 +1419,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1452,7 +1452,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1485,7 +1485,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1518,7 +1518,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1556,7 +1556,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verified_by": null,
@@ -1590,7 +1590,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1623,7 +1623,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1656,7 +1656,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1689,7 +1689,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1722,7 +1722,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1760,7 +1760,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verified_by": null,
@@ -1794,7 +1794,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1827,7 +1827,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1860,7 +1860,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1893,7 +1893,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1926,7 +1926,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -1964,7 +1964,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verified_by": null,
@@ -1998,7 +1998,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -2031,7 +2031,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -2064,7 +2064,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -2097,7 +2097,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -2130,7 +2130,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-11T00:00:00",
                 "verified_by": null,
@@ -2158,7 +2158,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "038f24c109922ea47677b5a57b1a30b83be0ba1b03e85b0cd192746e893bec97"
+    "source_hash": "3e60f47178c82d04ba72eca69df293809c652d011c6fb00f6456b8227ae7e207"
   },
   "work_rules": {
     "time_supplements": {
@@ -2194,7 +2194,7 @@
               "section": "Lavoro-economia.it c=72 — maggiorazione straordinario: OT_ORDINARIO=0.35."
             },
             "extraction": {
-              "method": "ai_assisted",
+              "method": "ai",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2024-01-01"
@@ -2232,7 +2232,7 @@
               "section": "Lavoro-economia.it c=72 — maggiorazione straordinario: OT_FESTIVO=0.42."
             },
             "extraction": {
-              "method": "ai_assisted",
+              "method": "ai",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2024-01-01"
@@ -2269,7 +2269,7 @@
               "section": "Lavoro-economia.it c=72 — maggiorazione straordinario: OT_NOTTURNO=0.50."
             },
             "extraction": {
-              "method": "ai_assisted",
+              "method": "ai",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2024-01-01"
@@ -2306,7 +2306,7 @@
               "section": "Lavoro-economia.it c=72 — maggiorazione straordinario: OT_FESTIVO_NOTTURNO=0.60."
             },
             "extraction": {
-              "method": "ai_assisted",
+              "method": "ai",
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2024-01-01"
@@ -2332,7 +2332,7 @@
           "section": "Lavoro-economia.it c=72 — divisore e regole lavoro."
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2024-01-01"
@@ -2358,7 +2358,7 @@
           "section": "Comporto 180 giorni da snippet ricerca H341. Tassi integrazione (carenza/full-pay) non trovati da fonti accessibili — assunti 100% SEMPLIFICAZIONE; motore può sovrastimare supplement."
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "extraction_timestamp": "2026-09-11T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2024-01-01"

@@ -26,7 +26,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
@@ -1402,7 +1402,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "ce9cb61b51cf83f1515095f7fd43bfe59ccfbd0945058d44ce3fe5569d8d478d",
+    "source_hash": "cf11245aa76d4c49c4705f58eef12d983d83a4fed9f76a00df8c38a5fb0c94f7",
     "published_at": "2026-09-07"
   },
   "work_rules": {

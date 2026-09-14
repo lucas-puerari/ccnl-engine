@@ -26,7 +26,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-05",
       "human_reviewed": false
@@ -1544,7 +1544,7 @@
     "effective_until": null,
     "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
     "verification_status": "unverified",
-    "source_hash": "bcabafa1549bd64c2406cfecaebb187922b7adf19f04dd882d05c82ecf4bd78e",
+    "source_hash": "1b69af4eded470c032091f8b34b4dda8ba267fdbc7b898833903023c9073eb67",
     "published_at": "2026-09-07"
   },
   "work_rules": {

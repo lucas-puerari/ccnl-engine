@@ -34,7 +34,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-03",
       "human_reviewed": false
@@ -504,7 +504,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "ad3820092e84981d702ea5ec4ee012b100e3bcc9e18956d403cfad9f41d5100e",
+    "source_hash": "e211465d20ddde2fbec2ffb0af8e4d59cab2ea5e951781786ae3182ef68c5053",
     "published_at": "2026-09-07"
   },
   "work_rules": {

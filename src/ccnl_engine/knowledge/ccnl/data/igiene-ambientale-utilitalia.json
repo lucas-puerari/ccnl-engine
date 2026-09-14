@@ -43,7 +43,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": null,
       "timestamp": "2026-09-04T00:00:00",
       "human_reviewed": false
@@ -3329,7 +3329,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "600246105621449e30056a3d905e28e7cfb42fdaf95acbfbc97089bf31032b2d",
+    "source_hash": "35df094a7b0652acee80790489d5f1d3f5c26dc848b29ba288b87386bc0cbb1d",
     "published_at": "2026-09-07"
   },
   "work_rules": {

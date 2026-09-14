@@ -28,7 +28,7 @@
       }
     ],
     "extraction": {
-      "method": "ai_assisted",
+      "method": "ai",
       "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-12",
       "human_reviewed": true
@@ -168,7 +168,7 @@
                   "quote": null
                 },
                 "extraction": {
-                  "method": "ai_assisted",
+                  "method": "ai",
                   "model": null,
                   "extraction_timestamp": "2026-09-12T00:00:00",
                   "verified_by": null,
@@ -205,7 +205,7 @@
                   "quote": null
                 },
                 "extraction": {
-                  "method": "ai_assisted",
+                  "method": "ai",
                   "model": null,
                   "extraction_timestamp": "2026-09-12T00:00:00",
                   "verified_by": null,
@@ -242,7 +242,7 @@
                   "quote": null
                 },
                 "extraction": {
-                  "method": "ai_assisted",
+                  "method": "ai",
                   "model": null,
                   "extraction_timestamp": "2026-09-12T00:00:00",
                   "verified_by": null,
@@ -279,7 +279,7 @@
                   "quote": null
                 },
                 "extraction": {
-                  "method": "ai_assisted",
+                  "method": "ai",
                   "model": null,
                   "extraction_timestamp": "2026-09-12T00:00:00",
                   "verified_by": null,
@@ -316,7 +316,7 @@
                   "quote": null
                 },
                 "extraction": {
-                  "method": "ai_assisted",
+                  "method": "ai",
                   "model": null,
                   "extraction_timestamp": "2026-09-12T00:00:00",
                   "verified_by": null,
@@ -353,7 +353,7 @@
                   "quote": null
                 },
                 "extraction": {
-                  "method": "ai_assisted",
+                  "method": "ai",
                   "model": null,
                   "extraction_timestamp": "2026-09-12T00:00:00",
                   "verified_by": null,
@@ -390,7 +390,7 @@
                   "quote": null
                 },
                 "extraction": {
-                  "method": "ai_assisted",
+                  "method": "ai",
                   "model": null,
                   "extraction_timestamp": "2026-09-12T00:00:00",
                   "verified_by": null,
@@ -422,7 +422,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verified_by": null,
@@ -571,7 +571,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -604,7 +604,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -637,7 +637,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -670,7 +670,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -703,7 +703,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -736,7 +736,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -769,7 +769,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -802,7 +802,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -835,7 +835,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -868,7 +868,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -901,7 +901,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -946,7 +946,7 @@
               "quote": null
             },
             "extraction": {
-              "method": "ai_assisted",
+              "method": "ai",
               "model": null,
               "extraction_timestamp": "2026-09-12T00:00:00",
               "verified_by": null,
@@ -976,7 +976,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verified_by": null,
@@ -1016,7 +1016,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1049,7 +1049,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1082,7 +1082,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1115,7 +1115,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1148,7 +1148,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1181,7 +1181,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1214,7 +1214,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1247,7 +1247,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1280,7 +1280,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1313,7 +1313,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1346,7 +1346,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1378,7 +1378,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verified_by": null,
@@ -1418,7 +1418,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1451,7 +1451,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1484,7 +1484,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1517,7 +1517,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1550,7 +1550,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1583,7 +1583,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1616,7 +1616,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1649,7 +1649,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1682,7 +1682,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1715,7 +1715,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1748,7 +1748,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1780,7 +1780,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verified_by": null,
@@ -1820,7 +1820,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1853,7 +1853,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1886,7 +1886,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1919,7 +1919,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1952,7 +1952,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -1985,7 +1985,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2018,7 +2018,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2051,7 +2051,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2084,7 +2084,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2117,7 +2117,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2150,7 +2150,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2182,7 +2182,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verified_by": null,
@@ -2222,7 +2222,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2255,7 +2255,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2288,7 +2288,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2321,7 +2321,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2354,7 +2354,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2387,7 +2387,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2420,7 +2420,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2453,7 +2453,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2486,7 +2486,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2519,7 +2519,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2552,7 +2552,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2584,7 +2584,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verified_by": null,
@@ -2624,7 +2624,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2657,7 +2657,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2690,7 +2690,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2723,7 +2723,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2756,7 +2756,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2789,7 +2789,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2822,7 +2822,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2855,7 +2855,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2888,7 +2888,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2921,7 +2921,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2954,7 +2954,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -2986,7 +2986,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verified_by": null,
@@ -3026,7 +3026,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -3059,7 +3059,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -3092,7 +3092,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -3125,7 +3125,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -3158,7 +3158,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -3191,7 +3191,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -3224,7 +3224,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -3257,7 +3257,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -3290,7 +3290,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -3323,7 +3323,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -3356,7 +3356,7 @@
                 "quote": null
               },
               "extraction": {
-                "method": "ai_assisted",
+                "method": "ai",
                 "model": null,
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verified_by": null,
@@ -3388,7 +3388,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verified_by": null,
@@ -3410,7 +3410,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "8c867c005dadd68ee1c7cc7cc62f2e2cc5fbd92d44eecf3a16f37603b5455b2f"
+    "source_hash": "ad575a30ce97fc5ebc7080598995534927e87ea264ac12f342011ee417c7e250"
   },
   "work_rules": {
     "time_supplements": {
@@ -3448,7 +3448,7 @@
               "quote": null
             },
             "extraction": {
-              "method": "ai_assisted",
+              "method": "ai",
               "model": null,
               "extraction_timestamp": "2026-09-12T00:00:00",
               "verified_by": null,
@@ -3493,7 +3493,7 @@
               "quote": null
             },
             "extraction": {
-              "method": "ai_assisted",
+              "method": "ai",
               "model": null,
               "extraction_timestamp": "2026-09-12T00:00:00",
               "verified_by": null,
@@ -3538,7 +3538,7 @@
               "quote": null
             },
             "extraction": {
-              "method": "ai_assisted",
+              "method": "ai",
               "model": null,
               "extraction_timestamp": "2026-09-12T00:00:00",
               "verified_by": null,
@@ -3583,7 +3583,7 @@
               "quote": null
             },
             "extraction": {
-              "method": "ai_assisted",
+              "method": "ai",
               "model": null,
               "extraction_timestamp": "2026-09-12T00:00:00",
               "verified_by": null,
@@ -3617,7 +3617,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verified_by": null,
@@ -3651,7 +3651,7 @@
           "quote": null
         },
         "extraction": {
-          "method": "ai_assisted",
+          "method": "ai",
           "model": null,
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verified_by": null,
