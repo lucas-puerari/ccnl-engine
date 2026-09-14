@@ -75,7 +75,7 @@ every work-rule parameter — carries a `provenance` block that records:
 
 - **source_document**: the primary document (URL, title, publication date)
 - **section**: the specific article, table, or page
-- **extraction**: method (`manual` or `ai_assisted`), timestamp, verifier
+- **extraction**: method (`manual`, `ai`, `back_calculation`, or `import`), timestamp, verifier
 - **verification_status**: `"verified"` | `"unverified"` | `"needs_review"`
 
 See [Provenance](provenance.md) for the full schema and how to read it.
