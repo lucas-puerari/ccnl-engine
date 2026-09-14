@@ -34,7 +34,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "extraction_timestamp": "2026-08-30T00:00:00",
       "verified_by": null,
       "verified_at": null,
@@ -193,7 +193,7 @@
         },
         "extraction": {
           "method": "ai",
-          "model": null,
+          "model": "claude-sonnet-4-6",
           "extraction_timestamp": "2026-08-30T00:00:00",
           "verified_by": null,
           "verified_at": null,
@@ -234,7 +234,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -267,7 +267,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -300,7 +300,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -333,7 +333,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -366,7 +366,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -410,7 +410,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -451,7 +451,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -492,7 +492,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -523,7 +523,7 @@
         },
         "extraction": {
           "method": "ai",
-          "model": null,
+          "model": "claude-sonnet-4-6",
           "extraction_timestamp": "2026-08-30T00:00:00",
           "verified_by": null,
           "verified_at": null,
@@ -562,7 +562,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -595,7 +595,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -628,7 +628,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -661,7 +661,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -694,7 +694,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -738,7 +738,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -779,7 +779,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -809,7 +809,7 @@
         },
         "extraction": {
           "method": "ai",
-          "model": null,
+          "model": "claude-sonnet-4-6",
           "extraction_timestamp": "2026-08-30T00:00:00",
           "verified_by": null,
           "verified_at": null,
@@ -848,7 +848,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -881,7 +881,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -914,7 +914,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -947,7 +947,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -980,7 +980,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1024,7 +1024,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -1065,7 +1065,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -1095,7 +1095,7 @@
         },
         "extraction": {
           "method": "ai",
-          "model": null,
+          "model": "claude-sonnet-4-6",
           "extraction_timestamp": "2026-08-30T00:00:00",
           "verified_by": null,
           "verified_at": null,
@@ -1134,7 +1134,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1167,7 +1167,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1200,7 +1200,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1233,7 +1233,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1266,7 +1266,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1310,7 +1310,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -1351,7 +1351,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -1381,7 +1381,7 @@
         },
         "extraction": {
           "method": "ai",
-          "model": null,
+          "model": "claude-sonnet-4-6",
           "extraction_timestamp": "2026-08-30T00:00:00",
           "verified_by": null,
           "verified_at": null,
@@ -1420,7 +1420,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1453,7 +1453,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1486,7 +1486,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1519,7 +1519,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1552,7 +1552,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1596,7 +1596,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -1637,7 +1637,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -1667,7 +1667,7 @@
         },
         "extraction": {
           "method": "ai",
-          "model": null,
+          "model": "claude-sonnet-4-6",
           "extraction_timestamp": "2026-08-30T00:00:00",
           "verified_by": null,
           "verified_at": null,
@@ -1706,7 +1706,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1739,7 +1739,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1772,7 +1772,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1805,7 +1805,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1838,7 +1838,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -1882,7 +1882,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -1923,7 +1923,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -1953,7 +1953,7 @@
         },
         "extraction": {
           "method": "ai",
-          "model": null,
+          "model": "claude-sonnet-4-6",
           "extraction_timestamp": "2026-08-30T00:00:00",
           "verified_by": null,
           "verified_at": null,
@@ -1992,7 +1992,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -2025,7 +2025,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -2058,7 +2058,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -2091,7 +2091,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -2124,7 +2124,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -2168,7 +2168,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -2209,7 +2209,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -2239,7 +2239,7 @@
         },
         "extraction": {
           "method": "ai",
-          "model": null,
+          "model": "claude-sonnet-4-6",
           "extraction_timestamp": "2026-08-30T00:00:00",
           "verified_by": null,
           "verified_at": null,
@@ -2278,7 +2278,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -2311,7 +2311,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -2344,7 +2344,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -2377,7 +2377,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -2410,7 +2410,7 @@
               },
               "extraction": {
                 "method": "ai",
-                "model": null,
+                "model": "claude-sonnet-4-6",
                 "extraction_timestamp": "2026-08-30T00:00:00",
                 "verified_by": null,
                 "verified_at": null,
@@ -2454,7 +2454,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -2495,7 +2495,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -2536,7 +2536,7 @@
             },
             "extraction": {
               "method": "ai",
-              "model": null,
+              "model": "claude-sonnet-4-6",
               "extraction_timestamp": "2026-08-30T00:00:00",
               "verified_by": null,
               "verified_at": null,
@@ -2566,7 +2566,7 @@
         },
         "extraction": {
           "method": "ai",
-          "model": null,
+          "model": "claude-sonnet-4-6",
           "extraction_timestamp": "2026-08-30T00:00:00",
           "verified_by": null,
           "verified_at": null,
@@ -2634,7 +2634,7 @@
     "effective_until": null,
     "source": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
     "verification_status": "unverified",
-    "source_hash": "80aac18088d37cbe93237e2a0810c58a1e34a66840400689a7ceddb30632ca94",
+    "source_hash": "7f93d736475d468f720555186cd4381ff9b72ee7f40cd79cb24c6b1453292eb9",
     "published_at": "2026-09-07"
   },
   "work_rules": {

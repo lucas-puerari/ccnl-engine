@@ -34,7 +34,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-03",
       "human_reviewed": false
     },
@@ -1539,7 +1539,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "24616b012d4d0f51808f84fefaa07ef521c156e470fafb98cbc08c4d778f8fea",
+    "source_hash": "ce105c0f7f60fcef01cd7020270123c8a7f11e59db57bbe92a4354be663f9464",
     "published_at": "2026-09-07"
   },
   "work_rules": {

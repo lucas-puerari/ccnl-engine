@@ -37,7 +37,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-05",
       "human_reviewed": false
     },
@@ -1228,7 +1228,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "2f8d6328ebaabcc5a7ecca01c677501ef972ef26b1b2fc3dbd0cc7a61ee76e75",
+    "source_hash": "6eee80056dd7dbc9a2e9a01de0c7019a4e541d051bdaaa977b2e088e9c6afca7",
     "published_at": "2026-09-07"
   },
   "work_rules": {

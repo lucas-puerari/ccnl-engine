@@ -36,7 +36,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-05T00:00:00",
       "human_reviewed": false
     },
@@ -1315,7 +1315,7 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "5a389681ee6c50e412710c8b83546a03887cd662ec47c77be57eb6c33a6bd46c",
+    "source_hash": "829eb0e06cfa9e50eb9b1ded6f653c7fe419518ba631ae7aa843078a98c94046",
     "published_at": "2026-09-07"
   },
   "work_rules": {

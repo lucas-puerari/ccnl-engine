@@ -44,7 +44,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-04T00:00:00",
       "human_reviewed": false
     },
@@ -3329,7 +3329,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "35df094a7b0652acee80790489d5f1d3f5c26dc848b29ba288b87386bc0cbb1d",
+    "source_hash": "b3f89c65a6f71f5994d85da91c12da6a25e151a868b3b2b0be1e51625fc90f69",
     "published_at": "2026-09-07"
   },
   "work_rules": {

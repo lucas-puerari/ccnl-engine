@@ -43,7 +43,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-03",
       "human_reviewed": false
     },
@@ -288,7 +288,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "b411960893c296b89a9c7041d5156406cc0ef95d672fab83fa54c01a8dbe512c",
+    "source_hash": "64c2372132e410bc0bccabec569a0b3c61ba577097c9d7cc5d0a6ac206c447b1",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -27,7 +27,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-06T00:00:00",
       "human_reviewed": true
     },
@@ -1311,7 +1311,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "3914497ac2fe0abbce2239adc9b5919333a61bf609c84e5981550348b03a21ec",
+    "source_hash": "708642067e269627164e29776adc7df61c7c635a4001cf4334ee6f87a7264db1",
     "published_at": "2026-09-07"
   },
   "work_rules": {

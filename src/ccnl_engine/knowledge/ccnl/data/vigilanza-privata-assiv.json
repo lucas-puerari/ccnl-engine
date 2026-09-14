@@ -42,7 +42,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-02T10:00:00",
       "human_reviewed": false
     },
@@ -1345,7 +1345,7 @@
     "effective_until": null,
     "source": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139",
     "verification_status": "unverified",
-    "source_hash": "530a0d96233d373a1ec07b0eb710e2da0c8d80743e5b7ac0d2d77740a573dced",
+    "source_hash": "9ae007009a7cd7be51757d3ea4db8757e44b551b9ecabed1b5268d95d07a6dc8",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -60,6 +60,11 @@ _KIND_TO_AUTHORITY: dict[SourceKind, SourceAuthority] = {
     SourceKind.ALTRO: SourceAuthority.SECONDARY,
 }
 
+assert set(_KIND_TO_AUTHORITY) == set(SourceKind), (
+    f"_KIND_TO_AUTHORITY is missing entries for: "
+    f"{set(SourceKind) - set(_KIND_TO_AUTHORITY)}"
+)
+
 
 class SourceDocument(BaseModel):
     """A primary source document for one or more extracted rules.

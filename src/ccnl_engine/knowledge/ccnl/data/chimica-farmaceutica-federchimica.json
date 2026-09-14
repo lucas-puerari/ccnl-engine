@@ -28,7 +28,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-08-31T00:00:00",
       "human_reviewed": false
     },
@@ -2554,7 +2554,7 @@
     "effective_until": null,
     "source": "https://informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "15605258d201cd5c94d3e4e4a6019b595e96bfdb2582240e979045412ae1f09f",
+    "source_hash": "3baa8a93ed40c876e76b88f8e43e1962d29fb32b1105430e693714d59032f839",
     "published_at": "2026-09-07"
   },
   "work_rules": {

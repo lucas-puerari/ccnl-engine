@@ -36,7 +36,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-08-31T00:00:00",
       "human_reviewed": false
     },
@@ -1286,7 +1286,7 @@
     "effective_until": null,
     "source": "https://www.studiotuscano.it/news/nuovi-minimi-retributivi-per-il-ccnl-metalmeccanica-piccola-industria-confapi",
     "verification_status": "unverified",
-    "source_hash": "2f9d890d63d85a20483e8ecb73db344aae0f29bd68345e21084f697b61b78be9",
+    "source_hash": "4ece5d611c6fcc379fbf9411ad3b25c01247e6fb0c9c0640fe168e826cf12c3d",
     "published_at": "2026-09-07"
   },
   "work_rules": {

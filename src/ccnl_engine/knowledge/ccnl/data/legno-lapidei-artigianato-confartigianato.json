@@ -40,7 +40,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-02T00:00:00",
       "human_reviewed": false
     },
@@ -1329,7 +1329,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "bfe06edee474fe59b6ce68a8adc278dfcb3a5e4d7fe033451ec1e90060e4ca67",
+    "source_hash": "0fc5ec7be366ca55c172b3da1405c274fb5976ee745587d501ff6410857b45aa",
     "published_at": "2026-09-07"
   },
   "work_rules": {

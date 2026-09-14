@@ -21,7 +21,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-06T00:00:00",
       "human_reviewed": true
     },
@@ -1123,7 +1123,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "56147c7d2bf5e2b49cf548dfc3539c817cca25a7a931e2f6ebaa56b2668008d0",
+    "source_hash": "df5ce45eeec4074e2efd6ae1c947187b7020a1fcb4ab28556be3ad8abfbede58",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -44,7 +44,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-02T00:00:00",
       "human_reviewed": false
     },
@@ -1296,7 +1296,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "58d39b29e340a4cafd876a8ac5fdd91b4fd1ea474aaa540fb0c3c02936d51dab",
+    "source_hash": "45ffed8c8fc9eebc6a7a42764c3ef0cb182101559c198f17767a539606c5bdcb",
     "published_at": "2026-09-07"
   },
   "work_rules": {

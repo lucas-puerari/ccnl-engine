@@ -34,7 +34,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-01T00:00:00",
       "human_reviewed": false
     },
@@ -900,7 +900,7 @@
     "effective_until": null,
     "source": "https://www.idealista.it/news/finanza/lavoro/2025/07/10/251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
     "verification_status": "unverified",
-    "source_hash": "13c0e6fc792171d111995a65b346c294440e36b8f4fc34b181d96fed345e2ca5",
+    "source_hash": "b392498c851819b6f71c5fa62fb494b228622abf6a081a392b426261fdbd0f26",
     "published_at": "2026-09-07"
   },
   "work_rules": {

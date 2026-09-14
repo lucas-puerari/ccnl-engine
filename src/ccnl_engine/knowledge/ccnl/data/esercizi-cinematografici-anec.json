@@ -20,7 +20,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-05T00:00:00",
       "human_reviewed": false
     },
@@ -1707,7 +1707,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "23d589973f9c314a2feca03425759cd674fa50b985fa4aa6d87a251b81c7b015",
+    "source_hash": "a186b821ecbf3cd443b1bbf2bf912cf134c81533d5d53225ce1d9d2834b5c0b3",
     "published_at": "2026-09-07"
   },
   "work_rules": {

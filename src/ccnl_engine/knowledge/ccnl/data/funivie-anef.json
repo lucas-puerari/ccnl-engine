@@ -23,7 +23,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-05",
       "human_reviewed": false
     },
@@ -1398,7 +1398,7 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "9db43ecf17389dccc1890a5a8a3e94c12ccdbda4da5f6453060eed748f540d7f",
+    "source_hash": "488f9ef10564158fb4b30896369a9862c588ed15b41bdbb4d90ced845e9118e9",
     "published_at": "2026-09-07"
   },
   "work_rules": {
