@@ -526,12 +526,15 @@ def compute_fiscal(
         ulteriore_detrazione_lavoro = _ZERO
 
     # Art. 15 TUIR deductions (interessi passivi mutuo prima casa, etc.).
-    # Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply here.
+    # Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply to Art. 15
+    # oneri, but it does reduce the Art. 12 capacity available to Art. 15
+    # credits.  Pass the post-sterilizzazione Art. 12 amount so that
+    # art15_unused reflects the actual remaining IRPEF capacity.
     art15_total, art15_unused = _run_wr_art15_deductions(
         scenario=scenario,
         irpef_gross=irpef_gross,
         work_income_deduction=work_income_deduction,
-        fam_total=fam_total,
+        fam_total=money(fam_total - sterilizzazione_clawback),
         ulteriore_detrazione_lavoro=ulteriore_detrazione_lavoro,
         year=year,
         employer_withholds_irpef=employer_withholds_irpef,

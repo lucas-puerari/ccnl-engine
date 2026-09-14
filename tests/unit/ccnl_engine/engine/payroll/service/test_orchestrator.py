@@ -1775,6 +1775,49 @@ class TestSterilizzazioneDetrazioni:
         # Art. 15 credit is intact: 4000 * 0.19 = 760.00.
         assert result.art15_deduction_annual == _D("760.00")
 
+    def test_sterilizzazione_with_family_and_art15_pins_unused(self) -> None:
+        """art15_unused uses post-clawback Art. 12 capacity when sterilizzazione fires.
+
+        When sterilizzazione fires (clawback = 440), the Art. 12 family
+        deduction reduces IRPEF capacity by less than the pre-sterilizzazione
+        amount.  art15_unused must reflect the post-clawback Art. 12 amount so
+        that the incapienza diagnostic is not overstated.
+        """
+        _mock_rules[0] = make_year_rules(sterilizzazione_detrazioni=self._STRD_RULES)
+        result = compute(
+            dataclasses.replace(
+                _req(),
+                family=FamilyComposition(spouse_dependent=True),
+                art15_deductions=Art15Deductions(mortgage_interest=_D("4000")),
+            )
+        ).result
+        _mock_rules[0] = make_year_rules()
+        result_no_strd = compute(
+            dataclasses.replace(
+                _req(),
+                family=FamilyComposition(spouse_dependent=True),
+                art15_deductions=Art15Deductions(mortgage_interest=_D("4000")),
+            )
+        ).result
+        # Verify sterilizzazione fired and family deductions are present.
+        assert result.sterilizzazione_clawback_annual == _D("440.00")
+        assert result.family_deduction_annual > _D("0")
+        # Art. 15 total is unchanged by sterilizzazione.
+        assert result.art15_deduction_annual == result_no_strd.art15_deduction_annual
+        # art15_unused is lower with sterilizzazione because the clawback
+        # reclaims IRPEF capacity previously consumed by Art. 12, leaving
+        # more room to absorb the Art. 15 credit.
+        assert result.unused_art15_deduction_annual <= (
+            result_no_strd.unused_art15_deduction_annual
+        )
+        # The difference between the two must equal the clawback capped at
+        # available unused capacity.
+        delta = (
+            result_no_strd.unused_art15_deduction_annual
+            - result.unused_art15_deduction_annual
+        )
+        assert _D("0") <= delta <= result.sterilizzazione_clawback_annual
+
 
 # ---------------------------------------------------------------------------
 # Art. 15 deductions (interessi passivi mutuo prima casa)

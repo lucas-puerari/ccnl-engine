@@ -203,7 +203,7 @@ def _scale_second_level(
     allowances: Sequence[SupplementaryAllowance],
     part_time_pct: Decimal,
     apprenticeship_pct: Decimal | None,
-) -> tuple[list[tuple[Decimal, SupplementaryAllowance]], Decimal]:
+) -> tuple[tuple[tuple[Decimal, SupplementaryAllowance], ...], Decimal]:
     """Scale second-level allowances by part_time_pct and optionally apprenticeship_pct.
 
     All applicable scaling factors (part-time, then apprenticeship when present
@@ -212,19 +212,20 @@ def _scale_second_level(
     first, then the result is rounded once to the nearest cent.
 
     Returns:
-        A tuple of (scaled pairs, monthly total) where scaled pairs are
-        (scaled_monthly, allowance) items and monthly total is their rounded sum.
+        A tuple of (scaled pairs, monthly total) where scaled pairs are a
+        frozen tuple of (scaled_monthly, allowance) items and monthly total
+        is their rounded sum.
     """
-    result: list[tuple[Decimal, SupplementaryAllowance]] = []
+    items: list[tuple[Decimal, SupplementaryAllowance]] = []
     total = _ZERO
     for sl in allowances:
         raw = sl.monthly * part_time_pct
         if apprenticeship_pct is not None and sl.apprenticeship_pct_relevant:
             raw *= apprenticeship_pct
         scaled = money(raw)
-        result.append((scaled, sl))
+        items.append((scaled, sl))
         total += scaled
-    return result, money(total)
+    return tuple(items), money(total)
 
 
 def _annualise(
@@ -286,7 +287,7 @@ class GrossPay:
     apprenticeship_pct: Decimal | None
     under_level_code: str | None
     ad_personam: Decimal
-    scaled_second_level: list[tuple[Decimal, SupplementaryAllowance]]
+    scaled_second_level: tuple[tuple[Decimal, SupplementaryAllowance], ...]
     second_level_monthly_total: Decimal
     additional_months: Decimal
     hourly_divisor: Decimal
