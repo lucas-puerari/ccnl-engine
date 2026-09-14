@@ -95,10 +95,6 @@ or `not_computed` (when the CCNL does not model it) in `calculation_scope`.
 - Art. 15 mortgage-interest deduction — `Art15Deductions`
 - Regional/municipal surtax — `Jurisdiction` (omitting it excludes surtax and reports it in `calculation_scope`)
 
-**Not modelled:**
-
-- Bilateral fund contributions (EST, Fon.Te, …)
-
 Every gap is reported in `PayrollResult.warnings` or `calculation_scope` so
 callers are never silently wrong.
 
