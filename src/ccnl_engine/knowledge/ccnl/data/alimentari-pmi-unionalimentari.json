@@ -27,7 +27,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-05",
       "human_reviewed": false
     },
@@ -1402,7 +1402,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "cf11245aa76d4c49c4705f58eef12d983d83a4fed9f76a00df8c38a5fb0c94f7",
+    "source_hash": "01845f94e7610b58f7cd995fc752162d61b0bd21674c82941cfdb53be448a75c",
     "published_at": "2026-09-07"
   },
   "work_rules": {

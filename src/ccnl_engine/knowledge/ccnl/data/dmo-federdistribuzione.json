@@ -21,7 +21,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-01T00:00:00",
       "human_reviewed": false
     },
@@ -2057,7 +2057,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "84a5b32279011918016391d5f0131b3251c96b9afa7d81262c6f106ea867ff92",
+    "source_hash": "60d05ae77452a1e023da396a16a4f5df425b844d5db0b1e0f1527853a209009b",
     "published_at": "2026-09-07"
   },
   "work_rules": {

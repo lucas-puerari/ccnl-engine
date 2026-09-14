@@ -76,6 +76,13 @@ class ExtractionTrace(BaseModel):
     )
 
     @model_validator(mode="after")
+    def _check_ai_model(self) -> Self:
+        if self.method is ExtractionMethod.AI and self.model is None:
+            msg = "method='ai' requires a model identifier; set model=<model-id>"
+            raise ValueError(msg)
+        return self
+
+    @model_validator(mode="after")
     def _check_back_calculation(self) -> Self:
         if self.back_calculation and self.method != ExtractionMethod.BACK_CALCULATION:
             msg = "back_calculation steps require method='back_calculation'"

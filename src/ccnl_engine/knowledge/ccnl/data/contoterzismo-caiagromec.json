@@ -32,7 +32,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-05",
       "human_reviewed": false
     },
@@ -1403,7 +1403,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "1cd9ca6d19d4d6ec9e403ad591aa09e91bd6f43cd571e6d51535267781fe0966",
+    "source_hash": "91ec6f0bf2c5c37c39dd5c4f0c6e2091469c32ee797df8916102a9b3c794dc86",
     "published_at": "2026-09-07"
   },
   "work_rules": {

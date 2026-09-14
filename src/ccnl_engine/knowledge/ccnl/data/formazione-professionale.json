@@ -26,7 +26,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-11T00:00:00",
       "human_reviewed": true
     },
@@ -1058,7 +1058,7 @@
     "effective_until": null,
     "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
     "verification_status": "verified",
-    "source_hash": "1bf789d5dcb0b07871a2f7fb660e2e65e5b9214f3c2c89b9003435aa9f27b45a",
+    "source_hash": "5cf670fee8c2e02ad1b090c6cd6b9447b7774533a4858c1406915f4868d95a60",
     "published_at": "2026-09-11"
   },
   "work_rules": {

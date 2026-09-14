@@ -22,7 +22,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-03",
       "human_reviewed": false
     },
@@ -1128,7 +1128,7 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "85d6c61f7de0fb69e0b7e26933e437038f983d613b3a777a63390f16cedcf15f",
+    "source_hash": "468590311af4db6682f61f3501d019ee498aebbb26ef4e8871006c5fad95e6d1",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -42,7 +42,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-04",
       "human_reviewed": false
     },
@@ -2141,7 +2141,7 @@
     "effective_until": null,
     "source": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f",
     "verification_status": "unverified",
-    "source_hash": "f5c4d029d0caa72d46d108843c913a7a114e1e49f2c88208afc05faee1beeb97",
+    "source_hash": "c12faa68cd61a11a3f2dfe8026f3dfc6bd4f740e0c860abd0c365dcd93d8d14e",
     "published_at": "2026-09-07"
   },
   "work_rules": {

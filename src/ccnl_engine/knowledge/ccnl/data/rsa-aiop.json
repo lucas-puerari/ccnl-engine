@@ -33,7 +33,8 @@
     "extraction": {
       "timestamp": "2026-09-06",
       "human_reviewed": false,
-      "method": "ai"
+      "method": "ai",
+      "model": "claude-sonnet-4-6"
     },
     "workers_estimate": "~17k"
   },
@@ -1097,7 +1098,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "db4131ec070828804b170d6767eee26d4c715b5d82d6f6ff6fbc21d57fa56fb0",
+    "source_hash": "bd9f8ea45816d8551806e49728f5ce2e3ef3156cb5f76cb362b7c928209b3a41",
     "published_at": "2026-09-07"
   },
   "work_rules": {

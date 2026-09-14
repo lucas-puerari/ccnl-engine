@@ -29,7 +29,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-03T00:00:00",
       "human_reviewed": false
     },
@@ -1689,7 +1689,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "ee712c34320cd238e2f70a5c88b57f125d1133671a79164f7752cee12cace8f9",
+    "source_hash": "8de4e1821c9f5f4760bcc956539c7f86f4aaf68ee9cbf69901d339d24ecc1a60",
     "published_at": "2026-09-07"
   },
   "work_rules": {

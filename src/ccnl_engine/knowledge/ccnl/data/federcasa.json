@@ -33,7 +33,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-05",
       "human_reviewed": false
     },
@@ -1079,7 +1079,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8ea6bd1dd4759e8ae20ff54174279099cf355727504a9e97fec261830a38e429",
+    "source_hash": "8fbf7e6d3497729f5422270df1ed2e4300dd490f3d3df31ac9a8c613daea4d18",
     "published_at": "2026-09-07"
   },
   "work_rules": {

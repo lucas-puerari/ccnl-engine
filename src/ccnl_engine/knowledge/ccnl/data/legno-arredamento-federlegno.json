@@ -31,7 +31,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-02",
       "human_reviewed": false
     },
@@ -2968,7 +2968,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf",
     "verification_status": "unverified",
-    "source_hash": "617dae097d770adcdd5b6bffae08ab534dda6982526e09dee555e109526f021b",
+    "source_hash": "12bb30af43849fbce2bb89b7b6129c9ef7f713eacab6987a4903f2fdafa21edf",
     "published_at": "2026-09-07"
   },
   "work_rules": {

@@ -31,7 +31,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-02",
       "human_reviewed": false
     },
@@ -1246,7 +1246,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "01d9a1c7b055c9d1e6b975d540b46342f9c3f9afe281ff2f2e7199ae00550db9",
+    "source_hash": "02cccbda49e80b7c2488f51732d6437c73d4b64964b10dc8ca68fe2be0c9032c",
     "published_at": "2026-09-07"
   },
   "work_rules": {

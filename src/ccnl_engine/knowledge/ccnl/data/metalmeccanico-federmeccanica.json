@@ -32,7 +32,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-08-30T00:00:00",
       "human_reviewed": false
     },
@@ -1755,7 +1755,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "03bf68cea7e974d8cd73494df3aa090aa58d1057621f7374b1d515a0d7abd5e9",
+    "source_hash": "be4ba603865f41bd09ac8a0b142a3d036dd5893badd04d2d200e640f43a87c0d",
     "published_at": "2026-09-08"
   },
   "work_rules": {

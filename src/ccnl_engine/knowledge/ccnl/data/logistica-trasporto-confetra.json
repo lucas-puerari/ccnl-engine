@@ -36,7 +36,7 @@
     ],
     "extraction": {
       "method": "ai",
-      "model": null,
+      "model": "claude-sonnet-4-6",
       "timestamp": "2026-09-01T00:00:00",
       "human_reviewed": false
     },
@@ -1298,7 +1298,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "88f178a2b7ab5b5150393ce980d96fa8eafaa0a85a4e2c3669eddc5589ba0a9c",
+    "source_hash": "295bccf6aca35a8228622dd8f1b8007feb9e76fd8c0a3d08d7783a0076a99205",
     "published_at": "2026-09-07"
   },
   "work_rules": {
