@@ -124,8 +124,12 @@ class PayrollResult:
         part_time_pct: Part-time coefficient applied to gross and
             contribution bases. ``1`` for a full-time worker.
         as_of: Reference date used to resolve all time-series values.
-        year: Calendar year derived from ``as_of``; used to select IRPEF
-            brackets and contribution rules.
+        year: Calendar year of the pay period (``as_of.year``).  This is
+            always the year of the calculation date, regardless of any
+            explicit ``tax_year`` override.  To find the fiscal year used
+            to load IRPEF brackets and contribution rules, see
+            :attr:`~ccnl_engine.engine.payroll.domain.calculation\
+.InputSnapshot.year`.
 
         seniority_count: Number of seniority increments (*scatti di
             anzianità*) applied. ``0`` when no seniority applies.
