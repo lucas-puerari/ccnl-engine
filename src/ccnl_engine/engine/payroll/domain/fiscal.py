@@ -19,6 +19,10 @@ class FiscalSimplification(StrEnum):
     interest (one of ~15 Art. 15 TUIR categories). Medical expenses, life
     insurance, funeral costs, charitable donations and the other categories are
     not computed; a separate fiscal layer must handle them.
+    ``NO_SOMMA_ESENTE`` — always set when the tax data file does not carry
+    ``somma_esente`` parameters (L. 207/2024 flat-rate net bonus for reddito
+    complessivo up to 20 000 EUR); cleared when the bonus is present in the
+    data regardless of the computed amount.
     ``NO_BILATERAL_FUNDS`` — no scenario-level bilateral fund contributions
     provided (``scenario.bilateral_funds`` is empty); cleared when at least one
     fund is present. Engine models only the post-tax net reduction; any
@@ -37,5 +41,6 @@ class FiscalSimplification(StrEnum):
     NO_DETRAZIONI_ART15_MORTGAGE = "no_detrazioni_art15_mortgage"
     PARTIAL_DETRAZIONI_ART15 = "partial_detrazioni_art15"
     NO_ULTERIORE_DETRAZIONE_LAVORO = "no_ulteriore_detrazione_lavoro"
+    NO_SOMMA_ESENTE = "no_somma_esente"
     NO_BILATERAL_FUNDS = "no_bilateral_funds"
     NO_ASSEGNO_UNICO = "no_assegno_unico"

@@ -197,6 +197,9 @@ class PayrollResult:
             ``Scenario.comune_belfiore`` is ``None`` or no
             :class:`~ccnl_engine.engine.surtax.models.SurtaxRules` was passed.
 
+        somma_esente: Somma esente bonus (L. 207/2024): flat-rate net bonus
+            added for reddito complessivo up to 20 000 EUR; ``0`` when not
+            applicable or when the tax data file does not carry the parameters.
         trattamento_integrativo: Trattamento integrativo bonus (Art. 1 D.L.
             3/2020), if computed; ``0`` when not applicable or when the tax
             data file does not carry the required parameters.
@@ -207,7 +210,8 @@ class PayrollResult:
         net_annual: Annual net pay (``gross_annual`` minus
             ``inps_employee_annual`` minus ``irpef_net`` minus
             ``addizionale_regionale_annual`` minus
-            ``addizionale_comunale_annual`` plus ``trattamento_integrativo``).
+            ``addizionale_comunale_annual`` plus ``trattamento_integrativo``
+            plus ``somma_esente``).
         net_monthly: Monthly net pay (``net_annual / additional_months``).
             Rounded to two decimal places; for contracts with fractional
             additional-months divisors (e.g. 13.5 or 14), a sub-cent
@@ -256,6 +260,7 @@ class PayrollResult:
     addizionale_comunale_annual: Decimal
 
     ulteriore_detrazione_lavoro: Decimal
+    somma_esente: Decimal
     trattamento_integrativo: Decimal
     fiscal_simplifications: frozenset[FiscalSimplification]
 

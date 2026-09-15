@@ -324,16 +324,57 @@ class TrattamentoIntegrativoRules(BaseModel):
 class UlterioreDetrazioneRules(BaseModel):
     """Ulteriore detrazione del lavoro dipendente (Art. 1 c. 6 L. 207/2024).
 
-    For reddito complessivo in ``(threshold_low, threshold_mid]``:
-    ``max_amount`` (annual, pro-rated to the work period by the caller).
-    Outside that band: zero.
+    Three zones by reddito complessivo (``rc``):
+
+    - ``rc <= threshold_low``: zero.
+    - ``threshold_low < rc <= threshold_mid``: ``max_amount`` (flat).
+    - ``threshold_mid < rc <= threshold_high``:
+      ``max_amount * (threshold_high - rc) / (threshold_high - threshold_mid)``
+      (tapering to zero at the upper boundary).
+    - ``rc > threshold_high``: zero.
+
+    Pro-rating to the actual work period is the caller's responsibility.
     """
 
     model_config = ConfigDict(extra="forbid")
 
     threshold_low: Decimal
     threshold_mid: Decimal
+    threshold_high: Decimal
     max_amount: Decimal
+    provenance: RuleProvenance | None = None
+
+
+class SommaEsenteBand(BaseModel):
+    """One income band for the somma esente schedule.
+
+    The ``rate`` applies to the full reddito complessivo (not a marginal
+    slice) when the income falls within this band (i.e. does not exceed
+    ``up_to``).  Bands are ordered ascending by ``up_to``.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    up_to: Decimal
+    rate: Decimal
+
+
+class SommaEsenteRules(BaseModel):
+    """Somma esente L. 207/2024 for low-income workers.
+
+    A flat-rate bonus added to net pay when reddito complessivo does not
+    exceed the last band's ``up_to`` threshold.  The applicable rate is
+    the rate of the first band whose ``up_to`` is >= reddito complessivo;
+    it is applied to the full reddito complessivo (not just the marginal
+    slice).
+
+    Band cut points in the knowledge bundle are unverified reconstructions
+    from available examples and are flagged in the JSON ``notes`` array.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    bands: list[SommaEsenteBand]
     provenance: RuleProvenance | None = None
 
 
@@ -376,6 +417,7 @@ class YearRulesRaw(BaseModel):
     tfr: TfrRules
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
     ulteriore_detrazione: UlterioreDetrazioneRules | None = None
+    somma_esente: SommaEsenteRules | None = None
     sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
     notes: list[str] = Field(default_factory=list)
     sources: list[SourceDocument] = Field(default_factory=list)
@@ -425,6 +467,7 @@ class YearRules(BaseModel):
     tfr: TfrRules
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
     ulteriore_detrazione: UlterioreDetrazioneRules | None = None
+    somma_esente: SommaEsenteRules | None = None
     sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
     notes: list[str] = Field(default_factory=list)
     sources: list[SourceDocument] = Field(default_factory=list)

@@ -86,11 +86,15 @@ _STEP_META: dict[TraceCategory, dict[str, str]] = {
         "source": "Art. 1 D.L. 3/2020",
         "rounding": _ROUNDING,
     },
+    TraceCategory.SOMMA_ESENTE: {
+        "source": "L. 207/2024",
+        "rounding": _ROUNDING,
+    },
     TraceCategory.NET: {
         "formula": (
             "lordo_annuale - contributi_INPS_dipendente - IRPEF_netta"
             " - addizionale_regionale - addizionale_comunale"
-            " + trattamento_integrativo"
+            " + trattamento_integrativo + somma_esente"
         ),
     },
     TraceCategory.INPS_EMPLOYER: {
@@ -161,6 +165,7 @@ def build_fiscal_trace(
     addizionale_regionale_annual: Decimal,
     addizionale_comunale_annual: Decimal,
     trattamento_integrativo: Decimal,
+    somma_esente: Decimal,
     net_annual: Decimal,
     employer_withholds_irpef: bool,
     inps_formula: str | None = None,
@@ -281,6 +286,11 @@ def build_fiscal_trace(
             TraceCategory.TRATTAMENTO_INTEGRATIVO,
             "Trattamento integrativo (Art. 1 D.L. 3/2020)",
             trattamento_integrativo,
+        ),
+        _step(
+            TraceCategory.SOMMA_ESENTE,
+            "Somma esente (L. 207/2024)",
+            somma_esente,
         ),
         _step(
             TraceCategory.NET,

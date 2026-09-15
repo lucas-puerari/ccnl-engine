@@ -164,7 +164,8 @@ def make_year_rules(
             "reduction": ...}`` to activate or a custom threshold for tests.
         ulteriore_detrazione: Optional override for ulteriore detrazione
             rules (Art. 1 c. 6 L. 207/2024). Pass ``{"threshold_low": ...,
-            "threshold_mid": ..., "max_amount": ...}`` to activate.
+            "threshold_mid": ..., "threshold_high": ...,
+            "max_amount": ...}`` to activate.
 
     Returns:
         A validated YearRules instance.

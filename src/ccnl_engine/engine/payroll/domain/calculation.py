@@ -319,6 +319,7 @@ class TraceCategory(StrEnum):
     ADDIZIONALE_REGIONALE = "addizionale_regionale"
     ADDIZIONALE_COMUNALE = "addizionale_comunale"
     TRATTAMENTO_INTEGRATIVO = "trattamento_integrativo"
+    SOMMA_ESENTE = "somma_esente"
     NET = "net"
 
 

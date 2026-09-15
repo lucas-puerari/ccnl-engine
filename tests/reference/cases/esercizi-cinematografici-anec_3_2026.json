@@ -48,8 +48,8 @@
     "irpef_net": "1182.46",
     "employer_withholds_irpef": true,
     "second_level_monthly": "0.00",
-    "net_annual": "16406.27",
-    "net_monthly": "1171.88",
+    "net_annual": "17250.53",
+    "net_monthly": "1232.18",
     "employer_cost_annual": "26416.50",
     "addizionale_regionale_annual": "0",
     "addizionale_comunale_annual": "0",
@@ -63,6 +63,7 @@
       "no_detrazioni_familiari",
       "partial_detrazioni_art15"
     ],
-    "ulteriore_detrazione_lavoro": "0"
+    "ulteriore_detrazione_lavoro": "0",
+    "somma_esente": "844.26"
   }
 }

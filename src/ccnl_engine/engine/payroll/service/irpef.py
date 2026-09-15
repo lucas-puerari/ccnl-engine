@@ -22,6 +22,7 @@ from ccnl_engine.engine.payroll.service.rounding import money
 if TYPE_CHECKING:
     from ccnl_engine.engine.surtax.domain.rules import SurtaxBracket
     from ccnl_engine.engine.tax.domain.rules import (
+        SommaEsenteRules,
         SterilizzazioneDetrazioniRules,
         TrattamentoIntegrativoRules,
         UlterioreDetrazioneRules,
@@ -179,10 +180,16 @@ def ulteriore_detrazione_lavoro(
 ) -> Decimal:
     """Compute the ulteriore detrazione del lavoro dipendente (Art. 1 c. 6 L. 207/2024).
 
-    For reddito complessivo in ``(rules.threshold_low, rules.threshold_mid]``:
-    returns ``rules.max_amount`` (full-year figure; pro-rating to the actual
-    work period is the caller's responsibility).
-    Outside that band: zero.
+    Three income zones (reddito complessivo di riferimento):
+
+    - ``rc <= threshold_low``: zero.
+    - ``threshold_low < rc <= threshold_mid``: ``max_amount`` (flat).
+    - ``threshold_mid < rc <= threshold_high``:
+      ``max_amount * (threshold_high - rc) / (threshold_high - threshold_mid)``
+      (linear taper to zero at ``threshold_high``).
+    - ``rc > threshold_high``: zero.
+
+    Pro-rating to the actual work period is the caller's responsibility.
 
     Args:
         taxable_income: Reddito complessivo di riferimento.
@@ -191,9 +198,39 @@ def ulteriore_detrazione_lavoro(
     Returns:
         The ulteriore detrazione amount (unrounded; full-year).
     """
-    if taxable_income <= rules.threshold_low or taxable_income > rules.threshold_mid:
+    if taxable_income <= rules.threshold_low or taxable_income > rules.threshold_high:
         return _ZERO
-    return rules.max_amount
+    if taxable_income <= rules.threshold_mid:
+        return rules.max_amount
+    span = rules.threshold_high - rules.threshold_mid
+    return rules.max_amount * (rules.threshold_high - taxable_income) / span
+
+
+def somma_esente(
+    taxable_income: Decimal,
+    rules: SommaEsenteRules,
+) -> Decimal:
+    """Compute the somma esente (L. 207/2024) for low-income workers.
+
+    The bonus is added directly to net pay.  The applicable rate is the
+    rate of the first band whose ``up_to`` value is >= ``taxable_income``;
+    it is applied to the full ``taxable_income`` (not just the marginal
+    slice).  Returns zero when ``taxable_income`` exceeds all band ceilings
+    or is non-positive.
+
+    Args:
+        taxable_income: Reddito complessivo di riferimento.
+        rules: Band schedule from the tax data file.
+
+    Returns:
+        The somma esente amount (unrounded; full-year).
+    """
+    if taxable_income <= _ZERO:
+        return _ZERO
+    for band in rules.bands:
+        if taxable_income <= band.up_to:
+            return taxable_income * band.rate
+    return _ZERO
 
 
 def surtax_from_brackets(

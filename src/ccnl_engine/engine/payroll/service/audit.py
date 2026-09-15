@@ -285,6 +285,7 @@ def build_calculation(
         addizionale_regionale_annual=result.addizionale_regionale_annual,
         addizionale_comunale_annual=result.addizionale_comunale_annual,
         trattamento_integrativo=result.trattamento_integrativo,
+        somma_esente=result.somma_esente,
         net_annual=result.net_annual,
         employer_withholds_irpef=result.employer_withholds_irpef,
         inps_formula=domestic_inps_formula,

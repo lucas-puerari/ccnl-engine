@@ -40,7 +40,7 @@
   "expected": {
     "gross_monthly": "1471.55",
     "gross_annual": "20601.70",
-    "net_annual": "17214.82",
+    "net_annual": "18116.28",
     "base_monthly_full_time": "1471.55",
     "overtime_supplement_monthly": "20.90",
     "night_supplement_monthly": "0.00",
@@ -48,7 +48,7 @@
     "time_supplements_monthly": "20.90",
     "time_supplements_annual_projection": "292.60",
     "warnings": [],
-    "net_monthly": "1229.63",
+    "net_monthly": "1294.02",
     "irpef_net": "1565.69",
     "fiscal_simplifications": [
       "no_addizionale_comunale",
@@ -85,6 +85,7 @@
     "part_time_pct": "1",
     "taxable_income": "18780.51",
     "tfr_annual": "1526.05",
-    "ad_personam_monthly": "0.00"
+    "ad_personam_monthly": "0.00",
+    "somma_esente": "901.46"
   }
 }

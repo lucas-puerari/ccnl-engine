@@ -43,8 +43,8 @@
     "irpef_gross": "4319.52",
     "work_income_deduction": "2753.83",
     "irpef_net": "1565.69",
-    "net_annual": "17214.82",
-    "net_monthly": "1229.63",
+    "net_annual": "18116.28",
+    "net_monthly": "1294.02",
     "employer_cost_annual": "26590.08",
     "addizionale_regionale_annual": "0",
     "addizionale_comunale_annual": "0",
@@ -58,6 +58,7 @@
       "no_detrazioni_familiari",
       "partial_detrazioni_art15"
     ],
-    "ulteriore_detrazione_lavoro": "0"
+    "ulteriore_detrazione_lavoro": "0",
+    "somma_esente": "901.46"
   }
 }

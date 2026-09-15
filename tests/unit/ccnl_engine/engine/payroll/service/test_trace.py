@@ -46,6 +46,7 @@ def _base_kwargs() -> dict[str, object]:
         "addizionale_regionale_annual": Decimal("0.00"),
         "addizionale_comunale_annual": Decimal("0.00"),
         "trattamento_integrativo": Decimal("818.22"),
+        "somma_esente": Decimal("0.00"),
         "net_annual": Decimal("15469.30"),
         "employer_withholds_irpef": True,
     }

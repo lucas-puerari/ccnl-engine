@@ -47,9 +47,9 @@
     "taxable_income": "36259.08",
     "irpef_gross": "9165.50",
     "work_income_deduction": "1192.80",
-    "irpef_net": "7972.70",
-    "net_annual": "28286.38",
-    "net_monthly": "2020.46",
+    "irpef_net": "7505.09",
+    "net_annual": "28753.99",
+    "net_monthly": "2053.86",
     "employer_cost_annual": "55126.71",
     "addizionale_regionale_annual": "0",
     "addizionale_comunale_annual": "0",
@@ -63,6 +63,6 @@
       "no_detrazioni_familiari",
       "partial_detrazioni_art15"
     ],
-    "ulteriore_detrazione_lavoro": "0"
+    "ulteriore_detrazione_lavoro": "467.615"
   }
 }

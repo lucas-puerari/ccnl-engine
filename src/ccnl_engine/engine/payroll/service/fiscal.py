@@ -426,6 +426,7 @@ class FiscalPay:
     art15_unused: Decimal
     sterilizzazione_clawback: Decimal
     ulteriore_detrazione_lavoro: Decimal
+    somma_esente: Decimal
     irpef_net: Decimal
     trattamento_integrativo: Decimal
     addizionale_regionale: Decimal
@@ -435,6 +436,39 @@ class FiscalPay:
     employer_cost_annual: Decimal
     employer_withholds_irpef: bool
     fiscal_simplifications: frozenset[FiscalSimplification]
+
+
+def _update_simplification_flags(
+    sfs: frozenset[FiscalSimplification],
+    *,
+    has_any_dependent: bool,
+    art15_total: Decimal,
+    ud_rules_present: bool,
+    se_rules_present: bool,
+    has_bilateral_funds: bool,
+) -> frozenset[FiscalSimplification]:
+    """Return updated simplification flags after applying optional-feature presence.
+
+    Discards flags for features that were actually computed; adds flags for
+    features whose rules are absent from the loaded data file.
+
+    Returns:
+        Updated frozenset of active fiscal simplifications.
+    """
+    sfs_mut: set[FiscalSimplification] = set(sfs)
+    if has_any_dependent:
+        sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_FAMILIARI)
+    if art15_total > _ZERO:
+        sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE)
+    if not ud_rules_present:
+        sfs_mut.add(FiscalSimplification.NO_ULTERIORE_DETRAZIONE_LAVORO)
+    if se_rules_present:
+        sfs_mut.discard(FiscalSimplification.NO_SOMMA_ESENTE)
+    else:
+        sfs_mut.add(FiscalSimplification.NO_SOMMA_ESENTE)
+    if has_bilateral_funds:
+        sfs_mut.discard(FiscalSimplification.NO_BILATERAL_FUNDS)
+    return frozenset(sfs_mut)
 
 
 def compute_fiscal(
@@ -580,25 +614,25 @@ def compute_fiscal(
         rules,
     )
 
-    # Remove NO_DETRAZIONI_FAMILIARI when family deductions were computed, i.e.
-    # when the input has dependents — even if fam_total is zero due to incapienza
-    # or income above the Art. 12 phase-out threshold (deductions computed,
-    # just fully unavailable).
-    # Remove NO_DETRAZIONI_ART15_MORTGAGE when mortgage interest was provided.
-    # PARTIAL_DETRAZIONI_ART15 is never removed: the engine only models mortgage
-    # interest; the other ~14 Art. 15 TUIR categories are always out of scope.
-    # Add NO_ULTERIORE_DETRAZIONE_LAVORO when rules are absent from the file.
-    # Remove NO_BILATERAL_FUNDS when at least one fund was provided.
-    sfs_mut: set[FiscalSimplification] = set(fiscal_simplifications)
-    if scenario.family is not None and scenario.family.has_any_dependent:
-        sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_FAMILIARI)
-    if art15_total > _ZERO:
-        sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE)
-    if ud_rules is None:
-        sfs_mut.add(FiscalSimplification.NO_ULTERIORE_DETRAZIONE_LAVORO)
-    if scenario.bilateral_funds:
-        sfs_mut.discard(FiscalSimplification.NO_BILATERAL_FUNDS)
-    fiscal_simplifications = frozenset(sfs_mut)
+    # Somma esente (L. 207/2024): flat-rate net bonus for reddito complessivo
+    # up to 20 000 EUR.  Added directly to net pay (not an IRPEF base change).
+    se_rules = rules.somma_esente
+    somma_esente_amount = (
+        money(_irpef.somma_esente(taxable_income, se_rules))
+        if se_rules is not None
+        else _ZERO
+    )
+
+    fam = scenario.family
+    has_any_dependent = fam is not None and fam.has_any_dependent
+    fiscal_simplifications = _update_simplification_flags(
+        fiscal_simplifications,
+        has_any_dependent=has_any_dependent,
+        art15_total=art15_total,
+        ud_rules_present=ud_rules is not None,
+        se_rules_present=se_rules is not None,
+        has_bilateral_funds=bool(scenario.bilateral_funds),
+    )
 
     # Addizionale regionale e comunale (Art. 50 TUIR; Art. 1 D.Lgs. 360/1998).
     regione = j.regione if j is not None else None
@@ -620,6 +654,7 @@ def compute_fiscal(
         - addizionale_regionale
         - addizionale_comunale
         + trattamento_integrativo
+        + somma_esente_amount
         - bilateral_employee_annual
     )
     net_monthly = money(net_annual / gross.additional_months)
@@ -650,6 +685,7 @@ def compute_fiscal(
         art15_unused=art15_unused,
         sterilizzazione_clawback=sterilizzazione_clawback,
         ulteriore_detrazione_lavoro=ulteriore_detrazione_lavoro,
+        somma_esente=somma_esente_amount,
         irpef_net=irpef_net,
         trattamento_integrativo=trattamento_integrativo,
         addizionale_regionale=addizionale_regionale,

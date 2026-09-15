@@ -686,8 +686,9 @@ class TestFiscalStepsRoundtrip:
         add_reg = by_cat[TraceCategory.ADDIZIONALE_REGIONALE].amount
         add_com = by_cat[TraceCategory.ADDIZIONALE_COMUNALE].amount
         ti = by_cat[TraceCategory.TRATTAMENTO_INTEGRATIVO].amount
+        se = by_cat[TraceCategory.SOMMA_ESENTE].amount
         net = by_cat[TraceCategory.NET].amount
-        expected = gross - inps - irpef - add_reg - add_com + ti
+        expected = gross - inps - irpef - add_reg - add_com + ti + se
         assert net == expected, (
             f"{case_file.stem}: fiscal closure violated: {net} != {expected}"
         )
