@@ -71,12 +71,12 @@ def _git_changed_files(base_ref: str) -> list[str]:
     ]
 
 
-def _git_load_ccnl(git_ref: str, file_path: str) -> CCNL | None:
-    """Load a CCNL from git at *git_ref*, bypassing hash verification.
+def _git_show(git_ref: str, file_path: str) -> str | None:
+    """Return the raw content of *file_path* at *git_ref*, or ``None`` if absent.
 
     Returns:
-        Validated CCNL instance, or ``None`` if the file did not exist at
-        *git_ref* (e.g. the contract is newly added in this diff).
+        File contents as a string, or ``None`` when the file does not exist
+        at *git_ref* (e.g. it was added after that commit).
     """
     result = subprocess.run(  # noqa: S603
         ["git", "show", f"{git_ref}:{file_path}"],  # noqa: S607
@@ -84,13 +84,45 @@ def _git_load_ccnl(git_ref: str, file_path: str) -> CCNL | None:
         text=True,
         check=False,
     )
-    if result.returncode != 0:
+    return result.stdout if result.returncode == 0 else None
+
+
+def _git_load_ccnl_base(base_ref: str, file_path: str) -> CCNL | None:
+    """Load a CCNL from the base ref, tolerating schema drift.
+
+    The base branch may predate the current validator (e.g. ``model`` was null
+    before PR #344 made it required for AI extractions).  A ``ValidationError``
+    is treated as "file existed but cannot be compared" — equivalent to a new
+    file from the diff's perspective.
+
+    Returns:
+        Validated CCNL instance, or ``None`` if the file did not exist at
+        *base_ref* or its schema no longer validates against the HEAD model.
+    """
+    raw = _git_show(base_ref, file_path)
+    if raw is None:
         return None
-    payload = json.loads(result.stdout)
     try:
-        return CCNL.model_validate(payload)
+        return CCNL.model_validate(json.loads(raw))
     except ValidationError:
         return None
+
+
+def _git_load_ccnl_head(file_path: str) -> CCNL | None:
+    """Load a CCNL from HEAD, failing hard on validation errors.
+
+    A ``ValidationError`` on HEAD indicates a bug in the PR under review and
+    should propagate so the CI step turns red rather than silently misreporting
+    the file as removed.
+
+    Returns:
+        Validated CCNL instance, or ``None`` if the file does not exist at HEAD
+        (i.e. the contract was deleted in this diff).
+    """
+    raw = _git_show("HEAD", file_path)
+    if raw is None:
+        return None
+    return CCNL.model_validate(json.loads(raw))
 
 
 # ---------------------------------------------------------------------------
@@ -211,11 +243,11 @@ def _report(base_ref: str) -> str:
 
     for path in sorted(ccnl_files):
         filename = Path(path).name
-        new_ccnl = _git_load_ccnl("HEAD", path)
+        new_ccnl = _git_load_ccnl_head(path)
         if new_ccnl is None:
             lines.extend([f"### `{filename}` _(removed)_", ""])
             continue
-        old_ccnl = _git_load_ccnl(base_ref, path)
+        old_ccnl = _git_load_ccnl_base(base_ref, path)
         ccnl_name = new_ccnl.meta.name
         lines.extend([f"### `{filename}` — {ccnl_name}", ""])
         lines.extend(_compare_ccnl_versions(old_ccnl, new_ccnl))
