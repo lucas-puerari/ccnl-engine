@@ -54,6 +54,23 @@ def _kind_supported(bands: Sequence[OvertimeBand], *kinds: WorkKind) -> bool:
     return any(k in b.applies_to_kinds for b in bands for k in kinds)
 
 
+def _warn_missing_kind_bands(
+    bands: Sequence[OvertimeBand],
+    kind_hours: dict[WorkKind, Decimal],
+    warnings: list[str],
+) -> None:
+    """Append a warning for each work kind that has positive hours but no band.
+
+    Args:
+        bands: CCNL overtime bands to check against.
+        kind_hours: Map of WorkKind to the declared hours for that kind.
+        warnings: Mutable list to which warning messages are appended.
+    """
+    for kind, hours in kind_hours.items():
+        if hours > _ZERO and not _kind_supported(bands, kind):
+            warnings.append(f"{kind.value} hours declared but not covered by any band")
+
+
 def _run_wr_supplements(
     scenario: PayrollScenario,
     ccnl: CCNL,
@@ -95,12 +112,39 @@ def _run_wr_supplements(
                 )
                 return _ZERO, _ZERO, _ZERO, (), False, False, False
             bands = ts_schema.overtime_bands
-            wr_overtime_supported = _kind_supported(
-                bands, WorkKind.WEEKDAY, WorkKind.SUPPLEMENTARE
+            ts = ts_input
+            kind_hours: dict[WorkKind, Decimal] = {
+                WorkKind.WEEKDAY: ts.weekday_hours,
+                WorkKind.SUPPLEMENTARE: ts.supplementare_hours,
+                WorkKind.NIGHT: ts.night_hours,
+                WorkKind.HOLIDAY: ts.holiday_hours,
+                WorkKind.NIGHT_HOLIDAY: ts.night_holiday_hours,
+            }
+            _warn_missing_kind_bands(bands, kind_hours, wr_warnings)
+            # Support flag: True only when every kind with positive hours
+            # has a covering band (schema-level AND per-kind coverage).
+            wd_uncovered = ts.weekday_hours > _ZERO and not _kind_supported(
+                bands, WorkKind.WEEKDAY
+            )
+            sl_uncovered = ts.supplementare_hours > _ZERO and not _kind_supported(
+                bands, WorkKind.SUPPLEMENTARE
+            )
+            ho_uncovered = ts.holiday_hours > _ZERO and not _kind_supported(
+                bands, WorkKind.HOLIDAY
+            )
+            nh_uncovered = ts.night_holiday_hours > _ZERO and not _kind_supported(
+                bands, WorkKind.NIGHT_HOLIDAY
+            )
+            wr_overtime_supported = (
+                _kind_supported(bands, WorkKind.WEEKDAY, WorkKind.SUPPLEMENTARE)
+                and not wd_uncovered
+                and not sl_uncovered
             )
             wr_night_supported = _kind_supported(bands, WorkKind.NIGHT)
-            wr_holiday_supported = _kind_supported(
-                bands, WorkKind.HOLIDAY, WorkKind.NIGHT_HOLIDAY
+            wr_holiday_supported = (
+                _kind_supported(bands, WorkKind.HOLIDAY, WorkKind.NIGHT_HOLIDAY)
+                and not ho_uncovered
+                and not nh_uncovered
             )
             overtime_supp, night_supp, holiday_supp, supplement_trace = (
                 compute_time_supplements(
