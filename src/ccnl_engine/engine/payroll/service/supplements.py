@@ -70,17 +70,25 @@ def _slice_hours_for_band(
     hours from its threshold up to band *i+1*'s threshold (or all remaining
     hours for the last band).
 
+    Thresholds are normalised relative to the first band's threshold so that
+    a leading non-zero value (e.g. 40 = standard weekly hours) is treated as
+    the origin.  ``total_hours`` represents overtime hours already in excess of
+    the ordinary schedule, so subtracting the base threshold before partitioning
+    gives the correct slice for each band.
+
     Args:
         band_index: Index of the current band in ``sorted_bands``.
         sorted_bands: Bands sorted ascending by ``hour_threshold_per_week``.
-        total_hours: Total hours available for this work kind.
+        total_hours: Overtime hours for this work kind (already in excess of
+            the ordinary schedule).
 
     Returns:
         Hours in the half-open interval assigned to this band.
     """
-    lo = Decimal(sorted_bands[band_index].hour_threshold_per_week or 0)
+    base = Decimal(sorted_bands[0].hour_threshold_per_week or 0)
+    lo = Decimal(sorted_bands[band_index].hour_threshold_per_week or 0) - base
     if band_index + 1 < len(sorted_bands):
-        hi = Decimal(sorted_bands[band_index + 1].hour_threshold_per_week or 0)
+        hi = Decimal(sorted_bands[band_index + 1].hour_threshold_per_week or 0) - base
         return max(_ZERO, min(total_hours, hi) - lo)
     return max(_ZERO, total_hours - lo)
 

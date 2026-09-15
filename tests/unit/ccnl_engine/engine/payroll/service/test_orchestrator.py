@@ -1303,6 +1303,86 @@ class TestL3Warning:
         finally:
             _mock_ccnl[0] = _DEFAULT_CCNL
 
+    def test_supplementare_hours_with_only_weekday_band_not_computed(self) -> None:
+        """supplementare_hours declared but only weekday band → not_computed + warning.
+
+        When the CCNL has a weekday band but no supplementare band, declaring
+        supplementare_hours must produce a warning and mark overtime as
+        not_computed; the weekday band must not silently absorb the hours.
+        """
+        weekday_band = OvertimeBand(
+            code="OT_WD",
+            description="Straordinario diurno",
+            kind=TimeSupplementKind("percentage"),
+            rate=TimeSeries(
+                periods=(
+                    ValidityPeriod(
+                        valid_from=date(2020, 1, 1),
+                        valid_until=None,
+                        value=_D("0.15"),
+                    ),
+                )
+            ),
+            applies_to_kinds=[WorkKind.WEEKDAY],
+        )
+        ts_schema = TimeSupplements(overtime_bands=[weekday_band])
+        _mock_ccnl[0] = _build_ccnl(
+            work_rules={"time_supplements": ts_schema.model_dump()}
+        )
+        scenario = dataclasses.replace(
+            _req(),
+            time_supplements=OvertimeHours(supplementare_hours=_D("10")),
+        )
+        try:
+            result = compute(scenario).result
+            scope = {item.feature: item.status for item in result.calculation_scope}
+            assert scope["overtime"] == "not_computed", (
+                f"Expected not_computed (no supplementare band), got:"
+                f" {scope['overtime']}"
+            )
+            assert any("supplementare" in w for w in result.warnings), (
+                f"Expected supplementare warning, got: {result.warnings}"
+            )
+        finally:
+            _mock_ccnl[0] = _DEFAULT_CCNL
+
+    def test_holiday_hours_with_only_night_holiday_band_not_computed(self) -> None:
+        """holiday_hours declared but only night_holiday band → not_computed."""
+        nh_band = OvertimeBand(
+            code="NH",
+            description="Festivo-notturno",
+            kind=TimeSupplementKind("percentage"),
+            rate=TimeSeries(
+                periods=(
+                    ValidityPeriod(
+                        valid_from=date(2020, 1, 1),
+                        valid_until=None,
+                        value=_D("0.85"),
+                    ),
+                )
+            ),
+            applies_to_kinds=[WorkKind.NIGHT_HOLIDAY],
+        )
+        ts_schema = TimeSupplements(overtime_bands=[nh_band])
+        _mock_ccnl[0] = _build_ccnl(
+            work_rules={"time_supplements": ts_schema.model_dump()}
+        )
+        scenario = dataclasses.replace(
+            _req(),
+            time_supplements=OvertimeHours(holiday_hours=_D("4")),
+        )
+        try:
+            result = compute(scenario).result
+            scope = {item.feature: item.status for item in result.calculation_scope}
+            assert scope["holiday_work"] == "not_computed", (
+                f"Expected not_computed (no holiday band), got: {scope['holiday_work']}"
+            )
+            assert any("holiday" in w for w in result.warnings), (
+                f"Expected holiday warning, got: {result.warnings}"
+            )
+        finally:
+            _mock_ccnl[0] = _DEFAULT_CCNL
+
 
 class TestL3Absence:
     """Orchestrator behaviour for L3 absence deduction."""

@@ -184,7 +184,7 @@ def _build_art15(inputs: dict[str, Any]) -> Art15Deductions | None:
         return None
     return Art15Deductions(
         mortgage_interest=Decimal(str(raw.get("mortgage_interest", "0"))),
-        mortgage_pre_1993=bool(raw.get("mortgage_pre_1993", False)),
+        mortgage_pre_2022=bool(raw.get("mortgage_pre_2022", False)),
     )
 
 
@@ -348,6 +348,9 @@ def _update_case(path: Path, *, dry_run: bool) -> bool:
 
     Returns:
         ``True`` when the file was (or would be) changed, ``False`` otherwise.
+
+    Raises:
+        RuntimeError: when ``compute()`` or scenario construction fails.
     """
     data = json.loads(path.read_text(encoding="utf-8"))
     inputs = data["inputs"]
@@ -355,9 +358,9 @@ def _update_case(path: Path, *, dry_run: bool) -> bool:
     try:
         scenario = _build_scenario(inputs)
         result = compute(scenario).result
-    except Exception as exc:  # noqa: BLE001
-        print(f"ERROR: {path.name}: {exc}", file=sys.stderr)
-        return False
+    except Exception as exc:
+        msg = f"{path.name}: {exc}"
+        raise RuntimeError(msg) from exc
 
     new_values = _serialise_result(result)
     old_expected: dict[str, Any] = data.get("expected", {})

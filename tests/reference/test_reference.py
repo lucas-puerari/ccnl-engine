@@ -10,11 +10,15 @@ The test passes regardless; the source is surfaced in the session summary.
 
 from __future__ import annotations
 
+import importlib.util
 import json
 from datetime import date
 from decimal import Decimal
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    import types
 
 import pytest
 
@@ -368,3 +372,56 @@ class TestReferenceBuilders:
         })
         assert result is not None
         assert result.prior_year_gross_annual is None
+
+
+_SCRIPT_PATH = (
+    Path(__file__).parent.parent.parent / "scripts" / "ci" / "update_reference_cases.py"
+)
+
+
+def _load_update_script() -> types.ModuleType:
+    """Load update_reference_cases.py as a module at runtime.
+
+    Returns:
+        The loaded module object.
+    """
+    spec = importlib.util.spec_from_file_location(
+        "update_reference_cases", _SCRIPT_PATH
+    )
+    assert spec is not None
+    mod = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(mod)
+    return mod
+
+
+class TestUpdateScript:
+    """Tests for the update_reference_cases maintenance script.
+
+    Verifies that the script uses current field names and propagates errors
+    instead of silently returning False.
+    """
+
+    def test_script_build_art15_uses_mortgage_pre_2022(self) -> None:
+        """_build_art15 in the script must read mortgage_pre_2022, not the old name."""
+        mod = _load_update_script()
+        result = mod._build_art15({
+            "art15_deductions": {"mortgage_interest": "2000", "mortgage_pre_2022": True}
+        })
+        assert result is not None
+        assert result.mortgage_pre_2022 is True
+
+    def test_script_update_case_raises_on_bad_input(self, tmp_path: Path) -> None:
+        """_update_case must raise RuntimeError when the scenario cannot be built."""
+        mod = _load_update_script()
+        bad_case = tmp_path / "bad_case.json"
+        bad_case.write_text(
+            '{"inputs": {"ccnl_file": "metalmeccanico-federmeccanica.json", '
+            '"year": 2026, "tax_sector": "industria", "num_employees": 50, '
+            '"level_code": "C2", "as_of": "2026-09-01", '
+            '"employment_type": "permanent", "part_time_pct": "NOT_A_DECIMAL"}, '
+            '"expected": {}}',
+            encoding="utf-8",
+        )
+        with pytest.raises(RuntimeError, match=r"bad_case\.json"):
+            mod._update_case(bad_case, dry_run=False)
