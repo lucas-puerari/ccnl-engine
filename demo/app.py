@@ -513,6 +513,8 @@ def compute_salary(
         "addizionale_regionale_annual": float(payroll.addizionale_regionale_annual),
         "addizionale_comunale_annual": float(payroll.addizionale_comunale_annual),
         "trattamento_integrativo": float(payroll.trattamento_integrativo),
+        "somma_esente": float(payroll.somma_esente),
+        "bilateral_employee_annual": float(payroll.bilateral_employee_annual),
         # net
         "net_annual": float(payroll.net_annual),
         "net_monthly": float(payroll.net_monthly),
@@ -520,6 +522,7 @@ def compute_salary(
         "inps_employer_annual": float(payroll.inps_employer_annual),
         "employer_funds_annual": float(payroll.employer_funds_annual),
         "tfr_annual": float(payroll.tfr_annual),
+        "bilateral_employer_annual": float(payroll.bilateral_employer_annual),
         "employer_cost_annual": float(payroll.employer_cost_annual),
         "overtime_supplement_monthly": float(payroll.overtime_supplement_monthly),
         "night_supplement_monthly": float(payroll.night_supplement_monthly),

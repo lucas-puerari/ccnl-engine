@@ -1029,6 +1029,8 @@ function renderBreakdown(r, enteredComune) {
     : bRow(t("breakdown.addizionale_comunale"), null, r.addizionale_comunale_annual));
   if (r.trattamento_integrativo > 0)
     body.appendChild(bRow(t("breakdown.trattamento_integrativo"), null, -r.trattamento_integrativo));
+  if ((r.somma_esente || 0) > 0.005)
+    body.appendChild(bRow(t("breakdown.somma_esente"), null, -r.somma_esente));
   if ((r.bilateral_employee_annual || 0) > 0.005)
     body.appendChild(bRow(t("breakdown.bilateral_employee"), null, r.bilateral_employee_annual));
   body.appendChild(bTotal(t("breakdown.net_pay"), r.net_monthly, r.net_annual));

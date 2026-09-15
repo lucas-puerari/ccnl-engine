@@ -12,6 +12,8 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.engine.payroll.domain.bilateral_funds import FlatMonthlyFund
+from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 from ccnl_engine.engine.payroll.service.render import render_breakdown
 from tests.helpers import make_minimal_ccnl, make_year_rules
@@ -43,6 +45,30 @@ _ZERO = Decimal(0)
 
 class TestAnnualBreakdownFields:
     """render_breakdown maps PayrollResult fields to AnnualBreakdown."""
+
+    def test_ulteriore_detrazione_lavoro(self) -> None:
+        """ulteriore_detrazione_lavoro matches result.ulteriore_detrazione_lavoro."""
+        calc = compute(_req())
+        bd = render_breakdown(calc.result)
+        assert bd.ulteriore_detrazione_lavoro == calc.result.ulteriore_detrazione_lavoro
+
+    def test_somma_esente_zero_when_rules_absent(self) -> None:
+        """somma_esente is zero when year rules carry no somma_esente config."""
+        calc = compute(_req())
+        bd = render_breakdown(calc.result)
+        assert bd.somma_esente == _ZERO
+
+    def test_bilateral_employee_zero_when_no_funds(self) -> None:
+        """bilateral_employee_annual is zero when no bilateral funds were supplied."""
+        calc = compute(_req())
+        bd = render_breakdown(calc.result)
+        assert bd.bilateral_employee_annual == _ZERO
+
+    def test_bilateral_employer_zero_when_no_funds(self) -> None:
+        """bilateral_employer_annual is zero when no bilateral funds were supplied."""
+        calc = compute(_req())
+        bd = render_breakdown(calc.result)
+        assert bd.bilateral_employer_annual == _ZERO
 
     def test_gross_annual(self) -> None:
         """gross_annual matches result.gross_annual."""
@@ -144,3 +170,72 @@ class TestAnnualBreakdownSerialisation:
         raw = render_breakdown(calc.result).to_json()
         parsed = json.loads(raw)
         assert "net_annual" in parsed
+
+
+class TestNetReconciliation:
+    """net_annual arithmetic identity holds in AnnualBreakdown."""
+
+    def test_net_annual_reconciles(self) -> None:
+        """net_annual equals gross minus INPS minus IRPEF plus bonuses."""
+        calc = compute(_req())
+        r = calc.result
+        bd = render_breakdown(r)
+        expected = (
+            bd.gross_annual
+            - bd.inps_employee_annual
+            - bd.irpef_net
+            - bd.addizionale_regionale_annual
+            - bd.addizionale_comunale_annual
+            + bd.trattamento_integrativo
+            + bd.somma_esente
+            - bd.bilateral_employee_annual
+        )
+        assert bd.net_annual == expected
+
+    def test_employer_cost_reconciles(self) -> None:
+        """employer_cost_annual equals gross plus employer charges."""
+        calc = compute(_req())
+        r = calc.result
+        bd = render_breakdown(r)
+        expected = (
+            bd.gross_annual
+            + bd.inps_employer_annual
+            + bd.employer_funds_annual
+            + bd.bilateral_employer_annual
+            + bd.tfr_annual
+        )
+        assert bd.employer_cost_annual == expected
+
+
+class TestBilateralFunds:
+    """bilateral fund amounts are propagated by render_breakdown."""
+
+    def test_bilateral_employee_annual_exposed(self) -> None:
+        """bilateral_employee_annual is non-zero when a fund is supplied."""
+        fund = FlatMonthlyFund(
+            employee_monthly=Decimal(5),
+            employer_monthly=Decimal(3),
+        )
+        scenario = PayrollScenario(
+            employee=_req().employee,
+            employment=_req().employment,
+            bilateral_funds=(fund,),
+        )
+        calc = compute(scenario)
+        bd = render_breakdown(calc.result)
+        assert bd.bilateral_employee_annual == Decimal(60)
+
+    def test_bilateral_employer_annual_exposed(self) -> None:
+        """bilateral_employer_annual is non-zero when a fund is supplied."""
+        fund = FlatMonthlyFund(
+            employee_monthly=Decimal(5),
+            employer_monthly=Decimal(3),
+        )
+        scenario = PayrollScenario(
+            employee=_req().employee,
+            employment=_req().employment,
+            bilateral_funds=(fund,),
+        )
+        calc = compute(scenario)
+        bd = render_breakdown(calc.result)
+        assert bd.bilateral_employer_annual == Decimal(36)
