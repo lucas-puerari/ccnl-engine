@@ -23,7 +23,7 @@ _ZERO: Decimal = Decimal(0)
 class ApprenticeshipPeriod(BaseModel):
     """A single time-bounded entry in a percentage-based apprenticeship table."""
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     months_from: int = Field(ge=0)
     months_until: int | None
@@ -47,7 +47,7 @@ class UnderClassificationPeriod(BaseModel):
     arithmetic mean between that level and the destination level.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     months_from: int = Field(ge=0)
     months_until: int | None
@@ -103,12 +103,12 @@ class ApprenticeshipPercentage(BaseModel):
     pays every group as a percentage of level 2 or 3).
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     type: Literal["percentage"] = "percentage"
     name: str
-    destination_levels: list[str]
-    periods: list[ApprenticeshipPeriod]
+    destination_levels: tuple[str, ...]
+    periods: tuple[ApprenticeshipPeriod, ...]
     reference_level: str | None = None
     provenance: RuleProvenance | None = None
 
@@ -122,12 +122,12 @@ class ApprenticeshipPercentage(BaseModel):
 class ApprenticeshipUnderClassification(BaseModel):
     """Under-classification apprenticeship track."""
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     type: Literal["under_classification"] = "under_classification"
     name: str
-    destination_levels: list[str]
-    periods: list[UnderClassificationPeriod]
+    destination_levels: tuple[str, ...]
+    periods: tuple[UnderClassificationPeriod, ...]
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")

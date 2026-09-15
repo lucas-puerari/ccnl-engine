@@ -35,13 +35,13 @@ def _ts(value: str) -> TimeSeries:
         A TimeSeries with one period valid from 2020-01-01.
     """
     return TimeSeries(
-        periods=[
+        periods=(
             ValidityPeriod(
                 valid_from=date(2020, 1, 1),
                 valid_until=None,
                 value=Decimal(value),
-            )
-        ]
+            ),
+        )
     )
 
 
@@ -277,13 +277,13 @@ def _band_with_threshold(
         description=code,
         kind=TimeSupplementKind("percentage"),
         rate=TimeSeries(
-            periods=[
+            periods=(
                 ValidityPeriod(
                     valid_from=date(2020, 1, 1),
                     valid_until=None,
                     value=Decimal(rate),
-                )
-            ]
+                ),
+            )
         ),
         applies_to_kinds=[WorkKind(k) for k in applies_to],
         hour_threshold_per_week=threshold,

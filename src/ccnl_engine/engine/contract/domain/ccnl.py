@@ -812,9 +812,9 @@ class CCNL(BaseModel):
     ruleset: RulesetIdentity | None = None
     meta: CCNLMeta
     parameters: CCNLParameters
-    levels: list[Level]
-    apprenticeship: list[ApprenticeshipTrack] = Field(
-        default=[],
+    levels: tuple[Level, ...]
+    apprenticeship: tuple[ApprenticeshipTrack, ...] = Field(
+        default=(),
         description=(
             "Apprenticeship tracks for this CCNL. Empty when not modelled "
             "(out of scope or data unavailable)."
