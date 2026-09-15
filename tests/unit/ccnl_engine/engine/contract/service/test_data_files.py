@@ -5,6 +5,7 @@ from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
+import pydantic
 import pytest
 
 from ccnl_engine.engine.contract.domain.apprenticeship import (
@@ -111,6 +112,12 @@ class TestLoadCcnl:
         first = load_ccnl("commercio-confcommercio.json")
         second = load_ccnl("commercio-confcommercio.json")
         assert first is second
+
+    def test_load_ccnl_is_immutable(self) -> None:
+        """Mutating a field on the returned CCNL raises ValidationError."""
+        ccnl = load_ccnl("commercio-confcommercio.json")
+        with pytest.raises(pydantic.ValidationError):
+            ccnl.schema_version = "0.5"  # type: ignore[misc]
 
 
 # ---------------------------------------------------------------------------
