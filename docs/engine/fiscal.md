@@ -9,14 +9,20 @@ for the legal background.
 ## IRPEF flow
 
 1. **Taxable income** = gross − INPS employee contributions
-2. **IRPEF gross** = taxable income × progressive brackets
+2. **IRPEF gross** = taxable income × progressive brackets (Art. 11 TUIR)
 3. **Work income deduction** (Art. 13 TUIR) reduces IRPEF gross
 4. **Ulteriore detrazione lavoro** (Art. 1 c. 6 L. 207/2024): additional credit
-   of up to €910/year for taxable income between €8,500 and €15,000, tapering to
-   zero at €28,000
+   of up to €1,000/year for taxable income between €20,000 and €40,000.
+   Flat €1,000 from €20,001 to €32,000; linear taper to zero from €32,001 to €40,000.
 5. **IRPEF net** = IRPEF gross − work income deduction − ulteriore detrazione
-6. **Trattamento integrativo** (Art. 1 D.L. 3/2020): if taxable income is between
-   €8,500 and €28,000, the engine adds €1,200/year as a negative tax (credit).
+   − family deductions − Art. 15 deductions + clawback sterilisation (floored at 0)
+6. **Trattamento integrativo** (Art. 1 D.L. 3/2020): up to €1,200/year.
+   Two income bands apply:
+   - RC ≤ €15,000: granted when IRPEF gross exceeds the Art. 13 deduction
+     minus a €75 corrective (Art. 1 co. 3 L. 207/2024).
+   - €15,001–€28,000: granted only when total deductions exceed IRPEF gross;
+     amount equals the excess, capped at €1,200.
+   - RC > €28,000: zero.
 
 ## Regional and municipal surcharges
 
@@ -24,10 +30,8 @@ By default the engine skips *addizionale regionale* and *addizionale comunale*,
 recording both as [`FiscalSimplification`](../api/models.md) entries in
 `payroll.fiscal_simplifications`.
 
-To include them, pass:
-- a `TaxProfile` on the `Employee` with `regione` and `comune_belfiore`, and
-- a `SurtaxRules` object loaded from `load_surtax_rules()` as the `surtax` argument
-  of `compute()`.
+To include them, set `jurisdiction` on the `Employee` with `regione` and/or
+`comune_belfiore`. The engine loads the relevant surtax rules automatically.
 
 ```python
 --8 < --"docs/examples/07_addizionali.py"
@@ -56,10 +60,11 @@ a warning (but never fails) for conditions that may indicate a configuration
 mistake:
 
 - **IVS ceiling**: when `SeniorityByDate` is supplied with a hire date on or after
-  1996-01-01 but `Employee.ivs_ceiling_applies` is `False`. Workers hired from
-  1996 are generally subject to the *massimale IVS*; the flag defaults to `False`
-  to avoid silent over-deduction for pre-1996 workers.
+  1996-01-01 but `Employee.ivs_ceiling_applies` is `False`, and the contribution
+  base exceeds the IVS ceiling. Workers hired from 1996 are generally subject to
+  the *massimale IVS*; the flag defaults to `False` to avoid silent over-deduction
+  for pre-1996 workers.
 
-**API reference:** [`TaxProfile`](../api/engine.md),
+**API reference:** [`Jurisdiction`](../api/engine.md),
 [`FiscalSimplification`](../api/models.md),
-[`load_surtax_rules`](../api/loaders.md), [`SurtaxRules`](../api/models.md)
+[`FamilyComposition`](../api/engine.md), [`Art15Deductions`](../api/engine.md)

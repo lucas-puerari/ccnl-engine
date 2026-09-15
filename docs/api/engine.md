@@ -16,8 +16,7 @@ See [Guide: Employment types](../domain/employment-types.md) and
 
 `compute()` returns a `Calculation` that bundles the engine version, the
 ruleset revisions used, a snapshot of the inputs, and the resulting `PayrollResult`
-(`.result`). Attribute reads are forwarded onto the `PayrollResult`, so
-`calculation.net_annual` works too.
+(`.result`).
 
 ::: ccnl_engine.engine.payroll.domain.calculation
     options:
@@ -27,23 +26,24 @@ ruleset revisions used, a snapshot of the inputs, and the resulting `PayrollResu
 
 ## Input models
 
+::: ccnl_engine.engine.payroll.domain.scenario
+    options:
+      members:
+        - PayrollScenario
+        - Employee
+        - Employment
+        - Employer
+        - Jurisdiction
+        - Agreement
+
 ::: ccnl_engine.engine.payroll.domain.employee
     options:
       members:
-        - Employee
-        - ContractPosition
-        - WorkArrangement
-        - TaxProfile
-        - SalaryOverrides
         - SeniorityByCount
+        - SeniorityByDate
         - SeniorityByMonths
         - RalOverride
         - DestinationRalOverride
-
-::: ccnl_engine.engine.payroll.domain.employer
-    options:
-      members:
-        - Employer
 
 ## PayrollResult
 
