@@ -16,13 +16,19 @@ from ccnl_engine.engine.metadata import source_hash
 def load_ccnl(filename: str) -> CCNL:
     """Load and validate a CCNL data file from the package bundle.
 
+    The returned :class:`CCNL` instance is shared across all callers in the
+    same process (the result is cached after the first load).  All models in
+    the CCNL hierarchy are frozen (``model_config frozen=True``), so any
+    attempt to mutate the returned object raises a ``ValidationError``.
+    Callers must treat the object as read-only.
+
     Args:
         filename: Name of the JSON data file bundled under
             ``ccnl_engine/knowledge/ccnl/data/``
             (e.g. ``"metalmeccanico-federmeccanica.json"``).
 
     Returns:
-        The validated CCNL instance.
+        The validated, immutable CCNL instance.
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
     raw = read_bundled(pkg, filename)

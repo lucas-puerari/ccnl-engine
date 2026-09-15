@@ -896,10 +896,22 @@ class TestProvenanceChain:
         prov_period = _rule_provenance("period")
         ccnl = CCNL.model_validate(make_ccnl_dict())
         level = ccnl.level_by_code("4")
-        level.provenance = prov_level
-        level.base_salary.periods[0].provenance = prov_period
-        # Clear seniority provenance so only level+period appear in the result.
-        ccnl.parameters.seniority_increments.provenance = None
+        new_period = level.base_salary.periods[0].model_copy(
+            update={"provenance": prov_period}
+        )
+        new_series = level.base_salary.model_copy(update={"periods": [new_period]})
+        new_level = level.model_copy(
+            update={"provenance": prov_level, "base_salary": new_series}
+        )
+        new_params = ccnl.parameters.model_copy(
+            update={
+                "seniority_increments": ccnl.parameters.seniority_increments.model_copy(
+                    update={"provenance": None}
+                )
+            }
+        )
+        new_levels = [new_level if lv.code == "4" else lv for lv in ccnl.levels]
+        ccnl = ccnl.model_copy(update={"levels": new_levels, "parameters": new_params})
         _mock_ccnl[0] = ccnl
         _mock_rules[0] = make_year_rules()
         result = compute(_req())
@@ -911,23 +923,30 @@ class TestProvenanceChain:
         prov_seniority = _rule_provenance("seniority")
         ccnl = CCNL.model_validate(make_ccnl_dict())
         level = ccnl.level_by_code("4")
-        level.fixed_allowances = [
-            Allowance(
-                code="a",
-                description="a",
-                monthly=TimeSeries(
-                    periods=[
-                        ValidityPeriod(
-                            valid_from=date(2020, 1, 1),
-                            valid_until=None,
-                            value=Decimal("10.00"),
-                        )
-                    ]
-                ),
-            )
-        ]
-        level.fixed_allowances[0].provenance = prov_allowance
-        ccnl.parameters.seniority_increments.provenance = prov_seniority
+        allowance = Allowance(
+            code="a",
+            description="a",
+            provenance=prov_allowance,
+            monthly=TimeSeries(
+                periods=[
+                    ValidityPeriod(
+                        valid_from=date(2020, 1, 1),
+                        valid_until=None,
+                        value=Decimal("10.00"),
+                    )
+                ]
+            ),
+        )
+        new_level = level.model_copy(update={"fixed_allowances": [allowance]})
+        new_params = ccnl.parameters.model_copy(
+            update={
+                "seniority_increments": ccnl.parameters.seniority_increments.model_copy(
+                    update={"provenance": prov_seniority}
+                )
+            }
+        )
+        new_levels = [new_level if lv.code == "4" else lv for lv in ccnl.levels]
+        ccnl = ccnl.model_copy(update={"levels": new_levels, "parameters": new_params})
         _mock_ccnl[0] = ccnl
         _mock_rules[0] = make_year_rules()
         result = compute(_req())
@@ -940,17 +959,26 @@ class TestProvenanceChain:
         level = ccnl.level_by_code("4")
         prov_level = _rule_provenance("level")
         prov_period = _rule_provenance("period")
-        level.provenance = prov_level
-        level.base_salary.periods[0].valid_from = date(2025, 1, 1)
-        level.base_salary.periods[0].provenance = prov_period
-        # Clear seniority provenance so only level appears in the result.
-        ccnl.parameters.seniority_increments.provenance = None
+        new_period = level.base_salary.periods[0].model_copy(
+            update={"valid_from": date(2025, 1, 1), "provenance": prov_period}
+        )
+        new_series = level.base_salary.model_copy(update={"periods": [new_period]})
+        new_level = level.model_copy(
+            update={"provenance": prov_level, "base_salary": new_series}
+        )
+        new_params = ccnl.parameters.model_copy(
+            update={
+                "seniority_increments": ccnl.parameters.seniority_increments.model_copy(
+                    update={"provenance": None}
+                )
+            }
+        )
         # Calling _collect_provenance directly with a date before the period.
         result = _collect_provenance(
-            level,
+            new_level,
             date(2024, 6, 1),
             MonthlyPayChain(base=_D(0), seniority=_D(0), allowances=()),
-            ccnl.parameters.seniority_increments,
+            new_params.seniority_increments,
         )
         assert result == (prov_level,)
 
@@ -960,19 +988,32 @@ class TestApprenticeProvenance:
 
     def test_under_level_provenance_used_when_code_given(self) -> None:
         """When under_level_code is set, the under level's provenance is used."""
-        ccnl = CCNL.model_validate(make_ccnl_dict())
-        dest_level = ccnl.level_by_code("4")
-        under_level = ccnl.level_by_code("3")
         prov_dest = _rule_provenance("dest")
         prov_under = _rule_provenance("under")
-        dest_level.provenance = prov_dest
-        under_level.provenance = prov_under
-        ccnl.parameters.seniority_increments.provenance = None
+        ccnl = CCNL.model_validate(make_ccnl_dict())
+        dest_level = ccnl.level_by_code("4").model_copy(
+            update={"provenance": prov_dest}
+        )
+        under_level = ccnl.level_by_code("3").model_copy(
+            update={"provenance": prov_under}
+        )
+        new_params = ccnl.parameters.model_copy(
+            update={
+                "seniority_increments": ccnl.parameters.seniority_increments.model_copy(
+                    update={"provenance": None}
+                )
+            }
+        )
+        new_levels = [
+            dest_level if lv.code == "4" else (under_level if lv.code == "3" else lv)
+            for lv in ccnl.levels
+        ]
+        ccnl = ccnl.model_copy(update={"levels": new_levels, "parameters": new_params})
         result = _collect_provenance(
             dest_level,
             _DATE,
             MonthlyPayChain(base=_D(0), seniority=_D(0), allowances=()),
-            ccnl.parameters.seniority_increments,
+            new_params.seniority_increments,
             ccnl=ccnl,
             under_level_code="3",
         )
@@ -982,31 +1023,47 @@ class TestApprenticeProvenance:
 
     def test_no_ccnl_falls_back_to_destination_level(self) -> None:
         """When ccnl is None, destination level provenance is used (backward compat)."""
-        ccnl = CCNL.model_validate(make_ccnl_dict())
-        dest_level = ccnl.level_by_code("4")
         prov_dest = _rule_provenance("dest")
-        dest_level.provenance = prov_dest
-        ccnl.parameters.seniority_increments.provenance = None
+        ccnl = CCNL.model_validate(make_ccnl_dict())
+        dest_level = ccnl.level_by_code("4").model_copy(
+            update={"provenance": prov_dest}
+        )
+        new_params = ccnl.parameters.model_copy(
+            update={
+                "seniority_increments": ccnl.parameters.seniority_increments.model_copy(
+                    update={"provenance": None}
+                )
+            }
+        )
         result = _collect_provenance(
             dest_level,
             _DATE,
             MonthlyPayChain(base=_D(0), seniority=_D(0), allowances=()),
-            ccnl.parameters.seniority_increments,
+            new_params.seniority_increments,
         )
         assert prov_dest in result
 
     def test_under_level_code_none_uses_destination_level(self) -> None:
         """When under_level_code is None, destination level provenance is used."""
-        ccnl = CCNL.model_validate(make_ccnl_dict())
-        dest_level = ccnl.level_by_code("4")
         prov_dest = _rule_provenance("dest")
-        dest_level.provenance = prov_dest
-        ccnl.parameters.seniority_increments.provenance = None
+        ccnl = CCNL.model_validate(make_ccnl_dict())
+        dest_level = ccnl.level_by_code("4").model_copy(
+            update={"provenance": prov_dest}
+        )
+        new_params = ccnl.parameters.model_copy(
+            update={
+                "seniority_increments": ccnl.parameters.seniority_increments.model_copy(
+                    update={"provenance": None}
+                )
+            }
+        )
+        new_levels = [dest_level if lv.code == "4" else lv for lv in ccnl.levels]
+        ccnl = ccnl.model_copy(update={"levels": new_levels, "parameters": new_params})
         result = _collect_provenance(
             dest_level,
             _DATE,
             MonthlyPayChain(base=_D(0), seniority=_D(0), allowances=()),
-            ccnl.parameters.seniority_increments,
+            new_params.seniority_increments,
             ccnl=ccnl,
             under_level_code=None,
         )

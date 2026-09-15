@@ -67,7 +67,7 @@ class ValidityPeriod(BaseModel):
     Gap periods do not require ``provenance``.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     valid_from: date
     valid_until: date | None
@@ -102,7 +102,7 @@ class ValidityPeriod(BaseModel):
 class TimeSeries(BaseModel):
     """Ordered, contiguous, open-ended sequence of ValidityPeriod objects."""
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     periods: list[ValidityPeriod]
 

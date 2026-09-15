@@ -90,7 +90,7 @@ class CoverageNote(BaseModel):
     ``MISSING: …``, etc.) with a typed ``kind`` field.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     kind: NoteKind
     text: str
@@ -123,7 +123,7 @@ class OvertimeBand(BaseModel):
     the band to hours *beyond* that threshold (straordinario, not supplementare).
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     code: str
     description: str
@@ -148,7 +148,7 @@ class TimeSupplements(BaseModel):
     a CCNL-specific note says otherwise.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     hourly_base_method: Literal["minimo_tabellare", "gross_incl_allowances"] = (
         "minimo_tabellare"
@@ -183,7 +183,7 @@ class AbsenceRules(BaseModel):
     ``provenance`` links this rule to its source CCNL article.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     daily_divisor_method: DailyDivisorMethod = DailyDivisorMethod.BY_26
     daily_hours: Decimal | None = None
@@ -200,7 +200,7 @@ class LeaveEntitlementTier(BaseModel):
     the fallback when no tier matches or seniority is unknown.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     service_months_min: int = Field(default=0, ge=0)
     annual_days: Decimal = Field(gt=Decimal(0))
@@ -218,7 +218,7 @@ class LeaveRules(BaseModel):
     ``provenance`` links this rule to its CCNL article.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     default_annual_days: Decimal = Field(gt=Decimal(0))
     entitlement_tiers: list[LeaveEntitlementTier] = Field(default_factory=list)
@@ -243,7 +243,7 @@ class SicknessTier(BaseModel):
         integration_rate: Target fraction of gross daily pay for this tier.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     month_from: int = Field(ge=1)
     month_until: int | None = Field(default=None, ge=2)
@@ -282,7 +282,7 @@ class SicknessRules(BaseModel):
         provenance: Links this rule to its CCNL article.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     carenza_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
     full_pay_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
@@ -294,7 +294,7 @@ class SicknessRules(BaseModel):
 class CCNLWorkRules(BaseModel):
     """Container for work rules attached to a CCNL data file."""
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     time_supplements: TimeSupplements | None = None
     absence_rules: AbsenceRules | None = None
@@ -322,7 +322,7 @@ class Allowance(BaseModel):
     engine cannot gate on service time without knowing service time).
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     code: str
     description: str
@@ -374,7 +374,7 @@ class SupplementaryAllowance(BaseModel):
     citation for the allowance; caller-supplied, never required by the engine.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     code: str
     description: str
@@ -401,7 +401,7 @@ class SeniorityTier(BaseModel):
     (``cadence_months * maximum_count`` service months) before advancing to tier 2.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     cadence_months: int = Field(gt=0)
     maximum_count: int = Field(gt=0)
@@ -431,7 +431,7 @@ class SeniorityIncrements(BaseModel):
     who receive APE through the Cassa Edile instead).
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     cadence_months: int = Field(gt=0)
     maximum_count: int = Field(ge=0)
@@ -551,7 +551,7 @@ class EmployerFund(BaseModel):
     given categories (``None`` = all).
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     code: str
     description: str
@@ -563,7 +563,7 @@ class EmployerFund(BaseModel):
 class CCNLParameters(BaseModel):
     """Contract-wide parameters."""
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     hourly_divisor: TimeSeries
     additional_months: TimeSeries
@@ -615,7 +615,7 @@ class Level(BaseModel):
             ``Scenario.category``.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     code: str
     order: int
@@ -668,7 +668,7 @@ class CCNLCoverage(BaseModel):
     or any work_rules feature is ``partial``.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     gross: CoverageStatus
     net: CoverageStatus
@@ -710,7 +710,7 @@ class CCNLVerification(BaseModel):
         human_reviewed_by: Identifier (name or email) of the reviewer.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     confidence: VerificationStatus = VerificationStatus.UNVERIFIED
     verified_cases: int = 0
@@ -721,7 +721,7 @@ class CCNLVerification(BaseModel):
 class CCNLValidity(BaseModel):
     """Contractual validity window of the modelled agreement."""
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     valid_from: date
     valid_until: date | None = None
@@ -756,7 +756,7 @@ class CCNLMeta(BaseModel):
             estimates. Empty string when unknown.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     ccnl_id: str
     name: str
@@ -806,7 +806,7 @@ class CCNL(BaseModel):
             when no work rules are modelled for this CCNL.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     schema_version: Literal["0.4", "0.5"]
     ruleset: RulesetIdentity | None = None
