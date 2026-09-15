@@ -417,3 +417,54 @@ class TestComputeTimeSupplementsTieredBands:
         assert ni == _ZERO
         assert ho == _ZERO
         assert len(steps) == 3  # B1 + B2 + total
+
+
+class TestHighBaseThresholdNormalisation:
+    """_slice_hours_for_band normalises thresholds relative to the first band."""
+
+    def test_single_band_with_high_threshold_gets_all_overtime_hours(self) -> None:
+        """One band with threshold=40 receives all overtime hours unchanged.
+
+        The threshold represents the standard weekly schedule (40 h/week),
+        not an offset within overtime.  All hours in OvertimeHours are already
+        in excess of that schedule, so the full 8 h are usable.
+        """
+        bands = [_band_with_threshold("B1", "0.15", ["weekday"], threshold=40)]
+        result = _slice_hours_for_band(0, bands, Decimal(8))
+        assert result == Decimal(8)
+
+    def test_two_bands_with_high_base_threshold_normalised(self) -> None:
+        """Two bands with thresholds 40/48: normalised to 0/8 for overtime hours."""
+        bands = [
+            _band_with_threshold("B1", "0.15", ["weekday"], threshold=40),
+            _band_with_threshold("B2", "0.20", ["weekday"], threshold=48),
+        ]
+        # 10 overtime hours: band1 gets min(10, 8)-0=8, band2 gets 10-8=2
+        assert _slice_hours_for_band(0, bands, Decimal(10)) == Decimal(8)
+        assert _slice_hours_for_band(1, bands, Decimal(10)) == Decimal(2)
+
+    def test_high_threshold_single_band_integrates_with_compute(self) -> None:
+        """A band with threshold=40 computes the correct supplement via full stack.
+
+        Without normalisation the 8 overtime hours would be zeroed out
+        because max(0, 8-40) = 0.
+        """
+        schema = TimeSupplements(
+            hourly_base_method="minimo_tabellare",
+            overtime_bands=[
+                _band_with_threshold("B40", "0.15", ["weekday"], threshold=40)
+            ],
+        )
+        ot, ni, ho, steps = compute_time_supplements(
+            OvertimeHours(weekday_hours=Decimal(8)),
+            schema,
+            _BASE,
+            _DIVISOR,
+            _AS_OF,
+        )
+        hourly_base = _BASE / _DIVISOR
+        expected = _money(Decimal(8) * Decimal("0.15") * hourly_base)
+        assert ot == expected
+        assert ni == _ZERO
+        assert ho == _ZERO
+        assert len(steps) == 2  # 1 band + SUPPLEMENT_TOTAL
