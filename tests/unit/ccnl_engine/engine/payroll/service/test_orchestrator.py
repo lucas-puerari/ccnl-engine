@@ -1794,19 +1794,22 @@ class TestL3FamilyDeductions:
 class TestSterilizzazioneDetrazioni:
     """Sterilizzazione detrazioni — orchestrator integration.
 
-    Art. 1 c. 3-4 L. 199/2025: reduces Art. 12 + Art. 13 deductions by
-    EUR 440 when reddito complessivo > threshold.  Art. 15 oneri are not
-    affected.  Uses a low custom threshold to trigger at test-CCNL income.
+    Art. 1 c. 3-4 L. 199/2025: reduces oneri detraibili al 19% (Art. 15
+    c. 1 lett. a, b, d, e TUIR; not spese sanitarie lett. c) by EUR 440
+    when reddito complessivo > threshold.  Art. 12 and Art. 13 deductions
+    are not affected.  Uses a low custom threshold to trigger at test-CCNL
+    income.
     """
 
     # Threshold below test-CCNL taxable income (~10 897) so sterilizzazione fires.
     _STRD_RULES = {"threshold": "10000", "reduction": "440"}
 
     def test_sterilizzazione_family_deduction_field_unchanged(self) -> None:
-        """Sterilizzazione fires but family_deduction_annual field is unchanged.
+        """Family deductions are not reduced by sterilizzazione.
 
-        The clawback is reported in sterilizzazione_clawback_annual, not by
-        reducing the family_deduction_annual field.
+        Art. 12 deductions are not listed among the oneri targeted by
+        Art. 1 c. 4 L. 199/2025.  Without Art. 15 deductions, sterilizzazione
+        has nothing to reduce and the clawback is zero.
         """
         _mock_rules[0] = make_year_rules(sterilizzazione_detrazioni=self._STRD_RULES)
         with_strd = compute(
@@ -1817,41 +1820,54 @@ class TestSterilizzazioneDetrazioni:
             dataclasses.replace(_req(), family=FamilyComposition(spouse_dependent=True))
         ).result
         assert baseline.family_deduction_annual == with_strd.family_deduction_annual
-        assert with_strd.sterilizzazione_clawback_annual > _D("0")
+        assert with_strd.sterilizzazione_clawback_annual == _D("0")
 
-    def test_sterilizzazione_increases_irpef_net(self) -> None:
-        """Sterilizzazione reduces Art. 12+13 deductions → irpef_net increases."""
+    def test_sterilizzazione_no_art15_no_clawback(self) -> None:
+        """Without Art. 15 deductions, sterilizzazione clawback is zero.
+
+        The reduction targets oneri at 19%: when art15_total = 0 there is
+        nothing to reduce and irpef_net is unchanged.
+        """
         _mock_rules[0] = make_year_rules(sterilizzazione_detrazioni=self._STRD_RULES)
         with_strd = compute(_req()).result
         _mock_rules[0] = make_year_rules()
         without_strd = compute(_req()).result
-        # work_income_deduction field is still reported at full value.
-        assert with_strd.work_income_deduction == without_strd.work_income_deduction
-        # Clawback fires: irpef_net increases by the clawback amount.
-        assert with_strd.sterilizzazione_clawback_annual == _D("440.00")
-        assert (
-            with_strd.irpef_net - without_strd.irpef_net
-            == with_strd.sterilizzazione_clawback_annual
-        )
+        assert with_strd.sterilizzazione_clawback_annual == _D("0")
+        assert with_strd.irpef_net == without_strd.irpef_net
 
-    def test_sterilizzazione_does_not_reduce_art15(self) -> None:
-        """Art. 15 deduction is not affected by sterilizzazione (Art. 12+13 only)."""
+    def test_sterilizzazione_increases_irpef_net(self) -> None:
+        """Sterilizzazione reduces Art. 15 oneri credit → irpef_net increases.
+
+        3 000 EUR mortgage interest → credit 570 EUR.  Clawback = min(440, 570)
+        = 440.  irpef_net rises by exactly 440 EUR.  The raw art15_deduction
+        field keeps reporting the pre-clawback credit.
+
+        A RAL of 50 000 EUR is used to ensure IRPEF > 570 in both scenarios
+        so the full 440 clawback is reflected rather than capped by incapienza.
+        """
+        art15 = Art15Deductions(mortgage_interest=_D("3000"))
         _mock_rules[0] = make_year_rules(sterilizzazione_detrazioni=self._STRD_RULES)
         with_strd = compute(
             dataclasses.replace(
-                _req(),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("3000")),
+                _req(negotiated_ral=_D("50000")), art15_deductions=art15
             )
         ).result
         _mock_rules[0] = make_year_rules()
         without_strd = compute(
             dataclasses.replace(
-                _req(),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("3000")),
+                _req(negotiated_ral=_D("50000")), art15_deductions=art15
             )
         ).result
-        # Art. 15 deduction unchanged: 3000 * 0.19 = 570.00 in both cases.
-        assert with_strd.art15_deduction_annual == without_strd.art15_deduction_annual
+        # Art. 13 (work_income_deduction) is not affected.
+        assert with_strd.work_income_deduction == without_strd.work_income_deduction
+        # Clawback fires at 440 (< 570 credit).
+        assert with_strd.sterilizzazione_clawback_annual == _D("440.00")
+        # irpef_net increases by the clawback amount.
+        assert (
+            with_strd.irpef_net - without_strd.irpef_net
+            == with_strd.sterilizzazione_clawback_annual
+        )
+        # Raw art15_deduction_annual field is the pre-clawback credit.
         assert with_strd.art15_deduction_annual == _D("570.00")
 
     def test_sterilizzazione_below_threshold_no_effect(self) -> None:
@@ -1865,35 +1881,42 @@ class TestSterilizzazioneDetrazioni:
         assert with_high_threshold.sterilizzazione_clawback_annual == _D("0")
         assert with_high_threshold.irpef_net == without.irpef_net
 
-    def test_sterilizzazione_at_high_income_art15_unaffected(self) -> None:
-        """At real 200k+ income: Art. 12+13 phase out; clawback = 0; art15 intact.
+    def test_sterilizzazione_at_high_income_art15_reduced(self) -> None:
+        """At real 200k+ income with Art. 15 oneri, clawback fires on the credit.
 
-        At reddito complessivo > 200 000 EUR, both Art. 12 and Art. 13
-        deductions have already phased out to zero, so the EUR 440 clawback
-        is capped at zero.  Art. 15 remains the full computed credit.
+        At reddito complessivo 250 000 EUR, the full EUR 440 reduction applies
+        to the Art. 15 mortgage credit (4 000 * 19% = 760 EUR → 320 EUR net).
         """
         high_income = _D("250000")
         _mock_rules[0] = make_year_rules(
             sterilizzazione_detrazioni={"threshold": "200000", "reduction": "440"}
         )
-        result = compute(
+        with_strd = compute(
             dataclasses.replace(
                 _req(negotiated_ral=high_income),
                 art15_deductions=Art15Deductions(mortgage_interest=_D("4000")),
             )
         ).result
-        # Art. 12+13 are zero at this income → clawback = 0.
-        assert result.sterilizzazione_clawback_annual == _D("0")
-        # Art. 15 credit is intact: 4000 * 0.19 = 760.00.
-        assert result.art15_deduction_annual == _D("760.00")
+        _mock_rules[0] = make_year_rules()
+        without_strd = compute(
+            dataclasses.replace(
+                _req(negotiated_ral=high_income),
+                art15_deductions=Art15Deductions(mortgage_interest=_D("4000")),
+            )
+        ).result
+        # Clawback fires: Art. 15 credit is 760; min(440, 760) = 440.
+        assert with_strd.sterilizzazione_clawback_annual == _D("440.00")
+        # Raw art15_deduction_annual still shows the pre-clawback credit.
+        assert with_strd.art15_deduction_annual == _D("760.00")
+        # irpef_net increases by the clawback.
+        assert with_strd.irpef_net - without_strd.irpef_net == _D("440.00")
 
     def test_sterilizzazione_with_family_and_art15_pins_unused(self) -> None:
-        """art15_unused uses post-clawback Art. 12 capacity when sterilizzazione fires.
+        """art15_unused is recomputed against the effective credit after clawback.
 
-        When sterilizzazione fires (clawback = 440), the Art. 12 family
-        deduction reduces IRPEF capacity by less than the pre-sterilizzazione
-        amount.  art15_unused must reflect the post-clawback Art. 12 amount so
-        that the incapienza diagnostic is not overstated.
+        When sterilizzazione fires (clawback = 440), the effective Art. 15
+        credit drops from 760 to 320 EUR.  art15_unused must be recomputed
+        against the effective credit so that incapienza is not overstated.
         """
         _mock_rules[0] = make_year_rules(sterilizzazione_detrazioni=self._STRD_RULES)
         result = compute(
@@ -1914,16 +1937,14 @@ class TestSterilizzazioneDetrazioni:
         # Verify sterilizzazione fired and family deductions are present.
         assert result.sterilizzazione_clawback_annual == _D("440.00")
         assert result.family_deduction_annual > _D("0")
-        # Art. 15 total is unchanged by sterilizzazione.
+        # Raw art15_deduction_annual reports the pre-clawback credit in both.
         assert result.art15_deduction_annual == result_no_strd.art15_deduction_annual
-        # art15_unused is lower with sterilizzazione because the clawback
-        # reclaims IRPEF capacity previously consumed by Art. 12, leaving
-        # more room to absorb the Art. 15 credit.
+        # art15_unused is lower with sterilizzazione because the effective credit
+        # is smaller (320 vs 760 EUR), so less credit needs to be absorbed.
         assert result.unused_art15_deduction_annual <= (
             result_no_strd.unused_art15_deduction_annual
         )
-        # The difference between the two must equal the clawback capped at
-        # available unused capacity.
+        # The reduction in unused is bounded by the clawback amount.
         delta = (
             result_no_strd.unused_art15_deduction_annual
             - result.unused_art15_deduction_annual
@@ -2053,11 +2074,13 @@ class TestArt15Deductions:
         ).result
         assert with_art15.gross_annual == baseline.gross_annual
 
-    def test_sterilizzazione_does_not_change_art15_increases_irpef(self) -> None:
-        """Sterilizzazione reduces Art. 12+13, not Art. 15; irpef_net increases.
+    def test_sterilizzazione_reduces_art15_increases_irpef(self) -> None:
+        """Sterilizzazione fires on Art. 15 oneri; clawback = 440.
 
-        When sterilizzazione fires (income > threshold), the Art. 15
-        credit is unchanged.  The clawback on Art. 12+13 raises irpef_net.
+        When sterilizzazione fires (income > threshold), the effective Art. 15
+        credit is reduced by 440.  art15_deduction_annual keeps reporting the
+        raw pre-clawback credit; sterilizzazione_clawback_annual shows the
+        reduction.
         """
         _mock_rules[0] = make_year_rules(
             sterilizzazione_detrazioni={"threshold": "10000", "reduction": "440"}
@@ -2075,17 +2098,18 @@ class TestArt15Deductions:
                 art15_deductions=Art15Deductions(mortgage_interest=_D("3000")),
             )
         ).result
-        # art15 = 3000 * 0.19 = 570; unchanged by sterilizzazione.
+        # art15_deduction_annual reports the raw pre-clawback credit in both.
         assert with_strd.art15_deduction_annual == _D("570.00")
         assert without_strd.art15_deduction_annual == _D("570.00")
-        # Clawback fires on Art. 12+13 → irpef_net is higher with sterilizzazione.
+        # Clawback fires on Art. 15 → sterilizzazione_clawback = 440.
         assert with_strd.sterilizzazione_clawback_annual == _D("440.00")
 
     def test_exempt_employer_sterilizzazione_art15_unused_unchanged(self) -> None:
         """Exempt employer + sterilizzazione: art15_unused equals full art15_total.
 
-        Sterilizzazione no longer touches art15_total, so an exempt employer
-        still returns art15_unused == art15_total at the full credit value.
+        For exempt employers (non sostituto d'imposta), IRPEF is never
+        withheld, so the entire Art. 15 credit is always unused.
+        Sterilizzazione does not recompute art15_unused in this case.
         """
         _mock_ccnl[0] = self._EXEMPT_CCNL
         _mock_rules[0] = make_year_rules(
