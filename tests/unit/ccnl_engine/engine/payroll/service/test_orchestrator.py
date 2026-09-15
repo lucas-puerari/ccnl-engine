@@ -59,7 +59,10 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     WelfareInput,
 )
 from ccnl_engine.engine.payroll.service.audit import _collect_provenance
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.orchestrator import (
+    _ivs_ceiling_warning,
+    compute,
+)
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.scope import (
     _compute_confidence,
@@ -2253,7 +2256,7 @@ class TestComputeConfidence:
         assert result == "low"
 
     def test_complete_verified_returns_high(self) -> None:
-        """Complete + no warnings + all TABELLA_RETRIBUTIVA verified → high."""
+        """Complete + no warnings + all provenance verified → high."""
         prov = (_verified_provenance(),)
         assert _compute_confidence("complete", (), prov) == "high"
 
@@ -2288,8 +2291,8 @@ class TestComputeConfidence:
         )
         assert _compute_confidence("complete", (), (needs_review,)) == "medium"
 
-    def test_non_salary_table_unverified_does_not_lower_confidence(self) -> None:
-        """Unverified RIVISTA source does not affect confidence."""
+    def test_non_salary_table_unverified_lowers_confidence(self) -> None:
+        """Any unverified source, regardless of kind, blocks high confidence."""
         rivista = RuleProvenance(
             location=SourceLocation(
                 source_document=SourceDocument(
@@ -2307,7 +2310,7 @@ class TestComputeConfidence:
                 effective_from=date(2025, 1, 1),
             ),
         )
-        assert _compute_confidence("complete", (), (rivista,)) == "high"
+        assert _compute_confidence("complete", (), (rivista,)) == "medium"
 
     def test_empty_provenance_complete_returns_high(self) -> None:
         """No provenance records + complete + no warnings → high."""
@@ -2591,6 +2594,30 @@ class TestIvsCeilingWarning:
         """SeniorityByCount with ivs_ceiling_applies=True produces no warning."""
         r = compute(_req(seniority_count=2, ivs_ceiling_applies=True)).result
         assert not any("ivs_ceiling_applies" in w for w in r.warnings)
+
+    def test_base_at_or_below_ceiling_no_warning(self) -> None:
+        """Post-1996 hire produces no warning when base does not exceed ceiling."""
+        scenario = self._scenario_with_hire_date(date(2000, 1, 1))
+        base = _D("30000")
+        ceiling = _D("30000")
+        result = _ivs_ceiling_warning(scenario, _DATE, base, ceiling)
+        assert result is None
+
+    def test_base_above_ceiling_still_warns(self) -> None:
+        """Post-1996 hire warns when base exceeds the known IVS ceiling."""
+        scenario = self._scenario_with_hire_date(date(2000, 1, 1))
+        base = _D("60000")
+        ceiling = _D("50000")
+        result = _ivs_ceiling_warning(scenario, _DATE, base, ceiling)
+        assert result is not None
+        assert "overstated" in result
+
+    def test_no_ceiling_still_warns_for_post_1996(self) -> None:
+        """When ceiling is unknown, warning is emitted for post-1996 hires."""
+        scenario = self._scenario_with_hire_date(date(2000, 1, 1))
+        result = _ivs_ceiling_warning(scenario, _DATE, _D("20000"), None)
+        assert result is not None
+        assert "overstated" in result
 
 
 # ---------------------------------------------------------------------------
