@@ -29,7 +29,7 @@ the fact is stated:
       },
       "extraction": {
         "method": "ai",
-        "model": null,
+        "model": "claude-sonnet-4-6",
         "extraction_timestamp": "2026-08-30T00:00:00",
         "verified_by": null,
         "verified_at": null,
@@ -63,7 +63,7 @@ the fact is stated:
 | Field | Description |
 |---|---|
 | `method` | `"ai"` \| `"manual"` \| `"back_calculation"` \| `"import"` |
-| `model` | Model identifier if AI-assisted (null when not recorded) |
+| `model` | Model identifier; required when `method` is `"ai"`, null otherwise |
 | `extraction_timestamp` | When the fact was extracted |
 | `verified_by` | Name or identifier of human reviewer (null if unverified) |
 | `verified_at` | Date of human verification |
