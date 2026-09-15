@@ -30,6 +30,8 @@ from ccnl_engine.engine.tax.service.loaders import (
 )
 
 if TYPE_CHECKING:
+    from decimal import Decimal
+
     from ccnl_engine.engine.payroll.domain.calculation import (
         Calculation,
     )
@@ -72,12 +74,20 @@ def _ivs_months_msg(months: int, as_of: date) -> str | None:
     )
 
 
-def _ivs_ceiling_warning(scenario: PayrollScenario, as_of: date) -> str | None:
+def _ivs_ceiling_warning(
+    scenario: PayrollScenario,
+    as_of: date,
+    contribution_base: Decimal,
+    ivs_ceiling: Decimal | None,
+) -> str | None:
     """Return a warning when a post-1996 hire has ivs_ceiling_applies=False.
 
     Workers hired on or after 1996-01-01 are subject to the INPS IVS
     contribution ceiling.  When the ceiling is skipped, the engine uses a
     higher contribution base, so computed contributions are overstated.
+
+    When ``ivs_ceiling`` is known and the contribution base does not exceed
+    it, the ceiling would have no effect, so no warning is emitted.
 
     Covers all three seniority input types:
 
@@ -92,6 +102,8 @@ def _ivs_ceiling_warning(scenario: PayrollScenario, as_of: date) -> str | None:
         A warning string, or ``None`` when no warning is warranted.
     """
     if scenario.employee.ivs_ceiling_applies:
+        return None
+    if ivs_ceiling is not None and contribution_base <= ivs_ceiling:
         return None
     seniority = scenario.employee.seniority
     if seniority is None:
@@ -160,7 +172,10 @@ def compute(scenario: PayrollScenario) -> Calculation:
         under_level_code=gross.under_level_code,
     )
     result_status = _compute_result_status(calculation_scope)
-    ivs_warn = _ivs_ceiling_warning(scenario, as_of)
+    ivs_ceiling = rules.inps.ceiling if rules.inps is not None else None
+    ivs_warn = _ivs_ceiling_warning(
+        scenario, as_of, gross.contribution_base, ivs_ceiling
+    )
     result_warnings = (
         (*work.warnings, ivs_warn) if ivs_warn is not None else work.warnings
     )

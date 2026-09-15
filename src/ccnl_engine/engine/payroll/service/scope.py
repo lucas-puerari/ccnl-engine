@@ -8,7 +8,6 @@ from typing import TYPE_CHECKING, Literal
 from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.payroll_result import ScopeItem
-from ccnl_engine.engine.provenance.domain.source import SourceKind
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
@@ -52,14 +51,13 @@ def _compute_confidence(
         is knowingly incomplete in a way the caller cannot quantify.
 
     ``"high"``
-        The computation is complete, there are no warnings, and every
-        :attr:`~ccnl_engine.engine.provenance.domain.source.SourceKind\
-.TABELLA_RETRIBUTIVA` record in the provenance chain has
+        The computation is complete, there are no warnings, and every record
+        in the provenance chain has
         :attr:`~ccnl_engine.engine.metadata.domain.rules.VerificationStatus\
 .VERIFIED` status.
 
     ``"medium"``
-        All other cases: unverified salary-table sources, partial computation
+        All other cases: any unverified provenance source, partial computation
         without active warnings, or features explicitly excluded by the caller.
 
     The ``fiscal_simplifications`` frozenset is intentionally excluded from
@@ -72,12 +70,11 @@ def _compute_confidence(
     """
     if warnings:
         return "low"
-    salary_table_unverified = any(
-        p.location.source_document.kind == SourceKind.TABELLA_RETRIBUTIVA
-        and p.extraction.verification_status != VerificationStatus.VERIFIED
+    any_unverified = any(
+        p.extraction.verification_status != VerificationStatus.VERIFIED
         for p in provenance
     )
-    if status == "complete" and not salary_table_unverified:
+    if status == "complete" and not any_unverified:
         return "high"
     return "medium"
 
