@@ -20,7 +20,9 @@
         }
       }
     ],
-    "ceiling": "122295.00"
+    "ceiling": "122295.00",
+    "employee_additional_rate": "0.01",
+    "employee_additional_threshold": "56224.00"
   },
   "apprentice": {
     "employee_rate": "0.0584",
@@ -41,6 +43,6 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "cd665422e488182e7535c4cb80fca9c72a66b274416bc2da301cd6153b57f7ed"
+    "source_hash": "464411166aad7c372371251834d10c1c757fcfd9ac3b0d470c8be5d83a0c5162"
   }
 }

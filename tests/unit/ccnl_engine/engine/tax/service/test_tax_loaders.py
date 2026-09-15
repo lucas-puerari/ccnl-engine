@@ -10,6 +10,7 @@ from ccnl_engine.engine.tax.service.loaders import (
     load_art15_deduction_rules,
     load_family_deduction_rules,
     load_variable_pay_rules,
+    load_year_rules,
 )
 
 
@@ -105,3 +106,56 @@ class TestLoadArt15DeductionRules:
             pytest.raises(ValueError, match="does not match requested year"),
         ):
             load_art15_deduction_rules(2026)
+
+
+_BAD_APPRENTICE = {
+    "employee_rate": "0.0584",
+    "employee_ivs_rate": "0.0584",
+    "employer_rate": "0.1161",
+    "employer_ivs_rate": "0.1000",
+    "small_firm_max_employees": 9,
+    "small_firm_employer_rate_months_0_11": "0.0311",
+    "small_firm_employer_ivs_rate_months_0_11": "0.0150",
+    "small_firm_employer_rate_months_12_23": "0.0461",
+    "small_firm_employer_ivs_rate_months_12_23": "0.0300",
+}
+
+_BAD_TAX_RAW = {
+    "year": 2026,
+    "sector": "industria",
+    "irpef_brackets": [{"up_to": None, "rate": "0.43"}],
+    "fixed_term_additional_rate": "0.014",
+    "tfr": {"accrual_divisor": "13.5"},
+}
+
+
+class TestResolveInpsAdditionalValidation:
+    """_resolve_inps rejects partial additional-rate configuration."""
+
+    def test_rate_without_threshold_raises(self) -> None:
+        """Only employee_additional_rate set (threshold absent) raises ValueError."""
+        bad_inps = {
+            "employee_tiers": [
+                {"max_employees": None, "rate": "0.0949", "ivs_rate": "0.0949"}
+            ],
+            "employer_tiers": [
+                {"max_employees": None, "rate": "0.3050", "ivs_rate": "0.2381"}
+            ],
+            "ceiling": "122295.00",
+            "employee_additional_rate": "0.01",
+        }
+        bad_inps_raw = {"inps": bad_inps, "apprentice": _BAD_APPRENTICE}
+        load_year_rules.cache_clear()
+        with (
+            patch(
+                "ccnl_engine.engine.tax.service.loaders.read_tax_rules_raw",
+                return_value=_BAD_TAX_RAW,
+            ),
+            patch(
+                "ccnl_engine.engine.tax.service.loaders.read_inps_rules_raw",
+                return_value=bad_inps_raw,
+            ),
+            pytest.raises(ValueError, match="must both be set or both be absent"),
+        ):
+            load_year_rules(2026, "industria", 100)
+        load_year_rules.cache_clear()

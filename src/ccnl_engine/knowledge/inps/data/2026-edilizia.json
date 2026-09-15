@@ -31,7 +31,9 @@
         "ivs_rate": "0.2381"
       }
     ],
-    "ceiling": "122295.00"
+    "ceiling": "122295.00",
+    "employee_additional_rate": "0.01",
+    "employee_additional_threshold": "56224.00"
   },
   "apprentice": {
     "employee_rate": "0.0584",
@@ -52,6 +54,6 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "dc50f24db2f6a1ee10259cc2e5672802dd0a30b78d3d6c4077a67def545cd72d"
+    "source_hash": "72b0e63a571ce5b06f8598fec03ac0035926215bc574d1685e08ba29a036a1e8"
   }
 }

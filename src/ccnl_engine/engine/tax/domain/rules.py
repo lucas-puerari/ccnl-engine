@@ -52,9 +52,17 @@ class InpsRates(BaseModel):
     rate is active, the IVS component is still taken from ``employer_ivs_rate``
     and the category non-IVS residual is ``category_rate - employer_ivs_rate``.
     This invariant is enforced by ``InpsEmployerTier._check_ivs_rate``, which
-    requires every category rate to be ≥ ``ivs_rate`` so the residual is
+    requires every category rate to be >= ``ivs_rate`` so the residual is
     non-negative.  A sector where the IVS rate genuinely varies by category
     would need a ``ivs_rate_by_category`` field.
+
+    ``employee_additional_rate`` and ``employee_additional_threshold`` model
+    the 1% IVS contribution charged to employees on the portion of annual
+    earnings exceeding the first pensionable band (Art. 3-ter D.L. 384/1992).
+    When set, the additional is applied on top of the ordinary rate; it is
+    IVS and therefore subject to the massimale when ``ivs_ceiling_applies``
+    is True.  Both fields are required together; presence of one without the
+    other is rejected by the loader.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -65,6 +73,8 @@ class InpsRates(BaseModel):
     employer_ivs_rate: Decimal
     ceiling: Decimal | None
     employer_rate_by_category: dict[str, Decimal] = {}
+    employee_additional_rate: Decimal | None = None
+    employee_additional_threshold: Decimal | None = None
     provenance: RuleProvenance | None = None
 
 
@@ -232,13 +242,20 @@ class DomesticInpsRates(BaseModel):
 
 
 class InpsRawRates(BaseModel):
-    """Raw INPS block from the tax JSON file, before tier resolution."""
+    """Raw INPS block from the tax JSON file, before tier resolution.
+
+    ``employee_additional_rate`` and ``employee_additional_threshold`` are
+    optional; both must be present together (validated by the loader).  When
+    absent, the additional contribution is not modelled for this sector.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
     employee_tiers: list[InpsEmployeeTier]
     employer_tiers: list[InpsEmployerTier]
     ceiling: Decimal | None
+    employee_additional_rate: Decimal | None = None
+    employee_additional_threshold: Decimal | None = None
     provenance: RuleProvenance | None = None
 
 

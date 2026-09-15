@@ -13,14 +13,13 @@ behaviour (no capping) for all existing callers.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.engine.payroll.domain.employment import Apprentice, FixedTerm
 from ccnl_engine.engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
-    from decimal import Decimal
-
     from ccnl_engine.engine.contract.domain.ccnl import EmployerFund, LevelCategory
     from ccnl_engine.engine.payroll.domain.employment import Contract as Employment
     from ccnl_engine.engine.tax.domain.rules import (
@@ -29,6 +28,8 @@ if TYPE_CHECKING:
         InpsRates,
         YearRules,
     )
+
+_ZERO = Decimal(0)
 
 _APPRENTICE_STEP_1: int = 12
 _APPRENTICE_STEP_2: int = 24
@@ -120,6 +121,41 @@ def inps_contribution(
         non_ivs_rate = total_rate - ivs_rate
         return money(ivs_base * ivs_rate + base_annual * non_ivs_rate)
     return money(base_annual * total_rate)
+
+
+def inps_employee_additional(
+    base_annual: Decimal,
+    rates: InpsRates | None,
+    *,
+    ivs_ceiling_applies: bool,
+) -> Decimal:
+    """Compute the 1% employee additional IVS contribution (Art. 3-ter D.L. 384/1992).
+
+    Applies to the portion of annual earnings exceeding the first pensionable
+    band threshold. The additional is IVS and is therefore subject to the
+    massimale retributivo when ivs_ceiling_applies is True.
+
+    Returns zero when ``rates`` is None, or when the additional rate or
+    threshold is not configured for this sector.
+
+    Returns:
+        Additional employee INPS contribution, rounded to two decimal places.
+    """
+    if rates is None:
+        return _ZERO
+    add_rate = rates.employee_additional_rate
+    add_threshold = rates.employee_additional_threshold
+    if add_rate is None:
+        return _ZERO
+    if add_threshold is None:
+        return _ZERO
+    capped = (
+        min(base_annual, rates.ceiling)
+        if ivs_ceiling_applies and rates.ceiling is not None
+        else base_annual
+    )
+    excess = max(_ZERO, capped - add_threshold)
+    return money(excess * add_rate)
 
 
 def tfr(base_annual: Decimal, rules: YearRules) -> Decimal:

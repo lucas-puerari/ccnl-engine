@@ -236,12 +236,26 @@ def _assert_tier_integrity(tiers: Sequence[_Tier], side: str) -> None:
 def _resolve_inps(raw: InpsRawRates | None, num_employees: int) -> InpsRates | None:
     """Resolve INPS tiers by headcount; return None for domestic-model sectors.
 
+    Validates that ``employee_additional_rate`` and
+    ``employee_additional_threshold`` are both present or both absent.
+
     Returns:
         Resolved InpsRates for standard sectors; None when raw is None
         (i.e. the sector uses domestic_contributions instead).
+
+    Raises:
+        ValueError: If only one of the additional rate/threshold fields is set.
     """
     if raw is None:
         return None
+    has_rate = raw.employee_additional_rate is not None
+    has_threshold = raw.employee_additional_threshold is not None
+    if has_rate != has_threshold:
+        msg = (
+            "employee_additional_rate and employee_additional_threshold "
+            "must both be set or both be absent"
+        )
+        raise ValueError(msg)
     employer_tier = _resolve_tier(raw.employer_tiers, num_employees, "employer")
     employee_tier = _resolve_tier(raw.employee_tiers, num_employees, "employee")
     return InpsRates(
@@ -251,6 +265,8 @@ def _resolve_inps(raw: InpsRawRates | None, num_employees: int) -> InpsRates | N
         employer_ivs_rate=employer_tier.ivs_rate,
         ceiling=raw.ceiling,
         employer_rate_by_category=employer_tier.rate_by_category,
+        employee_additional_rate=raw.employee_additional_rate,
+        employee_additional_threshold=raw.employee_additional_threshold,
     )
 
 
