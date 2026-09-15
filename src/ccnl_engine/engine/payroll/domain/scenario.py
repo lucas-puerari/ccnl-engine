@@ -209,14 +209,13 @@ class Employee:
             return self.seniority.value
         if isinstance(self.seniority, SeniorityByDate):
             hire = self.seniority.value
-            months = (as_of.year - hire.year) * 12 + (as_of.month - hire.month)
-            if months < 0:
+            if hire > as_of:
                 msg = (
                     f"hire_date {hire} is after calculation_date {as_of}: "
                     "cannot compute seniority for a future employee"
                 )
                 raise ValueError(msg)
-            return months
+            return (as_of.year - hire.year) * 12 + (as_of.month - hire.month)
         return None
 
 

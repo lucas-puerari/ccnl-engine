@@ -153,10 +153,26 @@ class TestSeniorityMonthsAsOf:
         assert e.seniority_months_as_of(date(2026, 1, 1)) is None
 
     def test_by_date_future_hire_raises(self) -> None:
-        """R17: hire_date after calculation_date raises ValueError."""
+        """hire_date in a future month raises ValueError."""
         e = Employee(level_code="4", seniority=SeniorityByDate(date(2026, 10, 1)))
         with pytest.raises(ValueError, match=r"hire_date.*after.*calculation_date"):
             e.seniority_months_as_of(date(2026, 9, 1))
+
+    def test_by_date_same_month_future_day_raises(self) -> None:
+        """hire_date later in the same month raises ValueError."""
+        e = Employee(level_code="4", seniority=SeniorityByDate(date(2026, 9, 30)))
+        with pytest.raises(ValueError, match=r"hire_date.*after.*calculation_date"):
+            e.seniority_months_as_of(date(2026, 9, 1))
+
+    def test_by_date_same_day_returns_zero(self) -> None:
+        """hire_date == calculation_date returns 0 months (first day of employment)."""
+        e = Employee(level_code="4", seniority=SeniorityByDate(date(2026, 9, 1)))
+        assert e.seniority_months_as_of(date(2026, 9, 1)) == 0
+
+    def test_by_date_prior_month_returns_one(self) -> None:
+        """hire_date in the immediately preceding month returns 1."""
+        e = Employee(level_code="4", seniority=SeniorityByDate(date(2026, 8, 31)))
+        assert e.seniority_months_as_of(date(2026, 9, 1)) == 1
 
 
 # ---------------------------------------------------------------------------
