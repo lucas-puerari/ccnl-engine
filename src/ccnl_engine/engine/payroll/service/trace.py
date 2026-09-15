@@ -69,9 +69,19 @@ _STEP_META: dict[TraceCategory, dict[str, str]] = {
         "source": "Art. 15 TUIR",
         "rounding": _ROUNDING,
     },
+    TraceCategory.ULTERIORE_DETRAZIONE: {
+        "source": "Art. 1 c. 6 L. 207/2024",
+    },
+    TraceCategory.STERILIZZAZIONE_CLAWBACK: {
+        "source": "Art. 1 c. 3-4 L. 199/2025",
+    },
+    TraceCategory.BILATERAL_EMPLOYEE: {
+        "rounding": _ROUNDING,
+    },
     TraceCategory.IRPEF_NET: {
         "formula": (
-            "IRPEF_lorda - detrazione_lavoro - detrazioni_familiari - detrazioni_Art15"
+            "IRPEF_lorda - detrazione_lavoro - ulteriore_detrazione"
+            " - detrazioni_familiari - detrazioni_Art15 + clawback_sterilizzazione"
         ),
     },
     TraceCategory.ADDIZIONALE_REGIONALE: {
@@ -95,6 +105,7 @@ _STEP_META: dict[TraceCategory, dict[str, str]] = {
             "lordo_annuale - contributi_INPS_dipendente - IRPEF_netta"
             " - addizionale_regionale - addizionale_comunale"
             " + trattamento_integrativo + somma_esente"
+            " - fondi_bilaterali_dipendente"
         ),
     },
     TraceCategory.INPS_EMPLOYER: {
@@ -159,8 +170,11 @@ def build_fiscal_trace(
     taxable_income: Decimal,
     irpef_gross: Decimal,
     work_income_deduction: Decimal,
+    ulteriore_detrazione_lavoro: Decimal,
     family_deduction_annual: Decimal,
     art15_deduction_annual: Decimal,
+    sterilizzazione_clawback: Decimal,
+    bilateral_employee_annual: Decimal,
     irpef_net: Decimal,
     addizionale_regionale_annual: Decimal,
     addizionale_comunale_annual: Decimal,
@@ -210,7 +224,11 @@ def build_fiscal_trace(
         )
     # When deductions exceed IRPEF lorda, irpef_net is floored at zero.
     total_deductions = (
-        work_income_deduction + family_deduction_annual + art15_deduction_annual
+        work_income_deduction
+        + ulteriore_detrazione_lavoro
+        + family_deduction_annual
+        + art15_deduction_annual
+        - sterilizzazione_clawback
     )
     irpef_net_formula: str | None = None
     if (
@@ -219,8 +237,8 @@ def build_fiscal_trace(
         and (total_deductions >= irpef_gross)
     ):
         irpef_net_formula = (
-            "max(0, IRPEF_lorda - detrazione_lavoro"
-            " - detrazioni_familiari - detrazioni_Art15)"
+            "max(0, IRPEF_lorda - detrazione_lavoro - ulteriore_detrazione"
+            " - detrazioni_familiari - detrazioni_Art15 + clawback_sterilizzazione)"
             " [incapienza: floored at 0]"
         )
 
@@ -257,6 +275,11 @@ def build_fiscal_trace(
             work_income_deduction,
         ),
         _step(
+            TraceCategory.ULTERIORE_DETRAZIONE,
+            f"Ulteriore detrazione lavoro dipendente{irpef_suffix}",
+            ulteriore_detrazione_lavoro,
+        ),
+        _step(
             TraceCategory.FAMILY_DEDUCTION,
             f"Detrazioni carichi familiari (Art. 12 TUIR){irpef_suffix}",
             family_deduction_annual,
@@ -265,6 +288,11 @@ def build_fiscal_trace(
             TraceCategory.ART15_DEDUCTION,
             f"Detrazioni Art. 15 TUIR{irpef_suffix}",
             art15_deduction_annual,
+        ),
+        _step(
+            TraceCategory.STERILIZZAZIONE_CLAWBACK,
+            f"Sterilizzazione detrazioni{irpef_suffix}",
+            sterilizzazione_clawback,
         ),
         _step(
             TraceCategory.IRPEF_NET,
@@ -291,6 +319,11 @@ def build_fiscal_trace(
             TraceCategory.SOMMA_ESENTE,
             "Somma esente (L. 207/2024)",
             somma_esente,
+        ),
+        _step(
+            TraceCategory.BILATERAL_EMPLOYEE,
+            "Fondi bilaterali dipendente",
+            bilateral_employee_annual,
         ),
         _step(
             TraceCategory.NET,

@@ -40,8 +40,11 @@ def _base_kwargs() -> dict[str, object]:
         "taxable_income": Decimal("17377.40"),
         "irpef_gross": Decimal("3996.80"),
         "work_income_deduction": Decimal("1270.48"),
+        "ulteriore_detrazione_lavoro": Decimal("0.00"),
         "family_deduction_annual": Decimal("0.00"),
         "art15_deduction_annual": Decimal("0.00"),
+        "sterilizzazione_clawback": Decimal("0.00"),
+        "bilateral_employee_annual": Decimal("0.00"),
         "irpef_net": Decimal("2726.32"),
         "addizionale_regionale_annual": Decimal("0.00"),
         "addizionale_comunale_annual": Decimal("0.00"),
@@ -167,6 +170,24 @@ class TestBuildFiscalTrace:
         fam = _step_by(steps, TraceCategory.FAMILY_DEDUCTION)
         assert fam.amount == Decimal("500.00")
 
+    def test_ulteriore_detrazione_step_amount(self) -> None:
+        """ULTERIORE_DETRAZIONE step carries the supplied amount."""
+        steps = _build(ulteriore_detrazione_lavoro=Decimal("1000.00"))
+        ud = _step_by(steps, TraceCategory.ULTERIORE_DETRAZIONE)
+        assert ud.amount == Decimal("1000.00")
+
+    def test_sterilizzazione_clawback_step_amount(self) -> None:
+        """STERILIZZAZIONE_CLAWBACK step carries the supplied amount."""
+        steps = _build(sterilizzazione_clawback=Decimal("440.00"))
+        sc = _step_by(steps, TraceCategory.STERILIZZAZIONE_CLAWBACK)
+        assert sc.amount == Decimal("440.00")
+
+    def test_bilateral_employee_step_amount(self) -> None:
+        """BILATERAL_EMPLOYEE step carries the supplied amount."""
+        steps = _build(bilateral_employee_annual=Decimal("120.00"))
+        be = _step_by(steps, TraceCategory.BILATERAL_EMPLOYEE)
+        assert be.amount == Decimal("120.00")
+
     def test_mandatory_categories_all_present(self) -> None:
         """All required fiscal categories appear in the trace."""
         required = {
@@ -176,8 +197,11 @@ class TestBuildFiscalTrace:
             TraceCategory.TAXABLE_INCOME,
             TraceCategory.IRPEF_GROSS,
             TraceCategory.WORK_DEDUCTION,
+            TraceCategory.ULTERIORE_DETRAZIONE,
             TraceCategory.FAMILY_DEDUCTION,
             TraceCategory.ART15_DEDUCTION,
+            TraceCategory.STERILIZZAZIONE_CLAWBACK,
+            TraceCategory.BILATERAL_EMPLOYEE,
             TraceCategory.IRPEF_NET,
             TraceCategory.ADDIZIONALE_REGIONALE,
             TraceCategory.ADDIZIONALE_COMUNALE,
@@ -197,6 +221,9 @@ class TestBuildFiscalTrace:
         [
             TraceCategory.FAMILY_DEDUCTION,
             TraceCategory.ART15_DEDUCTION,
+            TraceCategory.ULTERIORE_DETRAZIONE,
+            TraceCategory.STERILIZZAZIONE_CLAWBACK,
+            TraceCategory.BILATERAL_EMPLOYEE,
             TraceCategory.ADDIZIONALE_REGIONALE,
             TraceCategory.ADDIZIONALE_COMUNALE,
             TraceCategory.TRATTAMENTO_INTEGRATIVO,
