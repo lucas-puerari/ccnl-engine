@@ -21,10 +21,10 @@ class Art15Deductions:
     deductions are fixed-rate (19 %) credits on eligible expenditure up to
     statutory ceilings.
 
-    Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply to Art. 15:
-    the EUR 440 clawback targets only Art. 12 + Art. 13 TUIR (it is the
-    exact compensation for the 35 % → 33 % bracket rate change, unrelated
-    to Art. 15 oneri).
+    Art. 1 c. 3-4 L. 199/2025 applies a EUR 440 reduction to the tax credit
+    for oneri detraibili al 19% (Art. 1 c. 4 lett. a, which includes Art. 15
+    c. 1 lett. b TUIR interessi su mutuo; spese sanitarie lett. c are
+    explicitly excluded) when reddito complessivo exceeds EUR 200 000.
 
     Attributes:
         mortgage_interest: Interessi passivi su mutuo per l'acquisto
