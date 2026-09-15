@@ -23,9 +23,8 @@ def compute_art15_deductions(
     for each modelled category.  Returns the total annual tax credit, not
     the deductible base.
 
-    Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply: the EUR 440
-    clawback is specific to Art. 12 + Art. 13 TUIR (bracket rate change
-    compensation) and does not extend to Art. 15 oneri.
+    Art. 1 c. 3-4 L. 199/2025 sterilizzazione is applied by the caller
+    after this function returns (see fiscal.py), not here.
 
     Args:
         deductions: Caller-supplied Art. 15 expenditure amounts.
