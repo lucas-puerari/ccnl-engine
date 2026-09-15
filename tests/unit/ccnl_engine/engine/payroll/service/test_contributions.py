@@ -11,11 +11,12 @@ from ccnl_engine.engine.payroll.domain.employment import (
 )
 from ccnl_engine.engine.payroll.service.contributions import (
     inps_contribution,
+    inps_employee_additional,
     resolve_rates,
     tfr,
 )
 from ccnl_engine.engine.payroll.service.rounding import money
-from ccnl_engine.engine.tax.domain.rules import YearRules
+from ccnl_engine.engine.tax.domain.rules import InpsRates, YearRules
 from tests.helpers import make_domestic_year_rules, make_year_rules
 
 _D = Decimal
@@ -161,3 +162,91 @@ class TestResolveRatesGuard:
         domestic_rules = make_domestic_year_rules()
         with pytest.raises(TypeError, match="resolve_rates requires standard INPS"):
             resolve_rates(domestic_rules, Permanent(), None)
+
+
+def _rates_with_additional(
+    *,
+    ceiling: str | None = "122295.00",
+    additional_rate: str | None = "0.01",
+    additional_threshold: str | None = "56224.00",
+) -> InpsRates:
+    """Build InpsRates with optional additional contribution fields.
+
+    Returns:
+        InpsRates instance with the given ceiling and additional-rate fields.
+    """
+    return InpsRates(
+        employee_rate=_D("0.0949"),
+        employee_ivs_rate=_D("0.0949"),
+        employer_rate=_D("0.3050"),
+        employer_ivs_rate=_D("0.2381"),
+        ceiling=_D(ceiling) if ceiling is not None else None,
+        employee_additional_rate=(
+            _D(additional_rate) if additional_rate is not None else None
+        ),
+        employee_additional_threshold=(
+            _D(additional_threshold) if additional_threshold is not None else None
+        ),
+    )
+
+
+class TestInpsEmployeeAdditional:
+    """Unit tests for inps_employee_additional()."""
+
+    def test_rates_none_returns_zero(self) -> None:
+        """When rates is None, return zero."""
+        assert inps_employee_additional(
+            _D("70000"), None, ivs_ceiling_applies=False
+        ) == _D(0)
+
+    def test_additional_rate_none_returns_zero(self) -> None:
+        """When employee_additional_rate is None, return zero."""
+        rates = _rates_with_additional(additional_rate=None)
+        assert inps_employee_additional(
+            _D("70000"), rates, ivs_ceiling_applies=False
+        ) == _D(0)
+
+    def test_additional_threshold_none_returns_zero(self) -> None:
+        """When employee_additional_threshold is None, return zero."""
+        rates = _rates_with_additional(additional_threshold=None)
+        assert inps_employee_additional(
+            _D("70000"), rates, ivs_ceiling_applies=False
+        ) == _D(0)
+
+    def test_income_below_threshold_returns_zero(self) -> None:
+        """Earnings below the threshold: no additional charge."""
+        rates = _rates_with_additional()
+        assert inps_employee_additional(
+            _D("50000"), rates, ivs_ceiling_applies=False
+        ) == _D(0)
+
+    def test_income_at_threshold_returns_zero(self) -> None:
+        """Earnings exactly at threshold: excess is zero."""
+        rates = _rates_with_additional()
+        assert inps_employee_additional(
+            _D("56224"), rates, ivs_ceiling_applies=False
+        ) == _D(0)
+
+    def test_income_above_threshold_no_ceiling(self) -> None:
+        """70 000 - 56 224 = 13 776; 1% = 137.76. No IVS ceiling applied."""
+        rates = _rates_with_additional()
+        result = inps_employee_additional(_D("70000"), rates, ivs_ceiling_applies=False)
+        assert result == _D("137.76")
+
+    def test_ivs_ceiling_caps_base(self) -> None:
+        """IVS ceiling applies; base > ceiling: (122 295 - 56 224) * 1% = 660.71."""
+        rates = _rates_with_additional()
+        result = inps_employee_additional(_D("130000"), rates, ivs_ceiling_applies=True)
+        assert result == _D("660.71")
+
+    def test_ivs_ceiling_not_reached(self) -> None:
+        """Base below ceiling; ceiling irrelevant: (70 000 - 56 224) * 1% = 137.76."""
+        rates = _rates_with_additional()
+        result = inps_employee_additional(_D("70000"), rates, ivs_ceiling_applies=True)
+        assert result == _D("137.76")
+
+    def test_no_ceiling_configured(self) -> None:
+        """No ceiling: base uncapped. (70 000 - 56 224) * 1% = 137.76."""
+        rates = _rates_with_additional(ceiling=None)
+        result = inps_employee_additional(_D("70000"), rates, ivs_ceiling_applies=True)
+        assert result == _D("137.76")

@@ -78,6 +78,10 @@ def _inps_standard(
 ) -> tuple[Decimal, Decimal]:
     """Return (employee_annual, employer_annual) via the standard percentage model.
 
+    The employee contribution includes the 1% additional IVS charge on
+    earnings above the first pensionable band (Art. 3-ter D.L. 384/1992)
+    when ``rules.inps.employee_additional_rate`` is configured.
+
     Returns:
         Rounded annual INPS contributions for both parties.
     """
@@ -89,6 +93,12 @@ def _inps_standard(
         rules,
         ivs_ceiling_applies=ivs_ceiling_applies,
     )
+    additional = _contrib.inps_employee_additional(
+        contribution_base,
+        rules.inps,
+        ivs_ceiling_applies=ivs_ceiling_applies,
+    )
+    employee_inps = money(employee_inps + additional)
     employer_inps = _contrib.inps_contribution(
         contribution_base,
         rates.employer_rate,
