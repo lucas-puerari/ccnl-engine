@@ -105,6 +105,7 @@ def load_year_rules(
         tfr=rules.tfr,
         trattamento_integrativo=rules.trattamento_integrativo,
         ulteriore_detrazione=rules.ulteriore_detrazione,
+        somma_esente=rules.somma_esente,
         sterilizzazione_detrazioni=rules.sterilizzazione_detrazioni,
         notes=rules.notes,
         sources=rules.sources,

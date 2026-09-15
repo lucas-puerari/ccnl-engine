@@ -13,6 +13,7 @@ from typing import Any
 from ccnl_engine.engine.payroll.service.irpef import (
     apply_sterilizzazione_detrazioni,
     irpef_gross,
+    somma_esente,
     surtax_from_brackets,
     trattamento_integrativo,
     ulteriore_detrazione_lavoro,
@@ -20,6 +21,8 @@ from ccnl_engine.engine.payroll.service.irpef import (
 )
 from ccnl_engine.engine.surtax.domain.rules import SurtaxBracket
 from ccnl_engine.engine.tax.domain.rules import (
+    SommaEsenteBand,
+    SommaEsenteRules,
     SterilizzazioneDetrazioniRules,
     TrattamentoIntegrativoRules,
     UlterioreDetrazioneRules,
@@ -481,6 +484,7 @@ class TestApplySterilizzazioneDetrazioni:
 _UD_RULES = UlterioreDetrazioneRules(
     threshold_low=Decimal(20000),
     threshold_mid=Decimal(32000),
+    threshold_high=Decimal(40000),
     max_amount=Decimal(1000),
 )
 
@@ -499,16 +503,33 @@ class TestUlterioreDedrazioneLavoro:
         )
 
     def test_mid_band(self) -> None:
-        """Income in the middle of the band: max_amount."""
+        """Income in the middle of the flat band: max_amount."""
         assert ulteriore_detrazione_lavoro(Decimal(27000), _UD_RULES) == Decimal(1000)
 
     def test_at_threshold_mid(self) -> None:
-        """Income at threshold_mid (inclusive): max_amount."""
+        """Income at threshold_mid (inclusive): max_amount — no discontinuity."""
         assert ulteriore_detrazione_lavoro(Decimal(32000), _UD_RULES) == Decimal(1000)
 
-    def test_above_threshold_mid_returns_zero(self) -> None:
-        """Income above threshold_mid: no deduction."""
-        assert ulteriore_detrazione_lavoro(Decimal("32000.01"), _UD_RULES) == Decimal(0)
+    def test_just_above_threshold_mid_taper_starts(self) -> None:
+        """Income just above threshold_mid: taper begins, still near max_amount."""
+        result = ulteriore_detrazione_lavoro(Decimal("32000.01"), _UD_RULES)
+        expected = (
+            Decimal(1000) * (Decimal(40000) - Decimal("32000.01")) / Decimal(8000)
+        )
+        assert result == expected
+
+    def test_taper_interior_36204(self) -> None:
+        """Taper at 36 204: 1000 * (40000 - 36204) / 8000 = 474.50."""
+        result = ulteriore_detrazione_lavoro(Decimal(36204), _UD_RULES)
+        assert result == Decimal("474.50")
+
+    def test_at_threshold_high_returns_zero(self) -> None:
+        """Income at threshold_high: taper reaches zero."""
+        assert ulteriore_detrazione_lavoro(Decimal(40000), _UD_RULES) == Decimal(0)
+
+    def test_above_threshold_high_returns_zero(self) -> None:
+        """Income above threshold_high: no deduction."""
+        assert ulteriore_detrazione_lavoro(Decimal("40000.01"), _UD_RULES) == Decimal(0)
 
     def test_well_above_band_returns_zero(self) -> None:
         """High income: no deduction."""
@@ -517,3 +538,56 @@ class TestUlterioreDedrazioneLavoro:
     def test_zero_income_returns_zero(self) -> None:
         """Zero income is below threshold_low: no deduction."""
         assert ulteriore_detrazione_lavoro(Decimal(0), _UD_RULES) == Decimal(0)
+
+
+_SE_RULES = SommaEsenteRules(
+    bands=[
+        SommaEsenteBand(up_to=Decimal(8500), rate=Decimal("0.071")),
+        SommaEsenteBand(up_to=Decimal(15000), rate=Decimal("0.053")),
+        SommaEsenteBand(up_to=Decimal(20000), rate=Decimal("0.048")),
+    ]
+)
+
+
+class TestSommaEsente:
+    """Unit tests for somma_esente() (L. 207/2024 net bonus)."""
+
+    def test_zero_income_returns_zero(self) -> None:
+        """Zero income: benefit is zero."""
+        assert somma_esente(Decimal(0), _SE_RULES) == Decimal(0)
+
+    def test_negative_income_returns_zero(self) -> None:
+        """Negative income: benefit is zero."""
+        assert somma_esente(Decimal(-1), _SE_RULES) == Decimal(0)
+
+    def test_first_band_mid(self) -> None:
+        """Income 5 000 (first band, up_to 8 500): 5000 * 7.1% = 355.00."""
+        assert somma_esente(Decimal(5000), _SE_RULES) == Decimal("355.00")
+
+    def test_at_first_band_ceiling(self) -> None:
+        """Income exactly 8 500: still first band. 8500 * 7.1% = 603.50."""
+        assert somma_esente(Decimal(8500), _SE_RULES) == Decimal("603.50")
+
+    def test_second_band_mid(self) -> None:
+        """Income 12 000 (second band, up_to 15 000): 12000 * 5.3% = 636.00."""
+        assert somma_esente(Decimal(12000), _SE_RULES) == Decimal("636.00")
+
+    def test_at_second_band_ceiling(self) -> None:
+        """Income exactly 15 000: still second band. 15000 * 5.3% = 795.00."""
+        assert somma_esente(Decimal(15000), _SE_RULES) == Decimal("795.00")
+
+    def test_third_band_mid(self) -> None:
+        """Income 18 000 (third band, up_to 20 000): 18000 * 4.8% = 864.00."""
+        assert somma_esente(Decimal(18000), _SE_RULES) == Decimal("864.00")
+
+    def test_at_third_band_ceiling(self) -> None:
+        """Income exactly 20 000: last band applies. 20000 * 4.8% = 960.00."""
+        assert somma_esente(Decimal(20000), _SE_RULES) == Decimal("960.00")
+
+    def test_above_ceiling_returns_zero(self) -> None:
+        """Income above highest band ceiling: benefit is zero."""
+        assert somma_esente(Decimal("20000.01"), _SE_RULES) == Decimal(0)
+
+    def test_well_above_ceiling_returns_zero(self) -> None:
+        """High income: benefit is zero."""
+        assert somma_esente(Decimal(50000), _SE_RULES) == Decimal(0)

@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "0e80063cc563e9a9685dd28f6bb1304d117084df57e8d717b1300b1252189177"
+    "source_hash": "b876eace897ec6c5cd3b68a1984e00557750998feab3e6a07c85e3a7ffa0894f"
   },
   "irpef_brackets": [
     {
@@ -37,7 +37,8 @@
   "ulteriore_detrazione": {
     "threshold_low": "20000",
     "threshold_mid": "32000",
-    "max_amount": "1000"
+    "max_amount": "1000",
+    "threshold_high": "40000"
   },
   "sterilizzazione_detrazioni": {
     "threshold": "200000.00",
@@ -50,6 +51,23 @@
     "INPS dipendente — employee_tiers: 9.19% (IVS) up to 15 employees; 9.49% above 15 (adds the 0.30% CIGS employee share, D.Lgs. 148/2015 art. 23).",
     "Apprentice contributions (L. 296/2006 art. 1 c. 773; L. 92/2012 art. 2 c. 36-37): employer 10% + NASpI 1.31% + 0.30% = 11.61%; employee 5.84%. Firms with at most 9 employees pay 1.5% (+1.61% NASpI) in months 0-11 and 3% (+1.61%) in months 12-23, then 11.61%. SIMPLIFICATION: hiring incentives (sgravi) and Cassa Edile apprentice schemes are not modelled.",
     "IVS ceiling: massimale annuo della base contributiva 2026 = EUR 122,295.00 (INPS Circ. 6/2026, 30 Jan 2026, Art. 1 L. 335/1995 c. 18). Applies only when ivs_ceiling_applies=True (workers enrolled in INPS on or after 1 Jan 1996).",
-    "Sterilizzazione detrazioni: Art. 1 c. 3-4 L. 199/2025 — for reddito complessivo > EUR 200 000, total detrazioni (Art. 12 + Art. 13 TUIR) reduced by EUR 440 (clawback of the 35% -> 33% bracket benefit on the 28 000-50 000 slice)."
-  ]
+    "Sterilizzazione detrazioni: Art. 1 c. 3-4 L. 199/2025 — for reddito complessivo > EUR 200 000, total detrazioni (Art. 12 + Art. 13 TUIR) reduced by EUR 440 (clawback of the 35% -> 33% bracket benefit on the 28 000-50 000 slice).",
+    "Somma esente (L. 207/2024): band cut points 8 500 EUR and 15 000 EUR are reconstructions from worked examples — not verified against primary source. Rates 7.1%/5.3%/4.8% and ceiling 20 000 EUR are from AdE guidance."
+  ],
+  "somma_esente": {
+    "bands": [
+      {
+        "up_to": "8500",
+        "rate": "0.071"
+      },
+      {
+        "up_to": "15000",
+        "rate": "0.053"
+      },
+      {
+        "up_to": "20000",
+        "rate": "0.048"
+      }
+    ]
+  }
 }

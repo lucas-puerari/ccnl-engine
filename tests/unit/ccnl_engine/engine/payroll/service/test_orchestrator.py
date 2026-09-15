@@ -2003,6 +2003,7 @@ class TestArt15Deductions:
             ulteriore_detrazione={
                 "threshold_low": "20000",
                 "threshold_mid": "32000",
+                "threshold_high": "40000",
                 "max_amount": "5000",
             }
         )

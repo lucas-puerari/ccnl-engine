@@ -58,9 +58,10 @@
       "no_detrazioni_familiari",
       "partial_detrazioni_art15"
     ],
-    "net_annual": "7948.07",
-    "net_monthly": "611.39",
+    "net_annual": "8512.38",
+    "net_monthly": "654.80",
     "employer_cost_annual": "10046.29",
-    "ulteriore_detrazione_lavoro": "0"
+    "ulteriore_detrazione_lavoro": "0",
+    "somma_esente": "564.31"
   }
 }

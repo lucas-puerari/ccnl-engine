@@ -193,6 +193,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
         irpef_gross=fiscal.irpef_gross,
         work_income_deduction=fiscal.work_income_deduction,
         ulteriore_detrazione_lavoro=fiscal.ulteriore_detrazione_lavoro,
+        somma_esente=fiscal.somma_esente,
         irpef_net=fiscal.irpef_net,
         employer_withholds_irpef=fiscal.employer_withholds_irpef,
         addizionale_regionale_annual=fiscal.addizionale_regionale,

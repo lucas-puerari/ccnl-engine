@@ -21,10 +21,10 @@
     "gross_monthly": "1556.29",
     "gross_annual": "21788.06",
     "hourly_rate": "9.00",
-    "net_annual": "17896.86",
+    "net_annual": "18846.58",
     "employer_cost_annual": "29716.17",
     "trattamento_integrativo": "0",
-    "net_monthly": "1278.35",
+    "net_monthly": "1346.18",
     "irpef_net": "1888.88",
     "fiscal_simplifications": [
       "no_addizionale_comunale",
@@ -57,6 +57,7 @@
     "part_time_pct": "1",
     "taxable_income": "19785.74",
     "tfr_annual": "1613.93",
-    "ad_personam_monthly": "0.00"
+    "ad_personam_monthly": "0.00",
+    "somma_esente": "949.72"
   }
 }
