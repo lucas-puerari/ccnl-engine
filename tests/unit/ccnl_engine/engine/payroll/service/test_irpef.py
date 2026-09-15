@@ -441,38 +441,38 @@ _STRD_RULES = SterilizzazioneDetrazioniRules(
 
 
 class TestApplySterilizzazioneDetrazioni:
-    """Unit tests for apply_sterilizzazione_detrazioni() — targets Art. 12+13."""
+    """Unit tests for apply_sterilizzazione_detrazioni() — targets Art. 15 oneri."""
 
     def test_below_threshold_unchanged(self) -> None:
-        """Income at or below threshold: Art. 12+13 total returned unchanged."""
+        """Income at or below threshold: detrazioni total returned unchanged."""
         result = apply_sterilizzazione_detrazioni(
             Decimal(1200), Decimal("200000.00"), _STRD_RULES
         )
         assert result == Decimal(1200)
 
-    def test_above_threshold_art12_art13_reduced(self) -> None:
-        """Income > 200k: Art. 12+13 combined deduction reduced by 440."""
+    def test_above_threshold_detrazioni_reduced(self) -> None:
+        """Income > 200k: Art. 15 oneri total reduced by 440."""
         result = apply_sterilizzazione_detrazioni(
             Decimal(1000), Decimal(250000), _STRD_RULES
         )
         assert result == Decimal("560.00")
 
     def test_above_threshold_floored_at_zero(self) -> None:
-        """Reduction larger than Art. 12+13 deduction: result → 0."""
+        """Reduction larger than detrazioni total: result → 0."""
         result = apply_sterilizzazione_detrazioni(
             Decimal(300), Decimal(300000), _STRD_RULES
         )
         assert result == Decimal("0.00")
 
-    def test_above_threshold_zero_art12_art13_stays_zero(self) -> None:
-        """No Art. 12+13 deductions (common at >200k): result remains zero."""
+    def test_above_threshold_zero_detrazioni_stays_zero(self) -> None:
+        """No Art. 15 oneri (no mortgage declared): result remains zero."""
         result = apply_sterilizzazione_detrazioni(
             Decimal(0), Decimal(250000), _STRD_RULES
         )
         assert result == Decimal("0.00")
 
     def test_rules_none_unchanged(self) -> None:
-        """When rules is None, Art. 12+13 deduction is returned unchanged."""
+        """When rules is None, detrazioni total is returned unchanged."""
         result = apply_sterilizzazione_detrazioni(Decimal(700), Decimal(250000), None)
         assert result == Decimal(700)
 
