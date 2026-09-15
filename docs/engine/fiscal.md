@@ -34,7 +34,7 @@ To include them, set `jurisdiction` on the `Employee` with `regione` and/or
 `comune_belfiore`. The engine loads the relevant surtax rules automatically.
 
 ```python
---8 < --"docs/examples/07_addizionali.py"
+--8<-- "docs/examples/07_addizionali.py"
 ```
 
 ## FiscalSimplification flags
