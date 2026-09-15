@@ -263,8 +263,13 @@ def _compute_addizionali(
     *,
     regione: str | None,
     comune_belfiore: str | None,
+    irpef_due: Decimal,
 ) -> tuple[Decimal, Decimal, frozenset[FiscalSimplification]]:
     """Return (addizionale_regionale, addizionale_comunale, updated_simplifications).
+
+    Addizionali are only due when the underlying IRPEF is positive. When
+    ``irpef_due`` is zero (no-tax area or deductions fully offset IRPEF),
+    both surtaxes are zero and the ``NO_ADDIZIONALE_*`` flags are set.
 
     When ``surtax`` is ``None`` or the relevant field is ``None``, the
     corresponding surtax is zero and its ``FiscalSimplification`` tag is
@@ -276,6 +281,11 @@ def _compute_addizionali(
     sfs: set[FiscalSimplification] = set(existing)
     addizionale_regionale = _ZERO
     addizionale_comunale = _ZERO
+
+    if irpef_due == _ZERO:
+        sfs.add(FiscalSimplification.NO_ADDIZIONALE_REGIONALE)
+        sfs.add(FiscalSimplification.NO_ADDIZIONALE_COMUNALE)
+        return _ZERO, _ZERO, frozenset(sfs)
 
     if surtax is not None and regione is not None:
         entry = surtax.regionale.get(regione)
@@ -581,23 +591,23 @@ def compute_fiscal(
         employer_withholds_irpef=employer_withholds_irpef,
     )
 
+    # irpef_fiscal: the tax actually owed after all deductions, regardless of
+    # whether the employer is a sostituto d'imposta.  Used to gate addizionali
+    # (only due when IRPEF is owed) and to derive irpef_net.
     # When the employer is not a sostituto d'imposta, irpef_net is zeroed;
     # irpef_gross and work_income_deduction remain as informational figures.
-    irpef_net = (
-        money(
-            max(
-                _ZERO,
-                irpef_gross
-                - work_income_deduction
-                - fam_total
-                + sterilizzazione_clawback
-                - art15_total
-                - ulteriore_detrazione_lavoro,
-            )
+    irpef_fiscal = money(
+        max(
+            _ZERO,
+            irpef_gross
+            - work_income_deduction
+            - fam_total
+            + sterilizzazione_clawback
+            - art15_total
+            - ulteriore_detrazione_lavoro,
         )
-        if employer_withholds_irpef
-        else _ZERO
     )
+    irpef_net = irpef_fiscal if employer_withholds_irpef else _ZERO
 
     # Trattamento integrativo (Art. 1 D.L. 3/2020): computed when the tax
     # data file carries the required parameters.
@@ -651,6 +661,7 @@ def compute_fiscal(
             fiscal_simplifications,
             regione=regione,
             comune_belfiore=comune_belfiore,
+            irpef_due=irpef_fiscal,
         )
     )
 
