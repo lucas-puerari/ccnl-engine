@@ -120,6 +120,9 @@ branch = true
 [tool.coverage.report]
 show_missing = true
 skip_covered = false
+exclude_also = [
+    "assert_never\\(",
+]
 
 # ---------------------------------------------------------------------------
 # Bandit — SAST

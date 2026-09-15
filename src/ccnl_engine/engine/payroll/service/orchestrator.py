@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from datetime import date
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, assert_never
 
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 from ccnl_engine.engine.payroll.domain.employee import (
@@ -94,6 +94,8 @@ def _ivs_ceiling_warning(scenario: PayrollScenario, as_of: date) -> str | None:
     if scenario.employee.ivs_ceiling_applies:
         return None
     seniority = scenario.employee.seniority
+    if seniority is None:
+        return None
     if isinstance(seniority, SeniorityByDate):
         return _ivs_date_msg(seniority.value)
     if isinstance(seniority, SeniorityByMonths):
@@ -105,7 +107,7 @@ def _ivs_ceiling_warning(scenario: PayrollScenario, as_of: date) -> str | None:
             "contributions are overstated; "
             "consider setting ivs_ceiling_applies=True"
         )
-    return None
+    assert_never(seniority)  # pragma: no cover
 
 
 def _resolve_tax_year(employment: Employment) -> int:
