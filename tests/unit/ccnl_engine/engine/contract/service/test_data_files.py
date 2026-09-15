@@ -220,7 +220,7 @@ class TestLoadMetalmeccanico:
         """All levels have empty fixed_allowances (minimi conglobati)."""
         ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
         for level in ccnl.levels:
-            assert level.fixed_allowances == [], (
+            assert level.fixed_allowances == (), (
                 f"Level {level.code} should have no fixed_allowances "
                 "(base_salary is already the minimo conglobato)"
             )
@@ -346,7 +346,7 @@ class TestLoadMetalmeccanicoConfapi:
         """All levels have empty fixed_allowances (minimi conglobati)."""
         ccnl = load_ccnl("metalmeccanico-confapi.json")
         for level in ccnl.levels:
-            assert level.fixed_allowances == [], (
+            assert level.fixed_allowances == (), (
                 f"Level {level.code} should have no fixed_allowances "
                 "(base_salary is already the minimo conglobato)"
             )
@@ -464,7 +464,7 @@ class TestLoadChimicaFederchimica:
         """All levels have empty fixed_allowances (TEM modelled as base_salary)."""
         ccnl = load_ccnl("chimica-farmaceutica-federchimica.json")
         for level in ccnl.levels:
-            assert level.fixed_allowances == [], (
+            assert level.fixed_allowances == (), (
                 f"Level {level.code} should have no fixed_allowances "
                 "(TEM is already embedded in base_salary)"
             )
@@ -542,7 +542,7 @@ class TestLoadTurismoConfcommercio:
         """All levels have no fixed_allowances (minimum conglobated in base_salary)."""
         ccnl = load_ccnl("turismo-confcommercio.json")
         for level in ccnl.levels:
-            assert level.fixed_allowances == [], (
+            assert level.fixed_allowances == (), (
                 f"Level {level.code} should have no fixed_allowances"
             )
 
@@ -625,7 +625,7 @@ class TestLoadEdiliziaAnce:
         """All levels have no fixed_allowances (minimum conglobated in base_salary)."""
         ccnl = load_ccnl("edilizia-ance.json")
         for level in ccnl.levels:
-            assert level.fixed_allowances == [], (
+            assert level.fixed_allowances == (), (
                 f"Level {level.code} should have no fixed_allowances"
             )
 
@@ -831,7 +831,7 @@ class TestLoadLogisticaTrasportoConfetra:
         """All levels must have no fixed allowances (conglobated model)."""
         ccnl = load_ccnl("logistica-trasporto-confetra.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_logistica_trasporto_confetra_tax_sector(self) -> None:
         """CCNL must declare tax_sector INDUSTRIA."""
@@ -1076,7 +1076,7 @@ class TestLoadBancariAbi:
         """Conglobated model: all levels must have no fixed allowances."""
         ccnl = load_ccnl("bancari-abi.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == [], f"level {lv.code} has allowances"
+            assert lv.fixed_allowances == (), f"level {lv.code} has allowances"
 
     def test_bancari_abi_tax_sector(self) -> None:
         """CCNL must declare tax_sector CREDITO (ABI banking sector)."""
@@ -1462,7 +1462,7 @@ class TestLoadMetalmeccanicoArtigianato:
         """Conglobated model: all levels have empty fixed_allowances."""
         ccnl = load_ccnl("metalmeccanico-artigianato.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_metalmeccanico_artigianato_tax_sector(self) -> None:
         """CCNL must declare tax_sector ARTIGIANATO."""
@@ -1641,7 +1641,7 @@ class TestLoadGraficaEditoriaAieg:
         """All levels have empty fixed_allowances (total modelled as base_salary)."""
         ccnl = load_ccnl("grafica-editoria-aieg.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_grafica_editoria_aieg_tax_sector(self) -> None:
         """CCNL must declare tax_sector INDUSTRIA."""
@@ -1763,7 +1763,7 @@ class TestLoadCartaCartoneAssocarta:
         """All levels have empty fixed_allowances (conglobated model)."""
         ccnl = load_ccnl("carta-cartone-assocarta.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_carta_cartone_assocarta_tax_sector(self) -> None:
         """CCNL must declare tax_sector INDUSTRIA."""
@@ -1841,7 +1841,7 @@ class TestLoadTelecomunicazioniAsstel:
         )
         for lv in ccnl.levels:
             if lv.code not in {"C4", "D1"}:
-                assert lv.fixed_allowances == []
+                assert lv.fixed_allowances == ()
 
     def test_telecomunicazioni_asstel_tax_sector(self) -> None:
         """CCNL must declare tax_sector INDUSTRIA (Asstel/Confindustria)."""
@@ -1915,7 +1915,7 @@ class TestLoadVigilanzaPrivataAssiv:
         """All GPG levels have no fixed allowances (conglobated model)."""
         ccnl = load_ccnl("vigilanza-privata-assiv.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_vigilanza_privata_assiv_tax_sector(self) -> None:
         """Contract declares TERZIARIO tax sector (non-Confindustria)."""
@@ -2453,7 +2453,7 @@ class TestLoadPanificazioneArtigianatoConfartigianato:
         """All levels have empty fixed_allowances (unified TOTALE model)."""
         ccnl = load_ccnl("panificazione-artigianato-confartigianato.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_panificazione_artigianato_confartigianato_tax_sector(self) -> None:
         """Contract declares ARTIGIANATO tax sector."""
@@ -2631,7 +2631,7 @@ class TestLoadBccCreditoCooperativo:
         """All levels have no fixed allowances (conglobated model)."""
         ccnl = load_ccnl("bcc-credito-cooperativo.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_bcc_credito_cooperativo_tax_sector(self) -> None:
         """Contract declares CREDITO tax sector."""
@@ -2824,7 +2824,7 @@ class TestLoadCalzaturieroAssocalzaturifici:
         """All levels have no fixed allowances (conglobated model)."""
         ccnl = load_ccnl("calzaturiero-assocalzaturifici.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_calzaturiero_assocalzaturifici_tax_sector(self) -> None:
         """Contract declares INDUSTRIA tax sector."""
@@ -2942,7 +2942,7 @@ class TestLoadTessileModaArtigianatoConfartigianato:
         """All levels have no fixed allowances (conglobated model)."""
         ccnl = load_ccnl("tessile-moda-artigianato-confartigianato.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_tessile_moda_artigianato_confartigianato_tax_sector(self) -> None:
         """Contract declares ARTIGIANATO tax sector."""
@@ -3043,7 +3043,7 @@ class TestLoadLegnoLapideiArtigianatoConfartigianato:
         """All levels have no fixed allowances (conglobated model)."""
         ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_legno_lapidei_artigianato_confartigianato_tax_sector(self) -> None:
         """Contract declares ARTIGIANATO tax sector."""
@@ -3156,7 +3156,7 @@ class TestLoadComunicazioneArtigianatoConfartigianato:
                 assert len(lv.fixed_allowances) == 1
                 assert lv.fixed_allowances[0].code == "IND_FUN"
             else:
-                assert lv.fixed_allowances == []
+                assert lv.fixed_allowances == ()
 
     def test_comunicazione_artigianato_confartigianato_tax_sector(self) -> None:
         """Contract declares ARTIGIANATO tax sector."""
@@ -3266,7 +3266,7 @@ class TestLoadCeramicaIndustriaConfindustria:
                 assert len(lv.fixed_allowances) == 1
                 assert lv.fixed_allowances[0].code == "IPO"
             else:
-                assert lv.fixed_allowances == []
+                assert lv.fixed_allowances == ()
 
     def test_ceramica_industria_confindustria_tax_sector(self) -> None:
         """Contract declares INDUSTRIA tax sector."""
@@ -3359,7 +3359,7 @@ class TestLoadOrafiArgentieriIndustriaFederorafi:
         ccnl = load_ccnl("orafi-argentieri-industria-federorafi.json")
         by_code = {lv.code: lv for lv in ccnl.levels}
         for code in ("2", "3", "4", "5", "5S", "6"):
-            assert by_code[code].fixed_allowances == []
+            assert by_code[code].fixed_allowances == ()
 
     def test_orafi_argentieri_industria_federorafi_tax_sector(self) -> None:
         """Contract declares INDUSTRIA tax sector."""
@@ -3449,7 +3449,7 @@ class TestLoadPelliCuoioIndustriaAssopellettieri:
         """Conglobated model: all levels have empty fixed_allowances."""
         ccnl = load_ccnl("pelli-cuoio-industria-assopellettieri.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_pelli_cuoio_industria_assopellettieri_tax_sector(self) -> None:
         """Contract declares INDUSTRIA tax sector."""
@@ -3542,7 +3542,7 @@ class TestLoadPubbliciEserciziRistorazioneFipeAngem:
         )
         for lv in ccnl.levels:
             if lv.code not in {"Qa", "Qb"}:
-                assert lv.fixed_allowances == []
+                assert lv.fixed_allowances == ()
 
     def test_pubblici_esercizi_fipe_angem_tax_sector(self) -> None:
         """Contract declares TERZIARIO tax sector."""
@@ -3608,7 +3608,7 @@ class TestLoadAgenzieDiViaggioFiavet:
         """Conglobated model: all levels have no fixed allowances."""
         ccnl = load_ccnl("agenzie-viaggio-fiavet.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_agenzie_viaggio_fiavet_tax_sector(self) -> None:
         """Contract declares TERZIARIO tax sector."""
@@ -3674,7 +3674,7 @@ class TestLoadTerziarioConfesercenti:
         """Conglobated model: all levels have no fixed allowances."""
         ccnl = load_ccnl("terziario-confesercenti.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_terziario_confesercenti_tax_sector(self) -> None:
         """Contract declares TERZIARIO tax sector."""
@@ -3740,7 +3740,7 @@ class TestLoadTurismoFederalberghi:
         """Conglobated model: all levels have no fixed allowances."""
         ccnl = load_ccnl("turismo-federalberghi.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_turismo_federalberghi_tax_sector(self) -> None:
         """Contract declares TERZIARIO tax sector."""
@@ -3811,7 +3811,7 @@ class TestLoadFunzioniCentraliAran:
         """Conglobated model: all levels have no fixed allowances."""
         ccnl = load_ccnl("funzioni-centrali-aran.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_funzioni_centrali_aran_tax_sector(self) -> None:
         """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
@@ -3882,7 +3882,7 @@ class TestLoadFunzioniLocaliAran:
         """Conglobated model: all levels have no fixed allowances."""
         ccnl = load_ccnl("funzioni-locali-aran.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_funzioni_locali_aran_tax_sector(self) -> None:
         """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
@@ -3954,7 +3954,7 @@ class TestLoadSanitaAran:
         """Conglobated model: all levels have no fixed allowances."""
         ccnl = load_ccnl("sanita-aran.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_sanita_aran_tax_sector(self) -> None:
         """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
@@ -4179,7 +4179,7 @@ class TestLoadDirigenzaFunzioniLocaliAran:
         """Conglobated model: no fixed allowances (posizione variabile)."""
         ccnl = load_ccnl("dirigenza-funzioni-locali-aran.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_dirigenza_funzioni_locali_aran_tax_sector(self) -> None:
         """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
@@ -4247,7 +4247,7 @@ class TestLoadDirigenzaFunzioniCentraliAran:
         """Conglobated model: no fixed allowances (posizione variabile)."""
         ccnl = load_ccnl("dirigenza-funzioni-centrali-aran.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_dirigenza_funzioni_centrali_aran_tax_sector(self) -> None:
         """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
@@ -4315,7 +4315,7 @@ class TestLoadDirigenzaIstruzioneRicercaAran:
         """Conglobated model: no fixed allowances (posizione variabile)."""
         ccnl = load_ccnl("dirigenza-istruzione-ricerca-aran.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_dirigenza_istruzione_ricerca_aran_tax_sector(self) -> None:
         """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
@@ -4387,7 +4387,7 @@ class TestLoadIstruzioneRicercaAran:
         """Conglobated tabellare: no fixed allowances modelled."""
         ccnl = load_ccnl("istruzione-ricerca-aran.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_istruzione_ricerca_aran_tax_sector(self) -> None:
         """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
@@ -4481,7 +4481,7 @@ class TestLoadSanitaPrivataAiopAris:
         """Conglobated tabellare (Art. 55): no fixed allowances."""
         ccnl = load_ccnl("sanita-privata-aiop-aris.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_sanita_privata_aiop_aris_tax_sector(self) -> None:
         """Contract declares TERZIARIO tax sector."""
@@ -4556,7 +4556,7 @@ class TestLoadLavoroDomesticoConvivente:
         """D and DS have indennità di funzione 207.69; A-CS have none."""
         ccnl = load_ccnl("lavoro-domestico-convivente.json")
         for code in ("A", "AS", "B", "BS", "C", "CS"):
-            assert ccnl.level_by_code(code).fixed_allowances == []
+            assert ccnl.level_by_code(code).fixed_allowances == ()
         for code in ("D", "DS"):
             lv = ccnl.level_by_code(code)
             assert len(lv.fixed_allowances) == 1
@@ -4637,7 +4637,7 @@ class TestLoadLavoroDomesticoNonConvivente:
         """All levels have no fixed allowances (function indennità not applicable)."""
         ccnl = load_ccnl("lavoro-domestico-non-convivente.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_lavoro_domestico_non_convivente_tax_sector(self) -> None:
         """Contract declares LAVORO_DOMESTICO tax sector."""
@@ -4702,7 +4702,7 @@ class TestLoadOperaiAgricoli:
         """All levels have no fixed allowances (conglobated salary model)."""
         ccnl = load_ccnl("operai-agricoli-florovivaisti.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_operai_agricoli_tax_sector(self) -> None:
         """Contract declares AGRICOLTURA tax sector."""
@@ -4785,7 +4785,7 @@ class TestLoadChimicaAffiniPmiUnionichimica:
             assert len(fa) == 1
             assert fa[0].code == "AGG_PERSONALE"
         for code in ("A", "B", "C", "D"):
-            assert by_code[code].fixed_allowances == []
+            assert by_code[code].fixed_allowances == ()
 
     def test_chimica_pmi_tax_sector(self) -> None:
         """Contract declares INDUSTRIA tax sector."""
@@ -5176,7 +5176,7 @@ class TestLoadImpiegatiTecniciAgricoli:
                 assert len(lv.fixed_allowances) == 1
                 assert lv.fixed_allowances[0].code == "IND_FUN"
             else:
-                assert lv.fixed_allowances == [], lv.code
+                assert lv.fixed_allowances == (), lv.code
 
     def test_impiegati_tecnici_agricoli_tax_sector(self) -> None:
         """Contract declares AGRICOLTURA tax sector."""
@@ -5269,7 +5269,7 @@ class TestLoadForzePoliziaOrdinamentoCivile:
         """All 21 levels have no fixed allowances (conglobated model)."""
         ccnl = load_ccnl("forze-polizia-ordinamento-civile.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == [], lv.code
+            assert lv.fixed_allowances == (), lv.code
 
     def test_forze_polizia_ordinamento_civile_tax_sector(self) -> None:
         """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""
@@ -5337,7 +5337,7 @@ class TestLoadInformaticaPmiUnimatica:
         """All 11 levels have no fixed allowances (conglobated model)."""
         ccnl = load_ccnl("informatica-pmi-unimatica.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == [], lv.code
+            assert lv.fixed_allowances == (), lv.code
 
     def test_informatica_pmi_unimatica_tax_sector(self) -> None:
         """Contract declares INDUSTRIA tax sector (Confapi)."""
@@ -5405,7 +5405,7 @@ class TestLoadScuolePrivateAgidae:
         """All 6 levels have no fixed allowances (conglobated model)."""
         ccnl = load_ccnl("scuole-private-agidae.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == [], lv.code
+            assert lv.fixed_allowances == (), lv.code
 
     def test_scuole_private_agidae_tax_sector(self) -> None:
         """Contract declares TERZIARIO tax sector."""
@@ -5482,7 +5482,7 @@ class TestLoadAssicurazioniAnia:
                 assert lv.fixed_allowances[0].code == "IND_QUADRO_6"
                 assert lv.fixed_allowances[0].role == "quadro_6"
             else:
-                assert lv.fixed_allowances == [], lv.code
+                assert lv.fixed_allowances == (), lv.code
 
     def test_assicurazioni_ania_tax_sector(self) -> None:
         """Contract uses CREDITO tax sector (Credito e Assicurazioni)."""
@@ -5712,7 +5712,7 @@ class TestLoadLavanderiIndustrialiAssosistema:
         """D2 has INCENTIVO_DI_MODULO and INDENNITA_FUNZIONE; A1 has none."""
         ccnl = load_ccnl("lavanderie-industriali-assosistema.json")
         a1 = ccnl.level_by_code("A1")
-        assert a1.fixed_allowances == []
+        assert a1.fixed_allowances == ()
         d2 = ccnl.level_by_code("D2")
         d2_codes = {a.code for a in d2.fixed_allowances}
         assert "INCENTIVO_DI_MODULO" in d2_codes
@@ -5782,7 +5782,7 @@ class TestLoadCedAssoced:
         """Q and QDIR have INDENNITA_FUNZIONE; L3 has none (conglobated)."""
         ccnl = load_ccnl("ced-assoced.json")
         lv3 = ccnl.level_by_code("3")
-        assert lv3.fixed_allowances == []
+        assert lv3.fixed_allowances == ()
         q_codes = {a.code for a in ccnl.level_by_code("Q").fixed_allowances}
         qdir_codes = {a.code for a in ccnl.level_by_code("QDIR").fixed_allowances}
         assert "INDENNITA_FUNZIONE" in q_codes
@@ -5938,7 +5938,7 @@ class TestLoadConsorziDiBonificaSnebi:
         """All levels have no fixed allowances (contingenza frozen at 0)."""
         ccnl = load_ccnl("consorzi-di-bonifica-snebi.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_consorzi_di_bonifica_snebi_tax_sector(self) -> None:
         """Contract uses AGRICOLTURA tax sector."""
@@ -6101,7 +6101,7 @@ class TestLoadOrganizzazioniAllevatoriAia:
         """All 13 levels have no fixed allowances (conglobated model)."""
         ccnl = load_ccnl("organizzazioni-allevatori-aia.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_organizzazioni_allevatori_aia_tax_sector(self) -> None:
         """Contract uses AGRICOLTURA tax sector."""
@@ -6455,7 +6455,7 @@ class TestLoadAgenzieMaritime:
         ccnl = load_ccnl("agenzie-marittime-i481.json")
         for lv in ccnl.levels:
             if lv.code != "7":
-                assert lv.fixed_allowances == []
+                assert lv.fixed_allowances == ()
 
     def test_i481_tax_sector(self) -> None:
         """Contract uses TERZIARIO tax sector (agenzie marittime/aeree)."""
@@ -6692,7 +6692,7 @@ class TestLoadEserciziCinematograficiAnec:
     def test_esercizi_cinematografici_anec_no_fixed_allowances(self) -> None:
         """All 15 levels have empty fixed_allowances (conglobated model)."""
         ccnl = load_ccnl("esercizi-cinematografici-anec.json")
-        assert all(lv.fixed_allowances == [] for lv in ccnl.levels)
+        assert all(lv.fixed_allowances == () for lv in ccnl.levels)
 
     def test_esercizi_cinematografici_anec_tax_sector(self) -> None:
         """tax_sector TERZIARIO (cinema exhibitions; SIMPLIFICATION: FPLS)."""
@@ -6808,7 +6808,7 @@ class TestLoadFarmacieMunicipaliASSO:
         no_allowance_codes = {"2", "3", "4", "5", "6", "1"}
         for lv in ccnl.levels:
             if lv.code in no_allowance_codes:
-                assert lv.fixed_allowances == []
+                assert lv.fixed_allowances == ()
 
     def test_farmacie_municipalizzate_assofarm_tax_sector(self) -> None:
         """Contract uses terziario tax sector (ASSOFARM/FILCAMS)."""
@@ -7020,7 +7020,7 @@ class TestLoadFedercasa:
         """All 16 levels have empty fixed_allowances (conglobated model)."""
         ccnl = load_ccnl("federcasa.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_federcasa_tax_sector(self) -> None:
         """tax_sector == TERZIARIO (SIMPLIFICATION: actual sector unverified)."""
@@ -7094,7 +7094,7 @@ class TestLoadFioriRecisiAncef:
         """All 8 levels have empty fixed_allowances (conglobated model)."""
         ccnl = load_ccnl("fiori-recisi-ancef.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_fiori_recisi_ancef_tax_sector(self) -> None:
         """tax_sector == TERZIARIO (flower import-export commercial trade)."""
@@ -7159,7 +7159,7 @@ class TestLoadOossUnsicConfsal:
         """All 6 levels have empty fixed_allowances (conglobated model)."""
         ccnl = load_ccnl("ooss-unsic-confsal.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_ooss_unsic_confsal_tax_sector(self) -> None:
         """tax_sector == TERZIARIO (sindacali organizations, no dedicated INPS code)."""
@@ -7392,7 +7392,7 @@ class TestLoadPortieriFabbricatiConfedilizia:
         """All 11 levels have empty fixed_allowances (conglobated model)."""
         ccnl = load_ccnl("portieri-fabbricati-confedilizia.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_portieri_fabbricati_confedilizia_tax_sector(self) -> None:
         """tax_sector == TERZIARIO."""
@@ -7469,7 +7469,7 @@ class TestLoadMetalmeccanicaCooperative:
         assert b3.fixed_allowances[0].monthly.value_at(date(2026, 6, 1)) == Decimal(
             "120.00"
         )
-        assert c2.fixed_allowances == []
+        assert c2.fixed_allowances == ()
 
     def test_metalmeccanica_cooperative_tax_sector(self) -> None:
         """Tax sector is industria."""
@@ -7535,7 +7535,7 @@ class TestLoadScuolePrivatelaicheAninsei:
         """Conglobated model: all levels have no fixed allowances."""
         ccnl = load_ccnl("scuole-private-laiche-aninsei.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_scuole_private_laiche_aninsei_tax_sector(self) -> None:
         """Tax sector is terziario."""
@@ -7670,7 +7670,7 @@ class TestLoadScuoleMaternieFism:
         """Conglobated model: all levels have no fixed allowances."""
         ccnl = load_ccnl("scuole-materne-fism.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_fism_tax_sector(self) -> None:
         """Tax sector is terziario."""
@@ -7758,7 +7758,7 @@ class TestLoadOcchialiOcchialeriaIndustria:
         ccnl = load_ccnl("occhiali-occhialeria-industria.json")
         for lv in ccnl.levels:
             if lv.code != "Q":
-                assert lv.fixed_allowances == []
+                assert lv.fixed_allowances == ()
 
 
 class TestLoadCementoCalceGessoIndustria:
@@ -8081,7 +8081,7 @@ class TestLoadIndustriaTuristicaFederturismo:
         """Level D2 has no fixed allowances (conglobated)."""
         ccnl = load_ccnl("industria-turistica-federturismo.json")
         lv = next(lv for lv in ccnl.levels if lv.code == "D2")
-        assert lv.fixed_allowances == []
+        assert lv.fixed_allowances == ()
 
     def test_h05b_a1_indennita_funzione(self) -> None:
         """Level A1 has function allowance of 75.00 EUR/month at 14 months."""
@@ -8251,7 +8251,7 @@ class TestLoadTurismoConfesercenti:
         """Level 3 has no fixed allowances (conglobated model)."""
         ccnl = load_ccnl("turismo-confesercenti.json")
         lv = next(lv for lv in ccnl.levels if lv.code == "3")
-        assert lv.fixed_allowances == []
+        assert lv.fixed_allowances == ()
 
     def test_h058_tax_sector(self) -> None:
         """Tax sector is terziario."""
@@ -8342,7 +8342,7 @@ class TestLoadRsaAiop:
         """Level D2 has no fixed allowances (conglobated model)."""
         ccnl = load_ccnl("rsa-aiop.json")
         lv = next(lv for lv in ccnl.levels if lv.code == "D2")
-        assert lv.fixed_allowances == []
+        assert lv.fixed_allowances == ()
 
     def test_t091_tax_sector(self) -> None:
         """Tax sector is terziario."""
@@ -8513,7 +8513,7 @@ class TestLoadCooperativeConsorziAgricoli:
         """Level 3 has no fixed allowances (operaio, no funzione)."""
         ccnl = load_ccnl("cooperative-consorzi-agricoli.json")
         lv = next(lv for lv in ccnl.levels if lv.code == "3")
-        assert lv.fixed_allowances == []
+        assert lv.fixed_allowances == ()
 
     def test_a016_tax_sector(self) -> None:
         """Tax sector is agricoltura."""
@@ -8675,7 +8675,7 @@ class TestLoadVigilanzaPrivataFederdatGpg:
         """All GPG levels have no fixed allowances (conglobated model)."""
         ccnl = load_ccnl("vigilanza-privata-federdat-gpg.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_hv17_gpg_tax_sector(self) -> None:
         """Tax sector is terziario."""
@@ -8762,7 +8762,7 @@ class TestLoadVigilanzaPrivataFederdatSf:
         """All SF levels have no fixed allowances (conglobated model)."""
         ccnl = load_ccnl("vigilanza-privata-federdat-sf.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_hv17_sf_tax_sector(self) -> None:
         """Tax sector is terziario."""
@@ -8903,7 +8903,7 @@ class TestLoadSistemazioniIdraulicoForestaliOperai:
         """All operai levels have no fixed allowances (conglobated model)."""
         ccnl = load_ccnl("sistemazioni-idraulico-forestali-operai.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_a181_operai_tax_sector(self) -> None:
         """Tax sector is agricoltura."""
@@ -8975,7 +8975,7 @@ class TestLoadImpiantiSportiviSport:
         assert fa.months_per_year == 13
         for lv in ccnl.levels:
             if lv.code != "Q":
-                assert lv.fixed_allowances == []
+                assert lv.fixed_allowances == ()
 
     def test_impianti_sportivi_sport_tax_sector(self) -> None:
         """Tax sector is terziario."""
@@ -9041,7 +9041,7 @@ class TestLoadFormazioneProfessionale:
         """All levels have empty fixed_allowances (conglobated model)."""
         ccnl = load_ccnl("formazione-professionale.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == []
+            assert lv.fixed_allowances == ()
 
     def test_formazione_professionale_tax_sector(self) -> None:
         """Tax sector is terziario."""
@@ -9230,7 +9230,7 @@ class TestLoadPuliziaArtigianatoConfartigianato:
         assert ind.monthly.value_at(date(2026, 7, 1)) == Decimal("25.82")
         for lv in ccnl.levels:
             if lv.code != "1":
-                assert lv.fixed_allowances == []
+                assert lv.fixed_allowances == ()
 
     def test_pulizia_artigianato_confartigianato_tax_sector(self) -> None:
         """Tax sector is terziario."""
@@ -9446,7 +9446,7 @@ class TestLoadAgentiImmobilariFiaip:
         """Conglobated model: every level has fixed_allowances == [] (Art. 158)."""
         ccnl = load_ccnl("agenti-immobiliari-fiaip.json")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == [], f"{lv.code} has unexpected allowances"
+            assert lv.fixed_allowances == (), f"{lv.code} has unexpected allowances"
 
     def test_agenti_immobiliari_fiaip_tax_sector(self) -> None:
         """Tax sector is terziario (FILCAMS/FISASCAT/UILTUCS signatories)."""

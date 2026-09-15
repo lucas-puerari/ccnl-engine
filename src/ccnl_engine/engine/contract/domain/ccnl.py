@@ -1,8 +1,10 @@
 """CCNL domain models."""
 
+from collections.abc import Mapping
 from datetime import UTC, date, datetime
 from decimal import Decimal
 from enum import StrEnum
+from types import MappingProxyType
 from typing import Any, Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -131,7 +133,7 @@ class OvertimeBand(BaseModel):
     rate: "TimeSeries"
     hour_threshold_per_day: int | None = None
     hour_threshold_per_week: int | None = None
-    applies_to_kinds: list[WorkKind]
+    applies_to_kinds: tuple[WorkKind, ...]
     provenance: "RuleProvenance | None" = None
 
 
@@ -153,7 +155,7 @@ class TimeSupplements(BaseModel):
     hourly_base_method: Literal["minimo_tabellare", "gross_incl_allowances"] = (
         "minimo_tabellare"
     )
-    overtime_bands: list[OvertimeBand] = Field(default_factory=list)
+    overtime_bands: tuple[OvertimeBand, ...] = Field(default=())
 
 
 class DailyDivisorMethod(StrEnum):
@@ -221,7 +223,7 @@ class LeaveRules(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     default_annual_days: Decimal = Field(gt=Decimal(0))
-    entitlement_tiers: list[LeaveEntitlementTier] = Field(default_factory=list)
+    entitlement_tiers: tuple[LeaveEntitlementTier, ...] = Field(default=())
     provenance: "RuleProvenance | None" = None
 
 
@@ -286,7 +288,7 @@ class SicknessRules(BaseModel):
 
     carenza_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
     full_pay_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
-    tiers: list[SicknessTier] = Field(default_factory=list)
+    tiers: tuple[SicknessTier, ...] = Field(default=())
     max_duration_days: int = Field(default=180, ge=1)
     provenance: "RuleProvenance | None" = None
 
@@ -399,14 +401,23 @@ class SeniorityTier(BaseModel):
     ``SeniorityIncrements.tiers`` and leave ``amount_by_level`` empty.
     Tiers are consumed in order: the engine exhausts tier 1's full capacity
     (``cadence_months * maximum_count`` service months) before advancing to tier 2.
+
+    ``amount_by_level`` is a read-only mapping; it is frozen after construction.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     cadence_months: int = Field(gt=0)
     maximum_count: int = Field(gt=0)
-    amount_by_level: dict[str, TimeSeries]
+    amount_by_level: Mapping[str, TimeSeries]
     provenance: RuleProvenance | None = None
+
+    @model_validator(mode="after")
+    def _freeze_dicts(self) -> Self:
+        object.__setattr__(  # noqa: PLC2801
+            self, "amount_by_level", MappingProxyType(dict(self.amount_by_level))
+        )
+        return self
 
 
 class SeniorityIncrements(BaseModel):
@@ -435,16 +446,22 @@ class SeniorityIncrements(BaseModel):
 
     cadence_months: int = Field(gt=0)
     maximum_count: int = Field(ge=0)
-    amount_by_level: dict[str, TimeSeries]
-    tiers: list[SeniorityTier] = Field(default_factory=list)
+    amount_by_level: Mapping[str, TimeSeries]
+    tiers: tuple[SeniorityTier, ...] = Field(default=())
     first_cadence_months: int | None = Field(default=None, gt=0)
-    first_cadence_months_by_level: dict[str, int] = {}
-    maximum_count_by_level: dict[str, int] = {}
+    first_cadence_months_by_level: Mapping[str, int] = Field(default_factory=dict)
+    maximum_count_by_level: Mapping[str, int] = Field(default_factory=dict)
     apprentice_amount: TimeSeries | None = None
-    excluded_categories: list[LevelCategory] = Field(default_factory=list)
-    amount_by_level_by_category: dict[LevelCategory, dict[str, TimeSeries]] = {}
-    maximum_count_by_category: dict[LevelCategory, int] = {}
-    first_cadence_months_by_category: dict[LevelCategory, int] = {}
+    excluded_categories: tuple[LevelCategory, ...] = Field(default=())
+    amount_by_level_by_category: Mapping[
+        LevelCategory, Mapping[str, TimeSeries]
+    ] = Field(default_factory=dict)
+    maximum_count_by_category: Mapping[LevelCategory, int] = Field(
+        default_factory=dict
+    )
+    first_cadence_months_by_category: Mapping[LevelCategory, int] = Field(
+        default_factory=dict
+    )
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
@@ -537,6 +554,43 @@ class SeniorityIncrements(BaseModel):
                 msg = f"maximum_count_by_category[{cat!r}] must be >= 0, got {count}"
                 raise ValueError(msg)
 
+    @model_validator(mode="after")
+    def _freeze_dicts(self) -> Self:
+        object.__setattr__(  # noqa: PLC2801
+            self, "amount_by_level", MappingProxyType(dict(self.amount_by_level))
+        )
+        object.__setattr__(  # noqa: PLC2801
+            self,
+            "first_cadence_months_by_level",
+            MappingProxyType(dict(self.first_cadence_months_by_level)),
+        )
+        object.__setattr__(  # noqa: PLC2801
+            self,
+            "maximum_count_by_level",
+            MappingProxyType(dict(self.maximum_count_by_level)),
+        )
+        object.__setattr__(  # noqa: PLC2801
+            self,
+            "amount_by_level_by_category",
+            MappingProxyType(
+                {
+                    cat: MappingProxyType(dict(inner))
+                    for cat, inner in self.amount_by_level_by_category.items()
+                }
+            ),
+        )
+        object.__setattr__(  # noqa: PLC2801
+            self,
+            "maximum_count_by_category",
+            MappingProxyType(dict(self.maximum_count_by_category)),
+        )
+        object.__setattr__(  # noqa: PLC2801
+            self,
+            "first_cadence_months_by_category",
+            MappingProxyType(dict(self.first_cadence_months_by_category)),
+        )
+        return self
+
 
 class EmployerFund(BaseModel):
     """An employer-side contribution to a contractual fund (e.g. Cassa Edile).
@@ -556,7 +610,7 @@ class EmployerFund(BaseModel):
     code: str
     description: str
     rate: TimeSeries
-    applies_to_categories: list[LevelCategory] | None = None
+    applies_to_categories: tuple[LevelCategory, ...] | None = None
     provenance: RuleProvenance | None = None
 
 
@@ -568,7 +622,7 @@ class CCNLParameters(BaseModel):
     hourly_divisor: TimeSeries
     additional_months: TimeSeries
     seniority_increments: SeniorityIncrements
-    employer_funds: list[EmployerFund] = Field(default_factory=list)
+    employer_funds: tuple[EmployerFund, ...] = Field(default=())
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:
@@ -621,7 +675,7 @@ class Level(BaseModel):
     order: int
     description: str
     base_salary: TimeSeries
-    fixed_allowances: list[Allowance] = Field(default_factory=list)
+    fixed_allowances: tuple[Allowance, ...] = Field(default=())
     category: LevelCategory | None = None
     provenance: RuleProvenance | None = None
 
@@ -673,8 +727,10 @@ class CCNLCoverage(BaseModel):
     gross: CoverageStatus
     net: CoverageStatus
     work_rules: CoverageStatus = CoverageStatus.NOT_IMPLEMENTED
-    work_rules_features: dict[WorkRuleFeature, CoverageStatus] = {}
-    notes: list[CoverageNote]
+    work_rules_features: Mapping[WorkRuleFeature, CoverageStatus] = Field(
+        default_factory=dict
+    )
+    notes: tuple[CoverageNote, ...]
 
     @model_validator(mode="after")
     def _check_notes(self) -> Self:
@@ -692,6 +748,15 @@ class CCNLCoverage(BaseModel):
                 "is 'partial' and no work_rules feature is 'partial'"
             )
             raise ValueError(msg)
+        return self
+
+    @model_validator(mode="after")
+    def _freeze_dicts(self) -> Self:
+        object.__setattr__(  # noqa: PLC2801
+            self,
+            "work_rules_features",
+            MappingProxyType(dict(self.work_rules_features)),
+        )
         return self
 
 
@@ -763,8 +828,8 @@ class CCNLMeta(BaseModel):
     cnel_code: str
     sector: str
     tax_sector: TaxSector
-    signatories: list[str]
-    sources: list[SourceDocument]
+    signatories: tuple[str, ...]
+    sources: tuple[SourceDocument, ...]
     extraction: ExtractionTrace
     agreement_date: str | None = None
     validity: CCNLValidity | None = None

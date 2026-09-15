@@ -15,6 +15,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.engine.diff.domain.diff import RuleChange, RulesDiff
 
 if TYPE_CHECKING:
+    from collections.abc import Mapping
     from decimal import Decimal
 
     from ccnl_engine.engine.contract.domain.ccnl import (
@@ -238,7 +239,7 @@ def _check_tier(
 def _check_seniority_category(
     changes: list[RuleChange],
     category: LevelCategory,
-    by_level: dict[str, TimeSeries],
+    by_level: Mapping[str, TimeSeries],
     from_date: date,
     to_date: date,
 ) -> None:

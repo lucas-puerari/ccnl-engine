@@ -61,7 +61,7 @@ def _band(
         description=code,
         kind=TimeSupplementKind(kind),
         rate=_ts(rate),
-        applies_to_kinds=[WorkKind(k) for k in applies_to],
+        applies_to_kinds=[WorkKind(k) for k in applies_to],  # type: ignore[arg-type]
     )
 
 
@@ -74,7 +74,7 @@ def schema() -> TimeSupplements:
     """
     return TimeSupplements(
         hourly_base_method="minimo_tabellare",
-        overtime_bands=[
+        overtime_bands=[  # type: ignore[arg-type]
             _band("OT_DIURNO", "percentage", "0.15", ["weekday"]),
             _band("OT_NOTTURNO", "percentage", "0.20", ["night"]),
             _band("OT_FESTIVO", "percentage", "0.30", ["holiday"]),
@@ -161,7 +161,7 @@ class TestComputeTimeSupplements:
     def test_indennita_per_hour_band(self) -> None:
         """An indennita_per_hour band uses rate * hours directly."""
         schema_indennita = TimeSupplements(
-            overtime_bands=[
+            overtime_bands=[  # type: ignore[arg-type]
                 _band("NOTTE_INDENNITA", "indennita_per_hour", "5.00", ["night"])
             ]
         )
@@ -177,7 +177,7 @@ class TestComputeTimeSupplements:
     def test_indennita_per_shift_band(self) -> None:
         """An indennita_per_shift band uses rate * count directly."""
         schema_shift = TimeSupplements(
-            overtime_bands=[
+            overtime_bands=[  # type: ignore[arg-type]
                 _band("SHIFT_NOTTE", "indennita_per_shift", "10.00", ["night"])
             ]
         )
@@ -193,7 +193,7 @@ class TestComputeTimeSupplements:
     def test_supplementare_counts_toward_overtime(self) -> None:
         """supplementare_hours accumulate into the overtime total."""
         supps_schema = TimeSupplements(
-            overtime_bands=[_band("SUPPL", "percentage", "0.10", ["supplementare"])]
+            overtime_bands=[_band("SUPPL", "percentage", "0.10", ["supplementare"])]  # type: ignore[arg-type]
         )
         ot, ni, ho, _steps = compute_time_supplements(
             OvertimeHours(supplementare_hours=Decimal(8)),
@@ -211,7 +211,7 @@ class TestComputeTimeSupplements:
         """A schema with no bands produces empty steps."""
         ot, _ni, _ho, steps = compute_time_supplements(
             OvertimeHours(weekday_hours=Decimal(10)),
-            TimeSupplements(overtime_bands=[]),
+            TimeSupplements(overtime_bands=[]),  # type: ignore[arg-type]
             _BASE,
             _DIVISOR,
             _AS_OF,
@@ -228,7 +228,7 @@ class TestComputeTimeSupplements:
     def test_night_holiday_counts_toward_holiday_bucket(self) -> None:
         """night_holiday_hours accumulate into the holiday bucket."""
         schema_nh = TimeSupplements(
-            overtime_bands=[
+            overtime_bands=[  # type: ignore[arg-type]
                 _band("OT_FEST_NOTT", "percentage", "0.85", ["night_holiday"])
             ]
         )
@@ -248,7 +248,7 @@ class TestComputeTimeSupplements:
     def test_zero_rate_band_is_skipped(self) -> None:
         """A band with rate=0 produces no supplement and no trace step."""
         schema_zero = TimeSupplements(
-            overtime_bands=[_band("OT_ZERO", "percentage", "0.00", ["weekday"])]
+            overtime_bands=[_band("OT_ZERO", "percentage", "0.00", ["weekday"])]  # type: ignore[arg-type]
         )
         ot, _ni, _ho, steps = compute_time_supplements(
             OvertimeHours(weekday_hours=Decimal(10)),
@@ -285,7 +285,7 @@ def _band_with_threshold(
                 ),
             )
         ),
-        applies_to_kinds=[WorkKind(k) for k in applies_to],
+        applies_to_kinds=[WorkKind(k) for k in applies_to],  # type: ignore[arg-type]
         hour_threshold_per_week=threshold,
     )
 
@@ -393,7 +393,7 @@ class TestComputeTimeSupplementsTieredBands:
         """
         schema = TimeSupplements(
             hourly_base_method="minimo_tabellare",
-            overtime_bands=[
+            overtime_bands=[  # type: ignore[arg-type]
                 _band_with_threshold("B1", "0.15", ["weekday"], threshold=None),
                 _band_with_threshold("B2", "0.20", ["weekday"], threshold=4),
             ],
@@ -451,7 +451,7 @@ class TestHighBaseThresholdNormalisation:
         """
         schema = TimeSupplements(
             hourly_base_method="minimo_tabellare",
-            overtime_bands=[
+            overtime_bands=[  # type: ignore[arg-type]
                 _band_with_threshold("B40", "0.15", ["weekday"], threshold=40)
             ],
         )

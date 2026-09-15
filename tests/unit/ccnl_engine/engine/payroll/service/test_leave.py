@@ -18,7 +18,7 @@ def _rules_no_tiers() -> LeaveRules:
 def _rules_with_tiers() -> LeaveRules:
     return LeaveRules(
         default_annual_days=Decimal(20),
-        entitlement_tiers=[
+        entitlement_tiers=[  # type: ignore[arg-type]
             LeaveEntitlementTier(service_months_min=0, annual_days=Decimal(20)),
             LeaveEntitlementTier(service_months_min=36, annual_days=Decimal(25)),
         ],
@@ -61,7 +61,7 @@ class TestResolveAnnualDays:
         """All tiers require >= 12 months; service_months=0 → default."""
         rules = LeaveRules(
             default_annual_days=Decimal(20),
-            entitlement_tiers=[
+            entitlement_tiers=[  # type: ignore[arg-type]
                 LeaveEntitlementTier(service_months_min=12, annual_days=Decimal(22)),
             ],
         )

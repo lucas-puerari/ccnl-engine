@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 _ZERO = Decimal(0)
 
 
-def _count_from_tiers(tiers: list[SeniorityTier], seniority_months: int) -> int:
+def _count_from_tiers(tiers: tuple[SeniorityTier, ...], seniority_months: int) -> int:
     """Sum increments earned across all tiers from service months.
 
     Tiers are consumed in order. Each tier's full capacity
@@ -45,7 +45,7 @@ def _count_from_tiers(tiers: list[SeniorityTier], seniority_months: int) -> int:
 
 
 def _resolve_tier_amount(
-    tiers: list[SeniorityTier],
+    tiers: tuple[SeniorityTier, ...],
     level_code: str,
     as_of: date,
     *,

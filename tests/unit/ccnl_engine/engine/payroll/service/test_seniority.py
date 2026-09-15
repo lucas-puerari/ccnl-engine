@@ -316,4 +316,4 @@ class TestResolveTierAmountValidation:
     def test_no_months_and_no_count_raises(self) -> None:
         """_resolve_tier_amount with neither seniority_months nor count raises."""
         with pytest.raises(ValueError, match="seniority_months is required"):
-            _resolve_tier_amount([], "4", _DATE)  # both optional args default to None
+            _resolve_tier_amount((), "4", _DATE)  # both optional args default to None
