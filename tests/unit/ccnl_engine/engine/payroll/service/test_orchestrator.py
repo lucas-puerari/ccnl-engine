@@ -931,13 +931,13 @@ class TestProvenanceChain:
             description="a",
             provenance=prov_allowance,
             monthly=TimeSeries(
-                periods=[
+                periods=(
                     ValidityPeriod(
                         valid_from=date(2020, 1, 1),
                         valid_until=None,
                         value=Decimal("10.00"),
-                    )
-                ]
+                    ),
+                )
             ),
         )
         new_level = level.model_copy(update={"fixed_allowances": [allowance]})
@@ -1268,13 +1268,13 @@ class TestL3Warning:
             description="Straordinario notturno",
             kind=TimeSupplementKind("percentage"),
             rate=TimeSeries(
-                periods=[
+                periods=(
                     ValidityPeriod(
                         valid_from=date(2020, 1, 1),
                         valid_until=None,
                         value=_D("0.30"),
-                    )
-                ]
+                    ),
+                )
             ),
             applies_to_kinds=[WorkKind.NIGHT],
         )

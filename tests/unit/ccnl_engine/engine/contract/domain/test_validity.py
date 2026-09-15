@@ -62,7 +62,7 @@ def _series(*periods: ValidityPeriod) -> TimeSeries:
     Returns:
         A TimeSeries containing the given periods.
     """
-    return TimeSeries(periods=list(periods))
+    return TimeSeries(periods=tuple(periods))
 
 
 # ---------------------------------------------------------------------------
@@ -106,27 +106,27 @@ class TestTimeSeriesValidators:
     def test_empty_list_raises(self) -> None:
         """An empty period list must raise ValidationError."""
         with pytest.raises(ValidationError):
-            TimeSeries(periods=[])
+            TimeSeries(periods=())
 
     def test_non_last_open_ended_raises(self) -> None:
         """A non-last period with valid_until=None must raise ValidationError."""
         p0 = _period("2024-01-01", None)
         p1 = _period("2025-01-01", None)
         with pytest.raises(ValidationError):
-            TimeSeries(periods=[p0, p1])
+            TimeSeries(periods=(p0, p1))
 
     def test_gap_raises(self) -> None:
         """A gap between consecutive periods must raise ValidationError."""
         p0 = _period("2024-01-01", "2024-06-01")
         p1 = _period("2025-01-01", None)  # gap: 2024-06-01 → 2025-01-01
         with pytest.raises(ValidationError):
-            TimeSeries(periods=[p0, p1])
+            TimeSeries(periods=(p0, p1))
 
     def test_closed_last_period_raises(self) -> None:
         """Last period with valid_until not None must raise ValidationError."""
         p0 = _period("2024-01-01", "2025-01-01")
         with pytest.raises(ValidationError):
-            TimeSeries(periods=[p0])
+            TimeSeries(periods=(p0,))
 
     def test_single_period_valid(self) -> None:
         """A single open-ended period is a valid TimeSeries."""

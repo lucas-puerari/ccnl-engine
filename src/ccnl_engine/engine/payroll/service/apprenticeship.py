@@ -159,7 +159,10 @@ def _apprentice_chain(
     seniority_months: int | None = None,
 ) -> tuple[MonthlyPayChain, Decimal | None, str | None]:
     track = _select_track(ccnl, level, employment)
-    period_index = _find_period_index(track.periods, employment.months_elapsed)
+    period_index = _find_period_index(
+        track.periods,  # type: ignore[arg-type]
+        employment.months_elapsed,
+    )
     if isinstance(track, ApprenticeshipPercentage):
         return _percentage_track_chain(
             ccnl,

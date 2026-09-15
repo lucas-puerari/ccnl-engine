@@ -77,26 +77,26 @@ class TestPeriodAt:
     def test_before_series_start_returns_none(self) -> None:
         """period_at before series start returns None."""
         ts = TimeSeries(
-            periods=[
+            periods=(
                 ValidityPeriod(
                     valid_from=date(2025, 1, 1),
                     valid_until=None,
                     value=Decimal(100),
-                )
-            ]
+                ),
+            )
         )
         assert ts.period_at(date(2024, 12, 31)) is None
 
     def test_at_series_start_returns_period(self) -> None:
         """period_at on the first valid_from date returns that period."""
         ts = TimeSeries(
-            periods=[
+            periods=(
                 ValidityPeriod(
                     valid_from=date(2025, 1, 1),
                     valid_until=None,
                     value=Decimal(100),
-                )
-            ]
+                ),
+            )
         )
         p = ts.period_at(date(2025, 1, 1))
         assert p is not None
@@ -105,7 +105,7 @@ class TestPeriodAt:
     def test_at_boundary_returns_second_period(self) -> None:
         """period_at exactly at valid_until boundary returns the next period."""
         ts = TimeSeries(
-            periods=[
+            periods=(
                 ValidityPeriod(
                     valid_from=date(2025, 1, 1),
                     valid_until=date(2026, 1, 1),
@@ -116,7 +116,7 @@ class TestPeriodAt:
                     valid_until=None,
                     value=Decimal(110),
                 ),
-            ]
+            )
         )
         p = ts.period_at(date(2026, 1, 1))
         assert p is not None
@@ -125,13 +125,13 @@ class TestPeriodAt:
     def test_open_ended_period_matches_far_future(self) -> None:
         """An open-ended period is returned for any date after valid_from."""
         ts = TimeSeries(
-            periods=[
+            periods=(
                 ValidityPeriod(
                     valid_from=date(2020, 1, 1),
                     valid_until=None,
                     value=Decimal(999),
-                )
-            ]
+                ),
+            )
         )
         p = ts.period_at(date(2099, 12, 31))
         assert p is not None
