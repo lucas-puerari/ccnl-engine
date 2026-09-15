@@ -125,9 +125,7 @@ class TestCoverageMapping:
 
     def test_work_rules_features_is_proxy(self, metalmeccanico: CCNL) -> None:
         """work_rules_features is a MappingProxyType."""
-        assert isinstance(
-            metalmeccanico.coverage.work_rules_features, MappingProxyType
-        )
+        assert isinstance(metalmeccanico.coverage.work_rules_features, MappingProxyType)
 
     def test_work_rules_features_no_update(self, metalmeccanico: CCNL) -> None:
         """MappingProxyType has no .update() method."""

@@ -453,12 +453,10 @@ class SeniorityIncrements(BaseModel):
     maximum_count_by_level: Mapping[str, int] = Field(default_factory=dict)
     apprentice_amount: TimeSeries | None = None
     excluded_categories: tuple[LevelCategory, ...] = Field(default=())
-    amount_by_level_by_category: Mapping[
-        LevelCategory, Mapping[str, TimeSeries]
-    ] = Field(default_factory=dict)
-    maximum_count_by_category: Mapping[LevelCategory, int] = Field(
-        default_factory=dict
+    amount_by_level_by_category: Mapping[LevelCategory, Mapping[str, TimeSeries]] = (
+        Field(default_factory=dict)
     )
+    maximum_count_by_category: Mapping[LevelCategory, int] = Field(default_factory=dict)
     first_cadence_months_by_category: Mapping[LevelCategory, int] = Field(
         default_factory=dict
     )
@@ -572,12 +570,10 @@ class SeniorityIncrements(BaseModel):
         object.__setattr__(  # noqa: PLC2801
             self,
             "amount_by_level_by_category",
-            MappingProxyType(
-                {
-                    cat: MappingProxyType(dict(inner))
-                    for cat, inner in self.amount_by_level_by_category.items()
-                }
-            ),
+            MappingProxyType({
+                cat: MappingProxyType(dict(inner))
+                for cat, inner in self.amount_by_level_by_category.items()
+            }),
         )
         object.__setattr__(  # noqa: PLC2801
             self,
