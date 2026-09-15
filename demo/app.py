@@ -146,9 +146,32 @@ def load_ccnl_levels(filename: str) -> str:
     return json.dumps(levels)
 
 
+def load_level_tracks(filename: str, level_code: str) -> str:
+    """Return JSON list of apprenticeship track names available for a level.
+
+    When the CCNL has no apprenticeship module or the level has no tracks,
+    returns an empty list.  The UI uses this to show a track selector only
+    when more than one track is available.
+
+    Args:
+        filename: Bare CCNL filename (e.g. ``"metalmeccanico-federmeccanica.json"``).
+        level_code: Destination level code within the CCNL.
+
+    Returns:
+        JSON-encoded list of track-name strings.
+    """
+    try:
+        ccnl = load_ccnl(filename)
+        tracks = ccnl.apprenticeship_tracks_for(level_code)
+        return json.dumps([t.name for t in tracks])
+    except Exception:  # noqa: BLE001
+        return json.dumps([])
+
+
 def _build_contract(
     employment_type: str,
     months_elapsed: int,
+    track: str = "",
 ) -> tuple[Permanent | FixedTerm | Apprentice | None, str]:
     """Construct a contract instance or return (None, error_message).
 
@@ -160,7 +183,10 @@ def _build_contract(
     if employment_type == "fixed_term":
         return FixedTerm(), ""
     if employment_type == "apprentice":
-        return Apprentice(months_elapsed=months_elapsed), ""
+        return Apprentice(
+            months_elapsed=months_elapsed,
+            track=track or None,
+        ), ""
     return None, f"Tipo di contratto non supportato: {employment_type!r}"
 
 
@@ -284,6 +310,30 @@ def _domestic_weekly_hours(filename: str, part_time_pct: float) -> Decimal | Non
         return None
 
 
+def _resolve_ccnl_meta(
+    filename: str, part_time_pct: float
+) -> tuple[str, Decimal | None]:
+    """Return (ccnl_name, weekly_hours_domestic).
+
+    Loads the CCNL to resolve the display name and, for domestic contracts,
+    the scaled weekly hours. Falls back to the filename when loading fails.
+    ``weekly_hours_domestic`` is None for non-domestic CCNLs.
+
+    Returns:
+        Tuple of (display name, weekly hours or None).
+    """
+    try:
+        ccnl = load_ccnl(filename)
+        is_domestic = getattr(ccnl.meta, "tax_sector", "") == "lavoro-domestico"
+        weekly = (
+            _domestic_weekly_hours(filename, part_time_pct) if is_domestic else None
+        )
+    except Exception:  # noqa: BLE001
+        return filename, None
+    else:
+        return ccnl.meta.name, weekly
+
+
 def _build_time_supplements(
     weekday_hours: float,
     night_hours: float,
@@ -337,6 +387,7 @@ def compute_salary(
     welfare_annual: float = 0.0,
     bonus_annual: float = 0.0,
     bonus_pdr_eligible: bool = False,
+    track: str = "",
 ) -> str:
     """Compute gross-to-net and employer cost.
 
@@ -376,11 +427,14 @@ def compute_salary(
         welfare_annual: Welfare annual amount (L3, always tax-exempt).
         bonus_annual: Total annual bonus (L3).
         bonus_pdr_eligible: Whether the bonus qualifies for PdR flat tax (L3).
+        track: Apprenticeship track name. Required when the CCNL defines
+            more than one track for the destination level; empty string
+            lets the engine pick the unique applicable track.
 
     Returns:
         JSON-encoded result dict or ``{"error": "..."}`` on failure.
     """
-    contract, err = _build_contract(employment_type, months_elapsed)
+    contract, err = _build_contract(employment_type, months_elapsed, track)
     if contract is None:
         return json.dumps({"error": err})
 
@@ -389,18 +443,7 @@ def compute_salary(
     agreement = _build_agreement(ad_personam_monthly, ral_override)
     employer = _build_employer(num_employees, second_level_monthly)
 
-    # Detect lavoro domestico to auto-supply weekly_hours scaled to part_time_pct.
-    ccnl_name: str = filename
-    is_domestic = False
-    try:
-        loaded_ccnl = load_ccnl(filename)
-        ccnl_name = loaded_ccnl.meta.name
-        is_domestic = getattr(loaded_ccnl.meta, "tax_sector", "") == "lavoro-domestico"
-    except Exception:  # noqa: BLE001, S110
-        pass
-    weekly_hours_domestic = (
-        _domestic_weekly_hours(filename, part_time_pct) if is_domestic else None
-    )
+    ccnl_name, weekly_hours_domestic = _resolve_ccnl_meta(filename, part_time_pct)
 
     time_supplements = _build_time_supplements(
         overtime_weekday_hours,
@@ -471,6 +514,9 @@ def compute_salary(
     return json.dumps({
         # metadata
         "ccnl_id": payroll.ccnl_id,
+        "weekly_hours": (
+            float(weekly_hours_domestic) if weekly_hours_domestic is not None else None
+        ),
         "ccnl_name": ccnl_name,
         "level_code": payroll.level_code,
         "employment_type": payroll.employment_type,

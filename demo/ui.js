@@ -152,6 +152,7 @@ document.getElementById("sel-employment").addEventListener("change", e => {
   const isApp = e.target.value === "apprentice";
   document.getElementById("div-apprentice-months").style.display = isApp ? "" : "none";
   document.getElementById("div-seniority").style.display = isApp ? "none" : "";
+  if (!isApp) document.getElementById("div-apprentice-track").style.display = "none";
 });
 
 // ── Combobox init (before Pyodide loads) ────────────────────────────────────
@@ -590,6 +591,20 @@ async function onCcnlChange(pyodide) {
   levelSel.addEventListener("change", () => {
     btn.disabled = levelSel.value === "";
     updateSeniorityConstraint();
+    if (document.getElementById("sel-employment").value === "apprentice" && levelSel.value) {
+      const tracks = JSON.parse(
+        pyodide.runPython(`load_level_tracks(${JSON.stringify(file)}, ${JSON.stringify(levelSel.value)})`)
+      );
+      const trackSel = document.getElementById("sel-apprentice-track");
+      trackSel.innerHTML = `<option value="">— select track —</option>`;
+      for (const tr of tracks) {
+        const opt = document.createElement("option");
+        opt.value = tr;
+        opt.textContent = tr;
+        trackSel.appendChild(opt);
+      }
+      document.getElementById("div-apprentice-track").style.display = tracks.length > 1 ? "" : "none";
+    }
   });
   document.querySelectorAll("input[name='sen-mode']").forEach(r => {
     r.addEventListener("change", updateSeniorityConstraint);
@@ -1124,6 +1139,7 @@ function doCompute(pyodide) {
   const senValue    = parseInt(document.getElementById("inp-seniority").value) || 0;
   const senMode     = document.querySelector("input[name='sen-mode']:checked").value;
   const appMonths   = parseInt(document.getElementById("inp-apprentice-months").value) || 0;
+  const appTrack    = document.getElementById("sel-apprentice-track").value;
   const regione     = document.getElementById("sel-regione").value;
   const comune      = document.getElementById("inp-comune").value.trim().toUpperCase();
   const adPersonam  = parseFloat(document.getElementById("inp-ad-personam").value)  || 0;
@@ -1152,7 +1168,8 @@ function doCompute(pyodide) {
     `${ivsApplies ? "True" : "False"}, ${adPersonam}, ${ralOverride}, ${secondLevel}, ` +
     `${otWeekday}, ${otNight}, ${otHoliday}, ${otNightHol}, ` +
     `${absenceDays}, ${leaveDays}, ${sickDays}, ` +
-    `${fringeAnnual}, ${welfareAnnual}, ${bonusAnnual}, ${bonusPdr ? "True" : "False"})`
+    `${fringeAnnual}, ${welfareAnnual}, ${bonusAnnual}, ${bonusPdr ? "True" : "False"}, ` +
+    `${JSON.stringify(appTrack)})`
   ));
 
   if (r.error) { showError("Error: " + r.error); return; }
@@ -1224,7 +1241,7 @@ function doCompute(pyodide) {
   // Cache for toolbar actions (download, snippet, compare)
   _lastResult = r;
   _lastParams = {
-    file, levelCode, empType, employees, ptPct, senValue, senMode, appMonths,
+    file, levelCode, empType, employees, ptPct, senValue, senMode, appMonths, appTrack,
     regione, comune, adPersonam, secondLevel, ralOverride, ivsApplies,
     otWeekday, otNight, otHoliday, otNightHol,
     absenceDays, leaveDays, sickDays,
@@ -1254,8 +1271,13 @@ function downloadResult() {
 }
 
 function generateSnippet(params, r) {
+  const hasL3 = params.otWeekday > 0 || params.otNight > 0 || params.otHoliday > 0
+    || params.otNightHol > 0 || params.absenceDays > 0 || params.leaveDays > 0
+    || params.sickDays > 0 || params.fringeAnnual > 0 || params.welfareAnnual > 0
+    || params.bonusAnnual > 0 || params.bonusPdr;
   const needsDecimal = params.ptPct < 1 || params.adPersonam > 0
-    || params.ralOverride > 0 || params.secondLevel > 0;
+    || params.ralOverride > 0 || params.secondLevel > 0 || hasL3
+    || (r && r.weekly_hours !== null && r.weekly_hours !== undefined);
   const decimalImport = needsDecimal ? "\nfrom decimal import Decimal" : "";
 
   // Contract
@@ -1266,7 +1288,8 @@ function generateSnippet(params, r) {
     contractExpr = "FixedTerm()";
   } else if (params.empType === "apprentice") {
     imports.push("Apprentice");
-    contractExpr = `Apprentice(months_elapsed=${params.appMonths || 0})`;
+    const trackArg = params.appTrack ? `, track="${params.appTrack}"` : "";
+    contractExpr = `Apprentice(months_elapsed=${params.appMonths || 0}${trackArg})`;
   } else {
     imports.push("Permanent");
     contractExpr = "Permanent()";
@@ -1330,6 +1353,46 @@ function generateSnippet(params, r) {
     empExpr = `Employer(num_employees=${params.employees})`;
   }
 
+  // weekly_hours (domestic workers)
+  const weeklyHoursStr = (r && r.weekly_hours !== null && r.weekly_hours !== undefined)
+    ? `\n        weekly_hours=Decimal("${r.weekly_hours.toFixed(2)}"),` : "";
+
+  // L3 supplement inputs
+  let l3Lines = "";
+  if (params.otWeekday > 0 || params.otNight > 0 || params.otHoliday > 0 || params.otNightHol > 0) {
+    imports.push("OvertimeHours");
+    const wh  = params.otWeekday  > 0 ? `\n        weekday_hours=Decimal("${params.otWeekday}"),`  : "";
+    const nh  = params.otNight    > 0 ? `\n        night_hours=Decimal("${params.otNight}"),`    : "";
+    const hh  = params.otHoliday  > 0 ? `\n        holiday_hours=Decimal("${params.otHoliday}"),`  : "";
+    const nhh = params.otNightHol > 0 ? `\n        night_holiday_hours=Decimal("${params.otNightHol}"),` : "";
+    l3Lines += `\n    time_supplements=OvertimeHours(${wh}${nh}${hh}${nhh}\n    ),`;
+  }
+  if (params.absenceDays > 0) {
+    imports.push("AbsenceDays");
+    l3Lines += `\n    absence_days=AbsenceDays(unpaid_days=Decimal("${params.absenceDays}")),`;
+  }
+  if (params.leaveDays > 0) {
+    imports.push("LeaveInput");
+    l3Lines += `\n    leave_input=LeaveInput(taken_days=Decimal("${params.leaveDays}")),`;
+  }
+  if (params.sickDays > 0) {
+    imports.push("SickInput");
+    l3Lines += `\n    sick_input=SickInput(sick_days=Decimal("${params.sickDays}")),`;
+  }
+  if (params.fringeAnnual > 0) {
+    imports.push("FringeBenefitInput");
+    l3Lines += `\n    fringe_benefit_input=FringeBenefitInput(annual_amount=Decimal("${params.fringeAnnual}")),`;
+  }
+  if (params.welfareAnnual > 0) {
+    imports.push("WelfareInput");
+    l3Lines += `\n    welfare_input=WelfareInput(annual_amount=Decimal("${params.welfareAnnual}")),`;
+  }
+  if (params.bonusAnnual > 0 || params.bonusPdr) {
+    imports.push("BonusInput");
+    const pdrArg = params.bonusPdr ? `, eligible_for_pdr=True` : "";
+    l3Lines += `\n    bonus_input=BonusInput(annual_amount=Decimal("${params.bonusAnnual || 0}")${pdrArg}),`;
+  }
+
   const calcDate = r && r.as_of
     ? `date.fromisoformat("${r.as_of}")` : "date.today()";
 
@@ -1340,14 +1403,14 @@ ${importLine}
 
 result = compute(PayrollScenario(
     employee=Employee(
-        level_code="${params.levelCode}",${senStr}${ptStr}${ivsStr}${jurStr}${agrStr}
+        level_code="${params.levelCode}",${senStr}${ptStr}${weeklyHoursStr}${ivsStr}${jurStr}${agrStr}
     ),
     employment=Employment(
         ccnl="${params.file}",
         contract=${contractExpr},
         employer=${empExpr},
         calculation_date=${calcDate},
-    ),
+    ),${l3Lines}
 ))
 # Net monthly: ${fmtM(r.net_monthly)}  Gross monthly: ${fmtM(r.gross_monthly)}
 print(f"Netto: {result.result.net_monthly:.2f}  Lordo: {result.result.gross_monthly:.2f}")`;
@@ -1482,7 +1545,8 @@ function initCompare(pyodide) {
       `${p.ivsApplies ? "True" : "False"}, ${p.adPersonam}, ${p.ralOverride}, ${p.secondLevel}, ` +
       `${p.otWeekday}, ${p.otNight}, ${p.otHoliday}, ${p.otNightHol}, ` +
       `${p.absenceDays}, ${p.leaveDays}, ${p.sickDays}, ` +
-      `${p.fringeAnnual}, ${p.welfareAnnual}, ${p.bonusAnnual}, ${p.bonusPdr ? "True" : "False"})`
+      `${p.fringeAnnual}, ${p.welfareAnnual}, ${p.bonusAnnual}, ${p.bonusPdr ? "True" : "False"}, ` +
+      `${JSON.stringify(p.appTrack || "")}`  + `)`
     ));
     if (!r.error) renderCompareResult(r);
   });
