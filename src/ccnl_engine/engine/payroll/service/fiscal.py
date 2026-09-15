@@ -322,7 +322,7 @@ def _compute_addizionali(
 
 def _run_wr_family_deductions(
     scenario: PayrollScenario,
-    gross_annual: Decimal,
+    reddito_complessivo: Decimal,
     irpef_gross: Decimal,
     work_income_deduction: Decimal,
     year: int,
@@ -338,7 +338,8 @@ def _run_wr_family_deductions(
 
     Args:
         scenario: The payroll scenario.
-        gross_annual: Annual gross pay (proxy for reddito complessivo).
+        reddito_complessivo: Taxable income (gross minus INPS employee
+            contribution) used as the Art. 12 reddito complessivo reference.
         irpef_gross: IRPEF before any deductions.
         work_income_deduction: Art. 13 work-income deduction.
         year: Fiscal year for loading rules.
@@ -356,7 +357,7 @@ def _run_wr_family_deductions(
         return _ZERO, _ZERO, _ZERO, _ZERO, _ZERO
     rules = load_family_deduction_rules(year)
     spouse, children, other, total = compute_family_deductions(
-        family, gross_annual, rules
+        family, reddito_complessivo, rules
     )
     if not employer_withholds_irpef:
         # Deductions computed but irpef_net is always zero here.
@@ -544,7 +545,7 @@ def compute_fiscal(
         fam_unused,
     ) = _run_wr_family_deductions(
         scenario=scenario,
-        gross_annual=gross.gross_annual,
+        reddito_complessivo=taxable_income,
         irpef_gross=irpef_gross,
         work_income_deduction=work_income_deduction,
         year=year,
@@ -612,13 +613,13 @@ def compute_fiscal(
     # Trattamento integrativo (Art. 1 D.L. 3/2020): computed when the tax
     # data file carries the required parameters.
     # relevant_deductions: Art. 12 + Art. 13 + qualifying Art. 15 (statute).
-    # Only pre-1993 mortgage interest qualifies; post-1993 mortgages reduce
+    # Only pre-2022 mortgage interest qualifies; later mortgages reduce
     # IRPEF but are excluded from the TI relevant-deductions sum.
     art15_pre_1993 = (
         art15_total
         if (
             scenario.art15_deductions is not None
-            and scenario.art15_deductions.mortgage_pre_1993
+            and scenario.art15_deductions.mortgage_pre_2022
         )
         else _ZERO
     )

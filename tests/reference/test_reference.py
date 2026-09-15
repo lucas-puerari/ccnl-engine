@@ -171,7 +171,7 @@ def _build_art15_deductions(inputs: dict[str, Any]) -> Art15Deductions | None:
         return None
     return Art15Deductions(
         mortgage_interest=Decimal(str(raw.get("mortgage_interest", "0"))),
-        mortgage_pre_1993=bool(raw.get("mortgage_pre_1993", False)),
+        mortgage_pre_2022=bool(raw.get("mortgage_pre_2022", False)),
     )
 
 
@@ -330,24 +330,24 @@ class TestReferenceCases:
 class TestReferenceBuilders:
     """Builder functions must forward all fields declared in fixture dicts."""
 
-    def test_build_art15_deductions_passes_mortgage_pre_1993(self) -> None:
-        """_build_art15_deductions must honour the mortgage_pre_1993 flag."""
+    def test_build_art15_deductions_passes_mortgage_pre_2022(self) -> None:
+        """_build_art15_deductions must honour the mortgage_pre_2022 flag."""
         result = _build_art15_deductions({
             "art15_deductions": {
                 "mortgage_interest": "1000",
-                "mortgage_pre_1993": True,
+                "mortgage_pre_2022": True,
             }
         })
         assert result is not None
-        assert result.mortgage_pre_1993 is True
+        assert result.mortgage_pre_2022 is True
 
-    def test_build_art15_deductions_defaults_mortgage_pre_1993_false(self) -> None:
-        """When mortgage_pre_1993 is absent, _build_art15_deductions defaults False."""
+    def test_build_art15_deductions_defaults_mortgage_pre_2022_false(self) -> None:
+        """When mortgage_pre_2022 is absent, _build_art15_deductions defaults False."""
         result = _build_art15_deductions({
             "art15_deductions": {"mortgage_interest": "500"}
         })
         assert result is not None
-        assert result.mortgage_pre_1993 is False
+        assert result.mortgage_pre_2022 is False
 
     def test_build_bonus_input_passes_prior_year_gross_annual(self) -> None:
         """_build_bonus_input must honour prior_year_gross_annual when present."""

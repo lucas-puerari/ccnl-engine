@@ -3,7 +3,7 @@
   "source": {
     "document": "Art. 12 TUIR (D.P.R. 917/1986) — detrazioni per carichi di famiglia",
     "section": "c. 1 lett. c: detrazione per figli a carico (eta >= 21, post-AUU)",
-    "notes": "Expected values computed by the engine; taper = max(0, (95000 - 26843.44) / 95000) = 0.71743...; deduction = money(950 * taper) = 681.57"
+    "notes": "Expected values computed by the engine; taper uses taxable_income=24296.00 (gross minus INPS): taper = max(0, (95000 - 24296.00) / 95000) = 0.74425...; deduction = money(950 * taper) = 707.04"
   },
   "inputs": {
     "ccnl_file": "metalmeccanico-federmeccanica.json",
@@ -34,13 +34,13 @@
     "gross_monthly": "2064.88",
     "gross_annual": "26843.44",
     "family_deduction_spouse_annual": "0",
-    "family_deduction_children_annual": "681.57",
+    "family_deduction_children_annual": "707.04",
     "family_deduction_other_annual": "0",
-    "family_deduction_annual": "681.57",
+    "family_deduction_annual": "707.04",
     "unused_family_deduction_annual": "0.00",
-    "irpef_net": "1657.48",
-    "net_annual": "22638.52",
-    "net_monthly": "1741.42",
+    "irpef_net": "1632.01",
+    "net_annual": "22663.99",
+    "net_monthly": "1743.38",
     "ulteriore_detrazione_lavoro": "1000",
     "fiscal_simplifications": [
       "no_addizionale_comunale",
