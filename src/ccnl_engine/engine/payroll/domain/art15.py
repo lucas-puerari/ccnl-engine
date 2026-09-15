@@ -14,7 +14,8 @@ class Art15Deductions:
 
     The employer (*sostituto d'imposta*) applies these deductions against
     the IRPEF withheld when the worker provides supporting documentation.
-    The resulting credit reduces ``irpef_net`` and therefore ``net_annual``.
+    The resulting credit reduces ``irpef_net`` and therefore increases
+    ``net_annual``.
 
     Unlike Art. 12 family deductions (which taper with income), Art. 15
     deductions are fixed-rate (19 %) credits on eligible expenditure up to

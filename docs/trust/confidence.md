@@ -33,13 +33,13 @@ status == "complete" and no unverified salary sources?
   NO  → "medium"
 ```
 
-### What counts as a salary-table source
+### What counts as a verified source
 
-Only provenance records with `rule_id` containing `TABELLA_RETRIBUTIVA` (the
-source kind for salary tables) are evaluated for the `"high"` gate. Tax
-brackets, INPS rates, and surtax tables are not included in this check —
-their data comes from official government publications and is assumed
-authoritative.
+Every provenance record in the chain is evaluated for the `"high"` gate.
+Any record whose `extraction.verification_status` is not `"verified"`
+(i.e. `"unverified"` or `"needs_review"`) causes the result to be classified
+`"medium"` rather than `"high"`. This covers salary tables, fiscal metadata,
+INPS rates, and any other sourced rule.
 
 ### Why `fiscal_simplifications` does not affect confidence
 

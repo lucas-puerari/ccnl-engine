@@ -85,26 +85,19 @@ See [Provenance](provenance.md) for the full schema and how to read it.
 Every payroll computation records exactly which ruleset versions it used:
 
 ```python
-calc = compute(ccnl, rules, employee)
-
-for identity in calc.ruleset_versions:
-    print(identity)
-# ccnl/metalmeccanico-federmeccanica@2026.2
-# tax/2026/industria@2026.2
-# surtax/2026@2026.2
+for kind, identity in calc.ruleset_version.items():
+    print(kind, identity)
+# ccnl  metalmeccanico-federmeccanica@2026.2
+# tax   tax/2026/industria@2026.2
+# inps  inps@2026.2
 ```
 
-Each `RulesetIdentity` carries:
-
-- `id` — stable identifier for the ruleset
-- `version` — dataset version at computation time
-- `source_hash` — SHA-256 of the underlying JSON file
-- `effective_from` / `effective_until` — validity window
-- `verification_status` — data confidence
+`ruleset_version` is a plain `dict[str, str]` mapping ruleset kind (e.g.
+`"ccnl"`, `"tax"`, `"inps"`) to an `"id@version"` string.
 
 To reproduce a historical result, pin the same `ccnl-engine` package version
-and dataset version. The engine's `engine_version()` function returns the
-current runtime version.
+and dataset version. `calc.engine_version` is the string version of the
+engine that produced the result.
 
 ## Quality gates
 
