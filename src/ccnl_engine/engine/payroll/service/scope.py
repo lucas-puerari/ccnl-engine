@@ -10,6 +10,7 @@ from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.payroll_result import ScopeItem
 
 if TYPE_CHECKING:
+    from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
     from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
     from ccnl_engine.engine.payroll.service.fiscal import FiscalPay
     from ccnl_engine.engine.payroll.service.work_rules import WorkRulesPay
@@ -40,6 +41,7 @@ def _compute_confidence(
     status: Literal["complete", "partial"],
     warnings: tuple[str, ...],
     provenance: tuple[RuleProvenance, ...],
+    rulesets: tuple[RulesetIdentity, ...] = (),
 ) -> Literal["low", "medium", "high"]:
     """Derive a confidence level from result status, warnings, and provenance.
 
@@ -52,18 +54,26 @@ def _compute_confidence(
 
     ``"high"``
         The computation is complete, there are no warnings, and every record
-        in the provenance chain has
+        in the provenance chain and every consumed ruleset has
         :attr:`~ccnl_engine.engine.metadata.domain.rules.VerificationStatus\
 .VERIFIED` status.
 
     ``"medium"``
-        All other cases: any unverified provenance source, partial computation
-        without active warnings, or features explicitly excluded by the caller.
+        All other cases: any unverified provenance source or ruleset, partial
+        computation without active warnings, or features explicitly excluded
+        by the caller.
 
     The ``fiscal_simplifications`` frozenset is intentionally excluded from
     this formula — those reflect deliberate caller choices (omitted region,
     commune, etc.), not engine uncertainty.  They appear in
     ``calculation_scope`` as ``"excluded"`` items.
+
+    Args:
+        status: Whether the computation is ``"complete"`` or ``"partial"``.
+        warnings: Active engine warnings from the computation.
+        provenance: Provenance chain for salary rules consumed.
+        rulesets: Identity records for all consumed rulesets (fiscal, INPS,
+            surtax). Their ``verification_status`` is included in the check.
 
     Returns:
         One of ``"low"``, ``"medium"``, or ``"high"``.
@@ -71,8 +81,11 @@ def _compute_confidence(
     if warnings:
         return "low"
     any_unverified = any(
-        p.extraction.verification_status != VerificationStatus.VERIFIED
-        for p in provenance
+        prov.extraction.verification_status != VerificationStatus.VERIFIED
+        for prov in provenance
+    ) or any(
+        ruleset_id.verification_status != VerificationStatus.VERIFIED
+        for ruleset_id in rulesets
     )
     if status == "complete" and not any_unverified:
         return "high"
