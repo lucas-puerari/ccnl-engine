@@ -10,7 +10,7 @@ bundle the loaders read). See [Knowledge base](knowledge.md).
 
 | Page | Contents |
 |---|---|
-| [Engine](engine.md) | `compute()`, `Calculation`, `InputSnapshot`, `Employee`, `ContractPosition`, `WorkArrangement`, `TaxProfile`, `Employer`, `PayrollResult` |
+| [Engine](engine.md) | `compute()`, `Calculation`, `InputSnapshot`, `PayrollScenario`, `Employee`, `Employment`, `Employer`, `PayrollResult` |
 | [Loaders](loaders.md) | `load_ccnl()`, `load_year_rules()`, `load_surtax_rules()`, `YearRules`, `InpsRates` |
 | [Models](models.md) | `CCNL`, `Level`, `Allowance`, employment types, fiscal enums |
 | [Knowledge](knowledge.md) | data layout, `__version__` |
@@ -21,49 +21,50 @@ bundle the loaders read). See [Knowledge base](knowledge.md).
 from ccnl_engine import (
     # Core function
     compute,
-    # Loaders
-    load_ccnl,
-    load_year_rules,
-    load_surtax_rules,
-    # Employee input
+    # Scenario and inputs
+    PayrollScenario,
     Employee,
-    ContractPosition,
-    WorkArrangement,
-    TaxProfile,
-    # Employer input
+    Employment,
     Employer,
+    Jurisdiction,
+    Agreement,
     # Employment types
     Permanent,
     FixedTerm,
     Apprentice,
-    # Seniority (union type)
+    # Seniority
     SeniorityByCount,
+    SeniorityByDate,
     SeniorityByMonths,
     # Salary overrides
-    SalaryOverrides,
     RalOverride,
-    RalOverrideMode,
     DestinationRalOverride,
+    # Dependants and deductions
+    FamilyComposition,
+    Art15Deductions,
+    # Supplements
+    OvertimeHours,
+    AbsenceDays,
+    LeaveInput,
+    SickInput,
+    FringeBenefitInput,
+    WelfareInput,
+    BonusInput,
     # Output
     PayrollResult,
     FiscalSimplification,
-    # Calculation
+    ScopeItem,
+    # Calculation envelope
     Calculation,
+    CalculationTrace,
     InputSnapshot,
-    # Provenance
-    RulesetIdentity,
-    VerificationStatus,
+    TraceCategory,
+    TraceStep,
+    # Rendering
+    AnnualBreakdown,
+    render_breakdown,
+    # Version
     engine_version,
-    # Contract domain
-    CCNL,
-    CCNLMeta,
-    CCNLParameters,
-    Level,
-    TaxSector,
-    TimeSeries,
-    # Tax domain
-    YearRules,
-    SurtaxRules,
 )
 ```
 
@@ -73,8 +74,8 @@ All types above are re-exported from the top-level `ccnl_engine` package.
 
 | Guide | Relevant API |
 |---|---|
-| [Employment types](../domain/employment-types.md) | `ContractPosition`, `Permanent`, `FixedTerm`, `Apprentice` |
-| [Pay components](../engine/pay-components.md) | `WorkArrangement`, `SeniorityByCount`, `SeniorityByMonths`, `SalaryOverrides` |
-| [Second level](../engine/second-level.md) | `Employer`, `SupplementaryAllowance` |
-| [Fiscal](../engine/fiscal.md) | `TaxProfile`, `FiscalSimplification`, `load_surtax_rules` |
-| [Domestic work](../engine/domestic-work.md) | `WorkArrangement.weekly_hours` |
+| [Employment types](../domain/employment-types.md) | `Permanent`, `FixedTerm`, `Apprentice` |
+| [Pay components](../engine/pay-components.md) | `SeniorityByCount`, `SeniorityByMonths`, `RalOverride` |
+| [Second level](../engine/second-level.md) | `Employer`, `Agreement` |
+| [Fiscal](../engine/fiscal.md) | `Jurisdiction`, `FiscalSimplification` |
+| [Domestic work](../engine/domestic-work.md) | `Employee.weekly_hours` |

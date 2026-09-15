@@ -105,28 +105,31 @@ so provenance survives round-trips through storage and APIs.
 ## Reading provenance in practice
 
 ```python
-from ccnl_engine import compute, load_ccnl, load_year_rules
-from ccnl_engine import Employee, ContractPosition, WorkArrangement, Permanent
 from datetime import date
 
-ccnl  = load_ccnl("commercio-confcommercio.json")
-rules = load_year_rules(2026, ccnl.meta.tax_sector, num_employees=50)
-
-employee = Employee(
-    position=ContractPosition(
-        level_code="4",
-        as_of=date(2026, 1, 1),
-        employment=Permanent(),
-    ),
-    arrangement=WorkArrangement(),
+from ccnl_engine import (
+    Employee,
+    Employer,
+    Employment,
+    PayrollScenario,
+    Permanent,
+    compute,
 )
 
-calc = compute(ccnl, rules, employee)
+calc = compute(PayrollScenario(
+    employee=Employee(level_code="4"),
+    employment=Employment(
+        ccnl="commercio-confcommercio.json",
+        contract=Permanent(),
+        employer=Employer(num_employees=50),
+        calculation_date=date(2026, 1, 1),
+    ),
+))
 result = calc.result
 
 for prov in result.provenance:
     src = prov.location.source_document
-    print(f"{prov.rule_id}: {src.title} ({src.url})")
+    print(f"{src.title} ({src.url})")
     print(f"  section: {prov.location.section}")
     print(f"  status:  {prov.extraction.verification_status}")
 ```
