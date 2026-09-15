@@ -148,6 +148,16 @@
         <input type="number" id="inp-apprentice-months" class="input input-bordered input-sm" value="0" min="0" max="60" />
       </div>
 
+      <div id="div-apprentice-track" style="display:none" class="full">
+        <div class="label-row">
+          <label for="sel-apprentice-track" data-i18n="form.apprentice.track.label">Apprenticeship track</label>
+          <span class="tip" tabindex="0" data-tip="Required when the CCNL defines more than one apprenticeship track for this level. Leave blank to let the engine select the unique applicable track.">?</span>
+        </div>
+        <select id="sel-apprentice-track" class="select select-bordered">
+          <option value="">— select track —</option>
+        </select>
+      </div>
+
       <!-- Region -->
       <div>
         <div class="label-row">
