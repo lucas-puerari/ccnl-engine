@@ -12,12 +12,13 @@ class FamilyComposition:
     """Composition of the worker's fiscally dependent family unit.
 
     Used to compute Art. 12 TUIR deductions applied by the employer as
-    *sostituto d'imposta*.  The engine uses ``gross_annual`` from the payroll
-    chain as a proxy for *reddito complessivo* (other income sources are not
-    modelled — this is a documented simplification).
+    *sostituto d'imposta*.  The engine uses ``taxable_income`` (gross minus
+    INPS employee contributions) as a proxy for *reddito complessivo* (other
+    income sources are not modelled — this is a documented simplification).
 
-    Computed deductions reduce ``irpef_net`` and therefore ``net_annual``
-    (unlike all other L3 features, which are informational only).
+    Computed deductions reduce ``irpef_net`` and therefore increase
+    ``net_annual`` (unlike all other L3 features, which are informational
+    only).
 
     Attributes:
         spouse_dependent: ``True`` when the worker's spouse (or civil partner)

@@ -49,7 +49,7 @@ print(payroll.trattamento_integrativo) # → Decimal('...') — Art. 1 D.L. 3/20
 print(payroll.fiscal_simplifications)  # → frozenset of items not computed by the engine
 print(payroll.employer_cost_annual)    # → Decimal('...')
 
-print(calculation.engine_version)      # → '0.5.0'
+print(calculation.engine_version)      # → '0.5.1'
 print(calculation.ruleset_version)     # → {'ccnl': '…', 'tax': '…', 'inps': '…', 'surtax': '…'}
 ```
 

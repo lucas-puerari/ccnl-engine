@@ -82,8 +82,8 @@ The `verification_status` field is the most important signal for callers:
 | `"unverified"` | The value was extracted but has not been independently checked |
 | `"needs_review"` | The value was verified but a subsequent renewal may have changed it |
 
-Salary-table provenance with `"verified"` status is what elevates a result's
-confidence to `"high"`. See [Trust: Confidence](confidence.md).
+All provenance records must have `"verified"` status for a result's confidence
+to reach `"high"`. See [Trust: Confidence](confidence.md).
 
 ## Propagation into `PayrollResult`
 
@@ -93,10 +93,10 @@ computed quantity to its source:
 
 ```python
 for prov in result.provenance:
-    print(prov.rule_id, prov.location.section)
-# salary_table    Tabella retributiva — livello C3
-# seniority       Art. 205 — Scatti di anzianità
-# inps            INPS circolare 12/2026 — aliquote industria
+    src = prov.location.source_document
+    print(src.kind, prov.location.section)
+# tabella_retributiva    Tabella retributiva — livello C3
+# contratto_collettivo   Art. 205 — Scatti di anzianità
 ```
 
 This tuple is also serialised by `result.to_dict()` and `result.to_json()`,
