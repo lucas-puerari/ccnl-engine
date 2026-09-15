@@ -854,6 +854,29 @@ class TestComputeAddizionali:
         )
         assert r.addizionale_comunale_annual == Decimal("0.00")
 
+    def test_irpef_zero_suppresses_addizionali(self) -> None:
+        """When IRPEF is fully offset by deductions, addizionali are zero.
+
+        A low RAL causes work_income_deduction to exceed irpef_gross, leaving
+        irpef_fiscal = 0. Even with a valid jurisdiction, both surtaxes must
+        be zero and NO_ADDIZIONALE_* flags must be present.
+        """
+        _mock_surtax[0] = self._surtax_rules()
+        r = compute(
+            _req(
+                as_of=date(2026, 1, 1),
+                negotiated_ral=_D("8000"),
+                jurisdiction=Jurisdiction(
+                    regione="TestRegione", comune_belfiore="X001"
+                ),
+            )
+        ).result
+        assert r.irpef_net == _D("0.00"), "irpef_net must be zero in no-tax area"
+        assert r.addizionale_regionale_annual == _D("0.00")
+        assert r.addizionale_comunale_annual == _D("0.00")
+        assert _FS.NO_ADDIZIONALE_REGIONALE in r.fiscal_simplifications
+        assert _FS.NO_ADDIZIONALE_COMUNALE in r.fiscal_simplifications
+
 
 class TestProvenanceChain:
     """The PayrollResult carries the provenance of the rules it consumed."""
