@@ -1209,7 +1209,7 @@ class TestL3Warning:
         """
         ts_schema = TimeSupplements(
             hourly_base_method="gross_incl_allowances",
-            overtime_bands=[],
+            overtime_bands=[],  # type: ignore[arg-type]
         )
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
@@ -1276,9 +1276,9 @@ class TestL3Warning:
                     ),
                 )
             ),
-            applies_to_kinds=[WorkKind.NIGHT],
+            applies_to_kinds=[WorkKind.NIGHT],  # type: ignore[arg-type]
         )
-        ts_schema = TimeSupplements(overtime_bands=[night_band])
+        ts_schema = TimeSupplements(overtime_bands=[night_band])  # type: ignore[arg-type]
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
@@ -1323,9 +1323,9 @@ class TestL3Warning:
                     ),
                 )
             ),
-            applies_to_kinds=[WorkKind.WEEKDAY],
+            applies_to_kinds=[WorkKind.WEEKDAY],  # type: ignore[arg-type]
         )
-        ts_schema = TimeSupplements(overtime_bands=[weekday_band])
+        ts_schema = TimeSupplements(overtime_bands=[weekday_band])  # type: ignore[arg-type]
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
@@ -1361,9 +1361,9 @@ class TestL3Warning:
                     ),
                 )
             ),
-            applies_to_kinds=[WorkKind.NIGHT_HOLIDAY],
+            applies_to_kinds=[WorkKind.NIGHT_HOLIDAY],  # type: ignore[arg-type]
         )
-        ts_schema = TimeSupplements(overtime_bands=[nh_band])
+        ts_schema = TimeSupplements(overtime_bands=[nh_band])  # type: ignore[arg-type]
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
@@ -1496,7 +1496,7 @@ class TestL3Leave:
         """Tier with highest matching service_months_min is selected."""
         leave_rules = LeaveRules(
             default_annual_days=_D("20"),
-            entitlement_tiers=[
+            entitlement_tiers=[  # type: ignore[arg-type]
                 LeaveEntitlementTier(service_months_min=0, annual_days=_D("20")),
                 LeaveEntitlementTier(service_months_min=36, annual_days=_D("25")),
             ],

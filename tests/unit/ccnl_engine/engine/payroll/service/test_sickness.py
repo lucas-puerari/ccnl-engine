@@ -228,7 +228,7 @@ class TestEffectiveIntegrationRate:
             carenza_integration_rate=_D("1"),
             full_pay_integration_rate=_D("1"),
             max_duration_days=400,
-            tiers=[
+            tiers=[  # type: ignore[arg-type]
                 SicknessTier(month_from=1, month_until=10, integration_rate=_D("1")),
                 SicknessTier(month_from=10, month_until=13, integration_rate=_D("0.9")),
                 SicknessTier(
@@ -279,7 +279,7 @@ class TestEffectiveIntegrationRate:
         rules = SicknessRules(
             carenza_integration_rate=_D("1"),
             full_pay_integration_rate=_D("1"),
-            tiers=[
+            tiers=[  # type: ignore[arg-type]
                 SicknessTier(
                     month_from=10, month_until=None, integration_rate=_D("0.5")
                 ),
@@ -296,7 +296,7 @@ class TestEffectiveIntegrationRate:
         rules = SicknessRules(
             carenza_integration_rate=_D("1"),
             full_pay_integration_rate=_D("0.80"),
-            tiers=[
+            tiers=[  # type: ignore[arg-type]
                 SicknessTier(month_from=5, month_until=10, integration_rate=_D("0.6")),
             ],
         )
@@ -565,7 +565,7 @@ class TestInpsBoundaryHelpers:
         rules = SicknessRules(
             carenza_integration_rate=_D("1"),
             full_pay_integration_rate=_D("1"),
-            tiers=[
+            tiers=[  # type: ignore[arg-type]
                 SicknessTier(month_from=1, month_until=10, integration_rate=_D("1")),
                 SicknessTier(
                     month_from=10, month_until=None, integration_rate=_D("0.9")
@@ -580,7 +580,7 @@ class TestInpsBoundaryHelpers:
         rules = SicknessRules(
             carenza_integration_rate=_D("1"),
             full_pay_integration_rate=_D("1"),
-            tiers=[
+            tiers=[  # type: ignore[arg-type]
                 SicknessTier(month_from=1, month_until=10, integration_rate=_D("1")),
                 SicknessTier(
                     month_from=10, month_until=None, integration_rate=_D("0.9")
@@ -610,7 +610,7 @@ class TestTierRateSegmentsWithInpsBoundary:
         rules = SicknessRules(
             carenza_integration_rate=_D("1"),
             full_pay_integration_rate=_D("1"),
-            tiers=[
+            tiers=[  # type: ignore[arg-type]
                 SicknessTier(month_from=1, month_until=99, integration_rate=_D("1")),
             ],
         )
@@ -635,7 +635,7 @@ class TestTierRateSegmentsWithInpsBoundary:
         rules = SicknessRules(
             carenza_integration_rate=_D("1"),
             full_pay_integration_rate=_D("1"),
-            tiers=[
+            tiers=[  # type: ignore[arg-type]
                 SicknessTier(month_from=1, month_until=99, integration_rate=_D("1")),
             ],
         )

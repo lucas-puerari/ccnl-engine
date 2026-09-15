@@ -44,7 +44,7 @@ def _rule_provenance() -> RuleProvenance:
                 title="Document",
                 kind=SourceKind.TABELLA_RETRIBUTIVA,
                 url="https://example.com",
-                pages=["12"],
+                pages=("12",),
                 published_on=date(2025, 1, 1),
             ),
             page="12",

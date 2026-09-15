@@ -82,13 +82,13 @@ class SourceDocument(BaseModel):
             (see :class:`SourceAuthority`). Not stored in the JSON.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     document_id: str
     title: str
     kind: SourceKind
     url: str = Field(default="unavailable")
-    pages: list[str] = Field(default=[])
+    pages: tuple[str, ...] = Field(default=())
     published_on: date | None = None
     jurisdiction: str = "it"
 
@@ -110,7 +110,7 @@ class SourceLocation(BaseModel):
         quote: Exact excerpt of the source text backing the rule.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     source_document: SourceDocument
     page: str | None = None

@@ -21,7 +21,7 @@ class RuleProvenance(BaseModel):
         note: Free-form context (e.g. a known simplification).
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     location: SourceLocation
     extraction: ExtractionTrace

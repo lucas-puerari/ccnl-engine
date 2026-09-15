@@ -30,7 +30,7 @@ _DOC = SourceDocument(
     title="Gazzetta Ufficiale",
     kind=SourceKind.GAZZETTA,
     url="https://www.gazzettaufficiale.it",
-    pages=["12-14"],
+    pages=("12-14",),
     published_on=date(2025, 11, 22),
 )
 
@@ -47,7 +47,7 @@ class TestSourceDocument:
         """Optional fields default to safe values."""
         doc = SourceDocument(document_id="d", title="T", kind=SourceKind.ALTRO)
         assert doc.url == "unavailable"
-        assert doc.pages == []
+        assert doc.pages == ()
         assert doc.jurisdiction == "it"
 
     @pytest.mark.parametrize(
@@ -119,13 +119,13 @@ class TestExtractionTrace:
             method=ExtractionMethod.BACK_CALCULATION,
             extraction_timestamp=_TS,
             effective_from=_DATE,
-            back_calculation=[
+            back_calculation=(
                 BackCalculationStep(
                     description="conglobate seniority",
                     inputs={"floor": "100", "rate": "0.02"},
                     result=Decimal(102),
-                )
-            ],
+                ),
+            ),
         )
         assert trace.back_calculation is not None
         assert trace.back_calculation[0].result == Decimal(102)
@@ -137,9 +137,9 @@ class TestExtractionTrace:
                 method=ExtractionMethod.MANUAL,
                 extraction_timestamp=_TS,
                 effective_from=_DATE,
-                back_calculation=[
-                    BackCalculationStep(description="x", inputs={}, result=Decimal(1))
-                ],
+                back_calculation=(
+                    BackCalculationStep(description="x", inputs={}, result=Decimal(1)),
+                ),
             )
 
     def test_ai_method_without_model_raises(self) -> None:

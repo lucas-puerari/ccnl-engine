@@ -6,9 +6,11 @@ until a human curator reviews an extraction, mirroring the existing
 ``human_reviewed: false`` convention on CCNL data files.
 """
 
+from collections.abc import Mapping
 from datetime import date, datetime
 from decimal import Decimal
 from enum import StrEnum
+from types import MappingProxyType
 from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -34,14 +36,20 @@ class BackCalculationStep(BaseModel):
     Attributes:
         description: What this step computes.
         inputs: Named formula inputs (the base and the derived amount).
+            Read-only: the mapping is frozen after construction.
         result: The derived rule value.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     description: str
-    inputs: dict[str, Decimal | str]
+    inputs: Mapping[str, Decimal | str] = Field(default_factory=dict)
     result: Decimal
+
+    @model_validator(mode="after")
+    def _freeze_inputs(self) -> Self:
+        object.__setattr__(self, "inputs", MappingProxyType(dict(self.inputs)))  # noqa: PLC2801
+        return self
 
 
 class ExtractionTrace(BaseModel):
@@ -60,7 +68,7 @@ class ExtractionTrace(BaseModel):
         back_calculation: Steps of a ``back_calculation`` extraction.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     method: ExtractionMethod
     model: str | None = None
@@ -70,7 +78,7 @@ class ExtractionTrace(BaseModel):
     verification_status: VerificationStatus = VerificationStatus.UNVERIFIED
     effective_from: date
     effective_until: date | None = None
-    back_calculation: list[BackCalculationStep] | None = Field(
+    back_calculation: tuple[BackCalculationStep, ...] | None = Field(
         default=None,
         validate_default=True,
     )
