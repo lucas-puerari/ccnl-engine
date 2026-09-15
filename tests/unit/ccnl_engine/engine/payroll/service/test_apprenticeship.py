@@ -61,13 +61,13 @@ class TestFindPeriodIndex:
 
     def test_not_found_raises(self) -> None:
         """months_elapsed before the first period raises ValueError."""
-        periods = [
+        periods = (
             ApprenticeshipPeriod(
                 months_from=10, months_until=None, percentage=_D("0.8")
-            )
-        ]
+            ),
+        )
         with pytest.raises(ValueError, match="months_elapsed"):
-            _find_period_index(periods, months_elapsed=5)
+            _find_period_index(periods, months_elapsed=5)  # type: ignore[arg-type]
 
 
 # ---------------------------------------------------------------------------

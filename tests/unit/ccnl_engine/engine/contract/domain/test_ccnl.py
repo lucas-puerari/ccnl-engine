@@ -45,13 +45,13 @@ def _ts(value: str) -> TimeSeries:
         A TimeSeries with one open-ended period starting 2020-01-01.
     """
     return TimeSeries(
-        periods=[
+        periods=(
             ValidityPeriod(
                 valid_from=date(2020, 1, 1),
                 valid_until=None,
                 value=Decimal(value),
-            )
-        ]
+            ),
+        )
     )
 
 
