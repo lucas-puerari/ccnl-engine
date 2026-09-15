@@ -18,9 +18,10 @@ def load_ccnl(filename: str) -> CCNL:
 
     The returned :class:`CCNL` instance is shared across all callers in the
     same process (the result is cached after the first load).  All models in
-    the CCNL hierarchy are frozen (``model_config frozen=True``), so any
-    attempt to mutate the returned object raises a ``ValidationError``.
-    Callers must treat the object as read-only.
+    the CCNL hierarchy are frozen (``model_config frozen=True``) and all
+    collection fields use immutable types (``tuple``), making the entire
+    object graph transitively read-only.  Callers must not attempt to
+    modify the returned object.
 
     Args:
         filename: Name of the JSON data file bundled under

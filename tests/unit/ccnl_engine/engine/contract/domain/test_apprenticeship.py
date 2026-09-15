@@ -185,4 +185,4 @@ class TestDestinationLevels:
         track = _pct_track(_pct_period(0, None))
         track["destination_levels"] = ["3", "4"]
         parsed = _ta.validate_python(track)
-        assert parsed.destination_levels == ["3", "4"]
+        assert parsed.destination_levels == ("3", "4")
