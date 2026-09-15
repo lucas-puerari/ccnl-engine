@@ -383,14 +383,14 @@ def _run_wr_art15_deductions(
     statutory ceilings.  They reduce the IRPEF actually withheld by the
     employer and are NOT informational-only (unlike most work-rules features).
 
-    Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply here: the
-    EUR 440 clawback is specific to Art. 12 + Art. 13 TUIR.
+    The sterilizzazione (Art. 1 c. 3-4 L. 199/2025) is applied by the
+    caller after this function returns.
 
     Args:
         scenario: The payroll scenario.
         irpef_gross: IRPEF before any deductions.
-        work_income_deduction: Art. 13 work-income deduction (post-sterilizzazione).
-        fam_total: Art. 12 family deductions total (post-sterilizzazione).
+        work_income_deduction: Art. 13 work-income deduction.
+        fam_total: Art. 12 family deductions total.
         ulteriore_detrazione_lavoro: Art. 1 c. 6 L. 207/2024 detrazione; reduces
             IRPEF capacity available to Art. 15 credits.
         year: Fiscal year for loading rules.
@@ -552,19 +552,6 @@ def compute_fiscal(
         employer_withholds_irpef=employer_withholds_irpef,
     )
 
-    # Sterilizzazione detrazioni (Art. 1 c. 3-4 L. 199/2025): for reddito
-    # complessivo > EUR 200 000, reduce Art. 12 + Art. 13 deductions by
-    # EUR 440 (clawback of the 35% → 33% bracket benefit on 28k-50k slice).
-    # Art. 15 oneri are not affected.
-    effective_art12_art13 = _irpef.apply_sterilizzazione_detrazioni(
-        fam_total + work_income_deduction,
-        taxable_income,
-        rules.sterilizzazione_detrazioni,
-    )
-    sterilizzazione_clawback = money(
-        (fam_total + work_income_deduction) - effective_art12_art13
-    )
-
     # Ulteriore detrazione del lavoro dipendente (Art. 1 c. 6 L. 207/2024):
     # flat EUR 1 000 for taxable income in (20 000, 32 000].
     # Must be computed before Art. 15 so it can be deducted from available
@@ -578,19 +565,36 @@ def compute_fiscal(
         ulteriore_detrazione_lavoro = _ZERO
 
     # Art. 15 TUIR deductions (interessi passivi mutuo prima casa, etc.).
-    # Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply to Art. 15
-    # oneri, but it does reduce the Art. 12 capacity available to Art. 15
-    # credits.  Pass the post-sterilizzazione Art. 12 amount so that
-    # art15_unused reflects the actual remaining IRPEF capacity.
     art15_total, art15_unused = _run_wr_art15_deductions(
         scenario=scenario,
         irpef_gross=irpef_gross,
         work_income_deduction=work_income_deduction,
-        fam_total=money(fam_total - sterilizzazione_clawback),
+        fam_total=fam_total,
         ulteriore_detrazione_lavoro=ulteriore_detrazione_lavoro,
         year=year,
         employer_withholds_irpef=employer_withholds_irpef,
     )
+
+    # Sterilizzazione detrazioni (Art. 1 c. 3-4 L. 199/2025): for reddito
+    # complessivo > EUR 200 000, reduce oneri detraibili al 19% (Art. 15 c. 1
+    # lett. a, b, d, e TUIR; not spese sanitarie lett. c) by EUR 440.
+    effective_art15 = _irpef.apply_sterilizzazione_detrazioni(
+        art15_total,
+        taxable_income,
+        rules.sterilizzazione_detrazioni,
+    )
+    sterilizzazione_clawback = money(art15_total - effective_art15)
+    if sterilizzazione_clawback > _ZERO and employer_withholds_irpef:
+        art15_capacity = money(
+            max(
+                _ZERO,
+                irpef_gross
+                - work_income_deduction
+                - fam_total
+                - ulteriore_detrazione_lavoro,
+            )
+        )
+        art15_unused = money(max(_ZERO, effective_art15 - art15_capacity))
 
     # irpef_fiscal: the tax actually owed after all deductions, regardless of
     # whether the employer is a sostituto d'imposta.  Used to gate addizionali
