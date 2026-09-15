@@ -165,6 +165,7 @@ def build_fiscal_trace(
     contribution_base: Decimal,
     inps_employee_annual: Decimal,
     inps_employer_annual: Decimal,
+    inps_employee_additional_annual: Decimal = Decimal(0),
     employer_funds_annual: Decimal,
     tfr_annual: Decimal,
     taxable_income: Decimal,
@@ -200,6 +201,14 @@ def build_fiscal_trace(
     The only structural fork is ``employer_withholds_irpef``: when ``False``,
     IRPEF and deduction steps are labelled as informational.
 
+    ``inps_formula`` is a shared override used for the domestic flat-hour
+    model (``tariffa_oraria_INPS * ore_annuali_contratto``), where the same
+    description applies to both employee and employer.  For the standard
+    percentage model the employee and employer formulas are built separately:
+    the employee formula includes the 1% additional IVS charge when
+    ``inps_employee_additional_annual > 0``, while the employer formula uses
+    the employer rate with its own IVS split (no addizionale).
+
     Returns:
         Ordered tuple of :class:`TraceStep` covering the full gross-to-net
         derivation, each annotated with ``formula``, ``source`` and
@@ -207,12 +216,38 @@ def build_fiscal_trace(
     """
     irpef_suffix = "" if employer_withholds_irpef else " (informativo)"
 
-    # When the IVS ceiling applies, employee INPS is split across two bases.
-    if ivs_ceiling_applies and ivs_ceiling is not None and inps_formula is None:
-        inps_formula = (
-            f"min(base_INPS, {ivs_ceiling}) * aliquota_IVS_dipendente"
-            " + base_INPS * aliquota_non_IVS_dipendente"
-        )
+    # Domestic override: same per-hour formula for both employee and employer.
+    # Standard model: build separate formulas when the IVS ceiling applies or
+    # when the 1% employee additional is present.
+    has_additional = inps_employee_additional_annual > Decimal(0)
+    employee_inps_formula: str | None = inps_formula
+    employer_inps_formula: str | None = inps_formula
+    if inps_formula is None:
+        if ivs_ceiling_applies and ivs_ceiling is not None:
+            # Employee: IVS-capped base + uncapped non-IVS + optional addizionale.
+            additional_term = (
+                f" + max(0, min(base_INPS, {ivs_ceiling})"
+                f" - soglia_addizionale_1pct) * 0.01"
+                if has_additional
+                else ""
+            )
+            employee_inps_formula = (
+                f"min(base_INPS, {ivs_ceiling}) * aliquota_IVS_dipendente"
+                f" + base_INPS * aliquota_non_IVS_dipendente"
+                f"{additional_term}"
+            )
+            # Employer: same IVS split but with employer rates, no addizionale.
+            employer_inps_formula = (
+                f"min(base_INPS, {ivs_ceiling}) * aliquota_IVS_datore"
+                " + base_INPS * aliquota_non_IVS_datore"
+            )
+        elif has_additional:
+            # No ceiling, but the 1% additional applies.
+            employee_inps_formula = (
+                "base_imponibile_INPS * aliquota_dipendente"
+                " + max(0, base_imponibile_INPS - soglia_addizionale_1pct) * 0.01"
+            )
+            # Employer: static meta default (None) is sufficient.
     tfr_formula = f"base_TFR ÷ {tfr_divisor}"
     # When employer doesn't withhold IRPEF, the NET formula reflects only
     # the employee INPS deduction; IRPEF and addizionali are informational.
@@ -257,7 +292,7 @@ def build_fiscal_trace(
             TraceCategory.INPS_EMPLOYEE,
             "Contributi INPS dipendente",
             inps_employee_annual,
-            formula=inps_formula,
+            formula=employee_inps_formula,
         ),
         _step(
             TraceCategory.TAXABLE_INCOME,
@@ -335,7 +370,7 @@ def build_fiscal_trace(
             TraceCategory.INPS_EMPLOYER,
             "Contributi INPS datore (informativo)",
             inps_employer_annual,
-            formula=inps_formula,
+            formula=employer_inps_formula,
         ),
         _step(
             TraceCategory.EMPLOYER_FUNDS,

@@ -75,15 +75,18 @@ def _inps_standard(
     worker_category: LevelCategory | None,
     *,
     ivs_ceiling_applies: bool,
-) -> tuple[Decimal, Decimal]:
-    """Return (employee_annual, employer_annual) via the standard percentage model.
+) -> tuple[Decimal, Decimal, Decimal]:
+    """Return ``(employee, employer, additional)`` via the standard percentage model.
 
     The employee contribution includes the 1% additional IVS charge on
     earnings above the first pensionable band (Art. 3-ter D.L. 384/1992)
     when ``rules.inps.employee_additional_rate`` is configured.
 
     Returns:
-        Rounded annual INPS contributions for both parties.
+        A 3-tuple of (employee INPS, employer INPS, employee 1% additional),
+        all rounded to two decimal places.  The additional is returned
+        separately so callers can include it in trace formulas without
+        re-computing it.
     """
     rates = _contrib.resolve_rates(rules, contract, worker_category)
     employee_inps = _contrib.inps_contribution(
@@ -106,7 +109,7 @@ def _inps_standard(
         rules,
         ivs_ceiling_applies=ivs_ceiling_applies,
     )
-    return employee_inps, employer_inps
+    return employee_inps, employer_inps, additional
 
 
 def _inps_contributions(
@@ -118,17 +121,19 @@ def _inps_contributions(
     *,
     weekly_hours: Decimal | None,
     ivs_ceiling_applies: bool,
-) -> tuple[Decimal, Decimal]:
-    """Return (inps_employee_annual, inps_employer_annual) for the employee.
+) -> tuple[Decimal, Decimal, Decimal]:
+    """Return (inps_employee_annual, inps_employer_annual, additional_annual).
 
     Routes to the flat per-hour domestic model when
     ``rules.domestic_contributions`` is set, otherwise uses the standard
     percentage model via
     :func:`~ccnl_engine.engine.payroll.service.contributions.resolve_rates`.
+    The domestic model does not separate the 1% additional (the per-hour
+    tariff is composite), so it returns zero for the additional component.
 
     Returns:
-        A tuple of (employee annual INPS contribution, employer annual
-        INPS contribution), both rounded to two decimal places.
+        A 3-tuple of (employee INPS, employer INPS, employee 1% additional),
+        all rounded to two decimal places.
 
     Raises:
         ValueError: If the domestic model is active and ``weekly_hours`` is None.
@@ -137,12 +142,13 @@ def _inps_contributions(
         if weekly_hours is None:
             msg = "weekly_hours is required when rules.domestic_contributions is set"
             raise ValueError(msg)
-        return _inps_domestic(
+        emp, er = _inps_domestic(
             rules.domestic_contributions,
             contract,
             gross_monthly,
             weekly_hours,
         )
+        return emp, er, _ZERO
     return _inps_standard(
         rules,
         contract,
@@ -429,6 +435,7 @@ class FiscalPay:
 
     inps_employee_annual: Decimal
     inps_employer_annual: Decimal
+    inps_employee_additional_annual: Decimal
     employer_funds_annual: Decimal
     tfr_annual: Decimal
     bilateral_employee_annual: Decimal
@@ -506,14 +513,16 @@ def compute_fiscal(
     j = scenario.employee.jurisdiction
     ivs_ceiling_applies = scenario.employee.ivs_ceiling_applies
 
-    inps_employee_annual, inps_employer_annual = _inps_contributions(
-        rules,
-        scenario.employment.contract,
-        gross.gross_monthly,
-        gross.contribution_base,
-        gross.worker_category,
-        weekly_hours=scenario.employee.weekly_hours,
-        ivs_ceiling_applies=ivs_ceiling_applies,
+    inps_employee_annual, inps_employer_annual, inps_employee_additional_annual = (
+        _inps_contributions(
+            rules,
+            scenario.employment.contract,
+            gross.gross_monthly,
+            gross.contribution_base,
+            gross.worker_category,
+            weekly_hours=scenario.employee.weekly_hours,
+            ivs_ceiling_applies=ivs_ceiling_applies,
+        )
     )
     employer_funds_annual = _employer_funds(
         ccnl,
@@ -697,6 +706,7 @@ def compute_fiscal(
     return FiscalPay(
         inps_employee_annual=inps_employee_annual,
         inps_employer_annual=inps_employer_annual,
+        inps_employee_additional_annual=inps_employee_additional_annual,
         employer_funds_annual=employer_funds_annual,
         tfr_annual=tfr_annual,
         bilateral_employee_annual=bilateral_employee_annual,

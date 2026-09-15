@@ -12,6 +12,7 @@ from ccnl_engine.engine.payroll.domain.calculation import (
     TraceCategory,
     TraceStep,
 )
+from ccnl_engine.engine.payroll.service import contributions as _contrib
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.trace import build_fiscal_trace
 from ccnl_engine.knowledge.version import __version__ as knowledge_version
@@ -269,11 +270,24 @@ def build_calculation(
     )
     ivs_ceiling_applies = scenario.employee.ivs_ceiling_applies
     ivs_ceiling = rules.inps.ceiling if rules.inps is not None else None
+    # Compute the 1% additional separately so build_fiscal_trace can include
+    # it in the employee formula text.  The domestic flat-hour model has no
+    # separate additional component (the per-hour tariff is composite).
+    inps_employee_additional_annual = (
+        _contrib.inps_employee_additional(
+            gross.contribution_base,
+            rules.inps,
+            ivs_ceiling_applies=ivs_ceiling_applies,
+        )
+        if rules.domestic_contributions is None
+        else _ZERO
+    )
     fiscal_steps = build_fiscal_trace(
         gross_annual=result.gross_annual,
         contribution_base=gross.contribution_base,
         inps_employee_annual=result.inps_employee_annual,
         inps_employer_annual=result.inps_employer_annual,
+        inps_employee_additional_annual=inps_employee_additional_annual,
         employer_funds_annual=result.employer_funds_annual,
         tfr_annual=result.tfr_annual,
         taxable_income=result.taxable_income,

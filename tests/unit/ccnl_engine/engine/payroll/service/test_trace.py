@@ -471,6 +471,60 @@ class TestR25DynamicFormulas:
         emp = _step_by(steps, TraceCategory.INPS_EMPLOYER)
         assert emp.formula == "tariffa_oraria_INPS * ore_annuali_contratto"
 
+    def test_ivs_ceiling_employer_formula_uses_datore_rates(self) -> None:
+        """When IVS ceiling applies, INPS_EMPLOYER formula uses employer rates.
+
+        Employee and employer formulas must be distinct: the employee formula
+        carries the IVS split with employee rates (plus optional addizionale),
+        while the employer formula uses employer rates only, with no addizionale.
+        Reusing the employee formula for the employer step (the previous bug)
+        would give a description inconsistent with the computed amount.
+        """
+        steps = _build(
+            ivs_ceiling_applies=True,
+            ivs_ceiling=Decimal(120000),
+        )
+        emp_step = _step_by(steps, TraceCategory.INPS_EMPLOYEE)
+        er_step = _step_by(steps, TraceCategory.INPS_EMPLOYER)
+        # Employee formula has "dipendente" rates.
+        assert emp_step.formula is not None
+        assert "dipendente" in emp_step.formula
+        # Employer formula has "datore" rates and is distinct from employee.
+        assert er_step.formula is not None
+        assert "datore" in er_step.formula
+        assert er_step.formula != emp_step.formula
+
+    def test_additional_without_ceiling_formula_mentions_addizionale(self) -> None:
+        """When addizionale > 0 but no IVS ceiling, employee formula mentions it.
+
+        This covers the branch for workers who owe the 1% additional IVS
+        charge (Art. 3-ter D.L. 384/1992) but are not subject to the
+        massimale retributivo.
+        """
+        steps = _build(
+            inps_employee_additional_annual=Decimal("500.00"),
+            ivs_ceiling_applies=False,
+        )
+        emp_step = _step_by(steps, TraceCategory.INPS_EMPLOYEE)
+        assert emp_step.formula is not None
+        assert "addizionale" in emp_step.formula
+        # Employer formula stays at the static default (no addizionale term).
+        er_step = _step_by(steps, TraceCategory.INPS_EMPLOYER)
+        assert er_step.formula is not None
+        assert "addizionale" not in er_step.formula
+
+    def test_ivs_ceiling_with_additional_employee_formula_includes_both(self) -> None:
+        """With IVS ceiling AND addizionale, employee formula mentions both."""
+        steps = _build(
+            ivs_ceiling_applies=True,
+            ivs_ceiling=Decimal(120000),
+            inps_employee_additional_annual=Decimal("937.00"),
+        )
+        emp_step = _step_by(steps, TraceCategory.INPS_EMPLOYEE)
+        assert emp_step.formula is not None
+        assert "dipendente" in emp_step.formula
+        assert "addizionale" in emp_step.formula
+
     def test_net_formula_describes_esenzione_when_not_withholding(self) -> None:
         """When employer_withholds_irpef=False, NET formula notes esenzione ritenute."""
         steps = _build(employer_withholds_irpef=False)
