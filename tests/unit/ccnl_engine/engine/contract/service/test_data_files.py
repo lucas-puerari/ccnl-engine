@@ -248,7 +248,7 @@ class TestLoadMetalmeccanico:
         assert set(by_name["professionalizzante_36"].destination_levels) == elig
         assert set(by_name["professionalizzante_30"].destination_levels) == elig
         # 24m track is D2-only
-        assert by_name["professionalizzante_24"].destination_levels == ["D2"]
+        assert by_name["professionalizzante_24"].destination_levels == ("D2",)
         # All tracks have 85/90/95/100% progression
         for track in ccnl.apprenticeship:
             pcts = [p.percentage for p in track.periods]  # type: ignore[union-attr]
@@ -315,7 +315,7 @@ class TestLoadMetalmeccanicoConfapi:
         ccnl = load_ccnl("metalmeccanico-confapi.json")
         track = ccnl.apprenticeship[0]
         assert isinstance(track, ApprenticeshipUnderClassification)
-        assert track.destination_levels == ["3", "4", "5", "6", "7", "8", "9"]
+        assert track.destination_levels == ("3", "4", "5", "6", "7", "8", "9")
         periods = track.periods
         assert len(periods) == 3
         assert periods[0].levels_below == 2
@@ -554,7 +554,7 @@ class TestLoadTurismoConfcommercio:
         """
         ccnl = load_ccnl("turismo-confcommercio.json")
         assert isinstance(ccnl.apprenticeship[0], ApprenticeshipPercentage)
-        assert ccnl.apprenticeship[0].destination_levels == ["5", "4", "3", "2", "6S"]
+        assert ccnl.apprenticeship[0].destination_levels == ("5", "4", "3", "2", "6S")
         periods = ccnl.apprenticeship[0].periods
         assert len(periods) == 4
         assert periods[0].percentage == Decimal("0.80")
@@ -767,7 +767,7 @@ class TestLoadCooperativeSociali:
         by_name = {t.name: t for t in ccnl.apprenticeship}
         # 18m track: A2 only, split at 9m
         t18 = by_name["professionalizzante_18m"]
-        assert t18.destination_levels == ["A2"]
+        assert t18.destination_levels == ("A2",)
         assert t18.periods[0].months_until == 9
         assert t18.periods[0].percentage == Decimal("0.85")  # type: ignore[union-attr]
         # 24m track: B, C1, C2, C3
@@ -1197,7 +1197,7 @@ class TestLoadTessileSmi:
         assert t.periods[2].levels_below == 0  # type: ignore[union-attr]
         # prof_L2: 0-12m 1 below, 12m+ at destination
         t2 = by_name["prof_L2"]
-        assert t2.destination_levels == ["2"]
+        assert t2.destination_levels == ("2",)
         assert t2.periods[0].levels_below == 1  # type: ignore[union-attr]
         assert t2.periods[1].months_until is None
 
@@ -1295,7 +1295,7 @@ class TestLoadAlimentariFederalimentare:
         """
         ccnl = load_ccnl("alimentari-federalimentare.json")
         assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
-        assert ccnl.apprenticeship[0].destination_levels == ["4", "3", "3A", "2", "1"]
+        assert ccnl.apprenticeship[0].destination_levels == ("4", "3", "3A", "2", "1")
 
     def test_alimentari_federalimentare_apprentice_under_classification(self) -> None:
         """Apprentice 5 months elapsed → under level 4 (period 0-9 months)."""
@@ -1403,7 +1403,7 @@ class TestLoadDmoFederdistribuzione:
         assert t_ii_v.periods[1].levels_below == 1  # type: ignore[union-attr]
         assert t_ii_v.periods[1].months_until is None
         t_vi = by_name["standard_VI"]
-        assert t_vi.destination_levels == ["VI"]
+        assert t_vi.destination_levels == ("VI",)
         assert t_vi.periods[0].levels_below == 1  # type: ignore[union-attr]
         assert t_vi.periods[0].months_until == 12
         assert t_vi.periods[1].levels_below == 0  # type: ignore[union-attr]
@@ -1861,7 +1861,7 @@ class TestLoadTelecomunicazioniAsstel:
         """Apprenticeship: under_classification covering levels B1, B2, C1, C2, C3."""
         ccnl = load_ccnl("telecomunicazioni-asstel.json")
         assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
-        expected = ["B1", "B2", "C1", "C2", "C3"]
+        expected = ("B1", "B2", "C1", "C2", "C3")
         assert ccnl.apprenticeship[0].destination_levels == expected
 
 
@@ -1933,7 +1933,7 @@ class TestLoadVigilanzaPrivataAssiv:
         """Apprenticeship: percentage type, destination levels 6-1 (all GPG)."""
         ccnl = load_ccnl("vigilanza-privata-assiv.json")
         assert isinstance(ccnl.apprenticeship[0], ApprenticeshipPercentage)
-        expected = ["6", "5", "4", "3", "2", "1"]
+        expected = ("6", "5", "4", "3", "2", "1")
         assert ccnl.apprenticeship[0].destination_levels == expected
         assert ccnl.apprenticeship[0].periods[0].percentage == Decimal("1.00")
 
@@ -2034,7 +2034,7 @@ class TestLoadLegnoArredamentoFederlegno:
             isinstance(t, ApprenticeshipUnderClassification)
             for t in ccnl.apprenticeship
         )
-        assert ccnl.apprenticeship[0].destination_levels == ["AE3", "AE4"]
+        assert ccnl.apprenticeship[0].destination_levels == ("AE3", "AE4")
         # Track 3 covers the Specializzato area including AS3
         assert "AS3" in ccnl.apprenticeship[3].destination_levels
 
@@ -2113,7 +2113,7 @@ class TestLoadEdiliziaArtigianatoCna:
         """
         ccnl = load_ccnl("edilizia-artigianato-cna.json")
         assert isinstance(ccnl.apprenticeship[0], ApprenticeshipPercentage)
-        assert ccnl.apprenticeship[0].destination_levels == ["4"]
+        assert ccnl.apprenticeship[0].destination_levels == ("4",)
         assert len(ccnl.apprenticeship[0].periods) == 7
         assert ccnl.apprenticeship[0].periods[0].percentage == Decimal("0.74")
         assert ccnl.apprenticeship[0].periods[-1].percentage == Decimal("1.00")
@@ -2144,7 +2144,7 @@ class TestLoadEdiliziaArtigianatoCna:
         assert sp2.periods[-2].months_until == 45  # last active period ends at 45m
 
         sp3 = by_name["specialistico_3sp"]
-        assert sp3.destination_levels == ["3"]
+        assert sp3.destination_levels == ("3",)
         assert isinstance(sp3, ApprenticeshipPercentage)
         assert len(sp3.periods) == 5  # 4 active + open 100%
         assert sp3.periods[3].percentage == Decimal("0.91")
@@ -2205,7 +2205,7 @@ class TestLoadGasAcquaUtilitalia:
         t24 = ccnl.apprenticeship_track_named("professionalizzante_24")
         assert set(t24.destination_levels) == {"7", "8"}
         t36 = ccnl.apprenticeship_track_named("professionalizzante_36")
-        assert t36.destination_levels == ["3"]
+        assert t36.destination_levels == ("3",)
 
     def test_gas_acqua_utilitalia_level_ordering(self) -> None:
         """Level Q has highest order; level 1 has lowest order."""
@@ -2384,7 +2384,7 @@ class TestLoadAcconciaturaesteticaConfartigianato:
         """Gruppo 3 track: dest=['2'], 6 semestri, 70/70/70/78/85/85."""
         ccnl = load_ccnl("acconciatura-estetica-confartigianato.json")
         track = next(t for t in ccnl.apprenticeship if t.name == "gruppo_3")
-        assert track.destination_levels == ["2"]
+        assert track.destination_levels == ("2",)
         assert len(track.periods) == 6
         pcts = [p.percentage for p in track.periods]  # type: ignore[union-attr]
         assert pcts == [
@@ -2475,16 +2475,16 @@ class TestLoadPanificazioneArtigianatoConfartigianato:
         assert len(ccnl.apprenticeship) == 7
         by_name = {t.name: t for t in ccnl.apprenticeship}
         # Existing gruppo 1 unchanged
-        assert by_name["gruppo_1_panificatori"].destination_levels == ["A1"]
+        assert by_name["gruppo_1_panificatori"].destination_levels == ("A1",)
         # Gruppo A2: 54m, 6 periods
         t_a2 = by_name["gruppo_a2_panificatori"]
-        assert t_a2.destination_levels == ["A2"]
+        assert t_a2.destination_levels == ("A2",)
         assert len(t_a2.periods) == 6
         assert t_a2.periods[0].percentage == Decimal("0.70")  # type: ignore[union-attr]
         assert t_a2.periods[-1].months_until is None
         # Gruppo B1: 36m, 4 periods (70/75/84/100)
         t_b1 = by_name["gruppo_b1_addetti"]
-        assert t_b1.destination_levels == ["B1"]
+        assert t_b1.destination_levels == ("B1",)
         pcts_b1 = [p.percentage for p in t_b1.periods]  # type: ignore[union-attr]
         assert pcts_b1[2] == Decimal("0.84")
 
@@ -2652,12 +2652,12 @@ class TestLoadBccCreditoCooperativo:
         ccnl = load_ccnl("bcc-credito-cooperativo.json")
         assert ccnl.apprenticeship
         assert isinstance(ccnl.apprenticeship[0], ApprenticeshipUnderClassification)
-        assert ccnl.apprenticeship[0].destination_levels == [
+        assert ccnl.apprenticeship[0].destination_levels == (
             "3AP1",
             "3AP2",
             "3AP3",
             "3AP4",
-        ]
+        )
 
     def test_bcc_credito_cooperativo_apprenticeship_periods(self) -> None:
         """Months 0-18 at 2AP-2° pay level, months 18+ at destination 3AP1."""
@@ -3474,8 +3474,8 @@ class TestLoadPelliCuoioIndustriaAssopellettieri:
         for track in ccnl.apprenticeship:
             assert isinstance(track, ApprenticeshipUnderClassification)
         dest_levels = {t.name: t.destination_levels for t in ccnl.apprenticeship}
-        assert dest_levels["dest_6"] == ["6"]
-        assert dest_levels["dest_2"] == ["2"]
+        assert dest_levels["dest_6"] == ("6",)
+        assert dest_levels["dest_2"] == ("2",)
 
 
 class TestLoadPubbliciEserciziRistorazioneFipeAngem:
@@ -6554,7 +6554,7 @@ class TestLoadFarmaciePrivateH121:
         assert len(tracks) == 2
         assert all(isinstance(t, ApprenticeshipUnderClassification) for t in tracks)
         farmacista = next(t for t in tracks if t.name == "farmacista_collaboratore")
-        assert farmacista.destination_levels == ["1"]
+        assert farmacista.destination_levels == ("1",)
         period = farmacista.periods[0]
         assert isinstance(period, UnderClassificationPeriod)
         assert period.levels_below == 0
@@ -6716,7 +6716,7 @@ class TestLoadEserciziCinematograficiAnec:
         assert set(track36.destination_levels) == {"ASQ", "AS", "A", "B"}
         assert track36.periods[0].levels_below == 2  # type: ignore[union-attr]
         track12 = next(t for t in tracks if t.name == "professionalizzante_12")
-        assert track12.destination_levels == ["E"]
+        assert track12.destination_levels == ("E",)
         assert track12.periods[0].levels_below == 1  # type: ignore[union-attr]
 
     def test_esercizi_cinematografici_anec_multiplex_level_c_tranche3(
@@ -6845,7 +6845,7 @@ class TestLoadFarmacieMunicipaliASSO:
         assert len(tracks) == 2
         assert all(isinstance(t, ApprenticeshipUnderClassification) for t in tracks)
         farmacista = next(t for t in tracks if t.name == "farmacista_collaboratore")
-        assert farmacista.destination_levels == ["1"]
+        assert farmacista.destination_levels == ("1",)
         p0 = farmacista.periods[0]
         assert isinstance(p0, UnderClassificationPeriod)
         assert p0.levels_below == 0

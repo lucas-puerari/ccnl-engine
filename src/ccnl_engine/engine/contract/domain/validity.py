@@ -104,7 +104,7 @@ class TimeSeries(BaseModel):
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    periods: list[ValidityPeriod]
+    periods: tuple[ValidityPeriod, ...]
 
     @model_validator(mode="after")
     def _check_series(self) -> Self:
