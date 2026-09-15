@@ -35,6 +35,15 @@ if TYPE_CHECKING:
 #: Sentinel returned by :func:`_try_union_member` when a member rejects a raw.
 _NO_MATCH: object = object()
 
+#: Known field renames by class name.  When an old snapshot carries the
+#: obsolete key, :func:`_load_dataclass` migrates it to the current name.
+#: Only ``True`` (or any truthy) values are safe to migrate automatically;
+#: ``False`` is rejected with ``ValueError`` because the rename changed the
+#: semantic boundary of the flag, making the old ``False`` ambiguous.
+_FIELD_RENAMES: dict[str, dict[str, str]] = {
+    "Art15Deductions": {"mortgage_pre_1993": "mortgage_pre_2022"},
+}
+
 
 def _dump_frozenset(value: frozenset[object]) -> list[str]:
     """Serialise a frozenset to a sorted list of strings.
@@ -241,22 +250,75 @@ def _load_union(member_hints: list[type], raw: object) -> object:
     raise ValueError(msg)
 
 
+def _apply_renames(dc_name: str, raw: dict[str, object]) -> dict[str, object]:
+    """Apply :data:`_FIELD_RENAMES` migrations for *dc_name* in-place on a copy.
+
+    Only truthy values are migrated automatically.  A falsy old value raises
+    ``ValueError`` because the rename changed the flag's semantic boundary and
+    the old ``False`` cannot be reliably mapped.
+
+    Returns:
+        A new dict with old keys replaced by their current equivalents.
+
+    Raises:
+        ValueError: If an old field is present with a falsy value that cannot
+            be reliably migrated to the new name.
+    """
+    renames = _FIELD_RENAMES.get(dc_name, {})
+    if not renames:
+        return raw
+    result = dict(raw)
+    for old, new in renames.items():
+        if old not in result:
+            continue
+        if new in result:
+            del result[old]  # new key already present; drop old silently
+        elif result[old]:
+            result[new] = result.pop(old)
+        else:
+            msg = (
+                f"Cannot migrate {dc_name}.{old}=False to {new}: "
+                "the flag boundary changed and the old False is ambiguous. "
+                "Set the current field name explicitly."
+            )
+            raise ValueError(msg)
+    return result
+
+
 def _load_dataclass(dc: type, raw: object) -> object:
     """Reconstruct a frozen dataclass from a JSON-native *raw* dict.
 
     Fields with dataclass defaults are skipped when absent from *raw* so that
-    old serialised snapshots remain readable after new defaulted fields are added.
+    old serialised snapshots remain readable after new defaulted fields are
+    added.  Unknown keys that do not appear in the dataclass raise
+    ``ValueError``; the special ``$type`` discriminator key is exempt.
+    Known field renames (see :data:`_FIELD_RENAMES`) are migrated: only
+    truthy values are safe to migrate automatically; a falsy value raises
+    ``ValueError`` because the rename changed the semantic boundary of the
+    flag and the old ``False`` is ambiguous.
 
     Returns:
         A new instance of *dc* built from the snapshot fields.
 
     Raises:
         TypeError: If *raw* is not a dict.
-        ValueError: If a required field (no default) is missing from *raw*.
+        ValueError: If a required field (no default) is missing from *raw*,
+            if an unknown field is present, or if an ambiguous rename value
+            is encountered.
     """
     if not isinstance(raw, dict):
         msg = f"Expected dict to build {dc.__name__}, got {type(raw)!r}"
         raise TypeError(msg)
+    raw = _apply_renames(dc.__name__, raw)
+    # Reject unknown keys (except the $type discriminator).
+    known = {f.name for f in fields(dc)} | {"$type"}
+    unknown = set(raw.keys()) - known
+    if unknown:
+        msg = (
+            f"Unknown fields {sorted(unknown)!r} in {dc.__name__} snapshot. "
+            "Remove them or update the snapshot to the current schema."
+        )
+        raise ValueError(msg)
     hints = typing.get_type_hints(dc)
     kwargs: dict[str, object] = {}
     for f in fields(dc):

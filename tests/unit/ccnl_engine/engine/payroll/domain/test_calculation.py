@@ -8,6 +8,7 @@ from enum import Enum
 import pytest
 
 from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
+from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.calculation import (
     Calculation,
     InputSnapshot,
@@ -250,6 +251,45 @@ class TestDumpLoadPrimitives:
         """_load_dataclass raises TypeError when raw is not a dict."""
         with pytest.raises(TypeError, match="Expected dict"):
             _load_dataclass(SeniorityByCount, "not-a-dict")
+
+    def test_load_dataclass_unknown_field_raises(self) -> None:
+        """_load_dataclass raises ValueError on an unrecognised field key."""
+        with pytest.raises(ValueError, match="Unknown fields"):
+            _load_dataclass(SeniorityByCount, {"value": 3, "bogus_field": 1})
+
+    def test_load_dataclass_dtype_tag_is_exempt(self) -> None:
+        """The $type discriminator key is not treated as an unknown field."""
+        loaded = _load_dataclass(
+            SeniorityByCount, {"$type": "SeniorityByCount", "value": 7}
+        )
+        assert isinstance(loaded, SeniorityByCount)
+        assert loaded.value == 7
+
+    def test_load_dataclass_migrates_mortgage_pre_1993_true(self) -> None:
+        """mortgage_pre_1993=True is migrated to mortgage_pre_2022=True."""
+        result = _load_dataclass(Art15Deductions, {"mortgage_pre_1993": True})
+        assert isinstance(result, Art15Deductions)
+        assert result.mortgage_pre_2022 is True
+
+    def test_load_dataclass_migrates_mortgage_pre_1993_false_raises(self) -> None:
+        """mortgage_pre_1993=False raises ValueError — the mapping is ambiguous."""
+        with pytest.raises(ValueError, match="ambiguous"):
+            _load_dataclass(Art15Deductions, {"mortgage_pre_1993": False})
+
+    def test_load_dataclass_both_old_and_new_key_drops_old(self) -> None:
+        """Both old and new key present: old is dropped, new wins."""
+        result = _load_dataclass(
+            Art15Deductions,
+            {"mortgage_pre_1993": True, "mortgage_pre_2022": False},
+        )
+        assert isinstance(result, Art15Deductions)
+        assert result.mortgage_pre_2022 is False  # new key wins
+
+    def test_load_dataclass_art15_no_old_key_skips_rename(self) -> None:
+        """Art15Deductions without the old key loads normally, using default."""
+        result = _load_dataclass(Art15Deductions, {"mortgage_interest": "500"})
+        assert isinstance(result, Art15Deductions)
+        assert result.mortgage_pre_2022 is False
 
 
 class TestDumpLoadBranches:

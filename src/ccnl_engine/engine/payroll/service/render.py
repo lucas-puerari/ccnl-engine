@@ -39,6 +39,8 @@ class AnnualBreakdown:
         taxable_income: IRPEF taxable base (gross minus INPS employee).
         irpef_gross: IRPEF before work-income deduction.
         work_income_deduction: Art. 13 TUIR work-income deduction.
+        ulteriore_detrazione_lavoro: Ulteriore detrazione lavoro
+            (D.L. 3/2020, Art. 1, co. 1-bis); zero when not applicable.
         family_deduction_annual: Art. 12 TUIR family deductions.
         art15_deduction_annual: Art. 15 TUIR oneri detraibili.
         irpef_net: IRPEF net (after all deductions; zero when employer
@@ -46,6 +48,10 @@ class AnnualBreakdown:
         addizionale_regionale_annual: Regional IRPEF surtax.
         addizionale_comunale_annual: Municipal IRPEF surtax.
         trattamento_integrativo: Trattamento integrativo bonus.
+        somma_esente: Somma esente bonus (L. 207/2024); zero when not
+            applicable.
+        bilateral_employee_annual: Employee bilateral-fund contribution;
+            zero when no bilateral funds were supplied.
         net_annual: Annual net pay.
         net_monthly_approx: Monthly net approximation
             (``net_annual / additional_months``).
@@ -53,6 +59,8 @@ class AnnualBreakdown:
         employer_funds_annual: Employer contractual-fund contribution
             (informational).
         tfr_annual: TFR accrual (informational).
+        bilateral_employer_annual: Employer bilateral-fund contribution
+            (informational); zero when no bilateral funds were supplied.
         employer_cost_annual: Total annual employer cost (informational).
         employer_withholds_irpef: Whether the employer withholds IRPEF.
     """
@@ -62,17 +70,21 @@ class AnnualBreakdown:
     taxable_income: Decimal
     irpef_gross: Decimal
     work_income_deduction: Decimal
+    ulteriore_detrazione_lavoro: Decimal
     family_deduction_annual: Decimal
     art15_deduction_annual: Decimal
     irpef_net: Decimal
     addizionale_regionale_annual: Decimal
     addizionale_comunale_annual: Decimal
     trattamento_integrativo: Decimal
+    somma_esente: Decimal
+    bilateral_employee_annual: Decimal
     net_annual: Decimal
     net_monthly_approx: Decimal
     inps_employer_annual: Decimal
     employer_funds_annual: Decimal
     tfr_annual: Decimal
+    bilateral_employer_annual: Decimal
     employer_cost_annual: Decimal
     employer_withholds_irpef: bool
 
@@ -121,16 +133,20 @@ def render_breakdown(result: PayrollResult) -> AnnualBreakdown:
         taxable_income=result.taxable_income,
         irpef_gross=result.irpef_gross,
         work_income_deduction=result.work_income_deduction,
+        ulteriore_detrazione_lavoro=result.ulteriore_detrazione_lavoro,
         family_deduction_annual=result.family_deduction_annual,
         art15_deduction_annual=result.art15_deduction_annual,
         irpef_net=result.irpef_net,
         addizionale_regionale_annual=result.addizionale_regionale_annual,
         addizionale_comunale_annual=result.addizionale_comunale_annual,
         trattamento_integrativo=result.trattamento_integrativo,
+        somma_esente=result.somma_esente,
+        bilateral_employee_annual=result.bilateral_employee_annual,
         net_annual=result.net_annual,
         inps_employer_annual=result.inps_employer_annual,
         employer_funds_annual=result.employer_funds_annual,
         tfr_annual=result.tfr_annual,
+        bilateral_employer_annual=result.bilateral_employer_annual,
         employer_cost_annual=result.employer_cost_annual,
         employer_withholds_irpef=result.employer_withholds_irpef,
     )
