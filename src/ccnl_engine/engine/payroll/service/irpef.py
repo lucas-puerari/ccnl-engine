@@ -275,24 +275,23 @@ def surtax_from_brackets(
 
 
 def apply_sterilizzazione_detrazioni(
-    art12_art13_total: Decimal,
+    detrazioni_total: Decimal,
     taxable_income: Decimal,
     rules: SterilizzazioneDetrazioniRules | None,
 ) -> Decimal:
-    """Reduce Art. 12 + Art. 13 deductions by the statutory amount for high earners.
+    """Reduce oneri detraibili al 19% by the statutory amount for high earners.
 
     Per Art. 1 c. 3-4 L. 199/2025: when ``taxable_income`` (reddito
-    complessivo) exceeds ``rules.threshold`` (EUR 200 000), the combined
-    Art. 12 (family) + Art. 13 (work-income) deductions are reduced by
-    ``rules.reduction`` (EUR 440), floored at zero.  Art. 15 oneri
-    deductions are not affected — the clawback compensates the 35% → 33%
-    bracket benefit, which is unrelated to Art. 15 expenditures.
+    complessivo) exceeds ``rules.threshold`` (EUR 200 000), the tax credit
+    for oneri detraibili al 19% (Art. 15 c. 1 lett. a, b, d, e TUIR; not
+    spese sanitarie lett. c) is reduced by ``rules.reduction`` (EUR 440),
+    floored at zero.
 
     Returns:
-        Effective combined Art. 12 + Art. 13 deduction, floored at zero.
-        When ``rules`` is ``None`` or income is at or below the threshold,
-        ``art12_art13_total`` is returned unchanged.
+        Effective deduction total, floored at zero.  When ``rules`` is
+        ``None`` or income is at or below the threshold, ``detrazioni_total``
+        is returned unchanged.
     """
     if rules is None or taxable_income <= rules.threshold:
-        return art12_art13_total
-    return money(max(_ZERO, art12_art13_total - rules.reduction))
+        return detrazioni_total
+    return money(max(_ZERO, detrazioni_total - rules.reduction))
