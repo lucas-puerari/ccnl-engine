@@ -25,7 +25,7 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     WorkKind,
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
-from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
+from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity, VerificationStatus
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.bilateral_funds import (
     FlatMonthlyFund,
@@ -2315,6 +2315,38 @@ class TestComputeConfidence:
     def test_empty_provenance_complete_returns_high(self) -> None:
         """No provenance records + complete + no warnings → high."""
         assert _compute_confidence("complete", (), ()) == "high"
+
+    def test_unverified_ruleset_returns_medium(self) -> None:
+        """An unverified consumed ruleset blocks high confidence."""
+        unverified_ruleset = RulesetIdentity(
+            id="inps/2026/terziario",
+            version="2026.1",
+            effective_from=date(2026, 1, 1),
+            published_at=date(2026, 1, 1),
+            source="unavailable",
+            source_hash="a" * 64,
+            verification_status=VerificationStatus.UNVERIFIED,
+        )
+        prov = (_verified_provenance(),)
+        result = _compute_confidence(
+            "complete", (), prov, rulesets=(unverified_ruleset,)
+        )
+        assert result == "medium"
+
+    def test_verified_ruleset_does_not_block_high(self) -> None:
+        """A verified consumed ruleset does not block high confidence."""
+        verified_ruleset = RulesetIdentity(
+            id="inps/2026/industria",
+            version="2026.1",
+            effective_from=date(2026, 1, 1),
+            published_at=date(2026, 1, 1),
+            source="https://example.com",
+            source_hash="b" * 64,
+            verification_status=VerificationStatus.VERIFIED,
+        )
+        prov = (_verified_provenance(),)
+        result = _compute_confidence("complete", (), prov, rulesets=(verified_ruleset,))
+        assert result == "high"
 
     def test_compute_result_has_confidence_field(self) -> None:
         """compute() populates confidence on the result."""

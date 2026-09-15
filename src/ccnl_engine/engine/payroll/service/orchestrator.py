@@ -172,6 +172,18 @@ def compute(scenario: PayrollScenario) -> Calculation:
         under_level_code=gross.under_level_code,
     )
     result_status = _compute_result_status(calculation_scope)
+    # Gather all RulesetIdentity records for rulesets actually consumed so
+    # that _compute_confidence can downgrade from "high" when any of them
+    # has verification_status != "verified".
+    consumed_rulesets = tuple(
+        ruleset_id
+        for ruleset_id in (
+            rules.ruleset,
+            rules.inps_ruleset,
+            surtax.ruleset if surtax is not None else None,
+        )
+        if ruleset_id is not None
+    )
     ivs_ceiling = rules.inps.ceiling if rules.inps is not None else None
     ivs_warn = _ivs_ceiling_warning(
         scenario, as_of, gross.contribution_base, ivs_ceiling
@@ -220,7 +232,9 @@ def compute(scenario: PayrollScenario) -> Calculation:
         employer_cost_annual=fiscal.employer_cost_annual,
         provenance=provenance,
         status=result_status,
-        confidence=_compute_confidence(result_status, result_warnings, provenance),
+        confidence=_compute_confidence(
+            result_status, result_warnings, provenance, consumed_rulesets
+        ),
         calculation_scope=calculation_scope,
         warnings=result_warnings,
         base_monthly_full_time=work.base_monthly_full_time,
