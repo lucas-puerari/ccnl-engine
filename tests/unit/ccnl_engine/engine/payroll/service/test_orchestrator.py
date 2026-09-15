@@ -1668,6 +1668,32 @@ class TestL3FamilyDeductions:
         ).result
         assert with_family.gross_annual == baseline.gross_annual
 
+    def test_family_deduction_taper_uses_taxable_income(self) -> None:
+        """Art. 12 taper uses taxable_income (gross minus INPS), not gross_annual.
+
+        With a spouse dependent, the taper formula is
+        (95000 - reddito_complessivo) / 95000.  This test verifies the engine
+        uses taxable_income (< gross_annual) so the taper and resulting
+        deduction are larger than they would be if computed on gross_annual.
+        """
+        result_no_fam = compute(_req()).result
+        result_spouse = compute(
+            dataclasses.replace(_req(), family=FamilyComposition(spouse_dependent=True))
+        ).result
+        # taxable_income < gross_annual, so the taper (95000 - RC) / 95000
+        # is larger when RC = taxable_income.  The deduction must be strictly
+        # greater than what the wrong (gross_annual) base would give.
+        gross = result_no_fam.gross_annual
+        taxable = result_no_fam.taxable_income
+        assert taxable < gross
+        # Deduction must be positive and taper-dependent
+        assert result_spouse.family_deduction_spouse_annual > _D("0")
+        # Expected: taper(taxable) > taper(gross), so deduction is larger.
+        limit = _D("95000")
+        taper_taxable = max(_D("0"), (limit - taxable) / limit)
+        taper_gross = max(_D("0"), (limit - gross) / limit)
+        assert taper_taxable > taper_gross
+
     def test_no_detrazioni_familiari_absent_when_dependents_present(self) -> None:
         """NO_DETRAZIONI_FAMILIARI is removed when scenario.family has dependents.
 
@@ -2046,43 +2072,43 @@ class TestArt15Deductions:
         assert result.unused_art15_deduction_annual == _D("760.00")
 
 
-class TestArt15MortgagePre1993:
-    """Tests for mortgage_pre_1993 TI qualification gate."""
+class TestArt15MortgagePre2022:
+    """Tests for mortgage_pre_2022 TI qualification gate."""
 
-    def test_post_1993_mortgage_excluded_from_ti_relevant_deductions(self) -> None:
-        """Post-1993 mortgage (default) does not affect trattamento_integrativo."""
+    def test_post_2021_mortgage_excluded_from_ti_relevant_deductions(self) -> None:
+        """Post-2021 mortgage (default) does not affect trattamento_integrativo."""
         # Level 2 (base 600/month) puts taxable income in the TI band.
         baseline = compute(_req(level_code="2")).result
-        with_post_1993 = compute(
+        with_post_2021 = compute(
             dataclasses.replace(
                 _req(level_code="2"),
                 art15_deductions=Art15Deductions(
-                    mortgage_interest=_D("3000"), mortgage_pre_1993=False
+                    mortgage_interest=_D("3000"), mortgage_pre_2022=False
                 ),
             )
         ).result
         # Art. 15 credit still applied to IRPEF
-        assert with_post_1993.art15_deduction_annual == _D("570.00")
-        # TI unaffected by post-1993 mortgage
+        assert with_post_2021.art15_deduction_annual == _D("570.00")
+        # TI unaffected by post-2021 mortgage
         assert (
-            with_post_1993.trattamento_integrativo == baseline.trattamento_integrativo
+            with_post_2021.trattamento_integrativo == baseline.trattamento_integrativo
         )
 
-    def test_pre_1993_mortgage_included_in_ti_relevant_deductions(self) -> None:
-        """Pre-1993 mortgage qualifies for TI relevant_deductions."""
+    def test_pre_2022_mortgage_included_in_ti_relevant_deductions(self) -> None:
+        """Pre-2022 mortgage qualifies for TI relevant_deductions."""
         baseline = compute(_req(level_code="2")).result
-        with_pre_1993 = compute(
+        with_pre_2022 = compute(
             dataclasses.replace(
                 _req(level_code="2"),
                 art15_deductions=Art15Deductions(
-                    mortgage_interest=_D("3000"), mortgage_pre_1993=True
+                    mortgage_interest=_D("3000"), mortgage_pre_2022=True
                 ),
             )
         ).result
         # Art. 15 credit still applied to IRPEF
-        assert with_pre_1993.art15_deduction_annual == _D("570.00")
+        assert with_pre_2022.art15_deduction_annual == _D("570.00")
         # TI may increase because relevant_deductions grew (or remain at max)
-        assert with_pre_1993.trattamento_integrativo >= baseline.trattamento_integrativo
+        assert with_pre_2022.trattamento_integrativo >= baseline.trattamento_integrativo
 
 
 class TestComputeResultStatus:

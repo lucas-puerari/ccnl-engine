@@ -31,16 +31,16 @@ class Art15Deductions:
             Annual interest actually paid.  Capped at EUR 4 000 per
             household; deduction rate 19 % (max credit EUR 760).
             Must be >= 0.
-        mortgage_pre_1993: True when the mortgage was stipulated on or
-            before 31 December 1993.  Only pre-1993 mortgage interest
-            counts as a qualifying Art. 15 deduction for the Trattamento
-            integrativo (Art. 1 D.L. 3/2020); post-1993 mortgages reduce
-            IRPEF but do not affect the TI relevant-deductions sum.
-            Defaults to False (post-1993 / origin unknown).
+        mortgage_pre_2022: True when the mortgage was stipulated on or
+            before 31 December 2021.  Only mortgages contracted by that
+            date count as qualifying Art. 15 deductions for the Trattamento
+            integrativo (Art. 1 D.L. 3/2020); later mortgages reduce IRPEF
+            but do not affect the TI relevant-deductions sum.
+            Defaults to False (post-2021 / origin unknown).
     """
 
     mortgage_interest: Decimal = _ZERO
-    mortgage_pre_1993: bool = False
+    mortgage_pre_2022: bool = False
 
     def __post_init__(self) -> None:
         """Validate that mortgage_interest is non-negative.
