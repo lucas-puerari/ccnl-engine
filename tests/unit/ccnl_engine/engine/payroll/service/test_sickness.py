@@ -642,3 +642,100 @@ class TestTierRateSegmentsWithInpsBoundary:
         segments = _tier_rate_segments(_D("6"), _D("17"), rules)
         assert len(segments) == 1
         assert segments[0] == (_D("6"), _D("1"))
+
+
+class TestBeyondInpsBandCoverage:
+    """Company integration for days within comporto but beyond the last INPS band.
+
+    When no tiers are present, days past the last INPS band end should still
+    receive company integration at the effective rate (INPS contributes 0).
+    """
+
+    def test_no_tier_beyond_band_pays_full_eff_rate(self) -> None:
+        """10 sick days at episode 181-190: INPS rate = 0, company = eff_rate.
+
+        comporto = 360 days; cumulative = 180; sick_days = 10.
+        All 10 days are beyond the last INPS band (day_to=180).
+
+        INPS indemnity = 0 (no band covers days 181-190).
+        Company integration = 10 * eff_rate * daily_rate.
+        """
+        rules = SicknessRules(
+            carenza_integration_rate=_D("1"),
+            full_pay_integration_rate=_D("1"),
+            max_duration_days=360,
+        )
+        sick_input = SickInput(sick_days=_D("10"), cumulative_sick_days=_D("180"))
+        gross_monthly = _D("3000.00")
+        daily = gross_monthly / _D("30")
+        _, _, inps, company = compute_sickness(
+            sick_input, rules, _standard_sick_pay_rates(), gross_monthly
+        )
+        assert inps == _D("0.00")
+        assert company == _D("0.00") + 10 * _D("1") * daily
+
+    def test_no_tier_equivalence_single_vs_split(self) -> None:
+        """One 20-day period starting at 170 equals two 10-day periods.
+
+        Episode days 171-190 span both within (171-180) and beyond (181-190)
+        the last INPS band. The same total must be produced whether the period
+        is computed in one call or two sequential calls.
+
+        comporto = 360, eff_rate = 1.0 (full pay integration).
+        """
+        rules = SicknessRules(
+            carenza_integration_rate=_D("1"),
+            full_pay_integration_rate=_D("1"),
+            max_duration_days=360,
+        )
+        rates = _standard_sick_pay_rates()
+        gross_monthly = _D("3000.00")
+
+        _, _, inps_1, company_1 = compute_sickness(
+            SickInput(sick_days=_D("20"), cumulative_sick_days=_D("170")),
+            rules,
+            rates,
+            gross_monthly,
+        )
+        _, _, inps_a, company_a = compute_sickness(
+            SickInput(sick_days=_D("10"), cumulative_sick_days=_D("170")),
+            rules,
+            rates,
+            gross_monthly,
+        )
+        _, _, inps_b, company_b = compute_sickness(
+            SickInput(sick_days=_D("10"), cumulative_sick_days=_D("180")),
+            rules,
+            rates,
+            gross_monthly,
+        )
+        assert inps_1 == inps_a + inps_b
+        assert company_1 == company_a + company_b
+
+
+class TestInpsBandEndBoundary:
+    """_inps_boundaries_in_period includes band END positions."""
+
+    def test_band_end_inside_period_is_returned(self) -> None:
+        """Band2 ends at episode day 180 (day_to=180 → boundary 180).
+
+        Period [170, 190): day 180 is strictly inside → returned as boundary.
+        """
+        bands = [
+            SickPayBand(day_from=4, day_to=20, rate=_D("0.50")),
+            SickPayBand(day_from=21, day_to=180, rate=_D("0.6667")),
+        ]
+        result = _inps_boundaries_in_period(bands, _D("170"), _D("190"))
+        assert _D("180") in result
+
+    def test_band_end_at_period_edge_excluded(self) -> None:
+        """Band end at period_end is excluded (open interval).
+
+        Period [170, 180): day 180 == period_end → not returned.
+        """
+        bands = [
+            SickPayBand(day_from=4, day_to=20, rate=_D("0.50")),
+            SickPayBand(day_from=21, day_to=180, rate=_D("0.6667")),
+        ]
+        result = _inps_boundaries_in_period(bands, _D("170"), _D("180"))
+        assert _D("180") not in result

@@ -174,9 +174,9 @@ def _inps_boundaries_in_period(
     """
     boundaries: set[Decimal] = set()
     for band in bands:
-        day = Decimal(band.day_from - 1)
-        if period_start < day < period_end:
-            boundaries.add(day)
+        for day in (Decimal(band.day_from - 1), Decimal(band.day_to)):
+            if period_start < day < period_end:
+                boundaries.add(day)
     return boundaries
 
 
@@ -365,6 +365,11 @@ def compute_sickness(
         for band_obj, bucket in zip(sick_pay_rates.bands, band_buckets_i, strict=True):
             gap = max(_ZERO, eff_rate - band_obj.rate)
             post_carenza_company += bucket * gap * daily_rate
+        # Days within comporto but beyond the last INPS band have INPS rate = 0.
+        days_in_bands = sum(band_buckets_i)
+        beyond_band_days = post_carenza_days - days_in_bands
+        if beyond_band_days > _ZERO:
+            post_carenza_company += beyond_band_days * eff_rate * daily_rate
 
     company_integration = money(carenza_pay + post_carenza_company)
 
