@@ -48,7 +48,6 @@ def _inps_domestic(
     dc: DomesticInpsRates,
     contract: Permanent | FixedTerm | Apprentice,
     gross_monthly: Decimal,
-    hourly_divisor: Decimal,
     weekly_hours: Decimal,
 ) -> tuple[Decimal, Decimal]:
     """Return (employee_annual, employer_annual) via the flat per-hour model.
@@ -56,7 +55,8 @@ def _inps_domestic(
     Returns:
         Rounded annual INPS contributions for both parties.
     """
-    hourly_rate_for_bracket = money(gross_monthly / hourly_divisor)
+    annual_rate = gross_monthly * Decimal(12) / (weekly_hours * Decimal(52))
+    hourly_rate_for_bracket = money(annual_rate)
     is_fixed_term = isinstance(contract, FixedTerm)
     emp_ph, er_ph = _contrib.resolve_domestic_inps_rate(
         dc,
@@ -113,7 +113,6 @@ def _inps_contributions(
     rules: YearRules,
     contract: Permanent | FixedTerm | Apprentice,
     gross_monthly: Decimal,
-    hourly_divisor: Decimal,
     contribution_base: Decimal,
     worker_category: LevelCategory | None,
     *,
@@ -142,7 +141,6 @@ def _inps_contributions(
             rules.domestic_contributions,
             contract,
             gross_monthly,
-            hourly_divisor,
             weekly_hours,
         )
     return _inps_standard(
@@ -501,7 +499,6 @@ def compute_fiscal(
         rules,
         scenario.employment.contract,
         gross.gross_monthly,
-        gross.hourly_divisor,
         gross.contribution_base,
         gross.worker_category,
         weekly_hours=scenario.employee.weekly_hours,
@@ -657,16 +654,21 @@ def compute_fiscal(
         )
     )
 
-    net_annual = money(
-        gross.gross_annual
-        - inps_employee_annual
-        - irpef_net
-        - addizionale_regionale
-        - addizionale_comunale
-        + trattamento_integrativo
-        + somma_esente_amount
-        - bilateral_employee_annual
-    )
+    if employer_withholds_irpef:
+        net_annual = money(
+            gross.gross_annual
+            - inps_employee_annual
+            - irpef_net
+            - addizionale_regionale
+            - addizionale_comunale
+            + trattamento_integrativo
+            + somma_esente_amount
+            - bilateral_employee_annual
+        )
+    else:
+        net_annual = money(
+            gross.gross_annual - inps_employee_annual - bilateral_employee_annual
+        )
     net_monthly = money(net_annual / gross.additional_months)
     employer_cost_annual = money(
         gross.gross_annual

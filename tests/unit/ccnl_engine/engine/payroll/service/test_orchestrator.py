@@ -698,15 +698,18 @@ class TestComputeDomesticInps:
         assert r.inps_employee_annual == money(_D("0.31") * annual_hours)
         assert r.inps_employer_annual == money(_D("1.01") * annual_hours)
 
-    def test_wage_bracket_low(self) -> None:
-        """weekly_hours <= 24 + low hourly rate → lowest wage bracket."""
-        # Hourly rate for level 4 (1000/168 ≈ 5.95) → below 9.61 bracket
+    def test_wage_bracket_mid(self) -> None:
+        """weekly_hours <= 24 → wage bracket selected by annualised hourly rate.
+
+        Level 4, gross_monthly=1000, weekly_hours=20:
+        hourly_rate = 1000 * 12 / (20 * 52) = 11.54 → bracket up_to=11.70.
+        """
         _mock_rules[0] = _DOMESTIC_RULES
         r = compute(_req(weekly_hours=_D("20")))
 
         annual_hours = _D("20") * _D("52")
-        assert r.inps_employee_annual == money(_D("0.43") * annual_hours)
-        assert r.inps_employer_annual == money(_D("1.27") * annual_hours)
+        assert r.inps_employee_annual == money(_D("0.48") * annual_hours)
+        assert r.inps_employer_annual == money(_D("1.44") * annual_hours)
 
     def test_net_is_gross_minus_inps_minus_irpef(self) -> None:
         """Net = gross - INPS employee - irpef_net for domestic path."""

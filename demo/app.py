@@ -261,6 +261,29 @@ def _build_employer(
     )
 
 
+def _domestic_weekly_hours(filename: str, part_time_pct: float) -> Decimal | None:
+    """Return actual weekly hours for a lavoro-domestico CCNL, or None for others.
+
+    Derives full-time weekly hours from the CCNL hourly divisor, then scales
+    by part_time_pct. Returns None if the CCNL is not a domestic contract or
+    if loading fails.
+
+    Returns:
+        Scaled weekly hours as a Decimal, or None.
+    """
+    try:
+        ccnl = load_ccnl(filename)
+        if getattr(ccnl.meta, "tax_sector", "") != "lavoro-domestico":
+            return None
+        calc_date = datetime.now(tz=UTC).date()
+        divisor = ccnl.parameters.hourly_divisor.value_at(calc_date)
+        return (
+            divisor * Decimal(12) / Decimal(52) * Decimal(str(round(part_time_pct, 4)))
+        )
+    except Exception:  # ruff: ignore[blind-except]
+        return None
+
+
 def _build_time_supplements(
     weekday_hours: float,
     night_hours: float,
@@ -366,14 +389,18 @@ def compute_salary(
     agreement = _build_agreement(ad_personam_monthly, ral_override)
     employer = _build_employer(num_employees, second_level_monthly)
 
-    # Detect lavoro domestico to auto-supply weekly_hours.
+    # Detect lavoro domestico to auto-supply weekly_hours scaled to part_time_pct.
     ccnl_name: str = filename
+    is_domestic = False
     try:
         loaded_ccnl = load_ccnl(filename)
         ccnl_name = loaded_ccnl.meta.name
         is_domestic = getattr(loaded_ccnl.meta, "tax_sector", "") == "lavoro-domestico"
-    except Exception:  # ruff: ignore[blind-except]
-        is_domestic = False
+    except Exception:  # noqa: BLE001, S110
+        pass
+    weekly_hours_domestic = (
+        _domestic_weekly_hours(filename, part_time_pct) if is_domestic else None
+    )
 
     time_supplements = _build_time_supplements(
         overtime_weekday_hours,
@@ -417,7 +444,7 @@ def compute_salary(
                 level_code=level_code,
                 seniority=seniority,
                 part_time_pct=Decimal(str(round(part_time_pct, 4))),
-                weekly_hours=Decimal(40) if is_domestic else None,
+                weekly_hours=weekly_hours_domestic,
                 ivs_ceiling_applies=ivs_ceiling_applies,
                 jurisdiction=jurisdiction,
                 agreement=agreement,
