@@ -25,7 +25,7 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     WorkKind,
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
-from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
+from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity, VerificationStatus
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.bilateral_funds import (
     FlatMonthlyFund,
@@ -1303,6 +1303,86 @@ class TestL3Warning:
         finally:
             _mock_ccnl[0] = _DEFAULT_CCNL
 
+    def test_supplementare_hours_with_only_weekday_band_not_computed(self) -> None:
+        """supplementare_hours declared but only weekday band → not_computed + warning.
+
+        When the CCNL has a weekday band but no supplementare band, declaring
+        supplementare_hours must produce a warning and mark overtime as
+        not_computed; the weekday band must not silently absorb the hours.
+        """
+        weekday_band = OvertimeBand(
+            code="OT_WD",
+            description="Straordinario diurno",
+            kind=TimeSupplementKind("percentage"),
+            rate=TimeSeries(
+                periods=(
+                    ValidityPeriod(
+                        valid_from=date(2020, 1, 1),
+                        valid_until=None,
+                        value=_D("0.15"),
+                    ),
+                )
+            ),
+            applies_to_kinds=[WorkKind.WEEKDAY],
+        )
+        ts_schema = TimeSupplements(overtime_bands=[weekday_band])
+        _mock_ccnl[0] = _build_ccnl(
+            work_rules={"time_supplements": ts_schema.model_dump()}
+        )
+        scenario = dataclasses.replace(
+            _req(),
+            time_supplements=OvertimeHours(supplementare_hours=_D("10")),
+        )
+        try:
+            result = compute(scenario).result
+            scope = {item.feature: item.status for item in result.calculation_scope}
+            assert scope["overtime"] == "not_computed", (
+                f"Expected not_computed (no supplementare band), got:"
+                f" {scope['overtime']}"
+            )
+            assert any("supplementare" in w for w in result.warnings), (
+                f"Expected supplementare warning, got: {result.warnings}"
+            )
+        finally:
+            _mock_ccnl[0] = _DEFAULT_CCNL
+
+    def test_holiday_hours_with_only_night_holiday_band_not_computed(self) -> None:
+        """holiday_hours declared but only night_holiday band → not_computed."""
+        nh_band = OvertimeBand(
+            code="NH",
+            description="Festivo-notturno",
+            kind=TimeSupplementKind("percentage"),
+            rate=TimeSeries(
+                periods=(
+                    ValidityPeriod(
+                        valid_from=date(2020, 1, 1),
+                        valid_until=None,
+                        value=_D("0.85"),
+                    ),
+                )
+            ),
+            applies_to_kinds=[WorkKind.NIGHT_HOLIDAY],
+        )
+        ts_schema = TimeSupplements(overtime_bands=[nh_band])
+        _mock_ccnl[0] = _build_ccnl(
+            work_rules={"time_supplements": ts_schema.model_dump()}
+        )
+        scenario = dataclasses.replace(
+            _req(),
+            time_supplements=OvertimeHours(holiday_hours=_D("4")),
+        )
+        try:
+            result = compute(scenario).result
+            scope = {item.feature: item.status for item in result.calculation_scope}
+            assert scope["holiday_work"] == "not_computed", (
+                f"Expected not_computed (no holiday band), got: {scope['holiday_work']}"
+            )
+            assert any("holiday" in w for w in result.warnings), (
+                f"Expected holiday warning, got: {result.warnings}"
+            )
+        finally:
+            _mock_ccnl[0] = _DEFAULT_CCNL
+
 
 class TestL3Absence:
     """Orchestrator behaviour for L3 absence deduction."""
@@ -2339,6 +2419,38 @@ class TestComputeConfidence:
     def test_empty_provenance_complete_returns_high(self) -> None:
         """No provenance records + complete + no warnings → high."""
         assert _compute_confidence("complete", (), ()) == "high"
+
+    def test_unverified_ruleset_returns_medium(self) -> None:
+        """An unverified consumed ruleset blocks high confidence."""
+        unverified_ruleset = RulesetIdentity(
+            id="inps/2026/terziario",
+            version="2026.1",
+            effective_from=date(2026, 1, 1),
+            published_at=date(2026, 1, 1),
+            source="unavailable",
+            source_hash="a" * 64,
+            verification_status=VerificationStatus.UNVERIFIED,
+        )
+        prov = (_verified_provenance(),)
+        result = _compute_confidence(
+            "complete", (), prov, rulesets=(unverified_ruleset,)
+        )
+        assert result == "medium"
+
+    def test_verified_ruleset_does_not_block_high(self) -> None:
+        """A verified consumed ruleset does not block high confidence."""
+        verified_ruleset = RulesetIdentity(
+            id="inps/2026/industria",
+            version="2026.1",
+            effective_from=date(2026, 1, 1),
+            published_at=date(2026, 1, 1),
+            source="https://example.com",
+            source_hash="b" * 64,
+            verification_status=VerificationStatus.VERIFIED,
+        )
+        prov = (_verified_provenance(),)
+        result = _compute_confidence("complete", (), prov, rulesets=(verified_ruleset,))
+        assert result == "high"
 
     def test_compute_result_has_confidence_field(self) -> None:
         """compute() populates confidence on the result."""

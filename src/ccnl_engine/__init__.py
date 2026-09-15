@@ -39,6 +39,7 @@ Usage::
 
 from __future__ import annotations
 
+from ccnl_engine.engine.contract.domain.ccnl import SupplementaryAllowance
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.calculation import (
     Calculation,
@@ -118,6 +119,7 @@ __all__ = [
     "SeniorityByDate",
     "SeniorityByMonths",
     "SickInput",
+    "SupplementaryAllowance",
     "TraceCategory",
     "TraceStep",
     "WelfareInput",

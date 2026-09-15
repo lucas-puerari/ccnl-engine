@@ -1029,6 +1029,8 @@ function renderBreakdown(r, enteredComune) {
     : bRow(t("breakdown.addizionale_comunale"), null, r.addizionale_comunale_annual));
   if (r.trattamento_integrativo > 0)
     body.appendChild(bRow(t("breakdown.trattamento_integrativo"), null, -r.trattamento_integrativo));
+  if ((r.somma_esente || 0) > 0.005)
+    body.appendChild(bRow(t("breakdown.somma_esente"), null, -r.somma_esente));
   if ((r.bilateral_employee_annual || 0) > 0.005)
     body.appendChild(bRow(t("breakdown.bilateral_employee"), null, r.bilateral_employee_annual));
   body.appendChild(bTotal(t("breakdown.net_pay"), r.net_monthly, r.net_annual));
@@ -1252,7 +1254,8 @@ function downloadResult() {
 }
 
 function generateSnippet(params, r) {
-  const needsDecimal = params.ptPct < 1 || params.adPersonam > 0 || params.ralOverride > 0;
+  const needsDecimal = params.ptPct < 1 || params.adPersonam > 0
+    || params.ralOverride > 0 || params.secondLevel > 0;
   const decimalImport = needsDecimal ? "\nfrom decimal import Decimal" : "";
 
   // Contract
@@ -1285,6 +1288,10 @@ function generateSnippet(params, r) {
   const ptStr = params.ptPct < 1
     ? `\n        part_time_pct=Decimal("${params.ptPct}"),` : "";
 
+  // IVS ceiling
+  const ivsStr = params.ivsApplies
+    ? `\n        ivs_ceiling_applies=True,` : "";
+
   // Jurisdiction
   let jurStr = "";
   if (params.regione || params.comune) {
@@ -1300,15 +1307,31 @@ function generateSnippet(params, r) {
     imports.push("Agreement");
     const adp = params.adPersonam > 0
       ? `\n            ad_personam_monthly=Decimal("${params.adPersonam}"),` : "";
+    if (params.ralOverride > 0) imports.push("RalOverride");
     const ral = params.ralOverride > 0
-      ? `\n            ral_override=Decimal("${params.ralOverride}"),` : "";
+      ? `\n            ral_override=RalOverride(Decimal("${params.ralOverride}")),` : "";
     agrStr = `\n        agreement=Agreement(${adp}${ral}\n        ),`;
   }
 
-  // Employer — second-level allowance
-  const sl = params.secondLevel > 0
-    ? `,\n        second_level_monthly=Decimal("${params.secondLevel}")` : "";
-  const empExpr = `Employer(num_employees=${params.employees}${sl})`;
+  // Employer — second-level allowance via SupplementaryAllowance
+  let empExpr;
+  if (params.secondLevel > 0) {
+    imports.push("SupplementaryAllowance");
+    empExpr = `Employer(\n        num_employees=${params.employees},`
+      + `\n        second_level_allowances=(\n`
+      + `            SupplementaryAllowance(\n`
+      + `                code="SL",\n`
+      + `                description="Second-level agreement",\n`
+      + `                monthly=Decimal("${params.secondLevel}"),\n`
+      + `            ),\n`
+      + `        ),\n`
+      + `    )`;
+  } else {
+    empExpr = `Employer(num_employees=${params.employees})`;
+  }
+
+  const calcDate = r && r.as_of
+    ? `date.fromisoformat("${r.as_of}")` : "date.today()";
 
   const importLine = `from ccnl_engine import (\n    ${imports.sort().join(",\n    ")},\n)`;
 
@@ -1317,13 +1340,13 @@ ${importLine}
 
 result = compute(PayrollScenario(
     employee=Employee(
-        level_code="${params.levelCode}",${senStr}${ptStr}${jurStr}${agrStr}
+        level_code="${params.levelCode}",${senStr}${ptStr}${ivsStr}${jurStr}${agrStr}
     ),
     employment=Employment(
         ccnl="${params.file}",
         contract=${contractExpr},
         employer=${empExpr},
-        calculation_date=date.today(),
+        calculation_date=${calcDate},
     ),
 ))
 # Net monthly: ${fmtM(r.net_monthly)}  Gross monthly: ${fmtM(r.gross_monthly)}
