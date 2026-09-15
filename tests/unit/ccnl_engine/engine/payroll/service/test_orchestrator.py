@@ -1315,13 +1315,13 @@ class TestL3Warning:
             description="Straordinario diurno",
             kind=TimeSupplementKind("percentage"),
             rate=TimeSeries(
-                periods=[
+                periods=(
                     ValidityPeriod(
                         valid_from=date(2020, 1, 1),
                         valid_until=None,
                         value=_D("0.15"),
-                    )
-                ]
+                    ),
+                )
             ),
             applies_to_kinds=[WorkKind.WEEKDAY],
         )
@@ -1353,13 +1353,13 @@ class TestL3Warning:
             description="Festivo-notturno",
             kind=TimeSupplementKind("percentage"),
             rate=TimeSeries(
-                periods=[
+                periods=(
                     ValidityPeriod(
                         valid_from=date(2020, 1, 1),
                         valid_until=None,
                         value=_D("0.85"),
-                    )
-                ]
+                    ),
+                )
             ),
             applies_to_kinds=[WorkKind.NIGHT_HOLIDAY],
         )
