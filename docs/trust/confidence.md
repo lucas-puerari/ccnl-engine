@@ -9,11 +9,23 @@ do not set it.
 | Level | When assigned |
 |---|---|
 | `"low"` | Any active warning is present |
-| `"medium"` | Complete or partial computation with no warnings, but at least one salary-table source has `verification_status != "verified"` |
-| `"high"` | Complete computation, no warnings, every salary-table source is `"verified"` |
+| `"medium"` | Complete or partial computation with no warnings, but at least one source (salary table, fiscal ruleset, or INPS ruleset) has `verification_status != "verified"` |
+| `"high"` | Complete computation, no warnings, every salary-table source and every consumed ruleset is `"verified"` |
 
 ```python
-result = compute(ccnl, rules, employee).result
+from ccnl_engine import compute, PayrollScenario, Employee, Employment, Employer, Permanent
+from datetime import date
+
+scenario = PayrollScenario(
+    employee=Employee(level_code="C2"),
+    employment=Employment(
+        ccnl="metalmeccanico-federmeccanica.json",
+        contract=Permanent(),
+        employer=Employer(num_employees=50),
+        calculation_date=date(2026, 1, 1),
+    ),
+)
+result = compute(scenario).result
 print(result.confidence)   # "low" | "medium" | "high"
 ```
 
@@ -24,22 +36,29 @@ warnings non-empty?
   YES → "low"
   NO  ↓
 
-Any salary-table provenance with verification_status != "verified"?
+Any salary provenance or consumed ruleset with verification_status != "verified"?
   YES → "medium"
   NO  ↓
 
-status == "complete" and no unverified salary sources?
+status == "complete" and all sources verified?
   YES → "high"
   NO  → "medium"
 ```
 
 ### What counts as a verified source
 
-Every provenance record in the chain is evaluated for the `"high"` gate.
-Any record whose `extraction.verification_status` is not `"verified"`
-(i.e. `"unverified"` or `"needs_review"`) causes the result to be classified
-`"medium"` rather than `"high"`. This covers salary tables, fiscal metadata,
-INPS rates, and any other sourced rule.
+Two categories of sources are evaluated for the `"high"` gate:
+
+1. **Salary provenance** — every `RuleProvenance` record collected from the
+   CCNL schema (pay level, base-salary period, allowances, seniority). Records
+   whose `extraction.verification_status` is not `"verified"` cause the result
+   to be classified `"medium"`.
+
+2. **Consumed rulesets** — the `RulesetIdentity` objects for the fiscal and
+   INPS year files (and surtax when loaded). Their `verification_status` is
+   evaluated alongside salary provenance. A fiscal or INPS ruleset marked
+   `"unverified"` therefore prevents `"high"` confidence even when every CCNL
+   salary figure has been human-reviewed.
 
 ### Why `fiscal_simplifications` does not affect confidence
 
@@ -61,34 +80,35 @@ as a contract whose JSON schema is missing a required block.
 ## Using confidence in practice
 
 ```python
-result = compute(ccnl, rules, employee).result
+result = compute(scenario).result
 
 if result.confidence == "low":
     # Something is wrong — read warnings before using the number
-    for w in result.warnings:
-        print("WARNING:", w)
+    for warning in result.warnings:
+        print("WARNING:", warning)
 
 elif result.confidence == "medium":
     # Result is usable; check what's excluded
     excluded = [
-        i.feature for i in result.calculation_scope
-        if i.status == "excluded"
+        item.feature for item in result.calculation_scope
+        if item.status == "excluded"
     ]
     if excluded:
         print("Excluded from net:", excluded)
 
 else:  # "high"
-    # All salary sources verified, no warnings, complete computation
+    # All salary sources and rulesets verified, no warnings, complete computation
     pass
 ```
 
 ## What raises confidence to `"high"`
 
 Currently, most contracts have `verification_status = "unverified"` on their
-salary-table provenance. This means the default confidence for a normal
-computation is `"medium"`. Confidence reaches `"high"` only when a human
-reviewer has cross-checked every salary figure against the primary source
-document and set `verification_status = "verified"` on each provenance block.
+salary-table provenance, and the fiscal/INPS rulesets also carry
+`"unverified"` until a human reviewer confirms the statutory parameters. This
+means the default confidence for a normal computation is `"medium"`. Confidence
+reaches `"high"` only when every salary figure and every consumed ruleset has
+been human-reviewed and set to `"verified"`.
 
 This is intentional: `"high"` is a strong claim. It requires that a specific
 person confirmed a specific value from a specific document on a specific date.
