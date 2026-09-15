@@ -171,16 +171,6 @@ class TestKindToAuthorityExhaustiveness:
         """Every SourceKind has an entry in _KIND_TO_AUTHORITY."""
         assert set(_KIND_TO_AUTHORITY) == set(SourceKind)
 
-    def test_assertion_fires_on_missing_entry(self) -> None:
-        """The module-level assertion logic catches a gap if a kind is missing."""
-        partial: dict[SourceKind, SourceAuthority] = dict(_KIND_TO_AUTHORITY)
-        del partial[SourceKind.ALTRO]
-        with pytest.raises(AssertionError):
-            assert set(partial) == set(SourceKind), (
-                f"_KIND_TO_AUTHORITY is missing entries for: "
-                f"{set(SourceKind) - set(partial)}"
-            )
-
 
 class TestRuleProvenance:
     """RuleProvenance composes a location and an extraction trace."""
