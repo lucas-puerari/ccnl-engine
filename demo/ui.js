@@ -156,9 +156,9 @@ document.getElementById("sel-employment").addEventListener("change", e => {
 
 // ── Combobox init (before Pyodide loads) ────────────────────────────────────
 
-window._ccnlCombo    = makeCombobox("combo-ccnl-wrap",    "sel-ccnl",    t("form.ccnl.placeholder"));
-window._regioneCombo = makeCombobox("combo-regione-wrap", "sel-regione", t("form.regione.placeholder"));
-window._comuneCombo  = makeCombobox("combo-comune-wrap",  "sel-comune",  t("form.comune.name_placeholder"));
+window._ccnlCombo    = makeCombobox("combo-ccnl-wrap",    "sel-ccnl",    t("form.ccnl.placeholder"),        t("form.ccnl.label"));
+window._regioneCombo = makeCombobox("combo-regione-wrap", "sel-regione", t("form.regione.placeholder"),     t("form.regione.label"));
+window._comuneCombo  = makeCombobox("combo-comune-wrap",  "sel-comune",  t("form.comune.name_placeholder"), t("form.comune.name_label"));
 
 // ── RAL ↔ second-level mutual exclusion ─────────────────────────────────────
 
@@ -177,7 +177,7 @@ document.getElementById("inp-second-level").addEventListener("input", e => {
 
 // ── Combobox helper ──────────────────────────────────────────────────────────
 
-function makeCombobox(wrapId, selectId, placeholder) {
+function makeCombobox(wrapId, selectId, placeholder, ariaLabel) {
   const wrap = document.getElementById(wrapId);
   const sel  = document.getElementById(selectId);
 
@@ -189,6 +189,7 @@ function makeCombobox(wrapId, selectId, placeholder) {
   input.autocomplete = "off";
   input.setAttribute("role", "combobox");
   input.setAttribute("aria-expanded", "false");
+  if (ariaLabel) input.setAttribute("aria-label", ariaLabel);
   if (sel.disabled) input.disabled = true;
 
   const arrow = document.createElement("span");
@@ -1251,25 +1252,82 @@ function downloadResult() {
 }
 
 function generateSnippet(params, r) {
-  const pt = params.ptPct < 1 ? `\n    part_time_pct=${params.ptPct},` : "";
-  const sen = params.senMode === "months"
-    ? `\n    seniority_mode="months", months_elapsed=${params.senValue},`
-    : params.senValue > 0 ? `\n    seniority_value=${params.senValue},` : "";
-  const reg  = params.regione  ? `\n    regione="${params.regione}",` : "";
-  const com  = params.comune   ? `\n    comune_belfiore="${params.comune}",` : "";
-  const ral  = params.ralOverride  > 0 ? `\n    ral_override=${params.ralOverride},`  : "";
-  const sl   = params.secondLevel  > 0 ? `\n    second_level_monthly=${params.secondLevel},` : "";
-  const adp  = params.adPersonam   > 0 ? `\n    ad_personam_monthly=${params.adPersonam},` : "";
-  const emp  = params.empType !== "permanent" ? `\n    employment_type="${params.empType}",` : "";
-  return `from ccnl_engine import compute_salary
+  const needsDecimal = params.ptPct < 1 || params.adPersonam > 0 || params.ralOverride > 0;
+  const decimalImport = needsDecimal ? "\nfrom decimal import Decimal" : "";
 
-result = compute_salary(
-    filename="${params.file}",
-    level_code="${params.levelCode}",${emp}
-    num_employees=${params.employees},${pt}${sen}${reg}${com}${ral}${sl}${adp}
-)
+  // Contract
+  const imports = ["compute", "Employee", "Employer", "Employment", "PayrollScenario"];
+  let contractExpr;
+  if (params.empType === "fixed_term") {
+    imports.push("FixedTerm");
+    contractExpr = "FixedTerm()";
+  } else if (params.empType === "apprentice") {
+    imports.push("Apprentice");
+    contractExpr = `Apprentice(months_elapsed=${params.appMonths || 0})`;
+  } else {
+    imports.push("Permanent");
+    contractExpr = "Permanent()";
+  }
+
+  // Seniority
+  let senStr = "";
+  if (params.senValue > 0) {
+    if (params.senMode === "months") {
+      imports.push("SeniorityByMonths");
+      senStr = `\n        seniority=SeniorityByMonths(value=${params.senValue}),`;
+    } else {
+      imports.push("SeniorityByCount");
+      senStr = `\n        seniority=SeniorityByCount(value=${params.senValue}),`;
+    }
+  }
+
+  // Part-time
+  const ptStr = params.ptPct < 1
+    ? `\n        part_time_pct=Decimal("${params.ptPct}"),` : "";
+
+  // Jurisdiction
+  let jurStr = "";
+  if (params.regione || params.comune) {
+    imports.push("Jurisdiction");
+    const rp = params.regione ? `\n            regione="${params.regione}",` : "";
+    const cp = params.comune  ? `\n            comune_belfiore="${params.comune}",` : "";
+    jurStr = `\n        jurisdiction=Jurisdiction(${rp}${cp}\n        ),`;
+  }
+
+  // Agreement (ad personam / RAL override)
+  let agrStr = "";
+  if (params.adPersonam > 0 || params.ralOverride > 0) {
+    imports.push("Agreement");
+    const adp = params.adPersonam > 0
+      ? `\n            ad_personam_monthly=Decimal("${params.adPersonam}"),` : "";
+    const ral = params.ralOverride > 0
+      ? `\n            ral_override=Decimal("${params.ralOverride}"),` : "";
+    agrStr = `\n        agreement=Agreement(${adp}${ral}\n        ),`;
+  }
+
+  // Employer — second-level allowance
+  const sl = params.secondLevel > 0
+    ? `,\n        second_level_monthly=Decimal("${params.secondLevel}")` : "";
+  const empExpr = `Employer(num_employees=${params.employees}${sl})`;
+
+  const importLine = `from ccnl_engine import (\n    ${imports.sort().join(",\n    ")},\n)`;
+
+  return `from datetime import date${decimalImport}
+${importLine}
+
+result = compute(PayrollScenario(
+    employee=Employee(
+        level_code="${params.levelCode}",${senStr}${ptStr}${jurStr}${agrStr}
+    ),
+    employment=Employment(
+        ccnl="${params.file}",
+        contract=${contractExpr},
+        employer=${empExpr},
+        calculation_date=date.today(),
+    ),
+))
 # Net monthly: ${fmtM(r.net_monthly)}  Gross monthly: ${fmtM(r.gross_monthly)}
-print(f"Netto: {result.net_monthly:.2f}  Lordo: {result.gross_monthly:.2f}")`;
+print(f"Netto: {result.result.net_monthly:.2f}  Lordo: {result.result.gross_monthly:.2f}")`;
 }
 
 function showSnippet() {
@@ -1365,7 +1423,8 @@ function initCompare(pyodide) {
   if (!window._cmpCcnlCombo) {
     window._cmpCcnlCombo = makeCombobox(
       "combo-cmp-ccnl-wrap", "cmp-ccnl",
-      t("form.ccnl.placeholder")
+      t("form.ccnl.placeholder"),
+      t("form.ccnl.label")
     );
   }
 
