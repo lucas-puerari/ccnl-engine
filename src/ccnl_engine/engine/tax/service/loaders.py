@@ -8,6 +8,8 @@ from decimal import Decimal
 from functools import cache
 from typing import TYPE_CHECKING, Any, Protocol
 
+from pydantic import ValidationError
+
 from ccnl_engine.engine.io.service.bundled import read_bundled
 from ccnl_engine.engine.metadata import RulesetIdentity, source_hash
 from ccnl_engine.engine.tax.domain.art15 import (
@@ -131,6 +133,26 @@ def _as_ruleset(raw: dict[str, Any]) -> RulesetIdentity | None:
     if not isinstance(block, dict):
         return None
     return RulesetIdentity.model_validate(block)
+
+
+def _try_ruleset(raw: dict[str, Any]) -> RulesetIdentity | None:
+    """Parse a raw dict's ``ruleset`` block, returning ``None`` on any error.
+
+    Unlike :func:`_as_ruleset`, this silently returns ``None`` when the block
+    is present but incomplete (e.g. missing required fields such as
+    ``verification_status``).  Used for optional-feature loaders whose JSON
+    files may carry partial provenance metadata.
+
+    Returns:
+        The parsed identity, or ``None`` when absent or invalid.
+    """
+    block = raw.get("ruleset")
+    if not isinstance(block, dict):
+        return None
+    try:
+        return RulesetIdentity.model_validate(block)
+    except ValidationError:
+        return None
 
 
 def _verify_ruleset_hash(payload: dict[str, Any], filename: str) -> None:
@@ -413,6 +435,7 @@ def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
     return FamilyDeductionRules(
         year=int(raw["year"]),
         description=raw.get("description", ""),
+        ruleset=_try_ruleset(raw),
         spouse=SpouseDeductionRules(
             dependent_income_threshold=Decimal(
                 str(sp_raw["dependent_income_threshold"])
@@ -472,6 +495,7 @@ def load_art15_deduction_rules(year: int) -> Art15DeductionRules:
     return Art15DeductionRules(
         year=int(raw["year"]),
         description=raw.get("description", ""),
+        ruleset=_try_ruleset(raw),
         mortgage_interest=MortgageInterestRules(
             ceiling=Decimal(str(mi_raw["ceiling"])),
             rate=Decimal(str(mi_raw["rate"])),

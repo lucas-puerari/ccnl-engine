@@ -41,7 +41,7 @@ def compute_confidence(
     status: Literal["complete", "partial"],
     warnings: tuple[str, ...],
     provenance: tuple[RuleProvenance, ...],
-    rulesets: tuple[RulesetIdentity, ...] = (),
+    rulesets: tuple[RulesetIdentity | None, ...] = (),
 ) -> Literal["low", "medium", "high"]:
     """Derive a confidence level from result status, warnings, and provenance.
 
@@ -73,7 +73,10 @@ def compute_confidence(
         warnings: Active engine warnings from the computation.
         provenance: Provenance chain for salary rules consumed.
         rulesets: Identity records for all consumed rulesets (fiscal, INPS,
-            surtax). Their ``verification_status`` is included in the check.
+            surtax, and optional-feature rulesets).  Each entry's
+            ``verification_status`` is included in the check.  A ``None``
+            entry means a ruleset was consumed but its identity is absent
+            or incomplete; it is treated as unverified.
 
     Returns:
         One of ``"low"``, ``"medium"``, or ``"high"``.
@@ -84,7 +87,8 @@ def compute_confidence(
         prov.extraction.verification_status != VerificationStatus.VERIFIED
         for prov in provenance
     ) or any(
-        ruleset_id.verification_status != VerificationStatus.VERIFIED
+        ruleset_id is None
+        or ruleset_id.verification_status != VerificationStatus.VERIFIED
         for ruleset_id in rulesets
     )
     if status == "complete" and not any_unverified:

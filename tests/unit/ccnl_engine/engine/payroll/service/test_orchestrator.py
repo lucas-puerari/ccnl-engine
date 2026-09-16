@@ -94,6 +94,10 @@ from ccnl_engine.engine.tax.domain.variable_pay import (
     PdRRules,
     VariablePayRules,
 )
+from ccnl_engine.engine.tax.service.loaders import (
+    load_art15_deduction_rules,
+    load_family_deduction_rules,
+)
 from tests.helpers import make_ccnl_dict, make_domestic_year_rules, make_year_rules
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _D,
@@ -109,6 +113,8 @@ from tests.unit.ccnl_engine.engine.payroll.service.builders import (
 if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules as SurtaxRulesT
+    from ccnl_engine.engine.tax.domain.art15 import Art15DeductionRules
+    from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.engine.tax.domain.rules import YearRules
 
 _DEFAULT_CCNL = _build_ccnl()
@@ -2764,6 +2770,151 @@ class TestConfidenceWithOptionalRulesets:
         scenario = dataclasses.replace(_req(), fringe_benefit_input=_FB_INPUT)
         calc = compute(scenario)
         assert "variable_pay" in calc.ruleset_version
+
+
+# ---------------------------------------------------------------------------
+# Confidence: family and Art. 15 rulesets (N09 residue)
+# ---------------------------------------------------------------------------
+
+
+def _make_ruleset(suffix: str, status: VerificationStatus) -> RulesetIdentity:
+    """Return a minimal RulesetIdentity for testing.
+
+    Returns:
+        A :class:`RulesetIdentity` with ``id`` suffixed by *suffix*.
+    """
+    return RulesetIdentity(
+        id=f"tax/{suffix}/2026",
+        version="2026.1",
+        effective_from=date(2026, 1, 1),
+        published_at=date(2026, 1, 1),
+        source="https://example.com",
+        source_hash="e" * 64,
+        verification_status=status,
+    )
+
+
+def _family_rules_with_status(status: VerificationStatus) -> FamilyDeductionRules:
+    """Return real family rules with *status* stamped on the ruleset.
+
+    Returns:
+        Real 2026 :class:`FamilyDeductionRules` with a synthetic identity.
+    """
+    base = load_family_deduction_rules(2026)
+    return base.model_copy(
+        update={"ruleset": _make_ruleset("family-deductions", status)}
+    )
+
+
+def _art15_rules_with_status(status: VerificationStatus) -> Art15DeductionRules:
+    """Return real Art. 15 rules with *status* stamped on the ruleset.
+
+    Returns:
+        Real 2026 :class:`Art15DeductionRules` with a synthetic identity.
+    """
+    base = load_art15_deduction_rules(2026)
+    return base.model_copy(
+        update={"ruleset": _make_ruleset("art15-deductions", status)}
+    )
+
+
+_FAMILY_INPUT = FamilyComposition(spouse_dependent=True)
+_ART15_INPUT = Art15Deductions(mortgage_interest=_D("4000"))
+
+
+class TestConfidenceFamilyArt15:
+    """N09 residue: family and Art. 15 rulesets participate in confidence.
+
+    Each test uses a CCNL with fully verified provenance so that the only
+    driver of confidence is the optional-feature ruleset identity.  The base
+    YearRules have no ruleset block (``ruleset=None``, filtered from the
+    consumed set), so they do not interfere.
+    """
+
+    def test_family_without_ruleset_downgrades_confidence(self) -> None:
+        """Family deductions with missing ruleset identity → medium.
+
+        The bundled family-deductions-2026.json carries a partial ruleset
+        block (no verification_status).  _try_ruleset() returns None, which
+        is treated as an unverified consumed source.
+        """
+        _mock_ccnl[0] = _verified_ccnl()
+        result = compute(dataclasses.replace(_req(), family=_FAMILY_INPUT))
+        assert result.result.confidence == "medium"
+
+    def test_family_with_verified_ruleset_allows_high(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Family deductions with a verified ruleset + verified CCNL → high."""
+        _mock_ccnl[0] = _verified_ccnl()
+        verified = _family_rules_with_status(VerificationStatus.VERIFIED)
+        monkeypatch.setattr(
+            "ccnl_engine.engine.payroll.service.fiscal.load_family_deduction_rules",
+            lambda _: verified,
+        )
+        result = compute(dataclasses.replace(_req(), family=_FAMILY_INPUT))
+        assert result.result.confidence == "high"
+
+    def test_family_with_unverified_ruleset_downgrades_confidence(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Family deductions with an unverified ruleset → medium."""
+        _mock_ccnl[0] = _verified_ccnl()
+        unverified = _family_rules_with_status(VerificationStatus.UNVERIFIED)
+        monkeypatch.setattr(
+            "ccnl_engine.engine.payroll.service.fiscal.load_family_deduction_rules",
+            lambda _: unverified,
+        )
+        result = compute(dataclasses.replace(_req(), family=_FAMILY_INPUT))
+        assert result.result.confidence == "medium"
+
+    def test_art15_without_ruleset_downgrades_confidence(self) -> None:
+        """Art. 15 deductions with no ruleset block in JSON → medium.
+
+        art15-deductions-2026.json has no ruleset block at all; _try_ruleset()
+        returns None, treated as an unverified consumed source.
+        """
+        _mock_ccnl[0] = _verified_ccnl()
+        result = compute(dataclasses.replace(_req(), art15_deductions=_ART15_INPUT))
+        assert result.result.confidence == "medium"
+
+    def test_art15_with_verified_ruleset_allows_high(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Art. 15 deductions with a verified ruleset + verified CCNL → high."""
+        _mock_ccnl[0] = _verified_ccnl()
+        verified = _art15_rules_with_status(VerificationStatus.VERIFIED)
+        monkeypatch.setattr(
+            "ccnl_engine.engine.payroll.service.fiscal.load_art15_deduction_rules",
+            lambda _: verified,
+        )
+        result = compute(dataclasses.replace(_req(), art15_deductions=_ART15_INPUT))
+        assert result.result.confidence == "high"
+
+    def test_art15_with_unverified_ruleset_downgrades_confidence(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Art. 15 deductions with an unverified ruleset → medium."""
+        _mock_ccnl[0] = _verified_ccnl()
+        unverified = _art15_rules_with_status(VerificationStatus.UNVERIFIED)
+        monkeypatch.setattr(
+            "ccnl_engine.engine.payroll.service.fiscal.load_art15_deduction_rules",
+            lambda _: unverified,
+        )
+        result = compute(dataclasses.replace(_req(), art15_deductions=_ART15_INPUT))
+        assert result.result.confidence == "medium"
+
+    def test_no_optional_features_confidence_unaffected(self) -> None:
+        """No family or Art. 15 inputs: consumed_ruleset_ids stays empty."""
+        _mock_ccnl[0] = _verified_ccnl()
+        result = compute(_req())
+        assert result.result.confidence == "high"
+
+    def test_none_ruleset_in_compute_confidence_is_unverified(self) -> None:
+        """compute_confidence treats None ruleset entries as unverified."""
+        prov = (_verified_provenance(),)
+        result = compute_confidence("complete", (), prov, rulesets=(None,))
+        assert result == "medium"
 
 
 # ---------------------------------------------------------------------------

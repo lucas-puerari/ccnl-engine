@@ -6,6 +6,8 @@ from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ccnl_engine.engine.metadata import RulesetIdentity  # noqa: TC001
+
 
 class MortgageInterestRules(BaseModel):
     """Art. 15 c. 1 lett. b TUIR: interessi passivi mutuo prima casa.
@@ -45,3 +47,4 @@ class Art15DeductionRules(BaseModel):
     year: int
     description: str = ""
     mortgage_interest: MortgageInterestRules
+    ruleset: RulesetIdentity | None = None
