@@ -224,6 +224,17 @@ class SickInput:
 
     Attributes:
         sick_days: Calendar days of illness in the period. Must be >= 0.
+        cumulative_sick_days: Days already elapsed in the **same illness
+            episode** before this period. The engine uses this value to
+            shift the carenza position and INPS band boundaries so that
+            splitting one episode across multiple pay periods gives the
+            same totals as computing it in a single period.
+
+            Leave as ``None`` (or ``Decimal(0)``) for the first period
+            of a new episode; the engine then starts carenza from day 1.
+            For a continuation, pass the episode days already covered in
+            the previous period(s) — not the year-to-date total across
+            all absences.  A separate new episode restarts at ``None``.
     """
 
     sick_days: Decimal = _ZERO
