@@ -70,10 +70,10 @@ def _load_surtax_rules_cached(year: int) -> SurtaxRules:
     _verify_ruleset_hash(com_payload, f"comunale-{year}.json")
     reg = RegionaleRaw.model_validate(reg_payload)
     com = ComunaleRaw.model_validate(com_payload)
-    ruleset = reg.ruleset or com.ruleset
     return SurtaxRules(
         year=year,
-        ruleset=ruleset,
+        regional_ruleset=reg.ruleset,
+        municipal_ruleset=com.ruleset,
         regionale=reg.rates,
         comunale=com.rates,
     )

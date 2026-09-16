@@ -174,6 +174,31 @@ def _build_trace(
     return CalculationTrace(steps=tuple(steps))
 
 
+def _surtax_versions(surtax: SurtaxRules) -> dict[str, str]:
+    """Return ``{surtax_regional: ..., surtax_municipal: ...}`` identity strings.
+
+    Both keys are always emitted when the surtax bundle is loaded: the envelope
+    documents which data files were read and validated, regardless of whether a
+    specific jurisdiction entry was looked up.
+
+    Returns:
+        Mapping with ``surtax_regional`` and ``surtax_municipal`` keys.
+    """
+    suffix = f"surtax/{surtax.year}"
+    return {
+        "surtax_regional": (
+            str(surtax.regional_ruleset)
+            if surtax.regional_ruleset is not None
+            else f"{suffix}/regional@{knowledge_version}"
+        ),
+        "surtax_municipal": (
+            str(surtax.municipal_ruleset)
+            if surtax.municipal_ruleset is not None
+            else f"{suffix}/municipal@{knowledge_version}"
+        ),
+    }
+
+
 def _ruleset_versions(
     ccnl: CCNL,
     rules: YearRules,
@@ -209,10 +234,7 @@ def _ruleset_versions(
     if rules.inps_ruleset is not None:
         versions["inps"] = str(rules.inps_ruleset)
     if surtax is not None:
-        if surtax.ruleset is not None:
-            versions["surtax"] = str(surtax.ruleset)
-        else:
-            versions["surtax"] = f"surtax/{surtax.year}@{knowledge_version}"
+        versions.update(_surtax_versions(surtax))
     if uses_family_deductions:
         versions["family_deductions"] = (
             f"family-deductions/{rules.year}@{knowledge_version}"
