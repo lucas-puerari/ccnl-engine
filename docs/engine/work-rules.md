@@ -21,6 +21,7 @@ arguments on `PayrollScenario`:
 from ccnl_engine import (
     AbsenceDays, BonusInput, FringeBenefitInput,
     LeaveInput, OvertimeHours, SickInput, WelfareInput,
+    WeeklyOvertimeHours,
 )
 ```
 
@@ -30,13 +31,42 @@ Hours worked beyond the standard schedule in the period.
 
 | Field | Type | Description |
 |---|---|---|
-| `weekday_hours` | `Decimal` | Daytime weekday overtime (straordinario diurno) |
-| `night_hours` | `Decimal` | Weekday night hours (lavoro notturno) |
-| `holiday_hours` | `Decimal` | Daytime public-holiday hours |
-| `night_holiday_hours` | `Decimal` | Night hours on a public holiday |
-| `supplementare_hours` | `Decimal` | Extra hours for part-timers (lavoro supplementare); distinct from straordinario |
+| `weekday_hours` | `Decimal` | Monthly total of daytime weekday overtime (straordinario diurno) |
+| `night_hours` | `Decimal` | Monthly total of weekday night hours (lavoro notturno) |
+| `holiday_hours` | `Decimal` | Monthly total of daytime public-holiday hours (lavoro festivo diurno) |
+| `night_holiday_hours` | `Decimal` | Monthly total of night hours on a public holiday (lavoro festivo-notturno) |
+| `supplementare_hours` | `Decimal` | Monthly total of part-timer extra hours (lavoro supplementare); distinct from straordinario |
+| `weeks` | `tuple[WeeklyOvertimeHours, ...]` | Optional per-week breakdown; empty by default |
 
-All fields default to `0`. At least one must be positive.
+All fields default to `0`. At least one monthly total must be positive.
+
+**Weekly breakdown for tiered CCNLs**
+
+Some CCNLs cap overtime bands *per calendar week* (e.g. "first 4 h/week at
+15 %, additional at 20 %"). Passing only a monthly total treats the entire
+month as a single week, overstating the higher band. Supply one
+`WeeklyOvertimeHours` entry per week to get accurate results.
+
+`WeeklyOvertimeHours` has the same five hour fields as `OvertimeHours` (without
+`weeks`). When `weeks` is non-empty, each monthly total **must equal the sum of
+the corresponding field across all weeks**; the engine validates this on
+construction.
+
+Use `OvertimeHours.from_weeks()` to build the monthly totals automatically:
+
+```python
+from decimal import Decimal
+from ccnl_engine import OvertimeHours, WeeklyOvertimeHours
+
+ot = OvertimeHours.from_weeks((
+    WeeklyOvertimeHours(weekday_hours=Decimal(3)),
+    WeeklyOvertimeHours(weekday_hours=Decimal(5)),
+    WeeklyOvertimeHours(weekday_hours=Decimal(4)),
+    WeeklyOvertimeHours(weekday_hours=Decimal(4)),
+))
+# ot.weekday_hours == Decimal(16)   (sum of weekly values)
+# ot.weeks == (W1, W2, W3, W4)     (stored for band-by-week calculation)
+```
 
 ### `AbsenceDays`
 
@@ -60,9 +90,40 @@ Reports `leave_accrued_days_monthly` and `leave_balance_days` in the result.
 | Field | Type | Description |
 |---|---|---|
 | `sick_days` | `Decimal` | Calendar days of illness in the period; must be >= 0 |
-| `cumulative_sick_days` | `Decimal \| None` | Running total for the year (determines integration band) |
+| `cumulative_sick_days` | `Decimal \| None` | Days already elapsed in the **same illness episode** before this period (determines carenza offset and integration band) |
 
 Reports the INPS indemnity and the employer integration complement.
+
+**`cumulative_sick_days` semantics**
+
+This field counts days already elapsed *in the same continuous illness episode*,
+not the year-to-date total across all absences. The engine uses it to shift the
+carenza position and the INPS band boundaries so that splitting one episode
+across multiple pay periods gives the same totals as computing it in a single
+period.
+
+*New episode:* leave `cumulative_sick_days` as `None` (or `Decimal(0)`). The
+engine starts carenza from day 1.
+
+```python
+# First period of an episode: 5 days, carenza of 3 → INPS covers days 4-5
+result1 = compute(..., sick_input=SickInput(sick_days=Decimal(5)))
+```
+
+*Continuation of the same episode:* pass the number of episode days already
+computed in the previous period.
+
+```python
+# Second period: episode continues, 3 more days, carenza already elapsed
+result2 = compute(..., sick_input=SickInput(
+    sick_days=Decimal(3),
+    cumulative_sick_days=Decimal(5),  # days from result1 period
+))
+```
+
+*Separate new episode* (e.g. a distinct illness later in the year): pass
+`cumulative_sick_days=None` again. Do not accumulate across distinct episodes:
+each episode restarts its own carenza and INPS band.
 
 ### `FringeBenefitInput`
 

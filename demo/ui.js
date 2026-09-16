@@ -135,6 +135,17 @@ function clearError() {
   document.getElementById("error-box").style.display = "none";
 }
 
+// ── Compare-local error (does not hide #results or the compare form) ─────────
+
+function showCompareError(msg) {
+  const box = document.getElementById("compare-error");
+  box.textContent = msg; box.style.display = "block";
+  document.getElementById("compare-kpis").style.display = "none";
+}
+function clearCompareError() {
+  document.getElementById("compare-error").style.display = "none";
+}
+
 // ── Part-time slider ─────────────────────────────────────────────────────────
 
 const slider   = document.getElementById("inp-parttime");
@@ -1507,6 +1518,7 @@ function switchTab(id) {
 }
 
 function clearCompare() {
+  clearCompareError();
   document.getElementById("compare-kpis").style.display = "none";
   if (window._cmpCcnlCombo) {
     window._cmpCcnlCombo.reset();
@@ -1607,9 +1619,9 @@ function initCompare(pyodide) {
       `"")`
     ));
     if (r.error) {
-      showError(r.error);
+      showCompareError(r.error);
     } else {
-      clearError();
+      clearCompareError();
       renderCompareResult(r);
     }
   });

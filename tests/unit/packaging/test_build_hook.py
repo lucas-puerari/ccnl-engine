@@ -200,6 +200,77 @@ class TestDemoGlue:
             "Exceptions from pyodide.runPython bypass showError()."
         )
 
+    def test_compare_error_uses_local_element_not_show_error(self) -> None:
+        """Compare error branch must call showCompareError, not showError.
+
+        showError() hides #results, which removes the compare form (selectors,
+        buttons) from view even though the base result is still valid.
+        showCompareError() targets #compare-error inside the compare panel and
+        leaves #results visible.
+        """
+        ui_js = _PROJECT_ROOT / "demo" / "ui.js"
+        js = ui_js.read_text(encoding="utf-8")
+        # Extract initCompare body.
+        init_idx = js.find("function initCompare(")
+        assert init_idx != -1, "initCompare not found in ui.js"
+        depth = 0
+        func_end = init_idx
+        for i, ch in enumerate(js[init_idx:], start=init_idx):
+            if ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    func_end = i
+                    break
+        body = js[init_idx:func_end]
+        assert "showCompareError(" in body, (
+            "initCompare does not call showCompareError(). "
+            "A compare error will hide #results and the compare form."
+        )
+        assert "showError(" not in body, (
+            "initCompare still calls showError() on a compare error. "
+            "This hides #results even when the base result is valid."
+        )
+        # clearCompare must also clear the local error box.
+        clear_idx = js.find("function clearCompare(")
+        assert clear_idx != -1, "clearCompare not found in ui.js"
+        depth = 0
+        clear_end = clear_idx
+        for i, ch in enumerate(js[clear_idx:], start=clear_idx):
+            if ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    clear_end = i
+                    break
+        clear_body = js[clear_idx:clear_end]
+        assert "clearCompareError(" in clear_body, (
+            "clearCompare does not call clearCompareError(). "
+            "A stale compare error message stays visible after Azzera."
+        )
+
+    def test_index_html_has_compare_error_element(self) -> None:
+        """index.html must contain #compare-error inside the compare panel.
+
+        Without this element showCompareError() cannot display the message and
+        throws a TypeError at runtime.
+        """
+        html = _INDEX_HTML.read_text(encoding="utf-8")
+        assert 'id="compare-error"' in html, (
+            "#compare-error element missing from index.html. "
+            "showCompareError() will throw TypeError at runtime."
+        )
+        # The element must appear inside panel-compare (before panel-code).
+        panel_compare_idx = html.find('id="panel-compare"')
+        compare_error_idx = html.find('id="compare-error"')
+        panel_code_idx = html.find('id="panel-code"')
+        assert panel_compare_idx < compare_error_idx < panel_code_idx, (
+            "#compare-error must appear inside #panel-compare, "
+            "not outside or in a different panel."
+        )
+
     def test_compute_salary_invalid_weeks_json_returns_error(self) -> None:
         """compute_salary must return {error: ...} for invalid overtime_weeks.
 

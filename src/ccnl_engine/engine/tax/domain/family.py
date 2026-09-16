@@ -6,6 +6,7 @@ from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ccnl_engine.engine.metadata import RulesetIdentity
 from ccnl_engine.engine.tax.domain.rules import DeductionBreakpoint
 
 
@@ -97,3 +98,4 @@ class FamilyDeductionRules(BaseModel):
     spouse: SpouseDeductionRules
     children: ChildrenDeductionRules
     other_dependents: OtherDependentRules
+    ruleset: RulesetIdentity | None = None
