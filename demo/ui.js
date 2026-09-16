@@ -1178,18 +1178,24 @@ function doCompute(pyodide) {
   const bonusAnnual   = parseFloat(document.getElementById("inp-bonus").value)          || 0;
   const bonusPdr      = document.getElementById("chk-pdr").checked;
 
-  const r = JSON.parse(pyodide.runPython(
-    `compute_salary(` +
-    `${JSON.stringify(file)}, ${JSON.stringify(levelCode)}, ${JSON.stringify(empType)}, ` +
-    `${employees}, ${ptPct}, ${senValue}, ${JSON.stringify(senMode)}, ` +
-    `${appMonths}, ${JSON.stringify(regione)}, ${JSON.stringify(comune)}, ` +
-    `${ivsApplies ? "True" : "False"}, ${adPersonam}, ${ralOverride}, ${secondLevel}, ` +
-    `${otWeekday}, ${otNight}, ${otHoliday}, ${otNightHol}, ` +
-    `${JSON.stringify(otWeeks)}, ` +
-    `${absenceDays}, ${leaveDays}, ${sickDays}, ` +
-    `${fringeAnnual}, ${welfareAnnual}, ${bonusAnnual}, ${bonusPdr ? "True" : "False"}, ` +
-    `${JSON.stringify(appTrack)})`
-  ));
+  let r;
+  try {
+    r = JSON.parse(pyodide.runPython(
+      `compute_salary(` +
+      `${JSON.stringify(file)}, ${JSON.stringify(levelCode)}, ${JSON.stringify(empType)}, ` +
+      `${employees}, ${ptPct}, ${senValue}, ${JSON.stringify(senMode)}, ` +
+      `${appMonths}, ${JSON.stringify(regione)}, ${JSON.stringify(comune)}, ` +
+      `${ivsApplies ? "True" : "False"}, ${adPersonam}, ${ralOverride}, ${secondLevel}, ` +
+      `${otWeekday}, ${otNight}, ${otHoliday}, ${otNightHol}, ` +
+      `${JSON.stringify(otWeeks)}, ` +
+      `${absenceDays}, ${leaveDays}, ${sickDays}, ` +
+      `${fringeAnnual}, ${welfareAnnual}, ${bonusAnnual}, ${bonusPdr ? "True" : "False"}, ` +
+      `${JSON.stringify(appTrack)})`
+    ));
+  } catch (e) {
+    showError("Error: " + e.message);
+    return;
+  }
 
   if (r.error) { showError("Error: " + r.error); return; }
 
@@ -1293,7 +1299,8 @@ function generateSnippet(params, r) {
   const hasL3 = params.otWeekday > 0 || params.otNight > 0 || params.otHoliday > 0
     || params.otNightHol > 0 || params.absenceDays > 0 || params.leaveDays > 0
     || params.sickDays > 0 || params.fringeAnnual > 0 || params.welfareAnnual > 0
-    || params.bonusAnnual > 0 || params.bonusPdr;
+    || params.bonusAnnual > 0 || params.bonusPdr
+    || !!(params.otWeeks && params.otWeeks.trim());
   const needsDecimal = params.ptPct < 1 || params.adPersonam > 0
     || params.ralOverride > 0 || params.secondLevel > 0 || hasL3
     || (r && r.weekly_hours !== null && r.weekly_hours !== undefined);

@@ -19,6 +19,8 @@ from __future__ import annotations
 
 import ast
 import importlib
+import json
+import sys
 from pathlib import Path
 
 import pytest
@@ -124,3 +126,102 @@ class TestDemoGlue:
             "Neither demo/index.html nor demo/ui.js contains WHEEL_VERSION. "
             "The pages.yml sed pass would silently produce a broken page."
         )
+
+    def test_has_l3_includes_ot_weeks(self) -> None:
+        """hasL3 in generateSnippet must reference otWeeks.
+
+        Without this, a snippet generated from weekly-only overtime omits
+        ``from decimal import Decimal`` and raises NameError when executed.
+        """
+        ui_js = _PROJECT_ROOT / "demo" / "ui.js"
+        js = ui_js.read_text(encoding="utf-8")
+        # Locate generateSnippet, then find hasL3 inside it.
+        func_idx = js.find("function generateSnippet(")
+        assert func_idx != -1, "generateSnippet not found in ui.js"
+        depth = 0
+        func_end = func_idx
+        for i, ch in enumerate(js[func_idx:], start=func_idx):
+            if ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    func_end = i
+                    break
+        func_body = js[func_idx:func_end]
+        has_l3_idx = func_body.find("const hasL3 =")
+        assert has_l3_idx != -1, "hasL3 assignment not found inside generateSnippet"
+        stmt_end = func_body.find(";", has_l3_idx)
+        has_l3_stmt = func_body[has_l3_idx:stmt_end]
+        assert "otWeeks" in has_l3_stmt, (
+            "hasL3 in generateSnippet does not reference otWeeks. "
+            "Snippets generated with only weekly overtime will omit "
+            "'from decimal import Decimal' and raise NameError."
+        )
+
+    def test_do_compute_catches_pyodide_errors(self) -> None:
+        """``doCompute`` must wrap pyodide.runPython in try/catch.
+
+        Without the guard, any exception from the Python bridge (e.g.
+        invalid overtime_weeks JSON) propagates uncaught instead of
+        reaching showError().
+        """
+        ui_js = _PROJECT_ROOT / "demo" / "ui.js"
+        js = ui_js.read_text(encoding="utf-8")
+        do_compute_idx = js.find("function doCompute(")
+        assert do_compute_idx != -1, "doCompute not found in ui.js"
+        # Find the matching closing brace by tracking brace depth.
+        depth = 0
+        func_end = do_compute_idx
+        for i, ch in enumerate(js[do_compute_idx:], start=do_compute_idx):
+            if ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    func_end = i
+                    break
+        body = js[do_compute_idx:func_end]
+        assert "try {" in body or "try{" in body, (
+            "doCompute does not contain a try block. "
+            "Exceptions from pyodide.runPython bypass showError()."
+        )
+        assert "catch" in body, (
+            "doCompute does not contain a catch clause. "
+            "Exceptions from pyodide.runPython bypass showError()."
+        )
+
+    def test_compute_salary_invalid_weeks_json_returns_error(self) -> None:
+        """compute_salary must return {error: ...} for invalid overtime_weeks.
+
+        Before the fix, _build_time_supplements() was called outside the
+        try block, so JSONDecodeError / AttributeError / ValueError propagated
+        uncaught to the caller instead of being converted to an error dict.
+        """
+        demo_dir = str(_PROJECT_ROOT / "demo")
+        if demo_dir not in sys.path:
+            sys.path.insert(0, demo_dir)
+        demo_app = importlib.import_module("app")
+
+        bad_inputs = [
+            "[",  # JSONDecodeError
+            "[1]",  # AttributeError: int has no .get
+            '[{"weekday_hours":-1}]',  # ValueError from Decimal validation
+        ]
+        for bad in bad_inputs:
+            raw = demo_app.compute_salary(
+                "tessile-moda-artigianato-confartigianato.json",
+                "1",
+                "permanent",
+                50,
+                overtime_weeks=bad,
+            )
+            result = json.loads(raw)
+            assert "error" in result, (
+                f"compute_salary did not return an error dict for "
+                f"overtime_weeks={bad!r}; got {raw!r}"
+            )
+            assert result["error"].startswith("overtime_weeks:"), (
+                f"Error message should be prefixed 'overtime_weeks:'; "
+                f"got {result['error']!r}"
+            )
