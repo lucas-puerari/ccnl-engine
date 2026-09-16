@@ -1,4 +1,4 @@
-"""Payroll provenance, ruleset identities and trace assembly."""
+"""Payroll assembly: trace building, ruleset versioning, Calculation envelope."""
 
 from __future__ import annotations
 
