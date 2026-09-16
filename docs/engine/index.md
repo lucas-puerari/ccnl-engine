@@ -77,7 +77,8 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 | `Employee` | The worker: level code, seniority, part-time, jurisdiction, agreement |
 | `Employment` | CCNL file, contract type, employer, calculation date |
 | `Employer` | Headcount tier, second-level allowances |
-| `OvertimeHours` | Weekday/night/holiday overtime hours (L3, informational) |
+| `OvertimeHours` | Weekday/night/holiday overtime hours (L3, informational); attach `WeeklyOvertimeHours` entries for CCNLs with per-week band thresholds |
+| `WeeklyOvertimeHours` | Per-calendar-week hours used to partition tiered overtime bands accurately |
 | `AbsenceDays` | Unpaid absence days in the period (L3, informational) |
 | `LeaveInput` | Leave days consumed (L3, informational) |
 | `SickInput` | Sick-leave calendar days (L3, informational) |

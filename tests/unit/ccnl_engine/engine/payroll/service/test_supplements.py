@@ -13,7 +13,10 @@ from ccnl_engine.engine.contract.domain.ccnl import (
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
 from ccnl_engine.engine.payroll.domain.calculation import TraceCategory
-from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
+from ccnl_engine.engine.payroll.domain.supplements import (
+    OvertimeHours,
+    WeeklyOvertimeHours,
+)
 from ccnl_engine.engine.payroll.service.rounding import money as _money
 from ccnl_engine.engine.payroll.service.supplements import (
     _slice_hours_for_band,
@@ -468,3 +471,64 @@ class TestHighBaseThresholdNormalisation:
         assert ni == _ZERO
         assert ho == _ZERO
         assert len(steps) == 2  # 1 band + SUPPLEMENT_TOTAL
+
+
+class TestComputeTimeSupplementsWeeklyBreakdown:
+    """compute_time_supplements with per-week OvertimeHours.weeks breakdown."""
+
+    def test_weekly_breakdown_with_tiered_bands(self) -> None:
+        """Weekly path partitions each week independently then sums.
+
+        Two weekday bands: B1 (15%, 0-4 h/week), B2 (20%, 4+ h/week).
+        Two weeks: W1 = 6 h (B1: 4h, B2: 2h), W2 = 3 h (B1: 3h, B2: 0h).
+        Monthly total = 9 h.  Total per band: B1 = 7 h, B2 = 2 h.
+
+        Compare to monthly-only path (treats 9 h as one week):
+        Monthly-only: B1 = 4 h, B2 = 5 h — overstates B2.
+        """
+        schema = TimeSupplements(
+            hourly_base_method="minimo_tabellare",
+            overtime_bands=[  # type: ignore[arg-type]
+                _band_with_threshold("B1", "0.15", ["weekday"], threshold=None),
+                _band_with_threshold("B2", "0.20", ["weekday"], threshold=4),
+            ],
+        )
+        oh = OvertimeHours.from_weeks((
+            WeeklyOvertimeHours(weekday_hours=Decimal(6)),
+            WeeklyOvertimeHours(weekday_hours=Decimal(3)),
+        ))
+        ot, ni, ho, steps = compute_time_supplements(
+            oh, schema, _BASE, _DIVISOR, _AS_OF
+        )
+        hourly_base = _BASE / _DIVISOR
+        # B1 receives 7 h (4 from W1 + 3 from W2), B2 receives 2 h (2 from W1).
+        # money() is applied once per band, then once more at bucket level.
+        b1_amount = _money(Decimal(7) * Decimal("0.15") * hourly_base)
+        b2_amount = _money(Decimal(2) * Decimal("0.20") * hourly_base)
+        expected = _money(b1_amount + b2_amount)
+        assert ot == expected
+        assert ni == _ZERO
+        assert ho == _ZERO
+        assert len(steps) == 3  # B1 + B2 + SUPPLEMENT_TOTAL
+
+    def test_weekly_path_single_band_same_as_monthly(self) -> None:
+        """With one band, weekly and monthly paths produce the same result."""
+        schema = TimeSupplements(
+            hourly_base_method="minimo_tabellare",
+            overtime_bands=[  # type: ignore[arg-type]
+                _band_with_threshold("B1", "0.15", ["weekday"]),
+            ],
+        )
+        total = Decimal(10)
+        oh_monthly = OvertimeHours(weekday_hours=total)
+        oh_weekly = OvertimeHours.from_weeks((
+            WeeklyOvertimeHours(weekday_hours=Decimal(4)),
+            WeeklyOvertimeHours(weekday_hours=Decimal(6)),
+        ))
+        ot_m, _, _, _ = compute_time_supplements(
+            oh_monthly, schema, _BASE, _DIVISOR, _AS_OF
+        )
+        ot_w, _, _, _ = compute_time_supplements(
+            oh_weekly, schema, _BASE, _DIVISOR, _AS_OF
+        )
+        assert ot_m == ot_w

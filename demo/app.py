@@ -41,6 +41,7 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     LeaveInput,
     OvertimeHours,
     SickInput,
+    WeeklyOvertimeHours,
     WelfareInput,
 )
 from ccnl_engine.engine.payroll.service.orchestrator import compute
@@ -317,18 +318,52 @@ def _build_time_supplements(
     night_hours: float,
     holiday_hours: float,
     night_holiday_hours: float,
+    weeks_json: str = "",
 ) -> OvertimeHours | None:
     """Build OvertimeHours when any overtime input is non-zero.
 
+    When *weeks_json* is a non-empty JSON array of per-week objects the monthly
+    totals are derived automatically via :meth:`OvertimeHours.from_weeks` and
+    the four scalar arguments are ignored.
+
     Args:
-        weekday_hours: Daytime weekday overtime hours.
-        night_hours: Weekday night hours.
-        holiday_hours: Daytime public-holiday hours.
-        night_holiday_hours: Night hours on a public holiday.
+        weekday_hours: Daytime weekday overtime hours (monthly total).
+        night_hours: Weekday night hours (monthly total).
+        holiday_hours: Daytime public-holiday hours (monthly total).
+        night_holiday_hours: Night hours on a public holiday (monthly total).
+        weeks_json: Optional JSON array of per-week hour objects.  Each entry
+            may contain any subset of ``weekday_hours``, ``night_hours``,
+            ``holiday_hours``, ``night_holiday_hours``,
+            ``supplementare_hours``; missing keys default to zero.
 
     Returns:
         An :class:`OvertimeHours` instance, or ``None`` when all are zero.
     """
+    if weeks_json:
+        raw: list[dict[str, float]] = json.loads(weeks_json)
+        weeks = tuple(
+            WeeklyOvertimeHours(
+                weekday_hours=Decimal(str(w.get("weekday_hours", 0))),
+                night_hours=Decimal(str(w.get("night_hours", 0))),
+                holiday_hours=Decimal(str(w.get("holiday_hours", 0))),
+                night_holiday_hours=Decimal(str(w.get("night_holiday_hours", 0))),
+                supplementare_hours=Decimal(str(w.get("supplementare_hours", 0))),
+            )
+            for w in raw
+        )
+        if not any(
+            getattr(wk, f)
+            for wk in weeks
+            for f in (
+                "weekday_hours",
+                "night_hours",
+                "holiday_hours",
+                "night_holiday_hours",
+                "supplementare_hours",
+            )
+        ):
+            return None
+        return OvertimeHours.from_weeks(weeks)
     if not any([weekday_hours, night_hours, holiday_hours, night_holiday_hours]):
         return None
     return OvertimeHours(
@@ -358,6 +393,7 @@ def compute_salary(
     overtime_night_hours: float = 0.0,
     overtime_holiday_hours: float = 0.0,
     overtime_night_holiday_hours: float = 0.0,
+    overtime_weeks: str = "",
     absence_unpaid_days: float = 0.0,
     leave_taken_days: float = 0.0,
     sick_days: float = 0.0,
@@ -398,6 +434,9 @@ def compute_salary(
         overtime_night_hours: Weekday night hours (L3).
         overtime_holiday_hours: Daytime public-holiday hours (L3).
         overtime_night_holiday_hours: Night hours on a public holiday (L3).
+        overtime_weeks: Optional JSON array of per-week hour objects for
+            accurate tiered-band partitioning (L3).  When provided, the
+            four scalar overtime arguments above are ignored.
         absence_unpaid_days: Days absent without pay in the period (L3).
         leave_taken_days: Leave days consumed in the period (L3).
         sick_days: Calendar days of illness in the period (L3).
@@ -428,6 +467,7 @@ def compute_salary(
         overtime_night_hours,
         overtime_holiday_hours,
         overtime_night_holiday_hours,
+        overtime_weeks,
     )
     absence = (
         AbsenceDays(unpaid_days=Decimal(str(absence_unpaid_days)))

@@ -41,6 +41,7 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "TraceCategory",
     "TraceStep",
     "WelfareInput",
+    "WeeklyOvertimeHours",
     "compute",
     "engine_version",
     "render_breakdown",

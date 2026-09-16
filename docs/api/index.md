@@ -44,6 +44,7 @@ from ccnl_engine import (
     Art15Deductions,
     # Supplements
     OvertimeHours,
+    WeeklyOvertimeHours,
     AbsenceDays,
     LeaveInput,
     SickInput,

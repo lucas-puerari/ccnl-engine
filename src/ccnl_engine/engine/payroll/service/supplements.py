@@ -11,6 +11,7 @@ from ccnl_engine.engine.payroll.domain.calculation import TraceCategory, TraceSt
 from ccnl_engine.engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
     from datetime import date
 
     from ccnl_engine.engine.contract.domain.ccnl import OvertimeBand, TimeSupplements
@@ -99,27 +100,47 @@ def _supplements_for_kind(
     total_hours: Decimal,
     hourly_base: Decimal,
     as_of: date,
+    weekly_hours: Sequence[Decimal] | None = None,
 ) -> list[tuple[Decimal, str, str, str]]:
     """Compute (amount, bucket, label, detail) entries for one work kind.
 
     When ``bands`` contains multiple entries they are sorted by
-    ``hour_threshold_per_week`` and the total hours are partitioned among them.
+    ``hour_threshold_per_week`` and hours are partitioned among them.
+
+    When ``weekly_hours`` is provided, each entry represents one calendar
+    week.  Band-hours are accumulated across all weeks before computing
+    money, so the rounding behaviour is identical to the single-period
+    path and trace step counts remain the same.
+
+    When ``weekly_hours`` is ``None`` (default), ``total_hours`` is
+    treated as a single period (the whole month as one week).  This is
+    correct for single-band CCNLs but overstates the higher bands for
+    CCNLs with per-week hour caps; prefer supplying ``weekly_hours`` for
+    those contracts.
 
     Args:
         kind: The :class:`WorkKind` being processed.
         bands: Bands that list ``kind`` in their ``applies_to_kinds``.
-        total_hours: Hours declared for this kind in the pay period.
+        total_hours: Monthly hours declared for this kind (used when
+            ``weekly_hours`` is ``None`` or as the skip guard otherwise).
         hourly_base: Full-time hourly rate (base / divisor).
         as_of: Reference date for time-series rate lookups.
+        weekly_hours: Per-week hour list, or ``None`` for the monthly path.
 
     Returns:
         List of ``(amount, bucket_key, label, detail)`` tuples for non-zero
         contributions.
     """
     sorted_bands = sorted(bands, key=lambda b: b.hour_threshold_per_week or 0)
+    hours_periods: Sequence[Decimal] = (
+        weekly_hours if weekly_hours is not None else [total_hours]
+    )
     results: list[tuple[Decimal, str, str, str]] = []
     for i, band in enumerate(sorted_bands):
-        band_hours = _slice_hours_for_band(i, sorted_bands, total_hours)
+        # Accumulate band-hours across all periods, then round once.
+        band_hours: Decimal = _ZERO
+        for h in hours_periods:
+            band_hours += _slice_hours_for_band(i, sorted_bands, h)
         if band_hours <= _ZERO:
             continue
         raw = _supplement_for_band(band, band_hours, hourly_base, as_of)
@@ -132,6 +153,44 @@ def _supplements_for_kind(
             f"{band.code}/{kind.value}",
         ))
     return results
+
+
+def _build_weekly_kind_hours(
+    supps_input: OvertimeHours,
+) -> dict[WorkKind, list[Decimal]] | None:
+    """Return per-kind weekly-hour lists, or ``None`` when no weeks supplied.
+
+    Returns:
+        Mapping of :class:`WorkKind` to per-week hour lists, or ``None`` when
+        :attr:`OvertimeHours.weeks` is empty.
+    """
+    if not supps_input.weeks:
+        return None
+    return {
+        WorkKind.WEEKDAY: [w.weekday_hours for w in supps_input.weeks],
+        WorkKind.NIGHT: [w.night_hours for w in supps_input.weeks],
+        WorkKind.HOLIDAY: [w.holiday_hours for w in supps_input.weeks],
+        WorkKind.NIGHT_HOLIDAY: [w.night_holiday_hours for w in supps_input.weeks],
+        WorkKind.SUPPLEMENTARE: [w.supplementare_hours for w in supps_input.weeks],
+    }
+
+
+def _group_bands_by_kind(
+    supplements_schema: TimeSupplements,
+) -> dict[WorkKind, list[OvertimeBand]]:
+    """Group overtime bands by their applicable :class:`WorkKind`.
+
+    Preserves schema order within each kind so that per-CCNL band order is
+    stable before the threshold sort inside :func:`_supplements_for_kind`.
+
+    Returns:
+        Mapping of :class:`WorkKind` to the list of bands that apply to it.
+    """
+    kind_bands: dict[WorkKind, list[OvertimeBand]] = defaultdict(list)
+    for band in supplements_schema.overtime_bands:
+        for kind in band.applies_to_kinds:
+            kind_bands[kind].append(band)
+    return kind_bands
 
 
 def compute_time_supplements(
@@ -152,6 +211,11 @@ def compute_time_supplements(
     (ascending, ``None`` treated as 0) and each band receives the slice of
     hours between its threshold and the next band's threshold.  A single band
     per kind accumulates all hours as before.
+
+    **Per-week mode**: when :attr:`~OvertimeHours.weeks` is non-empty each
+    week is processed through the band thresholds independently.
+    Band-hours are accumulated across all weeks before money is computed,
+    keeping rounding identical to the single-period path.
 
     Args:
         supps_input: Caller-declared supplement hours for the pay period.
@@ -178,11 +242,8 @@ def compute_time_supplements(
         WorkKind.SUPPLEMENTARE: supps_input.supplementare_hours,
     }
 
-    # Group bands by kind; preserve schema order within each kind.
-    kind_bands: dict[WorkKind, list[OvertimeBand]] = defaultdict(list)
-    for band in supplements_schema.overtime_bands:
-        for kind in band.applies_to_kinds:
-            kind_bands[kind].append(band)
+    weekly_kind_hours = _build_weekly_kind_hours(supps_input)
+    kind_bands = _group_bands_by_kind(supplements_schema)
 
     buckets: dict[str, Decimal] = {"overtime": _ZERO, "night": _ZERO, "holiday": _ZERO}
     trace: list[TraceStep] = []
@@ -191,8 +252,9 @@ def compute_time_supplements(
         total_hours = kind_to_hours.get(kind, _ZERO)
         if total_hours <= _ZERO:
             continue
+        weekly = weekly_kind_hours[kind] if weekly_kind_hours is not None else None
         for amount, bucket, label, detail in _supplements_for_kind(
-            kind, bands, total_hours, hourly_base, as_of
+            kind, bands, total_hours, hourly_base, as_of, weekly
         ):
             buckets[bucket] += amount
             trace.append(

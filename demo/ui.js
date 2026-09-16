@@ -1169,6 +1169,7 @@ function doCompute(pyodide) {
   const otNight       = parseFloat(document.getElementById("inp-ot-night").value)       || 0;
   const otHoliday     = parseFloat(document.getElementById("inp-ot-holiday").value)     || 0;
   const otNightHol    = parseFloat(document.getElementById("inp-ot-nightholiday").value)|| 0;
+  const otWeeks       = (document.getElementById("inp-ot-weeks").value || "").trim();
   const absenceDays   = parseFloat(document.getElementById("inp-absence-days").value)   || 0;
   const leaveDays     = parseFloat(document.getElementById("inp-leave-days").value)     || 0;
   const sickDays      = parseFloat(document.getElementById("inp-sick-days").value)      || 0;
@@ -1184,6 +1185,7 @@ function doCompute(pyodide) {
     `${appMonths}, ${JSON.stringify(regione)}, ${JSON.stringify(comune)}, ` +
     `${ivsApplies ? "True" : "False"}, ${adPersonam}, ${ralOverride}, ${secondLevel}, ` +
     `${otWeekday}, ${otNight}, ${otHoliday}, ${otNightHol}, ` +
+    `${JSON.stringify(otWeeks)}, ` +
     `${absenceDays}, ${leaveDays}, ${sickDays}, ` +
     `${fringeAnnual}, ${welfareAnnual}, ${bonusAnnual}, ${bonusPdr ? "True" : "False"}, ` +
     `${JSON.stringify(appTrack)})`
@@ -1260,7 +1262,7 @@ function doCompute(pyodide) {
   _lastParams = {
     file, levelCode, empType, employees, ptPct, senValue, senMode, appMonths, appTrack,
     regione, comune, adPersonam, secondLevel, ralOverride, ivsApplies,
-    otWeekday, otNight, otHoliday, otNightHol,
+    otWeekday, otNight, otHoliday, otNightHol, otWeeks,
     absenceDays, leaveDays, sickDays,
     fringeAnnual, welfareAnnual, bonusAnnual, bonusPdr,
   };
@@ -1376,7 +1378,22 @@ function generateSnippet(params, r) {
 
   // L3 supplement inputs
   let l3Lines = "";
-  if (params.otWeekday > 0 || params.otNight > 0 || params.otHoliday > 0 || params.otNightHol > 0) {
+  const hasOt = params.otWeekday > 0 || params.otNight > 0 || params.otHoliday > 0 || params.otNightHol > 0;
+  if (params.otWeeks) {
+    // Weekly breakdown path
+    imports.push("OvertimeHours");
+    imports.push("WeeklyOvertimeHours");
+    let weeksArr;
+    try { weeksArr = JSON.parse(params.otWeeks); } catch { weeksArr = []; }
+    const weekLines = weeksArr.map((w) => {
+      const fields = ["weekday_hours","night_hours","holiday_hours","night_holiday_hours","supplementare_hours"]
+        .filter(k => w[k])
+        .map(k => `${k}=Decimal("${w[k]}")`)
+        .join(", ");
+      return `        WeeklyOvertimeHours(${fields}),`;
+    }).join("\n");
+    l3Lines += `\n    time_supplements=OvertimeHours.from_weeks((\n${weekLines}\n    )),`;
+  } else if (hasOt) {
     imports.push("OvertimeHours");
     const wh  = params.otWeekday  > 0 ? `\n        weekday_hours=Decimal("${params.otWeekday}"),`  : "";
     const nh  = params.otNight    > 0 ? `\n        night_hours=Decimal("${params.otNight}"),`    : "";
@@ -1567,6 +1584,7 @@ function initCompare(pyodide) {
       `${p.appMonths}, ${JSON.stringify(p.regione)}, ${JSON.stringify(p.comune)}, ` +
       `${p.ivsApplies ? "True" : "False"}, ${p.adPersonam}, ${p.ralOverride}, ${p.secondLevel}, ` +
       `${p.otWeekday}, ${p.otNight}, ${p.otHoliday}, ${p.otNightHol}, ` +
+      `${JSON.stringify(p.otWeeks || "")}, ` +
       `${p.absenceDays}, ${p.leaveDays}, ${p.sickDays}, ` +
       `${p.fringeAnnual}, ${p.welfareAnnual}, ${p.bonusAnnual}, ${p.bonusPdr ? "True" : "False"}, ` +
       `"")`

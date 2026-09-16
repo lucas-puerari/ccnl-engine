@@ -49,6 +49,7 @@
   "form.l3.ot_night.label": "Night overtime (h)",
   "form.l3.ot_holiday.label": "Holiday overtime (h)",
   "form.l3.ot_nightholiday.label": "Night-holiday (h)",
+  "form.l3.ot_weeks.label": "Weekly breakdown (JSON, optional)",
   "form.l3.absence.label": "Unpaid absence (days)",
   "form.l3.leave.label": "Leave taken (days)",
   "form.l3.sick.label": "Sick days (calendar)",
