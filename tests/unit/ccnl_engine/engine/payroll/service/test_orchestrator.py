@@ -87,6 +87,12 @@ from ccnl_engine.engine.surtax.domain.rules import (
     SurtaxBracket,
     SurtaxRules,
 )
+from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates
+from ccnl_engine.engine.tax.domain.variable_pay import (
+    FringeBenefitRules,
+    PdRRules,
+    VariablePayRules,
+)
 from tests.helpers import make_ccnl_dict, make_domestic_year_rules, make_year_rules
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _D,
@@ -2458,6 +2464,200 @@ class TestComputeConfidence:
         """compute() populates confidence on the result."""
         result = compute(_req()).result
         assert result.confidence in {"low", "medium", "high"}
+
+
+# ---------------------------------------------------------------------------
+# Confidence: optional rulesets (N09)
+# ---------------------------------------------------------------------------
+
+_VERIFIED_PROV: dict[str, object] = {
+    "location": {
+        "source_document": {
+            "document_id": "test-doc-verified",
+            "title": "Verified Source",
+            "kind": "tabella_retributiva",
+            "url": "https://example.com",
+        },
+        "section": "Art. 1",
+    },
+    "extraction": {
+        "method": "manual",
+        "extraction_timestamp": "2026-01-01T00:00:00",
+        "verification_status": "verified",
+        "effective_from": "2020-01-01",
+    },
+}
+
+
+def _verified_level(code: str, order: int, salary: str) -> dict[str, object]:
+    period = {
+        "valid_from": "2020-01-01",
+        "valid_until": None,
+        "value": salary,
+        "provenance": _VERIFIED_PROV,
+    }
+    return {
+        "code": code,
+        "order": order,
+        "description": f"Level {code}",
+        "base_salary": {"periods": [period]},
+        "fixed_allowances": [],
+        "provenance": _VERIFIED_PROV,
+    }
+
+
+def _verified_ccnl() -> CCNL:
+    """Minimal CCNL where all provenance is VERIFIED (no ruleset block).
+
+    Returns:
+        A validated CCNL instance with fully verified salary provenance.
+    """
+    raw = make_ccnl_dict()
+    raw["levels"] = [
+        _verified_level("2", 2, "600.00"),
+        _verified_level("3", 3, "800.00"),
+        _verified_level("4", 4, "1000.00"),
+    ]
+    raw["parameters"]["seniority_increments"]["provenance"] = _VERIFIED_PROV
+    return CCNL.model_validate(raw)
+
+
+def _var_pay_rules(status: VerificationStatus) -> VariablePayRules:
+    """Build a VariablePayRules with a RulesetIdentity of the given status.
+
+    Returns:
+        A VariablePayRules instance with minimal fringe-benefit and PdR rules.
+    """
+    ruleset = RulesetIdentity(
+        id="tax/variable-pay-rules/2026",
+        version="2026.1",
+        effective_from=date(2026, 1, 1),
+        published_at=date(2026, 1, 1),
+        source="https://example.com",
+        source_hash="c" * 64,
+        verification_status=status,
+    )
+    fb = FringeBenefitRules(
+        threshold_standard=_D("1000"),
+        threshold_with_children=_D("2000"),
+    )
+    pdr = PdRRules(
+        max_amount=_D("5000"),
+        flat_tax_rate=_D("0.05"),
+        income_ceiling=_D("80000"),
+    )
+    return VariablePayRules(year=2026, fringe_benefit=fb, pdr=pdr, ruleset=ruleset)
+
+
+_FB_INPUT = FringeBenefitInput(annual_amount=_D("500"))
+
+
+class TestConfidenceWithOptionalRulesets:
+    """Unverified optional rulesets downgrade confidence from high to medium."""
+
+    def test_verified_var_pay_ruleset_allows_high_confidence(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Verified var-pay ruleset + verified CCNL provenance → high."""
+        _mock_ccnl[0] = _verified_ccnl()
+        verified = _var_pay_rules(VerificationStatus.VERIFIED)
+        monkeypatch.setattr(
+            "ccnl_engine.engine.payroll.service.work_rules.load_variable_pay_rules",
+            lambda _: verified,
+        )
+        result = compute(dataclasses.replace(_req(), fringe_benefit_input=_FB_INPUT))
+        assert result.result.confidence == "high"
+
+    def test_unverified_var_pay_ruleset_downgrades_confidence(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Unverified var-pay ruleset drops confidence to medium."""
+        _mock_ccnl[0] = _verified_ccnl()
+        unverified = _var_pay_rules(VerificationStatus.UNVERIFIED)
+        monkeypatch.setattr(
+            "ccnl_engine.engine.payroll.service.work_rules.load_variable_pay_rules",
+            lambda _: unverified,
+        )
+        result = compute(dataclasses.replace(_req(), fringe_benefit_input=_FB_INPUT))
+        assert result.result.confidence == "medium"
+
+    def test_ccnl_without_ruleset_allows_high_confidence(self) -> None:
+        """Verified CCNL with no ruleset block → high confidence."""
+        _mock_ccnl[0] = _verified_ccnl()
+        result = compute(_req())
+        assert result.result.confidence == "high"
+
+    def test_unverified_ccnl_ruleset_downgrades_confidence(self) -> None:
+        """Unverified CCNL ruleset → confidence medium."""
+        ruleset_block = {
+            "id": "ccnl/test",
+            "version": "2026.1",
+            "effective_from": "2026-01-01",
+            "effective_until": None,
+            "published_at": "2026-01-01",
+            "source": "https://example.com",
+            "source_hash": "d" * 64,
+            "verification_status": "unverified",
+        }
+        raw = make_ccnl_dict()
+        raw["levels"] = [
+            _verified_level("2", 2, "600.00"),
+            _verified_level("3", 3, "800.00"),
+            _verified_level("4", 4, "1000.00"),
+        ]
+        raw["parameters"]["seniority_increments"]["provenance"] = _VERIFIED_PROV
+        raw["ruleset"] = ruleset_block
+        _mock_ccnl[0] = CCNL.model_validate(raw)
+        result = compute(_req())
+        assert result.result.confidence == "medium"
+
+    def test_sick_pay_rates_without_ruleset_not_added_to_ids(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """InpsSickPayRates with ruleset=None: sick_pay absent from ruleset_ids."""
+        _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
+            update={
+                "work_rules": CCNLWorkRules(
+                    sickness_rules=SicknessRules(
+                        carenza_integration_rate=_D("1"),
+                        full_pay_integration_rate=_D("1"),
+                    )
+                )
+            }
+        )
+        rates_no_ruleset = InpsSickPayRates(carenza_days=3, bands=[])
+        monkeypatch.setattr(
+            "ccnl_engine.engine.payroll.service.work_rules.load_sick_pay_rates",
+            lambda: rates_no_ruleset,
+        )
+        scenario = dataclasses.replace(_req(), sick_input=SickInput(sick_days=_D("3")))
+        calc = compute(scenario)
+        assert "sick_pay" in calc.ruleset_version
+
+    def test_var_pay_rules_without_ruleset_not_added_to_ids(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """VariablePayRules with ruleset=None: variable_pay absent from ruleset_ids."""
+        rules_no_ruleset = VariablePayRules(
+            year=2026,
+            fringe_benefit=FringeBenefitRules(
+                threshold_standard=_D("1000"),
+                threshold_with_children=_D("2000"),
+            ),
+            pdr=PdRRules(
+                max_amount=_D("5000"),
+                flat_tax_rate=_D("0.05"),
+                income_ceiling=_D("80000"),
+            ),
+            ruleset=None,
+        )
+        monkeypatch.setattr(
+            "ccnl_engine.engine.payroll.service.work_rules.load_variable_pay_rules",
+            lambda _: rules_no_ruleset,
+        )
+        scenario = dataclasses.replace(_req(), fringe_benefit_input=_FB_INPUT)
+        calc = compute(scenario)
+        assert "variable_pay" in calc.ruleset_version
 
 
 # ---------------------------------------------------------------------------
