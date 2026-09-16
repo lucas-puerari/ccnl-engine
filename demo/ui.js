@@ -1552,8 +1552,14 @@ function initCompare(pyodide) {
     const file  = document.getElementById("cmp-ccnl").value;
     const level = document.getElementById("cmp-level").value;
     if (!file || !level) return;
-    // Inherit all parameters from last computation, swap CCNL + level
+    // Inherit all parameters from last computation, swap CCNL + level.
+    // Do not forward p.appTrack: track names are CCNL-specific and are
+    // meaningless (or wrong) for a different contract. Pass "" so Python
+    // auto-resolves when the comparison level has a unique track, and
+    // returns an error when multiple tracks require explicit selection.
     const p = _lastParams;
+    // Clear stale compare results before the new call.
+    document.getElementById("compare-kpis").style.display = "none";
     const r = JSON.parse(pyodide.runPython(
       `compute_salary(` +
       `${JSON.stringify(file)}, ${JSON.stringify(level)}, ${JSON.stringify(p.empType)}, ` +
@@ -1563,9 +1569,14 @@ function initCompare(pyodide) {
       `${p.otWeekday}, ${p.otNight}, ${p.otHoliday}, ${p.otNightHol}, ` +
       `${p.absenceDays}, ${p.leaveDays}, ${p.sickDays}, ` +
       `${p.fringeAnnual}, ${p.welfareAnnual}, ${p.bonusAnnual}, ${p.bonusPdr ? "True" : "False"}, ` +
-      `${JSON.stringify(p.appTrack || "")})`
+      `"")`
     ));
-    if (!r.error) renderCompareResult(r);
+    if (r.error) {
+      showError(r.error);
+    } else {
+      clearError();
+      renderCompareResult(r);
+    }
   });
 
   document.getElementById("btn-cmp-clear").addEventListener("click", clearCompare);
