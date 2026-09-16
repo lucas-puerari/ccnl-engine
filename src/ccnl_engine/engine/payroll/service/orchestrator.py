@@ -178,9 +178,11 @@ def compute(scenario: PayrollScenario) -> Calculation:
     consumed_rulesets = tuple(
         ruleset_id
         for ruleset_id in (
+            ccnl.ruleset,
             rules.ruleset,
             rules.inps_ruleset,
             surtax.ruleset if surtax is not None else None,
+            *work.consumed_ruleset_ids,
         )
         if ruleset_id is not None
     )
