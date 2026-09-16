@@ -2,8 +2,9 @@
 
 from ccnl_engine.engine.primitives.domain.primitives import (
     Bracket,
+    FrozenDict,
     assert_ivs_le_total,
     validate_open_sequence,
 )
 
-__all__ = ["Bracket", "assert_ivs_le_total", "validate_open_sequence"]
+__all__ = ["Bracket", "FrozenDict", "assert_ivs_le_total", "validate_open_sequence"]
