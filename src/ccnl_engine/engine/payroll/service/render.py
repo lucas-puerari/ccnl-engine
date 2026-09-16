@@ -42,7 +42,11 @@ class AnnualBreakdown:
         ulteriore_detrazione_lavoro: Ulteriore detrazione lavoro
             (D.L. 3/2020, Art. 1, co. 1-bis); zero when not applicable.
         family_deduction_annual: Art. 12 TUIR family deductions.
-        art15_deduction_annual: Art. 15 TUIR oneri detraibili.
+        art15_deduction_annual: Art. 15 TUIR oneri detraibili (pre-clawback).
+        sterilizzazione_clawback_annual: Sterilizzazione detrazioni clawback
+            (Art. 1 c. 3-4 L. 199/2025): amount by which the Art. 15 credit
+            was reduced for reddito complessivo above the threshold. Zero when
+            the income is below the threshold or no Art. 15 deductions apply.
         irpef_net: IRPEF net (after all deductions; zero when employer
             does not act as sostituto d'imposta).
         addizionale_regionale_annual: Regional IRPEF surtax.
@@ -73,6 +77,7 @@ class AnnualBreakdown:
     ulteriore_detrazione_lavoro: Decimal
     family_deduction_annual: Decimal
     art15_deduction_annual: Decimal
+    sterilizzazione_clawback_annual: Decimal
     irpef_net: Decimal
     addizionale_regionale_annual: Decimal
     addizionale_comunale_annual: Decimal
@@ -136,6 +141,7 @@ def render_breakdown(result: PayrollResult) -> AnnualBreakdown:
         ulteriore_detrazione_lavoro=result.ulteriore_detrazione_lavoro,
         family_deduction_annual=result.family_deduction_annual,
         art15_deduction_annual=result.art15_deduction_annual,
+        sterilizzazione_clawback_annual=result.sterilizzazione_clawback_annual,
         irpef_net=result.irpef_net,
         addizionale_regionale_annual=result.addizionale_regionale_annual,
         addizionale_comunale_annual=result.addizionale_comunale_annual,
