@@ -79,7 +79,7 @@ def _surtax_with_rate(rate: Decimal) -> SurtaxRules:
     return SurtaxRules(
         year=_REF_DATE_YEAR,
         regionale={
-            "TestRegione": RegionaleEntry(brackets=[Bracket(up_to=None, rate=rate)])
+            "TestRegione": RegionaleEntry(brackets=(Bracket(up_to=None, rate=rate),))
         },
         comunale={},
     )

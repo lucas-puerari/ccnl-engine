@@ -51,7 +51,6 @@ class _Tier(Protocol):
     ivs_rate: Decimal
 
 
-@cache
 def load_year_rules(
     year: int,
     sector: TaxSector,
@@ -61,13 +60,17 @@ def load_year_rules(
 
     INPS contribution rates are tiered by company size. This function selects
     the correct tier for ``num_employees`` and returns a flat ``YearRules``
-    with the resolved rates — callers do not need to handle tier logic.
+    with the resolved rates -- callers do not need to handle tier logic.
 
     The IRPEF/TFR block comes from ``ccnl_engine/knowledge/tax/data/``; the
     INPS contribution block (aliquote, apprentice, domestic) comes from
     ``ccnl_engine/knowledge/inps/data/``. Both are merged and validated
     against :class:`~ccnl_engine.engine.tax.domain.rules.YearRulesRaw` before
     resolving tiers.
+
+    Each call returns an independent deep copy of the cached rules object, so
+    callers may freely mutate nested fields (e.g. ``irpef_brackets``) without
+    contaminating subsequent loads.
 
     Args:
         year: Tax year (e.g. ``2026``). Matching data files must exist in the
@@ -80,6 +83,24 @@ def load_year_rules(
         A ``YearRules`` instance with INPS rates already resolved for the given
         headcount. The ``inps`` field is ``None`` for domestic-work sectors,
         which use ``domestic_contributions`` instead.
+    """
+    return _load_year_rules_cached(year, sector, num_employees).model_copy(deep=True)
+
+
+@cache
+def _load_year_rules_cached(
+    year: int,
+    sector: TaxSector,
+    num_employees: int,
+) -> YearRules:
+    """Parse, validate and cache tax rules for the given arguments (internal use only).
+
+    Callers must use :func:`load_year_rules`, which returns a deep copy so
+    each caller gets an independent object that may be mutated freely.
+
+    Returns:
+        The shared :class:`~ccnl_engine.engine.tax.domain.rules.YearRules`
+        object stored in the cache.
     """
     tax_raw = read_tax_rules_raw(year, sector)
     inps_raw = read_inps_rules_raw(year, sector)

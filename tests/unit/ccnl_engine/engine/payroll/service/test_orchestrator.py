@@ -756,13 +756,13 @@ class TestComputeAddizionali:
             year=2026,
             regionale={
                 "TestRegione": RegionaleEntry(
-                    brackets=[SurtaxBracket(up_to=None, rate=Decimal("0.0123"))]
+                    brackets=(SurtaxBracket(up_to=None, rate=Decimal("0.0123")),)
                 )
             },
             comunale={
                 "X001": ComunaleEntry(
                     nome="Test",
-                    brackets=[SurtaxBracket(up_to=None, rate=Decimal("0.008"))],
+                    brackets=(SurtaxBracket(up_to=None, rate=Decimal("0.008")),),
                     exemption_threshold=Decimal(10000),
                 )
             },
@@ -857,7 +857,7 @@ class TestComputeAddizionali:
             comunale={
                 "X001": ComunaleEntry(
                     nome="Test",
-                    brackets=[SurtaxBracket(up_to=None, rate=Decimal("0.008"))],
+                    brackets=(SurtaxBracket(up_to=None, rate=Decimal("0.008")),),
                     exemption_threshold=Decimal(10000),
                 )
             },

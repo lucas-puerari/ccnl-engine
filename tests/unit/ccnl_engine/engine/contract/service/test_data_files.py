@@ -161,11 +161,29 @@ class TestLoadYearRules:
         with pytest.raises(FileNotFoundError):
             load_year_rules(1900, TaxSector.TERZIARIO, 50)
 
-    def test_load_year_rules_is_cached(self) -> None:
-        """Two calls with identical arguments return the identical YearRules."""
+    def test_load_year_rules_isolated(self) -> None:
+        """Two calls return independent YearRules copies (mutation isolation)."""
         first = load_year_rules(2026, TaxSector.TERZIARIO, 50)
         second = load_year_rules(2026, TaxSector.TERZIARIO, 50)
-        assert first is second
+        assert first is not second
+
+    def test_load_year_rules_irpef_brackets_mutation_isolated(self) -> None:
+        """Clearing irpef_brackets on one copy does not affect the next call."""
+        first = load_year_rules(2026, TaxSector.TERZIARIO, 50)
+        original_count = len(first.irpef_brackets)
+        first.irpef_brackets.clear()
+        second = load_year_rules(2026, TaxSector.TERZIARIO, 50)
+        assert len(second.irpef_brackets) == original_count
+
+    def test_load_year_rules_nested_field_mutation_isolated(self) -> None:
+        """Assigning to inps.employee_rate does not affect subsequent loads."""
+        first = load_year_rules(2026, TaxSector.TERZIARIO, 50)
+        assert first.inps is not None
+        original_rate = first.inps.employee_rate
+        first.inps.employee_rate = Decimal(0)
+        second = load_year_rules(2026, TaxSector.TERZIARIO, 50)
+        assert second.inps is not None
+        assert second.inps.employee_rate == original_rate
 
 
 # ---------------------------------------------------------------------------
