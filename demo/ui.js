@@ -148,11 +148,34 @@ ptNumInp.addEventListener("input", () => {
 
 // ── Contract-type toggle ─────────────────────────────────────────────────────
 
+/** Populate the apprentice track selector for (file, levelCode) and show/hide
+ *  the div. Requires Pyodide to be loaded (_examplePyodide != null). */
+function _populateTracks(pyodide, file, levelCode) {
+  const tracks = JSON.parse(
+    pyodide.runPython(`load_level_tracks(${JSON.stringify(file)}, ${JSON.stringify(levelCode)})`)
+  );
+  const trackSel = document.getElementById("sel-apprentice-track");
+  trackSel.innerHTML = `<option value="">— select track —</option>`;
+  for (const tr of tracks) {
+    const opt = document.createElement("option");
+    opt.value = tr;
+    opt.textContent = tr;
+    trackSel.appendChild(opt);
+  }
+  document.getElementById("div-apprentice-track").style.display = tracks.length > 1 ? "" : "none";
+}
+
 document.getElementById("sel-employment").addEventListener("change", e => {
   const isApp = e.target.value === "apprentice";
   document.getElementById("div-apprentice-months").style.display = isApp ? "" : "none";
   document.getElementById("div-seniority").style.display = isApp ? "none" : "";
-  if (!isApp) document.getElementById("div-apprentice-track").style.display = "none";
+  if (!isApp) {
+    document.getElementById("div-apprentice-track").style.display = "none";
+  } else if (window._examplePyodide) {
+    const file  = document.getElementById("sel-ccnl").value;
+    const level = document.getElementById("sel-level").value;
+    if (file && level) _populateTracks(window._examplePyodide, file, level);
+  }
 });
 
 // ── Combobox init (before Pyodide loads) ────────────────────────────────────
@@ -592,18 +615,7 @@ async function onCcnlChange(pyodide) {
     btn.disabled = levelSel.value === "";
     updateSeniorityConstraint();
     if (document.getElementById("sel-employment").value === "apprentice" && levelSel.value) {
-      const tracks = JSON.parse(
-        pyodide.runPython(`load_level_tracks(${JSON.stringify(file)}, ${JSON.stringify(levelSel.value)})`)
-      );
-      const trackSel = document.getElementById("sel-apprentice-track");
-      trackSel.innerHTML = `<option value="">— select track —</option>`;
-      for (const tr of tracks) {
-        const opt = document.createElement("option");
-        opt.value = tr;
-        opt.textContent = tr;
-        trackSel.appendChild(opt);
-      }
-      document.getElementById("div-apprentice-track").style.display = tracks.length > 1 ? "" : "none";
+      _populateTracks(pyodide, file, levelSel.value);
     }
   });
   document.querySelectorAll("input[name='sen-mode']").forEach(r => {
