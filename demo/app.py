@@ -462,13 +462,16 @@ def compute_salary(
 
     ccnl_name, weekly_hours_domestic = _resolve_ccnl_meta(filename, part_time_pct)
 
-    time_supplements = _build_time_supplements(
-        overtime_weekday_hours,
-        overtime_night_hours,
-        overtime_holiday_hours,
-        overtime_night_holiday_hours,
-        overtime_weeks,
-    )
+    try:
+        time_supplements = _build_time_supplements(
+            overtime_weekday_hours,
+            overtime_night_hours,
+            overtime_holiday_hours,
+            overtime_night_holiday_hours,
+            overtime_weeks,
+        )
+    except Exception as exc:  # ruff: ignore[blind-except]
+        return json.dumps({"error": f"overtime_weeks: {exc}"})
     absence = (
         AbsenceDays(unpaid_days=Decimal(str(absence_unpaid_days)))
         if absence_unpaid_days > 0
