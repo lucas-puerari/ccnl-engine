@@ -493,7 +493,7 @@ def compute_salary(
         # metadata
         "ccnl_id": payroll.ccnl_id,
         "weekly_hours": (
-            float(weekly_hours_domestic) if weekly_hours_domestic is not None else None
+            str(weekly_hours_domestic) if weekly_hours_domestic is not None else None
         ),
         "ccnl_name": ccnl_name,
         "level_code": payroll.level_code,
