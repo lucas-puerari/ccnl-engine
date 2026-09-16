@@ -357,7 +357,8 @@ label {
 #calc-btn { margin-top: 12px; width: 100%; font-size: 14px; font-weight: 600; }
 
 /* ── Error box ─────────────────────────────────────────────────────────────── */
-#error-box { display: none; border-radius: var(--radius-box); }
+#error-box    { display: none; border-radius: var(--radius-box); }
+#compare-error { display: none; border-radius: var(--radius-box); margin-top: 8px; }
 
 /* ── Placeholder ───────────────────────────────────────────────────────────── */
 #results-placeholder {
