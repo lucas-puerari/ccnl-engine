@@ -202,10 +202,12 @@ class TestSurtaxLoaderIntegrity:
     """load_surtax_rules rejects tampering and maps the regionale identity."""
 
     def test_ruleset_propagated(self) -> None:
-        """SurtaxRules.ruleset reflects the regionale file identity."""
+        """SurtaxRules carries separate regional and municipal identities."""
         rules = surtax_loaders.load_surtax_rules(2026)
-        assert rules.ruleset is not None
-        assert rules.ruleset.id == "surtax/2026/regionale"
+        assert rules.regional_ruleset is not None
+        assert rules.regional_ruleset.id == "surtax/2026/regionale"
+        assert rules.municipal_ruleset is not None
+        assert rules.municipal_ruleset.id == "surtax/2026/comunale"
 
     def test_tampered_comunale_raises(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """Tampered comunale file must raise ValueError."""

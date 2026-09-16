@@ -3314,3 +3314,180 @@ class TestBackCalculationProvenance:
         restored = BackCalculationStep.model_validate_json(payload)
         assert restored.result == step.result
         assert dict(restored.inputs) == {"a": _D("1"), "b": "x"}
+
+
+# ---------------------------------------------------------------------------
+# Surtax ruleset identity tracking (N24)
+# ---------------------------------------------------------------------------
+
+
+def _surtax_with_identities(
+    regional_status: VerificationStatus,
+    municipal_status: VerificationStatus,
+) -> SurtaxRules:
+    """SurtaxRules with distinct regional and municipal identities.
+
+    Returns:
+        A :class:`SurtaxRules` with TestRegione and X001 entries plus
+        identities with the given verification statuses.
+    """
+    return SurtaxRules(
+        year=2026,
+        regional_ruleset=RulesetIdentity(
+            id="surtax/2026/regionale",
+            version="2026.1",
+            effective_from=date(2026, 1, 1),
+            published_at=date(2026, 1, 1),
+            source="https://example.com",
+            source_hash="a" * 64,
+            verification_status=regional_status,
+        ),
+        municipal_ruleset=RulesetIdentity(
+            id="surtax/2026/comunale",
+            version="2026.2",
+            effective_from=date(2026, 1, 1),
+            published_at=date(2026, 1, 1),
+            source="https://example.com",
+            source_hash="b" * 64,
+            verification_status=municipal_status,
+        ),
+        regionale={
+            "TestRegione": RegionaleEntry(
+                brackets=(SurtaxBracket(up_to=None, rate=Decimal("0.01")),)
+            )
+        },
+        comunale={
+            "X001": ComunaleEntry(
+                nome="Test",
+                brackets=(SurtaxBracket(up_to=None, rate=Decimal("0.008")),),
+            )
+        },
+    )
+
+
+class TestSurtaxRulesetIdentity:
+    """N24: regional and municipal surtax identities are tracked separately.
+
+    Both keys are always emitted in ``ruleset_version`` when the surtax bundle
+    is loaded.  Only identities of entries that were actually applied appear in
+    ``consumed_rulesets`` and therefore influence confidence.
+    """
+
+    def test_both_ruleset_version_keys_present_when_regione_set(self) -> None:
+        """Both surtax_regional and surtax_municipal keys appear in ruleset_version."""
+        _mock_surtax[0] = _surtax_with_identities(
+            VerificationStatus.VERIFIED, VerificationStatus.VERIFIED
+        )
+        calc = compute(
+            _req(
+                as_of=date(2026, 1, 1),
+                jurisdiction=Jurisdiction(regione="TestRegione"),
+            )
+        )
+        assert "surtax_regional" in calc.ruleset_version
+        assert "surtax_municipal" in calc.ruleset_version
+        assert "surtax" not in calc.ruleset_version
+
+    def test_both_ruleset_version_keys_present_when_comune_set(self) -> None:
+        """Both surtax_regional and surtax_municipal appear when only comune set."""
+        _mock_surtax[0] = _surtax_with_identities(
+            VerificationStatus.VERIFIED, VerificationStatus.VERIFIED
+        )
+        calc = compute(
+            _req(
+                as_of=date(2026, 1, 1),
+                jurisdiction=Jurisdiction(comune_belfiore="X001"),
+            )
+        )
+        assert "surtax_regional" in calc.ruleset_version
+        assert "surtax_municipal" in calc.ruleset_version
+
+    def test_municipal_version_update_visible_in_ruleset_version(self) -> None:
+        """Different municipal_ruleset version changes surtax_municipal in envelope."""
+        v1 = _surtax_with_identities(
+            VerificationStatus.VERIFIED, VerificationStatus.VERIFIED
+        )
+        _mock_surtax[0] = v1
+        req = _req(
+            as_of=date(2026, 1, 1),
+            jurisdiction=Jurisdiction(comune_belfiore="X001"),
+        )
+        calc1 = compute(req)
+
+        v2_municipal = RulesetIdentity(
+            id="surtax/2026/comunale",
+            version="2026.3-review-fixture",
+            effective_from=date(2026, 1, 1),
+            published_at=date(2026, 1, 1),
+            source="https://example.com",
+            source_hash="c" * 64,
+            verification_status=VerificationStatus.VERIFIED,
+        )
+        _mock_surtax[0] = v1.model_copy(update={"municipal_ruleset": v2_municipal})
+        calc2 = compute(req)
+
+        v1_mun = calc1.ruleset_version["surtax_municipal"]
+        v2_mun = calc2.ruleset_version["surtax_municipal"]
+        assert v1_mun != v2_mun
+        assert "2026.3-review-fixture" in v2_mun
+        v1_reg = calc1.ruleset_version["surtax_regional"]
+        v2_reg = calc2.ruleset_version["surtax_regional"]
+        assert v1_reg == v2_reg
+
+    def test_unverified_regional_downgrades_confidence_when_applied(self) -> None:
+        """Unverified regional ruleset → medium confidence when entry was applied."""
+        _mock_ccnl[0] = _verified_ccnl()
+        _mock_surtax[0] = _surtax_with_identities(
+            VerificationStatus.UNVERIFIED, VerificationStatus.VERIFIED
+        )
+        calc = compute(
+            _req(
+                as_of=date(2026, 1, 1),
+                jurisdiction=Jurisdiction(regione="TestRegione"),
+            )
+        )
+        assert calc.result.confidence == "medium"
+
+    def test_unverified_municipal_downgrades_confidence_when_applied(self) -> None:
+        """Unverified municipal ruleset → medium confidence when entry was applied."""
+        _mock_ccnl[0] = _verified_ccnl()
+        _mock_surtax[0] = _surtax_with_identities(
+            VerificationStatus.VERIFIED, VerificationStatus.UNVERIFIED
+        )
+        calc = compute(
+            _req(
+                as_of=date(2026, 1, 1),
+                jurisdiction=Jurisdiction(comune_belfiore="X001"),
+            )
+        )
+        assert calc.result.confidence == "medium"
+
+    def test_unverified_municipal_not_consumed_when_regione_only(self) -> None:
+        """Unverified municipal ruleset does not downgrade confidence: regione only."""
+        _mock_ccnl[0] = _verified_ccnl()
+        _mock_surtax[0] = _surtax_with_identities(
+            VerificationStatus.VERIFIED, VerificationStatus.UNVERIFIED
+        )
+        calc = compute(
+            _req(
+                as_of=date(2026, 1, 1),
+                jurisdiction=Jurisdiction(regione="TestRegione"),
+            )
+        )
+        assert calc.result.confidence == "high"
+
+    def test_both_applied_both_identities_affect_confidence(self) -> None:
+        """Both entries applied: unverified municipal identity downgrades confidence."""
+        _mock_ccnl[0] = _verified_ccnl()
+        _mock_surtax[0] = _surtax_with_identities(
+            VerificationStatus.VERIFIED, VerificationStatus.UNVERIFIED
+        )
+        calc = compute(
+            _req(
+                as_of=date(2026, 1, 1),
+                jurisdiction=Jurisdiction(
+                    regione="TestRegione", comune_belfiore="X001"
+                ),
+            )
+        )
+        assert calc.result.confidence == "medium"

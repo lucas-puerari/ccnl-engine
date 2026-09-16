@@ -271,8 +271,18 @@ def _compute_addizionali(
     regione: str | None,
     comune_belfiore: str | None,
     irpef_due: Decimal,
-) -> tuple[Decimal, Decimal, frozenset[FiscalSimplification]]:
-    """Return (addizionale_regionale, addizionale_comunale, updated_simplifications).
+) -> tuple[Decimal, Decimal, frozenset[FiscalSimplification], bool, bool]:
+    """Return amounts, simplifications and applied flags for addizionali.
+
+    The return value is a 5-tuple:
+    ``(regionale_amount, comunale_amount, simplifications, reg_applied,
+    com_applied)``.
+
+    ``reg_applied`` is ``True`` when the regionale entry was found in the bundle
+    and used to compute a rate (even if the amount is zero due to an exemption
+    threshold).  ``com_applied`` follows the same semantics for the comunale
+    entry.  Both flags are ``False`` when ``irpef_due`` is zero (no-tax area)
+    because no entry is consulted in that case.
 
     Addizionali are only due when the underlying IRPEF is positive. When
     ``irpef_due`` is zero (no-tax area or deductions fully offset IRPEF),
@@ -283,7 +293,8 @@ def _compute_addizionali(
     added. Otherwise the surtax is computed from the bundled bracket table.
 
     Returns:
-        Tuple of (regionale_amount, comunale_amount, simplifications_frozenset).
+        5-tuple of (regionale_amount, comunale_amount, simplifications,
+        reg_applied, com_applied).
     """
     sfs: set[FiscalSimplification] = set(existing)
     addizionale_regionale = _ZERO
@@ -292,15 +303,18 @@ def _compute_addizionali(
     if irpef_due == _ZERO:
         sfs.add(FiscalSimplification.NO_ADDIZIONALE_REGIONALE)
         sfs.add(FiscalSimplification.NO_ADDIZIONALE_COMUNALE)
-        return _ZERO, _ZERO, frozenset(sfs)
+        return _ZERO, _ZERO, frozenset(sfs), False, False
 
+    reg_applied = False
     if surtax is not None and regione is not None:
         entry = surtax.regionale.get(regione)
         if entry is not None:
+            reg_applied = True
             addizionale_regionale = _irpef.surtax_from_brackets(
                 taxable_income, entry.brackets
             )
             sfs.discard(FiscalSimplification.NO_ADDIZIONALE_REGIONALE)
+            sfs.discard(FiscalSimplification.ADDIZIONALE_REGIONALE_UNKNOWN)
         else:
             # Jurisdiction provided but not found in the bundle: mark as
             # not_computed (unknown) rather than verified-zero, so the scope
@@ -310,13 +324,16 @@ def _compute_addizionali(
     else:
         sfs.add(FiscalSimplification.NO_ADDIZIONALE_REGIONALE)
 
+    com_applied = False
     if surtax is not None and comune_belfiore is not None:
         entry_com = surtax.comunale.get(comune_belfiore)
         if entry_com is not None:
+            com_applied = True
             addizionale_comunale = _irpef.surtax_from_brackets(
                 taxable_income, entry_com.brackets, entry_com.exemption_threshold
             )
             sfs.discard(FiscalSimplification.NO_ADDIZIONALE_COMUNALE)
+            sfs.discard(FiscalSimplification.ADDIZIONALE_COMUNALE_UNKNOWN)
         else:
             # Unknown codice catastale: not_computed, not verified-zero.
             sfs.add(FiscalSimplification.ADDIZIONALE_COMUNALE_UNKNOWN)
@@ -324,7 +341,13 @@ def _compute_addizionali(
     else:
         sfs.add(FiscalSimplification.NO_ADDIZIONALE_COMUNALE)
 
-    return addizionale_regionale, addizionale_comunale, frozenset(sfs)
+    return (
+        addizionale_regionale,
+        addizionale_comunale,
+        frozenset(sfs),
+        reg_applied,
+        com_applied,
+    )
 
 
 def _run_wr_family_deductions(
@@ -510,9 +533,13 @@ def _update_simplification_flags(
 def _collect_fiscal_rulesets(
     fam_ruleset: RulesetIdentity | None,
     art15_ruleset: RulesetIdentity | None,
+    surtax_regional_ruleset: RulesetIdentity | None,
+    surtax_municipal_ruleset: RulesetIdentity | None,
     *,
     family_consumed: bool,
     art15_consumed: bool,
+    surtax_reg_consumed: bool,
+    surtax_com_consumed: bool,
 ) -> tuple[RulesetIdentity | None, ...]:
     """Return the ordered tuple of optional-feature ruleset identities.
 
@@ -521,14 +548,19 @@ def _collect_fiscal_rulesets(
     incomplete (treated as unverified by the confidence aggregator).
 
     Returns:
-        A tuple containing at most two entries: family deductions first,
-        Art. 15 deductions second.
+        A tuple with at most four entries: family deductions, Art. 15,
+        surtax regional and surtax municipal, each present only when the
+        corresponding feature was consumed.
     """
     ids: list[RulesetIdentity | None] = []
     if fam_ruleset is not None or family_consumed:
         ids.append(fam_ruleset)
     if art15_ruleset is not None or art15_consumed:
         ids.append(art15_ruleset)
+    if surtax_reg_consumed:
+        ids.append(surtax_regional_ruleset)
+    if surtax_com_consumed:
+        ids.append(surtax_municipal_ruleset)
     return tuple(ids)
 
 
@@ -704,15 +736,19 @@ def compute_fiscal(
     # Addizionale regionale e comunale (Art. 50 TUIR; Art. 1 D.Lgs. 360/1998).
     regione = j.regione if j is not None else None
     comune_belfiore = j.comune_belfiore if j is not None else None
-    addizionale_regionale, addizionale_comunale, fiscal_simplifications = (
-        _compute_addizionali(
-            taxable_income,
-            surtax,
-            fiscal_simplifications,
-            regione=regione,
-            comune_belfiore=comune_belfiore,
-            irpef_due=irpef_fiscal,
-        )
+    (
+        addizionale_regionale,
+        addizionale_comunale,
+        fiscal_simplifications,
+        surtax_reg_consumed,
+        surtax_com_consumed,
+    ) = _compute_addizionali(
+        taxable_income,
+        surtax,
+        fiscal_simplifications,
+        regione=regione,
+        comune_belfiore=comune_belfiore,
+        irpef_due=irpef_fiscal,
     )
 
     if employer_withholds_irpef:
@@ -742,9 +778,13 @@ def compute_fiscal(
     consumed_ruleset_ids = _collect_fiscal_rulesets(
         fam_ruleset,
         art15_ruleset,
+        surtax.regional_ruleset if surtax is not None else None,
+        surtax.municipal_ruleset if surtax is not None else None,
         family_consumed=has_any_dependent,
         art15_consumed=scenario.art15_deductions is not None
         and scenario.art15_deductions.has_any_onere,
+        surtax_reg_consumed=surtax_reg_consumed,
+        surtax_com_consumed=surtax_com_consumed,
     )
 
     return FiscalPay(

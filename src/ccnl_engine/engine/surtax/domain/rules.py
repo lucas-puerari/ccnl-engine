@@ -142,7 +142,8 @@ class SurtaxRules(BaseModel):
 
     Attributes:
         year: Fiscal year these rates apply to.
-        ruleset: Identity and provenance of this surtax ruleset.
+        regional_ruleset: Identity of the ``regionale-{year}.json`` data file.
+        municipal_ruleset: Identity of the ``comunale-{year}.json`` data file.
         regionale: Per-region surtax data, keyed by Italian region name
             (e.g. ``"Lombardia"``).
         comunale: Per-municipality surtax data, keyed by *codice catastale*
@@ -152,6 +153,7 @@ class SurtaxRules(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     year: int
-    ruleset: RulesetIdentity | None = None
+    regional_ruleset: RulesetIdentity | None = None
+    municipal_ruleset: RulesetIdentity | None = None
     regionale: dict[str, RegionaleEntry]
     comunale: dict[str, ComunaleEntry]
