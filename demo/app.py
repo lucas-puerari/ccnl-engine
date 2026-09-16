@@ -164,7 +164,7 @@ def load_level_tracks(filename: str, level_code: str) -> str:
         ccnl = load_ccnl(filename)
         tracks = ccnl.apprenticeship_tracks_for(level_code)
         return json.dumps([t.name for t in tracks])
-    except Exception:  # noqa: BLE001
+    except (KeyError, ValueError, LookupError):
         return json.dumps([])
 
 
