@@ -171,10 +171,10 @@ document.getElementById("sel-employment").addEventListener("change", e => {
   document.getElementById("div-seniority").style.display = isApp ? "none" : "";
   if (!isApp) {
     document.getElementById("div-apprentice-track").style.display = "none";
-  } else if (window._examplePyodide) {
+  } else if (_examplePyodide) {
     const file  = document.getElementById("sel-ccnl").value;
     const level = document.getElementById("sel-level").value;
-    if (file && level) _populateTracks(window._examplePyodide, file, level);
+    if (file && level) _populateTracks(_examplePyodide, file, level);
   }
 });
 
@@ -1372,7 +1372,7 @@ function generateSnippet(params, r) {
 
   // weekly_hours (domestic workers)
   const weeklyHoursStr = (r && r.weekly_hours !== null && r.weekly_hours !== undefined)
-    ? `\n        weekly_hours=Decimal("${r.weekly_hours.toFixed(2)}"),` : "";
+    ? `\n        weekly_hours=Decimal("${r.weekly_hours}"),` : "";
 
   // L3 supplement inputs
   let l3Lines = "";

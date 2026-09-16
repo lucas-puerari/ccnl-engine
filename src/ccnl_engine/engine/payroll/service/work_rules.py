@@ -31,6 +31,7 @@ if TYPE_CHECKING:
         CCNL,
         OvertimeBand,
     )
+    from ccnl_engine.engine.metadata import RulesetIdentity
     from ccnl_engine.engine.payroll.domain.calculation import (
         TraceStep,
     )
@@ -469,6 +470,7 @@ class WorkRulesPay:
     supplement_trace: tuple[TraceStep, ...]
     warnings: tuple[str, ...]
     consumed_rulesets: dict[str, str]
+    consumed_ruleset_ids: tuple[RulesetIdentity, ...]
 
 
 def compute_work_rules(
@@ -524,12 +526,15 @@ def compute_work_rules(
     )
 
     consumed: dict[str, str] = {}
+    consumed_ids: list[RulesetIdentity] = []
     if sickness.present:
         consumed["sick_pay"] = (
             str(sick_pay_rates.ruleset)
             if sick_pay_rates.ruleset is not None
             else f"sick-pay-rates@{_knowledge_version}"
         )
+        if sick_pay_rates.ruleset is not None:
+            consumed_ids.append(sick_pay_rates.ruleset)
     if var_pay.var_pay_rules is not None:
         ruleset = var_pay.var_pay_rules.ruleset
         consumed["variable_pay"] = (
@@ -537,6 +542,8 @@ def compute_work_rules(
             if ruleset is not None
             else f"variable-pay-rules/{year}@{_knowledge_version}"
         )
+        if ruleset is not None:
+            consumed_ids.append(ruleset)
 
     return WorkRulesPay(
         base_monthly_full_time=base_monthly_full_time,
@@ -571,4 +578,5 @@ def compute_work_rules(
         supplement_trace=supps.trace,
         warnings=tuple(wr_warnings),
         consumed_rulesets=consumed,
+        consumed_ruleset_ids=tuple(consumed_ids),
     )
