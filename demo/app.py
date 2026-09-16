@@ -287,51 +287,29 @@ def _build_employer(
     )
 
 
-def _domestic_weekly_hours(filename: str, part_time_pct: float) -> Decimal | None:
-    """Return actual weekly hours for a lavoro-domestico CCNL, or None for others.
-
-    Derives full-time weekly hours from the CCNL hourly divisor, then scales
-    by part_time_pct. Returns None if the CCNL is not a domestic contract or
-    if loading fails.
-
-    Returns:
-        Scaled weekly hours as a Decimal, or None.
-    """
-    try:
-        ccnl = load_ccnl(filename)
-        if getattr(ccnl.meta, "tax_sector", "") != "lavoro-domestico":
-            return None
-        calc_date = datetime.now(tz=UTC).date()
-        divisor = ccnl.parameters.hourly_divisor.value_at(calc_date)
-        return (
-            divisor * Decimal(12) / Decimal(52) * Decimal(str(round(part_time_pct, 4)))
-        )
-    except Exception:  # ruff: ignore[blind-except]
-        return None
-
-
 def _resolve_ccnl_meta(
     filename: str, part_time_pct: float
 ) -> tuple[str, Decimal | None]:
     """Return (ccnl_name, weekly_hours_domestic).
 
-    Loads the CCNL to resolve the display name and, for domestic contracts,
-    the scaled weekly hours. Falls back to the filename when loading fails.
-    ``weekly_hours_domestic`` is None for non-domestic CCNLs.
+    Loads the CCNL once to resolve both the display name and, for domestic
+    contracts, the scaled weekly hours. Falls back to the filename when
+    loading fails. ``weekly_hours_domestic`` is None for non-domestic CCNLs.
 
     Returns:
         Tuple of (display name, weekly hours or None).
     """
     try:
         ccnl = load_ccnl(filename)
-        is_domestic = getattr(ccnl.meta, "tax_sector", "") == "lavoro-domestico"
-        weekly = (
-            _domestic_weekly_hours(filename, part_time_pct) if is_domestic else None
-        )
     except Exception:  # noqa: BLE001
         return filename, None
-    else:
-        return ccnl.meta.name, weekly
+    is_domestic = getattr(ccnl.meta, "tax_sector", "") == "lavoro-domestico"
+    if not is_domestic:
+        return ccnl.meta.name, None
+    calc_date = datetime.now(tz=UTC).date()
+    divisor = ccnl.parameters.hourly_divisor.value_at(calc_date)
+    weekly = divisor * Decimal(12) / Decimal(52) * Decimal(str(round(part_time_pct, 4)))
+    return ccnl.meta.name, weekly
 
 
 def _build_time_supplements(
