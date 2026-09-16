@@ -564,11 +564,10 @@ def compute_salary(
             else None
         ),
         "apprenticeship_under_level_code": payroll.apprenticeship_under_level_code,
-        # mensilità — derived from engine ratio; used by the breakdown table
-        "additional_months": (
-            round(float(payroll.gross_annual / payroll.gross_monthly), 1)
-            if payroll.gross_monthly != 0
-            else 13
+        # mensilità — read from CCNL parameters (not derived from ratio, which
+        # loses precision when allowances carry per-component months_per_year).
+        "additional_months": float(
+            load_ccnl(filename).parameters.additional_months.value_at(payroll.as_of)
         ),
         # employee deductions
         "inps_employee_annual": float(payroll.inps_employee_annual),
