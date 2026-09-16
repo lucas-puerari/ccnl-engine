@@ -10,12 +10,12 @@ from collections.abc import Mapping
 from datetime import date, datetime
 from decimal import Decimal
 from enum import StrEnum
-from types import MappingProxyType
 from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
+from ccnl_engine.engine.primitives import FrozenDict
 
 
 class ExtractionMethod(StrEnum):
@@ -48,7 +48,7 @@ class BackCalculationStep(BaseModel):
 
     @model_validator(mode="after")
     def _freeze_inputs(self) -> Self:
-        object.__setattr__(self, "inputs", MappingProxyType(dict(self.inputs)))  # noqa: PLC2801
+        object.__setattr__(self, "inputs", FrozenDict(self.inputs))  # noqa: PLC2801
         return self
 
 
