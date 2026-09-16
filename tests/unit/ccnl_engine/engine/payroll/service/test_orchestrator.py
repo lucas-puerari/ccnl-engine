@@ -69,8 +69,10 @@ from ccnl_engine.engine.payroll.service.scope import (
     compute_result_status,
 )
 from ccnl_engine.engine.payroll.service.types import MonthlyPayChain
+from ccnl_engine.engine.primitives import FrozenDict
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.engine.provenance.domain.extraction import (
+    BackCalculationStep,
     ExtractionMethod,
     ExtractionTrace,
 )
@@ -2782,3 +2784,76 @@ class TestNoAssegnoUnico:
         )
         r = compute(scenario).result
         assert FiscalSimplification.NO_ASSEGNO_UNICO in r.fiscal_simplifications
+
+
+class TestBackCalculationProvenance:
+    """compute() must not raise with back-calculation provenance (N15).
+
+    The engine calls model_dump(mode="json") during snapshot capture; a
+    MappingProxyType in BackCalculationStep.inputs would cause a
+    PydanticSerializationError before FrozenDict was introduced.
+    """
+
+    def _back_calc_provenance(self) -> RuleProvenance:
+        """Build a RuleProvenance with BACK_CALCULATION extraction and inputs.
+
+        Returns:
+            A :class:`RuleProvenance` with one back-calculation step.
+        """
+        step = BackCalculationStep(
+            description="derive monthly from annual",
+            inputs={"annual": _D("12000"), "months": "12"},
+            result=_D("1000"),
+        )
+        return RuleProvenance(
+            location=SourceLocation(
+                source_document=SourceDocument(
+                    document_id="doc-bc",
+                    title="Back-Calculation Source",
+                    kind=SourceKind.TABELLA_RETRIBUTIVA,
+                    url="https://example.com",
+                ),
+                section="Art. 5",
+            ),
+            extraction=ExtractionTrace(
+                method=ExtractionMethod.BACK_CALCULATION,
+                extraction_timestamp=datetime(2026, 1, 1, tzinfo=UTC),
+                verification_status=VerificationStatus.UNVERIFIED,
+                effective_from=date(2025, 1, 1),
+                back_calculation=(step,),
+            ),
+        )
+
+    def test_compute_does_not_raise(self) -> None:
+        """Compute succeeds with a back-calculation SupplementaryAllowance."""
+        sl = SupplementaryAllowance(
+            code="SL-BC",
+            description="Back-calc allowance",
+            monthly=_D("100"),
+            provenance=self._back_calc_provenance(),
+        )
+        calc = compute(_req(second_level_allowances=(sl,)))
+        assert calc.result is not None
+
+    def test_back_calc_inputs_are_frozen(self) -> None:
+        """BackCalculationStep.inputs is a FrozenDict after construction."""
+        step = BackCalculationStep(
+            description="test step",
+            inputs={"base": _D("1000"), "rate": "0.10"},
+            result=_D("100"),
+        )
+        assert isinstance(step.inputs, FrozenDict)
+        with pytest.raises(TypeError):
+            step.inputs.update({"extra": "x"})
+
+    def test_back_calc_step_json_roundtrip(self) -> None:
+        """BackCalculationStep with inputs round-trips through model_dump_json."""
+        step = BackCalculationStep(
+            description="step",
+            inputs={"a": _D("1"), "b": "x"},
+            result=_D("42"),
+        )
+        payload = step.model_dump_json()
+        restored = BackCalculationStep.model_validate_json(payload)
+        assert restored.result == step.result
+        assert dict(restored.inputs) == {"a": _D("1"), "b": "x"}
