@@ -89,7 +89,7 @@ class RulesetIdentity(BaseModel):
         verification_status: Confidence level in the recorded data.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     id: str
     version: str

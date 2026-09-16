@@ -11,13 +11,15 @@ coverage work_rules_features.
 """
 
 import contextlib
-from types import MappingProxyType
+import copy
 
 import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.engine.contract.domain.ccnl import CCNL
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
+from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
+from ccnl_engine.engine.primitives import FrozenDict
 
 # Any exception class accepted as proof of immutability enforcement.
 _IMMUTABLE = (TypeError, AttributeError, ValidationError)
@@ -90,45 +92,45 @@ class TestParameterCollections:
 
 
 class TestSeniorityMappings:
-    """SeniorityIncrements dict fields must be MappingProxyType."""
+    """SeniorityIncrements dict fields must be FrozenDict."""
 
-    def test_amount_by_level_is_proxy(self, commercio: CCNL) -> None:
-        """amount_by_level is a MappingProxyType."""
+    def test_amount_by_level_is_frozen(self, commercio: CCNL) -> None:
+        """amount_by_level is a FrozenDict."""
         si = commercio.parameters.seniority_increments
-        assert isinstance(si.amount_by_level, MappingProxyType)
+        assert isinstance(si.amount_by_level, FrozenDict)
 
     def test_amount_by_level_no_update(self, commercio: CCNL) -> None:
-        """MappingProxyType has no .update() method."""
+        """FrozenDict.update() raises TypeError."""
         si = commercio.parameters.seniority_increments
         with pytest.raises(_IMMUTABLE):
             si.amount_by_level.update({"FAKE": None})  # type: ignore[attr-defined]
 
     def test_amount_by_level_no_clear(self, commercio: CCNL) -> None:
-        """MappingProxyType has no .clear() method."""
+        """FrozenDict.clear() raises TypeError."""
         si = commercio.parameters.seniority_increments
         with pytest.raises(_IMMUTABLE):
             si.amount_by_level.clear()  # type: ignore[attr-defined]
 
-    def test_first_cadence_by_level_is_proxy(self, commercio: CCNL) -> None:
-        """first_cadence_months_by_level is a MappingProxyType."""
+    def test_first_cadence_by_level_is_frozen(self, commercio: CCNL) -> None:
+        """first_cadence_months_by_level is a FrozenDict."""
         si = commercio.parameters.seniority_increments
-        assert isinstance(si.first_cadence_months_by_level, MappingProxyType)
+        assert isinstance(si.first_cadence_months_by_level, FrozenDict)
 
-    def test_maximum_count_by_level_is_proxy(self, commercio: CCNL) -> None:
-        """maximum_count_by_level is a MappingProxyType."""
+    def test_maximum_count_by_level_is_frozen(self, commercio: CCNL) -> None:
+        """maximum_count_by_level is a FrozenDict."""
         si = commercio.parameters.seniority_increments
-        assert isinstance(si.maximum_count_by_level, MappingProxyType)
+        assert isinstance(si.maximum_count_by_level, FrozenDict)
 
 
 class TestCoverageMapping:
-    """CCNLCoverage.work_rules_features must be a MappingProxyType."""
+    """CCNLCoverage.work_rules_features must be a FrozenDict."""
 
-    def test_work_rules_features_is_proxy(self, metalmeccanico: CCNL) -> None:
-        """work_rules_features is a MappingProxyType."""
-        assert isinstance(metalmeccanico.coverage.work_rules_features, MappingProxyType)
+    def test_work_rules_features_is_frozen(self, metalmeccanico: CCNL) -> None:
+        """work_rules_features is a FrozenDict."""
+        assert isinstance(metalmeccanico.coverage.work_rules_features, FrozenDict)
 
     def test_work_rules_features_no_update(self, metalmeccanico: CCNL) -> None:
-        """MappingProxyType has no .update() method."""
+        """FrozenDict.update() raises TypeError."""
         with pytest.raises(_IMMUTABLE):
             metalmeccanico.coverage.work_rules_features.update({})  # type: ignore[attr-defined]
 
@@ -205,3 +207,65 @@ class TestOvertimeBandsImmutable:
         if wr is not None and wr.time_supplements is not None:
             for band in wr.time_supplements.overtime_bands:
                 assert isinstance(band.applies_to_kinds, tuple)
+
+
+class TestSerializationRoundTrip:
+    """CCNL must survive model_dump_json, deepcopy, and model_copy(deep=True).
+
+    N15: MappingProxyType blocked both JSON serialisation and deepcopy.
+    FrozenDict is a dict subclass and supports all three operations.
+    """
+
+    def test_model_dump_json(self, commercio: CCNL) -> None:
+        """model_dump_json must not raise PydanticSerializationError."""
+        payload = commercio.model_dump_json()
+        assert len(payload) > 0
+
+    def test_model_dump_json_roundtrip(self, commercio: CCNL) -> None:
+        """model_validate_json of model_dump_json must produce an equal CCNL."""
+        restored = CCNL.model_validate_json(commercio.model_dump_json())
+        assert restored.meta.ccnl_id == commercio.meta.ccnl_id
+        assert restored.meta.name == commercio.meta.name
+
+    def test_deepcopy(self, commercio: CCNL) -> None:
+        """copy.deepcopy must not raise TypeError."""
+        cloned = copy.deepcopy(commercio)
+        assert cloned.meta.ccnl_id == commercio.meta.ccnl_id
+
+    def test_model_copy_deep(self, commercio: CCNL) -> None:
+        """model_copy(deep=True) must not raise TypeError."""
+        cloned = commercio.model_copy(deep=True)
+        assert cloned.meta.ccnl_id == commercio.meta.ccnl_id
+
+    def test_frozen_dict_blocks_mutation_after_deepcopy(self, commercio: CCNL) -> None:
+        """FrozenDict in the deepcopy still blocks item assignment."""
+        cloned = copy.deepcopy(commercio)
+        si = cloned.parameters.seniority_increments
+        with pytest.raises(_IMMUTABLE):
+            si.amount_by_level.update({"FAKE": None})  # type: ignore[attr-defined]
+
+
+class TestRulesetIdentityFrozen:
+    """RulesetIdentity must be immutable (N02).
+
+    Mutating the shared identity object corrupts audit records without
+    affecting salaries; frozen=True makes the assignment fail immediately.
+    """
+
+    def test_version_mutation_blocked(self, metalmeccanico: CCNL) -> None:
+        """Assigning to ruleset.version raises (frozen_instance or TypeError)."""
+        assert metalmeccanico.ruleset is not None
+        with pytest.raises(_IMMUTABLE):
+            metalmeccanico.ruleset.version = "review-probe"  # type: ignore[misc]
+
+    def test_ruleset_is_ruleset_identity(self, metalmeccanico: CCNL) -> None:
+        """ccnl.ruleset is a RulesetIdentity instance."""
+        assert isinstance(metalmeccanico.ruleset, RulesetIdentity)
+
+    def test_cached_ruleset_unchanged_after_probe(self, metalmeccanico: CCNL) -> None:
+        """A blocked assignment leaves the ruleset id@version intact."""
+        assert metalmeccanico.ruleset is not None
+        original = str(metalmeccanico.ruleset)
+        with contextlib.suppress(*_IMMUTABLE):
+            metalmeccanico.ruleset.version = "probe"  # type: ignore[misc]
+        assert str(metalmeccanico.ruleset) == original
