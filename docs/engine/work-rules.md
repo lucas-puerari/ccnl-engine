@@ -90,9 +90,40 @@ Reports `leave_accrued_days_monthly` and `leave_balance_days` in the result.
 | Field | Type | Description |
 |---|---|---|
 | `sick_days` | `Decimal` | Calendar days of illness in the period; must be >= 0 |
-| `cumulative_sick_days` | `Decimal \| None` | Running total for the year (determines integration band) |
+| `cumulative_sick_days` | `Decimal \| None` | Days already elapsed in the **same illness episode** before this period (determines carenza offset and integration band) |
 
 Reports the INPS indemnity and the employer integration complement.
+
+**`cumulative_sick_days` semantics**
+
+This field counts days already elapsed *in the same continuous illness episode*,
+not the year-to-date total across all absences. The engine uses it to shift the
+carenza position and the INPS band boundaries so that splitting one episode
+across multiple pay periods gives the same totals as computing it in a single
+period.
+
+*New episode:* leave `cumulative_sick_days` as `None` (or `Decimal(0)`). The
+engine starts carenza from day 1.
+
+```python
+# First period of an episode: 5 days, carenza of 3 → INPS covers days 4-5
+result1 = compute(..., sick_input=SickInput(sick_days=Decimal(5)))
+```
+
+*Continuation of the same episode:* pass the number of episode days already
+computed in the previous period.
+
+```python
+# Second period: episode continues, 3 more days, carenza already elapsed
+result2 = compute(..., sick_input=SickInput(
+    sick_days=Decimal(3),
+    cumulative_sick_days=Decimal(5),  # days from result1 period
+))
+```
+
+*Separate new episode* (e.g. a distinct illness later in the year): pass
+`cumulative_sick_days=None` again. Do not accumulate across distinct episodes:
+each episode restarts its own carenza and INPS band.
 
 ### `FringeBenefitInput`
 
