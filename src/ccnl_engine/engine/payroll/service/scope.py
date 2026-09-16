@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 _ZERO = Decimal(0)
 
 
-def _compute_result_status(
+def compute_result_status(
     scope: tuple[ScopeItem, ...],
 ) -> Literal["complete", "partial"]:
     """Derive the overall result status from the calculation scope.
@@ -37,7 +37,7 @@ def _compute_result_status(
     return "complete"
 
 
-def _compute_confidence(
+def compute_confidence(
     status: Literal["complete", "partial"],
     warnings: tuple[str, ...],
     provenance: tuple[RuleProvenance, ...],

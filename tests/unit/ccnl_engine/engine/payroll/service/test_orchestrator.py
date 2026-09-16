@@ -58,15 +58,15 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     SickInput,
     WelfareInput,
 )
-from ccnl_engine.engine.payroll.service.audit import _collect_provenance
+from ccnl_engine.engine.payroll.service.assembly import _collect_provenance
 from ccnl_engine.engine.payroll.service.orchestrator import (
     _ivs_ceiling_warning,
     compute,
 )
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.scope import (
-    _compute_confidence,
-    _compute_result_status,
+    compute_confidence,
+    compute_result_status,
 )
 from ccnl_engine.engine.payroll.service.types import MonthlyPayChain
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
@@ -2276,7 +2276,7 @@ class TestArt15MortgagePre2022:
 
 
 class TestComputeResultStatus:
-    """Unit tests for _compute_result_status helper."""
+    """Unit tests for compute_result_status helper."""
 
     def test_all_verified_returns_complete(self) -> None:
         """All verified scope items → complete."""
@@ -2284,7 +2284,7 @@ class TestComputeResultStatus:
             ScopeItem(feature="base_salary", status="verified"),
             ScopeItem(feature="irpef", status="verified"),
         )
-        assert _compute_result_status(scope) == "complete"
+        assert compute_result_status(scope) == "complete"
 
     def test_excluded_items_do_not_block_complete(self) -> None:
         """Excluded items are acceptable; result is still complete."""
@@ -2292,7 +2292,7 @@ class TestComputeResultStatus:
             ScopeItem(feature="base_salary", status="verified"),
             ScopeItem(feature="overtime", status="excluded"),
         )
-        assert _compute_result_status(scope) == "complete"
+        assert compute_result_status(scope) == "complete"
 
     def test_not_computed_returns_partial(self) -> None:
         """A single not_computed item forces partial status."""
@@ -2300,11 +2300,11 @@ class TestComputeResultStatus:
             ScopeItem(feature="base_salary", status="verified"),
             ScopeItem(feature="overtime", status="not_computed"),
         )
-        assert _compute_result_status(scope) == "partial"
+        assert compute_result_status(scope) == "partial"
 
     def test_empty_scope_returns_complete(self) -> None:
         """Empty scope (no items) → complete (no blocked requests)."""
-        assert _compute_result_status(()) == "complete"
+        assert compute_result_status(()) == "complete"
 
     def test_compute_sets_status_on_result(self) -> None:
         """compute() populates status='complete' for a basic scenario."""
@@ -2345,34 +2345,34 @@ def _verified_provenance() -> RuleProvenance:
 
 
 class TestComputeConfidence:
-    """Unit tests for _compute_confidence helper."""
+    """Unit tests for compute_confidence helper."""
 
     def test_warnings_always_returns_low(self) -> None:
         """Any warning → low, regardless of status or provenance."""
         prov = (_verified_provenance(),)
-        result = _compute_confidence("complete", ("overtime not modelled",), prov)
+        result = compute_confidence("complete", ("overtime not modelled",), prov)
         assert result == "low"
 
     def test_warnings_override_complete_status(self) -> None:
         """Complete status + verified provenance does not rescue from low."""
         prov = (_verified_provenance(),)
-        result = _compute_confidence("complete", ("a warning",), prov)
+        result = compute_confidence("complete", ("a warning",), prov)
         assert result == "low"
 
     def test_complete_verified_returns_high(self) -> None:
         """Complete + no warnings + all provenance verified → high."""
         prov = (_verified_provenance(),)
-        assert _compute_confidence("complete", (), prov) == "high"
+        assert compute_confidence("complete", (), prov) == "high"
 
     def test_partial_status_returns_medium(self) -> None:
         """Partial status with verified provenance and no warnings → medium."""
         prov = (_verified_provenance(),)
-        assert _compute_confidence("partial", (), prov) == "medium"
+        assert compute_confidence("partial", (), prov) == "medium"
 
     def test_unverified_salary_table_returns_medium(self) -> None:
         """UNVERIFIED TABELLA_RETRIBUTIVA blocks high confidence."""
         unverified = _rule_provenance("unverified")  # uses UNVERIFIED by default
-        assert _compute_confidence("complete", (), (unverified,)) == "medium"
+        assert compute_confidence("complete", (), (unverified,)) == "medium"
 
     def test_needs_review_salary_table_returns_medium(self) -> None:
         """NEEDS_REVIEW status is treated as non-verified → medium."""
@@ -2393,7 +2393,7 @@ class TestComputeConfidence:
                 effective_from=date(2025, 1, 1),
             ),
         )
-        assert _compute_confidence("complete", (), (needs_review,)) == "medium"
+        assert compute_confidence("complete", (), (needs_review,)) == "medium"
 
     def test_non_salary_table_unverified_lowers_confidence(self) -> None:
         """Any unverified source, regardless of kind, blocks high confidence."""
@@ -2414,11 +2414,11 @@ class TestComputeConfidence:
                 effective_from=date(2025, 1, 1),
             ),
         )
-        assert _compute_confidence("complete", (), (rivista,)) == "medium"
+        assert compute_confidence("complete", (), (rivista,)) == "medium"
 
     def test_empty_provenance_complete_returns_high(self) -> None:
         """No provenance records + complete + no warnings → high."""
-        assert _compute_confidence("complete", (), ()) == "high"
+        assert compute_confidence("complete", (), ()) == "high"
 
     def test_unverified_ruleset_returns_medium(self) -> None:
         """An unverified consumed ruleset blocks high confidence."""
@@ -2432,7 +2432,7 @@ class TestComputeConfidence:
             verification_status=VerificationStatus.UNVERIFIED,
         )
         prov = (_verified_provenance(),)
-        result = _compute_confidence(
+        result = compute_confidence(
             "complete", (), prov, rulesets=(unverified_ruleset,)
         )
         assert result == "medium"
@@ -2449,7 +2449,7 @@ class TestComputeConfidence:
             verification_status=VerificationStatus.VERIFIED,
         )
         prov = (_verified_provenance(),)
-        result = _compute_confidence("complete", (), prov, rulesets=(verified_ruleset,))
+        result = compute_confidence("complete", (), prov, rulesets=(verified_ruleset,))
         assert result == "high"
 
     def test_compute_result_has_confidence_field(self) -> None:

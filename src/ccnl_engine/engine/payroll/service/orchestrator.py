@@ -12,16 +12,16 @@ from ccnl_engine.engine.payroll.domain.employee import (
     SeniorityByMonths,
 )
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
-from ccnl_engine.engine.payroll.service.audit import (
+from ccnl_engine.engine.payroll.service.assembly import (
     _collect_provenance,
     build_calculation,
 )
 from ccnl_engine.engine.payroll.service.fiscal import compute_fiscal
 from ccnl_engine.engine.payroll.service.gross import compute_gross
 from ccnl_engine.engine.payroll.service.scope import (
-    _compute_confidence,
-    _compute_result_status,
     build_scope,
+    compute_confidence,
+    compute_result_status,
 )
 from ccnl_engine.engine.payroll.service.work_rules import compute_work_rules
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
@@ -171,7 +171,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
         ccnl=ccnl,
         under_level_code=gross.under_level_code,
     )
-    result_status = _compute_result_status(calculation_scope)
+    result_status = compute_result_status(calculation_scope)
     # Gather all RulesetIdentity records for rulesets actually consumed so
     # that _compute_confidence can downgrade from "high" when any of them
     # has verification_status != "verified".
@@ -232,7 +232,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
         employer_cost_annual=fiscal.employer_cost_annual,
         provenance=provenance,
         status=result_status,
-        confidence=_compute_confidence(
+        confidence=compute_confidence(
             result_status, result_warnings, provenance, consumed_rulesets
         ),
         calculation_scope=calculation_scope,
