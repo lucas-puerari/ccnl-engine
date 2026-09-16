@@ -124,3 +124,28 @@ class TestRulesetIdentity:
             ident = _identity(verification_status=status.value)
             assert ident.verification_status is status
             assert str(status) == status.value
+
+    def test_version_mutation_blocked(self) -> None:
+        """RulesetIdentity.version must reject direct assignment (N02).
+
+        Before frozen=True was added, mutating a cached RulesetIdentity silently
+        falsified the audit trail for all subsequent computations sharing that
+        object.
+        """
+        ident = _identity()
+        with pytest.raises((TypeError, AttributeError, ValidationError)):
+            ident.version = "probe"  # type: ignore[misc]
+
+    def test_id_mutation_blocked(self) -> None:
+        """RulesetIdentity.id must reject direct assignment (N02)."""
+        ident = _identity()
+        with pytest.raises((TypeError, AttributeError, ValidationError)):
+            ident.id = "fake/id"  # type: ignore[misc]
+
+    def test_model_dump_json_roundtrip(self) -> None:
+        """RulesetIdentity serialises and restores correctly via JSON."""
+        ident = _identity(effective_until="2027-12-31")
+        payload = ident.model_dump_json()
+        restored = RulesetIdentity.model_validate_json(payload)
+        assert str(restored) == str(ident)
+        assert restored.verification_status is ident.verification_status

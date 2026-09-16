@@ -4,7 +4,6 @@ from collections.abc import Mapping
 from datetime import UTC, date, datetime
 from decimal import Decimal
 from enum import StrEnum
-from types import MappingProxyType
 from typing import Any, Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -17,6 +16,7 @@ from ccnl_engine.engine.contract.domain.apprenticeship import (
 from ccnl_engine.engine.contract.domain.validity import SalaryGapError, TimeSeries
 from ccnl_engine.engine.metadata import RulesetIdentity
 from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
+from ccnl_engine.engine.primitives import FrozenDict
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
 from ccnl_engine.engine.provenance.domain.source import SourceDocument, SourceKind
@@ -415,7 +415,7 @@ class SeniorityTier(BaseModel):
     @model_validator(mode="after")
     def _freeze_dicts(self) -> Self:
         object.__setattr__(  # noqa: PLC2801
-            self, "amount_by_level", MappingProxyType(dict(self.amount_by_level))
+            self, "amount_by_level", FrozenDict(self.amount_by_level)
         )
         return self
 
@@ -555,35 +555,35 @@ class SeniorityIncrements(BaseModel):
     @model_validator(mode="after")
     def _freeze_dicts(self) -> Self:
         object.__setattr__(  # noqa: PLC2801
-            self, "amount_by_level", MappingProxyType(dict(self.amount_by_level))
+            self, "amount_by_level", FrozenDict(self.amount_by_level)
         )
         object.__setattr__(  # noqa: PLC2801
             self,
             "first_cadence_months_by_level",
-            MappingProxyType(dict(self.first_cadence_months_by_level)),
+            FrozenDict(self.first_cadence_months_by_level),
         )
         object.__setattr__(  # noqa: PLC2801
             self,
             "maximum_count_by_level",
-            MappingProxyType(dict(self.maximum_count_by_level)),
+            FrozenDict(self.maximum_count_by_level),
         )
         object.__setattr__(  # noqa: PLC2801
             self,
             "amount_by_level_by_category",
-            MappingProxyType({
-                cat: MappingProxyType(dict(inner))
+            FrozenDict({
+                cat: FrozenDict(inner)
                 for cat, inner in self.amount_by_level_by_category.items()
             }),
         )
         object.__setattr__(  # noqa: PLC2801
             self,
             "maximum_count_by_category",
-            MappingProxyType(dict(self.maximum_count_by_category)),
+            FrozenDict(self.maximum_count_by_category),
         )
         object.__setattr__(  # noqa: PLC2801
             self,
             "first_cadence_months_by_category",
-            MappingProxyType(dict(self.first_cadence_months_by_category)),
+            FrozenDict(self.first_cadence_months_by_category),
         )
         return self
 
@@ -751,7 +751,7 @@ class CCNLCoverage(BaseModel):
         object.__setattr__(  # noqa: PLC2801
             self,
             "work_rules_features",
-            MappingProxyType(dict(self.work_rules_features)),
+            FrozenDict(self.work_rules_features),
         )
         return self
 
