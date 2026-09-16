@@ -565,6 +565,11 @@ function _refreshExampleSelect() {
 }
 
 async function onCcnlChange(pyodide) {
+  // Cancel the previous CCNL's level-change listener before registering a new one.
+  if (window._levelListenerController) window._levelListenerController.abort();
+  window._levelListenerController = new AbortController();
+  const { signal } = window._levelListenerController;
+
   const file = document.getElementById("sel-ccnl").value;
   const levelSel = document.getElementById("sel-level");
   const btn = document.getElementById("calc-btn");
@@ -617,7 +622,7 @@ async function onCcnlChange(pyodide) {
     if (document.getElementById("sel-employment").value === "apprentice" && levelSel.value) {
       _populateTracks(pyodide, file, levelSel.value);
     }
-  });
+  }, { signal });
   document.querySelectorAll("input[name='sen-mode']").forEach(r => {
     r.addEventListener("change", updateSeniorityConstraint);
   });
@@ -1558,7 +1563,7 @@ function initCompare(pyodide) {
       `${p.otWeekday}, ${p.otNight}, ${p.otHoliday}, ${p.otNightHol}, ` +
       `${p.absenceDays}, ${p.leaveDays}, ${p.sickDays}, ` +
       `${p.fringeAnnual}, ${p.welfareAnnual}, ${p.bonusAnnual}, ${p.bonusPdr ? "True" : "False"}, ` +
-      `${JSON.stringify(p.appTrack || "")}`  + `)`
+      `${JSON.stringify(p.appTrack || "")})`
     ));
     if (!r.error) renderCompareResult(r);
   });
