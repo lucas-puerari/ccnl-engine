@@ -6,7 +6,9 @@ from unittest.mock import patch
 
 import pytest
 
+from ccnl_engine.engine.contract.domain.ccnl import TaxSector
 from ccnl_engine.engine.tax.service.loaders import (
+    _load_year_rules_cached,
     load_art15_deduction_rules,
     load_family_deduction_rules,
     load_variable_pay_rules,
@@ -145,7 +147,7 @@ class TestResolveInpsAdditionalValidation:
             "employee_additional_rate": "0.01",
         }
         bad_inps_raw = {"inps": bad_inps, "apprentice": _BAD_APPRENTICE}
-        load_year_rules.cache_clear()
+        _load_year_rules_cached.cache_clear()
         with (
             patch(
                 "ccnl_engine.engine.tax.service.loaders.read_tax_rules_raw",
@@ -157,5 +159,5 @@ class TestResolveInpsAdditionalValidation:
             ),
             pytest.raises(ValueError, match="must both be set or both be absent"),
         ):
-            load_year_rules(2026, "industria", 100)
-        load_year_rules.cache_clear()
+            load_year_rules(2026, TaxSector.INDUSTRIA, 100)
+        _load_year_rules_cached.cache_clear()

@@ -20,6 +20,8 @@ from typing import TYPE_CHECKING
 from ccnl_engine.engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
+
     from ccnl_engine.engine.surtax.domain.rules import SurtaxBracket
     from ccnl_engine.engine.tax.domain.rules import (
         SommaEsenteRules,
@@ -235,7 +237,7 @@ def somma_esente(
 
 def surtax_from_brackets(
     taxable_income: Decimal,
-    brackets: list[SurtaxBracket],
+    brackets: Sequence[SurtaxBracket],
     exemption_threshold: Decimal = _ZERO,
 ) -> Decimal:
     """Compute addizionale IRPEF (regionale or comunale) via marginal brackets.
@@ -247,7 +249,7 @@ def surtax_from_brackets(
 
     Args:
         taxable_income: IRPEF taxable base (gross annual minus employee INPS).
-        brackets: Ascending list of
+        brackets: Ordered sequence of
             :class:`~ccnl_engine.engine.surtax.domain.rules.SurtaxBracket`
             entries; the last entry must have ``up_to=None``.
         exemption_threshold: Full-exemption threshold: if

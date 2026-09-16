@@ -68,7 +68,7 @@ class TestComunaleEntryValidation:
         with pytest.raises(ValueError, match="only the last bracket"):
             ComunaleEntry(
                 nome="Test",
-                brackets=[_b(None, 0.006), _b(None, 0.008)],
+                brackets=(_b(None, 0.006), _b(None, 0.008)),
             )
 
     def test_duplicate_limit_rejected(self) -> None:
@@ -76,23 +76,23 @@ class TestComunaleEntryValidation:
         with pytest.raises(ValueError, match="strictly ascending"):
             ComunaleEntry(
                 nome="Test",
-                brackets=[
+                brackets=(
                     _b(15000, 0.004),
                     _b(15000, 0.006),
                     _b(None, 0.008),
-                ],
+                ),
             )
 
     def test_valid_entry_accepted(self) -> None:
         """Well-formed entry with 4 brackets is accepted."""
         entry = ComunaleEntry(
             nome="Roma",
-            brackets=[
+            brackets=(
                 _b(15000, 0.004),
                 _b(28000, 0.006),
                 _b(50000, 0.007),
                 _b(None, 0.008),
-            ],
+            ),
         )
         assert len(entry.brackets) == 4
 
@@ -103,14 +103,14 @@ class TestRegionaleEntryValidation:
     def test_multi_none_rejected(self) -> None:
         """Multiple up_to=None brackets are rejected."""
         with pytest.raises(ValueError, match="only the last bracket"):
-            RegionaleEntry(brackets=[_b(None, 0.011), _b(None, 0.014)])
+            RegionaleEntry(brackets=(_b(None, 0.011), _b(None, 0.014)))
 
     def test_last_bounded_rejected(self) -> None:
         """Last bracket with finite up_to is rejected."""
         with pytest.raises(ValueError, match="last bracket must be unbounded"):
-            RegionaleEntry(brackets=[_b(15000, 0.011), _b(28000, 0.014)])
+            RegionaleEntry(brackets=(_b(15000, 0.011), _b(28000, 0.014)))
 
     def test_valid_flat_rate(self) -> None:
         """Single flat-rate bracket is accepted."""
-        entry = RegionaleEntry(brackets=[_b(None, 0.014)])
+        entry = RegionaleEntry(brackets=(_b(None, 0.014),))
         assert len(entry.brackets) == 1

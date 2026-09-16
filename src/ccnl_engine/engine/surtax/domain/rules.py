@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from decimal import Decimal
 from typing import Self
 
@@ -19,7 +20,7 @@ from ccnl_engine.engine.provenance.domain.source import SourceDocument
 SurtaxBracket = Bracket
 
 
-def _validate_surtax_brackets(brackets: list[SurtaxBracket], label: str) -> None:
+def _validate_surtax_brackets(brackets: Sequence[SurtaxBracket], label: str) -> None:
     """Validate that *brackets* form a well-ordered marginal rate schedule.
 
     Rules (mirrors ``YearRulesRaw._check_irpef_brackets``):
@@ -60,11 +61,14 @@ class RegionaleEntry(BaseModel):
 
     ``brackets`` always has at least one element. Regions with a single
     flat rate have exactly one bracket with ``up_to=None``.
+
+    The model is frozen: field values cannot be reassigned after construction.
+    ``brackets`` is a tuple so the collection itself is immutable.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
-    brackets: list[SurtaxBracket]
+    brackets: tuple[SurtaxBracket, ...]
     """Marginal rate brackets, ascending by ``up_to`` with the last entry unbounded."""
 
     notes: str = ""
@@ -84,14 +88,17 @@ class ComunaleEntry(BaseModel):
     ``up_to=None`` and ``exemption_threshold=0``. Municipalities with income
     brackets or an exemption threshold will have multiple brackets and/or
     ``exemption_threshold > 0``.
+
+    The model is frozen: field values cannot be reassigned after construction.
+    ``brackets`` is a tuple so the collection itself is immutable.
     """
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
     nome: str
     """Italian municipality name (e.g. ``"Roma"``)."""
 
-    brackets: list[SurtaxBracket]
+    brackets: tuple[SurtaxBracket, ...]
     """Marginal rate brackets, ascending by ``up_to`` with the last entry unbounded."""
 
     exemption_threshold: Decimal = Decimal(0)

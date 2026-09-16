@@ -1,10 +1,11 @@
-"""Tests for surtax.loaders — load_surtax_rules()."""
+"""Tests for surtax.loaders -- load_surtax_rules()."""
 
 from decimal import Decimal
 
 import pytest
 from pydantic import ValidationError
 
+from ccnl_engine.engine.primitives import Bracket
 from ccnl_engine.engine.surtax.domain.rules import (
     ComunaleEntry,
     RegionaleEntry,
@@ -98,19 +99,75 @@ class TestSurtaxModelsValidation:
     def test_regionale_entry_empty_brackets_raises(self) -> None:
         """RegionaleEntry with empty brackets raises ValidationError."""
         with pytest.raises(ValidationError, match="must not be empty"):
-            RegionaleEntry(brackets=[])
+            RegionaleEntry(brackets=())
 
     def test_comunale_entry_empty_brackets_raises(self) -> None:
         """ComunaleEntry with empty brackets raises ValidationError."""
         with pytest.raises(ValidationError, match="must not be empty"):
-            ComunaleEntry(nome="Test", brackets=[])
+            ComunaleEntry(nome="Test", brackets=())
 
 
 class TestLoaderCaching:
-    """@cache: same arguments return the same object identity."""
+    """Cache isolates callers: each call returns a fresh container object."""
 
-    def test_load_surtax_rules_is_cached(self) -> None:
-        """Two calls with the same year return the identical SurtaxRules object."""
+    def test_load_surtax_rules_container_isolated(self) -> None:
+        """Two calls return different SurtaxRules containers (dict isolation)."""
         first = load_surtax_rules(2026)
         second = load_surtax_rules(2026)
-        assert first is second
+        assert first is not second
+        assert first.regionale is not second.regionale
+        assert first.comunale is not second.comunale
+
+    def test_load_surtax_rules_entries_shared(self) -> None:
+        """Inner RegionaleEntry/ComunaleEntry objects are shared (frozen, no copy)."""
+        first = load_surtax_rules(2026)
+        second = load_surtax_rules(2026)
+        assert first.regionale["Lombardia"] is second.regionale["Lombardia"]
+
+    def test_mutation_of_regionale_dict_isolated(self) -> None:
+        """Adding a key to one call's regionale dict does not affect the next."""
+        first = load_surtax_rules(2026)
+        original_count = len(first.regionale)
+        first.regionale["__test__"] = first.regionale["Lombardia"]
+        second = load_surtax_rules(2026)
+        assert "__test__" not in second.regionale
+        assert len(second.regionale) == original_count
+
+    def test_mutation_of_comunale_dict_isolated(self) -> None:
+        """Clearing the comunale dict from one call does not affect the next."""
+        first = load_surtax_rules(2026)
+        original_count = len(first.comunale)
+        first.comunale.clear()
+        second = load_surtax_rules(2026)
+        assert len(second.comunale) == original_count
+
+
+class TestSurtaxEntryImmutability:
+    """RegionaleEntry and ComunaleEntry are frozen with immutable brackets."""
+
+    def test_regionale_entry_brackets_is_tuple(self) -> None:
+        """Loaded RegionaleEntry.brackets is a tuple, not a list."""
+        rules = load_surtax_rules(2026)
+        entry = rules.regionale["Lombardia"]
+        assert isinstance(entry.brackets, tuple)
+
+    def test_comunale_entry_brackets_is_tuple(self) -> None:
+        """Loaded ComunaleEntry.brackets is a tuple, not a list."""
+        rules = load_surtax_rules(2026)
+        entry = rules.comunale["H501"]
+        assert isinstance(entry.brackets, tuple)
+
+    def test_regionale_entry_field_assignment_raises(self) -> None:
+        """Assigning to a RegionaleEntry field raises ValidationError (frozen)."""
+        entry = RegionaleEntry(brackets=(Bracket(up_to=None, rate=Decimal("0.011")),))
+        with pytest.raises(ValidationError):
+            entry.brackets = (Bracket(up_to=None, rate=Decimal("0.012")),)  # type: ignore[misc]
+
+    def test_comunale_entry_field_assignment_raises(self) -> None:
+        """Assigning to a ComunaleEntry field raises ValidationError (frozen)."""
+        entry = ComunaleEntry(
+            nome="Test",
+            brackets=(Bracket(up_to=None, rate=Decimal("0.008")),),
+        )
+        with pytest.raises(ValidationError):
+            entry.nome = "Modified"  # type: ignore[misc]

@@ -16,7 +16,6 @@ from ccnl_engine.engine.surtax.domain.rules import (
 )
 
 
-@cache
 def load_surtax_rules(year: int) -> SurtaxRules:
     """Load addizionale regionale and comunale rates for the given fiscal year.
 
@@ -26,6 +25,14 @@ def load_surtax_rules(year: int) -> SurtaxRules:
     files are used as fallback for editable installs (mirroring the behaviour
     of :func:`~ccnl_engine.engine.tax.service.loaders.load_year_rules`).
 
+    Each call returns a new :class:`~ccnl_engine.engine.surtax.domain.SurtaxRules`
+    whose ``regionale`` and ``comunale`` dicts are freshly allocated, so callers
+    may add or remove keys without affecting subsequent loads. The individual
+    :class:`~ccnl_engine.engine.surtax.domain.rules.RegionaleEntry` and
+    :class:`~ccnl_engine.engine.surtax.domain.rules.ComunaleEntry` values are
+    shared with the internal cache; they are frozen and their ``brackets`` tuples
+    are immutable, so in-place mutation is not possible.
+
     Args:
         year: Fiscal year (e.g. ``2026``). A matching pair of data files must
             exist in the bundle.
@@ -33,6 +40,26 @@ def load_surtax_rules(year: int) -> SurtaxRules:
     Returns:
         A :class:`~ccnl_engine.engine.surtax.domain.SurtaxRules` instance with
         ``regionale`` and ``comunale`` rate tables for the requested year.
+    """
+    cached = _load_surtax_rules_cached(year)
+    return cached.model_copy(
+        update={
+            "regionale": dict(cached.regionale),
+            "comunale": dict(cached.comunale),
+        }
+    )
+
+
+@cache
+def _load_surtax_rules_cached(year: int) -> SurtaxRules:
+    """Parse, validate and cache surtax rules for *year* (internal use only).
+
+    Callers must use :func:`load_surtax_rules`, which shallow-copies the
+    top-level dicts before returning so each caller gets isolated containers.
+
+    Returns:
+        The shared, frozen :class:`~ccnl_engine.engine.surtax.domain.SurtaxRules`
+        object stored in the cache.
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.surtax.data")
     reg_raw = read_bundled(pkg, f"regionale-{year}.json")

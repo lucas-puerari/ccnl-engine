@@ -23,9 +23,9 @@ from ccnl_engine.engine.contract.service.loaders import (
     load_ccnl as load_ccnl_from_bundle,
 )
 from ccnl_engine.engine.surtax.service import loaders as surtax_loaders
-from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
+from ccnl_engine.engine.surtax.service.loaders import _load_surtax_rules_cached
 from ccnl_engine.engine.tax.service import loaders as tax_loaders
-from ccnl_engine.engine.tax.service.loaders import load_year_rules
+from ccnl_engine.engine.tax.service.loaders import _load_year_rules_cached
 from tests.helpers import make_ccnl_dict
 
 LOADER_PATHS = (
@@ -44,8 +44,8 @@ def _clear_loader_caches() -> None:
     is returned and the patch has no effect.
     """
     load_ccnl_from_bundle.cache_clear()
-    load_year_rules.cache_clear()
-    load_surtax_rules.cache_clear()
+    _load_year_rules_cached.cache_clear()
+    _load_surtax_rules_cached.cache_clear()
 
 
 def _load_bundled_text(pkg_name: str, filename: str) -> str:
