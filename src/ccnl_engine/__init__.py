@@ -79,6 +79,7 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     LeaveInput,
     OvertimeHours,
     SickInput,
+    WeeklyOvertimeHours,
     WelfareInput,
 )
 from ccnl_engine.engine.payroll.service.orchestrator import compute
@@ -122,6 +123,7 @@ __all__ = [
     "SupplementaryAllowance",
     "TraceCategory",
     "TraceStep",
+    "WeeklyOvertimeHours",
     "WelfareInput",
     "compute",
     "engine_version",

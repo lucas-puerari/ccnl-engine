@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections import defaultdict
 from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -36,6 +37,7 @@ if TYPE_CHECKING:
         TraceStep,
     )
     from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
+    from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
     from ccnl_engine.engine.payroll.service.gross import GrossPay
     from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates
     from ccnl_engine.engine.tax.domain.variable_pay import VariablePayRules
@@ -71,6 +73,30 @@ def _warn_missing_kind_bands(
     for kind, hours in kind_hours.items():
         if hours > _ZERO and not _kind_supported(bands, kind):
             warnings.append(f"{kind.value} hours declared but not covered by any band")
+
+
+def _kinds_with_tiered_weekly_bands(
+    bands: Sequence[OvertimeBand],
+) -> set[WorkKind]:
+    """Return kinds that have more than one band for the same work kind.
+
+    A kind has tiered weekly bands when the CCNL partitions it by
+    ``hour_threshold_per_week`` (e.g. first 4 h/week at one rate, the
+    rest at a higher rate).  Without a per-week breakdown the engine
+    treats the monthly total as a single week, which may overstate the
+    higher band.
+
+    Args:
+        bands: All overtime bands from the CCNL schema.
+
+    Returns:
+        Set of :class:`WorkKind` values that have two or more bands.
+    """
+    kind_count: dict[WorkKind, int] = defaultdict(int)
+    for band in bands:
+        for kind in band.applies_to_kinds:
+            kind_count[kind] += 1
+    return {k for k, n in kind_count.items() if n > 1}
 
 
 # ---------------------------------------------------------------------------
@@ -128,6 +154,34 @@ class _VariablePayResult:
 # ---------------------------------------------------------------------------
 # Private block runners
 # ---------------------------------------------------------------------------
+
+
+def _warn_tiered_bands_without_weeks(
+    bands: Sequence[OvertimeBand],
+    ts: OvertimeHours,
+    kind_hours: dict[WorkKind, Decimal],
+    wr_warnings: list[str],
+) -> None:
+    """Append a warning when tiered per-week bands exist but no weeks supplied.
+
+    When the CCNL defines multiple overtime bands for the same kind (tiered
+    weekly thresholds) and the caller passed only monthly totals, the engine
+    treats the entire month as a single week, which overstates the higher
+    band's contribution.  This warning nudges the caller to supply weekly
+    data via :attr:`OvertimeHours.weeks`.
+    """
+    if ts.weeks:
+        return
+    tiered = _kinds_with_tiered_weekly_bands(bands)
+    active_tiered = {k for k in tiered if kind_hours.get(k, _ZERO) > _ZERO}
+    if not active_tiered:
+        return
+    names = ", ".join(sorted(k.value for k in active_tiered))
+    wr_warnings.append(
+        f"CCNL defines tiered weekly thresholds for {names}; "
+        "provide OvertimeHours.weeks for accurate per-week "
+        "band partitioning"
+    )
 
 
 def _run_wr_supplements(
@@ -198,6 +252,7 @@ def _run_wr_supplements(
         WorkKind.NIGHT_HOLIDAY: ts.night_holiday_hours,
     }
     _warn_missing_kind_bands(bands, kind_hours, wr_warnings)
+    _warn_tiered_bands_without_weeks(bands, ts, kind_hours, wr_warnings)
     # Support flag: True only when every kind with positive hours
     # has a covering band (schema-level AND per-kind coverage).
     wd_uncovered = ts.weekday_hours > _ZERO and not _kind_supported(

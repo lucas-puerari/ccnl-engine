@@ -61,6 +61,8 @@ Over 100 contracts covering approximately 16 million employees across private an
 - **L2 — Net:** INPS contributions, TFR, IRPEF, regional/municipal surtax.
 - **L3 — Work rules:** overtime and night/holiday premiums, absence deduction,
   leave accrual, sick-pay integration, performance bonuses, welfare/benefits.
+  Pass `OvertimeHours.weeks` (a `WeeklyOvertimeHours` per calendar week) for CCNLs
+  with per-week band thresholds to get accurate band partitioning.
 
 Coverage % = (L1 × 50% + L2 × 35% + L3 × 15%) − 5% per missing data note (max −20%).
 

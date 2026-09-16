@@ -56,6 +56,7 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     LeaveInput,
     OvertimeHours,
     SickInput,
+    WeeklyOvertimeHours,
     WelfareInput,
 )
 from ccnl_engine.engine.payroll.service.assembly import _collect_provenance
@@ -1387,6 +1388,111 @@ class TestL3Warning:
             )
             assert any("holiday" in w for w in result.warnings), (
                 f"Expected holiday warning, got: {result.warnings}"
+            )
+        finally:
+            _mock_ccnl[0] = _DEFAULT_CCNL
+
+    def test_tiered_band_warning_emitted_without_weekly_breakdown(self) -> None:
+        """Warn when CCNL has tiered weekly bands but no OvertimeHours.weeks.
+
+        When multiple bands share the same WorkKind (partitioned by
+        hour_threshold_per_week) and the caller does not supply per-week
+        hours, the engine emits a warning to avoid silent overstatement of
+        the higher band.
+        """
+        band1 = OvertimeBand(
+            code="OT_BASE",
+            description="Straordinario base",
+            kind=TimeSupplementKind("percentage"),
+            rate=TimeSeries(
+                periods=(
+                    ValidityPeriod(
+                        valid_from=date(2020, 1, 1),
+                        valid_until=None,
+                        value=_D("0.15"),
+                    ),
+                )
+            ),
+            applies_to_kinds=[WorkKind.WEEKDAY],  # type: ignore[arg-type]
+        )
+        band2 = OvertimeBand(
+            code="OT_EXTRA",
+            description="Straordinario extra",
+            kind=TimeSupplementKind("percentage"),
+            rate=TimeSeries(
+                periods=(
+                    ValidityPeriod(
+                        valid_from=date(2020, 1, 1),
+                        valid_until=None,
+                        value=_D("0.20"),
+                    ),
+                )
+            ),
+            applies_to_kinds=[WorkKind.WEEKDAY],  # type: ignore[arg-type]
+            hour_threshold_per_week=4,
+        )
+        ts_schema = TimeSupplements(overtime_bands=(band1, band2))
+        _mock_ccnl[0] = _build_ccnl(
+            work_rules={"time_supplements": ts_schema.model_dump()}
+        )
+        scenario = dataclasses.replace(
+            _req(),
+            time_supplements=OvertimeHours(weekday_hours=_D("10")),
+        )
+        try:
+            result = compute(scenario).result
+            assert any("tiered weekly thresholds" in w for w in result.warnings), (
+                f"Expected tiered-band warning, got: {result.warnings}"
+            )
+        finally:
+            _mock_ccnl[0] = _DEFAULT_CCNL
+
+    def test_tiered_band_warning_suppressed_with_weekly_breakdown(self) -> None:
+        """No tiered-band warning when OvertimeHours.weeks is supplied."""
+        band1 = OvertimeBand(
+            code="OT_BASE",
+            description="Straordinario base",
+            kind=TimeSupplementKind("percentage"),
+            rate=TimeSeries(
+                periods=(
+                    ValidityPeriod(
+                        valid_from=date(2020, 1, 1),
+                        valid_until=None,
+                        value=_D("0.15"),
+                    ),
+                )
+            ),
+            applies_to_kinds=[WorkKind.WEEKDAY],  # type: ignore[arg-type]
+        )
+        band2 = OvertimeBand(
+            code="OT_EXTRA",
+            description="Straordinario extra",
+            kind=TimeSupplementKind("percentage"),
+            rate=TimeSeries(
+                periods=(
+                    ValidityPeriod(
+                        valid_from=date(2020, 1, 1),
+                        valid_until=None,
+                        value=_D("0.20"),
+                    ),
+                )
+            ),
+            applies_to_kinds=[WorkKind.WEEKDAY],  # type: ignore[arg-type]
+            hour_threshold_per_week=4,
+        )
+        ts_schema = TimeSupplements(overtime_bands=(band1, band2))
+        _mock_ccnl[0] = _build_ccnl(
+            work_rules={"time_supplements": ts_schema.model_dump()}
+        )
+        oh = OvertimeHours.from_weeks((
+            WeeklyOvertimeHours(weekday_hours=_D("5")),
+            WeeklyOvertimeHours(weekday_hours=_D("5")),
+        ))
+        scenario = dataclasses.replace(_req(), time_supplements=oh)
+        try:
+            result = compute(scenario).result
+            assert not any("tiered weekly thresholds" in w for w in result.warnings), (
+                f"Unexpected tiered warning with weeks supplied: {result.warnings}"
             )
         finally:
             _mock_ccnl[0] = _DEFAULT_CCNL

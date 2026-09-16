@@ -49,6 +49,7 @@
   "form.l3.ot_night.label": "Lavoro notturno (h)",
   "form.l3.ot_holiday.label": "Straordinario festivo (h)",
   "form.l3.ot_nightholiday.label": "Notturno festivo (h)",
+  "form.l3.ot_weeks.label": "Suddivisione settimanale (JSON, opzionale)",
   "form.l3.absence.label": "Assenza non retribuita (giorni)",
   "form.l3.leave.label": "Ferie godute (giorni)",
   "form.l3.sick.label": "Giorni di malattia (calendario)",
