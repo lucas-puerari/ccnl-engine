@@ -7,11 +7,13 @@ to/from JSON.
 
 from __future__ import annotations
 
+import dataclasses
 import json
 from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.bilateral_funds import FlatMonthlyFund
 from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
 from ccnl_engine.engine.payroll.service.orchestrator import compute
@@ -239,3 +241,101 @@ class TestBilateralFunds:
         calc = compute(scenario)
         bd = render_breakdown(calc.result)
         assert bd.bilateral_employer_annual == Decimal(36)
+
+
+_STRD_RULES = {"threshold": "200000", "reduction": "440"}
+_HIGH_RAL = Decimal(250000)
+
+
+class TestSterilizzazioneClawbackField:
+    """sterilizzazione_clawback_annual is exposed by render_breakdown."""
+
+    def test_zero_without_threshold_rules(self) -> None:
+        """Field is zero in a default (low-income, no threshold) scenario."""
+        calc = compute(_req())
+        bd = render_breakdown(calc.result)
+        assert bd.sterilizzazione_clawback_annual == _ZERO
+
+    def test_matches_result_field(self) -> None:
+        """sterilizzazione_clawback_annual mirrors the result field."""
+        calc = compute(_req())
+        bd = render_breakdown(calc.result)
+        expected = calc.result.sterilizzazione_clawback_annual
+        assert bd.sterilizzazione_clawback_annual == expected
+
+    def test_exposed_in_to_dict(self) -> None:
+        """sterilizzazione_clawback_annual appears in to_dict as a string."""
+        calc = compute(_req())
+        d = render_breakdown(calc.result).to_dict()
+        assert "sterilizzazione_clawback_annual" in d
+        assert isinstance(d["sterilizzazione_clawback_annual"], str)
+
+    def test_nonzero_above_threshold(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        """Clawback > 0 at high income with Art. 15 and threshold rules."""
+        rules = make_year_rules(sterilizzazione_detrazioni=_STRD_RULES)
+        monkeypatch.setattr(
+            "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
+            lambda *_: rules,
+        )
+        scenario = dataclasses.replace(
+            _req(negotiated_ral=_HIGH_RAL),
+            art15_deductions=Art15Deductions(mortgage_interest=Decimal(4000)),
+        )
+        calc = compute(scenario)
+        bd = render_breakdown(calc.result)
+        assert bd.sterilizzazione_clawback_annual > _ZERO
+        result_clawback = calc.result.sterilizzazione_clawback_annual
+        assert bd.sterilizzazione_clawback_annual == result_clawback
+
+
+class TestIrpefIdentityAboveClawbackThreshold:
+    """irpef_net = max(0, irpef_gross - deductions + clawback) at high income."""
+
+    def test_irpef_identity_with_clawback(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """irpef_net equals the statutory formula including the clawback."""
+        rules = make_year_rules(sterilizzazione_detrazioni=_STRD_RULES)
+        monkeypatch.setattr(
+            "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
+            lambda *_: rules,
+        )
+        scenario = dataclasses.replace(
+            _req(negotiated_ral=_HIGH_RAL),
+            art15_deductions=Art15Deductions(mortgage_interest=Decimal(4000)),
+        )
+        bd = render_breakdown(compute(scenario).result)
+        expected = max(
+            _ZERO,
+            bd.irpef_gross
+            - bd.work_income_deduction
+            - bd.family_deduction_annual
+            + bd.sterilizzazione_clawback_annual
+            - bd.art15_deduction_annual
+            - bd.ulteriore_detrazione_lavoro,
+        )
+        assert bd.irpef_net == expected
+
+    def test_clawback_increases_irpef_net(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """With sterilizzazione active, irpef_net is higher than without."""
+        rules_with = make_year_rules(sterilizzazione_detrazioni=_STRD_RULES)
+        rules_without = make_year_rules()
+        scenario = dataclasses.replace(
+            _req(negotiated_ral=_HIGH_RAL),
+            art15_deductions=Art15Deductions(mortgage_interest=Decimal(4000)),
+        )
+        monkeypatch.setattr(
+            "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
+            lambda *_: rules_with,
+        )
+        bd_with = render_breakdown(compute(scenario).result)
+        monkeypatch.setattr(
+            "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
+            lambda *_: rules_without,
+        )
+        bd_without = render_breakdown(compute(scenario).result)
+        assert bd_with.irpef_net > bd_without.irpef_net
+        delta = bd_with.irpef_net - bd_without.irpef_net
+        assert delta == bd_with.sterilizzazione_clawback_annual
