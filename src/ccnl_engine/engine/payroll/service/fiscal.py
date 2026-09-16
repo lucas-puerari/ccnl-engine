@@ -33,6 +33,7 @@ if TYPE_CHECKING:
         CCNL,
         LevelCategory,
     )
+    from ccnl_engine.engine.metadata import RulesetIdentity
     from ccnl_engine.engine.payroll.domain.employment import (
         Permanent,
     )
@@ -334,12 +335,12 @@ def _run_wr_family_deductions(
     year: int,
     *,
     employer_withholds_irpef: bool,
-) -> tuple[Decimal, Decimal, Decimal, Decimal, Decimal]:
+) -> tuple[Decimal, Decimal, Decimal, Decimal, Decimal, RulesetIdentity | None]:
     """Compute Art. 12 TUIR family deductions when ``scenario.family`` is set.
 
     Family deductions reduce the IRPEF actually withheld by the employer; they
-    are NOT informational-only (unlike all other work-rules features).  The total is
-    subtracted from ``irpef_gross - work_income_deduction`` (floored at zero)
+    are NOT informational-only (unlike all other work-rules features).  The total
+    is subtracted from ``irpef_gross - work_income_deduction`` (floored at zero)
     to obtain ``irpef_net``.
 
     Args:
@@ -353,24 +354,28 @@ def _run_wr_family_deductions(
             but ``irpef_net`` is zero regardless.
 
     Returns:
-        A 5-tuple of (spouse_deduction, children_deduction, other_deduction,
-        total_deduction, unused_deduction).  All amounts are annual.
-        ``unused_deduction`` is the portion that exceeded the available
-        IRPEF (incapienza — not refundable).
+        A 6-tuple of (spouse_deduction, children_deduction, other_deduction,
+        total_deduction, unused_deduction, ruleset_identity).  All amounts are
+        annual.  ``unused_deduction`` is the portion that exceeded the available
+        IRPEF (incapienza — not refundable).  ``ruleset_identity`` is the
+        :class:`~ccnl_engine.engine.metadata.RulesetIdentity` for the loaded
+        rules, or ``None`` when the rules carry no identity.  When family
+        deductions are not applicable (no dependents), all amounts are zero and
+        the identity is ``None``.
     """
     family = scenario.family
     if family is None or not family.has_any_dependent:
-        return _ZERO, _ZERO, _ZERO, _ZERO, _ZERO
+        return _ZERO, _ZERO, _ZERO, _ZERO, _ZERO, None
     rules = load_family_deduction_rules(year)
     spouse, children, other, total = compute_family_deductions(
         family, reddito_complessivo, rules
     )
     if not employer_withholds_irpef:
         # Deductions computed but irpef_net is always zero here.
-        return spouse, children, other, total, total
+        return spouse, children, other, total, total, rules.ruleset
     available = money(max(_ZERO, irpef_gross - work_income_deduction))
     unused = money(max(_ZERO, total - available))
-    return spouse, children, other, total, unused
+    return spouse, children, other, total, unused, rules.ruleset
 
 
 def _run_wr_art15_deductions(
@@ -382,7 +387,7 @@ def _run_wr_art15_deductions(
     year: int,
     *,
     employer_withholds_irpef: bool,
-) -> tuple[Decimal, Decimal]:
+) -> tuple[Decimal, Decimal, RulesetIdentity | None]:
     """Compute Art. 15 TUIR deductions when ``scenario.art15_deductions`` is set.
 
     Art. 15 deductions are a flat 19 % credit on eligible expenditure up to
@@ -404,18 +409,22 @@ def _run_wr_art15_deductions(
             but ``irpef_net`` is zero regardless.
 
     Returns:
-        A 2-tuple of (art15_total, art15_unused).  Both amounts are annual.
-        ``art15_unused`` is the portion that exceeded available IRPEF
-        (incapienza — not refundable).
+        A 3-tuple of (art15_total, art15_unused, ruleset_identity).  Both
+        amounts are annual.  ``art15_unused`` is the portion that exceeded
+        available IRPEF (incapienza — not refundable).  ``ruleset_identity``
+        is the :class:`~ccnl_engine.engine.metadata.RulesetIdentity` for the
+        loaded rules, or ``None`` when the rules carry no identity.  When
+        Art. 15 deductions are not applicable, all amounts are zero and the
+        identity is ``None``.
     """
     art15 = scenario.art15_deductions
     if art15 is None or not art15.has_any_onere:
-        return _ZERO, _ZERO
+        return _ZERO, _ZERO, None
     rules = load_art15_deduction_rules(year)
     total = compute_art15_deductions(art15, rules)
     if not employer_withholds_irpef:
         # Deductions computed but irpef_net is always zero here.
-        return total, total
+        return total, total, rules.ruleset
     available = money(
         max(
             _ZERO,
@@ -426,13 +435,14 @@ def _run_wr_art15_deductions(
         )
     )
     unused = money(max(_ZERO, total - available))
-    return total, unused
+    return total, unused, rules.ruleset
 
 
 @dataclass(frozen=True)
 class FiscalPay:
     """Annual contributions, tax, deductions and net pay."""
 
+    consumed_ruleset_ids: tuple[RulesetIdentity | None, ...]
     inps_employee_annual: Decimal
     inps_employer_annual: Decimal
     inps_employee_additional_annual: Decimal
@@ -497,6 +507,31 @@ def _update_simplification_flags(
     return frozenset(sfs_mut)
 
 
+def _collect_fiscal_rulesets(
+    fam_ruleset: RulesetIdentity | None,
+    art15_ruleset: RulesetIdentity | None,
+    *,
+    family_consumed: bool,
+    art15_consumed: bool,
+) -> tuple[RulesetIdentity | None, ...]:
+    """Return the ordered tuple of optional-feature ruleset identities.
+
+    Each slot is included when the feature was actually consumed; a ``None``
+    entry means the feature ran but its ruleset identity was absent or
+    incomplete (treated as unverified by the confidence aggregator).
+
+    Returns:
+        A tuple containing at most two entries: family deductions first,
+        Art. 15 deductions second.
+    """
+    ids: list[RulesetIdentity | None] = []
+    if fam_ruleset is not None or family_consumed:
+        ids.append(fam_ruleset)
+    if art15_ruleset is not None or art15_consumed:
+        ids.append(art15_ruleset)
+    return tuple(ids)
+
+
 def compute_fiscal(
     scenario: PayrollScenario,
     ccnl: CCNL,
@@ -552,6 +587,7 @@ def compute_fiscal(
         fam_other,
         fam_total,
         fam_unused,
+        fam_ruleset,
     ) = _run_wr_family_deductions(
         scenario=scenario,
         reddito_complessivo=taxable_income,
@@ -574,7 +610,7 @@ def compute_fiscal(
         ulteriore_detrazione_lavoro = _ZERO
 
     # Art. 15 TUIR deductions (interessi passivi mutuo prima casa, etc.).
-    art15_total, art15_unused = _run_wr_art15_deductions(
+    art15_total, art15_unused, art15_ruleset = _run_wr_art15_deductions(
         scenario=scenario,
         irpef_gross=irpef_gross,
         work_income_deduction=work_income_deduction,
@@ -703,7 +739,16 @@ def compute_fiscal(
         + tfr_annual
     )
 
+    consumed_ruleset_ids = _collect_fiscal_rulesets(
+        fam_ruleset,
+        art15_ruleset,
+        family_consumed=has_any_dependent,
+        art15_consumed=scenario.art15_deductions is not None
+        and scenario.art15_deductions.has_any_onere,
+    )
+
     return FiscalPay(
+        consumed_ruleset_ids=consumed_ruleset_ids,
         inps_employee_annual=inps_employee_annual,
         inps_employer_annual=inps_employer_annual,
         inps_employee_additional_annual=inps_employee_additional_annual,

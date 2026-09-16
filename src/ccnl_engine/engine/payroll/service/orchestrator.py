@@ -173,18 +173,23 @@ def compute(scenario: PayrollScenario) -> Calculation:
     )
     result_status = compute_result_status(calculation_scope)
     # Gather all RulesetIdentity records for rulesets actually consumed so
-    # that _compute_confidence can downgrade from "high" when any of them
-    # has verification_status != "verified".
-    consumed_rulesets = tuple(
-        ruleset_id
-        for ruleset_id in (
-            ccnl.ruleset,
-            rules.ruleset,
-            rules.inps_ruleset,
-            surtax.ruleset if surtax is not None else None,
-            *work.consumed_ruleset_ids,
+    # that compute_confidence can downgrade from "high" when any of them
+    # has verification_status != "verified".  fiscal.consumed_ruleset_ids
+    # carries optional-feature rulesets (family, Art. 15); None entries there
+    # mean "consumed but identity unknown" and are treated as unverified.
+    consumed_rulesets = (
+        tuple(
+            ruleset_id
+            for ruleset_id in (
+                ccnl.ruleset,
+                rules.ruleset,
+                rules.inps_ruleset,
+                surtax.ruleset if surtax is not None else None,
+                *work.consumed_ruleset_ids,
+            )
+            if ruleset_id is not None
         )
-        if ruleset_id is not None
+        + fiscal.consumed_ruleset_ids
     )
     ivs_ceiling = rules.inps.ceiling if rules.inps is not None else None
     ivs_warn = _ivs_ceiling_warning(
