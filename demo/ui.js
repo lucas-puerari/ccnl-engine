@@ -1023,24 +1023,32 @@ function renderBreakdown(r, enteredComune) {
   const noReg = (r.fiscal_simplifications || []).includes("no_addizionale_regionale");
   const noCom = (r.fiscal_simplifications || []).includes("no_addizionale_comunale");
 
-  const nm = r.additional_months || 13; // number of salary months (13 or 14)
+  const nm = r.additional_months || 13; // contractual salary months (e.g. 13 or 14)
+  // Compute the RAL-override adjustment first so allowances_annual can use it.
+  // If a RAL override was applied gross_monthly differs from the component sum;
+  // the gap is shown as an explicit adjustment row so the Gross total reconciles.
+  const componentSum = r.base_monthly + (r.seniority_monthly || 0)
+    + (r.allowances_monthly || 0) + (r.ad_personam_monthly || 0)
+    + (r.second_level_monthly || 0);
+  const ralAdj = r.gross_monthly - componentSum;
   body.appendChild(bHead(t("breakdown.head.components_template", { nm })));
   body.appendChild(bRow(t("breakdown.base_pay"), r.base_monthly, r.base_monthly * nm));
   if (r.seniority_monthly > 0)
     body.appendChild(bRow(t("breakdown.seniority_template", { n: r.seniority_count }),
       r.seniority_monthly, r.seniority_monthly * nm));
-  if (r.allowances_monthly > 0)
-    body.appendChild(bRow(t("breakdown.allowances"), r.allowances_monthly, r.allowances_monthly * nm));
+  if (r.allowances_monthly > 0) {
+    // Derive allowances_annual from gross_annual to handle per-allowance
+    // months_per_year (e.g. a 12-month indennità on a 14-month contract).
+    // All other components use additional_months, so the difference is exact.
+    const allowances_annual = r.gross_annual
+      - (r.base_monthly + (r.seniority_monthly || 0) + (r.ad_personam_monthly || 0)
+         + (r.second_level_monthly || 0) + ralAdj) * nm;
+    body.appendChild(bRow(t("breakdown.allowances"), r.allowances_monthly, allowances_annual));
+  }
   if (r.ad_personam_monthly > 0)
     body.appendChild(bRow(t("breakdown.ad_personam"), r.ad_personam_monthly, r.ad_personam_monthly * nm));
   if (r.second_level_monthly > 0)
     body.appendChild(bRow(t("breakdown.second_level"), r.second_level_monthly, r.second_level_monthly * nm));
-  // If a RAL override was applied, the gross_monthly may differ from the sum of
-  // known components. Show the adjustment so the Gross total reconciles.
-  const componentSum = r.base_monthly + (r.seniority_monthly || 0)
-    + (r.allowances_monthly || 0) + (r.ad_personam_monthly || 0)
-    + (r.second_level_monthly || 0);
-  const ralAdj = r.gross_monthly - componentSum;
   if (Math.abs(ralAdj) > 0.005)
     body.appendChild(bRow(t("breakdown.ral_adj"), ralAdj, ralAdj * nm));
   if (r.apprenticeship_pct !== null)
@@ -1092,7 +1100,9 @@ function renderBreakdown(r, enteredComune) {
     || (r.night_supplement_monthly || 0) > 0
     || (r.holiday_supplement_monthly || 0) > 0
     || (r.absence_deduction_monthly || 0) > 0
+    || (r.leave_accrued_days_monthly || 0) > 0
     || (r.sick_inps_indemnity_monthly || 0) > 0
+    || (r.sick_company_integration_monthly || 0) > 0
     || (r.fringe_benefit_annual || 0) > 0
     || (r.welfare_annual || 0) > 0
     || (r.bonus_annual || 0) > 0;

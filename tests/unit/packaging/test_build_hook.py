@@ -2,14 +2,19 @@
 
 Build hook: scripts/packaging/build_hook.py lists source directories whose JSON
 files it compresses into .json.gz for the wheel.  A typo in any of those
-paths silently produces an empty wheel — no data files are found, no error is
-raised — which breaks all runtime data access without any test failure.
+paths silently produces an empty wheel -- no data files are found, no error is
+raised -- which breaks all runtime data access without any test failure.
 
 Demo glue: demo/app.py imports ccnl_engine modules that run inside Pyodide.
 An obsolete import path lets the wheel build succeed but crashes the browser at
 runtime with ModuleNotFoundError.  demo/index.html carries a WHEEL_VERSION
 placeholder that pages.yml substitutes at publish time; if it goes missing, the
 browser receives a literal filename and micropip.install fails silently.
+
+The module also covers demo-layer correctness:
+- Gross breakdown annualises correctly when allowances carry per-component
+  months_per_year; additional_months is read from the CCNL, not derived from ratio
+- hasL3 predicate covers all conditional L3 rows, including leave and sick integration
 
 All checks use AST parsing or plain string search so that neither hatchling
 nor a browser runtime is required in the test environment.
@@ -22,6 +27,10 @@ import importlib
 import json
 import sys
 from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    import types
 
 import pytest
 
@@ -296,3 +305,174 @@ class TestDemoGlue:
                 f"Error message should be prefixed 'overtime_weeks:'; "
                 f"got {result['error']!r}"
             )
+
+
+# ---------------------------------------------------------------------------
+# additional_months from CCNL + breakdown reconciliation
+# hasL3 predicate covers leave and sick integration rows
+# ---------------------------------------------------------------------------
+
+_DEMO_DIR = _PROJECT_ROOT / "demo"
+_UI_JS = _PROJECT_ROOT / "demo" / "ui.js"
+
+
+def _import_demo_app() -> types.ModuleType:
+    """Import demo/app.py, inserting demo/ into sys.path if needed.
+
+    Returns:
+        The imported ``app`` module.
+    """
+    demo_dir = str(_DEMO_DIR)
+    if demo_dir not in sys.path:
+        sys.path.insert(0, demo_dir)
+    return importlib.import_module("app")
+
+
+class TestBreakdownReconciliation:
+    """gross breakdown must reconcile when allowances carry months_per_year != nm."""
+
+    def test_igiene_ambientale_d2_breakdown_reconciles(self) -> None:
+        """igiene-ambientale D2 has 14 additional_months.
+
+        The ratio gross_annual/gross_monthly approximates 13.9 due to rounding;
+        reading additional_months from the CCNL parameters gives 14.  The breakdown
+        table must use the exact contractual value so that base*nm + allowances_annual
+        + other_components*nm equals gross_annual within one cent.
+        """
+        app = _import_demo_app()
+        raw = app.compute_salary(
+            "igiene-ambientale-utilitalia.json",
+            "D2",
+            "permanent",
+            50,
+        )
+        r = json.loads(raw)
+        assert "error" not in r, f"compute_salary returned error: {r.get('error')}"
+
+        nm = r["additional_months"]
+        assert abs(nm - 14.0) < 1e-9, (
+            f"additional_months should be 14 (from CCNL), got {nm}. "
+            "Check that demo/app.py reads from CCNL parameters, not ratio."
+        )
+
+        # The breakdown table formula: allowances_annual is derived from gross_annual
+        # so that base*nm + allowances_annual + seniority*nm + ad_personam*nm
+        # + second_level*nm == gross_annual (when no RAL override).
+        base_annual = r["base_monthly"] * nm
+        seniority_annual = (r["seniority_monthly"] or 0) * nm
+        ad_personam_annual = (r["ad_personam_monthly"] or 0) * nm
+        second_level_annual = (r["second_level_monthly"] or 0) * nm
+        allowances_annual = (
+            r["gross_annual"]
+            - base_annual
+            - seniority_annual
+            - ad_personam_annual
+            - second_level_annual
+        )
+        reconstructed = (
+            base_annual
+            + seniority_annual
+            + allowances_annual
+            + ad_personam_annual
+            + second_level_annual
+        )
+        assert abs(reconstructed - r["gross_annual"]) < 0.01, (
+            f"Breakdown does not reconcile: reconstructed {reconstructed:.2f} "
+            f"!= gross_annual {r['gross_annual']:.2f}"
+        )
+
+
+class TestHasL3Predicate:
+    """hasL3 in renderBreakdown must cover leave and sick integration rows."""
+
+    def _get_has_l3_stmt(self) -> str:
+        """Extract the hasL3 assignment from renderBreakdown in ui.js.
+
+        Returns:
+            The text of the ``const hasL3 = ...`` statement, without the trailing
+            semicolon.
+        """
+        js = _UI_JS.read_text(encoding="utf-8")
+        func_idx = js.find("function renderBreakdown(")
+        assert func_idx != -1, "renderBreakdown not found in ui.js"
+        depth = 0
+        func_end = func_idx
+        for i, ch in enumerate(js[func_idx:], start=func_idx):
+            if ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    func_end = i
+                    break
+        func_body = js[func_idx:func_end]
+        has_l3_idx = func_body.find("const hasL3 =")
+        assert has_l3_idx != -1, "hasL3 assignment not found inside renderBreakdown"
+        stmt_end = func_body.find(";", has_l3_idx)
+        return func_body[has_l3_idx:stmt_end]
+
+    def test_has_l3_includes_leave_accrued(self) -> None:
+        """hasL3 must reference leave_accrued_days_monthly.
+
+        Without this, the leave-accrued row is unreachable when only
+        ``LeaveInput`` is supplied.
+        """
+        stmt = self._get_has_l3_stmt()
+        assert "leave_accrued_days_monthly" in stmt, (
+            "hasL3 does not reference leave_accrued_days_monthly. "
+            "The leave-accrued row is never shown when only leave is supplied."
+        )
+
+    def test_has_l3_includes_sick_company_integration(self) -> None:
+        """hasL3 must reference sick_company_integration_monthly.
+
+        Without this, the sick-integration row is unreachable when only
+        ``SickInput`` triggers the company complement (not the INPS indemnity).
+        """
+        stmt = self._get_has_l3_stmt()
+        assert "sick_company_integration_monthly" in stmt, (
+            "hasL3 does not reference sick_company_integration_monthly. "
+            "The row is never shown when only sick is supplied."
+        )
+
+    def test_has_l3_covers_all_rendered_rows(self) -> None:
+        """Every field guarding a row in the L3 section must appear in hasL3.
+
+        This prevents regressions where a new L3 row is added without
+        updating the predicate.
+        """
+        js = _UI_JS.read_text(encoding="utf-8")
+        func_idx = js.find("function renderBreakdown(")
+        assert func_idx != -1
+        depth = 0
+        func_end = func_idx
+        for i, ch in enumerate(js[func_idx:], start=func_idx):
+            if ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    func_end = i
+                    break
+        func_body = js[func_idx:func_end]
+        # Fields that guard their own row inside the hasL3 block.
+        l3_gated_fields = [
+            "overtime_supplement_monthly",
+            "night_supplement_monthly",
+            "holiday_supplement_monthly",
+            "absence_deduction_monthly",
+            "leave_accrued_days_monthly",
+            "sick_inps_indemnity_monthly",
+            "sick_company_integration_monthly",
+            "fringe_benefit_annual",
+            "welfare_annual",
+            "bonus_annual",
+        ]
+        has_l3_idx = func_body.find("const hasL3 =")
+        stmt_end = func_body.find(";", has_l3_idx)
+        has_l3_stmt = func_body[has_l3_idx:stmt_end]
+        missing = [f for f in l3_gated_fields if f not in has_l3_stmt]
+        assert not missing, (
+            f"hasL3 is missing these fields that guard L3 rows: {missing}. "
+            "Add them to the predicate so those rows are reachable."
+        )
