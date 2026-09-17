@@ -229,16 +229,35 @@ class DomesticInpsRates(BaseModel):
     * otherwise → walk ``wage_brackets`` in ascending ``hourly_rate_up_to``
       order and use the first bracket whose threshold is not exceeded.
 
-    ``wage_brackets`` must end with one entry whose ``hourly_rate_up_to``
-    is ``None`` (the open-ended top bracket).
+    ``wage_brackets`` must be non-empty and end with one entry whose
+    ``hourly_rate_up_to`` is ``None`` (the open-ended top bracket).
     """
 
     model_config = ConfigDict(extra="forbid")
 
     weekly_hours_threshold: int
     hours_bracket: DomesticInpsHoursBracket
-    wage_brackets: list[DomesticInpsWageBracket]
+    wage_brackets: list[DomesticInpsWageBracket] = Field(min_length=1)
     provenance: RuleProvenance | None = None
+
+    @model_validator(mode="after")
+    def _check_wage_brackets(self) -> Self:
+        for i, bracket in enumerate(self.wage_brackets[:-1]):
+            if bracket.hourly_rate_up_to is None:
+                msg = (
+                    f"DomesticInpsRates: wage_brackets[{i}] has "
+                    "hourly_rate_up_to=None but is not the last bracket"
+                )
+                raise ValueError(msg)
+        last = self.wage_brackets[-1]
+        if last.hourly_rate_up_to is not None:
+            msg = (
+                "DomesticInpsRates: last wage_bracket must have "
+                f"hourly_rate_up_to=None (open-ended), "
+                f"got {last.hourly_rate_up_to!r}"
+            )
+            raise ValueError(msg)
+        return self
 
 
 class InpsRawRates(BaseModel):
@@ -313,7 +332,7 @@ class TfrRules(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    accrual_divisor: Decimal
+    accrual_divisor: Decimal = Field(gt=Decimal(0))
     provenance: RuleProvenance | None = None
 
 
