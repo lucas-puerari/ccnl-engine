@@ -334,8 +334,11 @@ class PayrollScenario:
             ``FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE`` is reported.
             ``FiscalSimplification.PARTIAL_DETRAZIONI_ART15`` is always
             reported: only mortgage interest is modelled.
-            Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply to
-            Art. 15 (it targets only Art. 12 + Art. 13 TUIR).
+            Art. 1 c. 3-4 L. 199/2025 sterilizzazione applies to Art. 15
+            TUIR oneri detraibili al 19 % (lett. a, b, d, e; not lett. c
+            spese sanitarie): for reddito complessivo > EUR 200 000 the
+            credit is reduced by EUR 440. The resulting clawback is
+            reported in ``PayrollResult.sterilizzazione_clawback_annual``.
         bilateral_funds: Scenario-level bilateral fund contributions (fondi
             bilaterali). Each entry is either a fixed monthly amount
             (:class:`~ccnl_engine.engine.payroll.domain.bilateral_funds\
