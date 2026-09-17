@@ -98,7 +98,12 @@ from ccnl_engine.engine.tax.service.loaders import (
     load_art15_deduction_rules,
     load_family_deduction_rules,
 )
-from tests.helpers import make_ccnl_dict, make_domestic_year_rules, make_year_rules
+from tests.helpers import (
+    TEST_RULESET_VERIFIED,
+    make_ccnl_dict,
+    make_domestic_year_rules,
+    make_year_rules,
+)
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _D,
     _DATE,
@@ -2800,10 +2805,11 @@ def _verified_level(code: str, order: int, salary: str) -> dict[str, object]:
 
 
 def _verified_ccnl() -> CCNL:
-    """Minimal CCNL where all provenance is VERIFIED (no ruleset block).
+    """Minimal CCNL where all provenance AND the ruleset block are VERIFIED.
 
     Returns:
-        A validated CCNL instance with fully verified salary provenance.
+        A validated CCNL instance with fully verified salary provenance and
+        a verified ruleset identity block.
     """
     raw = make_ccnl_dict()
     raw["levels"] = [
@@ -2812,6 +2818,7 @@ def _verified_ccnl() -> CCNL:
         _verified_level("4", 4, "1000.00"),
     ]
     raw["parameters"]["seniority_increments"]["provenance"] = _VERIFIED_PROV
+    raw["ruleset"] = TEST_RULESET_VERIFIED
     return CCNL.model_validate(raw)
 
 
@@ -2874,11 +2881,24 @@ class TestConfidenceWithOptionalRulesets:
         result = compute(dataclasses.replace(_req(), fringe_benefit_input=_FB_INPUT))
         assert result.result.confidence == "medium"
 
-    def test_ccnl_without_ruleset_allows_high_confidence(self) -> None:
-        """Verified CCNL with no ruleset block → high confidence."""
-        _mock_ccnl[0] = _verified_ccnl()
+    def test_ccnl_without_ruleset_limits_confidence_to_medium(self) -> None:
+        """Verified CCNL provenance but absent ruleset block → at most medium.
+
+        A missing ruleset identity is treated as "consumed but unverified",
+        so confidence cannot reach "high" even when all salary provenance is
+        verified.
+        """
+        raw = make_ccnl_dict()
+        raw["levels"] = [
+            _verified_level("2", 2, "600.00"),
+            _verified_level("3", 3, "800.00"),
+            _verified_level("4", 4, "1000.00"),
+        ]
+        raw["parameters"]["seniority_increments"]["provenance"] = _VERIFIED_PROV
+        # Intentionally no "ruleset" key → ccnl.ruleset = None
+        _mock_ccnl[0] = CCNL.model_validate(raw)
         result = compute(_req())
-        assert result.result.confidence == "high"
+        assert result.result.confidence == "medium"
 
     def test_unverified_ccnl_ruleset_downgrades_confidence(self) -> None:
         """Unverified CCNL ruleset → confidence medium."""
