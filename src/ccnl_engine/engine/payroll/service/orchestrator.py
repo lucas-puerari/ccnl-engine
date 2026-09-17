@@ -32,6 +32,7 @@ from ccnl_engine.engine.tax.service.loaders import (
 if TYPE_CHECKING:
     from decimal import Decimal
 
+    from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
     from ccnl_engine.engine.payroll.domain.calculation import (
         Calculation,
     )
@@ -187,21 +188,17 @@ def compute(scenario: PayrollScenario) -> Calculation:
     result_status = compute_result_status(calculation_scope)
     # Gather all RulesetIdentity records for rulesets actually consumed so
     # that compute_confidence can downgrade from "high" when any of them
-    # has verification_status != "verified".  fiscal.consumed_ruleset_ids
-    # carries optional-feature rulesets (family, Art. 15); None entries there
-    # mean "consumed but identity unknown" and are treated as unverified.
+    # has verification_status != "verified".  None entries mean "consumed
+    # but identity absent" and are treated as unverified by compute_confidence.
+    # Main rulesets (ccnl, tax rules) are always consumed; INPS rules are only
+    # consumed for the standard percentage model, not the domestic forfait model.
+    # Optional-feature rulesets are only added when the feature was used.
+    main_rulesets: tuple[RulesetIdentity | None, ...] = (ccnl.ruleset, rules.ruleset)
+    if rules.domestic_contributions is None:
+        # Standard percentage model: INPS rules were consumed.
+        main_rulesets = (*main_rulesets, rules.inps_ruleset)
     consumed_rulesets = (
-        tuple(
-            ruleset_id
-            for ruleset_id in (
-                ccnl.ruleset,
-                rules.ruleset,
-                rules.inps_ruleset,
-                *work.consumed_ruleset_ids,
-            )
-            if ruleset_id is not None
-        )
-        + fiscal.consumed_ruleset_ids
+        main_rulesets + tuple(work.consumed_ruleset_ids) + fiscal.consumed_ruleset_ids
     )
     ivs_ceiling = rules.inps.ceiling if rules.inps is not None else None
     # Domestic contracts use per-hour forfait rates; the IVS ceiling model

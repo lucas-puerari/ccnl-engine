@@ -91,6 +91,18 @@ TRACK_UNDER_CLASSIFICATION: dict[str, Any] = {
 }
 
 
+#: Verified ruleset identity dict for test fixtures.
+TEST_RULESET_VERIFIED: dict[str, Any] = {
+    "id": "test/rules",
+    "version": "2026.2",
+    "effective_from": "2026-01-01",
+    "effective_until": None,
+    "published_at": "2026-01-01",
+    "source": "https://example.com",
+    "source_hash": "e" * 64,
+    "verification_status": "verified",
+}
+
 #: Minimal provenance dict for test fixtures — method "manual", unverified.
 TEST_PROV: dict[str, Any] = {
     "location": {
@@ -152,6 +164,8 @@ def make_year_rules(
     apprentice: dict[str, Any] | None = None,
     sterilizzazione_detrazioni: dict[str, Any] | None = None,
     ulteriore_detrazione: dict[str, Any] | None = None,
+    ruleset: dict[str, Any] | None = TEST_RULESET_VERIFIED,
+    inps_ruleset: dict[str, Any] | None = TEST_RULESET_VERIFIED,
 ) -> YearRules:
     """Build a YearRules instance for testing. Defaults to the 2026 terziario values.
 
@@ -166,6 +180,11 @@ def make_year_rules(
             rules (Art. 1 c. 6 L. 207/2024). Pass ``{"threshold_low": ...,
             "threshold_mid": ..., "threshold_high": ...,
             "max_amount": ...}`` to activate.
+        ruleset: Ruleset identity dict for the tax rules; defaults to a
+            verified identity so orchestrator tests can reach ``"high"``
+            confidence. Pass ``None`` to simulate absent identity.
+        inps_ruleset: Ruleset identity dict for the INPS rules; same
+            default and semantics as ``ruleset``.
 
     Returns:
         A validated YearRules instance.
@@ -178,6 +197,10 @@ def make_year_rules(
         "apprentice": apprentice or APPRENTICE_RATES_LARGE_FIRM,
         "tfr": {"accrual_divisor": "13.5"},
     }
+    if ruleset is not None:
+        raw["ruleset"] = ruleset
+    if inps_ruleset is not None:
+        raw["inps_ruleset"] = inps_ruleset
     if sterilizzazione_detrazioni is not None:
         raw["sterilizzazione_detrazioni"] = sterilizzazione_detrazioni
     if ulteriore_detrazione is not None:
