@@ -735,6 +735,22 @@ class TestComputeDomesticInps:
         r = compute(_req(weekly_hours=_D("40")))
         assert r.net_annual == r.gross_annual - r.inps_employee_annual - r.irpef_net
 
+    def test_no_ivs_ceiling_warning_for_domestic_contracts(self) -> None:
+        """Domestic contracts must not emit a false IVS ceiling warning.
+
+        The domestic model uses per-hour forfait rates; the IVS ceiling
+        does not participate in that calculation.  Emitting the warning
+        would produce a false confidence downgrade for a valid scenario.
+        """
+        _mock_rules[0] = _DOMESTIC_RULES
+        # seniority_months=12 implies a clearly post-1996 hire: without the
+        # guard, _ivs_ceiling_warning would emit "contributions are overstated".
+        r = compute(_req(weekly_hours=_D("40"), seniority_months=12))
+        ivs_warnings = [w for w in r.warnings if "overstated" in w]
+        assert ivs_warnings == [], (
+            f"Unexpected IVS warning on domestic contract: {r.warnings}"
+        )
+
 
 # ---------------------------------------------------------------------------
 # Addizionale regionale e comunale
