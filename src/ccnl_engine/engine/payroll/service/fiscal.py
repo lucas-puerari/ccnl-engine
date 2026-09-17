@@ -259,7 +259,19 @@ def _compute_ti(
         })
     else:
         trattamento_integrativo = _ZERO
-        simplifications = frozenset(FiscalSimplification)
+        # Explicitly enumerate only the flags appropriate when TI is absent.
+        # Do NOT include ADDIZIONALE_*_UNKNOWN here: those are mutually
+        # exclusive with NO_ADDIZIONALE_* and are resolved by _compute_addizionali.
+        simplifications = frozenset({
+            FiscalSimplification.NO_ADDIZIONALE_REGIONALE,
+            FiscalSimplification.NO_ADDIZIONALE_COMUNALE,
+            FiscalSimplification.NO_TRATTAMENTO_INTEGRATIVO,
+            FiscalSimplification.NO_DETRAZIONI_FAMILIARI,
+            FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE,
+            FiscalSimplification.PARTIAL_DETRAZIONI_ART15,
+            FiscalSimplification.NO_BILATERAL_FUNDS,
+            FiscalSimplification.NO_ASSEGNO_UNICO,
+        })
     return trattamento_integrativo, simplifications
 
 
@@ -302,7 +314,9 @@ def _compute_addizionali(
 
     if irpef_due == _ZERO:
         sfs.add(FiscalSimplification.NO_ADDIZIONALE_REGIONALE)
+        sfs.discard(FiscalSimplification.ADDIZIONALE_REGIONALE_UNKNOWN)
         sfs.add(FiscalSimplification.NO_ADDIZIONALE_COMUNALE)
+        sfs.discard(FiscalSimplification.ADDIZIONALE_COMUNALE_UNKNOWN)
         return _ZERO, _ZERO, frozenset(sfs), False, False
 
     reg_applied = False
@@ -323,6 +337,7 @@ def _compute_addizionali(
             sfs.discard(FiscalSimplification.NO_ADDIZIONALE_REGIONALE)
     else:
         sfs.add(FiscalSimplification.NO_ADDIZIONALE_REGIONALE)
+        sfs.discard(FiscalSimplification.ADDIZIONALE_REGIONALE_UNKNOWN)
 
     com_applied = False
     if surtax is not None and comune_belfiore is not None:
@@ -340,6 +355,7 @@ def _compute_addizionali(
             sfs.discard(FiscalSimplification.NO_ADDIZIONALE_COMUNALE)
     else:
         sfs.add(FiscalSimplification.NO_ADDIZIONALE_COMUNALE)
+        sfs.discard(FiscalSimplification.ADDIZIONALE_COMUNALE_UNKNOWN)
 
     return (
         addizionale_regionale,
