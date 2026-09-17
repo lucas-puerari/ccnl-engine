@@ -2,6 +2,7 @@
 
 import copy
 import typing
+from collections import UserDict
 from datetime import date
 from decimal import Decimal
 from enum import Enum
@@ -14,6 +15,7 @@ from ccnl_engine.engine.payroll.domain.calculation import (
     Calculation,
     CalculationTrace,
     InputSnapshot,
+    _deep_freeze,
     _dump,
     _load_by_hint,
     _load_dataclass,
@@ -30,6 +32,7 @@ from ccnl_engine.engine.payroll.domain.scenario import (
 from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
 from ccnl_engine.engine.payroll.service.assembly import _ruleset_versions
 from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.primitives import FrozenDict
 from tests.helpers import make_minimal_ccnl, make_year_rules
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _CCNL_FILENAME,
@@ -494,3 +497,25 @@ class TestDeepImmutability:
         d["input_snapshot"]["scenario"]["employee"]["level_code"] = "1"  # type: ignore[index]
         replayed = calc.reproduce()
         assert replayed.result.net_annual == original_net
+
+    def test_deep_freeze_user_dict_produces_frozen_dict(self) -> None:
+        """_deep_freeze converts UserDict (and nested ones) to FrozenDict."""
+        ud: UserDict[str, object] = UserDict({"a": 1, "nested": UserDict({"b": 2})})
+        result = _deep_freeze(ud)
+        assert isinstance(result, FrozenDict)
+        nested = result["nested"]
+        assert isinstance(nested, FrozenDict)
+        assert nested["b"] == 2
+
+    def test_input_snapshot_user_dict_not_aliased(self) -> None:
+        """Mutating a UserDict passed as scenario after construction is a no-op."""
+        source: UserDict[str, object] = UserDict({"key": "value"})
+        snap = InputSnapshot(
+            ccnl_id="test",
+            tax_sector="terziario",
+            year=2026,
+            uses_surtax=False,
+            scenario=source,
+        )
+        source["injected"] = "mutated"
+        assert "injected" not in snap.scenario

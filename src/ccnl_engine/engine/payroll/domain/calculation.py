@@ -127,7 +127,7 @@ def _deep_freeze(value: object) -> object:
     Returns:
         A recursively frozen copy of *value*.
     """
-    if isinstance(value, dict):
+    if isinstance(value, Mapping):
         return FrozenDict({k: _deep_freeze(v) for k, v in value.items()})
     if isinstance(value, list):
         return tuple(_deep_freeze(v) for v in value)

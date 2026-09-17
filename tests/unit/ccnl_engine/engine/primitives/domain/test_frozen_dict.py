@@ -124,3 +124,19 @@ class TestFrozenDictCopy:
         cloned = copy.deepcopy(outer)
         assert isinstance(cloned["inner"], FrozenDict)
         assert cloned["inner"]["x"] == 1
+
+
+class TestFrozenDictLimitations:
+    """Document known non-guarantees of the FrozenDict subclass approach."""
+
+    def test_dict_setitem_bypass_is_known_behaviour(self) -> None:
+        """dict.__setitem__ bypasses the override — documented non-guarantee.
+
+        FrozenDict guards against accidental mutation (``fd["k"] = v`` raises
+        TypeError) but is not an absolute security boundary.  Direct base-class
+        access bypasses all overrides and is intentionally not blocked; see
+        the class docstring for the rationale.
+        """
+        fd: FrozenDict[str, int] = FrozenDict({"a": 1})
+        dict.__setitem__(fd, "a", 99)  # noqa: PLC2801
+        assert fd["a"] == 99  # base-class bypass is a known non-guarantee
