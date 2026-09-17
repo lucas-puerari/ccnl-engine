@@ -101,9 +101,36 @@ def _load_year_rules_cached(
     Returns:
         The shared :class:`~ccnl_engine.engine.tax.domain.rules.YearRules`
         object stored in the cache.
+
+    Raises:
+        ValueError: If the tax or INPS file's year/sector field doesn't match.
     """
     tax_raw = read_tax_rules_raw(year, sector)
+    if tax_raw.get("year") != year:
+        msg = (
+            f"tax-{year}-{sector.value}.json year={tax_raw.get('year')!r} "
+            f"does not match requested year={year!r}"
+        )
+        raise ValueError(msg)
+    if tax_raw.get("sector") != sector.value:
+        msg = (
+            f"tax-{year}-{sector.value}.json sector={tax_raw.get('sector')!r} "
+            f"does not match requested sector={sector.value!r}"
+        )
+        raise ValueError(msg)
     inps_raw = read_inps_rules_raw(year, sector)
+    if inps_raw.get("year") != year:
+        msg = (
+            f"inps-{year}-{sector.value}.json year={inps_raw.get('year')!r} "
+            f"does not match requested year={year!r}"
+        )
+        raise ValueError(msg)
+    if inps_raw.get("sector") != sector.value:
+        msg = (
+            f"inps-{year}-{sector.value}.json sector={inps_raw.get('sector')!r} "
+            f"does not match requested sector={sector.value!r}"
+        )
+        raise ValueError(msg)
     inps_sources = inps_raw.pop("sources", [])
     inps_extraction = inps_raw.pop("extraction", None)
     raw = {**tax_raw, **inps_raw}
