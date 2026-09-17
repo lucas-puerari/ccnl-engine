@@ -1,0 +1,20 @@
+{
+  "inputs": {
+    "ccnl_file": "vetro-meccanizzato-assovetro.json",
+    "level_code": "C",
+    "as_of": "2026-01-01",
+    "employment_type": "permanent",
+    "num_employees": 50,
+    "year": 2026,
+    "tax_sector": "industria",
+    "seniority_count": 0,
+    "part_time_pct": "1"
+  },
+  "expected": {
+    "gross_monthly": "2364.38",
+    "net_monthly": "1877.91",
+    "net_annual": "24412.82",
+    "employer_cost_annual": "42911.05",
+    "gross_annual": "30736.94"
+  }
+}
