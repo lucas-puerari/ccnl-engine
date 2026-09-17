@@ -19,11 +19,12 @@ from dataclasses import dataclass, fields
 from datetime import date as _date
 from decimal import Decimal
 from enum import Enum, StrEnum
-from types import MappingProxyType, UnionType
+from types import UnionType
 from typing import TYPE_CHECKING, Any, Literal, cast, get_origin
 
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
 from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
+from ccnl_engine.engine.primitives import FrozenDict
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import TaxSector
@@ -116,30 +117,32 @@ def _dump(value: object) -> object:  # ruff: ignore[too-many-return-statements]
 
 
 def _deep_freeze(value: object) -> object:
-    """Recursively convert dicts to MappingProxyType and lists to tuples.
+    """Recursively convert dicts to FrozenDict and lists to tuples.
 
     The result is deeply immutable: nested dicts and lists are converted
     at every level so that no element can be mutated after construction.
+    Unlike ``MappingProxyType``, ``FrozenDict`` supports ``copy.deepcopy``
+    and pickle without errors.
 
     Returns:
         A recursively frozen copy of *value*.
     """
     if isinstance(value, dict):
-        return MappingProxyType({k: _deep_freeze(v) for k, v in value.items()})
+        return FrozenDict({k: _deep_freeze(v) for k, v in value.items()})
     if isinstance(value, list):
         return tuple(_deep_freeze(v) for v in value)
     return value
 
 
 def _deep_thaw(value: object) -> object:
-    """Recursively convert MappingProxyType to dict and tuples to lists.
+    """Recursively convert FrozenDict to dict and tuples to lists.
 
     Reverses :func:`_deep_freeze` to produce a plain JSON-native structure.
 
     Returns:
         A plain dict/list copy of *value*.
     """
-    if isinstance(value, MappingProxyType):
+    if isinstance(value, FrozenDict):
         return {k: _deep_thaw(v) for k, v in value.items()}
     if isinstance(value, tuple):
         return [_deep_thaw(v) for v in value]
@@ -718,7 +721,7 @@ class Calculation:
         object.__setattr__(
             self,
             "ruleset_version",
-            MappingProxyType(dict(self.ruleset_version)),
+            FrozenDict(dict(self.ruleset_version)),
         )
 
     def __getattr__(self, name: str) -> Any:  # ruff: ignore[any-type] - delegation
