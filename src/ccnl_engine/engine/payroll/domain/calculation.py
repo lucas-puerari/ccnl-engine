@@ -230,12 +230,23 @@ def _load_collection_hint(hint: type, origin: type, raw: object) -> object:
     Returns:
         The reconstructed collection with every element loaded via
         :func:`_load_by_hint`.
+
+    Raises:
+        TypeError: When *raw* is a non-iterable JSON scalar (``str``, ``bytes``
+            or ``dict``) that would be iterated as characters or key-value pairs
+            instead of as a proper sequence element.
     """
+    if isinstance(raw, (str, bytes, dict)):
+        msg = f"expected a sequence, got {type(raw).__name__!r}"
+        raise TypeError(msg)
+    raw_seq = cast(list[object], raw)
     if origin is frozenset:
-        return frozenset(str(item) for item in cast(list[object], raw))
+        args = typing.get_args(hint)
+        elem_hint = args[0] if args else str
+        return frozenset(_load_by_hint(elem_hint, item) for item in raw_seq)
     args = typing.get_args(hint)
     elem_hint = args[0]
-    items = [_load_by_hint(elem_hint, item) for item in cast(list[object], raw)]
+    items = [_load_by_hint(elem_hint, item) for item in raw_seq]
     if origin is tuple:
         return tuple(items)
     return items
@@ -519,17 +530,30 @@ class TraceStep:
 
         Returns:
             A new :class:`TraceStep` equal to the original.
+
+        Raises:
+            TypeError: If ``label`` is not a ``str``.
+            ValueError: If ``period`` is not ``'monthly'`` or ``'annual'``.
         """
         raw_detail = data.get("detail")
         raw_formula = data.get("formula")
         raw_source = data.get("source")
         raw_rounding = data.get("rounding")
+        label_raw = data["label"]
+        if not isinstance(label_raw, str):
+            msg = f"TraceStep.label must be str, got {type(label_raw).__name__!r}"
+            raise TypeError(msg)
+        period_raw = data["period"]
+        valid_periods: frozenset[object] = frozenset({"monthly", "annual"})
+        if period_raw not in valid_periods:
+            msg = f"TraceStep.period must be 'monthly' or 'annual', got {period_raw!r}"
+            raise ValueError(msg)
         return cls(
             category=TraceCategory(str(data["category"])),
-            label=str(data["label"]),
+            label=label_raw,
             amount=Decimal(str(data["amount"])),
             detail=str(raw_detail) if raw_detail is not None else None,
-            period=str(data["period"]),  # type: ignore[arg-type]
+            period=cast(Literal["monthly", "annual"], period_raw),
             formula=str(raw_formula) if raw_formula is not None else None,
             source=str(raw_source) if raw_source is not None else None,
             rounding=str(raw_rounding) if raw_rounding is not None else None,

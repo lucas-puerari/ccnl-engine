@@ -697,6 +697,44 @@ class TestNestedBoolValidation:
         assert replayed.result.net_annual == original_net
 
 
+class TestCollectionHintGuard:
+    """_load_by_hint rejects strings/dicts for collection hints."""
+
+    def test_frozenset_hint_string_rejected(self) -> None:
+        """A string is rejected for a frozenset hint."""
+        with pytest.raises(TypeError, match="expected a sequence"):
+            _load_by_hint(frozenset[str], "quadro")
+
+    def test_list_hint_string_rejected(self) -> None:
+        """A string is rejected for a list hint."""
+        with pytest.raises(TypeError, match="expected a sequence"):
+            _load_by_hint(list[str], "quadro")
+
+    def test_tuple_hint_string_rejected(self) -> None:
+        """A string is rejected for a tuple hint."""
+        with pytest.raises(TypeError, match="expected a sequence"):
+            _load_by_hint(tuple[str, ...], "quadro")
+
+    def test_snapshot_string_roles_rejected(self) -> None:
+        """A snapshot with roles as string raises instead of silently exploding."""
+        snap = InputSnapshot.capture(
+            scenario=_scenario(),
+            ccnl_id="test",
+            tax_sector=TaxSector.TERZIARIO,
+            year=2026,
+            uses_surtax=False,
+        )
+        d = snap.to_dict()
+        scenario_d = dict(typing.cast("dict[str, object]", d["scenario"]))
+        employee_d = dict(typing.cast("dict[str, object]", scenario_d["employee"]))
+        employee_d["roles"] = "quadro"
+        scenario_d["employee"] = employee_d
+        d["scenario"] = scenario_d
+        tampered = InputSnapshot.from_dict(d)
+        with pytest.raises(TypeError, match="expected a sequence"):
+            tampered.materialise()
+
+
 class TestCalculationFromDictStrictValidation:
     """Calculation.from_dict rejects wrong types for version fields."""
 
