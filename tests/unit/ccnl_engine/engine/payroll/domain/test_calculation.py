@@ -248,8 +248,8 @@ class TestDumpLoadPrimitives:
         assert loaded.value == 4
 
     def test_load_dataclass_non_dict_raises(self) -> None:
-        """_load_dataclass raises TypeError when raw is not a dict."""
-        with pytest.raises(TypeError, match="Expected dict"):
+        """_load_dataclass raises TypeError when raw is not a mapping."""
+        with pytest.raises(TypeError, match="Expected a mapping"):
             _load_dataclass(SeniorityByCount, "not-a-dict")
 
     def test_load_dataclass_unknown_field_raises(self) -> None:
@@ -389,3 +389,64 @@ class TestR2R19R20Fixes:
         calc = object.__new__(Calculation)
         with pytest.raises(AttributeError):
             _ = calc.net_annual
+
+
+class TestDeepImmutability:
+    """InputSnapshot.scenario and Calculation.ruleset_version are deeply frozen."""
+
+    def test_snapshot_scenario_top_level_is_immutable(self) -> None:
+        """Assigning a top-level key on scenario raises TypeError."""
+        snapshot = InputSnapshot.capture(
+            scenario=_scenario(),
+            ccnl_id="test",
+            tax_sector=TaxSector.TERZIARIO,
+            year=2026,
+            uses_surtax=False,
+        )
+        with pytest.raises(TypeError):
+            snapshot.scenario["injected"] = "x"  # type: ignore[index]
+
+    def test_snapshot_scenario_nested_dict_is_immutable(self) -> None:
+        """Mutating a nested dict inside scenario raises TypeError."""
+        snapshot = InputSnapshot.capture(
+            scenario=_scenario(),
+            ccnl_id="test",
+            tax_sector=TaxSector.TERZIARIO,
+            year=2026,
+            uses_surtax=False,
+        )
+        nested = snapshot.scenario["employee"]
+        with pytest.raises(TypeError):
+            nested["level_code"] = "tampered"  # type: ignore[index]
+
+    def test_snapshot_to_dict_returns_mutable_copy(self) -> None:
+        """to_dict() returns a plain, mutable dict that does not alias scenario."""
+        snapshot = InputSnapshot.capture(
+            scenario=_scenario(),
+            ccnl_id="test",
+            tax_sector=TaxSector.TERZIARIO,
+            year=2026,
+            uses_surtax=False,
+        )
+        d = snapshot.to_dict()
+        scenario_copy = d["scenario"]
+        assert isinstance(scenario_copy, dict)
+        # Mutating the returned copy must not affect the frozen snapshot.
+        scenario_copy["injected"] = "x"
+        assert "injected" not in snapshot.scenario
+
+    def test_ruleset_version_is_immutable(self) -> None:
+        """Assigning a key on ruleset_version raises TypeError."""
+        calc = compute(_req())
+        with pytest.raises(TypeError):
+            calc.ruleset_version["ccnl"] = "tampered"  # type: ignore[index]
+
+    def test_reproduce_stable_after_to_dict_mutation(self) -> None:
+        """reproduce() is stable even if to_dict() output is mutated."""
+        calc = compute(_req())
+        original_net = calc.result.net_annual
+        d = calc.to_dict()
+        # Tamper with the serialised copy — must not affect reproduce().
+        d["input_snapshot"]["scenario"]["employee"]["level_code"] = "1"  # type: ignore[index]
+        replayed = calc.reproduce()
+        assert replayed.result.net_annual == original_net
