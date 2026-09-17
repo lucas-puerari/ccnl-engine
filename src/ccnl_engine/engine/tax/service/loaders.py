@@ -231,39 +231,49 @@ def read_inps_rules_raw(year: int, sector: TaxSector) -> dict[str, Any]:
 
 
 def _resolve_tier[T: _Tier](tiers: list[T], num_employees: int, side: str) -> T:
+    """Select the applicable tier for the given employer headcount.
+
+    ``_assert_tier_integrity`` is called first; it guarantees exactly one
+    open tier (``max_employees: null``) is present.  After sorting, bounded
+    tiers come first ordered by ``max_employees``; the open tier is last and
+    serves as the unconditional fallback.
+
+    Returns:
+        The narrowest tier that covers ``num_employees``.
+    """
     _assert_tier_integrity(tiers, side)
     sorted_tiers = sorted(
         tiers,
         key=lambda t: (t.max_employees is None, t.max_employees or 0),
     )
-    for tier in sorted_tiers:
-        if tier.max_employees is None or num_employees <= tier.max_employees:
+    # Iterate bounded tiers; if none match, the open tier is the fallback.
+    for tier in sorted_tiers[:-1]:
+        max_e = tier.max_employees
+        if max_e is not None and num_employees <= max_e:
             return tier
-    msg = (
-        f"No {side}-rate tier covers {num_employees} employees. "
-        "Check that the tax data file has an open tier (max_employees: null)."
-    )
-    raise ValueError(msg)
+    return sorted_tiers[-1]  # the open tier, guaranteed by _assert_tier_integrity
 
 
 def _assert_tier_integrity(tiers: Sequence[_Tier], side: str) -> None:
     """Raise ValueError if the tier list has structural defects.
 
     Checks (run on the unsorted input):
-    - At most one open tier (max_employees: null); multiple open tiers
-      would cause non-deterministic tier selection.
+    - Exactly one open tier (max_employees: null) must be present.
+      Zero open tiers would cause silent mis-classification for any
+      headcount above the highest bounded tier; more than one would
+      cause non-deterministic tier selection.
     - No duplicate max_employees values among bounded tiers (would cause
       silent mis-classification depending on sort stability).
 
     Raises:
-        ValueError: if more than one open tier exists, or if any bounded
-            max_employees value appears more than once.
+        ValueError: if the number of open tiers is not exactly one, or
+            if any bounded max_employees value appears more than once.
     """
     open_count = sum(1 for t in tiers if t.max_employees is None)
-    if open_count > 1:
+    if open_count != 1:
         msg = (
-            f"{side}-rate tiers: {open_count} open tiers "
-            "(max_employees: null) found; at most one is allowed."
+            f"{side}-rate tiers: exactly one open tier "
+            f"(max_employees: null) is required, found {open_count}."
         )
         raise ValueError(msg)
     seen: set[int] = set()

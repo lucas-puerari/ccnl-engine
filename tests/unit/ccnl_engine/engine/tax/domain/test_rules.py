@@ -417,14 +417,39 @@ class TestYearRules2026Json:
         )
 
     def test_no_open_tier_raises(self) -> None:
-        """_resolve_tier raises ValueError when no tier covers the headcount."""
+        """_assert_tier_integrity raises when no open tier is present."""
         tiers = [
             InpsEmployeeTier(
                 max_employees=10, rate=Decimal("0.09"), ivs_rate=Decimal("0.09")
             )
         ]
-        with pytest.raises(ValueError, match="No employee-rate tier"):
-            _resolve_tier(tiers, 100, "employee")
+        with pytest.raises(ValueError, match="exactly one open tier"):
+            _assert_tier_integrity(tiers, "employee")
+
+    def test_no_open_tier_covered_headcount_still_raises(self) -> None:
+        """_assert_tier_integrity raises even when headcount fits a bounded tier."""
+        tiers = [
+            InpsEmployeeTier(
+                max_employees=10, rate=Decimal("0.09"), ivs_rate=Decimal("0.09")
+            )
+        ]
+        # Without the fix, headcount=5 would succeed; now it must fail
+        # because the structural defect (no open band) is caught up front.
+        with pytest.raises(ValueError, match="exactly one open tier"):
+            _resolve_tier(tiers, 5, "employee")
+
+    def test_single_open_tier_accepted(self) -> None:
+        """_assert_tier_integrity accepts a list with exactly one open tier."""
+        tiers = [
+            InpsEmployeeTier(
+                max_employees=15, rate=Decimal("0.09"), ivs_rate=Decimal("0.09")
+            ),
+            InpsEmployeeTier(
+                max_employees=None, rate=Decimal("0.10"), ivs_rate=Decimal("0.09")
+            ),
+        ]
+        # Must not raise; verifies the happy path.
+        _assert_tier_integrity(tiers, "employee")
 
     def test_multiple_open_tiers_raises(self) -> None:
         """_assert_tier_integrity raises when more than one open tier exists."""
@@ -436,7 +461,7 @@ class TestYearRules2026Json:
                 max_employees=None, rate=Decimal("0.10"), ivs_rate=Decimal("0.09")
             ),
         ]
-        with pytest.raises(ValueError, match=r"2 open tiers"):
+        with pytest.raises(ValueError, match=r"exactly one open tier"):
             _assert_tier_integrity(tiers, "employee")
 
     def test_duplicate_max_employees_raises(self) -> None:
@@ -723,6 +748,49 @@ class TestDomesticInpsRatesNegativeConstraints:
                     },
                 ],
             })
+
+
+class TestInpsRawRatesEmptyTiers:
+    """InpsRawRates rejects empty employee_tiers or employer_tiers."""
+
+    _OPEN_EMPLOYEE_TIER: dict[str, Any] = {
+        "max_employees": None,
+        "rate": "0.0919",
+        "ivs_rate": "0.0919",
+    }
+    _OPEN_EMPLOYER_TIER: dict[str, Any] = {
+        "max_employees": None,
+        "rate": "0.2898",
+        "ivs_rate": "0.2381",
+    }
+
+    def test_empty_employee_tiers_raises(self) -> None:
+        """Empty employee_tiers must raise ValidationError."""
+        with pytest.raises(ValidationError):
+            InpsRawRates.model_validate({
+                "employee_tiers": [],
+                "employer_tiers": [self._OPEN_EMPLOYER_TIER],
+                "ceiling": None,
+            })
+
+    def test_empty_employer_tiers_raises(self) -> None:
+        """Empty employer_tiers must raise ValidationError."""
+        with pytest.raises(ValidationError):
+            InpsRawRates.model_validate({
+                "employee_tiers": [self._OPEN_EMPLOYEE_TIER],
+                "employer_tiers": [],
+                "ceiling": None,
+            })
+
+    def test_non_empty_tiers_accepted(self) -> None:
+        """Non-empty tiers are accepted."""
+        raw = InpsRawRates.model_validate({
+            "employee_tiers": [self._OPEN_EMPLOYEE_TIER],
+            "employer_tiers": [self._OPEN_EMPLOYER_TIER],
+            "ceiling": None,
+        })
+        assert len(raw.employee_tiers) == 1
+        assert len(raw.employer_tiers) == 1
 
 
 class TestYearRulesRawContributionModel:
