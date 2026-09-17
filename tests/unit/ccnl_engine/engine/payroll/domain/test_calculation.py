@@ -11,6 +11,7 @@ from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.calculation import (
     Calculation,
+    CalculationTrace,
     InputSnapshot,
     _dump,
     _load_by_hint,
@@ -440,6 +441,15 @@ class TestDeepImmutability:
         calc = compute(_req())
         with pytest.raises(TypeError):
             calc.ruleset_version["ccnl"] = "tampered"  # type: ignore[index]
+
+    def test_from_dict_without_trace_key_uses_empty_trace(self) -> None:
+        """from_dict() succeeds and returns empty trace when 'trace' key is absent."""
+        calc = compute(_req())
+        d = calc.to_dict()
+        d.pop("trace")
+        restored = Calculation.from_dict(d)
+        assert restored.trace == CalculationTrace(steps=())
+        assert restored.result == calc.result
 
     def test_reproduce_stable_after_to_dict_mutation(self) -> None:
         """reproduce() is stable even if to_dict() output is mutated."""
