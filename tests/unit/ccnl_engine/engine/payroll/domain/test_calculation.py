@@ -152,6 +152,83 @@ class TestInputSnapshot:
             InputSnapshot.from_dict(data)
 
 
+class TestInputSnapshotStrictDeserialisation:
+    """from_dict rejects coercions and extra keys."""
+
+    def _base(self) -> dict[str, object]:
+        snapshot = InputSnapshot.capture(
+            scenario=_scenario(),
+            ccnl_id="test",
+            tax_sector=TaxSector.TERZIARIO,
+            year=2026,
+            uses_surtax=False,
+        )
+        return snapshot.to_dict()
+
+    def test_uses_surtax_string_false_rejected(self) -> None:
+        """'false' string for uses_surtax must raise TypeError, not be coerced."""
+        data = self._base()
+        data["uses_surtax"] = "false"
+        with pytest.raises(TypeError, match="uses_surtax"):
+            InputSnapshot.from_dict(data)
+
+    def test_uses_surtax_string_true_rejected(self) -> None:
+        """'true' string for uses_surtax must raise TypeError, not be coerced."""
+        data = self._base()
+        data["uses_surtax"] = "true"
+        with pytest.raises(TypeError, match="uses_surtax"):
+            InputSnapshot.from_dict(data)
+
+    def test_uses_surtax_int_zero_rejected(self) -> None:
+        """Integer 0 for uses_surtax must raise TypeError."""
+        data = self._base()
+        data["uses_surtax"] = 0
+        with pytest.raises(TypeError, match="uses_surtax"):
+            InputSnapshot.from_dict(data)
+
+    def test_uses_surtax_int_one_rejected(self) -> None:
+        """Integer 1 for uses_surtax must raise TypeError."""
+        data = self._base()
+        data["uses_surtax"] = 1
+        with pytest.raises(TypeError, match="uses_surtax"):
+            InputSnapshot.from_dict(data)
+
+    def test_ccnl_id_int_rejected(self) -> None:
+        """Integer ccnl_id must raise TypeError, not be silently str()d."""
+        data = self._base()
+        data["ccnl_id"] = 42
+        with pytest.raises(TypeError, match="ccnl_id"):
+            InputSnapshot.from_dict(data)
+
+    def test_year_string_rejected(self) -> None:
+        """String year must raise TypeError, not be coerced via int(str(...))."""
+        data = self._base()
+        data["year"] = "2026"
+        with pytest.raises(TypeError, match="year"):
+            InputSnapshot.from_dict(data)
+
+    def test_year_bool_rejected(self) -> None:
+        """Bool True for year must raise TypeError (bool is subclass of int)."""
+        data = self._base()
+        data["year"] = True
+        with pytest.raises(TypeError, match="year"):
+            InputSnapshot.from_dict(data)
+
+    def test_scenario_non_dict_rejected(self) -> None:
+        """A non-dict scenario must raise TypeError."""
+        data = self._base()
+        data["scenario"] = "not_a_dict"
+        with pytest.raises(TypeError, match="scenario"):
+            InputSnapshot.from_dict(data)
+
+    def test_extra_key_rejected(self) -> None:
+        """Extra keys not produced by to_dict must raise TypeError."""
+        data = self._base()
+        data["extra_field"] = "unexpected"
+        with pytest.raises(TypeError, match="unexpected keys"):
+            InputSnapshot.from_dict(data)
+
+
 class TestCalculation:
     """Calculation carries provenance and reproduces an identical result."""
 
