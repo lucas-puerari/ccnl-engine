@@ -63,7 +63,7 @@ class TestDemoDefaultYear:
             patch.object(demo_app, "read_bundled", side_effect=FileNotFoundError),
         ):
             mock_dt.now.return_value = old_now
-            with pytest.raises(RuntimeError, match="No bundled surtax data"):
+            with pytest.raises(RuntimeError, match="No complete bundled data"):
                 demo_app._latest_bundled_year()
 
     def test_list_regioni_returns_all_regions(self, demo_app: types.ModuleType) -> None:

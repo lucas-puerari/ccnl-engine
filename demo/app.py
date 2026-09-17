@@ -10,7 +10,7 @@ from __future__ import annotations
 import importlib.resources
 import json
 import operator
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from decimal import Decimal
 
 from ccnl_engine.engine.contract.domain.ccnl import SupplementaryAllowance
@@ -49,34 +49,39 @@ from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
 
 
 def _latest_bundled_year() -> int:
-    """Return the most recent year with surtax data in the knowledge bundle.
+    """Return the most recent year fully covered by all knowledge families.
 
-    Walks back from the current calendar year until it finds a
-    ``regionale-{year}.json`` file via :func:`read_bundled`.  This makes
-    the demo year-independent: it keeps working after the calendar rolls over
-    to a year whose dataset has not been published yet.
+    Walks back from the current calendar year until it finds a year for which
+    tax, INPS, and surtax data all exist in the bundle.  This prevents the
+    demo from attempting a calculation with, e.g., surtax data for year N+1
+    while tax and INPS data only go up to N.
 
     Returns:
-        The latest year for which surtax data exists.
+        The latest year covered by all three rule families.
 
     Raises:
-        RuntimeError: If no surtax data is found for any year >= 2020.
+        RuntimeError: If no complete year is found >= 2020.
     """
-    pkg = importlib.resources.files("ccnl_engine.knowledge.surtax.data")
+    tax_pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
+    inps_pkg = importlib.resources.files("ccnl_engine.knowledge.inps.data")
+    surtax_pkg = importlib.resources.files("ccnl_engine.knowledge.surtax.data")
     year = datetime.now(UTC).year
     while True:
         try:
-            read_bundled(pkg, f"regionale-{year}.json")
+            read_bundled(tax_pkg, f"{year}-industria.json")
+            read_bundled(inps_pkg, f"{year}-industria.json")
+            read_bundled(surtax_pkg, f"regionale-{year}.json")
         except FileNotFoundError:
             year -= 1
             if year < 2020:
-                msg = "No bundled surtax data found for any year >= 2020"
+                msg = "No complete bundled data found for any year >= 2020"
                 raise RuntimeError(msg) from None
         else:
             return year
 
 
 _DEFAULT_YEAR = _latest_bundled_year()
+_CALC_DATE = date(_DEFAULT_YEAR, 12, 31)
 
 
 def list_regioni() -> str:
@@ -336,8 +341,7 @@ def _resolve_ccnl_meta(
     is_domestic = getattr(ccnl.meta, "tax_sector", "") == "lavoro-domestico"
     if not is_domestic:
         return ccnl.meta.name, None
-    calc_date = datetime.now(tz=UTC).date()
-    divisor = ccnl.parameters.hourly_divisor.value_at(calc_date)
+    divisor = ccnl.parameters.hourly_divisor.value_at(_CALC_DATE)
     weekly = divisor * Decimal(12) / Decimal(52) * Decimal(str(round(part_time_pct, 4)))
     return ccnl.meta.name, weekly
 
@@ -546,7 +550,7 @@ def compute_salary(
                 ccnl=filename,
                 contract=contract,
                 employer=employer,
-                calculation_date=datetime.now(tz=UTC).date(),
+                calculation_date=_CALC_DATE,
             ),
             time_supplements=time_supplements,
             absence_days=absence,
