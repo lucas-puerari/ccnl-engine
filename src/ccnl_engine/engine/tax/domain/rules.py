@@ -418,11 +418,12 @@ class SterilizzazioneDetrazioniRules(BaseModel):
     """Sterilizzazione detrazioni for high-income earners.
 
     Per Art. 1 c. 3-4 L. 199/2025 (Legge di Bilancio 2026): for
-    reddito complessivo exceeding ``threshold``, the total detrazioni
-    dall'imposta lorda (Art. 12 + Art. 13 TUIR) is reduced by
-    ``reduction`` EUR. The reduction is the exact clawback of the
-    tax benefit from the 35% to 33% IRPEF bracket change on the
-    EUR 28 000-50 000 slice: 2% x EUR 22 000 = EUR 440.
+    reddito complessivo exceeding ``threshold``, the Art. 15 TUIR
+    oneri detraibili al 19 % (lett. a, b, d, e; not lett. c spese
+    sanitarie) is reduced by ``reduction`` EUR. The reduction is the
+    exact clawback of the tax benefit from the 35% to 33% IRPEF
+    bracket change on the EUR 28 000-50 000 slice:
+    2% x EUR 22 000 = EUR 440.
     """
 
     model_config = ConfigDict(extra="forbid")
