@@ -639,10 +639,16 @@ def compute_work_rules(
     )
     leave = _run_wr_leave(scenario=scenario, ccnl=ccnl, wr_warnings=wr_warnings)
 
-    # Load sick-pay rates only when sick days were actually requested, so the
-    # ruleset is not registered as consumed for scenarios with no sick input.
+    # Load sick-pay rates only when sick days were actually requested AND the
+    # CCNL supports the sickness feature, so the ruleset is not registered as
+    # consumed for scenarios with no sick input or unsupported CCNLs.
     sick_input = scenario.sick_input
-    sick_used = sick_input is not None and sick_input.sick_days > _ZERO
+    sickness_supported = (
+        ccnl.work_rules is not None and ccnl.work_rules.sickness_rules is not None
+    )
+    sick_used = (
+        sick_input is not None and sick_input.sick_days > _ZERO and sickness_supported
+    )
     sick_pay_rates: InpsSickPayRates | None = (
         load_sick_pay_rates() if sick_used else None
     )

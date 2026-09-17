@@ -2007,6 +2007,37 @@ class TestL3Sickness:
         # Confidence must match.
         assert result_none.confidence == result_zero.confidence
 
+    def test_sick_pay_loader_not_called_when_ccnl_has_no_sickness_rules(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """load_sick_pay_rates must not be called when the CCNL has no sickness_rules.
+
+        Regression guard for the lazy-load gate: with positive sick days but no
+        CCNL sickness schema the loader must be bypassed entirely, so a missing
+        or corrupt sick-pay file cannot block a calculation that does not consume
+        it.
+        """
+
+        def _fail() -> None:
+            msg = "load_sick_pay_rates must not be called"
+            raise RuntimeError(msg)
+
+        monkeypatch.setattr(
+            "ccnl_engine.engine.payroll.service.work_rules.load_sick_pay_rates",
+            _fail,
+        )
+        # Default CCNL has no work_rules (no sickness schema).
+        scenario = dataclasses.replace(
+            _req(),
+            sick_input=SickInput(sick_days=_D("3")),
+        )
+        result = compute(scenario).result
+        # Loader was not called; the result degrades gracefully with a warning.
+        assert any("sick_input" in w for w in result.warnings)
+        assert result.sick_days_monthly == _D("0")
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["sickness"] == "not_computed"
+
 
 class TestL3VariablePay:
     """Orchestrator integration tests for the variable-pay L3 features."""
