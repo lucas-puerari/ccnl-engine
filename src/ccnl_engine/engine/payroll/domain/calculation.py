@@ -657,17 +657,62 @@ class InputSnapshot:
     def from_dict(cls, data: dict[str, object]) -> InputSnapshot:
         """Reconstruct a snapshot from a dictionary (see :meth:`to_dict`).
 
+        Validation is strict: every field must carry exactly the Python type
+        that :meth:`to_dict` / :func:`json.loads` produces.  Coercions such
+        as ``bool("false")`` or ``int("2026")`` are rejected with
+        :exc:`TypeError` so a malformed payload cannot silently flip the
+        semantics of ``uses_surtax`` or mask a wrong-typed field.
+
         Args:
             data: A dictionary as produced by :meth:`to_dict`.
 
         Returns:
             A new :class:`InputSnapshot` equal to the original.
+
+        Raises:
+            TypeError: If any field value has the wrong type or if *data*
+                contains unexpected keys.
         """
+        allowed = frozenset({
+            "ccnl_id",
+            "tax_sector",
+            "year",
+            "uses_surtax",
+            "scenario",
+        })
+        extra = set(data) - allowed
+        if extra:
+            msg = f"InputSnapshot.from_dict: unexpected keys: {sorted(extra)}"
+            raise TypeError(msg)
+
+        def _check(key: str, val: object, expected: type) -> None:
+            """Raise TypeError when *val* is not exactly *expected*.
+
+            ``bool`` is a subclass of ``int`` in Python; passing a ``bool``
+            for an ``int`` field is therefore also rejected.
+
+            Raises:
+                TypeError: If *val* is not an instance of *expected*.
+            """
+            if not isinstance(val, expected) or (
+                expected is int and isinstance(val, bool)
+            ):
+                msg = (
+                    f"InputSnapshot.from_dict: '{key}' must be "
+                    f"{expected.__name__}, got {type(val).__name__}"
+                )
+                raise TypeError(msg)
+
+        _check("ccnl_id", data["ccnl_id"], str)
+        _check("tax_sector", data["tax_sector"], str)
+        _check("year", data["year"], int)
+        _check("uses_surtax", data["uses_surtax"], bool)
+        _check("scenario", data["scenario"], dict)
         return cls(
-            ccnl_id=str(data["ccnl_id"]),
-            tax_sector=str(data["tax_sector"]),
-            year=int(str(data["year"])),
-            uses_surtax=bool(data["uses_surtax"]),
+            ccnl_id=cast(str, data["ccnl_id"]),
+            tax_sector=cast(str, data["tax_sector"]),
+            year=cast(int, data["year"]),
+            uses_surtax=cast(bool, data["uses_surtax"]),
             scenario=cast(dict[str, object], data["scenario"]),
         )
 
