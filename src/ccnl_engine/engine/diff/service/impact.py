@@ -5,14 +5,15 @@ assembles a list of :class:`~ccnl_engine.engine.payroll.domain.scenario.\
 PayrollScenario` objects (e.g. by loading the reference JSON cases) and
 passes them to :func:`count_affected_scenarios`.  The function runs each
 scenario twice -- once at *from_date*, once at *to_date* -- by substituting
-``Employment.calculation_date``, and returns the count of scenarios whose
-:class:`~ccnl_engine.engine.payroll.domain.payroll_result.PayrollResult`
-differs in any field.
+``Employment.calculation_date``, and returns an :class:`ImpactResult` with
+structured counts so callers can distinguish "no change", "not evaluated",
+and "evaluation failed".
 """
 
 from __future__ import annotations
 
 import dataclasses
+from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from ccnl_engine.engine.payroll.service.orchestrator import compute
@@ -25,11 +26,26 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
 
 
+@dataclass(frozen=True)
+class ImpactResult:
+    """Structured result of :func:`count_affected_scenarios`.
+
+    Attributes:
+        affected: Scenarios whose result differed between the two dates.
+        evaluated: Scenarios where both runs completed without error.
+        failed: Scenarios where at least one run raised an exception.
+    """
+
+    affected: int
+    evaluated: int
+    failed: int
+
+
 def count_affected_scenarios(
     scenarios: Iterable[PayrollScenario],
     from_date: date,
     to_date: date,
-) -> int:
+) -> ImpactResult:
     """Count scenarios whose payroll result changes between two dates.
 
     Each scenario is run twice: once with ``Employment.calculation_date`` set
@@ -37,8 +53,8 @@ def count_affected_scenarios(
     any :class:`~ccnl_engine.engine.payroll.domain.payroll_result.\
 PayrollResult` field (other than ``as_of``) differs between the two runs.
 
-    Computation errors for a given scenario are silently skipped (e.g. the
-    scenario references a CCNL that pre-dates *from_date*).
+    Computation errors are tracked in ``ImpactResult.failed`` so callers can
+    distinguish "no change" from "all scenarios errored".
 
     Args:
         scenarios: Iterable of scenarios to test.  May be empty.
@@ -46,14 +62,20 @@ PayrollResult` field (other than ``as_of``) differs between the two runs.
         to_date: Reference date for the *after* state.
 
     Returns:
-        Number of affected scenarios.
+        Structured counts: affected, evaluated, and failed scenario counts.
     """
-    count = 0
+    affected = 0
+    evaluated = 0
+    failed = 0
     for scenario in scenarios:
         pair = _compute_pair(scenario, from_date, to_date)
-        if pair is not None and _results_differ(*pair):
-            count += 1
-    return count
+        if pair is None:
+            failed += 1
+        else:
+            evaluated += 1
+            if _results_differ(*pair):
+                affected += 1
+    return ImpactResult(affected=affected, evaluated=evaluated, failed=failed)
 
 
 def _compute_pair(

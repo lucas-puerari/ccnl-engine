@@ -28,7 +28,7 @@ if TYPE_CHECKING:
     from datetime import date
     from decimal import Decimal
 
-    from ccnl_engine.engine.contract.domain.ccnl import Level
+    from ccnl_engine.engine.contract.domain.validity import TimeSeries
 
 # Paths inside the repo used for git diff filtering.
 _KNOWLEDGE_ROOT = "src/ccnl_engine/knowledge"
@@ -130,17 +130,43 @@ def _git_load_ccnl_head(file_path: str) -> CCNL | None:
 # ---------------------------------------------------------------------------
 
 
-def _all_valid_from_dates(ccnl: CCNL) -> set[date]:
-    """Return all valid_from dates from a CCNL's level salary TimeSeries.
+def _ts_valid_from_dates(ts: TimeSeries) -> set[date]:
+    """Return all valid_from dates in *ts*.
 
     Returns:
-        Set of dates appearing as period boundaries in any level.
+        Set of period boundary dates.
     """
-    return {
-        period.valid_from
-        for level in ccnl.levels
-        for period in level.base_salary.periods
-    }
+    return {p.valid_from for p in ts.periods}
+
+
+def _all_valid_from_dates(ccnl: CCNL) -> set[date]:
+    """Return all valid_from dates from every TimeSeries in *ccnl*.
+
+    Covers base salary, fixed allowances, hourly divisor, additional months,
+    seniority increments, employer funds, and overtime bands.
+
+    Returns:
+        Union of all period boundary dates across the CCNL.
+    """
+    dates: set[date] = set()
+    for level in ccnl.levels:
+        dates |= _ts_valid_from_dates(level.base_salary)
+        for allowance in level.fixed_allowances:
+            dates |= _ts_valid_from_dates(allowance.monthly)
+    params = ccnl.parameters
+    dates |= _ts_valid_from_dates(params.hourly_divisor)
+    dates |= _ts_valid_from_dates(params.additional_months)
+    si = params.seniority_increments
+    for ts in si.amount_by_level.values():
+        dates |= _ts_valid_from_dates(ts)
+    if si.apprentice_amount is not None:
+        dates |= _ts_valid_from_dates(si.apprentice_amount)
+    for fund in params.employer_funds:
+        dates |= _ts_valid_from_dates(fund.rate)
+    if ccnl.work_rules is not None and ccnl.work_rules.time_supplements is not None:
+        for band in ccnl.work_rules.time_supplements.overtime_bands:
+            dates |= _ts_valid_from_dates(band.rate)
+    return dates
 
 
 def _fmt_eur(value: Decimal | None) -> str:
@@ -154,26 +180,117 @@ def _fmt_eur(value: Decimal | None) -> str:
     return f"€{value:,.2f}"
 
 
-def _level_salary_changes(
-    old_lv: Level | None,
-    new_lv: Level | None,
+def _compare_ts(
+    old_ts: TimeSeries | None,
+    new_ts: TimeSeries | None,
     ref_dates: set[date],
+    label: str,
 ) -> list[str]:
-    """Return change lines for one salary level across all reference dates.
+    """Return change lines for one TimeSeries field across reference dates.
 
     Returns:
-        List of Markdown bullet strings (empty if no changes detected).
+        List of Markdown bullet strings (empty when no changes detected).
     """
     lines: list[str] = []
     for d in sorted(ref_dates):
-        new_period = new_lv.base_salary.period_at(d) if new_lv else None
-        old_period = old_lv.base_salary.period_at(d) if old_lv else None
-        new_val = new_period.value if new_period else None
-        old_val = old_period.value if old_period else None
-        if new_val != old_val:
+        old_period = old_ts.period_at(d) if old_ts is not None else None
+        new_period = new_ts.period_at(d) if new_ts is not None else None
+        old_val = old_period.value if old_period is not None else None
+        new_val = new_period.value if new_period is not None else None
+        if old_val != new_val:
             lines.append(
-                f"  - `{d}` base salary: {_fmt_eur(old_val)} → {_fmt_eur(new_val)}"
+                f"  - `{d}` {label}: {_fmt_eur(old_val)} → {_fmt_eur(new_val)}"
             )
+    return lines
+
+
+def _compare_level_versions(
+    old: CCNL | None,
+    new: CCNL,
+    ref_dates: set[date],
+) -> Iterator[str]:
+    """Yield Markdown lines for per-level salary and allowance changes.
+
+    Yields:
+        Markdown-formatted strings for levels with changes.
+    """
+    new_levels = {lv.code: lv for lv in new.levels}
+    old_levels = {lv.code: lv for lv in old.levels} if old is not None else {}
+    for code in sorted(new_levels.keys() | old_levels.keys()):
+        new_lv = new_levels.get(code)
+        old_lv = old_levels.get(code)
+        level_lines = _compare_ts(
+            old_lv.base_salary if old_lv else None,
+            new_lv.base_salary if new_lv else None,
+            ref_dates,
+            "base salary",
+        )
+        if new_lv:
+            a_codes = {a.code for a in new_lv.fixed_allowances}
+            if old_lv:
+                a_codes |= {a.code for a in old_lv.fixed_allowances}
+            new_al = {a.code: a for a in new_lv.fixed_allowances}
+            old_al = {a.code: a for a in old_lv.fixed_allowances} if old_lv else {}
+            for ac in sorted(a_codes):
+                level_lines += _compare_ts(
+                    old_al[ac].monthly if ac in old_al else None,
+                    new_al[ac].monthly if ac in new_al else None,
+                    ref_dates,
+                    f"allowance {ac}",
+                )
+        if level_lines:
+            yield f"**Level {code}**"
+            yield from level_lines
+
+
+def _compare_parameter_versions(
+    old: CCNL | None,
+    new: CCNL,
+    ref_dates: set[date],
+) -> list[str]:
+    """Return change lines for all CCNL-level parameters.
+
+    Returns:
+        List of Markdown bullet strings for parameter changes.
+    """
+    new_p = new.parameters
+    old_p = old.parameters if old is not None else None
+    lines: list[str] = []
+    lines += _compare_ts(
+        old_p.hourly_divisor if old_p else None,
+        new_p.hourly_divisor,
+        ref_dates,
+        "hourly divisor",
+    )
+    lines += _compare_ts(
+        old_p.additional_months if old_p else None,
+        new_p.additional_months,
+        ref_dates,
+        "additional months",
+    )
+    new_si = new_p.seniority_increments
+    old_si = old_p.seniority_increments if old_p else None
+    for level_code, ts in new_si.amount_by_level.items():
+        old_ts = old_si.amount_by_level.get(level_code) if old_si else None
+        lines += _compare_ts(old_ts, ts, ref_dates, f"seniority level {level_code}")
+    if new_si.apprentice_amount is not None or (
+        old_si is not None and old_si.apprentice_amount is not None
+    ):
+        lines += _compare_ts(
+            old_si.apprentice_amount if old_si else None,
+            new_si.apprentice_amount,
+            ref_dates,
+            "seniority apprentice",
+        )
+    new_funds = {f.code: f for f in new_p.employer_funds}
+    old_funds = {f.code: f for f in old_p.employer_funds} if old_p else {}
+    for fc in sorted(new_funds.keys() | old_funds.keys()):
+        lines += _compare_ts(
+            old_funds[fc].rate if fc in old_funds else None,
+            new_funds[fc].rate if fc in new_funds else None,
+            ref_dates,
+            f"employer fund {fc}",
+        )
     return lines
 
 
@@ -181,7 +298,10 @@ def _compare_ccnl_versions(
     old: CCNL | None,
     new: CCNL,
 ) -> Iterator[str]:
-    """Yield Markdown lines describing salary-level changes between versions.
+    """Yield Markdown lines describing all computational changes between versions.
+
+    Covers base salary, fixed allowances, hourly divisor, additional months,
+    seniority increments, employer funds, and overtime bands.
 
     Yields:
         Markdown-formatted strings, one per line of output.
@@ -190,22 +310,19 @@ def _compare_ccnl_versions(
     if old is not None:
         ref_dates |= _all_valid_from_dates(old)
 
-    new_levels = {lv.code: lv for lv in new.levels}
-    old_levels = {lv.code: lv for lv in old.levels} if old is not None else {}
-    all_codes = sorted(new_levels.keys() | old_levels.keys())
-
     any_change = False
-    for code in all_codes:
-        level_lines = _level_salary_changes(
-            old_levels.get(code), new_levels.get(code), ref_dates
-        )
-        if level_lines:
-            any_change = True
-            yield f"**Level {code}**"
-            yield from level_lines
+    for line in _compare_level_versions(old, new, ref_dates):
+        any_change = True
+        yield line
+
+    param_lines = _compare_parameter_versions(old, new, ref_dates)
+    if param_lines:
+        any_change = True
+        yield "**Parameters**"
+        yield from param_lines
 
     if not any_change:
-        yield "_No level salary changes detected._"
+        yield "_No computational changes detected._"
 
 
 # ---------------------------------------------------------------------------
