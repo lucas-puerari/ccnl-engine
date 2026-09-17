@@ -320,12 +320,16 @@ class InpsRawRates(BaseModel):
     ``employee_additional_threshold`` must be non-negative; a negative
     threshold would incorrectly widen the base on which the additional
     rate applies.
+
+    ``employee_tiers`` and ``employer_tiers`` must be non-empty; an empty
+    list would cause ``_resolve_tier`` to raise with no tier available for
+    any headcount, which is a structural defect better caught at load time.
     """
 
     model_config = ConfigDict(extra="forbid")
 
-    employee_tiers: list[InpsEmployeeTier]
-    employer_tiers: list[InpsEmployerTier]
+    employee_tiers: list[InpsEmployeeTier] = Field(min_length=1)
+    employer_tiers: list[InpsEmployerTier] = Field(min_length=1)
     ceiling: PositiveCeiling | None
     employee_additional_rate: NonNegativeRate | None = None
     employee_additional_threshold: NonNegativeRate | None = None
