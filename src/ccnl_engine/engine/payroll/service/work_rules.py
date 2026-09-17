@@ -415,24 +415,31 @@ def _run_wr_leave(
 def _run_wr_sickness(
     scenario: PayrollScenario,
     ccnl: CCNL,
-    sick_pay_rates: InpsSickPayRates,
+    sick_pay_rates: InpsSickPayRates | None,
     gross_monthly: Decimal,
     wr_warnings: list[str],
 ) -> _SicknessResult:
     """Run the work-rules sickness block.
 
+    ``sick_pay_rates`` must be non-``None`` when ``sick_input.sick_days > 0``;
+    it is ``None`` when the caller skipped loading (zero or absent sick input).
+
     Returns:
-        :class:`_SicknessResult` with zero amounts when no sick input is
-        supplied or the CCNL has no sickness rules. A warning is appended to
-        ``wr_warnings`` in the latter case.
+        :class:`_SicknessResult` with zero amounts when sick input is absent
+        or ``sick_days == 0``.  A warning is appended to ``wr_warnings`` when
+        ``sick_days > 0`` but the CCNL has no sickness schema.
 
     Raises:
         RuntimeError: If ``work_rules`` or ``sickness_rules`` is ``None``
-            despite ``present=True`` (indicates a data bug).
+            despite ``present=True``, or if ``sick_pay_rates`` is ``None``
+            when sickness computation is attempted (indicates a caller bug).
     """
     sick_input = scenario.sick_input
     present = ccnl.work_rules is not None and ccnl.work_rules.sickness_rules is not None
-    if sick_input is None:
+    # A zero-day sickness object is treated the same as None: no sick days were
+    # taken, so loading rates, computing or warning is unnecessary.  This
+    # mirrors the predicates already used for OvertimeHours and AbsenceDays.
+    if sick_input is None or sick_input.sick_days == _ZERO:
         return _SicknessResult(
             sick_days=_ZERO,
             carenza_days=_ZERO,
@@ -446,6 +453,9 @@ def _run_wr_sickness(
             work_rules_sk is None or work_rules_sk.sickness_rules is None
         ):
             msg = "sickness_rules is None despite present=True"
+            raise RuntimeError(msg)
+        if sick_pay_rates is None:  # pragma: no cover
+            msg = "sick_pay_rates is None despite sick_days > 0"
             raise RuntimeError(msg)
         sick_days, carenza, inps_indemnity, company_integration = compute_sickness(
             sick_input=sick_input,
@@ -484,9 +494,9 @@ def _run_wr_variable_pay(
 
     Returns:
         :class:`_VariablePayResult` with zero amounts for unset inputs.
-        ``var_pay_rules`` is ``None`` when no variable-pay input is present
-        (rules were not loaded), so the caller can extract the ruleset id
-        without a second load.
+        ``var_pay_rules`` is ``None`` when no fringe-benefit or bonus/PdR
+        input is present (rules were not loaded).  Welfare is computed from
+        the input alone and does not require the variable-pay rules file.
     """
     fb_input = scenario.fringe_benefit_input
     welfare_input = scenario.welfare_input
@@ -494,6 +504,11 @@ def _run_wr_variable_pay(
     any_input = (
         fb_input is not None or welfare_input is not None or bonus_input is not None
     )
+    # Welfare is a statutory flat exemption and does not use the variable-pay
+    # rules file.  Load only when fringe-benefit or bonus/PdR computation is
+    # actually needed, so the ruleset is not registered as consumed for a
+    # welfare-only scenario.
+    rules_needed = fb_input is not None or bonus_input is not None
 
     if not any_input:
         return _VariablePayResult(
@@ -507,7 +522,6 @@ def _run_wr_variable_pay(
             var_pay_rules=None,
         )
 
-    var_pay_rules = load_variable_pay_rules(year)
     fb_annual = _ZERO
     fb_threshold = _ZERO
     fb_taxable = _ZERO
@@ -515,17 +529,22 @@ def _run_wr_variable_pay(
     bonus_annual = _ZERO
     pdr_flat_tax = _ZERO
     bonus_ordinary = _ZERO
+    var_pay_rules: VariablePayRules | None
 
-    if fb_input is not None:
-        fb_annual, fb_threshold, fb_taxable = compute_fringe_benefit(
-            fb_input, var_pay_rules.fringe_benefit
-        )
+    if rules_needed:
+        var_pay_rules = load_variable_pay_rules(year)
+        if fb_input is not None:
+            fb_annual, fb_threshold, fb_taxable = compute_fringe_benefit(
+                fb_input, var_pay_rules.fringe_benefit
+            )
+        if bonus_input is not None:
+            bonus_annual, pdr_flat_tax, bonus_ordinary = compute_bonus(
+                bonus_input, var_pay_rules.pdr, gross_annual, wr_warnings
+            )
+    else:
+        var_pay_rules = None
     if welfare_input is not None:
         welfare_annual = compute_welfare(welfare_input)
-    if bonus_input is not None:
-        bonus_annual, pdr_flat_tax, bonus_ordinary = compute_bonus(
-            bonus_input, var_pay_rules.pdr, gross_annual, wr_warnings
-        )
 
     return _VariablePayResult(
         fringe_benefit=fb_annual,
@@ -580,7 +599,7 @@ class WorkRulesPay:
     supplement_trace: tuple[TraceStep, ...]
     warnings: tuple[str, ...]
     consumed_rulesets: dict[str, str]
-    consumed_ruleset_ids: tuple[RulesetIdentity, ...]
+    consumed_ruleset_ids: tuple[RulesetIdentity | None, ...]
 
 
 def compute_work_rules(
@@ -620,7 +639,13 @@ def compute_work_rules(
     )
     leave = _run_wr_leave(scenario=scenario, ccnl=ccnl, wr_warnings=wr_warnings)
 
-    sick_pay_rates = load_sick_pay_rates()
+    # Load sick-pay rates only when sick days were actually requested, so the
+    # ruleset is not registered as consumed for scenarios with no sick input.
+    sick_input = scenario.sick_input
+    sick_used = sick_input is not None and sick_input.sick_days > _ZERO
+    sick_pay_rates: InpsSickPayRates | None = (
+        load_sick_pay_rates() if sick_used else None
+    )
     sickness = _run_wr_sickness(
         scenario=scenario,
         ccnl=ccnl,
@@ -636,15 +661,17 @@ def compute_work_rules(
     )
 
     consumed: dict[str, str] = {}
-    consumed_ids: list[RulesetIdentity] = []
-    if sickness.present:
+    consumed_ids: list[RulesetIdentity | None] = []
+    # Register sick-pay rates only when sickness was computed (sick_days > 0
+    # and the CCNL supports it).  Always append the identity, including None,
+    # so compute_confidence sees an unverified entry when identity is absent.
+    if sick_pay_rates is not None and sickness.present:
         consumed["sick_pay"] = (
             str(sick_pay_rates.ruleset)
             if sick_pay_rates.ruleset is not None
             else f"sick-pay-rates@{_knowledge_version}"
         )
-        if sick_pay_rates.ruleset is not None:
-            consumed_ids.append(sick_pay_rates.ruleset)
+        consumed_ids.append(sick_pay_rates.ruleset)
     if var_pay.var_pay_rules is not None:
         ruleset = var_pay.var_pay_rules.ruleset
         consumed["variable_pay"] = (
@@ -652,8 +679,7 @@ def compute_work_rules(
             if ruleset is not None
             else f"variable-pay-rules/{year}@{_knowledge_version}"
         )
-        if ruleset is not None:
-            consumed_ids.append(ruleset)
+        consumed_ids.append(ruleset)
 
     return WorkRulesPay(
         base_monthly_full_time=base_monthly_full_time,

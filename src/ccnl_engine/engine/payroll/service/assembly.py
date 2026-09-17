@@ -233,6 +233,12 @@ def _ruleset_versions(
         versions["tax"] = f"tax/{rules.year}/{ccnl.meta.tax_sector}@{knowledge_version}"
     if rules.inps_ruleset is not None:
         versions["inps"] = str(rules.inps_ruleset)
+    elif rules.domestic_contributions is None:
+        # Standard percentage model: INPS rules were consumed but the identity
+        # block is absent — emit a fallback so every consumed ruleset appears.
+        versions["inps"] = (
+            f"inps/{rules.year}/{ccnl.meta.tax_sector}@{knowledge_version}"
+        )
     if surtax is not None:
         versions.update(_surtax_versions(surtax))
     if uses_family_deductions:

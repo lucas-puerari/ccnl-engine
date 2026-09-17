@@ -1971,6 +1971,42 @@ class TestL3Sickness:
         assert result.sick_inps_indemnity_monthly == _D("0")
         assert result.sick_company_integration_monthly == _D("0")
 
+    def test_zero_sick_days_no_warning_when_no_schema(self) -> None:
+        """SickInput() with zero sick_days is treated as not requested.
+
+        Mirrors test_zero_hours_supplement_no_warning_when_no_schema: a
+        zero-valued SickInput must not emit the 'not modelled' warning and
+        must leave the sickness scope as 'excluded', exactly like sick_input=None.
+        """
+        scenario = dataclasses.replace(
+            _req(),
+            sick_input=SickInput(),  # sick_days defaults to 0
+        )
+        result = compute(scenario).result
+        assert not any("sick_input" in w for w in result.warnings), (
+            f"Unexpected sick_input warning for zero sick days: {result.warnings}"
+        )
+        scope = {item.feature: item.status for item in result.calculation_scope}
+        assert scope["sickness"] == "excluded"
+
+    def test_zero_sick_days_same_result_as_no_input(self) -> None:
+        """SickInput() produces the same metadata as sick_input=None.
+
+        confidence, result_status, and scope must be identical for a scenario
+        with sick_input=None and one with sick_input=SickInput() (zero days).
+        """
+        result_none = compute(_req()).result
+        scenario_zero = dataclasses.replace(_req(), sick_input=SickInput())
+        result_zero = compute(scenario_zero).result
+        # Scope entry must match.
+        scope_none = {s.feature: s.status for s in result_none.calculation_scope}
+        scope_zero = {s.feature: s.status for s in result_zero.calculation_scope}
+        assert scope_none["sickness"] == scope_zero["sickness"]
+        # Overall result status must match.
+        assert result_none.status == result_zero.status
+        # Confidence must match.
+        assert result_none.confidence == result_zero.confidence
+
 
 class TestL3VariablePay:
     """Orchestrator integration tests for the variable-pay L3 features."""
@@ -2074,6 +2110,19 @@ class TestL3VariablePay:
         assert with_inputs.net_annual == baseline.net_annual
         assert with_inputs.taxable_income == baseline.taxable_income
         assert with_inputs.irpef_net == baseline.irpef_net
+
+    def test_welfare_only_does_not_register_variable_pay_ruleset(self) -> None:
+        """A welfare-only scenario must not include variable_pay in ruleset_version.
+
+        compute_welfare() does not consume the variable-pay rules file; only
+        fringe-benefit and bonus/PdR inputs trigger its load and registration.
+        """
+        scenario = dataclasses.replace(
+            _req(),
+            welfare_input=WelfareInput(annual_amount=_D("500")),
+        )
+        calc = compute(scenario)
+        assert "variable_pay" not in calc.ruleset_version
 
 
 # ---------------------------------------------------------------------------

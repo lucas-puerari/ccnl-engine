@@ -244,7 +244,9 @@ def build_scope(
         ScopeItem(
             feature="sickness",
             status=_feature_status(
-                scenario.sick_input is not None, work.wr_sickness_present
+                scenario.sick_input is not None
+                and scenario.sick_input.sick_days > _ZERO,
+                work.wr_sickness_present,
             ),
         ),
         ScopeItem(

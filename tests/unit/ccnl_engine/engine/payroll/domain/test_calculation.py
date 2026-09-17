@@ -382,7 +382,8 @@ class TestDumpLoadBranches:
         versions = _ruleset_versions(ccnl, rules, surtax=None)
         assert versions["ccnl"] == "test@2026.2"
         assert versions["tax"] == "tax/2026/terziario@2026.2"
-        assert "inps" not in versions
+        # Standard percentage model without inps_ruleset emits a fallback entry.
+        assert versions["inps"] == "inps/2026/terziario@2026.2"
         assert "surtax" not in versions
 
 
