@@ -283,3 +283,24 @@ class TestFromDictStrictValidation:
         d["calculation_scope"] = [{"feature": 42, "status": "verified"}]
         with pytest.raises(TypeError, match=r"ScopeItem\.feature"):
             PayrollResult.from_dict(d)
+
+    def test_status_invalid_literal_rejected(self, payroll: PayrollResult) -> None:
+        """Invalid status literal raises ValueError."""
+        d = payroll.to_dict()
+        d["status"] = "corrupted"
+        with pytest.raises(ValueError, match="expected one of"):
+            PayrollResult.from_dict(d)
+
+    def test_confidence_invalid_literal_rejected(self, payroll: PayrollResult) -> None:
+        """Invalid confidence literal raises ValueError."""
+        d = payroll.to_dict()
+        d["confidence"] = "certain"
+        with pytest.raises(ValueError, match="expected one of"):
+            PayrollResult.from_dict(d)
+
+    def test_warnings_string_rejected(self, payroll: PayrollResult) -> None:
+        """String for warnings tuple field raises TypeError."""
+        d = payroll.to_dict()
+        d["warnings"] = "single warning"
+        with pytest.raises(TypeError, match="expected a JSON array"):
+            PayrollResult.from_dict(d)

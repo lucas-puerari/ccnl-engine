@@ -757,3 +757,29 @@ class TestSupplementStepsRoundtrip:
         assert "supplement_steps" not in d
         restored = CalculationTrace.from_dict(d)
         assert restored.supplement_steps == ()
+
+
+class TestTraceStepFromDictStrict:
+    """TraceStep.from_dict rejects non-str label and invalid period."""
+
+    def _base(self) -> dict[str, object]:
+        step = TraceStep(
+            category=TraceCategory.BASE_SALARY,
+            label="Base retributiva",
+            amount=Decimal("1500.00"),
+        )
+        return step.to_dict()
+
+    def test_label_int_rejected(self) -> None:
+        """Integer label raises TypeError."""
+        d = self._base()
+        d["label"] = 42
+        with pytest.raises(TypeError, match="label must be str"):
+            TraceStep.from_dict(d)
+
+    def test_period_invalid_raises(self) -> None:
+        """An unrecognised period value raises ValueError."""
+        d = self._base()
+        d["period"] = "weekly"
+        with pytest.raises(ValueError, match="period must be"):
+            TraceStep.from_dict(d)

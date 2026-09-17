@@ -6,7 +6,6 @@ import dataclasses
 import json
 import types
 import typing
-from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import date as _date
 from decimal import Decimal
@@ -141,20 +140,31 @@ def _coerce(raw: object, hint: type) -> object:
     """Coerce *raw* to the Python type described by the annotation *hint*.
 
     Handles ``X | None`` unions, ``Decimal``, ``date``,
-    ``frozenset[FiscalSimplification]`` and tuples of
+    ``frozenset[FiscalSimplification]``, ``Literal``, and tuples of
     :class:`RuleProvenance`; everything else is returned as-is.
 
     Returns:
         The coerced value, or *raw* unchanged when no coercion applies.
+
+    Raises:
+        TypeError: When a tuple field value is not a JSON array.
+        ValueError: When *raw* is not a member of a ``Literal`` hint.
     """
     raw, hint = _unwrap_optional(raw, hint)
     if raw is None:
         return None
     origin = typing.get_origin(hint)
     args = typing.get_args(hint)
+    if origin is typing.Literal:
+        if raw not in args:
+            msg = f"expected one of {args!r}, got {raw!r}"
+            raise ValueError(msg)
+        return raw
     if origin is tuple and args:
-        items = typing.cast(Iterable[object], raw)
-        return tuple(_coerce(item, args[0]) for item in items)
+        if not isinstance(raw, list):
+            msg = f"expected a JSON array for tuple field, got {type(raw).__name__!r}"
+            raise TypeError(msg)
+        return tuple(_coerce(item, args[0]) for item in cast(list[object], raw))
     return _coerce_scalar(raw, hint)
 
 
