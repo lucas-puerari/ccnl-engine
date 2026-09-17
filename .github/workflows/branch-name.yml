@@ -8,14 +8,18 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   check-branch-name:
     runs-on: ubuntu-latest
     steps:
       - name: Validate branch naming convention
+        env:
+          BRANCH: ${{ github.head_ref }}
         run: |
-          BRANCH="${{ github.head_ref }}"
-          if ! echo "$BRANCH" | grep -qE '^(feature|fix|chore|ci|docs|refactor|perf|test|revert)/.+'; then
+          if ! printf '%s\n' "$BRANCH" | grep -qE '^(feature|fix|chore|ci|docs|refactor|perf|test|revert)/.+'; then
             echo "❌ Branch '$BRANCH' does not follow naming convention."
             echo "   Allowed prefixes: feature/, fix/, chore/, ci/, docs/, refactor/, perf/, test/, revert/"
             exit 1
