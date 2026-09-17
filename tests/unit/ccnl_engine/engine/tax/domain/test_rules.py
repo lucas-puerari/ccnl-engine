@@ -599,6 +599,99 @@ class TestDomesticInpsRates:
             })
 
 
+class TestInpsRatesNegativeConstraints:
+    """InpsRates and related models must reject negative rates and ceilings."""
+
+    def test_negative_employee_rate_raises(self) -> None:
+        """employee_rate < 0 must raise ValidationError."""
+        with pytest.raises(ValidationError):
+            InpsRates(
+                employee_rate=Decimal("-0.1"),
+                employee_ivs_rate=Decimal("-0.2"),
+                employer_rate=Decimal("-0.1"),
+                employer_ivs_rate=Decimal("-0.2"),
+                ceiling=None,
+            )
+
+    def test_negative_ceiling_raises(self) -> None:
+        """Ceiling < 0 must raise ValidationError."""
+        with pytest.raises(ValidationError):
+            InpsRates(
+                employee_rate=Decimal("0.0919"),
+                employee_ivs_rate=Decimal("0.0919"),
+                employer_rate=Decimal("0.2898"),
+                employer_ivs_rate=Decimal("0.2381"),
+                ceiling=Decimal(-1),
+            )
+
+    def test_zero_ceiling_raises(self) -> None:
+        """Ceiling = 0 must raise ValidationError (must be strictly positive)."""
+        with pytest.raises(ValidationError):
+            InpsRates(
+                employee_rate=Decimal("0.0919"),
+                employee_ivs_rate=Decimal("0.0919"),
+                employer_rate=Decimal("0.2898"),
+                employer_ivs_rate=Decimal("0.2381"),
+                ceiling=Decimal(0),
+            )
+
+
+class TestDomesticInpsRatesNegativeConstraints:
+    """DomesticInpsRates must reject negative thresholds and non-ascending brackets."""
+
+    _HOURS_BRACKET: dict[str, str] = {
+        "employee_per_hour": "0.31",
+        "employer_per_hour": "0.93",
+        "employer_per_hour_fixed_term": "1.01",
+    }
+
+    def test_negative_weekly_hours_threshold_raises(self) -> None:
+        """weekly_hours_threshold < 0 must raise ValidationError."""
+        with pytest.raises(ValidationError):
+            DomesticInpsRates.model_validate({
+                "weekly_hours_threshold": -1,
+                "hours_bracket": self._HOURS_BRACKET,
+                "wage_brackets": [
+                    {
+                        "hourly_rate_up_to": None,
+                        "employee_per_hour": "0.43",
+                        "employer_per_hour": "1.27",
+                        "employer_per_hour_fixed_term": "1.39",
+                    },
+                ],
+            })
+
+    def test_non_ascending_wage_brackets_raises(self) -> None:
+        """Wage brackets with non-ascending hourly_rate_up_to must raise."""
+        with pytest.raises(
+            ValidationError, match="strictly ascending hourly_rate_up_to"
+        ):
+            DomesticInpsRates.model_validate({
+                "weekly_hours_threshold": 24,
+                "hours_bracket": self._HOURS_BRACKET,
+                "wage_brackets": [
+                    {
+                        "hourly_rate_up_to": "11.70",
+                        "employee_per_hour": "0.48",
+                        "employer_per_hour": "1.44",
+                        "employer_per_hour_fixed_term": "1.57",
+                    },
+                    {
+                        "hourly_rate_up_to": "9.61",
+                        "employee_per_hour": "0.43",
+                        "employer_per_hour": "1.27",
+                        "employer_per_hour_fixed_term": "1.39",
+                    },
+                    {
+                        "hourly_rate_up_to": None,
+                        "employee_per_hour": "0.59",
+                        "employer_per_hour": "1.75",
+                        "employer_per_hour_fixed_term": "1.87",
+                    },
+                ],
+            })
+
+
 class TestYearRulesRawContributionModel:
     """YearRulesRaw validator: must have inps+apprentice or domestic_contributions."""
 
@@ -617,3 +710,39 @@ class TestYearRulesRawContributionModel:
         both = {**tax, **inps, "domestic_contributions": DOMESTIC_CONTRIBUTIONS}
         with pytest.raises(ValidationError, match="mutually exclusive"):
             YearRulesRaw.model_validate(both)
+
+    def test_inps_without_apprentice_raises(self) -> None:
+        """'inps' present without 'apprentice' must raise ValidationError."""
+        inps = read_inps_rules_raw(2026, TaxSector.TERZIARIO)
+        # Build a base with 'inps' but no 'apprentice'.
+        data = {**_RAW_BASE, "inps": inps["inps"]}
+        with pytest.raises(ValidationError, match="both absent"):
+            YearRulesRaw.model_validate(data)
+
+    def test_apprentice_without_inps_raises(self) -> None:
+        """'apprentice' present without 'inps' must raise ValidationError."""
+        inps_raw = read_inps_rules_raw(2026, TaxSector.TERZIARIO)
+        data = {**_RAW_BASE, "apprentice": inps_raw["apprentice"]}
+        with pytest.raises(ValidationError, match="both absent"):
+            YearRulesRaw.model_validate(data)
+
+
+class TestYearRulesContributionModel:
+    """YearRules validator mirrors YearRulesRaw contribution-model checks."""
+
+    def test_inps_without_apprentice_raises(self) -> None:
+        """'inps' without 'apprentice' in YearRules must raise ValidationError."""
+        with pytest.raises(ValidationError, match="both absent"):
+            YearRules.model_validate(_year_rules({"apprentice": None}))
+
+    def test_no_model_raises(self) -> None:
+        """Neither model in YearRules must raise ValidationError."""
+        with pytest.raises(ValidationError, match="standard model"):
+            YearRules.model_validate(_year_rules({"inps": None, "apprentice": None}))
+
+    def test_standard_and_domestic_raises(self) -> None:
+        """Mixing standard and domestic in YearRules must raise ValidationError."""
+        with pytest.raises(ValidationError, match="mutually exclusive"):
+            YearRules.model_validate(
+                _year_rules({"domestic_contributions": DOMESTIC_CONTRIBUTIONS})
+            )
