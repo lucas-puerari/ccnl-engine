@@ -16,11 +16,16 @@ class FrozenDict[K, V](dict[K, V]):  # noqa: FURB189
     is a dict subclass (``isinstance(fd, dict)`` is ``True``).  Unlike
     :class:`types.MappingProxyType`, it supports ``copy.deepcopy`` and
     ``model_copy(deep=True)`` without pickling errors, while still blocking
-    all in-place mutations.
+    all in-place mutations via the public API.
 
     ``dict`` is subclassed intentionally — the ``FURB189`` noqa is required
     because :class:`collections.UserDict` is not recognised as a ``dict`` by
     Pydantic's JSON serialiser.
+
+    **Known limitation**: the overrides guard against *accidental* mutation
+    only.  Bypassing them via the base class (``dict.__setitem__(fd, k, v)``)
+    is technically possible and not blocked.  :class:`FrozenDict` is not a
+    security boundary; callers must not rely on it for that purpose.
     """
 
     __slots__ = ()
