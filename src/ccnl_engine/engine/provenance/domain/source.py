@@ -60,10 +60,10 @@ _KIND_TO_AUTHORITY: dict[SourceKind, SourceAuthority] = {
     SourceKind.ALTRO: SourceAuthority.SECONDARY,
 }
 
-assert set(_KIND_TO_AUTHORITY) == set(SourceKind), (
-    f"_KIND_TO_AUTHORITY is missing entries for: "
-    f"{set(SourceKind) - set(_KIND_TO_AUTHORITY)}"
-)
+_missing_kinds = set(SourceKind) - set(_KIND_TO_AUTHORITY)
+if _missing_kinds:  # pragma: no cover
+    _msg = f"_KIND_TO_AUTHORITY is missing entries for: {_missing_kinds}"
+    raise AssertionError(_msg)
 
 
 class SourceDocument(BaseModel):

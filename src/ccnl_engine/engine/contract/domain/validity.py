@@ -142,6 +142,8 @@ class TimeSeries(BaseModel):
                 Subclass of ``ValueError``; callers that only need to skip the
                 date can catch ``ValueError`` generically.
             ValueError: If the date precedes the start of the series.
+            RuntimeError: If the XOR invariant is violated (gap_kind and
+                value are both None — indicates a data corruption bug).
         """
         for period in self.periods:
             if period.valid_from <= day and (
@@ -150,7 +152,9 @@ class TimeSeries(BaseModel):
                 if period.gap_kind is not None:
                     raise SalaryGapError(period.gap_kind, day)
                 # XOR invariant: gap_kind is None iff value is not None.
-                assert period.value is not None
+                if period.value is None:  # pragma: no cover
+                    msg = "XOR invariant: gap_kind is None but value is also None"
+                    raise RuntimeError(msg)
                 return period.value
         msg = f"no value for {day}: series starts on {self.periods[0].valid_from}"
         raise ValueError(msg)
