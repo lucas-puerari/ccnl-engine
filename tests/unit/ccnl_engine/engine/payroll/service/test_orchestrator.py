@@ -896,6 +896,116 @@ class TestComputeAddizionali:
         assert _FS.NO_ADDIZIONALE_COMUNALE in r.fiscal_simplifications
 
 
+class TestFiscalFlagsExclusivity:
+    """Addizionale flags are mutually exclusive regardless of TI-rules presence.
+
+    When ``YearRules.trattamento_integrativo`` is ``None`` (no TI data in the
+    bundle), ``_compute_ti`` must NOT seed the flag set with
+    ``ADDIZIONALE_*_UNKNOWN``.  ``_compute_addizionali`` must further ensure
+    that ``NO_ADDIZIONALE_*`` and ``ADDIZIONALE_*_UNKNOWN`` are never
+    simultaneously active for the same jurisdiction axis.
+    """
+
+    @staticmethod
+    def _surtax() -> SurtaxRules:
+        return SurtaxRules(
+            year=2026,
+            regionale={
+                "KnownRegione": RegionaleEntry(
+                    brackets=(SurtaxBracket(up_to=None, rate=Decimal("0.0123")),)
+                )
+            },
+            comunale={
+                "K001": ComunaleEntry(
+                    nome="Known",
+                    brackets=(SurtaxBracket(up_to=None, rate=Decimal("0.008")),),
+                    exemption_threshold=Decimal(0),
+                )
+            },
+        )
+
+    def test_ti_absent_no_jurisdiction_no_unknown_flags(self) -> None:
+        """TI absent, no jurisdiction: NO_ADDIZIONALE_* set, UNKNOWN flags absent.
+
+        The standard _RULES mock has no trattamento_integrativo. When no
+        jurisdiction is provided, both axes must carry NO_ADDIZIONALE_*, and
+        ADDIZIONALE_*_UNKNOWN must be absent.
+        """
+        r = compute(_req()).result
+        sfs = r.fiscal_simplifications
+        assert _FS.NO_ADDIZIONALE_REGIONALE in sfs
+        assert _FS.NO_ADDIZIONALE_COMUNALE in sfs
+        assert _FS.ADDIZIONALE_REGIONALE_UNKNOWN not in sfs
+        assert _FS.ADDIZIONALE_COMUNALE_UNKNOWN not in sfs
+
+    def test_ti_absent_known_jurisdiction_no_flags(self) -> None:
+        """TI absent, known jurisdiction: addizionale computed, no simplification.
+
+        Neither NO_ADDIZIONALE_* nor ADDIZIONALE_*_UNKNOWN should be present
+        when the jurisdiction is found in the bundle.
+        """
+        _mock_surtax[0] = self._surtax()
+        r = compute(
+            _req(
+                as_of=date(2026, 1, 1),
+                jurisdiction=Jurisdiction(
+                    regione="KnownRegione", comune_belfiore="K001"
+                ),
+            )
+        ).result
+        sfs = r.fiscal_simplifications
+        assert _FS.NO_ADDIZIONALE_REGIONALE not in sfs
+        assert _FS.NO_ADDIZIONALE_COMUNALE not in sfs
+        assert _FS.ADDIZIONALE_REGIONALE_UNKNOWN not in sfs
+        assert _FS.ADDIZIONALE_COMUNALE_UNKNOWN not in sfs
+
+    def test_ti_absent_unknown_jurisdiction_unknown_flag_only(self) -> None:
+        """TI absent, unknown jurisdiction: UNKNOWN set, NO_ADDIZIONALE_* absent.
+
+        When a jurisdiction is provided but not found in the bundle, only
+        ADDIZIONALE_*_UNKNOWN should be set; NO_ADDIZIONALE_* must be absent.
+        """
+        _mock_surtax[0] = self._surtax()
+        r = compute(
+            _req(
+                as_of=date(2026, 1, 1),
+                jurisdiction=Jurisdiction(
+                    regione="UnknownRegione", comune_belfiore="Z999"
+                ),
+            )
+        ).result
+        sfs = r.fiscal_simplifications
+        assert _FS.ADDIZIONALE_REGIONALE_UNKNOWN in sfs
+        assert _FS.ADDIZIONALE_COMUNALE_UNKNOWN in sfs
+        assert _FS.NO_ADDIZIONALE_REGIONALE not in sfs
+        assert _FS.NO_ADDIZIONALE_COMUNALE not in sfs
+
+    def test_ti_absent_irpef_zero_unknown_jurisdiction_no_unknown_flags(
+        self,
+    ) -> None:
+        """TI absent, irpef_due=0, unknown jurisdiction: NO_ADDIZIONALE_* only.
+
+        When IRPEF is zero (no-tax area), addizionali are suppressed regardless
+        of jurisdiction. The NO_ADDIZIONALE_* flags must be set and
+        ADDIZIONALE_*_UNKNOWN must be absent (not a contradiction).
+        """
+        _mock_surtax[0] = self._surtax()
+        r = compute(
+            _req(
+                as_of=date(2026, 1, 1),
+                negotiated_ral=_D("8000"),  # below no-tax threshold
+                jurisdiction=Jurisdiction(
+                    regione="UnknownRegione", comune_belfiore="Z999"
+                ),
+            )
+        ).result
+        sfs = r.fiscal_simplifications
+        assert _FS.NO_ADDIZIONALE_REGIONALE in sfs
+        assert _FS.NO_ADDIZIONALE_COMUNALE in sfs
+        assert _FS.ADDIZIONALE_REGIONALE_UNKNOWN not in sfs
+        assert _FS.ADDIZIONALE_COMUNALE_UNKNOWN not in sfs
+
+
 class TestProvenanceChain:
     """The PayrollResult carries the provenance of the rules it consumed."""
 
