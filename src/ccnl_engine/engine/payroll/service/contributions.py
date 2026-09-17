@@ -220,7 +220,8 @@ def resolve_domestic_inps_rate(
         per hour) based on weekly_hours and hourly_rate.
 
     Raises:
-        ValueError: If no wage bracket covers the given hourly_rate.
+        AssertionError: Structurally unreachable; the ``DomesticInpsRates``
+            invariant guarantees an open-ended last bracket.
     """
     if weekly_hours > rates.weekly_hours_threshold:
         b = rates.hours_bracket
@@ -237,8 +238,9 @@ def resolve_domestic_inps_rate(
                 else bracket.employer_per_hour
             )
             return bracket.employee_per_hour, er
-    msg = f"no wage bracket covers hourly_rate={hourly_rate!r}"
-    raise ValueError(msg)
+    # Unreachable: DomesticInpsRates invariant guarantees an open-ended
+    # last bracket (hourly_rate_up_to=None) that covers every hourly_rate.
+    raise AssertionError  # pragma: no cover
 
 
 def fund_applies_to(fund: EmployerFund, category: LevelCategory | None) -> bool:

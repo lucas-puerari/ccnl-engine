@@ -29,6 +29,7 @@ from ccnl_engine.engine.tax.domain.rules import (
     YearRules,
     YearRulesRaw,
 )
+from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
 from ccnl_engine.engine.tax.service.loaders import (
     _assert_tier_integrity,
     _resolve_tier,
@@ -426,6 +427,76 @@ class TestYearRules2026Json:
         tfr = TfrRules(accrual_divisor=Decimal("13.5"))
         assert tfr.accrual_divisor == Decimal("13.5")
 
+    def test_tfr_rules_zero_divisor_raises(self) -> None:
+        """TfrRules rejects accrual_divisor=0."""
+        with pytest.raises(ValidationError, match="greater than 0"):
+            TfrRules(accrual_divisor=Decimal(0))
+
+    def test_tfr_rules_negative_divisor_raises(self) -> None:
+        """TfrRules rejects negative accrual_divisor."""
+        with pytest.raises(ValidationError, match="greater than 0"):
+            TfrRules(accrual_divisor=Decimal(-1))
+
+
+class TestSickPayBandInvariants:
+    """SickPayBand and InpsSickPayRates construction-time validators."""
+
+    def test_sick_pay_band_valid(self) -> None:
+        """SickPayBand with day_to >= day_from is accepted."""
+        band = SickPayBand(day_from=4, day_to=20, rate=Decimal("0.50"))
+        assert band.day_to >= band.day_from
+
+    def test_sick_pay_band_day_to_lt_day_from_raises(self) -> None:
+        """SickPayBand rejects day_to < day_from."""
+        with pytest.raises(ValidationError, match=r"day_to.*day_from"):
+            SickPayBand(day_from=10, day_to=5, rate=Decimal("0.50"))
+
+    def test_inps_sick_pay_rates_valid(self) -> None:
+        """InpsSickPayRates with carenza=3 and ordered non-overlapping bands."""
+        rates = InpsSickPayRates(
+            carenza_days=3,
+            bands=[
+                SickPayBand(day_from=4, day_to=20, rate=Decimal("0.50")),
+                SickPayBand(day_from=21, day_to=180, rate=Decimal("0.6667")),
+            ],
+        )
+        assert len(rates.bands) == 2
+
+    def test_inps_sick_pay_rates_empty_bands_ok(self) -> None:
+        """InpsSickPayRates with no bands is accepted (no coverage modelled)."""
+        rates = InpsSickPayRates(carenza_days=3, bands=[])
+        assert rates.bands == []
+
+    def test_inps_sick_pay_rates_first_band_wrong_start_raises(self) -> None:
+        """First band must start at carenza_days + 1."""
+        with pytest.raises(ValidationError, match="first band day_from"):
+            InpsSickPayRates(
+                carenza_days=3,
+                bands=[SickPayBand(day_from=5, day_to=20, rate=Decimal("0.50"))],
+            )
+
+    def test_inps_sick_pay_rates_overlapping_bands_raise(self) -> None:
+        """Overlapping bands are rejected."""
+        with pytest.raises(ValidationError, match="overlaps"):
+            InpsSickPayRates(
+                carenza_days=3,
+                bands=[
+                    SickPayBand(day_from=4, day_to=20, rate=Decimal("0.50")),
+                    SickPayBand(day_from=15, day_to=30, rate=Decimal("0.6667")),
+                ],
+            )
+
+    def test_inps_sick_pay_rates_gap_between_bands_raises(self) -> None:
+        """A gap between consecutive bands is rejected."""
+        with pytest.raises(ValidationError, match="gap"):
+            InpsSickPayRates(
+                carenza_days=3,
+                bands=[
+                    SickPayBand(day_from=4, day_to=20, rate=Decimal("0.50")),
+                    SickPayBand(day_from=25, day_to=180, rate=Decimal("0.6667")),
+                ],
+            )
+
 
 _DOMESTIC_RATES = DomesticInpsRates.model_validate(DOMESTIC_CONTRIBUTIONS)
 
@@ -481,28 +552,51 @@ class TestDomesticInpsRates:
         assert emp == Decimal("0.59")
         assert er == Decimal("1.75")
 
-    def test_no_matching_wage_bracket_raises(self) -> None:
-        """resolve_domestic_inps_rate raises ValueError when no bracket covers."""
-        rates = DomesticInpsRates.model_validate({
-            "weekly_hours_threshold": 24,
-            "hours_bracket": {
-                "employee_per_hour": "0.31",
-                "employer_per_hour": "0.93",
-                "employer_per_hour_fixed_term": "1.01",
-            },
-            "wage_brackets": [
-                {
-                    "hourly_rate_up_to": "9.61",
-                    "employee_per_hour": "0.43",
-                    "employer_per_hour": "1.27",
-                    "employer_per_hour_fixed_term": "1.39",
+    def test_domestic_rates_missing_open_bracket_raises(self) -> None:
+        """DomesticInpsRates rejects wage_brackets without an open-ended last entry."""
+        with pytest.raises(ValidationError, match="hourly_rate_up_to=None"):
+            DomesticInpsRates.model_validate({
+                "weekly_hours_threshold": 24,
+                "hours_bracket": {
+                    "employee_per_hour": "0.31",
+                    "employer_per_hour": "0.93",
+                    "employer_per_hour_fixed_term": "1.01",
                 },
-            ],
-        })
-        with pytest.raises(ValueError, match="no wage bracket covers"):
-            resolve_domestic_inps_rate(
-                rates, Decimal("15.00"), Decimal(20), is_fixed_term=False
-            )
+                "wage_brackets": [
+                    {
+                        "hourly_rate_up_to": "9.61",
+                        "employee_per_hour": "0.43",
+                        "employer_per_hour": "1.27",
+                        "employer_per_hour_fixed_term": "1.39",
+                    },
+                ],
+            })
+
+    def test_domestic_rates_open_bracket_not_last_raises(self) -> None:
+        """DomesticInpsRates rejects an open bracket that is not the last entry."""
+        with pytest.raises(ValidationError, match="not the last bracket"):
+            DomesticInpsRates.model_validate({
+                "weekly_hours_threshold": 24,
+                "hours_bracket": {
+                    "employee_per_hour": "0.31",
+                    "employer_per_hour": "0.93",
+                    "employer_per_hour_fixed_term": "1.01",
+                },
+                "wage_brackets": [
+                    {
+                        "hourly_rate_up_to": None,
+                        "employee_per_hour": "0.43",
+                        "employer_per_hour": "1.27",
+                        "employer_per_hour_fixed_term": "1.39",
+                    },
+                    {
+                        "hourly_rate_up_to": "11.70",
+                        "employee_per_hour": "0.48",
+                        "employer_per_hour": "1.44",
+                        "employer_per_hour_fixed_term": "1.57",
+                    },
+                ],
+            })
 
 
 class TestYearRulesRawContributionModel:
