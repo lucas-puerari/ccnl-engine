@@ -800,7 +800,11 @@ class Calculation:
                 cast(dict[str, object], data["input_snapshot"])
             ),
             result=PayrollResult.from_dict(cast(dict[str, object], data["result"])),
-            trace=CalculationTrace.from_dict(cast(dict[str, object], data["trace"])),
+            trace=(
+                CalculationTrace.from_dict(cast(dict[str, object], data["trace"]))
+                if "trace" in data
+                else CalculationTrace(steps=())
+            ),
         )
 
     def to_json(self) -> str:
