@@ -1,5 +1,6 @@
 """Tests for Calculation / InputSnapshot provenance and reproducibility."""
 
+import copy
 import typing
 from datetime import date
 from decimal import Decimal
@@ -201,6 +202,37 @@ class TestCalculation:
         scenario = replayed.input_snapshot.materialise()
         assert isinstance(scenario.employee.seniority, SeniorityByCount)
         assert scenario.employee.seniority.value == 2
+
+    def test_copy_deepcopy_snapshot(self) -> None:
+        """copy.deepcopy on InputSnapshot must not raise TypeError."""
+        calc = compute(_req())
+        snapshot_copy = copy.deepcopy(calc.input_snapshot)
+        assert snapshot_copy == calc.input_snapshot
+
+    def test_copy_deepcopy_calculation(self) -> None:
+        """copy.deepcopy on a full Calculation must not raise TypeError."""
+        calc = compute(_req())
+        calc_copy = copy.deepcopy(calc)
+        assert calc_copy == calc
+        assert calc_copy.result == calc.result
+
+    def test_copy_shallow_snapshot(self) -> None:
+        """copy.copy on InputSnapshot must not raise TypeError."""
+        calc = compute(_req())
+        snapshot_copy = copy.copy(calc.input_snapshot)
+        assert snapshot_copy == calc.input_snapshot
+
+    def test_ruleset_version_is_frozen(self) -> None:
+        """ruleset_version must reject item assignment after construction."""
+        calc = compute(_req())
+        with pytest.raises(TypeError):
+            calc.ruleset_version["ccnl"] = "tampered"  # type: ignore[index]
+
+    def test_snapshot_scenario_is_frozen(self) -> None:
+        """snapshot.scenario must reject item assignment after construction."""
+        calc = compute(_req())
+        with pytest.raises(TypeError):
+            calc.input_snapshot.scenario["ccnl"] = "tampered"  # type: ignore[index]
 
 
 class TestDumpLoadPrimitives:
