@@ -107,7 +107,20 @@ def _ivs_ceiling_warning(
         return None
     seniority = scenario.employee.seniority
     if seniority is None:
-        return None
+        # When seniority is absent we cannot determine whether the ceiling
+        # applies.  Warn only when we know the ceiling exists and the base
+        # already exceeds it (the prior guard handled base ≤ ceiling), so
+        # the economic impact of the wrong decision is concrete.
+        return (
+            (
+                "seniority is None: IVS ceiling applicability cannot be "
+                "determined; if the worker was hired on or after "
+                f"{_IVS_CEILING_THRESHOLD}, contributions are overstated. "
+                "Set ivs_ceiling_applies=True to apply the IVS ceiling."
+            )
+            if ivs_ceiling is not None
+            else None
+        )
     if isinstance(seniority, SeniorityByDate):
         return _ivs_date_msg(seniority.value)
     if isinstance(seniority, SeniorityByMonths):

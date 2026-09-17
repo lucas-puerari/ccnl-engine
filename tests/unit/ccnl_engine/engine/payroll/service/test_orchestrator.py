@@ -3214,6 +3214,38 @@ class TestIvsCeilingWarning:
         assert result is not None
         assert "overstated" in result
 
+    def test_seniority_none_base_above_known_ceiling_warns(self) -> None:
+        """seniority=None warns when base exceeds a known IVS ceiling."""
+        base = _req()
+        scenario = dataclasses.replace(
+            base,
+            employee=dataclasses.replace(base.employee, seniority=None),
+        )
+        result = _ivs_ceiling_warning(scenario, _DATE, _D("130000"), _D("120000"))
+        assert result is not None
+        assert "seniority is None" in result
+        assert "IVS ceiling" in result
+
+    def test_seniority_none_no_ceiling_no_warning(self) -> None:
+        """seniority=None does not warn when the IVS ceiling is unknown."""
+        base = _req()
+        scenario = dataclasses.replace(
+            base,
+            employee=dataclasses.replace(base.employee, seniority=None),
+        )
+        result = _ivs_ceiling_warning(scenario, _DATE, _D("200000"), None)
+        assert result is None
+
+    def test_seniority_none_base_at_ceiling_no_warning(self) -> None:
+        """seniority=None does not warn when base does not exceed the ceiling."""
+        base = _req()
+        scenario = dataclasses.replace(
+            base,
+            employee=dataclasses.replace(base.employee, seniority=None),
+        )
+        result = _ivs_ceiling_warning(scenario, _DATE, _D("100000"), _D("120000"))
+        assert result is None
+
 
 # ---------------------------------------------------------------------------
 # NO_ASSEGNO_UNICO fiscal simplification (G4)
