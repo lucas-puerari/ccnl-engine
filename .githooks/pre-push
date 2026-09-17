@@ -1,28 +1,36 @@
 #!/usr/bin/env bash
 # Enforce branch naming convention before push, and block direct pushes to main.
 # Tags (refs/tags/*) pushed from main are allowed — they trigger the release pipeline.
-BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null)
+#
+# Reads all ref lines from stdin so that a tag ref cannot suppress validation
+# of a subsequent branch ref in the same push.  Checks remote_ref (not the
+# local branch name) so that `git push origin HEAD:main` is caught correctly.
 
-# Allow tag pushes (stdin contains "refs/tags/…")
+PATTERN='^(feature|fix|chore|ci|docs|refactor|perf|test|revert)/.+'
+exit_code=0
+
 while read local_ref local_sha remote_ref remote_sha; do
+  # Tag refs are always allowed; skip but continue reading remaining refs.
   if echo "$remote_ref" | grep -q '^refs/tags/'; then
-    exit 0
+    continue
+  fi
+
+  # Block any push whose remote destination is refs/heads/main.
+  if [ "$remote_ref" = "refs/heads/main" ]; then
+    echo "❌  Push rejected: direct push to 'main' is not allowed."
+    echo "    Open a branch and merge via PR instead."
+    exit_code=1
+    continue
+  fi
+
+  # Validate branch naming convention on the remote destination ref.
+  branch="${remote_ref#refs/heads/}"
+  if ! echo "$branch" | grep -qE "$PATTERN"; then
+    echo "❌  Push rejected: branch '$branch' does not follow naming convention."
+    echo "    Allowed prefixes: feature/ fix/ chore/ ci/ docs/ refactor/ perf/ test/ revert/"
+    echo "    Rename with: git branch -m $branch <correct-prefix>/<name>"
+    exit_code=1
   fi
 done
 
-# Block direct branch pushes to main
-if [ "$BRANCH" = "main" ]; then
-  echo "❌  Push rejected: direct push to 'main' is not allowed."
-  echo "    Open a branch and merge via PR instead."
-  exit 1
-fi
-
-PATTERN='^(feature|fix|chore|ci|docs|refactor|perf|test|revert)/.+'
-if ! echo "$BRANCH" | grep -qE "$PATTERN"; then
-  echo "❌  Push rejected: branch '$BRANCH' does not follow naming convention."
-  echo "    Allowed prefixes: feature/ fix/ chore/ ci/ docs/ refactor/ perf/ test/ revert/"
-  echo "    Rename with: git branch -m $BRANCH <correct-prefix>/<name>"
-  exit 1
-fi
-
-exit 0
+exit $exit_code
