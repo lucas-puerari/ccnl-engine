@@ -3,25 +3,25 @@
 from __future__ import annotations
 
 from decimal import Decimal
-from typing import Annotated, Self
+from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.engine.contract.domain.ccnl import TaxSector
 from ccnl_engine.engine.metadata import RulesetIdentity
-from ccnl_engine.engine.primitives import Bracket, assert_ivs_le_total
+from ccnl_engine.engine.primitives import (
+    Bracket,
+    NonNegativeRate,
+    PercentageRate,
+    PositiveCeiling,
+    assert_ivs_le_total,
+)
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
 from ccnl_engine.engine.provenance.domain.source import SourceDocument
 
 #: A single IRPEF marginal tax bracket (Art. 11 TUIR).
 IrpefBracket = Bracket
-
-#: Contribution rate or per-hour amount: must be >= 0.
-NonNegativeRate = Annotated[Decimal, Field(ge=Decimal(0))]
-
-#: Monetary ceiling that, when present, must be strictly positive.
-PositiveCeiling = Annotated[Decimal, Field(gt=Decimal(0))]
 
 
 class DeductionBreakpoint(BaseModel):
@@ -67,8 +67,10 @@ class InpsRates(BaseModel):
     earnings exceeding the first pensionable band (Art. 3-ter D.L. 384/1992).
     When set, the additional is applied on top of the ordinary rate; it is
     IVS and therefore subject to the massimale when ``ivs_ceiling_applies``
-    is True.  Both fields are required together; presence of one without the
-    other is rejected by the loader.
+    is True.  Both fields must be present together or both absent; the pair
+    constraint is enforced by ``_check_rates``.  ``employee_additional_threshold``
+    must be non-negative: a negative value would widen the contribution base
+    beyond the actual pensionable earnings.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -80,8 +82,42 @@ class InpsRates(BaseModel):
     ceiling: PositiveCeiling | None
     employer_rate_by_category: dict[str, NonNegativeRate] = {}
     employee_additional_rate: NonNegativeRate | None = None
-    employee_additional_threshold: Decimal | None = None
+    employee_additional_threshold: NonNegativeRate | None = None
     provenance: RuleProvenance | None = None
+
+    @model_validator(mode="after")
+    def _check_rates(self) -> Self:
+        """Enforce IVS <= total invariants and paired additional fields.
+
+        Returns:
+            The validated instance.
+
+        Raises:
+            ValueError: If any IVS rate exceeds its total, or if only one of
+                employee_additional_rate / employee_additional_threshold is
+                set.
+        """
+        assert_ivs_le_total(
+            "employee_ivs_rate",
+            self.employee_ivs_rate,
+            "employee_rate",
+            self.employee_rate,
+        )
+        assert_ivs_le_total(
+            "employer_ivs_rate",
+            self.employer_ivs_rate,
+            "employer_rate",
+            self.employer_rate,
+        )
+        has_rate = self.employee_additional_rate is not None
+        has_threshold = self.employee_additional_threshold is not None
+        if has_rate != has_threshold:
+            msg = (
+                "employee_additional_rate and employee_additional_threshold "
+                "must both be set or both be absent"
+            )
+            raise ValueError(msg)
+        return self
 
 
 class ApprenticeRates(BaseModel):
@@ -280,6 +316,10 @@ class InpsRawRates(BaseModel):
     ``employee_additional_rate`` and ``employee_additional_threshold`` are
     optional; both must be present together (validated by the loader).  When
     absent, the additional contribution is not modelled for this sector.
+
+    ``employee_additional_threshold`` must be non-negative; a negative
+    threshold would incorrectly widen the base on which the additional
+    rate applies.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -288,7 +328,7 @@ class InpsRawRates(BaseModel):
     employer_tiers: list[InpsEmployerTier]
     ceiling: PositiveCeiling | None
     employee_additional_rate: NonNegativeRate | None = None
-    employee_additional_threshold: Decimal | None = None
+    employee_additional_threshold: NonNegativeRate | None = None
     provenance: RuleProvenance | None = None
 
 
@@ -401,12 +441,15 @@ class SommaEsenteBand(BaseModel):
     The ``rate`` applies to the full reddito complessivo (not a marginal
     slice) when the income falls within this band (i.e. does not exceed
     ``up_to``).  Bands are ordered ascending by ``up_to``.
+
+    ``rate`` must be in [0, 1]; negative bonus rates are economically
+    impossible.
     """
 
     model_config = ConfigDict(extra="forbid")
 
     up_to: Decimal
-    rate: Decimal
+    rate: PercentageRate
 
 
 class SommaEsenteRules(BaseModel):
@@ -420,12 +463,27 @@ class SommaEsenteRules(BaseModel):
 
     Band cut points in the knowledge bundle are unverified reconstructions
     from available examples and are flagged in the JSON ``notes`` array.
+
+    ``bands`` must be non-empty and strictly ascending by ``up_to``.
     """
 
     model_config = ConfigDict(extra="forbid")
 
-    bands: list[SommaEsenteBand]
+    bands: list[SommaEsenteBand] = Field(min_length=1)
     provenance: RuleProvenance | None = None
+
+    @model_validator(mode="after")
+    def _check_bands_order(self) -> Self:
+        for i, band in enumerate(self.bands[:-1]):
+            nxt = self.bands[i + 1]
+            if nxt.up_to <= band.up_to:
+                msg = (
+                    f"SommaEsenteRules.bands must be strictly ascending "
+                    f"by up_to: bands[{i}].up_to={band.up_to} >= "
+                    f"bands[{i + 1}].up_to={nxt.up_to}"
+                )
+                raise ValueError(msg)
+        return self
 
 
 class SterilizzazioneDetrazioniRules(BaseModel):
@@ -461,7 +519,7 @@ class YearRulesRaw(BaseModel):
     sector: TaxSector
     ruleset: RulesetIdentity | None = None
     irpef_brackets: list[IrpefBracket]
-    fixed_term_additional_rate: Decimal
+    fixed_term_additional_rate: PercentageRate
     inps: InpsRawRates | None = None
     apprentice: ApprenticeRawRates | None = None
     domestic_contributions: DomesticInpsRates | None = None
@@ -520,7 +578,7 @@ class YearRules(BaseModel):
     ruleset: RulesetIdentity | None = None
     inps_ruleset: RulesetIdentity | None = None
     irpef_brackets: list[IrpefBracket]
-    fixed_term_additional_rate: Decimal
+    fixed_term_additional_rate: PercentageRate
     inps: InpsRates | None = None
     apprentice: ApprenticeRates | None = None
     domestic_contributions: DomesticInpsRates | None = None
