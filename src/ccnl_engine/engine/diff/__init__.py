@@ -7,9 +7,13 @@ calendar dates and reports every rule that changed.
 from ccnl_engine.engine.diff.domain.diff import RuleChange, RulesDiff
 from ccnl_engine.engine.diff.service.compute import diff_ccnl
 from ccnl_engine.engine.diff.service.format import format_diff
-from ccnl_engine.engine.diff.service.impact import count_affected_scenarios
+from ccnl_engine.engine.diff.service.impact import (
+    ImpactResult,
+    count_affected_scenarios,
+)
 
 __all__ = [
+    "ImpactResult",
     "RuleChange",
     "RulesDiff",
     "count_affected_scenarios",
