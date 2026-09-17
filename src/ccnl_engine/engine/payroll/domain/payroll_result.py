@@ -10,7 +10,7 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import date as _date
 from decimal import Decimal
-from typing import Literal
+from typing import Literal, cast
 
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
@@ -62,8 +62,64 @@ def _unwrap_optional(raw: object, hint: type) -> tuple[object, type]:
     return raw, hint
 
 
+_SCOPE_ITEM_STATUSES = frozenset({"verified", "excluded", "not_computed"})
+_STRICT_PRIMITIVES: frozenset[type] = frozenset({bool, int, str})
+
+
+def _coerce_scope_item(raw: dict[str, object]) -> ScopeItem:
+    """Reconstruct a :class:`ScopeItem` from a dict, validating field types.
+
+    Returns:
+        A new :class:`ScopeItem` with validated ``feature`` and ``status``.
+
+    Raises:
+        TypeError: When ``feature`` is not a ``str``.
+        ValueError: When ``status`` is not one of the allowed literals.
+    """
+    feature = raw["feature"]
+    if not isinstance(feature, str):
+        msg = f"ScopeItem.feature must be str, got {type(feature).__name__!r}"
+        raise TypeError(msg)
+    status = raw["status"]
+    if status not in _SCOPE_ITEM_STATUSES:
+        msg = f"ScopeItem.status must be one of {sorted(_SCOPE_ITEM_STATUSES)!r}"
+        raise ValueError(msg)
+    return ScopeItem(feature=feature, status=status)  # type: ignore[arg-type]
+
+
+def _validate_primitive(raw: object, hint: type) -> object:
+    """Validate *raw* against a strict primitive *hint* and return it unchanged.
+
+    ``bool`` is checked before ``int`` because ``bool`` is a subclass of
+    ``int`` in Python and the two must not be confused.
+
+    Returns:
+        *raw* when it matches *hint* exactly.
+
+    Raises:
+        TypeError: When *raw* does not match the exact primitive *hint*.
+    """
+    if hint is bool:
+        if not isinstance(raw, bool):
+            msg = f"expected bool, got {type(raw).__name__!r}"
+            raise TypeError(msg)
+    elif hint is int:
+        if not isinstance(raw, int) or isinstance(raw, bool):
+            msg = f"expected int, got {type(raw).__name__!r}"
+            raise TypeError(msg)
+    elif not isinstance(raw, str):
+        msg = f"expected str, got {type(raw).__name__!r}"
+        raise TypeError(msg)
+    return raw
+
+
 def _coerce_scalar(raw: object, hint: type) -> object:
     """Coerce a non-None *raw* to a scalar *hint* type.
+
+    Primitive types (``bool``, ``int``, ``str``) are delegated to
+    :func:`_validate_primitive`, which raises ``TypeError`` on mismatch.
+    :class:`ScopeItem` reconstruction is delegated to
+    :func:`_coerce_scope_item`.
 
     Returns:
         The coerced value, or *raw* when no coercion applies.
@@ -75,13 +131,10 @@ def _coerce_scalar(raw: object, hint: type) -> object:
     if isinstance(hint, type) and hasattr(hint, "model_validate"):
         return hint.model_validate(raw)
     if hint is ScopeItem and isinstance(raw, dict):
-        return ScopeItem(
-            feature=str(raw["feature"]),
-            status=raw["status"],
-        )
+        return _coerce_scope_item(cast(dict[str, object], raw))
     if hint == frozenset[FiscalSimplification]:
         return frozenset(FiscalSimplification(v) for v in raw)  # type: ignore[attr-defined]
-    return raw
+    return _validate_primitive(raw, hint) if hint in _STRICT_PRIMITIVES else raw
 
 
 def _coerce(raw: object, hint: type) -> object:
@@ -383,8 +436,14 @@ class PayrollResult:
             their original types.
 
         Raises:
+            TypeError: If *data* contains unexpected keys.
             ValueError: If a required field is absent from ``data``.
         """
+        allowed = frozenset(f.name for f in dataclasses.fields(cls))
+        extra = set(data) - allowed
+        if extra:
+            msg = f"PayrollResult.from_dict: unexpected keys: {sorted(extra)}"
+            raise TypeError(msg)
         hints = typing.get_type_hints(cls)
         kwargs: dict[str, object] = {}
         for field in dataclasses.fields(cls):

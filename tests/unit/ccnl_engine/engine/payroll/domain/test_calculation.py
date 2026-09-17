@@ -450,6 +450,11 @@ class TestDumpLoadBranches:
         assert _load_by_hint(int, 42) == 42
         assert _load_by_hint(str, "x") == "x"
 
+    def test_load_by_hint_unknown_type_falls_through(self) -> None:
+        """A hint not in any explicit branch returns raw unchanged (fallback)."""
+        raw = b"blob"
+        assert _load_by_hint(bytes, raw) is raw
+
     def test_load_by_hint_pydantic_model_validate(self) -> None:
         """Pydantic hints are validated via model_validate."""
         assert isinstance(_load_by_hint(Permanent, {"type": "permanent"}), Permanent)
@@ -596,3 +601,117 @@ class TestDeepImmutability:
         )
         source["injected"] = "mutated"
         assert "injected" not in snap.scenario
+
+
+class TestCoerceScalarStrictPrimitives:
+    """_load_by_hint rejects wrong primitive types for bool/int/str."""
+
+    def test_bool_string_false_rejected(self) -> None:
+        """String 'false' for a bool hint raises TypeError."""
+        with pytest.raises(TypeError, match="expected bool"):
+            _load_by_hint(bool, "false")
+
+    def test_bool_string_true_rejected(self) -> None:
+        """String 'true' for a bool hint raises TypeError."""
+        with pytest.raises(TypeError, match="expected bool"):
+            _load_by_hint(bool, "true")
+
+    def test_bool_int_zero_rejected(self) -> None:
+        """Integer 0 for a bool hint raises TypeError."""
+        with pytest.raises(TypeError, match="expected bool"):
+            _load_by_hint(bool, 0)
+
+    def test_bool_valid_passes(self) -> None:
+        """True/False pass through unchanged for a bool hint."""
+        assert _load_by_hint(bool, True) is True
+        assert _load_by_hint(bool, False) is False
+
+    def test_int_string_rejected(self) -> None:
+        """String '42' for an int hint raises TypeError."""
+        with pytest.raises(TypeError, match="expected int"):
+            _load_by_hint(int, "42")
+
+    def test_int_bool_rejected(self) -> None:
+        """Bool True for an int hint raises TypeError (bool subclass guard)."""
+        with pytest.raises(TypeError, match="expected int"):
+            _load_by_hint(int, True)
+
+    def test_int_valid_passes(self) -> None:
+        """A plain int passes through unchanged."""
+        assert _load_by_hint(int, 2026) == 2026
+
+    def test_str_int_rejected(self) -> None:
+        """Integer 42 for a str hint raises TypeError."""
+        with pytest.raises(TypeError, match="expected str"):
+            _load_by_hint(str, 42)
+
+    def test_str_valid_passes(self) -> None:
+        """A plain str passes through unchanged."""
+        assert _load_by_hint(str, "hello") == "hello"
+
+
+class TestNestedBoolValidation:
+    """materialise() rejects string values for nested bool scenario fields."""
+
+    def _snapshot_with_bool_field(self, field: str, value: object) -> InputSnapshot:
+        """Capture a snapshot and tamper with a nested employee bool field.
+
+        Returns:
+            A new :class:`InputSnapshot` with the given field overridden.
+        """
+        snap = InputSnapshot.capture(
+            scenario=_scenario(),
+            ccnl_id="test",
+            tax_sector=TaxSector.TERZIARIO,
+            year=2026,
+            uses_surtax=False,
+        )
+        d = snap.to_dict()
+        scenario_raw = typing.cast("dict[str, object]", d["scenario"])
+        employee_raw = typing.cast("dict[str, object]", scenario_raw["employee"])
+        employee_dict = dict(employee_raw)
+        employee_dict[field] = value
+        scenario_dict = dict(scenario_raw)
+        scenario_dict["employee"] = employee_dict
+        d["scenario"] = scenario_dict
+        return InputSnapshot.from_dict(d)
+
+    def test_ivs_ceiling_applies_string_false_raises(self) -> None:
+        """String 'false' for ivs_ceiling_applies raises TypeError on materialise."""
+        snap = self._snapshot_with_bool_field("ivs_ceiling_applies", "false")
+        with pytest.raises(TypeError, match="expected bool"):
+            snap.materialise()
+
+    def test_ivs_ceiling_applies_int_zero_raises(self) -> None:
+        """Integer 0 for ivs_ceiling_applies raises TypeError on materialise."""
+        snap = self._snapshot_with_bool_field("ivs_ceiling_applies", 0)
+        with pytest.raises(TypeError, match="expected bool"):
+            snap.materialise()
+
+    def test_replay_identity(self) -> None:
+        """A round-tripped snapshot reproduces the same net_annual."""
+        calc = compute(_req())
+        original_net = calc.result.net_annual
+        restored = Calculation.from_dict(calc.to_dict())
+        replayed = restored.reproduce()
+        assert replayed.result.net_annual == original_net
+
+
+class TestCalculationFromDictStrictValidation:
+    """Calculation.from_dict rejects wrong types for version fields."""
+
+    def test_engine_version_int_rejected(self) -> None:
+        """Integer engine_version raises TypeError."""
+        calc = compute(_req())
+        d = calc.to_dict()
+        d["engine_version"] = 5
+        with pytest.raises(TypeError, match="engine_version"):
+            Calculation.from_dict(d)
+
+    def test_ruleset_version_int_value_rejected(self) -> None:
+        """Integer value in ruleset_version raises TypeError."""
+        calc = compute(_req())
+        d = calc.to_dict()
+        d["ruleset_version"] = {"ccnl": 42}
+        with pytest.raises(TypeError, match="ruleset_version"):
+            Calculation.from_dict(d)
