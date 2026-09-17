@@ -1,6 +1,8 @@
 """Tests for surtax.loaders -- load_surtax_rules()."""
 
+import json
 from decimal import Decimal
+from unittest.mock import patch
 
 import pytest
 from pydantic import ValidationError
@@ -11,7 +13,10 @@ from ccnl_engine.engine.surtax.domain.rules import (
     RegionaleEntry,
     SurtaxRules,
 )
-from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
+from ccnl_engine.engine.surtax.service.loaders import (
+    _load_surtax_rules_cached,
+    load_surtax_rules,
+)
 
 
 class TestLoadSurtaxRules:
@@ -91,6 +96,40 @@ class TestLoadSurtaxRules:
         """Requesting a non-bundled year raises FileNotFoundError."""
         with pytest.raises(FileNotFoundError):
             load_surtax_rules(1900)
+
+
+class TestSurtaxLoaderIdentity:
+    """_load_surtax_rules_cached rejects mismatched year in data files."""
+
+    def test_regionale_year_mismatch_raises(self) -> None:
+        """Regionale file with wrong year raises ValueError."""
+        tampered_reg = json.dumps({"year": 9999}).encode()
+        valid_com = json.dumps({"year": 2026}).encode()
+        _load_surtax_rules_cached.cache_clear()
+        with (
+            patch(
+                "ccnl_engine.engine.surtax.service.loaders.read_bundled",
+                side_effect=[tampered_reg, valid_com],
+            ),
+            pytest.raises(ValueError, match="does not match requested year"),
+        ):
+            load_surtax_rules(2026)
+        _load_surtax_rules_cached.cache_clear()
+
+    def test_comunale_year_mismatch_raises(self) -> None:
+        """Comunale file with wrong year raises ValueError."""
+        valid_reg = json.dumps({"year": 2026}).encode()
+        tampered_com = json.dumps({"year": 9999}).encode()
+        _load_surtax_rules_cached.cache_clear()
+        with (
+            patch(
+                "ccnl_engine.engine.surtax.service.loaders.read_bundled",
+                side_effect=[valid_reg, tampered_com],
+            ),
+            pytest.raises(ValueError, match="does not match requested year"),
+        ):
+            load_surtax_rules(2026)
+        _load_surtax_rules_cached.cache_clear()
 
 
 class TestSurtaxModelsValidation:

@@ -146,7 +146,12 @@ class TestResolveInpsAdditionalValidation:
             "ceiling": "122295.00",
             "employee_additional_rate": "0.01",
         }
-        bad_inps_raw = {"inps": bad_inps, "apprentice": _BAD_APPRENTICE}
+        bad_inps_raw = {
+            "year": 2026,
+            "sector": "industria",
+            "inps": bad_inps,
+            "apprentice": _BAD_APPRENTICE,
+        }
         _load_year_rules_cached.cache_clear()
         with (
             patch(
@@ -160,4 +165,68 @@ class TestResolveInpsAdditionalValidation:
             pytest.raises(ValueError, match="must both be set or both be absent"),
         ):
             load_year_rules(2026, TaxSector.INDUSTRIA, 100)
+        _load_year_rules_cached.cache_clear()
+
+
+class TestLoadYearRulesIdentity:
+    """_load_year_rules_cached rejects mismatched year/sector in tax and INPS files."""
+
+    def test_tax_year_mismatch_raises(self) -> None:
+        """Tax file with wrong year raises ValueError before merge."""
+        _load_year_rules_cached.cache_clear()
+        with (
+            patch(
+                "ccnl_engine.engine.tax.service.loaders.read_tax_rules_raw",
+                return_value={"year": 9999, "sector": "terziario"},
+            ),
+            pytest.raises(ValueError, match="does not match requested year"),
+        ):
+            load_year_rules(2026, TaxSector.TERZIARIO, 50)
+        _load_year_rules_cached.cache_clear()
+
+    def test_tax_sector_mismatch_raises(self) -> None:
+        """Tax file with wrong sector raises ValueError before merge."""
+        _load_year_rules_cached.cache_clear()
+        with (
+            patch(
+                "ccnl_engine.engine.tax.service.loaders.read_tax_rules_raw",
+                return_value={"year": 2026, "sector": "invalid"},
+            ),
+            pytest.raises(ValueError, match="does not match requested sector"),
+        ):
+            load_year_rules(2026, TaxSector.TERZIARIO, 50)
+        _load_year_rules_cached.cache_clear()
+
+    def test_inps_year_mismatch_raises(self) -> None:
+        """INPS file with wrong year raises ValueError before merge."""
+        _load_year_rules_cached.cache_clear()
+        with (
+            patch(
+                "ccnl_engine.engine.tax.service.loaders.read_tax_rules_raw",
+                return_value={"year": 2026, "sector": "terziario"},
+            ),
+            patch(
+                "ccnl_engine.engine.tax.service.loaders.read_inps_rules_raw",
+                return_value={"year": 9999, "sector": "terziario"},
+            ),
+            pytest.raises(ValueError, match="does not match requested year"),
+        ):
+            load_year_rules(2026, TaxSector.TERZIARIO, 50)
+        _load_year_rules_cached.cache_clear()
+
+    def test_inps_sector_mismatch_raises(self) -> None:
+        """INPS file with wrong sector raises ValueError before merge."""
+        _load_year_rules_cached.cache_clear()
+        with (
+            patch(
+                "ccnl_engine.engine.tax.service.loaders.read_tax_rules_raw",
+                return_value={"year": 2026, "sector": "terziario"},
+            ),
+            patch(
+                "ccnl_engine.engine.tax.service.loaders.read_inps_rules_raw",
+                return_value={"year": 2026, "sector": "invalid"},
+            ),
+            pytest.raises(ValueError, match="does not match requested sector"),
+        ):
+            load_year_rules(2026, TaxSector.TERZIARIO, 50)
         _load_year_rules_cached.cache_clear()
