@@ -546,7 +546,7 @@ def compute_salary(
         "part_time_pct": float(payroll.part_time_pct),
         # provenance
         "engine_version": calculation.engine_version,
-        "ruleset_version": calculation.ruleset_version,
+        "ruleset_version": dict(calculation.ruleset_version),
         # pay components
         "base_monthly": float(payroll.base_monthly),
         "seniority_monthly": float(payroll.seniority_monthly),

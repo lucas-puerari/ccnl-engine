@@ -11,15 +11,15 @@ yield an identical result years later.
 
 from __future__ import annotations
 
-import copy
 import dataclasses
 import json
 import typing
+from collections.abc import Mapping
 from dataclasses import dataclass, fields
 from datetime import date as _date
 from decimal import Decimal
 from enum import Enum, StrEnum
-from types import UnionType
+from types import MappingProxyType, UnionType
 from typing import TYPE_CHECKING, Any, Literal, cast, get_origin
 
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
@@ -113,6 +113,37 @@ def _dump(value: object) -> object:  # ruff: ignore[too-many-return-statements]
         return _dump_dict(value)
     msg = f"Cannot serialise input value of type {type(value)!r}"
     raise TypeError(msg)
+
+
+def _deep_freeze(value: object) -> object:
+    """Recursively convert dicts to MappingProxyType and lists to tuples.
+
+    The result is deeply immutable: nested dicts and lists are converted
+    at every level so that no element can be mutated after construction.
+
+    Returns:
+        A recursively frozen copy of *value*.
+    """
+    if isinstance(value, dict):
+        return MappingProxyType({k: _deep_freeze(v) for k, v in value.items()})
+    if isinstance(value, list):
+        return tuple(_deep_freeze(v) for v in value)
+    return value
+
+
+def _deep_thaw(value: object) -> object:
+    """Recursively convert MappingProxyType to dict and tuples to lists.
+
+    Reverses :func:`_deep_freeze` to produce a plain JSON-native structure.
+
+    Returns:
+        A plain dict/list copy of *value*.
+    """
+    if isinstance(value, MappingProxyType):
+        return {k: _deep_thaw(v) for k, v in value.items()}
+    if isinstance(value, tuple):
+        return [_deep_thaw(v) for v in value]
+    return value
 
 
 def _coerce_scalar(raw: object, hint: type) -> object:
@@ -236,7 +267,7 @@ def _load_union(member_hints: list[type], raw: object) -> object:
     Raises:
         ValueError: If no union member accepts the input payload.
     """
-    if isinstance(raw, dict):
+    if isinstance(raw, Mapping):
         tag = raw.get("$type")
         if isinstance(tag, str):
             for hint in member_hints:
@@ -250,7 +281,7 @@ def _load_union(member_hints: list[type], raw: object) -> object:
     raise ValueError(msg)
 
 
-def _apply_renames(dc_name: str, raw: dict[str, object]) -> dict[str, object]:
+def _apply_renames(dc_name: str, raw: Mapping[str, object]) -> Mapping[str, object]:
     """Apply :data:`_FIELD_RENAMES` migrations for *dc_name* in-place on a copy.
 
     Only truthy values are migrated automatically.  A falsy old value raises
@@ -306,8 +337,8 @@ def _load_dataclass(dc: type, raw: object) -> object:
             if an unknown field is present, or if an ambiguous rename value
             is encountered.
     """
-    if not isinstance(raw, dict):
-        msg = f"Expected dict to build {dc.__name__}, got {type(raw)!r}"
+    if not isinstance(raw, Mapping):
+        msg = f"Expected a mapping to build {dc.__name__}, got {type(raw)!r}"
         raise TypeError(msg)
     raw = _apply_renames(dc.__name__, raw)
     # Reject unknown keys (except the $type discriminator).
@@ -336,7 +367,7 @@ def _load_dataclass(dc: type, raw: object) -> object:
 
 
 def _materialise(
-    scenario_data: dict[str, object],
+    scenario_data: Mapping[str, object],
 ) -> PayrollScenario:
     """Rebuild the :class:`PayrollScenario` from the snapshot.
 
@@ -566,7 +597,11 @@ class InputSnapshot:
     tax_sector: str
     year: int
     uses_surtax: bool
-    scenario: dict[str, object]
+    scenario: Mapping[str, object]
+
+    def __post_init__(self) -> None:
+        """Deep-freeze the scenario so it cannot be mutated after construction."""
+        object.__setattr__(self, "scenario", _deep_freeze(self.scenario))
 
     @classmethod
     def capture(
@@ -603,15 +638,16 @@ class InputSnapshot:
 
         Returns:
             A dictionary with ``str``/``int``/``bool``/``dict`` values.
-            The ``scenario`` value is a deep copy so mutations of the
-            returned dict cannot alter the stored snapshot.
+            The ``scenario`` value is a plain dict copy produced by
+            :func:`_deep_thaw` so mutations of the returned dict cannot
+            alter the frozen stored snapshot.
         """
         return {
             "ccnl_id": self.ccnl_id,
             "tax_sector": self.tax_sector,
             "year": self.year,
             "uses_surtax": self.uses_surtax,
-            "scenario": copy.deepcopy(self.scenario),
+            "scenario": cast(dict[str, object], _deep_thaw(self.scenario)),
         }
 
     @classmethod
@@ -629,7 +665,7 @@ class InputSnapshot:
             tax_sector=str(data["tax_sector"]),
             year=int(str(data["year"])),
             uses_surtax=bool(data["uses_surtax"]),
-            scenario=copy.deepcopy(cast(dict[str, object], data["scenario"])),
+            scenario=cast(dict[str, object], data["scenario"]),
         )
 
     def to_json(self) -> str:
@@ -670,12 +706,20 @@ class Calculation:
     """
 
     engine_version: str
-    ruleset_version: dict[str, str]
+    ruleset_version: Mapping[str, str]
     input_snapshot: InputSnapshot
     result: PayrollResult
     trace: CalculationTrace = dataclasses.field(
         default_factory=lambda: CalculationTrace(steps=())
     )
+
+    def __post_init__(self) -> None:
+        """Freeze ruleset_version so it cannot be mutated after construction."""
+        object.__setattr__(
+            self,
+            "ruleset_version",
+            MappingProxyType(dict(self.ruleset_version)),
+        )
 
     def __getattr__(self, name: str) -> Any:  # ruff: ignore[any-type] - delegation
         """Forward unknown attribute reads to ``result`` (the PayrollResult).
