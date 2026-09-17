@@ -47,7 +47,36 @@ from ccnl_engine.engine.payroll.domain.supplements import (
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
 
-_DEFAULT_YEAR = datetime.now(UTC).year
+
+def _latest_bundled_year() -> int:
+    """Return the most recent year with surtax data in the knowledge bundle.
+
+    Walks back from the current calendar year until it finds a
+    ``regionale-{year}.json`` file via :func:`read_bundled`.  This makes
+    the demo year-independent: it keeps working after the calendar rolls over
+    to a year whose dataset has not been published yet.
+
+    Returns:
+        The latest year for which surtax data exists.
+
+    Raises:
+        RuntimeError: If no surtax data is found for any year >= 2020.
+    """
+    pkg = importlib.resources.files("ccnl_engine.knowledge.surtax.data")
+    year = datetime.now(UTC).year
+    while True:
+        try:
+            read_bundled(pkg, f"regionale-{year}.json")
+        except FileNotFoundError:
+            year -= 1
+            if year < 2020:
+                msg = "No bundled surtax data found for any year >= 2020"
+                raise RuntimeError(msg) from None
+        else:
+            return year
+
+
+_DEFAULT_YEAR = _latest_bundled_year()
 
 
 def list_regioni() -> str:
