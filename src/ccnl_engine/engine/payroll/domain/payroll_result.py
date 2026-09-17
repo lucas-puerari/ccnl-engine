@@ -319,12 +319,14 @@ class PayrollResult:
 
     # --- L3: Art. 15 deductions (mutates irpef_net/net_annual) ---
     # NOT informational: the credit reduces irpef_net directly.
-    # Art. 1 c. 3-4 L. 199/2025 sterilizzazione does NOT apply here.
+    # This is the pre-clawback Art. 15 credit; the sterilizzazione reduction
+    # (Art. 1 c. 3-4 L. 199/2025) is captured in sterilizzazione_clawback_annual.
     art15_deduction_annual: Decimal = _ZERO
     unused_art15_deduction_annual: Decimal = _ZERO
-    # Art. 1 c. 3-4 L. 199/2025 sterilizzazione: EUR 440 clawback on the
-    # combined Art. 12 + Art. 13 deductions when reddito > EUR 200 000.
-    # Zero for most taxpayers (Art. 12 + Art. 13 phase out well below 200k).
+    # Art. 1 c. 3-4 L. 199/2025 sterilizzazione: EUR 440 clawback applied to
+    # Art. 15 TUIR oneri detraibili al 19 % (lett. a, b, d, e; not spese
+    # sanitarie lett. c) when reddito complessivo > EUR 200 000.
+    # Zero for taxpayers below the threshold.
     sterilizzazione_clawback_annual: Decimal = _ZERO
 
     # --- L3: time supplements (informational; not in gross_annual/net_annual) ---
