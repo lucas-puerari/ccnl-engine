@@ -235,3 +235,51 @@ class TestFromJson:
         """JSONDecodeError is raised for unparseable input."""
         with pytest.raises(json.JSONDecodeError):
             PayrollResult.from_json("not json")
+
+
+class TestFromDictStrictValidation:
+    """from_dict rejects extra keys, wrong primitive types, and invalid ScopeItem."""
+
+    def test_extra_key_rejected(self, payroll: PayrollResult) -> None:
+        """Extra keys not produced by to_dict must raise TypeError."""
+        d = payroll.to_dict()
+        d["unexpected_field"] = "value"
+        with pytest.raises(TypeError, match="unexpected keys"):
+            PayrollResult.from_dict(d)
+
+    def test_employer_withholds_irpef_string_rejected(
+        self, payroll: PayrollResult
+    ) -> None:
+        """String 'false' for employer_withholds_irpef must raise TypeError."""
+        d = payroll.to_dict()
+        d["employer_withholds_irpef"] = "false"
+        with pytest.raises(TypeError, match="expected bool"):
+            PayrollResult.from_dict(d)
+
+    def test_year_string_rejected(self, payroll: PayrollResult) -> None:
+        """String '2026' for year must raise TypeError."""
+        d = payroll.to_dict()
+        d["year"] = "2026"
+        with pytest.raises(TypeError, match="expected int"):
+            PayrollResult.from_dict(d)
+
+    def test_level_code_int_rejected(self, payroll: PayrollResult) -> None:
+        """Integer level_code must raise TypeError."""
+        d = payroll.to_dict()
+        d["level_code"] = 4
+        with pytest.raises(TypeError, match="expected str"):
+            PayrollResult.from_dict(d)
+
+    def test_scope_item_invalid_status_rejected(self, payroll: PayrollResult) -> None:
+        """ScopeItem with invalid status value raises ValueError."""
+        d = payroll.to_dict()
+        d["calculation_scope"] = [{"feature": "irpef", "status": "invalid_status"}]
+        with pytest.raises(ValueError, match=r"ScopeItem\.status"):
+            PayrollResult.from_dict(d)
+
+    def test_scope_item_non_str_feature_rejected(self, payroll: PayrollResult) -> None:
+        """ScopeItem with integer feature raises TypeError."""
+        d = payroll.to_dict()
+        d["calculation_scope"] = [{"feature": 42, "status": "verified"}]
+        with pytest.raises(TypeError, match=r"ScopeItem\.feature"):
+            PayrollResult.from_dict(d)
