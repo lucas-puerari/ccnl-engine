@@ -320,8 +320,10 @@ def compute_sickness(
     if sick_days <= _ZERO:
         return _ZERO, _ZERO, _ZERO, _ZERO
 
-    cumulative = sick_input.cumulative_sick_days
-    offset: Decimal = cumulative if cumulative is not None else _ZERO
+    # Normalise once: None means "first episode, zero elapsed days"
+    # and is documented as equivalent to Decimal(0) in SickInput.
+    cumulative: Decimal = sick_input.cumulative_sick_days or _ZERO
+    offset: Decimal = cumulative
 
     daily_rate = money(gross_monthly / _CALENDAR_DAYS)
     carenza_limit = sick_pay_rates.carenza_days
@@ -349,7 +351,7 @@ def compute_sickness(
     carenza_pay = carenza_i * sickness_rules.carenza_integration_rate * daily_rate
     post_carenza_days = max(_ZERO, integration_days - carenza_i)
 
-    if cumulative is not None and sickness_rules.tiers and post_carenza_days > _ZERO:
+    if sickness_rules.tiers and post_carenza_days > _ZERO:
         post_carenza_offset = max(offset, Decimal(carenza_limit))
         post_carenza_company = _post_carenza_tier(
             post_carenza_days,
@@ -359,7 +361,7 @@ def compute_sickness(
             daily_rate,
         )
     else:
-        # Simple single-rate integration (no tiers or no cumulative context)
+        # Simple single-rate integration (no tiers, or only carenza days)
         eff_rate = _effective_integration_rate(sickness_rules, cumulative)
         post_carenza_company = _ZERO
         for band_obj, bucket in zip(sick_pay_rates.bands, band_buckets_i, strict=True):

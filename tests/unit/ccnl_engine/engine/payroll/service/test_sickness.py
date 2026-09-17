@@ -739,3 +739,95 @@ class TestInpsBandEndBoundary:
         ]
         result = _inps_boundaries_in_period(bands, _D("170"), _D("180"))
         assert _D("180") not in result
+
+
+class TestCumulativeNoneEquivalence:
+    """cumulative_sick_days=None and Decimal(0) must produce identical results."""
+
+    def _rules_with_tiers(self) -> SicknessRules:
+        """SicknessRules with 100%→90% tiers starting at month 10.
+
+        Returns:
+            SicknessRules with a two-tier progression and 360-day comporto.
+        """
+        return SicknessRules(
+            carenza_integration_rate=_D("1"),
+            full_pay_integration_rate=_D("1"),
+            max_duration_days=360,
+            tiers=[  # type: ignore[arg-type]
+                SicknessTier(month_from=1, month_until=10, integration_rate=_D("1")),
+                SicknessTier(
+                    month_from=10, month_until=None, integration_rate=_D("0.9")
+                ),
+            ],
+        )
+
+    def test_none_equals_zero_no_tiers(self) -> None:
+        """Without tiers, None and Decimal(0) produce identical results."""
+        rules = SicknessRules(
+            carenza_integration_rate=_D("1"),
+            full_pay_integration_rate=_D("1"),
+        )
+        rates = _standard_sick_pay_rates()
+        gross = _D("3000")
+        sick_days = _D("30")
+
+        result_none = compute_sickness(
+            SickInput(sick_days=sick_days, cumulative_sick_days=None),
+            rules,
+            rates,
+            gross_monthly=gross,
+        )
+        result_zero = compute_sickness(
+            SickInput(sick_days=sick_days, cumulative_sick_days=_D("0")),
+            rules,
+            rates,
+            gross_monthly=gross,
+        )
+        assert result_none == result_zero
+
+    def test_none_equals_zero_with_tiers_in_first_segment(self) -> None:
+        """With tiers, None and Decimal(0) both start in tier 1 and agree."""
+        rules = self._rules_with_tiers()
+        rates = _standard_sick_pay_rates()
+        gross = _D("3000")
+        sick_days = _D("10")  # well within the first tier
+
+        result_none = compute_sickness(
+            SickInput(sick_days=sick_days, cumulative_sick_days=None),
+            rules,
+            rates,
+            gross_monthly=gross,
+        )
+        result_zero = compute_sickness(
+            SickInput(sick_days=sick_days, cumulative_sick_days=_D("0")),
+            rules,
+            rates,
+            gross_monthly=gross,
+        )
+        assert result_none == result_zero
+
+    def test_none_equals_zero_crossing_tier_boundary(self) -> None:
+        """None and Decimal(0) agree even when the episode crosses a tier boundary.
+
+        Tier 1 ends at month 10 = day 270.
+        sick_days=100 starting at cumulative=0 crosses that boundary (days 0-100).
+        """
+        rules = self._rules_with_tiers()
+        rates = _standard_sick_pay_rates()
+        gross = _D("3000")
+        sick_days = _D("100")
+
+        result_none = compute_sickness(
+            SickInput(sick_days=sick_days, cumulative_sick_days=None),
+            rules,
+            rates,
+            gross_monthly=gross,
+        )
+        result_zero = compute_sickness(
+            SickInput(sick_days=sick_days, cumulative_sick_days=_D("0")),
+            rules,
+            rates,
+            gross_monthly=gross,
+        )
+        assert result_none == result_zero
