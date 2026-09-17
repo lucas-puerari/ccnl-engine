@@ -146,9 +146,11 @@ def inps_employee_additional(
     add_rate = rates.employee_additional_rate
     add_threshold = rates.employee_additional_threshold
     if add_rate is None:
+        # InpsRates._check_rates guarantees the pair is either both set or both
+        # absent, so checking add_rate is sufficient.
         return _ZERO
-    if add_threshold is None:
-        return _ZERO
+    # Invariant: add_threshold is set whenever add_rate is set.
+    assert add_threshold is not None
     capped = (
         min(base_annual, rates.ceiling)
         if ivs_ceiling_applies and rates.ceiling is not None

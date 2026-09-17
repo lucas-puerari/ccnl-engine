@@ -16,6 +16,7 @@ from ccnl_engine.engine.payroll.service.contributions import (
     inps_employer_rate,
     resolve_domestic_inps_rate,
 )
+from ccnl_engine.engine.primitives import Bracket
 from ccnl_engine.engine.tax.domain.rules import (
     ApprenticeRates,
     ApprenticeRawRates,
@@ -24,7 +25,10 @@ from ccnl_engine.engine.tax.domain.rules import (
     InpsEmployeeTier,
     InpsEmployerTier,
     InpsRates,
+    InpsRawRates,
     IrpefBracket,
+    SommaEsenteBand,
+    SommaEsenteRules,
     TfrRules,
     YearRules,
     YearRulesRaw,
@@ -94,6 +98,35 @@ def _year_rules(overrides: dict[str, Any] | None = None) -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 # IrpefBracket
 # ---------------------------------------------------------------------------
+
+
+class TestBracketRateConstraint:
+    """Bracket.__post_init__ rejects rates outside [0, 1]."""
+
+    def test_valid_rate_accepted(self) -> None:
+        """Rate in [0, 1] is accepted."""
+        b = Bracket(up_to=Decimal(28000), rate=Decimal("0.23"))
+        assert b.rate == Decimal("0.23")
+
+    def test_zero_rate_accepted(self) -> None:
+        """rate=0 is on the boundary and must be accepted."""
+        b = Bracket(up_to=None, rate=Decimal(0))
+        assert b.rate == Decimal(0)
+
+    def test_one_rate_accepted(self) -> None:
+        """rate=1 is on the boundary and must be accepted."""
+        b = Bracket(up_to=None, rate=Decimal(1))
+        assert b.rate == Decimal(1)
+
+    def test_negative_rate_raises(self) -> None:
+        """Rate < 0 must raise ValueError."""
+        with pytest.raises(ValueError, match="\\[0, 1\\]"):
+            Bracket(up_to=None, rate=Decimal("-0.23"))
+
+    def test_rate_above_one_raises(self) -> None:
+        """Rate > 1 must raise ValueError."""
+        with pytest.raises(ValueError, match="\\[0, 1\\]"):
+            Bracket(up_to=None, rate=Decimal("1.01"))
 
 
 class TestIrpefBracket:
@@ -746,3 +779,214 @@ class TestYearRulesContributionModel:
             YearRules.model_validate(
                 _year_rules({"domestic_contributions": DOMESTIC_CONTRIBUTIONS})
             )
+
+
+# ---------------------------------------------------------------------------
+# InpsRates: IVS invariants and additional-field pair constraint
+# ---------------------------------------------------------------------------
+
+
+class TestInpsRatesIvsAndAdditional:
+    """InpsRates validators: IVS <= total and paired additional fields."""
+
+    _BASE: dict[str, Any] = {
+        "employee_rate": "0.0919",
+        "employee_ivs_rate": "0.0919",
+        "employer_rate": "0.2898",
+        "employer_ivs_rate": "0.2381",
+        "ceiling": None,
+    }
+
+    def test_employee_ivs_exceeds_employee_rate_raises(self) -> None:
+        """employee_ivs_rate > employee_rate must raise ValidationError."""
+        with pytest.raises(ValidationError, match="employee_ivs_rate"):
+            InpsRates(**{**self._BASE, "employee_ivs_rate": "0.30"})
+
+    def test_employer_ivs_exceeds_employer_rate_raises(self) -> None:
+        """employer_ivs_rate > employer_rate must raise ValidationError."""
+        with pytest.raises(ValidationError, match="employer_ivs_rate"):
+            InpsRates(**{**self._BASE, "employer_ivs_rate": "0.40"})
+
+    def test_additional_rate_without_threshold_raises(self) -> None:
+        """employee_additional_rate set without threshold must raise."""
+        with pytest.raises(ValidationError, match="both be set or both be absent"):
+            InpsRates(**{
+                **self._BASE,
+                "employee_additional_rate": "0.01",
+            })
+
+    def test_additional_threshold_without_rate_raises(self) -> None:
+        """employee_additional_threshold set without rate must raise."""
+        with pytest.raises(ValidationError, match="both be set or both be absent"):
+            InpsRates(**{
+                **self._BASE,
+                "employee_additional_threshold": "56224",
+            })
+
+    def test_negative_additional_threshold_raises(self) -> None:
+        """employee_additional_threshold < 0 must raise ValidationError."""
+        with pytest.raises(ValidationError):
+            InpsRates(**{
+                **self._BASE,
+                "employee_additional_rate": "0.01",
+                "employee_additional_threshold": "-1000",
+            })
+
+    def test_valid_with_additional_fields(self) -> None:
+        """Valid rate+threshold pair is accepted."""
+        r = InpsRates(**{
+            **self._BASE,
+            "employee_additional_rate": "0.01",
+            "employee_additional_threshold": "56224",
+        })
+        assert r.employee_additional_rate == Decimal("0.01")
+        assert r.employee_additional_threshold == Decimal(56224)
+
+
+# ---------------------------------------------------------------------------
+# InpsRawRates: negative additional_threshold
+# ---------------------------------------------------------------------------
+
+
+class TestInpsRawRatesAdditionalThreshold:
+    """InpsRawRates rejects a negative employee_additional_threshold."""
+
+    _TIER: dict[str, Any] = {
+        "max_employees": None,
+        "rate": "0.0919",
+        "ivs_rate": "0.0919",
+    }
+
+    def test_negative_threshold_raises(self) -> None:
+        """employee_additional_threshold < 0 must raise ValidationError."""
+        with pytest.raises(ValidationError):
+            InpsRawRates(
+                employee_tiers=[InpsEmployeeTier.model_validate(self._TIER)],
+                employer_tiers=[
+                    InpsEmployerTier.model_validate({
+                        **self._TIER,
+                        "rate": "0.2898",
+                        "ivs_rate": "0.2381",
+                    })
+                ],
+                ceiling=None,
+                employee_additional_rate=Decimal("0.01"),
+                employee_additional_threshold=Decimal(-1000),
+            )
+
+    def test_zero_threshold_accepted(self) -> None:
+        """employee_additional_threshold = 0 is on the boundary and accepted."""
+        raw = InpsRawRates(
+            employee_tiers=[InpsEmployeeTier.model_validate(self._TIER)],
+            employer_tiers=[
+                InpsEmployerTier.model_validate({
+                    **self._TIER,
+                    "rate": "0.2898",
+                    "ivs_rate": "0.2381",
+                })
+            ],
+            ceiling=None,
+            employee_additional_rate=Decimal("0.01"),
+            employee_additional_threshold=Decimal(0),
+        )
+        assert raw.employee_additional_threshold == Decimal(0)
+
+
+# ---------------------------------------------------------------------------
+# SommaEsenteRules: band validation
+# ---------------------------------------------------------------------------
+
+
+_VALID_BAND_LIST: list[SommaEsenteBand] = [
+    SommaEsenteBand(up_to=Decimal(8500), rate=Decimal("0.071")),
+    SommaEsenteBand(up_to=Decimal(15000), rate=Decimal("0.053")),
+    SommaEsenteBand(up_to=Decimal(20000), rate=Decimal("0.048")),
+]
+
+
+class TestSommaEsenteBand:
+    """SommaEsenteBand rejects negative and >1 rates."""
+
+    def test_negative_rate_raises(self) -> None:
+        """Rate < 0 must raise ValidationError."""
+        with pytest.raises(ValidationError):
+            SommaEsenteBand(up_to=Decimal(8500), rate=Decimal("-0.05"))
+
+    def test_rate_above_one_raises(self) -> None:
+        """Rate > 1 must raise ValidationError."""
+        with pytest.raises(ValidationError):
+            SommaEsenteBand(up_to=Decimal(8500), rate=Decimal("1.5"))
+
+    def test_valid_band_accepted(self) -> None:
+        """Valid rate in [0, 1] is accepted."""
+        b = SommaEsenteBand(up_to=Decimal(8500), rate=Decimal("0.071"))
+        assert b.rate == Decimal("0.071")
+
+
+class TestSommaEsenteRules:
+    """SommaEsenteRules: empty, duplicate, non-ascending bands are rejected."""
+
+    def test_empty_bands_raises(self) -> None:
+        """Empty bands list must raise ValidationError."""
+        with pytest.raises(ValidationError):
+            SommaEsenteRules(bands=[])
+
+    def test_non_ascending_bands_raises(self) -> None:
+        """Bands with non-ascending up_to must raise ValidationError."""
+        with pytest.raises(ValidationError, match="strictly ascending"):
+            SommaEsenteRules(
+                bands=[
+                    SommaEsenteBand(up_to=Decimal(15000), rate=Decimal("0.053")),
+                    SommaEsenteBand(up_to=Decimal(8500), rate=Decimal("0.071")),
+                ]
+            )
+
+    def test_duplicate_up_to_raises(self) -> None:
+        """Bands with equal up_to must raise ValidationError."""
+        with pytest.raises(ValidationError, match="strictly ascending"):
+            SommaEsenteRules(
+                bands=[
+                    SommaEsenteBand(up_to=Decimal(8500), rate=Decimal("0.071")),
+                    SommaEsenteBand(up_to=Decimal(8500), rate=Decimal("0.053")),
+                ]
+            )
+
+    def test_single_band_accepted(self) -> None:
+        """A single band (no ordering to check) is accepted."""
+        r = SommaEsenteRules(
+            bands=[SommaEsenteBand(up_to=Decimal(20000), rate=Decimal("0.05"))]
+        )
+        assert len(r.bands) == 1
+
+    def test_valid_bands_accepted(self) -> None:
+        """Three strictly-ascending bands are accepted."""
+        r = SommaEsenteRules(bands=_VALID_BAND_LIST)
+        assert len(r.bands) == 3
+
+
+# ---------------------------------------------------------------------------
+# fixed_term_additional_rate: PercentageRate constraint
+# ---------------------------------------------------------------------------
+
+
+class TestFixedTermAdditionalRate:
+    """YearRulesRaw and YearRules reject negative / >1 fixed_term_additional_rate."""
+
+    def test_negative_rate_in_year_rules_raises(self) -> None:
+        """Negative fixed_term_additional_rate must raise ValidationError."""
+        with pytest.raises(ValidationError):
+            YearRules.model_validate(
+                _year_rules({"fixed_term_additional_rate": "-0.01"})
+            )
+
+    def test_rate_above_one_in_year_rules_raises(self) -> None:
+        """fixed_term_additional_rate > 1 must raise ValidationError."""
+        with pytest.raises(ValidationError):
+            YearRules.model_validate(_year_rules({"fixed_term_additional_rate": "1.5"}))
+
+    def test_zero_rate_accepted(self) -> None:
+        """fixed_term_additional_rate = 0 (PA sector) must be accepted."""
+        r = YearRules.model_validate(
+            _year_rules({"fixed_term_additional_rate": "0.000"})
+        )
+        assert r.fixed_term_additional_rate == Decimal(0)

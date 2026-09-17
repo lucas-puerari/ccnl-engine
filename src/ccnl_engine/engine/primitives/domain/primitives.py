@@ -6,7 +6,18 @@ import copy
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
 from decimal import Decimal
-from typing import Any
+from typing import Annotated, Any
+
+from pydantic import Field
+
+#: Percentage rate bounded to [0, 1] — IRPEF, surtax, somma esente, etc.
+PercentageRate = Annotated[Decimal, Field(ge=Decimal(0), le=Decimal(1))]
+
+#: Non-negative decimal rate or amount (contribution rates, thresholds >= 0).
+NonNegativeRate = Annotated[Decimal, Field(ge=Decimal(0))]
+
+#: Strictly-positive monetary ceiling (e.g. massimale retributivo).
+PositiveCeiling = Annotated[Decimal, Field(gt=Decimal(0))]
 
 
 class FrozenDict[K, V](dict[K, V]):  # noqa: FURB189
@@ -139,10 +150,25 @@ class Bracket:
 
     Used for IRPEF marginal brackets and surtax brackets. When up_to
     is None the bracket covers all income above the previous boundary.
+
+    ``rate`` must be in ``[0, 1]``; values outside this range are
+    rejected in ``__post_init__`` so the constraint is enforced
+    regardless of whether the instance is built through Pydantic or
+    directly.
     """
 
     up_to: Decimal | None
     rate: Decimal
+
+    def __post_init__(self) -> None:
+        """Validate that rate lies within the expected percentage range.
+
+        Raises:
+            ValueError: If rate < 0 or rate > 1.
+        """
+        if self.rate < Decimal(0) or self.rate > Decimal(1):
+            msg = f"Bracket.rate must be in [0, 1], got {self.rate}"
+            raise ValueError(msg)
 
 
 def validate_open_sequence[T](

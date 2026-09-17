@@ -200,17 +200,17 @@ class TestInpsEmployeeAdditional:
         ) == _D(0)
 
     def test_additional_rate_none_returns_zero(self) -> None:
-        """When employee_additional_rate is None, return zero."""
-        rates = _rates_with_additional(additional_rate=None)
+        """When additional fields are absent (both None), return zero."""
+        rates = _rates_with_additional(additional_rate=None, additional_threshold=None)
         assert inps_employee_additional(
             _D("70000"), rates, ivs_ceiling_applies=False
         ) == _D(0)
 
-    def test_additional_threshold_none_returns_zero(self) -> None:
-        """When employee_additional_threshold is None, return zero."""
-        rates = _rates_with_additional(additional_threshold=None)
+    def test_additional_both_none_explicit(self) -> None:
+        """Both additional fields None: additional contribution not configured."""
+        rates = _rates_with_additional(additional_rate=None, additional_threshold=None)
         assert inps_employee_additional(
-            _D("70000"), rates, ivs_ceiling_applies=False
+            _D("100000"), rates, ivs_ceiling_applies=True
         ) == _D(0)
 
     def test_income_below_threshold_returns_zero(self) -> None:
