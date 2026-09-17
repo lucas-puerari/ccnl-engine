@@ -9615,3 +9615,79 @@ class TestLoadRadiotelevisiveRadiofonicoG091:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadVetroMeccanizzatoAssovetro:
+    """Unit tests for vetro-meccanizzato-assovetro.json (CNEL B132)."""
+
+    def test_vetro_meccanizzato_assovetro_loads(self) -> None:
+        """Contract id is vetro-meccanizzato-assovetro, CNEL code is B132."""
+        ccnl = load_ccnl("vetro-meccanizzato-assovetro.json")
+        assert ccnl.meta.ccnl_id == "vetro-meccanizzato-assovetro"
+        assert ccnl.meta.cnel_code == "B132"
+
+    def test_vetro_meccanizzato_assovetro_has_6_levels(self) -> None:
+        """Has exactly 6 base levels: A, B, C, D, E, F."""
+        ccnl = load_ccnl("vetro-meccanizzato-assovetro.json")
+        assert len(ccnl.levels) == 6
+        assert {lv.code for lv in ccnl.levels} == {"A", "B", "C", "D", "E", "F"}
+
+    def test_vetro_meccanizzato_assovetro_level_d_salary_tranche1(self) -> None:
+        """Level D minimo at 2024-01-01 is 1983.92 EUR (CCNL 2023-2025)."""
+        ccnl = load_ccnl("vetro-meccanizzato-assovetro.json")
+        lv = ccnl.level_by_code("D")
+        assert lv.base_salary.value_at(date(2024, 1, 1)) == Decimal("1983.92")
+
+    def test_vetro_meccanizzato_assovetro_level_d_salary_tranche2(self) -> None:
+        """Level D minimo at 2026-01-01 is 2080.92 EUR (rinnovo Apr 2026, ilccnl.it)."""
+        ccnl = load_ccnl("vetro-meccanizzato-assovetro.json")
+        lv = ccnl.level_by_code("D")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("2080.92")
+
+    def test_vetro_meccanizzato_assovetro_level_ordering(self) -> None:
+        """Level F is lowest (order 1), level A is highest (order 6)."""
+        ccnl = load_ccnl("vetro-meccanizzato-assovetro.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "F"
+        assert by_order[-1].code == "A"
+
+    def test_vetro_meccanizzato_assovetro_additional_months(self) -> None:
+        """Additional months is 13 (tredicesima only)."""
+        ccnl = load_ccnl("vetro-meccanizzato-assovetro.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_vetro_meccanizzato_assovetro_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (confirmed ilccnl.it 2026-01-01)."""
+        ccnl = load_ccnl("vetro-meccanizzato-assovetro.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(173)
+
+    def test_vetro_meccanizzato_assovetro_ter_allowance(self) -> None:
+        """Every level has a single TER allowance of 10.33 EUR (EDR frozen)."""
+        ccnl = load_ccnl("vetro-meccanizzato-assovetro.json")
+        for lv in ccnl.levels:
+            assert len(lv.fixed_allowances) == 1
+            fa = lv.fixed_allowances[0]
+            assert fa.code == "TER"
+            assert fa.monthly.value_at(date(2026, 1, 1)) == Decimal("10.33")
+
+    def test_vetro_meccanizzato_assovetro_tax_sector(self) -> None:
+        """Tax sector is industria (Assovetro — Confindustria sector)."""
+        ccnl = load_ccnl("vetro-meccanizzato-assovetro.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_vetro_meccanizzato_assovetro_seniority_cadence(self) -> None:
+        """Seniority: biennial (24 months), 5 increments max."""
+        ccnl = load_ccnl("vetro-meccanizzato-assovetro.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
+
+    def test_vetro_meccanizzato_assovetro_fonchim_fund(self) -> None:
+        """Fonchim employer fund at 2.0% from 2026-01-01 (was 1.5% pre-renewal)."""
+        ccnl = load_ccnl("vetro-meccanizzato-assovetro.json")
+        funds = {f.code: f for f in ccnl.parameters.employer_funds}
+        assert "FONCHIM" in funds
+        assert funds["FONCHIM"].rate.value_at(date(2026, 1, 1)) == Decimal("0.0200")
+        assert funds["FONCHIM"].rate.value_at(date(2025, 1, 1)) == Decimal("0.0150")
