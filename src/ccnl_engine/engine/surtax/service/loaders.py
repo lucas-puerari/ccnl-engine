@@ -60,6 +60,9 @@ def _load_surtax_rules_cached(year: int) -> SurtaxRules:
     Returns:
         The shared, frozen :class:`~ccnl_engine.engine.surtax.domain.SurtaxRules`
         object stored in the cache.
+
+    Raises:
+        ValueError: If a data file's year field doesn't match the requested year.
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.surtax.data")
     reg_raw = read_bundled(pkg, f"regionale-{year}.json")
@@ -68,6 +71,18 @@ def _load_surtax_rules_cached(year: int) -> SurtaxRules:
     com_payload = json.loads(com_raw)
     _verify_ruleset_hash(reg_payload, f"regionale-{year}.json")
     _verify_ruleset_hash(com_payload, f"comunale-{year}.json")
+    if reg_payload.get("year") != year:
+        msg = (
+            f"regionale-{year}.json year={reg_payload.get('year')!r} "
+            f"does not match requested year={year!r}"
+        )
+        raise ValueError(msg)
+    if com_payload.get("year") != year:
+        msg = (
+            f"comunale-{year}.json year={com_payload.get('year')!r} "
+            f"does not match requested year={year!r}"
+        )
+        raise ValueError(msg)
     reg = RegionaleRaw.model_validate(reg_payload)
     com = ComunaleRaw.model_validate(com_payload)
     return SurtaxRules(

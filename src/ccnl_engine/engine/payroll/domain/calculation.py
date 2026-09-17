@@ -149,11 +149,43 @@ def _deep_thaw(value: object) -> object:
     return value
 
 
+_STRICT_PRIMITIVES: frozenset[type] = frozenset({bool, int, str})
+
+
+def _validate_primitive(raw: object, hint: type) -> object:
+    """Validate *raw* against a strict primitive *hint* and return it unchanged.
+
+    ``bool`` is checked before ``int`` because ``bool`` is a subclass of
+    ``int`` in Python and the two must not be confused.
+
+    Returns:
+        *raw* when it matches *hint* exactly.
+
+    Raises:
+        TypeError: When *raw* does not match the exact primitive *hint*.
+    """
+    if hint is bool:
+        if not isinstance(raw, bool):
+            msg = f"expected bool, got {type(raw).__name__!r}"
+            raise TypeError(msg)
+    elif hint is int:
+        if not isinstance(raw, int) or isinstance(raw, bool):
+            msg = f"expected int, got {type(raw).__name__!r}"
+            raise TypeError(msg)
+    elif not isinstance(raw, str):
+        msg = f"expected str, got {type(raw).__name__!r}"
+        raise TypeError(msg)
+    return raw
+
+
 def _coerce_scalar(raw: object, hint: type) -> object:
     """Coerce a JSON-native *raw* value to the type described by *hint*.
 
+    Primitive types (``bool``, ``int``, ``str``) are delegated to
+    :func:`_validate_primitive`, which raises ``TypeError`` on mismatch.
+
     Returns:
-        The coerced value; plain scalars pass through unchanged.
+        The coerced value; plain scalars pass through only when type matches.
     """
     if hint is Decimal:
         return Decimal(str(raw))
@@ -161,6 +193,8 @@ def _coerce_scalar(raw: object, hint: type) -> object:
         return _date.fromisoformat(str(raw))
     if isinstance(hint, type) and issubclass(hint, Enum):
         return hint(raw)
+    if hint in _STRICT_PRIMITIVES:
+        return _validate_primitive(raw, hint)
     return raw
 
 
@@ -837,13 +871,30 @@ class Calculation:
 
         Returns:
             A new :class:`Calculation` equal to the original.
+
+        Raises:
+            TypeError: If ``engine_version`` or ``ruleset_version`` values are
+                not ``str``.
         """
+        engine_version = data["engine_version"]
+        if not isinstance(engine_version, str):
+            msg = (
+                f"Calculation.from_dict: 'engine_version' must be str, "
+                f"got {type(engine_version).__name__}"
+            )
+            raise TypeError(msg)
+        rv_raw = cast(dict[str, object], data["ruleset_version"])
+        for k, v in rv_raw.items():
+            if not isinstance(k, str) or not isinstance(v, str):
+                msg = (
+                    "Calculation.from_dict: 'ruleset_version' keys and "
+                    "values must be str"
+                )
+                raise TypeError(msg)
+        ruleset_version = cast(dict[str, str], rv_raw)
         return cls(
-            engine_version=str(data["engine_version"]),
-            ruleset_version={
-                str(k): str(v)
-                for k, v in cast(dict[str, object], data["ruleset_version"]).items()
-            },
+            engine_version=engine_version,
+            ruleset_version=ruleset_version,
             input_snapshot=InputSnapshot.from_dict(
                 cast(dict[str, object], data["input_snapshot"])
             ),
