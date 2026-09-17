@@ -21,7 +21,12 @@ from typing import TYPE_CHECKING
 
 from pydantic import ValidationError
 
-from ccnl_engine.engine.contract.domain.ccnl import CCNL
+from ccnl_engine.engine.contract.domain.ccnl import (
+    CCNL,
+    CCNLParameters,
+    Level,
+    SeniorityIncrements,
+)
 
 if TYPE_CHECKING:
     from collections.abc import Iterator
@@ -204,6 +209,53 @@ def _compare_ts(
     return lines
 
 
+def _level_allowance_lines(
+    old_lv: Level | None,
+    new_lv: Level | None,
+    ref_dates: set[date],
+) -> list[str]:
+    """Return change lines for fixed allowances of one level.
+
+    Returns:
+        List of Markdown bullet strings for allowance changes.
+    """
+    if new_lv is None:
+        return []
+    a_codes = {a.code for a in new_lv.fixed_allowances}
+    if old_lv is not None:
+        a_codes |= {a.code for a in old_lv.fixed_allowances}
+    new_al = {a.code: a for a in new_lv.fixed_allowances}
+    old_al = {a.code: a for a in old_lv.fixed_allowances} if old_lv else {}
+    lines: list[str] = []
+    for ac in sorted(a_codes):
+        lines += _compare_ts(
+            old_al[ac].monthly if ac in old_al else None,
+            new_al[ac].monthly if ac in new_al else None,
+            ref_dates,
+            f"allowance {ac}",
+        )
+    return lines
+
+
+def _level_change_lines(
+    old_lv: Level | None,
+    new_lv: Level | None,
+    ref_dates: set[date],
+) -> list[str]:
+    """Return all change lines for one level (salary + allowances).
+
+    Returns:
+        List of Markdown bullet strings for this level.
+    """
+    lines = _compare_ts(
+        old_lv.base_salary if old_lv else None,
+        new_lv.base_salary if new_lv else None,
+        ref_dates,
+        "base salary",
+    )
+    return lines + _level_allowance_lines(old_lv, new_lv, ref_dates)
+
+
 def _compare_level_versions(
     old: CCNL | None,
     new: CCNL,
@@ -217,30 +269,62 @@ def _compare_level_versions(
     new_levels = {lv.code: lv for lv in new.levels}
     old_levels = {lv.code: lv for lv in old.levels} if old is not None else {}
     for code in sorted(new_levels.keys() | old_levels.keys()):
-        new_lv = new_levels.get(code)
-        old_lv = old_levels.get(code)
-        level_lines = _compare_ts(
-            old_lv.base_salary if old_lv else None,
-            new_lv.base_salary if new_lv else None,
-            ref_dates,
-            "base salary",
+        lines = _level_change_lines(
+            old_levels.get(code), new_levels.get(code), ref_dates
         )
-        if new_lv:
-            a_codes = {a.code for a in new_lv.fixed_allowances}
-            if old_lv:
-                a_codes |= {a.code for a in old_lv.fixed_allowances}
-            new_al = {a.code: a for a in new_lv.fixed_allowances}
-            old_al = {a.code: a for a in old_lv.fixed_allowances} if old_lv else {}
-            for ac in sorted(a_codes):
-                level_lines += _compare_ts(
-                    old_al[ac].monthly if ac in old_al else None,
-                    new_al[ac].monthly if ac in new_al else None,
-                    ref_dates,
-                    f"allowance {ac}",
-                )
-        if level_lines:
+        if lines:
             yield f"**Level {code}**"
-            yield from level_lines
+            yield from lines
+
+
+def _compare_seniority_versions(
+    old_si: SeniorityIncrements | None,
+    new_si: SeniorityIncrements,
+    ref_dates: set[date],
+) -> list[str]:
+    """Return change lines for seniority-increment fields.
+
+    Returns:
+        List of Markdown bullet strings for seniority changes.
+    """
+    lines: list[str] = []
+    for level_code, ts in new_si.amount_by_level.items():
+        old_ts = old_si.amount_by_level.get(level_code) if old_si else None
+        lines += _compare_ts(old_ts, ts, ref_dates, f"seniority level {level_code}")
+    has_apprentice = new_si.apprentice_amount is not None or (
+        old_si is not None and old_si.apprentice_amount is not None
+    )
+    if has_apprentice:
+        lines += _compare_ts(
+            old_si.apprentice_amount if old_si else None,
+            new_si.apprentice_amount,
+            ref_dates,
+            "seniority apprentice",
+        )
+    return lines
+
+
+def _compare_employer_fund_versions(
+    old_p: CCNLParameters | None,
+    new_p: CCNLParameters,
+    ref_dates: set[date],
+) -> list[str]:
+    """Return change lines for employer-fund rate fields.
+
+    Returns:
+        List of Markdown bullet strings for employer-fund changes.
+    """
+    new_funds = {f.code: f for f in new_p.employer_funds}
+    old_funds = {f.code: f for f in old_p.employer_funds} if old_p else {}
+    lines: list[str] = []
+    for fc in sorted(new_funds.keys() | old_funds.keys()):
+        lines += _compare_ts(
+            old_funds[fc].rate if fc in old_funds else None,
+            new_funds[fc].rate if fc in new_funds else None,
+            ref_dates,
+            f"employer fund {fc}",
+        )
+    return lines
 
 
 def _compare_parameter_versions(
@@ -268,29 +352,12 @@ def _compare_parameter_versions(
         ref_dates,
         "additional months",
     )
-    new_si = new_p.seniority_increments
-    old_si = old_p.seniority_increments if old_p else None
-    for level_code, ts in new_si.amount_by_level.items():
-        old_ts = old_si.amount_by_level.get(level_code) if old_si else None
-        lines += _compare_ts(old_ts, ts, ref_dates, f"seniority level {level_code}")
-    if new_si.apprentice_amount is not None or (
-        old_si is not None and old_si.apprentice_amount is not None
-    ):
-        lines += _compare_ts(
-            old_si.apprentice_amount if old_si else None,
-            new_si.apprentice_amount,
-            ref_dates,
-            "seniority apprentice",
-        )
-    new_funds = {f.code: f for f in new_p.employer_funds}
-    old_funds = {f.code: f for f in old_p.employer_funds} if old_p else {}
-    for fc in sorted(new_funds.keys() | old_funds.keys()):
-        lines += _compare_ts(
-            old_funds[fc].rate if fc in old_funds else None,
-            new_funds[fc].rate if fc in new_funds else None,
-            ref_dates,
-            f"employer fund {fc}",
-        )
+    lines += _compare_seniority_versions(
+        old_p.seniority_increments if old_p else None,
+        new_p.seniority_increments,
+        ref_dates,
+    )
+    lines += _compare_employer_fund_versions(old_p, new_p, ref_dates)
     return lines
 
 
