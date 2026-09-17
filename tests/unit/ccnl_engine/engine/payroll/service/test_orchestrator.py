@@ -1689,6 +1689,61 @@ class TestL3Absence:
         scope = {item.feature: item.status for item in result.calculation_scope}
         assert scope["absence"] == "verified"
 
+    def test_absence_deduction_capped_when_exceeds_gross(self) -> None:
+        """Deduction exceeding gross_monthly is capped and a warning emitted.
+
+        With by_26 and gross=1000: daily_rate=38.46, 27 days → 1038.42 > 1000.
+        The deduction must be capped to 1000 and effective_gross_monthly = 0.
+        """
+        _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
+            update={
+                "work_rules": CCNLWorkRules(
+                    absence_rules=AbsenceRules(
+                        daily_divisor_method=DailyDivisorMethod.BY_26,
+                    )
+                )
+            }
+        )
+        scenario = dataclasses.replace(
+            _req(),
+            absence_days=AbsenceDays(unpaid_days=_D("27")),
+        )
+        result = compute(scenario).result
+        gross = result.gross_monthly
+        assert result.absence_deduction_monthly == gross
+        assert result.effective_gross_monthly == _D("0.00")
+        assert any("capped" in w for w in result.warnings), (
+            f"Expected cap warning, got: {result.warnings}"
+        )
+
+    def test_absence_deduction_at_boundary_no_cap(self) -> None:
+        """Deduction exactly equal to gross_monthly requires no cap and no warning.
+
+        With by_26 and gross=1000: daily_rate=38.46, 26 days → 999.96 <= 1000.
+        No cap warning and effective_gross_monthly = gross - deduction.
+        """
+        _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
+            update={
+                "work_rules": CCNLWorkRules(
+                    absence_rules=AbsenceRules(
+                        daily_divisor_method=DailyDivisorMethod.BY_26,
+                    )
+                )
+            }
+        )
+        scenario = dataclasses.replace(
+            _req(),
+            absence_days=AbsenceDays(unpaid_days=_D("26")),
+        )
+        result = compute(scenario).result
+        gross = result.gross_monthly
+        expected_deduction = _D("999.96")  # round(1000/26)=38.46; 38.46*26=999.96
+        assert result.absence_deduction_monthly == expected_deduction
+        assert result.effective_gross_monthly == gross - expected_deduction
+        assert not any("capped" in w for w in result.warnings), (
+            f"Unexpected cap warning, got: {result.warnings}"
+        )
+
 
 class TestL3Leave:
     """Orchestrator behaviour for L3 leave accrual."""

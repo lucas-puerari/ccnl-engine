@@ -340,6 +340,12 @@ def _run_wr_absence(
                 gross_monthly=gross_monthly,
                 hourly_rate=hourly_rate,
             )
+            # Cap the deduction so effective_gross_monthly cannot go negative.
+            if deduction > gross_monthly:
+                wr_warnings.append(
+                    "absence_deduction exceeds gross_monthly: capped to gross_monthly"
+                )
+                deduction = gross_monthly
         else:
             wr_warnings.append("absence_days requested but not modelled for this CCNL")
     return _AbsenceResult(
