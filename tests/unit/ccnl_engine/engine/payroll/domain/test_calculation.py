@@ -283,6 +283,33 @@ class TestCalculation:
         assert isinstance(scenario.employee.seniority, SeniorityByCount)
         assert scenario.employee.seniority.value == 2
 
+    def test_reproduce_raises_on_engine_version_drift(self) -> None:
+        """reproduce() raises ValueError when engine_version does not match."""
+        calc = compute(_req())
+        d = calc.to_dict()
+        d["engine_version"] = "0.0.0"
+        stale = Calculation.from_dict(d)
+        with pytest.raises(ValueError, match="version drift"):
+            stale.reproduce()
+
+    def test_reproduce_allow_drift_flag_suppresses_error(self) -> None:
+        """reproduce(allow_version_drift=True) succeeds despite mismatch."""
+        calc = compute(_req())
+        d = calc.to_dict()
+        d["engine_version"] = "0.0.0"
+        stale = Calculation.from_dict(d)
+        replayed = stale.reproduce(allow_version_drift=True)
+        assert replayed.result.net_annual == calc.result.net_annual
+
+    def test_reproduce_raises_on_ruleset_version_drift(self) -> None:
+        """reproduce() raises ValueError when a ruleset identity does not match."""
+        calc = compute(_req())
+        d = calc.to_dict()
+        d["ruleset_version"] = {"ccnl": "old@0", "tax": "old@0"}
+        stale = Calculation.from_dict(d)
+        with pytest.raises(ValueError, match="version drift"):
+            stale.reproduce()
+
     def test_copy_deepcopy_snapshot(self) -> None:
         """copy.deepcopy on InputSnapshot must not raise TypeError."""
         calc = compute(_req())

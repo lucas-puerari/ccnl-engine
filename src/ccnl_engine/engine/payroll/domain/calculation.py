@@ -852,7 +852,7 @@ class Calculation:
             raise AttributeError(name) from None
         return getattr(result, name)
 
-    def reproduce(self) -> Calculation:
+    def reproduce(self, *, allow_version_drift: bool = False) -> Calculation:
         """Replay this calculation using the scenario stored in the snapshot.
 
         The :class:`PayrollScenario` is rebuilt from the snapshot and passed
@@ -861,15 +861,61 @@ class Calculation:
         base. The returned :class:`Calculation` will carry the same inputs and
         an identical :attr:`result` when the knowledge base has not changed.
 
+        Args:
+            allow_version_drift: When ``True``, proceed even if the engine
+                version or ruleset identities differ from those recorded in
+                this artefact; the divergence is recorded in the returned
+                :class:`Calculation` but no error is raised.  Defaults to
+                ``False``.
+
         Returns:
-            A new :class:`Calculation` equal to the original.
+            A new :class:`Calculation` equal to the original when no drift
+            has occurred.
+
+        Raises:
+            ValueError: When *allow_version_drift* is ``False`` and either
+                the installed engine version or any ruleset identity does not
+                match the values recorded in this artefact.
         """
         from ccnl_engine.engine.payroll.service.orchestrator import (  # ruff: ignore[import-outside-top-level] - import cycle
             compute,
         )
+        from ccnl_engine.version import (  # ruff: ignore[import-outside-top-level] - import cycle
+            __version__ as current_engine_version,
+        )
 
         scenario = self.input_snapshot.materialise()
-        return compute(scenario)
+        new_calc = compute(scenario)
+
+        drift: list[str] = []
+        if self.engine_version != current_engine_version:
+            drift.append(
+                f"engine_version: recorded={self.engine_version!r}, "
+                f"current={current_engine_version!r}"
+            )
+        for key, recorded_ver in self.ruleset_version.items():
+            current_ver = new_calc.ruleset_version.get(key)
+            if current_ver != recorded_ver:
+                drift.append(
+                    f"ruleset {key!r}: recorded={recorded_ver!r}, "
+                    f"current={current_ver!r}"
+                )
+        drift.extend(
+            f"ruleset {key!r}: recorded=<absent>, "
+            f"current={new_calc.ruleset_version[key]!r}"
+            for key in new_calc.ruleset_version
+            if key not in self.ruleset_version
+        )
+
+        if drift and not allow_version_drift:
+            lines = "\n  ".join(drift)
+            msg = (
+                "reproduce() detected version drift; pass "
+                "allow_version_drift=True to proceed:\n  " + lines
+            )
+            raise ValueError(msg)
+
+        return new_calc
 
     def to_dict(self) -> dict[str, object]:
         """Serialise the full calculation to a JSON-native dict.
