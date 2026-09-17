@@ -134,6 +134,7 @@ nav = [
     { "CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)" = "contracts/telecomunicazioni-asstel.md" },
     { "CCNL Terziario Distribuzione e Servizi — Confesercenti" = "contracts/terziario-confesercenti.md" },
     { "CCNL Area Tessile-Moda e Chimica-Ceramica — Artigianato" = "contracts/tessile-moda-artigianato-confartigianato.md" },
+    { "CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)" = "contracts/tessile-pmi-uniontessile.md" },
     { "CCNL per i lavoratori dell'industria tessile, abbigliamen…" = "contracts/tessile-smi.md" },
     { "CCNL Trasporto Aereo — Gestori Aeroportuali" = "contracts/trasporto-aereo-assaeroporti.md" },
     { "CCNL Attività Ferroviarie — AGENS" = "contracts/trasporto-ferroviario-agens.md" },

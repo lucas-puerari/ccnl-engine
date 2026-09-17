@@ -9691,3 +9691,84 @@ class TestLoadVetroMeccanizzatoAssovetro:
         assert "FONCHIM" in funds
         assert funds["FONCHIM"].rate.value_at(date(2026, 1, 1)) == Decimal("0.0200")
         assert funds["FONCHIM"].rate.value_at(date(2025, 1, 1)) == Decimal("0.0150")
+
+
+class TestLoadTessilePmiUniontessile:
+    """Unit tests for tessile-pmi-uniontessile.json (CNEL D018)."""
+
+    def test_tessile_pmi_uniontessile_loads(self) -> None:
+        """Contract loads with correct id and CNEL code D018."""
+        ccnl = load_ccnl("tessile-pmi-uniontessile.json")
+        assert ccnl.meta.ccnl_id == "tessile-pmi-uniontessile"
+        assert ccnl.meta.cnel_code == "D018"
+
+    def test_tessile_pmi_uniontessile_has_10_levels(self) -> None:
+        """Ten levels: 1, 2, 2bis, 3, 3bis, 4, 5, 6, 7, 8."""
+        ccnl = load_ccnl("tessile-pmi-uniontessile.json")
+        assert len(ccnl.levels) == 10
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "2bis", "3", "3bis", "4", "5", "6", "7", "8"}
+
+    def test_tessile_pmi_uniontessile_level4_salary_2025(self) -> None:
+        """Level 4 at Jan 2025 tranche: 1902.56 EUR (kitech.it)."""
+        ccnl = load_ccnl("tessile-pmi-uniontessile.json")
+        lv = ccnl.level_by_code("4")
+        assert lv.base_salary.value_at(date(2025, 1, 1)) == Decimal("1902.56")
+
+    def test_tessile_pmi_uniontessile_level4_salary_2026(self) -> None:
+        """Level 4 at Jan 2026 tranche: 1962.56 EUR (kitech.it)."""
+        ccnl = load_ccnl("tessile-pmi-uniontessile.json")
+        lv = ccnl.level_by_code("4")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1962.56")
+
+    def test_tessile_pmi_uniontessile_level_ordering(self) -> None:
+        """Level 8 is highest order; level 1 is lowest order."""
+        ccnl = load_ccnl("tessile-pmi-uniontessile.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "1"
+        assert by_order[-1].code == "8"
+
+    def test_tessile_pmi_uniontessile_additional_months(self) -> None:
+        """Tredicesima only: 13 additional months."""
+        ccnl = load_ccnl("tessile-pmi-uniontessile.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_tessile_pmi_uniontessile_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (40h/week; lavoro-economia.it)."""
+        ccnl = load_ccnl("tessile-pmi-uniontessile.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(173)
+
+    def test_tessile_pmi_uniontessile_level8_idf_allowance(self) -> None:
+        """Level 8 has IDF 51.65 EUR; all other levels have no fixed allowances."""
+        ccnl = load_ccnl("tessile-pmi-uniontessile.json")
+        for lv in ccnl.levels:
+            if lv.code == "8":
+                assert len(lv.fixed_allowances) == 1
+                assert lv.fixed_allowances[0].code == "IND_FUN"
+                assert lv.fixed_allowances[0].monthly.value_at(
+                    date(2026, 1, 1)
+                ) == Decimal("51.65")
+            else:
+                assert len(lv.fixed_allowances) == 0
+
+    def test_tessile_pmi_uniontessile_tax_sector(self) -> None:
+        """Tax sector is industria (Confapi/INPS settore industria)."""
+        ccnl = load_ccnl("tessile-pmi-uniontessile.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_tessile_pmi_uniontessile_seniority_cadence(self) -> None:
+        """Seniority: biennial (24 months), 4 increments max."""
+        ccnl = load_ccnl("tessile-pmi-uniontessile.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 4
+
+    def test_tessile_pmi_uniontessile_fondapi_fund(self) -> None:
+        """FONDAPI rate 1.90% until Mar 2025, 2.00% from Mar 2025 (adapt.it)."""
+        ccnl = load_ccnl("tessile-pmi-uniontessile.json")
+        funds = {f.code: f for f in ccnl.parameters.employer_funds}
+        assert "FONDAPI" in funds
+        assert funds["FONDAPI"].rate.value_at(date(2024, 4, 1)) == Decimal("0.0190")
+        assert funds["FONDAPI"].rate.value_at(date(2025, 3, 1)) == Decimal("0.0200")
