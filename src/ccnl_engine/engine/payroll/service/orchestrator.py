@@ -204,8 +204,12 @@ def compute(scenario: PayrollScenario) -> Calculation:
         + fiscal.consumed_ruleset_ids
     )
     ivs_ceiling = rules.inps.ceiling if rules.inps is not None else None
-    ivs_warn = _ivs_ceiling_warning(
-        scenario, as_of, gross.contribution_base, ivs_ceiling
+    # Domestic contracts use per-hour forfait rates; the IVS ceiling model
+    # does not participate in that calculation, so no warning is warranted.
+    ivs_warn = (
+        None
+        if rules.domestic_contributions is not None
+        else _ivs_ceiling_warning(scenario, as_of, gross.contribution_base, ivs_ceiling)
     )
     result_warnings = (
         (*work.warnings, ivs_warn) if ivs_warn is not None else work.warnings
