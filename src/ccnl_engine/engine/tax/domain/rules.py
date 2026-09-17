@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from decimal import Decimal
-from typing import Self
+from typing import Annotated, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -16,6 +16,12 @@ from ccnl_engine.engine.provenance.domain.source import SourceDocument
 
 #: A single IRPEF marginal tax bracket (Art. 11 TUIR).
 IrpefBracket = Bracket
+
+#: Contribution rate or per-hour amount: must be >= 0.
+NonNegativeRate = Annotated[Decimal, Field(ge=Decimal(0))]
+
+#: Monetary ceiling that, when present, must be strictly positive.
+PositiveCeiling = Annotated[Decimal, Field(gt=Decimal(0))]
 
 
 class DeductionBreakpoint(BaseModel):
@@ -67,13 +73,13 @@ class InpsRates(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    employee_rate: Decimal
-    employee_ivs_rate: Decimal
-    employer_rate: Decimal
-    employer_ivs_rate: Decimal
-    ceiling: Decimal | None
-    employer_rate_by_category: dict[str, Decimal] = {}
-    employee_additional_rate: Decimal | None = None
+    employee_rate: NonNegativeRate
+    employee_ivs_rate: NonNegativeRate
+    employer_rate: NonNegativeRate
+    employer_ivs_rate: NonNegativeRate
+    ceiling: PositiveCeiling | None
+    employer_rate_by_category: dict[str, NonNegativeRate] = {}
+    employee_additional_rate: NonNegativeRate | None = None
     employee_additional_threshold: Decimal | None = None
     provenance: RuleProvenance | None = None
 
@@ -95,14 +101,14 @@ class ApprenticeRates(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    employee_rate: Decimal
-    employee_ivs_rate: Decimal
-    employer_rate_months_0_11: Decimal
-    employer_ivs_rate_months_0_11: Decimal
-    employer_rate_months_12_23: Decimal
-    employer_ivs_rate_months_12_23: Decimal
-    employer_rate_after: Decimal
-    employer_ivs_rate_after: Decimal
+    employee_rate: NonNegativeRate
+    employee_ivs_rate: NonNegativeRate
+    employer_rate_months_0_11: NonNegativeRate
+    employer_ivs_rate_months_0_11: NonNegativeRate
+    employer_rate_months_12_23: NonNegativeRate
+    employer_ivs_rate_months_12_23: NonNegativeRate
+    employer_rate_after: NonNegativeRate
+    employer_ivs_rate_after: NonNegativeRate
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
@@ -150,9 +156,9 @@ class InpsEmployerTier(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     max_employees: int | None
-    rate: Decimal
-    ivs_rate: Decimal
-    rate_by_category: dict[str, Decimal] = {}
+    rate: NonNegativeRate
+    ivs_rate: NonNegativeRate
+    rate_by_category: dict[str, NonNegativeRate] = {}
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
@@ -180,8 +186,8 @@ class InpsEmployeeTier(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     max_employees: int | None
-    rate: Decimal
-    ivs_rate: Decimal
+    rate: NonNegativeRate
+    ivs_rate: NonNegativeRate
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
@@ -199,9 +205,9 @@ class DomesticInpsHoursBracket(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    employee_per_hour: Decimal
-    employer_per_hour: Decimal
-    employer_per_hour_fixed_term: Decimal
+    employee_per_hour: NonNegativeRate
+    employer_per_hour: NonNegativeRate
+    employer_per_hour_fixed_term: NonNegativeRate
 
 
 class DomesticInpsWageBracket(BaseModel):
@@ -214,9 +220,9 @@ class DomesticInpsWageBracket(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     hourly_rate_up_to: Decimal | None
-    employee_per_hour: Decimal
-    employer_per_hour: Decimal
-    employer_per_hour_fixed_term: Decimal
+    employee_per_hour: NonNegativeRate
+    employer_per_hour: NonNegativeRate
+    employer_per_hour_fixed_term: NonNegativeRate
     provenance: RuleProvenance | None = None
 
 
@@ -235,7 +241,7 @@ class DomesticInpsRates(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    weekly_hours_threshold: int
+    weekly_hours_threshold: int = Field(ge=0)
     hours_bracket: DomesticInpsHoursBracket
     wage_brackets: list[DomesticInpsWageBracket] = Field(min_length=1)
     provenance: RuleProvenance | None = None
@@ -247,6 +253,14 @@ class DomesticInpsRates(BaseModel):
                 msg = (
                     f"DomesticInpsRates: wage_brackets[{i}] has "
                     "hourly_rate_up_to=None but is not the last bracket"
+                )
+                raise ValueError(msg)
+            nxt = self.wage_brackets[i + 1].hourly_rate_up_to
+            if nxt is not None and nxt <= bracket.hourly_rate_up_to:
+                msg = (
+                    "DomesticInpsRates: wage_brackets must have strictly "
+                    f"ascending hourly_rate_up_to: bracket {i} = "
+                    f"{bracket.hourly_rate_up_to} >= bracket {i + 1} = {nxt}"
                 )
                 raise ValueError(msg)
         last = self.wage_brackets[-1]
@@ -272,8 +286,8 @@ class InpsRawRates(BaseModel):
 
     employee_tiers: list[InpsEmployeeTier]
     employer_tiers: list[InpsEmployerTier]
-    ceiling: Decimal | None
-    employee_additional_rate: Decimal | None = None
+    ceiling: PositiveCeiling | None
+    employee_additional_rate: NonNegativeRate | None = None
     employee_additional_threshold: Decimal | None = None
     provenance: RuleProvenance | None = None
 
@@ -283,15 +297,15 @@ class ApprenticeRawRates(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    employee_rate: Decimal
-    employee_ivs_rate: Decimal
-    employer_rate: Decimal
-    employer_ivs_rate: Decimal
+    employee_rate: NonNegativeRate
+    employee_ivs_rate: NonNegativeRate
+    employer_rate: NonNegativeRate
+    employer_ivs_rate: NonNegativeRate
     small_firm_max_employees: int = Field(ge=0)
-    small_firm_employer_rate_months_0_11: Decimal
-    small_firm_employer_ivs_rate_months_0_11: Decimal
-    small_firm_employer_rate_months_12_23: Decimal
-    small_firm_employer_ivs_rate_months_12_23: Decimal
+    small_firm_employer_rate_months_0_11: NonNegativeRate
+    small_firm_employer_ivs_rate_months_0_11: NonNegativeRate
+    small_firm_employer_rate_months_12_23: NonNegativeRate
+    small_firm_employer_ivs_rate_months_12_23: NonNegativeRate
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
@@ -464,8 +478,17 @@ class YearRulesRaw(BaseModel):
 
     @model_validator(mode="after")
     def _check_contribution_model(self) -> Self:
-        has_standard = self.inps is not None and self.apprentice is not None
+        has_inps = self.inps is not None
+        has_apprentice = self.apprentice is not None
         has_domestic = self.domestic_contributions is not None
+        if has_inps != has_apprentice:
+            msg = (
+                "'inps' and 'apprentice' must both be present "
+                "(standard model) or both absent; "
+                "found one without the other"
+            )
+            raise ValueError(msg)
+        has_standard = has_inps
         if not has_standard and not has_domestic:
             msg = (
                 "tax file must contain either 'inps' + 'apprentice' "
@@ -515,7 +538,33 @@ class YearRules(BaseModel):
     @model_validator(mode="after")
     def _validate_sequences(self) -> Self:
         self._check_irpef_brackets()
+        self._check_contribution_model()
         return self
+
+    def _check_contribution_model(self) -> None:
+        has_inps = self.inps is not None
+        has_apprentice = self.apprentice is not None
+        has_domestic = self.domestic_contributions is not None
+        if has_inps != has_apprentice:
+            msg = (
+                "'inps' and 'apprentice' must both be present "
+                "(standard model) or both absent; "
+                "found one without the other"
+            )
+            raise ValueError(msg)
+        has_standard = has_inps
+        if not has_standard and not has_domestic:
+            msg = (
+                "YearRules must contain either 'inps' + 'apprentice' "
+                "(standard model) or 'domestic_contributions' (domestic model)"
+            )
+            raise ValueError(msg)
+        if has_standard and has_domestic:
+            msg = (
+                "YearRules must not mix standard model ('inps'+'apprentice') "
+                "with 'domestic_contributions': mutually exclusive"
+            )
+            raise ValueError(msg)
 
     def _check_irpef_brackets(self) -> None:
         brackets = self.irpef_brackets
