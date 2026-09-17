@@ -208,16 +208,29 @@ def _run_wr_supplements(
     wr_schema_present = (
         ccnl.work_rules is not None and ccnl.work_rules.time_supplements is not None
     )
+    zero_result = _SupplementsResult(
+        overtime=_ZERO,
+        night=_ZERO,
+        holiday=_ZERO,
+        trace=(),
+        overtime_supported=False,
+        night_supported=False,
+        holiday_supported=False,
+    )
     if ts_input is None:
-        return _SupplementsResult(
-            overtime=_ZERO,
-            night=_ZERO,
-            holiday=_ZERO,
-            trace=(),
-            overtime_supported=False,
-            night_supported=False,
-            holiday_supported=False,
-        )
+        return zero_result
+    # Treat a zero-hours supplement object the same as None: no hours were
+    # actually requested, so no warning is warranted even when the CCNL has no
+    # time-supplement schema.  This keeps the "requested but not modelled"
+    # warning consistent with the scope predicate (ot_hours > 0 etc.).
+    if (
+        ts_input.weekday_hours
+        + ts_input.supplementare_hours
+        + ts_input.night_hours
+        + ts_input.holiday_hours
+        + ts_input.night_holiday_hours
+    ) == _ZERO:
+        return zero_result
     if not wr_schema_present:
         wr_warnings.append("time_supplements requested but not modelled for this CCNL")
         return _SupplementsResult(
@@ -326,7 +339,11 @@ def _run_wr_absence(
     absence_input = scenario.absence_days
     present = ccnl.work_rules is not None and ccnl.work_rules.absence_rules is not None
     deduction = _ZERO
-    if absence_input is not None:
+    # A zero-day absence object is treated the same as None: no days were
+    # actually taken, so computing or warning is unnecessary.  This keeps the
+    # "requested but not modelled" warning consistent with the scope predicate
+    # (unpaid_days != 0).
+    if absence_input is not None and absence_input.unpaid_days != _ZERO:
         if present:
             work_rules_ab = ccnl.work_rules
             if (  # pragma: no cover

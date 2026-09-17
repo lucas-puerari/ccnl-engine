@@ -1634,6 +1634,24 @@ class TestL3Warning:
         finally:
             _mock_ccnl[0] = _DEFAULT_CCNL
 
+    def test_zero_hours_supplement_no_warning_when_no_schema(self) -> None:
+        """Zero-valued OvertimeHours is treated as not requested: no warning.
+
+        When all five hour fields are zero the engine must not emit
+        "time_supplements requested but not modelled", because the caller
+        effectively passed no hours.  Scope items must show 'excluded'.
+        """
+        scenario = dataclasses.replace(
+            _req(),
+            time_supplements=OvertimeHours(),  # all fields default to 0
+        )
+        result = compute(scenario).result
+        assert not any("time_supplements" in w for w in result.warnings), (
+            f"Unexpected time_supplements warning for zero hours: {result.warnings}"
+        )
+        ot_scope = next(s for s in result.calculation_scope if s.feature == "overtime")
+        assert ot_scope.status == "excluded"
+
 
 class TestL3Absence:
     """Orchestrator behaviour for L3 absence deduction."""
@@ -1764,6 +1782,26 @@ class TestL3Absence:
         assert not any("capped" in w for w in result.warnings), (
             f"Unexpected cap warning, got: {result.warnings}"
         )
+
+    def test_zero_absence_days_no_warning_when_no_schema(self) -> None:
+        """AbsenceDays(unpaid_days=0) is treated as not requested: no warning.
+
+        When unpaid_days is zero the engine must not emit
+        "absence_days requested but not modelled", because the caller
+        effectively requested no absence.  Scope item must show 'excluded'.
+        """
+        scenario = dataclasses.replace(
+            _req(),
+            absence_days=AbsenceDays(unpaid_days=_D("0")),
+        )
+        result = compute(scenario).result
+        assert not any("absence_days" in w for w in result.warnings), (
+            f"Unexpected absence_days warning for zero days: {result.warnings}"
+        )
+        absence_scope = next(
+            s for s in result.calculation_scope if s.feature == "absence"
+        )
+        assert absence_scope.status == "excluded"
 
 
 class TestL3Leave:
