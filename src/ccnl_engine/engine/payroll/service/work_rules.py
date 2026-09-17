@@ -199,6 +199,10 @@ def _run_wr_supplements(
         flags when the CCNL has no work-rules schema or no hours were
         supplied. A warning is appended to ``wr_warnings`` in the latter
         case.
+
+    Raises:
+        RuntimeError: If ``work_rules`` or ``time_supplements`` is ``None``
+            despite ``wr_schema_present=True`` (indicates a data bug).
     """
     ts_input = scenario.time_supplements
     wr_schema_present = (
@@ -225,9 +229,13 @@ def _run_wr_supplements(
             night_supported=False,
             holiday_supported=False,
         )
-    assert ccnl.work_rules is not None  # narrowing for mypy
-    assert ccnl.work_rules.time_supplements is not None
-    ts_schema = ccnl.work_rules.time_supplements
+    work_rules_ts = ccnl.work_rules
+    if (  # pragma: no cover
+        work_rules_ts is None or work_rules_ts.time_supplements is None
+    ):
+        msg = "time_supplements is None despite wr_schema_present=True"
+        raise RuntimeError(msg)
+    ts_schema = work_rules_ts.time_supplements
     if ts_schema.hourly_base_method == "gross_incl_allowances":
         wr_warnings.append(
             "hourly_base_method='gross_incl_allowances' is not yet"
@@ -310,17 +318,25 @@ def _run_wr_absence(
         ``effective_gross == gross_monthly`` when no absence is supplied or
         the CCNL has no absence rules. A warning is appended to
         ``wr_warnings`` in the latter case.
+
+    Raises:
+        RuntimeError: If ``work_rules`` or ``absence_rules`` is ``None``
+            despite ``present=True`` (indicates a data bug).
     """
     absence_input = scenario.absence_days
     present = ccnl.work_rules is not None and ccnl.work_rules.absence_rules is not None
     deduction = _ZERO
     if absence_input is not None:
         if present:
-            assert ccnl.work_rules is not None  # narrowing for mypy
-            assert ccnl.work_rules.absence_rules is not None
+            work_rules_ab = ccnl.work_rules
+            if (  # pragma: no cover
+                work_rules_ab is None or work_rules_ab.absence_rules is None
+            ):
+                msg = "absence_rules is None despite present=True"
+                raise RuntimeError(msg)
             deduction = compute_absence_deduction(
                 absence_input=absence_input,
-                absence_rules=ccnl.work_rules.absence_rules,
+                absence_rules=work_rules_ab.absence_rules,
                 gross_monthly=gross_monthly,
                 hourly_rate=hourly_rate,
             )
@@ -344,20 +360,28 @@ def _run_wr_leave(
         :class:`_LeaveResult` with zero day counters when no leave input is
         supplied or the CCNL has no leave rules. A warning is appended to
         ``wr_warnings`` in the latter case.
+
+    Raises:
+        RuntimeError: If ``work_rules`` or ``leave_rules`` is ``None``
+            despite ``present=True`` (indicates a data bug).
     """
     leave_input = scenario.leave_input
     present = ccnl.work_rules is not None and ccnl.work_rules.leave_rules is not None
     if leave_input is None:
         return _LeaveResult(accrued=_ZERO, taken=_ZERO, balance=_ZERO, present=present)
     if present:
-        assert ccnl.work_rules is not None  # narrowing for mypy
-        assert ccnl.work_rules.leave_rules is not None
+        work_rules_lv = ccnl.work_rules
+        if (  # pragma: no cover
+            work_rules_lv is None or work_rules_lv.leave_rules is None
+        ):
+            msg = "leave_rules is None despite present=True"
+            raise RuntimeError(msg)
         service_months = scenario.employee.seniority_months_as_of(
             scenario.employment.calculation_date
         )
         accrued, taken, balance = compute_leave(
             leave_input=leave_input,
-            leave_rules=ccnl.work_rules.leave_rules,
+            leave_rules=work_rules_lv.leave_rules,
             service_months=service_months,
         )
         return _LeaveResult(accrued=accrued, taken=taken, balance=balance, present=True)
@@ -378,6 +402,10 @@ def _run_wr_sickness(
         :class:`_SicknessResult` with zero amounts when no sick input is
         supplied or the CCNL has no sickness rules. A warning is appended to
         ``wr_warnings`` in the latter case.
+
+    Raises:
+        RuntimeError: If ``work_rules`` or ``sickness_rules`` is ``None``
+            despite ``present=True`` (indicates a data bug).
     """
     sick_input = scenario.sick_input
     present = ccnl.work_rules is not None and ccnl.work_rules.sickness_rules is not None
@@ -390,11 +418,15 @@ def _run_wr_sickness(
             present=present,
         )
     if present:
-        assert ccnl.work_rules is not None  # narrowing for mypy
-        assert ccnl.work_rules.sickness_rules is not None
+        work_rules_sk = ccnl.work_rules
+        if (  # pragma: no cover
+            work_rules_sk is None or work_rules_sk.sickness_rules is None
+        ):
+            msg = "sickness_rules is None despite present=True"
+            raise RuntimeError(msg)
         sick_days, carenza, inps_indemnity, company_integration = compute_sickness(
             sick_input=sick_input,
-            sickness_rules=ccnl.work_rules.sickness_rules,
+            sickness_rules=work_rules_sk.sickness_rules,
             sick_pay_rates=sick_pay_rates,
             gross_monthly=gross_monthly,
         )
