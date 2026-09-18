@@ -38,6 +38,7 @@ if TYPE_CHECKING:
     from decimal import Decimal
 
     from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
+    from ccnl_engine.engine.payroll.domain.bundle import PayrollBundle
     from ccnl_engine.engine.payroll.domain.calculation import (
         Calculation,
         MonthlyPayrollReport,
@@ -156,28 +157,46 @@ def _resolve_tax_year(employment: Employment) -> int:
     return employment.as_of.year
 
 
-def compute(scenario: PayrollScenario) -> Calculation:
+def compute(
+    scenario: PayrollScenario,
+    bundle: PayrollBundle | None = None,
+) -> Calculation:
     """Compute gross-to-net salary and employer cost for a payroll scenario.
 
     Loads the CCNL, tax/INPS rules, and (when jurisdiction is set) surtax
     rules from the bundled knowledge base, then runs the full payroll
     computation chain.
 
+    When *bundle* is provided the three ruleset objects it carries are used
+    directly, skipping rule loading.  This guarantees reproducibility across
+    multiple calls (e.g. monthly payroll for a full year) and avoids repeated
+    I/O even when the individual loaders are not yet cached.
+
+    Args:
+        scenario: The payroll scenario describing worker and employment.
+        bundle: Optional pre-loaded knowledge bundle.  When ``None``, rulesets
+            are loaded (and cached) on demand.
+
     Returns:
         :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
         with all gross, net and cost figures plus a serialisable input snapshot.
     """
-    ccnl = load_ccnl(scenario.employment.ccnl)
     as_of = scenario.employment.as_of
     year = _resolve_tax_year(scenario.employment)
-    rules = load_year_rules(
-        year, ccnl.meta.tax_sector, scenario.employment.employer.num_employees
-    )
-    j = scenario.employee.jurisdiction
-    needs_surtax = j is not None and (
-        j.regione is not None or j.comune_belfiore is not None
-    )
-    surtax = load_surtax_rules(year) if needs_surtax else None
+    if bundle is not None:
+        ccnl = bundle.ccnl
+        rules = bundle.rules
+        surtax = bundle.surtax
+    else:
+        ccnl = load_ccnl(scenario.employment.ccnl)
+        rules = load_year_rules(
+            year, ccnl.meta.tax_sector, scenario.employment.employer.num_employees
+        )
+        j = scenario.employee.jurisdiction
+        needs_surtax = j is not None and (
+            j.regione is not None or j.comune_belfiore is not None
+        )
+        surtax = load_surtax_rules(year) if needs_surtax else None
 
     gross = compute_gross(scenario, ccnl)
     fiscal = compute_fiscal(scenario, ccnl, rules, surtax, gross, year)
@@ -333,7 +352,10 @@ def _annual_to_scenario(
     )
 
 
-def estimate_annual(scenario: AnnualPayrollScenario) -> Calculation:
+def estimate_annual(
+    scenario: AnnualPayrollScenario,
+    bundle: PayrollBundle | None = None,
+) -> Calculation:
     """Estimate annual gross-to-net salary and employer cost.
 
     Computes annual payroll figures for the given scenario without any
@@ -343,17 +365,20 @@ def estimate_annual(scenario: AnnualPayrollScenario) -> Calculation:
     Args:
         scenario: The annual payroll scenario describing the worker and the
             employment relationship.
+        bundle: Optional pre-loaded knowledge bundle.  When ``None``, rulesets
+            are loaded on demand.
 
     Returns:
         A :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
         with all gross, net and cost figures.
     """
-    return compute(_annual_to_scenario(scenario))
+    return compute(_annual_to_scenario(scenario), bundle)
 
 
 def compute_month(
     scenario: AnnualPayrollScenario,
     period: PayPeriod,
+    bundle: PayrollBundle | None = None,
 ) -> MonthlyPayrollReport:
     """Compute payroll for a specific month including period-specific events.
 
@@ -365,6 +390,8 @@ def compute_month(
     Args:
         scenario: The annual payroll scenario (structural fields only).
         period: The period-specific events for the month.
+        bundle: Optional pre-loaded knowledge bundle.  When ``None``, rulesets
+            are loaded on demand.
 
     Returns:
         A :class:`~ccnl_engine.engine.payroll.domain.calculation\
@@ -372,4 +399,4 @@ def compute_month(
         :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`)
         with all payroll figures including period events.
     """
-    return compute(_annual_to_scenario(scenario, period))
+    return compute(_annual_to_scenario(scenario, period), bundle)
