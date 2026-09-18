@@ -20,7 +20,7 @@ from datetime import date as _date
 from decimal import Decimal
 from enum import Enum, StrEnum
 from types import UnionType
-from typing import TYPE_CHECKING, Any, Literal, cast, get_origin
+from typing import TYPE_CHECKING, Literal, cast, get_origin
 
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
 from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
@@ -869,31 +869,6 @@ class Calculation:
             "ruleset_version",
             FrozenDict(dict(self.ruleset_version)),
         )
-
-    def __getattr__(self, name: str) -> Any:  # ruff: ignore[any-type] - delegation
-        """Forward unknown attribute reads to ``result`` (the PayrollResult).
-
-        Accessing ``Calculation.net_annual`` therefore reads
-        ``Calculation.result.net_annual``, keeping call sites that treat the
-        output as a :class:`PayrollResult` working unchanged.
-
-        Uses ``object.__getattribute__`` to read ``result`` so that
-        ``__getattr__`` is not called recursively during ``copy.deepcopy``
-        (which constructs the object before populating its attributes).
-
-        Returns:
-            The attribute value read from :attr:`result`.
-
-        Raises:
-            AttributeError: When ``result`` is not yet initialised (e.g.
-                during deep-copy construction) or when *name* is absent
-                from :class:`PayrollResult`.
-        """
-        try:
-            result = object.__getattribute__(self, "result")
-        except AttributeError:
-            raise AttributeError(name) from None
-        return getattr(result, name)
 
     def reproduce(self, *, allow_version_drift: bool = False) -> Calculation:
         """Replay this calculation using the scenario stored in the snapshot.

@@ -56,7 +56,7 @@ base = compute(
             as_of=date(2026, 1, 1),
         ),
     )
-)
+).result
 with_2l = compute(
     PayrollScenario(
         employee=Employee(level_code="4"),
@@ -67,7 +67,7 @@ with_2l = compute(
             as_of=date(2026, 1, 1),
         ),
     )
-)
+).result
 
 print(f"Second-level monthly:     {with_2l.second_level_monthly} EUR")
 print(f"Gross monthly — base:     {base.gross_monthly} EUR")

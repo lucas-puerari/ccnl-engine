@@ -26,7 +26,7 @@ full_time = compute(
             as_of=date(2026, 1, 1),
         ),
     )
-)
+).result
 part_time = compute(
     PayrollScenario(
         employee=Employee(
@@ -39,7 +39,7 @@ part_time = compute(
             as_of=date(2026, 1, 1),
         ),
     )
-)
+).result
 
 print(f"Gross monthly — full-time:  {full_time.gross_monthly} EUR")
 print(f"Gross monthly — part-time:  {part_time.gross_monthly} EUR")

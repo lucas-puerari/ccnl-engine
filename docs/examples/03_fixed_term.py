@@ -27,7 +27,7 @@ permanent = compute(
             as_of=date(2026, 1, 1),
         ),
     )
-)
+).result
 fixed_term = compute(
     PayrollScenario(
         employee=Employee(level_code="4"),
@@ -38,7 +38,7 @@ fixed_term = compute(
             as_of=date(2026, 1, 1),
         ),
     )
-)
+).result
 
 print(f"Employer INPS — permanent:   {permanent.inps_employer_annual} EUR")
 print(f"Employer INPS — fixed-term:  {fixed_term.inps_employer_annual} EUR")

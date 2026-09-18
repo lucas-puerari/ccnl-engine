@@ -324,7 +324,7 @@ class TestReferenceCases:
             art15_deductions=_build_art15_deductions(inputs),
         )
 
-        result = compute(scenario)
+        result = compute(scenario).result
 
         # Compare each field in expected against the live PayrollResult
         for field, raw_value in expected.items():

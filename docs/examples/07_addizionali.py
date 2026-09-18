@@ -30,7 +30,7 @@ baseline = compute(
             as_of=date(2026, 1, 1),
         ),
     )
-)
+).result
 
 # Worker resident in Romano di Lombardia (codice catastale H509), Lombardia.
 # Addizionale comunale: 0.80% with soglia 12 000 EUR.
@@ -50,7 +50,7 @@ p = compute(
             as_of=date(2026, 1, 1),
         ),
     )
-)
+).result
 
 print(f"Net annual (no addizionali):    {baseline.net_annual} EUR")
 print(f"Net annual (with addizionali):  {p.net_annual} EUR")

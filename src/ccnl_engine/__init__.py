@@ -45,7 +45,20 @@ Usage::
 from __future__ import annotations
 
 from ccnl_engine.engine.contract.domain.ccnl import SupplementaryAllowance
+from ccnl_engine.engine.contract.service.discovery import (
+    CcnlId,
+    CcnlInfo,
+    get_ccnl,
+    list_ccnls,
+    search_ccnls,
+)
+from ccnl_engine.engine.errors import (
+    CcnlEngineError,
+    UnknownCcnlError,
+    UnknownLevelError,
+)
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
+from ccnl_engine.engine.payroll.domain.bilateral_funds import FlatMonthlyFund, RateFund
 from ccnl_engine.engine.payroll.domain.calculation import (
     Calculation,
     CalculationTrace,
@@ -53,6 +66,15 @@ from ccnl_engine.engine.payroll.domain.calculation import (
     MonthlyPayrollReport,
     TraceCategory,
     TraceStep,
+)
+from ccnl_engine.engine.payroll.domain.calculation import (
+    Calculation as PayrollReport,
+)
+from ccnl_engine.engine.payroll.domain.calculation import (
+    CalculationTrace as PayrollTrace,
+)
+from ccnl_engine.engine.payroll.domain.calculation import (
+    InputSnapshot as PayrollSnapshot,
 )
 from ccnl_engine.engine.payroll.domain.employee import (
     DestinationRalOverride,
@@ -63,13 +85,23 @@ from ccnl_engine.engine.payroll.domain.employee import (
 )
 from ccnl_engine.engine.payroll.domain.employment import (
     Apprentice,
-    Contract,
     FixedTerm,
     Permanent,
 )
 from ccnl_engine.engine.payroll.domain.family import FamilyComposition
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
-from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult, ScopeItem
+from ccnl_engine.engine.payroll.domain.payroll_result import (
+    PayrollResult,
+    ScopeItem,
+)
+from ccnl_engine.engine.payroll.domain.payroll_result import (
+    PayrollResult as PayrollFigures,
+)
+from ccnl_engine.engine.payroll.domain.quality import (
+    ConfidenceLevel,
+    CoverageStatus,
+    PayrollWarning,
+)
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
     AnnualPayrollScenario,
@@ -90,8 +122,23 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     WeeklyOvertimeHours,
     WelfareInput,
 )
+from ccnl_engine.engine.payroll.domain.supplements import (
+    BonusInput as Bonus,
+)
+from ccnl_engine.engine.payroll.domain.supplements import (
+    FringeBenefitInput as FringeBenefit,
+)
+from ccnl_engine.engine.payroll.domain.supplements import (
+    LeaveInput as Leave,
+)
+from ccnl_engine.engine.payroll.domain.supplements import (
+    SickInput as SickLeave,
+)
+from ccnl_engine.engine.payroll.domain.supplements import (
+    WelfareInput as Welfare,
+)
 from ccnl_engine.engine.payroll.service.orchestrator import (
-    compute,  # noqa: F401 — kept for compatibility; not in __all__
+    compute,
     compute_month,
     estimate_annual,
 )
@@ -108,10 +155,15 @@ __all__ = [
     "AnnualPayrollScenario",
     "Apprentice",
     "Art15Deductions",
+    "Bonus",
     "BonusInput",
     "Calculation",
     "CalculationTrace",
-    "Contract",
+    "CcnlEngineError",
+    "CcnlId",
+    "CcnlInfo",
+    "ConfidenceLevel",
+    "CoverageStatus",
     "DestinationRalOverride",
     "Employee",
     "Employer",
@@ -119,29 +171,46 @@ __all__ = [
     "FamilyComposition",
     "FiscalSimplification",
     "FixedTerm",
+    "FlatMonthlyFund",
+    "FringeBenefit",
     "FringeBenefitInput",
     "InputSnapshot",
     "Jurisdiction",
+    "Leave",
     "LeaveInput",
     "MonthlyPayrollReport",
     "OvertimeHours",
     "PayPeriod",
+    "PayrollFigures",
+    "PayrollReport",
     "PayrollResult",
     "PayrollScenario",
+    "PayrollSnapshot",
+    "PayrollTrace",
+    "PayrollWarning",
     "Permanent",
     "RalOverride",
+    "RateFund",
     "ScopeItem",
     "SeniorityByCount",
     "SeniorityByDate",
     "SeniorityByMonths",
     "SickInput",
+    "SickLeave",
     "SupplementaryAllowance",
     "TraceCategory",
     "TraceStep",
+    "UnknownCcnlError",
+    "UnknownLevelError",
     "WeeklyOvertimeHours",
+    "Welfare",
     "WelfareInput",
+    "compute",
     "compute_month",
     "engine_version",
     "estimate_annual",
+    "get_ccnl",
+    "list_ccnls",
     "render_breakdown",
+    "search_ccnls",
 ]
