@@ -12,6 +12,11 @@ from ccnl_engine.engine.payroll.domain.employee import (
     SeniorityByMonths,
 )
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
+from ccnl_engine.engine.payroll.domain.scenario import (
+    AnnualPayrollScenario,
+    PayPeriod,
+    PayrollScenario,
+)
 from ccnl_engine.engine.payroll.service.assembly import (
     _collect_provenance,
     build_calculation,
@@ -35,8 +40,9 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
     from ccnl_engine.engine.payroll.domain.calculation import (
         Calculation,
+        MonthlyPayrollReport,
     )
-    from ccnl_engine.engine.payroll.domain.scenario import Employment, PayrollScenario
+    from ccnl_engine.engine.payroll.domain.scenario import Employment
 
 
 _IVS_CEILING_THRESHOLD = date(1996, 1, 1)
@@ -289,3 +295,81 @@ def compute(scenario: PayrollScenario) -> Calculation:
         sterilizzazione_clawback_annual=fiscal.sterilizzazione_clawback,
     )
     return build_calculation(scenario, ccnl, rules, surtax, gross, work, result)
+
+
+def _annual_to_scenario(
+    scenario: AnnualPayrollScenario,
+    period: PayPeriod | None = None,
+) -> PayrollScenario:
+    """Build an internal PayrollScenario from an AnnualPayrollScenario.
+
+    Merges the structural fields from *scenario* with the period-specific
+    events from *period* (when supplied).
+
+    Returns:
+        A :class:`PayrollScenario` ready for :func:`compute`.
+    """
+    if period is not None:
+        return PayrollScenario(
+            employee=scenario.employee,
+            employment=scenario.employment,
+            family=scenario.family,
+            art15_deductions=scenario.art15_deductions,
+            bilateral_funds=scenario.bilateral_funds,
+            time_supplements=period.time_supplements,
+            absence_days=period.absence_days,
+            leave_input=period.leave_input,
+            sick_input=period.sick_input,
+            fringe_benefit_input=period.fringe_benefit_input,
+            welfare_input=period.welfare_input,
+            bonus_input=period.bonus_input,
+        )
+    return PayrollScenario(
+        employee=scenario.employee,
+        employment=scenario.employment,
+        family=scenario.family,
+        art15_deductions=scenario.art15_deductions,
+        bilateral_funds=scenario.bilateral_funds,
+    )
+
+
+def estimate_annual(scenario: AnnualPayrollScenario) -> Calculation:
+    """Estimate annual gross-to-net salary and employer cost.
+
+    Computes annual payroll figures for the given scenario without any
+    period-specific events (overtime, absences, sick leave, etc.).  All
+    output figures are annual estimates based on the structural inputs only.
+
+    Args:
+        scenario: The annual payroll scenario describing the worker and the
+            employment relationship.
+
+    Returns:
+        A :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
+        with all gross, net and cost figures.
+    """
+    return compute(_annual_to_scenario(scenario))
+
+
+def compute_month(
+    scenario: AnnualPayrollScenario,
+    period: PayPeriod,
+) -> MonthlyPayrollReport:
+    """Compute payroll for a specific month including period-specific events.
+
+    Runs the full payroll computation chain with the variable events from
+    *period* (overtime hours, absences, sick leave, fringe benefits, bonuses)
+    merged into the structural scenario.  The resulting ``net_annual`` and
+    ``employer_cost_annual`` figures reflect the actual events of the month.
+
+    Args:
+        scenario: The annual payroll scenario (structural fields only).
+        period: The period-specific events for the month.
+
+    Returns:
+        A :class:`~ccnl_engine.engine.payroll.domain.calculation\
+.MonthlyPayrollReport` (currently an alias for
+        :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`)
+        with all payroll figures including period events.
+    """
+    return compute(_annual_to_scenario(scenario, period))

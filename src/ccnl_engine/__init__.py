@@ -2,8 +2,13 @@
 
 Public API
 ----------
-The single entry point is :func:`compute`. All types needed to call it
-and inspect its result are re-exported from this module.
+Two entry points are available:
+
+- :func:`estimate_annual` — annual gross-to-net estimate (no period events).
+- :func:`compute_month` — monthly payroll including period-specific events.
+
+All types needed to call them and inspect their results are re-exported from
+this module.
 
 Tooling types (CCNL inspection, diff, loaders) are not part of the
 stable API. Use the dedicated sub-namespaces instead:
@@ -18,18 +23,18 @@ Usage::
     from datetime import date
 
     from ccnl_engine import (
-        compute,
-        PayrollScenario, Employee, Employment, Employer,
+        estimate_annual,
+        AnnualPayrollScenario, Employee, Employment, Employer,
         Permanent,
     )
 
-    result = compute(PayrollScenario(
+    result = estimate_annual(AnnualPayrollScenario(
         employee=Employee(level_code="C2"),
         employment=Employment(
             ccnl="metalmeccanico-federmeccanica.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            calculation_date=date(2026, 1, 1),
+            as_of=date(2026, 1, 1),
         ),
     ))
     print(result.result.net_annual)
@@ -45,6 +50,7 @@ from ccnl_engine.engine.payroll.domain.calculation import (
     Calculation,
     CalculationTrace,
     InputSnapshot,
+    MonthlyPayrollReport,
     TraceCategory,
     TraceStep,
 )
@@ -66,10 +72,12 @@ from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult, ScopeItem
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
+    AnnualPayrollScenario,
     Employee,
     Employer,
     Employment,
     Jurisdiction,
+    PayPeriod,
     PayrollScenario,
 )
 from ccnl_engine.engine.payroll.domain.supplements import (
@@ -82,7 +90,11 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     WeeklyOvertimeHours,
     WelfareInput,
 )
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.orchestrator import (
+    compute,  # noqa: F401 — kept for compatibility; not in __all__
+    compute_month,
+    estimate_annual,
+)
 from ccnl_engine.engine.payroll.service.render import (
     AnnualBreakdown,
     render_breakdown,
@@ -93,6 +105,7 @@ __all__ = [
     "AbsenceDays",
     "Agreement",
     "AnnualBreakdown",
+    "AnnualPayrollScenario",
     "Apprentice",
     "Art15Deductions",
     "BonusInput",
@@ -110,7 +123,9 @@ __all__ = [
     "InputSnapshot",
     "Jurisdiction",
     "LeaveInput",
+    "MonthlyPayrollReport",
     "OvertimeHours",
+    "PayPeriod",
     "PayrollResult",
     "PayrollScenario",
     "Permanent",
@@ -125,7 +140,8 @@ __all__ = [
     "TraceStep",
     "WeeklyOvertimeHours",
     "WelfareInput",
-    "compute",
+    "compute_month",
     "engine_version",
+    "estimate_annual",
     "render_breakdown",
 ]

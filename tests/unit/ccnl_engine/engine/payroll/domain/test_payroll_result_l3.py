@@ -9,12 +9,12 @@ from typing import cast
 import pytest
 
 from ccnl_engine import (
+    AnnualPayrollScenario,
     Employee,
     Employer,
     Employment,
-    PayrollScenario,
     Permanent,
-    compute,
+    estimate_annual,
 )
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     PayrollResult,
@@ -30,8 +30,8 @@ def payroll() -> PayrollResult:
     Returns:
         A PayrollResult for CCNL Metalmeccanico Federmeccanica level C2.
     """
-    return compute(
-        PayrollScenario(
+    return estimate_annual(
+        AnnualPayrollScenario(
             employee=Employee(level_code="C2"),
             employment=Employment(
                 ccnl="metalmeccanico-federmeccanica.json",
