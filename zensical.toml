@@ -69,6 +69,7 @@ nav = [
     { "Distribuzione Moderna Organizzata — Federdistribuzione" = "contracts/dmo-federdistribuzione.md" },
     { "CCNL Edilizia — Industria (ANCE)" = "contracts/edilizia-ance.md" },
     { "CCNL Edilizia e Affini Artigianato" = "contracts/edilizia-artigianato-cna.md" },
+    { "CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)" = "contracts/edilizia-cooperative-ancpl.md" },
     { "CCNL Edilizia PMI CONFAPI ANIEM" = "contracts/edilizia-pmi-confapi-aniem.md" },
     { "CCNL per i lavoratori delle imprese produttrici, distribu…" = "contracts/elettrico-elettricita-futura.md" },
     { "CCNL Energia e Petrolio (Confindustria Energia)" = "contracts/energia-petrolio-confindustria.md" },
