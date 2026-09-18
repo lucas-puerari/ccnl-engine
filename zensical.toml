@@ -32,6 +32,7 @@ nav = [
   { "Examples"   = "examples.md" },
   { "Contracts"  = [
     { "Index" = "contracts/index.md" },
+    { "Capability matrix" = "contracts/capability-matrix.md" },
     { "CCNL Acconciatura ed Estetica — Confartigianato/CNA" = "contracts/acconciatura-estetica-confartigianato.md" },
     { "CCNL Agenti Immobiliari Professionali FIAIP (H0B1)" = "contracts/agenti-immobiliari-fiaip.md" },
     { "CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e M…" = "contracts/agenzie-marittime-i481.md" },
