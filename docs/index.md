@@ -25,7 +25,7 @@ collective labor agreements (CCNL) and statutory contribution rates.
 | [Get started](getting-started/index.md) | Install, quickstart, and first payroll in 10 lines |
 | [Domain](domain/index.md) | What CCNLs are, Italian labor law, employment types |
 | [Rules](rules/index.md) | The versioned knowledge base: CCNL JSON schema, INPS, IRPEF, surtax |
-| [Engine](engine/index.md) | How to use `compute()` — pay components, fiscal, domestic work |
+| [Engine](engine/index.md) | How to use `estimate_annual()` / `compute_month()` — pay components, fiscal, domestic work |
 | [Trust](trust/index.md) | Provenance, confidence, scope, versioning, quality gates |
 | [Contracts](contracts/index.md) | All 125 supported contracts — salary tables, sources, coverage |
 | [API reference](api/index.md) | Full reference for every public type and function |
@@ -34,7 +34,7 @@ collective labor agreements (CCNL) and statutory contribution rates.
 
 ## Why trust a number from this engine?
 
-Every `compute()` result carries three verifiability layers:
+Every result carries three verifiability layers:
 
 1. **Provenance** — each rule links to its primary source document (CCNL article,
    INPS circular, tax schedule) with a URL, section, and verification status.
@@ -78,7 +78,7 @@ full walkthrough of all three layers.
 
 L3 outputs are **informational**: they are reported alongside the payroll but
 do not mutate `gross_annual` or `net_annual`. Supply any combination of the
-inputs below to `PayrollScenario`; the engine reports each one as `verified`
+inputs below to `PayPeriod`; the engine reports each one as `verified`
 or `not_computed` (when the CCNL does not model it) in `calculation_scope`.
 
 - Overtime pay (lavoro straordinario diurno, notturno, festivo) — `OvertimeHours`

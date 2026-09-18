@@ -6,7 +6,7 @@ verifiable, reproducible, and transparent about their own limits.
 
 ## Three verifiability layers
 
-Every `compute()` result carries three independent layers:
+Every result carries three independent layers:
 
 ```
 PayrollResult

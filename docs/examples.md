@@ -18,7 +18,7 @@ verifiability layers: provenance, versioning, and calculation scope.
 
 ### Quickstart
 
-Minimal call: load a CCNL, build an `Employee`, call `compute()`.
+Minimal call: load a CCNL, build an `Employee`, call `estimate_annual()`.
 
 ```python
 --8<-- "docs/examples/01_quickstart.py"
@@ -26,7 +26,7 @@ Minimal call: load a CCNL, build an `Employee`, call `compute()`.
 
 ### Reading the PayrollResult
 
-`compute()` returns a `Calculation`: a frozen dataclass that bundles the
+`estimate_annual()` returns a `Calculation`: a frozen dataclass that bundles the
 `PayrollResult` (`calculation.result`) with the engine version, the CCNL / tax / INPS /
 surtax ruleset revisions used (`calculation.ruleset_version`) and a snapshot of
 the inputs (`calculation.input_snapshot`). Attribute reads are forwarded onto
@@ -58,7 +58,7 @@ Percentage track: the apprentice's pay is a % of the destination level, increasi
 
 ### Part-time
 
-`part_time_pct` scales base pay, seniority, and allowances. `ad_personam_monthly` is NOT scaled.
+`part_time_ratio` scales base pay, seniority, and allowances. `ad_personam_monthly` is NOT scaled.
 
 ```python
 --8<-- "docs/examples/04_part_time.py"

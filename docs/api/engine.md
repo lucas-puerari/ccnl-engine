@@ -5,18 +5,20 @@ Core computation functions and types.
 See [Guide: Employment types](../domain/employment-types.md) and
 [Guide: Pay components](../engine/pay-components.md) for worked examples.
 
-## compute
+## Entry points
 
 ::: ccnl_engine.engine.payroll.service.orchestrator
     options:
       members:
+        - estimate_annual
+        - compute_month
         - compute
 
 ## Calculation
 
-`compute()` returns a `Calculation` that bundles the engine version, the
-ruleset revisions used, a snapshot of the inputs, and the resulting `PayrollResult`
-(`.result`).
+Both `estimate_annual()` and `compute_month()` return a `Calculation` that
+bundles the engine version, the ruleset revisions used, a snapshot of the
+inputs, and the resulting `PayrollResult` (`.result`).
 
 ::: ccnl_engine.engine.payroll.domain.calculation
     options:
@@ -29,6 +31,8 @@ ruleset revisions used, a snapshot of the inputs, and the resulting `PayrollResu
 ::: ccnl_engine.engine.payroll.domain.scenario
     options:
       members:
+        - AnnualPayrollScenario
+        - PayPeriod
         - PayrollScenario
         - Employee
         - Employment
