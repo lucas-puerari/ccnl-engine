@@ -67,13 +67,13 @@ note (max -20%). work_rules status defaults to not_implemented for most contract
 | 24 | B122 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ceramica | ~23k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 25 | B018 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | chimica | ~56k | 2026 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 26 | S005 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | Pubblica Amministrazione — Comparto Funzioni Centrali | ~250k | 2025 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
-| 27 | S105 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | Pubblica Amministrazione | ~400k | 2026 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
-| 28 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN](istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~1,2M | 2025 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
-| 29 | S205 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | Pubblica Amministrazione | ~580k | 2025 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
+| 27 | S105 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | Pubblica Amministrazione | ~400k | 2026 | 100% | ✅ | ✅ | ✅ | 👁 | 🤖 |
+| 28 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN](istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~1,2M | 2025 | 100% | ✅ | ✅ | ✅ | 👁 | 🤖 |
+| 29 | S205 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | Pubblica Amministrazione | ~580k | 2025 | 100% | ✅ | ✅ | ✅ | 👁 | 🤖 |
 | 30 | G029 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | informatica-servizi-innovativi | ~20k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 31 | A141 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | Agricoltura | ~2k | 2023 | 65% | ✅ | 🚫 | ✅ | 🧪 | 🤖 |
 | 32 | A131 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | Agricoltura | ~4k | 2025 | 65% | ✅ | 🚫 | ✅ | 🧪 | 🤖 |
-| 33 | T151 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | servizi socio-assistenziali | ~380k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
+| 33 | T151 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | servizi socio-assistenziali | ~380k | — | 100% | ✅ | ✅ | ✅ | 👁 | 🤖 |
 | 34 | A016 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | cooperative e consorzi agricoli — impiegati e operai agricoli | ~60k | 2024 | 82% | ✅ | ⚠️ | ✅ | 🧪 | 🤖 |
 | 35 | T611 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | Case popolari | ~6k | 2024 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 36 | E018 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | Alimentare | ~35k | 2025 | 65% | ✅ | 🚫 | ✅ | 🧪 | 🤖 |
@@ -82,9 +82,9 @@ note (max -20%). work_rules status defaults to not_implemented for most contract
 | 39 | H121 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | Farmacie private | ~60k | 2021 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 40 | H016 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | distribuzione-cooperativa | ~63k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 41 | F018 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | Edilizia | ~70000 | 2025 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
-| 42 | F015 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | edilizia | ~350k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
+| 42 | F015 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | edilizia | ~350k | — | 100% | ✅ | ✅ | ✅ | 👁 | 🤖 |
 | 43 | F016 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | Edilizia | ~90000 | 2025 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
-| 44 | F012 | [CCNL Edilizia — Industria (ANCE)](edilizia-ance.md) | edilizia | ~550k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
+| 44 | F012 | [CCNL Edilizia — Industria (ANCE)](edilizia-ance.md) | edilizia | ~550k | — | 100% | ✅ | ✅ | ✅ | 👁 | 🤖 |
 | 45 | B254 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | energia | ~38k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 46 | G211 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | cinema | ~6k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 47 | H201 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | Fiori recisi, verde e piante ornamentali (import-export) | ~1.3k | 2023 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
@@ -107,19 +107,19 @@ note (max -20%). work_rules status defaults to not_implemented for most contract
 | 64 | F021 | [CCNL Laterizi e Manufatti Cementizi - Industria](laterizi-industria-f021.md) | industria | ~17k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 65 | D0L1 | [CCNL Lavanderie Industriali (Assosistema Confindustria)](lavanderie-industriali-assosistema.md) | lavanderie-industriali | ~17k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 66 | V925 | [CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSIC/CONFSAL)](ooss-unsic-confsal.md) | Organizzazioni sindacali nazionali e territoriali | ~7k | 2023 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
-| 67 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | lavoro domestico | ~900k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
-| 68 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | lavoro domestico | ~900k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
-| 69 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | logistica | ~430k | 2024 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
+| 67 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | lavoro domestico | ~900k | — | 100% | ✅ | ✅ | ✅ | 👁 | 🤖 |
+| 68 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | lavoro domestico | ~900k | — | 100% | ✅ | ✅ | ✅ | 👁 | 🤖 |
+| 69 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | logistica | ~430k | 2024 | 100% | ✅ | ✅ | ✅ | 👁 | 🤖 |
 | 70 | I391 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | navigazione marittima — personale di terra | ~15k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 71 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | 85% | ✅ | ✅ | 🔲 | 🧪 | 🤖 |
 | 72 | C016 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | metalmeccanico cooperativo | ~28k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
-| 73 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
+| 73 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | — | 100% | ✅ | ✅ | ✅ | 👁 | 🤖 |
 | 74 | C01A | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | metalmeccanico | ~100k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 75 | C018 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | metalmeccanico | ~350k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
-| 76 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
+| 76 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | — | 100% | ✅ | ✅ | ✅ | 👁 | 🤖 |
 | 77 | IC36 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | Trasporti - Noleggio autobus con conducente | ~5422 | 2025 | 92% | ✅ | ✅ | ⚠️ | 🧪 | 🤖 |
 | 78 | D271 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | industria occhialeria e ottica | ~20k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
-| 79 | A011 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | agricoltura | ~600k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
+| 79 | A011 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | agricoltura | ~600k | — | 100% | ✅ | ✅ | ✅ | 👁 | 🤖 |
 | 80 | A221 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | Agricoltura | ~2k | 2024 | 65% | ✅ | 🚫 | ✅ | 🧪 | 🤖 |
 | 81 | H341 | [CCNL Ortofrutticoli ed Agrumari (Import-Export)](ortofrutticoli-agrumari.md) | ortofrutticoli ed agrumari import-export | ~60000 | 2024 | 82% | ✅ | ✅ | ⚠️ | 🧪 | 🤖 |
 | 82 | E023 | [CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)](panificazione-assipan.md) | alimentare | ~20k | 2025 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
@@ -131,12 +131,12 @@ note (max -20%). work_rules status defaults to not_implemented for most contract
 | 88 | T271 | [CCNL Scuole Materne — FISM](scuole-materne-fism.md) | istruzione privata cattolica per l'infanzia | ~30k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 89 | T231 | [CCNL Scuole Private Laiche (ANINSEI-Assoscuola)](scuole-private-laiche-aninsei.md) | istruzione privata laica | ~25k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 90 | K721 | [CCNL Servizi Postali in Appalto (FISE-ARE)](servizi-postali-appalto-fise.md) | Servizi postali in appalto e recapito | ~1k | 2023 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
-| 91 | K511 | [CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)](multiservizi-anip.md) | multiservizi | ~580k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
+| 91 | K511 | [CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)](multiservizi-anip.md) | multiservizi | ~580k | — | 100% | ✅ | ✅ | ✅ | 👁 | 🤖 |
 | 92 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | sistemazioni idraulico-forestali e idraulico-agrarie — impiegati | ~430 (impiegati subset) | 2025 | 82% | ✅ | ⚠️ | ✅ | 🧪 | 🤖 |
 | 93 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | sistemazioni idraulico-forestali e idraulico-agrarie — operai a tempo indeterminato | ~430 (operai OTI subset) | 2025 | 82% | ✅ | ⚠️ | ✅ | 🧪 | 🤖 |
 | 94 | K411 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | telecomunicazioni | ~110k | 2025 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 95 | H012 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | Terziario distribuzione e servizi | ~230k | 2024 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
-| 96 | H011 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | terziario | ~800k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
+| 96 | H011 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | terziario | ~800k | — | 100% | ✅ | ✅ | ✅ | 👁 | 🤖 |
 | 97 | D018 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | tessile abbigliamento moda PMI | ~48k | 2025 | 85% | ✅ | ✅ | 🔲 | 🧪 | 🔍 |
 | 98 | I810 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | trasporto aereo | ~40k | 2025 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
 | 99 | I911 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | Trasporto a fune | ~15k | 2025 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
@@ -165,7 +165,7 @@ note (max -20%). work_rules status defaults to not_implemented for most contract
 | 122 | K461 | [CCNL per i lavoratori dipendenti delle aziende termali](aziende-termali-federterme.md) | turismo termale | — | — | 85% | ✅ | ✅ | 🔲 | 🧪 | 🤖 |
 | 123 | J121 | [CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)](assicurazioni-ania.md) | assicurazioni | ~45k | 2026 | 70% | ⚠️ | ✅ | ✅ | 🧪 | 🤖 |
 | 124 | N/A | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | Pubblica Sicurezza — Forze di Polizia ad ordinamento civile | ~130k | 2025 | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
-| 125 | H008 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | terziario | ~460k | — | 100% | ✅ | ✅ | ✅ | 🧪 | 🤖 |
+| 125 | H008 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | terziario | ~460k | — | 100% | ✅ | ✅ | ✅ | 👁 | 🤖 |
 
 [^1]: Estimated represented population. Individual contracts may cover overlapping worker populations; figures should not be summed to derive total coverage.
 [^2]: DPR 53/2025 -- Compensation for Forze di Polizia ad ordinamento civile is set by Presidential Decree, not a CNEL-registered agreement. D.P.R. 24 marzo 2025, n. 53 (GU n. 91, 18 April 2025, SO).

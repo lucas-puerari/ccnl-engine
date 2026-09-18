@@ -4085,7 +4085,7 @@
     "effective_until": null,
     "source": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "3ddbd98d5045ebf69d5999d23543aad690927d2f27a148be449ec18a0c926b83",
+    "source_hash": "5f6f8164b5a370231a99a348d37f35ed4d80f8855cc9b61fd4b5e33c07d3dbbd",
     "published_at": "2026-09-07"
   },
   "work_rules": {
@@ -4304,5 +4304,12 @@
         }
       }
     }
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "reviewed",
+    "verified_cases": 0,
+    "last_reviewed": "2026-09-18",
+    "human_reviewed_by": "lucas-puerari"
   }
 }

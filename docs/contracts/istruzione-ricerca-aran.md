@@ -10,7 +10,7 @@
 | **Ruleset version** | `2026.2` |
 | **Extraction** | 🤖 AI-assisted |
 | **Verification** | 🔴 Unverified |
-| **Readiness** | 🧪 Exploratory |
+| **Readiness** | 👁 Reviewed |
 
 [← Contracts index](index.md)
 
@@ -36,16 +36,16 @@
 
 | | |
 |---|---|
-| **Readiness** | 🧪 Exploratory |
+| **Readiness** | 👁 Reviewed |
 | **Confidence** | 🔴 Unverified |
-| **Last human review** | — |
+| **Last human review** | 2026-09-18 |
 
 ### Freschezza
 
 | | |
 |---|---|
 | **Last renewal** | 2025-12-23 |
-| **Last verified** | — |
+| **Last verified** | 2026-09-18 |
 | **Next salary event** | — |
 
 ### Semplificazioni note
