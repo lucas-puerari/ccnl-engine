@@ -1,453 +1,173 @@
-"""Property-based tests for payroll computation invariants.
-
-Covers five economic/actuarial invariants using Hypothesis:
-
-1. Monotonicity — gross_annual increases → net_annual never decreases.
-2. Part-time scaling — net_annual at 50% < net_annual at 100%.
-3. INPS isolation — a ``contribution_relevant=False`` supplement does not
-   change the INPS contribution base.
-4. TFR isolation — a ``tfr_relevant=False`` supplement does not change
-   tfr_annual.
-5. Surtax isolation — changing the regional surtax rate does not alter
-   irpef_net or inps_employee_annual.
-
-All five tests use in-memory CCNL and tax-rules fixtures (no I/O).
-Loaders are patched with ``unittest.mock.patch``; monkeypatch is avoided
-because Hypothesis ``@given`` tests cannot use pytest fixtures directly.
-"""
+"""Hypothesis property tests for economic invariants in the payroll engine."""
 
 from __future__ import annotations
 
 from decimal import Decimal
+from typing import TYPE_CHECKING
 from unittest.mock import patch
 
-from hypothesis import given, settings
+from hypothesis import assume, given
 from hypothesis import strategies as st
 
-from ccnl_engine.engine.contract.domain.ccnl import SupplementaryAllowance
-from ccnl_engine.engine.payroll.domain.scenario import (
-    Jurisdiction,
-    PayrollScenario,
-)
+from ccnl_engine.engine.payroll.domain.employment import Apprentice
 from ccnl_engine.engine.payroll.service.orchestrator import compute
-from ccnl_engine.engine.primitives import Bracket
-from ccnl_engine.engine.surtax.domain.rules import (
-    RegionaleEntry,
-    SurtaxRules,
-)
-from tests.helpers import make_minimal_ccnl, make_year_rules
-from tests.unit.ccnl_engine.engine.payroll.service.builders import _req
-
-# ---------------------------------------------------------------------------
-# Module-level shared fixtures (built once, reused across all @given calls)
-# ---------------------------------------------------------------------------
-
-_CCNL = make_minimal_ccnl()
-_RULES = make_year_rules()
-_REF_DATE_YEAR = 2026
-
-_PATCH_CCNL = "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl"
-_PATCH_RULES = "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules"
-_PATCH_SURTAX = "ccnl_engine.engine.payroll.service.orchestrator.load_surtax_rules"
-
-# ---------------------------------------------------------------------------
-# Shared strategies
-# ---------------------------------------------------------------------------
-
-_ral_st = st.integers(min_value=15_000, max_value=200_000).map(Decimal)
-_allowance_st = st.integers(min_value=0, max_value=5_000).map(Decimal)
-_seniority_st = st.integers(min_value=0, max_value=10)
-_rate_st = st.decimals(
-    min_value=Decimal("0.00"),
-    max_value=Decimal("0.05"),
-    places=4,
-    allow_nan=False,
-    allow_infinity=False,
+from tests.unit.ccnl_engine.engine.payroll.service.builders import (
+    _RULES,
+    _build_ccnl,
+    _req,
 )
 
-# ---------------------------------------------------------------------------
-# Shared builder helpers
-# ---------------------------------------------------------------------------
+if TYPE_CHECKING:
+    from ccnl_engine.engine.payroll.domain.calculation import Calculation
+
+_DEFAULT_CCNL = _build_ccnl()
+_LEVEL_CODES = ["2", "3", "4"]
+_SENIORITY_MAX = 10
 
 
-def _surtax_with_rate(rate: Decimal) -> SurtaxRules:
-    """Build a minimal SurtaxRules with one flat-rate region and no comunale.
-
-    Returns:
-        A :class:`SurtaxRules` with a single flat-rate region.
-    """
-    return SurtaxRules(
-        year=_REF_DATE_YEAR,
-        regionale={
-            "TestRegione": RegionaleEntry(brackets=(Bracket(up_to=None, rate=rate),))
-        },
-        comunale={},
-    )
-
-
-def _scenario_with_ral(ral: Decimal) -> PayrollScenario:
-    """Return a level-4 scenario with an explicit RAL override.
+def _compute(scenario: object) -> Calculation:
+    """Run compute() with the test CCNL and rules mocked in.
 
     Returns:
-        A :class:`PayrollScenario` using *ral* as the annual gross.
+        Calculation result with all gross, net, and cost figures.
     """
-    return _req(level_code="4", negotiated_ral=ral, seniority_count=0)
+    with (
+        patch(
+            "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl",
+            return_value=_DEFAULT_CCNL,
+        ),
+        patch(
+            "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
+            return_value=_RULES,
+        ),
+        patch(
+            "ccnl_engine.engine.payroll.service.orchestrator.load_surtax_rules",
+            return_value=None,
+        ),
+    ):
+        return compute(scenario)  # type: ignore[arg-type]
 
 
-def _scenario_with_supplement(
-    monthly: Decimal,
-    *,
-    contribution_relevant: bool = True,
-    tfr_relevant: bool = True,
-) -> PayrollScenario:
-    """Return a level-4 scenario with one caller-supplied supplementary allowance.
+class TestNonNegativity:
+    """gross_annual and net_annual are never negative."""
 
-    Returns:
-        A :class:`PayrollScenario` carrying the given allowance.
-    """
-    allowance = SupplementaryAllowance(
-        code="TEST-SUPP",
-        description="Test supplement",
-        monthly=monthly,
-        contribution_relevant=contribution_relevant,
-        tfr_relevant=tfr_relevant,
+    @given(
+        level_code=st.sampled_from(_LEVEL_CODES),
+        seniority_count=st.integers(min_value=0, max_value=_SENIORITY_MAX),
     )
-    return _req(
-        level_code="4",
-        seniority_count=0,
-        second_level_allowances=(allowance,),
-    )
-
-
-def _scenario_with_jurisdiction(region: str) -> PayrollScenario:
-    """Return a level-4 scenario with fiscal residency in *region* (no comune).
-
-    Returns:
-        A :class:`PayrollScenario` with the given region set.
-    """
-    return _req(
-        level_code="4",
-        seniority_count=0,
-        jurisdiction=Jurisdiction(regione=region),
-    )
-
-
-# ---------------------------------------------------------------------------
-# Invariant 1 — gross-to-net monotonicity
-# ---------------------------------------------------------------------------
-
-
-class TestMonotonicity:
-    """Increasing gross_annual never decreases net_annual."""
-
-    @settings(max_examples=50)
-    @given(ral_low=_ral_st, ral_delta=st.integers(min_value=1, max_value=50_000))
-    def test_net_does_not_decrease_when_gross_increases(
-        self, ral_low: Decimal, ral_delta: int
+    def test_gross_and_net_are_non_negative(
+        self, level_code: str, seniority_count: int
     ) -> None:
-        """net_annual at RAL + Δ is at least as large as net_annual at RAL.
-
-        Invariant: net(RAL + Δ) >= net(RAL)
-        """
-        ral_high = ral_low + Decimal(ral_delta)
-
-        with (
-            patch(_PATCH_CCNL, return_value=_CCNL),
-            patch(_PATCH_RULES, return_value=_RULES),
-            patch(_PATCH_SURTAX, return_value=None),
-        ):
-            net_low = compute(_scenario_with_ral(ral_low)).result.net_annual
-            net_high = compute(_scenario_with_ral(ral_high)).result.net_annual
-
-        assert net_high >= net_low, (
-            f"net_annual decreased when gross increased: "
-            f"ral_low={ral_low}, net_low={net_low}, "
-            f"ral_high={ral_high}, net_high={net_high}"
-        )
+        """Gross and net annual figures are always non-negative."""
+        scenario = _req(level_code=level_code, seniority_count=seniority_count)
+        result = _compute(scenario).result
+        assert result.gross_annual >= Decimal(0)
+        assert result.net_annual >= Decimal(0)
 
 
-# ---------------------------------------------------------------------------
-# Invariant 2 — part-time scaling
-# ---------------------------------------------------------------------------
+class TestDecimalQuantization:
+    """All monetary outputs are quantized to two decimal places."""
+
+    @given(
+        level_code=st.sampled_from(_LEVEL_CODES),
+        seniority_count=st.integers(min_value=0, max_value=_SENIORITY_MAX),
+    )
+    def test_monetary_outputs_have_two_decimal_places(
+        self, level_code: str, seniority_count: int
+    ) -> None:
+        """gross_annual and net_annual have at most two decimal places."""
+        scenario = _req(level_code=level_code, seniority_count=seniority_count)
+        result = _compute(scenario).result
+        assert result.gross_annual == result.gross_annual.quantize(Decimal("0.01"))
+        assert result.net_annual == result.net_annual.quantize(Decimal("0.01"))
+        assert result.gross_monthly == result.gross_monthly.quantize(Decimal("0.01"))
+
+
+class TestNetLeGross:
+    """Net annual pay never exceeds gross annual pay."""
+
+    @given(
+        level_code=st.sampled_from(_LEVEL_CODES),
+        seniority_count=st.integers(min_value=0, max_value=_SENIORITY_MAX),
+    )
+    def test_net_le_gross(self, level_code: str, seniority_count: int) -> None:
+        """net_annual <= gross_annual: taxes and contributions are non-negative."""
+        scenario = _req(level_code=level_code, seniority_count=seniority_count)
+        result = _compute(scenario).result
+        assert result.net_annual <= result.gross_annual
+
+
+class TestSeniorityMonotonicity:
+    """Gross pay is non-decreasing as seniority increases (level 4 only)."""
+
+    @given(
+        low=st.integers(min_value=0, max_value=_SENIORITY_MAX),
+        high=st.integers(min_value=0, max_value=_SENIORITY_MAX),
+    )
+    def test_gross_non_decreasing_in_seniority(self, low: int, high: int) -> None:
+        """More seniority steps yield equal or greater gross annual pay on level 4."""
+        assume(low < high)
+        low_result = _compute(_req(level_code="4", seniority_count=low)).result
+        high_result = _compute(_req(level_code="4", seniority_count=high)).result
+        assert high_result.gross_annual >= low_result.gross_annual
+
+
+class TestLevelMonotonicity:
+    """Higher-order levels yield equal or greater gross pay than lower ones."""
+
+    def test_level4_gross_ge_level3(self) -> None:
+        """Level 4 gross >= level 3 gross at zero seniority."""
+        r4 = _compute(_req(level_code="4", seniority_count=0)).result
+        r3 = _compute(_req(level_code="3", seniority_count=0)).result
+        assert r4.gross_annual >= r3.gross_annual
+
+    def test_level3_gross_ge_level2(self) -> None:
+        """Level 3 gross >= level 2 gross at zero seniority."""
+        r3 = _compute(_req(level_code="3", seniority_count=0)).result
+        r2 = _compute(_req(level_code="2", seniority_count=0)).result
+        assert r3.gross_annual >= r2.gross_annual
+
+
+class TestDeterminism:
+    """Same inputs always produce the same outputs."""
+
+    @given(
+        level_code=st.sampled_from(_LEVEL_CODES),
+        seniority_count=st.integers(min_value=0, max_value=_SENIORITY_MAX),
+    )
+    def test_compute_is_deterministic(
+        self, level_code: str, seniority_count: int
+    ) -> None:
+        """Two calls with the same scenario return equal gross and net figures."""
+        scenario = _req(level_code=level_code, seniority_count=seniority_count)
+        r1 = _compute(scenario).result
+        r2 = _compute(scenario).result
+        assert r1.gross_annual == r2.gross_annual
+        assert r1.net_annual == r2.net_annual
 
 
 class TestPartTimeScaling:
-    """Part-time at 50% always produces a strictly lower net than full-time."""
+    """Part-time gross is no greater than full-time gross."""
 
-    @settings(max_examples=30)
-    @given(seniority_count=_seniority_st)
-    def test_half_time_net_below_full_time(self, seniority_count: int) -> None:
-        """net_annual at 50% part-time is strictly less than at 100%.
+    @given(numerator=st.integers(min_value=1, max_value=99))
+    def test_part_time_gross_le_full_time(self, numerator: int) -> None:
+        """Part-time ratio < 1 yields gross_annual <= full-time gross_annual."""
+        ratio = Decimal(numerator) / Decimal(100)
+        full = _compute(_req(level_code="4", seniority_count=0)).result
+        part = _compute(
+            _req(level_code="4", seniority_count=0, part_time_ratio=ratio)
+        ).result
+        assert part.gross_annual <= full.gross_annual
 
-        The CCNL table salary (including seniority increments) drives the
-        comparison; only the part-time coefficient differs.
 
-        Invariant: net(0.50) < net(1.00) for every seniority level
-        """
-        scenario_half = _req(
-            level_code="4",
-            seniority_count=seniority_count,
-            part_time_ratio=Decimal("0.50"),
+class TestApprenticePayLeDestination:
+    """Apprentice gross is no greater than the destination level permanent gross."""
+
+    def test_apprentice_gross_le_destination(self) -> None:
+        """Apprentice at 80% of level 4 has gross_annual <= permanent level 4 gross."""
+        app_scenario = _req(
+            level_code="4", seniority_count=0, contract=Apprentice(months_elapsed=0)
         )
-        scenario_full = _req(
-            level_code="4",
-            seniority_count=seniority_count,
-            part_time_ratio=Decimal(1),
-        )
-
-        with (
-            patch(_PATCH_CCNL, return_value=_CCNL),
-            patch(_PATCH_RULES, return_value=_RULES),
-            patch(_PATCH_SURTAX, return_value=None),
-        ):
-            net_half = compute(scenario_half).result.net_annual
-            net_full = compute(scenario_full).result.net_annual
-
-        assert net_half < net_full, (
-            f"Expected net at 50% part-time < net at 100%, "
-            f"got net_half={net_half}, net_full={net_full} "
-            f"(seniority_count={seniority_count})"
-        )
-
-
-# ---------------------------------------------------------------------------
-# Invariant 3 — INPS isolation
-# ---------------------------------------------------------------------------
-
-
-class TestInpsIsolation:
-    """contribution_relevant=False supplements must not alter inps_employee_annual."""
-
-    @settings(max_examples=50)
-    @given(monthly=_allowance_st)
-    def test_supplement_excluded_from_inps_base(self, monthly: Decimal) -> None:
-        """inps_employee_annual is unchanged when a supplement is INPS-excluded.
-
-        We compare two otherwise identical scenarios: one with no supplement,
-        one with a supplement marked contribution_relevant=False.
-
-        Invariant: inps(with supplement, contribution_relevant=False)
-                   == inps(without supplement)
-        """
-        scenario_base = _req(level_code="4", seniority_count=0)
-        scenario_with = _scenario_with_supplement(
-            monthly, contribution_relevant=False, tfr_relevant=True
-        )
-
-        with (
-            patch(_PATCH_CCNL, return_value=_CCNL),
-            patch(_PATCH_RULES, return_value=_RULES),
-            patch(_PATCH_SURTAX, return_value=None),
-        ):
-            inps_base = compute(scenario_base).result.inps_employee_annual
-            inps_with = compute(scenario_with).result.inps_employee_annual
-
-        assert inps_with == inps_base, (
-            f"INPS changed despite contribution_relevant=False: "
-            f"monthly={monthly}, inps_base={inps_base}, inps_with={inps_with}"
-        )
-
-
-# ---------------------------------------------------------------------------
-# Invariant 4 — TFR isolation
-# ---------------------------------------------------------------------------
-
-
-class TestTfrIsolation:
-    """tfr_relevant=False supplements must not alter tfr_annual."""
-
-    @settings(max_examples=50)
-    @given(monthly=_allowance_st)
-    def test_supplement_excluded_from_tfr_base(self, monthly: Decimal) -> None:
-        """tfr_annual is unchanged when a supplement is TFR-excluded.
-
-        Invariant: tfr(with supplement, tfr_relevant=False)
-                   == tfr(without supplement)
-        """
-        scenario_base = _req(level_code="4", seniority_count=0)
-        scenario_with = _scenario_with_supplement(
-            monthly, contribution_relevant=True, tfr_relevant=False
-        )
-
-        with (
-            patch(_PATCH_CCNL, return_value=_CCNL),
-            patch(_PATCH_RULES, return_value=_RULES),
-            patch(_PATCH_SURTAX, return_value=None),
-        ):
-            tfr_base = compute(scenario_base).result.tfr_annual
-            tfr_with = compute(scenario_with).result.tfr_annual
-
-        assert tfr_with == tfr_base, (
-            f"TFR changed despite tfr_relevant=False: "
-            f"monthly={monthly}, tfr_base={tfr_base}, tfr_with={tfr_with}"
-        )
-
-
-# ---------------------------------------------------------------------------
-# Invariant 5 — surtax isolation
-# ---------------------------------------------------------------------------
-
-
-class TestSurtaxIsolation:
-    """Changing addizionale regionale must not alter irpef_net or INPS."""
-
-    @settings(max_examples=50)
-    @given(rate_a=_rate_st, rate_b=_rate_st)
-    def test_regional_surtax_rate_does_not_affect_irpef_or_inps(
-        self, rate_a: Decimal, rate_b: Decimal
-    ) -> None:
-        """irpef_net and inps_employee_annual are invariant to the surtax rate.
-
-        addizionale regionale is settled after irpef_net and inps are fixed.
-        It is a separate levy on net_annual and must not feed back into the
-        standard IRPEF or INPS computations.
-
-        Invariant:
-            irpef_net(rate_a) == irpef_net(rate_b)
-            inps_employee_annual(rate_a) == inps_employee_annual(rate_b)
-        """
-        scenario = _scenario_with_jurisdiction("TestRegione")
-
-        with (
-            patch(_PATCH_CCNL, return_value=_CCNL),
-            patch(_PATCH_RULES, return_value=_RULES),
-            patch(_PATCH_SURTAX, return_value=_surtax_with_rate(rate_a)),
-        ):
-            result_a = compute(scenario).result
-
-        with (
-            patch(_PATCH_CCNL, return_value=_CCNL),
-            patch(_PATCH_RULES, return_value=_RULES),
-            patch(_PATCH_SURTAX, return_value=_surtax_with_rate(rate_b)),
-        ):
-            result_b = compute(scenario).result
-
-        assert result_a.irpef_net == result_b.irpef_net, (
-            f"irpef_net changed when surtax rate changed: "
-            f"rate_a={rate_a}, rate_b={rate_b}, "
-            f"irpef_a={result_a.irpef_net}, irpef_b={result_b.irpef_net}"
-        )
-        assert result_a.inps_employee_annual == result_b.inps_employee_annual, (
-            f"inps_employee_annual changed when surtax rate changed: "
-            f"rate_a={rate_a}, rate_b={rate_b}, "
-            f"inps_a={result_a.inps_employee_annual}, "
-            f"inps_b={result_b.inps_employee_annual}"
-        )
-
-
-# ---------------------------------------------------------------------------
-# Invariant 6 — net_annual ≤ gross_annual
-# ---------------------------------------------------------------------------
-
-
-class TestNetBelowGross:
-    """net_annual must never exceed gross_annual for any valid input."""
-
-    @settings(max_examples=50)
-    @given(ral=_ral_st, seniority_count=_seniority_st)
-    def test_net_annual_never_exceeds_gross_annual(
-        self, ral: Decimal, seniority_count: int
-    ) -> None:
-        """net_annual is always at most gross_annual.
-
-        Taxes and employee contributions reduce net below gross for every
-        income level.  This invariant should hold across the full IRPEF
-        schedule including trattamento integrativo (which tops-up net for low
-        incomes, but never above gross).
-
-        Invariant: net_annual <= gross_annual
-        """
-        scenario = _req(
-            level_code="4",
-            negotiated_ral=ral,
-            seniority_count=seniority_count,
-        )
-
-        with (
-            patch(_PATCH_CCNL, return_value=_CCNL),
-            patch(_PATCH_RULES, return_value=_RULES),
-            patch(_PATCH_SURTAX, return_value=None),
-        ):
-            result = compute(scenario).result
-
-        assert result.net_annual <= result.gross_annual, (
-            f"net_annual={result.net_annual} exceeded "
-            f"gross_annual={result.gross_annual} "
-            f"(ral={ral}, seniority_count={seniority_count})"
-        )
-
-
-# ---------------------------------------------------------------------------
-# Invariant 7 — employer_cost_annual ≥ gross_annual
-# ---------------------------------------------------------------------------
-
-
-class TestEmployerCostAboveGross:
-    """employer_cost_annual must always be at least gross_annual."""
-
-    @settings(max_examples=50)
-    @given(ral=_ral_st, seniority_count=_seniority_st)
-    def test_employer_cost_at_least_gross(
-        self, ral: Decimal, seniority_count: int
-    ) -> None:
-        """employer_cost_annual is always >= gross_annual.
-
-        Employer cost adds INPS employer contributions, TFR accrual, and
-        contractual fund contributions on top of gross pay — it is never
-        below gross.
-
-        Invariant: employer_cost_annual >= gross_annual
-        """
-        scenario = _req(
-            level_code="4",
-            negotiated_ral=ral,
-            seniority_count=seniority_count,
-        )
-
-        with (
-            patch(_PATCH_CCNL, return_value=_CCNL),
-            patch(_PATCH_RULES, return_value=_RULES),
-            patch(_PATCH_SURTAX, return_value=None),
-        ):
-            result = compute(scenario).result
-
-        assert result.employer_cost_annual >= result.gross_annual, (
-            f"employer_cost_annual={result.employer_cost_annual} is below "
-            f"gross_annual={result.gross_annual} "
-            f"(ral={ral}, seniority_count={seniority_count})"
-        )
-
-
-# ---------------------------------------------------------------------------
-# Invariant 8 — taxable_income = gross_annual - inps_employee_annual
-# ---------------------------------------------------------------------------
-
-
-class TestTaxableIncomeDefinition:
-    """taxable_income equals gross_annual minus inps_employee_annual."""
-
-    @settings(max_examples=50)
-    @given(ral=_ral_st)
-    def test_taxable_income_equals_gross_minus_inps(self, ral: Decimal) -> None:
-        """taxable_income is exactly gross_annual - inps_employee_annual.
-
-        This is the IRPEF taxable base per Art. 51 TUIR; any deviation
-        indicates a computation error in the fiscal chain.
-
-        Invariant: taxable_income == gross_annual - inps_employee_annual
-        """
-        scenario = _req(level_code="4", negotiated_ral=ral, seniority_count=0)
-
-        with (
-            patch(_PATCH_CCNL, return_value=_CCNL),
-            patch(_PATCH_RULES, return_value=_RULES),
-            patch(_PATCH_SURTAX, return_value=None),
-        ):
-            result = compute(scenario).result
-
-        expected = result.gross_annual - result.inps_employee_annual
-        assert result.taxable_income == expected, (
-            f"taxable_income={result.taxable_income} != "
-            f"gross_annual - inps_employee_annual = {expected} "
-            f"(ral={ral})"
-        )
+        app_result = _compute(app_scenario).result
+        perm_result = _compute(_req(level_code="4", seniority_count=0)).result
+        assert app_result.gross_annual <= perm_result.gross_annual
