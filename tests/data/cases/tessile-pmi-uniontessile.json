@@ -1,0 +1,53 @@
+{
+  "_description": "tessile-pmi-uniontessile — data checks 2026",
+  "ccnl_file": "tessile-pmi-uniontessile.json",
+  "salary_checks": [
+    {
+      "level_code": "8",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2497.90"
+    },
+    {
+      "level_code": "5",
+      "as_of": "2026-01-01",
+      "expected_monthly": "2074.40"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2026-01-01",
+      "expected_monthly": "1962.56"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2025-01-01",
+      "expected_monthly": "1558.00"
+    },
+    {
+      "level_code": "2bis",
+      "as_of": "2027-01-01",
+      "expected_monthly": "1850.15"
+    },
+    {
+      "level_code": "3bis",
+      "as_of": "2025-01-01",
+      "expected_monthly": "1858.50"
+    }
+  ],
+  "seniority_checks": [
+    {
+      "level_code": "8",
+      "as_of": "2026-01-01",
+      "expected_amount": "12.91"
+    },
+    {
+      "level_code": "4",
+      "as_of": "2026-01-01",
+      "expected_amount": "8.26"
+    },
+    {
+      "level_code": "1",
+      "as_of": "2026-01-01",
+      "expected_amount": "6.71"
+    }
+  ]
+}
