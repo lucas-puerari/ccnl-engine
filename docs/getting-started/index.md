@@ -6,7 +6,7 @@
 pip install ccnl-engine
 ```
 
-Requires Python 3.11+.
+Requires Python 3.12+.
 
 ## Quickstart
 
@@ -19,7 +19,7 @@ payroll.
 
 ## Supported CCNLs
 
-The library bundles 85 contract configurations covering approximately 15 million
+The library bundles 125 contract configurations covering approximately 15 million
 employees across private and public sectors.
 
 | Sector | Contracts | Workers (~) |

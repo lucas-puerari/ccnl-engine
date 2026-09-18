@@ -174,3 +174,34 @@ jobs:
 
       - name: Smoke test — end-to-end scenario
         run: .smokeenv/bin/python scripts/ci/smoke_wheel.py
+
+  public-snippets:
+    name: Public snippets smoke test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.0.1
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version-file: pyproject.toml
+
+      - name: Install dependencies
+        run: uv sync --group dev
+
+      - name: Install package (editable)
+        run: uv pip install -e .
+
+      - name: Run docs/examples snippets
+        run: |
+          find docs/examples docs/examples/contracts \
+            -name '*.py' ! -name '__init__.py' \
+            -print0 \
+          | sort -z \
+          | xargs -0 -I{} uv run python {}
