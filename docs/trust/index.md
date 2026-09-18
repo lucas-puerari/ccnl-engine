@@ -4,6 +4,21 @@ A payroll figure is only as useful as the confidence you can place in it.
 This section documents every mechanism the engine uses to make its results
 verifiable, reproducible, and transparent about their own limits.
 
+## Three layers of correctness {#correctness}
+
+A simulation can be correct at the software level but wrong at the data level,
+or correct at both levels but incomplete for your specific scenario. The engine
+makes all three explicit:
+
+| Layer | Question | Measured by |
+|---|---|---|
+| **Software** | Does the engine apply its rules consistently? | 100% coverage, mypy strict, reference cases |
+| **Source** | Do the modelled rules match the current authoritative sources? | Ruleset readiness tier |
+| **Case** | Does the user's scenario fall within the modelled scope? | `calculation_scope` and `warnings` |
+
+See [Correctness layers](correctness.md) for the full breakdown and a guide to
+reading all three together.
+
 ## Ruleset readiness {#readiness}
 
 Before reading about result-level signals, understand the ruleset-level
