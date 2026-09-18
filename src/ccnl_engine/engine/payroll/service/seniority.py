@@ -5,6 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
@@ -61,8 +62,8 @@ def _resolve_tier_amount(
         Rounded total monthly seniority amount for the level.
 
     Raises:
-        ValueError: If both ``seniority_months`` and ``count_override`` are
-            ``None``.
+        InvalidInputError: If both ``seniority_months`` and ``count_override``
+            are ``None``.
     """
     if count_override is not None:
         remaining = count_override
@@ -79,7 +80,7 @@ def _resolve_tier_amount(
     # month-based path
     if seniority_months is None:
         msg = "seniority_months is required when count_override is not given"
-        raise ValueError(msg)
+        raise InvalidInputError(msg, feature="seniority")
     remaining_m = seniority_months
     total = _ZERO
     for tier in tiers:
@@ -155,7 +156,7 @@ def _resolve_seniority_count(
         The resolved seniority increment count, clamped to the level maximum.
 
     Raises:
-        ValueError: If seniority_count exceeds the maximum for the level.
+        InvalidInputError: If seniority_count exceeds the maximum for the level.
     """
     maximum = seniority_maximum(seniority_rules, level_code, worker_category)
     if seniority_months is not None:
@@ -177,7 +178,10 @@ def _resolve_seniority_count(
                 f"seniority_count {count} exceeds the maximum of {maximum} "
                 f"for level {level_code!r}"
             )
-            raise ValueError(msg)
+            remediation = (
+                f"Use a seniority_count of at most {maximum} for level {level_code!r}."
+            )
+            raise InvalidInputError(msg, feature="seniority", remediation=remediation)
     if worker_category in seniority_rules.excluded_categories:
         return 0
     return count

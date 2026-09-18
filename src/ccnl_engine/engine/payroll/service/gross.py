@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.engine.payroll.domain.employee import (
     DestinationRalOverride,
     RalOverride,
@@ -79,7 +80,7 @@ def _resolve_chain_and_apprenticeship(
           scaling factor used for ``chain.scaled(...)``
 
     Raises:
-        ValueError: If DestinationRalOverride is used with an
+        InvalidInputError: If DestinationRalOverride is used with an
             under-classification apprenticeship track (no percentage factor).
     """
     effective_factor = scenario.employee.part_time_ratio
@@ -106,7 +107,15 @@ def _resolve_chain_and_apprenticeship(
                 "DestinationRalOverride requires a percentage-based "
                 "apprenticeship track; the resolved track uses under-classification"
             )
-            raise ValueError(msg)
+            remediation = (
+                "Use RalOverride instead of DestinationRalOverride for "
+                "under-classification tracks."
+            )
+            raise InvalidInputError(
+                msg,
+                feature="apprenticeship",
+                remediation=remediation,
+            )
     else:
         chain_full_time = _level_chain(
             ccnl,
@@ -141,15 +150,18 @@ def _guard_ral_conflict(
     """Raise if second-level allowances are combined with a RAL override.
 
     Raises:
-        ValueError: When ``second_level_allowances`` is non-empty and a RAL
-            override is also set.
+        InvalidInputError: When ``second_level_allowances`` is non-empty and a
+            RAL override is also set.
     """
     if second_level_allowances and ral_override_mode is not None:
         msg = (
             "second_level_allowances cannot be combined with a RAL override: "
             "the negotiated figure already represents the full agreed salary"
         )
-        raise ValueError(msg)
+        remediation = (
+            "Remove the RAL override or the second_level_allowances from the scenario."
+        )
+        raise InvalidInputError(msg, remediation=remediation)
 
 
 def _validate_ral_override(
@@ -162,14 +174,18 @@ def _validate_ral_override(
         True when a RAL override is set.
 
     Raises:
-        ValueError: If ``DestinationRalOverride`` is used with a non-Apprentice
-            contract type.
+        InvalidInputError: If ``DestinationRalOverride`` is used with a
+            non-Apprentice contract type.
     """
     if isinstance(ral_override, DestinationRalOverride) and not isinstance(
         contract, Apprentice
     ):
         msg = "DestinationRalOverride is only valid for Apprentice employment"
-        raise ValueError(msg)  # ruff: ignore[type-check-without-type-error]
+        raise InvalidInputError(
+            msg,
+            feature="apprenticeship",
+            remediation="Use RalOverride for non-apprentice contracts.",
+        )
     return ral_override is not None
 
 

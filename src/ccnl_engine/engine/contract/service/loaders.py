@@ -8,6 +8,7 @@ from functools import cache
 from typing import Any
 
 from ccnl_engine.engine.contract.domain.ccnl import CCNL
+from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.engine.io.service.bundled import read_bundled
 from ccnl_engine.engine.metadata import source_hash
 
@@ -46,7 +47,7 @@ def _verify_ruleset_hash(payload: dict[str, Any]) -> None:
     the provenance backfill.
 
     Raises:
-        ValueError: If the recomputed hash differs from the recorded one.
+        DataIntegrityError: If the recomputed hash differs from the recorded one.
     """
     ruleset = payload.get("ruleset")
     if not isinstance(ruleset, dict):
@@ -59,4 +60,10 @@ def _verify_ruleset_hash(payload: dict[str, Any]) -> None:
             "CCNL ruleset source_hash mismatch; data file has been modified "
             "without updating its ruleset block."
         )
-        raise ValueError(msg)
+        raise DataIntegrityError(
+            msg,
+            remediation=(
+                "Re-run scripts/ci/rehash_ccnl.py to regenerate the "
+                "source_hash for the modified file."
+            ),
+        )

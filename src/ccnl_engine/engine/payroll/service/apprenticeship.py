@@ -7,6 +7,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.engine.contract.domain.apprenticeship import ApprenticeshipPercentage
+from ccnl_engine.engine.errors import OutOfScopeError
 from ccnl_engine.engine.payroll.service.chain import _level_chain
 from ccnl_engine.engine.payroll.service.rounding import money
 
@@ -32,7 +33,13 @@ def _find_period_index(periods: Sequence[MonthPeriod], months_elapsed: int) -> i
         ):
             return i
     msg = f"no apprenticeship period covers months_elapsed={months_elapsed}"
-    raise ValueError(msg)
+    remediation = "Verify that months_elapsed is within the range covered by the track."
+    raise OutOfScopeError(
+        msg,
+        reason="no_period",
+        feature="apprenticeship",
+        remediation=remediation,
+    )
 
 
 def _eligible_destination_levels(ccnl: CCNL) -> list[str]:
@@ -54,7 +61,16 @@ def _select_track(
                 f"apprenticeship track {track.name!r} does not cover destination "
                 f"level {level.code!r} (covers {track.destination_levels})"
             )
-            raise ValueError(msg)
+            remediation = (
+                f"Choose a track whose destination_levels includes {level.code!r}."
+            )
+            raise OutOfScopeError(
+                msg,
+                reason="no_track",
+                feature="apprenticeship",
+                ruleset=ccnl.meta.ccnl_id,
+                remediation=remediation,
+            )
         return track
     candidates = ccnl.apprenticeship_tracks_for(level.code)
     if len(candidates) == 1:
@@ -66,13 +82,29 @@ def _select_track(
             f"level {level.code!r} (coverage.net is {ccnl.coverage.net}; "
             f"eligible destination levels: {eligible})"
         )
-        raise ValueError(msg)
+        raise OutOfScopeError(
+            msg,
+            reason="no_track",
+            feature="apprenticeship",
+            ruleset=ccnl.meta.ccnl_id,
+            remediation=(
+                "Use a level code listed in eligible_destination_levels, "
+                "or use a standard (non-apprenticeship) contract type."
+            ),
+        )
     names = [t.name for t in candidates]
     msg = (
         f"destination level {level.code!r} is covered by several apprenticeship "
         f"tracks {names}; set Apprentice.track to choose one"
     )
-    raise ValueError(msg)
+    remediation = f"Set Apprentice.track to one of: {names}."
+    raise OutOfScopeError(
+        msg,
+        reason="ambiguous_track",
+        feature="apprenticeship",
+        ruleset=ccnl.meta.ccnl_id,
+        remediation=remediation,
+    )
 
 
 def _percentage_track_chain(

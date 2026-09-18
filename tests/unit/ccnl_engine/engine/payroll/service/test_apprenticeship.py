@@ -8,6 +8,7 @@ import pytest
 
 from ccnl_engine.engine.contract.domain.apprenticeship import ApprenticeshipPeriod
 from ccnl_engine.engine.contract.domain.ccnl import CCNL
+from ccnl_engine.engine.errors import OutOfScopeError
 from ccnl_engine.engine.payroll.domain.employment import Apprentice
 from ccnl_engine.engine.payroll.service.apprenticeship import _find_period_index
 from ccnl_engine.engine.payroll.service.orchestrator import compute
@@ -60,13 +61,13 @@ class TestFindPeriodIndex:
     """Direct unit tests for _find_period_index()."""
 
     def test_not_found_raises(self) -> None:
-        """months_elapsed before the first period raises ValueError."""
+        """months_elapsed before the first period raises OutOfScopeError."""
         periods = (
             ApprenticeshipPeriod(
                 months_from=10, months_until=None, percentage=_D("0.8")
             ),
         )
-        with pytest.raises(ValueError, match="months_elapsed"):
+        with pytest.raises(OutOfScopeError, match="months_elapsed"):
             _find_period_index(periods, months_elapsed=5)  # type: ignore[arg-type]
 
 
@@ -168,14 +169,16 @@ class TestComputeApprenticePercentage:
             )
 
     def test_level_without_track_raises(self) -> None:
-        """A destination level not covered by any track must raise ValueError."""
-        with pytest.raises(ValueError, match=r"eligible destination levels: \['4'\]"):
+        """A destination level not covered by any track must raise OutOfScopeError."""
+        with pytest.raises(
+            OutOfScopeError, match=r"eligible destination levels: \['4'\]"
+        ):
             compute(_req(level_code="3", contract=Apprentice(months_elapsed=0)))
 
     def test_no_tracks_raises(self) -> None:
         """A CCNL without apprenticeship tracks reports its coverage status."""
         _mock_ccnl[0] = _build_ccnl("none")
-        with pytest.raises(ValueError, match=r"coverage.net is partial"):
+        with pytest.raises(OutOfScopeError, match=r"coverage.net is partial"):
             compute(_req(contract=Apprentice(months_elapsed=0)))
 
     def test_ambiguous_tracks_require_name(self) -> None:
@@ -187,14 +190,16 @@ class TestComputeApprenticePercentage:
         data["apprenticeship"].append(second)
         ccnl = CCNL.model_validate(data)
         _mock_ccnl[0] = ccnl
-        with pytest.raises(ValueError, match=r"set Apprentice\.track"):
+        with pytest.raises(OutOfScopeError, match=r"set Apprentice\.track"):
             compute(_req(contract=Apprentice(months_elapsed=0)))
         r = compute(_req(contract=Apprentice(months_elapsed=0, track="gruppo_2")))
         assert r.result.apprenticeship_pct == _D("0.70")
 
     def test_named_track_not_covering_level_raises(self) -> None:
         """A named track must cover the requested destination level."""
-        with pytest.raises(ValueError, match="does not cover destination level '3'"):
+        with pytest.raises(
+            OutOfScopeError, match="does not cover destination level '3'"
+        ):
             compute(
                 _req(
                     level_code="3",
