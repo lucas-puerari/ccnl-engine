@@ -14,14 +14,14 @@ from ccnl_engine import (
     Employee,
     Employer,
     Employment,
-    PayrollScenario,
+    AnnualPayrollScenario,
     Permanent,
-    compute,
+    estimate_annual,
 )
 
 # Convivente (live-in) domestic worker, super-minimum level, 40h/week.
-p = compute(
-    PayrollScenario(
+p = estimate_annual(
+    AnnualPayrollScenario(
         employee=Employee(
             level_code="CS",  # convivente super-minimum
             weekly_hours=Decimal(40),

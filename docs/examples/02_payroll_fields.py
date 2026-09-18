@@ -1,10 +1,9 @@
 """Reading the PayrollResult: key output fields and their meaning.
 
-compute() returns a Calculation that bundles the PayrollResult (``calculation.result``)
-with the engine version, the ruleset revisions used and a snapshot of the
-inputs. Attribute reads are also forwarded onto the PayrollResult, so
-``calculation.net_annual`` works too. This example walks through the most
-commonly used fields.
+estimate_annual() returns a Calculation that bundles the PayrollResult
+(``calculation.result``) with the engine version, the ruleset revisions
+used and a snapshot of the inputs. This example walks through the most
+commonly used fields and the grouped views (.pay, .tax, .employer).
 """
 
 from datetime import date
@@ -12,17 +11,17 @@ from decimal import Decimal
 from typing import cast
 
 from ccnl_engine import (
+    AnnualPayrollScenario,
     Employee,
     Employer,
     Employment,
     FiscalSimplification,
-    PayrollScenario,
     Permanent,
-    compute,
+    estimate_annual,
 )
 
-calculation = compute(
-    PayrollScenario(
+calculation = estimate_annual(
+    AnnualPayrollScenario(
         employee=Employee(level_code="C2"),
         employment=Employment(
             ccnl="metalmeccanico-federmeccanica.json",

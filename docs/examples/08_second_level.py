@@ -19,9 +19,9 @@ from ccnl_engine import (
     Employee,
     Employer,
     Employment,
-    PayrollScenario,
+    AnnualPayrollScenario,
     Permanent,
-    compute,
+    estimate_annual,
 )
 from ccnl_engine.engine.contract.domain.ccnl import SupplementaryAllowance
 
@@ -46,8 +46,8 @@ employer_2l = Employer(
     ),
 )
 
-base = compute(
-    PayrollScenario(
+base = estimate_annual(
+    AnnualPayrollScenario(
         employee=Employee(level_code="4"),
         employment=Employment(
             ccnl="commercio-confcommercio.json",
@@ -57,8 +57,8 @@ base = compute(
         ),
     )
 ).result
-with_2l = compute(
-    PayrollScenario(
+with_2l = estimate_annual(
+    AnnualPayrollScenario(
         employee=Employee(level_code="4"),
         employment=Employment(
             ccnl="commercio-confcommercio.json",

@@ -12,16 +12,16 @@ from ccnl_engine import (
     Employee,
     Employer,
     Employment,
-    PayrollScenario,
+    AnnualPayrollScenario,
     Permanent,
     SeniorityByCount,
     SeniorityByMonths,
-    compute,
+    estimate_annual,
 )
 
 # --- Via explicit count ---
-p_count = compute(
-    PayrollScenario(
+p_count = estimate_annual(
+    AnnualPayrollScenario(
         employee=Employee(
             level_code="4",
             seniority=SeniorityByCount(value=3),  # 3 scatti già maturati
@@ -37,8 +37,8 @@ p_count = compute(
 
 # --- Via service months (engine derives the count) ---
 # Commercio cadence is 36 months. 108 months → 3 increments (at months 36, 72, 108).
-p_months = compute(
-    PayrollScenario(
+p_months = estimate_annual(
+    AnnualPayrollScenario(
         employee=Employee(
             level_code="4",
             seniority=SeniorityByMonths(value=108),
