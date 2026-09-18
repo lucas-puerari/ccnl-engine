@@ -15,7 +15,6 @@ import pathlib
 import tempfile
 from typing import Any
 
-from hatchling.builders.config import BuilderConfig
 from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 
 # Pairs of (package-relative dist prefix, source directory relative to project root).
@@ -27,7 +26,7 @@ _DATA_DIRS: list[tuple[str, str]] = [
 ]
 
 
-class CustomBuildHook(BuildHookInterface[BuilderConfig]):
+class CustomBuildHook(BuildHookInterface):  # type: ignore[type-arg]
     """Compress bundled JSON data files into .json.gz during wheel builds."""
 
     PLUGIN_NAME = "custom"
