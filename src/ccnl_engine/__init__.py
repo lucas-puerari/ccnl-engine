@@ -151,6 +151,7 @@ from ccnl_engine.engine.payroll.service.render import (
     AnnualBreakdown,
     render_breakdown,
 )
+from ccnl_engine.engine.payroll.service.schemas import result_schema, scenario_schema
 from ccnl_engine.version import __version__ as engine_version
 
 __all__ = [
@@ -222,5 +223,7 @@ __all__ = [
     "get_ccnl",
     "list_ccnls",
     "render_breakdown",
+    "result_schema",
+    "scenario_schema",
     "search_ccnls",
 ]

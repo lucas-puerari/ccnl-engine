@@ -75,6 +75,8 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "get_ccnl",
     "list_ccnls",
     "render_breakdown",
+    "result_schema",
+    "scenario_schema",
     "search_ccnls",
 })
 

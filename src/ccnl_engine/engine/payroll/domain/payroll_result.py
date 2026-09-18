@@ -400,6 +400,9 @@ class PayrollResult:
     time_supplements_monthly: Decimal = _ZERO
     time_supplements_annual_projection: Decimal = _ZERO
 
+    # --- Serialisation metadata ---
+    schema_version: str = "1"
+
     def to_dict(self) -> dict[str, object]:
         """Serialise the payroll to a plain Python dictionary.
 
