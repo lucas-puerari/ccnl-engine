@@ -53,9 +53,7 @@ def result(scenario: AnnualPayrollScenario) -> PayrollResult:
 class TestAnnualPayrollScenarioSerialisation:
     """AnnualPayrollScenario.to_dict/from_dict/to_json/from_json round-trip."""
 
-    def test_to_dict_returns_dict(
-        self, scenario: AnnualPayrollScenario
-    ) -> None:
+    def test_to_dict_returns_dict(self, scenario: AnnualPayrollScenario) -> None:
         """``to_dict()`` returns a plain dict."""
         assert isinstance(scenario.to_dict(), dict)
 
@@ -67,24 +65,18 @@ class TestAnnualPayrollScenarioSerialisation:
         contract = cast("dict[str, object]", d["employment"])["contract"]
         assert cast("dict[str, object]", contract)["type"] == "permanent"
 
-    def test_to_json_returns_str(
-        self, scenario: AnnualPayrollScenario
-    ) -> None:
+    def test_to_json_returns_str(self, scenario: AnnualPayrollScenario) -> None:
         """``to_json()`` returns a valid JSON string."""
         raw = scenario.to_json()
         assert isinstance(raw, str)
         parsed = json.loads(raw)
         assert isinstance(parsed, dict)
 
-    def test_from_dict_roundtrip(
-        self, scenario: AnnualPayrollScenario
-    ) -> None:
+    def test_from_dict_roundtrip(self, scenario: AnnualPayrollScenario) -> None:
         """``from_dict(to_dict())`` reconstructs an equal scenario."""
         assert AnnualPayrollScenario.from_dict(scenario.to_dict()) == scenario
 
-    def test_from_json_roundtrip(
-        self, scenario: AnnualPayrollScenario
-    ) -> None:
+    def test_from_json_roundtrip(self, scenario: AnnualPayrollScenario) -> None:
         """``from_json(to_json())`` reconstructs an equal scenario."""
         assert AnnualPayrollScenario.from_json(scenario.to_json()) == scenario
 
@@ -108,9 +100,7 @@ class TestPayrollResultSchemaVersion:
         restored = PayrollResult.from_dict(result.to_dict())
         assert restored.schema_version == "1"
 
-    def test_from_dict_without_schema_version(
-        self, result: PayrollResult
-    ) -> None:
+    def test_from_dict_without_schema_version(self, result: PayrollResult) -> None:
         """``from_dict`` works on dicts missing schema_version (uses default)."""
         d = result.to_dict()
         d.pop("schema_version")
