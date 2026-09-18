@@ -19,8 +19,10 @@ payroll.
 
 ## Supported CCNLs
 
-The library bundles 125 contract configurations covering approximately 15 million
-employees across private and public sectors.
+The library bundles 125 contract configurations covering an estimated 16 million
+employees across private and public sectors (individual contracts may cover
+overlapping populations; the figure is a represented-population estimate, not a
+sum of distinct workers).
 
 | Sector | Contracts | Workers (~) |
 |---|---:|---:|

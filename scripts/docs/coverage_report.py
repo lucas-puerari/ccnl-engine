@@ -158,11 +158,11 @@ def build_coverage_report() -> CoverageReport:
 
 # Markdown rendering
 
-_CONTRACTS_PREAMBLE = """\
+_CONTRACTS_PREAMBLE_TEMPLATE = """\
 # CCNL Coverage
 
-100+ contract configurations covering approximately **16 million employees** across
-private and public sectors -- including ARAN public-sector agreements (funzioni
+{count} contract configurations covering an estimated **16 million employees**[^4]
+across private and public sectors -- including ARAN public-sector agreements (funzioni
 centrali, locali, sanità, istruzione) and one Presidential Decree (DPR 53/2025[^3]).
 Covers 75+ of the ~99 major private-sector CCNLs (>10,000 workers, CNEL II/2024).
 
@@ -204,6 +204,8 @@ in production.
 [^3]: DPR 53/2025 -- Compensation for Forze di Polizia ad ordinamento civile is \
 set by Presidential Decree, not a CNEL-registered agreement. \
 D.P.R. 24 marzo 2025, n. 53 (GU n. 91, 18 April 2025, SO).
+[^4]: Estimated represented population. Individual contracts may cover overlapping \
+worker populations; figures should not be summed to derive total coverage.
 """
 
 
@@ -218,9 +220,10 @@ def render_contracts_index(report: CoverageReport) -> str:
         " -- run: uv run python scripts/docs/gen_coverage_matrix.py -->\n"
         f"<!-- generated: {report.generated_at} -->\n"
     )
+    preamble = _CONTRACTS_PREAMBLE_TEMPLATE.format(count=len(report.ccnl_rows))
     lines: list[str] = [
         auto_header,
-        _CONTRACTS_PREAMBLE,
+        preamble,
         (
             "| # | CNEL | CCNL | Sector | Workers (~)[^1]"
             " | Renewal | Coverage | L1 | L2 | L3 | Ext[^2] |"

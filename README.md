@@ -55,7 +55,8 @@ print(calculation.ruleset_version)     # → {'ccnl': '…', 'tax': '…', 'inps
 
 ## CCNL coverage
 
-Over 100 contracts covering approximately 16 million employees across private and public sectors.
+125 contract configurations covering an estimated 16 million employees across
+private and public sectors (individual contracts may cover overlapping populations).
 
 - **L1 — Gross:** base salary, seniority, fixed allowances, additional months, hourly rate.
 - **L2 — Net:** INPS contributions, TFR, IRPEF, regional/municipal surtax.
