@@ -53,7 +53,11 @@ from ccnl_engine.engine.contract.service.discovery import (
     search_ccnls,
 )
 from ccnl_engine.engine.errors import (
+    PUBLIC_ERROR_CODES,
     CcnlEngineError,
+    DataIntegrityError,
+    InvalidInputError,
+    OutOfScopeError,
     UnknownCcnlError,
     UnknownLevelError,
 )
@@ -155,6 +159,7 @@ from ccnl_engine.engine.payroll.service.schemas import result_schema, scenario_s
 from ccnl_engine.version import __version__ as engine_version
 
 __all__ = [
+    "PUBLIC_ERROR_CODES",
     "AbsenceDays",
     "Agreement",
     "AnnualBreakdown",
@@ -170,6 +175,7 @@ __all__ = [
     "CcnlInfo",
     "ConfidenceLevel",
     "CoverageStatus",
+    "DataIntegrityError",
     "DestinationRalOverride",
     "Employee",
     "Employer",
@@ -181,10 +187,12 @@ __all__ = [
     "FringeBenefit",
     "FringeBenefitInput",
     "InputSnapshot",
+    "InvalidInputError",
     "Jurisdiction",
     "Leave",
     "LeaveInput",
     "MonthlyPayrollReport",
+    "OutOfScopeError",
     "OvertimeHours",
     "PayPeriod",
     "PayrollEmployer",

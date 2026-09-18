@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING, Any, Protocol
 
 from pydantic import ValidationError
 
+from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.engine.io.service.bundled import read_bundled
 from ccnl_engine.engine.metadata import RulesetIdentity, source_hash
 from ccnl_engine.engine.tax.domain.art15 import (
@@ -103,7 +104,7 @@ def _load_year_rules_cached(
         object stored in the cache.
 
     Raises:
-        ValueError: If the tax or INPS file's year/sector field doesn't match.
+        DataIntegrityError: If the tax or INPS file's year/sector doesn't match.
     """
     tax_raw = read_tax_rules_raw(year, sector)
     if tax_raw.get("year") != year:
@@ -111,26 +112,26 @@ def _load_year_rules_cached(
             f"tax-{year}-{sector.value}.json year={tax_raw.get('year')!r} "
             f"does not match requested year={year!r}"
         )
-        raise ValueError(msg)
+        raise DataIntegrityError(msg)
     if tax_raw.get("sector") != sector.value:
         msg = (
             f"tax-{year}-{sector.value}.json sector={tax_raw.get('sector')!r} "
             f"does not match requested sector={sector.value!r}"
         )
-        raise ValueError(msg)
+        raise DataIntegrityError(msg)
     inps_raw = read_inps_rules_raw(year, sector)
     if inps_raw.get("year") != year:
         msg = (
             f"inps-{year}-{sector.value}.json year={inps_raw.get('year')!r} "
             f"does not match requested year={year!r}"
         )
-        raise ValueError(msg)
+        raise DataIntegrityError(msg)
     if inps_raw.get("sector") != sector.value:
         msg = (
             f"inps-{year}-{sector.value}.json sector={inps_raw.get('sector')!r} "
             f"does not match requested sector={sector.value!r}"
         )
-        raise ValueError(msg)
+        raise DataIntegrityError(msg)
     inps_sources = inps_raw.pop("sources", [])
     inps_extraction = inps_raw.pop("extraction", None)
     raw = {**tax_raw, **inps_raw}
@@ -211,7 +212,7 @@ def _verify_ruleset_hash(payload: dict[str, Any], filename: str) -> None:
     the provenance backfill.
 
     Raises:
-        ValueError: If the recomputed hash differs from the recorded one.
+        DataIntegrityError: If the recomputed hash differs from the recorded one.
     """
     ruleset = payload.get("ruleset")
     if not isinstance(ruleset, dict):
@@ -224,7 +225,13 @@ def _verify_ruleset_hash(payload: dict[str, Any], filename: str) -> None:
             f"ruleset source_hash mismatch in {filename}; data file has been "
             "modified without updating its ruleset block."
         )
-        raise ValueError(msg)
+        raise DataIntegrityError(
+            msg,
+            remediation=(
+                "Re-run scripts/ci/rehash_ccnl.py to regenerate the "
+                "source_hash for the modified file."
+            ),
+        )
 
 
 def read_tax_rules_raw(year: int, sector: TaxSector) -> dict[str, Any]:
@@ -282,7 +289,7 @@ def _resolve_tier[T: _Tier](tiers: list[T], num_employees: int, side: str) -> T:
 
 
 def _assert_tier_integrity(tiers: Sequence[_Tier], side: str) -> None:
-    """Raise ValueError if the tier list has structural defects.
+    """Raise DataIntegrityError if the tier list has structural defects.
 
     Checks (run on the unsorted input):
     - Exactly one open tier (max_employees: null) must be present.
@@ -293,8 +300,8 @@ def _assert_tier_integrity(tiers: Sequence[_Tier], side: str) -> None:
       silent mis-classification depending on sort stability).
 
     Raises:
-        ValueError: if the number of open tiers is not exactly one, or
-            if any bounded max_employees value appears more than once.
+        DataIntegrityError: if the number of open tiers is not exactly one,
+            or if any bounded max_employees value appears more than once.
     """
     open_count = sum(1 for t in tiers if t.max_employees is None)
     if open_count != 1:
@@ -302,14 +309,14 @@ def _assert_tier_integrity(tiers: Sequence[_Tier], side: str) -> None:
             f"{side}-rate tiers: exactly one open tier "
             f"(max_employees: null) is required, found {open_count}."
         )
-        raise ValueError(msg)
+        raise DataIntegrityError(msg)
     seen: set[int] = set()
     for tier in tiers:
         if tier.max_employees is None:
             continue
         if tier.max_employees in seen:
             msg = f"{side}-rate tiers: duplicate max_employees={tier.max_employees}."
-            raise ValueError(msg)
+            raise DataIntegrityError(msg)
         seen.add(tier.max_employees)
 
 
@@ -324,7 +331,7 @@ def _resolve_inps(raw: InpsRawRates | None, num_employees: int) -> InpsRates | N
         (i.e. the sector uses domestic_contributions instead).
 
     Raises:
-        ValueError: If only one of the additional rate/threshold fields is set.
+        DataIntegrityError: If only one of the additional rate/threshold is set.
     """
     if raw is None:
         return None
@@ -335,7 +342,7 @@ def _resolve_inps(raw: InpsRawRates | None, num_employees: int) -> InpsRates | N
             "employee_additional_rate and employee_additional_threshold "
             "must both be set or both be absent"
         )
-        raise ValueError(msg)
+        raise DataIntegrityError(msg)
     employer_tier = _resolve_tier(raw.employer_tiers, num_employees, "employer")
     employee_tier = _resolve_tier(raw.employee_tiers, num_employees, "employee")
     return InpsRates(
@@ -419,7 +426,7 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
         with thresholds and PdR parameters already validated.
 
     Raises:
-        ValueError: If the file's ``year`` field does not match *year*.
+        DataIntegrityError: If the file's ``year`` field does not match *year*.
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
     raw = _read_json(pkg, "variable-pay-rules.json")
@@ -428,7 +435,7 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
             f"variable-pay-rules.json year={raw.get('year')!r} "
             f"does not match requested year={year!r}"
         )
-        raise ValueError(msg)
+        raise DataIntegrityError(msg)
     fb_raw = raw["fringe_benefit"]
     pdr_raw = raw["pdr"]
     return VariablePayRules(
@@ -462,7 +469,7 @@ def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
         with all deduction parameters validated.
 
     Raises:
-        ValueError: If the file's ``year`` field does not match *year*.
+        DataIntegrityError: If the file's ``year`` field does not match *year*.
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
     filename = f"family-deductions-{year}.json"
@@ -472,7 +479,7 @@ def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
             f"{filename} year={raw.get('year')!r} "
             f"does not match requested year={year!r}"
         )
-        raise ValueError(msg)
+        raise DataIntegrityError(msg)
 
     sp_raw = raw["spouse"]
     ch_raw = raw["children"]
@@ -537,7 +544,7 @@ def load_art15_deduction_rules(year: int) -> Art15DeductionRules:
         with all deduction parameters validated.
 
     Raises:
-        ValueError: If the file's ``year`` field does not match *year*.
+        DataIntegrityError: If the file's ``year`` field does not match *year*.
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
     filename = f"art15-deductions-{year}.json"
@@ -547,7 +554,7 @@ def load_art15_deduction_rules(year: int) -> Art15DeductionRules:
             f"{filename} year={raw.get('year')!r} "
             f"does not match requested year={year!r}"
         )
-        raise ValueError(msg)
+        raise DataIntegrityError(msg)
 
     mi_raw = raw["mortgage_interest"]
     return Art15DeductionRules(

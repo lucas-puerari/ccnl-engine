@@ -11,6 +11,7 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.engine.contract.domain.ccnl import TaxSector
+from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.engine.payroll.service.contributions import (
     apprentice_employer_rate,
     inps_employer_rate,
@@ -423,7 +424,7 @@ class TestYearRules2026Json:
                 max_employees=10, rate=Decimal("0.09"), ivs_rate=Decimal("0.09")
             )
         ]
-        with pytest.raises(ValueError, match="exactly one open tier"):
+        with pytest.raises(DataIntegrityError, match="exactly one open tier"):
             _assert_tier_integrity(tiers, "employee")
 
     def test_no_open_tier_covered_headcount_still_raises(self) -> None:
@@ -435,7 +436,7 @@ class TestYearRules2026Json:
         ]
         # Without the fix, headcount=5 would succeed; now it must fail
         # because the structural defect (no open band) is caught up front.
-        with pytest.raises(ValueError, match="exactly one open tier"):
+        with pytest.raises(DataIntegrityError, match="exactly one open tier"):
             _resolve_tier(tiers, 5, "employee")
 
     def test_single_open_tier_accepted(self) -> None:
@@ -461,7 +462,7 @@ class TestYearRules2026Json:
                 max_employees=None, rate=Decimal("0.10"), ivs_rate=Decimal("0.09")
             ),
         ]
-        with pytest.raises(ValueError, match=r"exactly one open tier"):
+        with pytest.raises(DataIntegrityError, match=r"exactly one open tier"):
             _assert_tier_integrity(tiers, "employee")
 
     def test_duplicate_max_employees_raises(self) -> None:
@@ -477,7 +478,7 @@ class TestYearRules2026Json:
                 max_employees=None, rate=Decimal("0.11"), ivs_rate=Decimal("0.09")
             ),
         ]
-        with pytest.raises(ValueError, match="duplicate max_employees=15"):
+        with pytest.raises(DataIntegrityError, match="duplicate max_employees=15"):
             _assert_tier_integrity(tiers, "employee")
 
     def test_tfr_rules(self) -> None:

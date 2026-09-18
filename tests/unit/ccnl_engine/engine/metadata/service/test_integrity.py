@@ -22,6 +22,7 @@ from ccnl_engine.engine.contract.service.loaders import (
 from ccnl_engine.engine.contract.service.loaders import (
     load_ccnl as load_ccnl_from_bundle,
 )
+from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.engine.surtax.service import loaders as surtax_loaders
 from ccnl_engine.engine.surtax.service.loaders import _load_surtax_rules_cached
 from ccnl_engine.engine.tax.service import loaders as tax_loaders
@@ -82,7 +83,7 @@ class TestContractLoaderIntegrity:
         tampered = _tamper(json.loads(raw))
         self._repatch(monkeypatch, json.dumps(tampered))
 
-        with pytest.raises(ValueError, match="source_hash mismatch"):
+        with pytest.raises(DataIntegrityError, match="source_hash mismatch"):
             load_ccnl_from_bundle("commercio-confcommercio.json")
 
     def test_missing_ruleset_still_loads(self, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -131,19 +132,19 @@ class TestVerifyRulesetHash:
     def test_contract_mismatch_raises(self) -> None:
         """Contract loader raises on a stale hash with a stable message."""
         payload = {"a": 2, "ruleset": {"source_hash": "0" * 64}}
-        with pytest.raises(ValueError, match="source_hash mismatch"):
+        with pytest.raises(DataIntegrityError, match="source_hash mismatch"):
             _verify_contract_hash(payload)
 
     def test_tax_mismatch_raises_with_filename(self) -> None:
         """Tax loader includes the filename in the mismatch error."""
         payload = {"a": 2, "ruleset": {"source_hash": "0" * 64}}
-        with pytest.raises(ValueError, match=r"in 2026-terziario\.json"):
+        with pytest.raises(DataIntegrityError, match=r"in 2026-terziario\.json"):
             tax_loaders._verify_ruleset_hash(payload, "2026-terziario.json")
 
     def test_surtax_mismatch_raises_with_filename(self) -> None:
         """Surtax loader includes the filename in the mismatch error."""
         payload = {"a": 2, "ruleset": {"source_hash": "0" * 64}}
-        with pytest.raises(ValueError, match=r"in regionale-2026\.json"):
+        with pytest.raises(DataIntegrityError, match=r"in regionale-2026\.json"):
             surtax_loaders._verify_ruleset_hash(payload, "regionale-2026.json")
 
 
@@ -174,7 +175,7 @@ class TestTaxLoaderIntegrity:
             tax_loaders, "read_bundled", lambda pkg, f: json.dumps(tampered)
         )
 
-        with pytest.raises(ValueError, match="source_hash mismatch in 2026"):
+        with pytest.raises(DataIntegrityError, match="source_hash mismatch in 2026"):
             tax_loaders.load_year_rules(2026, TaxSector.TERZIARIO, 50)
 
     def test_missing_ruleset_produces_none(
@@ -222,5 +223,5 @@ class TestSurtaxLoaderIntegrity:
             return json.dumps(reg)
 
         monkeypatch.setattr(surtax_loaders, "read_bundled", fake_read)
-        with pytest.raises(ValueError, match="source_hash mismatch"):
+        with pytest.raises(DataIntegrityError, match="source_hash mismatch"):
             surtax_loaders.load_surtax_rules(2026)

@@ -13,6 +13,7 @@ from datetime import UTC, date, datetime
 from typing import TYPE_CHECKING
 
 from ccnl_engine.engine.diff.domain.diff import RuleChange, RulesDiff
+from ccnl_engine.engine.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -48,11 +49,16 @@ def diff_ccnl(ccnl: CCNL, from_date: date, to_date: date) -> RulesDiff:
         and ``dataclasses.replace`` to annotate those fields.
 
     Raises:
-        ValueError: If *to_date* is not strictly after *from_date*.
+        InvalidInputError: If *to_date* is not strictly after *from_date*.
     """
     if to_date <= from_date:
         msg = f"to_date ({to_date}) must be strictly after from_date ({from_date})"
-        raise ValueError(msg)
+        raise InvalidInputError(
+            msg,
+            remediation=(
+                "Swap the arguments or use a to_date that is later than from_date."
+            ),
+        )
 
     changes: list[RuleChange] = []
 

@@ -7,6 +7,7 @@ from unittest.mock import patch
 import pytest
 from pydantic import ValidationError
 
+from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.engine.primitives import Bracket
 from ccnl_engine.engine.surtax.domain.rules import (
     ComunaleEntry,
@@ -102,7 +103,7 @@ class TestSurtaxLoaderIdentity:
     """_load_surtax_rules_cached rejects mismatched year in data files."""
 
     def test_regionale_year_mismatch_raises(self) -> None:
-        """Regionale file with wrong year raises ValueError."""
+        """Regionale file with wrong year raises DataIntegrityError."""
         tampered_reg = json.dumps({"year": 9999}).encode()
         valid_com = json.dumps({"year": 2026}).encode()
         _load_surtax_rules_cached.cache_clear()
@@ -111,13 +112,13 @@ class TestSurtaxLoaderIdentity:
                 "ccnl_engine.engine.surtax.service.loaders.read_bundled",
                 side_effect=[tampered_reg, valid_com],
             ),
-            pytest.raises(ValueError, match="does not match requested year"),
+            pytest.raises(DataIntegrityError, match="does not match requested year"),
         ):
             load_surtax_rules(2026)
         _load_surtax_rules_cached.cache_clear()
 
     def test_comunale_year_mismatch_raises(self) -> None:
-        """Comunale file with wrong year raises ValueError."""
+        """Comunale file with wrong year raises DataIntegrityError."""
         valid_reg = json.dumps({"year": 2026}).encode()
         tampered_com = json.dumps({"year": 9999}).encode()
         _load_surtax_rules_cached.cache_clear()
@@ -126,7 +127,7 @@ class TestSurtaxLoaderIdentity:
                 "ccnl_engine.engine.surtax.service.loaders.read_bundled",
                 side_effect=[valid_reg, tampered_com],
             ),
-            pytest.raises(ValueError, match="does not match requested year"),
+            pytest.raises(DataIntegrityError, match="does not match requested year"),
         ):
             load_surtax_rules(2026)
         _load_surtax_rules_cached.cache_clear()

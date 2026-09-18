@@ -7,6 +7,7 @@ import json
 from functools import cache
 from typing import Any
 
+from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.engine.io.service.bundled import read_bundled
 from ccnl_engine.engine.metadata import source_hash
 from ccnl_engine.engine.surtax.domain.rules import (
@@ -62,7 +63,7 @@ def _load_surtax_rules_cached(year: int) -> SurtaxRules:
         object stored in the cache.
 
     Raises:
-        ValueError: If a data file's year field doesn't match the requested year.
+        DataIntegrityError: If a data file's year field doesn't match *year*.
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.surtax.data")
     reg_raw = read_bundled(pkg, f"regionale-{year}.json")
@@ -76,13 +77,13 @@ def _load_surtax_rules_cached(year: int) -> SurtaxRules:
             f"regionale-{year}.json year={reg_payload.get('year')!r} "
             f"does not match requested year={year!r}"
         )
-        raise ValueError(msg)
+        raise DataIntegrityError(msg)
     if com_payload.get("year") != year:
         msg = (
             f"comunale-{year}.json year={com_payload.get('year')!r} "
             f"does not match requested year={year!r}"
         )
-        raise ValueError(msg)
+        raise DataIntegrityError(msg)
     reg = RegionaleRaw.model_validate(reg_payload)
     com = ComunaleRaw.model_validate(com_payload)
     return SurtaxRules(
@@ -102,7 +103,7 @@ def _verify_ruleset_hash(payload: dict[str, Any], filename: str) -> None:
     the provenance backfill.
 
     Raises:
-        ValueError: If the recomputed hash differs from the recorded one.
+        DataIntegrityError: If the recomputed hash differs from the recorded one.
     """
     ruleset = payload.get("ruleset")
     if not isinstance(ruleset, dict):
@@ -115,4 +116,10 @@ def _verify_ruleset_hash(payload: dict[str, Any], filename: str) -> None:
             f"ruleset source_hash mismatch in {filename}; data file has been "
             "modified without updating its ruleset block."
         )
-        raise ValueError(msg)
+        raise DataIntegrityError(
+            msg,
+            remediation=(
+                "Re-run scripts/ci/rehash_ccnl.py to regenerate the "
+                "source_hash for the modified file."
+            ),
+        )

@@ -7,6 +7,7 @@ from unittest.mock import patch
 import pytest
 
 from ccnl_engine.engine.contract.domain.ccnl import TaxSector
+from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.engine.tax.service.loaders import (
     _load_year_rules_cached,
     _try_ruleset,
@@ -27,7 +28,7 @@ class TestLoadVariablePayRules:
 
     def test_wrong_year_raises(self) -> None:
         """Requesting a year that does not match the file raises ValueError."""
-        with pytest.raises(ValueError, match="does not match requested year"):
+        with pytest.raises(DataIntegrityError, match="does not match requested year"):
             load_variable_pay_rules(2099)
 
 
@@ -75,7 +76,7 @@ class TestLoadFamilyDeductionRules:
                 "ccnl_engine.engine.tax.service.loaders._read_json",
                 return_value=tampered_raw,
             ),
-            pytest.raises(ValueError, match="does not match requested year"),
+            pytest.raises(DataIntegrityError, match="does not match requested year"),
         ):
             load_family_deduction_rules(2026)
 
@@ -118,7 +119,7 @@ class TestLoadArt15DeductionRules:
                 "ccnl_engine.engine.tax.service.loaders._read_json",
                 return_value=tampered_raw,
             ),
-            pytest.raises(ValueError, match="does not match requested year"),
+            pytest.raises(DataIntegrityError, match="does not match requested year"),
         ):
             load_art15_deduction_rules(2026)
 
@@ -175,7 +176,9 @@ class TestResolveInpsAdditionalValidation:
                 "ccnl_engine.engine.tax.service.loaders.read_inps_rules_raw",
                 return_value=bad_inps_raw,
             ),
-            pytest.raises(ValueError, match="must both be set or both be absent"),
+            pytest.raises(
+                DataIntegrityError, match="must both be set or both be absent"
+            ),
         ):
             load_year_rules(2026, TaxSector.INDUSTRIA, 100)
         _load_year_rules_cached.cache_clear()
@@ -192,7 +195,7 @@ class TestLoadYearRulesIdentity:
                 "ccnl_engine.engine.tax.service.loaders.read_tax_rules_raw",
                 return_value={"year": 9999, "sector": "terziario"},
             ),
-            pytest.raises(ValueError, match="does not match requested year"),
+            pytest.raises(DataIntegrityError, match="does not match requested year"),
         ):
             load_year_rules(2026, TaxSector.TERZIARIO, 50)
         _load_year_rules_cached.cache_clear()
@@ -205,7 +208,7 @@ class TestLoadYearRulesIdentity:
                 "ccnl_engine.engine.tax.service.loaders.read_tax_rules_raw",
                 return_value={"year": 2026, "sector": "invalid"},
             ),
-            pytest.raises(ValueError, match="does not match requested sector"),
+            pytest.raises(DataIntegrityError, match="does not match requested sector"),
         ):
             load_year_rules(2026, TaxSector.TERZIARIO, 50)
         _load_year_rules_cached.cache_clear()
@@ -222,7 +225,7 @@ class TestLoadYearRulesIdentity:
                 "ccnl_engine.engine.tax.service.loaders.read_inps_rules_raw",
                 return_value={"year": 9999, "sector": "terziario"},
             ),
-            pytest.raises(ValueError, match="does not match requested year"),
+            pytest.raises(DataIntegrityError, match="does not match requested year"),
         ):
             load_year_rules(2026, TaxSector.TERZIARIO, 50)
         _load_year_rules_cached.cache_clear()
@@ -239,7 +242,7 @@ class TestLoadYearRulesIdentity:
                 "ccnl_engine.engine.tax.service.loaders.read_inps_rules_raw",
                 return_value={"year": 2026, "sector": "invalid"},
             ),
-            pytest.raises(ValueError, match="does not match requested sector"),
+            pytest.raises(DataIntegrityError, match="does not match requested sector"),
         ):
             load_year_rules(2026, TaxSector.TERZIARIO, 50)
         _load_year_rules_cached.cache_clear()

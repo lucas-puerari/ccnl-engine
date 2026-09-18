@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.engine.payroll.domain.bilateral_funds import (
     BilateralFundInput,
     FlatMonthlyFund,
@@ -137,12 +138,20 @@ def _inps_contributions(
         all rounded to two decimal places.
 
     Raises:
-        ValueError: If the domestic model is active and ``weekly_hours`` is None.
+        InvalidInputError: If domestic model is active and ``weekly_hours`` is None.
     """
     if rules.domestic_contributions is not None:
         if weekly_hours is None:
             msg = "weekly_hours is required when rules.domestic_contributions is set"
-            raise ValueError(msg)
+            remediation = (
+                "Set PayrollScenario.employee.weekly_hours when using the "
+                "domestic contributions model."
+            )
+            raise InvalidInputError(
+                msg,
+                feature="domestic_contributions",
+                remediation=remediation,
+            )
         emp, er = _inps_domestic(
             rules.domestic_contributions,
             contract,
