@@ -781,6 +781,56 @@ label {
 .combobox-option.selected { font-weight: 600; }
 .combobox-empty { padding: 9px 11px; font-size: 12px; color: var(--c-faint); font-style: italic; }
 
+/* ── Demo mode switcher ──────────────────────────────────────────────────── */
+.mode-switcher {
+  display: flex; gap: 6px; padding: 4px 0 16px; justify-content: center;
+}
+.mode-btn {
+  display: flex; align-items: center; gap: 7px;
+  padding: 7px 16px; border-radius: var(--radius-box); border: 1px solid var(--c-border);
+  background: var(--color-base-100); color: var(--c-muted); font-size: 13px;
+  font-weight: 500; cursor: pointer; transition: all .15s; line-height: 1;
+  font-family: inherit;
+}
+.mode-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.mode-btn.active {
+  background: var(--c-primary-bg); border-color: var(--color-primary);
+  color: var(--color-primary); font-weight: 600;
+}
+/* Elements shown/hidden per mode */
+.demo-explore  .mode-integrate-only { display: none !important; }
+.demo-integrate .mode-explore-only  { display: none !important; }
+
+/* Readiness disclaimer (explore mode) */
+.readiness-disclaimer {
+  display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px;
+  background: color-mix(in oklch, var(--color-warning) 10%, transparent);
+  border: 1px solid color-mix(in oklch, var(--color-warning) 35%, transparent);
+  border-radius: var(--radius-box); font-size: 12px; color: var(--c-muted);
+  line-height: 1.5; margin-bottom: 8px;
+}
+.readiness-disclaimer strong { color: var(--color-warning); }
+
+/* Demo CTA block */
+.demo-cta {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+  padding: 16px 0 4px;
+}
+.demo-cta-btn {
+  display: flex; align-items: center; gap: 7px;
+  padding: 8px 18px; border-radius: var(--radius-btn);
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  text-decoration: none; transition: all .15s; font-family: inherit;
+}
+.demo-cta-btn-primary {
+  background: var(--color-primary); color: var(--color-primary-content); border: none;
+}
+.demo-cta-btn-primary:hover { opacity: .88; }
+.demo-cta-btn-ghost {
+  background: transparent; border: 1px solid var(--c-border); color: var(--c-muted);
+}
+.demo-cta-btn-ghost:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
 /* ── Footer ────────────────────────────────────────────────────────────────── */
 footer {
   display: flex; flex-direction: column; align-items: center; gap: 6px;

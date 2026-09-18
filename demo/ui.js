@@ -24,6 +24,31 @@ function _updateThemeIcon(theme) {
 }
 initTheme();
 
+// ── Demo mode ────────────────────────────────────────────────────────────────
+
+function setDemoMode(mode) {
+  const body = document.body;
+  body.classList.remove("demo-explore", "demo-integrate");
+  body.classList.add(mode === "integrate" ? "demo-integrate" : "demo-explore");
+  document.getElementById("btn-mode-explore")?.classList.toggle("active", mode === "explore");
+  document.getElementById("btn-mode-integrate")?.classList.toggle("active", mode === "integrate");
+  // When switching away from integrate while code tab is active, fall back to detail
+  if (mode === "explore") {
+    const codeTab = document.getElementById("tab-code");
+    if (codeTab?.classList.contains("active")) {
+      document.getElementById("tab-detail")?.click();
+    }
+  }
+  try { sessionStorage.setItem("ccnl_demo_mode", mode); } catch (_) {}
+}
+
+function initDemoMode() {
+  let mode = "explore";
+  try { mode = sessionStorage.getItem("ccnl_demo_mode") || "explore"; } catch (_) {}
+  setDemoMode(mode);
+}
+initDemoMode();
+
 // ── i18n ────────────────────────────────────────────────────────────────────
 
 let _i18nStrings = {};
@@ -1282,6 +1307,7 @@ function doCompute(pyodide) {
 
   document.getElementById("results").style.display = "flex";
   document.getElementById("results-placeholder").style.display = "none";
+  document.getElementById("readiness-disclaimer").style.display = "";
   clearStale();
 
   // Cache for toolbar actions (download, snippet, compare)
