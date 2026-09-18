@@ -15,15 +15,15 @@ from ccnl_engine import (
     Employee,
     Employer,
     Employment,
-    PayrollScenario,
+    AnnualPayrollScenario,
     Permanent,
-    compute,
+    estimate_annual,
 )
 
 # Metalmeccanico artigianato has an apprenticeship percentage track.
 # Destination level: level 3. Apprentice at month 12 → 75% of destination pay.
-apprentice = compute(
-    PayrollScenario(
+apprentice = estimate_annual(
+    AnnualPayrollScenario(
         employee=Employee(level_code="3"),
         employment=Employment(
             ccnl="metalmeccanico-artigianato.json",
@@ -35,8 +35,8 @@ apprentice = compute(
 ).result
 
 # Compare with the same level at permanent employment.
-permanent = compute(
-    PayrollScenario(
+permanent = estimate_annual(
+    AnnualPayrollScenario(
         employee=Employee(level_code="3"),
         employment=Employment(
             ccnl="metalmeccanico-artigianato.json",

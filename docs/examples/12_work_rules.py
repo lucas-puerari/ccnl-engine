@@ -1,10 +1,10 @@
 """L3 work rules: overtime, absence, leave, sick pay, welfare, bonus.
 
-L3 inputs are attached to PayrollScenario as optional keyword arguments.
-The engine computes each supplement or deduction and reports it in
-PayrollResult as an informational line item — the amounts do NOT mutate
-gross_annual or net_annual.  Check calculation_scope to see which features
-the CCNL actually models.
+Period-specific events (overtime, absences, benefits) live in PayPeriod and
+are passed to compute_month() alongside the structural AnnualPayrollScenario.
+The engine reports each as an informational line item — the amounts do NOT
+mutate gross_annual or net_annual. Check calculation_scope to see which
+features the CCNL actually models.
 """
 
 from datetime import date
@@ -12,6 +12,7 @@ from decimal import Decimal
 
 from ccnl_engine import (
     AbsenceDays,
+    AnnualPayrollScenario,
     BonusInput,
     Employee,
     Employer,
@@ -19,44 +20,45 @@ from ccnl_engine import (
     FringeBenefitInput,
     LeaveInput,
     OvertimeHours,
-    PayrollScenario,
+    PayPeriod,
     Permanent,
     SickInput,
     WelfareInput,
-    compute,
+    compute_month,
 )
 
-calculation = compute(
-    PayrollScenario(
-        employee=Employee(level_code="C3"),
-        employment=Employment(
-            ccnl="metalmeccanico-federmeccanica.json",
-            contract=Permanent(),
-            employer=Employer(num_employees=50),
-            as_of=date(2026, 9, 1),
-        ),
-        # Overtime: 8 weekday hours + 4 night hours in the period
-        time_supplements=OvertimeHours(
-            weekday_hours=Decimal(8),
-            night_hours=Decimal(4),
-        ),
-        # 1 day absent without pay
-        absence_days=AbsenceDays(unpaid_days=Decimal(1)),
-        # 2 leave days consumed
-        leave_input=LeaveInput(taken_days=Decimal(2)),
-        # 5 calendar days of illness
-        sick_input=SickInput(sick_days=Decimal(5)),
-        # Fringe benefits (e.g. company car, below the €1 000 threshold)
-        fringe_benefit_input=FringeBenefitInput(annual_amount=Decimal(800)),
-        # Welfare contributions (always tax-exempt under Art. 51 c. 2 TUIR)
-        welfare_input=WelfareInput(annual_amount=Decimal(500)),
-        # PdR-eligible performance bonus
-        bonus_input=BonusInput(
-            annual_amount=Decimal(1000),
-            eligible_for_pdr=True,
-        ),
-    )
+scenario = AnnualPayrollScenario(
+    employee=Employee(level_code="C3"),
+    employment=Employment(
+        ccnl="metalmeccanico-federmeccanica.json",
+        contract=Permanent(),
+        employer=Employer(num_employees=50),
+        as_of=date(2026, 9, 1),
+    ),
 )
+period = PayPeriod(
+    # Overtime: 8 weekday hours + 4 night hours in the period
+    time_supplements=OvertimeHours(
+        weekday_hours=Decimal(8),
+        night_hours=Decimal(4),
+    ),
+    # 1 day absent without pay
+    absence_days=AbsenceDays(unpaid_days=Decimal(1)),
+    # 2 leave days consumed
+    leave_input=LeaveInput(taken_days=Decimal(2)),
+    # 5 calendar days of illness
+    sick_input=SickInput(sick_days=Decimal(5)),
+    # Fringe benefits (e.g. company car, below the €1 000 threshold)
+    fringe_benefit_input=FringeBenefitInput(annual_amount=Decimal(800)),
+    # Welfare contributions (always tax-exempt under Art. 51 c. 2 TUIR)
+    welfare_input=WelfareInput(annual_amount=Decimal(500)),
+    # PdR-eligible performance bonus
+    bonus_input=BonusInput(
+        annual_amount=Decimal(1000),
+        eligible_for_pdr=True,
+    ),
+)
+calculation = compute_month(scenario, period)
 
 r = calculation.result
 

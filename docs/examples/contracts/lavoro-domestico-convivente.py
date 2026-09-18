@@ -7,13 +7,13 @@ from ccnl_engine import (
     Employee,
     Employer,
     Employment,
-    PayrollScenario,
+    AnnualPayrollScenario,
     Permanent,
-    compute,
+    estimate_annual,
 )
 
-p = compute(
-    PayrollScenario(
+p = estimate_annual(
+    AnnualPayrollScenario(
         employee=Employee(
             level_code="C",
             weekly_hours=Decimal(40),

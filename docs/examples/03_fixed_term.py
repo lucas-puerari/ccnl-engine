@@ -2,7 +2,7 @@
 
 FixedTerm() adds the 1.40% NASpI addizionale to the employer's INPS
 contribution (Art. 2 c. 28 L. 92/2012). Everything else is identical
-to a permanent contract.
+to a permanent contract. Compare via estimate_annual().
 """
 
 from datetime import date
@@ -12,13 +12,13 @@ from ccnl_engine import (
     Employer,
     Employment,
     FixedTerm,
-    PayrollScenario,
+    AnnualPayrollScenario,
     Permanent,
-    compute,
+    estimate_annual,
 )
 
-permanent = compute(
-    PayrollScenario(
+permanent = estimate_annual(
+    AnnualPayrollScenario(
         employee=Employee(level_code="4"),
         employment=Employment(
             ccnl="commercio-confcommercio.json",
@@ -28,8 +28,8 @@ permanent = compute(
         ),
     )
 ).result
-fixed_term = compute(
-    PayrollScenario(
+fixed_term = estimate_annual(
+    AnnualPayrollScenario(
         employee=Employee(level_code="4"),
         employment=Employment(
             ccnl="commercio-confcommercio.json",

@@ -1,6 +1,6 @@
 """Why this number? — The engine's reliability story.
 
-Every payroll figure produced by compute() is backed by three trust layers:
+Every payroll figure is backed by three trust layers:
 
 1. **Provenance** — each rule that contributed to the result links back to a
    primary source document (CCNL article, INPS circular, tax schedule).
@@ -10,34 +10,35 @@ Every payroll figure produced by compute() is backed by three trust layers:
    what it could not model, so callers are never silently wrong.
 
 This example walks through all three layers for a metalmeccanico C2 payslip.
+Period-specific events (overtime) live in PayPeriod, passed to compute_month().
 """
 
 from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
+    AnnualPayrollScenario,
     Employee,
     Employer,
     Employment,
-    PayrollScenario,
+    OvertimeHours,
+    PayPeriod,
     Permanent,
-    compute,
+    compute_month,
 )
-from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
 
 # --- 1. Compute ---
-calculation = compute(
-    PayrollScenario(
-        employee=Employee(level_code="C2"),
-        employment=Employment(
-            ccnl="metalmeccanico-federmeccanica.json",
-            contract=Permanent(),
-            employer=Employer(num_employees=200),
-            as_of=date(2026, 6, 1),
-        ),
-        time_supplements=OvertimeHours(weekday_hours=Decimal(10)),
-    )
+scenario = AnnualPayrollScenario(
+    employee=Employee(level_code="C2"),
+    employment=Employment(
+        ccnl="metalmeccanico-federmeccanica.json",
+        contract=Permanent(),
+        employer=Employer(num_employees=200),
+        as_of=date(2026, 6, 1),
+    ),
 )
+period = PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(10)))
+calculation = compute_month(scenario, period)
 p = calculation.result
 
 # --- 2. The headline numbers ---

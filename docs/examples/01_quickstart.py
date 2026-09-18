@@ -1,23 +1,23 @@
 """Quickstart: permanent employee, full-time, no seniority.
 
-This is the minimal call: build a PayrollScenario and pass it to compute().
-The returned Calculation wraps the PayrollResult (``calculation.result``) together
-with the engine and ruleset versions that produced it.
+Build an AnnualPayrollScenario and pass it to estimate_annual(). The
+returned Calculation wraps the PayrollResult (``calculation.result``)
+together with the engine and ruleset versions that produced it.
 """
 
 from datetime import date
 
 from ccnl_engine import (
+    AnnualPayrollScenario,
     Employee,
     Employer,
     Employment,
-    PayrollScenario,
     Permanent,
-    compute,
+    estimate_annual,
 )
 
-calculation = compute(
-    PayrollScenario(
+calculation = estimate_annual(
+    AnnualPayrollScenario(
         employee=Employee(level_code="4"),
         employment=Employment(
             ccnl="commercio-confcommercio.json",
@@ -36,6 +36,10 @@ print(f"Gross annual:      {payroll.gross_annual} EUR")
 print(f"Net annual:        {payroll.net_annual} EUR")
 print(f"Net monthly:       {payroll.net_monthly} EUR")
 print(f"Employer cost:     {payroll.employer_cost_annual} EUR")
+
+# Grouped views give structured access to related output fields.
+print(f"Status:            {payroll.quality.status}")
+print(f"Confidence:        {payroll.quality.confidence}")
 
 # The Calculation also records the engine/ruleset version and a full input
 # snapshot, so any figure can be reproduced exactly at a later date.
